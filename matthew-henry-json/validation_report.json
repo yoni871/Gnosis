@@ -1,0 +1,19 @@
+{
+  "source_files_processed": 1189,
+  "volumes_processed": [
+    "volume-1",
+    "volume-2",
+    "volume-3",
+    "volume-4",
+    "volume-5",
+    "volume-6"
+  ],
+  "books_processed": 66,
+  "commentary_entries_generated": 3366,
+  "chapters_detected": 1189,
+  "entries_requiring_manual_review": [],
+  "ambiguous_references": [],
+  "duplicate_entries": [],
+  "parsing_errors": [],
+  "unmapped_source_content": []
+}

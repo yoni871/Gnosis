@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --parchment: #F5EFE0;
+  --panel: #FAF7EF;
+  --panel-alt: #EFE7D6;
+  --border: #D8CDBB;
+
+  --burgundy: #7A2E3A;
+  --burgundy-dark: #63242F;
+
+  --text: #2B2523;
+  --muted: #766A62;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--parchment);
+  color: var(--text);
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;;
+}
