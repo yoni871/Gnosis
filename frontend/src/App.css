@@ -1,9 +1,0 @@
-
-/* Mobile */
-@media (max-width: 700px) {
-  .commentary-panel {
-    border-left: none;
-    border-top: 1px solid #d8cdbb;
-    padding: 35px 20px;
-  }
-}

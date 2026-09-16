@@ -142,7 +142,6 @@ const getStudy = async (req, res) => {
     const commentaryId = req.query.commentaryId;
     try {
         const result = await bibleService.getStudyByChapter(book, chapter, commentaryId);
-        console.log(result);
         const verses = result.verses.rows;
         const commentaries = result.commentaries.rows;
 

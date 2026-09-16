@@ -1,16 +1,34 @@
 import {
      BookOpen,
      Sun,
+     Moon,
      ChevronDown,
      PanelRight,
      Layers,
      Menu
     } from 'lucide-react';
 import SearchBar from './SearchBar';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import ThemeContext from '../../context/ThemeContext';
+import ProfileMenu from './ProfileMenu';
+import useClickOutside from '../../hooks/useClickOutside';
 
-function Header({ showSearch = true, variant = "default" }) {
+function Header({ 
+    showSearch = true, 
+    variant = "default",
+    layout,
+    setLayout
+
+}) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMobileProfileOpen, setIsMobileProfileOpen] = useState(false);
+    const { theme, setTheme } = useContext(ThemeContext);
+
+    const mobileMenuRef = useClickOutside(() => {
+        setIsMenuOpen(false);
+        setIsMobileProfileOpen(false);
+    });
     
     return (
         <header 
@@ -20,28 +38,34 @@ function Header({ showSearch = true, variant = "default" }) {
                 left-0
                 right-0
                 z-50
-                flex h-[50px] 
+                flex h-[58px] 
                 items-center 
                 justify-between 
                 border-b 
                 border-[var(--border)] 
-                bg-[rgba(244,233,205,0.96)] 
+                bg-[var(--bg-header)] 
                 px-9
             "
         >
 
-            <div 
+            <Link
+                to="/bible/Genesis/1" 
                 className="flex items-center 
                             gap-2.5 
-                            text-[var(--burgundy)]"
+                            text-[var(--color-brand)]
+                            cursor-pointer
+                            no-underline
+                            transition-opacity
+                            hover:opacity-80
+                            "
                             >
 
                 <div className="
                     flex h-7 w-7 
                     items-center justify-center
                     rounded-[7px]
-                    border border-[#B08D57]
-                    text-[#B08D57]
+                    border border-[var(--color-accent)]
+                    text-[var(--color-accent)]
                 ">
                     <BookOpen className="h-[17px] w-[17px] stroke-[1.6]"/>
                 </div>
@@ -53,7 +77,7 @@ function Header({ showSearch = true, variant = "default" }) {
                         text-[20px]
                         font-bold
                         tracking-[0.5px]
-                        text-[#6B1F2A]
+                        text-[var(--color-brand)]
                     ">
                         Gnosis
                     </h1>
@@ -64,12 +88,12 @@ function Header({ showSearch = true, variant = "default" }) {
                         text-[7px]
                         font-semibold
                         tracking-[2.7px]
-                        text-[#8A7964]
+                        text-[var(--text-muted)]
                     ">
                         BIBLE COMMENTARY
                     </p>
                 </div>
-            </div>
+            </Link>
             
             <div className="hidden items-center gap-2.5 md:flex">
 
@@ -79,30 +103,66 @@ function Header({ showSearch = true, variant = "default" }) {
 
                 {showSearch &&  variant === "default" && (
                     <div className="
-                        flex h-[29px] min-w-[125px]
+                        relative
+                        flex h-[34px] min-w-[140px]
                         items-center gap-[2px]
                         rounded-lg border border-[var(--border)]
-                        bg-[#E8DDC8] p-[3px]
+                        bg-[var(--bg-surface)] p-[3px]
                     ">
-                        <div className="
-                            flex h-[23px] flex-1
-                            items-center gap-1
-                            rounded-md bg-[#FFFDF8]
-                            px-[7px]
-                            text-[9px] text-[var(--burgundy)]
-                            shadow-sm
-                        ">
+                        {/* sliding active background */}
+                        <div
+                            className={`
+                                absolute top-[3px] bottom-[3px]
+                                w-[calc(50%-2px)]
+                                rounded-md
+                                bg-[var(--bg-selected)]
+                                shadow-sm
+                                transition-transform duration-300 ease-in-out
+                                ${layout === "stack"
+                                    ? "translate-x-[calc(100%-2px)]"
+                                    : "translate-x-0"
+                                }
+                            `}
+                        />
+
+                        <div 
+                            className={`
+                                relative z-10
+                                flex h-[28px] flex-1
+                                items-center gap-1
+                                rounded-md
+                                px-[7px]
+                                text-[11px]
+                                cursor-pointer
+                                transition-colors duration-200
+                                ${layout === "side"
+                                    ? "text-[var(--color-brand)]"
+                                    : "text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--color-brand)]"
+                                }
+                            `}
+                            onClick={() => setLayout("side")}
+                        >
                             <PanelRight size={13} />
                             <span>Side</span>
                         </div>
 
-                        <div className="
-                            flex h-[23px] flex-1
-                            items-center gap-1
-                            rounded-md px-[7px]
-                            text-[9px] text-[#8A7964]
-                            cursor-pointer
-                        ">
+                        <div 
+                            className={`
+                                relative z-10
+                                flex h-[28px] flex-1
+                                items-center gap-1
+                                rounded-md 
+                                px-[7px]
+                                text-[11px]
+                                cursor-pointer
+                                transition-colors duration-200
+                                ${layout === "stack"
+                                    ? "text-[var(--color-brand)]"
+                                    : "text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--color-brand)]"
+                                }
+                            `}
+                            onClick={() => setLayout("stack")}
+                        >
                             <Layers size={13} />
                             <span>Stack</span>
                         </div>
@@ -112,167 +172,175 @@ function Header({ showSearch = true, variant = "default" }) {
 
                 <button
                     className="
-                        flex h-[29px] w-[29px]
+                        flex h-[34px] w-[34px]
                         items-center justify-center
                         rounded-[7px]
-                        border border-[#B08D57]
+                        border border-[var(--color-accent)]
                         bg-transparent
-                        text-[#8A7048]
                         cursor-pointer
-                        hover:bg-[#E8DDC8]
+                        transition-colors duration-200
+                        text-[var(--theme-icon)]
+                        hover:bg-[var(--theme-icon-hover)]
                     "
+                    onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 >
-                    <Sun size={15} />
+                    {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
                 </button>
 
-                <div
-                    className="
-                        flex h-[30px]
-                        items-center gap-[7px]
-                        rounded-full
-                        border border-[var(--border)]
-                        bg-[#F8F2E6]
-                        py-0 pr-[7px] pl-1
-                        text-[10px] text-[var(--text)]
-                        cursor-pointer
-                    "
-                >
-                    <div
-                        className="
-                            flex h-[23px] w-[23px]
-                            items-center justify-center
-                            rounded-full
-                            bg-[var(--burgundy)]
-                            text-[8px] font-bold
-                            tracking-[0.5px] text-white
-                        "
-                    >
-                            YD
-                    </div>
+                <ProfileMenu />
 
-                    <span className="
-                        whitespace-nowrap
-                        font-serif
-                        text-[10px]
-                        font-semibold
-                    ">
-                        Yonatan Demissie
-                    </span>
-
-                    <ChevronDown 
-                        size={13} 
-                        className="text-[var(--muted)]"
-                    />
-                    
-                </div>
             </div>
-            <button
-                className='flex h-[36px] w-[36px]
-                items-center justify-center
-                rounded-md
-                text-[var(--burgundy)]
-                md:hidden
-                '
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-                <Menu size={22} />
-            </button>
-
-            {isMenuOpen && (
-                <div className="
-                    absolute
-                    right-4 top-[58px]
-                    z-50
-                    w-[260px]
-                    rounded-lg
-                    border border-[var(--border)]
-                    bg-[var(--panel)]
-                    p-4
-                    shadow-lg
+            <div ref={mobileMenuRef} className="relative md:hidden">
+                <button
+                    className='flex h-[36px] w-[36px]
+                    items-center justify-center
+                    rounded-md
+                    text-[var(--text-muted)]
                     md:hidden
-                ">
-                    {showSearch && (
-                        <div className="mb-4">
-                            <SearchBar variant={variant} />
-                        </div>
-                    )}
+                    '
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    <Menu size={22} />
+                </button>
 
-                    {showSearch && variant === 'default' && (
-                        <div className="
-                            mb-4
-                            flex h-[36px]
-                            items-center gap-1
-                            rounded-lg
-                            border border-[var(--border)]
-                            bg-[#E8DDC8]
-                            p-1
-                        ">
-                            <div className="
-                                flex flex-1
-                                items-center justify-center gap-1
+                {isMenuOpen && (
+                    <div 
+                    className="
+                        absolute
+                        right-4 top-[58px]
+                        z-50
+                        w-[260px]
+                        rounded-lg
+                        border border-[var(--border)]
+                        bg-[var(--bg-panel)]
+                        p-4
+                        shadow-lg
+                        md:hidden
+                    ">
+                        {showSearch && (
+                            <div className="mb-4 w-full max-w-full">
+                                <SearchBar variant={variant} mobile />
+                            </div>
+                        )}
+
+                        
+
+                        <button
+                            className="
+                                mb-3
+                                flex w-full
+                                items-center gap-3
                                 rounded-md
-                                bg-[#FFFDF8]
-                                py-2
-                                text-xs
-                                text-[var(--burgundy)]
+                                p-2
+                                text-sm
+                                text-[var(--text-primary)]
+                                hover:bg-[var(--hover-bg)]
+                            "
+                            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                        >
+                            {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
+                            <span>Theme</span>
+                        </button>
+
+                        {/* Profile */}
+                        <button className="
+                            flex w-full items-center gap-3
+                            rounded-md
+                            p-2
+                            text-left
+                            text-sm
+                            text-[var(--text-primary)]
+                            hover:bg-[var(--hover-bg)]
+                            "
+                            onClick={() => setIsMobileProfileOpen(!isMobileProfileOpen)}
+                        >
+                            <div className="
+                                flex h-8 w-8
+                                items-center justify-center
+                                rounded-full
+                                bg-[var(--color-brand)]
+                                text-xs font-bold
+                                text-white
                             ">
-                                <PanelRight size={14} />
-                                <span>Side</span>
+                                YD
                             </div>
 
+                            <span className="font-serif font-semibold">
+                                Yonatan Demissie
+                            </span>
+                        </button>
+
+                        {isMobileProfileOpen && (
                             <div className="
-                                flex flex-1
-                                items-center justify-center gap-1
-                                rounded-md
-                                py-2
-                                text-xs
-                                text-[#8A7964]
+                                mt-1
+                                border-t
+                                border-[var(--border)]
+                                pt-1
                             ">
-                                <Layers size={14} />
-                                <span>Stack</span>
+                                <button className="
+                                    flex w-full
+                                    rounded-md
+                                    px-2 py-2
+                                    text-left
+                                    text-sm
+                                    text-[var(--text-primary)]
+                                    hover:bg-[var(--hover-bg)]
+                                ">
+                                    Profile
+                                </button>
+
+                                <button className="
+                                    flex w-full
+                                    rounded-md
+                                    px-2 py-2
+                                    text-left
+                                    text-sm
+                                    text-[var(--text-primary)]
+                                    hover:bg-[var(--hover-bg)]
+                                ">
+                                    Notes
+                                </button>
+
+                                <button className="
+                                    flex w-full
+                                    rounded-md
+                                    px-2 py-2
+                                    text-left
+                                    text-sm
+                                    text-[var(--text-primary)]
+                                    hover:bg-[var(--hover-bg)]
+                                ">
+                                    Bookmarks
+                                </button>
+
+                                <button className="
+                                    flex w-full
+                                    rounded-md
+                                    px-2 py-2
+                                    text-left
+                                    text-sm
+                                    text-[var(--text-primary)]
+                                    hover:bg-[var(--hover-bg)]
+                                ">
+                                    Settings
+                                </button>
+
+                                <button className="
+                                    flex w-full
+                                    rounded-md
+                                    px-2 py-2
+                                    text-left
+                                    text-sm
+                                    text-[var(--color-brand)]
+                                    hover:bg-[var(--hover-bg)]
+                                ">
+                                    Sign out
+                                </button>
                             </div>
-                        </div>
-                    )}
-
-                    <button className="
-                        mb-3
-                        flex w-full
-                        items-center gap-3
-                        rounded-md
-                        p-2
-                        text-sm
-                        text-[var(--text)]
-                        hover:bg-[#E8DDC8]
-                    ">
-                        <Sun size={17} />
-                        <span>Theme</span>
-                    </button>
-
-                    {/* Profile */}
-                    <div className="
-                        flex items-center gap-3
-                        rounded-md
-                        p-2
-                        text-sm
-                        text-[var(--text)]
-                    ">
-                        <div className="
-                            flex h-8 w-8
-                            items-center justify-center
-                            rounded-full
-                            bg-[var(--burgundy)]
-                            text-xs font-bold
-                            text-white
-                        ">
-                            YD
-                        </div>
-
-                        <span className="font-serif font-semibold">
-                            Yonatan Demissie
-                        </span>
+                        )}
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </header>
     )
 }

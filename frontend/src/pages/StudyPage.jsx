@@ -19,9 +19,16 @@ export default function StudyPage() {
   const [chapter, setChapter] = useState(Number(urlChapter) || 1);
   const [books, setBooks] = useState([]);
   const [selectedVerse, setSelectedVerse] = useState(urlVerse ? Number(urlVerse) : null);
+  const [layout, setLayout] = useState("side");
 
   const [translation, setTranslation] = useState("");
   const [translations, setTranslations] = useState([]);
+
+  useEffect(() => {
+    setBook(urlBook || "Genesis");
+    setChapter(Number(urlChapter) || 1);
+    setSelectedVerse(urlVerse ? Number(urlVerse) : null);
+  }, [urlBook, urlChapter, urlVerse]);
 
   useEffect(() => {
         if (!translation) {
@@ -66,7 +73,10 @@ export default function StudyPage() {
 
   return (
     <>
-        <Header />
+        <Header 
+          layout={layout}
+          setLayout={setLayout}
+        />
         <SubHeader 
           verses={verses} 
           chapter={chapter}
@@ -77,16 +87,17 @@ export default function StudyPage() {
           selectedVerse={selectedVerse}
           setSelectedVerse={setSelectedVerse}
         />
-        <main className="
-          mt-[100px]
-          grid
-          h-[calc(100vh-100px)]
-          grid-cols-[60%_40%]
-          overflow-hidden
-          max-[768px]:block
-          max-[768px]:h-auto
-          max-[768px]:overflow-visible
-        ">
+        <main 
+          className={
+            `mt-[108px]
+            grid
+            ${layout === "side" ? "grid-cols-[60%_40%]" : "grid-rows-2"}
+            h-[calc(100vh-108px)]
+            overflow-hidden
+            max-[768px]:block
+            max-[768px]:h-auto
+            max-[768px]:overflow-visible`
+        }>
             <ScripturePanel 
               verses={verses}
               book={book}

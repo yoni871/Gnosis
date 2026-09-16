@@ -7,14 +7,25 @@ const getAllBooks = () => {
 
 const getAllChapters = (bookId) => {
     return pool.query(
-        "SELECT * FROM bible_chapters WHERE book_id = $1",
+        `
+        SELECT * 
+        FROM bible_chapters 
+        WHERE book_id = $1
+        ORDER BY chapter_number
+        `
+        ,
         [bookId]
     );
 };
 
 const getVersesByChapter = (chapterId, translationId) => {
     return pool.query(
-        "SELECT * FROM bible_verses WHERE chapter_id = $1 AND translation_id = $2",
+        `SELECT * 
+        FROM bible_verses 
+        WHERE chapter_id = $1 
+        AND translation_id = $2
+        ORDER BY verse_number
+        `,
         [chapterId, translationId]
     )
 }

@@ -1,4 +1,5 @@
 import { ChevronDown } from 'lucide-react'
+import useClickOutside from '../../hooks/useClickOutside';
 
 export default function CommentatorSelector({
     commentators,
@@ -8,15 +9,19 @@ export default function CommentatorSelector({
     setIsCommentaryOpen
 }) {
 
+    const dropdownRef = useClickOutside(() => {
+        setIsCommentaryOpen(false)
+    })
+
     //find the current selected commentator
     const selected = commentators.find(
         (commentator) => commentator.id === selectedCommentator
     );
 
     return (
-        <div className="relative w-full">
+        <div ref={dropdownRef} className="relative w-full">
 
-            <button 
+            <button
                 className="
                     flex
                     w-full
@@ -25,15 +30,15 @@ export default function CommentatorSelector({
                     rounded-[10px]
                     border
                     border-[var(--border)]
-                    bg-[var(--panel)]
+                    bg-[var(--bg-panel)]
                     px-[14px]
                     py-[11px]
                     text-left
-                    text-[var(--text)]
+                    text-[var(--text-primary)]
                     cursor-pointer
                     transition
                     duration-200
-                    hover:border-[rgba(122,46,58,0.45)]
+                    hover:border-[var(--color-brand)]
                 "
                 onClick={() => setIsCommentaryOpen(!isCommentaryOpen)}
             >
@@ -42,26 +47,26 @@ export default function CommentatorSelector({
                     flex
                     flex-col
                     gap-[5px]
-                ">   
+                ">
                     <strong className="
                         font-serif
                         text-[16px]
                     ">
                         {
                             commentators.find(
-                            (commentator) => commentator.id === selectedCommentator
+                                (commentator) => commentator.id === selectedCommentator
                             )?.name
                         }
                     </strong>
 
                     <span className="
                         text-[11px]
-                        text-[var(--muted)]
+                        text-[var(--text-muted)]
                     ">
                         {
-                        commentators.find(
-                            (commentator) => commentator.id === selectedCommentator
-                        )?.title
+                            commentators.find(
+                                (commentator) => commentator.id === selectedCommentator
+                            )?.title
                         }
                     </span>
 
@@ -82,8 +87,8 @@ export default function CommentatorSelector({
                     overflow-hidden
                     rounded-[8px]
                     border
-                    border-[#d6c7ad]
-                    bg-[#f7f1e3]
+                    border-[var(--border)]
+                    bg-[var(--bg-panel)]
                     shadow-[0_6px_16px_rgba(0,0,0,0.12)]
                 ">
 
@@ -96,9 +101,10 @@ export default function CommentatorSelector({
                                 px-[16px]
                                 py-[12px]
                                 text-[14px]
+                                text-[var(--text-primary)]
                                 transition-colors
                                 duration-150
-                                hover:bg-[#ebe0cb]
+                                hover:bg-[var(--bg-control-hover)]
                             "
                             onClick={() => {
                                 setSelectedCommentator(commentator.id);

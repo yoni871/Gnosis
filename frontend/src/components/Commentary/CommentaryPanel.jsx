@@ -28,7 +28,7 @@ export default function CommentaryPanel({ book, chapter, books }) {
       selectedCommentator
     )
       .then(data => {
-          setCommentary(data);
+        setCommentary(data);
       })
       .catch(error => {
         console.error(error);
@@ -41,10 +41,10 @@ export default function CommentaryPanel({ book, chapter, books }) {
 
     getCommentaries()
       .then(data => {
-      setCommentators(data);
-    })
+        setCommentators(data);
+      })
       .catch(error => {
-          console.error(error);
+        console.error(error);
       });
 
   }, []);
@@ -61,48 +61,53 @@ export default function CommentaryPanel({ book, chapter, books }) {
       max-[768px]:border-l-0
       max-[768px]:border-t
       max-[768px]:py-[30px]
-      bg-[rgba(250,247,239,0.35)]
+      bg-[var(--bg-panel)]
       px-[clamp(20px,2.5vw,36px)]
       py-[16px]
     ">
 
-        <div className="
-          mb-[10px]
-          text-[10px]
-          font-semibold
-          tracking-[3px]
-          text-[var(--muted)]
-        ">
-          COMMENTARY
-        </div>
+      <div className="
+        mb-[10px]
+        text-[10px]
+        font-semibold
+        tracking-[3px]
+        text-[var(--text-muted)]
+      ">
+        COMMENTARY
+      </div>
 
-        <CommentatorSelector 
-          commentators={commentators}
-          selectedCommentator={selectedCommentator}
-          setSelectedCommentator={setSelectedCommentator}
-          isCommentaryOpen={isCommentaryOpen}
-          setIsCommentaryOpen={setIsCommentaryOpen}
-        />
+      <CommentatorSelector
+        commentators={commentators}
+        selectedCommentator={selectedCommentator}
+        setSelectedCommentator={setSelectedCommentator}
+        isCommentaryOpen={isCommentaryOpen}
+        setIsCommentaryOpen={setIsCommentaryOpen}
+      />
 
-        <div className="
-          mt-[22px]
-          mb-[15px]
-          inline-flex
-          items-center
-          gap-[7px]
-          rounded-full
-          bg-[#EDE2D0]
-          px-[11px]
-          py-[7px]
-          text-[11px]
+      <div className="
+        mt-[22px]
+        mb-[15px]
+        flex flex-col
+        items-start
+        gap-[7px]
+        bg-[var(--bg-surface)]
+        px-[11px]
+        py-[7px]
+        text-[11px]
+      ">
+        <strong className="text-[var(--color-brand)]">
+          {book} {chapter}
+        </strong>
+
+        <span className="
+          text-[12px]
+          leading-[1.5]
+          text-[var(--text-muted)] 
+          italic
         ">
-            <strong className="text-[var(--burgundy)]">
-              {book} {chapter}
-            </strong>
-            <span className="text-[var(--muted)] italic">
-              {commentary.length > 0 ? commentary[0].entry_title : ""}
-            </span>
-          </div>
+          {commentary.length > 0 ? commentary[0].entry_title : ""}
+        </span>
+      </div>
 
       <div className="
         min-h-0
@@ -120,13 +125,13 @@ export default function CommentaryPanel({ book, chapter, books }) {
           text-[13px]
           italic
           leading-[1.75]
-          text-[var(--muted)]
+          text-[var(--text-muted)]
         ">
-          {commentary.length > 0 ? commentary[0].description : ""} 
+          {commentary.length > 0 ? commentary[0].description : ""}
         </p>
 
         {commentary.map((item, index) => (
-          <CommentaryEntry 
+          <CommentaryEntry
             key={index}
             item={item}
             book={book}

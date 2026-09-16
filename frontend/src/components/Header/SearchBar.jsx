@@ -1,11 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Search, Command } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export default function SearchBar({ variant = "default" }) {
+export default function SearchBar({ variant = "default", mobile = false }) {
 
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState("");
+    const searchInputRef = useRef(null);
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if(event.key.toLowerCase() === "k" && (event.metaKey || event.ctrlKey)) {
+                event.preventDefault();
+                searchInputRef.current?.focus();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        }
+    }, []);
 
     const handleSearch = () => {
         if(!searchQuery.trim()) {
@@ -29,20 +45,27 @@ export default function SearchBar({ variant = "default" }) {
                 flex items-center gap-2
                 rounded-lg
                 border border-[var(--border)]
-                bg-[#F8F2E6]
+                bg-[var(--bg-input)]
                 px-3
-                ${variant === "searchResults"
-                    ? "h-[30px] w-[220px] sm:w-[280px] md:w-[320px]"
-                    : "h-[29px] w-[240px] sm:w-[270px] md:w-[300px]"
-                }
+                transition-all duration-200
+                hover:border-[var(--color-accent)]
+                hover:bg-[var(--bg-selected)]
+                focus-within:bg-[var(--bg-selected)]
+                ${mobile
+                    ? "h-[34px] w-full"
+                    : variant === "searchResults"
+                        ? "h-[30px] w-[220px] sm:w-[280px] md:w-[320px]"
+                        : "h-[34px] w-[250px] sm:w-[280px] md:w-[310px]"
+                    }
                 `}
             >
                 <Search
-                    size={14}
-                    className="shrink-0 text-[var(--muted)]"
+                    size={16}
+                    className="shrink-0 text-[var(--text-muted)]"
                 />
 
                 <input
+                    ref={searchInputRef}
                     type="text"
                     placeholder="Search for a word or phrase..."
                     value={searchQuery}
@@ -55,10 +78,10 @@ export default function SearchBar({ variant = "default" }) {
                     className="
                         min-w-0 flex-1
                         bg-transparent
-                        text-[10px]
-                        text-[var(--text)]
+                        text-[11px]
+                        text-[var(--text-primary)]
                         outline-none
-                        placeholder:text-[var(--muted)]
+                        placeholder:text-[var(--text-muted)]
                     "
                 />
 
@@ -67,9 +90,10 @@ export default function SearchBar({ variant = "default" }) {
                         flex shrink-0 items-center gap-0.5
                         rounded
                         border border-[var(--border)]
+                        bg-[var(--bg-selected)]
                         px-1.5 py-0.5
                         text-[9px]
-                        text-[var(--muted)]
+                        text-[var(--text-muted)]
                     "
                     >
                     <Command size={10} />

@@ -6,19 +6,35 @@ const bookNameMap = {
     "Psalm": "Psalms"
 };
 
-// Read the BSB Excel file
-const workbook = XLSX.readFile("src/bsb.xlsx");
 
-// Get the first worksheet
-const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-
-// Convert the worksheet into an array of rows
-const rows = XLSX.utils.sheet_to_json(worksheet, {
-    header: 1
-});
-
-const importBible = async () => {
+const importBible = async (filePath, translationId) => {
     try {
+        const existingVerses = await pool.query(
+            `
+            SELECT COUNT(*)
+            FROM bible_verses
+            WHERE translation_id = $1
+            `,
+            [translationId]
+        );
+
+        if(parseInt(existingVerses.rows[0].count) > 0) {
+            console.log("This translation has already been imported!");
+            return;
+        }
+
+        // Read the Excel file
+        const workbook = XLSX.readFile(filePath);
+
+        // Get the first worksheet
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+
+        // Convert the worksheet into an array of rows
+        const rows = XLSX.utils.sheet_to_json(worksheet, {
+            header: 1
+        });
+
+        
         // Load all Bible books from the database once
         const bookResult = await pool.query(
             `
@@ -83,6 +99,8 @@ const importBible = async () => {
                     INSERT INTO bible_chapters
                     (book_id, chapter_number)
                     VALUES ($1, $2)
+                    ON CONFLICT (book_id, chapter_number)
+                    DO UPDATE SET book_id = EXCLUDED.book_id
                     RETURNING id
                     `,
                     [bookId, chapterNumber]
@@ -101,7 +119,7 @@ const importBible = async () => {
                 (chapter_id, translation_id, verse_number, text)
                 VALUES ($1, $2, $3, $4)
                 `,
-                [chapterId, 1, verseNumber, text]
+                [chapterId, translationId, verseNumber, text]
             );
 
             // Print progress every 1,000 verses
@@ -122,4 +140,4 @@ const importBible = async () => {
 };
 
 // Run the import
-importBible();
+importBible("src/data/asv.xlsx", 4);
