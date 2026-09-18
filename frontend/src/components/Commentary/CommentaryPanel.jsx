@@ -9,32 +9,55 @@ export default function CommentaryPanel({ book, chapter, books }) {
   const [isCommentaryOpen, setIsCommentaryOpen] = useState(false);
   const [selectedCommentator, setSelectedCommentator] = useState(3);
   const [commentators, setCommentators] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [commentaryError, setCommentaryError] = useState("");
 
   //find the database record for the current selected book
   const currentBook = books.find((item) => book === item.name);
 
-  //fetch commentary whenever the book, chapter, or commentary changes
-  useEffect(() => {
+  // Fetch commentary whenever the book, chapter, or commentator changes.
+useEffect(() => {
+  if (!currentBook) {
+    return;
+  }
 
-    // Don't fetch until we know which book we're viewing.
-    if (!currentBook) {
-      return;
-    }
+  let ignoreResponse = false;
 
-    // Fetch commentary for the selected commentator.
-    getChapterCommentaries(
-      currentBook.id,
-      chapter,
-      selectedCommentator
-    )
-      .then(data => {
+  // Clear the previous passage while the new commentary loads.
+  setCommentary([]);
+  setIsLoading(true);
+  setCommentaryError("");
+
+  getChapterCommentaries(
+    currentBook.id,
+    chapter,
+    selectedCommentator
+  )
+    .then((data) => {
+      if (!ignoreResponse) {
         setCommentary(data);
-      })
-      .catch(error => {
+      }
+    })
+    .catch((error) => {
+      if (!ignoreResponse) {
         console.error(error);
-      });
+        setCommentary([]);
+        setCommentaryError(
+          "We couldn’t load this commentary. Please try again."
+        );
+      }
+    })
+    .finally(() => {
+      if (!ignoreResponse) {
+        setIsLoading(false);
+      }
+    });
 
-  }, [book, chapter, books, selectedCommentator]);
+  // Ignore this request if the dependencies change before it finishes.
+  return () => {
+    ignoreResponse = true;
+  };
+}, [currentBook, chapter, selectedCommentator]);
 
   // Gets all available commentators from the backend.
   useEffect(() => {
@@ -115,28 +138,85 @@ export default function CommentaryPanel({ book, chapter, books }) {
         overflow-y-auto
       ">
 
-        <p className="
-          m-0
-          mb-[28px]
-          border-b
-          border-[var(--border)]
-          pb-[24px]
-          font-serif
-          text-[13px]
-          italic
-          leading-[1.75]
-          text-[var(--text-muted)]
-        ">
-          {commentary.length > 0 ? commentary[0].description : ""}
-        </p>
+        {isLoading ? (
+          <div
+            role="status"
+            className="
+              py-[40px]
+              text-center
+              font-serif
+              text-[14px]
+              italic
+              text-[var(--text-muted)]
+            "
+          >
+            Loading commentary…
+          </div>
+        ) : commentaryError ? (
+          <div
+            role="alert"
+            className="
+              rounded-[8px]
+              border
+              border-[var(--border)]
+              bg-[var(--bg-surface)]
+              px-[16px]
+              py-[20px]
+              text-center
+              text-[14px]
+              leading-[1.6]
+              text-[var(--text-muted)]
+            "
+          >
+            {commentaryError}
+          </div>
+        ) : commentary.length === 0 ? (
+          <div
+            className="
+              rounded-[8px]
+              border
+              border-dashed
+              border-[var(--border)]
+              px-[16px]
+              py-[28px]
+              text-center
+              font-serif
+              text-[14px]
+              italic
+              leading-[1.6]
+              text-[var(--text-muted)]
+            "
+          >
+            No commentary is available for this chapter.
+          </div>
+        ) : (
+          <>
+            <p
+              className="
+                m-0
+                mb-[28px]
+                border-b
+                border-[var(--border)]
+                pb-[24px]
+                font-serif
+                text-[13px]
+                italic
+                leading-[1.75]
+                text-[var(--text-muted)]
+              "
+            >
+              {commentary[0].description}
+            </p>
 
-        {commentary.map((item, index) => (
-          <CommentaryEntry
-            key={index}
-            item={item}
-            book={book}
-          />
-        ))}
+            {commentary.map((item) => (
+              <CommentaryEntry
+                key={item.id}
+                item={item}
+                book={book}
+              />
+            ))}
+          </>
+        )}
 
       </div>
 

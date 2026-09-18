@@ -65,6 +65,7 @@ const getCommentariesByChapter = (bookId, chapterNumber, commentaryId) => {
     return pool.query(
         `
         SELECT 
+            commentary_entries.id,
             commentary_entries.content,
             commentary_entries.start_chapter,
             commentary_entries.start_verse,

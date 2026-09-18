@@ -1,31 +1,71 @@
-// Formats Matthew Henry's commentary into separate paragraphs.
+// Emphasizes a number at the beginning of a commentary paragraph.
+function formatParagraphText(paragraph) {
+  const numberedParagraph = paragraph.match(/^(\d+\.)\s*(.*)$/);
+
+  if (!numberedParagraph) {
+    return paragraph;
+  }
+
+  const [, paragraphNumber, paragraphText] = numberedParagraph;
+
+  return (
+    <>
+      <strong className="font-semibold text-[var(--color-brand)]">
+        {paragraphNumber}
+      </strong>{" "}
+      {paragraphText}
+    </>
+  );
+}
+
+// Formats commentary content into separate paragraphs.
 function formatCommentary(content) {
 
+  const cleanedContent = content
   // Remove escaped periods from the imported Markdown.
-  const cleanedContent = content.replace(/\\\./g, ".");
+  .replace(/\\\./g, ".")
+  // Remove a next-chapter heading accidentally stored at the end of JFB entries.
+  .replace(/\n\s*CHAPTER\s+\d+\s*$/i, "")
+  .trim();
 
-  // Split the commentary wherever there is a blank line.
-  const paragraphs = cleanedContent.split("\n\n");
+  // Split wherever a blank line appears.
+  const paragraphs = cleanedContent.split(/\r?\n\s*\r?\n/);
 
   return paragraphs.map((paragraph, paragraphIndex) => {
-
-    // Remove unnecessary whitespace around the paragraph.
     const cleanParagraph = paragraph.trim();
 
-    // Skip completely empty paragraphs.
     if (!cleanParagraph) {
       return null;
     }
-    
+
     return (
-      <div
+      <p
         key={paragraphIndex}
-        className="mb-[18px]"
+        className="mb-[18px] last:mb-0"
       >
-        {cleanParagraph}
-      </div>
+        {formatParagraphText(cleanParagraph)}
+      </p>
     );
   });
+}
+
+// Formats single verses, same-chapter ranges, and cross-chapter ranges.
+function formatPassageRange(item, book) {
+  const startReference = `${book} ${item.start_chapter}:${item.start_verse}`;
+
+  const isSingleVerse =
+    item.start_chapter === item.end_chapter &&
+    item.start_verse === item.end_verse;
+
+  if (isSingleVerse) {
+    return startReference;
+  }
+
+  if (item.start_chapter === item.end_chapter) {
+    return `${startReference}-${item.end_verse}`;
+  }
+
+  return `${startReference}-${item.end_chapter}:${item.end_verse}`;
 }
 
 export default function CommentaryEntry({ item, book }) {
@@ -57,10 +97,7 @@ export default function CommentaryEntry({ item, book }) {
         tracking-[0.5px]
         text-[var(--text-muted)]
       ">
-        {book} {item.start_chapter}:{item.start_verse}
-        {item.end_chapter !== item.start_chapter
-          ? `-${item.end_chapter}:${item.end_verse}`
-          : `-${item.end_verse}`}
+        {formatPassageRange(item, book)}
       </span>
 
       <div className="

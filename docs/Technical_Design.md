@@ -1,789 +1,1571 @@
-# Bible Commentary App — Technical Design
+# Gnosis — Technical Design
 
-**Version:** 0.3
-**Status:** Draft
-**Date:** August 26, 2026
+**Version:** 0.4
+**Status:** Active Development
+**Date:** September 17, 2026
 **Owner:** Yonatan Demissie
 
 ---
 
-## 1. Technology Stack
+## 1. Document Status & Implementation Legend
 
-### 1.1 Frontend
+This document describes the current technical architecture of Gnosis and the planned architecture for features that have not yet been implemented.
 
-* React
-* JavaScript
-* Responsive web design
+Feature status is represented using the following labels:
 
-### 1.2 Backend
-
-* Node.js
-* Express.js
-* REST API
-
-### 1.3 Database
-
-* PostgreSQL
-
-### 1.4 Development Environment
-
-* Visual Studio Code (VS Code)
-* Git
-* GitHub
-
-### 1.5 Architecture
-
-The application will use a PERN stack architecture:
-
-**React → Express/Node.js → PostgreSQL**
+| Status | Meaning |
+|---|---|
+| IMPLEMENTED | Feature is currently built and functioning |
+| PARTIALLY IMPLEMENTED | Core functionality exists, but additional work remains |
+| PLANNED | Approved for the MVP but not yet implemented |
+| FUTURE | Planned for a post-MVP release |
 
 ---
 
-## 2. System Architecture
+## 2. System Overview
 
-### 2.1 Frontend
+Gnosis is a full-stack Bible study application designed to combine Scripture and classic Bible commentary in a unified study interface.
 
-The React frontend will provide the user interface for:
+The core study experience allows users to:
 
-* Bible reading
-* Commentary viewing
-* Commentary selection
-* Commentary comparison
-* Search
-* Research features
+- Read Scripture by book and chapter
+- Select individual verses
+- Switch between Bible translations
+- Read commentary alongside Scripture
+- Switch between commentary sources
+- Search Bible content
+- Navigate directly from search results to Bible passages
+- Use the application across desktop, tablet, and mobile layouts
+- Switch between light and dark themes
 
-### 2.2 Backend
+The MVP will additionally support:
 
-The Node.js/Express backend will:
+- User registration and login
+- Personal notes
+- Bookmarks
+- Commentary search
 
-* Provide REST APIs
-* Retrieve Bible and commentary data
-* Communicate with PostgreSQL
-* Handle authentication
-* Validate requests
-* Integrate external APIs and services
+Future versions may introduce:
 
-### 2.3 Database
-
-PostgreSQL will store and manage:
-
-* Bible content
-* Commentary content
-* Source information
-* User accounts
-* Personal study data
+- Additional Bible translations
+- Additional commentary and theological resources
+- AI-assisted Bible research
+- Retrieval-Augmented Generation (RAG)
+- Semantic search
+- Additional personal study tools
 
 ---
 
-## 3. API Design
+## 3. Technology Stack
 
-The backend will provide a REST API that allows the React frontend to communicate with the Node.js/Express server and PostgreSQL database.
+### 3.1 Frontend
 
-### 3.1 Bible Endpoints
+**Status: IMPLEMENTED**
 
-| Method | Endpoint                          | Purpose                          |
-| ------ | --------------------------------- | -------------------------------- |
-| GET    | `/api/translations`               | Get available Bible translations |
-| GET    | `/api/books`                      | Get all Bible books              |
-| GET    | `/api/books/:bookId/chapters`     | Get chapters for a book          |
-| GET    | `/api/chapters/:chapterId/verses` | Get verses for a chapter         |
+- React
+- Vite
+- JavaScript
+- React Router
+- Tailwind CSS
+- Lucide React icons
+- Responsive web design
+- React Context for global theme state
 
-### 3.2 Commentary Endpoints
+### 3.2 Backend
 
-| Method | Endpoint                                  | Purpose                            |
-| ------ | ----------------------------------------- | ---------------------------------- |
-| GET    | `/api/commentaries`                       | Get available commentaries         |
-| GET    | `/api/commentaries/:commentaryId`         | Get information about a commentary |
-| GET    | `/api/commentaries/:commentaryId/entries` | Get commentary entries             |
-| GET    | `/api/chapters/:chapterId/commentaries`   | Get commentary for a chapter       |
+**Status: IMPLEMENTED**
 
-### 3.3 Search Endpoints
+- Node.js
+- Express.js
+- JavaScript
+- REST API
+- bcrypt
+- JSON Web Tokens (JWT)
 
-| Method | Endpoint                 | Purpose                   |
-| ------ | ------------------------ | ------------------------- |
-| GET    | `/api/search/bible`      | Search Bible content      |
-| GET    | `/api/search/commentary` | Search commentary content |
+### 3.3 Database
 
-### 3.4 Authentication Endpoints
+**Status: IMPLEMENTED**
 
-| Method | Endpoint             | Purpose                                  |
-| ------ | -------------------- | ---------------------------------------- |
-| POST   | `/api/auth/register` | Create a user account                    |
-| POST   | `/api/auth/login`    | Authenticate a user                      |
-| GET    | `/api/auth/me`       | Get the authenticated user's information |
+- PostgreSQL 14
+- Raw SQL through `pg` / node-postgres
+- PostgreSQL Full-Text Search
 
-### 3.5 Notes & Bookmark Endpoints
+### 3.4 Development Environment
 
-| Method | Endpoint                     | Purpose                  |
-| ------ | ---------------------------- | ------------------------ |
-| GET    | `/api/notes`                 | Get the user's notes     |
-| POST   | `/api/notes`                 | Create a note            |
-| PUT    | `/api/notes/:noteId`         | Update a note            |
-| DELETE | `/api/notes/:noteId`         | Delete a note            |
-| GET    | `/api/bookmarks`             | Get the user's bookmarks |
-| POST   | `/api/bookmarks`             | Create a bookmark        |
-| DELETE | `/api/bookmarks/:bookmarkId` | Delete a bookmark        |
+- Visual Studio Code
+- Git
+- GitHub
+- npm
+- Local PostgreSQL development database
 
-### 3.6 API Design Principles
+### 3.5 Architecture
 
-* Use standard HTTP methods and status codes
-* Return data in JSON format
-* Validate incoming requests on the backend
-* Use parameterized queries to protect against SQL injection
-* Require JWT authentication for protected user endpoints
-* Return clear error messages when requests fail
-* Keep API endpoints organized by resource
-
-### 3.7 Example Request
-
-When a user selects Romans Chapter 8:
+Gnosis uses a PERN architecture:
 
 ```text
-React
-  ↓
-GET /api/books/45/chapters
-  ↓
-Express
-  ↓
+React / Vite
+      ↓
+REST API
+      ↓
+Node.js / Express
+      ↓
 PostgreSQL
-  ↓
-Chapter data
-  ↓
-React
 ```
 
-The frontend can then request the verses and corresponding commentary for the selected chapter.
+The frontend communicates with the Express backend through HTTP requests. The backend contains the application's API, database access, authentication, and search logic.
+
+PostgreSQL stores Scripture, commentary, source metadata, users, and eventually personal study data.
 
 ---
 
-## 4. Database Design
+## 4. System Architecture
 
-The database will use a relational structure to connect Bible translations, passages, commentaries, and users.
+### 4.1 Frontend
 
-### 4.1 Entities
+**Status: IMPLEMENTED**
 
-| Entity             | Description                                                                    |
-| ------------------ | ------------------------------------------------------------------------------ |
-| Users              | Stores user account information                                                |
-| Bible Translations | Stores supported Bible translations, such as BSB                               |
-| Bible Books        | Stores the 66 Bible books independently of translations                        |
-| Bible Chapters     | Stores chapters belonging to books                                             |
-| Bible Verses       | Stores translation-specific verse text                                         |
-| Commentaries       | Stores commentary sources, such as Matthew Henry, John Wesley, and Adam Clarke |
-| Commentary Entries | Stores commentary content and the Bible passage it covers                      |
-| Sources            | Stores author, publisher, and licensing information                            |
-| Notes              | Stores user notes linked to Bible passages                                     |
-| Bookmarks          | Stores user-saved Bible passages                                               |
+The React frontend currently provides:
 
-### 4.2 Relationships
+- Bible reading
+- Book navigation
+- Chapter navigation
+- Verse selection
+- Bible translation selection
+- Commentary viewing
+- Commentary source selection
+- Bible search
+- Search-result navigation
+- Responsive layouts
+- Light and dark themes
+- Header and profile-menu UI
 
-| From               | To                 | Type        |
-| ------------------ | ------------------ | ----------- |
-| Bible Translations | Bible Verses       | One-to-many |
-| Bible Books        | Bible Chapters     | One-to-many |
-| Bible Chapters     | Bible Verses       | One-to-many |
-| Commentaries       | Commentary Entries | One-to-many |
-| Bible Passages     | Commentary Entries | One-to-many |
-| Sources            | Commentaries       | One-to-many |
-| Users              | Notes              | One-to-many |
-| Users              | Bookmarks          | One-to-many |
-| Bible Verses       | Notes              | One-to-many |
-| Bible Verses       | Bookmarks          | One-to-many |
+The frontend is organized into pages, reusable components, services, hooks, and context.
 
-### 4.3 Commentary Passage Structure
+### 4.2 Backend
 
-Commentary entries may cover a single verse, a range of verses, or an entire chapter.
+**Status: IMPLEMENTED / PARTIALLY IMPLEMENTED**
 
-Each commentary entry will store:
+The Node.js/Express backend currently:
 
-* Book
-* Starting chapter and verse
-* Ending chapter and verse
-* Commentary content
+- Provides REST APIs
+- Retrieves Bible content
+- Retrieves commentary content
+- Retrieves translation information
+- Retrieves commentary-source information
+- Performs Bible full-text search
+- Performs commentary full-text search
+- Registers users
+- Authenticates users
+- Generates JWTs
+- Verifies JWTs through authentication middleware
+- Communicates with PostgreSQL using parameterized SQL queries
 
-**Example:** Romans 8:28–30 → Matthew Henry Commentary Entry
+Still planned:
 
-This allows the application to match commentary with the relevant Bible passage.
+- Notes API
+- Bookmarks API
+- Additional request validation
+- Production-level security hardening
 
-### 4.4 Translation Structure
+### 4.3 Database
 
-Bible books will be independent of individual translations. For example, Romans → Chapter 8 → Verse 28 can have different text for:
+**Status: IMPLEMENTED**
 
-* BSB
-* ESV
-* NIV
-* Other future translations
+PostgreSQL currently stores:
 
-This structure allows additional translations to be added without redesigning the database.
+- Bible translations
+- Bible books
+- Bible chapters
+- Bible verses
+- Commentary sources
+- Commentaries
+- Commentary entries
+- Users
 
-### 4.5 Data Structure
+The schema is designed to additionally support:
 
-The core relationships are:
-
-**Translation → Book → Chapter → Verse**
-
-**Commentary → Commentary Entry → Bible Passage**
-
-The application will use these relationships to automatically retrieve the appropriate commentary when a user selects a Bible chapter or passage.
-
-### 4.6 Database Schema
-
-The following sections define the database tables and their relationships for the Bible Commentary App. Each table includes its columns, primary keys, foreign keys, and relevant constraints.
-
-#### 4.6.1 Bible Translations
-
-Stores information about each Bible translation supported by the application.
-
-| Column       | Data Type    | Key         | Description                           |
-| ------------ | ------------ | ----------- | ------------------------------------- |
-| id           | SERIAL       | Primary Key | Unique identifier for the translation |
-| name         | VARCHAR(100) | —           | Full name of the translation          |
-| abbreviation | VARCHAR(20)  | —           | Short identifier, such as BSB         |
-
-**Initial Record**
-
-| id | name                  | abbreviation |
-| -- | --------------------- | ------------ |
-| 1  | Berean Standard Bible | BSB          |
+- Notes
+- Bookmarks
 
 ---
 
-#### 4.6.2 Bible Books
+## 5. Frontend Architecture
 
-Stores the 66 books of the Bible. Books are independent of translations so multiple translations can use the same book structure.
+### 5.1 Routing
 
-| Column       | Data Type   | Key         | Description                              |
-| ------------ | ----------- | ----------- | ---------------------------------------- |
-| id           | SERIAL      | Primary Key | Unique identifier for the book           |
-| name         | VARCHAR(50) | —           | Full name of the book                    |
-| abbreviation | VARCHAR(10) | —           | Short name of the book                   |
-| testament    | VARCHAR(2)  | —           | Old Testament (OT) or New Testament (NT) |
-| book_order   | INTEGER     | —           | Order of the book in the Bible           |
+**Status: IMPLEMENTED**
 
-**Example Records**
-
-| id | name       | abbreviation | testament | book_order |
-| -- | ---------- | ------------ | --------- | ---------: |
-| 1  | Genesis    | Gen          | OT        |          1 |
-| 2  | Exodus     | Exod         | OT        |          2 |
-| 40 | Matthew    | Matt         | NT        |         40 |
-| 45 | Romans     | Rom          | NT        |         45 |
-| 66 | Revelation | Rev          | NT        |         66 |
-
----
-
-#### 4.6.3 Bible Chapters
-
-Stores each chapter and connects it to a Bible book.
-
-| Column         | Data Type | Key         | Description                       |
-| -------------- | --------- | ----------- | --------------------------------- |
-| id             | SERIAL    | Primary Key | Unique identifier for the chapter |
-| book_id        | INTEGER   | Foreign Key | References the Bible Books table  |
-| chapter_number | INTEGER   | —           | Chapter number within the book    |
-
-**Example Records**
-
-|  id | book_id | chapter_number |
-| --: | ------: | -------------: |
-|   1 |       1 |              1 |
-|   2 |       1 |              2 |
-|   3 |       1 |              3 |
-| 999 |      45 |              8 |
-
-**Relationship:** One Bible Book → Many Bible Chapters
-
-*Example: Romans (book_id = 45) → Chapter 1, Chapter 2, … Chapter 16*
-
----
-
-#### 4.6.4 Bible Verses
-
-Stores the actual Bible text. Each verse belongs to a chapter and a specific translation.
-
-| Column         | Data Type | Key         | Description                             |
-| -------------- | --------- | ----------- | --------------------------------------- |
-| id             | SERIAL    | Primary Key | Unique identifier for the verse         |
-| chapter_id     | INTEGER   | Foreign Key | References the Bible Chapters table     |
-| translation_id | INTEGER   | Foreign Key | References the Bible Translations table |
-| verse_number   | INTEGER   | —           | Verse number within the chapter         |
-| text           | TEXT      | —           | The actual Bible verse                  |
-
-**Example Records**
-
-|   id | chapter_id | translation_id | verse_number | text                |
-| ---: | ---------: | -------------: | -----------: | ------------------- |
-| 1001 |        999 |              1 |           28 | Bible verse text... |
-| 1002 |        999 |              1 |           29 | Bible verse text... |
-| 1003 |        999 |              1 |           30 | Bible verse text... |
-
-**Relationships:**
-
-* One Bible Chapter → Many Bible Verses
-* One Bible Translation → Many Bible Verses
-
----
-
-#### 4.6.5 Commentaries
-
-Stores information about each commentary collection available in the application.
-
-| Column      | Data Type    | Key         | Description                          |
-| ----------- | ------------ | ----------- | ------------------------------------ |
-| id          | SERIAL       | Primary Key | Unique identifier for the commentary |
-| source_id   | INTEGER      | Foreign Key | References the Sources table         |
-| title       | VARCHAR(200) | —           | Name of the commentary               |
-| description | TEXT         | —           | Brief description of the commentary  |
-
-**Example Records**
-
-| id | source_id | title                           | description                      |
-| -: | --------: | ------------------------------- | -------------------------------- |
-|  1 |         1 | Matthew Henry's Commentary      | Commentary by Matthew Henry      |
-|  2 |         2 | John Wesley's Explanatory Notes | Explanatory notes by John Wesley |
-|  3 |         3 | Adam Clarke's Commentary        | Commentary by Adam Clarke        |
-
-**Relationship:** One Source → Many Commentaries
-
-*The `source_id` connects each commentary to information about its author, publisher, and licensing.*
-
----
-
-#### 4.6.6 Commentary Entries
-
-Stores the actual commentary text and connects it to the Bible passage it discusses.
-
-| Column        | Data Type | Key         | Description                                |
-| ------------- | --------- | ----------- | ------------------------------------------ |
-| id            | SERIAL    | Primary Key | Unique identifier for the commentary entry |
-| commentary_id | INTEGER   | Foreign Key | References the Commentaries table          |
-| book_id       | INTEGER   | Foreign Key | References the Bible Books table           |
-| start_chapter | INTEGER   | —           | First chapter covered by the entry         |
-| start_verse   | INTEGER   | —           | First verse covered by the entry           |
-| end_chapter   | INTEGER   | —           | Last chapter covered by the entry          |
-| end_verse     | INTEGER   | —           | Last verse covered by the entry            |
-| content       | TEXT      | —           | The actual commentary text                 |
-
-**Example Record**
-
-| id | commentary_id | book_id | start_chapter | start_verse | end_chapter | end_verse | content            |
-| -: | ------------: | ------: | ------------: | ----------: | ----------: | --------: | ------------------ |
-|  1 |             1 |      45 |             8 |          28 |           8 |        30 | Commentary text... |
-
-*This example represents Matthew Henry's commentary on Romans 8:28–30.*
-
-**Relationships:**
-
-* One Commentary → Many Commentary Entries
-* One Bible Book → Many Commentary Entries
-
-*The chapter and verse range allows a commentary entry to cover a single verse, multiple verses, or an entire chapter.*
-
----
-
-#### 4.6.7 Users
-
-Stores account information for users who create accounts in the application.
-
-| Column        | Data Type    | Key         | Description                                |
-| ------------- | ------------ | ----------- | ------------------------------------------ |
-| id            | SERIAL       | Primary Key | Unique identifier for the user             |
-| email         | VARCHAR(255) | Unique      | User's email address                       |
-| password_hash | VARCHAR(255) | —           | Hashed user password                       |
-| created_at    | TIMESTAMP    | —           | Date and time the account was created      |
-| updated_at    | TIMESTAMP    | —           | Date and time the account was last updated |
-
-**Example Record**
-
-| id | email                                       | password_hash   | created_at | updated_at |
-| -: | ------------------------------------------- | --------------- | ---------- | ---------- |
-|  1 | [user@example.com](mailto:user@example.com) | Hashed password | 2026-08-26 | 2026-08-26 |
-
-**Relationships:**
-
-* One User → Many Notes
-* One User → Many Bookmarks
-
-*Passwords will never be stored as plain text. Passwords will be hashed using bcrypt before being stored in the database.*
-
----
-
-#### 4.6.8 Notes
-
-Stores personal notes that users create while studying the Bible.
-
-| Column     | Data Type | Key         | Description                             |
-| ---------- | --------- | ----------- | --------------------------------------- |
-| id         | SERIAL    | Primary Key | Unique identifier for the note          |
-| user_id    | INTEGER   | Foreign Key | References the Users table              |
-| verse_id   | INTEGER   | Foreign Key | References the Bible Verses table       |
-| content    | TEXT      | —           | The user's note                         |
-| created_at | TIMESTAMP | —           | Date and time the note was created      |
-| updated_at | TIMESTAMP | —           | Date and time the note was last updated |
-
-**Example Record**
-
-| id | user_id | verse_id | content                                  | created_at | updated_at |
-| -: | ------: | -------: | ---------------------------------------- | ---------- | ---------- |
-|  1 |       1 |     1001 | Important connection to Paul's argument. | 2026-08-26 | 2026-08-26 |
-
-**Relationships:**
-
-* One User → Many Notes
-* One Bible Verse → Many Notes
-
-*Notes are private and can only be accessed by the user who created them.*
-
----
-
-#### 4.6.9 Bookmarks
-
-Stores Bible verses that users save for later reference.
-
-| Column     | Data Type | Key         | Description                            |
-| ---------- | --------- | ----------- | -------------------------------------- |
-| id         | SERIAL    | Primary Key | Unique identifier for the bookmark     |
-| user_id    | INTEGER   | Foreign Key | References the Users table             |
-| verse_id   | INTEGER   | Foreign Key | References the Bible Verses table      |
-| created_at | TIMESTAMP | —           | Date and time the bookmark was created |
-
-**Example Record**
-
-| id | user_id | verse_id | created_at |
-| -: | ------: | -------: | ---------- |
-|  1 |       1 |     1001 | 2026-08-26 |
-
-**Relationships:**
-
-* One User → Many Bookmarks
-* One Bible Verse → Many Bookmarks
-
-*A user can bookmark a verse and access it later from their saved study material.*
-
----
-
-#### 4.6.10 Sources
-
-Stores information about the authors, publishers, and licensing of Bible commentaries and other theological resources.
-
-| Column      | Data Type    | Key         | Description                                    |
-| ----------- | ------------ | ----------- | ---------------------------------------------- |
-| id          | SERIAL       | Primary Key | Unique identifier for the source               |
-| name        | VARCHAR(200) | —           | Name of the author, publisher, or organization |
-| type        | VARCHAR(50)  | —           | Type of source, such as author or publisher    |
-| description | TEXT         | —           | Additional information about the source        |
-| license     | VARCHAR(200) | —           | Copyright or licensing information             |
-| created_at  | TIMESTAMP    | —           | Date and time the source was added             |
-
-**Example Records**
-
-| id | name          | type   | description                                 | license       | created_at |
-| -: | ------------- | ------ | ------------------------------------------- | ------------- | ---------- |
-|  1 | Matthew Henry | Author | English biblical commentator                | Public Domain | 2026-08-26 |
-|  2 | John Wesley   | Author | English theologian and biblical commentator | Public Domain | 2026-08-26 |
-|  3 | Adam Clarke   | Author | Methodist theologian and biblical scholar   | Public Domain | 2026-08-26 |
-
-**Relationships:**
-
-* One Source → Many Commentaries
-* One Source → Many Theological Resources
-
-*This table allows the application to clearly identify where content comes from and store relevant licensing information.*
-
-### 4.7 Entity Relationship Overview
+Primary application routes include:
 
 ```text
-Users
- ├── Notes
- └── Bookmarks
+/bible/:book/:chapter
+/search
+```
 
+The Bible route loads the study interface for the requested book and chapter.
+
+Search results can navigate users directly to a Bible passage and selected verse.
+
+### 5.2 Study Page
+
+**Status: IMPLEMENTED**
+
+`StudyPage.jsx` acts as the primary coordinator for the Bible study experience.
+
+It manages or coordinates:
+
+- Current book
+- Current chapter
+- Selected verse
+- Bible verses
+- Translation selection
+- Scripture panel
+- Commentary panel
+- Navigation controls
+
+The study page is responsible for keeping Scripture navigation and commentary display synchronized with the selected Bible location.
+
+### 5.3 Scripture Components
+
+**Status: IMPLEMENTED**
+
+The Scripture interface includes:
+
+```text
+ScripturePanel
+BookSelector
+ChapterSelector
+VerseSelector
+SubHeader
+```
+
+Responsibilities include:
+
+- Displaying Scripture
+- Selecting books
+- Selecting chapters
+- Selecting verses
+- Navigating between chapters
+- Switching translations
+- Highlighting the selected verse
+
+### 5.4 Commentary Components
+
+**Status: IMPLEMENTED / PARTIALLY IMPLEMENTED**
+
+The commentary interface includes:
+
+```text
+CommentaryPanel
+CommentaryEntry
+CommentatorSelector
+```
+
+Currently implemented:
+
+- Load commentary for the selected Bible chapter
+- Display commentary passage ranges
+- Display commentary section titles
+- Format commentary paragraphs
+- Switch commentary sources
+- Support commentary entries spanning verse ranges
+- Responsive commentary display
+
+Remaining UX work:
+
+- Determine which commentary entry covers the selected Bible verse
+- Visually emphasize the relevant commentary entry
+- Automatically bring the relevant entry into view when appropriate
+
+### 5.5 Search Interface
+
+**Status: PARTIALLY IMPLEMENTED**
+
+`SearchResultsPage.jsx` currently supports Bible search.
+
+Implemented:
+
+- Read search query from URL
+- Request Bible search results
+- Display matching verses
+- Navigate from a result to its Bible passage
+- Select/highlight the matching verse
+- Handle no-result searches
+
+Remaining:
+
+- Commentary-search interface
+- Resource-type selection/filtering
+- Commentary-result navigation
+
+### 5.6 Header and Navigation
+
+**Status: IMPLEMENTED**
+
+The application header includes:
+
+- Gnosis branding
+- Search
+- Theme controls
+- Responsive navigation
+- Mobile menu
+- Profile menu
+
+Reusable navigation components use a shared click-outside hook to close menus when users interact elsewhere.
+
+### 5.7 Theme System
+
+**Status: IMPLEMENTED**
+
+Theme state is managed through:
+
+```text
+ThemeContext
+```
+
+The application supports:
+
+- Light theme
+- Dark theme
+- CSS custom properties for shared theme values
+
+Major interface colors use variables such as:
+
+```css
+--bg-page
+--bg-header
+--bg-panel
+--bg-surface
+--border
+--color-brand
+--color-accent
+--text-primary
+--text-muted
+```
+
+This allows components to adapt automatically when the active theme changes.
+
+### 5.8 Responsive Design
+
+**Status: IMPLEMENTED / ONGOING**
+
+The application supports desktop, tablet, and mobile layouts.
+
+Responsive behavior has been implemented for:
+
+- Header
+- Navigation
+- Scripture panel
+- Commentary panel
+- Search
+- Dropdown selectors
+- Study-page layout
+
+Responsive behavior is manually tested during development and will receive additional QA before deployment.
+
+---
+
+## 6. Backend Architecture
+
+### 6.1 Layered Structure
+
+The backend separates responsibilities across:
+
+```text
+Routes
+   ↓
+Controllers
+   ↓
+Services
+   ↓
+Database
+```
+
+Additional backend areas include:
+
+```text
+middleware/
+importer/
+scripts/
+data/
+db/
+```
+
+### 6.2 Routes
+
+Routes define HTTP endpoints and connect requests to the appropriate controller logic.
+
+Major route groups currently include:
+
+- Bible
+- Commentary
+- Search
+- Authentication
+
+### 6.3 Controllers
+
+Controllers process HTTP requests and responses.
+
+Responsibilities include:
+
+- Reading route/query parameters
+- Calling service functions
+- Returning JSON
+- Returning appropriate HTTP status codes
+- Handling errors
+
+### 6.4 Services
+
+Services contain database queries and data-access logic.
+
+Gnosis currently uses raw parameterized SQL through `pg` rather than an ORM.
+
+Example:
+
+```text
+Controller
+   ↓
+Bible Service
+   ↓
+pool.query(...)
+   ↓
+PostgreSQL
+```
+
+### 6.5 Middleware
+
+Authentication middleware verifies JWTs before protected resources can be accessed.
+
+This middleware will also protect future notes and bookmark endpoints.
+
+---
+
+## 7. REST API Design
+
+### 7.1 Bible Endpoints
+
+**Status: IMPLEMENTED**
+
+Core Bible API capabilities include:
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/books` | Get all Bible books |
+| GET | `/books/:bookId/chapters` | Get chapters for a book |
+| GET | `/chapters/:chapterId/verses` | Get verses for a chapter |
+| GET | `/translations` | Get available Bible translations |
+
+The backend also supports retrieving Scripture by book, chapter, and translation for the study interface.
+
+Chapter results are explicitly ordered by `chapter_number`.
+
+Verse results are explicitly ordered by `verse_number`.
+
+### 7.2 Commentary Endpoints
+
+**Status: IMPLEMENTED**
+
+Core commentary capabilities include:
+
+| Method | Purpose |
+|---|---|
+| GET | Get available commentaries |
+| GET | Get commentary entries for a book |
+| GET | Get commentary entries covering a chapter |
+| GET | Retrieve commentary associated with a verse |
+
+Commentary retrieval uses passage ranges rather than requiring one commentary row per Bible verse.
+
+### 7.3 Search Endpoints
+
+**Status: IMPLEMENTED ON BACKEND**
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/search/bible` | Search Bible content |
+| GET | `/search/commentary` | Search commentary content |
+
+Bible search is connected to the frontend.
+
+Commentary search is implemented on the backend but still requires complete frontend integration.
+
+### 7.4 Authentication Endpoints
+
+**Status: BACKEND IMPLEMENTED**
+
+Authentication currently supports:
+
+| Method | Purpose |
+|---|---|
+| POST | Register a user |
+| POST | Authenticate/login a user |
+| GET | Retrieve authenticated profile information |
+
+Backend authentication uses bcrypt and JWT.
+
+Frontend authentication integration remains incomplete.
+
+### 7.5 Notes Endpoints
+
+**Status: PLANNED**
+
+Planned endpoints:
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/notes` | Get authenticated user's notes |
+| POST | `/notes` | Create a note |
+| PUT | `/notes/:noteId` | Update a note |
+| DELETE | `/notes/:noteId` | Delete a note |
+
+### 7.6 Bookmark Endpoints
+
+**Status: PLANNED**
+
+Planned endpoints:
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/bookmarks` | Get authenticated user's bookmarks |
+| POST | `/bookmarks` | Create a bookmark |
+| DELETE | `/bookmarks/:bookmarkId` | Delete a bookmark |
+
+### 7.7 API Design Principles
+
+The backend should:
+
+- Use standard HTTP methods
+- Return JSON
+- Use appropriate HTTP status codes
+- Use parameterized SQL
+- Validate incoming data
+- Require JWT authentication for private resources
+- Return useful error responses
+- Keep endpoints organized by resource
+- Keep database logic separated from presentation logic
+
+---
+
+## 8. Database Design
+
+### 8.1 Current Core Tables
+
+The current database includes:
+
+```text
+bible_translations
+bible_books
+bible_chapters
+bible_verses
+sources
+commentaries
+commentary_entries
+users
+```
+
+Notes and bookmarks are part of the MVP architecture but their complete application functionality has not yet been implemented.
+
+### 8.2 Bible Translations
+
+Stores metadata for supported Bible translations.
+
+Core fields:
+
+```text
+id
+name
+abbreviation
+```
+
+Current translations:
+
+- Berean Standard Bible (BSB)
+- World English Bible (WEB)
+- King James Version (KJV)
+- American Standard Version (ASV)
+
+### 8.3 Bible Books
+
+Stores the canonical 66 Bible books independently of translations.
+
+Core fields include:
+
+```text
+id
+name
+abbreviation
+testament
+book_order
+```
+
+Book ordering is represented independently from database IDs.
+
+In the current development database, database IDs should not be assumed to equal canonical Bible book order.
+
+### 8.4 Bible Chapters
+
+Stores chapters belonging to Bible books.
+
+Core fields:
+
+```text
+id
+book_id
+chapter_number
+```
+
+Relationship:
+
+```text
+Bible Book → Many Bible Chapters
+```
+
+The database enforces uniqueness for a chapter within a book:
+
+```sql
+UNIQUE (book_id, chapter_number)
+```
+
+### 8.5 Bible Verses
+
+Stores translation-specific Bible text.
+
+Core fields:
+
+```text
+id
+chapter_id
+translation_id
+verse_number
+text
+```
+
+Relationships:
+
+```text
+Bible Chapter → Many Bible Verses
+Bible Translation → Many Bible Verses
+```
+
+The database prevents duplicate verses within the same translation and chapter:
+
+```sql
+UNIQUE (chapter_id, translation_id, verse_number)
+```
+
+### 8.6 Sources
+
+Stores source and licensing metadata.
+
+Core fields include:
+
+```text
+id
+name
+type
+description
+license
+created_at
+```
+
+Current commentary sources include:
+
+- Matthew Henry
+- Robert Jamieson, A. R. Fausset, and David Brown
+
+The source system allows commentary content to retain attribution and licensing information.
+
+### 8.7 Commentaries
+
+Stores metadata about commentary collections.
+
+Core fields include:
+
+```text
+id
+source_id
+title
+description
+```
+
+Current commentary collections include:
+
+- Matthew Henry's Complete Commentary
+- Commentary Critical and Explanatory on the Whole Bible (JFB)
+
+Relationship:
+
+```text
+Source → Many Commentaries
+```
+
+### 8.8 Commentary Entries
+
+Stores normalized commentary text and the Bible passage covered by each entry.
+
+Core fields:
+
+```text
+id
+commentary_id
+book_id
+start_chapter
+start_verse
+end_chapter
+end_verse
+title
+content
+```
+
+Relationships:
+
+```text
+Commentary → Many Commentary Entries
+Bible Book → Many Commentary Entries
+```
+
+There is no separate `Bible Passages` table.
+
+Passage relationships are represented using:
+
+```text
+book_id
+start_chapter
+start_verse
+end_chapter
+end_verse
+```
+
+This allows an entry to cover:
+
+- One verse
+- Multiple verses
+- A chapter
+- A range spanning chapters
+
+Example:
+
+```text
+Romans 8:28–30
+```
+
+A selected Bible verse can therefore be matched against commentary entries by determining whether its chapter and verse fall inside an entry's stored passage range.
+
+### 8.9 Users
+
+Stores registered-user information.
+
+Authentication data includes:
+
+```text
+id
+email
+password_hash
+created_at
+updated_at
+```
+
+Passwords are never stored as plain text.
+
+### 8.10 Notes
+
+**Status: PLANNED**
+
+Notes will belong to authenticated users and Bible passages.
+
+Expected information includes:
+
+```text
+id
+user_id
+verse_id
+content
+created_at
+updated_at
+```
+
+Users must only be able to access their own notes.
+
+### 8.11 Bookmarks
+
+**Status: PLANNED**
+
+Bookmarks will allow authenticated users to save Bible passages.
+
+Expected information includes:
+
+```text
+id
+user_id
+verse_id
+created_at
+```
+
+Users must only be able to access their own bookmarks.
+
+### 8.12 Entity Relationship Overview
+
+```text
 Bible Translations
- └── Bible Verses
-       ↑
-Bible Books
- └── Bible Chapters
-       └── Bible Verses
+        │
+        └──── Bible Verses
+                    │
+Bible Books         │
+    │               │
+    └── Bible Chapters
+            │
+            └──── Bible Verses
 
-Commentaries
- └── Commentary Entries
-       └── Bible Books
 
 Sources
- └── Commentaries
+   │
+   └── Commentaries
+           │
+           └── Commentary Entries
+                    │
+                    └── Bible Books
+
+
+Users
+   │
+   ├── Notes        [planned]
+   └── Bookmarks    [planned]
 ```
 
 ---
 
-## 5. Content Integration
+## 9. Bible Content Architecture
 
-The application will integrate Bible and commentary content from legally authorized sources.
+### 9.1 Status
 
-### 5.1 Licensing Considerations
+**Status: IMPLEMENTED**
 
-Most modern Bible translations (e.g., NIV, ESV, NLT) are copyrighted and require licensing agreements or API terms of use. Public-domain translations (e.g., KJV, ASV, WEB, Douay-Rheims) carry no licensing restriction and are the lowest-risk starting point for MVP development.
+The current development database contains four Bible translations:
 
-Commentary sources have similar constraints — many classic commentaries (e.g., Matthew Henry, Jamieson-Fausset-Brown) are public domain, while modern commentaries are typically copyrighted.
+- BSB
+- WEB
+- KJV
+- ASV
 
-### 5.2 MVP Bible Translation
+Bible books and chapters are shared structural entities.
 
-| Attribute   | Detail                                     |
-| ----------- | ------------------------------------------ |
-| Translation | Berean Standard Bible (BSB)                |
-| License     | Public domain                              |
-| Usage       | Free for commercial use                    |
-| Integration | Store Bible text in PostgreSQL             |
-| Future      | Additional translations can be added later |
+Bible verse text is translation-specific.
 
-### 5.3 MVP Content Sources
+This prevents duplicate book/chapter structures for every translation.
 
-* **Bible:** Berean Standard Bible (BSB)
-* **Commentary:** Matthew Henry's Commentary
-* **Commentary:** John Wesley's Explanatory Notes
-* **Commentary:** Adam Clarke's Commentary
+### 9.2 Translation Model
 
-The application will store and serve this content through the PostgreSQL database. Additional translations and commentary sources may be added after the MVP.
-
-### 5.4 Content Acquisition
-
-* Bible and commentary content will be obtained from legally authorized downloadable datasets
-* Content will be imported and stored in PostgreSQL
-* Bible verses and commentary entries will be structured around standardized book, chapter, and verse references
-* The backend will serve the stored content through the application's REST API
-* The application will not depend on external APIs for the core reading experience
-* Content sources and licensing information will be documented before import
-
----
-
-## 6. Authentication & Security
-
-### 6.1 Authentication
-
-The application will use self-managed authentication.
-
-| Component          | Choice                                                                              |
-| ------------------ | ----------------------------------------------------------------------------------- |
-| Password Hashing   | bcrypt                                                                              |
-| Authentication     | JWT                                                                                 |
-| Session Management | JWT-based authentication                                                            |
-| Protected Routes   | JWT authentication required for user-specific resources such as notes and bookmarks |
-
-### 6.2 Security Requirements
-
-The system will:
-
-* Never store passwords in plain text
-* Hash passwords using bcrypt before storing them
-* Validate and sanitize incoming requests
-* Protect authenticated API endpoints
-* Use parameterized SQL queries to prevent SQL injection
-* Store sensitive configuration and API credentials in environment variables
-* Restrict users to their own personal study data
-* Use HTTPS in production
-* Return appropriate HTTP status codes for authentication and authorization failures
-
-### 6.3 Authorization
-
-The backend will verify the authenticated user's identity before allowing access to protected resources.
+Conceptually:
 
 ```text
-User → JWT → Express Middleware → Verify User → Database
+Bible Book
+   ↓
+Bible Chapter
+   ↓
+Bible Verse ← Bible Translation
 ```
 
-A user can only access, modify, or delete their own notes and bookmarks.
+For example:
+
+```text
+Romans
+  ↓
+Chapter 8
+  ↓
+Verse 28
+  ├── BSB text
+  ├── WEB text
+  ├── KJV text
+  └── ASV text
+```
+
+### 9.3 Bible Import
+
+Bible translations are imported from structured spreadsheet datasets.
+
+The importer:
+
+- Identifies the translation
+- Prevents unintended duplicate imports
+- Maps books to database records
+- Maps chapters to shared chapter records
+- Inserts translation-specific verses
+- Reports import progress and errors
+
+Additional translations can use the same architecture without redesigning the Bible schema.
 
 ---
 
-## 7. Search
+## 10. Commentary Architecture
 
-The application will use PostgreSQL Full-Text Search for the MVP.
+### 10.1 Status
 
-### 7.1 Search Features
+**Status: IMPLEMENTED / UX IMPROVEMENTS IN PROGRESS**
+
+Two complete commentary collections are currently integrated:
+
+1. Matthew Henry's Complete Commentary
+2. Jamieson-Fausset-Brown Commentary
+
+Both cover all 66 Bible books.
+
+### 10.2 Normalized Commentary Format
+
+Commentary datasets are normalized into per-book JSON.
+
+General structure:
+
+```json
+{
+  "book": "Genesis",
+  "commentary": "Commentary Name",
+  "author": "Author Name",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 2,
+      "title": "Section title",
+      "content": "Commentary content"
+    }
+  ]
+}
+```
+
+This gives different commentary datasets a shared structure before they enter PostgreSQL.
+
+### 10.3 Universal Commentary Importer
+
+**Status: IMPLEMENTED**
+
+Gnosis includes a reusable commentary importer:
+
+```text
+backend/src/importer/importCommentary.js
+```
+
+The importer accepts:
+
+```text
+dataset folder
+commentary ID
+```
+
+It:
+
+- Reads normalized commentary JSON
+- Ignores non-commentary files where appropriate
+- Maps Bible book names to database IDs
+- Inserts passage ranges
+- Inserts titles and content
+- Avoids duplicate commentary entries
+- Reports import progress
+
+This architecture allows future public-domain commentary datasets to be added without creating a completely separate importer for every source.
+
+### 10.4 Commentary Retrieval
+
+When a user opens a chapter, the backend retrieves entries whose ranges overlap that chapter.
+
+Conceptually:
+
+```text
+entry.start_chapter <= requested chapter
+AND
+entry.end_chapter >= requested chapter
+```
+
+Entries are ordered by passage location.
+
+### 10.5 Verse-to-Commentary Matching
+
+**Status: BACKEND CAPABILITY EXISTS / FRONTEND UX IN PROGRESS**
+
+Because commentary entries contain passage ranges, Gnosis can determine which commentary entry covers a selected verse.
+
+Planned frontend behavior:
+
+```text
+User selects Bible verse
+        ↓
+Determine commentary entry covering verse
+        ↓
+Bring relevant entry into view
+        ↓
+Visually emphasize relevant commentary section
+```
+
+The rest of the chapter commentary should remain available so users retain surrounding context.
+
+---
+
+## 11. Search Architecture
+
+### 11.1 Technology
+
+**Status: IMPLEMENTED**
+
+Gnosis uses PostgreSQL Full-Text Search for MVP search functionality.
+
+This avoids introducing a separate search engine during the MVP.
+
+### 11.2 Bible Search
+
+**Status: IMPLEMENTED END-TO-END**
+
+Users can:
+
+- Search Bible text
+- View matching verses
+- Select a result
+- Navigate directly to its book and chapter
+- Highlight/select the matching verse
+
+### 11.3 Commentary Search
+
+**Status: BACKEND IMPLEMENTED / FRONTEND PENDING**
+
+The backend can search commentary content.
+
+Remaining work includes:
+
+- Commentary search UI
+- Result presentation
+- Source information
+- Passage information
+- Navigation from commentary search results to StudyPage
+
+### 11.4 Future Search Improvements
+
+Potential future improvements include:
+
+- Relevance tuning
+- Fuzzy search
+- Advanced filters
+- Search by source
+- Search by translation
+- Semantic search
+- Dedicated search infrastructure if dataset scale requires it
+
+Semantic/vector search is not required for the MVP.
+
+---
+
+## 12. Authentication & Authorization
+
+### 12.1 Backend Authentication
+
+**Status: IMPLEMENTED**
+
+Authentication uses:
+
+| Component | Technology |
+|---|---|
+| Password hashing | bcrypt |
+| Authentication | JWT |
+| Protected requests | JWT middleware |
+| Database | PostgreSQL users table |
+
+Backend functionality includes:
+
+- Registration
+- Login
+- Password hashing
+- JWT generation
+- JWT verification
+- Protected profile access
+
+### 12.2 Frontend Authentication
+
+**Status: PLANNED / PARTIALLY PREPARED**
+
+The frontend contains profile-related UI but complete authentication state and workflows have not yet been integrated.
+
+Remaining work includes:
+
+- Registration UI
+- Login UI
+- Authentication service
+- Authentication context/state
+- Token persistence
+- Authenticated profile state
+- Logout
+- Authentication error handling
+- Protected personal-study features
+
+### 12.3 Authorization
+
+Notes and bookmarks will require authentication.
+
+The backend must enforce ownership:
+
+```text
+User
+ ↓
+JWT
+ ↓
+Authentication Middleware
+ ↓
+Verified User ID
+ ↓
+Protected Database Query
+```
+
+A user must never be able to retrieve, update, or delete another user's personal study data.
+
+---
+
+## 13. Personal Study Features
+
+### 13.1 Notes
+
+**Status: PLANNED**
 
 Users will be able to:
 
-* Search Bible verses by keyword
-* Search commentary content
-* Filter results by resource type
-* View the source associated with each result
-* Select a search result and navigate directly to the relevant passage
+- Attach notes to Bible passages
+- View saved notes
+- Edit notes
+- Delete notes
+- Return from a note to its Bible passage
 
-### 7.2 Search Technology
+### 13.2 Bookmarks
 
-PostgreSQL's `tsvector` and `tsquery` functionality will be used to search indexed Bible and commentary text. This approach keeps the MVP architecture simple and avoids adding a separate search service.
+**Status: PLANNED**
 
-### 7.3 Future Improvements
+Users will be able to:
 
-If the content library becomes significantly larger, a dedicated search engine may be considered for:
+- Bookmark Bible passages
+- View saved bookmarks
+- Remove bookmarks
+- Return from bookmarks to the relevant passage
 
-* More advanced filtering
-* Faster searches across large datasets
-* Relevance ranking
-* Fuzzy search
-* Advanced search features
+### 13.3 Account Requirement
 
----
-
-## 8. AI & RAG
-
-AI functionality is planned for a future version and is not required for the initial MVP.
-
-The planned architecture will use Retrieval-Augmented Generation (RAG) to retrieve relevant Bible and theological resources before generating responses.
-
-**Future components may include:**
-
-* AI model
-* Embeddings
-* Vector database/search
-* Source retrieval
-* Citation generation
+Notes and bookmarks require an authenticated account because they contain user-specific persistent data.
 
 ---
 
-## 9. Hosting & Deployment
+## 14. Content Integration & Licensing
 
-Hosting and deployment will be determined closer to the MVP launch.
+### 14.1 Content Strategy
 
-### 9.1 Development Environment
+Gnosis stores core Bible and commentary content locally in PostgreSQL rather than depending on external APIs for the primary reading experience.
 
-Development will initially run locally using:
+Benefits include:
 
-* React frontend
-* Node.js/Express backend
-* PostgreSQL database
+- Predictable availability
+- Faster local retrieval
+- Unified passage structure
+- Full-text search
+- Commentary-to-passage matching
+- Reduced dependency on third-party APIs
 
-### 9.2 Production Deployment
+### 14.2 Current Bible Content
 
-The production hosting provider and deployment configuration will be selected during the MVP launch phase.
+Current development content:
 
-**The production environment will require:**
+- Berean Standard Bible
+- World English Bible
+- King James Version
+- American Standard Version
 
-* Frontend hosting
-* Backend hosting
-* PostgreSQL hosting
-* Environment variable management
-* HTTPS
-* Database backups
-* Application monitoring
+Licensing and distribution rights must be reviewed and documented for every translation before public production distribution.
 
-### 9.3 Status
+Modern copyrighted translations such as NIV, ESV, and NLT must not be imported into the production database without appropriate authorization or licensing.
 
-| Item                | Status |
-| ------------------- | ------ |
-| Hosting Provider    | TBD    |
-| Deployment Strategy | TBD    |
+### 14.3 Current Commentary Content
 
-### 9.4 Testing
+Current commentary sources:
 
-The application will use automated and manual testing to verify core functionality.
+- Matthew Henry's Complete Commentary
+- Commentary Critical and Explanatory on the Whole Bible (Jamieson-Fausset-Brown)
 
-**Backend**
+These classic commentary datasets are being used as public-domain content sources.
 
-* Jest
-* Supertest
+### 14.4 Content Acquisition Principles
 
-**Frontend**
+Content added to Gnosis should:
 
-* Vitest
-* React Testing Library
-
-**Manual Testing**
-
-* Core MVP features will be manually tested across supported screen sizes and browsers
+- Come from legally usable sources
+- Have documented attribution
+- Have documented licensing status
+- Be converted into normalized application formats
+- Be validated before database import
+- Preserve source identity
 
 ---
 
-## 10. Development Structure
+## 15. Security
 
-### 10.1 Project Structure
+### 15.1 Current Security Foundation
+
+**Status: PARTIALLY IMPLEMENTED**
+
+Current security measures include:
+
+- bcrypt password hashing
+- JWT authentication
+- Authentication middleware
+- Parameterized PostgreSQL queries
+- Environment-variable configuration
+- `.env` excluded from Git
+- Sensitive configuration not committed to repository history
+
+### 15.2 Production Security Requirements
+
+Before production launch, Gnosis must additionally verify:
+
+- Request validation
+- Input sanitization where appropriate
+- Secure authentication configuration
+- JWT expiration strategy
+- Proper authorization checks
+- Production CORS configuration
+- HTTPS
+- Secure environment-variable management
+- Error-response hygiene
+- Dependency security
+- Rate limiting where appropriate
+- Database backups
+
+---
+
+## 16. Testing Strategy
+
+### 16.1 Current Status
+
+**Status: MANUAL TESTING IMPLEMENTED / AUTOMATED TESTING PLANNED**
+
+Core functionality is currently verified manually during development.
+
+A baseline smoke test has verified:
+
+- Bible book navigation
+- Chapter navigation
+- Verse selection
+- Previous/next chapter navigation
+- BSB
+- WEB
+- KJV
+- ASV
+- Matthew Henry commentary
+- JFB commentary
+- Commentary switching
+- Bible search
+- Search-result navigation
+- Selected search-result verse behavior
+- Responsive layout
+- Light mode
+- Dark mode
+
+### 16.2 Backend Automated Testing
+
+**Status: PLANNED**
+
+Planned tools:
+
+- Jest
+- Supertest
+
+Important backend tests should cover:
+
+- Bible endpoints
+- Commentary endpoints
+- Search endpoints
+- Authentication
+- Authorization
+- Notes
+- Bookmarks
+- Invalid requests
+- Error handling
+
+### 16.3 Frontend Automated Testing
+
+**Status: PLANNED**
+
+Planned tools:
+
+- Vitest
+- React Testing Library
+
+Important frontend tests should cover:
+
+- Navigation
+- Translation switching
+- Verse selection
+- Commentary switching
+- Search
+- Authentication
+- Notes
+- Bookmarks
+
+### 16.4 Manual QA
+
+Before MVP deployment, Gnosis should be manually tested across:
+
+- Desktop
+- Tablet
+- Mobile
+- Supported browsers
+- Light mode
+- Dark mode
+
+---
+
+## 17. Deployment Architecture
+
+### 17.1 Current Status
+
+**Status: PLANNED**
+
+Gnosis currently runs locally during development.
+
+Production infrastructure has not yet been selected.
+
+### 17.2 Production Requirements
+
+Production deployment will require:
 
 ```text
-Bible Commentary App/
-│
-├── frontend/
-│   └── React application
-│
-├── backend/
-│   └── Node.js/Express application
-│
-├── docs/
-│   ├── PRD
-│   ├── Development Roadmap
-│   └── Technical Design
-│
-├── .gitignore
-├── README.md
-└── package.json
+Frontend Hosting
+       ↓
+Backend Hosting
+       ↓
+PostgreSQL Hosting
 ```
 
-### 10.2 Frontend Structure
+Additional requirements:
 
-The React application will be responsible for:
+- HTTPS
+- Environment-variable management
+- Database backups
+- Logging
+- Monitoring
+- Production CORS configuration
+- Deployment workflow
 
-* User interface
-* Bible reader
-* Commentary display
-* Commentary selection
-* Search interface
-* User interactions
+### 17.3 Deployment Decisions Still Open
 
-### 10.3 Backend Structure
+| Item | Status |
+|---|---|
+| Frontend host | TBD |
+| Backend host | TBD |
+| PostgreSQL host | TBD |
+| CI/CD strategy | TBD |
+| Monitoring | TBD |
+| Backup strategy | TBD |
 
-The Node.js/Express application will be responsible for:
-
-* REST API
-* Business logic
-* Authentication
-* Database communication
-* Search
-* Request validation
-
-### 10.4 Database
-
-PostgreSQL will contain the application's persistent data, including Bible content, commentary content, and user study data.
+Deployment decisions will be finalized during the MVP release phase.
 
 ---
 
-## 11. Technical Decisions
+## 18. Future AI & RAG Architecture
 
-| Decision             | Choice                                             | Status  |
-| -------------------- | -------------------------------------------------- | ------- |
-| Frontend             | React                                              | Decided |
-| Backend              | Node.js + Express                                  | Decided |
-| Database             | PostgreSQL                                         | Decided |
-| Architecture         | PERN                                               | Decided |
-| Language             | JavaScript                                         | Decided |
-| IDE                  | VS Code                                            | Decided |
-| API Style            | REST                                               | Decided |
-| Database Query Layer | Raw `pg` (node-postgres)                           | Decided |
-| Authentication       | bcrypt + JWT                                       | Decided |
-| Search               | PostgreSQL Full-Text Search (`tsvector`/`tsquery`) | Decided |
-| Bible Translation    | Berean Standard Bible (BSB)                        | Decided |
-| Commentary Sources   | Matthew Henry, John Wesley, Adam Clarke            | Decided |
-| Content Acquisition  | Downloadable datasets                              | Decided |
-| Frontend Testing     | Vitest + React Testing Library                     | Decided |
-| Backend Testing      | Jest + Supertest                                   | Decided |
-| Hosting              | TBD                                                | Open    |
-| AI Model             | TBD                                                | Future  |
-| Vector Database      | TBD                                                | Future  |
+### 18.1 Status
+
+**Status: FUTURE — NOT PART OF MVP**
+
+AI functionality will not be added until the core Bible study application is stable.
+
+### 18.2 Long-Term Goal
+
+A future Gnosis research assistant may use Retrieval-Augmented Generation.
+
+Conceptually:
+
+```text
+User Question
+      ↓
+Passage / Resource Retrieval
+      ↓
+Relevant Bible + Commentary Sources
+      ↓
+AI Model
+      ↓
+Grounded Response + Citations
+```
+
+### 18.3 Potential Components
+
+Future architecture may include:
+
+- AI model
+- Embedding generation
+- Vector search
+- Vector database
+- Source retrieval
+- Citation generation
+- Semantic Bible/commentary search
+
+### 18.4 Design Principle
+
+AI should augment the existing source-based study experience rather than replace Scripture or commentary retrieval.
+
+The existing normalized Bible and commentary architecture should serve as the content foundation for future retrieval systems.
 
 ---
 
-## 12. Open Technical Questions
+## 19. Project Structure
 
-* Where will the application be hosted?
-* How will the application handle content updates?
-* What deployment and monitoring tools will be used?
-* What additional Bible translations will be added after the MVP?
-* What additional commentary and theological resources will be added?
-* What AI model and infrastructure will be used for the future AI research assistant?
-* Will a vector database be needed for the future RAG system?
+Current high-level repository structure:
+
+```text
+Bible_Commentary_App/
+│
+├── backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── data/
+│   │   ├── db/
+│   │   ├── importer/
+│   │   ├── middleware/
+│   │   ├── routes/
+│   │   ├── scripts/
+│   │   ├── services/
+│   │   └── server.js
+│   │
+│   ├── package.json
+│   └── .env
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │   ├── Commentary/
+│   │   │   ├── Header/
+│   │   │   ├── Navigation/
+│   │   │   └── Scripture/
+│   │   ├── context/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   │
+│   └── package.json
+│
+├── database/
+│   └── schema.sql
+│
+├── docs/
+│   ├── Technical_Design.md
+│   └── Development Roadmap
+│
+├── matthew-henry-json/
+│
+├── jfb-json/
+│
+└── .gitignore
+```
+
+`.env` is used locally but is excluded from Git.
 
 ---
 
-## 13. Change Log
+## 20. Technical Decisions
 
-| Version | Date         | Change                                                                                      | Author           |
-| ------- | ------------ | ------------------------------------------------------------------------------------------- | ---------------- |
-| 0.1     | Aug 26, 2026 | Initial technical design created                                                            | Yonatan Demissie |
-| 0.2     | Aug 26, 2026 | Expanded database design, content integration, authentication, and API planning             | Yonatan Demissie |
-| 0.3     | Aug 26, 2026 | Finalized database structure, API design, authentication, search, and development decisions | Yonatan Demissie |
+| Decision | Choice | Status |
+|---|---|---|
+| Frontend | React + Vite | Decided / Implemented |
+| Frontend Language | JavaScript | Decided / Implemented |
+| Styling | Tailwind CSS + CSS variables | Decided / Implemented |
+| Routing | React Router | Decided / Implemented |
+| Backend | Node.js + Express | Decided / Implemented |
+| Database | PostgreSQL | Decided / Implemented |
+| Architecture | PERN | Decided / Implemented |
+| API Style | REST | Decided / Implemented |
+| Database Query Layer | Raw `pg` | Decided / Implemented |
+| Authentication | bcrypt + JWT | Backend Implemented |
+| Search | PostgreSQL Full-Text Search | Implemented |
+| Bible Content | BSB, WEB, KJV, ASV | Implemented |
+| Commentary Content | Matthew Henry + JFB | Implemented |
+| Commentary Storage | Passage-range entries | Implemented |
+| Commentary Import | Normalized JSON + reusable importer | Implemented |
+| Theme | Light + Dark | Implemented |
+| Responsive UI | Desktop + Tablet + Mobile | Implemented / Ongoing QA |
+| Frontend Testing | Vitest + React Testing Library | Planned |
+| Backend Testing | Jest + Supertest | Planned |
+| Notes | PostgreSQL + authenticated REST API | Planned |
+| Bookmarks | PostgreSQL + authenticated REST API | Planned |
+| Hosting | TBD | Open |
+| AI Model | TBD | Future |
+| Vector Search | TBD | Future |
+
+---
+
+## 21. Current Implementation Status
+
+| Area | Status |
+|---|---|
+| Project foundation | IMPLEMENTED |
+| PostgreSQL schema | IMPLEMENTED |
+| Bible API | IMPLEMENTED |
+| Bible reader | IMPLEMENTED |
+| Four Bible translations | IMPLEMENTED |
+| Matthew Henry commentary | IMPLEMENTED |
+| JFB commentary | IMPLEMENTED |
+| Universal commentary importer | IMPLEMENTED |
+| Commentary switching | IMPLEMENTED |
+| Bible search backend | IMPLEMENTED |
+| Bible search frontend | IMPLEMENTED |
+| Commentary search backend | IMPLEMENTED |
+| Commentary search frontend | PARTIALLY IMPLEMENTED / PENDING |
+| Backend authentication | IMPLEMENTED |
+| Frontend authentication | PENDING |
+| Notes | PLANNED |
+| Bookmarks | PLANNED |
+| Automated testing | PLANNED |
+| Production deployment | PLANNED |
+| AI / RAG | FUTURE |
+
+---
+
+## 22. Open Technical Questions
+
+The following decisions remain open:
+
+- Which services will host the frontend, backend, and PostgreSQL database?
+- What CI/CD workflow will be used?
+- What production monitoring and logging tools will be used?
+- What database backup strategy will be used?
+- How will production content updates and migrations be managed?
+- Which additional public-domain Bible translations should be added?
+- Which additional commentary resources should be added?
+- Which copyrighted Bible translations should be pursued through licensing?
+- How should commentary search results integrate with the StudyPage UX?
+- What JWT storage and expiration strategy should be used in the production frontend?
+- What AI provider/model should eventually support the research assistant?
+- Will PostgreSQL vector capabilities be sufficient for future RAG, or will a dedicated vector database be needed?
+
+---
+
+## 23. Near-Term Technical Priorities
+
+The immediate MVP technical sequence is:
+
+1. Finish commentary UX and selected-verse/commentary integration
+2. Complete commentary-search frontend
+3. Integrate frontend authentication
+4. Implement notes
+5. Implement bookmarks
+6. Add automated tests
+7. Perform security hardening
+8. Complete responsive/browser QA
+9. Deploy the MVP
+
+Additional content expansion and AI functionality should not block the initial MVP.
+
+---
+
+## 24. Change Log
+
+| Version | Date | Change | Author |
+|---|---|---|---|
+| 0.1 | Aug 26, 2026 | Initial technical design created | Yonatan Demissie |
+| 0.2 | Aug 26, 2026 | Expanded database design, content integration, authentication, and API planning | Yonatan Demissie |
+| 0.3 | Aug 26, 2026 | Finalized initial database structure, API design, authentication, search, and development decisions | Yonatan Demissie |
+| 0.4 | Sep 17, 2026 | Updated technical design to reflect implemented Gnosis architecture, four Bible translations, Matthew Henry and JFB commentary integration, reusable commentary importing, search, backend authentication, responsive UI, themes, current MVP status, and remaining technical work | Yonatan Demissie |
