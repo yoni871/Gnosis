@@ -4,10 +4,12 @@ import CommentatorSelector from './CommentatorSelector';
 import CommentaryEntry from './CommentaryEntry';
 
 
-export default function CommentaryPanel({ book, chapter, books, selectedVerse }) {
+export default function CommentaryPanel({ book, chapter, books, selectedVerse, urlCommentary }) {
   const [commentary, setCommentary] = useState([]);
   const [isCommentaryOpen, setIsCommentaryOpen] = useState(false);
-  const [selectedCommentator, setSelectedCommentator] = useState(3);
+  const [selectedCommentator, setSelectedCommentator] = useState(
+    urlCommentary || 3
+  );  
   const [commentators, setCommentators] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [commentaryError, setCommentaryError] = useState("");
@@ -15,6 +17,12 @@ export default function CommentaryPanel({ book, chapter, books, selectedVerse })
   //find the database record for the current selected book
   const currentBook = books.find((item) => book === item.name);
 
+  // Update the selector when a search result requests a commentary.
+  useEffect(() => {
+    if (urlCommentary) {
+      setSelectedCommentator(urlCommentary);
+    }
+  }, [urlCommentary]);
   // Fetch commentary whenever the book, chapter, or commentator changes.
 useEffect(() => {
   if (!currentBook) {

@@ -18,7 +18,8 @@ function Header({
     showSearch = true, 
     variant = "default",
     layout,
-    setLayout
+    setLayout,
+    translation = "BSB"
 
 }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -98,7 +99,10 @@ function Header({
             <div className="hidden items-center gap-2.5 md:flex">
 
                 {showSearch && (
-                    <SearchBar variant={variant}/>
+                    <SearchBar 
+                        variant={variant}
+                        translation={translation}
+                    />
                 )}
 
                 {showSearch &&  variant === "default" && (
@@ -219,7 +223,11 @@ function Header({
                     ">
                         {showSearch && (
                             <div className="mb-4 w-full max-w-full">
-                                <SearchBar variant={variant} mobile />
+                                <SearchBar 
+                                    variant={variant} 
+                                    translation={translation} 
+                                    mobile 
+                                />
                             </div>
                         )}
 

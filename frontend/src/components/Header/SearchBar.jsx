@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Search, Command } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export default function SearchBar({ variant = "default", mobile = false }) {
+export default function SearchBar({ variant = "default", mobile = false, translation = "BSB" }) {
 
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState("");
@@ -28,14 +28,17 @@ export default function SearchBar({ variant = "default", mobile = false }) {
             return;
         }
 
-        navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+        navigate(
+            `/search?q=${encodeURIComponent(searchQuery)}` +
+            `&translation=${encodeURIComponent(translation)}`
+        );
     }
 
     return (
         <div
             className={`
                 ${variant === "searchResults"
-                ? "absolute left-1/2 -translate-x-1/2"
+                ? "relative ml-auto mr-4"
                 : "relative"
                 }
             `}

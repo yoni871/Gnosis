@@ -13,6 +13,7 @@ export default function StudyPage() {
   const [searchParams] = useSearchParams();
 
   const urlVerse = searchParams.get("verse");
+  const urlCommentary = searchParams.get("commentary");
 
   const [verses, setVerses] = useState([]);
   const [book, setBook] = useState(urlBook || "Genesis");
@@ -76,6 +77,7 @@ export default function StudyPage() {
         <Header 
           layout={layout}
           setLayout={setLayout}
+          translation={translation}
         />
         <SubHeader 
           verses={verses} 
@@ -114,6 +116,9 @@ export default function StudyPage() {
               chapter={chapter}
               books={books}
               selectedVerse={selectedVerse}
+              urlCommentary={
+                urlCommentary ? Number(urlCommentary) : null
+              }
             />
           
         </main>

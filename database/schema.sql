@@ -27,8 +27,32 @@ CREATE TABLE bible_verses (
     chapter_id INTEGER REFERENCES bible_chapters(id),
     translation_id INTEGER REFERENCES bible_translations(id),
     verse_number INTEGER,
-    text TEXT
+    text TEXT,
+    search_vector TSVECTOR
 );
+-- Speeds up full-text searches across Bible verses.
+CREATE INDEX bible_verses_search_idx
+ON bible_verses
+USING GIN (search_vector);
+
+-- Builds the searchable Bible text whenever a verse is inserted or edited.
+CREATE OR REPLACE FUNCTION update_bible_search_vector()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.search_vector := to_tsvector(
+        'english',
+        COALESCE(NEW.text, '')
+    );
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER bible_search_vector_trigger
+BEFORE INSERT OR UPDATE OF text
+ON bible_verses
+FOR EACH ROW
+EXECUTE FUNCTION update_bible_search_vector();
 
 --stores info about the author, publisher, and licensing
 CREATE TABLE sources (
@@ -57,8 +81,42 @@ CREATE TABLE commentary_entries (
     start_verse INTEGER,
     end_chapter INTEGER,
     end_verse INTEGER,
-    content TEXT
+    content TEXT,
+    title TEXT,
+    search_vector TSVECTOR,
+    CONSTRAINT unique_commentary_passage UNIQUE (
+        commentary_id,
+        book_id,
+        start_chapter,
+        start_verse,
+        end_chapter,
+        end_verse
+    )
 );
+
+-- Speeds up full-text searches across commentary entries.
+CREATE INDEX commentary_entries_search_idx
+ON commentary_entries
+USING GIN (search_vector);
+
+-- Builds the searchable text whenever commentary is inserted or edited.
+CREATE OR REPLACE FUNCTION update_commentary_search_vector()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.search_vector := to_tsvector(
+        'english',
+        COALESCE(NEW.title, '') || ' ' || COALESCE(NEW.content, '')
+    );
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER commentary_search_vector_trigger
+BEFORE INSERT OR UPDATE OF title, content
+ON commentary_entries
+FOR EACH ROW
+EXECUTE FUNCTION update_commentary_search_vector();
 
 -- stores account info for users who create accounts
 CREATE TABLE users (
@@ -68,4 +126,5 @@ CREATE TABLE users (
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
+
 
