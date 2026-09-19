@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 // Emphasizes a number at the beginning of a commentary paragraph.
 function formatParagraphText(paragraph) {
   const numberedParagraph = paragraph.match(/^(\d+\.)\s*(.*)$/);
@@ -68,26 +70,50 @@ function formatPassageRange(item, book) {
   return `${startReference}-${item.end_chapter}:${item.end_verse}`;
 }
 
-export default function CommentaryEntry({ item, book }) {
+export default function CommentaryEntry({ item, book, isSelected, showTitle }) {
+
+  const entryRef = useRef(null);
+
+  useEffect(() => {
+  if (isSelected) {
+    entryRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+}, [isSelected]);
 
   return (
-    <section className="
-      border-t
-      border-[var(--border)]
-      py-[24px]
-    ">
+    <section
+      ref={entryRef}
+      className={`
+        border-t
+        border-[var(--border)]
+        py-[24px]
+        transition-colors
+        duration-200
+        ${
+          isSelected
+            ? "bg-[var(--verse-highlight)] border-l-[3px] border-l-[var(--color-brand)] pl-[14px] pr-[10px]"
+            : ""
+        }
+      `}
+    >
 
-      <h3 className="
-        m-0
-        mb-[9px]
-        font-serif
-        text-[17px]
-        font-semibold
-        leading-[1.4]
-        text-[var(--color-brand)]
-      ">
-        {item.entry_title}
-      </h3>
+      {/* Only render the heading when a new JFB section begins. */}
+      {showTitle && (
+        <h3 className="
+          m-0
+          mb-[9px]
+          font-serif
+          text-[17px]
+          font-semibold
+          leading-[1.4]
+          text-[var(--color-brand)]
+        ">
+          {item.entry_title}
+        </h3>
+)}
 
       <span className="
         mb-[17px]

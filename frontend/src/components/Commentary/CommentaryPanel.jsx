@@ -4,7 +4,7 @@ import CommentatorSelector from './CommentatorSelector';
 import CommentaryEntry from './CommentaryEntry';
 
 
-export default function CommentaryPanel({ book, chapter, books }) {
+export default function CommentaryPanel({ book, chapter, books, selectedVerse }) {
   const [commentary, setCommentary] = useState([]);
   const [isCommentaryOpen, setIsCommentaryOpen] = useState(false);
   const [selectedCommentator, setSelectedCommentator] = useState(3);
@@ -208,13 +208,31 @@ useEffect(() => {
               {commentary[0].description}
             </p>
 
-            {commentary.map((item) => (
-              <CommentaryEntry
+            {commentary.map((item, index) => {
+              const showTitle =
+              index === 0 ||
+              item.entry_title !== commentary[index - 1].entry_title;
+              //check whether the selected passage falls inside this entry's range
+              const afterStart = chapter > item.start_chapter || (
+                chapter === item.start_chapter && selectedVerse >= item.start_verse
+                );
+
+              const beforeEnd = chapter < item.end_chapter || (
+                chapter === item.end_chapter && selectedVerse <= item.end_verse
+              );
+
+              const isMatch = selectedVerse !== null && afterStart && beforeEnd;
+
+              return (
+                <CommentaryEntry
                 key={item.id}
                 item={item}
                 book={book}
+                isSelected={isMatch}
+                showTitle={showTitle}
               />
-            ))}
+              )
+          })}
           </>
         )}
 

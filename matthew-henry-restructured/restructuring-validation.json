@@ -1,0 +1,7673 @@
+{
+  "source_files_processed": 66,
+  "books_processed": 66,
+  "original_entries": 3366,
+  "new_entries": 4900,
+  "entries_split": 765,
+  "new_verse_specific_sections_created": 2299,
+  "original_content_characters": 33160687,
+  "new_content_characters": 33160687,
+  "commentary_text_lost": false,
+  "duplicate_content_detected": false,
+  "duplicate_ranges_detected": false,
+  "canonical_order_valid": true,
+  "range_validation_passed": true,
+  "json_validation_passed": true,
+  "split_details": [
+    {
+      "book": "1 Chronicles",
+      "original_range": "5:18-5:26",
+      "new_ranges": [
+        "5:18-5:24",
+        "5:25-5:26"
+      ],
+      "title": "The Defeat of the Hagarites (750 BC)"
+    },
+    {
+      "book": "1 Chronicles",
+      "original_range": "12:1-12:22",
+      "new_ranges": [
+        "12:1-12:17",
+        "12:18-12:18",
+        "12:19-12:22"
+      ],
+      "title": "David's Army (1055 BC)"
+    },
+    {
+      "book": "1 Chronicles",
+      "original_range": "13:1-13:8",
+      "new_ranges": [
+        "13:1-13:4",
+        "13:5-13:8"
+      ],
+      "title": "The Removal of the Ark (1048 BC)"
+    },
+    {
+      "book": "1 Chronicles",
+      "original_range": "29:10-29:22",
+      "new_ranges": [
+        "29:10-29:19",
+        "29:20-29:22"
+      ],
+      "title": "David's Prayer to God; Sacrifices Offered (1015 BC)"
+    },
+    {
+      "book": "1 Chronicles",
+      "original_range": "29:23-29:30",
+      "new_ranges": [
+        "29:23-29:25",
+        "29:26-29:27",
+        "29:28-29:28",
+        "29:29-29:30"
+      ],
+      "title": "Solomon Magnified (1015 BC)"
+    },
+    {
+      "book": "1 Corinthians",
+      "original_range": "1:17-1:31",
+      "new_ranges": [
+        "1:17-1:24",
+        "1:25-1:31"
+      ],
+      "title": "The Efficacy of the Gospel; The Character of the Gospel (57 AD)"
+    },
+    {
+      "book": "1 Corinthians",
+      "original_range": "2:6-2:16",
+      "new_ranges": [
+        "2:6-2:14",
+        "2:15-2:16"
+      ],
+      "title": "Discoveries of the Gospel; Spiritual Things Spiritually Discerned (57 AD)"
+    },
+    {
+      "book": "1 Corinthians",
+      "original_range": "9:3-9:14",
+      "new_ranges": [
+        "9:3-9:6",
+        "9:7-9:14"
+      ],
+      "title": "Rights of a Christian Minister (57 AD)"
+    },
+    {
+      "book": "1 Corinthians",
+      "original_range": "14:6-14:14",
+      "new_ranges": [
+        "14:6-14:11",
+        "14:12-14:14"
+      ],
+      "title": "On Spiritual Gifts (57 AD)"
+    },
+    {
+      "book": "1 Corinthians",
+      "original_range": "14:15-14:20",
+      "new_ranges": [
+        "14:15-14:15",
+        "14:16-14:17",
+        "14:18-14:19",
+        "14:20-14:20"
+      ],
+      "title": "On Spiritual Gifts (57 AD)"
+    },
+    {
+      "book": "1 Corinthians",
+      "original_range": "15:20-15:34",
+      "new_ranges": [
+        "15:20-15:23",
+        "15:24-15:28",
+        "15:29-15:29",
+        "15:30-15:32",
+        "15:33-15:34"
+      ],
+      "title": "The Resurrection of Christ; The Resurrection of Saints (57 AD)"
+    },
+    {
+      "book": "1 Corinthians",
+      "original_range": "16:1-16:4",
+      "new_ranges": [
+        "16:1-16:1",
+        "16:2-16:4"
+      ],
+      "title": "Contributions for the Poor (57 AD)"
+    },
+    {
+      "book": "1 Corinthians",
+      "original_range": "16:19-16:24",
+      "new_ranges": [
+        "16:19-16:21",
+        "16:22-16:22",
+        "16:23-16:24"
+      ],
+      "title": "Commendations and Salutations (57 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "1:1-1:4",
+      "new_ranges": [
+        "1:1-1:3",
+        "1:4-1:4"
+      ],
+      "title": "The Apostolic Testimony (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "2:3-2:6",
+      "new_ranges": [
+        "2:3-2:4",
+        "2:5-2:6"
+      ],
+      "title": "The Believer's Duty (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "2:7-2:11",
+      "new_ranges": [
+        "2:7-2:7",
+        "2:8-2:11"
+      ],
+      "title": "The Law of Love (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "2:12-2:17",
+      "new_ranges": [
+        "2:12-2:14",
+        "2:15-2:17"
+      ],
+      "title": "Against the Love of the World (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "2:18-2:19",
+      "new_ranges": [
+        "2:18-2:18",
+        "2:19-2:19"
+      ],
+      "title": "Concerning Antichrist (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "2:20-2:27",
+      "new_ranges": [
+        "2:20-2:21",
+        "2:22-2:23",
+        "2:24-2:25",
+        "2:26-2:26",
+        "2:27-2:27"
+      ],
+      "title": "Concerning Antichrist (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "3:1-3:3",
+      "new_ranges": [
+        "3:1-3:1",
+        "3:2-3:2",
+        "3:3-3:3"
+      ],
+      "title": "Adoption (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "3:11-3:13",
+      "new_ranges": [
+        "3:11-3:11",
+        "3:12-3:12",
+        "3:13-3:13"
+      ],
+      "title": "Brotherly Love (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "3:20-3:22",
+      "new_ranges": [
+        "3:20-3:21",
+        "3:22-3:22"
+      ],
+      "title": "The Testimony of Conscience (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "3:23-3:24",
+      "new_ranges": [
+        "3:23-3:23",
+        "3:24-3:24"
+      ],
+      "title": "God's Commandments (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "4:1-4:3",
+      "new_ranges": [
+        "4:1-4:1",
+        "4:2-4:3"
+      ],
+      "title": "Concerning Antichrist (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "4:14-4:16",
+      "new_ranges": [
+        "4:14-4:14",
+        "4:15-4:15",
+        "4:16-4:16"
+      ],
+      "title": "The Divine Love (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "4:17-4:21",
+      "new_ranges": [
+        "4:17-4:19",
+        "4:20-4:21"
+      ],
+      "title": "The Divine Love (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "5:1-5:5",
+      "new_ranges": [
+        "5:1-5:1",
+        "5:2-5:4",
+        "5:5-5:5"
+      ],
+      "title": "Love and Faith (80 AD)"
+    },
+    {
+      "book": "1 John",
+      "original_range": "5:18-5:21",
+      "new_ranges": [
+        "5:18-5:20",
+        "5:21-5:21"
+      ],
+      "title": "Privileges of Believers (80 AD)"
+    },
+    {
+      "book": "1 Kings",
+      "original_range": "2:26-2:34",
+      "new_ranges": [
+        "2:26-2:27",
+        "2:28-2:34"
+      ],
+      "title": "Joab Put to Death (1015 BC)"
+    },
+    {
+      "book": "1 Kings",
+      "original_range": "4:29-4:34",
+      "new_ranges": [
+        "4:29-4:33",
+        "4:34-4:34"
+      ],
+      "title": "Solomon's Distinguished Reputation (1014 BC)"
+    },
+    {
+      "book": "1 Kings",
+      "original_range": "8:1-8:21",
+      "new_ranges": [
+        "8:1-8:14",
+        "8:15-8:21"
+      ],
+      "title": "The Dedication of the Temple (1003 BC)"
+    },
+    {
+      "book": "1 Kings",
+      "original_range": "8:22-8:53",
+      "new_ranges": [
+        "8:22-8:24",
+        "8:25-8:32",
+        "8:33-8:53"
+      ],
+      "title": "Solomon's Prayer (1003 BC)"
+    },
+    {
+      "book": "1 Kings",
+      "original_range": "9:1-9:9",
+      "new_ranges": [
+        "9:1-9:2",
+        "9:3-9:9"
+      ],
+      "title": "God's Answer to Solomon (1001 BC)"
+    },
+    {
+      "book": "1 Kings",
+      "original_range": "12:25-12:33",
+      "new_ranges": [
+        "12:25-12:27",
+        "12:28-12:33"
+      ],
+      "title": "Jeroboam's Idolatry (975 BC)"
+    },
+    {
+      "book": "1 Kings",
+      "original_range": "20:1-20:11",
+      "new_ranges": [
+        "20:1-20:3",
+        "20:4-20:4",
+        "20:5-20:6",
+        "20:7-20:9",
+        "20:10-20:10",
+        "20:11-20:11"
+      ],
+      "title": "Ben-hadad's Insolent Demand (900 BC)"
+    },
+    {
+      "book": "1 Kings",
+      "original_range": "22:15-22:28",
+      "new_ranges": [
+        "22:15-22:16",
+        "22:17-22:18",
+        "22:19-22:23",
+        "22:24-22:28"
+      ],
+      "title": "Micaiah's Prediction (897 BC)"
+    },
+    {
+      "book": "1 Peter",
+      "original_range": "1:6-1:9",
+      "new_ranges": [
+        "1:6-1:6",
+        "1:7-1:7",
+        "1:8-1:8",
+        "1:9-1:9"
+      ],
+      "title": "Privileges of Christians (66 AD)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "4:1-4:9",
+      "new_ranges": [
+        "4:1-4:1",
+        "4:2-4:2",
+        "4:3-4:4",
+        "4:5-4:5",
+        "4:6-4:9"
+      ],
+      "title": "The War with the Philistines (1120 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "4:10-4:11",
+      "new_ranges": [
+        "4:10-4:10",
+        "4:11-4:11"
+      ],
+      "title": "The Defeat of the Israelites (1120 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "6:10-6:18",
+      "new_ranges": [
+        "6:10-6:11",
+        "6:12-6:12",
+        "6:13-6:18"
+      ],
+      "title": "The Restoration of the Ark (1119 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "8:4-8:22",
+      "new_ranges": [
+        "8:4-8:5",
+        "8:6-8:6",
+        "8:7-8:9",
+        "8:10-8:17",
+        "8:18-8:18",
+        "8:19-8:20",
+        "8:21-8:22"
+      ],
+      "title": "The People Desire a King; God's Answer to Israel; The People Insist on Having a King (1075 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "9:3-9:10",
+      "new_ranges": [
+        "9:3-9:4",
+        "9:5-9:5",
+        "9:6-9:10"
+      ],
+      "title": "Saul Seeks His Father's Asses; Saul Goes to Seek Samuel (1075 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "9:18-9:27",
+      "new_ranges": [
+        "9:18-9:21",
+        "9:22-9:24",
+        "9:25-9:27"
+      ],
+      "title": "Saul Entertained by Samuel (1070 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "10:1-10:8",
+      "new_ranges": [
+        "10:1-10:1",
+        "10:2-10:6",
+        "10:7-10:8"
+      ],
+      "title": "Saul Anointed by Samuel; Samuel's Address to Saul (1070 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "11:12-11:15",
+      "new_ranges": [
+        "11:12-11:12",
+        "11:13-11:13",
+        "11:14-11:15"
+      ],
+      "title": "Sacrifices Offered to God (1069 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "12:1-12:15",
+      "new_ranges": [
+        "12:1-12:3",
+        "12:4-12:4",
+        "12:5-12:5",
+        "12:6-12:13",
+        "12:14-12:14",
+        "12:15-12:15"
+      ],
+      "title": "Samuel's Discourse to Israel (1069 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "14:24-14:35",
+      "new_ranges": [
+        "14:24-14:24",
+        "14:25-14:34",
+        "14:35-14:35"
+      ],
+      "title": "Saul's Rash Oath (1067 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "15:1-15:9",
+      "new_ranges": [
+        "15:1-15:3",
+        "15:4-15:5",
+        "15:6-15:6",
+        "15:7-15:8",
+        "15:9-15:9"
+      ],
+      "title": "The Amalekites Destroyed (1065 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "15:10-15:23",
+      "new_ranges": [
+        "15:10-15:11",
+        "15:12-15:23"
+      ],
+      "title": "Samuel Reproves Saul; Saul Rejected of God (1065 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "15:32-15:35",
+      "new_ranges": [
+        "15:32-15:33",
+        "15:34-15:35"
+      ],
+      "title": "Agag Slain (1065 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "16:6-16:13",
+      "new_ranges": [
+        "16:6-16:7",
+        "16:8-16:10",
+        "16:11-16:13"
+      ],
+      "title": "David Anointed by Samuel (1065 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "16:14-16:23",
+      "new_ranges": [
+        "16:14-16:14",
+        "16:15-16:23"
+      ],
+      "title": "Saul Troubled by an Evil Spirit (1065 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "17:1-17:11",
+      "new_ranges": [
+        "17:1-17:3",
+        "17:4-17:4",
+        "17:5-17:7",
+        "17:8-17:10",
+        "17:11-17:11"
+      ],
+      "title": "Goliath's Challenge to Israel (1060 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "20:1-20:8",
+      "new_ranges": [
+        "20:1-20:4",
+        "20:5-20:8"
+      ],
+      "title": "David Consults Jonathan (1058 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "21:1-21:9",
+      "new_ranges": [
+        "21:1-21:1",
+        "21:2-21:9"
+      ],
+      "title": "David Obtains the Show-Bread; David Gets the Sword of Goliath (1057 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "25:12-25:17",
+      "new_ranges": [
+        "25:12-25:13",
+        "25:14-25:17"
+      ],
+      "title": "Abigail Wise Resolution (1057 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "25:32-25:35",
+      "new_ranges": [
+        "25:32-25:32",
+        "25:33-25:33",
+        "25:34-25:34",
+        "25:35-25:35"
+      ],
+      "title": "David Blesses Abigail (1057 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "25:36-25:44",
+      "new_ranges": [
+        "25:36-25:36",
+        "25:37-25:37",
+        "25:38-25:44"
+      ],
+      "title": "David Marries Abigail (1057 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "26:13-26:20",
+      "new_ranges": [
+        "26:13-26:16",
+        "26:17-26:20"
+      ],
+      "title": "David Expostulates with Saul (1056 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "26:21-26:25",
+      "new_ranges": [
+        "26:21-26:24",
+        "26:25-26:25"
+      ],
+      "title": "Saul Relents (1056 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "27:1-27:7",
+      "new_ranges": [
+        "27:1-27:1",
+        "27:2-27:3",
+        "27:4-27:4",
+        "27:5-27:5",
+        "27:6-27:7"
+      ],
+      "title": "David Returns to Gath (1055 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "28:20-28:25",
+      "new_ranges": [
+        "28:20-28:20",
+        "28:21-28:25"
+      ],
+      "title": "Saul's Despair (1055 BC)"
+    },
+    {
+      "book": "1 Samuel",
+      "original_range": "30:21-30:31",
+      "new_ranges": [
+        "30:21-30:22",
+        "30:23-30:25",
+        "30:26-30:31"
+      ],
+      "title": "David's Division of the Spoil (1055 BC)"
+    },
+    {
+      "book": "1 Thessalonians",
+      "original_range": "1:6-1:10",
+      "new_ranges": [
+        "1:6-1:6",
+        "1:7-1:10"
+      ],
+      "title": "Evidence of the Apostle's Success (51 AD)"
+    },
+    {
+      "book": "1 Thessalonians",
+      "original_range": "2:7-2:12",
+      "new_ranges": [
+        "2:7-2:10",
+        "2:11-2:12"
+      ],
+      "title": "The Primitive Ministers (51 AD)"
+    },
+    {
+      "book": "1 Thessalonians",
+      "original_range": "3:6-3:10",
+      "new_ranges": [
+        "3:6-3:6",
+        "3:7-3:8",
+        "3:9-3:10"
+      ],
+      "title": "The Mission of Timothy (51 AD)"
+    },
+    {
+      "book": "1 Thessalonians",
+      "original_range": "3:11-3:13",
+      "new_ranges": [
+        "3:11-3:11",
+        "3:12-3:13"
+      ],
+      "title": "Apostolic Prayer (51 AD)"
+    },
+    {
+      "book": "1 Thessalonians",
+      "original_range": "4:9-4:12",
+      "new_ranges": [
+        "4:9-4:10",
+        "4:11-4:12"
+      ],
+      "title": "Brotherly Love (51 AD)"
+    },
+    {
+      "book": "1 Thessalonians",
+      "original_range": "5:1-5:5",
+      "new_ranges": [
+        "5:1-5:1",
+        "5:2-5:2",
+        "5:3-5:3",
+        "5:4-5:5"
+      ],
+      "title": "The Coming of Christ (51 AD)"
+    },
+    {
+      "book": "1 Thessalonians",
+      "original_range": "5:23-5:28",
+      "new_ranges": [
+        "5:23-5:23",
+        "5:24-5:24",
+        "5:25-5:25",
+        "5:26-5:26",
+        "5:27-5:27",
+        "5:28-5:28"
+      ],
+      "title": "Paul's Prayer for the Thessalonians (51 AD)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "9:13-9:31",
+      "new_ranges": [
+        "9:13-9:28",
+        "9:29-9:31"
+      ],
+      "title": "The Magnificence of Solomon; the Death of Solomon (975 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "11:13-11:23",
+      "new_ranges": [
+        "11:13-11:17",
+        "11:18-11:23"
+      ],
+      "title": "The Priests Adhere to Rehoboam (974 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "14:9-14:15",
+      "new_ranges": [
+        "14:9-14:11",
+        "14:12-14:15"
+      ],
+      "title": "Asa Defeats the Ethiopians (945 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "19:1-19:11",
+      "new_ranges": [
+        "19:1-19:4",
+        "19:5-19:7",
+        "19:8-19:11"
+      ],
+      "title": "Jehoshaphat's Piety (897 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "20:20-20:30",
+      "new_ranges": [
+        "20:20-20:21",
+        "20:22-20:23",
+        "20:24-20:25",
+        "20:26-20:28",
+        "20:29-20:30"
+      ],
+      "title": "Ammon or Moab Destroyed (892 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "23:12-23:21",
+      "new_ranges": [
+        "23:12-23:15",
+        "23:16-23:16",
+        "23:17-23:17",
+        "23:18-23:19",
+        "23:20-23:21"
+      ],
+      "title": "Joash Crowned and Athaliah Slain (878 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "24:15-24:27",
+      "new_ranges": [
+        "24:15-24:17",
+        "24:18-24:18",
+        "24:19-24:19",
+        "24:20-24:22",
+        "24:23-24:27"
+      ],
+      "title": "Joash Slain by His Servants (845 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "28:6-28:15",
+      "new_ranges": [
+        "28:6-28:11",
+        "28:12-28:13",
+        "28:14-28:15"
+      ],
+      "title": "The King of Israel Defeats Ahaz (738 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "28:16-28:27",
+      "new_ranges": [
+        "28:16-28:21",
+        "28:22-28:27"
+      ],
+      "title": "The Death of Ahaz (738 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "29:20-29:36",
+      "new_ranges": [
+        "29:20-29:30",
+        "29:31-29:36"
+      ],
+      "title": "Hezekiah's Sacrifice (726 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "30:1-30:12",
+      "new_ranges": [
+        "30:1-30:11",
+        "30:12-30:12"
+      ],
+      "title": "Preparations for the Passover (726 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "31:1-31:10",
+      "new_ranges": [
+        "31:1-31:1",
+        "31:2-31:2",
+        "31:3-31:3",
+        "31:4-31:4",
+        "31:5-31:10"
+      ],
+      "title": "Hezekiah Destroys Idolatry (726 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "31:11-31:21",
+      "new_ranges": [
+        "31:11-31:19",
+        "31:20-31:21"
+      ],
+      "title": "The Maintenance of the Priests (720 BC)"
+    },
+    {
+      "book": "2 Chronicles",
+      "original_range": "32:9-32:23",
+      "new_ranges": [
+        "32:9-32:19",
+        "32:20-32:20",
+        "32:21-32:21",
+        "32:22-32:23"
+      ],
+      "title": "The Destruction of the Assyrians (713 BC)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "1:12-1:14",
+      "new_ranges": [
+        "1:12-1:12",
+        "1:13-1:14"
+      ],
+      "title": "Paul's Sincerity and Affliction (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "1:15-1:24",
+      "new_ranges": [
+        "1:15-1:17",
+        "1:18-1:22",
+        "1:23-1:24"
+      ],
+      "title": "Paul's Sincerity and Affliction (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "3:1-3:5",
+      "new_ranges": [
+        "3:1-3:2",
+        "3:3-3:5"
+      ],
+      "title": "Apology for Seeming Self-Commendation (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "3:6-3:11",
+      "new_ranges": [
+        "3:6-3:6",
+        "3:7-3:11"
+      ],
+      "title": "Law and Gospel Compared (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "4:8-4:18",
+      "new_ranges": [
+        "4:8-4:12",
+        "4:13-4:18"
+      ],
+      "title": "The Apostles' Sufferings and Supports (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "5:1-5:11",
+      "new_ranges": [
+        "5:1-5:5",
+        "5:6-5:8",
+        "5:9-5:11"
+      ],
+      "title": "The Believer's Prospect beyond Death (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "5:16-5:21",
+      "new_ranges": [
+        "5:16-5:17",
+        "5:18-5:19",
+        "5:20-5:21"
+      ],
+      "title": "Ministry of the Apostles (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "6:1-6:10",
+      "new_ranges": [
+        "6:1-6:1",
+        "6:2-6:2",
+        "6:3-6:3",
+        "6:4-6:10"
+      ],
+      "title": "Ministry of the Apostles (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "6:11-6:18",
+      "new_ranges": [
+        "6:11-6:13",
+        "6:14-6:18"
+      ],
+      "title": "Cautions against Mingling with Unbelievers (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "7:1-7:4",
+      "new_ranges": [
+        "7:1-7:1",
+        "7:2-7:4"
+      ],
+      "title": "Progressive Holiness (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "7:5-7:11",
+      "new_ranges": [
+        "7:5-7:5",
+        "7:6-7:7",
+        "7:8-7:10",
+        "7:11-7:11"
+      ],
+      "title": "Various Exhortations (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "8:1-8:6",
+      "new_ranges": [
+        "8:1-8:1",
+        "8:2-8:5",
+        "8:6-8:6"
+      ],
+      "title": "Charity of the Macedonians (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "10:1-10:6",
+      "new_ranges": [
+        "10:1-10:2",
+        "10:3-10:5",
+        "10:6-10:6"
+      ],
+      "title": "The Apostle's Spiritual Authority (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "10:7-10:11",
+      "new_ranges": [
+        "10:7-10:7",
+        "10:8-10:11"
+      ],
+      "title": "The Apostle's Spiritual Authority (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "12:1-12:10",
+      "new_ranges": [
+        "12:1-12:6",
+        "12:7-12:8",
+        "12:9-12:10"
+      ],
+      "title": "The Apostle's Rapture (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "13:1-13:6",
+      "new_ranges": [
+        "13:1-13:2",
+        "13:3-13:6"
+      ],
+      "title": "The Apostle Asserts His Claims (57 AD)"
+    },
+    {
+      "book": "2 Corinthians",
+      "original_range": "13:11-13:14",
+      "new_ranges": [
+        "13:11-13:13",
+        "13:14-13:14"
+      ],
+      "title": "The Apostolic Benediction (57 AD)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "1:1-1:8",
+      "new_ranges": [
+        "1:1-1:3",
+        "1:4-1:8"
+      ],
+      "title": "Ahaziah's Sickness (896 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "2:13-2:18",
+      "new_ranges": [
+        "2:13-2:13",
+        "2:14-2:14",
+        "2:15-2:15",
+        "2:16-2:18"
+      ],
+      "title": "Elijah's Mantle on Elisha (895 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "3:20-3:27",
+      "new_ranges": [
+        "3:20-3:20",
+        "3:21-3:25",
+        "3:26-3:27"
+      ],
+      "title": "The Defeat of the Moabites (895 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "4:1-4:7",
+      "new_ranges": [
+        "4:1-4:1",
+        "4:2-4:7"
+      ],
+      "title": "The Increase of the Widow's Oil (894 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "4:38-4:44",
+      "new_ranges": [
+        "4:38-4:41",
+        "4:42-4:44"
+      ],
+      "title": "The Miracle on the Poisoned Pottage; the Miracle on the Barley Loaves (887 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "5:9-5:19",
+      "new_ranges": [
+        "5:9-5:11",
+        "5:12-5:19"
+      ],
+      "title": "The Cure of Naaman's Leprosy (894 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "5:20-5:27",
+      "new_ranges": [
+        "5:20-5:26",
+        "5:27-5:27"
+      ],
+      "title": "Naaman's Gratitude (894 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "6:24-6:33",
+      "new_ranges": [
+        "6:24-6:25",
+        "6:26-6:29",
+        "6:30-6:31",
+        "6:32-6:32",
+        "6:33-6:33"
+      ],
+      "title": "The Siege of Samaria (891 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "7:12-7:20",
+      "new_ranges": [
+        "7:12-7:12",
+        "7:13-7:15",
+        "7:16-7:16",
+        "7:17-7:20"
+      ],
+      "title": "Samaria Plentifully Supplied (891 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "13:10-13:19",
+      "new_ranges": [
+        "13:10-13:13",
+        "13:14-13:19"
+      ],
+      "title": "The Reign of Joash, King of Israel (839 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "17:1-17:6",
+      "new_ranges": [
+        "17:1-17:1",
+        "17:2-17:2",
+        "17:3-17:3",
+        "17:4-17:4",
+        "17:5-17:6"
+      ],
+      "title": "Samaria Besieged by the Assyrians; Israel Subdued by Assyria (730 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "18:9-18:16",
+      "new_ranges": [
+        "18:9-18:12",
+        "18:13-18:16"
+      ],
+      "title": "Sennacherib Invades Judea (726 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "19:8-19:19",
+      "new_ranges": [
+        "19:8-19:13",
+        "19:14-19:19"
+      ],
+      "title": "Sennacherib Sends to Hezekiah (710 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "19:35-19:37",
+      "new_ranges": [
+        "19:35-19:35",
+        "19:36-19:37"
+      ],
+      "title": "The Assyrian Army Destroyed (710 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "22:1-22:10",
+      "new_ranges": [
+        "22:1-22:1",
+        "22:2-22:2",
+        "22:3-22:7",
+        "22:8-22:10"
+      ],
+      "title": "Josiah's Pious Reign; the Book of the Law Read (623 BC)"
+    },
+    {
+      "book": "2 Kings",
+      "original_range": "23:25-23:30",
+      "new_ranges": [
+        "23:25-23:25",
+        "23:26-23:30"
+      ],
+      "title": "The Death of Josiah (610 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "1:1-1:16",
+      "new_ranges": [
+        "1:1-1:12",
+        "1:13-1:16"
+      ],
+      "title": "David's Concern at Saul's Fate (1055 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "2:1-2:7",
+      "new_ranges": [
+        "2:1-2:1",
+        "2:2-2:3",
+        "2:4-2:4",
+        "2:5-2:7"
+      ],
+      "title": "David Made King at Hebron (1053 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "5:1-5:5",
+      "new_ranges": [
+        "5:1-5:3",
+        "5:4-5:5"
+      ],
+      "title": "David King over All Israel (1048 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "6:12-6:19",
+      "new_ranges": [
+        "6:12-6:12",
+        "6:13-6:19"
+      ],
+      "title": "Michal Despises David (1045 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "6:20-6:23",
+      "new_ranges": [
+        "6:20-6:20",
+        "6:21-6:23"
+      ],
+      "title": "David Expostulates with Michal (1045 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "7:18-7:29",
+      "new_ranges": [
+        "7:18-7:18",
+        "7:19-7:20",
+        "7:21-7:21",
+        "7:22-7:22",
+        "7:23-7:24",
+        "7:25-7:29"
+      ],
+      "title": "David's Prayer for God's Blessing (1042 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "8:1-8:8",
+      "new_ranges": [
+        "8:1-8:1",
+        "8:2-8:2",
+        "8:3-8:6",
+        "8:7-8:8"
+      ],
+      "title": "David's Conquests (1042 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "13:21-13:29",
+      "new_ranges": [
+        "13:21-13:21",
+        "13:22-13:29"
+      ],
+      "title": "The Plot Against Amnon (1032 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "15:31-15:37",
+      "new_ranges": [
+        "15:31-15:31",
+        "15:32-15:37"
+      ],
+      "title": "David's Request to Hushai (1023 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "16:5-16:14",
+      "new_ranges": [
+        "16:5-16:5",
+        "16:6-16:14"
+      ],
+      "title": "David Cursed by Shimei (1023 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "17:1-17:14",
+      "new_ranges": [
+        "17:1-17:4",
+        "17:5-17:14"
+      ],
+      "title": "Hushai's Counsel (1023 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "18:19-18:33",
+      "new_ranges": [
+        "18:19-18:32",
+        "18:33-18:33"
+      ],
+      "title": "David's Grief for Absalom (1023 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "19:1-19:8",
+      "new_ranges": [
+        "19:1-19:4",
+        "19:5-19:7",
+        "19:8-19:8"
+      ],
+      "title": "Joab's Reproof of David (1023 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "19:9-19:15",
+      "new_ranges": [
+        "19:9-19:10",
+        "19:11-19:15"
+      ],
+      "title": "David's Return to the Jordan (1023 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "19:31-19:39",
+      "new_ranges": [
+        "19:31-19:32",
+        "19:33-19:33",
+        "19:34-19:37",
+        "19:38-19:39"
+      ],
+      "title": "Mephibosheth Meets David (1023 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "20:1-20:3",
+      "new_ranges": [
+        "20:1-20:2",
+        "20:3-20:3"
+      ],
+      "title": "Sheba's Rebellion (1023 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "20:4-20:13",
+      "new_ranges": [
+        "20:4-20:5",
+        "20:6-20:7",
+        "20:8-20:10",
+        "20:11-20:13"
+      ],
+      "title": "Amasa's Death (1023 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "24:1-24:9",
+      "new_ranges": [
+        "24:1-24:2",
+        "24:3-24:3",
+        "24:4-24:9"
+      ],
+      "title": "The People Numbered (1017 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "24:10-24:17",
+      "new_ranges": [
+        "24:10-24:11",
+        "24:12-24:16",
+        "24:17-24:17"
+      ],
+      "title": "The Numbering of the People Punished (1017 BC)"
+    },
+    {
+      "book": "2 Samuel",
+      "original_range": "24:18-24:25",
+      "new_ranges": [
+        "24:18-24:20",
+        "24:21-24:24",
+        "24:25-24:25"
+      ],
+      "title": "The Plague Removed (1017 BC)"
+    },
+    {
+      "book": "2 Thessalonians",
+      "original_range": "1:1-1:4",
+      "new_ranges": [
+        "1:1-1:2",
+        "1:3-1:4"
+      ],
+      "title": "Introduction (52 AD)"
+    },
+    {
+      "book": "2 Thessalonians",
+      "original_range": "1:5-1:10",
+      "new_ranges": [
+        "1:5-1:5",
+        "1:6-1:9",
+        "1:10-1:10"
+      ],
+      "title": "Prospect of Persecuted Saints (52 AD)"
+    },
+    {
+      "book": "2 Thessalonians",
+      "original_range": "1:11-1:12",
+      "new_ranges": [
+        "1:11-1:11",
+        "1:12-1:12"
+      ],
+      "title": "The Apostle Prayer (52 AD)"
+    },
+    {
+      "book": "2 Thessalonians",
+      "original_range": "2:13-2:15",
+      "new_ranges": [
+        "2:13-2:13",
+        "2:14-2:14",
+        "2:15-2:15"
+      ],
+      "title": "Apostasy Foretold (52 AD)"
+    },
+    {
+      "book": "2 Thessalonians",
+      "original_range": "2:16-2:17",
+      "new_ranges": [
+        "2:16-2:16",
+        "2:17-2:17"
+      ],
+      "title": "Apostolic Prayer (52 AD)"
+    },
+    {
+      "book": "2 Timothy",
+      "original_range": "2:1-2:7",
+      "new_ranges": [
+        "2:1-2:2",
+        "2:3-2:3",
+        "2:4-2:4",
+        "2:5-2:5",
+        "2:6-2:7"
+      ],
+      "title": "Ministerial Fortitude (66 AD)"
+    },
+    {
+      "book": "2 Timothy",
+      "original_range": "2:8-2:13",
+      "new_ranges": [
+        "2:8-2:8",
+        "2:9-2:9",
+        "2:10-2:10",
+        "2:11-2:12",
+        "2:13-2:13"
+      ],
+      "title": "Ministerial Encouragements (66 AD)"
+    },
+    {
+      "book": "2 Timothy",
+      "original_range": "2:22-2:26",
+      "new_ranges": [
+        "2:22-2:22",
+        "2:23-2:26"
+      ],
+      "title": "Cautions against Contention (66 AD)"
+    },
+    {
+      "book": "2 Timothy",
+      "original_range": "3:10-3:17",
+      "new_ranges": [
+        "3:10-3:12",
+        "3:13-3:13",
+        "3:14-3:17"
+      ],
+      "title": "Marks of Perilous Times; Excellence of the Scriptures (66 AD)"
+    },
+    {
+      "book": "3 John",
+      "original_range": "1:9-1:11",
+      "new_ranges": [
+        "1:9-1:10",
+        "1:11-1:11"
+      ],
+      "title": "The Character of Diotrephes (90 AD)"
+    },
+    {
+      "book": "Acts",
+      "original_range": "1:1-1:5",
+      "new_ranges": [
+        "1:1-1:1",
+        "1:2-1:2",
+        "1:3-1:3",
+        "1:4-1:5"
+      ],
+      "title": "Proofs of Christ's Resurrection; Christ's Address to His Apostles"
+    },
+    {
+      "book": "Acts",
+      "original_range": "2:37-2:41",
+      "new_ranges": [
+        "2:37-2:37",
+        "2:38-2:39",
+        "2:40-2:40",
+        "2:41-2:41"
+      ],
+      "title": "Peter's Sermon at Jerusalem"
+    },
+    {
+      "book": "Acts",
+      "original_range": "4:1-4:4",
+      "new_ranges": [
+        "4:1-4:1",
+        "4:2-4:4"
+      ],
+      "title": "Peter and John Imprisoned"
+    },
+    {
+      "book": "Acts",
+      "original_range": "4:15-4:22",
+      "new_ranges": [
+        "4:15-4:15",
+        "4:16-4:16",
+        "4:17-4:18",
+        "4:19-4:20",
+        "4:21-4:22"
+      ],
+      "title": "The Resolution of Peter and John"
+    },
+    {
+      "book": "Acts",
+      "original_range": "6:1-6:7",
+      "new_ranges": [
+        "6:1-6:1",
+        "6:2-6:4",
+        "6:5-6:6",
+        "6:7-6:7"
+      ],
+      "title": "The Appointment of Deacons"
+    },
+    {
+      "book": "Acts",
+      "original_range": "6:8-6:15",
+      "new_ranges": [
+        "6:8-6:8",
+        "6:9-6:10",
+        "6:11-6:14",
+        "6:15-6:15"
+      ],
+      "title": "Stephen's Address"
+    },
+    {
+      "book": "Acts",
+      "original_range": "7:42-7:50",
+      "new_ranges": [
+        "7:42-7:42",
+        "7:43-7:43",
+        "7:44-7:50"
+      ],
+      "title": "Stephen's Address"
+    },
+    {
+      "book": "Acts",
+      "original_range": "9:32-9:35",
+      "new_ranges": [
+        "9:32-9:34",
+        "9:35-9:35"
+      ],
+      "title": "The Cure of Æneas"
+    },
+    {
+      "book": "Acts",
+      "original_range": "11:19-11:26",
+      "new_ranges": [
+        "11:19-11:21",
+        "11:22-11:26"
+      ],
+      "title": "The Gospel Preached at Antioch; Success of the Gospel at Antioch; Barnabas at Antioch"
+    },
+    {
+      "book": "Acts",
+      "original_range": "11:27-11:30",
+      "new_ranges": [
+        "11:27-11:27",
+        "11:28-11:28",
+        "11:29-11:29",
+        "11:30-11:30"
+      ],
+      "title": "Primitive Charity"
+    },
+    {
+      "book": "Acts",
+      "original_range": "13:1-13:3",
+      "new_ranges": [
+        "13:1-13:1",
+        "13:2-13:2",
+        "13:3-13:3"
+      ],
+      "title": "The Mission of Paul and Barnabas"
+    },
+    {
+      "book": "Acts",
+      "original_range": "13:14-13:41",
+      "new_ranges": [
+        "13:14-13:22",
+        "13:23-13:41"
+      ],
+      "title": "Paul at Antioch in Pisidia"
+    },
+    {
+      "book": "Acts",
+      "original_range": "16:35-16:40",
+      "new_ranges": [
+        "16:35-16:36",
+        "16:37-16:37",
+        "16:38-16:39",
+        "16:40-16:40"
+      ],
+      "title": "Paul and Silas Released"
+    },
+    {
+      "book": "Acts",
+      "original_range": "17:16-17:21",
+      "new_ranges": [
+        "17:16-17:16",
+        "17:17-17:17",
+        "17:18-17:21"
+      ],
+      "title": "Paul at Athens"
+    },
+    {
+      "book": "Acts",
+      "original_range": "17:32-17:34",
+      "new_ranges": [
+        "17:32-17:33",
+        "17:34-17:34"
+      ],
+      "title": "Paul at Athens"
+    },
+    {
+      "book": "Acts",
+      "original_range": "18:12-18:17",
+      "new_ranges": [
+        "18:12-18:13",
+        "18:14-18:16",
+        "18:17-18:17"
+      ],
+      "title": "Paul Visits Corinth"
+    },
+    {
+      "book": "Acts",
+      "original_range": "19:21-19:41",
+      "new_ranges": [
+        "19:21-19:22",
+        "19:23-19:41"
+      ],
+      "title": "The Tumult at Ephesus"
+    },
+    {
+      "book": "Acts",
+      "original_range": "20:36-20:38",
+      "new_ranges": [
+        "20:36-20:36",
+        "20:37-20:38"
+      ],
+      "title": "Paul Takes Leave of the Elders of Ephesus"
+    },
+    {
+      "book": "Acts",
+      "original_range": "23:12-23:35",
+      "new_ranges": [
+        "23:12-23:15",
+        "23:16-23:16",
+        "23:17-23:22",
+        "23:23-23:35"
+      ],
+      "title": "A Conspiracy against Paul; Paul Sent to Felix"
+    },
+    {
+      "book": "Acts",
+      "original_range": "24:22-24:27",
+      "new_ranges": [
+        "24:22-24:22",
+        "24:23-24:23",
+        "24:24-24:25",
+        "24:26-24:27"
+      ],
+      "title": "Paul Converses with Felix; Felix Trembles; Paul's Trial Adjourned"
+    },
+    {
+      "book": "Acts",
+      "original_range": "26:1-26:11",
+      "new_ranges": [
+        "26:1-26:3",
+        "26:4-26:8",
+        "26:9-26:11"
+      ],
+      "title": "Paul's Fifth Defence"
+    },
+    {
+      "book": "Amos",
+      "original_range": "4:1-4:5",
+      "new_ranges": [
+        "4:1-4:3",
+        "4:4-4:5"
+      ],
+      "title": "Threatenings against Oppressors; Punishment of Proud Oppressors (790 BC)"
+    },
+    {
+      "book": "Amos",
+      "original_range": "7:10-7:17",
+      "new_ranges": [
+        "7:10-7:11",
+        "7:12-7:13",
+        "7:14-7:15",
+        "7:16-7:17"
+      ],
+      "title": "Amaziah's Charge against Amos; Amaziah's Doom (785 BC)"
+    },
+    {
+      "book": "Amos",
+      "original_range": "9:1-9:10",
+      "new_ranges": [
+        "9:1-9:1",
+        "9:2-9:10"
+      ],
+      "title": "The Certainty of the Sinner's Doom (784 BC)"
+    },
+    {
+      "book": "Amos",
+      "original_range": "9:11-9:15",
+      "new_ranges": [
+        "9:11-9:11",
+        "9:12-9:12",
+        "9:13-9:13",
+        "9:14-9:14",
+        "9:15-9:15"
+      ],
+      "title": "Promises of Mercy (784 BC)"
+    },
+    {
+      "book": "Colossians",
+      "original_range": "2:4-2:12",
+      "new_ranges": [
+        "2:4-2:11",
+        "2:12-2:12"
+      ],
+      "title": "The Glory of the Christian Economy (62 AD)"
+    },
+    {
+      "book": "Colossians",
+      "original_range": "2:13-2:15",
+      "new_ranges": [
+        "2:13-2:13",
+        "2:14-2:14",
+        "2:15-2:15"
+      ],
+      "title": "The Glory of the Christian Economy (62 AD)"
+    },
+    {
+      "book": "Colossians",
+      "original_range": "3:18-3:25",
+      "new_ranges": [
+        "3:18-3:19",
+        "3:20-3:21",
+        "3:22-3:25"
+      ],
+      "title": "Relative Duties (62 AD)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "1:17-1:21",
+      "new_ranges": [
+        "1:17-1:17",
+        "1:18-1:21"
+      ],
+      "title": "Wisdom of Daniel and His Companions (606 BC)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "2:14-2:23",
+      "new_ranges": [
+        "2:14-2:16",
+        "2:17-2:23"
+      ],
+      "title": "The Dream Revealed to Daniel; Daniel's Thanksgiving (603 BC)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "3:8-3:18",
+      "new_ranges": [
+        "3:8-3:12",
+        "3:13-3:13",
+        "3:14-3:15",
+        "3:16-3:18"
+      ],
+      "title": "The Hebrew Princes Accused; Fortitude of the Jewish Princes (587 BC)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "3:19-3:27",
+      "new_ranges": [
+        "3:19-3:23",
+        "3:24-3:25",
+        "3:26-3:27"
+      ],
+      "title": "The Three Hebrews in the Furnace; Deliverance from the Furnace (587 BC)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "4:4-4:18",
+      "new_ranges": [
+        "4:4-4:4",
+        "4:5-4:5",
+        "4:6-4:7",
+        "4:8-4:9",
+        "4:10-4:18"
+      ],
+      "title": "Nebuchadnezzar's Second Dream; Nebuchadnezzar Relates His Dream (570 BC)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "4:19-4:27",
+      "new_ranges": [
+        "4:19-4:19",
+        "4:20-4:26",
+        "4:27-4:27"
+      ],
+      "title": "Nebuchadnezzar's Dream Interpreted (570 BC)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "6:18-6:24",
+      "new_ranges": [
+        "6:18-6:20",
+        "6:21-6:22",
+        "6:23-6:23",
+        "6:24-6:24"
+      ],
+      "title": "Daniel's Preservation and Deliverance (537 BC)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "6:25-6:28",
+      "new_ranges": [
+        "6:25-6:27",
+        "6:28-6:28"
+      ],
+      "title": "The Decree of Darius (537 BC)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "7:1-7:8",
+      "new_ranges": [
+        "7:1-7:1",
+        "7:2-7:8"
+      ],
+      "title": "The Vision of the Four Beasts (555 BC)"
+    },
+    {
+      "book": "Daniel",
+      "original_range": "8:15-8:27",
+      "new_ranges": [
+        "8:15-8:22",
+        "8:23-8:25",
+        "8:26-8:27"
+      ],
+      "title": "The Vision of the Ram and Goat (553 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "2:1-2:23",
+      "new_ranges": [
+        "2:1-2:5",
+        "2:6-2:23"
+      ],
+      "title": "The Seed of Esau and Lot Spared (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "6:4-6:16",
+      "new_ranges": [
+        "6:4-6:5",
+        "6:6-6:9",
+        "6:10-6:12",
+        "6:13-6:16"
+      ],
+      "title": "Cautions and Precepts (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "8:1-8:9",
+      "new_ranges": [
+        "8:1-8:6",
+        "8:7-8:9"
+      ],
+      "title": "A Charge to Israel; Israel's Retrospect (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "8:10-8:20",
+      "new_ranges": [
+        "8:10-8:10",
+        "8:11-8:18",
+        "8:19-8:20"
+      ],
+      "title": "Cautions Relating to Worldly Prosperity (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "11:26-11:32",
+      "new_ranges": [
+        "11:26-11:28",
+        "11:29-11:32"
+      ],
+      "title": "The Blessing and the Curse (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "12:1-12:4",
+      "new_ranges": [
+        "12:1-12:3",
+        "12:4-12:4"
+      ],
+      "title": "Relics of Idolatry to Be Destroyed (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "14:22-14:29",
+      "new_ranges": [
+        "14:22-14:22",
+        "14:23-14:27",
+        "14:28-14:29"
+      ],
+      "title": "Tithes for Feasting and Charity (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "16:1-16:22",
+      "new_ranges": [
+        "16:1-16:8",
+        "16:9-16:12",
+        "16:13-16:15",
+        "16:16-16:20",
+        "16:21-16:22"
+      ],
+      "title": "Yearly Release (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "17:14-17:20",
+      "new_ranges": [
+        "17:14-17:15",
+        "17:16-17:17",
+        "17:18-17:20"
+      ],
+      "title": "The Choice of a King (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "18:1-18:8",
+      "new_ranges": [
+        "18:1-18:2",
+        "18:3-18:5",
+        "18:6-18:8"
+      ],
+      "title": "Maintenance of the Levites (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "18:9-18:14",
+      "new_ranges": [
+        "18:9-18:11",
+        "18:12-18:14"
+      ],
+      "title": "Idolatrous Customs of the Canaanites (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "19:1-19:13",
+      "new_ranges": [
+        "19:1-19:10",
+        "19:11-19:13"
+      ],
+      "title": "The Cities of Refuge (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "19:14-19:21",
+      "new_ranges": [
+        "19:14-19:14",
+        "19:15-19:21"
+      ],
+      "title": "False Witnesses (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "20:1-20:9",
+      "new_ranges": [
+        "20:1-20:4",
+        "20:5-20:7",
+        "20:8-20:8",
+        "20:9-20:9"
+      ],
+      "title": "Directions Concerning War; Persons Excused from War (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "21:10-21:14",
+      "new_ranges": [
+        "21:10-21:13",
+        "21:14-21:14"
+      ],
+      "title": "The Case of Captive Women (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "21:15-21:17",
+      "new_ranges": [
+        "21:15-21:15",
+        "21:16-21:17"
+      ],
+      "title": "The Right of the Firstborn (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "22:5-22:12",
+      "new_ranges": [
+        "22:5-22:5",
+        "22:6-22:7",
+        "22:8-22:8",
+        "22:9-22:10",
+        "22:11-22:12"
+      ],
+      "title": "Various Prohibitions (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "22:13-22:30",
+      "new_ranges": [
+        "22:13-22:19",
+        "22:20-22:21",
+        "22:22-22:22",
+        "22:23-22:27",
+        "22:28-22:29",
+        "22:30-22:30"
+      ],
+      "title": "The Punishment of Fornication (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "23:9-23:14",
+      "new_ranges": [
+        "23:9-23:9",
+        "23:10-23:11",
+        "23:12-23:14"
+      ],
+      "title": "Moral and Ceremonial Purity Enjoined (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "23:15-23:25",
+      "new_ranges": [
+        "23:15-23:16",
+        "23:17-23:18",
+        "23:19-23:20",
+        "23:21-23:23",
+        "23:24-23:25"
+      ],
+      "title": "Protection of Fugitives; The Law Concerning Usury (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "24:14-24:22",
+      "new_ranges": [
+        "24:14-24:18",
+        "24:19-24:22"
+      ],
+      "title": "Justice and Generosity (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "25:13-25:19",
+      "new_ranges": [
+        "25:13-25:18",
+        "25:19-25:19"
+      ],
+      "title": "Amalek to Be Destroyed (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "26:1-26:11",
+      "new_ranges": [
+        "26:1-26:4",
+        "26:5-26:6",
+        "26:7-26:9",
+        "26:10-26:10",
+        "26:11-26:11"
+      ],
+      "title": "The Offering of First-Fruits (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "26:12-26:15",
+      "new_ranges": [
+        "26:12-26:14",
+        "26:15-26:15"
+      ],
+      "title": "Appropriation of Tithes (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "29:10-29:29",
+      "new_ranges": [
+        "29:10-29:17",
+        "29:18-29:29"
+      ],
+      "title": "The Covenant Renewed (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "34:5-34:8",
+      "new_ranges": [
+        "34:5-34:6",
+        "34:7-34:7",
+        "34:8-34:8"
+      ],
+      "title": "The Death of Moses (1451 BC)"
+    },
+    {
+      "book": "Deuteronomy",
+      "original_range": "34:9-34:12",
+      "new_ranges": [
+        "34:9-34:9",
+        "34:10-34:12"
+      ],
+      "title": "The Character of Moses (1451 BC)"
+    },
+    {
+      "book": "Ecclesiastes",
+      "original_range": "4:1-4:3",
+      "new_ranges": [
+        "4:1-4:1",
+        "4:2-4:3"
+      ],
+      "title": "The Prevalence of Oppression"
+    },
+    {
+      "book": "Ecclesiastes",
+      "original_range": "4:4-4:6",
+      "new_ranges": [
+        "4:4-4:4",
+        "4:5-4:6"
+      ],
+      "title": "The Prevalence of Oppression"
+    },
+    {
+      "book": "Ecclesiastes",
+      "original_range": "4:13-4:16",
+      "new_ranges": [
+        "4:13-4:14",
+        "4:15-4:16"
+      ],
+      "title": "The Advantages of Society"
+    },
+    {
+      "book": "Ecclesiastes",
+      "original_range": "5:9-5:17",
+      "new_ranges": [
+        "5:9-5:9",
+        "5:10-5:10",
+        "5:11-5:11",
+        "5:12-5:12",
+        "5:13-5:13",
+        "5:14-5:14",
+        "5:15-5:16",
+        "5:17-5:17"
+      ],
+      "title": "The Vanity of Riches"
+    },
+    {
+      "book": "Ecclesiastes",
+      "original_range": "6:7-6:10",
+      "new_ranges": [
+        "6:7-6:7",
+        "6:8-6:8",
+        "6:9-6:9",
+        "6:10-6:10"
+      ],
+      "title": "The Insatiableness of Desire"
+    },
+    {
+      "book": "Ecclesiastes",
+      "original_range": "8:14-8:17",
+      "new_ranges": [
+        "8:14-8:14",
+        "8:15-8:15",
+        "8:16-8:17"
+      ],
+      "title": "The Mysteries of Providence"
+    },
+    {
+      "book": "Ecclesiastes",
+      "original_range": "9:11-9:12",
+      "new_ranges": [
+        "9:11-9:11",
+        "9:12-9:12"
+      ],
+      "title": "The Disappointment of Hopes"
+    },
+    {
+      "book": "Ecclesiastes",
+      "original_range": "10:4-10:11",
+      "new_ranges": [
+        "10:4-10:4",
+        "10:5-10:11"
+      ],
+      "title": "Mutual Duties of Princes and Subjects"
+    },
+    {
+      "book": "Ecclesiastes",
+      "original_range": "10:16-10:20",
+      "new_ranges": [
+        "10:16-10:17",
+        "10:18-10:18",
+        "10:19-10:19",
+        "10:20-10:20"
+      ],
+      "title": "Mutual Duties of Princes and Subjects"
+    },
+    {
+      "book": "Ephesians",
+      "original_range": "1:3-1:14",
+      "new_ranges": [
+        "1:3-1:3",
+        "1:4-1:14"
+      ],
+      "title": "Praise for Spiritual Blessings (61 AD)"
+    },
+    {
+      "book": "Ephesians",
+      "original_range": "4:2-4:16",
+      "new_ranges": [
+        "4:2-4:2",
+        "4:3-4:3",
+        "4:4-4:16"
+      ],
+      "title": "Exhortation to Unity; Persuasives to Unity (61 AD)"
+    },
+    {
+      "book": "Ephesians",
+      "original_range": "5:21-5:33",
+      "new_ranges": [
+        "5:21-5:24",
+        "5:25-5:33"
+      ],
+      "title": "Duties of Husbands and Wives (61 AD)"
+    },
+    {
+      "book": "Ephesians",
+      "original_range": "6:1-6:9",
+      "new_ranges": [
+        "6:1-6:3",
+        "6:4-6:4",
+        "6:5-6:8",
+        "6:9-6:9"
+      ],
+      "title": "Duties of Children to Parents; Duties of Servants to Masters (61 AD)"
+    },
+    {
+      "book": "Ephesians",
+      "original_range": "6:10-6:18",
+      "new_ranges": [
+        "6:10-6:10",
+        "6:11-6:12",
+        "6:13-6:18"
+      ],
+      "title": "The Spiritual Warfare (61 AD)"
+    },
+    {
+      "book": "Ephesians",
+      "original_range": "6:19-6:24",
+      "new_ranges": [
+        "6:19-6:22",
+        "6:23-6:24"
+      ],
+      "title": "The Conclusion (61 AD)"
+    },
+    {
+      "book": "Esther",
+      "original_range": "1:10-1:22",
+      "new_ranges": [
+        "1:10-1:15",
+        "1:16-1:20",
+        "1:21-1:22"
+      ],
+      "title": "Vashti's Refusal to Appear; Vashti Divorced (519 BC)"
+    },
+    {
+      "book": "Esther",
+      "original_range": "6:12-6:14",
+      "new_ranges": [
+        "6:12-6:12",
+        "6:13-6:13",
+        "6:14-6:14"
+      ],
+      "title": "Haman Cast Down (510 BC)"
+    },
+    {
+      "book": "Esther",
+      "original_range": "10:1-10:3",
+      "new_ranges": [
+        "10:1-10:2",
+        "10:3-10:3"
+      ],
+      "title": "The Glory of Mordecai (495 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "2:11-2:15",
+      "new_ranges": [
+        "2:11-2:12",
+        "2:13-2:15"
+      ],
+      "title": "Moses Slays an Egyptian; Rebukes a Contentious Hebrew (1533 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "3:7-3:10",
+      "new_ranges": [
+        "3:7-3:9",
+        "3:10-3:10"
+      ],
+      "title": "Compassion of God for the Israelites (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "3:11-3:22",
+      "new_ranges": [
+        "3:11-3:11",
+        "3:12-3:12",
+        "3:13-3:13",
+        "3:14-3:14",
+        "3:15-3:22"
+      ],
+      "title": "Instructions Given to Moses (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "4:24-4:31",
+      "new_ranges": [
+        "4:24-4:26",
+        "4:27-4:28",
+        "4:29-4:31"
+      ],
+      "title": "The Circumcision of the Son of Moses (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "6:1-6:13",
+      "new_ranges": [
+        "6:1-6:11",
+        "6:12-6:12",
+        "6:13-6:13"
+      ],
+      "title": "The Promise of Deliverance (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "8:1-8:32",
+      "new_ranges": [
+        "8:1-8:27",
+        "8:28-8:32"
+      ],
+      "title": "The Plagues of Egypt (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "13:11-13:16",
+      "new_ranges": [
+        "13:11-13:13",
+        "13:14-13:16"
+      ],
+      "title": "God's Claim upon the Firstborn (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "14:1-14:14",
+      "new_ranges": [
+        "14:1-14:4",
+        "14:5-14:5",
+        "14:6-14:12",
+        "14:13-14:14"
+      ],
+      "title": "The Israelites Pursued by Pharaoh (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "14:15-14:20",
+      "new_ranges": [
+        "14:15-14:18",
+        "14:19-14:20"
+      ],
+      "title": "The Pillar of Cloud (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "14:21-14:31",
+      "new_ranges": [
+        "14:21-14:30",
+        "14:31-14:31"
+      ],
+      "title": "The Destruction of the Egyptians (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "15:1-15:21",
+      "new_ranges": [
+        "15:1-15:19",
+        "15:20-15:21"
+      ],
+      "title": "Triumphant Song of the Israelites (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "15:22-15:27",
+      "new_ranges": [
+        "15:22-15:22",
+        "15:23-15:26",
+        "15:27-15:27"
+      ],
+      "title": "The Waters of Marah (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "17:8-17:16",
+      "new_ranges": [
+        "17:8-17:8",
+        "17:9-17:12",
+        "17:13-17:13",
+        "17:14-17:16"
+      ],
+      "title": "The Conflict with Amalek; The Defeat of Amalek (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "19:1-19:8",
+      "new_ranges": [
+        "19:1-19:6",
+        "19:7-19:8"
+      ],
+      "title": "The Covenant of Sinai (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "20:1-20:17",
+      "new_ranges": [
+        "20:1-20:2",
+        "20:3-20:3",
+        "20:4-20:6",
+        "20:7-20:7",
+        "20:8-20:17"
+      ],
+      "title": "The Ten Commandments (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "21:1-21:36",
+      "new_ranges": [
+        "21:1-21:6",
+        "21:7-21:27",
+        "21:28-21:32",
+        "21:33-21:36"
+      ],
+      "title": "Judicial Laws (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "22:1-22:31",
+      "new_ranges": [
+        "22:1-22:4",
+        "22:5-22:5",
+        "22:6-22:6",
+        "22:7-22:13",
+        "22:14-22:17",
+        "22:18-22:18",
+        "22:19-22:19",
+        "22:20-22:20",
+        "22:21-22:21",
+        "22:22-22:27",
+        "22:28-22:28",
+        "22:29-22:30",
+        "22:31-22:31"
+      ],
+      "title": "Judicial Laws (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "23:1-23:9",
+      "new_ranges": [
+        "23:1-23:1",
+        "23:2-23:9"
+      ],
+      "title": "Judicial Laws (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "32:1-32:6",
+      "new_ranges": [
+        "32:1-32:1",
+        "32:2-32:2",
+        "32:3-32:4",
+        "32:5-32:6"
+      ],
+      "title": "The Golden Calf (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "32:15-32:20",
+      "new_ranges": [
+        "32:15-32:18",
+        "32:19-32:20"
+      ],
+      "title": "Moses Breaks the Tablets of the Law (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "32:30-32:35",
+      "new_ranges": [
+        "32:30-32:30",
+        "32:31-32:32",
+        "32:33-32:35"
+      ],
+      "title": "The Intercession of Moses (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "33:12-33:23",
+      "new_ranges": [
+        "33:12-33:17",
+        "33:18-33:18",
+        "33:19-33:23"
+      ],
+      "title": "Moses Petitions to See God's Glory (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "34:1-34:9",
+      "new_ranges": [
+        "34:1-34:1",
+        "34:2-34:5",
+        "34:6-34:7",
+        "34:8-34:8",
+        "34:9-34:9"
+      ],
+      "title": "God's Proclamation of Himself (1491 BC)"
+    },
+    {
+      "book": "Exodus",
+      "original_range": "34:10-34:17",
+      "new_ranges": [
+        "34:10-34:11",
+        "34:12-34:17"
+      ],
+      "title": "A Caution Against Idolatry (1491 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "1:15-1:25",
+      "new_ranges": [
+        "1:15-1:21",
+        "1:22-1:25"
+      ],
+      "title": "The Vision of the Wheels (595 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "2:6-2:10",
+      "new_ranges": [
+        "2:6-2:6",
+        "2:7-2:7",
+        "2:8-2:10"
+      ],
+      "title": "The Prophet Cautioned Not to Fear; Charge Given to the Prophet (595 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "3:22-3:27",
+      "new_ranges": [
+        "3:22-3:23",
+        "3:24-3:27"
+      ],
+      "title": "The People's Contumacy Predicted (595 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "6:8-6:10",
+      "new_ranges": [
+        "6:8-6:8",
+        "6:9-6:10"
+      ],
+      "title": "Mercy Promised to the Penitent; Effect of Repentance (594 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "6:11-6:14",
+      "new_ranges": [
+        "6:11-6:11",
+        "6:12-6:14"
+      ],
+      "title": "The Prophet's Lamentation (594 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "7:16-7:22",
+      "new_ranges": [
+        "7:16-7:18",
+        "7:19-7:19",
+        "7:20-7:22"
+      ],
+      "title": "The Desolation of Israel (594 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "8:7-8:12",
+      "new_ranges": [
+        "8:7-8:9",
+        "8:10-8:11",
+        "8:12-8:12"
+      ],
+      "title": "Secret Abominations Discovered; The Chambers of Imagery (593 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "8:13-8:18",
+      "new_ranges": [
+        "8:13-8:16",
+        "8:17-8:18"
+      ],
+      "title": "The Chambers of Imagery (593 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "17:22-17:24",
+      "new_ranges": [
+        "17:22-17:23",
+        "17:24-17:24"
+      ],
+      "title": "Promises of Mercy (593 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "20:27-20:32",
+      "new_ranges": [
+        "20:27-20:29",
+        "20:30-20:32"
+      ],
+      "title": "The Rebellions of Israel (592 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "20:33-20:44",
+      "new_ranges": [
+        "20:33-20:36",
+        "20:37-20:39",
+        "20:40-20:44"
+      ],
+      "title": "The Sins of Israel (592 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "23:36-23:49",
+      "new_ranges": [
+        "23:36-23:44",
+        "23:45-23:49"
+      ],
+      "title": "Israel and Judah Accused; Judgments Predicted (591 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "31:10-31:18",
+      "new_ranges": [
+        "31:10-31:10",
+        "31:11-31:17",
+        "31:18-31:18"
+      ],
+      "title": "The King of Assyria's Downfall; The Fall of Assyria (588 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "33:30-33:33",
+      "new_ranges": [
+        "33:30-33:30",
+        "33:31-33:33"
+      ],
+      "title": "Hypocritical Professions (587 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "34:7-34:16",
+      "new_ranges": [
+        "34:7-34:10",
+        "34:11-34:16"
+      ],
+      "title": "The Shepherds Reproved (587 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "39:23-39:29",
+      "new_ranges": [
+        "39:23-39:24",
+        "39:25-39:26",
+        "39:27-39:29"
+      ],
+      "title": "Mercy Promised to Israel (585 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "40:5-40:26",
+      "new_ranges": [
+        "40:5-40:5",
+        "40:6-40:26"
+      ],
+      "title": "The Vision of the Temple (574 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "44:4-44:9",
+      "new_ranges": [
+        "44:4-44:5",
+        "44:6-44:9"
+      ],
+      "title": "Idolatry of the Levites (574 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "44:10-44:16",
+      "new_ranges": [
+        "44:10-44:14",
+        "44:15-44:16"
+      ],
+      "title": "Idolatrous Priests Degraded (574 BC)"
+    },
+    {
+      "book": "Ezekiel",
+      "original_range": "45:13-45:25",
+      "new_ranges": [
+        "45:13-45:20",
+        "45:21-45:24",
+        "45:25-45:25"
+      ],
+      "title": "Oblations Enjoined (574 BC)"
+    },
+    {
+      "book": "Ezra",
+      "original_range": "8:31-8:36",
+      "new_ranges": [
+        "8:31-8:32",
+        "8:33-8:34",
+        "8:35-8:35",
+        "8:36-8:36"
+      ],
+      "title": "Ezra's Arrival at Jerusalem (457 BC)"
+    },
+    {
+      "book": "Galatians",
+      "original_range": "3:19-3:29",
+      "new_ranges": [
+        "3:19-3:20",
+        "3:21-3:22",
+        "3:23-3:29"
+      ],
+      "title": "Design of the Law; The True Children of Abraham (56 AD)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "1:1-1:2",
+      "new_ranges": [
+        "1:1-1:1",
+        "1:2-1:2"
+      ],
+      "title": "The Creation (4004 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "1:29-1:30",
+      "new_ranges": [
+        "1:29-1:29",
+        "1:30-1:30"
+      ],
+      "title": "The Creation (4004 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "2:18-2:20",
+      "new_ranges": [
+        "2:18-2:18",
+        "2:19-2:20"
+      ],
+      "title": "Adam's Dominion (4004 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "4:25-4:26",
+      "new_ranges": [
+        "4:25-4:25",
+        "4:26-4:26"
+      ],
+      "title": "The Birth of Seth (3874 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "7:1-7:4",
+      "new_ranges": [
+        "7:1-7:1",
+        "7:2-7:3",
+        "7:4-7:4"
+      ],
+      "title": "Noah Invited into the Ark (2349 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "8:20-8:22",
+      "new_ranges": [
+        "8:20-8:21",
+        "8:22-8:22"
+      ],
+      "title": "Noah's Sacrifice (2348 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "13:1-13:4",
+      "new_ranges": [
+        "13:1-13:1",
+        "13:2-13:2",
+        "13:3-13:4"
+      ],
+      "title": "Abram's Removal to Canaan (1918 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "14:21-14:24",
+      "new_ranges": [
+        "14:21-14:21",
+        "14:22-14:24"
+      ],
+      "title": "Abram's Disinterestedness (1913 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "20:8-20:18",
+      "new_ranges": [
+        "20:8-20:8",
+        "20:9-20:10",
+        "20:11-20:16",
+        "20:17-20:18"
+      ],
+      "title": "Abimelech's Conduct Towards Abraham (1898 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "21:9-21:13",
+      "new_ranges": [
+        "21:9-21:9",
+        "21:10-21:10",
+        "21:11-21:11",
+        "21:12-21:13"
+      ],
+      "title": "Hagar and Ishmael Expelled (1892 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "21:14-21:21",
+      "new_ranges": [
+        "21:14-21:16",
+        "21:17-21:19",
+        "21:20-21:21"
+      ],
+      "title": "God's Mercy to Hagar and Ishmael (1892 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "22:11-22:14",
+      "new_ranges": [
+        "22:11-22:12",
+        "22:13-22:13",
+        "22:14-22:14"
+      ],
+      "title": "Isaac Rescued (1872 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "23:3-23:15",
+      "new_ranges": [
+        "23:3-23:6",
+        "23:7-23:9",
+        "23:10-23:11",
+        "23:12-23:13",
+        "23:14-23:15"
+      ],
+      "title": "The Cave of Machpelah (1857 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "26:6-26:11",
+      "new_ranges": [
+        "26:6-26:7",
+        "26:8-26:11"
+      ],
+      "title": "Isaac's Denial of His Wife (1840 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "26:12-26:25",
+      "new_ranges": [
+        "26:12-26:22",
+        "26:23-26:25"
+      ],
+      "title": "Isaac's Removal to Beersheba (1804 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "26:26-26:33",
+      "new_ranges": [
+        "26:26-26:26",
+        "26:27-26:27",
+        "26:28-26:29",
+        "26:30-26:31",
+        "26:32-26:33"
+      ],
+      "title": "Isaac's Covenant with Abimelech (1760 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "27:41-27:46",
+      "new_ranges": [
+        "27:41-27:45",
+        "27:46-27:46"
+      ],
+      "title": "Jacob's Life Threatened by Esau (1760 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "28:16-28:22",
+      "new_ranges": [
+        "28:16-28:16",
+        "28:17-28:17",
+        "28:18-28:19",
+        "28:20-28:22"
+      ],
+      "title": "Jacob's Vow (1760 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "31:25-31:42",
+      "new_ranges": [
+        "31:25-31:29",
+        "31:30-31:42"
+      ],
+      "title": "Laban's Pursuit after Jacob (1739 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "35:1-35:5",
+      "new_ranges": [
+        "35:1-35:3",
+        "35:4-35:4",
+        "35:5-35:5"
+      ],
+      "title": "Jacob Summoned to Bethel; Jacob's Journeys towards Bethel (1732 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "42:1-42:6",
+      "new_ranges": [
+        "42:1-42:2",
+        "42:3-42:6"
+      ],
+      "title": "Jacob Sends to Egypt to Buy Corn (1706 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "47:1-47:12",
+      "new_ranges": [
+        "47:1-47:6",
+        "47:7-47:10",
+        "47:11-47:12"
+      ],
+      "title": "Pharaoh's Generosity; Jacob Presented to Pharaoh (1706 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "48:1-48:7",
+      "new_ranges": [
+        "48:1-48:2",
+        "48:3-48:7"
+      ],
+      "title": "Jacob's Last Illness (1689 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "49:1-49:27",
+      "new_ranges": [
+        "49:1-49:24",
+        "49:25-49:27"
+      ],
+      "title": "Jacob's Prophecy Concerning His Sons (1689 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "49:28-49:33",
+      "new_ranges": [
+        "49:28-49:32",
+        "49:33-49:33"
+      ],
+      "title": "Death of Jacob (1689 BC)"
+    },
+    {
+      "book": "Genesis",
+      "original_range": "50:22-50:26",
+      "new_ranges": [
+        "50:22-50:23",
+        "50:24-50:25",
+        "50:26-50:26"
+      ],
+      "title": "The Death of Joseph (1635 BC)"
+    },
+    {
+      "book": "Habakkuk",
+      "original_range": "1:5-1:11",
+      "new_ranges": [
+        "1:5-1:5",
+        "1:6-1:8",
+        "1:9-1:11"
+      ],
+      "title": "Judgment Predicted (600 BC)"
+    },
+    {
+      "book": "Habakkuk",
+      "original_range": "2:1-2:4",
+      "new_ranges": [
+        "2:1-2:2",
+        "2:3-2:3",
+        "2:4-2:4"
+      ],
+      "title": "Waiting upon God; The People Directed (600 BC)"
+    },
+    {
+      "book": "Habakkuk",
+      "original_range": "2:5-2:14",
+      "new_ranges": [
+        "2:5-2:5",
+        "2:6-2:14"
+      ],
+      "title": "Judgment Predicted; Judgment of the King of Babylon (600 BC)"
+    },
+    {
+      "book": "Habakkuk",
+      "original_range": "2:15-2:20",
+      "new_ranges": [
+        "2:15-2:17",
+        "2:18-2:20"
+      ],
+      "title": "Judgment Predicted (600 BC)"
+    },
+    {
+      "book": "Habakkuk",
+      "original_range": "3:16-3:19",
+      "new_ranges": [
+        "3:16-3:16",
+        "3:17-3:17",
+        "3:18-3:19"
+      ],
+      "title": "The Conquest of Canaan; Devout Confidence (600 BC)"
+    },
+    {
+      "book": "Haggai",
+      "original_range": "2:1-2:9",
+      "new_ranges": [
+        "2:1-2:2",
+        "2:3-2:9"
+      ],
+      "title": "The Glory of the Latter House (520 BC)"
+    },
+    {
+      "book": "Hebrews",
+      "original_range": "2:1-2:4",
+      "new_ranges": [
+        "2:1-2:1",
+        "2:2-2:4"
+      ],
+      "title": "The Danger of Neglect (62 AD)"
+    },
+    {
+      "book": "Hebrews",
+      "original_range": "4:11-4:16",
+      "new_ranges": [
+        "4:11-4:11",
+        "4:12-4:16"
+      ],
+      "title": "Serious Exhortation; The Priesthood of Christ (62 AD)"
+    },
+    {
+      "book": "Hebrews",
+      "original_range": "9:23-9:28",
+      "new_ranges": [
+        "9:23-9:23",
+        "9:24-9:26",
+        "9:27-9:28"
+      ],
+      "title": "The Priesthood of Christ; The Second Coming of Christ (62 AD)"
+    },
+    {
+      "book": "Hebrews",
+      "original_range": "13:1-13:17",
+      "new_ranges": [
+        "13:1-13:1",
+        "13:2-13:2",
+        "13:3-13:3",
+        "13:4-13:4",
+        "13:5-13:6",
+        "13:7-13:16",
+        "13:17-13:17"
+      ],
+      "title": "Various Duties (62 AD)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "1:8-1:11",
+      "new_ranges": [
+        "1:8-1:9",
+        "1:10-1:11"
+      ],
+      "title": "Temporary Rejection of Israel; Promises of Mercy (768 BC)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "2:14-2:23",
+      "new_ranges": [
+        "2:14-2:15",
+        "2:16-2:17",
+        "2:18-2:18",
+        "2:19-2:20",
+        "2:21-2:22",
+        "2:23-2:23"
+      ],
+      "title": "Promises of Mercy (764 BC)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "3:1-3:5",
+      "new_ranges": [
+        "3:1-3:1",
+        "3:2-3:3",
+        "3:4-3:5"
+      ],
+      "title": "Idolatry of Israel; The Prophet's Remonstrances; Promises to the Penitent (760 BC)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "6:1-6:3",
+      "new_ranges": [
+        "6:1-6:1",
+        "6:2-6:3"
+      ],
+      "title": "Penitential Resolutions; Promises (758 BC)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "7:1-7:7",
+      "new_ranges": [
+        "7:1-7:2",
+        "7:3-7:7"
+      ],
+      "title": "Charge Drawn up against Israel; The Crimes of the Princes (750 BC)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "8:8-8:14",
+      "new_ranges": [
+        "8:8-8:10",
+        "8:11-8:14"
+      ],
+      "title": "The Sins of Israel; The Crimes of the People (745 BC)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "9:1-9:6",
+      "new_ranges": [
+        "9:1-9:1",
+        "9:2-9:6"
+      ],
+      "title": "Threatenings of Judgment (740 BC)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "9:7-9:10",
+      "new_ranges": [
+        "9:7-9:7",
+        "9:8-9:8",
+        "9:9-9:10"
+      ],
+      "title": "Threatenings of Judgment (740 BC)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "10:9-10:15",
+      "new_ranges": [
+        "10:9-10:10",
+        "10:11-10:11",
+        "10:12-10:13",
+        "10:14-10:15"
+      ],
+      "title": "Threatenings of Judgment (730 BC)"
+    },
+    {
+      "book": "Hosea",
+      "original_range": "14:8-14:9",
+      "new_ranges": [
+        "14:8-14:8",
+        "14:9-14:9"
+      ],
+      "title": "Assurances of Mercy (720 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "2:6-2:9",
+      "new_ranges": [
+        "2:6-2:6",
+        "2:7-2:7",
+        "2:8-2:8",
+        "2:9-2:9"
+      ],
+      "title": "A Charge against the Israelites (758 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "3:1-3:8",
+      "new_ranges": [
+        "3:1-3:6",
+        "3:7-3:7",
+        "3:8-3:8"
+      ],
+      "title": "Judgments Denounced (758 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "4:2-4:6",
+      "new_ranges": [
+        "4:2-4:2",
+        "4:3-4:3",
+        "4:4-4:4",
+        "4:5-4:6"
+      ],
+      "title": "The Future Glory of Zion (758 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "6:9-6:13",
+      "new_ranges": [
+        "6:9-6:9",
+        "6:10-6:10",
+        "6:11-6:12",
+        "6:13-6:13"
+      ],
+      "title": "Judicial Blindness Threatened (758 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "7:10-7:16",
+      "new_ranges": [
+        "7:10-7:15",
+        "7:16-7:16"
+      ],
+      "title": "The Promise of Immanuel (740 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "8:9-8:15",
+      "new_ranges": [
+        "8:9-8:10",
+        "8:11-8:11",
+        "8:12-8:15"
+      ],
+      "title": "Judah's Encouragement (740 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "8:16-8:22",
+      "new_ranges": [
+        "8:16-8:16",
+        "8:17-8:22"
+      ],
+      "title": "The Importance of the Scriptures (740 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "9:1-9:7",
+      "new_ranges": [
+        "9:1-9:5",
+        "9:6-9:7"
+      ],
+      "title": "Judgment and Mercy; The Promise of Gospel Grace; The Promise of Messiah; The Titles of Messiah (740 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "10:1-10:4",
+      "new_ranges": [
+        "10:1-10:2",
+        "10:3-10:3",
+        "10:4-10:4"
+      ],
+      "title": "The Condemnation of Oppressors (740 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "10:20-10:23",
+      "new_ranges": [
+        "10:20-10:22",
+        "10:23-10:23"
+      ],
+      "title": "Encouragement to Israel (740 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "10:24-10:34",
+      "new_ranges": [
+        "10:24-10:24",
+        "10:25-10:27",
+        "10:28-10:34"
+      ],
+      "title": "Encouragement to Israel (740 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "12:1-12:3",
+      "new_ranges": [
+        "12:1-12:1",
+        "12:2-12:2",
+        "12:3-12:3"
+      ],
+      "title": "A Song of Praise (740 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "14:4-14:23",
+      "new_ranges": [
+        "14:4-14:20",
+        "14:21-14:22",
+        "14:23-14:23"
+      ],
+      "title": "The Doom of the King of Babylon (739 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "14:24-14:32",
+      "new_ranges": [
+        "14:24-14:27",
+        "14:28-14:31",
+        "14:32-14:32"
+      ],
+      "title": "The Doom of the Assyrians; The Doom of the Philistines (726 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "15:6-15:9",
+      "new_ranges": [
+        "15:6-15:8",
+        "15:9-15:9"
+      ],
+      "title": "The Burden of Moab (725 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "16:1-16:5",
+      "new_ranges": [
+        "16:1-16:2",
+        "16:3-16:3",
+        "16:4-16:4",
+        "16:5-16:5"
+      ],
+      "title": "Exhortations to Moab (725 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "16:6-16:14",
+      "new_ranges": [
+        "16:6-16:10",
+        "16:11-16:11",
+        "16:12-16:14"
+      ],
+      "title": "The Pride of Moab; The Threatening against Moab; The Doom of Moab (725 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "22:1-22:7",
+      "new_ranges": [
+        "22:1-22:2",
+        "22:3-22:3",
+        "22:4-22:5",
+        "22:6-22:7"
+      ],
+      "title": "The Consternation of Jerusalem (718 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "24:13-24:15",
+      "new_ranges": [
+        "24:13-24:13",
+        "24:14-24:14",
+        "24:15-24:15"
+      ],
+      "title": "Hope in the End (718 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "24:16-24:23",
+      "new_ranges": [
+        "24:16-24:16",
+        "24:17-24:22",
+        "24:23-24:23"
+      ],
+      "title": "Encouraging Prospects; Degeneracy Predicted (718 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "26:1-26:4",
+      "new_ranges": [
+        "26:1-26:1",
+        "26:2-26:2",
+        "26:3-26:4"
+      ],
+      "title": "The Blessings of the Gospel (718 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "26:20-26:21",
+      "new_ranges": [
+        "26:20-26:20",
+        "26:21-26:21"
+      ],
+      "title": "The Sure Refuge (718 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "27:1-27:6",
+      "new_ranges": [
+        "27:1-27:1",
+        "27:2-27:3",
+        "27:4-27:5",
+        "27:6-27:6"
+      ],
+      "title": "The Doom of Persecutors; The Privilege of Saints (718 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "28:14-28:22",
+      "new_ranges": [
+        "28:14-28:15",
+        "28:16-28:22"
+      ],
+      "title": "Judgments Announced; The Corner-stone in Zion (725 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "29:9-29:16",
+      "new_ranges": [
+        "29:9-29:14",
+        "29:15-29:16"
+      ],
+      "title": "Threatenings against Judah (725 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "29:17-29:24",
+      "new_ranges": [
+        "29:17-29:17",
+        "29:18-29:24"
+      ],
+      "title": "Promises to Israel; Character of Persecutors; Promises of Jacob (725 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "30:8-30:17",
+      "new_ranges": [
+        "30:8-30:9",
+        "30:10-30:17"
+      ],
+      "title": "Doom of Incorrigible Sinners (720 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "31:1-31:5",
+      "new_ranges": [
+        "31:1-31:1",
+        "31:2-31:5"
+      ],
+      "title": "Confidence in Egypt Reproved (720 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "31:6-31:9",
+      "new_ranges": [
+        "31:6-31:7",
+        "31:8-31:9"
+      ],
+      "title": "A Call to Repentance; Deliverance of Jerusalem (720 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "32:1-32:8",
+      "new_ranges": [
+        "32:1-32:2",
+        "32:3-32:3",
+        "32:4-32:4",
+        "32:5-32:8"
+      ],
+      "title": "The Reign of Justice (726 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "40:1-40:2",
+      "new_ranges": [
+        "40:1-40:1",
+        "40:2-40:2"
+      ],
+      "title": "Evangelical Predictions (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "40:9-40:11",
+      "new_ranges": [
+        "40:9-40:9",
+        "40:10-40:10",
+        "40:11-40:11"
+      ],
+      "title": "Evangelical Predictions (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "40:18-40:26",
+      "new_ranges": [
+        "40:18-40:25",
+        "40:26-40:26"
+      ],
+      "title": "Vanity of Idols (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "42:1-42:4",
+      "new_ranges": [
+        "42:1-42:1",
+        "42:2-42:3",
+        "42:4-42:4"
+      ],
+      "title": "The Messiah's Approach (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "44:1-44:8",
+      "new_ranges": [
+        "44:1-44:2",
+        "44:3-44:4",
+        "44:5-44:5",
+        "44:6-44:8"
+      ],
+      "title": "Prosperity Foretold; The Supremacy of God (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "45:11-45:19",
+      "new_ranges": [
+        "45:11-45:11",
+        "45:12-45:12",
+        "45:13-45:14",
+        "45:15-45:15",
+        "45:16-45:16",
+        "45:17-45:17",
+        "45:18-45:18",
+        "45:19-45:19"
+      ],
+      "title": "The Power of God; Encouragement to the People of God (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "46:1-46:4",
+      "new_ranges": [
+        "46:1-46:2",
+        "46:3-46:4"
+      ],
+      "title": "The Folly of Idolatry (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "46:5-46:13",
+      "new_ranges": [
+        "46:5-46:5",
+        "46:6-46:7",
+        "46:8-46:8",
+        "46:9-46:11",
+        "46:12-46:13"
+      ],
+      "title": "The Folly of Idolatry; The Divine Prerogative Asserted (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "48:9-48:15",
+      "new_ranges": [
+        "48:9-48:11",
+        "48:12-48:15"
+      ],
+      "title": "Encouragement to God's People (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "48:16-48:22",
+      "new_ranges": [
+        "48:16-48:17",
+        "48:18-48:19",
+        "48:20-48:22"
+      ],
+      "title": "Encouragement to God's People (708 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "49:7-49:12",
+      "new_ranges": [
+        "49:7-49:7",
+        "49:8-49:8",
+        "49:9-49:12"
+      ],
+      "title": "Encouragement to the Gentiles (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "49:13-49:17",
+      "new_ranges": [
+        "49:13-49:13",
+        "49:14-49:14",
+        "49:15-49:17"
+      ],
+      "title": "Encouragement to Zion (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "50:4-50:9",
+      "new_ranges": [
+        "50:4-50:4",
+        "50:5-50:6",
+        "50:7-50:9"
+      ],
+      "title": "Work and Sufferings of the Messiah (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "50:10-50:11",
+      "new_ranges": [
+        "50:10-50:10",
+        "50:11-50:11"
+      ],
+      "title": "The Disconsolate Encouraged (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "51:9-51:16",
+      "new_ranges": [
+        "51:9-51:9",
+        "51:10-51:11",
+        "51:12-51:16"
+      ],
+      "title": "Prayer in Behalf of Israel; Encouragement to the People of God (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "52:1-52:6",
+      "new_ranges": [
+        "52:1-52:3",
+        "52:4-52:4",
+        "52:5-52:5",
+        "52:6-52:6"
+      ],
+      "title": "Encouragement to Jerusalem (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "52:7-52:12",
+      "new_ranges": [
+        "52:7-52:10",
+        "52:11-52:12"
+      ],
+      "title": "The Approach of the Messiah (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "53:1-53:3",
+      "new_ranges": [
+        "53:1-53:1",
+        "53:2-53:3"
+      ],
+      "title": "The Humiliation of the Messiah (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "54:6-54:10",
+      "new_ranges": [
+        "54:6-54:8",
+        "54:9-54:9",
+        "54:10-54:10"
+      ],
+      "title": "The Prosperity of the Church (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "54:11-54:17",
+      "new_ranges": [
+        "54:11-54:11",
+        "54:12-54:17"
+      ],
+      "title": "The Prosperity of the Church; The Prosperity of Zion (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "55:1-55:5",
+      "new_ranges": [
+        "55:1-55:3",
+        "55:4-55:4",
+        "55:5-55:5"
+      ],
+      "title": "Evangelical Invitations (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "56:1-56:2",
+      "new_ranges": [
+        "56:1-56:1",
+        "56:2-56:2"
+      ],
+      "title": "Evangelical Promises; Exhortations to Duty (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "56:3-56:8",
+      "new_ranges": [
+        "56:3-56:5",
+        "56:6-56:7",
+        "56:8-56:8"
+      ],
+      "title": "Encouragement to the Sincere; Encouragement to the Gentiles (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "56:9-56:12",
+      "new_ranges": [
+        "56:9-56:9",
+        "56:10-56:12"
+      ],
+      "title": "A Charge against the Prophets (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "57:13-57:16",
+      "new_ranges": [
+        "57:13-57:13",
+        "57:14-57:16"
+      ],
+      "title": "Vanity of Idols; Divine Greatness and Condescension (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "58:1-58:2",
+      "new_ranges": [
+        "58:1-58:1",
+        "58:2-58:2"
+      ],
+      "title": "A Charge against the People (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "58:3-58:7",
+      "new_ranges": [
+        "58:3-58:4",
+        "58:5-58:7"
+      ],
+      "title": "A Charge against the People (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "58:13-58:14",
+      "new_ranges": [
+        "58:13-58:13",
+        "58:14-58:14"
+      ],
+      "title": "The Sanctification of the Sabbath (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "59:9-59:15",
+      "new_ranges": [
+        "59:9-59:11",
+        "59:12-59:15"
+      ],
+      "title": "The Prevalence and Effects of Sin (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "60:1-60:8",
+      "new_ranges": [
+        "60:1-60:2",
+        "60:3-60:8"
+      ],
+      "title": "The Extension of the Church (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "60:15-60:22",
+      "new_ranges": [
+        "60:15-60:18",
+        "60:19-60:22"
+      ],
+      "title": "The Glory of the Church (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "62:1-62:5",
+      "new_ranges": [
+        "62:1-62:1",
+        "62:2-62:5"
+      ],
+      "title": "The Prosperity of the Church (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "62:6-62:9",
+      "new_ranges": [
+        "62:6-62:7",
+        "62:8-62:9"
+      ],
+      "title": "The Prosperity of the Church (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "63:1-63:6",
+      "new_ranges": [
+        "63:1-63:2",
+        "63:3-63:6"
+      ],
+      "title": "The Triumphs of the Messiah (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "63:7-63:14",
+      "new_ranges": [
+        "63:7-63:7",
+        "63:8-63:8",
+        "63:9-63:9",
+        "63:10-63:10",
+        "63:11-63:14"
+      ],
+      "title": "Acknowledgments of Divine Goodness (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "65:1-65:7",
+      "new_ranges": [
+        "65:1-65:1",
+        "65:2-65:7"
+      ],
+      "title": "The Conversion of the Gentiles; The Wickedness of the Jews; The Rejection of the Jews (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "65:11-65:16",
+      "new_ranges": [
+        "65:11-65:12",
+        "65:13-65:16"
+      ],
+      "title": "Predictions of Punishment (706 BC)"
+    },
+    {
+      "book": "Isaiah",
+      "original_range": "66:5-66:14",
+      "new_ranges": [
+        "66:5-66:5",
+        "66:6-66:6",
+        "66:7-66:9",
+        "66:10-66:11",
+        "66:12-66:14"
+      ],
+      "title": "Encouragement to the Persecuted; The Enlargement of the Church (706 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "1:4-1:10",
+      "new_ranges": [
+        "1:4-1:6",
+        "1:7-1:7",
+        "1:8-1:8",
+        "1:9-1:10"
+      ],
+      "title": "Jeremiah's Call to the Prophetic Office (629 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "2:9-2:13",
+      "new_ranges": [
+        "2:9-2:11",
+        "2:12-2:13"
+      ],
+      "title": "Expostulations with Israel (629 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "2:14-2:19",
+      "new_ranges": [
+        "2:14-2:17",
+        "2:18-2:19"
+      ],
+      "title": "Expostulations with Israel (629 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "2:29-2:37",
+      "new_ranges": [
+        "2:29-2:29",
+        "2:30-2:31",
+        "2:32-2:32",
+        "2:33-2:33",
+        "2:34-2:34",
+        "2:35-2:35",
+        "2:36-2:37"
+      ],
+      "title": "Expostulations with Israel (629 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "4:3-4:4",
+      "new_ranges": [
+        "4:3-4:3",
+        "4:4-4:4"
+      ],
+      "title": "Punishment Predicted (620 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "6:1-6:8",
+      "new_ranges": [
+        "6:1-6:1",
+        "6:2-6:7",
+        "6:8-6:8"
+      ],
+      "title": "Judgments Threatened against Israel; The Doom of Israel (608 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "6:9-6:17",
+      "new_ranges": [
+        "6:9-6:16",
+        "6:17-6:17"
+      ],
+      "title": "The Universal Corruption of the Age (608 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "6:18-6:30",
+      "new_ranges": [
+        "6:18-6:20",
+        "6:21-6:23",
+        "6:24-6:26",
+        "6:27-6:30"
+      ],
+      "title": "Equity of Divine Judgments; Punishment Predicted (608 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "7:16-7:20",
+      "new_ranges": [
+        "7:16-7:16",
+        "7:17-7:19",
+        "7:20-7:20"
+      ],
+      "title": "Punishment Predicted (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "7:21-7:28",
+      "new_ranges": [
+        "7:21-7:23",
+        "7:24-7:28"
+      ],
+      "title": "Obedience Better than Sacrifice (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "8:4-8:12",
+      "new_ranges": [
+        "8:4-8:5",
+        "8:6-8:6",
+        "8:7-8:7",
+        "8:8-8:12"
+      ],
+      "title": "Full of Impenitent Sinners; Hardened Wickedness of Judah (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "9:12-9:22",
+      "new_ranges": [
+        "9:12-9:14",
+        "9:15-9:16",
+        "9:17-9:22"
+      ],
+      "title": "Punishment Predicted (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "9:23-9:26",
+      "new_ranges": [
+        "9:23-9:24",
+        "9:25-9:26"
+      ],
+      "title": "Punishment Predicted (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "10:17-10:25",
+      "new_ranges": [
+        "10:17-10:18",
+        "10:19-10:22",
+        "10:23-10:23",
+        "10:24-10:24",
+        "10:25-10:25"
+      ],
+      "title": "Lamentation of Judah; Sovereignty of Divine Providence; Prophetic Imprecations (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "11:1-11:10",
+      "new_ranges": [
+        "11:1-11:2",
+        "11:3-11:7",
+        "11:8-11:10"
+      ],
+      "title": "Charges against Judah (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "12:1-12:6",
+      "new_ranges": [
+        "12:1-12:1",
+        "12:2-12:2",
+        "12:3-12:3",
+        "12:4-12:4",
+        "12:5-12:6"
+      ],
+      "title": "The Prophet's Appeal to God (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "12:7-12:13",
+      "new_ranges": [
+        "12:7-12:9",
+        "12:10-12:13"
+      ],
+      "title": "The State of Judah and Israel (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "14:10-14:16",
+      "new_ranges": [
+        "14:10-14:12",
+        "14:13-14:13",
+        "14:14-14:16"
+      ],
+      "title": "Divine Threatenings (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "15:10-15:14",
+      "new_ranges": [
+        "15:10-15:10",
+        "15:11-15:14"
+      ],
+      "title": "The Prophet's Complaint; The Prophet Assured of His Safety (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "15:15-15:21",
+      "new_ranges": [
+        "15:15-15:15",
+        "15:16-15:18",
+        "15:19-15:21"
+      ],
+      "title": "The Prophet's Humble Appeal to God; God's Answer to Jeremiah's Address (606 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "17:1-17:4",
+      "new_ranges": [
+        "17:1-17:2",
+        "17:3-17:4"
+      ],
+      "title": "The Guilt of Judah (605 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "17:5-17:11",
+      "new_ranges": [
+        "17:5-17:6",
+        "17:7-17:8",
+        "17:9-17:10",
+        "17:11-17:11"
+      ],
+      "title": "True and False Confidence; Deceitfulness of the Heart; Unlawful Gains (605 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "21:8-21:14",
+      "new_ranges": [
+        "21:8-21:10",
+        "21:11-21:12",
+        "21:13-21:14"
+      ],
+      "title": "Answer to Zedekiah's Message; Advice to the King and the People (590 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "22:20-22:30",
+      "new_ranges": [
+        "22:20-22:23",
+        "22:24-22:30"
+      ],
+      "title": "The Desolation of Judah; The Doom of Jeconiah (590 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "25:8-25:14",
+      "new_ranges": [
+        "25:8-25:11",
+        "25:12-25:14"
+      ],
+      "title": "Desolation Predicted (607 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "26:7-26:15",
+      "new_ranges": [
+        "26:7-26:9",
+        "26:10-26:11",
+        "26:12-26:15"
+      ],
+      "title": "Jeremiah Prosecuted for His Preaching; Jeremiah's Defence (608 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "28:1-28:9",
+      "new_ranges": [
+        "28:1-28:4",
+        "28:5-28:9"
+      ],
+      "title": "Hananiah's False Prophecy (597 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "29:1-29:7",
+      "new_ranges": [
+        "29:1-29:3",
+        "29:4-29:7"
+      ],
+      "title": "Advice to the Captives in Babylon (596 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "29:8-29:14",
+      "new_ranges": [
+        "29:8-29:9",
+        "29:10-29:14"
+      ],
+      "title": "Advice to the Captives in Babylon (596 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "31:35-31:40",
+      "new_ranges": [
+        "31:35-31:37",
+        "31:38-31:40"
+      ],
+      "title": "Evangelical Promises; The Rebuilding of Jerusalem (594 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "36:20-36:32",
+      "new_ranges": [
+        "36:20-36:21",
+        "36:22-36:23",
+        "36:24-36:24",
+        "36:25-36:25",
+        "36:26-36:26",
+        "36:27-36:28",
+        "36:29-36:31",
+        "36:32-36:32"
+      ],
+      "title": "Jeremiah's Roll Consumed (607 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "39:1-39:10",
+      "new_ranges": [
+        "39:1-39:2",
+        "39:3-39:3",
+        "39:4-39:7",
+        "39:8-39:8",
+        "39:9-39:10"
+      ],
+      "title": "Jerusalem Taken (588 BC)"
+    },
+    {
+      "book": "Jeremiah",
+      "original_range": "42:7-42:22",
+      "new_ranges": [
+        "42:7-42:12",
+        "42:13-42:18",
+        "42:19-42:22"
+      ],
+      "title": "Jeremiah's Address to the People (588 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "1:4-1:5",
+      "new_ranges": [
+        "1:4-1:4",
+        "1:5-1:5"
+      ],
+      "title": "Job's Solicitude for His Children (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "1:6-1:12",
+      "new_ranges": [
+        "1:6-1:6",
+        "1:7-1:7",
+        "1:8-1:8",
+        "1:9-1:9",
+        "1:10-1:10",
+        "1:11-1:11",
+        "1:12-1:12"
+      ],
+      "title": "Satan before God; Satan Permitted to Afflict Job (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "1:13-1:19",
+      "new_ranges": [
+        "1:13-1:15",
+        "1:16-1:16",
+        "1:17-1:17",
+        "1:18-1:19"
+      ],
+      "title": "The Calamities Brought on Job; The Death of Job's Children (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "2:1-2:6",
+      "new_ranges": [
+        "2:1-2:2",
+        "2:3-2:3",
+        "2:4-2:4",
+        "2:5-2:5",
+        "2:6-2:6"
+      ],
+      "title": "Satan Again Permitted to Afflict Job (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "3:11-3:26",
+      "new_ranges": [
+        "3:11-3:12",
+        "3:13-3:19",
+        "3:20-3:22",
+        "3:23-3:24",
+        "3:25-3:26"
+      ],
+      "title": "Job's Complaint of Life (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "14:7-14:15",
+      "new_ranges": [
+        "14:7-14:10",
+        "14:11-14:12",
+        "14:13-14:13",
+        "14:14-14:14",
+        "14:15-14:15"
+      ],
+      "title": "Death Anticipated (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "14:16-14:22",
+      "new_ranges": [
+        "14:16-14:17",
+        "14:18-14:19",
+        "14:20-14:22"
+      ],
+      "title": "Complainings of Job (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "17:10-17:16",
+      "new_ranges": [
+        "17:10-17:10",
+        "17:11-17:12",
+        "17:13-17:16"
+      ],
+      "title": "Job Reproves His Three Friends; Vanity of Worldly Expectations (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "19:8-19:22",
+      "new_ranges": [
+        "19:8-19:12",
+        "19:13-19:19",
+        "19:20-19:20",
+        "19:21-19:22"
+      ],
+      "title": "Job Complains of God's Displeasure; Job Complains of His Friends (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "21:17-21:26",
+      "new_ranges": [
+        "21:17-21:17",
+        "21:18-21:21",
+        "21:22-21:25",
+        "21:26-21:26"
+      ],
+      "title": "Certain Punishments of the Wicked; Divine Sovereignty (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "21:27-21:34",
+      "new_ranges": [
+        "21:27-21:28",
+        "21:29-21:33",
+        "21:34-21:34"
+      ],
+      "title": "Punishment of the Wicked (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "22:21-22:30",
+      "new_ranges": [
+        "22:21-22:25",
+        "22:26-22:29",
+        "22:30-22:30"
+      ],
+      "title": "The Good Counsel of Eliphaz; Encouragements to Return to God (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "23:8-23:12",
+      "new_ranges": [
+        "23:8-23:10",
+        "23:11-23:12"
+      ],
+      "title": "Mystery of Providence (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "23:13-23:17",
+      "new_ranges": [
+        "23:13-23:14",
+        "23:15-23:17"
+      ],
+      "title": "Job's Comfort in His Integrity (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "26:5-26:14",
+      "new_ranges": [
+        "26:5-26:13",
+        "26:14-26:14"
+      ],
+      "title": "The Wisdom and Power of God (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "27:7-27:10",
+      "new_ranges": [
+        "27:7-27:7",
+        "27:8-27:8",
+        "27:9-27:9",
+        "27:10-27:10"
+      ],
+      "title": "Condition of Hypocrites (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "27:11-27:23",
+      "new_ranges": [
+        "27:11-27:13",
+        "27:14-27:23"
+      ],
+      "title": "Heritage of the Wicked (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "31:16-31:23",
+      "new_ranges": [
+        "31:16-31:20",
+        "31:21-31:21",
+        "31:22-31:22",
+        "31:23-31:23"
+      ],
+      "title": "Job's Compassion to the Poor (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "31:24-31:32",
+      "new_ranges": [
+        "31:24-31:25",
+        "31:26-31:28",
+        "31:29-31:30",
+        "31:31-31:31",
+        "31:32-31:32"
+      ],
+      "title": "Job's Abhorrence of Idolatry (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "31:33-31:40",
+      "new_ranges": [
+        "31:33-31:33",
+        "31:34-31:34",
+        "31:35-31:40"
+      ],
+      "title": "Job's Protestation of His Integrity (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "38:4-38:11",
+      "new_ranges": [
+        "38:4-38:4",
+        "38:5-38:6",
+        "38:7-38:7",
+        "38:8-38:11"
+      ],
+      "title": "The Creation of the World (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "38:25-38:41",
+      "new_ranges": [
+        "38:25-38:30",
+        "38:31-38:35",
+        "38:36-38:36",
+        "38:37-38:38",
+        "38:39-38:41"
+      ],
+      "title": "God's Sovereign Dominion and Goodness (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "39:1-39:12",
+      "new_ranges": [
+        "39:1-39:4",
+        "39:5-39:8",
+        "39:9-39:12"
+      ],
+      "title": "Man's Ignorance of the Animal Creation; Description of the Wild Goat, Hind, Wild Ass, and Unicorn (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "39:13-39:18",
+      "new_ranges": [
+        "39:13-39:13",
+        "39:14-39:17",
+        "39:18-39:18"
+      ],
+      "title": "Description of the Peacock and Ostrich (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "40:6-40:14",
+      "new_ranges": [
+        "40:6-40:8",
+        "40:9-40:9",
+        "40:10-40:10",
+        "40:11-40:14"
+      ],
+      "title": "Divine Justice and Power; God's Dominion over the Proud (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "41:1-41:34",
+      "new_ranges": [
+        "41:1-41:32",
+        "41:33-41:34"
+      ],
+      "title": "Description of Leviathan (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "42:1-42:6",
+      "new_ranges": [
+        "42:1-42:2",
+        "42:3-42:3",
+        "42:4-42:4",
+        "42:5-42:5",
+        "42:6-42:6"
+      ],
+      "title": "Job's Humble Confession (1520 BC)"
+    },
+    {
+      "book": "Job",
+      "original_range": "42:7-42:9",
+      "new_ranges": [
+        "42:7-42:8",
+        "42:9-42:9"
+      ],
+      "title": "God's Vindication of Job (1520 BC)"
+    },
+    {
+      "book": "Joel",
+      "original_range": "2:12-2:17",
+      "new_ranges": [
+        "2:12-2:13",
+        "2:14-2:14",
+        "2:15-2:17"
+      ],
+      "title": "Exhortation to Repentance (720 BC)"
+    },
+    {
+      "book": "Joel",
+      "original_range": "2:28-2:32",
+      "new_ranges": [
+        "2:28-2:29",
+        "2:30-2:31",
+        "2:32-2:32"
+      ],
+      "title": "Promise of Mercy (720 BC)"
+    },
+    {
+      "book": "Joel",
+      "original_range": "3:1-3:8",
+      "new_ranges": [
+        "3:1-3:1",
+        "3:2-3:8"
+      ],
+      "title": "Threatenings against Israel's Enemies (720 BC)"
+    },
+    {
+      "book": "John",
+      "original_range": "1:15-1:18",
+      "new_ranges": [
+        "1:15-1:15",
+        "1:16-1:18"
+      ],
+      "title": "John's Testimony to Christ"
+    },
+    {
+      "book": "John",
+      "original_range": "1:29-1:36",
+      "new_ranges": [
+        "1:29-1:34",
+        "1:35-1:36"
+      ],
+      "title": "John's Testimony to Christ"
+    },
+    {
+      "book": "John",
+      "original_range": "4:43-4:54",
+      "new_ranges": [
+        "4:43-4:46",
+        "4:47-4:54"
+      ],
+      "title": "The Nobleman's Son Restored"
+    },
+    {
+      "book": "John",
+      "original_range": "5:17-5:30",
+      "new_ranges": [
+        "5:17-5:17",
+        "5:18-5:18",
+        "5:19-5:30"
+      ],
+      "title": "Christ's Discourse with the Jews; All Judgment Committed to Christ; The Christian Charter"
+    },
+    {
+      "book": "John",
+      "original_range": "5:31-5:47",
+      "new_ranges": [
+        "5:31-5:31",
+        "5:32-5:47"
+      ],
+      "title": "Christ Proves His Divine Mission; Infidelity of the Jews Reproved"
+    },
+    {
+      "book": "John",
+      "original_range": "6:1-6:14",
+      "new_ranges": [
+        "6:1-6:1",
+        "6:2-6:2",
+        "6:3-6:3",
+        "6:4-6:4",
+        "6:5-6:13",
+        "6:14-6:14"
+      ],
+      "title": "The Five Thousand Fed"
+    },
+    {
+      "book": "John",
+      "original_range": "6:60-6:71",
+      "new_ranges": [
+        "6:60-6:60",
+        "6:61-6:65",
+        "6:66-6:66",
+        "6:67-6:67",
+        "6:68-6:69",
+        "6:70-6:71"
+      ],
+      "title": "Christ's Discourse with His Disciples; The Effect of Christ's Discourse; The Character of Judas"
+    },
+    {
+      "book": "John",
+      "original_range": "7:1-7:13",
+      "new_ranges": [
+        "7:1-7:2",
+        "7:3-7:13"
+      ],
+      "title": "Christ's Discourse with His Brethren; The Rumours Respecting Christ"
+    },
+    {
+      "book": "John",
+      "original_range": "8:1-8:11",
+      "new_ranges": [
+        "8:1-8:1",
+        "8:2-8:2",
+        "8:3-8:11"
+      ],
+      "title": "The Woman Taken in Adultery"
+    },
+    {
+      "book": "John",
+      "original_range": "8:21-8:30",
+      "new_ranges": [
+        "8:21-8:29",
+        "8:30-8:30"
+      ],
+      "title": "Christ's Discourse with the Pharisees"
+    },
+    {
+      "book": "John",
+      "original_range": "8:38-8:47",
+      "new_ranges": [
+        "8:38-8:38",
+        "8:39-8:43",
+        "8:44-8:44",
+        "8:45-8:46",
+        "8:47-8:47"
+      ],
+      "title": "Christ's Discourse with the Pharisees"
+    },
+    {
+      "book": "John",
+      "original_range": "9:1-9:7",
+      "new_ranges": [
+        "9:1-9:1",
+        "9:2-9:2",
+        "9:3-9:5",
+        "9:6-9:7"
+      ],
+      "title": "Sight Given to One Born Blind"
+    },
+    {
+      "book": "John",
+      "original_range": "9:13-9:34",
+      "new_ranges": [
+        "9:13-9:13",
+        "9:14-9:14",
+        "9:15-9:34"
+      ],
+      "title": "The Cavilling of the Pharisees; The Cavilling of the Pharisees Refuted"
+    },
+    {
+      "book": "John",
+      "original_range": "10:39-10:42",
+      "new_ranges": [
+        "10:39-10:40",
+        "10:41-10:42"
+      ],
+      "title": "Christ Retires beyond Jordan"
+    },
+    {
+      "book": "John",
+      "original_range": "12:44-12:50",
+      "new_ranges": [
+        "12:44-12:45",
+        "12:46-12:46",
+        "12:47-12:48",
+        "12:49-12:50"
+      ],
+      "title": "Christ's Last Discourse with the Jews"
+    },
+    {
+      "book": "John",
+      "original_range": "14:1-14:3",
+      "new_ranges": [
+        "14:1-14:1",
+        "14:2-14:3"
+      ],
+      "title": "Christ's Consolatory Discourse"
+    },
+    {
+      "book": "John",
+      "original_range": "14:12-14:14",
+      "new_ranges": [
+        "14:12-14:12",
+        "14:13-14:14"
+      ],
+      "title": "Christ's Consolatory Discourse"
+    },
+    {
+      "book": "John",
+      "original_range": "14:15-14:17",
+      "new_ranges": [
+        "14:15-14:15",
+        "14:16-14:17"
+      ],
+      "title": "Christ's Consolatory Discourse"
+    },
+    {
+      "book": "John",
+      "original_range": "14:18-14:24",
+      "new_ranges": [
+        "14:18-14:18",
+        "14:19-14:20",
+        "14:21-14:24"
+      ],
+      "title": "Christ's Consolatory Discourse"
+    },
+    {
+      "book": "John",
+      "original_range": "14:25-14:27",
+      "new_ranges": [
+        "14:25-14:26",
+        "14:27-14:27"
+      ],
+      "title": "Christ's Consolatory Discourse"
+    },
+    {
+      "book": "John",
+      "original_range": "16:1-16:6",
+      "new_ranges": [
+        "16:1-16:1",
+        "16:2-16:2",
+        "16:3-16:3",
+        "16:4-16:4",
+        "16:5-16:6"
+      ],
+      "title": "Persecution Foretold; The Expediency of Christ's Departure"
+    },
+    {
+      "book": "John",
+      "original_range": "16:16-16:22",
+      "new_ranges": [
+        "16:16-16:16",
+        "16:17-16:18",
+        "16:19-16:19",
+        "16:20-16:22"
+      ],
+      "title": "Christ's Departure and Return; Sorrow and Joy Foretold"
+    },
+    {
+      "book": "John",
+      "original_range": "16:28-16:33",
+      "new_ranges": [
+        "16:28-16:32",
+        "16:33-16:33"
+      ],
+      "title": "Christ's Discoveries of Himself"
+    },
+    {
+      "book": "John",
+      "original_range": "17:17-17:19",
+      "new_ranges": [
+        "17:17-17:17",
+        "17:18-17:18",
+        "17:19-17:19"
+      ],
+      "title": "Christ's Intercessory Prayer"
+    },
+    {
+      "book": "John",
+      "original_range": "19:16-19:18",
+      "new_ranges": [
+        "19:16-19:16",
+        "19:17-19:18"
+      ],
+      "title": "Christ Condemned; The Crucifixion"
+    },
+    {
+      "book": "John",
+      "original_range": "19:31-19:37",
+      "new_ranges": [
+        "19:31-19:31",
+        "19:32-19:32",
+        "19:33-19:33",
+        "19:34-19:34",
+        "19:35-19:35",
+        "19:36-19:36",
+        "19:37-19:37"
+      ],
+      "title": "The Crucifixion"
+    },
+    {
+      "book": "John",
+      "original_range": "20:11-20:18",
+      "new_ranges": [
+        "20:11-20:11",
+        "20:12-20:13",
+        "20:14-20:17",
+        "20:18-20:18"
+      ],
+      "title": "The Resurrection"
+    },
+    {
+      "book": "John",
+      "original_range": "20:19-20:25",
+      "new_ranges": [
+        "20:19-20:21",
+        "20:22-20:25"
+      ],
+      "title": "Christ with His Disciples"
+    },
+    {
+      "book": "John",
+      "original_range": "21:15-21:19",
+      "new_ranges": [
+        "21:15-21:17",
+        "21:18-21:19"
+      ],
+      "title": "Christ's Discourse with Peter"
+    },
+    {
+      "book": "John",
+      "original_range": "21:20-21:25",
+      "new_ranges": [
+        "21:20-21:20",
+        "21:21-21:21",
+        "21:22-21:22",
+        "21:23-21:23",
+        "21:24-21:25"
+      ],
+      "title": "Christ's Conference with Peter; Conclusion of John's Gospel"
+    },
+    {
+      "book": "Jonah",
+      "original_range": "1:11-1:17",
+      "new_ranges": [
+        "1:11-1:11",
+        "1:12-1:12",
+        "1:13-1:13",
+        "1:14-1:14",
+        "1:15-1:15",
+        "1:16-1:16",
+        "1:17-1:17"
+      ],
+      "title": "The Prophet Confesses His Folly; The Prophet Reads His Own Doom; The Prophet Cast into the Sea; Jonah's Preservation in the Fish's Belly (840 BC)"
+    },
+    {
+      "book": "Jonah",
+      "original_range": "4:1-4:4",
+      "new_ranges": [
+        "4:1-4:1",
+        "4:2-4:4"
+      ],
+      "title": "The Prophet's Discontent (840 BC)"
+    },
+    {
+      "book": "Joshua",
+      "original_range": "1:16-1:18",
+      "new_ranges": [
+        "1:16-1:16",
+        "1:17-1:17",
+        "1:18-1:18"
+      ],
+      "title": "The Reubenites' Answer (1451 BC)"
+    },
+    {
+      "book": "Joshua",
+      "original_range": "5:1-5:9",
+      "new_ranges": [
+        "5:1-5:1",
+        "5:2-5:9"
+      ],
+      "title": "The Circumcision of the Israelites (1451 BC)"
+    },
+    {
+      "book": "Joshua",
+      "original_range": "5:10-5:12",
+      "new_ranges": [
+        "5:10-5:10",
+        "5:11-5:12"
+      ],
+      "title": "The Ceasing of the Manna (1451 BC)"
+    },
+    {
+      "book": "Joshua",
+      "original_range": "5:13-5:15",
+      "new_ranges": [
+        "5:13-5:13",
+        "5:14-5:14",
+        "5:15-5:15"
+      ],
+      "title": "The Captain of the Lord's Host (1451 BC)"
+    },
+    {
+      "book": "Joshua",
+      "original_range": "8:30-8:35",
+      "new_ranges": [
+        "8:30-8:31",
+        "8:32-8:32",
+        "8:33-8:34",
+        "8:35-8:35"
+      ],
+      "title": "Sacrifice Offered on Mount Ebal; The Reading of the Law (1451 BC)"
+    },
+    {
+      "book": "Joshua",
+      "original_range": "9:15-9:21",
+      "new_ranges": [
+        "9:15-9:20",
+        "9:21-9:21"
+      ],
+      "title": "The League with the Gibeonites (1450 BC)"
+    },
+    {
+      "book": "Joshua",
+      "original_range": "10:15-10:27",
+      "new_ranges": [
+        "10:15-10:21",
+        "10:22-10:25",
+        "10:26-10:27"
+      ],
+      "title": "The Five Kings Slain (1450 BC)"
+    },
+    {
+      "book": "Joshua",
+      "original_range": "13:1-13:33",
+      "new_ranges": [
+        "13:1-13:5",
+        "13:6-13:7",
+        "13:8-13:33"
+      ],
+      "title": "The Distribution of Canaan (1445 BC)"
+    },
+    {
+      "book": "Joshua",
+      "original_range": "15:13-15:19",
+      "new_ranges": [
+        "15:13-15:13",
+        "15:14-15:14",
+        "15:15-15:19"
+      ],
+      "title": "Caleb's Inheritance (1444 BC)"
+    },
+    {
+      "book": "Lamentations",
+      "original_range": "3:37-3:41",
+      "new_ranges": [
+        "3:37-3:38",
+        "3:39-3:39",
+        "3:40-3:40",
+        "3:41-3:41"
+      ],
+      "title": "The Duties of the Afflicted (588 BC)"
+    },
+    {
+      "book": "Lamentations",
+      "original_range": "3:55-3:66",
+      "new_ranges": [
+        "3:55-3:58",
+        "3:59-3:66"
+      ],
+      "title": "God's Goodness Acknowledged; An Appeal to God (588 BC)"
+    },
+    {
+      "book": "Lamentations",
+      "original_range": "4:13-4:20",
+      "new_ranges": [
+        "4:13-4:14",
+        "4:15-4:16",
+        "4:17-4:20"
+      ],
+      "title": "Cause of Jerusalem's Sorrows (588 BC)"
+    },
+    {
+      "book": "Leviticus",
+      "original_range": "3:1-3:17",
+      "new_ranges": [
+        "3:1-3:1",
+        "3:2-3:17"
+      ],
+      "title": "Law of the Peace-Offering (1490 BC)"
+    },
+    {
+      "book": "Leviticus",
+      "original_range": "10:3-10:7",
+      "new_ranges": [
+        "10:3-10:3",
+        "10:4-10:5",
+        "10:6-10:7"
+      ],
+      "title": "Mourning for Nadab and Abihu (1490 BC)"
+    },
+    {
+      "book": "Leviticus",
+      "original_range": "10:12-10:20",
+      "new_ranges": [
+        "10:12-10:15",
+        "10:16-10:19",
+        "10:20-10:20"
+      ],
+      "title": "Moses Angry with Eleazar and Ithamar (1490 BC)"
+    },
+    {
+      "book": "Leviticus",
+      "original_range": "18:19-18:30",
+      "new_ranges": [
+        "18:19-18:21",
+        "18:22-18:23",
+        "18:24-18:29",
+        "18:30-18:30"
+      ],
+      "title": "Laws against Iniquity (1490 BC)"
+    },
+    {
+      "book": "Leviticus",
+      "original_range": "27:14-27:34",
+      "new_ranges": [
+        "27:14-27:15",
+        "27:16-27:21",
+        "27:22-27:27",
+        "27:28-27:29",
+        "27:30-27:33",
+        "27:34-27:34"
+      ],
+      "title": "Concerning Things Sanctified (1490 BC)"
+    },
+    {
+      "book": "Luke",
+      "original_range": "1:39-1:56",
+      "new_ranges": [
+        "1:39-1:54",
+        "1:55-1:56"
+      ],
+      "title": "The Interview of Mary and Elisabeth; The Song of Mary"
+    },
+    {
+      "book": "Luke",
+      "original_range": "1:57-1:66",
+      "new_ranges": [
+        "1:57-1:57",
+        "1:58-1:58",
+        "1:59-1:59",
+        "1:60-1:60",
+        "1:61-1:61",
+        "1:62-1:63",
+        "1:64-1:64",
+        "1:65-1:66"
+      ],
+      "title": "The Birth of John the Baptist"
+    },
+    {
+      "book": "Luke",
+      "original_range": "1:67-1:80",
+      "new_ranges": [
+        "1:67-1:67",
+        "1:68-1:80"
+      ],
+      "title": "The Song of Zacharias"
+    },
+    {
+      "book": "Luke",
+      "original_range": "2:8-2:20",
+      "new_ranges": [
+        "2:8-2:8",
+        "2:9-2:9",
+        "2:10-2:12",
+        "2:13-2:14",
+        "2:15-2:16",
+        "2:17-2:18",
+        "2:19-2:20"
+      ],
+      "title": "Angels Appear to the Shepherds; Visit of the Shepherds to Christ"
+    },
+    {
+      "book": "Luke",
+      "original_range": "2:21-2:24",
+      "new_ranges": [
+        "2:21-2:21",
+        "2:22-2:23",
+        "2:24-2:24"
+      ],
+      "title": "Christ Presented in the Temple"
+    },
+    {
+      "book": "Luke",
+      "original_range": "3:21-3:38",
+      "new_ranges": [
+        "3:21-3:22",
+        "3:23-3:38"
+      ],
+      "title": "The Genealogy of Christ"
+    },
+    {
+      "book": "Luke",
+      "original_range": "4:31-4:44",
+      "new_ranges": [
+        "4:31-4:39",
+        "4:40-4:41",
+        "4:42-4:44"
+      ],
+      "title": "The Expulsion of a Demon; Christ's Departure from Capernaum"
+    },
+    {
+      "book": "Luke",
+      "original_range": "6:12-6:19",
+      "new_ranges": [
+        "6:12-6:12",
+        "6:13-6:16",
+        "6:17-6:19"
+      ],
+      "title": "The Twelve Apostles Chosen"
+    },
+    {
+      "book": "Luke",
+      "original_range": "6:20-6:26",
+      "new_ranges": [
+        "6:20-6:23",
+        "6:24-6:26"
+      ],
+      "title": "Blessings and Woes"
+    },
+    {
+      "book": "Luke",
+      "original_range": "7:11-7:18",
+      "new_ranges": [
+        "7:11-7:12",
+        "7:13-7:18"
+      ],
+      "title": "The Widow of Nain"
+    },
+    {
+      "book": "Luke",
+      "original_range": "8:1-8:3",
+      "new_ranges": [
+        "8:1-8:1",
+        "8:2-8:3"
+      ],
+      "title": "The Ministry of Christ"
+    },
+    {
+      "book": "Luke",
+      "original_range": "10:17-10:24",
+      "new_ranges": [
+        "10:17-10:17",
+        "10:18-10:18",
+        "10:19-10:19",
+        "10:20-10:20",
+        "10:21-10:22",
+        "10:23-10:24"
+      ],
+      "title": "The Success of the Seventy"
+    },
+    {
+      "book": "Luke",
+      "original_range": "11:27-11:28",
+      "new_ranges": [
+        "11:27-11:27",
+        "11:28-11:28"
+      ],
+      "title": "Praise and a Blessing"
+    },
+    {
+      "book": "Luke",
+      "original_range": "11:29-11:36",
+      "new_ranges": [
+        "11:29-11:29",
+        "11:30-11:30",
+        "11:31-11:32",
+        "11:33-11:33",
+        "11:34-11:36"
+      ],
+      "title": "The Sign of the Prophet Jonah"
+    },
+    {
+      "book": "Luke",
+      "original_range": "12:13-12:21",
+      "new_ranges": [
+        "12:13-12:13",
+        "12:14-12:14",
+        "12:15-12:21"
+      ],
+      "title": "Worldly-mindedness Exposed"
+    },
+    {
+      "book": "Luke",
+      "original_range": "12:22-12:40",
+      "new_ranges": [
+        "12:22-12:32",
+        "12:33-12:34",
+        "12:35-12:40"
+      ],
+      "title": "Inordinate Care Reproved"
+    },
+    {
+      "book": "Luke",
+      "original_range": "12:41-12:53",
+      "new_ranges": [
+        "12:41-12:48",
+        "12:49-12:50",
+        "12:51-12:53"
+      ],
+      "title": "Vigilance and Exertion Inculcated"
+    },
+    {
+      "book": "Luke",
+      "original_range": "12:54-12:59",
+      "new_ranges": [
+        "12:54-12:55",
+        "12:56-12:57",
+        "12:58-12:59"
+      ],
+      "title": "Reconciliation to God"
+    },
+    {
+      "book": "Luke",
+      "original_range": "13:10-13:17",
+      "new_ranges": [
+        "13:10-13:14",
+        "13:15-13:15",
+        "13:16-13:16",
+        "13:17-13:17"
+      ],
+      "title": "The Infirm Woman Healed"
+    },
+    {
+      "book": "Luke",
+      "original_range": "14:7-14:14",
+      "new_ranges": [
+        "14:7-14:7",
+        "14:8-14:10",
+        "14:11-14:11",
+        "14:12-14:12",
+        "14:13-14:14"
+      ],
+      "title": "Humility Recommended"
+    },
+    {
+      "book": "Luke",
+      "original_range": "14:25-14:35",
+      "new_ranges": [
+        "14:25-14:25",
+        "14:26-14:27",
+        "14:28-14:33",
+        "14:34-14:35"
+      ],
+      "title": "The Necessity of Self-denial"
+    },
+    {
+      "book": "Luke",
+      "original_range": "18:1-18:8",
+      "new_ranges": [
+        "18:1-18:5",
+        "18:6-18:8"
+      ],
+      "title": "The Unjust Judge"
+    },
+    {
+      "book": "Luke",
+      "original_range": "20:39-20:47",
+      "new_ranges": [
+        "20:39-20:39",
+        "20:40-20:40",
+        "20:41-20:44",
+        "20:45-20:47"
+      ],
+      "title": "The Scribes Confounded"
+    },
+    {
+      "book": "Luke",
+      "original_range": "21:5-21:19",
+      "new_ranges": [
+        "21:5-21:6",
+        "21:7-21:7",
+        "21:8-21:19"
+      ],
+      "title": "Judgments Predicted"
+    },
+    {
+      "book": "Luke",
+      "original_range": "21:29-21:38",
+      "new_ranges": [
+        "21:29-21:31",
+        "21:32-21:33",
+        "21:34-21:35",
+        "21:36-21:36",
+        "21:37-21:38"
+      ],
+      "title": "Judgments Predicted"
+    },
+    {
+      "book": "Luke",
+      "original_range": "23:26-23:31",
+      "new_ranges": [
+        "23:26-23:26",
+        "23:27-23:31"
+      ],
+      "title": "The Crucifixion"
+    },
+    {
+      "book": "Malachi",
+      "original_range": "2:10-2:17",
+      "new_ranges": [
+        "2:10-2:12",
+        "2:13-2:16",
+        "2:17-2:17"
+      ],
+      "title": "Unlawful Marriages; Breach of the Marriage-covenant; Charge of Corrupt Principles (400 BC)"
+    },
+    {
+      "book": "Malachi",
+      "original_range": "4:4-4:6",
+      "new_ranges": [
+        "4:4-4:4",
+        "4:5-4:6"
+      ],
+      "title": "Evangelical Predictions (400 BC)"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "2:9-2:12",
+      "new_ranges": [
+        "2:9-2:10",
+        "2:11-2:11",
+        "2:12-2:12"
+      ],
+      "title": "The Wise Men Worship Christ"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "3:7-3:12",
+      "new_ranges": [
+        "3:7-3:7",
+        "3:8-3:8",
+        "3:9-3:9",
+        "3:10-3:10",
+        "3:11-3:11",
+        "3:12-3:12"
+      ],
+      "title": "The Preaching of John the Baptist"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "4:12-4:17",
+      "new_ranges": [
+        "4:12-4:12",
+        "4:13-4:13",
+        "4:14-4:16",
+        "4:17-4:17"
+      ],
+      "title": "Opening of Christ's Ministry"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "5:3-5:12",
+      "new_ranges": [
+        "5:3-5:3",
+        "5:4-5:4",
+        "5:5-5:5",
+        "5:6-5:6",
+        "5:7-5:7",
+        "5:8-5:8",
+        "5:9-5:9",
+        "5:10-5:12"
+      ],
+      "title": "The Sermon on the Mount"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "5:27-5:32",
+      "new_ranges": [
+        "5:27-5:27",
+        "5:28-5:28",
+        "5:29-5:30",
+        "5:31-5:32"
+      ],
+      "title": "The Sermon on the Mount"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "5:33-5:37",
+      "new_ranges": [
+        "5:33-5:33",
+        "5:34-5:37"
+      ],
+      "title": "The Sermon on the Mount"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "5:43-5:48",
+      "new_ranges": [
+        "5:43-5:43",
+        "5:44-5:48"
+      ],
+      "title": "The Sermon on the Mount"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "7:1-7:6",
+      "new_ranges": [
+        "7:1-7:2",
+        "7:3-7:5",
+        "7:6-7:6"
+      ],
+      "title": "The Sermon on the Mount"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "7:7-7:11",
+      "new_ranges": [
+        "7:7-7:7",
+        "7:8-7:8",
+        "7:9-7:11"
+      ],
+      "title": "The Sermon on the Mount"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "7:12-7:14",
+      "new_ranges": [
+        "7:12-7:12",
+        "7:13-7:14"
+      ],
+      "title": "The Sermon on the Mount"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "7:15-7:20",
+      "new_ranges": [
+        "7:15-7:15",
+        "7:16-7:20"
+      ],
+      "title": "The Sermon on the Mount"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "7:21-7:29",
+      "new_ranges": [
+        "7:21-7:23",
+        "7:24-7:27",
+        "7:28-7:29"
+      ],
+      "title": "The Sermon on the Mount"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "9:14-9:17",
+      "new_ranges": [
+        "9:14-9:14",
+        "9:15-9:15",
+        "9:16-9:17"
+      ],
+      "title": "Christ's Reply to the Disciples of John"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "9:18-9:26",
+      "new_ranges": [
+        "9:18-9:18",
+        "9:19-9:19",
+        "9:20-9:22",
+        "9:23-9:23",
+        "9:24-9:24",
+        "9:25-9:25",
+        "9:26-9:26"
+      ],
+      "title": "The Ruler's Daughter Raised"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "9:27-9:34",
+      "new_ranges": [
+        "9:27-9:31",
+        "9:32-9:32",
+        "9:33-9:33",
+        "9:34-9:34"
+      ],
+      "title": "Two Blind and a Dumb Man Healed"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "12:14-12:21",
+      "new_ranges": [
+        "12:14-12:14",
+        "12:15-12:16",
+        "12:17-12:21"
+      ],
+      "title": "The Malice of the Pharisees; Christ Withdraws Himself"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "12:38-12:45",
+      "new_ranges": [
+        "12:38-12:38",
+        "12:39-12:39",
+        "12:40-12:40",
+        "12:41-12:45"
+      ],
+      "title": "The Pharisees Ask a Sign"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "14:22-14:33",
+      "new_ranges": [
+        "14:22-14:22",
+        "14:23-14:23",
+        "14:24-14:24",
+        "14:25-14:25",
+        "14:26-14:27",
+        "14:28-14:31",
+        "14:32-14:32",
+        "14:33-14:33"
+      ],
+      "title": "Jesus Walks to His Disciples on the Sea"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "15:21-15:28",
+      "new_ranges": [
+        "15:21-15:21",
+        "15:22-15:28"
+      ],
+      "title": "The Canaanite's Daughter Healed"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "15:29-15:39",
+      "new_ranges": [
+        "15:29-15:29",
+        "15:30-15:30",
+        "15:31-15:39"
+      ],
+      "title": "Four Thousand Men Fed"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "16:24-16:28",
+      "new_ranges": [
+        "16:24-16:24",
+        "16:25-16:26",
+        "16:27-16:28"
+      ],
+      "title": "The Value of the Soul"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "18:7-18:14",
+      "new_ranges": [
+        "18:7-18:7",
+        "18:8-18:14"
+      ],
+      "title": "Cautions against Offences"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "19:13-19:15",
+      "new_ranges": [
+        "19:13-19:14",
+        "19:15-19:15"
+      ],
+      "title": "Christ's Tenderness to Children"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "19:23-19:30",
+      "new_ranges": [
+        "19:23-19:26",
+        "19:27-19:27",
+        "19:28-19:30"
+      ],
+      "title": "The Recompense of Christ's Followers"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "21:12-21:17",
+      "new_ranges": [
+        "21:12-21:12",
+        "21:13-21:13",
+        "21:14-21:17"
+      ],
+      "title": "The Profaners of the Temple Punished"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "21:18-21:22",
+      "new_ranges": [
+        "21:18-21:18",
+        "21:19-21:19",
+        "21:20-21:22"
+      ],
+      "title": "The Barren Fig-Tree Cursed"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "23:1-23:12",
+      "new_ranges": [
+        "23:1-23:3",
+        "23:4-23:12"
+      ],
+      "title": "The Scribes and Pharisees Condemned; Cautions against Pride"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "24:32-24:51",
+      "new_ranges": [
+        "24:32-24:36",
+        "24:37-24:41",
+        "24:42-24:51"
+      ],
+      "title": "Parable of the Fig-Tree; Awful Predictions; The Duty of Watchfulness; The Good and Evil Steward"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "25:31-25:46",
+      "new_ranges": [
+        "25:31-25:31",
+        "25:32-25:32",
+        "25:33-25:33",
+        "25:34-25:46"
+      ],
+      "title": "The Process of the Last Judgment"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "26:26-26:30",
+      "new_ranges": [
+        "26:26-26:26",
+        "26:27-26:29",
+        "26:30-26:30"
+      ],
+      "title": "Institution of the Lord's Supper"
+    },
+    {
+      "book": "Matthew",
+      "original_range": "26:31-26:35",
+      "new_ranges": [
+        "26:31-26:31",
+        "26:32-26:32",
+        "26:33-26:33",
+        "26:34-26:34",
+        "26:35-26:35"
+      ],
+      "title": "The Apostles' Cowardice Foretold"
+    },
+    {
+      "book": "Micah",
+      "original_range": "1:8-1:16",
+      "new_ranges": [
+        "1:8-1:9",
+        "1:10-1:16"
+      ],
+      "title": "Judgments Predicted (743 BC)"
+    },
+    {
+      "book": "Micah",
+      "original_range": "5:1-5:6",
+      "new_ranges": [
+        "5:1-5:1",
+        "5:2-5:6"
+      ],
+      "title": "The Abasement and Distress of Zion; Birth of the Messiah Predicted; The Glory of Messiah (720 BC)"
+    },
+    {
+      "book": "Micah",
+      "original_range": "5:7-5:15",
+      "new_ranges": [
+        "5:7-5:7",
+        "5:8-5:9",
+        "5:10-5:14",
+        "5:15-5:15"
+      ],
+      "title": "The Increase of the Church; Encouraging Predictions (720 BC)"
+    },
+    {
+      "book": "Micah",
+      "original_range": "6:6-6:8",
+      "new_ranges": [
+        "6:6-6:7",
+        "6:8-6:8"
+      ],
+      "title": "Anxiety Respecting the Divine Favour (710 BC)"
+    },
+    {
+      "book": "Nahum",
+      "original_range": "3:1-3:7",
+      "new_ranges": [
+        "3:1-3:4",
+        "3:5-3:7"
+      ],
+      "title": "The Judgment of Nineveh (710 BC)"
+    },
+    {
+      "book": "Nahum",
+      "original_range": "3:8-3:19",
+      "new_ranges": [
+        "3:8-3:11",
+        "3:12-3:19"
+      ],
+      "title": "The Judgment of Nineveh (710 BC)"
+    },
+    {
+      "book": "Nehemiah",
+      "original_range": "1:1-1:4",
+      "new_ranges": [
+        "1:1-1:1",
+        "1:2-1:2",
+        "1:3-1:3",
+        "1:4-1:4"
+      ],
+      "title": "Nehemiah's Distress (445 BC)"
+    },
+    {
+      "book": "Nehemiah",
+      "original_range": "2:9-2:20",
+      "new_ranges": [
+        "2:9-2:9",
+        "2:10-2:20"
+      ],
+      "title": "Nehemiah's Journey to Jerusalem; the Malice of Sanballat, etc (445 BC)"
+    },
+    {
+      "book": "Nehemiah",
+      "original_range": "6:1-6:9",
+      "new_ranges": [
+        "6:1-6:4",
+        "6:5-6:9"
+      ],
+      "title": "The Plot of Sanballat, etc (445 BC)"
+    },
+    {
+      "book": "Nehemiah",
+      "original_range": "7:5-7:73",
+      "new_ranges": [
+        "7:5-7:5",
+        "7:6-7:73"
+      ],
+      "title": "The Register of the Captives (445 BC)"
+    },
+    {
+      "book": "Nehemiah",
+      "original_range": "8:13-8:18",
+      "new_ranges": [
+        "8:13-8:13",
+        "8:14-8:18"
+      ],
+      "title": "The Joy of the People (444 BC)"
+    },
+    {
+      "book": "Numbers",
+      "original_range": "11:1-11:15",
+      "new_ranges": [
+        "11:1-11:4",
+        "11:5-11:15"
+      ],
+      "title": "The Murmurings of the Israelites (1490 BC)"
+    },
+    {
+      "book": "Numbers",
+      "original_range": "11:16-11:23",
+      "new_ranges": [
+        "11:16-11:16",
+        "11:17-11:17",
+        "11:18-11:20",
+        "11:21-11:22",
+        "11:23-11:23"
+      ],
+      "title": "Assistance Provided for Moses (1490 BC)"
+    },
+    {
+      "book": "Numbers",
+      "original_range": "11:24-11:30",
+      "new_ranges": [
+        "11:24-11:25",
+        "11:26-11:30"
+      ],
+      "title": "God Promises the People Flesh; The Case of Eldad and Medad (1490 BC)"
+    },
+    {
+      "book": "Numbers",
+      "original_range": "12:1-12:9",
+      "new_ranges": [
+        "12:1-12:3",
+        "12:4-12:5",
+        "12:6-12:8",
+        "12:9-12:9"
+      ],
+      "title": "Murmuring of Miriam and Aaron (1490 BC)"
+    },
+    {
+      "book": "Numbers",
+      "original_range": "18:1-18:19",
+      "new_ranges": [
+        "18:1-18:1",
+        "18:2-18:19"
+      ],
+      "title": "The Service of the Priests and Levites (1490 BC)"
+    },
+    {
+      "book": "Numbers",
+      "original_range": "20:1-20:13",
+      "new_ranges": [
+        "20:1-20:1",
+        "20:2-20:13"
+      ],
+      "title": "The Death of Miriam; The Water of Meribah; Moses and Aaron Reproved (1453 BC)"
+    },
+    {
+      "book": "Numbers",
+      "original_range": "22:15-22:21",
+      "new_ranges": [
+        "22:15-22:17",
+        "22:18-22:19",
+        "22:20-22:20",
+        "22:21-22:21"
+      ],
+      "title": "Balak's Second Message to Balaam (1452 BC)"
+    },
+    {
+      "book": "Numbers",
+      "original_range": "22:22-22:35",
+      "new_ranges": [
+        "22:22-22:22",
+        "22:23-22:30",
+        "22:31-22:35"
+      ],
+      "title": "God's Displeasure against Balaam; Remonstrance of Balaam's Ass; The Angel Appears to Balaam (1452 BC)"
+    },
+    {
+      "book": "Numbers",
+      "original_range": "23:13-23:30",
+      "new_ranges": [
+        "23:13-23:20",
+        "23:21-23:21",
+        "23:22-23:24",
+        "23:25-23:30"
+      ],
+      "title": "Balaam Again Blesses Israel (1452 BC)"
+    },
+    {
+      "book": "Obadiah",
+      "original_range": "1:17-1:21",
+      "new_ranges": [
+        "1:17-1:18",
+        "1:19-1:21"
+      ],
+      "title": "Promises to Israel and Judah (587 BC)"
+    },
+    {
+      "book": "Philemon",
+      "original_range": "1:1-1:7",
+      "new_ranges": [
+        "1:1-1:2",
+        "1:3-1:3",
+        "1:4-1:7"
+      ],
+      "title": "Apostolic Salutations; Gratitude on Philemon's Behalf (62 AD)"
+    },
+    {
+      "book": "Philemon",
+      "original_range": "1:8-1:25",
+      "new_ranges": [
+        "1:8-1:21",
+        "1:22-1:22",
+        "1:23-1:24",
+        "1:25-1:25"
+      ],
+      "title": "The Apostle's Plea for Onesimus; Salutations (62 AD)"
+    },
+    {
+      "book": "Philippians",
+      "original_range": "1:12-1:20",
+      "new_ranges": [
+        "1:12-1:13",
+        "1:14-1:18",
+        "1:19-1:19",
+        "1:20-1:20"
+      ],
+      "title": "The Apostle's Success and Joy (62 AD)"
+    },
+    {
+      "book": "Philippians",
+      "original_range": "1:27-1:30",
+      "new_ranges": [
+        "1:27-1:27",
+        "1:28-1:30"
+      ],
+      "title": "The Apostle's Exhortations (62 AD)"
+    },
+    {
+      "book": "Philippians",
+      "original_range": "3:9-3:14",
+      "new_ranges": [
+        "3:9-3:10",
+        "3:11-3:11",
+        "3:12-3:14"
+      ],
+      "title": "The Apostle's Concern, Hope, and Aim (62 AD)"
+    },
+    {
+      "book": "Philippians",
+      "original_range": "4:1-4:9",
+      "new_ranges": [
+        "4:1-4:1",
+        "4:2-4:9"
+      ],
+      "title": "Various Exhortations (62 AD)"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "1:7-1:9",
+      "new_ranges": [
+        "1:7-1:7",
+        "1:8-1:9"
+      ],
+      "title": "Parental Admonitions"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "2:10-2:22",
+      "new_ranges": [
+        "2:10-2:11",
+        "2:12-2:19",
+        "2:20-2:22"
+      ],
+      "title": "The Benefits Conferred by Wisdom"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "3:1-3:6",
+      "new_ranges": [
+        "3:1-3:2",
+        "3:3-3:4",
+        "3:5-3:6"
+      ],
+      "title": "Communion Conferred by Wisdom"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "3:7-3:12",
+      "new_ranges": [
+        "3:7-3:8",
+        "3:9-3:10",
+        "3:11-3:12"
+      ],
+      "title": "Consecration to God"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "3:21-3:26",
+      "new_ranges": [
+        "3:21-3:21",
+        "3:22-3:26"
+      ],
+      "title": "The Excellency of Wisdom"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "3:27-3:35",
+      "new_ranges": [
+        "3:27-3:28",
+        "3:29-3:29",
+        "3:30-3:30",
+        "3:31-3:35"
+      ],
+      "title": "Justice and Kindness Recommended; Caution against Envy"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "4:1-4:13",
+      "new_ranges": [
+        "4:1-4:2",
+        "4:3-4:13"
+      ],
+      "title": "Parental Instructions"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "4:14-4:19",
+      "new_ranges": [
+        "4:14-4:15",
+        "4:16-4:17",
+        "4:18-4:19"
+      ],
+      "title": "Cautions against Bad Company"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "5:1-5:14",
+      "new_ranges": [
+        "5:1-5:2",
+        "5:3-5:14"
+      ],
+      "title": "Parental Instructions; Cautions against Sensuality"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "5:15-5:23",
+      "new_ranges": [
+        "5:15-5:20",
+        "5:21-5:21",
+        "5:22-5:23"
+      ],
+      "title": "Conjugal Fidelity Enjoined"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "8:12-8:21",
+      "new_ranges": [
+        "8:12-8:12",
+        "8:13-8:13",
+        "8:14-8:16",
+        "8:17-8:21"
+      ],
+      "title": "The Advantages of Wisdom"
+    },
+    {
+      "book": "Proverbs",
+      "original_range": "9:1-9:12",
+      "new_ranges": [
+        "9:1-9:2",
+        "9:3-9:6",
+        "9:7-9:9",
+        "9:10-9:10",
+        "9:11-9:11",
+        "9:12-9:12"
+      ],
+      "title": "The Invitation of Wisdom"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "2:10-2:12",
+      "new_ranges": [
+        "2:10-2:11",
+        "2:12-2:12"
+      ],
+      "title": "Warning to the Enemies of Messiah"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "3:1-3:3",
+      "new_ranges": [
+        "3:1-3:2",
+        "3:3-3:3"
+      ],
+      "title": "Distress and Confidence"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "4:1-4:5",
+      "new_ranges": [
+        "4:1-4:1",
+        "4:2-4:2",
+        "4:3-4:3",
+        "4:4-4:4",
+        "4:5-4:5"
+      ],
+      "title": "Expostulation with Sinners"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "5:1-5:6",
+      "new_ranges": [
+        "5:1-5:3",
+        "5:4-5:6"
+      ],
+      "title": "Prayer for Guidance and Protection"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "8:1-8:2",
+      "new_ranges": [
+        "8:1-8:1",
+        "8:2-8:2"
+      ],
+      "title": "Glory of God in His Works"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "9:1-9:10",
+      "new_ranges": [
+        "9:1-9:2",
+        "9:3-9:3",
+        "9:4-9:4",
+        "9:5-9:5",
+        "9:6-9:6",
+        "9:7-9:10"
+      ],
+      "title": "Devout Acknowledgments"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "10:1-10:11",
+      "new_ranges": [
+        "10:1-10:1",
+        "10:2-10:6",
+        "10:7-10:11"
+      ],
+      "title": "The Character of the Wicked; The Character of Persecutors"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "13:1-13:6",
+      "new_ranges": [
+        "13:1-13:2",
+        "13:3-13:4",
+        "13:5-13:6"
+      ],
+      "title": "David's Complaints and Prayers Turned into Praises"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "21:7-21:13",
+      "new_ranges": [
+        "21:7-21:7",
+        "21:8-21:12",
+        "21:13-21:13"
+      ],
+      "title": "The Subject's Hope"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "22:1-22:10",
+      "new_ranges": [
+        "22:1-22:2",
+        "22:3-22:10"
+      ],
+      "title": "Sorrowful Complaints"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "25:15-25:22",
+      "new_ranges": [
+        "25:15-25:21",
+        "25:22-25:22"
+      ],
+      "title": "Precious Promises; Petitions"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "26:1-26:5",
+      "new_ranges": [
+        "26:1-26:3",
+        "26:4-26:5"
+      ],
+      "title": "Devout Appeals"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "26:6-26:12",
+      "new_ranges": [
+        "26:6-26:8",
+        "26:9-26:10",
+        "26:11-26:12"
+      ],
+      "title": "Delight in Divine Ordinances"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "28:1-28:5",
+      "new_ranges": [
+        "28:1-28:2",
+        "28:3-28:3",
+        "28:4-28:4",
+        "28:5-28:5"
+      ],
+      "title": "Prayer for Deliverance"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "29:1-29:11",
+      "new_ranges": [
+        "29:1-29:2",
+        "29:3-29:11"
+      ],
+      "title": "The Glory of the Lord"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "30:1-30:5",
+      "new_ranges": [
+        "30:1-30:3",
+        "30:4-30:5"
+      ],
+      "title": "Thanksgiving and Praise"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "30:6-30:12",
+      "new_ranges": [
+        "30:6-30:7",
+        "30:8-30:10",
+        "30:11-30:12"
+      ],
+      "title": "Prayer and Praise"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "31:9-31:18",
+      "new_ranges": [
+        "31:9-31:13",
+        "31:14-31:14",
+        "31:15-31:18"
+      ],
+      "title": "Sorrowful Complaints; Humble and Believing Prayer"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "31:19-31:24",
+      "new_ranges": [
+        "31:19-31:20",
+        "31:21-31:22",
+        "31:23-31:24"
+      ],
+      "title": "Triumphant Praise"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "32:7-32:11",
+      "new_ranges": [
+        "32:7-32:7",
+        "32:8-32:11"
+      ],
+      "title": "Devout Confidence"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "33:1-33:11",
+      "new_ranges": [
+        "33:1-33:3",
+        "33:4-33:5",
+        "33:6-33:9",
+        "33:10-33:11"
+      ],
+      "title": "An Exhortation to Praise God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "35:11-35:16",
+      "new_ranges": [
+        "35:11-35:11",
+        "35:12-35:14",
+        "35:15-35:16"
+      ],
+      "title": "Prayer for Deliverance; Sorrowful Complaints"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "37:1-37:6",
+      "new_ranges": [
+        "37:1-37:2",
+        "37:3-37:6"
+      ],
+      "title": "Exhortations and Promises"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "39:1-39:6",
+      "new_ranges": [
+        "39:1-39:1",
+        "39:2-39:2",
+        "39:3-39:3",
+        "39:4-39:4",
+        "39:5-39:6"
+      ],
+      "title": "Devout Reflections; Brevity and Vanity of Life"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "40:11-40:17",
+      "new_ranges": [
+        "40:11-40:11",
+        "40:12-40:13",
+        "40:14-40:15",
+        "40:16-40:16",
+        "40:17-40:17"
+      ],
+      "title": "Encouragement in Prayer"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "41:5-41:13",
+      "new_ranges": [
+        "41:5-41:9",
+        "41:10-41:13"
+      ],
+      "title": "David Complains of His Enemies; David's Comfort in God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "42:1-42:5",
+      "new_ranges": [
+        "42:1-42:2",
+        "42:3-42:3",
+        "42:4-42:4",
+        "42:5-42:5"
+      ],
+      "title": "Desiring Communion with God; Mourning for the Loss of Public Ordinances"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "42:6-42:11",
+      "new_ranges": [
+        "42:6-42:6",
+        "42:7-42:7",
+        "42:8-42:8",
+        "42:9-42:11"
+      ],
+      "title": "Complaints and Consolations"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "43:1-43:5",
+      "new_ranges": [
+        "43:1-43:1",
+        "43:2-43:2",
+        "43:3-43:3",
+        "43:4-43:4",
+        "43:5-43:5"
+      ],
+      "title": "Appeals and Petitions"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "44:17-44:26",
+      "new_ranges": [
+        "44:17-44:21",
+        "44:22-44:22",
+        "44:23-44:26"
+      ],
+      "title": "Israel's Appeal to God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "48:1-48:7",
+      "new_ranges": [
+        "48:1-48:3",
+        "48:4-48:7"
+      ],
+      "title": "The Beauty and Strength of Zion"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "48:8-48:14",
+      "new_ranges": [
+        "48:8-48:8",
+        "48:9-48:9",
+        "48:10-48:10",
+        "48:11-48:11",
+        "48:12-48:13",
+        "48:14-48:14"
+      ],
+      "title": "God's Care of His Church"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "50:7-50:15",
+      "new_ranges": [
+        "50:7-50:7",
+        "50:8-50:13",
+        "50:14-50:15"
+      ],
+      "title": "The Inefficacy of Legal Sacrifices"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "51:1-51:6",
+      "new_ranges": [
+        "51:1-51:2",
+        "51:3-51:5",
+        "51:6-51:6"
+      ],
+      "title": "Penitential Petitions"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "51:7-51:13",
+      "new_ranges": [
+        "51:7-51:7",
+        "51:8-51:8",
+        "51:9-51:9",
+        "51:10-51:10",
+        "51:11-51:11",
+        "51:12-51:12",
+        "51:13-51:13"
+      ],
+      "title": "Penitential Petitions"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "51:14-51:19",
+      "new_ranges": [
+        "51:14-51:15",
+        "51:16-51:17",
+        "51:18-51:18",
+        "51:19-51:19"
+      ],
+      "title": "Penitential Petitions"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "52:1-52:5",
+      "new_ranges": [
+        "52:1-52:1",
+        "52:2-52:4",
+        "52:5-52:5"
+      ],
+      "title": "The Wickedness of Doeg"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "52:6-52:9",
+      "new_ranges": [
+        "52:6-52:7",
+        "52:8-52:9"
+      ],
+      "title": "The Ruin of Doeg Predicted"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "54:4-54:7",
+      "new_ranges": [
+        "54:4-54:4",
+        "54:5-54:5",
+        "54:6-54:6",
+        "54:7-54:7"
+      ],
+      "title": "Consolations"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "55:16-55:23",
+      "new_ranges": [
+        "55:16-55:18",
+        "55:19-55:23"
+      ],
+      "title": "Confidence in God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "56:8-56:13",
+      "new_ranges": [
+        "56:8-56:8",
+        "56:9-56:9",
+        "56:10-56:11",
+        "56:12-56:12",
+        "56:13-56:13"
+      ],
+      "title": "Comfort under Affliction; Confidence in God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "57:7-57:11",
+      "new_ranges": [
+        "57:7-57:7",
+        "57:8-57:8",
+        "57:9-57:9",
+        "57:10-57:10",
+        "57:11-57:11"
+      ],
+      "title": "Prayer Turned to Praise"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "58:1-58:5",
+      "new_ranges": [
+        "58:1-58:2",
+        "58:3-58:5"
+      ],
+      "title": "A Reproof to Wicked Judges"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "58:6-58:11",
+      "new_ranges": [
+        "58:6-58:8",
+        "58:9-58:9",
+        "58:10-58:11"
+      ],
+      "title": "Prophetic Imprecations"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "59:8-59:17",
+      "new_ranges": [
+        "59:8-59:15",
+        "59:16-59:17"
+      ],
+      "title": "Confidence in God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "60:6-60:12",
+      "new_ranges": [
+        "60:6-60:7",
+        "60:8-60:12"
+      ],
+      "title": "Rejoicing in Hope"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "62:1-62:7",
+      "new_ranges": [
+        "62:1-62:1",
+        "62:2-62:2",
+        "62:3-62:4",
+        "62:5-62:7"
+      ],
+      "title": "Waiting upon God; Confidence in God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "62:8-62:12",
+      "new_ranges": [
+        "62:8-62:8",
+        "62:9-62:10",
+        "62:11-62:12"
+      ],
+      "title": "An Exhortation to Trust in God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "63:3-63:6",
+      "new_ranges": [
+        "63:3-63:3",
+        "63:4-63:4",
+        "63:5-63:5",
+        "63:6-63:6"
+      ],
+      "title": "Joyful Praises"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "63:7-63:11",
+      "new_ranges": [
+        "63:7-63:7",
+        "63:8-63:8",
+        "63:9-63:10",
+        "63:11-63:11"
+      ],
+      "title": "Confidence in God; David Triumphing in Hope"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "64:1-64:6",
+      "new_ranges": [
+        "64:1-64:2",
+        "64:3-64:4",
+        "64:5-64:5",
+        "64:6-64:6"
+      ],
+      "title": "Malice of David's Enemies"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "65:1-65:5",
+      "new_ranges": [
+        "65:1-65:1",
+        "65:2-65:5"
+      ],
+      "title": "The Praises of Zion; Motives for Devout"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "65:6-65:13",
+      "new_ranges": [
+        "65:6-65:6",
+        "65:7-65:7",
+        "65:8-65:8",
+        "65:9-65:13"
+      ],
+      "title": "The Almighty Power of God; Indications of Divine Power and Goodness"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "66:8-66:12",
+      "new_ranges": [
+        "66:8-66:9",
+        "66:10-66:12"
+      ],
+      "title": "The Saints Exhorted to Praise God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "66:13-66:20",
+      "new_ranges": [
+        "66:13-66:15",
+        "66:16-66:20"
+      ],
+      "title": "David Resolves to Praise God; David Declaring What God Has Done for His Soul"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "67:1-67:7",
+      "new_ranges": [
+        "67:1-67:1",
+        "67:2-67:5",
+        "67:6-67:7"
+      ],
+      "title": "Prayer for the Prosperity and Extension of the Church; Conversion of the Gentiles"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "68:1-68:6",
+      "new_ranges": [
+        "68:1-68:2",
+        "68:3-68:3",
+        "68:4-68:6"
+      ],
+      "title": "Prayer for the Dispersion of God's Enemies"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "68:7-68:14",
+      "new_ranges": [
+        "68:7-68:7",
+        "68:8-68:8",
+        "68:9-68:10",
+        "68:11-68:14"
+      ],
+      "title": "Thankful Praises to God; Mercies Recollected"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "68:22-68:31",
+      "new_ranges": [
+        "68:22-68:23",
+        "68:24-68:24",
+        "68:25-68:27",
+        "68:28-68:28",
+        "68:29-68:31"
+      ],
+      "title": "Redemption of God's People; Duties Enforced by the Discoveries of Grace"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "69:30-69:36",
+      "new_ranges": [
+        "69:30-69:31",
+        "69:32-69:33",
+        "69:34-69:36"
+      ],
+      "title": "Comfort for the Persecuted; Thanksgiving and Praise"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "72:18-72:20",
+      "new_ranges": [
+        "72:18-72:19",
+        "72:20-72:20"
+      ],
+      "title": "Thanksgiving and Prayer"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "73:1-73:14",
+      "new_ranges": [
+        "73:1-73:1",
+        "73:2-73:2",
+        "73:3-73:14"
+      ],
+      "title": "God's Goodness to His People; Unsanctified Prosperity"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "73:15-73:20",
+      "new_ranges": [
+        "73:15-73:15",
+        "73:16-73:18",
+        "73:19-73:19",
+        "73:20-73:20"
+      ],
+      "title": "The End of the Wicked"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "73:21-73:28",
+      "new_ranges": [
+        "73:21-73:22",
+        "73:23-73:23",
+        "73:24-73:24",
+        "73:25-73:26",
+        "73:27-73:27",
+        "73:28-73:28"
+      ],
+      "title": "Devout Confidence"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "74:1-74:11",
+      "new_ranges": [
+        "74:1-74:7",
+        "74:8-74:11"
+      ],
+      "title": "Mournful Complaints"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "74:12-74:17",
+      "new_ranges": [
+        "74:12-74:15",
+        "74:16-74:17"
+      ],
+      "title": "Acknowledgments of Divine Power"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "75:1-75:5",
+      "new_ranges": [
+        "75:1-75:1",
+        "75:2-75:2",
+        "75:3-75:3",
+        "75:4-75:5"
+      ],
+      "title": "The Magistrate's Resolution"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "75:6-75:10",
+      "new_ranges": [
+        "75:6-75:7",
+        "75:8-75:8",
+        "75:9-75:10"
+      ],
+      "title": "God's Government of the World"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "76:1-76:6",
+      "new_ranges": [
+        "76:1-76:1",
+        "76:2-76:2",
+        "76:3-76:3",
+        "76:4-76:6"
+      ],
+      "title": "Triumph in God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "76:7-76:12",
+      "new_ranges": [
+        "76:7-76:9",
+        "76:10-76:10",
+        "76:11-76:12"
+      ],
+      "title": "The Defence and Glory of Israel"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "78:1-78:8",
+      "new_ranges": [
+        "78:1-78:1",
+        "78:2-78:8"
+      ],
+      "title": "The Importance of Religious Instruction"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "78:9-78:39",
+      "new_ranges": [
+        "78:9-78:11",
+        "78:12-78:16",
+        "78:17-78:20",
+        "78:21-78:31",
+        "78:32-78:32",
+        "78:33-78:33",
+        "78:34-78:37",
+        "78:38-78:39"
+      ],
+      "title": "Wonders Wrought in Behalf of Israel; The Crimes of the Israelites;"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "79:1-79:5",
+      "new_ranges": [
+        "79:1-79:4",
+        "79:5-79:5"
+      ],
+      "title": "Mournful Complaints"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "82:6-82:8",
+      "new_ranges": [
+        "82:6-82:7",
+        "82:8-82:8"
+      ],
+      "title": "The Duty of Magistrates"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "83:1-83:8",
+      "new_ranges": [
+        "83:1-83:1",
+        "83:2-83:8"
+      ],
+      "title": "Complaints against Enemies"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "83:9-83:18",
+      "new_ranges": [
+        "83:9-83:12",
+        "83:13-83:15",
+        "83:16-83:18"
+      ],
+      "title": "Prophetic Imprecations"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "84:1-84:7",
+      "new_ranges": [
+        "84:1-84:1",
+        "84:2-84:2",
+        "84:3-84:3",
+        "84:4-84:7"
+      ],
+      "title": "The Pleasures of Public Worship; Benefit of Public Worship"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "84:8-84:12",
+      "new_ranges": [
+        "84:8-84:10",
+        "84:11-84:12"
+      ],
+      "title": "Delight in God's Ordinances"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "85:8-85:13",
+      "new_ranges": [
+        "85:8-85:8",
+        "85:9-85:13"
+      ],
+      "title": "Divine Answer to Prayer; Blessings Given in Answer to Prayer"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "86:8-86:17",
+      "new_ranges": [
+        "86:8-86:15",
+        "86:16-86:17"
+      ],
+      "title": "Petitions and Praises; Prayer for Mercy and Grace"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "88:10-88:18",
+      "new_ranges": [
+        "88:10-88:12",
+        "88:13-88:13",
+        "88:14-88:18"
+      ],
+      "title": "Pleading with God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "89:15-89:18",
+      "new_ranges": [
+        "89:15-89:15",
+        "89:16-89:17",
+        "89:18-89:18"
+      ],
+      "title": "The Blessedness of Israel Declared"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "90:1-90:6",
+      "new_ranges": [
+        "90:1-90:1",
+        "90:2-90:2",
+        "90:3-90:3",
+        "90:4-90:4",
+        "90:5-90:6"
+      ],
+      "title": "God's Care of His People; Frailty of Human Life"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "90:12-90:17",
+      "new_ranges": [
+        "90:12-90:12",
+        "90:13-90:13",
+        "90:14-90:15",
+        "90:16-90:17"
+      ],
+      "title": "Prayers for Mercy"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "91:1-91:8",
+      "new_ranges": [
+        "91:1-91:1",
+        "91:2-91:2",
+        "91:3-91:8"
+      ],
+      "title": "The Security of Believers"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "91:9-91:16",
+      "new_ranges": [
+        "91:9-91:13",
+        "91:14-91:16"
+      ],
+      "title": "The Security of Believers"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "92:1-92:6",
+      "new_ranges": [
+        "92:1-92:3",
+        "92:4-92:5",
+        "92:6-92:6"
+      ],
+      "title": "Incitements to Praise of God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "94:1-94:11",
+      "new_ranges": [
+        "94:1-94:2",
+        "94:3-94:6",
+        "94:7-94:11"
+      ],
+      "title": "Appeal to God against Persecutors; The Folly of Atheists and Oppressors"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "94:12-94:23",
+      "new_ranges": [
+        "94:12-94:15",
+        "94:16-94:23"
+      ],
+      "title": "Comfort to Suffering Saints; God the Defence of His People"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "96:1-96:9",
+      "new_ranges": [
+        "96:1-96:2",
+        "96:3-96:3",
+        "96:4-96:9"
+      ],
+      "title": "An Invitation to Praise and Honour God; A Call to Glorify God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "98:4-98:9",
+      "new_ranges": [
+        "98:4-98:6",
+        "98:7-98:9"
+      ],
+      "title": "An Invitation to Praise"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "99:1-99:5",
+      "new_ranges": [
+        "99:1-99:4",
+        "99:5-99:5"
+      ],
+      "title": "The Dominion of God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "102:1-102:11",
+      "new_ranges": [
+        "102:1-102:2",
+        "102:3-102:11"
+      ],
+      "title": "Complaints in Affliction"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "102:23-102:28",
+      "new_ranges": [
+        "102:23-102:23",
+        "102:24-102:24",
+        "102:25-102:27",
+        "102:28-102:28"
+      ],
+      "title": "Hoping in God's Compassion"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "103:1-103:5",
+      "new_ranges": [
+        "103:1-103:2",
+        "103:3-103:5"
+      ],
+      "title": "Cheerful Praise"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "103:6-103:18",
+      "new_ranges": [
+        "103:6-103:6",
+        "103:7-103:7",
+        "103:8-103:10",
+        "103:11-103:12",
+        "103:13-103:14",
+        "103:15-103:18"
+      ],
+      "title": "Goodness and Compassion of God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "103:19-103:22",
+      "new_ranges": [
+        "103:19-103:21",
+        "103:22-103:22"
+      ],
+      "title": "Cheerful Praise"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "104:1-104:9",
+      "new_ranges": [
+        "104:1-104:4",
+        "104:5-104:5",
+        "104:6-104:9"
+      ],
+      "title": "The Divine Majesty"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "104:31-104:35",
+      "new_ranges": [
+        "104:31-104:32",
+        "104:33-104:33",
+        "104:34-104:34",
+        "104:35-104:35"
+      ],
+      "title": "The Divine Bounty"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "105:8-105:24",
+      "new_ranges": [
+        "105:8-105:11",
+        "105:12-105:15",
+        "105:16-105:23",
+        "105:24-105:24"
+      ],
+      "title": "The Divine Promise to the Patriarchs; Providences Concerning the Patriarchs"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "106:1-106:5",
+      "new_ranges": [
+        "106:1-106:2",
+        "106:3-106:3",
+        "106:4-106:5"
+      ],
+      "title": "Praise for Divine Goodness"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "106:6-106:12",
+      "new_ranges": [
+        "106:6-106:6",
+        "106:7-106:12"
+      ],
+      "title": "The Sins of Israelites"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "106:34-106:48",
+      "new_ranges": [
+        "106:34-106:39",
+        "106:40-106:48"
+      ],
+      "title": "Provocation of Israel in the Wilderness; The Divine Compassion"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "107:23-107:32",
+      "new_ranges": [
+        "107:23-107:24",
+        "107:25-107:32"
+      ],
+      "title": "The Divine Goodness to Mariners"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "107:33-107:43",
+      "new_ranges": [
+        "107:33-107:35",
+        "107:36-107:39",
+        "107:40-107:41",
+        "107:42-107:43"
+      ],
+      "title": "Wonders of Divine Providence"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "109:6-109:20",
+      "new_ranges": [
+        "109:6-109:7",
+        "109:8-109:20"
+      ],
+      "title": "Prophetic Imprecations"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "110:5-110:7",
+      "new_ranges": [
+        "110:5-110:6",
+        "110:7-110:7"
+      ],
+      "title": "The Messiah's Dominion"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "111:1-111:5",
+      "new_ranges": [
+        "111:1-111:1",
+        "111:2-111:5"
+      ],
+      "title": "The Excellence of the Divine Works"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "112:6-112:10",
+      "new_ranges": [
+        "112:6-112:9",
+        "112:10-112:10"
+      ],
+      "title": "The Blessedness of the Righteous; The Misery of the Wicked"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "113:1-113:9",
+      "new_ranges": [
+        "113:1-113:3",
+        "113:4-113:9"
+      ],
+      "title": "A Call to Praise God; God's Greatness and Condescension"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "115:1-115:8",
+      "new_ranges": [
+        "115:1-115:1",
+        "115:2-115:2",
+        "115:3-115:3",
+        "115:4-115:8"
+      ],
+      "title": "The Absurdity of Idolatry"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "116:1-116:9",
+      "new_ranges": [
+        "116:1-116:2",
+        "116:3-116:9"
+      ],
+      "title": "Grateful Acknowledgments"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "117:1-117:2",
+      "new_ranges": [
+        "117:1-117:1",
+        "117:2-117:2"
+      ],
+      "title": "All Nations Admonished to Praise God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "118:1-118:18",
+      "new_ranges": [
+        "118:1-118:4",
+        "118:5-118:18"
+      ],
+      "title": "Goodness of God Celebrated; Grateful Acknowledgments"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "118:19-118:29",
+      "new_ranges": [
+        "118:19-118:21",
+        "118:22-118:23",
+        "118:24-118:24",
+        "118:25-118:26",
+        "118:27-118:27",
+        "118:28-118:29"
+      ],
+      "title": "David Triumphs in God; The Humiliation and Exaltation of the Messiah"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "123:1-123:4",
+      "new_ranges": [
+        "123:1-123:2",
+        "123:3-123:4"
+      ],
+      "title": "Grateful Acknowledgments"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "130:1-130:4",
+      "new_ranges": [
+        "130:1-130:1",
+        "130:2-130:2",
+        "130:3-130:3",
+        "130:4-130:4"
+      ],
+      "title": "God's Regard to His Church"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "134:1-134:3",
+      "new_ranges": [
+        "134:1-134:2",
+        "134:3-134:3"
+      ],
+      "title": "A Call to Bless God"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "138:6-138:8",
+      "new_ranges": [
+        "138:6-138:6",
+        "138:7-138:7",
+        "138:8-138:8"
+      ],
+      "title": "God's Care of His People"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "140:8-140:13",
+      "new_ranges": [
+        "140:8-140:8",
+        "140:9-140:11",
+        "140:12-140:13"
+      ],
+      "title": "Shame and Confusion of Persecutors"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "141:1-141:4",
+      "new_ranges": [
+        "141:1-141:2",
+        "141:3-141:4"
+      ],
+      "title": "Fervent Supplications"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "141:5-141:10",
+      "new_ranges": [
+        "141:5-141:6",
+        "141:7-141:7",
+        "141:8-141:8",
+        "141:9-141:10"
+      ],
+      "title": "Reproofs of the Righteous; Complaints and Petitions"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "142:1-142:3",
+      "new_ranges": [
+        "142:1-142:2",
+        "142:3-142:3"
+      ],
+      "title": "David's Complaints"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "143:1-143:6",
+      "new_ranges": [
+        "143:1-143:2",
+        "143:3-143:3",
+        "143:4-143:4",
+        "143:5-143:6"
+      ],
+      "title": "Complaints and Petitions"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "144:1-144:8",
+      "new_ranges": [
+        "144:1-144:2",
+        "144:3-144:4",
+        "144:5-144:8"
+      ],
+      "title": "Grateful Acknowledgments of Divine Goodness; Prayer for Success against Enemies"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "144:9-144:15",
+      "new_ranges": [
+        "144:9-144:10",
+        "144:11-144:11",
+        "144:12-144:15"
+      ],
+      "title": "Thanksgiving and Petitions; National Happiness Desired"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "145:10-145:21",
+      "new_ranges": [
+        "145:10-145:10",
+        "145:11-145:13",
+        "145:14-145:21"
+      ],
+      "title": "Grateful Acknowledgments"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "148:1-148:6",
+      "new_ranges": [
+        "148:1-148:2",
+        "148:3-148:6"
+      ],
+      "title": "An Invitation to Praise"
+    },
+    {
+      "book": "Psalms",
+      "original_range": "148:7-148:14",
+      "new_ranges": [
+        "148:7-148:10",
+        "148:11-148:13",
+        "148:14-148:14"
+      ],
+      "title": "An Invitation to Praise"
+    },
+    {
+      "book": "Revelation",
+      "original_range": "14:6-14:12",
+      "new_ranges": [
+        "14:6-14:7",
+        "14:8-14:8",
+        "14:9-14:12"
+      ],
+      "title": "The Three Angels (95 AD)"
+    },
+    {
+      "book": "Revelation",
+      "original_range": "14:13-14:20",
+      "new_ranges": [
+        "14:13-14:13",
+        "14:14-14:20"
+      ],
+      "title": "The Harvest and the Vintage (95 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "1:1-1:7",
+      "new_ranges": [
+        "1:1-1:1",
+        "1:2-1:2",
+        "1:3-1:4",
+        "1:5-1:7"
+      ],
+      "title": "The Apostle's Commission (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "1:8-1:15",
+      "new_ranges": [
+        "1:8-1:8",
+        "1:9-1:10",
+        "1:11-1:15"
+      ],
+      "title": "Paul's Love to the Roman Christians (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "1:16-1:18",
+      "new_ranges": [
+        "1:16-1:17",
+        "1:18-1:18"
+      ],
+      "title": "Paul's Discourse on Justification (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "1:19-1:32",
+      "new_ranges": [
+        "1:19-1:31",
+        "1:32-1:32"
+      ],
+      "title": "The Excellency of the Gospel (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "2:17-2:29",
+      "new_ranges": [
+        "2:17-2:20",
+        "2:21-2:24",
+        "2:25-2:29"
+      ],
+      "title": "The Pretensions of the Jews; The Depravity of the Jews (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "8:1-8:9",
+      "new_ranges": [
+        "8:1-8:1",
+        "8:2-8:9"
+      ],
+      "title": "The Believer's Privileges (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "8:10-8:16",
+      "new_ranges": [
+        "8:10-8:13",
+        "8:14-8:16"
+      ],
+      "title": "The Believer's Privileges (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "8:17-8:25",
+      "new_ranges": [
+        "8:17-8:18",
+        "8:19-8:22",
+        "8:23-8:25"
+      ],
+      "title": "The Believer's Privileges (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "10:1-10:11",
+      "new_ranges": [
+        "10:1-10:2",
+        "10:3-10:3",
+        "10:4-10:4",
+        "10:5-10:11"
+      ],
+      "title": "Paul's Discourse of Righteousness; The Method of Salvation (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "13:7-13:10",
+      "new_ranges": [
+        "13:7-13:8",
+        "13:9-13:10"
+      ],
+      "title": "Justice and Charity (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "15:7-15:12",
+      "new_ranges": [
+        "15:7-15:7",
+        "15:8-15:8",
+        "15:9-15:12"
+      ],
+      "title": "Christian Unity (58 AD)"
+    },
+    {
+      "book": "Romans",
+      "original_range": "15:14-15:16",
+      "new_ranges": [
+        "15:14-15:15",
+        "15:16-15:16"
+      ],
+      "title": "Paul Commends the Brethren (58 AD)"
+    },
+    {
+      "book": "Ruth",
+      "original_range": "2:1-2:3",
+      "new_ranges": [
+        "2:1-2:1",
+        "2:2-2:3"
+      ],
+      "title": "Ruth in the Field of Boaz (1312 BC)"
+    },
+    {
+      "book": "Ruth",
+      "original_range": "2:17-2:23",
+      "new_ranges": [
+        "2:17-2:18",
+        "2:19-2:23"
+      ],
+      "title": "Ruth's Report to Naomi (1312 BC)"
+    },
+    {
+      "book": "Ruth",
+      "original_range": "4:9-4:12",
+      "new_ranges": [
+        "4:9-4:10",
+        "4:11-4:12"
+      ],
+      "title": "Ruth Married to Boaz (1312 BC)"
+    },
+    {
+      "book": "Song of Solomon",
+      "original_range": "1:7-1:11",
+      "new_ranges": [
+        "1:7-1:8",
+        "1:9-1:10",
+        "1:11-1:11"
+      ],
+      "title": "The Love of the Church to Christ"
+    },
+    {
+      "book": "Song of Solomon",
+      "original_range": "1:12-1:17",
+      "new_ranges": [
+        "1:12-1:12",
+        "1:13-1:15",
+        "1:16-1:17"
+      ],
+      "title": "Conference between Christ and His Church"
+    },
+    {
+      "book": "Song of Solomon",
+      "original_range": "3:1-3:5",
+      "new_ranges": [
+        "3:1-3:1",
+        "3:2-3:2",
+        "3:3-3:3",
+        "3:4-3:4",
+        "3:5-3:5"
+      ],
+      "title": "The Love of the Church to Christ"
+    },
+    {
+      "book": "Song of Solomon",
+      "original_range": "4:15-4:16",
+      "new_ranges": [
+        "4:15-4:15",
+        "4:16-4:16"
+      ],
+      "title": "The Love of the Church to Christ"
+    },
+    {
+      "book": "Song of Solomon",
+      "original_range": "6:11-6:13",
+      "new_ranges": [
+        "6:11-6:11",
+        "6:12-6:12",
+        "6:13-6:13"
+      ],
+      "title": "The Love of Christ to the Church"
+    },
+    {
+      "book": "Song of Solomon",
+      "original_range": "8:8-8:12",
+      "new_ranges": [
+        "8:8-8:8",
+        "8:9-8:9",
+        "8:10-8:10",
+        "8:11-8:12"
+      ],
+      "title": "Concern for the Gentiles; Privileges and Duties of the Church"
+    },
+    {
+      "book": "Song of Solomon",
+      "original_range": "8:13-8:14",
+      "new_ranges": [
+        "8:13-8:13",
+        "8:14-8:14"
+      ],
+      "title": "Mutual Love of Christ and the Church; Expectation of the Glory to Be Revealed"
+    },
+    {
+      "book": "Zechariah",
+      "original_range": "4:11-4:14",
+      "new_ranges": [
+        "4:11-4:12",
+        "4:13-4:14"
+      ],
+      "title": "The Vision of the Olive-Trees (520 BC)"
+    },
+    {
+      "book": "Zechariah",
+      "original_range": "8:9-8:17",
+      "new_ranges": [
+        "8:9-8:15",
+        "8:16-8:17"
+      ],
+      "title": "Encouraging Prospects (517 BC)"
+    },
+    {
+      "book": "Zechariah",
+      "original_range": "10:1-10:4",
+      "new_ranges": [
+        "10:1-10:1",
+        "10:2-10:2",
+        "10:3-10:3",
+        "10:4-10:4"
+      ],
+      "title": "Encouragements to Trust in God (510 BC)"
+    },
+    {
+      "book": "Zechariah",
+      "original_range": "11:15-11:17",
+      "new_ranges": [
+        "11:15-11:16",
+        "11:17-11:17"
+      ],
+      "title": "Judgments Predicted and Typified (510 BC)"
+    },
+    {
+      "book": "Zechariah",
+      "original_range": "13:1-13:6",
+      "new_ranges": [
+        "13:1-13:1",
+        "13:2-13:6"
+      ],
+      "title": "Evangelical Predictions; The Destruction of False Prophets (500 BC)"
+    },
+    {
+      "book": "Zechariah",
+      "original_range": "13:7-13:9",
+      "new_ranges": [
+        "13:7-13:7",
+        "13:8-13:8",
+        "13:9-13:9"
+      ],
+      "title": "Sufferings of Christ Predicted (500 BC)"
+    },
+    {
+      "book": "Zechariah",
+      "original_range": "14:1-14:7",
+      "new_ranges": [
+        "14:1-14:2",
+        "14:3-14:5",
+        "14:6-14:7"
+      ],
+      "title": "Persecution of the Church; Judgments and Mercies; Encouraging Prospects (500 BC)"
+    },
+    {
+      "book": "Zechariah",
+      "original_range": "14:8-14:15",
+      "new_ranges": [
+        "14:8-14:8",
+        "14:9-14:9",
+        "14:10-14:15"
+      ],
+      "title": "Blessings Promised to the Church; Judgments Threatened (500 BC)"
+    },
+    {
+      "book": "Zechariah",
+      "original_range": "14:16-14:21",
+      "new_ranges": [
+        "14:16-14:16",
+        "14:17-14:19",
+        "14:20-14:21"
+      ],
+      "title": "Evangelical Predictions; Threatenings and Promises; Encouraging Prospects (500 BC)"
+    },
+    {
+      "book": "Zephaniah",
+      "original_range": "2:1-2:3",
+      "new_ranges": [
+        "2:1-2:1",
+        "2:2-2:2",
+        "2:3-2:3"
+      ],
+      "title": "The People Exhorted to Repent (612 BC)"
+    },
+    {
+      "book": "Zephaniah",
+      "original_range": "3:8-3:13",
+      "new_ranges": [
+        "3:8-3:8",
+        "3:9-3:13"
+      ],
+      "title": "Judgment and Mercy; Promises of Mercy (612 BC)"
+    }
+  ],
+  "final_validation_passed": true
+}

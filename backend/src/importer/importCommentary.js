@@ -18,7 +18,9 @@ const importCommentary = async (datasetFolder, commentaryId) => {
         const excludedFiles = new Set([
             "introductory_material.json",
             "metadata.json",
-            "validation_report.json"
+            "validation_report.json",
+            "source-import-validation.json",
+            "restructuring-validation.json"
         ]);
 
         const jsonFiles = files.filter(
@@ -112,4 +114,4 @@ const importCommentary = async (datasetFolder, commentaryId) => {
     }
 }
 
-importCommentary("jfb-json", 4);
+importCommentary("jfb-restructured", 4);

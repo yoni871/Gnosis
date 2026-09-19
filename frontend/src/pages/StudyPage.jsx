@@ -105,6 +105,7 @@ export default function StudyPage() {
               translation={translation}
               translations={translations}
               selectedVerse={selectedVerse}
+              setSelectedVerse={setSelectedVerse}
               setTranslation={setTranslation}
             />
 
@@ -112,6 +113,7 @@ export default function StudyPage() {
               book={book}
               chapter={chapter}
               books={books}
+              selectedVerse={selectedVerse}
             />
           
         </main>

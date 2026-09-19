@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { ChevronDown } from "lucide-react";
 
-
 export default function ScripturePanel({
     verses,
     book,
@@ -9,6 +8,7 @@ export default function ScripturePanel({
     translation,
     translations,
     selectedVerse,
+    setSelectedVerse,
     setTranslation
 }) {
     const verseRefs = useRef({});
@@ -234,6 +234,7 @@ export default function ScripturePanel({
                 ">
                     {verses.map((verse) => (
                         <p
+                            onClick={() => setSelectedVerse(verse.verse_number)}
                             key={verse.verse_number}
                             ref={(element) => {
                                 verseRefs.current[verse.verse_number] = element;
@@ -246,6 +247,7 @@ export default function ScripturePanel({
                                 text-[inherit]
                                 leading-[inherit]
                                 tracking-[inherit]
+                                cursor-pointer
                                 ${
                                     verse.verse_number === selectedVerse
                                         ? "bg-[var(--verse-highlight)] border-l-[3px] border-[var(--color-brand)] pl-[12px] transition-[background] duration-200 ease-in-out"
