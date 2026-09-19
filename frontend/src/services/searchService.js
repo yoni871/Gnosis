@@ -7,6 +7,10 @@ export async function searchBible(query, translation = "BSB") {
         `&translation=${encodeURIComponent(translation)}`
     );
 
+    if (!response.ok) {
+        throw new Error("Bible search request failed.");
+    }
+
     return response.json();
 }
 
@@ -15,6 +19,11 @@ export async function searchCommentary(query) {
     const response = await fetch(
         `${API_URL}/search/commentary?q=${encodeURIComponent(query)}`
     );
+
+    if (!response.ok) {
+        throw new Error("Commentary search request failed.");
+    }
+
 
     return response.json();
 }

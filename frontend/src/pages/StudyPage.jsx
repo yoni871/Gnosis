@@ -13,6 +13,7 @@ export default function StudyPage() {
   const [searchParams] = useSearchParams();
 
   const urlVerse = searchParams.get("verse");
+  const urlTranslation = searchParams.get("translation");
   const urlCommentary = searchParams.get("commentary");
 
   const [verses, setVerses] = useState([]);
@@ -22,14 +23,20 @@ export default function StudyPage() {
   const [selectedVerse, setSelectedVerse] = useState(urlVerse ? Number(urlVerse) : null);
   const [layout, setLayout] = useState("side");
 
-  const [translation, setTranslation] = useState("");
+  const [translation, setTranslation] = useState(
+    urlTranslation || ""
+  );
   const [translations, setTranslations] = useState([]);
 
   useEffect(() => {
-    setBook(urlBook || "Genesis");
-    setChapter(Number(urlChapter) || 1);
-    setSelectedVerse(urlVerse ? Number(urlVerse) : null);
-  }, [urlBook, urlChapter, urlVerse]);
+      setBook(urlBook || "Genesis");
+      setChapter(Number(urlChapter) || 1);
+      setSelectedVerse(urlVerse ? Number(urlVerse) : null);
+
+      if (urlTranslation) {
+          setTranslation(urlTranslation);
+      }
+  }, [urlBook, urlChapter, urlVerse, urlTranslation]);
 
   useEffect(() => {
         if (!translation) {
@@ -61,8 +68,18 @@ export default function StudyPage() {
       getTranslations()
         .then(data => {
           setTranslations(data);
+
           if (data.length > 0) {
-            setTranslation(data[0].abbreviation);
+              setTranslation((currentTranslation) => {
+                  const translationExists = data.some(
+                      (item) =>
+                          item.abbreviation === currentTranslation
+                  );
+
+                  return translationExists
+                      ? currentTranslation
+                      : data[0].abbreviation;
+              });
           }
         })
         .catch(error => {

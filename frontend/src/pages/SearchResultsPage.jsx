@@ -30,6 +30,7 @@ export default function SearchResultsPage() {
     const [searchParams] = useSearchParams();
     const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [searchError, setSearchError] = useState("");
     const [selectedBook, setSelectedBook] = useState("");
     const [selectedChapter, setSelectedChapter] = useState("");
     const [books, setBooks] = useState([]);
@@ -94,6 +95,7 @@ export default function SearchResultsPage() {
         }
 
         setLoading(true);
+        setSearchError("");
 
         // Fetch Scripture and commentary results at the same time.
         Promise.all([
@@ -108,6 +110,9 @@ export default function SearchResultsPage() {
                 console.error(error);
                 setSearchResults([]);
                 setCommentaryResults([]);
+                setSearchError(
+                    "We couldn't complete your search. Please try again."
+                );
             })
             .finally(() => {
                 setLoading(false);
@@ -134,23 +139,71 @@ export default function SearchResultsPage() {
             />
 
             {loading && (
-                <p className="text-[var(--text-primary)]">
-                    Loading...
-                </p>
+                <div
+                    role="status"
+                    aria-live="polite"
+                    className="
+                        mx-auto
+                        flex
+                        items-center
+                        justify-center
+                        gap-3
+                        py-10
+                        text-[13px]
+                        text-[var(--text-muted)]
+                    "
+                >
+                    <span className="
+                        h-4
+                        w-4
+                        shrink-0
+                        animate-spin
+                        rounded-full
+                        border-2
+                        border-[var(--border-control)]
+                        border-t-[var(--color-brand)]
+                    " />
+
+                    <span>
+                        Searching Scripture and commentary for “{query}”…
+                    </span>
+                </div>
             )}
 
-            {!loading && 
-                filteredResults.length === 0 && 
-                filteredCommentaryResults.length === 0 &&
-                query && (
-                <>
-                    <h2 className="text-[var(--text-primary)]">
-                        No results found for “{query}”
-                    </h2>
-                    <p className="text-[var(--text-muted)]">
-                        Try a different word or phrase
-                    </p>
-                </>
+            {!loading && searchError && (
+                <div
+                    role="alert"
+                    className="
+                        mx-auto
+                        flex
+                        max-w-xl
+                        items-center
+                        justify-center
+                        px-4
+                        py-10
+                        text-center
+                    "
+                >
+                    <div>
+                        <p className="
+                            font-serif
+                            text-[16px]
+                            font-semibold
+                            text-[var(--color-brand)]
+                        ">
+                            Search unavailable
+                        </p>
+
+                        <p className="
+                            mt-2
+                            text-[12px]
+                            leading-5
+                            text-[var(--text-muted)]
+                        ">
+                            {searchError}
+                        </p>
+                    </div>
+                </div>
             )}
 
             <div className="
@@ -222,6 +275,37 @@ export default function SearchResultsPage() {
                         lg:overflow-y-auto
                         p-3
                     ">
+                        {!loading && !searchError && filteredResults.length === 0 && (
+                            <div className="
+                                flex
+                                min-h-[220px]
+                                flex-col
+                                items-center
+                                justify-center
+                                px-6
+                                text-center
+                            ">
+                                <p className="
+                                    font-serif
+                                    text-[16px]
+                                    font-semibold
+                                    text-[var(--text-primary)]
+                                ">
+                                    No Scripture results
+                                </p>
+
+                                <p className="
+                                    mt-2
+                                    max-w-xs
+                                    text-[12px]
+                                    leading-5
+                                    text-[var(--text-muted)]
+                                ">
+                                    No verses in {translation} matched “{query}”.
+                                    Try another word or phrase.
+                                </p>
+                            </div>
+                        )}
                         {filteredResults.map((result) => (
                             <button
                                 key={`${result.book}-${result.chapter_number}-${result.verse_number}`}
@@ -244,7 +328,9 @@ export default function SearchResultsPage() {
                                 "
                                 onClick={() => {
                                     navigate(
-                                        `/bible/${result.book}/${result.chapter_number}?verse=${result.verse_number}`
+                                        `/bible/${result.book}/${result.chapter_number}` +
+                                        `?verse=${result.verse_number}` +
+                                        `&translation=${encodeURIComponent(translation)}`
                                     );
                                 }}
                             >
@@ -372,6 +458,39 @@ export default function SearchResultsPage() {
                         lg:overflow-y-auto
                         p-3               
                     ">
+
+                        {!loading && !searchError && filteredCommentaryResults.length === 0 && (
+                            <div className="
+                                flex
+                                min-h-[220px]
+                                flex-col
+                                items-center
+                                justify-center
+                                px-6
+                                text-center
+                            ">
+                                <p className="
+                                    font-serif
+                                    text-[16px]
+                                    font-semibold
+                                    text-[var(--text-primary)]
+                                ">
+                                    No commentary results
+                                </p>
+
+                                <p className="
+                                    mt-2
+                                    max-w-xs
+                                    text-[12px]
+                                    leading-5
+                                    text-[var(--text-muted)]
+                                ">
+                                    Commentaries have no matches for “{query}”.
+                                    Try another word or phrase.
+                                </p>
+                            </div>
+                        )}
+
                         {filteredCommentaryResults.map((result) => (
                             <button
                                 key={result.id}
@@ -396,7 +515,8 @@ export default function SearchResultsPage() {
                                     navigate(
                                         `/bible/${result.book}/${result.start_chapter}` +
                                         `?verse=${result.start_verse}` +
-                                        `&commentary=${result.commentary_id}`
+                                        `&commentary=${result.commentary_id}` +
+                                        `&translation=${encodeURIComponent(translation)}`
                                     );
                                 }}
                             >
