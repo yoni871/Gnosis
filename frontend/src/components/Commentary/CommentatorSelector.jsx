@@ -72,7 +72,16 @@ export default function CommentatorSelector({
 
                 </div>
 
-                <ChevronDown size={18} />
+                <ChevronDown
+                    size={18}
+                    className={`
+                        shrink-0
+                        text-[var(--color-brand)]
+                        transition-transform
+                        duration-200
+                        ${isCommentaryOpen ? "rotate-180" : ""}
+                    `}
+                    />
 
             </button>
 
@@ -84,37 +93,58 @@ export default function CommentatorSelector({
                     right-0
                     top-[calc(100%+6px)]
                     z-[100]
-                    overflow-hidden
-                    rounded-[8px]
                     border
                     border-[var(--border)]
                     bg-[var(--bg-panel)]
-                    shadow-[0_6px_16px_rgba(0,0,0,0.12)]
-                ">
+                    p-[4px]
+                    shadow-lg
+                    "
+                >
 
-                    {commentators.map((commentator) => (
-
+                    {commentators.map((commentator, index) => (
                         <div
                             key={commentator.id}
-                            className="
-                                cursor-pointer
-                                px-[16px]
-                                py-[12px]
-                                text-[14px]
-                                text-[var(--text-primary)]
-                                transition-colors
-                                duration-150
-                                hover:bg-[var(--bg-control-hover)]
-                            "
+                            className={`
+                            cursor-pointer
+                            rounded
+                            px-2
+                            py-2
+                            text-[var(--text-primary)]
+                            transition-colors
+                            hover:bg-[var(--bg-control-hover)]
+                            ${
+                                selectedCommentator === commentator.id
+                                ? "bg-[var(--bg-control-hover)] font-semibold !text-[var(--color-brand)]"
+                                : ""
+                            }
+                            ${
+                                index !== commentators.length - 1
+                                ? "border-b border-[var(--border)]"
+                                : ""
+                            }
+                            `}
                             onClick={() => {
-                                setSelectedCommentator(commentator.id);
-                                setIsCommentaryOpen(false);
+                            setSelectedCommentator(commentator.id);
+                            setIsCommentaryOpen(false);
                             }}
                         >
+                            <div className="
+                            text-[11px]
+                            font-semibold
+                            ">
                             {commentator.name}
-                        </div>
+                            </div>
 
-                    ))}
+                            <div className="
+                            mt-[2px]
+                            text-[9px]
+                            font-normal
+                            text-[var(--text-muted)]
+                            ">
+                            {commentator.title}
+                            </div>
+                        </div>
+                        ))}
 
                 </div>
 
