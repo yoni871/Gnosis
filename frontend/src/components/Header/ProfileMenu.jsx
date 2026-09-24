@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import {
     User,
     NotebookPen,
@@ -8,14 +8,22 @@ import {
     ChevronDown,
     ChevronUp
 } from "lucide-react"
+import { Link } from "react-router-dom";
 import useClickOutside from "../../hooks/useClickOutside";
+import AuthContext from "../../context/AuthContext";
 
 export default function ProfileMenu() {
     const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const {user, logout } = useContext(AuthContext);
 
     const profileRef = useClickOutside(() => {
         setIsProfileOpen(false)
-    })
+    });
+
+    const handleLogout = () => {
+        logout();
+        setIsProfileOpen(false);
+    };
 
   return (
     <div ref={profileRef} className="relative">
@@ -50,7 +58,7 @@ export default function ProfileMenu() {
                 tracking-[0.5px] text-white
                 "
             >
-                YD
+                {`${user.first_name[0]}${user.last_name[0]}`}
             </div>
 
             <span className="
@@ -59,7 +67,7 @@ export default function ProfileMenu() {
                 text-[10px]
                 font-semibold
             ">
-                Yonatan Demissie
+                {`${user.first_name} ${user.last_name}`}
             </span>
             {isProfileOpen ? (
                 <ChevronUp
@@ -105,7 +113,7 @@ export default function ProfileMenu() {
                     font-semibold
                     text-[var(--text-primary)]
                 ">
-                    Yonatan Demissie
+                    {`${user.first_name} ${user.last_name}`}
                 </div>
 
                 <div className="
@@ -113,7 +121,7 @@ export default function ProfileMenu() {
                     text-[10px]
                     text-[var(--text-muted)]
                 ">
-                    email@email.com
+                    {`${user.email}`}
                 </div>
             </div>
 
@@ -204,24 +212,30 @@ export default function ProfileMenu() {
                 border-t border-[var(--border)]
             " />
 
-            <button className="
-                flex w-full
-                items-center
-                gap-2.5
-                rounded-md
-                px-3 py-2.5
-                text-left
-                text-[11px]
-                text-[var(--color-brand)]
-                hover:bg-[var(--bg-control-hover)]
-            ">
+            <Link
+                to="/login"
+                onClick={handleLogout} 
+                className="
+                    flex w-full
+                    items-center
+                    gap-2.5
+                    rounded-md
+                    px-3 py-2.5
+                    text-left
+                    text-[11px]
+                    text-[var(--color-brand)]
+                    hover:bg-[var(--bg-control-hover)]
+                "
+            >
                 <LogOut
                     size={15}
                     strokeWidth={1.8}
                     className="text-[var(--color-brand)]"
                 />
-                <span>Sign out</span>
-            </button>
+                <span>
+                    Sign out
+                </span>
+            </Link>
         </div>            
         
     </div>

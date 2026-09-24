@@ -16,7 +16,7 @@ const authenticateToken = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
         if(error) {
             return res.status(403).json({  //403 = forbidden
-                errror: "Invalid or expired token."
+                error: "Invalid or expired token."
             });
         }
 
