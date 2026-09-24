@@ -21,7 +21,7 @@ function formatParagraphText(paragraph) {
 }
 
 // Formats commentary content into separate paragraphs.
-function formatCommentary(content) {
+function formatCommentary(content, isSelected) {
 
   const cleanedContent = content
   // Remove escaped periods from the imported Markdown.
@@ -45,7 +45,15 @@ function formatCommentary(content) {
         key={paragraphIndex}
         className="mb-[18px] last:mb-0"
       >
-        {formatParagraphText(cleanParagraph)}
+        <span
+            className={
+                isSelected
+                    ? "bg-[var(--verse-highlight)]"
+                    : ""
+            }
+        >
+            {formatParagraphText(cleanParagraph)}
+        </span>
       </p>
     );
   });
@@ -94,7 +102,7 @@ export default function CommentaryEntry({ item, book, isSelected, showTitle }) {
         duration-200
         ${
           isSelected
-            ? "bg-[var(--verse-highlight)] border-l-[3px] border-l-[var(--color-brand)] pl-[14px] pr-[10px]"
+            ? "border-l-[3px] border-l-[var(--color-brand)] pl-[14px] pr-[10px]"
             : ""
         }
       `}
@@ -133,7 +141,7 @@ export default function CommentaryEntry({ item, book, isSelected, showTitle }) {
         leading-[1.9]
         text-[var(--text-primary)]
       ">
-        {formatCommentary(item.content)}
+        {formatCommentary(item.content, isSelected)}
       </div>
 
     </section>

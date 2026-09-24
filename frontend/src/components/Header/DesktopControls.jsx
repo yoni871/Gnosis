@@ -5,7 +5,6 @@ import {
     PanelRight,
     Layers
 } from "lucide-react";
-import { Link } from "react-router-dom";
 
 import SearchBar from "./SearchBar";
 import ProfileMenu from "./ProfileMenu";
