@@ -1,144 +1,291 @@
-import { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
-import { getBooks, getBibleChapter, getTranslations } from '../services/bibleService'
-import Header from '../components/Header/Header'
-import SubHeader from '../components/Navigation/SubHeader'
-import ScripturePanel from '../components/Scripture/ScripturePanel'
-import CommentaryPanel from '../components/Commentary/CommentaryPanel'
+import { useEffect, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+
+import {
+    getBooks,
+    getBibleChapter,
+    getTranslations
+} from "../services/bibleService";
+
+import Header from "../components/Header/Header";
+import SubHeader from "../components/Navigation/SubHeader";
+
+import DesktopStudyLayout from "../components/Study/DesktopStudyLayout";
+import MobileStudyLayout from "../components/Study/MobileStudyLayout";
+import MobileStudyTabs from "../components/Study/MobileStudyTabs";
+import MobileStudyNav from "../components/Study/MobileStudyNav";
 
 
 export default function StudyPage() {
 
-  const {book: urlBook, chapter: urlChapter} = useParams();
-  const [searchParams] = useSearchParams();
+    const {
+        book: urlBook,
+        chapter: urlChapter
+    } = useParams();
 
-  const urlVerse = searchParams.get("verse");
-  const urlTranslation = searchParams.get("translation");
-  const urlCommentary = searchParams.get("commentary");
+    const [searchParams] = useSearchParams();
 
-  const [verses, setVerses] = useState([]);
-  const [book, setBook] = useState(urlBook || "Genesis");
-  const [chapter, setChapter] = useState(Number(urlChapter) || 1);
-  const [books, setBooks] = useState([]);
-  const [selectedVerse, setSelectedVerse] = useState(urlVerse ? Number(urlVerse) : null);
-  const [layout, setLayout] = useState("side");
+    const urlVerse = searchParams.get("verse");
+    const urlTranslation = searchParams.get("translation");
+    const urlCommentary = searchParams.get("commentary");
 
-  const [translation, setTranslation] = useState(
-    urlTranslation || ""
-  );
-  const [translations, setTranslations] = useState([]);
 
-  useEffect(() => {
-      setBook(urlBook || "Genesis");
-      setChapter(Number(urlChapter) || 1);
-      setSelectedVerse(urlVerse ? Number(urlVerse) : null);
+    // -------------------------
+    // BIBLE STATE
+    // -------------------------
 
-      if (urlTranslation) {
-          setTranslation(urlTranslation);
-      }
-  }, [urlBook, urlChapter, urlVerse, urlTranslation]);
+    const [verses, setVerses] = useState([]);
 
-  useEffect(() => {
-        if (!translation) {
-          return;
+    const [book, setBook] = useState(
+        urlBook || "Genesis"
+    );
+
+    const [chapter, setChapter] = useState(
+        Number(urlChapter) || 1
+    );
+
+    const [books, setBooks] = useState([]);
+
+    const [selectedVerse, setSelectedVerse] = useState(
+        urlVerse
+            ? Number(urlVerse)
+            : null
+    );
+
+
+    // -------------------------
+    // LAYOUT STATE
+    // -------------------------
+
+    const [layout, setLayout] = useState("side");
+
+    const [mobileTab, setMobileTab] = useState(
+        "scripture"
+    );
+
+    const [rightPanelTab, setRightPanelTab] = useState(
+        "commentary"
+    );
+
+
+    // -------------------------
+    // TRANSLATION STATE
+    // -------------------------
+
+    const [translation, setTranslation] = useState(
+        urlTranslation || ""
+    );
+
+    const [translations, setTranslations] = useState([]);
+
+
+    // -------------------------
+    // SYNC URL
+    // -------------------------
+
+    useEffect(() => {
+
+        setBook(
+            urlBook || "Genesis"
+        );
+
+        setChapter(
+            Number(urlChapter) || 1
+        );
+
+        setSelectedVerse(
+            urlVerse
+                ? Number(urlVerse)
+                : null
+        );
+
+        if (urlTranslation) {
+            setTranslation(urlTranslation);
         }
-        // Fetch the verses for the current book and chapter.
-        getBibleChapter(book, chapter, translation)
-            .then(data => {
+
+    }, [
+        urlBook,
+        urlChapter,
+        urlVerse,
+        urlTranslation
+    ]);
+
+
+    // -------------------------
+    // LOAD BIBLE CHAPTER
+    // -------------------------
+
+    useEffect(() => {
+
+        if (!translation) {
+            return;
+        }
+
+        getBibleChapter(
+            book,
+            chapter,
+            translation
+        )
+            .then((data) => {
                 setVerses(data);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
             });
-    }, [book, chapter, translation]);
 
-  useEffect(() => {
-    // Fetch all available Bible books.
+    }, [
+        book,
+        chapter,
+        translation
+    ]);
+
+
+    // -------------------------
+    // LOAD BOOKS
+    // -------------------------
+
+    useEffect(() => {
+
         getBooks()
-            .then(data => {
+            .then((data) => {
                 setBooks(data);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
             });
+
     }, []);
 
-  useEffect(() => {
-    //fetch all translations
-      getTranslations()
-        .then(data => {
-          setTranslations(data);
 
-          if (data.length > 0) {
-              setTranslation((currentTranslation) => {
-                  const translationExists = data.some(
-                      (item) =>
-                          item.abbreviation === currentTranslation
-                  );
+    // -------------------------
+    // LOAD TRANSLATIONS
+    // -------------------------
 
-                  return translationExists
-                      ? currentTranslation
-                      : data[0].abbreviation;
-              });
-          }
-        })
-        .catch(error => {
-          console.error(error);
-        });
-  }, []);
+    useEffect(() => {
 
-    
+        getTranslations()
+            .then((data) => {
 
-  return (
-    <>
-        <Header 
-          layout={layout}
-          setLayout={setLayout}
-          translation={translation}
-        />
-        <SubHeader 
-          verses={verses} 
-          chapter={chapter}
-          setChapter={setChapter}
-          book={book}
-          books={books}
-          setBook={setBook}
-          selectedVerse={selectedVerse}
-          setSelectedVerse={setSelectedVerse}
-        />
-        <main 
-          className={
-            `mt-[108px]
-            grid
-            ${layout === "side" ? "grid-cols-[60%_40%]" : "grid-rows-2"}
-            h-[calc(100vh-108px)]
-            overflow-hidden
-            max-[768px]:block
-            max-[768px]:h-auto
-            max-[768px]:overflow-visible`
-        }>
-            <ScripturePanel 
-              verses={verses}
-              book={book}
-              chapter={chapter}
-              translation={translation}
-              translations={translations}
-              selectedVerse={selectedVerse}
-              setSelectedVerse={setSelectedVerse}
-              setTranslation={setTranslation}
+                setTranslations(data);
+
+                if (data.length > 0) {
+
+                    setTranslation(
+                        (currentTranslation) => {
+
+                            const translationExists =
+                                data.some(
+                                    (item) =>
+                                        item.abbreviation ===
+                                        currentTranslation
+                                );
+
+                            return translationExists
+                                ? currentTranslation
+                                : data[2].abbreviation;
+                        }
+                    );
+                }
+
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+    }, []);
+
+
+    return (
+        <>
+
+            <Header
+                layout={layout}
+                setLayout={setLayout}
+                translation={translation}
             />
 
-            <CommentaryPanel
-              book={book}
-              chapter={chapter}
-              books={books}
-              selectedVerse={selectedVerse}
-              urlCommentary={
-                urlCommentary ? Number(urlCommentary) : null
-              }
+
+            <SubHeader
+                verses={verses}
+
+                chapter={chapter}
+                setChapter={setChapter}
+
+                book={book}
+                books={books}
+                setBook={setBook}
+
+                selectedVerse={selectedVerse}
+                setSelectedVerse={setSelectedVerse}
             />
-          
-        </main>
-    </>
-  )
+
+
+            {/* MOBILE TOP TABS */}
+
+            <MobileStudyTabs
+                activeTab={mobileTab}
+                setActiveTab={setMobileTab}
+            />
+
+
+            {/* DESKTOP */}
+
+            <DesktopStudyLayout
+                layout={layout}
+
+                verses={verses}
+
+                book={book}
+                chapter={chapter}
+
+                translation={translation}
+                translations={translations}
+
+                selectedVerse={selectedVerse}
+                setSelectedVerse={setSelectedVerse}
+
+                setTranslation={setTranslation}
+
+                books={books}
+
+                rightPanelTab={rightPanelTab}
+                setRightPanelTab={setRightPanelTab}
+
+                urlCommentary={urlCommentary}
+            />
+
+
+            {/* MOBILE */}
+
+            <MobileStudyLayout
+                mobileTab={mobileTab}
+
+                verses={verses}
+
+                book={book}
+                chapter={chapter}
+
+                translation={translation}
+                translations={translations}
+
+                selectedVerse={selectedVerse}
+                setSelectedVerse={setSelectedVerse}
+
+                setTranslation={setTranslation}
+
+                books={books}
+
+                urlCommentary={urlCommentary}
+            />
+
+
+            {/* MOBILE BOTTOM NAV */}
+
+            <MobileStudyNav
+                activeTab={mobileTab}
+                setActiveTab={setMobileTab}
+            />
+
+        </>
+    );
 }

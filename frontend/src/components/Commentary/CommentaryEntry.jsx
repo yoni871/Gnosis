@@ -45,13 +45,7 @@ function formatCommentary(content, isSelected) {
         key={paragraphIndex}
         className="mb-[18px] last:mb-0"
       >
-        <span
-            className={
-                isSelected
-                    ? "bg-[var(--verse-highlight)]"
-                    : ""
-            }
-        >
+        <span>
             {formatParagraphText(cleanParagraph)}
         </span>
       </p>
@@ -102,7 +96,7 @@ export default function CommentaryEntry({ item, book, isSelected, showTitle }) {
         duration-200
         ${
           isSelected
-            ? "border-l-[3px] border-l-[var(--color-brand)] pl-[14px] pr-[10px]"
+            ? "border-l-[3px] border-l-[var(--color-brand)] pl-[14px] pr-[10px] bg-[rgba(176,141,87,0.18)] px-[14px] py-[12px]"
             : ""
         }
       `}
