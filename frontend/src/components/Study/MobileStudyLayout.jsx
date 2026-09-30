@@ -19,7 +19,8 @@ export default function MobileStudyLayout({
 
     books,
 
-    urlCommentary
+    notesState,
+    commentaryState
 }) {
     return (
         <main
@@ -36,9 +37,6 @@ export default function MobileStudyLayout({
                 max-[768px]:overflow-hidden
             "
         >
-
-            {/* Scripture */}
-
             {mobileTab === "scripture" && (
                 <div
                     className="
@@ -50,23 +48,16 @@ export default function MobileStudyLayout({
                 >
                     <ScripturePanel
                         verses={verses}
-
                         book={book}
                         chapter={chapter}
-
                         translation={translation}
                         translations={translations}
-
                         selectedVerse={selectedVerse}
                         setSelectedVerse={setSelectedVerse}
-
                         setTranslation={setTranslation}
                     />
                 </div>
             )}
-
-
-            {/* Commentary */}
 
             {mobileTab === "commentary" && (
                 <div
@@ -79,21 +70,11 @@ export default function MobileStudyLayout({
                     <CommentaryPanel
                         book={book}
                         chapter={chapter}
-                        books={books}
-
                         selectedVerse={selectedVerse}
-
-                        urlCommentary={
-                            urlCommentary
-                                ? Number(urlCommentary)
-                                : null
-                        }
+                        commentaryState={commentaryState}
                     />
                 </div>
             )}
-
-
-            {/* Notes */}
 
             {mobileTab === "notes" && (
                 <div
@@ -106,14 +87,12 @@ export default function MobileStudyLayout({
                     <NotesPanel
                         book={book}
                         chapter={chapter}
-
                         selectedVerse={selectedVerse}
-
                         books={books}
+                        notesState={notesState}
                     />
                 </div>
             )}
-
         </main>
     );
 }

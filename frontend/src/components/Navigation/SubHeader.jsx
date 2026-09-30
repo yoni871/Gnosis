@@ -1,29 +1,78 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ChevronDown, Check } from 'lucide-react';
-import BookSelector from './BookSelector';
-import ChapterSelector from './ChapterSelector';
-import VerseSelector from './VerseSelector';
-import useClickOutside from '../../hooks/useClickOutside';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft, ChevronDown, Check } from "lucide-react";
 
-export default function SubHeader({ 
+import BookSelector from "./BookSelector";
+import ChapterSelector from "./ChapterSelector";
+import VerseSelector from "./VerseSelector";
+import useClickOutside from "../../hooks/useClickOutside";
+
+
+const filterButton = `
+    flex h-9 w-full min-w-0 items-center justify-between gap-2
+    rounded-lg border border-[var(--border-control)]
+    bg-[var(--bg-panel)] px-3 text-[11px] font-medium
+    text-[var(--text-primary)] shadow-sm transition
+    hover:border-[var(--color-brand)]
+    hover:bg-[var(--bg-control-hover)]
+`;
+
+const menuStyle = `
+    absolute top-[calc(100%+6px)] z-50
+    overflow-hidden rounded-xl
+    border border-[var(--border-control)]
+    bg-[var(--bg-panel)]
+    shadow-[0_12px_32px_rgba(50,35,25,0.18)]
+`;
+
+
+function FilterOption({ selected, onClick, children }) {
+    return (
+        <button
+            type="button"
+            onClick={onClick}
+            className={`
+                flex min-h-10 w-full items-center justify-between gap-2
+                border-b border-[var(--border-control)]
+                px-3 py-2 text-left text-[12px]
+                transition-colors last:border-b-0
+                ${
+                    selected
+                        ? "bg-[var(--bg-selected)] font-semibold text-[var(--color-brand)]"
+                        : "text-[var(--text-primary)] hover:bg-[var(--bg-control-hover)]"
+                }
+            `}
+        >
+            <span>{children}</span>
+            {selected && <Check size={14} className="shrink-0" />}
+        </button>
+    );
+}
+
+
+export default function SubHeader({
     variant = "default",
-    verses,
+
+    verses = [],
     chapter,
     setChapter,
     book,
-    books,
+    books = [],
     setBook,
     setSelectedVerse,
     selectedVerse,
+
     selectedBook,
     setSelectedBook,
     selectedChapter,
     setSelectedChapter,
-    searchResults,
+
+    searchResults = [],
+    commentaryResults = [],
     translation = "BSB"
- }) {
+}) {
     const navigate = useNavigate();
+
     const [isBookMenuOpen, setIsBookMenuOpen] = useState(false);
     const [isChapterMenuOpen, setIsChapterMenuOpen] = useState(false);
     const [isVerseMenuOpen, setIsVerseMenuOpen] = useState(false);
@@ -36,509 +85,259 @@ export default function SubHeader({
         setIsChapterMenuOpen(false);
     });
 
+
     if (variant === "searchResults") {
+        // Include chapters represented by either result type.
+        const chapters = new Set();
+
+        searchResults.forEach((result) => {
+            if (!selectedBook || result.book === selectedBook) {
+                chapters.add(result.chapter_number);
+            }
+        });
+
+        commentaryResults.forEach((result) => {
+            if (!selectedBook || result.book === selectedBook) {
+                for (
+                    let chapter = result.start_chapter;
+                    chapter <= result.end_chapter;
+                    chapter += 1
+                ) {
+                    chapters.add(chapter);
+                }
+            }
+        });
+
+        const chapterOptions = [...chapters].sort((a, b) => a - b);
+
+        function selectBook(value) {
+            setSelectedBook(value);
+            setSelectedChapter("");
+            setIsBookMenuOpen(false);
+        }
+
+        function selectChapter(value) {
+            setSelectedChapter(value);
+            setIsChapterMenuOpen(false);
+        }
+
         return (
-            <nav className="
-                fixed
-                top-[50px]
-                left-0
-                right-0
-                z-40
-                flex
-                h-[50px]
-                min-w-0
-                items-center
-                gap-2
-                overflow-visible
-                border-b
-                border-[var(--border)]
-                bg-[var(--bg-nav)]
-                px-3
-
-                sm:gap-3
-                sm:px-5
-
-                md:gap-5
-                md:px-9
-            ">
-                {/* Back to reading button */}
-                <button
-                    type="button"
-                    onClick={() => navigate(-1)}
-                    className="
-                        group
-                        flex
-                        h-8
-                        shrink-0
-                        items-center
-                        gap-2
-                        whitespace-nowrap
-                        rounded-lg
-                        border
-                        border-[var(--border-control)]
-                        bg-[var(--bg-panel)]
-                        px-3
-                        font-serif
-                        text-[11px]
-                        font-semibold
-                        text-[var(--color-brand)]
-                        shadow-sm
-                        transition-all
-                        duration-200
-                        hover:border-[var(--color-brand)]
-                        hover:bg-[var(--bg-control-hover)]
-                        hover:shadow-md
-                        sm:text-[12px]
-                    "
-                >
-                    <ArrowLeft
-                        size={14}
-                        className="
-                            transition-transform
-                            duration-200
-                            group-hover:-translate-x-0.5
-                        "
-                    />
-
-                    <span>Back to reading</span>
-                </button>
-
-                {/* Book filter */}
+            <nav
+                aria-label="Search filters"
+                className="
+                    fixed left-0 right-0 top-[58px] z-40
+                    flex h-[96px] flex-col justify-center gap-2
+                    border-b border-[var(--border)]
+                    bg-[var(--bg-nav)] px-3
+                    min-[769px]:h-[50px]
+                    min-[769px]:flex-row
+                    min-[769px]:items-center
+                    min-[769px]:justify-start
+                    min-[769px]:gap-5
+                    min-[769px]:px-9
+                "
+            >
                 <div className="
-                    flex
-                    items-center
-                    gap-1.5
-                    shrink-0
-                    sm:gap-2
+                    flex w-full items-center justify-between
+                    min-[769px]:w-auto
                 ">
-                    <span className="
-                        shrink-0
-                        text-[10px]
-                        font-semibold
-                        tracking-wide
-                        text-[var(--text-muted)]
-                        sm:text-[11px]
-                    ">
-                        Filter:
-                    </span>
-
-                    <div
-                        ref={bookFilterRef}
-                        className="relative"
+                    <button
+                        type="button"
+                        onClick={() => {
+                            if (window.history.state?.idx > 0) {
+                                navigate(-1);
+                            } else {
+                                navigate(
+                                    `/bible/Genesis/1?translation=${encodeURIComponent(translation)}`
+                                );
+                            }
+                        }}
+                        className="
+                            group flex h-8 items-center gap-2
+                            rounded-lg border border-[var(--border-control)]
+                            bg-[var(--bg-panel)] px-3
+                            font-serif text-[11px] font-semibold
+                            text-[var(--color-brand)] shadow-sm transition
+                            hover:border-[var(--color-brand)]
+                            hover:bg-[var(--bg-control-hover)]
+                        "
                     >
+                        <ArrowLeft size={14} />
+                        Back to reading
+                    </button>
+
+                    <span className="
+                        ml-3 rounded-full
+                        border border-[var(--border-control)]
+                        bg-[var(--bg-panel)] px-3 py-1
+                        text-[10px] font-bold text-[var(--color-brand)]
+                    ">
+                        {translation}
+                    </span>
+                </div>
+
+                <div className="
+                    grid w-full min-w-0 grid-cols-2 gap-2
+                    min-[769px]:w-auto
+                    min-[769px]:grid-cols-[180px_150px]
+                ">
+                    {/* Book filter */}
+                    <div ref={bookFilterRef} className="relative min-w-0">
                         <button
                             type="button"
+                            aria-label="Filter by book"
+                            aria-expanded={isBookMenuOpen}
                             onClick={() => {
                                 setIsBookMenuOpen(!isBookMenuOpen);
                                 setIsChapterMenuOpen(false);
                             }}
-                            className="
-                                flex
-                                h-8
-                                min-w-[135px]
-                                items-center
-                                justify-between
-                                gap-3
-                                rounded-lg
-                                border
-                                border-[var(--border-control)]
-                                bg-[var(--bg-panel)]
-                                px-3
-                                text-[11px]
-                                font-medium
-                                text-[var(--text-primary)]
-                                shadow-sm
-                                transition
-                                hover:border-[var(--color-brand)]
-                                hover:bg-[var(--bg-control-hover)]
-                            "
+                            className={filterButton}
                         >
-                            <span>{selectedBook || "All books"}</span>
+                            <span className="truncate">
+                                {selectedBook || "All books"}
+                            </span>
 
                             <ChevronDown
                                 size={14}
                                 className={`
-                                    text-[var(--text-muted)]
-                                    transition-transform
-                                    duration-200
+                                    shrink-0 transition-transform
                                     ${isBookMenuOpen ? "rotate-180" : ""}
                                 `}
                             />
                         </button>
 
                         {isBookMenuOpen && (
-                            <div className="
-                                absolute
-                                left-0
-                                top-[calc(100%+6px)]
-                                z-50
-                                w-[210px]
-                                overflow-hidden
-                                rounded-xl
-                                border
-                                border-[var(--border-control)]
-                                bg-[var(--bg-panel)]
-                                shadow-[0_12px_32px_rgba(50,35,25,0.18)]
-                            ">
+                            <div className={`${menuStyle} left-0 w-[230px]`}>
                                 <div className="
-                                    border-b
-                                    border-[var(--border-control)]
-                                    px-3
-                                    py-2
-                                    text-[9px]
-                                    font-bold
-                                    uppercase
-                                    tracking-[1.5px]
-                                    text-[var(--text-muted)]
+                                    max-h-[min(380px,calc(100dvh-220px))]
+                                    overflow-y-auto overscroll-contain p-2
                                 ">
-                                    Filter by book
-                                </div>
-
-                                <div className="
-                                    max-h-[380px]
-                                    overflow-y-auto
-                                    p-2
-                                ">
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setSelectedBook("");
-                                            setSelectedChapter("");
-                                            setIsBookMenuOpen(false);
-                                        }}
-                                        className={`
-                                            mb-2
-                                            flex
-                                            w-full
-                                            items-center
-                                            justify-between
-                                            rounded-lg
-                                            border
-                                            border-[var(--border-control)]
-                                            px-3
-                                            py-2
-                                            text-left
-                                            text-[11px]
-                                            transition-colors
-                                            ${
-                                                selectedBook === ""
-                                                    ? "bg-[var(--bg-selected)] font-semibold text-[var(--color-brand)]"
-                                                    : "text-[var(--text-primary)] hover:bg-[var(--bg-control-hover)]"
-                                            }
-                                        `}
-                                    >
-                                        <span>All books</span>
-                                        {selectedBook === "" && <Check size={13} />}
-                                    </button>
+                                    <div className="
+                                        mb-2 overflow-hidden rounded-lg
+                                        border border-[var(--border-control)]
+                                    ">
+                                        <FilterOption
+                                            selected={!selectedBook}
+                                            onClick={() => selectBook("")}
+                                        >
+                                            All books
+                                        </FilterOption>
+                                    </div>
 
                                     {[
-                                        {
-                                            label: "Old Testament",
-                                            books: books.filter((bookItem) => bookItem.testament === "OT")
-                                        },
-                                        {
-                                            label: "New Testament",
-                                            books: books.filter((bookItem) => bookItem.testament === "NT")
-                                        }
+                                        { label: "Old Testament", value: "OT" },
+                                        { label: "New Testament", value: "NT" }
                                     ].map((group) => (
-                                        <div
-                                            key={group.label}
-                                            className="mb-3 last:mb-0"
-                                        >
+                                        <div key={group.value} className="mb-3 last:mb-0">
                                             <div className="
-                                                sticky
-                                                top-0
-                                                z-10
-                                                bg-[var(--bg-panel)]
-                                                px-2
-                                                py-2
-                                                text-[9px]
-                                                font-bold
-                                                uppercase
-                                                tracking-[1.4px]
+                                                sticky top-0 bg-[var(--bg-panel)]
+                                                px-2 py-2 text-[9px] font-bold
+                                                uppercase tracking-[1.4px]
                                                 text-[var(--color-brand)]
                                             ">
                                                 {group.label}
                                             </div>
 
                                             <div className="
-                                                overflow-hidden
-                                                rounded-lg
-                                                border
-                                                border-[var(--border-control)]
+                                                overflow-hidden rounded-lg
+                                                border border-[var(--border-control)]
                                             ">
-                                                {group.books.map((bookItem) => {
-                                                    const isSelected = selectedBook === bookItem.name;
-
-                                                    return (
-                                                        <button
-                                                            type="button"
-                                                            key={bookItem.id}
-                                                            onClick={() => {
-                                                                setSelectedBook(bookItem.name);
-                                                                setSelectedChapter("");
-                                                                setIsBookMenuOpen(false);
-                                                            }}
-                                                            className={`
-                                                                flex
-                                                                w-full
-                                                                items-center
-                                                                justify-between
-                                                                border-b
-                                                                border-[var(--border-control)]
-                                                                px-3
-                                                                py-2
-                                                                text-left
-                                                                text-[11px]
-                                                                transition-colors
-                                                                last:border-b-0
-                                                                ${
-                                                                    isSelected
-                                                                        ? "bg-[var(--bg-selected)] font-semibold text-[var(--color-brand)]"
-                                                                        : "bg-[var(--bg-panel)] text-[var(--text-primary)] hover:bg-[var(--bg-control-hover)]"
-                                                                }
-                                                            `}
+                                                {books
+                                                    .filter((item) =>
+                                                        item.testament === group.value
+                                                    )
+                                                    .map((item) => (
+                                                        <FilterOption
+                                                            key={item.id}
+                                                            selected={selectedBook === item.name}
+                                                            onClick={() => selectBook(item.name)}
                                                         >
-                                                            <span>{bookItem.name}</span>
-                                                            {isSelected && <Check size={13} />}
-                                                        </button>
-                                                    );
-                                                })}
+                                                            {item.name}
+                                                        </FilterOption>
+                                                    ))}
                                             </div>
                                         </div>
                                     ))}
-</div>
+                                </div>
                             </div>
                         )}
                     </div>
 
                     {/* Chapter filter */}
-                    <div
-                        ref={chapterFilterRef}
-                        className="relative shrink-0"
-                    >
+                    <div ref={chapterFilterRef} className="relative min-w-0">
                         <button
                             type="button"
+                            aria-label="Filter by chapter"
+                            aria-expanded={isChapterMenuOpen}
                             onClick={() => {
                                 setIsChapterMenuOpen(!isChapterMenuOpen);
                                 setIsBookMenuOpen(false);
                             }}
-                            className="
-                                flex
-                                h-8
-                                min-w-[135px]
-                                items-center
-                                justify-between
-                                gap-3
-                                rounded-lg
-                                border
-                                border-[var(--border-control)]
-                                bg-[var(--bg-panel)]
-                                px-3
-                                text-[11px]
-                                font-medium
-                                text-[var(--text-primary)]
-                                shadow-sm
-                                transition
-                                hover:border-[var(--color-brand)]
-                                hover:bg-[var(--bg-control-hover)]
-                            "
+                            className={filterButton}
                         >
-                            <span>
+                            <span className="truncate">
                                 {selectedChapter
                                     ? `Chapter ${selectedChapter}`
-                                    : "All chapters"}
+                                    : "All chapters"
+                                }
                             </span>
 
                             <ChevronDown
                                 size={14}
                                 className={`
-                                    text-[var(--text-muted)]
-                                    transition-transform
-                                    duration-200
+                                    shrink-0 transition-transform
                                     ${isChapterMenuOpen ? "rotate-180" : ""}
                                 `}
                             />
                         </button>
 
                         {isChapterMenuOpen && (
-                            <div className="
-                                absolute
-                                left-0
-                                top-[calc(100%+6px)]
-                                z-50
-                                w-[165px]
-                                overflow-hidden
-                                rounded-xl
-                                border
-                                border-[var(--border-control)]
-                                bg-[var(--bg-panel)]
-                                shadow-[0_12px_32px_rgba(50,35,25,0.18)]
-                            ">
+                            <div className={`${menuStyle} right-0 w-[180px]`}>
                                 <div className="
-                                    border-b
-                                    border-[var(--border-control)]
-                                    px-3
-                                    py-2
-                                    text-[9px]
-                                    font-bold
-                                    uppercase
-                                    tracking-[1.5px]
-                                    text-[var(--text-muted)]
+                                    max-h-[min(340px,calc(100dvh-220px))]
+                                    overflow-y-auto overscroll-contain p-2
                                 ">
-                                    Filter by chapter
-                                </div>
-
-                                <div className="
-                                    max-h-[340px]
-                                    overflow-y-auto
-                                    p-2
-                                ">
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setSelectedChapter("");
-                                            setIsChapterMenuOpen(false);
-                                        }}
-                                        className={`
-                                            mb-2
-                                            flex
-                                            w-full
-                                            items-center
-                                            justify-between
-                                            rounded-lg
-                                            border
-                                            border-[var(--border-control)]
-                                            px-3
-                                            py-2
-                                            text-left
-                                            text-[11px]
-                                            transition-colors
-                                            ${
-                                                selectedChapter === ""
-                                                    ? "bg-[var(--bg-selected)] font-semibold text-[var(--color-brand)]"
-                                                    : "text-[var(--text-primary)] hover:bg-[var(--bg-control-hover)]"
-                                            }
-                                        `}
-                                    >
-                                        <span>All chapters</span>
-                                        {selectedChapter === "" && <Check size={13} />}
-                                    </button>
-
                                     <div className="
-                                        overflow-hidden
-                                        rounded-lg
-                                        border
-                                        border-[var(--border-control)]
+                                        overflow-hidden rounded-lg
+                                        border border-[var(--border-control)]
                                     ">
-                                        {[...new Set(
-                                            searchResults
-                                                .filter((result) => {
-                                                    if (!selectedBook) {
-                                                        return true;
-                                                    }
+                                        <FilterOption
+                                            selected={!selectedChapter}
+                                            onClick={() => selectChapter("")}
+                                        >
+                                            All chapters
+                                        </FilterOption>
 
-                                                    return result.book === selectedBook;
-                                                })
-                                                .map((result) => result.chapter_number)
-                                        )]
-                                            .sort((a, b) => a - b)
-                                            .map((chapterNumber) => {
-                                                const isSelected =
-                                                    Number(selectedChapter) === chapterNumber;
-
-                                                return (
-                                                    <button
-                                                        type="button"
-                                                        key={chapterNumber}
-                                                        onClick={() => {
-                                                            setSelectedChapter(
-                                                                String(chapterNumber)
-                                                            );
-                                                            setIsChapterMenuOpen(false);
-                                                        }}
-                                                        className={`
-                                                            flex
-                                                            w-full
-                                                            items-center
-                                                            justify-between
-                                                            border-b
-                                                            border-[var(--border-control)]
-                                                            px-3
-                                                            py-2
-                                                            text-left
-                                                            text-[11px]
-                                                            transition-colors
-                                                            last:border-b-0
-                                                            ${
-                                                                isSelected
-                                                                    ? "bg-[var(--bg-selected)] font-semibold text-[var(--color-brand)]"
-                                                                    : "bg-[var(--bg-panel)] text-[var(--text-primary)] hover:bg-[var(--bg-control-hover)]"
-                                                            }
-                                                        `}
-                                                    >
-                                                        <span>Chapter {chapterNumber}</span>
-                                                        {isSelected && <Check size={13} />}
-                                                    </button>
-                                                );
-                                            })}
+                                        {chapterOptions.map((chapter) => (
+                                            <FilterOption
+                                                key={chapter}
+                                                selected={Number(selectedChapter) === chapter}
+                                                onClick={() => selectChapter(String(chapter))}
+                                            >
+                                                Chapter {chapter}
+                                            </FilterOption>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
                         )}
                     </div>
                 </div>
-
-                {/* Translation badge */}
-                <div className="
-                    shrink-0
-                    whitespace-nowrap
-                    rounded-full
-                    border
-                    border-[var(--border-control)]
-                    bg-[var(--bg-panel)]
-                    px-2.5
-                    py-1
-                    text-[9px]
-                    font-bold
-                    tracking-wide
-                    text-[var(--color-brand)]
-                    shadow-sm
-                    sm:px-3
-                    sm:py-1.5
-                    sm:text-[10px]
-                ">
-                    {translation}
-                </div>
             </nav>
-        )
+        );
     }
 
+
+    // Existing Study page navigation.
     return (
-        <nav
-            className="
-                fixed
-                top-[58px]
-                left-0
-                right-0
-                z-40
-                flex h-[50px]
-                items-center
-                gap-3
-                border-b border-[var(--border)]
-                bg-[var(--bg-nav)]
-                px-3
-
-                sm:gap-5
-                sm:px-5
-
-                md:gap-8
-                md:px-9
-            "
-        >
-
-            {/* Book selector */}
-            <BookSelector 
+        <nav className="
+            fixed left-0 right-0 top-[58px] z-40
+            flex h-[50px] items-center gap-3
+            border-b border-[var(--border)]
+            bg-[var(--bg-nav)] px-3
+            sm:gap-5 sm:px-5 md:gap-8 md:px-9
+        ">
+            <BookSelector
                 book={book}
                 books={books}
                 setBook={setBook}
@@ -550,8 +349,7 @@ export default function SubHeader({
                 setIsVerseMenuOpen={setIsVerseMenuOpen}
             />
 
-            {/* Chapter selector */}
-            <ChapterSelector 
+            <ChapterSelector
                 book={book}
                 books={books}
                 chapter={chapter}
@@ -563,8 +361,7 @@ export default function SubHeader({
                 setIsVerseMenuOpen={setIsVerseMenuOpen}
             />
 
-            {/* Verse selector */}
-            <VerseSelector 
+            <VerseSelector
                 verses={verses}
                 selectedVerse={selectedVerse}
                 setSelectedVerse={setSelectedVerse}
@@ -574,23 +371,15 @@ export default function SubHeader({
                 setIsChapterMenuOpen={setIsChapterMenuOpen}
             />
 
-            {/* Number of verses in the current chapter */}
-            <span
-                className="
-                    whitespace-nowrap
-                    rounded-full
-                    border border-[var(--border)]
-                    bg-[var(--bg-panel)]
-                    px-2 py-1
-                    text-[var(--text-muted)]
-
-                    sm:px-3
-                    sm:text-[11px]
-                "
-            >
+            <span className="
+                whitespace-nowrap rounded-full
+                border border-[var(--border)]
+                bg-[var(--bg-panel)] px-2 py-1
+                text-[var(--text-muted)]
+                sm:px-3 sm:text-[11px]
+            ">
                 {verses.length} verses
             </span>
-
         </nav>
     );
 }

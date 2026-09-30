@@ -4,6 +4,7 @@ const bibleRoutes = require("./routes/bibleRoutes");
 const authRoutes = require("./routes/authRoutes");
 const searchRoutes = require("./routes/searchRoutes");
 const notesRoutes = require("./routes/notesRoutes");
+const bookmarksRoutes = require("./routes/bookmarksRoutes");
 
 const express = require("express"); // loads the express library
 
@@ -15,6 +16,7 @@ app.use("/api", bibleRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api", searchRoutes);
 app.use("/api/notes", notesRoutes);
+app.use("/api/bookmarks", bookmarksRoutes);
 
 const PORT = 5000; // backend will run http://localhost:5000
 

@@ -23,7 +23,6 @@ export default function DesktopStudyTabs({
                     text-xs
                     font-semibold
                     tracking-[0.08em]
-
                     ${
                         activeTab === "commentary"
                             ? "border-b-2 border-[var(--color-brand)] text-[var(--color-brand)]"
@@ -44,7 +43,6 @@ export default function DesktopStudyTabs({
                     text-xs
                     font-semibold
                     tracking-[0.08em]
-
                     ${
                         activeTab === "notes"
                             ? "border-b-2 border-[var(--color-brand)] text-[var(--color-brand)]"

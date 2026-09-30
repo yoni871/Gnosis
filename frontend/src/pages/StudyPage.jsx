@@ -15,9 +15,11 @@ import MobileStudyLayout from "../components/Study/MobileStudyLayout";
 import MobileStudyTabs from "../components/Study/MobileStudyTabs";
 import MobileStudyNav from "../components/Study/MobileStudyNav";
 
+import useNotes from "../hooks/useNotes";
+import useCommentary from "../hooks/useCommentary";
+
 
 export default function StudyPage() {
-
     const {
         book: urlBook,
         chapter: urlChapter
@@ -80,11 +82,32 @@ export default function StudyPage() {
 
 
     // -------------------------
+    // SHARED FEATURE STATE
+    // -------------------------
+
+    const notesState = useNotes({
+        book,
+        chapter,
+        selectedVerse,
+        books
+    });
+
+    const commentaryState = useCommentary({
+        book,
+        chapter,
+        books,
+
+        urlCommentary: urlCommentary
+            ? Number(urlCommentary)
+            : null
+    });
+
+
+    // -------------------------
     // SYNC URL
     // -------------------------
 
     useEffect(() => {
-
         setBook(
             urlBook || "Genesis"
         );
@@ -102,7 +125,6 @@ export default function StudyPage() {
         if (urlTranslation) {
             setTranslation(urlTranslation);
         }
-
     }, [
         urlBook,
         urlChapter,
@@ -116,7 +138,6 @@ export default function StudyPage() {
     // -------------------------
 
     useEffect(() => {
-
         if (!translation) {
             return;
         }
@@ -132,7 +153,6 @@ export default function StudyPage() {
             .catch((error) => {
                 console.error(error);
             });
-
     }, [
         book,
         chapter,
@@ -145,7 +165,6 @@ export default function StudyPage() {
     // -------------------------
 
     useEffect(() => {
-
         getBooks()
             .then((data) => {
                 setBooks(data);
@@ -153,7 +172,6 @@ export default function StudyPage() {
             .catch((error) => {
                 console.error(error);
             });
-
     }, []);
 
 
@@ -162,17 +180,13 @@ export default function StudyPage() {
     // -------------------------
 
     useEffect(() => {
-
         getTranslations()
             .then((data) => {
-
                 setTranslations(data);
 
                 if (data.length > 0) {
-
                     setTranslation(
                         (currentTranslation) => {
-
                             const translationExists =
                                 data.some(
                                     (item) =>
@@ -186,106 +200,73 @@ export default function StudyPage() {
                         }
                     );
                 }
-
             })
             .catch((error) => {
                 console.error(error);
             });
-
     }, []);
 
 
     return (
         <>
-
             <Header
                 layout={layout}
                 setLayout={setLayout}
                 translation={translation}
             />
 
-
             <SubHeader
                 verses={verses}
-
                 chapter={chapter}
                 setChapter={setChapter}
-
                 book={book}
                 books={books}
                 setBook={setBook}
-
                 selectedVerse={selectedVerse}
                 setSelectedVerse={setSelectedVerse}
             />
-
-
-            {/* MOBILE TOP TABS */}
 
             <MobileStudyTabs
                 activeTab={mobileTab}
                 setActiveTab={setMobileTab}
             />
 
-
-            {/* DESKTOP */}
-
             <DesktopStudyLayout
                 layout={layout}
-
                 verses={verses}
-
                 book={book}
                 chapter={chapter}
-
                 translation={translation}
                 translations={translations}
-
                 selectedVerse={selectedVerse}
                 setSelectedVerse={setSelectedVerse}
-
                 setTranslation={setTranslation}
-
                 books={books}
-
                 rightPanelTab={rightPanelTab}
                 setRightPanelTab={setRightPanelTab}
-
-                urlCommentary={urlCommentary}
+                notesState={notesState}
+                commentaryState={commentaryState}
             />
-
-
-            {/* MOBILE */}
 
             <MobileStudyLayout
                 mobileTab={mobileTab}
-
                 verses={verses}
-
                 book={book}
                 chapter={chapter}
-
                 translation={translation}
                 translations={translations}
-
                 selectedVerse={selectedVerse}
                 setSelectedVerse={setSelectedVerse}
-
                 setTranslation={setTranslation}
-
                 books={books}
-
-                urlCommentary={urlCommentary}
+                notesState={notesState}
+                commentaryState={commentaryState}
             />
-
-
-            {/* MOBILE BOTTOM NAV */}
 
             <MobileStudyNav
                 activeTab={mobileTab}
                 setActiveTab={setMobileTab}
             />
-
         </>
     );
 }

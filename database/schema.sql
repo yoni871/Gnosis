@@ -127,4 +127,46 @@ CREATE TABLE users (
     updated_at TIMESTAMP
 );
 
+-- Stores passage-based notes created by authenticated users.
+CREATE TABLE notes (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    book_id INTEGER NOT NULL REFERENCES bible_books(id),
+    start_chapter INTEGER NOT NULL,
+    start_verse INTEGER NOT NULL,
+    end_chapter INTEGER NOT NULL,
+    end_verse INTEGER NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Speeds up loading all notes belonging to the current user.
+CREATE INDEX notes_user_id_idx
+ON notes(user_id);
+
+-- Stores Bible passages bookmarked by authenticated users.
+CREATE TABLE bookmarks (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    book_id INTEGER NOT NULL REFERENCES bible_books(id),
+    start_chapter INTEGER NOT NULL,
+    start_verse INTEGER NOT NULL,
+    end_chapter INTEGER NOT NULL,
+    end_verse INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT unique_user_bookmark UNIQUE (
+        user_id,
+        book_id,
+        start_chapter,
+        start_verse,
+        end_chapter,
+        end_verse
+    )
+);
+
+-- Speeds up loading all bookmarks belonging to the current user.
+CREATE INDEX bookmarks_user_id_idx
+ON bookmarks(user_id);
+
 

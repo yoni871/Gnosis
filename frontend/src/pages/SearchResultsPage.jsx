@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+
 import { searchBible, searchCommentary } from "../services/searchService";
 import { getBooks } from "../services/bibleService";
+
 import Header from "../components/Header/Header";
 import SubHeader from "../components/Navigation/SubHeader";
 
-// Formats a commentary result as a readable Bible passage.
+
 function formatPassage(result) {
     const start =
         `${result.book} ${result.start_chapter}:${result.start_verse}`;
 
-    const isSingleVerse =
+    if (
         result.start_chapter === result.end_chapter &&
-        result.start_verse === result.end_verse;
-
-    if (isSingleVerse) {
+        result.start_verse === result.end_verse
+    ) {
         return start;
     }
 
@@ -26,106 +27,204 @@ function formatPassage(result) {
 }
 
 
+const cardStyle = `
+    group block w-full rounded-xl
+    border border-[var(--border-control)]
+    bg-[var(--bg-panel)] p-4 text-left shadow-sm
+    transition duration-200
+    hover:bg-[var(--bg-control-hover)] hover:shadow-md
+    focus-visible:outline-2 focus-visible:outline-[var(--color-brand)]
+`;
+
+
+function ResultsPanel({ id, title, count, unit, active, children }) {
+    return (
+        <section
+            id={id}
+            aria-label={`${title} results`}
+            className={`
+                ${active ? "flex" : "hidden"}
+                min-h-0 flex-col overflow-hidden rounded-xl
+                border border-transparent border-t-[4px]
+                border-t-[var(--color-brand)] bg-transparent
+                shadow-[0_8px_24px_rgba(80,55,35,0.08)]
+                min-[769px]:flex
+            `}
+        >
+            <div className="
+                flex shrink-0 items-center justify-between gap-3
+                border-b border-[var(--border-control)]
+                bg-[var(--bg-nav)] px-4 py-3
+            ">
+                <h2 className="
+                    font-serif text-[18px] font-semibold
+                    text-[var(--text-primary)]
+                ">
+                    {title}
+                </h2>
+
+                <span className="
+                    rounded-full bg-[var(--bg-control-hover)]
+                    px-2.5 py-1 text-[11px] font-semibold
+                    text-[var(--color-brand)]
+                ">
+                    {count} {unit}
+                </span>
+            </div>
+
+            <div className="
+                min-h-0 flex-1 space-y-3 overflow-y-auto
+                overscroll-contain p-3
+            ">
+                {children}
+            </div>
+        </section>
+    );
+}
+
+
+function EmptyResults({ title, children }) {
+    return (
+        <div className="
+            flex min-h-[220px] flex-col items-center
+            justify-center px-6 text-center
+        ">
+            <p className="
+                font-serif text-[16px] font-semibold
+                text-[var(--text-primary)]
+            ">
+                {title}
+            </p>
+
+            <p className="
+                mt-2 max-w-xs text-[12px] leading-5
+                text-[var(--text-muted)]
+            ">
+                {children}
+            </p>
+        </div>
+    );
+}
+
+
 export default function SearchResultsPage() {
     const [searchParams] = useSearchParams();
-    const [searchResults, setSearchResults] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [searchError, setSearchError] = useState("");
-    const [selectedBook, setSelectedBook] = useState("");
-    const [selectedChapter, setSelectedChapter] = useState("");
-    const [books, setBooks] = useState([]);
-    // Stores matching commentary entries.
-    const [commentaryResults, setCommentaryResults] = useState([]);
-
     const navigate = useNavigate();
-    const query = searchParams.get("q");
+
+    const query = searchParams.get("q") || "";
     const translation = searchParams.get("translation") || "BSB";
 
+    const [searchResults, setSearchResults] = useState([]);
+    const [commentaryResults, setCommentaryResults] = useState([]);
+    const [books, setBooks] = useState([]);
+
+    const [loading, setLoading] = useState(false);
+    const [searchError, setSearchError] = useState("");
+
+    const [selectedBook, setSelectedBook] = useState("");
+    const [selectedChapter, setSelectedChapter] = useState("");
+    const [activeTab, setActiveTab] = useState("scripture");
+
+
     const filteredResults = searchResults.filter((result) => {
-        // if a book is selected show the results from that book only
         if (selectedBook && result.book !== selectedBook) {
             return false;
         }
 
-        // if chapter is selected only show results from that chapter
-        if (
-            selectedChapter &&
-            result.chapter_number !== Number(selectedChapter)
-        ) {
-            return false;
-        }
-
-        return true;
+        return (
+            !selectedChapter ||
+            result.chapter_number === Number(selectedChapter)
+        );
     });
 
     const filteredCommentaryResults = commentaryResults.filter((result) => {
-        // Show only commentary from the selected book.
         if (selectedBook && result.book !== selectedBook) {
             return false;
         }
 
-        // Keep entries whose passage range includes the selected chapter.
         if (selectedChapter) {
-            const chapterNumber = Number(selectedChapter);
+            const chapter = Number(selectedChapter);
 
-            if (
-                chapterNumber < result.start_chapter ||
-                chapterNumber > result.end_chapter
-            ) {
-                return false;
-            }
+            return (
+                chapter >= result.start_chapter &&
+                chapter <= result.end_chapter
+            );
         }
 
         return true;
     });
 
-    useEffect(() => {
-        getBooks()
-            .then(data => {
-                setBooks(data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }, []);
 
     useEffect(() => {
-        if (!query) {
+        let ignore = false;
+
+        getBooks()
+            .then((data) => {
+                if (!ignore) {
+                    setBooks(data);
+                }
+            })
+            .catch(console.error);
+
+        return () => {
+            ignore = true;
+        };
+    }, []);
+
+
+    useEffect(() => {
+        let ignore = false;
+
+        setSearchResults([]);
+        setCommentaryResults([]);
+        setSearchError("");
+        setSelectedBook("");
+        setSelectedChapter("");
+
+        if (!query.trim()) {
+            setLoading(false);
             return;
         }
 
         setLoading(true);
-        setSearchError("");
 
-        // Fetch Scripture and commentary results at the same time.
         Promise.all([
             searchBible(query, translation),
             searchCommentary(query)
         ])
             .then(([bibleData, commentaryData]) => {
-                setSearchResults(bibleData);
-                setCommentaryResults(commentaryData);
+                if (!ignore) {
+                    setSearchResults(bibleData);
+                    setCommentaryResults(commentaryData);
+                }
             })
             .catch((error) => {
-                console.error(error);
-                setSearchResults([]);
-                setCommentaryResults([]);
-                setSearchError(
-                    "We couldn't complete your search. Please try again."
-                );
+                if (!ignore) {
+                    console.error(error);
+                    setSearchError(
+                        "We couldn't complete your search. Please try again."
+                    );
+                }
             })
             .finally(() => {
-                setLoading(false);
+                if (!ignore) {
+                    setLoading(false);
+                }
             });
+
+        return () => {
+            ignore = true;
+        };
     }, [query, translation]);
+
 
     return (
         <div className="
-            min-h-screen
+            flex h-dvh flex-col overflow-hidden
             bg-[var(--bg-page)]
-            pt-[100px]
+            pt-[198px] min-[769px]:pt-[108px]
         ">
-            <Header variant="searchResults" translation={translation}/>
+            <Header variant="searchResults" translation={translation} />
 
             <SubHeader
                 variant="searchResults"
@@ -135,255 +234,155 @@ export default function SearchResultsPage() {
                 selectedChapter={selectedChapter}
                 setSelectedChapter={setSelectedChapter}
                 searchResults={searchResults}
+                commentaryResults={commentaryResults}
                 translation={translation}
             />
 
-            {loading && (
+            {/* Mobile result tabs */}
+            <div className="
+                fixed left-0 right-0 top-[154px] z-30
+                grid h-[44px] grid-cols-2
+                border-b border-[var(--border)]
+                bg-[var(--bg-nav)] min-[769px]:hidden
+            ">
+                {[
+                    {
+                        id: "scripture",
+                        label: "Scripture",
+                        count: filteredResults.length
+                    },
+                    {
+                        id: "commentary",
+                        label: "Commentary",
+                        count: filteredCommentaryResults.length
+                    }
+                ].map((tab) => (
+                    <button
+                        key={tab.id}
+                        type="button"
+                        aria-pressed={activeTab === tab.id}
+                        aria-controls={`${tab.id}-results`}
+                        onClick={() => setActiveTab(tab.id)}
+                        className={`
+                            flex items-center justify-center gap-2
+                            border-b-2 font-serif text-[12px] font-semibold
+                            transition-colors
+                            ${
+                                activeTab === tab.id
+                                    ? "border-[var(--color-brand)] text-[var(--color-brand)]"
+                                    : "border-transparent text-[var(--text-muted)]"
+                            }
+                        `}
+                    >
+                        {tab.label}
+
+                        {!loading && !searchError && (
+                            <span className="
+                                rounded-full bg-[var(--bg-control-hover)]
+                                px-2 py-0.5 text-[10px]
+                            ">
+                                {tab.count}
+                            </span>
+                        )}
+                    </button>
+                ))}
+            </div>
+
+            {loading ? (
                 <div
                     role="status"
                     aria-live="polite"
                     className="
-                        mx-auto
-                        flex
-                        items-center
-                        justify-center
-                        gap-3
-                        py-10
-                        text-[13px]
-                        text-[var(--text-muted)]
+                        flex flex-1 items-center justify-center
+                        gap-3 px-5 text-[13px] text-[var(--text-muted)]
                     "
                 >
                     <span className="
-                        h-4
-                        w-4
-                        shrink-0
-                        animate-spin
-                        rounded-full
-                        border-2
-                        border-[var(--border-control)]
+                        h-4 w-4 shrink-0 animate-spin rounded-full
+                        border-2 border-[var(--border-control)]
                         border-t-[var(--color-brand)]
                     " />
 
-                    <span>
-                        Searching Scripture and commentary for “{query}”…
-                    </span>
+                    <span>Searching for “{query}”…</span>
                 </div>
-            )}
-
-            {!loading && searchError && (
+            ) : searchError ? (
                 <div
                     role="alert"
-                    className="
-                        mx-auto
-                        flex
-                        max-w-xl
-                        items-center
-                        justify-center
-                        px-4
-                        py-10
-                        text-center
-                    "
+                    className="flex flex-1 items-center justify-center px-5"
                 >
-                    <div>
-                        <p className="
-                            font-serif
-                            text-[16px]
-                            font-semibold
-                            text-[var(--color-brand)]
-                        ">
-                            Search unavailable
-                        </p>
-
-                        <p className="
-                            mt-2
-                            text-[12px]
-                            leading-5
-                            text-[var(--text-muted)]
-                        ">
-                            {searchError}
-                        </p>
-                    </div>
+                    <EmptyResults title="Search unavailable">
+                        {searchError}
+                    </EmptyResults>
                 </div>
-            )}
-
-            <div className="
-                mx-auto
-                grid
-                w-full
-                max-w-[1700px]
-                grid-cols-1
-                gap-6
-                px-[clamp(16px,3vw,48px)]
-                py-5
-                lg:h-[calc(100vh-100px)]
-                lg:grid-cols-2
-                lg:overflow-hidden
-            ">
-                {/* Scripture results */}
-                <section className="
-                    flex
-                    min-h-0
-                    flex-col
-                    rounded-xl
-                    border
-                    border-transparent
-                    border-t-[4px]
-                    border-t-[var(--color-brand)]
-                    bg-transparent
-                    shadow-[0_8px_24px_rgba(80,55,35,0.08)]
-                    lg:overflow-hidden
-                    "
-                >
-                    <div className="
-                        flex
-                        shrink-0
-                        items-center
-                        justify-between
-                        border-b
-                        border-[var(--border-control)]
-                        bg-[var(--bg-nav)]
-                        px-4
-                        py-3
-                        text-[11px]
-                        text-[var(--text-muted)]
-                    ">
-                        <h2 className="
-                            font-serif
-                            text-[18px]
-                            font-semibold
-                            text-[var(--text-primary)]
-                        ">
-                            Scripture
-                        </h2>
-
-                        <span className="
-                            rounded-full
-                            bg-[var(--bg-control-hover)]
-                            px-2.5
-                            py-1
-                            font-semibold
-                            text-[var(--color-brand)]
-                        ">
-                            {filteredResults.length} verses
-                        </span>
-                    </div>
-
-                    <div className="
-                        min-h-0
-                        flex-1
-                        space-y-3
-                        lg:overflow-y-auto
-                        p-3
-                    ">
-                        {!loading && !searchError && filteredResults.length === 0 && (
-                            <div className="
-                                flex
-                                min-h-[220px]
-                                flex-col
-                                items-center
-                                justify-center
-                                px-6
-                                text-center
-                            ">
-                                <p className="
-                                    font-serif
-                                    text-[16px]
-                                    font-semibold
-                                    text-[var(--text-primary)]
-                                ">
-                                    No Scripture results
-                                </p>
-
-                                <p className="
-                                    mt-2
-                                    max-w-xs
-                                    text-[12px]
-                                    leading-5
-                                    text-[var(--text-muted)]
-                                ">
-                                    No verses in {translation} matched “{query}”.
-                                    Try another word or phrase.
-                                </p>
-                            </div>
+            ) : (
+                <main className="
+                    mx-auto grid w-full max-w-[1700px]
+                    min-h-0 flex-1 grid-cols-1 gap-6
+                    px-3 py-3
+                    min-[769px]:grid-cols-2
+                    min-[769px]:px-[clamp(16px,3vw,48px)]
+                    min-[769px]:py-5
+                ">
+                    <ResultsPanel
+                        id="scripture-results"
+                        title="Scripture"
+                        count={filteredResults.length}
+                        unit="verses"
+                        active={activeTab === "scripture"}
+                    >
+                        {filteredResults.length === 0 && (
+                            <EmptyResults title="No Scripture results">
+                                {query
+                                    ? `No verses in ${translation} match “${query}” with these filters. Try another word or clear the filters.`
+                                    : "Enter a word or phrase to begin searching."
+                                }
+                            </EmptyResults>
                         )}
+
                         {filteredResults.map((result) => (
                             <button
+                                type="button"
                                 key={`${result.book}-${result.chapter_number}-${result.verse_number}`}
-                                className="
-                                    group
-                                    block
-                                    w-full
-                                    rounded-xl
-                                    border
-                                    border-[var(--border-control)]
-                                    bg-[var(--bg-panel)]
-                                    p-4
-                                    text-left
-                                    shadow-sm
-                                    transition-all
-                                    duration-300
-                                    hover:-translate-y-[1px]
-                                    hover:bg-[var(--bg-control-hover)]
-                                    hover:shadow-md
-                                "
-                                onClick={() => {
-                                    navigate(
-                                        `/bible/${result.book}/${result.chapter_number}` +
-                                        `?verse=${result.verse_number}` +
-                                        `&translation=${encodeURIComponent(translation)}`
-                                    );
-                                }}
+                                className={cardStyle}
+                                onClick={() => navigate(
+                                    `/bible/${encodeURIComponent(result.book)}/${result.chapter_number}` +
+                                    `?verse=${result.verse_number}` +
+                                    `&translation=${encodeURIComponent(translation)}`
+                                )}
                             >
                                 <div className="
-                                    flex
-                                    items-center
-                                    justify-between
-                                    gap-3
+                                    flex items-center justify-between gap-3
                                 ">
                                     <strong className="
-                                        font-serif
-                                        text-[13px]
+                                        font-serif text-[13px]
                                         text-[var(--color-brand)]
                                     ">
                                         {result.book} {result.chapter_number}:{result.verse_number}
                                     </strong>
 
                                     <span className="
-                                        rounded-full
-                                        border
+                                        shrink-0 rounded-full border
                                         border-[var(--border-control)]
                                         bg-[var(--bg-control-hover)]
-                                        px-2
-                                        py-1
-                                        text-[9px]
-                                        font-bold
-                                        tracking-wide
+                                        px-2 py-1 text-[9px] font-bold
                                         text-[var(--color-brand)]
                                     ">
-                                        {result.translation}
+                                        {result.translation || translation}
                                     </span>
                                 </div>
 
                                 <p className="
-                                    mt-3
-                                    mb-0
-                                    font-serif
-                                    text-[14px]
-                                    leading-7
-                                    text-[var(--text-primary)]
+                                    mb-0 mt-3 font-serif text-[14px]
+                                    leading-7 text-[var(--text-primary)]
                                 ">
                                     {result.text}
                                 </p>
+
                                 <div className="
-                                    mt-4
-                                    flex
-                                    items-center
-                                    justify-between
-                                    border-t
-                                    border-[var(--border-control)]
-                                    pt-3
-                                    text-[10px]
-                                    text-[var(--text-muted)]
+                                    mt-4 flex flex-wrap items-center
+                                    justify-between gap-2
+                                    border-t border-[var(--border-control)]
+                                    pt-3 text-[10px] text-[var(--text-muted)]
                                 ">
                                     <span>
                                         {result.book} · Chapter {result.chapter_number}
@@ -391,7 +390,6 @@ export default function SearchResultsPage() {
 
                                     <span className="
                                         font-medium
-                                        transition-colors
                                         group-hover:text-[var(--color-brand)]
                                     ">
                                         Read with commentary →
@@ -399,175 +397,72 @@ export default function SearchResultsPage() {
                                 </div>
                             </button>
                         ))}
-                    </div>
-                </section>
+                    </ResultsPanel>
 
-                {/* Commentary results */}
-                <section className="
-                    flex
-                    min-h-0
-                    flex-col
-                    rounded-xl
-                    border
-                    border-transparent
-                    border-t-[4px]
-                    border-t-[var(--color-brand)]
-                    bg-transparent
-                    shadow-[0_8px_24px_rgba(80,55,35,0.08)]
-                    lg:overflow-hidden
-                    "
-                >
-                    <div className="
-                        flex
-                        shrink-0
-                        items-center
-                        justify-between
-                        border-b
-                        border-[var(--border-control)]
-                        bg-[var(--bg-nav)]
-                        px-4
-                        py-3
-                        text-[11px]
-                        text-[var(--text-muted)]
-                    ">
-                        <h2 className="
-                            font-serif
-                            text-[18px]
-                            font-semibold
-                            text-[var(--text-primary)]
-                        ">
-                            Commentary
-                        </h2>
-
-                        <span className="
-                            rounded-full
-                            bg-[var(--bg-control-hover)]
-                            px-2.5
-                            py-1
-                            font-semibold
-                            text-[var(--color-brand)]
-                        ">
-                            {filteredCommentaryResults.length} entries
-                        </span>
-                    </div>
-
-                    <div className="
-                        min-h-0
-                        flex-1
-                        space-y-3
-                        lg:overflow-y-auto
-                        p-3               
-                    ">
-
-                        {!loading && !searchError && filteredCommentaryResults.length === 0 && (
-                            <div className="
-                                flex
-                                min-h-[220px]
-                                flex-col
-                                items-center
-                                justify-center
-                                px-6
-                                text-center
-                            ">
-                                <p className="
-                                    font-serif
-                                    text-[16px]
-                                    font-semibold
-                                    text-[var(--text-primary)]
-                                ">
-                                    No commentary results
-                                </p>
-
-                                <p className="
-                                    mt-2
-                                    max-w-xs
-                                    text-[12px]
-                                    leading-5
-                                    text-[var(--text-muted)]
-                                ">
-                                    Commentaries have no matches for “{query}”.
-                                    Try another word or phrase.
-                                </p>
-                            </div>
+                    <ResultsPanel
+                        id="commentary-results"
+                        title="Commentary"
+                        count={filteredCommentaryResults.length}
+                        unit="entries"
+                        active={activeTab === "commentary"}
+                    >
+                        {filteredCommentaryResults.length === 0 && (
+                            <EmptyResults title="No commentary results">
+                                {query
+                                    ? `No commentary matches “${query}” with these filters. Try another word or clear the filters.`
+                                    : "Enter a word or phrase to begin searching."
+                                }
+                            </EmptyResults>
                         )}
 
                         {filteredCommentaryResults.map((result) => (
                             <button
+                                type="button"
                                 key={result.id}
-                                className="
-                                    group
-                                    block
-                                    w-full
-                                    rounded-xl
-                                    border
-                                    border-[var(--border-control)]
-                                    bg-[var(--bg-panel)]
-                                    p-4
-                                    text-left
-                                    shadow-sm
-                                    transition-all
-                                    duration-300
-                                    hover:-translate-y-[1px]
-                                    hover:bg-[var(--bg-control-hover)]
-                                    hover:shadow-md
-                                "
-                                onClick={() => {
-                                    navigate(
-                                        `/bible/${result.book}/${result.start_chapter}` +
-                                        `?verse=${result.start_verse}` +
-                                        `&commentary=${result.commentary_id}` +
-                                        `&translation=${encodeURIComponent(translation)}`
-                                    );
-                                }}
+                                className={cardStyle}
+                                onClick={() => navigate(
+                                    `/bible/${encodeURIComponent(result.book)}/${result.start_chapter}` +
+                                    `?verse=${result.start_verse}` +
+                                    `&commentary=${result.commentary_id}` +
+                                    `&translation=${encodeURIComponent(translation)}`
+                                )}
                             >
                                 <div className="
-                                    flex
-                                    items-start
-                                    justify-between
-                                    gap-3
+                                    flex flex-wrap items-start
+                                    justify-between gap-2
                                 ">
                                     <strong className="
-                                        font-serif
-                                        text-[13px]
+                                        font-serif text-[13px]
                                         text-[var(--color-brand)]
                                     ">
                                         {formatPassage(result)}
                                     </strong>
 
                                     <span className="
-                                        text-right
-                                        text-[10px]
-                                        text-[var(--text-muted)]
+                                        text-[10px] text-[var(--text-muted)]
                                     ">
                                         {result.source}
                                     </span>
                                 </div>
 
                                 <h3 className="
-                                    mt-3
-                                    font-serif
-                                    text-[14px]
-                                    font-semibold
-                                    text-[var(--text-primary)]
+                                    mt-3 font-serif text-[14px]
+                                    font-semibold text-[var(--text-primary)]
                                 ">
                                     {result.entry_title}
                                 </h3>
 
                                 <p className="
-                                    mt-2
-                                    mb-0
-                                    font-serif
-                                    text-[13px]
-                                    leading-6
-                                    text-[var(--text-muted)]
+                                    mb-0 mt-2 font-serif text-[13px]
+                                    leading-6 text-[var(--text-muted)]
                                 ">
-                                    {result.excerpt.replace(/<\/?b>/g, "")}
+                                    {(result.excerpt || "").replace(/<\/?b>/g, "")}...
                                 </p>
                             </button>
                         ))}
-                    </div>
-                </section>
-            </div>
+                    </ResultsPanel>
+                </main>
+            )}
         </div>
     );
 }

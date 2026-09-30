@@ -24,30 +24,24 @@ export default function DesktopStudyLayout({
     rightPanelTab,
     setRightPanelTab,
 
-    urlCommentary
+    notesState,
+    commentaryState
 }) {
     return (
         <main
             className={`
                 mt-[108px]
-
                 grid
-
                 ${
                     layout === "side"
                         ? "grid-cols-[60%_40%]"
                         : "grid-rows-2"
                 }
-
                 h-[calc(100vh-108px)]
                 overflow-hidden
-
                 max-[768px]:hidden
             `}
         >
-
-            {/* Scripture */}
-
             <div
                 className="
                     min-h-0
@@ -56,22 +50,15 @@ export default function DesktopStudyLayout({
             >
                 <ScripturePanel
                     verses={verses}
-
                     book={book}
                     chapter={chapter}
-
                     translation={translation}
                     translations={translations}
-
                     selectedVerse={selectedVerse}
                     setSelectedVerse={setSelectedVerse}
-
                     setTranslation={setTranslation}
                 />
             </div>
-
-
-            {/* Right panel */}
 
             <div
                 className="
@@ -81,12 +68,10 @@ export default function DesktopStudyLayout({
                     overflow-hidden
                 "
             >
-
                 <DesktopStudyTabs
                     activeTab={rightPanelTab}
                     setActiveTab={setRightPanelTab}
                 />
-
 
                 <div
                     className="
@@ -95,40 +80,24 @@ export default function DesktopStudyLayout({
                         overflow-hidden
                     "
                 >
-
                     {rightPanelTab === "commentary" ? (
-
                         <CommentaryPanel
                             book={book}
                             chapter={chapter}
-                            books={books}
-
                             selectedVerse={selectedVerse}
-
-                            urlCommentary={
-                                urlCommentary
-                                    ? Number(urlCommentary)
-                                    : null
-                            }
+                            commentaryState={commentaryState}
                         />
-
                     ) : (
-
                         <NotesPanel
                             book={book}
                             chapter={chapter}
-
                             selectedVerse={selectedVerse}
-
                             books={books}
+                            notesState={notesState}
                         />
-
                     )}
-
                 </div>
-
             </div>
-
         </main>
     );
 }

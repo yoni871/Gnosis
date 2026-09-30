@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from "react"
 import { ChevronDown } from "lucide-react";
 
 export default function ScripturePanel({
-    verses,
-    book,
-    chapter,
-    translation,
-    translations,
+    verses = [],
+    book = "",
+    chapter = 1,
+    translation = "",
+    translations = [],
     selectedVerse,
     setSelectedVerse,
     setTranslation
@@ -178,7 +178,9 @@ export default function ScripturePanel({
                     tracking-[2px]
                     text-[var(--text-muted)]
                 ">
-                    <span className="text-left">{book.toUpperCase()}</span>
+                    <span className="text-left">
+                        {book?.toUpperCase() || ""}
+                    </span>
                     <span>{translation}</span>
                     <span className="text-right">CH. {chapter}</span>
                 </div>
@@ -234,7 +236,13 @@ export default function ScripturePanel({
                 ">
                     {verses.map((verse) => (
                         <p
-                            onClick={() => setSelectedVerse(verse.verse_number)}
+                            onClick={() => {
+                                setSelectedVerse((currentVerse) =>
+                                    currentVerse === verse.verse_number
+                                        ? null
+                                        : verse.verse_number
+                                );
+                            }}
                             key={verse.verse_number}
                             ref={(element) => {
                                 verseRefs.current[verse.verse_number] = element;

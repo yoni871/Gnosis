@@ -1,14 +1,3 @@
-import { useContext, useEffect, useState } from "react";
-
-import AuthContext from "../../context/AuthContext";
-
-import {
-    createNote,
-    deleteNote,
-    getNotes,
-    updateNote
-} from "../../services/notesService";
-
 import NotesHeader from "./NotesHeader";
 import NoteComposer from "./NoteComposer";
 import NotesList from "./NotesList";
@@ -19,262 +8,37 @@ export default function NotesPanel({
     book,
     chapter,
     selectedVerse,
-    books
+    books,
+    notesState
 }) {
     const {
-        token,
         isAuthenticated,
-        isAuthLoading
-    } = useContext(AuthContext);
+        isAuthLoading,
 
+        notes,
+        isLoadingNotes,
+        notesError,
 
-    // -------------------------
-    // NOTES STATE
-    // -------------------------
+        noteContent,
+        setNoteContent,
+        isSavingNote,
 
-    const [notes, setNotes] = useState([]);
-    const [isLoadingNotes, setIsLoadingNotes] = useState(false);
-    const [notesError, setNotesError] = useState("");
+        editingNoteId,
+        editContent,
+        setEditContent,
+        isUpdatingNote,
 
+        deletingNoteId,
 
-    // -------------------------
-    // CREATE NOTE STATE
-    // -------------------------
+        handleSaveNote,
+        handleStartEdit,
+        handleCancelEdit,
+        handleUpdateNote,
+        handleDeleteNote
+    } = notesState;
 
-    const [noteContent, setNoteContent] = useState("");
-    const [isSavingNote, setIsSavingNote] = useState(false);
 
-
-    // -------------------------
-    // EDIT NOTE STATE
-    // -------------------------
-
-    const [editingNoteId, setEditingNoteId] = useState(null);
-    const [editContent, setEditContent] = useState("");
-    const [isUpdatingNote, setIsUpdatingNote] = useState(false);
-
-
-    // -------------------------
-    // DELETE NOTE STATE
-    // -------------------------
-
-    const [deletingNoteId, setDeletingNoteId] = useState(null);
-
-
-    // Find the current Bible book object.
-    const currentBook = books.find(
-        (item) => item.name === book
-    );
-
-
-    // -------------------------
-    // LOAD NOTES
-    // -------------------------
-
-    useEffect(() => {
-        if (!token) {
-            setNotes([]);
-            return;
-        }
-
-        async function loadNotes() {
-            setIsLoadingNotes(true);
-            setNotesError("");
-
-            try {
-                const data = await getNotes(token);
-
-                setNotes(data);
-
-            } catch (error) {
-                setNotesError(error.message);
-
-            } finally {
-                setIsLoadingNotes(false);
-            }
-        }
-
-        loadNotes();
-
-    }, [token]);
-
-
-    // -------------------------
-    // CREATE NOTE
-    // -------------------------
-
-    async function handleSaveNote() {
-        if (
-            !token ||
-            !currentBook ||
-            !selectedVerse ||
-            !noteContent.trim()
-        ) {
-            return;
-        }
-
-        setNotesError("");
-        setIsSavingNote(true);
-
-
-        const noteData = {
-            bookId: currentBook.id,
-
-            startChapter: chapter,
-            startVerse: selectedVerse,
-
-            endChapter: chapter,
-            endVerse: selectedVerse,
-
-            content: noteContent.trim()
-        };
-
-
-        try {
-            const newNote = await createNote(
-                token,
-                noteData
-            );
-
-
-            // Add the new note to the top
-            // without re-fetching every note.
-            setNotes((currentNotes) => [
-                newNote,
-                ...currentNotes
-            ]);
-
-
-            setNoteContent("");
-
-        } catch (error) {
-            setNotesError(error.message);
-
-        } finally {
-            setIsSavingNote(false);
-        }
-    }
-
-
-    // -------------------------
-    // START EDITING
-    // -------------------------
-
-    function handleStartEdit(note) {
-        setEditingNoteId(note.id);
-        setEditContent(note.content);
-        setNotesError("");
-    }
-
-
-    // -------------------------
-    // CANCEL EDITING
-    // -------------------------
-
-    function handleCancelEdit() {
-        setEditingNoteId(null);
-        setEditContent("");
-    }
-
-
-    // -------------------------
-    // UPDATE NOTE
-    // -------------------------
-
-    async function handleUpdateNote(noteId) {
-        if (
-            !token ||
-            !editContent.trim()
-        ) {
-            return;
-        }
-
-
-        setNotesError("");
-        setIsUpdatingNote(true);
-
-
-        try {
-            const updatedNote = await updateNote(
-                token,
-                noteId,
-                {
-                    content: editContent.trim()
-                }
-            );
-
-
-            // Replace only the updated note.
-            setNotes((currentNotes) =>
-                currentNotes.map((note) =>
-                    note.id === noteId
-                        ? updatedNote
-                        : note
-                )
-            );
-
-
-            setEditingNoteId(null);
-            setEditContent("");
-
-        } catch (error) {
-            setNotesError(error.message);
-
-        } finally {
-            setIsUpdatingNote(false);
-        }
-    }
-
-
-    // -------------------------
-    // DELETE NOTE
-    // -------------------------
-
-    async function handleDeleteNote(noteId) {
-        if (!token) {
-            return;
-        }
-
-
-        setNotesError("");
-        setDeletingNoteId(noteId);
-
-
-        try {
-            await deleteNote(
-                token,
-                noteId
-            );
-
-
-            // Remove the deleted note locally.
-            setNotes((currentNotes) =>
-                currentNotes.filter(
-                    (note) => note.id !== noteId
-                )
-            );
-
-
-            // Leave edit mode if the note
-            // being edited was deleted.
-            if (editingNoteId === noteId) {
-                setEditingNoteId(null);
-                setEditContent("");
-            }
-
-        } catch (error) {
-            setNotesError(error.message);
-
-        } finally {
-            setDeletingNoteId(null);
-        }
-    }
-
-
-    // -------------------------
-    // AUTH LOADING
-    // -------------------------
-
+    // Wait until AuthContext finishes restoring the user.
     if (isAuthLoading) {
         return (
             <section
@@ -287,7 +51,6 @@ export default function NotesPanel({
                 "
             >
                 <div className="text-center">
-
                     <div
                         className="
                             mx-auto
@@ -312,25 +75,17 @@ export default function NotesPanel({
                     >
                         Opening your journal...
                     </p>
-
                 </div>
             </section>
         );
     }
 
 
-    // -------------------------
-    // LOGGED OUT
-    // -------------------------
-
+    // Notes are currently stored only for authenticated users.
     if (!isAuthenticated) {
         return <NotesLoggedOut />;
     }
 
-
-    // -------------------------
-    // NOTES UI
-    // -------------------------
 
     return (
         <section
@@ -351,27 +106,20 @@ export default function NotesPanel({
                     sm:px-8
                 "
             >
-
                 <NotesHeader
                     notesCount={notes.length}
                 />
-
 
                 <NoteComposer
                     book={book}
                     chapter={chapter}
                     selectedVerse={selectedVerse}
-
                     noteContent={noteContent}
                     setNoteContent={setNoteContent}
-
                     isSavingNote={isSavingNote}
-
                     onSave={handleSaveNote}
                 />
 
-
-                {/* Error message */}
                 {notesError && (
                     <div
                         className="
@@ -396,28 +144,21 @@ export default function NotesPanel({
                     </div>
                 )}
 
-
                 <NotesList
                     notes={notes}
                     books={books}
-
                     isLoadingNotes={isLoadingNotes}
                     notesError={notesError}
-
                     editingNoteId={editingNoteId}
-
                     editContent={editContent}
                     setEditContent={setEditContent}
-
                     isUpdatingNote={isUpdatingNote}
                     deletingNoteId={deletingNoteId}
-
                     onStartEdit={handleStartEdit}
                     onCancelEdit={handleCancelEdit}
                     onUpdate={handleUpdateNote}
                     onDelete={handleDeleteNote}
                 />
-
             </div>
         </section>
     );
