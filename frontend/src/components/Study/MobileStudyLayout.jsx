@@ -1,10 +1,12 @@
 import ScripturePanel from "../Scripture/ScripturePanel";
 import CommentaryPanel from "../Commentary/CommentaryPanel";
 import NotesPanel from "../Notes/NotesPanel";
+import BookmarksPanel from "../Bookmarks/BookmarksPanel";
 
 
 export default function MobileStudyLayout({
     mobileTab,
+    setMobileTab,
 
     verses,
     book,
@@ -20,7 +22,9 @@ export default function MobileStudyLayout({
     books,
 
     notesState,
-    commentaryState
+    commentaryState,
+    bookmarksState,
+    bookmarkPreviews
 }) {
     return (
         <main
@@ -47,6 +51,8 @@ export default function MobileStudyLayout({
                     "
                 >
                     <ScripturePanel
+                        books={books}
+                        bookmarksState={bookmarksState}
                         verses={verses}
                         book={book}
                         chapter={chapter}
@@ -90,6 +96,19 @@ export default function MobileStudyLayout({
                         selectedVerse={selectedVerse}
                         books={books}
                         notesState={notesState}
+                    />
+                </div>
+            )}
+            {/* Display the shared bookmark list when the mobile tab is selected. */}
+            {mobileTab === "bookmarks" && (
+                <div className="h-full min-h-0 overflow-hidden">
+                    <BookmarksPanel
+                        bookmarksState={bookmarksState}
+                        books={books}
+                        translation={translation}
+                        onOpen={() => setMobileTab("scripture")}
+                        // Pass the previews already loaded by StudyPage.
+                        bookmarkPreviews={bookmarkPreviews}
                     />
                 </div>
             )}

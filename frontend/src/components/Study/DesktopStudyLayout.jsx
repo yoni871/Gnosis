@@ -1,8 +1,8 @@
 import ScripturePanel from "../Scripture/ScripturePanel";
 import CommentaryPanel from "../Commentary/CommentaryPanel";
 import NotesPanel from "../Notes/NotesPanel";
-
 import DesktopStudyTabs from "./DesktopStudyTabs";
+import BookmarksPanel from "../Bookmarks/BookmarksPanel";
 
 
 export default function DesktopStudyLayout({
@@ -25,7 +25,9 @@ export default function DesktopStudyLayout({
     setRightPanelTab,
 
     notesState,
-    commentaryState
+    commentaryState,
+    bookmarksState,
+    bookmarkPreviews
 }) {
     return (
         <main
@@ -49,6 +51,8 @@ export default function DesktopStudyLayout({
                 "
             >
                 <ScripturePanel
+                    books={books}
+                    bookmarksState={bookmarksState}
                     verses={verses}
                     book={book}
                     chapter={chapter}
@@ -80,20 +84,33 @@ export default function DesktopStudyLayout({
                         overflow-hidden
                     "
                 >
-                    {rightPanelTab === "commentary" ? (
+                    {/* Render the panel matching the selected tab. */}
+                    {rightPanelTab === "commentary" && (
                         <CommentaryPanel
                             book={book}
                             chapter={chapter}
                             selectedVerse={selectedVerse}
                             commentaryState={commentaryState}
                         />
-                    ) : (
+                    )}
+
+                    {rightPanelTab === "notes" && (
                         <NotesPanel
                             book={book}
                             chapter={chapter}
                             selectedVerse={selectedVerse}
                             books={books}
                             notesState={notesState}
+                        />
+                    )}
+
+                    {rightPanelTab === "bookmarks" && (
+                        <BookmarksPanel 
+                        bookmarksState={bookmarksState} 
+                        books={books}
+                        translation={translation}
+                        // Pass the previews already loaded by StudyPage.
+                        bookmarkPreviews={bookmarkPreviews}
                         />
                     )}
                 </div>

@@ -1,3 +1,5 @@
+import { NotebookPen, Bookmark } from "lucide-react";
+
 export default function DesktopStudyTabs({
     activeTab,
     setActiveTab
@@ -33,11 +35,16 @@ export default function DesktopStudyTabs({
                 COMMENTARY
             </button>
 
-            <button
+            <div className="flex items-stretch">
+                <button
+                type="button"
+                aria-label="Notes"
+                title="Notes"
                 onClick={() =>
                     setActiveTab("notes")
                 }
                 className={`
+                    flex flex-1 item-center justify-center
                     py-3
                     font-serif
                     text-xs
@@ -50,8 +57,28 @@ export default function DesktopStudyTabs({
                     }
                 `}
             >
-                NOTES
+                <NotebookPen size={18} aria-hidden="true"/>
             </button>
+
+            {/* Open the saved-bookmarks panel. */}
+            <button
+                type="button"
+                aria-label="Bookmarks"
+                title="Bookmarks"
+                onClick={() => setActiveTab("bookmarks")}
+                className={`
+                    flex flex-1 items-center justify-center
+                    py-3
+                    ${
+                        activeTab === "bookmarks"
+                            ? "border-b-2 border-[var(--color-brand)] text-[var(--color-brand)]"
+                            : "text-[var(--text-muted)]"
+                    }
+                `}
+            >
+                <Bookmark size={18} aria-hidden="true" />
+            </button>
+            </div>
         </div>
     );
 }

@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 
-import {
-    getBooks,
-    getBibleChapter,
-    getTranslations
-} from "../services/bibleService";
+import { getBooks, getBibleChapter, getTranslations } from "../services/bibleService";
 
 import Header from "../components/Header/Header";
 import SubHeader from "../components/Navigation/SubHeader";
@@ -17,7 +13,10 @@ import MobileStudyNav from "../components/Study/MobileStudyNav";
 
 import useNotes from "../hooks/useNotes";
 import useCommentary from "../hooks/useCommentary";
+import useBookmarks from "../hooks/useBookmarks";
+import useBookmarkPreviews from "../hooks/useBookmarkPreviews";
 
+import GuestSavePrompt from "../components/Auth/GuestSavePrompt";
 
 export default function StudyPage() {
     const {
@@ -26,49 +25,39 @@ export default function StudyPage() {
     } = useParams();
 
     const [searchParams] = useSearchParams();
-
     const urlVerse = searchParams.get("verse");
     const urlTranslation = searchParams.get("translation");
     const urlCommentary = searchParams.get("commentary");
-
 
     // -------------------------
     // BIBLE STATE
     // -------------------------
 
     const [verses, setVerses] = useState([]);
-
     const [book, setBook] = useState(
         urlBook || "Genesis"
     );
-
     const [chapter, setChapter] = useState(
         Number(urlChapter) || 1
     );
-
     const [books, setBooks] = useState([]);
-
     const [selectedVerse, setSelectedVerse] = useState(
         urlVerse
             ? Number(urlVerse)
             : null
     );
 
-
     // -------------------------
     // LAYOUT STATE
     // -------------------------
 
     const [layout, setLayout] = useState("side");
-
     const [mobileTab, setMobileTab] = useState(
         "scripture"
     );
-
     const [rightPanelTab, setRightPanelTab] = useState(
         "commentary"
     );
-
 
     // -------------------------
     // TRANSLATION STATE
@@ -77,9 +66,7 @@ export default function StudyPage() {
     const [translation, setTranslation] = useState(
         urlTranslation || ""
     );
-
     const [translations, setTranslations] = useState([]);
-
 
     // -------------------------
     // SHARED FEATURE STATE
@@ -91,7 +78,6 @@ export default function StudyPage() {
         selectedVerse,
         books
     });
-
     const commentaryState = useCommentary({
         book,
         chapter,
@@ -101,7 +87,14 @@ export default function StudyPage() {
             ? Number(urlCommentary)
             : null
     });
-
+    //bookmark state for desktop and mobile to share
+    const bookmarksState = useBookmarks();
+    // Share Scripture previews across desktop, mobile, and tab changes.
+    const bookmarkPreviews = useBookmarkPreviews(
+        bookmarksState.bookmarks,
+        books,
+        translation
+    );
 
     // -------------------------
     // SYNC URL
@@ -125,13 +118,7 @@ export default function StudyPage() {
         if (urlTranslation) {
             setTranslation(urlTranslation);
         }
-    }, [
-        urlBook,
-        urlChapter,
-        urlVerse,
-        urlTranslation
-    ]);
-
+    }, [urlBook, urlChapter, urlVerse, urlTranslation]);
 
     // -------------------------
     // LOAD BIBLE CHAPTER
@@ -159,7 +146,6 @@ export default function StudyPage() {
         translation
     ]);
 
-
     // -------------------------
     // LOAD BOOKS
     // -------------------------
@@ -173,7 +159,6 @@ export default function StudyPage() {
                 console.error(error);
             });
     }, []);
-
 
     // -------------------------
     // LOAD TRANSLATIONS
@@ -232,6 +217,8 @@ export default function StudyPage() {
             />
 
             <DesktopStudyLayout
+                bookmarksState={bookmarksState}
+                bookmarkPreviews={bookmarkPreviews}
                 layout={layout}
                 verses={verses}
                 book={book}
@@ -249,7 +236,10 @@ export default function StudyPage() {
             />
 
             <MobileStudyLayout
+                bookmarksState={bookmarksState}
+                bookmarkPreviews={bookmarkPreviews}
                 mobileTab={mobileTab}
+                setMobileTab={setMobileTab}
                 verses={verses}
                 book={book}
                 chapter={chapter}
@@ -267,6 +257,13 @@ export default function StudyPage() {
                 activeTab={mobileTab}
                 setActiveTab={setMobileTab}
             />
+            {/* Show one shared prompt after a guest bookmarks a passage. */}
+            {bookmarksState.showLoginPrompt && (
+                <GuestSavePrompt
+                    // Dismiss the prompt while keeping the temporary bookmark.
+                    onClose={() => bookmarksState.setShowLoginPrompt(false)}
+                />
+            )}
         </>
     );
 }

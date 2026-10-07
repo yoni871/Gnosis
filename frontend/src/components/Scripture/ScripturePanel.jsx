@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Bookmark } from "lucide-react";
 
 export default function ScripturePanel({
     verses = [],
@@ -9,11 +9,31 @@ export default function ScripturePanel({
     translations = [],
     selectedVerse,
     setSelectedVerse,
-    setTranslation
+    setTranslation,
+    books = [],
+    bookmarksState
 }) {
     const verseRefs = useRef({});
     const scriptureScrollRef = useRef(null);
     const [isTranslationMenuOpen, setIsTranslationMenuOpen] = useState(false);
+    // Find the database record for the book currently being read.
+    const currentBook = books.find((item) => item.name === book);
+
+    // Represent a selected verse as a passage with matching start and end.
+    const passage = currentBook && selectedVerse !== null && selectedVerse !== undefined
+        ? {
+            bookId: currentBook.id,
+            startChapter: chapter,
+            startVerse: selectedVerse,
+            endChapter: chapter,
+            endVerse: selectedVerse
+        }
+        : null;
+
+    // Check whether this exact passage is already bookmarked.
+    const savedBookmark = passage
+        ? bookmarksState.findBookmark(passage)
+        : null;
 
     useEffect(() => {
         if (selectedVerse) {
@@ -154,7 +174,21 @@ export default function ScripturePanel({
                 </div>
 
             </div>
-
+            {/* show feedback when a bookmark request fails*/}
+            {bookmarksState.error && (
+                <p
+                    role="alert"
+                    className="
+                        m-0
+                        border-b border-[var(--border)]
+                        py-2
+                        text-[12px]
+                        text-[var(--color-brand)]
+                    "
+                >
+                    {bookmarksState.error}
+                </p>
+            )}
             <div ref={scriptureScrollRef}
             className="
                 min-h-0
@@ -235,7 +269,7 @@ export default function ScripturePanel({
                     hyphens-auto
                 ">
                     {verses.map((verse) => (
-                        <p
+                        <span
                             onClick={() => {
                                 setSelectedVerse((currentVerse) =>
                                     currentVerse === verse.verse_number
@@ -275,7 +309,57 @@ export default function ScripturePanel({
                             </sup>
 
                             {verse.text}
-                        </p>
+                            {/* Anchor the floating action at the end of the selected verse */}
+                            {verse.verse_number === selectedVerse && passage && (
+                                <span className="relative inline-block w-0 align-baseline">
+                                    <button
+                                        type="button"
+                                        // Wait for the current bookmark request to finish before another click.
+                                        disabled={
+                                            bookmarksState.isLoading ||
+                                            bookmarksState.isSaving ||
+                                            bookmarksState.deletingId !== null
+                                        }
+                                        //give he icon button a name for screen readers and a hover tooltip
+                                        aria-label={savedBookmark ? "Remove bookmark" : "Bookmark passage"}
+                                        title={savedBookmark ? "Remove bookmark" : "Bookmark passage"}
+                                        //prevent the button click from deselecting the verse
+                                        onClick={(event) => {
+                                            //keep the click from reaching the verse's selection handler
+                                            event.stopPropagation();
+                                            //remove an existing bookmark, or save the selected passage
+                                            if(savedBookmark) {
+                                                bookmarksState.handleDeleteBookmark(savedBookmark.id);
+                                            } else {
+                                                bookmarksState.handleAddBookmarks(passage);
+                                            }
+                                        }}
+                                        className="
+                                            absolute right-0 top-full z-20 mt-2
+                                            whitespace-nowrap
+                                            rounded-lg
+                                            border border-[var(--border)]
+                                            bg-[var(--bg-panel)]
+                                            px-3 py-2
+                                            font-sans text-[12px] font-semibold leading-normal
+                                            tracking-normal
+                                            text-[var(--color-brand)]
+                                            shadow-lg
+                                            cursor-pointer
+                                            hover:bg-[var(--bg-control-hover)]
+                                            disabled:cursor-wait
+                                            disabled:opacity-50
+                                        "
+                                    >
+                                        <Bookmark 
+                                            size={18}
+                                            fill={savedBookmark ? "currentColor" : "none"}
+                                            aria-hidden="true"
+                                        />
+                                    </button>
+                                </span>
+                            )}
+                        </span>
                     ))}
                 </div>
 

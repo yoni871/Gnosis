@@ -1,3 +1,5 @@
+import { NotebookPen, Bookmark, Highlighter } from "lucide-react";
+
 export default function MobileStudyNav({
     activeTab,
     setActiveTab
@@ -21,10 +23,13 @@ export default function MobileStudyNav({
             "
         >
             <button
+                aria-label="Notes"
+                title="Notes"
                 onClick={() =>
                     setActiveTab("notes")
                 }
                 className={`
+                    flex items-center justify-center
                     py-3
                     font-serif
                     text-[11px]
@@ -39,12 +44,33 @@ export default function MobileStudyNav({
                     }
                 `}
             >
-                NOTES
+                <NotebookPen size={20} aria-hidden="true"/>
+            </button>
+
+            <button
+                aria-label="Bookmarks"
+                title="Bookmarks"
+                onClick={() => setActiveTab("bookmarks")}
+                className="
+                    flex items-center justify-center
+                    cursor-pointer
+                    py-3
+                    font-serif
+                    text-[11px]
+                    font-semibold
+                    tracking-[0.06em]
+                    transition-colors
+                "
+            >
+                <Bookmark size={20} aria-hidden="true" />
             </button>
 
             <button
                 disabled
+                aria-label="Highlights"
+                title="Highlights"
                 className="
+                    flex items-center justify-center
                     cursor-not-allowed
                     py-3
                     font-serif
@@ -55,23 +81,7 @@ export default function MobileStudyNav({
                     opacity-50
                 "
             >
-                BOOKMARKS
-            </button>
-
-            <button
-                disabled
-                className="
-                    cursor-not-allowed
-                    py-3
-                    font-serif
-                    text-[11px]
-                    font-semibold
-                    tracking-[0.06em]
-                    text-[var(--text-muted)]
-                    opacity-50
-                "
-            >
-                HIGHLIGHTS
+                <Highlighter size={20} aria-hidden="true" />
             </button>
         </nav>
     );
