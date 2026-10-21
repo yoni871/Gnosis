@@ -3,6 +3,7 @@ import CommentaryPanel from "../Commentary/CommentaryPanel";
 import NotesPanel from "../Notes/NotesPanel";
 import DesktopStudyTabs from "./DesktopStudyTabs";
 import BookmarksPanel from "../Bookmarks/BookmarksPanel";
+import HighlightsPanel from "../Highlights/HighlightsPanel";
 
 
 export default function DesktopStudyLayout({
@@ -27,7 +28,9 @@ export default function DesktopStudyLayout({
     notesState,
     commentaryState,
     bookmarksState,
-    bookmarkPreviews
+    bookmarkPreviews,
+    highlightsState,
+    verseSelection
 }) {
     return (
         <main
@@ -51,6 +54,8 @@ export default function DesktopStudyLayout({
                 "
             >
                 <ScripturePanel
+                    verseSelection={verseSelection}
+                    highlightsState={highlightsState}
                     books={books}
                     bookmarksState={bookmarksState}
                     verses={verses}
@@ -113,7 +118,31 @@ export default function DesktopStudyLayout({
                         bookmarkPreviews={bookmarkPreviews}
                         />
                     )}
-                </div>
+                    {/* Display highlights when their tab is active. */}
+                    {rightPanelTab === "highlights" && (
+                        <HighlightsPanel
+                            // Capture the highlighted passage, then open Notes if starting succeeds.
+                            onAddNote={(highlight) => {
+                                const started = notesState.handleStartNote({
+                                    bookId: highlight.book_id,
+                                    startChapter: highlight.chapter,
+                                    startVerse: highlight.verse,
+                                    endChapter: highlight.chapter,
+                                    endVerse: highlight.verse
+                                });
+
+                                if (started) {
+                                    setRightPanelTab("notes");
+                                }
+                            }}
+                            highlightsState={highlightsState}
+                            // Reuse the shared previews already loaded by StudyPage.
+                            scripturePreviews={bookmarkPreviews}
+                            books={books}
+                            translation={translation}
+                        />
+                    )}
+                                    </div>
             </div>
         </main>
     );

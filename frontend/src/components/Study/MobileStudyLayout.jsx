@@ -2,6 +2,7 @@ import ScripturePanel from "../Scripture/ScripturePanel";
 import CommentaryPanel from "../Commentary/CommentaryPanel";
 import NotesPanel from "../Notes/NotesPanel";
 import BookmarksPanel from "../Bookmarks/BookmarksPanel";
+import HighlightsPanel from "../Highlights/HighlightsPanel";
 
 
 export default function MobileStudyLayout({
@@ -24,7 +25,9 @@ export default function MobileStudyLayout({
     notesState,
     commentaryState,
     bookmarksState,
-    bookmarkPreviews
+    bookmarkPreviews,
+    highlightsState,
+    verseSelection
 }) {
     return (
         <main
@@ -51,6 +54,8 @@ export default function MobileStudyLayout({
                     "
                 >
                     <ScripturePanel
+                        verseSelection={verseSelection}
+                        highlightsState={highlightsState}
                         books={books}
                         bookmarksState={bookmarksState}
                         verses={verses}
@@ -109,6 +114,33 @@ export default function MobileStudyLayout({
                         onOpen={() => setMobileTab("scripture")}
                         // Pass the previews already loaded by StudyPage.
                         bookmarkPreviews={bookmarkPreviews}
+                    />
+                </div>
+            )}
+            {/* Display the same highlight data used by the desktop panel. */}
+            {mobileTab === "highlights" && (
+                <div className="h-full min-h-0 overflow-hidden">
+                    <HighlightsPanel
+                        // Capture the highlighted passage before switching to the Notes tab.
+                        onAddNote={(highlight) => {
+                            const started = notesState.handleStartNote({
+                                bookId: highlight.book_id,
+                                startChapter: highlight.chapter,
+                                startVerse: highlight.verse,
+                                endChapter: highlight.chapter,
+                                endVerse: highlight.verse
+                            });
+
+                            if (started) {
+                                setMobileTab("notes");
+                            }
+                        }}
+                        highlightsState={highlightsState}
+                        scripturePreviews={bookmarkPreviews}
+                        books={books}
+                        translation={translation}
+                        // Return to Scripture after opening a highlighted verse.
+                        onOpen={() => setMobileTab("scripture")}
                     />
                 </div>
             )}

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { ChevronDown, Bookmark } from "lucide-react";
+import VerseActions from "./VerseActions";
+import { isHighlightSelected } from "../../utils/highlightUtils";
 
 export default function ScripturePanel({
     verses = [],
@@ -11,7 +13,9 @@ export default function ScripturePanel({
     setSelectedVerse,
     setTranslation,
     books = [],
-    bookmarksState
+    bookmarksState,
+    highlightsState,
+    verseSelection
 }) {
     const verseRefs = useRef({});
     const scriptureScrollRef = useRef(null);
@@ -19,14 +23,39 @@ export default function ScripturePanel({
     // Find the database record for the book currently being read.
     const currentBook = books.find((item) => item.name === book);
 
-    // Represent a selected verse as a passage with matching start and end.
-    const passage = currentBook && selectedVerse !== null && selectedVerse !== undefined
+    // Look up which verses are selected in the chapter currently displayed.
+    const selectedNumbers = new Set(
+        verseSelection.selection.bookId === currentBook?.id
+            ? verseSelection.selection.verses
+                .filter((point) => point.chapter === chapter)
+                .map((point) => point.verse)
+            : []
+    );
+
+    // Prefer the focused verse; otherwise use the last selected verse in this chapter.
+    const actionVerse = selectedNumbers.has(selectedVerse)
+        ? selectedVerse
+        : Array.from(selectedNumbers).pop();
+
+    // Look up saved colors by verse number for the chapter being displayed.
+    const highlightColors = new Map();
+
+    for (const highlight of highlightsState.highlights) {
+        if (
+            highlight.book_id === currentBook?.id &&
+            highlight.chapter === chapter
+        ) {
+            highlightColors.set(highlight.verse, highlight.color);
+        }
+    }
+    // Keep the bookmark action tied to the verse hosting the toolbar.
+    const passage = currentBook && actionVerse !== undefined
         ? {
             bookId: currentBook.id,
             startChapter: chapter,
-            startVerse: selectedVerse,
+            startVerse: actionVerse,
             endChapter: chapter,
-            endVerse: selectedVerse
+            endVerse: actionVerse
         }
         : null;
 
@@ -48,6 +77,11 @@ export default function ScripturePanel({
             });
         }
     }, [selectedVerse, verses]);
+
+    // Enable clearing when at least one selected coordinate has a highlight.
+    const hasSelectedHighlight = highlightsState.highlights.some((highlight) =>
+        isHighlightSelected(highlight, verseSelection.selection)
+    );
 
     return (
         <section className="
@@ -189,6 +223,23 @@ export default function ScripturePanel({
                     {bookmarksState.error}
                 </p>
             )}
+
+            {/* Display failed highlight actions without hiding the Scripture. */}
+            {highlightsState.error && (
+                <p
+                    role="alert"
+                    className="
+                        m-0
+                        border-b border-[var(--border)]
+                        py-2
+                        text-[12px]
+                        text-[var(--color-brand)]
+                    "
+                >
+                    {highlightsState.error}
+                </p>
+            )}
+
             <div ref={scriptureScrollRef}
             className="
                 min-h-0
@@ -270,13 +321,48 @@ export default function ScripturePanel({
                 ">
                     {verses.map((verse) => (
                         <span
+                            // Add transparency to the saved RGB color without fading the text.
+                            style={{
+                                backgroundColor: highlightColors.has(verse.verse_number)
+                                    ? `${highlightColors.get(verse.verse_number)}40`
+                                    : undefined
+                            }}
+
                             onClick={() => {
-                                setSelectedVerse((currentVerse) =>
-                                    currentVerse === verse.verse_number
-                                        ? null
-                                        : verse.verse_number
+                                // Wait until the current book's database ID is available.
+                                if (!currentBook) {
+                                    return;
+                                }
+
+                                const clickedVerse = verse.verse_number;
+                                const isDeselecting = selectedNumbers.has(clickedVerse);
+
+                                // Find which verses will remain selected in this chapter.
+                                const remaining = [...selectedNumbers].filter(
+                                    (number) => number !== clickedVerse
+                                );
+
+                                // Toggle the clicked verse's selection.
+                                verseSelection.toggleVerse(
+                                    currentBook.id,
+                                    chapter,
+                                    clickedVerse
+                                );
+
+                                // Focus a newly selected verse.
+                                if (!isDeselecting) {
+                                    setSelectedVerse(clickedVerse);
+                                    return;
+                                }
+
+                                // Preserve existing focus if that verse remains selected.
+                                setSelectedVerse((current) =>
+                                    remaining.includes(current)
+                                        ? current
+                                        : remaining[remaining.length - 1] ?? null
                                 );
                             }}
+
                             key={verse.verse_number}
                             ref={(element) => {
                                 verseRefs.current[verse.verse_number] = element;
@@ -291,8 +377,8 @@ export default function ScripturePanel({
                                 tracking-[inherit]
                                 cursor-pointer
                                 ${
-                                    verse.verse_number === selectedVerse
-                                        ? "bg-[var(--verse-highlight)] border-l-[3px] border-[var(--color-brand)] pl-[12px] transition-[background] duration-200 ease-in-out"
+                                    selectedNumbers.has(verse.verse_number)
+                                        ? "underline decoration-[var(--color-brand)] decoration-dotted underline-offset-4"
                                         : ""
                                 }
                             `}
@@ -309,56 +395,53 @@ export default function ScripturePanel({
                             </sup>
 
                             {verse.text}
-                            {/* Anchor the floating action at the end of the selected verse */}
-                            {verse.verse_number === selectedVerse && passage && (
-                                <span className="relative inline-block w-0 align-baseline">
-                                    <button
-                                        type="button"
-                                        // Wait for the current bookmark request to finish before another click.
-                                        disabled={
-                                            bookmarksState.isLoading ||
-                                            bookmarksState.isSaving ||
-                                            bookmarksState.deletingId !== null
+                            {/* Show actions at the end of the selected verse. */}
+                            {verse.verse_number === actionVerse && passage && (
+                                <VerseActions
+                                    passage={passage}
+                                    savedBookmark={savedBookmark}
+                                    bookmarksState={bookmarksState}
+                                    // Apply the color, then deselect only after a successful save.
+                                    onHighlight={async (color) => {
+                                        // Remember which selection this action is saving.
+                                        const selection = verseSelection.selection;
+
+                                        // Wait for the hook to report success or failure.
+                                        const succeeded = await highlightsState.handleSaveHighlights(
+                                            selection,
+                                            color
+                                        );
+
+                                        // Clear selection and commentary focus only after a successful highlight.
+                                        if (succeeded) {
+                                            verseSelection.clearSelection(selection);
+
+                                            // Remove commentary focus if it still belongs to this operation.
+                                            setSelectedVerse((current) =>
+                                                selection.verses.some((point) =>
+                                                    point.chapter === chapter && point.verse === current
+                                                )
+                                                    ? null
+                                                    : current
+                                            );
                                         }
-                                        //give he icon button a name for screen readers and a hover tooltip
-                                        aria-label={savedBookmark ? "Remove bookmark" : "Bookmark passage"}
-                                        title={savedBookmark ? "Remove bookmark" : "Bookmark passage"}
-                                        //prevent the button click from deselecting the verse
-                                        onClick={(event) => {
-                                            //keep the click from reaching the verse's selection handler
-                                            event.stopPropagation();
-                                            //remove an existing bookmark, or save the selected passage
-                                            if(savedBookmark) {
-                                                bookmarksState.handleDeleteBookmark(savedBookmark.id);
-                                            } else {
-                                                bookmarksState.handleAddBookmarks(passage);
-                                            }
-                                        }}
-                                        className="
-                                            absolute right-0 top-full z-20 mt-2
-                                            whitespace-nowrap
-                                            rounded-lg
-                                            border border-[var(--border)]
-                                            bg-[var(--bg-panel)]
-                                            px-3 py-2
-                                            font-sans text-[12px] font-semibold leading-normal
-                                            tracking-normal
-                                            text-[var(--color-brand)]
-                                            shadow-lg
-                                            cursor-pointer
-                                            hover:bg-[var(--bg-control-hover)]
-                                            disabled:cursor-wait
-                                            disabled:opacity-50
-                                        "
-                                    >
-                                        <Bookmark 
-                                            size={18}
-                                            fill={savedBookmark ? "currentColor" : "none"}
-                                            aria-hidden="true"
-                                        />
-                                    </button>
-                                </span>
+                                    }}
+                                    isHighlightBusy={
+                                        highlightsState.isLoading || highlightsState.isSaving
+                                    }
+                                    // Clear only the explicitly selected verses.
+                                    onClearHighlight={() =>
+                                        highlightsState.handleClearHighlights(verseSelection.selection)
+                                    }
+                                    hasHighlight={hasSelectedHighlight}
+                                    // Clear both verse selection and commentary emphasis when X is clicked.
+                                    onClearSelection={() => {
+                                        verseSelection.clearSelection();
+                                        setSelectedVerse(null);
+                                    }}  
+                                />
                             )}
+                            
                         </span>
                     ))}
                 </div>

@@ -65,21 +65,22 @@ export default function MobileStudyNav({
                 <Bookmark size={20} aria-hidden="true" />
             </button>
 
+            {/* Open the mobile Highlights panel and indicate when it is active. */}
             <button
-                disabled
+                type="button"
                 aria-label="Highlights"
                 title="Highlights"
-                className="
+                onClick={() => setActiveTab("highlights")}
+                className={`
                     flex items-center justify-center
-                    cursor-not-allowed
-                    py-3
-                    font-serif
-                    text-[11px]
-                    font-semibold
-                    tracking-[0.06em]
-                    text-[var(--text-muted)]
-                    opacity-50
-                "
+                    cursor-pointer py-3
+                    transition-colors
+                    ${
+                        activeTab === "highlights"
+                            ? "text-[var(--color-brand)]"
+                            : "text-[var(--text-muted)]"
+                    }
+                `}
             >
                 <Highlighter size={20} aria-hidden="true" />
             </button>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getBibleChapter } from "../services/bibleService";
 
-export default function useBookmarkPreviews(bookmarks, books, translation) {
+export default function useScripturePreviews(bookmarks, books, translation, highlights) {
     // Store chapter verses so bookmarks in the same chapter share the data.
     const [chapters, setChapters] = useState({});
 
@@ -43,7 +43,27 @@ export default function useBookmarkPreviews(bookmarks, books, translation) {
             }
         }
 
-        // Ignore responses if bookmarks or translation change during loading.
+    // Include highlighted chapters in the same collection of required chapters.
+    for (const highlight of highlights ?? []) {
+        const book = books.find(
+            (item) => item.id === highlight.book_id
+        );
+
+        // Wait for a matching book record before requesting Scripture.
+        if (!book) {
+            continue;
+        }
+
+        // Reuse the bookmark key format to avoid duplicate chapter requests.
+        const key = `${book.id}:${highlight.chapter}`;
+
+        needed.set(key, {
+            book: book.name,
+            chapter: highlight.chapter
+        });
+    }
+
+    // Ignore responses if bookmarks or translation change during loading.
     let ignore = false;
 
     async function loadPreviews() {
@@ -70,7 +90,7 @@ export default function useBookmarkPreviews(bookmarks, books, translation) {
                         )
                             .then((verses) => {
                                 if (!Array.isArray(verses)) {
-                                    throw new Error("Unable to load bookmark previews.");
+                                    throw new Error("Unable to load Scripture previews.");
                                 }
 
                                 return verses;
@@ -113,7 +133,7 @@ export default function useBookmarkPreviews(bookmarks, books, translation) {
     return () => {
         ignore = true;
     };
-    }, [bookmarks, books, translation]);
+    }, [bookmarks, highlights, books, translation]);
     // Expose the preview data and status to the panel.
     return {
         chapters,

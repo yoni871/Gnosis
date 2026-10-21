@@ -1,7 +1,5 @@
 export default function NoteComposer({
-    book,
-    chapter,
-    selectedVerse,
+    passageLabel,
     noteContent,
     setNoteContent,
     isSavingNote,
@@ -40,7 +38,7 @@ export default function NoteComposer({
                     </p>
                 </div>
 
-                {selectedVerse ? (
+                {passageLabel ? (
                     <p
                         className="
                             mt-2
@@ -50,7 +48,7 @@ export default function NoteComposer({
                             text-[var(--color-brand)]
                         "
                     >
-                        {book} {chapter}:{selectedVerse}
+                        {passageLabel}
                     </p>
                 ) : (
                     <div
@@ -82,7 +80,7 @@ export default function NoteComposer({
             </div>
 
             {/* Note composer */}
-            {selectedVerse && (
+            {passageLabel && (
                 <div
                     className="
                         relative
@@ -141,7 +139,7 @@ export default function NoteComposer({
                                     text-[var(--color-brand)]
                                 "
                             >
-                                {book} {chapter}:{selectedVerse}
+                                {passageLabel}
                             </p>
                         </div>
 
@@ -165,6 +163,8 @@ export default function NoteComposer({
 
                     <textarea
                         value={noteContent}
+                        // Keep submitted content unchanged while the save is in progress.
+                        disabled={isSavingNote}
                         onChange={(event) =>
                             setNoteContent(event.target.value)
                         }

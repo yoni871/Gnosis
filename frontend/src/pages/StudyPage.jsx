@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { getBooks, getBibleChapter, getTranslations } from "../services/bibleService";
 
@@ -14,7 +14,9 @@ import MobileStudyNav from "../components/Study/MobileStudyNav";
 import useNotes from "../hooks/useNotes";
 import useCommentary from "../hooks/useCommentary";
 import useBookmarks from "../hooks/useBookmarks";
-import useBookmarkPreviews from "../hooks/useBookmarkPreviews";
+import useScripturePreviews from "../hooks/useScripturePreviews";
+import useHighlights from "../hooks/useHighlights";
+import useVerseSelection from "../hooks/useVerseSelection";
 
 import GuestSavePrompt from "../components/Auth/GuestSavePrompt";
 
@@ -89,12 +91,33 @@ export default function StudyPage() {
     });
     //bookmark state for desktop and mobile to share
     const bookmarksState = useBookmarks();
-    // Share Scripture previews across desktop, mobile, and tab changes.
-    const bookmarkPreviews = useBookmarkPreviews(
+    // Own highlights here so desktop and mobile share the same data and actions.
+    const highlightsState = useHighlights();
+    // Share the exact selected verses across desktop and mobile readers.
+    const verseSelection = useVerseSelection();
+    // Read stable selection actions for the navigation effects.
+    const { clearSelection, replaceSelection, retainAvailableVerses } = verseSelection;
+
+    // React Router gives each history entry a navigation key.
+    const location = useLocation();
+
+    // Remember which navigation has already updated the selection.
+    const appliedNavigationRef = useRef(null);
+
+    const bookmarkPreviews = useScripturePreviews(
         bookmarksState.bookmarks,
         books,
-        translation
+        translation,
+        highlightsState.highlights
     );
+
+    // Clear temporary verse selections when the reading location changes.
+    useEffect(() => {
+        clearSelection();
+
+        // Remove commentary emphasis belonging to the previous location.
+        setSelectedVerse(null);
+    }, [book, chapter, clearSelection]);
 
     // -------------------------
     // SYNC URL
@@ -120,31 +143,122 @@ export default function StudyPage() {
         }
     }, [urlBook, urlChapter, urlVerse, urlTranslation]);
 
+    // Apply the URL's destination verse once the reading location is ready.
+    useEffect(() => {
+        // Do not reselect a verse after the user deliberately deselects it.
+        if (appliedNavigationRef.current === location.key) {
+            return;
+        }
+
+        const destinationBook = urlBook || "Genesis";
+        const destinationChapter = Number(urlChapter) || 1;
+
+        // Wait for the URL synchronization effect to update the displayed location.
+        if (book !== destinationBook || chapter !== destinationChapter) {
+            return;
+        }
+
+        const destinationRecord = books.find(
+            (item) => item.name === destinationBook
+        );
+
+        // Wait until the book records have loaded.
+        if (!destinationRecord) {
+            return;
+        }
+
+        const destinationVerse = Number(urlVerse);
+        const hasDestinationVerse =
+            Number.isInteger(destinationVerse) && destinationVerse > 0;
+
+        if (hasDestinationVerse) {
+            // Replace old selections with the explicitly requested destination.
+            replaceSelection(
+                destinationRecord.id,
+                destinationChapter,
+                destinationVerse
+            );
+
+            // Keep commentary focused on the same verse.
+            setSelectedVerse(destinationVerse);
+        } else {
+            // Navigation without a verse starts with no selection or emphasis.
+            clearSelection();
+            setSelectedVerse(null);
+        }
+
+        // Mark this navigation as handled, including Back/Forward visits.
+        appliedNavigationRef.current = location.key;
+    }, [
+        location.key,
+        urlBook,
+        urlChapter,
+        urlVerse,
+        book,
+        chapter,
+        books,
+        replaceSelection,
+        clearSelection
+    ]);
+
     // -------------------------
     // LOAD BIBLE CHAPTER
     // -------------------------
 
+    // Load Scripture and reconcile selection with the returned translation.
     useEffect(() => {
-        if (!translation) {
+        const currentBook = books.find((item) => item.name === book);
+
+        // Wait until the translation and book ID are available.
+        if (!translation || !currentBook) {
             return;
         }
 
-        getBibleChapter(
-            book,
-            chapter,
-            translation
-        )
-            .then((data) => {
+        // Ignore this request if the reading location changes before it finishes.
+        let ignore = false;
+
+        async function loadChapter() {
+            try {
+                const data = await getBibleChapter(
+                    book,
+                    chapter,
+                    translation
+                );
+
+                // Reject unexpected responses before using array operations.
+                if (!Array.isArray(data)) {
+                    throw new Error("Unable to load Scripture.");
+                }
+
+                if (ignore) {
+                    return;
+                }
+
                 setVerses(data);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }, [
-        book,
-        chapter,
-        translation
-    ]);
+
+                // Preserve only selected coordinates available in this chapter.
+                retainAvailableVerses(currentBook.id, chapter, data);
+
+                // Remove commentary focus if that verse is unavailable.
+                setSelectedVerse((current) =>
+                    data.some((verse) => verse.verse_number === current)
+                        ? current
+                        : null
+                );
+            } catch (error) {
+                if (!ignore) {
+                    console.error(error);
+                }
+            }
+        }
+
+        loadChapter();
+
+        return () => {
+            // Older responses must not overwrite a newer chapter or translation.
+            ignore = true;
+        };
+    }, [book, chapter, translation, books, retainAvailableVerses]);
 
     // -------------------------
     // LOAD BOOKS
@@ -217,6 +331,8 @@ export default function StudyPage() {
             />
 
             <DesktopStudyLayout
+                verseSelection={verseSelection}
+                highlightsState={highlightsState}
                 bookmarksState={bookmarksState}
                 bookmarkPreviews={bookmarkPreviews}
                 layout={layout}
@@ -236,6 +352,8 @@ export default function StudyPage() {
             />
 
             <MobileStudyLayout
+                verseSelection={verseSelection}
+                highlightsState={highlightsState}
                 bookmarksState={bookmarksState}
                 bookmarkPreviews={bookmarkPreviews}
                 mobileTab={mobileTab}
@@ -257,11 +375,18 @@ export default function StudyPage() {
                 activeTab={mobileTab}
                 setActiveTab={setMobileTab}
             />
-            {/* Show one shared prompt after a guest bookmarks a passage. */}
-            {bookmarksState.showLoginPrompt && (
+            
+            {/* Show one prompt when either guest feature requests it. */}
+            {(
+                bookmarksState.showLoginPrompt ||
+                highlightsState.showLoginPrompt
+            ) && (
                 <GuestSavePrompt
-                    // Dismiss the prompt while keeping the temporary bookmark.
-                    onClose={() => bookmarksState.setShowLoginPrompt(false)}
+                    onClose={() => {
+                        // Dismiss both requests without removing temporary study data.
+                        bookmarksState.setShowLoginPrompt(false);
+                        highlightsState.setShowLoginPrompt(false);
+                    }}
                 />
             )}
         </>

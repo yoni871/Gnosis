@@ -34,7 +34,8 @@ export default function NotesPanel({
         handleStartEdit,
         handleCancelEdit,
         handleUpdateNote,
-        handleDeleteNote
+        handleDeleteNote,
+        draftPassage
     } = notesState;
 
 
@@ -80,6 +81,37 @@ export default function NotesPanel({
         );
     }
 
+    // Prefer the captured draft target over the reader's current focus.
+    const target = draftPassage || (
+        selectedVerse
+            ? {
+                bookId: books.find((item) => item.name === book)?.id,
+                startChapter: chapter,
+                startVerse: selectedVerse,
+                endChapter: chapter,
+                endVerse: selectedVerse
+            }
+            : null
+    );
+
+    // Resolve the draft's book independently of the currently displayed book.
+    const targetBook = target
+        ? books.find((item) => item.id === target.bookId)?.name
+        : null;
+
+    // Format the starting reference and append an ending reference when needed.
+    let passageLabel = "";
+
+    if (target && targetBook) {
+        passageLabel =
+            `${targetBook} ${target.startChapter}:${target.startVerse}`;
+
+        if (target.startChapter !== target.endChapter) {
+            passageLabel += `–${target.endChapter}:${target.endVerse}`;
+        } else if (target.startVerse !== target.endVerse) {
+            passageLabel += `–${target.endVerse}`;
+        }
+    }
 
     // Notes are currently stored only for authenticated users.
     if (!isAuthenticated) {
@@ -111,9 +143,7 @@ export default function NotesPanel({
                 />
 
                 <NoteComposer
-                    book={book}
-                    chapter={chapter}
-                    selectedVerse={selectedVerse}
+                    passageLabel={passageLabel}
                     noteContent={noteContent}
                     setNoteContent={setNoteContent}
                     isSavingNote={isSavingNote}

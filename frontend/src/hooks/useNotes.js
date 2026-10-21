@@ -34,6 +34,9 @@ export default function useNotes({
     const [noteContent, setNoteContent] = useState("");
     const [isSavingNote, setIsSavingNote] = useState(false);
 
+    // Keep a note's target separate from the verse currently being viewed.
+    const [draftPassage, setDraftPassage] = useState(null);
+
     // -------------------------
     // EDIT NOTE STATE
     // -------------------------
@@ -98,44 +101,75 @@ export default function useNotes({
     // CREATE NOTE
     // -------------------------
 
+    // Start a note for a passage supplied by another feature, such as Highlights.
+    function handleStartNote(passage) {
+        // Preserve an existing draft instead of silently replacing its target.
+        if (noteContent.trim() || isSavingNote) {
+            setNotesError("Save your current note before starting another.");
+            return false;
+        }
+
+        // Copy the coordinates so the draft owns its passage.
+        setDraftPassage({
+            bookId: passage.bookId,
+            startChapter: passage.startChapter,
+            startVerse: passage.startVerse,
+            endChapter: passage.endChapter,
+            endVerse: passage.endVerse
+        });
+
+        setNotesError("");
+        return true;
+    }
+
+    // Save the captured draft passage, or the currently focused verse.
     async function handleSaveNote() {
-        if (
-            !token ||
-            !currentBook ||
-            !selectedVerse ||
-            !noteContent.trim()
-        ) {
+        // Prevent empty notes, unauthenticated requests, and repeated saves.
+        if (!token || isSavingNote || !noteContent.trim()) {
             return;
         }
+
+        // Prefer the passage explicitly attached when the draft was started.
+        const passage = draftPassage || (
+            currentBook && selectedVerse
+                ? {
+                    bookId: currentBook.id,
+                    startChapter: chapter,
+                    startVerse: selectedVerse,
+                    endChapter: chapter,
+                    endVerse: selectedVerse
+                }
+                : null
+        );
+
+        if (!passage) {
+            setNotesError("Select a passage before saving your note.");
+            return;
+        }
+
+        // Capture the content and target submitted by this save.
+        const content = noteContent.trim();
 
         setNotesError("");
         setIsSavingNote(true);
 
-        const noteData = {
-            bookId: currentBook.id,
-
-            startChapter: chapter,
-            startVerse: selectedVerse,
-
-            endChapter: chapter,
-            endVerse: selectedVerse,
-
-            content: noteContent.trim()
-        };
-
         try {
-            const newNote = await createNote(
-                token,
-                noteData
-            );
+            const newNote = await createNote(token, {
+                // Copy the passage coordinates into the request body.
+                ...passage,
+                content
+            });
 
             setNotes((currentNotes) => [
                 newNote,
                 ...currentNotes
             ]);
 
+            // Reset the completed draft after the backend confirms success.
             setNoteContent("");
+            setDraftPassage(null);
         } catch (error) {
+            // Preserve the content and passage so the user can retry.
             setNotesError(error.message);
         } finally {
             setIsSavingNote(false);
@@ -257,6 +291,8 @@ export default function useNotes({
         handleStartEdit,
         handleCancelEdit,
         handleUpdateNote,
-        handleDeleteNote
+        handleDeleteNote,
+        draftPassage,
+        handleStartNote
     };
 }

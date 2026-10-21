@@ -1,0 +1,300 @@
+/* Keep the positioning anchor completely outside text layout. */
+.gnosis-action-anchor {
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    pointer-events: none;
+}
+
+/* Compact burgundy toolbar. */
+.gnosis-verse-toolbar {
+    z-index: 70;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: max-content;
+    padding: 5px 7px;
+    border: 1px solid rgb(255 255 255 / 15%);
+    border-radius: 28px;
+    background: var(--color-brand);
+    color: #fff7ec;
+    box-shadow:
+        0 3px 6px rgb(0 0 0 / 12%),
+        0 10px 25px rgb(0 0 0 / 18%);
+}
+
+.gnosis-verse-tool {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition:
+        background-color 150ms ease,
+        color 150ms ease;
+}
+
+.gnosis-verse-tool:hover:not(:disabled) {
+    background: rgb(255 255 255 / 14%);
+}
+
+.gnosis-verse-tool.is-active {
+    background: #f5e3c8;
+    color: var(--color-brand);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 12%);
+}
+
+.gnosis-tool-divider {
+    width: 1px;
+    height: 16px;
+    background: rgb(255 255 255 / 25%);
+}
+
+/* Floating UI positions this surface; don't add CSS transforms here. */
+.gnosis-floating-palette {
+    z-index: 71;
+    width: 254px;
+    max-width: calc(100vw - 24px);
+}
+
+/* The measured box contains the entire rotated pen fan. */
+.gnosis-pen-picker {
+    position: relative;
+    width: 100%;
+    height: 204px;
+}
+
+.gnosis-pen-fan {
+    position: relative;
+    height: 154px;
+    isolation: isolate;
+}
+
+/* Each clickable pen has a wider target than its visible barrel. */
+.gnosis-highlight-pen {
+    position: absolute;
+    top: 2px;
+    left: calc(50% - 22px);
+    width: 44px;
+    height: 136px;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    transform: rotate(var(--pen-angle));
+    transform-origin: 50% 148px;
+    cursor: pointer;
+    transition:
+        transform 180ms ease,
+        filter 180ms ease;
+}
+
+.gnosis-highlight-pen:nth-child(1),
+.gnosis-highlight-pen:nth-child(5) {
+    z-index: 1;
+}
+
+.gnosis-highlight-pen:nth-child(2),
+.gnosis-highlight-pen:nth-child(4) {
+    z-index: 2;
+}
+
+.gnosis-highlight-pen:nth-child(3) {
+    z-index: 3;
+}
+
+.gnosis-highlight-pen:hover:not(:disabled),
+.gnosis-highlight-pen:focus-visible {
+    z-index: 5;
+    transform: rotate(var(--pen-angle)) translateY(-7px);
+}
+
+/* Rounded marker barrel with a subtle cylindrical reflection. */
+.gnosis-pen-barrel {
+    position: absolute;
+    top: 0;
+    left: 7px;
+    width: 30px;
+    height: 112px;
+    border: 1px solid rgb(0 0 0 / 12%);
+    border-radius: 8px 8px 6px 6px;
+    background:
+        linear-gradient(
+            90deg,
+            rgb(0 0 0 / 9%),
+            rgb(255 255 255 / 35%) 22%,
+            rgb(255 255 255 / 10%) 48%,
+            rgb(0 0 0 / 14%)
+        ),
+        var(--pen-color);
+    box-shadow:
+        2px 5px 8px rgb(0 0 0 / 20%),
+        inset 1px 0 1px rgb(255 255 255 / 40%);
+    pointer-events: none;
+}
+
+.gnosis-pen-cap {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    left: -1px;
+    height: 31px;
+    border: 1px solid rgb(0 0 0 / 9%);
+    border-bottom: 3px solid rgb(0 0 0 / 15%);
+    border-radius: 8px 8px 2px 2px;
+    background:
+        linear-gradient(
+            90deg,
+            rgb(0 0 0 / 8%),
+            rgb(255 255 255 / 28%) 25%,
+            rgb(0 0 0 / 10%)
+        ),
+        var(--pen-color);
+}
+
+/* Cut the colored tip into a highlighter's angled chisel shape. */
+.gnosis-pen-tip {
+    position: absolute;
+    bottom: -18px;
+    left: 7px;
+    width: 14px;
+    height: 22px;
+    background:
+        linear-gradient(
+            90deg,
+            rgb(0 0 0 / 28%),
+            rgb(0 0 0 / 8%) 50%,
+            rgb(0 0 0 / 22%)
+        ),
+        var(--pen-color);
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+}
+
+/* Small secondary capsule: None, custom color, and Apply. */
+.gnosis-pen-options {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px;
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    background: var(--bg-panel);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 14%);
+    transform: translateX(-50%);
+}
+
+.gnosis-palette-option,
+.gnosis-custom-color {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+}
+
+.gnosis-palette-option {
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.gnosis-palette-option:hover:not(:disabled) {
+    background: var(--bg-control-hover);
+}
+
+.gnosis-apply-color {
+    background: var(--color-brand);
+    color: #fff7ec;
+}
+
+.gnosis-apply-color:hover:not(:disabled) {
+    background: var(--color-brand);
+    filter: brightness(1.1);
+}
+
+.gnosis-custom-color {
+    background: conic-gradient(
+        #f09ea8,
+        #e5c581,
+        #9dceab,
+        #94bfdb,
+        #baa5db,
+        #f09ea8
+    );
+    color: #3d3039;
+}
+
+/* Transparent native input covers the decorative custom-color button. */
+.gnosis-custom-color input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.gnosis-custom-color:focus-within {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+}
+
+.gnosis-verse-tool:focus-visible,
+.gnosis-highlight-pen:focus-visible,
+.gnosis-palette-option:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+}
+
+.gnosis-verse-tool:focus-visible {
+    outline-color: #f5e3c8;
+}
+
+.gnosis-verse-tool:disabled,
+.gnosis-highlight-pen:disabled,
+.gnosis-palette-option:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Maintain comfortable touch targets on actual phones. */
+@media (pointer: coarse) {
+    .gnosis-verse-tool,
+    .gnosis-palette-option,
+    .gnosis-custom-color {
+        width: 44px;
+        height: 44px;
+    }
+
+    .gnosis-pen-picker {
+        height: 214px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gnosis-verse-tool,
+    .gnosis-highlight-pen {
+        transition: none;
+    }
+}

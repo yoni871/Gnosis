@@ -169,4 +169,45 @@ CREATE TABLE bookmarks (
 CREATE INDEX bookmarks_user_id_idx
 ON bookmarks(user_id);
 
+-- Stores colored passages belonging to authenticated users.
+CREATE TABLE highlights (
+    id SERIAL PRIMARY KEY,
+
+    -- Delete a user's highlights if their account is deleted.
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+
+    -- Identify the Bible book independently of translation.
+    book_id INTEGER NOT NULL REFERENCES bible_books(id),
+
+    -- One row represnts one highlighted verse.
+    chapter INTEGER NOT NULL,
+    verse INTEGER NOT NULL,
+    -- Store the chosen RGB color; the frontend applies readable transparency.
+    color VARCHAR(7) NOT NULL DEFAULT '#FFD54F',
+
+    -- Record when the highlight was created and last changed.
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    -- Require "#" followed by exactly six hexadecimal characters.
+        CONSTRAINT highlights_valid_color CHECK (
+            color ~ '^#[0-9A-Fa-f]{6}$'
+        ),
+
+    -- Chapters and verses must be positive.
+    CONSTRAINT highlights_positive_passage CHECK (
+        chapter > 0 AND verse > 0
+    ),
+
+    -- only one highlight color per user and verse
+    CONSTRAINT highlights_unique_verse UNIQUE (
+        user_id,
+        book_id,
+        chapter,
+        verse
+    )
+);
+-- Speed up loading a user's highlights within a book.
+CREATE INDEX highlights_user_book_idx
+ON highlights(user_id, book_id);
+
 
