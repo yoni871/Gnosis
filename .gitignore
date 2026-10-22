@@ -3,6 +3,14 @@ node_modules/
 
 # Environment variables / secrets
 .env
+.env.*
+!.env.example
+
+# Database backups
+*.dump
 
 # macOS system files
 .DS_Store
+
+# Local Vercel configuration
+.vercel/
