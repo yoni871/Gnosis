@@ -1,3 +1,5 @@
+-- HISTORICAL REFERENCE ONLY. Do not execute for installation or upgrades.
+-- Authoritative schema history: database/migrations/. See docs/Database_Migrations.md.
 -- Stores the Bible translations available in the application.
 CREATE TABLE bible_translations (
     id SERIAL PRIMARY KEY,
