@@ -25,14 +25,18 @@ export default function RegisterPage() {
         setRegisterError("");
 
         try {
-            await register({
+            const profile = await register({
                 firstName,
                 lastName,
                 email,
                 password
             });
-            
-            navigate("/bible/Genesis/1");
+
+            // A null profile means this attempt was superseded by a
+            // newer auth action (issue #6) — do not navigate for it.
+            if (profile) {
+                navigate("/bible/Genesis/1");
+            }
         } catch (error) {
             setRegisterError(error.message);
         }
