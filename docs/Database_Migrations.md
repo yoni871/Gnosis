@@ -6,8 +6,15 @@ and are never run at application startup, in requests, or during frontend builds
 
 ## Authority and known discrepancies
 
-`database/migrations/` is authoritative. The first migration,
-`20261023000000_baseline.sql`, preserves the previously committed schema exactly.
+**Review gate: the baseline is provisional, not the approved application schema.**
+Do not merge this PR or adopt its baseline on an application database until local
+and Neon schema-only metadata have been compared with application/importer
+requirements and the intended schema has been explicitly approved. The earlier
+choice to finalize from stale schema.sql did not satisfy that reconciliation gate.
+
+After reconciliation and approval, `database/migrations/` will become authoritative.
+The current candidate, `20261023000000_baseline.sql`, merely preserves the previously
+committed schema; it is not evidence of the real local or deployed schema.
 There were no earlier migrations. `database/schema.sql` is historical reference
 only: do not execute it for initialization or upgrades. Content imports and seeds
 are separate operations; migrations do not import Bible/commentary content.
@@ -27,6 +34,11 @@ Stop, review schema-only metadata, and obtain approval for reconciliation before
 adoption. Do not bypass the check, remove existing columns/constraints, or claim
 this baseline makes a fresh database fully compatible with all application code.
 No actual application database was inspected to construct this baseline.
+
+For private read-only collection commands and the required five-way comparison,
+see [Schema_Snapshot_Review.md](Schema_Snapshot_Review.md). Collection and schema
+approval must happen before the installation/adoption procedures below are used
+on application databases.
 
 ## Installation and explicit targets
 
@@ -91,6 +103,12 @@ format definitions differently: a false mismatch must be reviewed, never bypasse
 Adoption takes the shared migration advisory lock, validates first, then locks the
 baseline tables briefly and validates again in a transaction. In that transaction
 it uses node-pg-migrate's fake mode with count=1 to record **only the baseline**.
+The wrapper owns BEGIN/COMMIT/ROLLBACK for adoption; the runner receives
+`singleTransaction: false` and `noLock: true`. In pinned 8.0.4, fake mode only
+inserts migration history and skips its normal transaction branch. The outer
+advisory lock remains held until after commit/rollback, and table locks remain
+held until transaction completion. Ordinary up/down transactions are owned by the
+runner; their advisory lock is still owned by the wrapper.
 No baseline DDL is executed. Future migrations remain pending. An adoption failure
 rolls back all tracking changes. Existing history refuses adoption.
 

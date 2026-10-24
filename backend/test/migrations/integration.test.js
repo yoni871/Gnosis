@@ -140,3 +140,99 @@ test('malformed tracking tables refuse automatic repair', async () => {
     await assert.rejects(run('baseline'),/tracking schema/);
     assert.deepEqual((await db.query("SELECT count(*)::int AS n FROM pg_constraint WHERE conrelid='pgmigrations'::regclass")).rows,before.rows);
 });
+
+// Observe the real client, including the pinned runner's queries. No fake database
+// or production connection is used. Query strings are kept in memory, not logged.
+function adoptionProbe({beforeCommit, beforeBegin} = {}) {
+    const statements = [];
+    const notices = [];
+    const transactions = [];
+    let catalogs = 0;
+    return {statements, notices, transactions, clientFactory(settings) {
+        const client = new Client(settings);
+        const rawQuery = client.query.bind(client);
+        client.on('notice', notice => notices.push(notice.code));
+        client.query = async (...args) => {
+            const sql = typeof args[0] === 'string' ? args[0] : args[0].text;
+            if (sql === 'BEGIN' && beforeBegin) await beforeBegin();
+            if (sql === 'COMMIT' && beforeCommit) await beforeCommit({client,rawQuery});
+            const result = await rawQuery(...args);
+            statements.push(sql.trim());
+            if (sql.includes('WITH objects AS')) {
+                catalogs += 1;
+                if (catalogs === 2) transactions.push((await rawQuery('SELECT txid_current() AS id')).rows[0].id);
+            }
+            if (/INSERT INTO.*pgmigrations/i.test(sql)) {
+                transactions.push((await rawQuery('SELECT txid_current() AS id')).rows[0].id);
+            }
+            return result;
+        };
+        return client;
+    }};
+}
+
+async function assertUncommittedAndLocked({client,rawQuery}) {
+    // History exists inside adoption's transaction, but not in another session.
+    assert.deepEqual((await rawQuery('SELECT name FROM public.pgmigrations')).rows,[{name:baselineName}]);
+    assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
+    assert.equal((await db.query('SELECT pg_try_advisory_lock($1::bigint) AS acquired',[lockId])).rows[0].acquired,false);
+    const locks=(await db.query("SELECT mode FROM pg_locks WHERE pid=$1 AND relation='public.users'::regclass AND granted",[client.processID])).rows;
+    assert.ok(locks.some(row => row.mode === 'ShareLock'));
+    await db.query('BEGIN');
+    try {
+        await assert.rejects(db.query('LOCK TABLE public.users IN ROW EXCLUSIVE MODE NOWAIT'), {code:'55P03'});
+    } finally {
+        await db.query('ROLLBACK');
+    }
+}
+
+async function assertLocksReleased() {
+    assert.equal((await db.query('SELECT pg_try_advisory_lock($1::bigint) AS acquired',[lockId])).rows[0].acquired,true);
+    await db.query('SELECT pg_advisory_unlock($1::bigint)',[lockId]);
+    await db.query('BEGIN');
+    try { await db.query('LOCK TABLE public.users IN ROW EXCLUSIVE MODE NOWAIT'); }
+    finally { await db.query('ROLLBACK'); }
+}
+
+test('adoption has one transaction, atomic revalidation/history, and locks through commit', async () => {
+    await db.query(baseline);
+    const probe=adoptionProbe({beforeCommit:assertUncommittedAndLocked});
+    await run('baseline',{clientFactory:probe.clientFactory});
+    assert.equal(probe.statements.filter(sql => sql === 'BEGIN').length,1);
+    assert.equal(probe.statements.filter(sql => sql === 'COMMIT').length,1);
+    assert.equal(probe.statements.filter(sql => sql === 'ROLLBACK').length,0);
+    assert.ok(!probe.notices.includes('25001'), 'No nested transaction warning');
+    assert.equal(probe.transactions.length,2);
+    assert.equal(probe.transactions[0],probe.transactions[1]);
+    const begin=probe.statements.indexOf('BEGIN');
+    const revalidation=probe.statements.findIndex((sql,i) => i>begin && sql.includes('WITH objects AS'));
+    const insertion=probe.statements.findIndex(sql => /INSERT INTO.*pgmigrations/i.test(sql));
+    assert.ok(begin < revalidation && revalidation < insertion && insertion < probe.statements.indexOf('COMMIT'));
+    assert.deepEqual((await db.query('SELECT name FROM public.pgmigrations')).rows,[{name:baselineName}]);
+    await assertLocksReleased();
+});
+
+test('failure after baseline insertion but before commit rolls back history and releases locks', async () => {
+    await db.query(baseline);
+    const probe=adoptionProbe({beforeCommit:async context => {
+        await assertUncommittedAndLocked(context);
+        throw new Error('Synthetic pre-commit failure');
+    }});
+    await assert.rejects(run('baseline',{clientFactory:probe.clientFactory}),/operation failed/);
+    assert.equal(probe.statements.filter(sql => sql === 'BEGIN').length,1);
+    assert.equal(probe.statements.filter(sql => sql === 'COMMIT').length,0);
+    assert.equal(probe.statements.filter(sql => sql === 'ROLLBACK').length,1);
+    assert.ok(!probe.notices.includes('25001'));
+    assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
+    await assertLocksReleased();
+    assert.deepEqual((await run('baseline')).migrations,[baselineName]);
+});
+
+test('schema change after preflight is caught by transactional revalidation without history', async () => {
+    await db.query(baseline);
+    const probe=adoptionProbe({beforeBegin:() => db.query('ALTER TABLE users ADD COLUMN first_name text')});
+    await assert.rejects(run('baseline',{clientFactory:probe.clientFactory}),/Schema changed/);
+    assert.ok(!probe.statements.some(sql => /INSERT INTO.*pgmigrations/i.test(sql)));
+    assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
+    await assertLocksReleased();
+});

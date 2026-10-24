@@ -32,14 +32,17 @@ async function history(client, names) {
     return rows;
 }
 
-async function execute({command, target, env = process.env, dir = migrationsDir}) {
+// clientFactory allows tests to observe/fault-inject real PostgreSQL queries.
+// The CLI never accepts or configures this dependency.
+async function execute({command, target, env = process.env, dir = migrationsDir,
+    clientFactory = config => new Client(config)}) {
     const config = connectionFor(target, env);
     if (target === 'production' && command !== 'check' && env.MIGRATION_CONFIRM_PRODUCTION !== 'yes') {
         throw safeError('Production writes require MIGRATION_CONFIRM_PRODUCTION=yes after operator review.');
     }
     const names = await migrationFiles(dir);
     const expected = JSON.parse(await fs.readFile(path.join(__dirname, '../../../database/baseline.catalog.json'), 'utf8'));
-    const client = new Client({...config, connectionTimeoutMillis: 10000,
+    const client = clientFactory({...config, connectionTimeoutMillis: 10000,
         application_name: 'gnosis-migrations'});
     // Do not forward driver diagnostics: they can contain credentials or SQL data.
     client.on('error', () => {});
@@ -60,6 +63,8 @@ async function execute({command, target, env = process.env, dir = migrationsDir}
         if (command === 'baseline') {
             if (applied.length) throw safeError('Database already has migration history; baseline adoption refused.');
             if (diff.length) throw safeError('Schema differs from the baseline. Run db:migrate:check; no adoption performed.');
+            // Adoption has exactly one transaction owner: this wrapper.
+            // The runner is used only to mark one migration, never to apply DDL.
             await client.query('BEGIN');
             // Prevent concurrent writes/DDL on known tables while revalidating.
             const tables = expected.filter(row => row.kind === 'relation' && row.definition.kind === 'r');
@@ -72,7 +77,10 @@ async function execute({command, target, env = process.env, dir = migrationsDir}
         const { runner } = await import('node-pg-migrate');
         const result = await runner({dbClient:client, dir, migrationsTable:'pgmigrations', schema:'public',
             direction: command === 'down' ? 'down' : 'up', count: command === 'baseline' || command === 'down' ? 1 : Infinity,
-            fake:command === 'baseline', checkOrder:true, singleTransaction:true,
+            fake:command === 'baseline', checkOrder:true,
+            // The wrapper owns the advisory lock for the complete operation.
+            // Ordinary up/down transaction ownership remains with the runner.
+            noLock:true, singleTransaction:command !== 'baseline',
             logger:{info() {}, warn() {}, error() {}}});
         if (command === 'baseline') await client.query('COMMIT');
         return {migrations:result.map(row => row.name)};
