@@ -1,0 +1,1689 @@
+[
+  {
+    "kind": "column",
+    "name": "bible_books.abbreviation",
+    "definition": {
+      "type": "character varying(10)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_books.book_order",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_books.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bible_books_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_books.name",
+    "definition": {
+      "type": "character varying(50)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_books.testament",
+    "definition": {
+      "type": "character varying(2)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_chapters.book_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_chapters.chapter_number",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_chapters.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bible_chapters_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_translations.abbreviation",
+    "definition": {
+      "type": "character varying(20)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_translations.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bible_translations_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_translations.name",
+    "definition": {
+      "type": "character varying(100)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.chapter_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bible_verses_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.search_vector",
+    "definition": {
+      "type": "tsvector",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.text",
+    "definition": {
+      "type": "text",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.translation_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.verse_number",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.book_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.created_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.end_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.end_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bookmarks_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.start_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.start_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.user_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentaries.description",
+    "definition": {
+      "type": "text",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentaries.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('commentaries_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentaries.source_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentaries.title",
+    "definition": {
+      "type": "character varying(200)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.book_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.commentary_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.content",
+    "definition": {
+      "type": "text",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.end_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.end_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('commentary_entries_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.search_vector",
+    "definition": {
+      "type": "tsvector",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.start_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.start_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "commentary_entries.title",
+    "definition": {
+      "type": "text",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.book_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.color",
+    "definition": {
+      "type": "character varying(7)",
+      "default": "'#FFD54F'::character varying",
+      "notNull": true,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.created_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('highlights_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.updated_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.user_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.book_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.content",
+    "definition": {
+      "type": "text",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.created_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.end_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.end_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('notes_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.start_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.start_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.updated_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.user_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "sources.created_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "sources.description",
+    "definition": {
+      "type": "text",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "sources.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('sources_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "sources.license",
+    "definition": {
+      "type": "character varying(200)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "sources.name",
+    "definition": {
+      "type": "character varying(200)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "sources.type",
+    "definition": {
+      "type": "character varying(50)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.created_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.email",
+    "definition": {
+      "type": "character varying(255)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('users_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.password_hash",
+    "definition": {
+      "type": "character varying(255)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.updated_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_books.bible_books_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_chapters.bible_chapters_book_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (book_id) REFERENCES bible_books(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_chapters.bible_chapters_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_translations.bible_translations_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_verses.bible_verses_chapter_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (chapter_id) REFERENCES bible_chapters(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_verses.bible_verses_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_verses.bible_verses_translation_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (translation_id) REFERENCES bible_translations(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bookmarks.bookmarks_book_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (book_id) REFERENCES bible_books(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bookmarks.bookmarks_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bookmarks.bookmarks_user_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bookmarks.unique_user_bookmark",
+    "definition": {
+      "sql": "UNIQUE (user_id, book_id, start_chapter, start_verse, end_chapter, end_verse)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "commentaries.commentaries_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "commentaries.commentaries_source_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (source_id) REFERENCES sources(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "commentary_entries.commentary_entries_book_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (book_id) REFERENCES bible_books(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "commentary_entries.commentary_entries_commentary_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (commentary_id) REFERENCES commentaries(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "commentary_entries.commentary_entries_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "commentary_entries.unique_commentary_passage",
+    "definition": {
+      "sql": "UNIQUE (commentary_id, book_id, start_chapter, start_verse, end_chapter, end_verse)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_book_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (book_id) REFERENCES bible_books(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_positive_passage",
+    "definition": {
+      "sql": "CHECK (((chapter > 0) AND (verse > 0)))",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_unique_verse",
+    "definition": {
+      "sql": "UNIQUE (user_id, book_id, chapter, verse)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_user_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_valid_color",
+    "definition": {
+      "sql": "CHECK (((color)::text ~ '^#[0-9A-Fa-f]{6}$'::text))",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "notes.notes_book_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (book_id) REFERENCES bible_books(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "notes.notes_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "notes.notes_user_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "sources.sources_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "users.users_email_key",
+    "definition": {
+      "sql": "UNIQUE (email)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "users.users_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "function",
+    "name": "update_bible_search_vector()",
+    "definition": {
+      "sql": "CREATE OR REPLACE FUNCTION public.update_bible_search_vector()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\nBEGIN\n    NEW.search_vector := to_tsvector(\n        'english',\n        COALESCE(NEW.text, '')\n    );\n\n    RETURN NEW;\nEND;\n$function$\n"
+    }
+  },
+  {
+    "kind": "function",
+    "name": "update_commentary_search_vector()",
+    "definition": {
+      "sql": "CREATE OR REPLACE FUNCTION public.update_commentary_search_vector()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\nBEGIN\n    NEW.search_vector := to_tsvector(\n        'english',\n        COALESCE(NEW.title, '') || ' ' || COALESCE(NEW.content, '')\n    );\n\n    RETURN NEW;\nEND;\n$function$\n"
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_books_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bible_books_pkey ON public.bible_books USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_chapters_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bible_chapters_pkey ON public.bible_chapters USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_translations_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bible_translations_pkey ON public.bible_translations USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_verses_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bible_verses_pkey ON public.bible_verses USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_verses_search_idx",
+    "definition": {
+      "sql": "CREATE INDEX bible_verses_search_idx ON public.bible_verses USING gin (search_vector)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bookmarks_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bookmarks_pkey ON public.bookmarks USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bookmarks_user_id_idx",
+    "definition": {
+      "sql": "CREATE INDEX bookmarks_user_id_idx ON public.bookmarks USING btree (user_id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "commentaries_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX commentaries_pkey ON public.commentaries USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "commentary_entries_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX commentary_entries_pkey ON public.commentary_entries USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "commentary_entries_search_idx",
+    "definition": {
+      "sql": "CREATE INDEX commentary_entries_search_idx ON public.commentary_entries USING gin (search_vector)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "highlights_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX highlights_pkey ON public.highlights USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "highlights_unique_verse",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX highlights_unique_verse ON public.highlights USING btree (user_id, book_id, chapter, verse)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "highlights_user_book_idx",
+    "definition": {
+      "sql": "CREATE INDEX highlights_user_book_idx ON public.highlights USING btree (user_id, book_id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "notes_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX notes_pkey ON public.notes USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "notes_user_id_idx",
+    "definition": {
+      "sql": "CREATE INDEX notes_user_id_idx ON public.notes USING btree (user_id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "sources_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX sources_pkey ON public.sources USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "unique_commentary_passage",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX unique_commentary_passage ON public.commentary_entries USING btree (commentary_id, book_id, start_chapter, start_verse, end_chapter, end_verse)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "unique_user_bookmark",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX unique_user_bookmark ON public.bookmarks USING btree (user_id, book_id, start_chapter, start_verse, end_chapter, end_verse)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "users_email_key",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX users_email_key ON public.users USING btree (email)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "users_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_books",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_books_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_chapters",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_chapters_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_translations",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_translations_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_verses",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_verses_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bookmarks",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bookmarks_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "commentaries",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "commentaries_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "commentary_entries",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "commentary_entries_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "highlights",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "highlights_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "notes",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "notes_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "sources",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "sources_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "users",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "users_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bible_books_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bible_books",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bible_chapters_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bible_chapters",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bible_translations_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bible_translations",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bible_verses_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bible_verses",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bookmarks_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bookmarks",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "commentaries_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "commentaries",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "commentary_entries_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "commentary_entries",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "highlights_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "highlights",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "notes_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "notes",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "sources_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "sources",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "users_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "users",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "trigger",
+    "name": "bible_verses.bible_search_vector_trigger",
+    "definition": {
+      "sql": "CREATE TRIGGER bible_search_vector_trigger BEFORE INSERT OR UPDATE OF text ON public.bible_verses FOR EACH ROW EXECUTE FUNCTION update_bible_search_vector()",
+      "enabled": "O"
+    }
+  },
+  {
+    "kind": "trigger",
+    "name": "commentary_entries.commentary_search_vector_trigger",
+    "definition": {
+      "sql": "CREATE TRIGGER commentary_search_vector_trigger BEFORE INSERT OR UPDATE OF title, content ON public.commentary_entries FOR EACH ROW EXECUTE FUNCTION update_commentary_search_vector()",
+      "enabled": "O"
+    }
+  }
+]
