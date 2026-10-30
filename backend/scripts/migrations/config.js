@@ -12,18 +12,21 @@ function connectionFor(target, env = process.env) {
         throw safeError('An explicit --target local, test, or production is required.');
     }
     if (target === 'local') {
-        if (!env.DB_HOST || !env.DB_NAME || !env.DB_USER || !env.DB_PORT) {
-            throw safeError('Local target requires DB_HOST, DB_NAME, DB_USER, and DB_PORT.');
+        const required = ['MIGRATION_DB_HOST','MIGRATION_DB_PORT','MIGRATION_DB_NAME',
+            'MIGRATION_DB_USER','MIGRATION_DB_PASSWORD'];
+        const missing = required.filter(name => !env[name]);
+        if (missing.length) {
+            throw safeError(`Local target requires ${missing.join(', ')}. Application DB_* settings are not used.`);
         }
-        if (!['localhost', '127.0.0.1', '::1'].includes(env.DB_HOST)) {
-            throw safeError('Local target requires a loopback host.');
+        if (!['localhost', '127.0.0.1', '::1'].includes(env.MIGRATION_DB_HOST)) {
+            throw safeError('Local target requires a loopback MIGRATION_DB_HOST.');
         }
-        if (/prod|neon|live/i.test(env.DB_NAME)) throw safeError('Unsafe local database name.');
-        if (!/^\d+$/.test(env.DB_PORT) || Number(env.DB_PORT) < 1 || Number(env.DB_PORT) > 65535) {
-            throw safeError('Local target requires a valid explicit port.');
+        if (/prod|neon|live/i.test(env.MIGRATION_DB_NAME)) throw safeError('Unsafe local database name in MIGRATION_DB_NAME.');
+        if (!/^\d+$/.test(env.MIGRATION_DB_PORT) || Number(env.MIGRATION_DB_PORT) < 1 || Number(env.MIGRATION_DB_PORT) > 65535) {
+            throw safeError('Local target requires a valid explicit MIGRATION_DB_PORT.');
         }
-        return { host: env.DB_HOST, database: env.DB_NAME, user: env.DB_USER,
-            password: env.DB_PASSWORD, port: Number(env.DB_PORT) };
+        return { host: env.MIGRATION_DB_HOST, database: env.MIGRATION_DB_NAME, user: env.MIGRATION_DB_USER,
+            password: env.MIGRATION_DB_PASSWORD, port: Number(env.MIGRATION_DB_PORT) };
     }
     const value = env[target === 'test' ? 'MIGRATION_TEST_DATABASE_URL' : 'MIGRATION_DATABASE_URL'];
     let url;

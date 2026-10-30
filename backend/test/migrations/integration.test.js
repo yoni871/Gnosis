@@ -243,11 +243,26 @@ function localCLI(command, extraEnv = {}) {
     const url = new URL(process.env.MIGRATION_TEST_DATABASE_URL);
     return spawnSync('npm',['run',command,'--','--target','local'],{
         cwd:path.resolve(__dirname,'../..'), encoding:'utf8', env:{...process.env,
-            DB_HOST:url.hostname.replace(/^\[|\]$/g,''), DB_PORT:url.port || '5432',
-            DB_NAME:url.pathname.slice(1), DB_USER:decodeURIComponent(url.username),
-            DB_PASSWORD:decodeURIComponent(url.password), PGOPTIONS:'',
+            DB_HOST:'synthetic-invalid-application-host',DB_PORT:'1',
+            DB_NAME:'synthetic-application-database',DB_USER:'synthetic-application-role',
+            DB_PASSWORD:'synthetic-private-application-password',
+            MIGRATION_DB_HOST:url.hostname.replace(/^\[|\]$/g,''), MIGRATION_DB_PORT:url.port || '5432',
+            MIGRATION_DB_NAME:url.pathname.slice(1), MIGRATION_DB_USER:decodeURIComponent(url.username),
+            MIGRATION_DB_PASSWORD:decodeURIComponent(url.password) || 'synthetic-test-password', PGOPTIONS:'',
             ...extraEnv}});
 }
+
+test('public local CLI fails closed for each missing migration setting despite application credentials', () => {
+    for (const name of ['MIGRATION_DB_HOST','MIGRATION_DB_PORT','MIGRATION_DB_NAME',
+        'MIGRATION_DB_USER','MIGRATION_DB_PASSWORD']) {
+        const result = localCLI('db:migrate:check',{[name]:''});
+        assert.equal(result.status,1);
+        assert.ok(result.stderr.includes(`Local target requires ${name}.`));
+        assert.ok(!result.stderr.includes('stage [connection]'));
+        assert.ok(!`${result.stdout}${result.stderr}`.includes('synthetic-private-application-password'));
+        assert.ok(!`${result.stdout}${result.stderr}`.includes('synthetic-test-password'));
+    }
+});
 
 test('public local CLI adopts an exact untracked baseline and preserves rows and sequences', async () => {
     await db.query(baseline);
@@ -271,7 +286,7 @@ test('public CLI distinguishes an exact schema from missing SHARE-lock privilege
         await db.query(`GRANT USAGE,CREATE ON SCHEMA public TO ${role};
             GRANT SELECT ON ALL TABLES IN SCHEMA public TO ${role};
             GRANT UPDATE ON bible_books,bible_chapters,bible_verses,bookmarks,highlights,notes,users TO ${role}`);
-        const env = {DB_USER:role,DB_PASSWORD:''};
+        const env = {MIGRATION_DB_USER:role,MIGRATION_DB_PASSWORD:'synthetic-test-password'};
         const checked = localCLI('db:migrate:check',env);
         assert.equal(checked.status,0,checked.stderr);
         assert.match(checked.stdout,/"baselineMatches": true/);

@@ -9,10 +9,37 @@ test('every command requires an explicit target and rejects extra arguments', ()
     assert.throws(() => parseArgs(['up','--target','local','--fake']), /Unexpected/);
     assert.deepEqual(parseArgs(['up','--target','local']), {command:'up',target:'local',description:undefined});
 });
-test('local settings never fall back to DATABASE_URL', () => {
-    assert.throws(() => connectionFor('local', {DATABASE_URL:'secret'}), /requires/);
-    assert.throws(() => connectionFor('local', {DB_HOST:'remote',DB_NAME:'app',DB_USER:'role',DB_PORT:'5432'}), /loopback/);
-    assert.throws(() => connectionFor('local', {DB_HOST:'127.0.0.1',DB_NAME:'production',DB_USER:'role',DB_PORT:'5432'}), /Unsafe/);
+const local = {MIGRATION_DB_HOST:'127.0.0.1',MIGRATION_DB_PORT:'5432',
+    MIGRATION_DB_NAME:'gnosis_local',MIGRATION_DB_USER:'operator',MIGRATION_DB_PASSWORD:'synthetic-password'};
+const application = {DB_HOST:'127.0.0.1',DB_PORT:'5432',DB_NAME:'application',
+    DB_USER:'application_role',DB_PASSWORD:'synthetic-application-password',DATABASE_URL:'synthetic-url'};
+test('local migration settings are exclusive and every missing value fails closed', () => {
+    assert.throws(() => connectionFor('local',application),/requires MIGRATION_DB_HOST/);
+    for (const name of Object.keys(local)) {
+        for (const absent of [undefined,'']) {
+            assert.throws(() => connectionFor('local',{...application,...local,[name]:absent}),error => {
+                assert.ok(error.safe);
+                assert.ok(error.message.includes(name));
+                assert.ok(!error.message.includes(application.DB_PASSWORD));
+                assert.ok(!error.message.includes(local.MIGRATION_DB_PASSWORD));
+                return true;
+            });
+        }
+    }
+    assert.deepEqual(connectionFor('local',{...application,...local}),{
+        host:'127.0.0.1',port:5432,database:'gnosis_local',user:'operator',password:'synthetic-password'});
+});
+test('local migration settings retain loopback, database-name and port safeguards', () => {
+    for (const host of ['localhost','127.0.0.1','::1']) {
+        assert.equal(connectionFor('local',{...local,MIGRATION_DB_HOST:host}).host,host);
+    }
+    assert.throws(() => connectionFor('local',{...local,MIGRATION_DB_HOST:'remote'}),/loopback/);
+    for (const name of ['production','neon_branch','live_database']) {
+        assert.throws(() => connectionFor('local',{...local,MIGRATION_DB_NAME:name}),/Unsafe/);
+    }
+    for (const port of ['0','65536','5432suffix']) {
+        assert.throws(() => connectionFor('local',{...local,MIGRATION_DB_PORT:port}),/MIGRATION_DB_PORT/);
+    }
 });
 test('test targets reject remote hosts, suspicious names and URL overrides', () => {
     for (const value of [

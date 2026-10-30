@@ -41,9 +41,12 @@ Use Node 22 and `npm ci` from `backend/`. Stable `node-pg-migrate` is pinned at
 8.0.4. All commands below run from `backend/` and require `--target`.
 No command silently falls back to the application's DATABASE_URL.
 
-- `local`: requires DB_HOST (loopback only), DB_PORT, DB_NAME, DB_USER and, if
-  needed, DB_PASSWORD. Only this target loads backend/.env; existing environment
-  values take precedence. Production-looking database names are refused.
+- `local`: exclusively requires MIGRATION_DB_HOST (loopback only),
+  MIGRATION_DB_PORT, MIGRATION_DB_NAME, MIGRATION_DB_USER and
+  MIGRATION_DB_PASSWORD. All five must be nonempty; missing settings fail closed
+  and name only the missing variables. No DB_* or DATABASE_URL fallback is used.
+  Only this target loads backend/.env; existing environment values take precedence.
+  Production-looking database names are refused.
 - `test`: requires MIGRATION_TEST_DATABASE_URL, with an IP loopback host and a
   name matching `gnosis_migration_test_` plus 16 lowercase hexadecimal characters.
   URL query options are forbidden. Never use a real application's database.
@@ -52,6 +55,14 @@ No command silently falls back to the application's DATABASE_URL.
   endpoints are refused. Writes additionally require MIGRATION_CONFIRM_PRODUCTION
   set to `yes`. Do not set that flag in routine application/preview environments.
 
+Application DB_HOST, DB_PORT, DB_NAME, DB_USER and DB_PASSWORD remain exclusively
+application settings. Add the five MIGRATION_DB_* variables privately using
+backend/.env.example as the key reference. Select an authorized migration/operator
+role; do not grant extra privileges to bible_app. Changing DB_USER or PGUSER does
+not select the local migration role. This separation does not authorize adoption
+or permission changes. Test MIGRATION_TEST_DATABASE_URL and production
+MIGRATION_DATABASE_URL behavior are unchanged.
+
 Never paste credentials into shell history, logs, issues, or committed files.
 Do not disable TLS verification. Driver messages are suppressed because they can
 include private connection details. CLI check output is structural metadata only.
@@ -59,7 +70,7 @@ include private connection details. CLI check output is structural metadata only
 ## Initialize an empty local database
 
 Create/select an empty local database using your normal local PostgreSQL tools,
-then configure the DB_* variables described above.
+then configure the MIGRATION_DB_* variables described above.
 
 ```sh
 npm run db:migrate:check -- --target local
