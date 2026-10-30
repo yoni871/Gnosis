@@ -1,10 +1,12 @@
 # Private schema snapshot review — prerequisite to baseline approval
 
-The current baseline candidate is provisional. Stale schema.sql is not evidence
-of the application's actual schema. Do not adopt it on local/Neon application
-databases until the following metadata has been compared and the intended schema
-has explicit approval. These commands are for the owner to run; no Neon connection
-is made by the implementation or tests.
+The private comparison is complete and the owner approved the shared 11-table
+application schema. The previously unadopted baseline has been corrected from that
+review. Raw snapshots remain private outside Git. This document retains the
+collection procedure for future reviews; schema approval does not authorize
+application database changes or adoption. See Database_Migrations.md and
+Auxiliary_Schema_Reconciliation.md for the remaining operator gate. These commands
+are for the owner to run; no Neon connection is made by the implementation or tests.
 
 ## What to collect
 
@@ -93,8 +95,8 @@ placeholder and retain structural details. If inventory shows other application
 schemas, stop and identify those before requesting additional targeted snapshots;
 do not send a whole-cluster dump or pg_dumpall.
 
-Share the reviewed `local.schema.sql`, `local.metadata.txt`, `neon.schema.sql`, and
-`neon.metadata.txt` privately in this conversation. Do not commit or attach raw
+Keep `local.schema.sql`, `local.metadata.txt`, `neon.schema.sql`, and
+`neon.metadata.txt` outside Git and provide their local paths for private review. Do not commit or attach raw
 snapshots to a public issue/PR, and do not share .env, connection strings, passwords,
 row exports, or credentials. These are review artifacts, not restore scripts.
 Do not execute either exported SQL file against any database.

@@ -4,41 +4,36 @@ Issue #11 establishes schema history, not schema repairs or deployment automatio
 The application still uses its existing `pg` pool. Migrations use a separate client
 and are never run at application startup, in requests, or during frontend builds.
 
-## Authority and known discrepancies
+## Approved schema and adoption gate
 
-**Review gate: the baseline is provisional, not the approved application schema.**
-Do not merge this PR or adopt its baseline on an application database until local
-and Neon schema-only metadata have been compared with application/importer
-requirements and the intended schema has been explicitly approved. The earlier
-choice to finalize from stale schema.sql did not satisfy that reconciliation gate.
+`database/migrations/` is authoritative. The owner approved the shared 11-table
+application schema after private local/Neon schema-only review. The initial
+`20261023000000_baseline.sql` now includes nullable `users.first_name` and
+`users.last_name` as varchar(100), without defaults, plus named unique constraints
+`unique_book_chapter (book_id, chapter_number)` and
+`unique_chapter_translation_verse (chapter_id, translation_id, verse_number)`.
+These definitions support registration/profile queries, chapter importer upserts,
+and the chapter/verse uniqueness documented in Technical_Design.md.
 
-After reconciliation and approval, `database/migrations/` will become authoritative.
-The current candidate, `20261023000000_baseline.sql`, merely preserves the previously
-committed schema; it is not evidence of the real local or deployed schema.
-There were no earlier migrations. `database/schema.sql` is historical reference
-only: do not execute it for initialization or upgrades. Content imports and seeds
-are separate operations; migrations do not import Bible/commentary content.
+The baseline had never been adopted anywhere, so this correction is directly in
+its CREATE TABLE definitions. Once adopted, never edit an applied migration.
+`database/schema.sql` mirrors the initial blueprint for reference only; use
+versioned migrations for initialization and upgrades. Imports and seeds remain
+separate; migrations do not populate Bible/commentary content.
 
-The baseline does **not** certify that local or Neon schemas match the repository.
-Known discrepancies are deliberately unrepaired:
+Private snapshots showed matching application definitions, two backup tables in
+both databases, and one additional Neon demo table. Those auxiliary tables are
+not application schema and must be preserved, not dropped or added to the baseline.
+See [Auxiliary_Schema_Reconciliation.md](Auxiliary_Schema_Reconciliation.md) for
+read-only checks and a separately authorized move into `gnosis_archive`.
 
-- Authentication reads/writes `users.first_name` and `users.last_name`, which the
-  recorded schema lacks. Their actual types/defaults are not known from source.
-- The chapter importer uses `ON CONFLICT (book_id, chapter_number)`, but the
-  recorded schema lacks that unique constraint.
-- Technical_Design.md describes chapter and verse uniqueness not fully present
-  in schema.sql and contains outdated deployment information.
-
-A database containing those additions will correctly fail baseline adoption.
-Stop, review schema-only metadata, and obtain approval for reconciliation before
-adoption. Do not bypass the check, remove existing columns/constraints, or claim
-this baseline makes a fresh database fully compatible with all application code.
-No actual application database was inspected to construct this baseline.
-
-For private read-only collection commands and the required five-way comparison,
-see [Schema_Snapshot_Review.md](Schema_Snapshot_Review.md). Collection and schema
-approval must happen before the installation/adoption procedures below are used
-on application databases.
+**No merge, application database reconciliation, or baseline adoption is authorized
+by this PR update.** Before adoption, an operator must review auxiliary table
+counts, ownership, dependencies, destination conflicts and external consumers,
+obtain execution approval, perform the reviewed preservation procedure, and run
+fresh baseline/permissions checks. Do not bypass differences. Review snapshots
+remain private outside Git; collection guidance is in
+[Schema_Snapshot_Review.md](Schema_Snapshot_Review.md).
 
 ## Installation and explicit targets
 
@@ -97,8 +92,11 @@ object owners, grants, schema ACLs, and operational metadata outside `public`.
 Review roles, grants, extensions, and non-public schemas separately with an
 operator; the comparison is not a permissions or database-wide security audit.
 The manifest is generated from the baseline in isolated PostgreSQL 14 and checked
-against the SQL in integration tests. Different PostgreSQL major versions can
-format definitions differently: a false mismatch must be reviewed, never bypassed.
+against the SQL in integration tests. PostgreSQL 18 additionally records validated
+NOT NULL constraints in pg_constraint; these redundant rows are omitted because column attnotnull is
+already compared on both versions. Unvalidated NOT NULL constraints remain in the
+comparison. All other constraints and column nullability remain strictly checked.
+Any other representation mismatch must be reviewed, never bypassed.
 
 Adoption takes the shared migration advisory lock, validates first, then locks the
 baseline tables briefly and validates again in a transaction. In that transaction
@@ -223,7 +221,10 @@ The integration suite covers initialization/no-op reruns, exact adoption and dat
 sequence preservation, partial/drift refusal, pending migrations left unmarked,
 transactional rollback/retry, reversible down and irreversible baseline, advisory
 lock contention, invalid history, search triggers, and credential-safe CLI errors.
-Known schema discrepancies are asserted as unchanged, not repaired.
+The suite also covers registration/profile name queries, chapter and verse
+uniqueness, valid Bible/commentary imports, personal study queries and cascades,
+and meaningful drift rejection. Run the same suite against disposable PostgreSQL
+14 and 18 databases; the manifest is generated from 14 and must match both.
 
 Example disposable setup (run from `backend/`; choose an unused dedicated port):
 

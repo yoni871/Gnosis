@@ -22,6 +22,10 @@ WITH objects AS (
  jsonb_build_object('sql',pg_get_constraintdef(con.oid),'validated',con.convalidated)
  FROM pg_constraint con JOIN pg_class c ON c.oid=con.conrelid
  JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='public'
+ -- PostgreSQL 18 also records NOT NULL in pg_constraint. Validated NOT NULL
+ -- is already compared via every column's attnotnull on both 14 and 18.
+ -- Keep unvalidated constraints: they are a meaningful difference.
+ AND (con.contype <> 'n' OR NOT con.convalidated)
  UNION ALL
  SELECT 'index', i.relname, jsonb_build_object('sql',pg_get_indexdef(i.oid),
  'valid',x.indisvalid,'ready',x.indisready)

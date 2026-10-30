@@ -48,6 +48,29 @@ test('empty database initializes, catalog matches fixture, and rerun is a no-op'
     assert.equal(result.baselineMatches,true);
     assert.deepEqual(result.pending,[]);
 });
+test('reference schema matches the authoritative initial baseline', async () => {
+    const reference = await fs.readFile(path.resolve(migrationsDir,'../schema.sql'),'utf8');
+    const withoutComments = sql => sql.replace(/^--.*$/gm,'').trim();
+    assert.equal(withoutComments(reference),withoutComments(baseline));
+});
+test('NOT NULL comparison handles PostgreSQL 14 and 18 without hiding invalid constraints', async () => {
+    await db.query(baseline);
+    const expected = await catalog(db);
+    const version = Number((await db.query('SHOW server_version_num')).rows[0].server_version_num);
+    const notNullRows = (await db.query(`SELECT count(*)::int AS n FROM pg_constraint
+        WHERE conrelid='users'::regclass AND contype='n'`)).rows[0].n;
+    assert.equal(notNullRows > 0,version >= 180000);
+    assert.ok(!expected.some(row => row.kind === 'constraint' && row.name === 'users.users_id_not_null'));
+    await db.query('ALTER TABLE notes ALTER COLUMN content DROP NOT NULL');
+    assert.ok(differences(await catalog(db),expected).includes('column:notes.content'));
+    if (version >= 180000) {
+        await db.query('ALTER TABLE users ADD CONSTRAINT pending_name NOT NULL first_name NOT VALID');
+        const actual = await catalog(db);
+        assert.ok(actual.some(row => row.kind === 'constraint' && row.name === 'users.pending_name'
+            && row.definition.validated === false));
+        assert.ok(differences(actual,expected).includes('constraint:users.pending_name'));
+    }
+});
 test('existing schema refuses baseline DDL; adoption preserves data and sequences and marks only baseline', async () => {
     await db.query(baseline);
     await db.query("INSERT INTO users(email,password_hash) VALUES ('synthetic@example.invalid','synthetic')");
@@ -69,7 +92,7 @@ test('partial and drifted schemas refuse adoption without tracking or repairs', 
     assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
     await reset();
     await db.query(baseline);
-    await db.query('ALTER TABLE users ADD COLUMN first_name text');
+    await db.query('ALTER TABLE users ALTER COLUMN first_name TYPE text');
     const before=await catalog(db);
     assert.equal((await run('check')).baselineMatches,false);
     await assert.rejects(run('baseline'),/differs/);
@@ -110,12 +133,99 @@ test('unknown, missing and out-of-order history is refused', async () => {
     await db.query('UPDATE pgmigrations SET name=$1 WHERE name=$2',['20261023000002_wrong',baselineName]);
     await assert.rejects(run('up',{dir}),/history/);
 });
-test('full-text search triggers work and known schema discrepancies remain unrepaired', async () => {
+test('fresh schema supports registration/profile queries and optional names', async () => {
     await run('up');
-    const inserted=await db.query("INSERT INTO bible_verses(text) VALUES ('Creation light') RETURNING search_vector @@ plainto_tsquery('english','creation') AS found");
-    assert.equal(inserted.rows[0].found,true);
-    await assert.rejects(db.query('SELECT first_name,last_name FROM users'),/does not exist/);
-    await assert.rejects(db.query('INSERT INTO bible_chapters(book_id,chapter_number) VALUES (NULL,1) ON CONFLICT (book_id,chapter_number) DO NOTHING'),/no unique/);
+    const registered = await db.query(`INSERT INTO users(first_name,last_name,email,password_hash)
+        VALUES ($1,$2,$3,$4) RETURNING id,first_name,last_name,email`,
+        ['Ada','Reader','ada@example.invalid','synthetic-hash']);
+    const profile = await db.query('SELECT id,first_name,last_name,email FROM users WHERE id=$1',
+        [registered.rows[0].id]);
+    assert.deepEqual(profile.rows,registered.rows);
+    const login = await db.query('SELECT * FROM users WHERE email=$1',['ada@example.invalid']);
+    assert.equal(login.rows[0].password_hash,'synthetic-hash');
+    assert.deepEqual((await db.query("INSERT INTO users(email) VALUES ('optional@example.invalid') RETURNING first_name,last_name")).rows,
+        [{first_name:null,last_name:null}]);
+});
+
+test('Bible import upsert, verse uniqueness, reading and search work', async () => {
+    await run('up');
+    const book = (await db.query("INSERT INTO bible_books(name) VALUES ('Genesis') RETURNING id")).rows[0].id;
+    const translation = (await db.query("INSERT INTO bible_translations(abbreviation) VALUES ('TEST') RETURNING id")).rows[0].id;
+    const otherTranslation = (await db.query("INSERT INTO bible_translations(abbreviation) VALUES ('OTHER') RETURNING id")).rows[0].id;
+    const chapterSQL = `INSERT INTO bible_chapters(book_id,chapter_number) VALUES ($1,1)
+        ON CONFLICT (book_id,chapter_number) DO UPDATE SET book_id=EXCLUDED.book_id RETURNING id`;
+    const chapter = (await db.query(chapterSQL,[book])).rows[0].id;
+    assert.equal((await db.query(chapterSQL,[book])).rows[0].id,chapter);
+    await assert.rejects(db.query('INSERT INTO bible_chapters(book_id,chapter_number) VALUES ($1,1)',[book]),
+        {code:'23505',constraint:'unique_book_chapter'});
+    const verseSQL = 'INSERT INTO bible_verses(chapter_id,translation_id,verse_number,text) VALUES ($1,$2,$3,$4)';
+    await db.query(verseSQL,[chapter,translation,1,'Creation light']);
+    await assert.rejects(db.query(verseSQL,[chapter,translation,1,'Duplicate']),
+        {code:'23505',constraint:'unique_chapter_translation_verse'});
+    await db.query(verseSQL,[chapter,otherTranslation,1,'Other translation']);
+    await db.query(verseSQL,[chapter,translation,2,'Second verse']);
+    const read = await db.query(`SELECT v.verse_number,v.text,c.chapter_number,b.name AS book
+        FROM bible_verses v JOIN bible_chapters c ON v.chapter_id=c.id
+        JOIN bible_books b ON c.book_id=b.id JOIN bible_translations bt ON v.translation_id=bt.id
+        WHERE b.name=$1 AND c.chapter_number=$2 AND bt.abbreviation=$3 ORDER BY v.verse_number`,
+        ['Genesis',1,'TEST']);
+    assert.deepEqual(read.rows.map(row => row.verse_number),[1,2]);
+    assert.equal((await db.query("SELECT count(*)::int AS n FROM bible_verses WHERE search_vector @@ plainto_tsquery('english','creation')")).rows[0].n,1);
+    await db.query("UPDATE bible_verses SET text='Changed wording' WHERE chapter_id=$1 AND translation_id=$2 AND verse_number=1",[chapter,translation]);
+    assert.equal((await db.query("SELECT count(*)::int AS n FROM bible_verses WHERE search_vector @@ plainto_tsquery('english','changed')")).rows[0].n,1);
+});
+
+test('commentary imports, search and personal study query shapes work', async () => {
+    await run('up');
+    const book = (await db.query("INSERT INTO bible_books(name) VALUES ('Genesis') RETURNING id")).rows[0].id;
+    const user = (await db.query("INSERT INTO users(email) VALUES ('study@example.invalid') RETURNING id")).rows[0].id;
+    const source = (await db.query("INSERT INTO sources(name) VALUES ('Test source') RETURNING id")).rows[0].id;
+    const commentary = (await db.query("INSERT INTO commentaries(source_id,title) VALUES ($1,'Test commentary') RETURNING id",[source])).rows[0].id;
+    const sql = `INSERT INTO commentary_entries(commentary_id,book_id,start_chapter,start_verse,end_chapter,end_verse,content,title)
+        VALUES ($1,$2,1,1,1,2,'Creation commentary','Light')
+        ON CONFLICT (commentary_id,book_id,start_chapter,start_verse,end_chapter,end_verse) DO NOTHING RETURNING id`;
+    assert.equal((await db.query(sql,[commentary,book])).rowCount,1);
+    assert.equal((await db.query(sql,[commentary,book])).rowCount,0);
+    assert.equal((await db.query(`SELECT e.title FROM commentary_entries e
+        JOIN commentaries c ON c.id=e.commentary_id JOIN sources s ON s.id=c.source_id
+        WHERE e.book_id=$1 AND e.start_chapter<=1 AND e.end_chapter>=1
+        AND e.search_vector @@ plainto_tsquery('english','creation')`,[book])).rowCount,1);
+    await db.query('INSERT INTO notes(user_id,book_id,start_chapter,start_verse,end_chapter,end_verse,content) VALUES ($1,$2,1,1,1,2,$3)',[user,book,'My note']);
+    await db.query('INSERT INTO bookmarks(user_id,book_id,start_chapter,start_verse,end_chapter,end_verse) VALUES ($1,$2,1,1,1,2)',[user,book]);
+    const highlightSQL = `INSERT INTO highlights(user_id,book_id,chapter,verse,color) VALUES ($1,$2,1,1,$3)
+        ON CONFLICT (user_id,book_id,chapter,verse) DO UPDATE SET color=EXCLUDED.color,updated_at=CURRENT_TIMESTAMP RETURNING color`;
+    await db.query(highlightSQL,[user,book,'#FFD54F']);
+    assert.equal((await db.query(highlightSQL,[user,book,'#112233'])).rows[0].color,'#112233');
+    for (const table of ['notes','bookmarks','highlights']) {
+        assert.equal((await db.query(`SELECT * FROM ${table} WHERE user_id=$1`,[user])).rowCount,1);
+    }
+    await db.query('DELETE FROM users WHERE id=$1',[user]);
+    for (const table of ['notes','bookmarks','highlights']) {
+        assert.equal((await db.query(`SELECT * FROM ${table} WHERE user_id=$1`,[user])).rowCount,0);
+    }
+});
+
+test('catalog refuses meaningful drift in columns, constraints, indexes, functions and triggers', async () => {
+    await db.query(baseline);
+    const expected = await catalog(db);
+    const changes = [
+        'ALTER TABLE users ALTER COLUMN first_name TYPE text',
+        "ALTER TABLE users ALTER COLUMN last_name SET DEFAULT 'Unknown'",
+        'ALTER TABLE users ALTER COLUMN first_name SET NOT NULL',
+        'ALTER TABLE bible_chapters DROP CONSTRAINT unique_book_chapter',
+        'ALTER TABLE bible_verses DROP CONSTRAINT unique_chapter_translation_verse',
+        'DROP INDEX bible_verses_search_idx',
+        'ALTER TABLE bible_verses DISABLE TRIGGER bible_search_vector_trigger',
+        "CREATE OR REPLACE FUNCTION update_bible_search_vector() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN RETURN NEW; END; $$",
+        'CREATE TABLE unexpected(id integer)',
+    ];
+    for (const sql of changes) {
+        await db.query('BEGIN');
+        try {
+            await db.query(sql);
+            assert.notDeepEqual(differences(await catalog(db),expected),[],sql);
+        } finally { await db.query('ROLLBACK'); }
+    }
 });
 test('CLI suppresses credentials in driver failures and requires explicit target', () => {
     const secret='synthetic-DO-NOT-PRINT';
@@ -230,7 +340,7 @@ test('failure after baseline insertion but before commit rolls back history and 
 
 test('schema change after preflight is caught by transactional revalidation without history', async () => {
     await db.query(baseline);
-    const probe=adoptionProbe({beforeBegin:() => db.query('ALTER TABLE users ADD COLUMN first_name text')});
+    const probe=adoptionProbe({beforeBegin:() => db.query('ALTER TABLE users ALTER COLUMN first_name TYPE text')});
     await assert.rejects(run('baseline',{clientFactory:probe.clientFactory}),/Schema changed/);
     assert.ok(!probe.statements.some(sql => /INSERT INTO.*pgmigrations/i.test(sql)));
     assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);

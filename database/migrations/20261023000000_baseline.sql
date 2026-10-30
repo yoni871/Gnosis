@@ -19,7 +19,8 @@ CREATE TABLE bible_books (
 CREATE TABLE bible_chapters (
     id SERIAL PRIMARY KEY,
     book_id INTEGER REFERENCES bible_books(id), -- FOREIGN KEY referencing the bible books
-    chapter_number INTEGER
+    chapter_number INTEGER,
+    CONSTRAINT unique_book_chapter UNIQUE (book_id, chapter_number)
 );
 
 -- stores the actual bible text
@@ -29,7 +30,10 @@ CREATE TABLE bible_verses (
     translation_id INTEGER REFERENCES bible_translations(id),
     verse_number INTEGER,
     text TEXT,
-    search_vector TSVECTOR
+    search_vector TSVECTOR,
+    CONSTRAINT unique_chapter_translation_verse UNIQUE (
+        chapter_id, translation_id, verse_number
+    )
 );
 -- Speeds up full-text searches across Bible verses.
 CREATE INDEX bible_verses_search_idx
@@ -125,7 +129,9 @@ CREATE TABLE users (
     email VARCHAR(255) UNIQUE,
     password_hash VARCHAR(255),
     created_at TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100)
 );
 
 -- Stores passage-based notes created by authenticated users.

@@ -781,6 +781,18 @@
   },
   {
     "kind": "column",
+    "name": "users.first_name",
+    "definition": {
+      "type": "character varying(100)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
     "name": "users.id",
     "definition": {
       "type": "integer",
@@ -788,6 +800,18 @@
       "notNull": true,
       "identity": "",
       "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.last_name",
+    "definition": {
+      "type": "character varying(100)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
       "generated": ""
     }
   },
@@ -841,6 +865,14 @@
   },
   {
     "kind": "constraint",
+    "name": "bible_chapters.unique_book_chapter",
+    "definition": {
+      "sql": "UNIQUE (book_id, chapter_number)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
     "name": "bible_translations.bible_translations_pkey",
     "definition": {
       "sql": "PRIMARY KEY (id)",
@@ -868,6 +900,14 @@
     "name": "bible_verses.bible_verses_translation_id_fkey",
     "definition": {
       "sql": "FOREIGN KEY (translation_id) REFERENCES bible_translations(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_verses.unique_chapter_translation_verse",
+    "definition": {
+      "sql": "UNIQUE (chapter_id, translation_id, verse_number)",
       "validated": true
     }
   },
@@ -1201,6 +1241,24 @@
     "name": "sources_pkey",
     "definition": {
       "sql": "CREATE UNIQUE INDEX sources_pkey ON public.sources USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "unique_book_chapter",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX unique_book_chapter ON public.bible_chapters USING btree (book_id, chapter_number)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "unique_chapter_translation_verse",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX unique_chapter_translation_verse ON public.bible_verses USING btree (chapter_id, translation_id, verse_number)",
       "ready": true,
       "valid": true
     }
