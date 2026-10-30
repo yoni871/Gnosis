@@ -32,6 +32,20 @@ async function history(client, names) {
     return rows;
 }
 
+// Only fixed labels are public. Never interpolate driver messages, SQL, stack
+// traces, connection settings, object names or arbitrary error codes.
+function stageError(stage, error) {
+    const reasons = {
+        '42501':'insufficient privileges', '25006':'read-only transaction',
+        '55P03':'lock unavailable or timed out', '57014':'statement cancelled or timed out',
+        '42P07':'relation name conflict', '28P01':'authentication failed',
+        '3D000':'database unavailable', '08006':'connection failure',
+        ECONNREFUSED:'connection refused', ENOTFOUND:'host lookup failed'
+    };
+    const reason = Object.hasOwn(reasons,error?.code) ? reasons[error.code] : undefined;
+    return safeError(`Migration failed at stage [${stage}]${reason ? ` (${reason})` : ''}. Driver details suppressed.`);
+}
+
 // clientFactory allows tests to observe/fault-inject real PostgreSQL queries.
 // The CLI never accepts or configures this dependency.
 async function execute({command, target, env = process.env, dir = migrationsDir,
@@ -47,50 +61,105 @@ async function execute({command, target, env = process.env, dir = migrationsDir,
     // Do not forward driver diagnostics: they can contain credentials or SQL data.
     client.on('error', () => {});
     let locked = false;
+    let transactionOpen = false;
+    let stage = 'connection';
+    let failure;
+    let completed = false;
+    let runnerQueryError;
     try {
         await client.connect();
+        stage = 'session setup';
         await client.query("SET search_path TO public; SET lock_timeout TO '5s'; SET statement_timeout TO '60s'");
+        stage = 'locking';
         const lock = await client.query('SELECT pg_try_advisory_lock($1::bigint) AS locked', [lockId]);
         if (!lock.rows[0].locked) throw safeError('Another migration operation is running. Retry later.');
         locked = true;
+        stage = 'history validation';
         const applied = await history(client, names);
+        stage = 'schema validation';
         const actual = await catalog(client);
         const diff = differences(actual, expected);
+        const tables = expected.filter(row => row.kind === 'relation' && row.definition.kind === 'r');
+        stage = 'table locking';
+        // SHARE locks need UPDATE, DELETE or TRUNCATE, not just SELECT. A schema
+        // match alone cannot certify that an application role can adopt it.
+        const canLock = diff.length ? null : (await client.query(`SELECT bool_and(
+            has_table_privilege(current_user, name, 'UPDATE,DELETE,TRUNCATE')) AS allowed
+            FROM unnest($1::text[]) AS name`,
+            [tables.map(row => `public."${row.name}"`)])).rows[0].allowed;
         if (command === 'check') {
+            completed = true;
             return {applied, pending: names.slice(applied.length), baselineMatches: diff.length === 0,
-                differences: diff};
+                differences: diff, adoptionLockPrivileges: canLock};
         }
+        stage = 'schema validation';
         if (command === 'baseline') {
             if (applied.length) throw safeError('Database already has migration history; baseline adoption refused.');
             if (diff.length) throw safeError('Schema differs from the baseline. Run db:migrate:check; no adoption performed.');
+            stage = 'table locking';
+            if (!canLock) throw safeError('Baseline adoption requires SHARE-lock privileges on every application table. Use an authorized migration role; privileges and locks are not automatically changed.');
             // Adoption has exactly one transaction owner: this wrapper.
             // The runner is used only to mark one migration, never to apply DDL.
+            stage = 'transaction begin';
             await client.query('BEGIN');
+            transactionOpen = true;
             // Prevent concurrent writes/DDL on known tables while revalidating.
-            const tables = expected.filter(row => row.kind === 'relation' && row.definition.kind === 'r');
+            stage = 'table locking';
             await client.query(`LOCK TABLE ${tables.map(row => `public."${row.name}"`).join(',')} IN SHARE MODE`);
+            stage = 'revalidation';
             if (differences(await catalog(client), expected).length) throw safeError('Schema changed during validation.');
         } else if (!applied.length && actual.length) {
             throw safeError('Existing schema has no history. Use validated baseline adoption; baseline DDL was not run.');
         }
         if (command === 'down' && applied.length <= 1) throw safeError('The baseline is irreversible.');
+        stage = command === 'baseline' ? 'fake-runner' : 'migration runner';
         const { runner } = await import('node-pg-migrate');
-        const result = await runner({dbClient:client, dir, migrationsTable:'pgmigrations', schema:'public',
+        // Observe the pinned runner's history DDL without taking transaction
+        // ownership from it or exposing its potentially sensitive wrapped errors.
+        const runnerClient = {query: async (...args) => {
+            const sql = typeof args[0] === 'string' ? args[0] : args[0].text;
+            stage = /^(CREATE|ALTER) TABLE "public"\."pgmigrations"(?:\s|$)/.test(sql)
+                ? 'history creation' : command === 'baseline' ? 'fake-runner' : 'migration runner';
+            try { return await client.query(...args); }
+            catch (error) { runnerQueryError = error; throw error; }
+        }};
+        const result = await runner({dbClient:runnerClient, dir, migrationsTable:'pgmigrations', schema:'public',
             direction: command === 'down' ? 'down' : 'up', count: command === 'baseline' || command === 'down' ? 1 : Infinity,
             fake:command === 'baseline', checkOrder:true,
             // The wrapper owns the advisory lock for the complete operation.
             // Ordinary up/down transaction ownership remains with the runner.
             noLock:true, singleTransaction:command !== 'baseline',
             logger:{info() {}, warn() {}, error() {}}});
-        if (command === 'baseline') await client.query('COMMIT');
+        if (command === 'baseline') {
+            stage = 'commit';
+            await client.query('COMMIT');
+            transactionOpen = false;
+        }
+        completed = true;
         return {migrations:result.map(row => row.name)};
     } catch (error) {
-        await client.query('ROLLBACK').catch(() => {});
-        if (error.safe) throw error;
-        throw safeError('Migration operation failed. No driver details are printed; inspect schema/history and recovery guidance before retrying.');
+        failure = error.safe ? safeError(`Migration failed at stage [${stage}]. ${error.message}`)
+            : stageError(stage, runnerQueryError || error);
+        if (stage === 'commit') failure.message += ' Commit outcome may be uncertain; check history before retrying.';
+        if (transactionOpen) {
+            try { await client.query('ROLLBACK'); }
+            catch { failure.message += ' Cleanup failed at stage [rollback]; verify history before retrying.'; }
+        }
+        throw failure;
     } finally {
-        if (locked) await client.query('SELECT pg_advisory_unlock($1::bigint)', [lockId]).catch(() => {});
-        await client.end().catch(() => {});
+        const cleanup = [];
+        if (locked) {
+            try {
+                const result = await client.query('SELECT pg_advisory_unlock($1::bigint) AS released', [lockId]);
+                if (!result.rows[0]?.released) cleanup.push('advisory unlock');
+            } catch { cleanup.push('advisory unlock'); }
+        }
+        try { await client.end(); } catch { cleanup.push('connection close'); }
+        if (cleanup.length) {
+            const message = ` Cleanup failed at stage [${cleanup.join(', ')}]. ${completed ? 'Operation completed; do not blindly retry.' : 'Verify history before retrying.'} Driver details suppressed.`;
+            if (failure) failure.message += message;
+            else throw safeError(message.trim());
+        }
     }
 }
 

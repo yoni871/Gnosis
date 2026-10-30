@@ -84,6 +84,25 @@ create a history table. It lists applied/pending migrations and baseline structu
 differences. After future migrations, differences from the *initial* baseline are
 expected; this field is not a general latest-schema drift detector.
 
+`baselineMatches: true` certifies structure, not permission to adopt. When the
+schema matches, check also reports `adoptionLockPrivileges`: SHARE table locks
+require UPDATE, DELETE or TRUNCATE on **every** application table. SELECT alone
+is insufficient, even if the role can CREATE in public. This flag is null when
+the schema differs; true covers only the lock prerequisite, not all write or
+operational prerequisites. Use an authorized operator/migration role for adoption.
+Do not grant extra application privileges or weaken the SHARE locks to force it.
+
+Failures identify a safe stage: connection, session setup, locking, history/schema
+validation, table locking, transaction begin, revalidation, history creation,
+fake-runner (or migration runner), commit, or cleanup. Only fixed reason labels
+are emitted for recognized error codes; raw driver messages, SQL, stacks and
+connection details remain suppressed. A read-only session can pass the structure
+check but fail at history creation; inspect the intended settings rather than
+automatically overriding read-only mode. A commit failure can have an uncertain
+outcome: check history before retrying. Cleanup failures retain the primary stage;
+if commit succeeded, the error explicitly says the operation completed so an
+operator does not accidentally repeat adoption.
+
 Adoption requires an exact public-schema match against baseline.catalog.json.
 Comparison includes columns/defaults, constraints, indexes, sequences and their
 ownership, functions, triggers, relation options, views, rules, policies, types,
@@ -225,6 +244,11 @@ The suite also covers registration/profile name queries, chapter and verse
 uniqueness, valid Bible/commentary imports, personal study queries and cascades,
 and meaningful drift rejection. Run the same suite against disposable PostgreSQL
 14 and 18 databases; the manifest is generated from 14 and must match both.
+Public npm CLI regression tests additionally exercise the local target, partial
+application-role lock grants, operator adoption, read-only history creation,
+tracking rollback and credential-safe diagnostics. These tests create and remove
+a temporary login role inside the disposable cluster, so the test role needs
+CREATEROLE (the isolated initdb owner/synthetic container operator has it).
 
 Example disposable setup (run from `backend/`; choose an unused dedicated port):
 

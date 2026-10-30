@@ -101,7 +101,7 @@ test('partial and drifted schemas refuse adoption without tracking or repairs', 
 test('failed migration rolls back schema and history and can safely retry', async () => {
     await run('up');
     const dir=await fixtureDir('-- Up Migration\nCREATE TABLE fixture(id integer); SELECT 1/0;\n-- Down Migration\nDROP TABLE fixture;');
-    await assert.rejects(run('up',{dir}),/operation failed/);
+    await assert.rejects(run('up',{dir}),/stage \[migration runner\]/);
     assert.equal((await db.query("SELECT to_regclass('public.fixture') AS value")).rows[0].value,null);
     assert.equal((await db.query('SELECT count(*)::int AS n FROM pgmigrations')).rows[0].n,1);
     await fs.writeFile(path.join(dir,'20261023000001_fixture.sql'),'-- Up Migration\nCREATE TABLE fixture(id integer);\n-- Down Migration\nDROP TABLE fixture;');
@@ -115,7 +115,7 @@ test('baseline SQL itself is irreversible, even outside the wrapper', async () =
 });
 test('failed initial batch rolls back baseline DDL and supports retry', async () => {
     const dir=await fixtureDir('-- Up Migration\nSELECT 1/0;\n-- Down Migration\nSELECT 1;');
-    await assert.rejects(run('up',{dir}),/operation failed/);
+    await assert.rejects(run('up',{dir}),/stage \[migration runner\]/);
     assert.equal((await db.query("SELECT to_regclass('public.users') AS value")).rows[0].value,null);
     assert.deepEqual((await run('up')).migrations,[baselineName]);
 });
@@ -234,7 +234,176 @@ test('CLI suppresses credentials in driver failures and requires explicit target
             MIGRATION_TEST_DATABASE_URL:`postgresql://${secret}:${secret}@127.0.0.1:1/gnosis_migration_test_0123456789abcdef`}});
     assert.equal(result.status,1);
     assert.ok(!`${result.stdout}${result.stderr}`.includes(secret));
-    assert.match(result.stderr,/details/);
+    assert.match(result.stderr,/stage \[connection\]/);
+});
+
+// Exercise npm + argument parsing + local configuration + the actual CLI, while
+// forcing all routing settings to the validated disposable test database.
+function localCLI(command, extraEnv = {}) {
+    const url = new URL(process.env.MIGRATION_TEST_DATABASE_URL);
+    return spawnSync('npm',['run',command,'--','--target','local'],{
+        cwd:path.resolve(__dirname,'../..'), encoding:'utf8', env:{...process.env,
+            DB_HOST:url.hostname.replace(/^\[|\]$/g,''), DB_PORT:url.port || '5432',
+            DB_NAME:url.pathname.slice(1), DB_USER:decodeURIComponent(url.username),
+            DB_PASSWORD:decodeURIComponent(url.password), PGOPTIONS:'',
+            ...extraEnv}});
+}
+
+test('public local CLI adopts an exact untracked baseline and preserves rows and sequences', async () => {
+    await db.query(baseline);
+    const user = (await db.query("INSERT INTO users(email) VALUES ('cli@example.invalid') RETURNING id")).rows[0].id;
+    const checked = localCLI('db:migrate:check');
+    assert.equal(checked.status,0,checked.stderr);
+    assert.match(checked.stdout,/"baselineMatches": true/);
+    const adopted = localCLI('db:migrate:baseline');
+    assert.equal(adopted.status,0,adopted.stderr);
+    assert.deepEqual((await db.query('SELECT name FROM public.pgmigrations')).rows,[{name:baselineName}]);
+    assert.equal((await db.query("SELECT id FROM users WHERE email='cli@example.invalid'")).rows[0].id,user);
+    assert.equal((await db.query("INSERT INTO users(email) VALUES ('next-cli@example.invalid') RETURNING id")).rows[0].id,user+1);
+});
+
+test('public CLI distinguishes an exact schema from missing SHARE-lock privileges', async () => {
+    await db.query(baseline);
+    const suffix = new URL(process.env.MIGRATION_TEST_DATABASE_URL).pathname.slice(-16);
+    const role = `gnosis_lock_test_${suffix}`;
+    await db.query(`CREATE ROLE ${role} LOGIN`);
+    try {
+        await db.query(`GRANT USAGE,CREATE ON SCHEMA public TO ${role};
+            GRANT SELECT ON ALL TABLES IN SCHEMA public TO ${role};
+            GRANT UPDATE ON bible_books,bible_chapters,bible_verses,bookmarks,highlights,notes,users TO ${role}`);
+        const env = {DB_USER:role,DB_PASSWORD:''};
+        const checked = localCLI('db:migrate:check',env);
+        assert.equal(checked.status,0,checked.stderr);
+        assert.match(checked.stdout,/"baselineMatches": true/);
+        assert.match(checked.stdout,/"adoptionLockPrivileges": false/);
+        const adopted = localCLI('db:migrate:baseline',env);
+        assert.equal(adopted.status,1);
+        assert.match(adopted.stderr,/stage \[table locking\]/);
+        assert.match(adopted.stderr,/SHARE-lock privileges/);
+        assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
+        assert.equal((await db.query("SELECT to_regclass('public.pgmigrations_id_seq') AS value")).rows[0].value,null);
+        // The same public CLI succeeds with the operator role; no weaker lock or
+        // privilege escalation is introduced to accommodate the application role.
+        const operator = localCLI('db:migrate:baseline');
+        assert.equal(operator.status,0,operator.stderr);
+        assert.deepEqual((await db.query('SELECT name FROM pgmigrations')).rows,[{name:baselineName}]);
+    } finally {
+        await reset();
+        await db.query(`DROP ROLE ${role}`);
+    }
+});
+
+test('public CLI reports read-only history creation failure and rolls back all tracking', async () => {
+    await db.query(baseline);
+    const env = {PGOPTIONS:'-c default_transaction_read_only=on'};
+    const checked = localCLI('db:migrate:check',env);
+    assert.equal(checked.status,0,checked.stderr);
+    assert.match(checked.stdout,/"baselineMatches": true/);
+    const adopted = localCLI('db:migrate:baseline',env);
+    assert.equal(adopted.status,1);
+    assert.match(adopted.stderr,/stage \[history creation\] \(read-only transaction\)/);
+    assert.ok(!adopted.stderr.includes('CREATE TABLE'));
+    assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
+    assert.equal((await db.query("SELECT to_regclass('public.pgmigrations_id_seq') AS value")).rows[0].value,null);
+    assert.deepEqual((await run('baseline')).migrations,[baselineName]);
+});
+
+test('public CLI reports table lock contention even for the operator and leaves no history', async () => {
+    await db.query(baseline);
+    await db.query('BEGIN');
+    try {
+        await db.query('LOCK TABLE bible_books IN ROW EXCLUSIVE MODE');
+        const adopted = localCLI('db:migrate:baseline');
+        assert.equal(adopted.status,1);
+        assert.match(adopted.stderr,/stage \[table locking\] \(lock unavailable or timed out\)/);
+    } finally { await db.query('ROLLBACK'); }
+    assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
+    assert.equal((await db.query("SELECT to_regclass('public.pgmigrations_id_seq') AS value")).rows[0].value,null);
+    await assertLocksReleased();
+});
+
+test('adoption diagnostics distinguish failure stages without leaking driver details', async () => {
+    const secret = 'synthetic-private-driver-details';
+    for (const [stage,match] of [
+        ['connection',null],
+        ['locking',sql => sql.startsWith('SELECT pg_try_advisory_lock')],
+        ['table locking',sql => sql.startsWith('LOCK TABLE')],
+        ['revalidation',sql => sql.includes('WITH objects AS')],
+        ['history creation',sql => sql.startsWith('CREATE TABLE "public"."pgmigrations"')],
+        ['fake-runner',sql => sql.startsWith('INSERT INTO "public"."pgmigrations"')],
+        ['commit',sql => sql === 'COMMIT']
+    ]) {
+        await reset();
+        await db.query(baseline);
+        let catalogs = 0;
+        const clientFactory = settings => {
+            const client = new Client(settings);
+            if (stage === 'connection') client.connect = async () => { throw new Error(secret); };
+            const query = client.query.bind(client);
+            client.query = async (...args) => {
+                const sql = typeof args[0] === 'string' ? args[0] : args[0].text;
+                if (sql.includes('WITH objects AS')) catalogs++;
+                if (match?.(sql) && (stage !== 'revalidation' || catalogs === 2)) throw new Error(secret);
+                return query(...args);
+            };
+            return client;
+        };
+        await assert.rejects(run('baseline',{clientFactory}),error => {
+            assert.ok(error.safe);
+            assert.ok(error.message.includes(`stage [${stage}]`),error.message);
+            assert.ok(!error.message.includes(secret));
+            return true;
+        });
+        assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
+        assert.equal((await db.query("SELECT to_regclass('public.pgmigrations_id_seq') AS value")).rows[0].value,null);
+    }
+});
+
+test('cleanup failure after commit is reported without suggesting a second adoption', async () => {
+    await db.query(baseline);
+    const clientFactory = settings => {
+        const client = new Client(settings);
+        const end = client.end.bind(client);
+        client.end = async () => { await end(); throw new Error('synthetic-private-close-error'); };
+        return client;
+    };
+    await assert.rejects(run('baseline',{clientFactory}),error => {
+        assert.match(error.message,/Cleanup failed at stage \[connection close\]/);
+        assert.match(error.message,/Operation completed/);
+        assert.ok(!error.message.includes('synthetic-private-close-error'));
+        return true;
+    });
+    assert.deepEqual((await db.query('SELECT name FROM public.pgmigrations')).rows,[{name:baselineName}]);
+    await assertLocksReleased();
+});
+
+test('rollback and unlock failures retain the primary stage and still close the connection', async () => {
+    await db.query(baseline);
+    let closed = false;
+    const clientFactory = settings => {
+        const client = new Client(settings);
+        const query = client.query.bind(client);
+        const end = client.end.bind(client);
+        client.query = async (...args) => {
+            const sql = typeof args[0] === 'string' ? args[0] : args[0].text;
+            if (sql.startsWith('INSERT INTO "public"."pgmigrations"')) throw new Error('synthetic-private-insert');
+            const result = await query(...args);
+            if (sql === 'ROLLBACK' || sql.startsWith('SELECT pg_advisory_unlock')) throw new Error('synthetic-private-cleanup');
+            return result;
+        };
+        client.end = async () => { await end(); closed = true; };
+        return client;
+    };
+    await assert.rejects(run('baseline',{clientFactory}),error => {
+        assert.match(error.message,/stage \[fake-runner\]/);
+        assert.match(error.message,/stage \[rollback\]/);
+        assert.match(error.message,/stage \[advisory unlock\]/);
+        assert.ok(!error.message.includes('synthetic-private'));
+        return true;
+    });
+    assert.equal(closed,true);
+    assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
+    await assertLocksReleased();
 });
 test('check on untracked schema is read-only and tracking-like extra objects refuse adoption', async () => {
     assert.equal((await run('check')).applied.length,0);
@@ -328,7 +497,7 @@ test('failure after baseline insertion but before commit rolls back history and 
         await assertUncommittedAndLocked(context);
         throw new Error('Synthetic pre-commit failure');
     }});
-    await assert.rejects(run('baseline',{clientFactory:probe.clientFactory}),/operation failed/);
+    await assert.rejects(run('baseline',{clientFactory:probe.clientFactory}),/stage \[commit\]/);
     assert.equal(probe.statements.filter(sql => sql === 'BEGIN').length,1);
     assert.equal(probe.statements.filter(sql => sql === 'COMMIT').length,0);
     assert.equal(probe.statements.filter(sql => sql === 'ROLLBACK').length,1);
