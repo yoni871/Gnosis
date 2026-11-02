@@ -1,3 +1,6 @@
+-- REFERENCE COPY ONLY. Do not execute for installation or upgrades.
+-- Versioned migrations in database/migrations/ are authoritative.
+-- Mirrors the approved initial baseline; later changes belong in new migrations.
 -- Stores the Bible translations available in the application.
 CREATE TABLE bible_translations (
     id SERIAL PRIMARY KEY,
@@ -18,7 +21,8 @@ CREATE TABLE bible_books (
 CREATE TABLE bible_chapters (
     id SERIAL PRIMARY KEY,
     book_id INTEGER REFERENCES bible_books(id), -- FOREIGN KEY referencing the bible books
-    chapter_number INTEGER
+    chapter_number INTEGER,
+    CONSTRAINT unique_book_chapter UNIQUE (book_id, chapter_number)
 );
 
 -- stores the actual bible text
@@ -28,7 +32,10 @@ CREATE TABLE bible_verses (
     translation_id INTEGER REFERENCES bible_translations(id),
     verse_number INTEGER,
     text TEXT,
-    search_vector TSVECTOR
+    search_vector TSVECTOR,
+    CONSTRAINT unique_chapter_translation_verse UNIQUE (
+        chapter_id, translation_id, verse_number
+    )
 );
 -- Speeds up full-text searches across Bible verses.
 CREATE INDEX bible_verses_search_idx
@@ -124,7 +131,9 @@ CREATE TABLE users (
     email VARCHAR(255) UNIQUE,
     password_hash VARCHAR(255),
     created_at TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100)
 );
 
 -- Stores passage-based notes created by authenticated users.
@@ -209,5 +218,3 @@ CREATE TABLE highlights (
 -- Speed up loading a user's highlights within a book.
 CREATE INDEX highlights_user_book_idx
 ON highlights(user_id, book_id);
-
-
