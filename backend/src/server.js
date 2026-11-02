@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("./config/env").loadEnvironment();
 
 const app = require("./app");
 

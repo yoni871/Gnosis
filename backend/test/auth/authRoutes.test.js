@@ -2,19 +2,17 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const jwt = require("jsonwebtoken");
 
-// Point the pool at a closed port so every database call fails fast and
-// deterministically, without depending on any real database. These must be
-// set before the app (and its pool) is required.
-delete process.env.DATABASE_URL;
-process.env.DB_HOST = "127.0.0.1";
-process.env.DB_PORT = "59999";
-process.env.DB_USER = "test";
-process.env.DB_NAME = "test";
-process.env.DB_PASSWORD = "test";
+// Explicit isolation also protects direct node --test invocations.
+process.env.GNOSIS_TEST_ISOLATION = "1";
 process.env.JWT_SECRET = "test-secret-for-auth-error-tests";
 
 const app = require("../../src/app");
 const pool = require("../../src/db/db");
+
+// Reject queries in memory: no real database connection is attempted.
+const queryMock = test.mock.method(pool, "query", async () => {
+    throw Object.assign(new Error("Synthetic database failure"), { code: "ECONNREFUSED" });
+});
 
 let server;
 let baseUrl;
@@ -30,6 +28,7 @@ test.after(async () => {
         server.closeAllConnections();
     }
     await new Promise((resolve) => server.close(resolve));
+    queryMock.mock.restore();
     await pool.end();
 });
 
