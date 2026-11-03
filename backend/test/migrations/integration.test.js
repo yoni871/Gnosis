@@ -21,8 +21,17 @@ async function reset() {
 }
 async function fixtureDir(sql) {
     const dir = await fs.mkdtemp(path.join(scratch,'case-'));
-    await fs.copyFile(path.join(migrationsDir,`${baselineName}.sql`),path.join(dir,`${baselineName}.sql`));
-    await fs.writeFile(path.join(dir,'20261023000001_fixture.sql'),sql);
+    // Copy every real migration, then a fixture that sorts after all of
+    // them: history validation requires applied history to be a prefix of
+    // the directory's files, so a fixture dated between real migrations
+    // would break every test that applies real migrations first. The
+    // far-future stamp keeps the fixture last by construction.
+    for (const name of await fs.readdir(migrationsDir)) {
+        if (name.endsWith('.sql')) {
+            await fs.copyFile(path.join(migrationsDir, name), path.join(dir, name));
+        }
+    }
+    await fs.writeFile(path.join(dir,'29990101000000_fixture.sql'),sql);
     return dir;
 }
 
@@ -40,11 +49,15 @@ test.after(async () => {
 test.beforeEach(reset);
 
 test('empty database initializes, catalog matches fixture, and rerun is a no-op', async () => {
-    assert.deepEqual((await run('up')).migrations,[baselineName]);
-    assert.deepEqual((await run('up')).migrations,[]);
+    // Baseline-only directory: this test pins baseline initialization
+    // exactly, independent of later real migrations.
+    const dir = await fs.mkdtemp(path.join(scratch,'baseline-only-'));
+    await fs.copyFile(path.join(migrationsDir,`${baselineName}.sql`),path.join(dir,`${baselineName}.sql`));
+    assert.deepEqual((await run('up',{dir})).migrations,[baselineName]);
+    assert.deepEqual((await run('up',{dir})).migrations,[]);
     const expected=JSON.parse(await fs.readFile(path.resolve(migrationsDir,'../baseline.catalog.json'),'utf8'));
     assert.deepEqual(differences(await catalog(db),expected),[]);
-    const result=await run('check');
+    const result=await run('check',{dir});
     assert.equal(result.baselineMatches,true);
     assert.deepEqual(result.pending,[]);
 });
@@ -84,7 +97,8 @@ test('existing schema refuses baseline DDL; adoption preserves data and sequence
     assert.equal((await db.query("INSERT INTO users(email) VALUES ('second@example.invalid') RETURNING id")).rows[0].id,2);
     assert.deepEqual((await db.query('SELECT name FROM pgmigrations')).rows,[{name:baselineName}]);
     await assert.rejects(run('baseline',{dir}),/already has/);
-    assert.deepEqual((await run('up',{dir})).migrations,['20261023000001_fixture']);
+    assert.deepEqual((await run('up',{dir})).migrations,
+        ['20261103010729_add-auth-rate-limiting','29990101000000_fixture']);
 });
 test('partial and drifted schemas refuse adoption without tracking or repairs', async () => {
     await db.query('CREATE TABLE users(id integer)');
@@ -103,10 +117,11 @@ test('failed migration rolls back schema and history and can safely retry', asyn
     const dir=await fixtureDir('-- Up Migration\nCREATE TABLE fixture(id integer); SELECT 1/0;\n-- Down Migration\nDROP TABLE fixture;');
     await assert.rejects(run('up',{dir}),/stage \[migration runner\]/);
     assert.equal((await db.query("SELECT to_regclass('public.fixture') AS value")).rows[0].value,null);
-    assert.equal((await db.query('SELECT count(*)::int AS n FROM pgmigrations')).rows[0].n,1);
-    await fs.writeFile(path.join(dir,'20261023000001_fixture.sql'),'-- Up Migration\nCREATE TABLE fixture(id integer);\n-- Down Migration\nDROP TABLE fixture;');
+    assert.equal((await db.query('SELECT count(*)::int AS n FROM pgmigrations')).rows[0].n,2);
+    await fs.writeFile(path.join(dir,'29990101000000_fixture.sql'),'-- Up Migration\nCREATE TABLE fixture(id integer);\n-- Down Migration\nDROP TABLE fixture;');
     await run('up',{dir});
-    assert.deepEqual((await run('down',{dir})).migrations,['20261023000001_fixture']);
+    assert.deepEqual((await run('down',{dir})).migrations,['29990101000000_fixture']);
+    assert.deepEqual((await run('down',{dir})).migrations,['20261103010729_add-auth-rate-limiting']);
     await assert.rejects(run('down',{dir}),/irreversible/);
 });
 test('baseline SQL itself is irreversible, even outside the wrapper', async () => {
@@ -117,7 +132,7 @@ test('failed initial batch rolls back baseline DDL and supports retry', async ()
     const dir=await fixtureDir('-- Up Migration\nSELECT 1/0;\n-- Down Migration\nSELECT 1;');
     await assert.rejects(run('up',{dir}),/stage \[migration runner\]/);
     assert.equal((await db.query("SELECT to_regclass('public.users') AS value")).rows[0].value,null);
-    assert.deepEqual((await run('up')).migrations,[baselineName]);
+    assert.deepEqual((await run('up')).migrations,[baselineName,'20261103010729_add-auth-rate-limiting']);
 });
 test('concurrent migration operation is refused while the shared advisory lock is held', async () => {
     await db.query('SELECT pg_advisory_lock($1::bigint)',[lockId]);

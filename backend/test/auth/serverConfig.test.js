@@ -114,10 +114,36 @@ test("refuses to start without JWT_SECRET in production mode", async () => {
     assert.ok(!stderr().includes(MARKER), stderr());
 });
 
+test("refuses to start without RATE_LIMIT_KEY_SECRET", async () => {
+    const { child, stderr } = spawnServer(0, {
+        NODE_ENV: "production",
+        JWT_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: undefined,
+        TEST_SECRET_MARKER: MARKER,
+    });
+    const code = await waitForExit(child, 15000);
+    assert.notEqual(code, 0);
+    assert.ok(stderr().includes("Server configuration error"), stderr());
+    assert.ok(!stderr().includes(MARKER), stderr());
+    assert.ok(!stderr().includes("RATE_LIMIT_KEY_SECRET"), stderr());
+});
+
+test("refuses to start with an invalid TRUST_PROXY value", async () => {
+    const { child } = spawnServer(0, {
+        NODE_ENV: "production",
+        JWT_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        TRUST_PROXY: "not-a-proxy-value",
+    });
+    const code = await waitForExit(child, 15000);
+    assert.notEqual(code, 0);
+});
+
 async function malformedJsonInMode(mode, port) {
     const server = spawnServer(port, {
         NODE_ENV: mode,
         JWT_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
     });
     try {
         const output = await waitForOutput(server.child.stdout, "TEST_PORT=", 15000);

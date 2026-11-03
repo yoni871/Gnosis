@@ -5,12 +5,19 @@ const jwt = require("jsonwebtoken");
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
 process.env.JWT_SECRET = "test-secret-for-auth-error-tests";
+process.env.RATE_LIMIT_KEY_SECRET = "test-secret-for-rate-limit-tests";
 
 const app = require("../../src/app");
 const pool = require("../../src/db/db");
 
 // Reject queries in memory: no real database connection is attempted.
+// Issue #4: the limiter checks out a client for its reservation
+// transaction, so the database-down fixture must reject connect() too;
+// otherwise a valid request would attempt a real connection.
 const queryMock = test.mock.method(pool, "query", async () => {
+    throw Object.assign(new Error("Synthetic database failure"), { code: "ECONNREFUSED" });
+});
+const connectMock = test.mock.method(pool, "connect", async () => {
     throw Object.assign(new Error("Synthetic database failure"), { code: "ECONNREFUSED" });
 });
 
@@ -29,6 +36,7 @@ test.after(async () => {
     }
     await new Promise((resolve) => server.close(resolve));
     queryMock.mock.restore();
+    connectMock.mock.restore();
     await pool.end();
 });
 
