@@ -248,8 +248,10 @@ async function maybeCleanup(dbPool, options = {}) {
 
 // Middleware factory. policySpecs is an ordered list of
 // { policy, fields } where fields(req, ip) returns the key fields for
-// that policy. Earlier reservations are released when a later policy
-// blocks, so a 429 never consumes quota. Cleanup runs in-response before
+// that policy. Every policy is attempted even after one blocks, so the
+// 429's Retry-After is the maximum remaining wait across all blocking
+// policies. Reservations from allowed policies are released when any
+// policy blocks, so a 429 never consumes quota. Cleanup runs in-response before
 // the 429 or before the handler, never after the response.
 function createRateLimitMiddleware(policySpecs, endpoint) {
     return async (req, res, next) => {
@@ -260,21 +262,26 @@ function createRateLimitMiddleware(policySpecs, endpoint) {
                 throw new Error("Client address is unavailable.");
             }
             const reservations = [];
-            let blocked = null;
+            const blockedWaits = [];
             for (const spec of policySpecs) {
                 const keyHash = computeKeyHash(spec.policy, spec.fields(req, ip), secret);
                 const outcome = await attemptReservation(pool, spec.policy, keyHash);
                 if (!outcome.allowed) {
-                    blocked = outcome;
-                    break;
+                    blockedWaits.push(outcome.retryAfter);
+                } else {
+                    reservations.push(outcome.reservation);
                 }
-                reservations.push(outcome.reservation);
             }
-            if (blocked) {
+            if (blockedWaits.length > 0) {
+                // Every policy is attempted even after one blocks, so the
+                // header is the maximum remaining wait across all blocking
+                // policies, as documented. A blocked policy's reservation
+                // was already rolled back; allowed ones are released here,
+                // so a blocked request consumes or extends no quota.
                 await releaseReservations(pool, reservations);
                 await maybeCleanup(pool);
                 return res.status(429)
-                    .set("Retry-After", String(blocked.retryAfter))
+                    .set("Retry-After", String(Math.max(...blockedWaits)))
                     .json(RATE_LIMITED_BODY);
             }
             const state = { reservations, finalized: false };

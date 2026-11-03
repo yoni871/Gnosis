@@ -415,6 +415,47 @@ test("middleware blocks with a generic 429 and releases earlier reservations", a
     }
 });
 
+test("middleware returns the longest wait when both login policies block, consuming neither quota", async () => {
+    const now = Date.now();
+    const client = new FakeClient({
+        counts: {
+            // Post-insert counts: both over their limits, with different
+            // oldest attempts, so the two policies imply different waits.
+            login_ip_email: { count: 6, oldest: new Date(now - 14 * 60 * 1000) },
+            login_ip: { count: 31, oldest: new Date(now - 5 * 60 * 1000) },
+        },
+    });
+    const { poolQueries, restore } = mockPoolForMiddleware(client);
+    try {
+        const middleware = createRateLimitMiddleware([
+            { policy: "login_ip_email", fields: (req, ip) => [ip, req.validated.email] },
+            { policy: "login_ip", fields: (req, ip) => [ip] },
+        ], "login");
+        const res = fakeResponse();
+        let proceeded = false;
+        await middleware({ ip: "203.0.113.9", validated: { email: "a@example.com" } }, res, () => {
+            proceeded = true;
+        });
+        assert.equal(proceeded, false);
+        assert.equal(res.statusCode, 429);
+        assert.deepEqual(res.body, RATE_LIMITED_BODY);
+        // The email policy implies ~60s, the IP policy ~600s: the header
+        // must be the longest wait, not the first policy's.
+        const retryAfter = Number(res.headers["Retry-After"]);
+        assert.ok(Number.isInteger(retryAfter) && retryAfter >= 599 && retryAfter <= 600);
+        // Neither quota is consumed or extended: both inserts rolled back,
+        // neither committed, and no release DELETE ran for either.
+        const statements = client.queries.map((query) => query.sql);
+        assert.equal(statements.filter((sql) => sql === "COMMIT").length, 0);
+        assert.equal(statements.filter((sql) => sql === "ROLLBACK").length, 2);
+        assert.equal(client.inserted.length, 2);
+        const deletes = poolQueries.filter((query) => query.sql.includes("DELETE FROM rate_limit_attempts"));
+        assert.equal(deletes.length, 0);
+    } finally {
+        restore();
+    }
+});
+
 test("middleware allows, attaches finalize, and finalize is idempotent", async () => {
     const client = new FakeClient();
     const { poolQueries, restore } = mockPoolForMiddleware(client);

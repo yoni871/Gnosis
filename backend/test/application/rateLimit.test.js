@@ -68,7 +68,8 @@ async function seedUser(email, password) {
 // accumulates across tests. Per-email buckets use a fresh email per test
 // (exact counts), while the per-IP test reads its starting count and
 // derives how many failures remain before the limit (robust to order).
-// The per-IP bucket is filled last among login tests for that reason.
+// The per-IP bucket is filled by the per-IP test; the both-blocked test
+// runs right after it and relies on that full bucket.
 
 test('concurrent burst is strict: exactly 5 of 20 attempts pass the email bucket', async () => {
     const email = 'burst@example.com';
@@ -145,6 +146,31 @@ test('login per-IP limit blocks across accounts once the shared bucket fills', a
     assert.deepEqual(blocked.json, RATE_LIMITED_BODY,
         'the 429 body is identical regardless of which policy fired');
     assert.equal(await attemptCount('login_ip', [IP]), 30);
+});
+
+test('both login policies blocked returns the longest wait and consumes neither quota', async () => {
+    const email = 'both-blocked@example.com';
+    // Five failures 14 minutes old: the email bucket is full with only
+    // about a minute left. The shared per-IP bucket is already full from
+    // the previous test with a much longer wait remaining.
+    await database.pool.query(
+        `INSERT INTO rate_limit_attempts(key_hash, policy, attempted_at)
+         SELECT $1, 'login_ip_email', now() - INTERVAL '14 minutes'
+         FROM generate_series(1, 5)`,
+        [computeKeyHash('login_ip_email', [IP, email], RATE_SECRET)]);
+    assert.equal(await attemptCount('login_ip_email', [IP, email]), 5);
+    assert.equal(await attemptCount('login_ip', [IP]), 30);
+    const blocked = await login(worker.url, email, 'wrong-password');
+    assert.equal(blocked.status, 429);
+    assert.deepEqual(blocked.json, RATE_LIMITED_BODY);
+    // The wait must be the per-IP policy's long remaining wait, not the
+    // email policy's ~60 seconds.
+    assert.ok(Number(blocked.retryAfter) > 300,
+        'Retry-After must be the longest wait across blocking policies');
+    assert.equal(await attemptCount('login_ip_email', [IP, email]), 5,
+        'the blocked request consumed no email quota');
+    assert.equal(await attemptCount('login_ip', [IP]), 30,
+        'the blocked request consumed no per-IP quota');
 });
 
 test('registration per-IP limit counts successes and duplicates', async () => {
