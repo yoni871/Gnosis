@@ -29,9 +29,9 @@ function internalErrorBody(endpoint) {
 // Map a database failure to the controlled response for one auth endpoint.
 // Only the register duplicate-email case (PostgreSQL 23505) is a client
 // error with a specific message; every other database failure is an
-// internal error with the endpoint's generic message. Missing or invalid
-// input is NOT validated here (issue #3 owns that); it lands in the
-// generic 500 through the bcrypt failure path instead.
+// internal error with the endpoint's generic message. Invalid input is
+// rejected with a 400 by issue #3 validation before any database access,
+// so only genuine database failures reach this mapping.
 function resolveAuthError(error, endpoint) {
     if (endpoint === "register" && error && error.code === "23505") {
         return {
