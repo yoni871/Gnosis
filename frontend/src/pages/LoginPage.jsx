@@ -22,12 +22,16 @@ export default function LoginPage() {
         setLoginError("");
 
         try {
-            await login({
+            const profile = await login({
                 email,
                 password
             });
-            
-            navigate("/bible/Genesis/1");
+
+            // A null profile means this attempt was superseded by a
+            // newer auth action (issue #6) — do not navigate for it.
+            if (profile) {
+                navigate("/bible/Genesis/1");
+            }
         } catch (error) {
             setLoginError(error.message);
         }
