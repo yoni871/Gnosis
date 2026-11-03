@@ -1,13 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { getBibleChapter } from "../services/bibleService";
 
-export default function useScripturePreviews(bookmarks, books, translation, highlights) {
-    // Store chapter verses so bookmarks in the same chapter share the data.
-    const [chapters, setChapters] = useState({});
+import usePrivateSession from "./usePrivateSession";
 
-    // Track preview loading separately from loading the bookmark records.
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState("");
+const DEFAULTS = { chapters: {}, isLoading: false, error: "" };
+
+export default function useScripturePreviews(bookmarks, books, translation, highlights) {
+    const { state, field, owner, capture, isCurrent } = usePrivateSession(DEFAULTS);
+    const { chapters, isLoading, error } = state;
+    const setChapters = field("chapters");
+    const setIsLoading = field("isLoading");
+    const setError = field("error");
     // Keep chapter requests across renders without triggering a render.
     const cacheRef = useRef(new Map());
 
@@ -65,6 +68,7 @@ export default function useScripturePreviews(bookmarks, books, translation, high
 
     // Ignore responses if bookmarks or translation change during loading.
     let ignore = false;
+    const ticket = capture();
 
     async function loadPreviews() {
         setIsLoading(true);
@@ -113,15 +117,15 @@ export default function useScripturePreviews(bookmarks, books, translation, high
             );
 
             // Convert the chapter pairs into an object for easy lookup.
-            if (!ignore) {
+            if (!ignore && isCurrent(ticket)) {
                 setChapters(Object.fromEntries(results));
             }
         } catch (error) {
-            if (!ignore) {
+            if (!ignore && isCurrent(ticket)) {
                 setError(error.message);
             }
         } finally {
-            if (!ignore) {
+            if (!ignore && isCurrent(ticket)) {
                 setIsLoading(false);
             }
         }
@@ -133,7 +137,7 @@ export default function useScripturePreviews(bookmarks, books, translation, high
     return () => {
         ignore = true;
     };
-    }, [bookmarks, highlights, books, translation]);
+    }, [bookmarks, highlights, books, translation, owner, capture, isCurrent, setChapters, setIsLoading, setError]);
     // Expose the preview data and status to the panel.
     return {
         chapters,

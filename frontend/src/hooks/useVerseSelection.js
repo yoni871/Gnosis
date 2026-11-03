@@ -1,11 +1,12 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
+
+import usePrivateSession from "./usePrivateSession";
+
+const EMPTY = { bookId: null, verses: [] };
 
 export default function useVerseSelection() {
     // Store the book and the exact verses selected within it.
-    const [selection, setSelection] = useState({
-        bookId: null,
-        verses: []
-    });
+    const { state: selection, setCurrent: setSelection } = usePrivateSession(EMPTY);
 
     // Select an unselected verse, or deselect one already in the collection.
     function toggleVerse(bookId, chapter, verse) {
@@ -44,7 +45,7 @@ export default function useVerseSelection() {
             bookId,
             verses: [{ chapter, verse }]
         });
-    }, []);
+    }, [setSelection]);
 
     // Remove selected verses missing from a successfully loaded chapter.
     const retainAvailableVerses = useCallback((bookId, chapter, verses) => {
@@ -74,7 +75,7 @@ export default function useVerseSelection() {
                 verses: remaining
             };
         });
-    }, []);
+    }, [setSelection]);
 
     // Keep this function stable so other hooks can depend on it.
     const clearSelection = useCallback((expectedSelection = null) => {
@@ -95,7 +96,7 @@ export default function useVerseSelection() {
                 verses: []
             };
         });
-    }, []);
+    }, [setSelection]);
     // Let StudyPage read the selection and request changes through these actions.
     return {
        selection,

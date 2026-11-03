@@ -240,3 +240,45 @@ the existing configuration suite, which requires no database. Review the final
 diff for application behavior changes and secrets. Revert these infrastructure
 commits to roll back; no application schema/data is changed and no down migration
 is needed. Never automatically reverse an application migration for CI cleanup.
+
+## Private frontend sessions (issue #8)
+
+`AuthContext.sessionVersion` is a read-only snapshot of the authentication
+operation ticket. Only AuthContext advances it, on restoration, login,
+registration and logout; nested registration login keeps the same ticket.
+Private hooks combine that version with the confirmed `user.id`, token and
+restoration status. Email is never an ownership key. A token without a confirmed
+ID cannot start protected private-data requests.
+
+`usePrivateSession` derives empty visible defaults in the first render of a new
+owner, then cleans stored state in a layout lifecycle. It never sets state during
+render. Each setup has its own lifetime ticket, so Strict Mode cleanup retires
+only its own requests. State updaters recheck the ticket when React applies them.
+Loads and mutations guard success, error, loading cleanup and success results.
+Stale completions cannot populate another account or clear its selection.
+
+A new auth operation (including reauthentication to the same account), logout or
+account switch discards note drafts, draft passage, editing state, private
+records, prompts, errors, operation indicators and actionable verse selection.
+Guest bookmarks/highlights survive ordinary guest renders only; they are cleared
+at auth boundaries and are never imported into an account. Draft discard has no
+confirmation or persistence. A write already submitted may still complete for
+its original account on the server; frontend invalidation is not cancellation.
+This change adds no cross-tab authentication synchronization.
+
+The reader remains mounted: public Scripture, commentary and its focused verse,
+translation, layout and tabs remain. Scripture preview snapshots reset because
+their requested passages came from private records, but the public chapter
+promise/text cache survives account changes.
+
+Run `cd frontend && npm test` for all regressions (use
+`npm test -- --maxWorkers=2` on resource-constrained local hosts), or
+`npm test -- src/context/AuthContext.test.jsx src/hooks/usePrivateSession.test.jsx
+src/hooks/privateState.test.jsx src/pages/StudyPage.privateState.test.jsx` (on one
+line) for focused coverage. The tests use synthetic users and mocked services,
+with deferred promises instead of sleeps. They cover first-render isolation,
+same-ID reauthentication, overlapping loads and every mutation's late success
+and failure, guest boundaries, Strict Mode/unmount, actual StudyPage drafts and
+selection, and preserving public reader data/cache. The existing frontend CI job
+runs these tests automatically. No backend or database is used by these tests.
+To roll back, revert the issue #8 commit; no database or schema action is needed.
