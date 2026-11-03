@@ -33,11 +33,11 @@ export function AuthProvider({ children }) {
             }
 
             try {
-            const profile = await getProfile(token);
-            if (!authGuard.isCurrent(ticket)) {
-                return;
-            }
-            setUser(profile);
+                const profile = await getProfile(token);
+                if (!authGuard.isCurrent(ticket)) {
+                    return;
+                }
+                setUser(profile);
             } catch (error) {
                 if (!authGuard.isCurrent(ticket)) {
                     return;

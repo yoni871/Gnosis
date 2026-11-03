@@ -24,6 +24,34 @@ rejection of unexpected fetch requests. `npm run test:watch` enables watch mode.
 Tests should mock requests explicitly; do not use real external services.
 Setup cleans the DOM, browser storage, mocks and timers between tests.
 
+### Frontend authentication races (issue #6)
+
+`cd frontend && npm test` includes the eight generation-guard unit tests plus
+rendered AuthProvider, LoginPage and RegisterPage regressions. All use Vitest;
+there is no separate Node test command for the frontend guard tests now.
+For just these tests, run:
+
+```sh
+npm test -- src/context/authSession.test.js src/context/AuthContext.test.jsx src/pages/LoginPage.test.jsx src/pages/RegisterPage.test.jsx
+```
+
+Provider tests control service promises explicitly to cover restoration, logout,
+overlapping logins, registration's automatic login, stale successes/failures,
+loading ownership, unmount/remount and React Strict Mode effect cleanup. They
+assert rendered provider state and actual localStorage. Page tests render the
+real provider and unchanged authentication service in a MemoryRouter, mock HTTP
+responses, and assert feedback and navigation. Controlled 400 VALIDATION_FAILED
+responses retain issue #3's server error messages without login/navigation.
+Deferred promises determine request ordering; no timing-based sleeps or real
+backend/email/database calls are used. Existing setup rejects unmocked fetches.
+
+Each auth operation owns one generation ticket; a newer operation or logout makes
+older tickets stale. Registration passes its ticket through automatic login.
+Stale requests may finish but cannot mutate frontend session state/storage or
+clear another operation's loading indicator. Superseded page submissions do not
+navigate. This does not cancel or undo server-side registration, and does not add
+cross-tab session synchronization or change authentication/validation contracts.
+
 `npm run build:check` produces the normal production bundle in `frontend/dist`,
 but ignores environment files and replaces the API URL with a synthetic address.
 That bundle is for verification, not deployment. Normal `npm run build`, `dev`

@@ -1,0 +1,97 @@
+import { useContext } from 'react';
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { expect, test, vi } from 'vitest';
+import AuthContext, { AuthProvider } from '../context/AuthContext';
+import LoginPage from './LoginPage';
+
+const profile = { id: 7, email: 'reader@example.invalid' };
+function deferred() {
+    let resolve, reject;
+    const promise = new Promise((yes, no) => { resolve = yes; reject = no; });
+    return { promise, resolve, reject };
+}
+function response(body, status = 200) {
+    return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
+}
+async function settle(request, value, fail = false) {
+    await act(async () => {
+        if (fail) request.reject(value); else request.resolve(value);
+        await request.promise.catch(() => {});
+    });
+}
+function State() {
+    const { user, token, isAuthLoading, logout } = useContext(AuthContext);
+    const location = useLocation();
+    return <>
+        <output data-testid="location">{location.pathname}</output>
+        <output data-testid="state">{JSON.stringify({ user, token, isAuthLoading })}</output>
+        <button onClick={logout}>Log out test session</button>
+    </>;
+}
+function mount() {
+    render(<MemoryRouter initialEntries={['/login']}><AuthProvider><State /><Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/bible/Genesis/1" element={<h1>Study destination</h1>} />
+    </Routes></AuthProvider></MemoryRouter>);
+}
+async function submit() {
+    const user = userEvent.setup();
+    await user.type(screen.getByLabelText('Email address'), profile.email);
+    await user.type(screen.getByLabelText('Password'), 'synthetic-password');
+    await user.click(screen.getByRole('button', { name: /sign in/i }));
+    return user;
+}
+function state(user, token, isAuthLoading) {
+    expect(JSON.parse(screen.getByTestId('state').textContent)).toEqual({ user, token, isAuthLoading });
+    expect(localStorage.getItem('gnosisToken')).toBe(token);
+}
+
+test('successful login stores the session and navigates only after the profile completes', async () => {
+    const login = deferred(), requestProfile = deferred();
+    const fetchMock = vi.fn().mockReturnValueOnce(login.promise).mockReturnValueOnce(requestProfile.promise);
+    vi.stubGlobal('fetch', fetchMock);
+    mount();
+    await submit();
+    state(null, null, true);
+    expect(screen.getByRole('button', { name: /signing in/i })).toBeDisabled();
+    await settle(login, response({ token: 'synthetic-login-token' }));
+    state(null, 'synthetic-login-token', true);
+    expect(screen.getByTestId('location')).toHaveTextContent('/login');
+    await settle(requestProfile, response(profile));
+    state(profile, 'synthetic-login-token', false);
+    expect(screen.getByRole('heading', { name: 'Study destination' })).toBeInTheDocument();
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/login$/);
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ email: profile.email, password: 'synthetic-password' });
+    expect(fetchMock.mock.calls[1][1].headers.Authorization).toBe('Bearer synthetic-login-token');
+});
+
+test.each([false, true])('logout prevents late login feedback, storage and navigation (failure=%s)', async fail => {
+    const login = deferred();
+    const fetchMock = vi.fn().mockReturnValue(login.promise);
+    vi.stubGlobal('fetch', fetchMock);
+    mount();
+    const user = await submit();
+    await user.click(screen.getByRole('button', { name: 'Log out test session' }));
+    await settle(login, fail ? new Error('stale login error') : response({ token: 'stale-token' }), fail);
+    state(null, null, false);
+    expect(screen.getByTestId('location')).toHaveTextContent('/login');
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+});
+
+test.each([
+    [400, 'VALIDATION_FAILED', 'Email address is invalid.'],
+    [401, 'INVALID_CREDENTIALS', 'Invalid email or password.'],
+])('current HTTP %s error is shown without navigating', async (status, code, error) => {
+    const login = deferred();
+    vi.stubGlobal('fetch', vi.fn().mockReturnValue(login.promise));
+    mount();
+    await submit();
+    await settle(login, response({ error, code }, status));
+    expect(screen.getByRole('alert')).toHaveTextContent(error);
+    expect(screen.getByTestId('location')).toHaveTextContent('/login');
+    expect(screen.getByRole('button', { name: /sign in/i })).toBeEnabled();
+    state(null, null, false);
+});

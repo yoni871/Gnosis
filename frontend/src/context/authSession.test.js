@@ -1,19 +1,7 @@
-// Unit tests for the auth session guard (authSession.js).
-//
-// Scope, stated plainly: these tests verify the guard's epoch semantics
-// in isolation, including the exact coordination patterns AuthContext
-// relies on. They do NOT render or exercise the React AuthContext
-// component — full component-level race tests need a DOM test runner,
-// which is issue #12's job. The scenario tests below simulate
-// AuthContext's control flow (capture ticket -> await -> check
-// isCurrent before mutating a stand-in state object) with deferred
-// promises, so the interleavings are the real ones even though the
-// state object is a fake.
-//
-// Run with Node's built-in runner (no extra dependencies):
-//   node --test src/context/authSession.test.js
+// Generation-ticket unit tests. Rendered provider/page race tests live alongside these.
+// Run through the shared frontend command: npm test.
 
-import test from "node:test";
+import { test } from "vitest";
 import assert from "node:assert/strict";
 
 import { createAuthSessionGuard } from "./authSession.js";
