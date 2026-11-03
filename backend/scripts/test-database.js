@@ -1,11 +1,13 @@
 // Only disposable infrastructure is accepted. Never accept a connection URL.
-const { spawnSync } = require('node:child_process');
+const { spawnSync, spawn } = require('node:child_process');
 const { randomBytes } = require('node:crypto');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const { Client } = require('pg');
 const { testEnvironment } = require('./test');
 const { connectionFor } = require('./migrations/config');
+const { withApplicationDatabase } = require('./testing/application-database');
+const { workerEnvironment } = require('../test/helpers/backend-instance');
 
 const backend = path.resolve(__dirname, '..');
 const args = process.argv.slice(2);
@@ -13,6 +15,54 @@ const version = args[0];
 const ci = args[1] === '--ci';
 const allowed = ['14', '18'];
 let container;
+let activeChild;
+let interrupted;
+
+function stopApplicationProcess(child, signal) {
+    if (!child?.pid) return;
+    try {
+        if (process.platform === 'win32') child.kill(signal);
+        else process.kill(-child.pid, signal);
+    } catch (error) {
+        if (error.code !== 'ESRCH') console.error('Application process cleanup encountered an error.');
+    }
+}
+
+function applicationSuite(context, intentionalFailure = false) {
+    if (interrupted) throw new Error('Disposable run interrupted.');
+    // Never pass the migration environment or operator configuration here.
+    const env = { ...workerEnvironment(), GNOSIS_APPLICATION_TEST_CONTEXT: JSON.stringify(context) };
+    if (intentionalFailure) env.GNOSIS_APPLICATION_EXPECT_FAILURE = '1';
+    const files = intentionalFailure ? ['test/application/safety.test.js'] : [
+        'test/application/harness.test.js', 'test/application/safety.test.js',
+    ];
+    return new Promise((resolve, reject) => {
+        const child = spawn(process.execPath, ['--test', '--test-concurrency=1', ...files], {
+            cwd: backend, env, stdio: intentionalFailure ? ['ignore', 'pipe', 'pipe'] : 'inherit',
+            detached: process.platform !== 'win32',
+        });
+        activeChild = child;
+        let output = '';
+        if (intentionalFailure) {
+            child.stdout.on('data', chunk => { output = (output + chunk).slice(-65536); });
+            child.stderr.on('data', () => {});
+        }
+        const timer = setTimeout(() => stopApplicationProcess(child, 'SIGTERM'), 90000);
+        const killTimer = setTimeout(() => stopApplicationProcess(child, 'SIGKILL'), 95000);
+        child.once('error', () => {
+            clearTimeout(timer); clearTimeout(killTimer);
+            activeChild = undefined;
+            reject(new Error('Application test process could not start.'));
+        });
+        child.once('close', (status, signal) => {
+            clearTimeout(timer); clearTimeout(killTimer);
+            // A test-file crash must not leave its backend grandchildren running.
+            stopApplicationProcess(child, 'SIGKILL');
+            activeChild = undefined;
+            resolve({ status, signal, output });
+        });
+    });
+}
 
 function docker(args) {
     const result = spawnSync('docker', args, { encoding: 'utf8', timeout: 300000 });
@@ -47,7 +97,8 @@ async function main() {
     }
     if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error('Invalid disposable service port.');
     const adminConfig = { host: '127.0.0.1', port, user: 'gnosis_test',
-        password: 'synthetic-test-password', database: 'postgres', connectionTimeoutMillis: 1000 };
+        password: 'synthetic-test-password', database: 'postgres', connectionTimeoutMillis: 1000,
+        ssl: false, options: '', application_name: 'gnosis-test-operator', statement_timeout: 10000 };
     let admin;
     for (let attempt = 0; attempt < 60; attempt++) {
         const candidate = new Client(adminConfig);
@@ -57,6 +108,7 @@ async function main() {
     }
     if (!admin) throw new Error('Disposable PostgreSQL did not become ready.');
     const name = `gnosis_migration_test_${randomBytes(8).toString('hex')}`;
+    let primaryFailure;
     try {
         const actualVersion = Number((await admin.query('SHOW server_version_num')).rows[0].server_version_num);
         assert.equal(Math.floor(actualVersion / 10000), Number(version));
@@ -80,17 +132,52 @@ async function main() {
         assert.deepEqual(cli('check', env).pending, []);
         assert.deepEqual(cli('up', env).migrations, []);
         console.log(`PostgreSQL ${version}: migration suite and public CLI smoke checks passed.`);
-    } finally {
-        try { await admin.query(`DROP DATABASE IF EXISTS "${name}" WITH (FORCE)`); }
-        finally { await admin.end(); }
+        await withApplicationDatabase(admin, adminConfig, name, async context => {
+            assert.notEqual(context.database, name);
+            const result = await applicationSuite(context);
+            assert.equal(result.status, 0, 'Application integration suite failed.');
+        });
+        console.log(`PostgreSQL ${version}: application tests passed; generated database and role removal verified.`);
+        const marker = new Error('Expected application test process failure.');
+        try {
+            await withApplicationDatabase(admin, adminConfig, name, async context => {
+                const result = await applicationSuite(context, true);
+                assert.equal(result.status, 1);
+                assert.equal(result.signal, null);
+                assert.ok(result.output.includes('intentional harness failure marker'));
+                assert.match(result.output, /# pass 3\b/);
+                assert.match(result.output, /# fail 1\b/);
+                throw marker;
+            });
+            assert.fail('Intentional failure was not propagated.');
+        } catch (error) {
+            assert.equal(error, marker, 'Cleanup must preserve the original failure.');
+            assert.ok(!error.cleanupFailed, 'Intentional failure cleanup must succeed.');
+        }
+        console.log(`PostgreSQL ${version}: intentional failure preserved; generated database and role removal verified.`);
+    } catch (error) { primaryFailure = error; }
+    try {
+        await admin.query(`DROP DATABASE IF EXISTS "${name}" WITH (FORCE)`);
+        assert.equal((await admin.query('SELECT count(*)::int AS n FROM pg_database WHERE datname=$1', [name])).rows[0].n, 0);
+    } catch (error) {
+        if (!primaryFailure) primaryFailure = error;
+        else console.error('Migration database cleanup also failed; preserving the primary failure.');
     }
+    try { await admin.end(); }
+    catch (error) {
+        if (!primaryFailure) primaryFailure = error;
+        else console.error('Operator connection cleanup also failed; preserving the primary failure.');
+    }
+    if (primaryFailure) throw primaryFailure;
 }
 
-// The Docker container is the ultimate cleanup boundary even on interruption.
+// Let application-process interruption unwind provisioning/role cleanup first.
+// The Docker container remains the ultimate local cleanup boundary.
 for (const signal of ['SIGINT', 'SIGTERM']) {
     process.on(signal, () => {
-        if (container) spawnSync('docker', ['rm', '--force', container], { stdio: 'ignore', timeout: 30000 });
-        process.exit(signal === 'SIGINT' ? 130 : 143);
+        interrupted = signal;
+        if (activeChild) stopApplicationProcess(activeChild, 'SIGTERM');
+        process.exitCode = signal === 'SIGINT' ? 130 : 143;
     });
 }
 main().catch(() => {

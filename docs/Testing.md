@@ -66,6 +66,93 @@ global Docker prune or delete an application database as test cleanup.
 
 ## Environment isolation
 
+### Application database integration harness (issue #17)
+
+The same `npm run test:database -- 14` and `-- 18` commands now also run application
+integration tests. Install/start Docker locally; CI reuses its existing fresh
+PostgreSQL service container. No new dependency, package script or secret is needed.
+
+The runner keeps the migration-suite database alive while creating a different
+application-test database. Their generated names are asserted unequal. Both names
+use the existing `gnosis_migration_test_<16 hex>` format so the official migration
+target guard is unchanged. Application schema is initialized exclusively through
+`scripts/migrate.js up --target test`, then checked for no pending migrations.
+The operator seeds just one synthetic reference book. No schema snapshots,
+imports, local application data or production credentials are used.
+
+Only provisioning code receives the synthetic disposable operator configuration.
+It creates a generated `gnosis_app_<16 hex>` role with a synthetic password,
+NOINHERIT and no superuser, database/role creation, replication or RLS-bypass rights.
+The role owns no objects and belongs to no other roles. Its explicit privileges are:
+
+- CONNECT to the application database and USAGE on public.
+- SELECT on the seven Bible/commentary reference tables.
+- SELECT/INSERT on users.
+- SELECT/INSERT/UPDATE/DELETE on notes, bookmarks and highlights.
+- USAGE only on those four writable tables' id sequences.
+
+PUBLIC database/schema/table/sequence/function privileges are removed in this
+application fixture, including temporary-object creation. There are no migration
+history grants, reference-data writes, DDL, TRUNCATE or sequence reset privileges.
+Future issues must explicitly extend the test permission list for their approved
+migrations; this harness creates no rate-limit or verification schema.
+
+Application files run in an explicit list with `node --test --test-concurrency=1`:
+`test/application/harness.test.js`, then `test/application/safety.test.js`. Add future
+files to the runner's list deliberately. Individual cases can acquire independent
+clients or start multiple workers to exercise concurrency. Do not wrap an entire
+HTTP suite in one transaction: worker connections must see real commits.
+
+Reusable helpers live under `backend/test/helpers/`:
+
+- `createTestPool(context)` returns `{pool, close}` and verifies current_user,
+  current_database, role attributes and absence of role memberships before use.
+- `withClient(pool, callback)` releases the acquired client even on failure.
+- `withTransaction(pool, callback)` runs BEGIN, every callback query, COMMIT or
+  ROLLBACK on that one checked-out client. Use the supplied client, never pool.query
+  for statements inside the transaction.
+- `installApplicationPool(pool)` supplies that real pool as the CommonJS database
+  module export before importing services. Production database configuration never
+  executes in this test process. It refuses installation after application imports.
+- `startBackend(context)` starts an independent real Express app with its own pool
+  and ephemeral loopback port, and returns `{url, pid, stop}`. Stop it in finally.
+
+Workers receive only an allowlisted OS environment, synthetic JWT/configuration
+and their restricted descriptor over IPC. No operator/migration settings,
+DATABASE_URL, DB_*, PG*, dotenv file paths, inherited NODE_OPTIONS or execArgv are
+forwarded. Context validation rejects missing fields, extra pg options, remote/DNS
+hosts, mismatched generated database/role names and non-synthetic credentials before
+opening a connection. Direct invocation without runner context fails closed.
+Workers reject outbound fetch/HTTP/HTTPS requests; future delivery tests must use
+explicit fake adapters. This is a guard for ordinary test code, not a sandbox for
+malicious tests or a guarantee against every possible transport.
+
+The smoke suite proves official schema initialization, exact grants, persistence
+across pools, rollback, independent connections, real service reads and two backend
+workers reading the same database. Safety tests prove poison dotenv/environment
+settings do not redirect the pool and close rolls back an unreleased transaction.
+
+The runner also provisions a separate fixture and deliberately runs a failing
+application test after starting a worker. It expects exactly that failure, preserves
+the original error, and verifies database and role removal. That expected failure's
+TAP is captured; unexpected failures fail the job. Cleanup is called twice to prove
+idempotence after both success and intentional failure. Worker shutdown closes HTTP
+connections and pools; IPC disconnect also triggers shutdown. Pool close destroys
+unreleased clients, causing PostgreSQL to roll back open transactions. Provisioning
+then drops only the recorded database (forcing residual sessions closed), drops the
+recorded role and checks the catalogs. Cleanup errors cannot replace the primary
+test failure and also fail the run.
+
+SIGINT/SIGTERM unwind application cleanup before removing the local container.
+On macOS/Linux the application suite has its own process group, so timeout/crash
+cleanup also terminates surviving test-file and backend worker descendants.
+Windows process-tree cleanup is not covered by the macOS/Linux validation here.
+Hard kills/host crashes can leave local containers; follow the manual recovery
+guidance above. The inherited trust-authenticated disposable container supports
+the legacy migration permission fixture. Restricted-role checks verify PostgreSQL
+authorization, not protection against hostile code impersonating another role.
+This test bootstrap deliberately does not test production connection/TLS settings.
+
 `npm test` starts a child process with an allowlisted environment, excluding
 application credentials, PostgreSQL defaults and inherited Node preload options.
 `GNOSIS_TEST_ISOLATION=1` skips dotenv only for explicitly isolated runs. It is
