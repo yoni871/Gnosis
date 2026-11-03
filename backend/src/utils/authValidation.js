@@ -15,7 +15,8 @@
 //   are all accepted.
 // - Email: required string, trimmed, at most 254 characters, structurally
 //   valid (one "@", non-empty local part and domain, a dot in the domain,
-//   no whitespace). It is NOT lowercased, and lookup stays case-sensitive;
+//   no whitespace, and no leading, trailing, or consecutive dots in
+//   either part). It is NOT lowercased, and lookup stays case-sensitive;
 //   canonicalization is a separate follow-up migration task.
 // - Registration password: required string, at least 8 characters
 //   (code points), at most 72 UTF-8 bytes (bcrypt's limit: longer inputs
@@ -70,11 +71,26 @@ function validateEmail(value) {
         return { error: `Email address must be at most ${MAX_EMAIL_CHARS} characters.` };
     }
     const parts = trimmed.split("@");
+    const local = parts[0];
+    const domain = parts[1];
+    // Dot placement is structural, not full RFC parsing: a dot may appear
+    // inside either part, but never at its start or end, and never twice
+    // in a row. These checks run on top of the shape checks above. The
+    // parts-length guard comes first: without "@", there is no domain to
+    // inspect, and short-circuiting must not touch it.
+    const dotPlacementValid = parts.length === 2
+        && !local.startsWith(".")
+        && !local.endsWith(".")
+        && !local.includes("..")
+        && !domain.startsWith(".")
+        && !domain.endsWith(".")
+        && !domain.includes("..");
     const structurallyValid = parts.length === 2
-        && parts[0].length > 0
-        && parts[1].length > 0
-        && parts[1].includes(".")
-        && !/\s/.test(trimmed);
+        && local.length > 0
+        && domain.length > 0
+        && domain.includes(".")
+        && !/\s/.test(trimmed)
+        && dotPlacementValid;
     if (!structurallyValid) {
         return { error: "Email address is invalid." };
     }

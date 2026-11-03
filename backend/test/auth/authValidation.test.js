@@ -96,9 +96,21 @@ test("validator requires and structurally validates email", () => {
         assert.deepEqual(validateRegisterInput(validRegister({ email: bad })), { error: "Email address is required." });
         assert.deepEqual(validateLoginInput(validLogin({ email: bad })), { error: "Email address is required." });
     }
-    for (const bad of ["plainaddress", "a@@b.com", "@b.com", "a@", "a@b", "a b@c.com", "a@b .com"]) {
+    for (const bad of ["plainaddress", "a@@b.com", "@b.com", "a@", "a@b", "a b@c.com", "a@b .com",
+        ".a@b.com", "a.@b.com", "a..b@c.com", "a@.b.com", "a@b.com.", "a@b..com"]) {
         assert.deepEqual(validateRegisterInput(validRegister({ email: bad })), { error: "Email address is invalid." });
         assert.deepEqual(validateLoginInput(validLogin({ email: bad })), { error: "Email address is invalid." });
+    }
+});
+
+test("validator accepts normal, plus, apostrophe, and mixed-case addresses", () => {
+    // Dots inside either part are fine; only leading, trailing, or
+    // consecutive dots are rejected.
+    for (const good of ["user@example.com", "user+study@example.com", "o'brien@example.com",
+        "first.last@example.com", "user@mail.example.com", "Test@Example.COM"]) {
+        assert.equal(validateRegisterInput(validRegister({ email: good })).error, undefined);
+        assert.equal(validateLoginInput(validLogin({ email: good })).error, undefined);
+        assert.equal(validateRegisterInput(validRegister({ email: good })).value.email, good);
     }
 });
 
@@ -285,6 +297,8 @@ test("register rejects invalid input before bcrypt and the database", async () =
         validRegister({ password: undefined }), "Password is required.");
     await assertRejected("/api/auth/register",
         validRegister({ email: "not-an-email" }), "Email address is invalid.");
+    await assertRejected("/api/auth/register",
+        validRegister({ email: "a@.b.com" }), "Email address is invalid.");
     await assertRejected("/api/auth/register",
         validRegister({ lastName: "n".repeat(101) }), "Last name must be at most 100 characters.");
     await assertRejected("/api/auth/register",
