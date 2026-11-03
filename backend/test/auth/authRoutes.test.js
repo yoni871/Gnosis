@@ -97,18 +97,18 @@ test("login with the database down returns a generic 500 JSON", async () => {
     assert.ok(!result.text.includes("SELECT"), result.text);
 });
 
-test("register with a missing password returns a generic 500 JSON, not HTML", async () => {
-    // No password field: bcrypt.hash(undefined) throws. Issue #5 maps that
-    // to the generic 500 (input validation belongs to issue #3); the point
-    // here is that it no longer escapes to Express's HTML error page.
+test("register with a missing password returns a controlled 400 VALIDATION_FAILED JSON", async () => {
+    // Issue #3: a missing password is a validation failure (400), not an
+    // internal error. The point here is that it is controlled JSON, never
+    // HTML or a stack trace.
     const result = await request("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ firstName: "Test", lastName: "User", email: "test@example.com" }),
     });
-    assertJsonError(result, 500, {
-        error: "Can not create an account.",
-        code: "INTERNAL_ERROR",
+    assertJsonError(result, 400, {
+        error: "Password is required.",
+        code: "VALIDATION_FAILED",
     });
 });
 

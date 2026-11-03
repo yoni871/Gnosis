@@ -5,16 +5,24 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const authenticateToken = require("../middleware/authMiddleware");
 const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
+const { validateRegisterInput, validateLoginInput, VALIDATION_CODE } = require("../utils/authValidation");
 
 
 //to register an account
 router.post("/register", async (req, res) => {
-    const { firstName, lastName, email, password } = req.body || {};
+    // Issue #3: validate before any hashing or database access. Only the
+    // validated (trimmed) values below ever reach bcrypt or the query.
+    // Validation failures are not logged: they are ordinary client errors,
+    // and logging them could record submitted values.
+    const validation = validateRegisterInput(req.body);
+    if (validation.error) {
+        return res.status(400).json({ error: validation.error, code: VALIDATION_CODE });
+    }
+    const { firstName, lastName, email, password } = validation.value;
 
-    // Hashing failures (including a missing or non-string password) are
-    // internal errors for issue #5; input validation belongs to issue #3,
-    // so no 400 is produced here. Previously this throw escaped the
-    // handler and reached Express's default HTML error page.
+    // Hashing failures are internal errors for issue #5. Missing or
+    // malformed input is rejected above by issue #3 validation and never
+    // reaches this point.
     let hashedPassword;
     try {
         hashedPassword = await bcrypt.hash(password, 10);
@@ -43,7 +51,14 @@ router.post("/register", async (req, res) => {
 
 //to login into an exisitng account
 router.post("/login", async (req, res) => {
-    const { email, password } = req.body || {};
+    // Issue #3: validate before any database access, so invalid input
+    // causes zero database calls. Only the validated (trimmed) values
+    // below ever reach the query or bcrypt.
+    const validation = validateLoginInput(req.body);
+    if (validation.error) {
+        return res.status(400).json({ error: validation.error, code: VALIDATION_CODE });
+    }
+    const { email, password } = validation.value;
 
     let result;
     try {

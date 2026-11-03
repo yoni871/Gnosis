@@ -20,6 +20,7 @@ function testEnvironment() {
 if (require.main === module) {
     const result = spawnSync(process.execPath, ['--test',
         'test/auth/authErrors.test.js', 'test/auth/authRoutes.test.js',
+        'test/auth/authValidation.test.js',
         'test/auth/serverConfig.test.js', 'test/config/environment.test.js',
         'test/migrations/config.test.js'], {
         cwd: path.resolve(__dirname, '..'), env: testEnvironment(), stdio: 'inherit',
