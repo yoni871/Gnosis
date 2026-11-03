@@ -1,5 +1,5 @@
 const { Pool } = require("pg");
-require("dotenv").config();
+require("../config/env").loadEnvironment();
 
 // Production uses one connection URL.
 // Local development keeps using the existing DB_* settings.
