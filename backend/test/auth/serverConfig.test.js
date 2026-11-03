@@ -2,11 +2,12 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const { spawn } = require("node:child_process");
 const path = require("node:path");
+const { testEnvironment } = require("../../scripts/test");
 
 const backendDir = path.join(__dirname, "..", "..");
 
 function childEnv(extra) {
-    const env = { ...process.env };
+    const env = testEnvironment();
     for (const [key, value] of Object.entries(extra)) {
         if (value === undefined) {
             delete env[key];
@@ -19,6 +20,7 @@ function childEnv(extra) {
 
 function waitForExit(child, timeoutMs) {
     return new Promise((resolve, reject) => {
+        if (child.exitCode !== null) return resolve(child.exitCode);
         const timer = setTimeout(() => {
             child.kill("SIGKILL");
             reject(new Error("child did not exit in time"));
@@ -50,7 +52,18 @@ function waitForOutput(stream, needle, timeoutMs) {
 }
 
 function spawnServer(port, extraEnv) {
-    const child = spawn(process.execPath, ["src/server.js"], {
+    // Observe the OS-assigned port without changing application startup behavior.
+    const script = `
+        const http = require("node:http");
+        const listen = http.Server.prototype.listen;
+        http.Server.prototype.listen = function (...args) {
+            this.once("listening", () => console.log("TEST_PORT=" + this.address().port));
+            args.splice(1, 0, "127.0.0.1");
+            return listen.apply(this, args);
+        };
+        require("./src/server");
+    `;
+    const child = spawn(process.execPath, ["-e", script], {
         cwd: backendDir,
         env: childEnv({ PORT: String(port), ...extraEnv }),
     });
@@ -77,7 +90,7 @@ function spawnServer(port, extraEnv) {
 const MARKER = "marker-that-must-never-appear-12345";
 
 test("refuses to start without JWT_SECRET in development mode", async () => {
-    const { child, stderr } = spawnServer(51941, {
+    const { child, stderr } = spawnServer(0, {
         NODE_ENV: "development",
         JWT_SECRET: undefined,
         TEST_SECRET_MARKER: MARKER,
@@ -90,7 +103,7 @@ test("refuses to start without JWT_SECRET in development mode", async () => {
 });
 
 test("refuses to start without JWT_SECRET in production mode", async () => {
-    const { child, stderr } = spawnServer(51942, {
+    const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
         JWT_SECRET: undefined,
         TEST_SECRET_MARKER: MARKER,
@@ -107,7 +120,8 @@ async function malformedJsonInMode(mode, port) {
         JWT_SECRET: "test-secret-for-server-config-tests",
     });
     try {
-        await waitForOutput(server.child.stdout, "Server running", 15000);
+        const output = await waitForOutput(server.child.stdout, "TEST_PORT=", 15000);
+        port = Number(output.match(/TEST_PORT=(\d+)/)[1]);
         const response = await fetch(`http://127.0.0.1:${port}/api/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json", Connection: "close" },
@@ -128,9 +142,9 @@ async function malformedJsonInMode(mode, port) {
 }
 
 test("development mode returns JSON, not HTML or a stack trace", async () => {
-    await malformedJsonInMode("development", 51943);
+    await malformedJsonInMode("development", 0);
 });
 
 test("production mode returns JSON, not HTML or a stack trace", async () => {
-    await malformedJsonInMode("production", 51944);
+    await malformedJsonInMode("production", 0);
 });
