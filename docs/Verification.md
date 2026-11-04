@@ -150,6 +150,52 @@ GRANT SELECT, INSERT ON email_verification_tokens TO <runtime_role>;
 GRANT UPDATE (used_at, consumed_reason) ON email_verification_tokens TO <runtime_role>;
 ```
 
+### The runtime role must be restricted and non-owner
+
+The production backend must connect as a restricted, non-owner Neon
+runtime role — not as `neondb_owner`, not as a superuser, and not as
+the owner of `users` or `email_verification_tokens`. Owners and
+superusers bypass column-level grants, so with any of those roles the
+grants above would be unverifiable and unenforced: the column-level
+permission model this change relies on would not actually hold. A
+superuser or table-owner connection does not satisfy this requirement,
+even if the GRANT statements were also run.
+
+Verify the role and its privileges before the release, as a privileged
+role:
+
+```sql
+-- Must return rolsuper = false for the runtime role.
+SELECT rolname, rolsuper FROM pg_roles WHERE rolname = '<runtime_role>';
+
+-- Must not list the runtime role as table owner for either table.
+SELECT tablename, tableowner FROM pg_tables
+    WHERE schemaname = 'public'
+    AND tablename IN ('users', 'email_verification_tokens');
+
+-- Must return exactly these three UPDATE rows, and nothing else:
+-- users.email_verified_at, email_verification_tokens.used_at,
+-- email_verification_tokens.consumed_reason.
+SELECT table_name, column_name, privilege_type
+    FROM information_schema.role_column_grants
+    WHERE grantee = '<runtime_role>' AND table_schema = 'public'
+    AND privilege_type = 'UPDATE'
+    ORDER BY table_name, column_name;
+
+-- Spot checks; each must return false.
+SELECT has_column_privilege('<runtime_role>', 'public.users', 'password_hash', 'UPDATE');
+SELECT has_column_privilege('<runtime_role>', 'public.email_verification_tokens', 'token_hash', 'UPDATE');
+```
+
+Then, connected as the runtime role itself, each of these must fail
+with PostgreSQL error 42501 (permission denied) before touching any
+row:
+
+```sql
+UPDATE users SET password_hash = 'forbidden';
+UPDATE email_verification_tokens SET token_hash = '\x00';
+```
+
 Set on the backend host (Vercel project variables for the deployed
 backend): `RESEND_API_KEY`, `EMAIL_FROM`, `FRONTEND_URL`. The
 frontend build must bake `VITE_API_URL` pointing at the backend origin
@@ -179,6 +225,10 @@ Production release is **blocked** until both of these hold:
 2. A real staging delivery succeeds using that verified domain: a
    verification email from a preview deployment reaches a real inbox,
    the link is followed, the account verifies, and login succeeds.
+3. Production Vercel connects as a restricted, non-owner Neon runtime
+   role (not `neondb_owner`, not a superuser, not a table owner),
+   confirmed with the privilege-verification queries under
+   "Operator steps" above.
 
 `onboarding@resend.dev` is development and manual-smoke-test only (it
 delivers only to the Resend account's own email) and must never be
