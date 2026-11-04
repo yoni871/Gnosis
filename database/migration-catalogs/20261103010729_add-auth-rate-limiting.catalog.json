@@ -1,0 +1,153 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "rate_limit_attempts.attempted_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "rate_limit_attempts.id",
+      "definition": {
+        "type": "uuid",
+        "default": "gen_random_uuid()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "rate_limit_attempts.key_hash",
+      "definition": {
+        "type": "bytea",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "rate_limit_attempts.policy",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "rate_limit_sweep_state.id",
+      "definition": {
+        "type": "smallint",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "rate_limit_sweep_state.last_swept_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "rate_limit_attempts.rate_limit_attempts_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "rate_limit_sweep_state.rate_limit_sweep_state_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "rate_limit_attempts_count_idx",
+      "definition": {
+        "sql": "CREATE INDEX rate_limit_attempts_count_idx ON public.rate_limit_attempts USING btree (key_hash, policy, attempted_at)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "rate_limit_attempts_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX rate_limit_attempts_pkey ON public.rate_limit_attempts USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "rate_limit_attempts_sweep_idx",
+      "definition": {
+        "sql": "CREATE INDEX rate_limit_attempts_sweep_idx ON public.rate_limit_attempts USING btree (attempted_at)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "rate_limit_sweep_state_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX rate_limit_sweep_state_pkey ON public.rate_limit_sweep_state USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "rate_limit_attempts",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "rate_limit_sweep_state",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    }
+  ],
+  "removed": []
+}
