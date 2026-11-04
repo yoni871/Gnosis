@@ -69,18 +69,19 @@ describe("verified chapter manifest", () => {
 });
 
 describe("production sitemap output", () => {
-    test("contains exactly the 1,189 canonical chapter URLs, nothing else", () => {
-        const xml = buildSitemapXml(SITE_URL, chapterCounts);
+    test("contains exactly the 1,189 canonical chapter URLs plus the homepage, nothing else", () => {
+        const xml = buildSitemapXml(SITE_URL, chapterCounts, ["/"]);
         const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(
             ([, url]) => url,
         );
 
-        expect(urls).toHaveLength(1189);
-        expect(new Set(urls).size).toBe(1189);
+        expect(urls).toHaveLength(1190);
+        expect(new Set(urls).size).toBe(1190);
         expect(urls[0]).toBe("https://studygnosis.com/bible/Genesis/1");
-        expect(urls[urls.length - 1]).toBe(
+        expect(urls[urls.length - 2]).toBe(
             "https://studygnosis.com/bible/Revelation/22",
         );
+        expect(urls[urls.length - 1]).toBe("https://studygnosis.com/");
         expect(urls).toContain("https://studygnosis.com/bible/1%20Samuel/1");
         expect(urls).toContain("https://studygnosis.com/bible/Psalms/150");
         expect(urls.some((url) => url.includes(" "))).toBe(false);
@@ -102,6 +103,8 @@ describe("production sitemap output", () => {
             path.join(process.cwd(), "public/sitemap.xml"),
             "utf8",
         );
-        expect(committed).toBe(buildSitemapXml(SITE_URL, chapterCounts));
+        expect(committed).toBe(
+            buildSitemapXml(SITE_URL, chapterCounts, ["/"]),
+        );
     });
 });

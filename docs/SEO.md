@@ -185,35 +185,30 @@ and no page claims a feature it does not have.
   commentary` / `[Book] [Chapter] explained` pattern is the template
   itself, applied to all 1,189 chapters.
 
-## 4. Landing page preparation
+## 4. Landing page (built)
 
-The landing page is NOT built in this change. What is ready for it:
+The landing page now exists at `/` (`src/pages/LandingPage.jsx`),
+and the preparation items from the SEO foundation are done:
 
-1. **Routing.** `src/App.jsx` marks the `/` route as the LANDING PAGE
-   SWAP POINT with the exact steps: when the landing page is ready,
-   replace the redirect element with `<LandingPage />` — the redirect
-   stays until then, and the reader stays at `/bible/:book/:chapter`
-   either way.
-2. **Metadata.** `LANDING_TITLE` and `LANDING_DESCRIPTION` in
-   `src/utils/seo.js` hold the approved landing-page title and
-   description, and `index.html` already carries them as the site-wide
-   default. The landing page will set the same values explicitly
-   through `<Seo>`.
-3. **Sitemap.** When the landing page ships, pass `["/"]` as
-   `extraPaths` to `buildSitemapXml` in
-   `scripts/generate-sitemap.js` and regenerate `public/sitemap.xml`.
-   Until then `/` must stay out of the sitemap because it redirects —
-   a redirecting URL in a sitemap is a soft-404 signal to Google.
-4. **Content notes for the page itself** (not built here): introduce
-   Gnosis and its purpose, highlight Bible study features (Scripture
-   text, verse-by-verse commentary including Matthew Henry and
-   Jamieson-Fausset-Brown, notes, bookmarks, highlights), and encourage
-   visitors to start studying — with a crawlable link to
-   `/bible/Genesis/1` so crawlers reach the reader from the homepage.
-   An `og:image` asset should be created for the landing page (the
-   current `/gnosis.svg` logo is an SVG, which social previews handle
-   poorly); no og:image tag is emitted until a real raster asset
-   exists, rather than pointing at a guessed file.
+1. **Routing.** The `/` route renders `<LandingPage />`; the old
+   redirect to `/bible/Genesis/1` is gone, and the reader stays at
+   `/bible/:book/:chapter`.
+2. **Metadata.** The landing page sets `LANDING_TITLE` and
+   `LANDING_DESCRIPTION` from `src/utils/seo.js` explicitly through
+   `<Seo>`, with canonical `https://studygnosis.com/`, Open Graph
+   and Twitter tags, and `WebSite` JSON-LD.
+3. **Sitemap.** `scripts/generate-sitemap.js` passes `["/"]` as
+   `extraPaths`, so `public/sitemap.xml` lists 1,189 chapter URLs
+   plus the homepage (1,190 total, homepage last).
+4. **Content.** The page introduces Gnosis and its purpose,
+   highlights Bible study features (Scripture text, verse-by-verse
+   commentary including Matthew Henry and Jamieson-Fausset-Brown,
+   notes and highlights), and links crawlers to the reader through
+   `Start Studying` (`/bible/Genesis/1`) and the Explore Scripture
+   passage links. Its `og:image` is a raster hero asset
+   (`/images/landing/hero-1200.jpg`); the `/gnosis.svg` logo is an
+   SVG, which social previews handle poorly, so it is not used as
+   the social image.
 
 ## 5. Indexable chapter content (prerendering plan)
 
@@ -273,9 +268,12 @@ remain client-only and never leak into prerendered output.
 No JSON-LD is emitted in this change, deliberately. There is no
 Google-supported rich-result type for Scripture text, and inventing
 `Article` markup for Bible chapters would misdescribe the content.
-`BreadcrumbList` becomes worthwhile once `/` is a real landing page
-(Home → Bible → Book → Chapter); until then a breadcrumb pointing at
-a redirecting homepage would be wrong. Add it with the landing page.
+`BreadcrumbList` becomes worthwhile now that `/` is a real landing
+page (Home → Bible → Book → Chapter). It belongs on the chapter
+pages, not on the homepage itself, so it was not added by the
+landing-page change; the homepage carries `WebSite` JSON-LD only.
+Adding `BreadcrumbList` to chapter pages is a separate, small
+follow-up.
 
 ### Semantic HTML, already in place
 

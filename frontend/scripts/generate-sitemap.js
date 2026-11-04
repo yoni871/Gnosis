@@ -38,7 +38,8 @@ const chapterCounts = JSON.parse(
     readFileSync(path.join(root, "src/data/bibleChapters.json"), "utf8"),
 );
 
-const xml = buildSitemapXml(siteUrl, chapterCounts);
+// "/" is the public landing page, so it is listed after the chapters.
+const xml = buildSitemapXml(siteUrl, chapterCounts, ["/"]);
 const outputPath = path.join(root, "public/sitemap.xml");
 
 writeFileSync(outputPath, xml);
@@ -46,5 +47,5 @@ writeFileSync(outputPath, xml);
 const total = Object.values(chapterCounts).reduce((sum, n) => sum + n, 0);
 console.log(
     `Wrote ${outputPath} (${Object.keys(chapterCounts).length} books, ` +
-        `${total} chapter URLs) for ${siteUrl}`,
+        `${total} chapter URLs, plus the homepage) for ${siteUrl}`,
 );
