@@ -22,7 +22,7 @@ if (require.main === module) {
         'test/auth/authErrors.test.js', 'test/auth/authRoutes.test.js',
         'test/auth/authValidation.test.js', 'test/auth/rateLimit.test.js',
         'test/auth/serverConfig.test.js', 'test/config/environment.test.js',
-        'test/migrations/config.test.js'], {
+        'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js'], {
         cwd: path.resolve(__dirname, '..'), env: testEnvironment(), stdio: 'inherit',
     });
     process.exitCode = result.status ?? 1;
