@@ -4,7 +4,32 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/gnosis.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gnosis</title>
+    <!--
+      Site-wide default metadata. Every route renders the <Seo>
+      component, which replaces these tags at runtime with the page's
+      own title, description, canonical URL, and robots directive
+      (chapter pages get chapter-specific metadata; auth and search
+      pages get noindex). These defaults describe the site itself and
+      match the future landing page's metadata (see src/utils/seo.js);
+      when that page is built it will set the same values explicitly.
+      No canonical tag lives here on purpose: the SPA shell is served
+      for every route, so a static canonical would point every chapter
+      URL at the wrong address.
+    -->
+    <meta
+      name="description"
+      content="Study Scripture with Gnosis, a Bible study platform featuring classic commentaries, verse-by-verse explanations, and tools to help you understand God’s Word."
+    />
+    <meta property="og:title" content="Gnosis | Bible Study & Verse-by-Verse Commentary" />
+    <meta
+      property="og:description"
+      content="Study Scripture with Gnosis, a Bible study platform featuring classic commentaries, verse-by-verse explanations, and tools to help you understand God’s Word."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gnosis" />
+    <meta property="og:url" content="https://studygnosis.com/" />
+    <meta name="twitter:card" content="summary" />
+    <title>Gnosis | Bible Study & Verse-by-Verse Commentary</title>
   </head>
   <body>
     <div id="root"></div>

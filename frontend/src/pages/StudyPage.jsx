@@ -20,6 +20,13 @@ import useVerseSelection from "../hooks/useVerseSelection";
 
 import GuestSavePrompt from "../components/Auth/GuestSavePrompt";
 
+import Seo from "../components/Seo";
+import {
+    chapterDescription,
+    chapterTitle,
+    chapterUrl,
+} from "../utils/seo";
+
 export default function StudyPage() {
     const {
         book: urlBook,
@@ -308,6 +315,17 @@ export default function StudyPage() {
 
     return (
         <>
+            {/* Canonical URL is the clean chapter address: reader state
+                in ?verse=, ?translation=, and ?commentary= is never part
+                of it, so parameter variants cannot become duplicate
+                indexed pages. */}
+            <Seo
+                title={chapterTitle(book, chapter)}
+                description={chapterDescription(book, chapter)}
+                canonical={chapterUrl(book, chapter)}
+                ogType="article"
+            />
+
             <Header
                 layout={layout}
                 setLayout={setLayout}

@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import Seo from "../components/Seo";
+import { pageUrl } from "../utils/seo";
 
 export default function RegisterPage() {
     const {
@@ -43,6 +45,14 @@ export default function RegisterPage() {
     }
 
   return (
+    <>
+    {/* Authentication pages are never indexed. */}
+    <Seo
+        title="Create an account | Gnosis"
+        description="Create a Gnosis account to save Bible study notes, bookmarks, and highlights."
+        canonical={pageUrl("/register")}
+        robots="noindex, nofollow"
+    />
     <main className="
         grid
         min-h-screen
@@ -492,5 +502,6 @@ export default function RegisterPage() {
         </section>
 
     </main>
+    </>
   )
 }
