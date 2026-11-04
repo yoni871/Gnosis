@@ -258,3 +258,30 @@ test.each([false, true])('Strict Mode ignores the first restore after effect cle
     await settle(second, newUser);
     session(newUser, 'old-token');
 });
+
+test('publishes a read-only session version for restore, login, registration and logout', async () => {
+    mount();
+    const startup = auth.sessionVersion;
+    expect(startup).toBeGreaterThan(0);
+    expect(auth.setSessionVersion).toBeUndefined();
+    const tokenRequest = deferred();
+    loginUser.mockReturnValue(tokenRequest.promise);
+    getProfile.mockResolvedValue(newUser);
+    const login = begin('login');
+    const loginVersion = auth.sessionVersion;
+    expect(loginVersion).toBeGreaterThan(startup);
+    await settle(tokenRequest, { token: 'synthetic' });
+    await login;
+    expect(auth.sessionVersion).toBe(loginVersion);
+    const registration = deferred();
+    registerUser.mockReturnValue(registration.promise);
+    loginUser.mockResolvedValue({ token: 'synthetic-next' });
+    const register = begin('register');
+    const registerVersion = auth.sessionVersion;
+    expect(registerVersion).toBeGreaterThan(loginVersion);
+    await settle(registration, {});
+    await register;
+    expect(auth.sessionVersion).toBe(registerVersion);
+    act(() => auth.logout());
+    expect(auth.sessionVersion).toBeGreaterThan(registerVersion);
+});

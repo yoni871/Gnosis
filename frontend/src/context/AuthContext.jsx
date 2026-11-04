@@ -7,6 +7,8 @@ const AuthContext = createContext(null);
 export default AuthContext;
 
 export function AuthProvider({ children }) {
+    // Read-only ownership snapshot for consumers; only this provider advances it.
+    const [sessionVersion, setSessionVersion] = useState(0);
     const [user, setUser] = useState(null);
     const [isAuthLoading, setIsAuthLoading] = useState(true);
 
@@ -22,6 +24,7 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const ticket = authGuard.begin();
+        setSessionVersion(ticket);
 
         //restore the user's login after a page refresh
         const restoreAuth = async () => {
@@ -106,6 +109,7 @@ export function AuthProvider({ children }) {
 
     async function login (credentials) {
         const ticket = authGuard.begin();
+        setSessionVersion(ticket);
         return loginWithTicket(credentials, ticket);
     }
 
@@ -113,6 +117,7 @@ export function AuthProvider({ children }) {
         // One ticket owns the whole register -> login operation, so
         // the nested login below cannot invalidate its own operation.
         const ticket = authGuard.begin();
+        setSessionVersion(ticket);
         setIsAuthLoading(true);
 
         try {
@@ -142,7 +147,7 @@ export function AuthProvider({ children }) {
         // Invalidate first: any restore/login/register already in
         // flight becomes stale and must not write state or storage
         // when it eventually finishes.
-        authGuard.invalidate();
+        setSessionVersion(authGuard.invalidate());
         localStorage.removeItem("gnosisToken");
         setToken(null);
         setUser(null);
@@ -154,6 +159,7 @@ export function AuthProvider({ children }) {
     return (
         <AuthContext.Provider
             value={{
+                sessionVersion,
                 user,
                 token,
                 isAuthenticated,

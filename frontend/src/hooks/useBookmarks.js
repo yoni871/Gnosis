@@ -1,79 +1,55 @@
-import { useContext, useEffect, useState, useRef } from "react";
-import AuthContext from "../context/AuthContext";
+import { useEffect } from "react";
+import usePrivateSession from "./usePrivateSession";
 import {
     getBookmarks,
     createBookmark,
     deleteBookmark
 } from "../services/bookmarksService";
 
+const DEFAULTS = {
+    bookmarks: [],
+    isLoading: false,
+    error: "",
+    isSaving: false,
+    showLoginPrompt: false,
+    deletingId: null
+};
+
 export default function useBookmarks() {
-    const { token, isAuthenticated, isAuthLoading } = useContext(AuthContext);
+    const { token, isAuthenticated, isAuthLoading, owner, state, field, capture, isCurrent } = usePrivateSession(DEFAULTS);
 
-    const [bookmarks, setBookmarks] = useState([]); //holds displayed bookmarks
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [isSaving, setIsSaving] = useState(false); //prevents repeated saves
+    const bookmarks = state.bookmarks;
+    const setBookmarks = field("bookmarks"); //holds displayed bookmarks
+    const isLoading = state.isLoading;
+    const setIsLoading = field("isLoading");
+    const error = state.error;
+    const setError = field("error");
+    const isSaving = state.isSaving;
+    const setIsSaving = field("isSaving"); //prevents repeated saves
     //let UI show sign in popup after a guest bookmarks a passage
-    const [showLoginPrompt, setShowLoginPrompt] = useState(false); 
+    const showLoginPrompt = state.showLoginPrompt;
+    const setShowLoginPrompt = field("showLoginPrompt");
     // Track which bookmark is being removed so its button can show progress.
-    const [deletingId, setDeletingId] = useState(null);
-    //identify the current session so old requests cannot update a new session
-    const sessionRef = useRef(0);
-
+    const deletingId = state.deletingId;
+    const setDeletingId = field("deletingId");
     useEffect(() => {
-        //give this effect run a new session number
-        sessionRef.current += 1;
-
-        if(isAuthLoading) {
-            return;
-        }
-        //clear bookmarks from the previous session
-        setBookmarks([]);
-        setError("");
-        setIsLoading(false);
-
-        //Reset action indicators and guest prompt for the new session
-        setIsSaving(false);
-        setDeletingId(null);
-        setShowLoginPrompt(false);
-
-        // Guests cannot request saved bookmarks from the protected API.
-        if(!isAuthenticated || !token) {
-            return;
-        }
-
-        let ignore = false;
-
-        async function loadBookmarks() {
+        if (isAuthLoading || !isAuthenticated || !token) return;
+        const ticket = capture();
+        let active = true;
+        async function load() {
             setIsLoading(true);
-            setError("");
-
             try {
                 const data = await getBookmarks(token);
-
-                if(!ignore) {
-                    setBookmarks(data);
-                }
+                if (active && isCurrent(ticket)) setBookmarks(data);
             } catch (error) {
-                if(!ignore) {
-                    setError(error.message);
-                }
+                if (active && isCurrent(ticket)) setError(error.message);
             } finally {
-                if(!ignore) {
-                    setIsLoading(false);
-                }
+                if (active && isCurrent(ticket)) setIsLoading(false);
             }
         }
-
-        loadBookmarks();
-
-        return() => {
-            //prevent the old loading request from updating state
-            ignore = true;
-            //invalidate save/delete requests when this session ends or we unmount
-            sessionRef.current += 1;
-        };
-    }, [token, isAuthenticated, isAuthLoading]);
+        load();
+        return () => { active = false; };
+    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoading, setBookmarks, setError]);
 
 
     // Find a bookmark that covers exactly the same book and passage range.
@@ -89,6 +65,7 @@ export default function useBookmarks() {
 
     //save a passage permanently for members or temporarily for guests
     async function handleAddBookmarks(passage) {
+        if (!capture()) return false;
         //wait until auth and bookmark loading are finished
         if(isAuthLoading || isLoading || isSaving) {
             return;
@@ -129,7 +106,7 @@ export default function useBookmarks() {
         }
 
         //remember which session started this request
-        const session = sessionRef.current;
+        const ticket = capture();
 
         setIsSaving(true);
 
@@ -137,18 +114,21 @@ export default function useBookmarks() {
             //the backend validates ownership and saves the passage
             const bookmark = await createBookmark(token, passage);
             //update the list only if we are still in the same session
-            if(session === sessionRef.current) {
+            if(isCurrent(ticket)) {
                 //update the list directly instead of fetching every bookmark again.
                 setBookmarks((current) => [bookmark, ...current]);
+                return true;
             }
+            return false;
         } catch (error) {
             //keep the list unchanged if saving fails.
-            if(session === sessionRef.current) {
+            if(isCurrent(ticket)) {
                 setError(error.message);
             }
+            return false;
         } finally {
             //re enable saving after either success or failure
-            if(session === sessionRef.current) {
+            if(isCurrent(ticket)) {
                 setIsSaving(false);
             }
         }
@@ -156,6 +136,7 @@ export default function useBookmarks() {
 
     //remove a guest bookmark locally or a member's bookmark from the database
     async function handleDeleteBookmark(bookmarkId) {
+        if (!capture()) return false;
         //wait for loading to finish allow only one removal at a time.
         if(isAuthLoading || isLoading || deletingId !== null) {
             return;
@@ -178,7 +159,7 @@ export default function useBookmarks() {
         }
 
         // Remember which session started this deletion.
-        const session = sessionRef.current;
+        const ticket = capture();
 
         setDeletingId(bookmarkId);
 
@@ -187,19 +168,19 @@ export default function useBookmarks() {
             await deleteBookmark(token, bookmarkId);
 
             // Update the displayed list only if the session has not changed.
-            if (session === sessionRef.current) {
+            if (isCurrent(ticket)) {
                 setBookmarks((current) =>
                     current.filter((bookmark) => bookmark.id !== bookmarkId)
                 );
             }
         } catch (error) {
             // Show the error only in the session that started the request.
-            if (session === sessionRef.current) {
+            if (isCurrent(ticket)) {
                 setError(error.message);
             }
         } finally {
             // Avoid clearing another session's removal indicator.
-            if (session === sessionRef.current) {
+            if (isCurrent(ticket)) {
                 setDeletingId(null);
             }
         }

@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "../context/AuthContext";
+import { useEffect } from "react";
+import usePrivateSession from "./usePrivateSession";
 import {
     createNote,
     deleteNote,
@@ -7,49 +7,68 @@ import {
     updateNote
 } from "../services/notesService";
 
+const DEFAULTS = {
+    notes: [],
+    isLoadingNotes: false,
+    notesError: "",
+    noteContent: "",
+    isSavingNote: false,
+    draftPassage: null,
+    editingNoteId: null,
+    editContent: "",
+    isUpdatingNote: false,
+    deletingNoteId: null
+};
+
 export default function useNotes({
     book,
     chapter,
     selectedVerse,
     books
 }) {
-    const {
-        token,
-        isAuthenticated,
-        isAuthLoading
-    } = useContext(AuthContext);
+    const { token, isAuthenticated, isAuthLoading, owner, state, field, capture, isCurrent } = usePrivateSession(DEFAULTS);
 
     // -------------------------
     // NOTES STATE
     // -------------------------
 
-    const [notes, setNotes] = useState([]);
-    const [isLoadingNotes, setIsLoadingNotes] = useState(false);
-    const [notesError, setNotesError] = useState("");
+    const notes = state.notes;
+    const setNotes = field("notes");
+    const isLoadingNotes = state.isLoadingNotes;
+    const setIsLoadingNotes = field("isLoadingNotes");
+    const notesError = state.notesError;
+    const setNotesError = field("notesError");
 
     // -------------------------
     // CREATE NOTE STATE
     // -------------------------
 
-    const [noteContent, setNoteContent] = useState("");
-    const [isSavingNote, setIsSavingNote] = useState(false);
+    const noteContent = state.noteContent;
+    const setNoteContent = field("noteContent");
+    const isSavingNote = state.isSavingNote;
+    const setIsSavingNote = field("isSavingNote");
 
     // Keep a note's target separate from the verse currently being viewed.
-    const [draftPassage, setDraftPassage] = useState(null);
+    const draftPassage = state.draftPassage;
+    const setDraftPassage = field("draftPassage");
 
     // -------------------------
     // EDIT NOTE STATE
     // -------------------------
 
-    const [editingNoteId, setEditingNoteId] = useState(null);
-    const [editContent, setEditContent] = useState("");
-    const [isUpdatingNote, setIsUpdatingNote] = useState(false);
+    const editingNoteId = state.editingNoteId;
+    const setEditingNoteId = field("editingNoteId");
+    const editContent = state.editContent;
+    const setEditContent = field("editContent");
+    const isUpdatingNote = state.isUpdatingNote;
+    const setIsUpdatingNote = field("isUpdatingNote");
 
     // -------------------------
     // DELETE NOTE STATE
     // -------------------------
 
-    const [deletingNoteId, setDeletingNoteId] = useState(null);
+    const deletingNoteId = state.deletingNoteId;
+    const setDeletingNoteId = field("deletingNoteId");
 
     const currentBook = books.find(
         (item) => item.name === book
@@ -60,42 +79,23 @@ export default function useNotes({
     // -------------------------
 
     useEffect(() => {
-        if (!token) {
-            setNotes([]);
-            setNotesError("");
-            setIsLoadingNotes(false);
-            return;
-        }
-
-        let ignoreResponse = false;
-
-        async function loadNotes() {
+        if (isAuthLoading || !isAuthenticated || !token) return;
+        const ticket = capture();
+        let active = true;
+        async function load() {
             setIsLoadingNotes(true);
-            setNotesError("");
-
             try {
                 const data = await getNotes(token);
-
-                if (!ignoreResponse) {
-                    setNotes(data);
-                }
+                if (active && isCurrent(ticket)) setNotes(data);
             } catch (error) {
-                if (!ignoreResponse) {
-                    setNotesError(error.message);
-                }
+                if (active && isCurrent(ticket)) setNotesError(error.message);
             } finally {
-                if (!ignoreResponse) {
-                    setIsLoadingNotes(false);
-                }
+                if (active && isCurrent(ticket)) setIsLoadingNotes(false);
             }
         }
-
-        loadNotes();
-
-        return () => {
-            ignoreResponse = true;
-        };
-    }, [token]);
+        load();
+        return () => { active = false; };
+    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoadingNotes, setNotes, setNotesError]);
 
     // -------------------------
     // CREATE NOTE
@@ -103,6 +103,7 @@ export default function useNotes({
 
     // Start a note for a passage supplied by another feature, such as Highlights.
     function handleStartNote(passage) {
+        if (!capture()) return false;
         // Preserve an existing draft instead of silently replacing its target.
         if (noteContent.trim() || isSavingNote) {
             setNotesError("Save your current note before starting another.");
@@ -124,6 +125,8 @@ export default function useNotes({
 
     // Save the captured draft passage, or the currently focused verse.
     async function handleSaveNote() {
+        const ticket = capture();
+        if (!ticket) return false;
         // Prevent empty notes, unauthenticated requests, and repeated saves.
         if (!token || isSavingNote || !noteContent.trim()) {
             return;
@@ -160,6 +163,7 @@ export default function useNotes({
                 content
             });
 
+            if (!isCurrent(ticket)) return false;
             setNotes((currentNotes) => [
                 newNote,
                 ...currentNotes
@@ -168,11 +172,13 @@ export default function useNotes({
             // Reset the completed draft after the backend confirms success.
             setNoteContent("");
             setDraftPassage(null);
+            return true;
         } catch (error) {
+            if (!isCurrent(ticket)) return false;
             // Preserve the content and passage so the user can retry.
             setNotesError(error.message);
         } finally {
-            setIsSavingNote(false);
+            if (isCurrent(ticket)) setIsSavingNote(false);
         }
     }
 
@@ -181,6 +187,7 @@ export default function useNotes({
     // -------------------------
 
     function handleStartEdit(note) {
+        if (!capture()) return false;
         setEditingNoteId(note.id);
         setEditContent(note.content);
         setNotesError("");
@@ -191,6 +198,7 @@ export default function useNotes({
     // -------------------------
 
     function handleCancelEdit() {
+        if (!capture()) return false;
         setEditingNoteId(null);
         setEditContent("");
     }
@@ -200,6 +208,8 @@ export default function useNotes({
     // -------------------------
 
     async function handleUpdateNote(noteId) {
+        const ticket = capture();
+        if (!ticket) return false;
         if (
             !token ||
             !editContent.trim()
@@ -219,6 +229,7 @@ export default function useNotes({
                 }
             );
 
+            if (!isCurrent(ticket)) return false;
             setNotes((currentNotes) =>
                 currentNotes.map((note) =>
                     note.id === noteId
@@ -229,10 +240,12 @@ export default function useNotes({
 
             setEditingNoteId(null);
             setEditContent("");
+            return true;
         } catch (error) {
+            if (!isCurrent(ticket)) return false;
             setNotesError(error.message);
         } finally {
-            setIsUpdatingNote(false);
+            if (isCurrent(ticket)) setIsUpdatingNote(false);
         }
     }
 
@@ -241,6 +254,8 @@ export default function useNotes({
     // -------------------------
 
     async function handleDeleteNote(noteId) {
+        const ticket = capture();
+        if (!ticket) return false;
         if (!token) {
             return;
         }
@@ -251,6 +266,7 @@ export default function useNotes({
         try {
             await deleteNote(token, noteId);
 
+            if (!isCurrent(ticket)) return false;
             setNotes((currentNotes) =>
                 currentNotes.filter(
                     (note) => note.id !== noteId
@@ -261,14 +277,16 @@ export default function useNotes({
                 setEditingNoteId(null);
                 setEditContent("");
             }
+            return true;
         } catch (error) {
+            if (!isCurrent(ticket)) return false;
             setNotesError(error.message);
         } finally {
-            setDeletingNoteId(null);
+            if (isCurrent(ticket)) setDeletingNoteId(null);
         }
     }
 
-        return {
+    return {
         isAuthenticated,
         isAuthLoading,
 

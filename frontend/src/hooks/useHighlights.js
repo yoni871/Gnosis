@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import AuthContext from "../context/AuthContext";
+import { useEffect } from "react";
+import usePrivateSession from "./usePrivateSession";
 import { mergeHighlights, createGuestHighlights, isHighlightSelected } from "../utils/highlightUtils";
 import {
     getHighlights,
@@ -7,71 +7,56 @@ import {
     clearHighlights
 } from "../services/highlightsService";
 
+const DEFAULTS = {
+    highlights: [],
+    isLoading: false,
+    isSaving: false,
+    error: "",
+    showLoginPrompt: false
+};
+
 export default function useHighlights() {
     // Read the current authentication session.
-    const { token, isAuthenticated, isAuthLoading } = useContext(AuthContext);
+    const { token, isAuthenticated, isAuthLoading, owner, state, field, capture, isCurrent } = usePrivateSession(DEFAULTS);
 
     // Share highlighted verse records across the Study page.
-    const [highlights, setHighlights] = useState([]);
+    const highlights = state.highlights;
+    const setHighlights = field("highlights");
 
     // Separate initial loading from save/remove actions.
-    const [isLoading, setIsLoading] = useState(false);
-    const [isSaving, setIsSaving] = useState(false);
-    const [error, setError] = useState("");
+    const isLoading = state.isLoading;
+    const setIsLoading = field("isLoading");
+    const isSaving = state.isSaving;
+    const setIsSaving = field("isSaving");
+    const error = state.error;
+    const setError = field("error");
 
     // Encourage guests to sign in after a temporary highlight.
-    const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-
-    // Invalidate delayed responses when the authentication session changes.
-    const sessionRef = useRef(0);
+    const showLoginPrompt = state.showLoginPrompt;
+    const setShowLoginPrompt = field("showLoginPrompt");
 
     useEffect(() => {
-        // Give this effect run its own session number.
-        const session = ++sessionRef.current;
-
-        // Remove data and feedback left over from the previous session.
-        setHighlights([]);
-        setError("");
-        setIsLoading(false);
-        setIsSaving(false);
-        setShowLoginPrompt(false);
-
-        async function loadHighlights() {
-            // Guests use temporary state and must not call the protected API.
-            if (isAuthLoading || !isAuthenticated || !token) {
-                return;
-            }
-
+        if (isAuthLoading || !isAuthenticated || !token) return;
+        const ticket = capture();
+        let active = true;
+        async function load() {
             setIsLoading(true);
-
             try {
                 const data = await getHighlights(token);
-
-                // Accept the response only if this session is still current.
-                if (session === sessionRef.current) {
-                    setHighlights(data);
-                }
+                if (active && isCurrent(ticket)) setHighlights(data);
             } catch (error) {
-                if (session === sessionRef.current) {
-                    setError(error.message);
-                }
+                if (active && isCurrent(ticket)) setError(error.message);
             } finally {
-                if (session === sessionRef.current) {
-                    setIsLoading(false);
-                }
+                if (active && isCurrent(ticket)) setIsLoading(false);
             }
         }
-
-        loadHighlights();
-
-        return () => {
-            // Invalidate pending responses when dependencies change or we unmount.
-            sessionRef.current += 1;
-        };
-    }, [token, isAuthenticated, isAuthLoading]);
+        load();
+        return () => { active = false; };
+    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoading, setHighlights, setError]);
 
     // Apply a color and report whether the operation succeeded.
     async function handleSaveHighlights(selection, color) {
+        if (!capture()) return false;
         const { bookId, verses: selectedVerses } = selection;
 
         // Report that no save happened while another operation is running.
@@ -120,7 +105,7 @@ export default function useHighlights() {
         }
 
         // Remember the session that started this request.
-        const session = sessionRef.current;
+        const ticket = capture();
         setIsSaving(true);
 
         try {
@@ -132,7 +117,7 @@ export default function useHighlights() {
             );
 
             // An old session must not report success to the current UI.
-            if (session !== sessionRef.current) {
+            if (!isCurrent(ticket)) {
                 return false;
             }
 
@@ -143,7 +128,7 @@ export default function useHighlights() {
             // The backend confirmed the save.
             return true;
         } catch (error) {
-            if (session === sessionRef.current) {
+            if (isCurrent(ticket)) {
                 setError(error.message);
             }
 
@@ -151,7 +136,7 @@ export default function useHighlights() {
             return false;
         } finally {
             // This still runs before the function finishes returning.
-            if (session === sessionRef.current) {
+            if (isCurrent(ticket)) {
                 setIsSaving(false);
             }
         }
@@ -159,6 +144,7 @@ export default function useHighlights() {
 
     // Remove highlights from the selected passage.
     async function handleClearHighlights(selection) {
+        if (!capture()) return false;
         // Allow actions only after loading and any previous action finish.
         if (isAuthLoading || isLoading || isSaving) {
             return;
@@ -187,7 +173,7 @@ export default function useHighlights() {
             return;
         }
 
-        const session = sessionRef.current;
+        const ticket = capture();
         setIsSaving(true);
 
         try {
@@ -198,7 +184,7 @@ export default function useHighlights() {
                 selection.verses
             );
 
-            if (session === sessionRef.current) {
+            if (isCurrent(ticket)) {
                 // Use a Set for checking whether each record was removed.
                 const removed = new Set(removedIds);
 
@@ -207,11 +193,11 @@ export default function useHighlights() {
                 );
             }
         } catch (error) {
-            if (session === sessionRef.current) {
+            if (isCurrent(ticket)) {
                 setError(error.message);
             }
         } finally {
-            if (session === sessionRef.current) {
+            if (isCurrent(ticket)) {
                 setIsSaving(false);
             }
         }
