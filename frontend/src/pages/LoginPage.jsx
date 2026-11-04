@@ -1,3 +1,4 @@
+import { resendVerification } from "../services/authService";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
@@ -15,6 +16,11 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState("");
+    // Issue #9: when the backend reports an unverified account, the page
+    // shows the resend panel for the attempted address instead of a
+    // generic error. The branch is on the error CODE, never the text.
+    const [unverifiedEmail, setUnverifiedEmail] = useState("");
+    const [resendStatus, setResendStatus] = useState("idle");
 
     //when a form is submitted, the browser creates a submit event
     //and passes it to the handler
@@ -22,6 +28,7 @@ export default function LoginPage() {
         //without this react state could reset and the app would refresh
         event.preventDefault(); //html forms normally submit to a server url and reload the page
         setLoginError("");
+        setUnverifiedEmail("");
 
         try {
             const profile = await login({
@@ -35,9 +42,24 @@ export default function LoginPage() {
                 navigate("/bible/Genesis/1");
             }
         } catch (error) {
-            setLoginError(error.message);
+            if (error.code === "EMAIL_NOT_VERIFIED") {
+                setUnverifiedEmail(email);
+                setResendStatus("idle");
+            } else {
+                setLoginError(error.message);
+            }
         }
     }
+
+    const handleResend = async () => {
+        setResendStatus("sending");
+        try {
+            await resendVerification(unverifiedEmail);
+            setResendStatus("sent");
+        } catch (error) {
+            setResendStatus("error");
+        }
+    };
 
   return (
     <>
@@ -227,6 +249,7 @@ export default function LoginPage() {
                                     value={email}
                                     onChange={(event) => {
                                         setEmail(event.target.value);
+                                        setUnverifiedEmail("");
                                     }}
                                     autoComplete="email"
                                     required
@@ -312,6 +335,59 @@ export default function LoginPage() {
                                 >
                                     {loginError}
                                 </p>
+                            )}
+
+                            {unverifiedEmail && (
+                                <div
+                                    role="alert"
+                                    className="
+                                        rounded-lg
+                                        border
+                                        border-[var(--color-brand)]
+                                        bg-[var(--bg-selected)]
+                                        px-3
+                                        py-2.5
+                                        text-[11px]
+                                        leading-5
+                                        text-[var(--color-brand)]
+                                    "
+                                >
+                                    <p>
+                                        Your email address is not verified yet. Check your inbox for the verification link.
+                                    </p>
+                                    <p className="mt-2">
+                                        Verification links expire after 24 hours, and each new email replaces the last one — if you requested more than one, only the newest link works.
+                                    </p>
+                                    {resendStatus === "sent" ? (
+                                        <p className="mt-3">
+                                            If there is an unverified account for this email, a new verification link has been sent.
+                                        </p>
+                                    ) : (
+                                        <button
+                                            type="button"
+                                            onClick={handleResend}
+                                            disabled={resendStatus === "sending"}
+                                            className="
+                                                mt-3
+                                                font-semibold
+                                                underline
+                                                decoration-[var(--border-control)]
+                                                underline-offset-4
+                                                transition
+                                                hover:decoration-[var(--color-brand)]
+                                                disabled:cursor-not-allowed
+                                                disabled:opacity-60
+                                            "
+                                        >
+                                            {resendStatus === "sending" ? "Sending..." : "Resend verification email"}
+                                        </button>
+                                    )}
+                                    {resendStatus === "error" && (
+                                        <p className="mt-2">
+                                            Could not send a new link. Try again.
+                                        </p>
+                                    )}
+                                </div>
                             )}
 
                             <button

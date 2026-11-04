@@ -95,3 +95,31 @@ test.each([
     expect(screen.getByRole('button', { name: /sign in/i })).toBeEnabled();
     state(null, null, false);
 });
+
+test('EMAIL_NOT_VERIFIED login branches on the code, not the message, and offers a resend', async () => {
+    const login = deferred(), resend = deferred();
+    const fetchMock = vi.fn().mockReturnValueOnce(login.promise).mockReturnValueOnce(resend.promise);
+    vi.stubGlobal('fetch', fetchMock);
+    mount();
+    const user = await submit();
+    await settle(login, response({ error: 'Some unrelated message.', code: 'EMAIL_NOT_VERIFIED' }, 403));
+    expect(screen.getByRole('alert')).toHaveTextContent('not verified yet');
+    expect(screen.getByRole('button', { name: /resend verification email/i })).toBeInTheDocument();
+    expect(screen.getByTestId('location')).toHaveTextContent('/login');
+    state(null, null, false);
+    await user.click(screen.getByRole('button', { name: /resend verification email/i }));
+    await settle(resend, response({ message: 'If there is an unverified account for this email, a new verification link has been sent.' }));
+    expect(screen.getByText(/a new verification link has been sent/i)).toBeInTheDocument();
+    expect(fetchMock.mock.calls[1][0]).toMatch(/\/auth\/resend-verification$/);
+    expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toEqual({ email: profile.email });
+});
+
+test('a 403 without the EMAIL_NOT_VERIFIED code shows no resend panel', async () => {
+    const login = deferred();
+    vi.stubGlobal('fetch', vi.fn().mockReturnValue(login.promise));
+    mount();
+    await submit();
+    await settle(login, response({ error: 'Forbidden.', code: 'FORBIDDEN' }, 403));
+    expect(screen.getByRole('alert')).toHaveTextContent('Forbidden.');
+    expect(screen.queryByRole('button', { name: /resend verification email/i })).not.toBeInTheDocument();
+});

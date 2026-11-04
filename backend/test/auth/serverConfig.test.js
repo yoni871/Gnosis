@@ -139,6 +139,48 @@ test("refuses to start with an invalid TRUST_PROXY value", async () => {
     assert.notEqual(code, 0);
 });
 
+// Issue #9: email configuration is validated at import time through
+// app.js. Startup failures stay generic (issue #5): stderr must carry
+// the generic message and neither the variable name nor the value.
+test("refuses to start without RESEND_API_KEY", async () => {
+    const { child, stderr } = spawnServer(0, {
+        NODE_ENV: "production",
+        JWT_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        RESEND_API_KEY: undefined,
+    });
+    const code = await waitForExit(child, 15000);
+    assert.notEqual(code, 0);
+    assert.ok(stderr().includes("Server configuration error"), stderr());
+    assert.ok(!stderr().includes("RESEND_API_KEY"), stderr());
+});
+
+test("refuses to start with an invalid EMAIL_FROM", async () => {
+    const { child, stderr } = spawnServer(0, {
+        NODE_ENV: "production",
+        JWT_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        EMAIL_FROM: "not-an-email",
+    });
+    const code = await waitForExit(child, 15000);
+    assert.notEqual(code, 0);
+    assert.ok(stderr().includes("Server configuration error"), stderr());
+    assert.ok(!stderr().includes("not-an-email"), stderr());
+});
+
+test("refuses to start with a non-HTTPS FRONTEND_URL", async () => {
+    const { child, stderr } = spawnServer(0, {
+        NODE_ENV: "production",
+        JWT_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        FRONTEND_URL: "http://frontend.example.invalid",
+    });
+    const code = await waitForExit(child, 15000);
+    assert.notEqual(code, 0);
+    assert.ok(stderr().includes("Server configuration error"), stderr());
+    assert.ok(!stderr().includes("http://frontend.example.invalid"), stderr());
+});
+
 async function malformedJsonInMode(mode, port) {
     const server = spawnServer(port, {
         NODE_ENV: mode,

@@ -6,6 +6,7 @@ import StudyPage from './pages/StudyPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import VerifyPage from './pages/VerifyPage';
 
 function App() {
 
@@ -55,6 +56,11 @@ function App() {
             <Route
               path='/register' 
               element={<RegisterPage />}
+            />
+
+            <Route
+              path='/verify-email'
+              element={<VerifyPage />}
             />
 
           </Routes>

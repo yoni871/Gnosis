@@ -1,6 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 
+// Issue #9: email configuration is validated at import time, through
+// this module, because Vercel does not run server.js: any serverless
+// wrapper must import the exported app, so this check runs on every
+// entry path. A failure throws the generic message (issue #5) before
+// the server listens. Test processes that import the app run with
+// synthetic email configuration from the test launchers.
+require("./config/emailConfig").requireEmailConfig();
+
 const bibleRoutes = require("./routes/bibleRoutes");
 const authRoutes = require("./routes/authRoutes");
 const searchRoutes = require("./routes/searchRoutes");

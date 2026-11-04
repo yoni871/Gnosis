@@ -42,6 +42,10 @@ test('test launcher drops inherited database settings, secrets and Node preload 
     assert.deepEqual(Object.keys(env).filter(key => ![
         'PATH', 'SystemRoot', 'WINDIR', 'TMPDIR', 'TMP', 'TEMP',
         'GNOSIS_TEST_ISOLATION', 'TZ',
+        // Issue #9: synthetic, non-routable email configuration for
+        // application code imported by unit tests. These are not secrets
+        // and must never be replaced with real values in tests.
+        'RESEND_API_KEY', 'EMAIL_FROM', 'FRONTEND_URL',
     ].includes(key)), []);
     assert.equal(env.GNOSIS_TEST_ISOLATION, '1');
 });

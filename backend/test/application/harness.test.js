@@ -27,6 +27,11 @@ test('migrated application schema permits only the approved runtime grants', asy
     // DELETE on the sweep state.
     for (const privilege of ['SELECT', 'INSERT', 'DELETE']) expected.push(`rate_limit_attempts:${privilege}`);
     for (const privilege of ['SELECT', 'UPDATE']) expected.push(`rate_limit_sweep_state:${privilege}`);
+    // Issue #9: the runtime role reads and inserts verification tokens
+    // but updates only the two consumption columns; the users column
+    // grant is column-level too, so neither table gains a table-level
+    // UPDATE row here (see the column-grant test below).
+    for (const privilege of ['SELECT', 'INSERT']) expected.push(`email_verification_tokens:${privilege}`);
     assert.deepEqual(grants.rows.map(row => `${row.table_name}:${row.privilege_type}`).sort(), expected.sort());
     assert.ok(grants.rows.every(row => row.is_grantable === 'NO'));
     const sequences = await pool.query(`SELECT c.relname,has_sequence_privilege(current_user,c.oid,'USAGE') AS usage,
@@ -47,9 +52,48 @@ test('migrated application schema permits only the approved runtime grants', asy
         'DELETE FROM bible_books', 'TRUNCATE users', 'UPDATE users SET first_name=\'forbidden\'',
         'UPDATE rate_limit_attempts SET policy=\'forbidden\'',
         "INSERT INTO rate_limit_sweep_state(id) VALUES (2)",
-        'DELETE FROM rate_limit_sweep_state']) {
+        'DELETE FROM rate_limit_sweep_state',
+        "UPDATE users SET email='forbidden@harness.invalid'",
+        "UPDATE users SET password_hash='forbidden'",
+        'UPDATE users SET id=999999',
+        "UPDATE email_verification_tokens SET token_hash='\\x00'",
+        'UPDATE email_verification_tokens SET user_id=999999',
+        "UPDATE email_verification_tokens SET expires_at=now()",
+        "UPDATE email_verification_tokens SET created_at=now()"]) {
         await assert.rejects(pool.query(sql), { code: '42501' });
     }
+});
+
+test('issue #9 column grants allow exactly the approved column updates', async () => {
+    const { pool } = database;
+    const columns = await pool.query(`SELECT table_name,column_name,privilege_type FROM information_schema.role_column_grants
+        WHERE grantee=current_user AND table_schema='public' AND privilege_type='UPDATE'
+        AND table_name IN ('users','email_verification_tokens') ORDER BY table_name,column_name`);
+    assert.deepEqual(
+        columns.rows.map(row => `${row.table_name}.${row.column_name}:${row.privilege_type}`),
+        ['email_verification_tokens.consumed_reason:UPDATE', 'email_verification_tokens.used_at:UPDATE',
+            'users.email_verified_at:UPDATE']);
+    for (const [table, column] of [['users', 'id'], ['users', 'email'], ['users', 'password_hash'],
+        ['users', 'first_name'], ['users', 'last_name'],
+        ['email_verification_tokens', 'token_hash'], ['email_verification_tokens', 'user_id'],
+        ['email_verification_tokens', 'expires_at'], ['email_verification_tokens', 'created_at']]) {
+        const check = await pool.query('SELECT has_column_privilege(current_user,$1,$2,$3) AS allowed',
+            [`public.${table}`, column, 'UPDATE']);
+        assert.equal(check.rows[0].allowed, false, `${table}.${column} must not be updatable`);
+    }
+    // Positive control: the approved column updates actually succeed.
+    const user = await pool.query(
+        "INSERT INTO users(email,password_hash) VALUES ('column-grant@harness.invalid','synthetic-hash') RETURNING id");
+    const token = await pool.query(
+        "INSERT INTO email_verification_tokens(user_id,token_hash,expires_at) VALUES ($1,'\\x01',now() + interval '1 hour') RETURNING id",
+        [user.rows[0].id]);
+    await pool.query('UPDATE users SET email_verified_at=now() WHERE id=$1', [user.rows[0].id]);
+    await pool.query("UPDATE email_verification_tokens SET used_at=now(),consumed_reason='verified' WHERE id=$1",
+        [token.rows[0].id]);
+    const row = await pool.query('SELECT email_verified_at,used_at,consumed_reason FROM users u JOIN email_verification_tokens t ON t.user_id=u.id WHERE u.id=$1',
+        [user.rows[0].id]);
+    assert.ok(row.rows[0].email_verified_at);
+    assert.equal(row.rows[0].consumed_reason, 'verified');
 });
 
 test('restricted writes persist across pools and rollback uses one independent client', async () => {

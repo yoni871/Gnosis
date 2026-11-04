@@ -11,6 +11,9 @@ process memory, and no new vendor or service is required.
 | `POST /api/auth/login` | per (IP + submitted email) | 5 failures | 15 minutes | HMAC of IP + submitted email |
 | `POST /api/auth/login` | per IP across accounts | 30 failures | 15 minutes | HMAC of IP |
 | `POST /api/auth/register` | per IP | 5 valid attempts | 60 minutes | HMAC of IP |
+| `POST /api/auth/resend-verification` | per (IP + submitted email) | 5 requests | 60 minutes | HMAC of IP + submitted email |
+| `POST /api/auth/resend-verification` | per IP across accounts | 20 requests | 60 minutes | HMAC of IP |
+| `POST /api/auth/verify-email` | per IP | 30 attempts | 15 minutes | HMAC of IP |
 
 There is deliberately no email-only pre-auth limit: one would let anyone
 lock out any account by email alone. The per-IP policy caps what a
@@ -28,6 +31,22 @@ Counting rules:
   count; registration 400s and 500s do not.
 - A blocked attempt rolls back its own reservation, so a 429 never
   extends its own window.
+
+### Issue #9 resend and verify counting
+
+Resend and verify limits were added through the same factory (issue #9);
+the engine itself did not change. Two rules are specific to resend:
+
+- The limiter runs before any account lookup, so every structurally
+  valid resend request counts — unknown, verified, and unverified
+  addresses alike. Nothing about the account's state can bypass
+  counting, and the public response is the same generic message in
+  every state, so counting reveals nothing about whether an account
+  exists or is already verified.
+- A rate limit never invalidates a verification token. A 429 on
+  resend or verify leaves every outstanding token exactly as it was;
+  only a successful resend supersedes the previous token, and only a
+  successful verify consumes one.
 
 Responses: a blocked request gets exactly
 `{ "error": "Too many attempts. Please try again later.", "code": "RATE_LIMITED" }`
@@ -118,9 +137,9 @@ role gets exactly these grants; see
 
 ## Issue #9 integration
 
-This change delivers the reusable policy engine and middleware factory
-only. Verification and resend limits are issue #9's to set; #9 will
-add its own policies through the same factory. A rate limit must never
-invalidate a verification token, and verification will use
-cryptographically random, high-entropy, single-use tokens, not short
-guessable codes.
+Issue #9 added its resend and verify policies through the same factory
+(see the table above and the counting rules under "Issue #9 resend and
+verify counting"). A rate limit never invalidates a verification token,
+and verification uses cryptographically random, high-entropy,
+single-use tokens, not short guessable codes. See `docs/Verification.md`
+for the full verification design.

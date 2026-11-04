@@ -68,8 +68,8 @@ export function AuthProvider({ children }) {
     }, []);
 
     // Shared login flow. The caller supplies the operation's epoch
-    // ticket so register() can run its nested login as part of the same
-    // coordinated operation instead of invalidating itself.
+    // ticket so concurrent logins coordinate instead of invalidating
+    // each other.
     async function loginWithTicket(credentials, ticket) {
         if (!authGuard.isCurrent(ticket)) {
             return null;
@@ -114,33 +114,14 @@ export function AuthProvider({ children }) {
     }
 
     async function register(userData) {
-        // One ticket owns the whole register -> login operation, so
-        // the nested login below cannot invalidate its own operation.
-        const ticket = authGuard.begin();
-        setSessionVersion(ticket);
-        setIsAuthLoading(true);
-
-        try {
-            await registerUser(userData);
-            if (!authGuard.isCurrent(ticket)) {
-                return null;
-            }
-
-            return await loginWithTicket({
-                email: userData.email,
-                password: userData.password
-            }, ticket);
-        } catch (error) {
-            if (!authGuard.isCurrent(ticket)) {
-                return null;
-            }
-
-            throw error;
-        } finally {
-            if (authGuard.isCurrent(ticket)) {
-                setIsAuthLoading(false);
-            }
-        }
+        // Issue #9: registration creates an unverified account and does
+        // NOT log in. It touches no session state at all: no ticket, no
+        // sessionVersion bump, no token, no user. Private-state owners
+        // (issue #8) therefore do not reset on a registration, and a
+        // registration in flight can never disturb a login or a logout.
+        // The caller shows the check-email state for the returned email.
+        const data = await registerUser(userData);
+        return { email: data.email };
     }
 
     function logout() {

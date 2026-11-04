@@ -125,11 +125,16 @@ history grants, reference-data writes, DDL, TRUNCATE or sequence reset privilege
 Future issues must explicitly extend the test permission list for their approved
 migrations; issue #4 extends it with SELECT, INSERT, and DELETE on
 `rate_limit_attempts` and SELECT and UPDATE on `rate_limit_sweep_state`.
-This harness still creates no verification schema.
+Issue #9 extends it with SELECT and INSERT on `email_verification_tokens`,
+UPDATE (`email_verified_at`) only on `users`, and UPDATE (`used_at`,
+`consumed_reason`) only on `email_verification_tokens`. The harness test
+asserts the exact table grants, the exact column grants for those two
+tables, and that every other column update the runtime role might try
+fails with PostgreSQL error 42501.
 
 Application files run in an explicit list with `node --test --test-concurrency=1`:
 `test/application/harness.test.js`, then `test/application/safety.test.js`, then
-`test/application/rateLimit.test.js`. Add future
+`test/application/rateLimit.test.js`, then `test/application/emailVerification.test.js`. Add future
 files to the runner's list deliberately. Individual cases can acquire independent
 clients or start multiple workers to exercise concurrency. Do not wrap an entire
 HTTP suite in one transaction: worker connections must see real commits.
@@ -154,9 +159,14 @@ DATABASE_URL, DB_*, PG*, dotenv file paths, inherited NODE_OPTIONS or execArgv a
 forwarded. Context validation rejects missing fields, extra pg options, remote/DNS
 hosts, mismatched generated database/role names and non-synthetic credentials before
 opening a connection. Direct invocation without runner context fails closed.
-Workers reject outbound fetch/HTTP/HTTPS requests; future delivery tests must use
-explicit fake adapters. This is a guard for ordinary test code, not a sandbox for
-malicious tests or a guarantee against every possible transport.
+Workers reject outbound fetch/HTTP/HTTPS requests except to loopback
+destinations. Delivery tests therefore run a loopback stub server in
+the test process and point workers at it through `RESEND_API_BASE_URL`,
+which workers honor only under test isolation; the email verification
+application tests use this pattern, with the stub recording deliveries
+and switching between success, failure, and slow modes. This is a guard
+for ordinary test code, not a sandbox for malicious tests or a
+guarantee against every possible transport.
 
 The smoke suite proves official schema initialization, exact grants, persistence
 across pools, rollback, independent connections, real service reads and two backend

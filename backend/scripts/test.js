@@ -14,13 +14,23 @@ function testEnvironment() {
     for (const key of ['PATH', 'SystemRoot', 'WINDIR', 'TMPDIR', 'TMP', 'TEMP']) {
         if (process.env[key]) env[key] = process.env[key];
     }
-    return { ...env, GNOSIS_TEST_ISOLATION: '1', TZ: 'UTC' };
+    // Issue #9: application code imported by unit tests (notably app.js)
+    // validates email configuration at import time. These are synthetic,
+    // clearly non-routable values, never real credentials: the test
+    // sender address uses the .invalid TLD and the key is not a Resend
+    // key. Real email configuration is never present in unit tests.
+    return { ...env, GNOSIS_TEST_ISOLATION: '1', TZ: 'UTC',
+        RESEND_API_KEY: 'synthetic-test-resend-key',
+        EMAIL_FROM: 'Gnosis Test <test@example.invalid>',
+        FRONTEND_URL: 'https://frontend.example.invalid' };
 }
 
 if (require.main === module) {
     const result = spawnSync(process.execPath, ['--test',
         'test/auth/authErrors.test.js', 'test/auth/authRoutes.test.js',
         'test/auth/authValidation.test.js', 'test/auth/rateLimit.test.js',
+        'test/auth/emailConfig.test.js', 'test/auth/verification.test.js',
+        'test/auth/resendClient.test.js', 'test/auth/emailVerification.test.js',
         'test/auth/serverConfig.test.js', 'test/config/environment.test.js',
         'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js'], {
         cwd: path.resolve(__dirname, '..'), env: testEnvironment(), stdio: 'inherit',

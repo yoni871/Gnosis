@@ -1,0 +1,172 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "email_verification_tokens.consumed_reason",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "email_verification_tokens.created_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "email_verification_tokens.expires_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "email_verification_tokens.id",
+      "definition": {
+        "type": "uuid",
+        "default": "gen_random_uuid()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "email_verification_tokens.token_hash",
+      "definition": {
+        "type": "bytea",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "email_verification_tokens.used_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "email_verification_tokens.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "users.email_verified_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "email_verification_tokens.email_verification_tokens_consumed_re",
+      "definition": {
+        "sql": "CHECK ((consumed_reason = ANY (ARRAY['verified'::text, 'superseded'::text])))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "email_verification_tokens.email_verification_tokens_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "email_verification_tokens.email_verification_tokens_token_hash_",
+      "definition": {
+        "sql": "UNIQUE (token_hash)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "email_verification_tokens.email_verification_tokens_user_id_fke",
+      "definition": {
+        "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "email_verification_tokens_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX email_verification_tokens_pkey ON public.email_verification_tokens USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "email_verification_tokens_token_hash_key",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX email_verification_tokens_token_hash_key ON public.email_verification_tokens USING btree (token_hash)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "email_verification_tokens_user_id_idx",
+      "definition": {
+        "sql": "CREATE INDEX email_verification_tokens_user_id_idx ON public.email_verification_tokens USING btree (user_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "email_verification_tokens",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    }
+  ],
+  "removed": []
+}
