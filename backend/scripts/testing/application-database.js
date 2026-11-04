@@ -80,7 +80,9 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
                 sources,commentaries,commentary_entries TO "${role}";
             GRANT SELECT,INSERT ON users TO "${role}";
             GRANT SELECT,INSERT,UPDATE,DELETE ON notes,bookmarks,highlights TO "${role}";
-            GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq TO "${role}"`);
+            GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq TO "${role}";
+            GRANT SELECT,INSERT,DELETE ON rate_limit_attempts TO "${role}";
+            GRANT SELECT,UPDATE ON rate_limit_sweep_state TO "${role}"`);
         // Small reference fixture; no imports, application data or test-owned schema.
         await provisioning.query("INSERT INTO bible_books(name) VALUES ('Synthetic harness book')");
         await provisioning.end();

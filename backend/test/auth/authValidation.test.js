@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
 process.env.JWT_SECRET = "test-secret";
+process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret";
 
 const {
     validateRegisterInput,
@@ -213,7 +214,51 @@ const realCompare = bcrypt.compare;
 let queryBehavior = async () => {
     throw Object.assign(new Error("Synthetic database failure"), { code: "ECONNREFUSED" });
 };
-const queryMock = test.mock.method(pool, "query", (...args) => queryBehavior(...args));
+const queryMock = test.mock.method(pool, "query", (...args) => {
+    // Issue #4: limiter releases (DELETEs of reservations) are answered
+    // here without touching the per-test behavior or `captured`, so
+    // handler-query assertions keep seeing the handler's own query.
+    if (typeof args[0] === "string" && args[0].includes("rate_limit_attempts")) {
+        return Promise.resolve({ rows: [] });
+    }
+    return queryBehavior(...args);
+});
+
+// Issue #4: the limiter checks out a client for its reservation
+// transaction. The fake client answers limiter SQL in memory: the
+// advisory lock is always acquired, every reservation inserts, and the
+// count stays below every limit, so valid requests pass the limiter and
+// reach the handler under test.
+let limiterInsertCount = 0;
+function fakeLimiterClient() {
+    return {
+        query: async (sql) => {
+            if (typeof sql === "string" && sql.includes("pg_advisory_xact_lock")) {
+                return { rows: [{ pg_advisory_xact_lock: true }] };
+            }
+            if (typeof sql === "string" && sql.includes("INSERT INTO rate_limit_attempts")) {
+                limiterInsertCount += 1;
+                return { rows: [{ id: `limiter-${limiterInsertCount}` }] };
+            }
+            if (typeof sql === "string" && sql.includes("DELETE FROM rate_limit_attempts")) {
+                return { rows: [], rowCount: 0 };
+            }
+            if (typeof sql === "string" && sql.includes("FROM rate_limit_attempts")) {
+                return { rows: [{ count: 0, oldest: null }] };
+            }
+            if (typeof sql === "string" && sql.includes("pg_try_advisory_xact_lock")) {
+                return { rows: [{ locked: true }] };
+            }
+            if (typeof sql === "string" && sql.includes("rate_limit_sweep_state")) {
+                return { rows: [{ last_swept_at: new Date(0) }] };
+            }
+            return { rows: [] };
+        },
+        release: () => {},
+    };
+}
+let connectBehavior = async () => fakeLimiterClient();
+const connectMock = test.mock.method(pool, "connect", (...args) => connectBehavior(...args));
 const hashMock = test.mock.method(bcrypt, "hash", (...args) => realHash(...args));
 const compareMock = test.mock.method(bcrypt, "compare", (...args) => realCompare(...args));
 
@@ -232,6 +277,7 @@ test.after(async () => {
     }
     await new Promise((resolve) => server.close(resolve));
     queryMock.mock.restore();
+    connectMock.mock.restore();
     hashMock.mock.restore();
     compareMock.mock.restore();
     await pool.end();
@@ -265,6 +311,7 @@ function assertJsonError(result, status, body) {
 function callCounts() {
     return {
         query: queryMock.mock.calls.length,
+        connect: connectMock.mock.calls.length,
         hash: hashMock.mock.calls.length,
         compare: compareMock.mock.calls.length,
     };
@@ -279,13 +326,16 @@ async function post(path, body, raw = false) {
 }
 
 // Sends an invalid request and proves it was rejected with the expected
-// 400 before any database or bcrypt call: both call counts are unchanged.
+// 400 before any database or bcrypt call: all call counts are unchanged.
+// Issue #4: validation runs before the limiter, so invalid input also
+// causes zero limiter client checkouts.
 async function assertRejected(path, body, expectedError, { raw = false, bcryptMethod = "hash" } = {}) {
     const before = callCounts();
     const result = await post(path, body, raw);
     assertJsonError(result, 400, { error: expectedError, code: "VALIDATION_FAILED" });
     const after = callCounts();
     assert.equal(after.query, before.query, "invalid input must cause zero database calls");
+    assert.equal(after.connect, before.connect, "invalid input must cause zero database checkouts");
     assert.equal(after[bcryptMethod], before[bcryptMethod], "invalid input must not reach bcrypt");
 }
 

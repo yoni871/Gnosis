@@ -20,6 +20,13 @@ test('migrated application schema permits only the approved runtime grants', asy
     for (const table of ['notes', 'bookmarks', 'highlights']) {
         for (const privilege of ['SELECT', 'INSERT', 'UPDATE', 'DELETE']) expected.push(`${table}:${privilege}`);
     }
+    // Issue #4: only the permissions the limiter itself needs. Attempts
+    // are never updated in place (counted rows stay, released rows are
+    // deleted), and the sweep-state row is created by the migration, so
+    // the application role gets no UPDATE on attempts and no INSERT or
+    // DELETE on the sweep state.
+    for (const privilege of ['SELECT', 'INSERT', 'DELETE']) expected.push(`rate_limit_attempts:${privilege}`);
+    for (const privilege of ['SELECT', 'UPDATE']) expected.push(`rate_limit_sweep_state:${privilege}`);
     assert.deepEqual(grants.rows.map(row => `${row.table_name}:${row.privilege_type}`).sort(), expected.sort());
     assert.ok(grants.rows.every(row => row.is_grantable === 'NO'));
     const sequences = await pool.query(`SELECT c.relname,has_sequence_privilege(current_user,c.oid,'USAGE') AS usage,
@@ -37,7 +44,10 @@ test('migrated application schema permits only the approved runtime grants', asy
         "SELECT nextval('pgmigrations_id_seq')", 'CREATE TABLE forbidden(id integer)',
         'CREATE SCHEMA forbidden', 'CREATE TEMP TABLE forbidden(id integer)',
         "INSERT INTO bible_books(name) VALUES ('forbidden')", "UPDATE bible_books SET name='forbidden'",
-        'DELETE FROM bible_books', 'TRUNCATE users', 'UPDATE users SET first_name=\'forbidden\'']) {
+        'DELETE FROM bible_books', 'TRUNCATE users', 'UPDATE users SET first_name=\'forbidden\'',
+        'UPDATE rate_limit_attempts SET policy=\'forbidden\'',
+        "INSERT INTO rate_limit_sweep_state(id) VALUES (2)",
+        'DELETE FROM rate_limit_sweep_state']) {
         await assert.rejects(pool.query(sql), { code: '42501' });
     }
 });

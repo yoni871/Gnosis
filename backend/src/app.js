@@ -8,8 +8,15 @@ const notesRoutes = require("./routes/notesRoutes");
 const bookmarksRoutes = require("./routes/bookmarksRoutes");
 const highlightsRoutes = require("./routes/highlightsRoutes");
 const { CLIENT_AUTH_RESPONSES, isBodyParseError, logAuthFailure } = require("./utils/authErrors");
+const { resolveTrustProxy } = require("./utils/rateLimit");
 
 const app = express();
+
+// Issue #4: trust proxy is disabled by default and set only from the
+// validated TRUST_PROXY environment setting. No production value is
+// guessed here: the operator sets the value that matches the real proxy
+// chain when the backend host is chosen, and an invalid value fails fast.
+app.set("trust proxy", resolveTrustProxy(process.env.TRUST_PROXY));
 
 app.use(cors());
 app.use(express.json());
