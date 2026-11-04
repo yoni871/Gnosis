@@ -161,5 +161,9 @@ function validateLoginInput(body) {
 module.exports = {
     validateRegisterInput,
     validateLoginInput,
+    // Issue #9 reuses the same structural email rule for resend requests
+    // and for EMAIL_FROM validation, so "structurally valid" means the
+    // same thing everywhere. It never echoes the submitted value.
+    validateEmailAddress: validateEmail,
     VALIDATION_CODE,
 };

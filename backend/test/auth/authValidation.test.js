@@ -7,6 +7,10 @@ const jwt = require("jsonwebtoken");
 process.env.GNOSIS_TEST_ISOLATION = "1";
 process.env.JWT_SECRET = "test-secret";
 process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret";
+// Issue #9: app.js validates email configuration at import time.
+process.env.RESEND_API_KEY = 'synthetic-test-resend-key';
+process.env.EMAIL_FROM = 'Gnosis Test <test@example.invalid>';
+process.env.FRONTEND_URL = 'https://frontend.example.invalid';
 
 const {
     validateRegisterInput,
@@ -229,10 +233,15 @@ const queryMock = test.mock.method(pool, "query", (...args) => {
 // advisory lock is always acquired, every reservation inserts, and the
 // count stays below every limit, so valid requests pass the limiter and
 // reach the handler under test.
+// Issue #9: the register handler also checks out a client for its
+// user-plus-token transaction. Transaction framing is a no-op in
+// memory, and every other statement delegates to the per-test
+// queryBehavior, so register tests keep controlling the "database".
 let limiterInsertCount = 0;
 function fakeLimiterClient() {
     return {
-        query: async (sql) => {
+        query: async (...args) => {
+            const sql = args[0];
             if (typeof sql === "string" && sql.includes("pg_advisory_xact_lock")) {
                 return { rows: [{ pg_advisory_xact_lock: true }] };
             }
@@ -252,7 +261,10 @@ function fakeLimiterClient() {
             if (typeof sql === "string" && sql.includes("rate_limit_sweep_state")) {
                 return { rows: [{ last_swept_at: new Date(0) }] };
             }
-            return { rows: [] };
+            if (typeof sql === "string" && /^(BEGIN|COMMIT|ROLLBACK)/.test(sql.trim())) {
+                return { rows: [] };
+            }
+            return queryBehavior(...args);
         },
         release: () => {},
     };
@@ -264,11 +276,23 @@ const compareMock = test.mock.method(bcrypt, "compare", (...args) => realCompare
 
 let server;
 let baseUrl;
+let stubServer;
 
 test.before(async () => {
     server = app.listen(0, "127.0.0.1");
     await new Promise((resolve) => server.once("listening", resolve));
     baseUrl = `http://127.0.0.1:${server.address().port}`;
+    // Issue #9: registration sends a verification email after commit.
+    // Point the resend client at this loopback stub (honored only under
+    // test isolation) so no test ever calls the real Resend API.
+    const http = require("node:http");
+    stubServer = http.createServer((req, res) => {
+        req.resume();
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end("{}");
+    });
+    await new Promise((resolve) => stubServer.listen(0, "127.0.0.1", resolve));
+    process.env.RESEND_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
 });
 
 test.after(async () => {
@@ -276,6 +300,10 @@ test.after(async () => {
         server.closeAllConnections();
     }
     await new Promise((resolve) => server.close(resolve));
+    if (stubServer) {
+        await new Promise((resolve) => stubServer.close(resolve));
+    }
+    delete process.env.RESEND_API_BASE_URL;
     queryMock.mock.restore();
     connectMock.mock.restore();
     hashMock.mock.restore();
@@ -372,9 +400,9 @@ test("login rejects invalid input before bcrypt and the database", async () => {
 });
 
 test("register passes trimmed values to the insert and hashes the password", async () => {
-    let captured;
+    const captured = [];
     queryBehavior = async (...args) => {
-        captured = args;
+        captured.push(args);
         return { rows: [{ id: 7, first_name: "Test", last_name: "User", email: "test@example.com" }] };
     };
     const before = callCounts();
@@ -385,36 +413,49 @@ test("register passes trimmed values to the insert and hashes the password", asy
     }));
     assert.equal(result.response.status, 200);
     assert.deepEqual(result.json, { id: 7, first_name: "Test", last_name: "User", email: "test@example.com" });
-    assert.match(captured[0], /INSERT INTO users/);
-    assert.equal(captured[1][0], "Test");
-    assert.equal(captured[1][1], "User");
-    assert.equal(captured[1][2], "test@example.com");
-    assert.match(captured[1][3], /^\$2[ab]\$/);
-    assert.notEqual(captured[1][3], "a-valid-password");
+    const userInsert = captured.find((args) => /INSERT INTO users/.test(args[0]));
+    assert.ok(userInsert, "user insert must run");
+    assert.equal(userInsert[1][0], "Test");
+    assert.equal(userInsert[1][1], "User");
+    assert.equal(userInsert[1][2], "test@example.com");
+    assert.match(userInsert[1][3], /^\$2[ab]\$/);
+    assert.notEqual(userInsert[1][3], "a-valid-password");
+    // Issue #9: the same transaction inserts the first verification
+    // token: the user id, a 32-byte hash (never the raw token), and a
+    // 24-hour expiry.
+    const tokenInsert = captured.find((args) => /INSERT INTO email_verification_tokens/.test(args[0]));
+    assert.ok(tokenInsert, "token insert must run in the same transaction");
+    assert.equal(tokenInsert[1][0], 7);
+    assert.ok(Buffer.isBuffer(tokenInsert[1][1]), "only the hash is stored");
+    assert.equal(tokenInsert[1][1].length, 32);
+    const expiry = new Date(tokenInsert[1][2]).getTime();
+    assert.ok(expiry > Date.now() + 23 * 60 * 60 * 1000 && expiry <= Date.now() + 24 * 60 * 60 * 1000);
     assert.equal(callCounts().hash, before.hash + 1, "valid registration must hash exactly once");
 });
 
 test("register ignores unknown fields", async () => {
-    let captured;
+    const captured = [];
     queryBehavior = async (...args) => {
-        captured = args;
+        captured.push(args);
         return { rows: [{ id: 7 }] };
     };
     const result = await post("/api/auth/register", validRegister({ role: "admin" }));
     assert.equal(result.response.status, 200);
-    assert.equal(captured[1].length, 4, "only the four validated values reach the query");
-    assert.ok(!captured[1].includes("admin"));
+    const userInsert = captured.find((args) => /INSERT INTO users/.test(args[0]));
+    assert.equal(userInsert[1].length, 4, "only the four validated values reach the query");
+    assert.ok(!userInsert[1].includes("admin"));
 });
 
 test("register preserves email case in the insert", async () => {
-    let captured;
+    const captured = [];
     queryBehavior = async (...args) => {
-        captured = args;
+        captured.push(args);
         return { rows: [{ id: 7 }] };
     };
     const result = await post("/api/auth/register", validRegister({ email: "Test@Example.COM" }));
     assert.equal(result.response.status, 200);
-    assert.equal(captured[1][2], "Test@Example.COM");
+    const userInsert = captured.find((args) => /INSERT INTO users/.test(args[0]));
+    assert.equal(userInsert[1][2], "Test@Example.COM");
 });
 
 test("register duplicate email still returns the existing 409", async () => {
@@ -464,6 +505,7 @@ test("login with valid credentials performs real bcrypt comparison and JWT signi
             last_name: "User",
             email: "test@example.com",
             password_hash: passwordHash,
+            email_verified_at: new Date(),
         }],
     });
     const before = callCounts();
@@ -480,7 +522,7 @@ test("login trims the email before lookup", async () => {
     const passwordHash = await realHash("correct-password", 10);
     queryBehavior = async (...args) => {
         captured = args;
-        return { rows: [{ id: 42, password_hash: passwordHash }] };
+        return { rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }] };
     };
     const result = await post("/api/auth/login", validLogin({
         email: "  test@example.com  ",
@@ -493,7 +535,7 @@ test("login trims the email before lookup", async () => {
 test("login accepts a short pre-existing password", async () => {
     const passwordHash = await realHash("abc", 10);
     queryBehavior = async () => ({
-        rows: [{ id: 42, password_hash: passwordHash }],
+        rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }],
     });
     const result = await post("/api/auth/login", validLogin({ password: "abc" }));
     assert.equal(result.response.status, 200);

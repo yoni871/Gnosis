@@ -29,10 +29,8 @@
 //   shared sweep-state row enforcing the global interval. Sweep failure
 //   rolls back only the sweep, never active counters, and never affects
 //   the response.
-// - This module delivers the policy engine and middleware factory only.
-//   Verification and resend limits belong to issue #9, which will add its
-//   own policies through the same factory; no such policies are defined
-//   here.
+// - This module delivers the policy engine and middleware factory.
+//   Issue #9 adds its own policies below through the same factory.
 
 const crypto = require("node:crypto");
 const pool = require("../db/db");
@@ -45,6 +43,13 @@ const POLICIES = {
     login_ip_email: { windowMs: 15 * 60 * 1000, limit: 5 },
     login_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
     register_ip: { windowMs: 60 * 60 * 1000, limit: 5 },
+    // Issue #9: resend and verify limits. Resend counts every
+    // structurally valid request (unknown, verified, and unverified
+    // alike) because the limiter runs before any account lookup; the
+    // verify limit counts every structurally valid token attempt.
+    resend_ip_email: { windowMs: 60 * 60 * 1000, limit: 5 },
+    resend_ip: { windowMs: 60 * 60 * 1000, limit: 20 },
+    verify_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since

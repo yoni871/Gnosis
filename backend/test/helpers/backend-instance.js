@@ -7,10 +7,21 @@ const { validateContext } = require('./application-database');
 function workerEnvironment() {
     const env = { GNOSIS_TEST_ISOLATION: '1', NODE_ENV: 'test',
         JWT_SECRET: 'synthetic-application-test-jwt',
-        RATE_LIMIT_KEY_SECRET: 'synthetic-application-test-rate-limit', TZ: 'UTC' };
+        RATE_LIMIT_KEY_SECRET: 'synthetic-application-test-rate-limit', TZ: 'UTC',
+        // Issue #9: workers import app.js, which validates email
+        // configuration at import time. These synthetic, non-routable
+        // values satisfy validation without ever sending real email;
+        // delivery in application tests goes to a loopback stub.
+        RESEND_API_KEY: 'synthetic-application-test-resend-key',
+        EMAIL_FROM: 'Gnosis Test <test@example.invalid>',
+        FRONTEND_URL: 'https://frontend.example.invalid' };
     for (const key of ['PATH', 'SystemRoot', 'WINDIR', 'TMPDIR', 'TMP', 'TEMP']) {
         if (process.env[key]) env[key] = process.env[key];
     }
+    // Issue #9: a test file may point workers at its loopback delivery
+    // stub. The override is honored only under test isolation (workers
+    // always run isolated), and production ignores it entirely.
+    if (process.env.RESEND_API_BASE_URL) env.RESEND_API_BASE_URL = process.env.RESEND_API_BASE_URL;
     return env;
 }
 

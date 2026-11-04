@@ -14,6 +14,11 @@ const ENDPOINT_MESSAGES = {
     register: "Can not create an account.",
     login: "Something went wrong.",
     profile: "Failed to retrieve profile.",
+    // Issue #9: verification endpoints share the generic wording. Their
+    // client-visible failures are the controlled 400/403/429 bodies, never
+    // these internal messages.
+    verify: "Something went wrong.",
+    resend: "Something went wrong.",
 };
 
 function errorBody(message, code) {

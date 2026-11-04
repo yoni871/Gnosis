@@ -50,27 +50,22 @@ function state(user, token, isAuthLoading) {
     expect(localStorage.getItem('gnosisToken')).toBe(token);
 }
 
-test('registration automatically logs in and navigates only after the profile completes', async () => {
-    const registration = deferred(), login = deferred(), requestProfile = deferred();
-    const fetchMock = vi.fn().mockReturnValueOnce(registration.promise)
-        .mockReturnValueOnce(login.promise).mockReturnValueOnce(requestProfile.promise);
+test('registration shows the check-email state without logging in or navigating', async () => {
+    const registration = deferred();
+    const fetchMock = vi.fn().mockReturnValue(registration.promise);
     vi.stubGlobal('fetch', fetchMock);
     mount();
     await submit();
-    state(null, null, true);
     expect(screen.getByRole('button', { name: /creating account/i })).toBeDisabled();
     await settle(registration, response(profile));
-    state(null, null, true);
+    expect(screen.getByText(/check your email to finish creating your account/i)).toBeInTheDocument();
+    expect(screen.getByText(profile.email)).toBeInTheDocument();
     expect(screen.getByTestId('location')).toHaveTextContent('/register');
-    await settle(login, response({ token: 'synthetic-registration-token' }));
-    state(null, 'synthetic-registration-token', true);
-    await settle(requestProfile, response(profile));
-    state(profile, 'synthetic-registration-token', false);
-    expect(screen.getByRole('heading', { name: 'Study destination' })).toBeInTheDocument();
-    expect(fetchMock.mock.calls.map(([url]) => url.split('/').pop())).toEqual(['register', 'login', 'profile']);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({
         firstName: 'Synthetic', lastName: 'Reader', email: profile.email, password: 'synthetic-password',
     });
+    state(null, null, false);
 });
 
 test('VALIDATION_FAILED feedback stops registration without automatic login or navigation', async () => {
@@ -89,7 +84,7 @@ test('VALIDATION_FAILED feedback stops registration without automatic login or n
     state(null, null, false);
 });
 
-test.each([false, true])('logout ignores late registration and never starts automatic login (failure=%s)', async fail => {
+test.each([false, true])('logout during registration neither logs in nor suppresses the result (failure=%s)', async fail => {
     const registration = deferred();
     const fetchMock = vi.fn().mockReturnValue(registration.promise);
     vi.stubGlobal('fetch', fetchMock);
@@ -98,21 +93,26 @@ test.each([false, true])('logout ignores late registration and never starts auto
     await user.click(screen.getByRole('button', { name: 'Log out test session' }));
     await settle(registration, fail ? new Error('stale registration error') : response(profile), fail);
     state(null, null, false);
-    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    if (fail) {
+        expect(screen.getByRole('alert')).toHaveTextContent('stale registration error');
+    } else {
+        expect(screen.getByText(/check your email to finish creating your account/i)).toBeInTheDocument();
+    }
     expect(screen.getByTestId('location')).toHaveTextContent('/register');
     expect(fetchMock).toHaveBeenCalledTimes(1);
 });
 
-test('logout during automatic login prevents registration navigation and token writes', async () => {
-    const registration = deferred(), login = deferred();
-    const fetchMock = vi.fn().mockReturnValueOnce(registration.promise).mockReturnValueOnce(login.promise);
+test('check-email resend requests a fresh link for the registered address', async () => {
+    const registration = deferred(), resend = deferred();
+    const fetchMock = vi.fn().mockReturnValueOnce(registration.promise).mockReturnValueOnce(resend.promise);
     vi.stubGlobal('fetch', fetchMock);
     mount();
     const user = await submit();
     await settle(registration, response(profile));
-    await user.click(screen.getByRole('button', { name: 'Log out test session' }));
-    await settle(login, response({ token: 'stale-registration-token' }));
-    state(null, null, false);
-    expect(screen.getByTestId('location')).toHaveTextContent('/register');
-    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(screen.getByText(/check your email to finish creating your account/i)).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /resend verification email/i }));
+    await settle(resend, response({ message: 'If there is an unverified account for this email, a new verification link has been sent.' }));
+    expect(screen.getByText(/a new verification link has been sent/i)).toBeInTheDocument();
+    expect(fetchMock.mock.calls.map(([url]) => url.split('/').pop())).toEqual(['register', 'resend-verification']);
+    expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toEqual({ email: profile.email });
 });

@@ -177,27 +177,21 @@ test('current login failure rejects, clears storage and ends loading', async () 
     session(null, null);
 });
 
-test('registration and its automatic login share one generation through completion', async () => {
-    const registration = deferred(), login = deferred(), profile = deferred();
+test('registration returns the registered email without starting a session', async () => {
+    const registration = deferred();
     registerUser.mockReturnValue(registration.promise);
-    loginUser.mockReturnValue(login.promise);
-    getProfile.mockReturnValue(profile.promise);
     mount();
     const data = { ...credentials, firstName: 'Synthetic', lastName: 'User' };
     const operation = begin('register', data);
-    session(null, null, true);
-    await settle(registration, { id: 2 });
+    await settle(registration, { id: 2, email: data.email });
     expect(registerUser).toHaveBeenCalledWith(data);
-    expect(loginUser).toHaveBeenCalledWith(credentials);
-    session(null, null, true);
-    await settle(login, { token: 'new-token' });
-    session(null, 'new-token', true);
-    await settle(profile, newUser);
-    expect(await operation).toEqual(newUser);
-    session(newUser, 'new-token');
+    expect(loginUser).not.toHaveBeenCalled();
+    expect(getProfile).not.toHaveBeenCalled();
+    expect(await operation).toEqual({ email: data.email });
+    session(null, null);
 });
 
-test.each([false, true])('a superseded registration cannot start login or affect the newer session (failure=%s)', async fail => {
+test('a registration is independent of a concurrent login', async () => {
     const registration = deferred();
     registerUser.mockReturnValue(registration.promise);
     loginUser.mockResolvedValue({ token: 'new-token' });
@@ -206,25 +200,25 @@ test.each([false, true])('a superseded registration cannot start login or affect
     const registrationOperation = begin('register');
     const loginOperation = begin('login');
     await act(async () => { await loginOperation; });
-    await settle(registration, fail ? new Error('stale registration') : { id: 1 }, fail);
-    expect(await registrationOperation).toBeNull();
+    session(newUser, 'new-token');
+    await settle(registration, { id: 1, email: 'register@example.invalid' });
+    expect(await registrationOperation).toEqual({ email: 'register@example.invalid' });
     expect(loginUser).toHaveBeenCalledTimes(1);
     session(newUser, 'new-token');
 });
 
-test.each(['registration', 'login', 'profile'])('logout invalidates registration during its %s stage', async stage => {
-    const request = deferred();
-    registerUser.mockReturnValue(stage === 'registration' ? request.promise : Promise.resolve({ id: 2 }));
-    loginUser.mockReturnValue(stage === 'login' ? request.promise : Promise.resolve({ token: 'new-token' }));
-    getProfile.mockReturnValue(request.promise);
+test.each([false, true])('logout during registration neither cancels it nor logs in (failure=%s)', async fail => {
+    const registration = deferred();
+    registerUser.mockReturnValue(registration.promise);
     mount();
     const operation = begin('register');
-    await act(async () => {});
+    operation.catch(() => {});
     act(() => auth.logout());
-    await settle(request, stage === 'login' ? { token: 'new-token' } : newUser);
-    expect(await operation).toBeNull();
+    await settle(registration, fail ? new Error('registration failure') : { id: 2, email: credentials.email }, fail);
+    if (fail) await expect(operation).rejects.toThrow('registration failure');
+    else expect(await operation).toEqual({ email: credentials.email });
     session(null, null);
-    if (stage === 'registration') expect(loginUser).not.toHaveBeenCalled();
+    expect(loginUser).not.toHaveBeenCalled();
 });
 
 test.each(['restore', 'login', 'registration'])('unmount invalidates pending %s without changing a remounted session', async stage => {
@@ -241,8 +235,9 @@ test.each(['restore', 'login', 'registration'])('unmount invalidates pending %s 
     getProfile.mockResolvedValue(newUser);
     mount();
     await act(async () => {});
-    await settle(request, stage === 'restore' ? oldUser : { token: 'old-token' });
-    if (operation) expect(await operation).toBeNull();
+    await settle(request, stage === 'restore' ? oldUser : stage === 'login' ? { token: 'old-token' } : { id: 3, email: 'register@example.invalid' });
+    if (stage === 'login') expect(await operation).toBeNull();
+    if (stage === 'registration') expect(await operation).toEqual({ email: 'register@example.invalid' });
     session(newUser, 'new-token');
     if (stage === 'registration') expect(loginUser).not.toHaveBeenCalled();
 });
@@ -259,7 +254,7 @@ test.each([false, true])('Strict Mode ignores the first restore after effect cle
     session(newUser, 'old-token');
 });
 
-test('publishes a read-only session version for restore, login, registration and logout', async () => {
+test('publishes a read-only session version for restore, login and logout, and registration does not bump it', async () => {
     mount();
     const startup = auth.sessionVersion;
     expect(startup).toBeGreaterThan(0);
@@ -275,13 +270,11 @@ test('publishes a read-only session version for restore, login, registration and
     expect(auth.sessionVersion).toBe(loginVersion);
     const registration = deferred();
     registerUser.mockReturnValue(registration.promise);
-    loginUser.mockResolvedValue({ token: 'synthetic-next' });
     const register = begin('register');
-    const registerVersion = auth.sessionVersion;
-    expect(registerVersion).toBeGreaterThan(loginVersion);
-    await settle(registration, {});
-    await register;
-    expect(auth.sessionVersion).toBe(registerVersion);
+    expect(auth.sessionVersion).toBe(loginVersion);
+    await settle(registration, { id: 9, email: credentials.email });
+    expect(await register).toEqual({ email: credentials.email });
+    expect(auth.sessionVersion).toBe(loginVersion);
     act(() => auth.logout());
-    expect(auth.sessionVersion).toBeGreaterThan(registerVersion);
+    expect(auth.sessionVersion).toBeGreaterThan(loginVersion);
 });

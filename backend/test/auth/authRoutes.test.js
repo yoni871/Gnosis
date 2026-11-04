@@ -6,6 +6,10 @@ const jwt = require("jsonwebtoken");
 process.env.GNOSIS_TEST_ISOLATION = "1";
 process.env.JWT_SECRET = "test-secret-for-auth-error-tests";
 process.env.RATE_LIMIT_KEY_SECRET = "test-secret-for-rate-limit-tests";
+// Issue #9: app.js validates email configuration at import time.
+process.env.RESEND_API_KEY = 'synthetic-test-resend-key';
+process.env.EMAIL_FROM = 'Gnosis Test <test@example.invalid>';
+process.env.FRONTEND_URL = 'https://frontend.example.invalid';
 
 const app = require("../../src/app");
 const pool = require("../../src/db/db");

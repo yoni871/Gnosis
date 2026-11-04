@@ -27,12 +27,46 @@ process.on('message', async message => {
     try {
         // Refuse external HTTP/email transports. These workers serve inbound
         // loopback requests; tests use explicit fakes for future delivery adapters.
+        // Issue #9: loopback destinations stay reachable so a test file can
+        // run a local delivery stub for the resend client. Anything that is
+        // not loopback is still refused, so no real provider is ever called.
+        const originalFetch = global.fetch;
+        const isLoopbackHost = (host) => {
+            if (typeof host !== 'string') return false;
+            const name = host.split(':')[0].toLowerCase().replace(/^\[|\]$/g, '');
+            return name === '127.0.0.1' || name === '::1' || name === 'localhost';
+        };
         const blocked = () => { throw new Error('External network calls are disabled in application tests.'); };
-        global.fetch = blocked;
+        global.fetch = (input, init) => {
+            let url;
+            try {
+                const raw = typeof input === 'string' ? input : (input.url || input.href);
+                url = new URL(raw);
+            } catch {
+                blocked();
+            }
+            if (!isLoopbackHost(url.hostname)) blocked();
+            return originalFetch(input, init);
+        };
         for (const name of ['node:http', 'node:https']) {
             const transport = require(name);
-            transport.request = blocked;
-            transport.get = blocked;
+            const originalRequest = transport.request;
+            const originalGet = transport.get;
+            const hostOf = (options) => {
+                if (typeof options === 'string') {
+                    try { return new URL(options).hostname; } catch { return ''; }
+                }
+                if (options && typeof options === 'object') return options.hostname || options.host || '';
+                return '';
+            };
+            transport.request = (options, ...rest) => {
+                if (!isLoopbackHost(hostOf(options))) blocked();
+                return originalRequest.call(transport, options, ...rest);
+            };
+            transport.get = (options, ...rest) => {
+                if (!isLoopbackHost(hostOf(options))) blocked();
+                return originalGet.call(transport, options, ...rest);
+            };
         }
         database = await createTestPool(message.context);
         installApplicationPool(database.pool);

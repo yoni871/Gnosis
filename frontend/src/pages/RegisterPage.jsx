@@ -1,21 +1,26 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { resendVerification } from "../services/authService";
 
 export default function RegisterPage() {
     const {
         register, //performs complete registeration process
-        isAuthLoading //tells the from whether authentication is currently processing
     } = useContext(AuthContext);
-
-    const navigate = useNavigate(); //function that changes routes
-
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [registerError, setRegisterError] = useState("");
+    // Issue #9: registration creates an unverified account and does not
+    // log in. The page shows the check-email state for the registered
+    // address instead of navigating to the reader. Submission state is
+    // local: registration touches no AuthContext session state (issue
+    // #8), so it must not borrow the context loading flag either.
+    const [registeredEmail, setRegisteredEmail] = useState("");
+    const [resendStatus, setResendStatus] = useState("idle");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     //when a form is submitted, the browser creates a submit event
     //and passes it to the handler
@@ -23,24 +28,36 @@ export default function RegisterPage() {
         //without this react state could reset and the app would refresh
         event.preventDefault(); //html forms normally submit to a server url and reload the page
         setRegisterError("");
+        setIsSubmitting(true);
 
         try {
-            const profile = await register({
+            const result = await register({
                 firstName,
                 lastName,
                 email,
                 password
             });
 
-            // A null profile means this attempt was superseded by a
-            // newer auth action (issue #6) — do not navigate for it.
-            if (profile) {
-                navigate("/bible/Genesis/1");
+            if (result && result.email) {
+                setRegisteredEmail(result.email);
+                setResendStatus("idle");
             }
         } catch (error) {
             setRegisterError(error.message);
+        } finally {
+            setIsSubmitting(false);
         }
     }
+
+    const handleResend = async () => {
+        setResendStatus("sending");
+        try {
+            await resendVerification(registeredEmail);
+            setResendStatus("sent");
+        } catch (error) {
+            setResendStatus("error");
+        }
+    };
 
   return (
     <main className="
@@ -194,6 +211,127 @@ export default function RegisterPage() {
                             Create an account to save your progress and personalize your study experience.
                         </p>
 
+                        {registeredEmail ? (
+                            <div className="
+                                mt-7
+                                space-y-5
+                            ">
+                                <p className="
+                                    text-[14px]
+                                    leading-6
+                                    text-[var(--text-primary)]
+                                ">
+                                    Check your email to finish creating your account.
+                                </p>
+
+                                <p className="
+                                    text-[13px]
+                                    leading-6
+                                    text-[var(--text-muted)]
+                                ">
+                                    We sent a verification link to{" "}
+                                    <span className="
+                                        font-semibold
+                                        text-[var(--text-primary)]
+                                    ">
+                                        {registeredEmail}
+                                    </span>
+                                    . The link expires after 24 hours.
+                                </p>
+
+                                <p className="
+                                    text-[13px]
+                                    leading-6
+                                    text-[var(--text-muted)]
+                                ">
+                                    If you requested more than one email, only the newest link works — use the most recent message.
+                                </p>
+
+                                {resendStatus === "sent" ? (
+                                    <p className="
+                                        text-[13px]
+                                        leading-6
+                                        text-[var(--text-muted)]
+                                    ">
+                                        If there is an unverified account for this email, a new verification link has been sent.
+                                    </p>
+                                ) : (
+                                    <button
+                                        type="button"
+                                        onClick={handleResend}
+                                        disabled={resendStatus === "sending"}
+                                        className="
+                                            group
+                                            mt-2
+                                            flex
+                                            h-12
+                                            w-full
+                                            items-center
+                                            justify-between
+                                            border
+                                            border-[var(--color-brand)]
+                                            bg-[var(--color-brand)]
+                                            px-5
+                                            text-[12px]
+                                            font-semibold
+                                            tracking-wide
+                                            text-white
+                                            transition-all
+                                            duration-200
+                                            hover:bg-transparent
+                                            hover:text-[var(--color-brand)]
+                                            disabled:cursor-not-allowed
+                                            disabled:opacity-60
+                                        "
+                                    >
+                                        <span>
+                                            {resendStatus === "sending" ? "Sending..." : "Resend verification email"}
+                                        </span>
+                                    </button>
+                                )}
+
+                                {resendStatus === "error" && (
+                                    <p
+                                        role="alert"
+                                        className="
+                                            rounded-lg
+                                            border
+                                            border-[var(--color-brand)]
+                                            bg-[var(--bg-selected)]
+                                            px-3
+                                            py-2.5
+                                            text-[11px]
+                                            leading-5
+                                            text-[var(--color-brand)]
+                                        "
+                                    >
+                                        Could not send a new link. Try again.
+                                    </p>
+                                )}
+
+                                <p className="
+                                    text-[13px]
+                                    leading-6
+                                    text-[var(--text-muted)]
+                                ">
+                                    Already verified?{" "}
+                                    <Link
+                                        to="/login"
+                                        className="
+                                            font-semibold
+                                            text-[var(--color-brand)]
+                                            underline
+                                            decoration-[var(--border-control)]
+                                            underline-offset-4
+                                            transition
+                                            hover:decoration-[var(--color-brand)]
+                                        "
+                                    >
+                                        Sign in
+                                    </Link>
+                                </p>
+                            </div>
+                        ) : (
                         <form 
                         onSubmit={handleSubmit}
                         className="
@@ -413,7 +551,7 @@ export default function RegisterPage() {
 
                             <button
                                 type="submit"
-                                disabled={isAuthLoading}
+                                disabled={isSubmitting}
                                 className="
                                     group
                                     mt-2
@@ -439,10 +577,10 @@ export default function RegisterPage() {
                                 "
                             >
                                 <span>
-                                    {isAuthLoading ? "Creating account..." : "Create account"}
+                                    {isSubmitting ? "Creating account..." : "Create account"}
                                 </span>
 
-                                {!isAuthLoading && (
+                                {!isSubmitting && (
                                     <span
                                         aria-hidden="true"
                                         className="
@@ -459,6 +597,7 @@ export default function RegisterPage() {
                             </button>
 
                         </form>
+                        )}
 
                         <p className="
                             mt-8

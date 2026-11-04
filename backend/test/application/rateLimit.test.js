@@ -58,8 +58,11 @@ async function attemptCount(policy, fields) {
 
 async function seedUser(email, password) {
     const hash = await bcrypt.hash(password, 10);
+    // Seeded users stand in for pre-existing accounts, which the #9
+    // migration grandfathers as verified; without the stamp the login
+    // gate would 403 every seeded login.
     const result = await database.pool.query(
-        'INSERT INTO users(email, password_hash, first_name, last_name) VALUES ($1, $2, $3, $4) RETURNING id',
+        'INSERT INTO users(email, password_hash, first_name, last_name, email_verified_at) VALUES ($1, $2, $3, $4, now()) RETURNING id',
         [email, hash, 'Test', 'User']);
     return result.rows[0].id;
 }
