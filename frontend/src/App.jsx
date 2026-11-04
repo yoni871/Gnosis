@@ -15,7 +15,23 @@ function App() {
         <AuthProvider>
           <Routes>
 
-            {/* Open the study reader when someone visits the homepage. */}
+            {/*
+              LANDING PAGE SWAP POINT -- read before changing this route.
+              The homepage currently redirects to the reader because the
+              landing page does not exist yet. Do NOT remove this
+              redirect until the landing page is ready. When it is:
+                1. Replace this route's element with <LandingPage />.
+                2. Give the landing page its metadata from the
+                   LANDING_TITLE / LANDING_DESCRIPTION constants in
+                   src/utils/seo.js (index.html already carries them
+                   as the site-wide default).
+                3. Add "/" to the sitemap: pass ["/"] as extraPaths to
+                   buildSitemapXml in scripts/generate-sitemap.js and
+                   regenerate public/sitemap.xml. Until then "/" must
+                   stay OUT of the sitemap because it redirects.
+              The Bible study reader stays at /bible/:book/:chapter
+              either way; nothing else in this file changes.
+            */}
             <Route
               path="/"
               element={<Navigate to="/bible/Genesis/1" replace />}

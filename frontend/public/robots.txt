@@ -1,0 +1,27 @@
+# Gnosis robots.txt
+#
+# Public Bible study pages are open to all legitimate crawlers.
+# JavaScript, stylesheets, and images are intentionally NOT blocked:
+# crawlers need them to render chapter pages.
+#
+# Private and non-indexable areas:
+#   /login, /register -- authentication pages, never indexed
+#   /search -- search results pages, never indexed (Google's guidance
+#     is that search results should not appear in search results)
+#
+# Query-parameter variants (?verse=, ?translation=, ?commentary=) are
+# NOT blocked here on purpose: blocking them would stop crawlers from
+# reaching the canonical tag on chapter pages. Duplicates are handled
+# by the canonical URL, which always points at the clean
+# /bible/:book/:chapter address with no query string.
+#
+# When the /verify-email route from the email-verification work lands,
+# add "Disallow: /verify-email" here.
+
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /register
+Disallow: /search
+
+Sitemap: https://studygnosis.com/sitemap.xml
