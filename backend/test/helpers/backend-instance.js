@@ -6,7 +6,8 @@ const { validateContext } = require('./application-database');
 // NODE_OPTIONS, execArgv, dotenv paths, or database defaults to an application worker.
 function workerEnvironment() {
     const env = { GNOSIS_TEST_ISOLATION: '1', NODE_ENV: 'test',
-        JWT_SECRET: 'synthetic-application-test-jwt', TZ: 'UTC' };
+        JWT_SECRET: 'synthetic-application-test-jwt',
+        RATE_LIMIT_KEY_SECRET: 'synthetic-application-test-rate-limit', TZ: 'UTC' };
     for (const key of ['PATH', 'SystemRoot', 'WINDIR', 'TMPDIR', 'TMP', 'TEMP']) {
         if (process.env[key]) env[key] = process.env[key];
     }

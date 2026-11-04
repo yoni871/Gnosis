@@ -123,10 +123,13 @@ PUBLIC database/schema/table/sequence/function privileges are removed in this
 application fixture, including temporary-object creation. There are no migration
 history grants, reference-data writes, DDL, TRUNCATE or sequence reset privileges.
 Future issues must explicitly extend the test permission list for their approved
-migrations; this harness creates no rate-limit or verification schema.
+migrations; issue #4 extends it with SELECT, INSERT, and DELETE on
+`rate_limit_attempts` and SELECT and UPDATE on `rate_limit_sweep_state`.
+This harness still creates no verification schema.
 
 Application files run in an explicit list with `node --test --test-concurrency=1`:
-`test/application/harness.test.js`, then `test/application/safety.test.js`. Add future
+`test/application/harness.test.js`, then `test/application/safety.test.js`, then
+`test/application/rateLimit.test.js`. Add future
 files to the runner's list deliberately. Individual cases can acquire independent
 clients or start multiple workers to exercise concurrency. Do not wrap an entire
 HTTP suite in one transaction: worker connections must see real commits.
