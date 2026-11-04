@@ -1,7 +1,7 @@
+import { resendVerification } from "../services/authService";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { resendVerification } from "../services/authService";
 import Seo from "../components/Seo";
 import { pageUrl } from "../utils/seo";
 
