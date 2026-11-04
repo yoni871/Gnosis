@@ -6,6 +6,8 @@ import { getBooks } from "../services/bibleService";
 
 import Header from "../components/Header/Header";
 import SubHeader from "../components/Navigation/SubHeader";
+import Seo from "../components/Seo";
+import { pageUrl } from "../utils/seo";
 
 
 function formatPassage(result) {
@@ -224,6 +226,15 @@ export default function SearchResultsPage() {
             bg-[var(--bg-page)]
             pt-[198px] min-[769px]:pt-[108px]
         ">
+            {/* Search results are never indexed, and the canonical URL
+                drops the ?q= query so result variants cannot become
+                duplicate indexed pages. */}
+            <Seo
+                title="Search | Gnosis"
+                description="Search Scripture and classic Bible commentary on Gnosis."
+                canonical={pageUrl("/search")}
+                robots="noindex, nofollow"
+            />
             <Header variant="searchResults" translation={translation} />
 
             <SubHeader

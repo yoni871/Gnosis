@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import API_URL from '../../api/api';
 import useClickOutside from '../../hooks/useClickOutside';
 
@@ -50,27 +50,50 @@ export default function ChapterSelector({
 
             sm:gap-2
         ">
-            <button
-                className="
-                    flex
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded
-                    p-1
-                    text-[var(--text-muted)]
-                    hover:bg-[var(--hover-bg)]
-                "
-                onClick={() => {
-                    if (chapter > 1) {
-                        setChapter(chapter - 1);
-                        setSelectedVerse(null);
-                        navigate(`/bible/${book}/${chapter - 1}`);
-                    }
-                }}
-            >
-                <ChevronLeft size={18} />
-            </button>
+            {/*
+              Previous/next chapter are real links, not buttons that
+              call navigate(): crawlers follow <a href> anchors, they
+              do not click buttons, so button navigation made chapters
+              undiscoverable except through the sitemap. The reader
+              page syncs its state from the URL, so following the link
+              is all the navigation needs; no setChapter call here.
+              At the first chapter there is no previous link, so a
+              disabled placeholder keeps the layout stable.
+            */}
+            {chapter > 1 ? (
+                <Link
+                    to={`/bible/${book}/${chapter - 1}`}
+                    aria-label="Previous chapter"
+                    className="
+                        flex
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded
+                        p-1
+                        text-[var(--text-muted)]
+                        hover:bg-[var(--hover-bg)]
+                    "
+                >
+                    <ChevronLeft size={18} />
+                </Link>
+            ) : (
+                <span
+                    aria-disabled="true"
+                    className="
+                        flex
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded
+                        p-1
+                        text-[var(--text-muted)]
+                        opacity-40
+                    "
+                >
+                    <ChevronLeft size={18} />
+                </span>
+            )}
 
             <div className="relative">
                 <button
@@ -144,27 +167,40 @@ export default function ChapterSelector({
                 )}
             </div>
 
-            <button
-                className="
-                    flex
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded
-                    p-1
-                    text-[var(--text-muted)]
-                    hover:bg-[var(--hover-bg)]
-                "
-                onClick={() => {
-                    if (chapter < chapters.length) {
-                        setChapter(chapter + 1);
-                        setSelectedVerse(null);
-                        navigate(`/bible/${book}/${chapter + 1}`);
-                    }
-                }}
-            >
-                <ChevronRight size={18} />
-            </button>
+            {chapter < chapters.length ? (
+                <Link
+                    to={`/bible/${book}/${chapter + 1}`}
+                    aria-label="Next chapter"
+                    className="
+                        flex
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded
+                        p-1
+                        text-[var(--text-muted)]
+                        hover:bg-[var(--hover-bg)]
+                    "
+                >
+                    <ChevronRight size={18} />
+                </Link>
+            ) : (
+                <span
+                    aria-disabled="true"
+                    className="
+                        flex
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded
+                        p-1
+                        text-[var(--text-muted)]
+                        opacity-40
+                    "
+                >
+                    <ChevronRight size={18} />
+                </span>
+            )}
         </div>
     );
 }
