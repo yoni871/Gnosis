@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { resendVerification } from "../services/authService";
+import Seo from "../components/Seo";
+import { pageUrl } from "../utils/seo";
 
 export default function LoginPage() {
     const {
@@ -60,6 +62,14 @@ export default function LoginPage() {
     };
 
   return (
+    <>
+    {/* Authentication pages are never indexed. */}
+    <Seo
+        title="Log in | Gnosis"
+        description="Log in to Gnosis to access your Bible study notes, bookmarks, and highlights."
+        canonical={pageUrl("/login")}
+        robots="noindex, nofollow"
+    />
     <main className="
         grid
         min-h-screen
@@ -462,5 +472,6 @@ export default function LoginPage() {
         </section>
 
     </main>
+    </>
   )
 }
