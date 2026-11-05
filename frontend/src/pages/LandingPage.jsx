@@ -5,6 +5,7 @@ import LandingHeader from "../components/LandingHeader";
 import PublicFooter from "../components/PublicFooter";
 import LandingPurpose from "../components/LandingPurpose";
 import LandingBibleCommentary from "../components/LandingBibleCommentary";
+import LandingBeyondText from "../components/LandingBeyondText";
 import {
     LANDING_TITLE,
     LANDING_DESCRIPTION,
@@ -147,6 +148,7 @@ export default function LandingPage() {
                 </div>
                 <LandingPurpose />
                 <LandingBibleCommentary />
+                <LandingBeyondText />
 
                 <section
                     id="how-it-works"

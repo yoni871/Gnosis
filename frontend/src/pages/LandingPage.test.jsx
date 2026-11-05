@@ -57,6 +57,18 @@ describe("LandingPage", () => {
         for (const badge of ["KJV Bible", "Trusted Commentaries", "Smooth Study Experience"]) expect(within(section).queryByText(badge)).toBeNull();
     });
 
+    test("Beyond the Text follows the showcase and labels its connections as planned", () => {
+        renderLanding(LOGGED_OUT);
+        const section = screen.getByRole("region", { name: "One Passage. A World of Understanding." });
+        expect(document.querySelector(".landing-bible").nextElementSibling).toBe(section);
+        expect(within(section).getByText("BEYOND THE TEXT")).toBeInTheDocument();
+        expect(within(section).getByText("Explore the connections between Scripture, the historical world, and centuries of Christian thought.")).toBeInTheDocument();
+        expect(within(section).getByText("The Gnosis Vision")).toBeInTheDocument();
+        expect(within(section).getByText("Planned connections")).toBeInTheDocument();
+        expect(within(section).queryByRole("link")).toBeNull();
+        expect(within(section).queryByRole("button")).toBeNull();
+    });
+
     test("renders the hero with the approved copy and CTA destinations", () => {
         renderLanding(LOGGED_OUT);
 
