@@ -6,6 +6,20 @@
     font-display: swap;
     src: url("/fonts/hero/cormorant-garamond-latin-600.woff2") format("woff2");
 }
+/* Match fallback word widths so loading the display face does not rewrap
+   the two desktop lines and push the following section. */
+@font-face {
+    font-family: "Gnosis Hero Georgia Fallback";
+    src: local("Georgia Bold"), local("Georgia");
+    font-weight: 600;
+    size-adjust: 76.87%;
+}
+@font-face {
+    font-family: "Gnosis Hero Times Fallback";
+    src: local("Times New Roman Bold"), local("Times New Roman");
+    font-weight: 600;
+    size-adjust: 92.49%;
+}
 @font-face {
     font-family: "Gnosis Hero Inter";
     font-style: normal;
@@ -29,7 +43,7 @@
     margin-bottom: 22px;
 }
 .landing-hero-copy h1 {
-    font-family: "Gnosis Hero Cormorant", Georgia, serif;
+    font-family: "Gnosis Hero Cormorant", "Gnosis Hero Georgia Fallback", "Gnosis Hero Times Fallback", serif;
     font-size: clamp(3.2rem, 6.2vw, 5rem);
     font-weight: 600;
     line-height: 1.05;

@@ -16,7 +16,8 @@ from the official Google Fonts CSS API on 2026-11-05:
 Both use SIL Open Font License 1.1; complete licenses are included, from
 `google/fonts` (`ofl/cormorantgaramond/OFL.txt`, `ofl/inter/OFL.txt`). No fonts
 were modified. Versions and hashes identify the committed files; builds do
-not download or refresh them.
+not download or refresh them. Local Georgia/Times fallbacks use adjusted word
+widths so font loading does not rewrap the two desktop headline lines.
 
 ## Animation limit
 
