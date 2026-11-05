@@ -1,0 +1,25 @@
+/* One fixed photo plate + one real hinged model. No whole-scene transforms. */
+.laptop-scene {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    aspect-ratio: 1672 / 941;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+.laptop-scene-plate, .laptop-scene-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.laptop-scene-plate { object-fit: fill; }
+.laptop-scene-canvas canvas { display: block; width: 100%; height: 100%; }
+.landing-hero-media[data-laptop-ready="true"] > picture { opacity: 0; }
+.landing-hero-media[data-laptop-ready="true"] .laptop-scene { visibility: visible; }
+@media (max-width: 1099px), (pointer: coarse), (prefers-reduced-motion: reduce) {
+    .landing-hero-media[data-laptop-ready="true"] > picture { opacity: 1; }
+    .landing-hero-media .laptop-scene { visibility: hidden; }
+}

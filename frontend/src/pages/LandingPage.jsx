@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import LandingHeader from "../components/LandingHeader";
 import PublicFooter from "../components/PublicFooter";
+import LaptopScene from "../components/laptop/LaptopScene";
 import {
     LANDING_TITLE,
     LANDING_DESCRIPTION,
@@ -126,6 +127,7 @@ export default function LandingPage() {
                             alt="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset"
                         />
                     </picture>
+                    <LaptopScene />
                 </div>
             </div>
             <main id="landing-main" tabIndex={-1}>
