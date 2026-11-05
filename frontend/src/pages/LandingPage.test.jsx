@@ -35,12 +35,12 @@ describe("LandingPage", () => {
         expect(
             screen.getByRole("heading", {
                 level: 1,
-                name: "Study Scripture with clarity and depth",
+                name: "Go deeper into Scripture.",
             }),
         ).toBeInTheDocument();
         expect(
             screen.getByText(
-                "Read the Bible alongside trusted classic commentary. Explore each verse, take notes, and keep your study organized.",
+                "Scripture and classic commentary, side by side. Make connections, capture your thoughts, and return to what matters.",
             ),
         ).toBeInTheDocument();
 
@@ -363,7 +363,7 @@ describe("App routing with the landing page", () => {
         expect(
             screen.getByRole("heading", {
                 level: 1,
-                name: "Study Scripture with clarity and depth",
+                name: "Go deeper into Scripture.",
             }),
         ).toBeInTheDocument();
         expect(window.location.pathname).toBe("/");
@@ -383,7 +383,7 @@ describe("App routing with the landing page", () => {
         expect(
             screen.queryByRole("heading", {
                 level: 1,
-                name: "Study Scripture with clarity and depth",
+                name: "Go deeper into Scripture.",
             }),
         ).toBeNull();
     });

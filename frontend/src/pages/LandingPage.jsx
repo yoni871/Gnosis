@@ -117,14 +117,14 @@ export default function LandingPage() {
             <main id="landing-main" tabIndex={-1}>
                 <section className="landing-hero" aria-labelledby="landing-hero-heading">
                     <div className="landing-hero-copy">
-                        <p className="public-eyebrow">A quieter space for deeper study</p>
+                        <p className="public-eyebrow">Your space for Bible study</p>
                         <h1 id="landing-hero-heading">
-                            Study Scripture with clarity and depth
+                            Go deeper into Scripture.
                         </h1>
                         <p>
-                            Read the Bible alongside trusted classic
-                            commentary. Explore each verse, take notes,
-                            and keep your study organized.
+                            Scripture and classic commentary, side by side.
+                            Make connections, capture your thoughts, and
+                            return to what matters.
                         </p>
                         <div className="landing-hero-ctas">
                             <Link
