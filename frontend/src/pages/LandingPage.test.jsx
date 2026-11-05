@@ -35,31 +35,43 @@ describe("LandingPage", () => {
         expect(
             screen.getByRole("heading", {
                 level: 1,
-                name: "Study Scripture with clarity and depth",
+                name: "Explore Scripture. Discover Its Depth.",
             }),
         ).toBeInTheDocument();
         expect(
             screen.getByText(
-                "Read the Bible alongside trusted classic commentary. Explore each verse, take notes, and keep your study organized.",
+                "Discover the richness of Scripture, explore the wisdom of Christian thinkers, and grow in your understanding of God's Word.",
             ),
         ).toBeInTheDocument();
 
-        // Hero, final CTA, and footer each link to the reader.
+        // The hero action and remaining study links all lead to the reader.
         const startLinks = screen.getAllByRole("link", {
             name: "Start Studying",
         });
-        expect(startLinks).toHaveLength(3);
+        expect(startLinks).toHaveLength(2);
+        expect(screen.getByRole("link", { name: "Start Exploring →" })).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(screen.getByText("SCRIPTURE • THEOLOGY • HISTORY")).toBeInTheDocument();
         startLinks.forEach((link) => {
             expect(link).toHaveAttribute("href", "/bible/Genesis/1");
         });
 
         const howLink = screen.getByRole("link", {
-            name: "See how it works",
+            name: "See How It Works",
         });
         expect(howLink).toHaveAttribute("href", "#how-it-works");
         expect(
             document.getElementById("how-it-works"),
         ).not.toBeNull();
+    });
+
+    test.each([false, true])("hero anchor respects motion preference (%s) and preserves its destination", async reduce => {
+        const scrollIntoView = vi.fn();
+        vi.stubGlobal("matchMedia", vi.fn(() => ({ matches: reduce, addEventListener: vi.fn(), removeEventListener: vi.fn() })));
+        renderLanding(LOGGED_OUT);
+        document.getElementById("how-it-works").scrollIntoView = scrollIntoView;
+        await userEvent.setup().click(screen.getByRole("link", { name: "See How It Works" }));
+        expect(scrollIntoView).toHaveBeenCalledWith({ behavior: reduce ? "instant" : "smooth", block: "start" });
+        expect(window.location.hash).toBe("#how-it-works");
     });
 
     test("header and approved image share one hero shell", () => {
@@ -363,7 +375,7 @@ describe("App routing with the landing page", () => {
         expect(
             screen.getByRole("heading", {
                 level: 1,
-                name: "Study Scripture with clarity and depth",
+                name: "Explore Scripture. Discover Its Depth.",
             }),
         ).toBeInTheDocument();
         expect(window.location.pathname).toBe("/");
@@ -383,7 +395,7 @@ describe("App routing with the landing page", () => {
         expect(
             screen.queryByRole("heading", {
                 level: 1,
-                name: "Study Scripture with clarity and depth",
+                name: "Explore Scripture. Discover Its Depth.",
             }),
         ).toBeNull();
     });

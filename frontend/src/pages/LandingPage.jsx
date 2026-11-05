@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import LandingHeader from "../components/LandingHeader";
 import PublicFooter from "../components/PublicFooter";
+import useHeroParallax from "../hooks/useHeroParallax";
 import {
     LANDING_TITLE,
     LANDING_DESCRIPTION,
@@ -11,6 +12,7 @@ import {
     pageUrl,
 } from "../utils/seo";
 import "./LandingPage.css";
+import "./LandingHero.css";
 
 // Public landing page for "/". The study reader stays at
 // /bible/:book/:chapter; this page only links to it, never replaces
@@ -58,13 +60,27 @@ const FEATURES = [
     },
 ];
 
+function scrollToHowItWorks(event) {
+    // Preserve normal anchor behavior for modified clicks and URL/history.
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    const target = document.getElementById("how-it-works");
+    if (!target?.scrollIntoView) return;
+    event.preventDefault();
+    if (window.location.hash !== "#how-it-works") window.history.pushState(null, "", "#how-it-works");
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    target.scrollIntoView({ behavior: reduce ? "instant" : "smooth", block: "start" });
+}
+
 export default function LandingPage() {
+    const heroMediaRef = useHeroParallax();
     const siteUrl = getSiteUrl();
     const canonical = pageUrl("/");
     const ogImage = `${siteUrl}/images/landing/sunset-hero-images/hero-1200.jpg`;
 
     return (
         <div className="public-page landing-page">
+            <link rel="preload" href="/fonts/hero/cormorant-garamond-latin-600.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+            <link rel="preload" href="/fonts/hero/inter-latin-variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
             <Seo
                 title={LANDING_TITLE}
                 description={LANDING_DESCRIPTION}
@@ -84,7 +100,7 @@ export default function LandingPage() {
 
             <div className="landing-hero-shell">
                 <LandingHeader hero />
-                <div className="landing-hero-media">
+                <div className="landing-hero-media" ref={heroMediaRef}>
                     <div
                         className="landing-hero-scrim"
                         aria-hidden="true"
@@ -117,27 +133,29 @@ export default function LandingPage() {
             <main id="landing-main" tabIndex={-1}>
                 <section className="landing-hero" aria-labelledby="landing-hero-heading">
                     <div className="landing-hero-copy">
-                        <p className="public-eyebrow">A quieter space for deeper study</p>
+                        <p className="public-eyebrow">SCRIPTURE • THEOLOGY • HISTORY</p>
                         <h1 id="landing-hero-heading">
-                            Study Scripture with clarity and depth
+                            <span>Explore Scripture.</span>{" "}
+                            <span>Discover Its Depth.</span>
                         </h1>
                         <p>
-                            Read the Bible alongside trusted classic
-                            commentary. Explore each verse, take notes,
-                            and keep your study organized.
+                            Discover the richness of Scripture, explore the wisdom
+                            of Christian thinkers, and grow in your understanding
+                            of God's Word.
                         </p>
                         <div className="landing-hero-ctas">
                             <Link
                                 to={STUDY_DESTINATION}
                                 className="landing-btn landing-btn-primary landing-btn-large"
                             >
-                                Start Studying
+                                Start Exploring →
                             </Link>
                             <a
                                 href="#how-it-works"
+                                onClick={scrollToHowItWorks}
                                 className="landing-btn landing-btn-secondary landing-btn-large"
                             >
-                                See how it works
+                                See How It Works
                             </a>
                         </div>
                     </div>
