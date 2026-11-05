@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import Seo from "../components/Seo";
 import LandingHeader from "../components/LandingHeader";
+import PublicFooter from "../components/PublicFooter";
 import {
     LANDING_TITLE,
     LANDING_DESCRIPTION,
@@ -63,7 +64,7 @@ export default function LandingPage() {
     const ogImage = `${siteUrl}/images/landing/sunset-hero-images/hero-1200.jpg`;
 
     return (
-        <div className="landing-page">
+        <div className="public-page landing-page">
             <Seo
                 title={LANDING_TITLE}
                 description={LANDING_DESCRIPTION}
@@ -81,14 +82,42 @@ export default function LandingPage() {
                 }}
             />
 
-            <LandingHeader />
-
+            <div className="landing-hero-shell">
+                <LandingHeader hero />
+                <div className="landing-hero-media">
+                    <div
+                        className="landing-hero-scrim"
+                        aria-hidden="true"
+                    />
+                    <picture>
+                        <source
+                            type="image/webp"
+                            srcSet={`${HERO_BASE}-480.webp 480w, ${HERO_BASE}-800.webp 800w, ${HERO_BASE}-1280.webp 1280w, ${HERO_BASE}-1672.webp 1672w`}
+                            sizes="100vw"
+                        />
+                        <source
+                            type="image/jpeg"
+                            srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
+                            sizes="100vw"
+                        />
+                        <img
+                            className="landing-hero-img"
+                            src={`${HERO_BASE}-1280.jpg`}
+                            srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
+                            sizes="100vw"
+                            width={HERO_WIDTH}
+                            height={HERO_HEIGHT}
+                            fetchPriority="high"
+                            decoding="async"
+                            alt="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset"
+                        />
+                    </picture>
+                </div>
+            </div>
             <main id="landing-main" tabIndex={-1}>
-                <section
-                    className="landing-hero"
-                    aria-labelledby="landing-hero-heading"
-                >
+                <section className="landing-hero" aria-labelledby="landing-hero-heading">
                     <div className="landing-hero-copy">
+                        <p className="public-eyebrow">A quieter space for deeper study</p>
                         <h1 id="landing-hero-heading">
                             Study Scripture with clarity and depth
                         </h1>
@@ -111,36 +140,6 @@ export default function LandingPage() {
                                 See how it works
                             </a>
                         </div>
-                    </div>
-
-                    <div className="landing-hero-media">
-                        <div
-                            className="landing-hero-scrim"
-                            aria-hidden="true"
-                        />
-                        <picture>
-                            <source
-                                type="image/webp"
-                                srcSet={`${HERO_BASE}-480.webp 480w, ${HERO_BASE}-800.webp 800w, ${HERO_BASE}-1280.webp 1280w, ${HERO_BASE}-1672.webp 1672w`}
-                                sizes="100vw"
-                            />
-                            <source
-                                type="image/jpeg"
-                                srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
-                                sizes="100vw"
-                            />
-                            <img
-                                className="landing-hero-img"
-                                src={`${HERO_BASE}-1280.jpg`}
-                                srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
-                                sizes="100vw"
-                                width={HERO_WIDTH}
-                                height={HERO_HEIGHT}
-                                fetchPriority="high"
-                                decoding="async"
-                                alt="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset"
-                            />
-                        </picture>
                     </div>
                 </section>
 
@@ -236,28 +235,11 @@ export default function LandingPage() {
                     </div>
                 </section>
 
-                <section
-                    id="about"
-                    className="landing-section landing-about"
-                    aria-labelledby="landing-about-heading"
-                >
-                    <h2 id="landing-about-heading">About Us</h2>
-                    <p>
-                        Gnosis is a Christian Scripture-study tool
-                        built for readers who want to understand
-                        God&apos;s Word more deeply. Its name comes
-                        from the Greek word gnosis, meaning knowledge:
-                        the knowledge of Scripture that grows through
-                        careful, steady reading.
-                    </p>
-                    <p>
-                        Gnosis is not connected with Gnosticism, the
-                        ancient religious movement. It is simply a
-                        study companion for the Bible itself, pairing
-                        the text with trusted classic commentary and
-                        quiet tools for notes and highlights, so your
-                        study stays focused on Scripture.
-                    </p>
+                <section className="landing-section landing-about" aria-labelledby="landing-about-heading">
+                    <p className="public-eyebrow">The purpose behind Gnosis</p>
+                    <h2 id="landing-about-heading">Rooted in Scripture. Made for thoughtful study.</h2>
+                    <p>Gnosis is a Christian Scripture-study application, bringing the Bible, classic commentary, and your reflections together in one focused space.</p>
+                    <Link className="public-text-link" to="/about">About Us <span aria-hidden="true">→</span></Link>
                 </section>
 
                 <section
@@ -309,57 +291,7 @@ export default function LandingPage() {
                 </section>
             </main>
 
-            <footer className="landing-footer">
-                <nav aria-label="Footer">
-                    <div className="landing-footer-group">
-                        <h3>About</h3>
-                        <ul>
-                            <li>
-                                <a href="#about">About Us</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="landing-footer-group">
-                        <h3>Study</h3>
-                        <ul>
-                            <li>
-                                <Link to={STUDY_DESTINATION}>
-                                    Start Studying
-                                </Link>
-                            </li>
-                            <li>
-                                <a href="#explore">
-                                    Explore Scripture
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="landing-footer-group">
-                        <h3>Account</h3>
-                        <ul>
-                            <li>
-                                <Link to="/login">Sign in</Link>
-                            </li>
-                            <li>
-                                <Link to="/register">
-                                    Create account
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <div className="landing-footer-note">
-                    <p>
-                        Gnosis pairs the Bible text with classic
-                        commentary from Matthew Henry and Jamieson,
-                        Fausset &amp; Brown.
-                    </p>
-                    <p>
-                        &copy; {new Date().getFullYear()} Gnosis. A
-                        Christian Scripture-study tool.
-                    </p>
-                </div>
-            </footer>
+            <PublicFooter />
         </div>
     );
 }

@@ -5,10 +5,11 @@ import { Menu, X } from "lucide-react";
 import AuthContext from "../context/AuthContext";
 import useClickOutside from "../hooks/useClickOutside";
 
-// Header for the public landing page only. The study reader keeps its
-// own header; this one carries the landing destinations (About Us,
+// Shared header for the public landing and About pages. The study reader
+// keeps its own header; this one carries public destinations (About Us,
 // Sign in, Create account) and the real Gnosis logo asset
-// (public/gnosis.svg, also the site favicon).
+// (public/gnosis.svg, also the site favicon). About uses the text wordmark
+// to keep that page image-free; the homepage uses the approved logo.
 //
 // Logged-in visitors get account behavior instead of auth links: a
 // "Start Studying" button plus an account chip with a small menu
@@ -102,7 +103,7 @@ function AuthLinks({ closeAll }) {
 
 }
 
-export default function LandingHeader() {
+export default function LandingHeader({ hero = false }) {
     const { isAuthLoading } = useContext(AuthContext);
     const [mobileOpen, setMobileOpen] = useState(false);
     const trigger = useRef(null);
@@ -112,7 +113,7 @@ export default function LandingHeader() {
     const closeAll = () => setMobileOpen(false);
 
     return (
-        <header ref={headerRef} className="landing-header"
+        <header ref={headerRef} className={`landing-header${hero ? " landing-header-hero" : ""}`}
             onBlur={(event) => {
                 if (!event.currentTarget.contains(event.relatedTarget)) closeAll();
             }}
@@ -128,13 +129,13 @@ export default function LandingHeader() {
             </a>
             <div className="landing-header-inner">
                 <Link to="/" className="landing-logo" aria-label="Gnosis home">
-                    <img
+                    {hero && <img
                         src="/gnosis.svg"
                         alt=""
                         width="40"
                         height="40"
                         className="landing-logo-img"
-                    />
+                    />}
                     <span className="landing-logo-word">Gnosis</span>
                 </Link>
 
@@ -142,9 +143,9 @@ export default function LandingHeader() {
                     className="landing-nav-desktop"
                     aria-label="Primary"
                 >
-                    <a href="#about" className="landing-link">
+                    <Link to="/about" className="landing-link">
                         About Us
-                    </a>
+                    </Link>
                     {!isAuthLoading && <AuthLinks closeAll={closeAll} />}
                 </nav>
 
@@ -167,9 +168,9 @@ export default function LandingHeader() {
                     className="landing-nav-mobile"
                     aria-label="Mobile"
                 >
-                    <a href="#about" onClick={closeAll}>
+                    <Link to="/about" onClick={closeAll}>
                         About Us
-                    </a>
+                    </Link>
                     {!isAuthLoading && <AuthLinks closeAll={closeAll} />}
                 </nav>
             )}

@@ -62,6 +62,18 @@ describe("LandingPage", () => {
         ).not.toBeNull();
     });
 
+    test("header and approved image share one hero shell", () => {
+        renderLanding(LOGGED_OUT);
+        const shell = document.querySelector(".landing-hero-shell");
+        expect(shell).toContainElement(screen.getByRole("banner"));
+        expect(shell).toContainElement(screen.getByRole("img", { name: /laptop and a phone/ }));
+        expect(document.querySelectorAll(".landing-hero-img")).toHaveLength(1);
+        expect(document.querySelector('a[href="#about"]')).toBeNull();
+        for (const link of screen.getAllByRole("link", { name: /About Us/ })) {
+            expect(link).toHaveAttribute("href", "/about");
+        }
+    });
+
     test("has exactly one H1 and the approved section headings", () => {
         renderLanding(LOGGED_OUT);
 
@@ -73,7 +85,7 @@ describe("LandingPage", () => {
             "Scripture and commentary, side by side",
             "How it works",
             "Trusted classic commentary",
-            "About Us",
+            "Rooted in Scripture. Made for thoughtful study.",
             "Explore Scripture",
             "Start studying today",
         ]) {
@@ -102,7 +114,7 @@ describe("LandingPage", () => {
         const header = screen.getByRole("banner");
         expect(
             within(header).getByRole("link", { name: "About Us" }),
-        ).toHaveAttribute("href", "#about");
+        ).toHaveAttribute("href", "/about");
         expect(
             within(header).getByRole("link", { name: "Sign in" }),
         ).toHaveAttribute("href", "/login");
@@ -326,7 +338,7 @@ describe("LandingPage", () => {
         expect(within(footer).queryByText("Terms")).toBeNull();
         expect(
             within(footer).getByRole("link", { name: "About Us" }),
-        ).toHaveAttribute("href", "#about");
+        ).toHaveAttribute("href", "/about");
         expect(
             within(footer).getByRole("link", { name: "Sign in" }),
         ).toHaveAttribute("href", "/login");

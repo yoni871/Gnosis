@@ -98,7 +98,7 @@ All paths are under `frontend/` unless noted.
 ### Sitemap (`scripts/generate-sitemap.js`, `src/utils/sitemap.js`)
 
 - `public/sitemap.xml` lists exactly the public, canonical, indexable
-  pages: **1,189 Bible chapter URLs plus the homepage (1,190 total).**
+  pages: **1,189 Bible chapter URLs plus the homepage and About page (1,191 total).**
   `/login`, `/register`, and
   `/search` are excluded by design.
 - Chapter counts are verified, not guessed. The manifest
@@ -116,7 +116,7 @@ All paths are under `frontend/` unless noted.
   picks the new pages up automatically.
 - `lastmod`, `changefreq`, and `priority` are omitted deliberately: no
   per-chapter modification date exists, and Google ignores changefreq
-  and priority. The file is a single sitemap (1,190 URLs, far under the
+  and priority. The file is a single sitemap (1,191 URLs, far under the
   50,000 URL / 50 MB limits), so no sitemap index is needed.
 - Serving: files in `public/` are copied to the build root, and Vercel
   serves static files before the SPA-fallback rewrite applies. The
@@ -151,7 +151,7 @@ All paths are under `frontend/` unless noted.
 - `src/components/Seo.test.jsx` — tags are set, and navigating from a
   chapter to a noindex page replaces (never duplicates) them.
 - `src/utils/sitemap.test.js` — builder output, the verified manifest
-  totals (66 books, 1,189 chapters), the exact 1,190-URL production
+  totals (66 books, 1,189 chapters), the exact 1,191-URL production
   list with no duplicates, spaces, query strings, or auth/search URLs,
   and byte-equality between the committed `public/sitemap.xml` and the
   generator output.
@@ -197,9 +197,9 @@ and the preparation items from the SEO foundation are done:
    `LANDING_DESCRIPTION` from `src/utils/seo.js` explicitly through
    `<Seo>`, with canonical `https://studygnosis.com/`, Open Graph
    and Twitter tags, and `WebSite` JSON-LD.
-3. **Sitemap.** `scripts/generate-sitemap.js` passes `["/"]` as
+3. **Sitemap.** `scripts/generate-sitemap.js` passes `["/", "/about"]` as
    `extraPaths`, so `public/sitemap.xml` lists 1,189 chapter URLs
-   plus the homepage (1,190 total, homepage last).
+   plus the homepage and `/about` (1,191 total, About last).
 4. **Content.** The page introduces Gnosis and its purpose,
    highlights Bible study features (Scripture text, verse-by-verse
    commentary including Matthew Henry and Jamieson-Fausset-Brown,
@@ -216,12 +216,30 @@ fallbacks; route-specific canonical, social metadata, and homepage WebSite
 JSON-LD still require rendering. No static homepage canonical or WebSite
 JSON-LD is inserted into the shared chapter HTML shell.
 
-Landing navigation uses disclosure buttons with Escape focus restoration,
-outside-click and focus-leave dismissal. The narrow layout keeps copy above
-the untouched hero; overlay copy starts at 1200px to avoid clipping the
-laptop at tablet widths. Image delivery uses WebP with JPEG fallback,
+Public pages share the reader theme tokens, the public header, and footer.
+Landing navigation overlays the same untouched hero image at every width,
+with a restrained readability gradient. Below 1200px, copy sits below the
+image; wider screens use left-aligned overlay copy. Disclosure buttons retain
+Escape focus restoration, outside-click and focus-leave dismissal.
+Image delivery uses WebP with JPEG fallback,
 `100vw` sizes, explicit dimensions, and high hero fetch priority. There
 are no below-the-fold raster images or new dependencies.
+
+### About Gnosis
+
+`/about` is a public, indexable, text-focused page with unique title and
+description, canonical `https://studygnosis.com/about`, Open Graph and
+Twitter text metadata, and `index, follow`. It emits no organization claims
+or structured data and loads no image. All public About Us links lead here;
+the homepage retains only a short introduction. The existing SPA rewrite
+supports direct access and refresh without configuration changes.
+
+The page explains mission, existing study tools, the name's distinction from
+Gnosticism, the two commentary sources, and Scripture-first study principles.
+It uses the same typography, burgundy buttons, parchment surfaces and borders
+as the landing page. The wordmark is text-only; hamburger icons are interface
+controls, not illustrations. Desktop contents navigation becomes an inline
+list on small screens. No backend or authentication contract changes.
 
 ## 5. Indexable chapter content (prerendering plan)
 
@@ -317,7 +335,7 @@ should be made. When ready:
    after deploy before submitting).
 4. **After submission, check** the Pages report for chapter URLs
    (expect gradual indexing — see section 5 on render deferral) and
-   the Sitemaps report for the 1,190 discovered URLs. If chapter pages
+   the Sitemaps report for the 1,191 discovered URLs. If chapter pages
    appear as "Crawled — currently not indexed" in large numbers, that
    is the signal to prioritize Phase 2 prerendering.
 5. **When the landing page ships**, request indexing for `/` and

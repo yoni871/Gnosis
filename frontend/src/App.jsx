@@ -3,6 +3,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
+import AboutPage from './pages/AboutPage';
 import StudyPage from './pages/StudyPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import LoginPage from './pages/LoginPage';
@@ -27,6 +28,8 @@ function App() {
               path="/"
               element={<LandingPage />}
             />
+
+            <Route path='/about' element={<AboutPage />} />
 
             <Route 
               path='/bible/:book/:chapter'
