@@ -73,7 +73,7 @@
 .landing-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; width: min(100%, var(--public-width)); min-height: 96px; padding: 20px var(--public-gutter); margin: auto; }
 .landing-logo { display: inline-flex; align-items: center; gap: 11px; min-height: 44px; text-decoration: none; }
 .landing-logo-img { display: block; width: 40px; height: 40px; border-radius: var(--public-radius); }
-.landing-logo-word { font-family: "Lora", Georgia, serif; font-size: 26px; font-weight: 600; letter-spacing: -.04em; }
+.landing-logo-word { font-family: var(--public-font-ui); font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
 .landing-nav-desktop { display: none; align-items: center; gap: 30px; }
 .landing-link { display: inline-flex; align-items: center; min-height: 44px; font-size: .9rem; font-weight: 600; text-decoration: none; }
 .landing-link:hover { text-decoration: underline; text-underline-offset: 5px; }
