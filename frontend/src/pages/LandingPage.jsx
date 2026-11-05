@@ -96,69 +96,68 @@ export default function LandingPage() {
                 }}
             />
 
-            <div className="landing-hero-shell">
-                <LandingHeader hero />
-                <div className="landing-hero-media">
-                    <div
-                        className="landing-hero-scrim"
-                        aria-hidden="true"
-                    />
-                    <picture>
-                        <source
-                            type="image/webp"
-                            srcSet={`${HERO_BASE}-480.webp 480w, ${HERO_BASE}-800.webp 800w, ${HERO_BASE}-1280.webp 1280w, ${HERO_BASE}-1672.webp 1672w`}
-                            sizes="(max-width: 759px) max(178svh, 1366px), 100vw"
-                        />
-                        <source
-                            type="image/jpeg"
-                            srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
-                            sizes="(max-width: 759px) max(178svh, 1366px), 100vw"
-                        />
-                        <img
-                            className="landing-hero-img"
-                            src={`${HERO_BASE}-1280.jpg`}
-                            srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
-                            sizes="(max-width: 759px) max(178svh, 1366px), 100vw"
-                            width={HERO_WIDTH}
-                            height={HERO_HEIGHT}
-                            fetchPriority="high"
-                            decoding="async"
-                            alt="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset"
-                        />
-                    </picture>
-                </div>
-            </div>
+            <LandingHeader hero />
             <main id="landing-main" tabIndex={-1}>
-                <section className="landing-hero" aria-labelledby="landing-hero-heading">
-                    <div className="landing-hero-copy">
-                        <p className="public-eyebrow">SCRIPTURE • THEOLOGY • HISTORY</p>
-                        <h1 id="landing-hero-heading">
-                            <span>Explore Scripture.</span>{" "}
-                            <span>Discover Its Depth.</span>
-                        </h1>
-                        <p>
-                            Discover the richness of Scripture, explore the wisdom
-                            of Christian thinkers, and grow in your understanding
-                            of God's Word.
-                        </p>
-                        <div className="landing-hero-ctas">
-                            <Link
-                                to={STUDY_DESTINATION}
-                                className="landing-btn landing-btn-primary landing-btn-large"
-                            >
-                                Start Exploring →
-                            </Link>
-                            <a
-                                href="#how-it-works"
-                                onClick={scrollToHowItWorks}
-                                className="landing-btn landing-btn-secondary landing-btn-large"
-                            >
-                                See How It Works
-                            </a>
-                        </div>
+                <div className="landing-hero-shell">
+                    <div className="landing-hero-media">
+                        <div
+                            className="landing-hero-scrim"
+                            aria-hidden="true"
+                        />
+                        <picture>
+                            <source
+                                type="image/webp"
+                                srcSet={`${HERO_BASE}-480.webp 480w, ${HERO_BASE}-800.webp 800w, ${HERO_BASE}-1280.webp 1280w, ${HERO_BASE}-1672.webp 1672w`}
+                                sizes="(max-width: 1199px) max(178svh, 100vw), 100vw"
+                            />
+                            <source
+                                type="image/jpeg"
+                                srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
+                                sizes="(max-width: 1199px) max(178svh, 100vw), 100vw"
+                            />
+                            <img
+                                className="landing-hero-img"
+                                src={`${HERO_BASE}-1280.jpg`}
+                                srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
+                                sizes="(max-width: 1199px) max(178svh, 100vw), 100vw"
+                                width={HERO_WIDTH}
+                                height={HERO_HEIGHT}
+                                fetchPriority="high"
+                                decoding="async"
+                                alt="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset"
+                            />
+                        </picture>
                     </div>
-                </section>
-
+                    <section className="landing-hero" aria-labelledby="landing-hero-heading">
+                        <div className="landing-hero-copy">
+                            <p className="public-eyebrow">SCRIPTURE • THEOLOGY • HISTORY</p>
+                            <h1 id="landing-hero-heading">
+                                <span>Explore Scripture.</span>{" "}
+                                <span>Discover Its Depth.</span>
+                            </h1>
+                            <p>
+                                Discover the richness of Scripture, explore the wisdom
+                                of Christian thinkers, and grow in your understanding
+                                of God's Word.
+                            </p>
+                            <div className="landing-hero-ctas">
+                                <Link
+                                    to={STUDY_DESTINATION}
+                                    className="landing-btn landing-btn-primary landing-btn-large"
+                                >
+                                    Start Exploring →
+                                </Link>
+                                <a
+                                    href="#how-it-works"
+                                    onClick={scrollToHowItWorks}
+                                    className="landing-btn landing-btn-secondary landing-btn-large"
+                                >
+                                    See How It Works
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
                 <section
                     className="landing-section landing-features"
                     aria-labelledby="landing-features-heading"

@@ -74,10 +74,14 @@ describe("LandingPage", () => {
         expect(window.location.hash).toBe("#how-it-works");
     });
 
-    test("header and approved image share one hero shell", () => {
+    test("hero image and copy share a stage inside main, with navigation outside main", () => {
         renderLanding(LOGGED_OUT);
         const shell = document.querySelector(".landing-hero-shell");
-        expect(shell).toContainElement(screen.getByRole("banner"));
+        const main = screen.getByRole("main");
+        expect(main).toContainElement(shell);
+        expect(main).not.toContainElement(screen.getByRole("banner"));
+        expect(shell).toContainElement(screen.getByRole("heading", { level: 1 }));
+        expect(screen.getByRole("link", { name: "Skip to main content" })).toHaveAttribute("href", "#landing-main");
         expect(shell).toContainElement(screen.getByRole("img", { name: /laptop and a phone/ }));
         expect(document.querySelectorAll(".landing-hero-img")).toHaveLength(1);
         const home = screen.getByRole("link", { name: "Gnosis home" });
