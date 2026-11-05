@@ -1,0 +1,25 @@
+.landing-closing-footer {
+    background: #142d24; color: #fff9ed; border-top: 1px solid #a18a58;
+    padding: clamp(3rem, 6vw, 5rem) var(--public-gutter) 28px;
+    font-family: "Gnosis Hero Inter", var(--public-font-ui);
+}
+.landing-closing-footer-inner { max-width: 1240px; margin-inline: auto; }
+.landing-closing-footer-main { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 40px; }
+.landing-closing-logo { display: inline-flex; align-items: center; gap: 11px; min-height: 44px; text-decoration: none; }
+.landing-closing-logo img { display: block; width: 40px; height: 40px; border-radius: 8px; }
+.landing-closing-logo span { font-family: "Gnosis Hero Cormorant", Georgia, serif; font-size: 34px; font-weight: 600; line-height: 1; letter-spacing: -.025em; }
+.landing-closing-footer-brand p { margin: 18px 0 0; font-size: .86rem; line-height: 1.8; color: #ebe3d3; }
+.landing-closing-footer nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.landing-closing-footer-group { padding-left: clamp(24px, 4vw, 56px); border-left: 1px solid #a18a5866; }
+.landing-closing-footer-group + .landing-closing-footer-group { margin-left: clamp(24px, 4vw, 56px); }
+.landing-page .landing-closing-footer h2 { margin: 0 0 14px; font-family: inherit; font-size: .8rem; font-weight: 600; line-height: 1.6; letter-spacing: .08em; color: #fff9ed; }
+.landing-closing-footer-group a { display: flex; align-items: center; min-height: 44px; font-size: .84rem; line-height: 1.6; text-decoration: none; text-underline-offset: 5px; }
+.landing-closing-footer a:hover { color: #e4c990; text-decoration: underline; }
+.landing-closing-footer a:focus-visible { outline: 2px solid #e4c990; outline-offset: 4px; box-shadow: none; }
+.landing-closing-copyright { margin: 40px 0 0; padding-top: 24px; border-top: 1px solid #a18a5866; color: #ebe3d3; font-size: .76rem; line-height: 1.8; }
+@media (width < 768px) {
+    .landing-closing-footer-main { grid-template-columns: 1fr; gap: 36px; }
+    .landing-closing-footer nav { width: 100%; }
+    .landing-closing-footer-group { padding-left: 0; border-left: 0; }
+    .landing-closing-footer-group + .landing-closing-footer-group { border-left: 1px solid #a18a5866; padding-left: 24px; margin-left: 16px; }
+}

@@ -11,7 +11,7 @@ const FEATURES = [
 
 export default function LandingBibleCommentary() {
     return (
-        <section className="landing-bible" aria-labelledby="landing-bible-heading">
+        <section id="how-it-works" className="landing-bible" aria-labelledby="landing-bible-heading">
             <div className="landing-bible-inner">
                 <div className="landing-bible-copy">
                     <p className="landing-bible-eyebrow">EXPLORE SCRIPTURE</p>

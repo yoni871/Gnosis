@@ -85,15 +85,9 @@ describe("LandingPage", () => {
         ).toBeInTheDocument();
 
         // The hero action and remaining study links all lead to the reader.
-        const startLinks = screen.getAllByRole("link", {
-            name: "Start Studying",
-        });
-        expect(startLinks).toHaveLength(2);
+        expect(screen.getByRole("link", { name: "Explore the Bible →" })).toHaveAttribute("href", "/bible/Genesis/1");
         for (const link of screen.getAllByRole("link", { name: "Start Exploring →" })) expect(link).toHaveAttribute("href", "/bible/Genesis/1");
         expect(screen.getByText("SCRIPTURE • THEOLOGY • HISTORY")).toBeInTheDocument();
-        startLinks.forEach((link) => {
-            expect(link).toHaveAttribute("href", "/bible/Genesis/1");
-        });
 
         const howLink = screen.getByRole("link", {
             name: "See How It Works",
@@ -124,13 +118,13 @@ describe("LandingPage", () => {
         expect(screen.getByRole("link", { name: "Skip to main content" })).toHaveAttribute("href", "#landing-main");
         expect(shell).toContainElement(screen.getByRole("img", { name: /laptop and a phone/ }));
         expect(document.querySelectorAll(".landing-hero-img")).toHaveLength(1);
-        const home = screen.getByRole("link", { name: "Gnosis home" });
+        const home = within(screen.getByRole("banner")).getByRole("link", { name: "Gnosis home" });
         expect(home).toHaveAttribute("href", "/");
         expect(home.querySelector("img")).toHaveAttribute("src", "/gnosis.svg");
         expect(home.querySelector("img")).toHaveAttribute("width", "40");
         expect(home.querySelector("img")).toHaveAttribute("height", "40");
         expect(document.querySelector('a[href="#about"]')).toBeNull();
-        for (const link of screen.getAllByRole("link", { name: /About Us/ })) {
+        for (const link of screen.getAllByRole("link", { name: "About" })) {
             expect(link).toHaveAttribute("href", "/about");
         }
     });
@@ -188,11 +182,9 @@ describe("LandingPage", () => {
 
         for (const heading of [
             "Scripture and Wisdom, Side by Side.",
-            "How it works",
-            "Trusted classic commentary",
-            "Rooted in Scripture. Made for thoughtful study.",
-            "Explore Scripture",
-            "Start studying today",
+            "A Deeper Way to Explore Christian Knowledge.",
+            "One Passage. A World of Understanding.",
+            "Every Journey Begins with a Passage.",
         ]) {
             expect(
                 screen.getByRole("heading", { level: 2, name: heading }),
@@ -203,8 +195,6 @@ describe("LandingPage", () => {
             "Read with Understanding",
             "Explore Different Perspectives",
             "Stay Focused on Scripture",
-            "Matthew Henry",
-            "Jamieson, Fausset & Brown",
         ]) {
             expect(
                 screen.getByRole("heading", { level: 3, name: card }),
@@ -413,24 +403,26 @@ describe("LandingPage", () => {
         expect(jsonLd.url).toBe("https://studygnosis.com/");
     });
 
-    test("Explore Scripture links to real chapter routes", () => {
+    test("the six closing passage cards use valid chapter routes, with one integrated CTA", () => {
         renderLanding(LOGGED_OUT);
-
-        const explore = screen.getByRole("region", {
-            name: "Explore Scripture",
-        });
-        const links = within(explore).getAllByRole("link");
-        expect(links).toHaveLength(8);
-        expect(links.map((link) => link.getAttribute("href"))).toEqual([
-            "/bible/Genesis/1",
-            "/bible/Psalms/1",
-            "/bible/Psalms/23",
-            "/bible/Isaiah/53",
-            "/bible/Matthew/5",
-            "/bible/John/1",
-            "/bible/Romans/8",
-            "/bible/Philippians/4",
+        const explore = screen.getByRole("region", { name: "Every Journey Begins with a Passage." });
+        const list = within(explore).getByRole("list", { name: "Choose a passage" });
+        const links = within(list).getAllByRole("link");
+        expect(links).toHaveLength(6);
+        expect(links.map(link => link.getAttribute("href"))).toEqual([
+            "/bible/Genesis/1", "/bible/Psalms/23", "/bible/Isaiah/53",
+            "/bible/John/1", "/bible/Romans/8", "/bible/Revelation/21",
         ]);
+        for (const subtitle of ["In the Beginning", "The Lord Is My Shepherd", "The Suffering Servant", "The Word Became Flesh", "Life in the Spirit", "All Things Made New"]) {
+            expect(within(list).getByText(subtitle)).toBeInTheDocument();
+        }
+        expect(list.querySelectorAll("img, svg")).toHaveLength(0);
+        expect(within(explore).getByText("Or begin wherever Scripture leads you.")).toBeInTheDocument();
+        expect(within(explore).getByRole("link", { name: "Explore the Bible →" })).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(document.querySelector(".landing-beyond").nextElementSibling).toBe(explore);
+        expect(explore.nextElementSibling).toBeNull();
+        expect(document.querySelectorAll(".landing-passages, .landing-final-cta, .landing-commentaries, .landing-about, .landing-how")).toHaveLength(0);
+        expect(document.getElementById("how-it-works")).toHaveClass("landing-bible");
     });
 
     test("footer links only to routes that exist: no Privacy or Terms", () => {
@@ -441,15 +433,21 @@ describe("LandingPage", () => {
             within(footer).queryByText("Privacy"),
         ).toBeNull();
         expect(within(footer).queryByText("Terms")).toBeNull();
+        const logo = within(footer).getByRole("link", { name: "Gnosis home" });
+        expect(logo).toHaveAttribute("href", "/");
+        expect(logo.querySelector("img")).toHaveAttribute("src", "/gnosis.svg");
+        expect(within(footer).getByText("Explore Scripture. Discover Its Depth.")).toBeInTheDocument();
+        expect(within(footer).getByText("© 2026 Gnosis. All rights reserved.")).toBeInTheDocument();
+        expect(within(footer).getByRole("link", { name: "Bible & Commentary" })).toHaveAttribute("href", "/bible/Genesis/1");
         expect(
-            within(footer).getByRole("link", { name: "About Us" }),
+            within(footer).getByRole("link", { name: "About" }),
         ).toHaveAttribute("href", "/about");
         expect(
-            within(footer).getByRole("link", { name: "Sign in" }),
+            within(footer).getByRole("link", { name: "Sign In" }),
         ).toHaveAttribute("href", "/login");
         expect(
             within(footer).getByRole("link", {
-                name: "Create account",
+                name: "Create Account",
             }),
         ).toHaveAttribute("href", "/register");
     });
