@@ -4,17 +4,13 @@ import { Menu, X } from "lucide-react";
 
 import AuthContext from "../context/AuthContext";
 import useClickOutside from "../hooks/useClickOutside";
+import ExploreDropdown from "./ExploreDropdown";
+import "./LandingNavbar.css";
 
-// Shared header for the public landing and About pages. The study reader
-// keeps its own header; this one carries public destinations (About Us,
-// Sign in, Create account) and the real Gnosis logo asset
-// (public/gnosis.svg, also the site favicon) on both public pages.
-//
-// Logged-in visitors get account behavior instead of auth links: a
-// "Start Studying" button plus an account chip with a small menu
-// (Continue studying / Sign out). Nothing here touches the session
-// except the existing AuthContext logout, so authentication behavior
-// is unchanged.
+// Shared public header with a landing-only Explore/center/actions layout.
+// About keeps the original destinations and presentation. The real logo is
+// reused in both variants. Signed-in visitors retain the existing account
+// disclosure and logout call; no session/authentication contract changes.
 
 function initials(user) {
     const first = user?.first_name?.[0] ?? "";
@@ -24,7 +20,7 @@ function initials(user) {
 }
 
 // Desktop and mobile disclosures must own separate refs and state.
-function AuthLinks({ closeAll }) {
+function AuthLinks({ closeAll, hero = false }) {
     const { user, logout } = useContext(AuthContext);
     const [accountOpen, setAccountOpen] = useState(false);
     const trigger = useRef(null);
@@ -43,7 +39,7 @@ function AuthLinks({ closeAll }) {
                 className="landing-btn landing-btn-primary"
                 onClick={closeAll}
             >
-                Start Studying
+                {hero ? "Start Exploring →" : "Start Studying"}
             </Link>
             <div ref={accountRef} className="landing-account"
                 onBlur={(event) => {
@@ -88,14 +84,14 @@ function AuthLinks({ closeAll }) {
     ) : (
         <>
             <Link to="/login" className="landing-link" onClick={closeAll}>
-                Sign in
+                {hero ? "Sign In" : "Sign in"}
             </Link>
             <Link
-                to="/register"
+                to={hero ? "/bible/Genesis/1" : "/register"}
                 className="landing-btn landing-btn-primary"
                 onClick={closeAll}
             >
-                Create account
+                {hero ? "Start Exploring →" : "Create account"}
             </Link>
         </>
     );
@@ -139,14 +135,20 @@ export default function LandingHeader({ hero = false }) {
                 </Link>
 
                 <nav
-                    className="landing-nav-desktop"
+                    className={`landing-nav-desktop${hero ? " landing-nav-center" : ""}`}
                     aria-label="Primary"
                 >
+                    {hero && <ExploreDropdown onNavigate={closeAll} />}
                     <Link to="/about" className="landing-link">
-                        About Us
+                        {hero ? "About" : "About Us"}
                     </Link>
-                    {!isAuthLoading && <AuthLinks closeAll={closeAll} />}
+                    {!hero && !isAuthLoading && <AuthLinks closeAll={closeAll} />}
                 </nav>
+                {hero && (
+                    <nav className="landing-nav-desktop landing-nav-actions" aria-label="Account">
+                        {!isAuthLoading && <AuthLinks closeAll={closeAll} hero />}
+                    </nav>
+                )}
 
                 <button
                     type="button"
@@ -167,10 +169,11 @@ export default function LandingHeader({ hero = false }) {
                     className="landing-nav-mobile"
                     aria-label="Mobile"
                 >
+                    {hero && <ExploreDropdown onNavigate={closeAll} />}
                     <Link to="/about" onClick={closeAll}>
-                        About Us
+                        {hero ? "About" : "About Us"}
                     </Link>
-                    {!isAuthLoading && <AuthLinks closeAll={closeAll} />}
+                    {!isAuthLoading && <AuthLinks closeAll={closeAll} hero={hero} />}
                 </nav>
             )}
         </header>

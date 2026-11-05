@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import LandingHeader from "../components/LandingHeader";
 import PublicFooter from "../components/PublicFooter";
-import useHeroParallax from "../hooks/useHeroParallax";
 import {
     LANDING_TITLE,
     LANDING_DESCRIPTION,
@@ -72,7 +71,6 @@ function scrollToHowItWorks(event) {
 }
 
 export default function LandingPage() {
-    const heroMediaRef = useHeroParallax();
     const siteUrl = getSiteUrl();
     const canonical = pageUrl("/");
     const ogImage = `${siteUrl}/images/landing/sunset-hero-images/hero-1200.jpg`;
@@ -100,7 +98,7 @@ export default function LandingPage() {
 
             <div className="landing-hero-shell">
                 <LandingHeader hero />
-                <div className="landing-hero-media" ref={heroMediaRef}>
+                <div className="landing-hero-media">
                     <div
                         className="landing-hero-scrim"
                         aria-hidden="true"

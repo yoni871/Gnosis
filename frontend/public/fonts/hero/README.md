@@ -1,6 +1,6 @@
 # Hero fonts and scene constraints
 
-Only the landing hero uses these fonts. No package dependency or runtime
+Only the landing hero and its navbar use these fonts. No package dependency or runtime
 third-party font request was added. These Latin WOFF2 subsets were retrieved
 from the official Google Fonts CSS API on 2026-11-05:
 
@@ -24,15 +24,12 @@ widths so font loading does not rewrap the two desktop headline lines.
 The approved `images/landing/sunset-hero-images/hero-*` assets contain the
 laptop, phone, shadows and background as one flattened image. No separate
 device assets or rigged model exist in this checkout. Image files and screen
-content remain unchanged. Subtle whole-scene desktop parallax is a temporary
-alternative; it does not independently move the lid or phone. It is disabled
-for reduced-motion preferences, small screens, and coarse pointers. Scroll
-position controls and reverses the transform without React state updates,
-scroll interception, autoplay, or animation dependencies.
+content remain unchanged. The scene is static: the rejected parallax fallback
+has been removed. Physical laptop animation is awaiting matching source assets.
 
 Realistic closing requires a perspective-matched transparent lid (front,
 back, edge), separate keyboard/base, clean desert background with the laptop
 removed, coordinated shadows, and precise hinge coordinates; or a licensed,
-textured and rigged 3D model with the approved screen content. An independent
-stationary phone also needs its own layer. Rotating a rectangular crop cannot
-supply these assets.
+textured and rigged 3D model with the approved screen content. The clean background plate can retain the existing phone so it stays stationary. Rotating a rectangular crop cannot
+supply these assets. See `docs/Laptop_Animation_Assets.md` in the repository for
+the complete asset contract and implementation boundary.

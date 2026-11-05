@@ -49,7 +49,7 @@ describe("LandingPage", () => {
             name: "Start Studying",
         });
         expect(startLinks).toHaveLength(2);
-        expect(screen.getByRole("link", { name: "Start Exploring →" })).toHaveAttribute("href", "/bible/Genesis/1");
+        for (const link of screen.getAllByRole("link", { name: "Start Exploring →" })) expect(link).toHaveAttribute("href", "/bible/Genesis/1");
         expect(screen.getByText("SCRIPTURE • THEOLOGY • HISTORY")).toBeInTheDocument();
         startLinks.forEach((link) => {
             expect(link).toHaveAttribute("href", "/bible/Genesis/1");
@@ -91,6 +91,50 @@ describe("LandingPage", () => {
         }
     });
 
+    test("desktop center navigation has the reusable Explore disclosure and About", async () => {
+        renderLanding(LOGGED_OUT);
+        const primary = screen.getByRole("navigation", { name: "Primary" });
+        const trigger = within(primary).getByRole("button", { name: "Explore" });
+        expect(within(primary).getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
+        await userEvent.setup().click(trigger);
+        expect(within(primary).getByRole("link", { name: /Bible & Commentary/ })).toHaveAttribute("href", "/bible/Genesis/1");
+    });
+
+    test("mobile Explore closes independently before the whole navigation", async () => {
+        const user = userEvent.setup();
+        renderLanding(LOGGED_OUT);
+        const toggle = screen.getByRole("button", { name: "Open menu" });
+        await user.click(toggle);
+        const mobile = screen.getByRole("navigation", { name: "Mobile" });
+        const explore = within(mobile).getByRole("button", { name: "Explore" });
+        await user.click(explore);
+        within(mobile).getByRole("link", { name: /Bible & Commentary/ }).focus();
+        await user.keyboard("{Escape}");
+        expect(explore).toHaveFocus();
+        expect(explore).toHaveAttribute("aria-expanded", "false");
+        expect(mobile).toBeInTheDocument();
+        await user.keyboard("{Escape}");
+        expect(toggle).toHaveFocus();
+        expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
+    });
+
+    test("mobile Explore navigation closes the whole disclosure", async () => {
+        const user = userEvent.setup();
+        renderLanding(LOGGED_OUT);
+        await user.click(screen.getByRole("button", { name: "Open menu" }));
+        const mobile = screen.getByRole("navigation", { name: "Mobile" });
+        await user.click(within(mobile).getByRole("button", { name: "Explore" }));
+        await user.click(within(mobile).getByRole("link", { name: /Bible & Commentary/ }));
+        expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
+    });
+
+    test("the approved scene remains static while waiting for matching laptop animation assets", () => {
+        const scrollListener = vi.spyOn(window, "addEventListener");
+        renderLanding(LOGGED_OUT);
+        expect(document.querySelector('.landing-hero-media')).not.toHaveAttribute('data-hero-motion');
+        expect(scrollListener.mock.calls.some(([event]) => event === 'scroll')).toBe(false);
+    });
+
     test("has exactly one H1 and the approved section headings", () => {
         renderLanding(LOGGED_OUT);
 
@@ -124,20 +168,20 @@ describe("LandingPage", () => {
         }
     });
 
-    test("logged-out header shows About Us, Sign in, Create account, and a working mobile menu", async () => {
+    test("logged-out header shows About, Sign In, Start Exploring →, and a working mobile menu", async () => {
         const user = userEvent.setup();
         renderLanding(LOGGED_OUT);
 
         const header = screen.getByRole("banner");
         expect(
-            within(header).getByRole("link", { name: "About Us" }),
+            within(header).getByRole("link", { name: "About" }),
         ).toHaveAttribute("href", "/about");
         expect(
-            within(header).getByRole("link", { name: "Sign in" }),
+            within(header).getByRole("link", { name: "Sign In" }),
         ).toHaveAttribute("href", "/login");
         expect(
-            within(header).getByRole("link", { name: "Create account" }),
-        ).toHaveAttribute("href", "/register");
+            within(header).getByRole("link", { name: "Start Exploring →" }),
+        ).toHaveAttribute("href", "/bible/Genesis/1");
         expect(
             within(header).queryByLabelText(/Account menu/),
         ).toBeNull();
@@ -155,7 +199,7 @@ describe("LandingPage", () => {
         expect(mobileNav).toBeInTheDocument();
 
         await user.click(
-            within(mobileNav).getByRole("link", { name: "About Us" }),
+            within(mobileNav).getByRole("link", { name: "About" }),
         );
         expect(
             within(header).queryByRole("navigation", { name: "Mobile" }),
@@ -181,7 +225,7 @@ describe("LandingPage", () => {
 
         const header = screen.getByRole("banner");
         expect(
-            within(header).queryByRole("link", { name: "Sign in" }),
+            within(header).queryByRole("link", { name: "Sign In" }),
         ).toBeNull();
         expect(
             within(header).queryByRole("link", {
@@ -190,7 +234,7 @@ describe("LandingPage", () => {
         ).toBeNull();
         expect(
             within(header).getByRole("link", {
-                name: "Start Studying",
+                name: "Start Exploring →",
             }),
         ).toHaveAttribute("href", "/bible/Genesis/1");
         expect(
@@ -223,7 +267,7 @@ describe("LandingPage", () => {
         expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
         await user.click(toggle);
         const nav = screen.getByRole("navigation", { name: "Mobile" });
-        within(nav).getByRole("link", { name: "Sign in" }).focus();
+        within(nav).getByRole("link", { name: "Sign In" }).focus();
         await user.keyboard("{Escape}");
         expect(toggle).toHaveFocus();
         expect(toggle).toHaveAttribute("aria-expanded", "false");
@@ -235,7 +279,7 @@ describe("LandingPage", () => {
         const toggle = screen.getByRole("button", { name: "Open menu" });
         await user.click(toggle);
         const nav = screen.getByRole("navigation", { name: "Mobile" });
-        within(nav).getByRole("link", { name: "Create account" }).focus();
+        within(nav).getByRole("link", { name: "Start Exploring →" }).focus();
         await user.tab();
         expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
         await user.click(toggle);
@@ -286,11 +330,11 @@ describe("LandingPage", () => {
 
         const header = screen.getByRole("banner");
         expect(
-            within(header).queryByRole("link", { name: "Sign in" }),
+            within(header).queryByRole("link", { name: "Sign In" }),
         ).toBeNull();
         expect(
             within(header).queryByRole("link", {
-                name: "Create account",
+                name: "Start Exploring →",
             }),
         ).toBeNull();
     });

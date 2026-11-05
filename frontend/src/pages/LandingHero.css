@@ -84,17 +84,9 @@
     .landing-hero-ctas .landing-btn-secondary:hover { background: #20171070; }
     .landing-hero-scrim { background: linear-gradient(90deg, #171a15cf, #211c15a1 34%, #211c1533 56%, transparent 74%); }
 }
-@media (min-width: 1200px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    .landing-hero-media[data-hero-motion="parallax"] .landing-hero-img {
-        transform: translate3d(0, var(--hero-parallax, 0px), 0) scale(1.06);
-    }
-}
 @media (max-width: 759px) {
     .landing-hero-copy h1 { font-size: clamp(2.65rem, 8.7vw, 4rem); }
     .landing-hero-copy .public-eyebrow { font-size: .6rem; letter-spacing: .14em; }
     .landing-hero-copy > p:not(.public-eyebrow) { font-size: 1rem; }
     .landing-hero-ctas .landing-btn { width: 100%; }
-}
-@media (prefers-reduced-motion: reduce) {
-    .landing-hero-media .landing-hero-img { transform: none !important; }
 }
