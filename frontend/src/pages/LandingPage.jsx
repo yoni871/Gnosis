@@ -27,8 +27,8 @@ import "./LandingPage.css";
 const STUDY_DESTINATION = "/bible/Genesis/1";
 
 const HERO_BASE = "/images/landing/hero";
-const HERO_WIDTH = 1920;
-const HERO_HEIGHT = 1280;
+const HERO_WIDTH = 1672;
+const HERO_HEIGHT = 941;
 
 const EXPLORE_PASSAGES = [
     { book: "Genesis", chapter: 1, label: "Genesis 1", note: "In the beginning" },
@@ -120,24 +120,24 @@ export default function LandingPage() {
                         <picture>
                             <source
                                 type="image/webp"
-                                srcSet={`${HERO_BASE}-480.webp 480w, ${HERO_BASE}-800.webp 800w, ${HERO_BASE}-1280.webp 1280w, ${HERO_BASE}-1920.webp 1920w`}
+                                srcSet={`${HERO_BASE}-480.webp 480w, ${HERO_BASE}-800.webp 800w, ${HERO_BASE}-1280.webp 1280w, ${HERO_BASE}-1672.webp 1672w`}
                                 sizes="100vw"
                             />
                             <source
                                 type="image/jpeg"
-                                srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1920.jpg 1920w`}
+                                srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
                                 sizes="100vw"
                             />
                             <img
                                 className="landing-hero-img"
                                 src={`${HERO_BASE}-1280.jpg`}
-                                srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1920.jpg 1920w`}
+                                srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
                                 sizes="100vw"
                                 width={HERO_WIDTH}
                                 height={HERO_HEIGHT}
                                 fetchPriority="high"
                                 decoding="async"
-                                alt="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunrise"
+                                alt="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset"
                             />
                         </picture>
                     </div>
