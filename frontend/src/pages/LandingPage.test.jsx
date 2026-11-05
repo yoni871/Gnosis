@@ -29,6 +29,21 @@ function renderLanding(authValue) {
 }
 
 describe("LandingPage", () => {
+    test("introduces the purpose immediately after the hero with the approved pillars", () => {
+        renderLanding(LOGGED_OUT);
+        const purpose = screen.getByRole("region", { name: "A Deeper Way to Explore Christian Knowledge." });
+        expect(document.querySelector(".landing-hero-shell").nextElementSibling).toBe(purpose);
+        expect(within(purpose).getByText("THE PURPOSE BEHIND GNOSIS")).toBeInTheDocument();
+        expect(within(purpose).getByText("Scripture is our starting point. Gnosis seeks to bring together biblical study, theology, and history—making centuries of Christian knowledge more accessible and interconnected.")).toBeInTheDocument();
+        for (const name of ["01 — SCRIPTURE", "02 — THEOLOGY", "03 — HISTORY"]) {
+            expect(within(purpose).getByRole("heading", { level: 3, name })).toBeInTheDocument();
+        }
+        for (const text of ["The foundation of everything we explore.", "Understanding the faith through Scripture and centuries of Christian thought.", "Discovering the people, events, and civilizations that shaped the biblical world and the history of Christianity."]) {
+            expect(within(purpose).getByText(text)).toBeInTheDocument();
+        }
+        expect(within(purpose).queryByRole("img")).toBeNull();
+    });
+
     test("renders the hero with the approved copy and CTA destinations", () => {
         renderLanding(LOGGED_OUT);
 

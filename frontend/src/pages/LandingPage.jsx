@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import LandingHeader from "../components/LandingHeader";
 import PublicFooter from "../components/PublicFooter";
+import LandingPurpose from "../components/LandingPurpose";
 import {
     LANDING_TITLE,
     LANDING_DESCRIPTION,
@@ -158,6 +159,7 @@ export default function LandingPage() {
                         </div>
                     </section>
                 </div>
+                <LandingPurpose />
                 <section
                     className="landing-section landing-features"
                     aria-labelledby="landing-features-heading"
