@@ -15,6 +15,8 @@ process.env.FRONTEND_URL = 'https://frontend.example.invalid';
 const {
     validateRegisterInput,
     validateLoginInput,
+    validateForgotPasswordInput,
+    validateResetPasswordInput,
 } = require("../../src/utils/authValidation");
 
 // ---------------------------------------------------------------------------
@@ -197,6 +199,43 @@ test("validator ignores unknown fields", () => {
     });
     const login = validateLoginInput(validLogin({ role: "admin" }));
     assert.deepEqual(login.value, { email: "test@example.com", password: "a-valid-password" });
+});
+
+test("forgot validator takes only a structurally valid email", () => {
+    assert.deepEqual(validateForgotPasswordInput({ email: "old@example.com" }),
+        { value: { email: "old@example.com" } });
+    assert.deepEqual(validateForgotPasswordInput({ email: "  old@example.com " }),
+        { value: { email: "old@example.com" } });
+    for (const body of [null, [1, 2], "text", 42, true, undefined]) {
+        assert.deepEqual(validateForgotPasswordInput(body), { error: "Request body must be an object." });
+    }
+    for (const email of ["not-an-email", "", "a@b", "a@.b", "a@b."]) {
+        assert.equal(validateForgotPasswordInput({ email }).error !== undefined, true, email);
+    }
+    assert.deepEqual(validateForgotPasswordInput({ email: "old@example.com", role: "admin" }),
+        { value: { email: "old@example.com" } });
+});
+
+test("reset validator requires a well-formed token and a registration-strength password", () => {
+    const token = "a".repeat(43);
+    assert.deepEqual(validateResetPasswordInput({ token, password: "a-new-password" }),
+        { value: { token, password: "a-new-password" } });
+    for (const body of [null, [1, 2], "text", 42, true, undefined]) {
+        assert.deepEqual(validateResetPasswordInput(body), { error: "Request body must be an object." });
+    }
+    for (const badToken of ["short", "a".repeat(42), "a".repeat(44), 42, null]) {
+        assert.deepEqual(validateResetPasswordInput({ token: badToken, password: "a-new-password" }),
+            { error: "Password reset token is invalid." });
+    }
+    // The new password follows the registration rule, not the login one:
+    // a short password is rejected even though it would be a valid login
+    // password for a pre-existing account.
+    assert.deepEqual(validateResetPasswordInput({ token, password: "short" }),
+        { error: "Password must be at least 8 characters." });
+    assert.deepEqual(validateResetPasswordInput({ token, password: "x".repeat(73) }),
+        { error: "Password must be at most 72 bytes." });
+    assert.deepEqual(validateResetPasswordInput({ token, password: "a-new-password", role: "admin" }),
+        { value: { token, password: "a-new-password" } });
 });
 
 // ---------------------------------------------------------------------------

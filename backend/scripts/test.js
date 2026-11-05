@@ -31,6 +31,7 @@ if (require.main === module) {
         'test/auth/authValidation.test.js', 'test/auth/rateLimit.test.js',
         'test/auth/emailConfig.test.js', 'test/auth/verification.test.js',
         'test/auth/resendClient.test.js', 'test/auth/emailVerification.test.js',
+        'test/auth/passwordReset.test.js', 'test/auth/passwordResetRoutes.test.js',
         'test/auth/serverConfig.test.js', 'test/config/environment.test.js',
         'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js'], {
         cwd: path.resolve(__dirname, '..'), env: testEnvironment(), stdio: 'inherit',

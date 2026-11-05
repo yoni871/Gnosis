@@ -7,6 +7,8 @@ import SearchResultsPage from './pages/SearchResultsPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import VerifyPage from './pages/VerifyPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 function App() {
 
@@ -61,6 +63,16 @@ function App() {
             <Route
               path='/verify-email'
               element={<VerifyPage />}
+            />
+
+            <Route
+              path='/forgot-password'
+              element={<ForgotPasswordPage />}
+            />
+
+            <Route
+              path='/reset-password'
+              element={<ResetPasswordPage />}
             />
 
           </Routes>
