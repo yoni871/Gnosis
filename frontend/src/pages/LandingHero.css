@@ -90,3 +90,33 @@
     .landing-hero-copy > p:not(.public-eyebrow) { font-size: 1rem; }
     .landing-hero-ctas .landing-btn { width: 100%; }
 }
+
+/* Mobile-only overlay. Flex centering keeps the copy clear of navigation. */
+@media (max-width: 759px) {
+    .landing-page { --mobile-hero-height: max(100svh, 48rem); }
+    .landing-page .landing-hero-media { height: var(--mobile-hero-height); }
+    .landing-page .landing-hero-img { height: 100%; object-position: 65% bottom; }
+    .landing-page .landing-hero-scrim {
+        display: block; position: absolute; inset: 0; z-index: 1;
+        background: linear-gradient(180deg, #171a1533, #171a158c 30%, #171a159e 70%, #171a1559);
+        pointer-events: none;
+    }
+    .landing-page .landing-hero {
+        position: relative; z-index: 2; display: flex; align-items: center;
+        min-height: var(--mobile-hero-height);
+        margin-top: calc(-1 * var(--mobile-hero-height));
+        pointer-events: none;
+    }
+    .landing-page .landing-hero-copy {
+        padding-block: max(7rem, env(safe-area-inset-top)) 4rem;
+        text-align: center; color: var(--hero-ivory); pointer-events: auto;
+    }
+    .landing-page .landing-hero-copy .public-eyebrow { color: var(--hero-gold); }
+    .landing-page .landing-hero-copy h1 { font-size: clamp(2.5rem, 10.2vw, 3.5rem); }
+    .landing-page .landing-hero-copy > p:not(.public-eyebrow) { margin-inline: auto; }
+    .landing-page .landing-hero-ctas { max-width: 22rem; margin-inline: auto; }
+    .landing-page .landing-hero-ctas .landing-btn-secondary {
+        color: var(--hero-ivory); border-color: #fff9ed99; background: #20171026;
+    }
+    .landing-page .landing-hero-ctas .landing-btn-secondary:hover { background: #20171070; }
+}

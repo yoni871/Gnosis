@@ -107,18 +107,18 @@ export default function LandingPage() {
                         <source
                             type="image/webp"
                             srcSet={`${HERO_BASE}-480.webp 480w, ${HERO_BASE}-800.webp 800w, ${HERO_BASE}-1280.webp 1280w, ${HERO_BASE}-1672.webp 1672w`}
-                            sizes="100vw"
+                            sizes="(max-width: 759px) max(178svh, 1366px), 100vw"
                         />
                         <source
                             type="image/jpeg"
                             srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
-                            sizes="100vw"
+                            sizes="(max-width: 759px) max(178svh, 1366px), 100vw"
                         />
                         <img
                             className="landing-hero-img"
                             src={`${HERO_BASE}-1280.jpg`}
                             srcSet={`${HERO_BASE}-480.jpg 480w, ${HERO_BASE}-800.jpg 800w, ${HERO_BASE}-1280.jpg 1280w, ${HERO_BASE}-1672.jpg 1672w`}
-                            sizes="100vw"
+                            sizes="(max-width: 759px) max(178svh, 1366px), 100vw"
                             width={HERO_WIDTH}
                             height={HERO_HEIGHT}
                             fetchPriority="high"
