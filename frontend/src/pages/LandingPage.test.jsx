@@ -44,6 +44,15 @@ describe("LandingPage", () => {
         expect(within(purpose).queryByRole("img")).toBeNull();
     });
 
+    test("Bible and commentary follows the purpose section and links to the real reader", () => {
+        renderLanding(LOGGED_OUT);
+        const section = screen.getByRole("region", { name: "Scripture and Wisdom, Side by Side." });
+        expect(document.querySelector(".landing-purpose").nextElementSibling).toBe(section);
+        expect(within(section).getByRole("link", { name: "Explore Scripture →" })).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(within(section).getByRole("img", { name: /actual Gnosis reader/ })).toHaveAttribute("loading", "lazy");
+        expect(within(section).getAllByRole("listitem")).toHaveLength(3);
+    });
+
     test("renders the hero with the approved copy and CTA destinations", () => {
         renderLanding(LOGGED_OUT);
 
@@ -162,7 +171,7 @@ describe("LandingPage", () => {
         ).toHaveLength(1);
 
         for (const heading of [
-            "Scripture and commentary, side by side",
+            "Scripture and Wisdom, Side by Side.",
             "How it works",
             "Trusted classic commentary",
             "Rooted in Scripture. Made for thoughtful study.",
@@ -175,9 +184,9 @@ describe("LandingPage", () => {
         }
 
         for (const card of [
-            "Verse-by-verse insight",
-            "Notes and highlights",
-            "Focused study",
+            "Read with Understanding",
+            "Explore Different Perspectives",
+            "Stay Focused on Scripture",
             "Matthew Henry",
             "Jamieson, Fausset & Brown",
         ]) {

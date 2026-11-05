@@ -4,6 +4,7 @@ import Seo from "../components/Seo";
 import LandingHeader from "../components/LandingHeader";
 import PublicFooter from "../components/PublicFooter";
 import LandingPurpose from "../components/LandingPurpose";
+import LandingBibleCommentary from "../components/LandingBibleCommentary";
 import {
     LANDING_TITLE,
     LANDING_DESCRIPTION,
@@ -43,21 +44,6 @@ const EXPLORE_PASSAGES = [
     { book: "John", chapter: 1, label: "John 1", note: "In the beginning was the Word" },
     { book: "Romans", chapter: 8, label: "Romans 8", note: "Life in the Spirit" },
     { book: "Philippians", chapter: 4, label: "Philippians 4", note: "Rejoice in the Lord" },
-];
-
-const FEATURES = [
-    {
-        title: "Verse-by-verse insight",
-        text: "Read Scripture alongside classic commentary for a richer understanding.",
-    },
-    {
-        title: "Notes and highlights",
-        text: "Mark what matters, add your own notes, and revisit them anytime.",
-    },
-    {
-        title: "Focused study",
-        text: "A clean, distraction-free space designed for thoughtful, consistent Bible study.",
-    },
 ];
 
 function scrollToHowItWorks(event) {
@@ -160,30 +146,7 @@ export default function LandingPage() {
                     </section>
                 </div>
                 <LandingPurpose />
-                <section
-                    className="landing-section landing-features"
-                    aria-labelledby="landing-features-heading"
-                >
-                    <p className="public-eyebrow">A considered study space</p>
-                    <h2 id="landing-features-heading">
-                        Scripture and commentary, side by side
-                    </h2>
-                    <p className="landing-section-lede">
-                        A focused, reliable way to read the Bible with
-                        the wisdom of trusted Bible teachers.
-                    </p>
-                    <div className="landing-cards">
-                        {FEATURES.map((feature) => (
-                            <article
-                                key={feature.title}
-                                className="landing-card"
-                            >
-                                <h3>{feature.title}</h3>
-                                <p>{feature.text}</p>
-                            </article>
-                        ))}
-                    </div>
-                </section>
+                <LandingBibleCommentary />
 
                 <section
                     id="how-it-works"
