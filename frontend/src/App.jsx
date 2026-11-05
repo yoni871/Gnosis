@@ -1,6 +1,7 @@
 import './App.css'
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
+import ErrorBoundary from './components/ErrorBoundary';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import StudyPage from './pages/StudyPage';
 import SearchResultsPage from './pages/SearchResultsPage';
@@ -16,6 +17,7 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <AuthProvider>
+          <ErrorBoundary>
           <Routes>
 
             {/*
@@ -76,6 +78,7 @@ function App() {
             />
 
           </Routes>
+          </ErrorBoundary>
         </AuthProvider>
       </BrowserRouter>
     </ThemeProvider>
