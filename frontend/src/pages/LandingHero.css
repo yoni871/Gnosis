@@ -42,6 +42,7 @@
     line-height: 1.6;
     margin-bottom: 22px;
 }
+[data-theme="dark"] .landing-hero-copy .public-eyebrow { color: var(--hero-gold); }
 .landing-hero-copy h1 {
     font-family: "Gnosis Hero Cormorant", "Gnosis Hero Georgia Fallback", "Gnosis Hero Times Fallback", serif;
     font-size: clamp(3.2rem, 6.2vw, 5rem);
