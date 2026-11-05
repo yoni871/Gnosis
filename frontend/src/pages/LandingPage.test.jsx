@@ -166,7 +166,7 @@ describe("LandingPage", () => {
         expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
     });
 
-    test("the approved scene remains static while waiting for matching laptop animation assets", () => {
+    test("the approved scene stays static when browser motion APIs are unavailable", () => {
         const scrollListener = vi.spyOn(window, "addEventListener");
         renderLanding(LOGGED_OUT);
         expect(document.querySelector('.landing-hero-media')).not.toHaveAttribute('data-hero-motion');

@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import useLandingMotion from "../hooks/useLandingMotion";
 import { Link } from "react-router-dom";
 
 import Seo from "../components/Seo";
@@ -48,12 +50,14 @@ function scrollToHowItWorks(event) {
 }
 
 export default function LandingPage() {
+    const pageRef = useRef(null);
+    useLandingMotion(pageRef);
     const siteUrl = getSiteUrl();
     const canonical = pageUrl("/");
     const ogImage = `${siteUrl}/images/landing/sunset-hero-images/hero-1200.jpg`;
 
     return (
-        <div className="public-page landing-page">
+        <div className="public-page landing-page" ref={pageRef}>
             <link rel="preload" href="/fonts/hero/cormorant-garamond-latin-600.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
             <link rel="preload" href="/fonts/hero/inter-latin-variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
             <Seo
