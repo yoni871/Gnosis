@@ -136,7 +136,7 @@
 }
 
 .landing-link:hover {
-    color: var(--landing-sandstone-dark);
+    color: #805027;
     text-decoration: underline;
     text-underline-offset: 4px;
 }
@@ -512,7 +512,7 @@
 }
 
 .landing-steps li::marker {
-    color: var(--landing-sandstone-dark);
+    color: #805027;
     font-family: "Lora", Georgia, "Times New Roman", serif;
     font-weight: 700;
 }
