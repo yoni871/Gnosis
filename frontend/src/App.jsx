@@ -1,12 +1,15 @@
 import './App.css'
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
+import ErrorBoundary from './components/ErrorBoundary';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import StudyPage from './pages/StudyPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import VerifyPage from './pages/VerifyPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 function App() {
 
@@ -14,6 +17,7 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <AuthProvider>
+          <ErrorBoundary>
           <Routes>
 
             {/*
@@ -63,7 +67,18 @@ function App() {
               element={<VerifyPage />}
             />
 
+            <Route
+              path='/forgot-password'
+              element={<ForgotPasswordPage />}
+            />
+
+            <Route
+              path='/reset-password'
+              element={<ResetPasswordPage />}
+            />
+
           </Routes>
+          </ErrorBoundary>
         </AuthProvider>
       </BrowserRouter>
     </ThemeProvider>

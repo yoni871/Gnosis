@@ -19,6 +19,11 @@ const ENDPOINT_MESSAGES = {
     // these internal messages.
     verify: "Something went wrong.",
     resend: "Something went wrong.",
+    // Issue #10: the reset endpoints share the same generic wording.
+    // Their client-visible failures are the controlled 400/429 bodies,
+    // never these internal messages.
+    forgot: "Something went wrong.",
+    reset: "Something went wrong.",
 };
 
 function errorBody(message, code) {

@@ -66,3 +66,14 @@ export async function verifyEmail(token) {
 export async function resendVerification(email) {
     return postJson("/auth/resend-verification", { email }, "Unable to send a verification email.");
 }
+
+// Issue #10: password-reset endpoints. forgotPassword requests a reset
+// link; resetPassword submits the link token with the new password.
+// Both responses are generic by design.
+export async function forgotPassword(email) {
+    return postJson("/auth/forgot-password", { email }, "Unable to send a password reset email.");
+}
+
+export async function resetPassword(token, password) {
+    return postJson("/auth/reset-password", { token, password }, "Unable to reset your password.");
+}
