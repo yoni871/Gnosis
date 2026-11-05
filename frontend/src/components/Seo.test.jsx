@@ -51,7 +51,7 @@ describe("Seo", () => {
                 title="Gnosis | Bible Study & Verse-by-Verse Commentary"
                 description="Study Scripture with Gnosis."
                 canonical="https://studygnosis.com/"
-                ogImage="https://studygnosis.com/images/landing/hero-1200.jpg"
+                ogImage="https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg"
                 twitterCard="summary_large_image"
                 jsonLd={{
                     "@context": "https://schema.org",
@@ -63,10 +63,10 @@ describe("Seo", () => {
         );
 
         expect(metaContent("property", "og:image")).toBe(
-            "https://studygnosis.com/images/landing/hero-1200.jpg",
+            "https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg",
         );
         expect(metaContent("name", "twitter:image")).toBe(
-            "https://studygnosis.com/images/landing/hero-1200.jpg",
+            "https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg",
         );
         expect(metaContent("name", "twitter:card")).toBe(
             "summary_large_image",

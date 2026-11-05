@@ -1,6 +1,7 @@
 import { describe, expect, test, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { readFileSync } from "node:fs";
 import { MemoryRouter } from "react-router-dom";
 
 import App from "../App";
@@ -144,7 +145,7 @@ describe("LandingPage", () => {
         const user = userEvent.setup();
         const logout = vi.fn();
         renderLanding({
-            user: { first_name: "Yonatan", last_name: "Demissie" },
+            user: { first_name: "Sample", last_name: "Reader" },
             isAuthLoading: false,
             logout,
         });
@@ -164,13 +165,13 @@ describe("LandingPage", () => {
             }),
         ).toHaveAttribute("href", "/bible/Genesis/1");
         expect(
-            within(header).getByText("Yonatan Demissie"),
+            within(header).getByText("Sample Reader"),
         ).toBeInTheDocument();
-        expect(within(header).getByText("YD")).toBeInTheDocument();
+        expect(within(header).getByText("SR")).toBeInTheDocument();
 
         await user.click(
             within(header).getByRole("button", {
-                name: "Account menu for Yonatan Demissie",
+                name: "Account menu for Sample Reader",
             }),
         );
         expect(
@@ -182,6 +183,69 @@ describe("LandingPage", () => {
             within(header).getByRole("button", { name: "Sign out" }),
         );
         expect(logout).toHaveBeenCalledTimes(1);
+    });
+
+    test("mobile toggle closes on a second click and Escape returns focus", async () => {
+        const user = userEvent.setup();
+        renderLanding(LOGGED_OUT);
+        const toggle = screen.getByRole("button", { name: "Open menu" });
+        await user.click(toggle);
+        await user.click(toggle);
+        expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
+        await user.click(toggle);
+        const nav = screen.getByRole("navigation", { name: "Mobile" });
+        within(nav).getByRole("link", { name: "Sign in" }).focus();
+        await user.keyboard("{Escape}");
+        expect(toggle).toHaveFocus();
+        expect(toggle).toHaveAttribute("aria-expanded", "false");
+    });
+
+    test("mobile menu closes when focus or a pointer leaves the header", async () => {
+        const user = userEvent.setup();
+        renderLanding(LOGGED_OUT);
+        const toggle = screen.getByRole("button", { name: "Open menu" });
+        await user.click(toggle);
+        const nav = screen.getByRole("navigation", { name: "Mobile" });
+        within(nav).getByRole("link", { name: "Create account" }).focus();
+        await user.tab();
+        expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
+        await user.click(toggle);
+        await user.click(screen.getByRole("heading", { level: 1 }));
+        expect(toggle).toHaveAttribute("aria-expanded", "false");
+    });
+
+    test("mobile account actions use their own disclosure and restore focus", async () => {
+        const user = userEvent.setup();
+        const logout = vi.fn();
+        renderLanding({ user: { first_name: "Sample", last_name: "Reader" }, isAuthLoading: false, logout });
+        await user.click(screen.getByRole("button", { name: "Open menu" }));
+        const nav = screen.getByRole("navigation", { name: "Mobile" });
+        const account = within(nav).getByRole("button", { name: /Account menu/ });
+        await user.click(account);
+        within(nav).getByRole("button", { name: "Sign out" }).focus();
+        await user.keyboard("{Escape}");
+        expect(account).toHaveFocus();
+        expect(account).toHaveAttribute("aria-expanded", "false");
+        expect(nav).toBeInTheDocument();
+        await user.click(account);
+        await user.click(within(nav).getByRole("button", { name: "Sign out" }));
+        expect(logout).toHaveBeenCalledTimes(1);
+        expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
+    });
+
+    test("static social preview and responsive assets use the approved image directory", () => {
+        const html = readFileSync("index.html", "utf8");
+        expect(html).toContain('property="og:image" content="https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg"');
+        expect(html).not.toContain('rel="canonical"');
+        renderLanding(LOGGED_OUT);
+        const image = screen.getByRole("img", { name: /laptop and a phone/ });
+        expect(image).toHaveAttribute("width", "1672");
+        expect(image).toHaveAttribute("height", "941");
+        expect(image).toHaveAttribute("fetchpriority", "high");
+        for (const source of image.closest("picture").querySelectorAll("source")) {
+            expect(source.srcset).toContain("/images/landing/sunset-hero-images/hero-480.");
+            expect(source.srcset).toContain("1672w");
+        }
     });
 
     test("renders nothing in the header auth area while auth is loading", () => {

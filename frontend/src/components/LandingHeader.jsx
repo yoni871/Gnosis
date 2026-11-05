@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState, useId } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
@@ -23,26 +23,20 @@ function initials(user) {
     return value || "G";
 }
 
-export default function LandingHeader() {
-    const { user, isAuthLoading, logout } = useContext(AuthContext);
-    const [mobileOpen, setMobileOpen] = useState(false);
+// Desktop and mobile disclosures must own separate refs and state.
+function AuthLinks({ closeAll }) {
+    const { user, logout } = useContext(AuthContext);
     const [accountOpen, setAccountOpen] = useState(false);
-
-    // useClickOutside already closes on outside click and on Escape.
-    const mobileRef = useClickOutside(() => setMobileOpen(false));
+    const trigger = useRef(null);
+    const menuId = useId();
     const accountRef = useClickOutside(() => setAccountOpen(false));
-
-    const closeAll = () => {
-        setMobileOpen(false);
-        setAccountOpen(false);
-    };
-
     const handleSignOut = () => {
         logout();
+        setAccountOpen(false);
         closeAll();
     };
 
-    const authLinks = user ? (
+    return user ? (
         <>
             <Link
                 to="/bible/Genesis/1"
@@ -51,12 +45,24 @@ export default function LandingHeader() {
             >
                 Start Studying
             </Link>
-            <div ref={accountRef} className="landing-account">
+            <div ref={accountRef} className="landing-account"
+                onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget)) setAccountOpen(false);
+                }}
+                onKeyDown={(event) => {
+                    if (event.key === "Escape" && accountOpen) {
+                        event.stopPropagation();
+                        setAccountOpen(false);
+                        trigger.current?.focus();
+                    }
+                }}
+            >
                 <button
                     type="button"
                     className="landing-account-chip"
                     aria-expanded={accountOpen}
-                    aria-haspopup="true"
+                    aria-controls={menuId}
+                    ref={trigger}
                     aria-label={`Account menu for ${user.first_name} ${user.last_name}`}
                     onClick={() => setAccountOpen((open) => !open)}
                 >
@@ -68,7 +74,7 @@ export default function LandingHeader() {
                     </span>
                 </button>
                 {accountOpen && (
-                    <div className="landing-account-menu">
+                    <div id={menuId} className="landing-account-menu">
                         <Link to="/bible/Genesis/1" onClick={closeAll}>
                             Continue studying
                         </Link>
@@ -94,8 +100,29 @@ export default function LandingHeader() {
         </>
     );
 
+}
+
+export default function LandingHeader() {
+    const { isAuthLoading } = useContext(AuthContext);
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const trigger = useRef(null);
+    // Include the toggle in the outside-click boundary; otherwise a mouse
+    // press closes the menu before the toggle's click opens it again.
+    const headerRef = useClickOutside(() => setMobileOpen(false));
+    const closeAll = () => setMobileOpen(false);
+
     return (
-        <header className="landing-header">
+        <header ref={headerRef} className="landing-header"
+            onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) closeAll();
+            }}
+            onKeyDown={(event) => {
+                if (event.key === "Escape" && mobileOpen) {
+                    closeAll();
+                    trigger.current?.focus();
+                }
+            }}
+        >
             <a className="landing-skip" href="#landing-main">
                 Skip to main content
             </a>
@@ -118,12 +145,13 @@ export default function LandingHeader() {
                     <a href="#about" className="landing-link">
                         About Us
                     </a>
-                    {!isAuthLoading && authLinks}
+                    {!isAuthLoading && <AuthLinks closeAll={closeAll} />}
                 </nav>
 
                 <button
                     type="button"
                     className="landing-menu-button"
+                    ref={trigger}
                     aria-expanded={mobileOpen}
                     aria-controls="landing-mobile-menu"
                     aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -135,7 +163,6 @@ export default function LandingHeader() {
 
             {mobileOpen && (
                 <nav
-                    ref={mobileRef}
                     id="landing-mobile-menu"
                     className="landing-nav-mobile"
                     aria-label="Mobile"
@@ -143,7 +170,7 @@ export default function LandingHeader() {
                     <a href="#about" onClick={closeAll}>
                         About Us
                     </a>
-                    {!isAuthLoading && authLinks}
+                    {!isAuthLoading && <AuthLinks closeAll={closeAll} />}
                 </nav>
             )}
         </header>

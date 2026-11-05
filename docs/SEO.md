@@ -3,10 +3,10 @@
 What this covers: the SEO infrastructure for studygnosis.com as of the
 SEO-foundation change — audit findings, what was implemented, the plan
 for making chapter content indexable in initial HTML, landing-page
-preparation, and the remaining Google Search Console steps.
+implementation, and the remaining Google Search Console steps.
 
 Status: the foundation in this document is implemented and tested. The
-landing page is NOT built yet (see "Landing page preparation"), and
+landing page is implemented (see section 4), and
 chapter content is NOT yet in the initial HTML (see "Indexable chapter
 content"). Nothing here has been submitted to Google; Search Console
 verification and sitemap submission are still open steps.
@@ -81,7 +81,7 @@ All paths are under `frontend/` unless noted.
   `noindex, nofollow` and clean canonicals (`/search` without `?q=`).
   Search results must not appear in search results, and auth pages
   must never be indexed.
-- `index.html` carries the site-wide default metadata (the future
+- `index.html` carries the site-wide default metadata (the
   landing page's title and description — see section 4). It carries no
   canonical tag on purpose: the shell is served for every route, so a
   static canonical would point every chapter URL at the wrong address.
@@ -98,8 +98,8 @@ All paths are under `frontend/` unless noted.
 ### Sitemap (`scripts/generate-sitemap.js`, `src/utils/sitemap.js`)
 
 - `public/sitemap.xml` lists exactly the public, canonical, indexable
-  pages: **1,189 Bible chapter URLs, nothing else.** `/` is excluded
-  while it redirects (see section 4); `/login`, `/register`, and
+  pages: **1,189 Bible chapter URLs plus the homepage (1,190 total).**
+  `/login`, `/register`, and
   `/search` are excluded by design.
 - Chapter counts are verified, not guessed. The manifest
   (`src/data/bibleChapters.json`) was counted from
@@ -116,7 +116,7 @@ All paths are under `frontend/` unless noted.
   picks the new pages up automatically.
 - `lastmod`, `changefreq`, and `priority` are omitted deliberately: no
   per-chapter modification date exists, and Google ignores changefreq
-  and priority. The file is a single sitemap (1,189 URLs, far under the
+  and priority. The file is a single sitemap (1,190 URLs, far under the
   50,000 URL / 50 MB limits), so no sitemap index is needed.
 - Serving: files in `public/` are copied to the build root, and Vercel
   serves static files before the SPA-fallback rewrite applies. The
@@ -151,7 +151,7 @@ All paths are under `frontend/` unless noted.
 - `src/components/Seo.test.jsx` — tags are set, and navigating from a
   chapter to a noindex page replaces (never duplicates) them.
 - `src/utils/sitemap.test.js` — builder output, the verified manifest
-  totals (66 books, 1,189 chapters), the exact 1,189-URL production
+  totals (66 books, 1,189 chapters), the exact 1,190-URL production
   list with no duplicates, spaces, query strings, or auth/search URLs,
   and byte-equality between the committed `public/sitemap.xml` and the
   generator output.
@@ -206,9 +206,22 @@ and the preparation items from the SEO foundation are done:
    notes and highlights), and links crawlers to the reader through
    `Start Studying` (`/bible/Genesis/1`) and the Explore Scripture
    passage links. Its `og:image` is a raster hero asset
-   (`/images/landing/hero-1200.jpg`); the `/gnosis.svg` logo is an
+   (`/images/landing/sunset-hero-images/hero-1200.jpg`); the `/gnosis.svg` logo is an
    SVG, which social previews handle poorly, so it is not used as
    the social image.
+
+The initial HTML also supplies the hero social-image URL and large Twitter
+card for crawlers that do not execute JavaScript. These are site-wide
+fallbacks; route-specific canonical, social metadata, and homepage WebSite
+JSON-LD still require rendering. No static homepage canonical or WebSite
+JSON-LD is inserted into the shared chapter HTML shell.
+
+Landing navigation uses disclosure buttons with Escape focus restoration,
+outside-click and focus-leave dismissal. The narrow layout keeps copy above
+the untouched hero; overlay copy starts at 1200px to avoid clipping the
+laptop at tablet widths. Image delivery uses WebP with JPEG fallback,
+`100vw` sizes, explicit dimensions, and high hero fetch priority. There
+are no below-the-fold raster images or new dependencies.
 
 ## 5. Indexable chapter content (prerendering plan)
 
@@ -265,7 +278,7 @@ remain client-only and never leak into prerendered output.
 
 ### Structured data
 
-No JSON-LD is emitted in this change, deliberately. There is no
+No chapter JSON-LD is emitted, deliberately. There is no
 Google-supported rich-result type for Scripture text, and inventing
 `Article` markup for Bible chapters would misdescribe the content.
 `BreadcrumbList` becomes worthwhile now that `/` is a real landing
@@ -304,7 +317,7 @@ should be made. When ready:
    after deploy before submitting).
 4. **After submission, check** the Pages report for chapter URLs
    (expect gradual indexing — see section 5 on render deferral) and
-   the Sitemaps report for the 1,189 discovered URLs. If chapter pages
+   the Sitemaps report for the 1,190 discovered URLs. If chapter pages
    appear as "Crawled — currently not indexed" in large numbers, that
    is the signal to prioritize Phase 2 prerendering.
 5. **When the landing page ships**, request indexing for `/` and
@@ -315,9 +328,6 @@ should be made. When ready:
 - Phase 2 prerendering (section 5) — the remaining gap between
   "Google can render chapters" and "chapter content is in the initial
   HTML".
-- Landing page build (section 4) — content, design, and the sitemap
-  addition.
-- `og:image` raster asset for social previews (section 4).
 - `Disallow: /verify-email` in `robots.txt` when that route lands.
 - BreadcrumbList JSON-LD with the landing page (section 5).
 - If the production domain ever changes, update the default in

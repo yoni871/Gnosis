@@ -83,7 +83,7 @@ export default function LandingPage() {
 
             <LandingHeader />
 
-            <main id="landing-main">
+            <main id="landing-main" tabIndex={-1}>
                 <section
                     className="landing-hero"
                     aria-labelledby="landing-hero-heading"

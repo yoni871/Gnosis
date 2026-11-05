@@ -10,8 +10,7 @@
       own title, description, canonical URL, and robots directive
       (chapter pages get chapter-specific metadata; auth and search
       pages get noindex). These defaults describe the site itself and
-      match the future landing page's metadata (see src/utils/seo.js);
-      when that page is built it will set the same values explicitly.
+      match the landing page metadata (see src/utils/seo.js).
       No canonical tag lives here on purpose: the SPA shell is served
       for every route, so a static canonical would point every chapter
       URL at the wrong address.
@@ -28,7 +27,9 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Gnosis" />
     <meta property="og:url" content="https://studygnosis.com/" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg" />
+    <meta name="twitter:image" content="https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>Gnosis | Bible Study & Verse-by-Verse Commentary</title>
   </head>
   <body>
