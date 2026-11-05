@@ -52,7 +52,9 @@ describe("LandingPage", () => {
         expect(within(section).getByRole("img", { name: /actual Gnosis reader/ })).toHaveAttribute("loading", "lazy");
         expect(within(section).getAllByRole("listitem")).toHaveLength(3);
         expect(within(section).getByRole("img", { name: "Gnosis mobile Scripture view showing John 1 in the KJV" })).toHaveAttribute("src", "/images/landing/bible-commentary/mobile-scripture-856.jpg");
-        expect(within(section).getByRole("img", { name: "Gnosis mobile commentary view showing Matthew Henry on John 1" })).toHaveAttribute("src", "/images/landing/bible-commentary/mobile-commentary-856.jpg");
+        const devices = within(section).getByRole("figure", { name: "Gnosis on one laptop and one smartphone" });
+        expect(within(devices).getAllByRole("img")).toHaveLength(2);
+        for (const badge of ["KJV Bible", "Trusted Commentaries", "Smooth Study Experience"]) expect(within(section).queryByText(badge)).toBeNull();
     });
 
     test("renders the hero with the approved copy and CTA destinations", () => {

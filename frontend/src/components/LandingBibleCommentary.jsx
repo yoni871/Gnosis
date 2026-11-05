@@ -1,6 +1,7 @@
 import { BookOpen, Layers, BookMarked } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./LandingBibleCommentary.css";
+import LandingDeviceShowcase from "./LandingDeviceShowcase";
 
 const FEATURES = [
     { title: "Read with Understanding", text: "Explore Scripture alongside trusted commentary, gaining insight into the meaning and context of each passage.", Icon: BookOpen },
@@ -26,19 +27,7 @@ export default function LandingBibleCommentary() {
                     </ul>
                     <Link className="landing-btn landing-bible-cta" to="/bible/Genesis/1">Explore Scripture →</Link>
                 </div>
-                <div className="landing-bible-frame">
-                    <div className="landing-bible-crop">
-                        <img src="/images/landing/bible-commentary/reader-1920.jpg" width="1920" height="1200" loading="lazy" decoding="async" alt="The actual Gnosis reader showing Genesis 1 in the KJV beside Matthew Henry's commentary" />
-                    </div>
-                    <div className="landing-bible-mobile-pair">
-                        <div className="landing-bible-mobile-crop">
-                            <img src="/images/landing/bible-commentary/mobile-scripture-856.jpg" width="856" height="1852" loading="lazy" decoding="async" alt="Gnosis mobile Scripture view showing John 1 in the KJV" />
-                        </div>
-                        <div className="landing-bible-mobile-crop">
-                            <img src="/images/landing/bible-commentary/mobile-commentary-856.jpg" width="856" height="1852" loading="lazy" decoding="async" alt="Gnosis mobile commentary view showing Matthew Henry on John 1" />
-                        </div>
-                    </div>
-                </div>
+                <LandingDeviceShowcase />
             </div>
             <svg className="landing-bible-landscape" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
                 <path d="M0 80Q230 10 480 65T960 60T1440 45V100H0Z" fill="currentColor" />

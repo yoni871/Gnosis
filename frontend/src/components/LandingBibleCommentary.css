@@ -25,25 +25,8 @@
 .landing-bible-features p { margin: 0; font-size: .88rem; line-height: 1.85; }
 .landing-bible .landing-bible-cta { background: var(--bible-green); color: #fff9ed; border-color: var(--bible-green); min-height: 52px; padding-inline: 26px; }
 .landing-bible .landing-bible-cta:hover { background: #192f27; border-color: #192f27; }
-/* Align the frame with the headline, below the eyebrow line and its gap. */
-.landing-bible-frame { margin-top: calc(.65rem * 1.7 + 20px); padding: clamp(5px, .8vw, 10px); border: 1px solid #d8cdbb; border-radius: 12px; background: #fffaf0; box-shadow: 0 16px 40px #42341c12; }
-/* Original source is 2880 × 1800. Hide its first 391 rows (browser,
-   navigation, search and chapter controls), leaving both content panels. */
-.landing-bible-crop { position: relative; aspect-ratio: 2880 / 1409; overflow: hidden; border-radius: 6px; background: #f8f3e7; }
-.landing-bible-crop img { position: absolute; display: block; width: 100%; height: auto; max-width: none; top: -27.75%; left: 0; }
 .landing-bible-landscape { position: absolute; inset: auto 0 0; width: 100%; height: clamp(45px, 7vw, 100px); color: #bfa87c; opacity: .13; pointer-events: none; }
 @media (width < 900px) {
     .landing-bible-inner { grid-template-columns: 1fr; gap: clamp(1.5rem, 5vw, 2.5rem); }
     .landing-bible-copy { max-width: 620px; }
-    .landing-bible-frame { width: 100%; margin-top: 0; }
-}
-
-/* Owner-supplied mobile captures retain their pixels and proportions.
-   Show content rows 591–2350; omit status/navigation and bottom browser bars. */
-.landing-bible-mobile-pair { display: none; }
-@media (width < 768px) {
-    .landing-bible-frame > .landing-bible-crop { display: none; }
-    .landing-bible-mobile-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-    .landing-bible-mobile-crop { position: relative; aspect-ratio: 1284 / 1759; overflow: hidden; border-radius: 6px; background: #f8f3e7; }
-    .landing-bible-mobile-crop img { position: absolute; display: block; width: 100%; height: auto; max-width: none; top: -33.5986%; left: 0; }
 }
