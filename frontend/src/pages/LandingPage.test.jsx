@@ -216,7 +216,7 @@ describe("LandingPage", () => {
             document.querySelector('meta[property="og:image"]'),
         ).toHaveAttribute(
             "content",
-            "https://studygnosis.com/images/landing/hero-1200.jpg",
+            "https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg",
         );
         expect(
             document.querySelector('meta[name="twitter:card"]'),

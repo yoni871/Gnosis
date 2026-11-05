@@ -17,16 +17,17 @@ import "./LandingPage.css";
 // warm sandstone, cream, deep charcoal, muted olive, literary serif
 // headings, clean sans-serif body.
 //
-// The hero image is a project-owned composite: an AI-generated desert
-// scene with blank device screens, onto which real captures of the
-// Gnosis study interface were placed (see
-// frontend/public/images/landing/README.md). No heading, paragraph,
-// button, navigation, or logo is baked into the image; all of that is
-// real semantic HTML below.
+// The hero image is supplied by Yonatan (a Gemini-generated desert
+// sunset scene with a laptop and a phone showing the study interface)
+// and is used exactly as supplied: no compositing, no screen
+// replacement, no retouching — only delivery resizing (see
+// frontend/public/images/landing/sunset-hero-images/README.md). No
+// heading, paragraph, button, navigation, or logo is baked into the
+// image; all of that is real semantic HTML below.
 
 const STUDY_DESTINATION = "/bible/Genesis/1";
 
-const HERO_BASE = "/images/landing/hero";
+const HERO_BASE = "/images/landing/sunset-hero-images/hero";
 const HERO_WIDTH = 1672;
 const HERO_HEIGHT = 941;
 
@@ -59,7 +60,7 @@ const FEATURES = [
 export default function LandingPage() {
     const siteUrl = getSiteUrl();
     const canonical = pageUrl("/");
-    const ogImage = `${siteUrl}/images/landing/hero-1200.jpg`;
+    const ogImage = `${siteUrl}/images/landing/sunset-hero-images/hero-1200.jpg`;
 
     return (
         <div className="landing-page">
