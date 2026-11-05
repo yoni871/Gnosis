@@ -12,7 +12,7 @@ function renderAbout(auth = { user: null, isAuthLoading: false, logout: vi.fn() 
 }
 
 describe("About Gnosis", () => {
-    test("has a clear reading hierarchy, honest purpose, and no images", () => {
+    test("has a clear reading hierarchy, honest purpose, and no content photographs", () => {
         const { container } = renderAbout();
         expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("About Gnosis");
@@ -23,7 +23,13 @@ describe("About Gnosis", () => {
         expect(screen.getByText(/not inspired Scripture, an error-free authority/)).toBeInTheDocument();
         expect(screen.getByRole("heading", { name: "Matthew Henry" })).toBeInTheDocument();
         expect(screen.getByRole("heading", { name: "Jamieson, Fausset & Brown" })).toBeInTheDocument();
-        expect(container.querySelector("img, picture, video")).toBeNull();
+        expect(container.querySelector("main img, main picture, main video")).toBeNull();
+        const home = screen.getByRole("link", { name: "Gnosis home" });
+        expect(home).toHaveAttribute("href", "/");
+        expect(home.querySelector("img")).toHaveAttribute("src", "/gnosis.svg");
+        expect(home.querySelector("img")).toHaveAttribute("width", "40");
+        expect(home.querySelector("img")).toHaveAttribute("height", "40");
+        expect(home.querySelector("img")).toHaveAttribute("alt", "");
         expect(container.querySelector('[itemtype*="Organization"]')).toBeNull();
     });
 
@@ -57,7 +63,7 @@ describe("About Gnosis", () => {
         expect(document.head.querySelector('[data-seo-jsonld]')).toBeNull();
     });
 
-    test("supports mobile disclosure and Escape focus on the text-only page", async () => {
+    test("supports mobile disclosure and Escape focus on the About page", async () => {
         const user = userEvent.setup();
         renderAbout();
         const toggle = screen.getByRole("button", { name: "Open menu" });

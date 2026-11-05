@@ -8,8 +8,7 @@ import useClickOutside from "../hooks/useClickOutside";
 // Shared header for the public landing and About pages. The study reader
 // keeps its own header; this one carries public destinations (About Us,
 // Sign in, Create account) and the real Gnosis logo asset
-// (public/gnosis.svg, also the site favicon). About uses the text wordmark
-// to keep that page image-free; the homepage uses the approved logo.
+// (public/gnosis.svg, also the site favicon) on both public pages.
 //
 // Logged-in visitors get account behavior instead of auth links: a
 // "Start Studying" button plus an account chip with a small menu
@@ -129,13 +128,13 @@ export default function LandingHeader({ hero = false }) {
             </a>
             <div className="landing-header-inner">
                 <Link to="/" className="landing-logo" aria-label="Gnosis home">
-                    {hero && <img
+                    <img
                         src="/gnosis.svg"
                         alt=""
                         width="40"
                         height="40"
                         className="landing-logo-img"
-                    />}
+                    />
                     <span className="landing-logo-word">Gnosis</span>
                 </Link>
 

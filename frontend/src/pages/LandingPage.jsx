@@ -15,7 +15,7 @@ import "./LandingPage.css";
 // Public landing page for "/". The study reader stays at
 // /bible/:book/:chapter; this page only links to it, never replaces
 // it. Copy, palette, and sections follow the approved landing design:
-// warm sandstone, cream, deep charcoal, muted olive, literary serif
+// warm sandstone, cream, burgundy, deep charcoal, literary serif
 // headings, clean sans-serif body.
 //
 // The hero image is supplied by Yonatan (a Gemini-generated desert
@@ -147,6 +147,7 @@ export default function LandingPage() {
                     className="landing-section landing-features"
                     aria-labelledby="landing-features-heading"
                 >
+                    <p className="public-eyebrow">A considered study space</p>
                     <h2 id="landing-features-heading">
                         Scripture and commentary, side by side
                     </h2>
@@ -172,6 +173,7 @@ export default function LandingPage() {
                     className="landing-section landing-how"
                     aria-labelledby="landing-how-heading"
                 >
+                    <p className="public-eyebrow">A simple rhythm</p>
                     <h2 id="landing-how-heading">How it works</h2>
                     <p>
                         Open any passage and the chapter appears with
@@ -205,6 +207,7 @@ export default function LandingPage() {
                     className="landing-section landing-commentaries"
                     aria-labelledby="landing-commentaries-heading"
                 >
+                    <p className="public-eyebrow">Perspectives across generations</p>
                     <h2 id="landing-commentaries-heading">
                         Trusted classic commentary
                     </h2>
@@ -247,6 +250,7 @@ export default function LandingPage() {
                     className="landing-section landing-explore"
                     aria-labelledby="landing-explore-heading"
                 >
+                    <p className="public-eyebrow">Begin with a passage</p>
                     <h2 id="landing-explore-heading">
                         Explore Scripture
                     </h2>
@@ -275,6 +279,7 @@ export default function LandingPage() {
                     className="landing-section landing-final-cta"
                     aria-labelledby="landing-final-heading"
                 >
+                    <p className="public-eyebrow">Read. Consider. Return.</p>
                     <h2 id="landing-final-heading">
                         Start studying today
                     </h2>

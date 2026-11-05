@@ -68,6 +68,11 @@ describe("LandingPage", () => {
         expect(shell).toContainElement(screen.getByRole("banner"));
         expect(shell).toContainElement(screen.getByRole("img", { name: /laptop and a phone/ }));
         expect(document.querySelectorAll(".landing-hero-img")).toHaveLength(1);
+        const home = screen.getByRole("link", { name: "Gnosis home" });
+        expect(home).toHaveAttribute("href", "/");
+        expect(home.querySelector("img")).toHaveAttribute("src", "/gnosis.svg");
+        expect(home.querySelector("img")).toHaveAttribute("width", "40");
+        expect(home.querySelector("img")).toHaveAttribute("height", "40");
         expect(document.querySelector('a[href="#about"]')).toBeNull();
         for (const link of screen.getAllByRole("link", { name: /About Us/ })) {
             expect(link).toHaveAttribute("href", "/about");

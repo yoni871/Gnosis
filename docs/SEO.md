@@ -230,16 +230,17 @@ are no below-the-fold raster images or new dependencies.
 `/about` is a public, indexable, text-focused page with unique title and
 description, canonical `https://studygnosis.com/about`, Open Graph and
 Twitter text metadata, and `index, follow`. It emits no organization claims
-or structured data and loads no image. All public About Us links lead here;
+or structured data and has no photographic content. All public About Us links lead here;
 the homepage retains only a short introduction. The existing SPA rewrite
 supports direct access and refresh without configuration changes.
 
 The page explains mission, existing study tools, the name's distinction from
 Gnosticism, the two commentary sources, and Scripture-first study principles.
 It uses the same typography, burgundy buttons, parchment surfaces and borders
-as the landing page. The wordmark is text-only; hamburger icons are interface
-controls, not illustrations. Desktop contents navigation becomes an inline
-list on small screens. No backend or authentication contract changes.
+as the landing page. Both headers use the existing `/gnosis.svg` logo, with
+identical dimensions and a home link. An editorial grid groups the mission,
+resources, and principles; the contents links wrap on narrow screens. Shared
+width, gutter, spacing, radius, and color tokens keep public pages aligned. No backend or authentication contract changes.
 
 ## 5. Indexable chapter content (prerendering plan)
 
