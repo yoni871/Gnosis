@@ -94,8 +94,8 @@
 .landing-hero-img { display: block; width: 100%; height: auto; aspect-ratio: 1672 / 941; object-fit: cover; }
 .landing-hero-scrim { display: none; }
 .landing-hero-copy { width: min(100%, var(--public-width)); margin: auto; padding: 48px var(--public-gutter) 64px; }
-.landing-hero-copy h1 { max-width: 680px; margin: 0 0 28px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 600; letter-spacing: -.055em; line-height: 1.04; text-wrap: balance; }
-.landing-hero-copy > p:not(.public-eyebrow) { max-width: 520px; margin: 0 0 30px; font-size: 1.08rem; line-height: 1.7; }
+.landing-hero-copy h1 { max-width: 680px; margin: 0 0 28px; font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1.12; text-wrap: balance; }
+.landing-hero-copy > p:not(.public-eyebrow) { max-width: 520px; margin: 0 0 30px; font-size: 1.07rem; line-height: 1.75; }
 .landing-hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 @media (min-width: 1200px) {
     .landing-page { --hero-height: min(56.25vw, 900px); }
@@ -209,7 +209,7 @@
     .landing-header-inner { min-height: 80px; padding-block: 16px; }
     .landing-hero-copy { padding-block: 36px 56px; }
     .landing-hero-copy .public-eyebrow { font-size: .65rem; letter-spacing: .12em; }
-    .landing-hero-copy h1 { font-size: clamp(2.65rem, 8.5vw, 3.8rem); }
+    .landing-hero-copy h1 { font-size: clamp(2.2rem, 7vw, 3.4rem); }
     .landing-hero-copy > p:not(.public-eyebrow) { font-size: 1rem; }
     .landing-btn-large { padding-inline: 20px; }
     .landing-hero-ctas { display: grid; grid-template-columns: 1fr; }
