@@ -16,6 +16,7 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     line-height: 1.7;
 }
+[data-theme="dark"] .public-page { --public-brand-ink: var(--text-primary, #f0e7d9); }
 .public-page h1, .public-page h2, .public-page h3 {
     font-family: "Lora", Georgia, serif;
     color: inherit;
