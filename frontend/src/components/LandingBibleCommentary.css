@@ -37,3 +37,13 @@
     .landing-bible-copy { max-width: 620px; }
     .landing-bible-frame { width: 100%; margin-top: 0; }
 }
+
+/* Owner-supplied mobile captures retain their pixels and proportions.
+   Show content rows 591–2350; omit status/navigation and bottom browser bars. */
+.landing-bible-mobile-pair { display: none; }
+@media (width < 768px) {
+    .landing-bible-frame > .landing-bible-crop { display: none; }
+    .landing-bible-mobile-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .landing-bible-mobile-crop { position: relative; aspect-ratio: 1284 / 1759; overflow: hidden; border-radius: 6px; background: #f8f3e7; }
+    .landing-bible-mobile-crop img { position: absolute; display: block; width: 100%; height: auto; max-width: none; top: -33.5986%; left: 0; }
+}

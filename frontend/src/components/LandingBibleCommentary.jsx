@@ -30,6 +30,14 @@ export default function LandingBibleCommentary() {
                     <div className="landing-bible-crop">
                         <img src="/images/landing/bible-commentary/reader-1920.jpg" width="1920" height="1200" loading="lazy" decoding="async" alt="The actual Gnosis reader showing Genesis 1 in the KJV beside Matthew Henry's commentary" />
                     </div>
+                    <div className="landing-bible-mobile-pair">
+                        <div className="landing-bible-mobile-crop">
+                            <img src="/images/landing/bible-commentary/mobile-scripture-856.jpg" width="856" height="1852" loading="lazy" decoding="async" alt="Gnosis mobile Scripture view showing John 1 in the KJV" />
+                        </div>
+                        <div className="landing-bible-mobile-crop">
+                            <img src="/images/landing/bible-commentary/mobile-commentary-856.jpg" width="856" height="1852" loading="lazy" decoding="async" alt="Gnosis mobile commentary view showing Matthew Henry on John 1" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <svg className="landing-bible-landscape" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
