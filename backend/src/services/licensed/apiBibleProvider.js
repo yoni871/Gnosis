@@ -143,6 +143,40 @@ function decodeEntities(text) {
 // first word ("Or</span>who" — a span that opened in an earlier verse
 // and closes here). A tag that does close later just wraps text and is
 // dropped.
+// Last resort: a verse can start with two words joined and no markup
+// between them at all — API.Bible drops the cross-reference marker
+// entirely when notes are excluded, leaving e.g. "Orwho" (NKJV Romans
+// 11:35) and "Andit" (NKJV Acts 2:17). There is nothing to strip, so the
+// parser repairs the join at the text level, and only there: the first
+// word of the verse, split into a common verse-start word (or, and, but
+// ...) plus a common word (who, it, are ...). A proper name at a verse
+// start (Bethany) does not split — its first part is not a verse-start
+// word — and a genuine compound mid-verse (firstfruit) is never touched.
+const VERSE_START_WORDS = ["or", "and", "but", "for", "the", "then", "now", "when", "so", "yet", "as", "if", "o"];
+const COMMON_WORDS = new Set([
+    "who", "it", "are", "is", "they", "he", "she", "we", "you", "this", "that", "there", "here",
+    "what", "when", "where", "all", "the", "a", "an", "my", "his", "her", "their", "our", "your",
+    "no", "not", "so", "then", "now", "will", "shall", "can", "could", "would", "should", "may",
+    "might", "must", "have", "has", "had", "do", "does", "did", "be", "been", "am", "was", "were",
+    "lord", "god", "jesus", "christ", "king", "man", "son", "day", "time", "way", "word", "house",
+    "land", "people", "children", "hand", "earth", "heaven", "faith", "life", "death", "sin", "law",
+    "grace", "truth", "light", "world", "kingdom", "spirit", "soul", "heart", "voice", "name", "work",
+    "power", "glory", "praise", "blessed", "holy", "good", "great", "first", "last", "new", "old",
+    "one", "two", "three", "many", "much", "more", "most", "other", "into", "over", "under", "again",
+    "once", "out", "up", "down", "off", "on", "in", "at", "to", "for", "of", "with", "by", "from",
+    "about", "through", "after", "before", "between", "and", "or", "but", "as", "if", "then", "yet",
+]);
+function repairVerseStartJoin(text) {
+    return text.replace(/^([“‘"'([]*)([A-Za-z]+)/, (match, lead, word) => {
+        const low = word.toLowerCase();
+        for (const first of VERSE_START_WORDS) {
+            if (low.startsWith(first) && low.length > first.length && COMMON_WORDS.has(low.slice(first.length))) {
+                return lead + word.slice(0, first.length) + " " + word.slice(first.length);
+            }
+        }
+        return match;
+    });
+}
 function stripVerseHtml(html) {
     let text = html || "";
     text = text.replace(/<!--[\s\S]*?-->/g, " ");
@@ -156,10 +190,10 @@ function stripVerseHtml(html) {
     );
     text = text.replace(/([\p{L}\p{N}])(<\/[a-z][a-z0-9]*\s*>)(?=[\p{L}\p{N}])/giu, "$1 ");
     text = text.replace(/<[^>]+>/g, "");
-    return decodeEntities(text)
+    return repairVerseStartJoin(decodeEntities(text)
         .replace(/\s+/g, " ")
         .replace(/\s+([.,;:!?])/g, "$1")
-        .trim();
+        .trim());
 }
 
 // Split one chapter's HTML into {verse_number, text} rows. Numbers must
