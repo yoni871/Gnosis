@@ -32,7 +32,9 @@ if (require.main === module) {
         'test/auth/emailConfig.test.js', 'test/auth/verification.test.js',
         'test/auth/resendClient.test.js', 'test/auth/emailVerification.test.js',
         'test/auth/serverConfig.test.js', 'test/config/environment.test.js',
-        'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js'], {
+        'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js',
+        'test/translations/licensedProviders.test.js',
+        'test/translations/licensedService.test.js'], {
         cwd: path.resolve(__dirname, '..'), env: testEnvironment(), stdio: 'inherit',
     });
     process.exitCode = result.status ?? 1;

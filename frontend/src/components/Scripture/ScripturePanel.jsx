@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { ChevronDown, Bookmark } from "lucide-react";
 import VerseActions from "./VerseActions";
 import { isHighlightSelected } from "../../utils/highlightUtils";
+import { getTranslationNotice } from "../../utils/translationNotice";
 
 export default function ScripturePanel({
     verses = [],
@@ -445,6 +446,32 @@ export default function ScripturePanel({
                         </span>
                     ))}
                 </div>
+
+                {/* Copyright notice for a licensed translation. The notice
+                    (and its link, where the licence asks for one) travels
+                    with the translation row from /translations, so the
+                    passage and its attribution can never drift apart. */}
+                {(() => {
+                    const notice = getTranslationNotice(translations, translation);
+                    if (!notice) {
+                        return null;
+                    }
+                    return (
+                        <p className="mx-auto mt-[36px] mb-[28px] max-w-[550px] text-center text-[12px] leading-[1.7] text-[var(--text-muted)]">
+                            {notice.text}{" "}
+                            {notice.url && (
+                                <a
+                                    href={notice.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="underline"
+                                >
+                                    {notice.host}
+                                </a>
+                            )}
+                        </p>
+                    );
+                })()}
 
             </div>
 

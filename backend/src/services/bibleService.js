@@ -1,5 +1,6 @@
 const pool = require("../db/db");
 const { get } = require("../routes/searchRoutes");
+const { isProviderConfigured } = require("./licensed/licensedTranslations");
 
 const getAllBooks = () => {
     return pool.query("SELECT * FROM bible_books");
@@ -30,8 +31,24 @@ const getVersesByChapter = (chapterId, translationId) => {
     )
 }
 
-const getAllTranslations = () => {
-    return pool.query("SELECT * FROM bible_translations");
+const getAllTranslations = async () => {
+    const result = await pool.query("SELECT * FROM bible_translations");
+    // The kill-switch is `enabled`, and a licensed translation is only
+    // listed once its provider key (and Bible ID, for API.Bible) is set —
+    // so the site behaves exactly as before until the keys arrive.
+    return {
+        rows: result.rows.filter(
+            (row) => row.enabled && isProviderConfigured(row)
+        ),
+    };
+}
+
+const getTranslationByAbbreviation = async (abbreviation) => {
+    const result = await pool.query(
+        "SELECT * FROM bible_translations WHERE abbreviation = $1",
+        [abbreviation]
+    );
+    return result.rows.length === 0 ? null : result.rows[0];
 }
 
 const getAllCommentaries = () => {
@@ -214,6 +231,7 @@ module.exports = {
     getAllChapters,
     getVersesByChapter,
     getAllTranslations,
+    getTranslationByAbbreviation,
     getAllCommentaries,
     getCommentariesByBook,
     getAllSources,
