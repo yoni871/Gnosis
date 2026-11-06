@@ -72,6 +72,9 @@ export default function Seo({
     robots = "index, follow",
     ogType = "website",
     ogImage,
+    ogImageWidth,
+    ogImageHeight,
+    ogImageAlt,
     twitterCard = "summary",
     jsonLd,
 }) {
@@ -96,9 +99,35 @@ export default function Seo({
         if (ogImage) {
             upsertMeta("property", "og:image", ogImage);
             upsertMeta("name", "twitter:image", ogImage);
+            if (ogImageWidth != null) {
+                upsertMeta(
+                    "property",
+                    "og:image:width",
+                    String(ogImageWidth),
+                );
+            } else {
+                removeMeta("property", "og:image:width");
+            }
+            if (ogImageHeight != null) {
+                upsertMeta(
+                    "property",
+                    "og:image:height",
+                    String(ogImageHeight),
+                );
+            } else {
+                removeMeta("property", "og:image:height");
+            }
+            if (ogImageAlt != null) {
+                upsertMeta("property", "og:image:alt", ogImageAlt);
+            } else {
+                removeMeta("property", "og:image:alt");
+            }
         } else {
             removeMeta("property", "og:image");
             removeMeta("name", "twitter:image");
+            removeMeta("property", "og:image:width");
+            removeMeta("property", "og:image:height");
+            removeMeta("property", "og:image:alt");
         }
 
         upsertJsonLd(jsonLd);
@@ -109,6 +138,9 @@ export default function Seo({
         robots,
         ogType,
         ogImage,
+        ogImageWidth,
+        ogImageHeight,
+        ogImageAlt,
         twitterCard,
         jsonLd,
     ]);

@@ -1,6 +1,8 @@
 import { describe, expect, test } from "vitest";
 
 import {
+    LANDING_DESCRIPTION,
+    LANDING_TITLE,
     chapterDescription,
     chapterDisplayName,
     chapterPath,
@@ -9,6 +11,27 @@ import {
     getSiteUrl,
     pageUrl,
 } from "./seo";
+
+describe("landing metadata", () => {
+    test("titles the homepage as the broader platform, not only commentary", () => {
+        expect(LANDING_TITLE).toBe(
+            "Gnosis | Explore Scripture, Theology & Christian History",
+        );
+    });
+
+    test("describes Scripture, theology, history, and Christian thought", () => {
+        expect(LANDING_DESCRIPTION).toBe(
+            "Explore Scripture alongside trusted commentary and discover the " +
+                "connections between God\u2019s Word, theology, history, and " +
+                "Christian thought.",
+        );
+    });
+
+    test("names no feature the site does not have", () => {
+        expect(LANDING_TITLE).not.toMatch(/hymn|sermon|language/i);
+        expect(LANDING_DESCRIPTION).not.toMatch(/hymn|sermon|language/i);
+    });
+});
 
 describe("getSiteUrl", () => {
     test("defaults to the production site when no build-time URL is set", () => {

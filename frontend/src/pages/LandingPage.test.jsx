@@ -340,9 +340,58 @@ describe("LandingPage", () => {
         expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
     });
 
-    test("static social preview and responsive assets use the approved image directory", () => {
+    test("static homepage metadata, favicon, and social preview use the approved values", () => {
         const html = readFileSync("index.html", "utf8");
-        expect(html).toContain('property="og:image" content="https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg"');
+        // Initial HTML carries the homepage's own metadata so crawlers
+        // that do not run JavaScript still see the platform identity.
+        expect(html).toContain(
+            "<title>Gnosis | Explore Scripture, Theology & Christian History</title>",
+        );
+        expect(html).toContain(
+            'content="Explore Scripture alongside trusted commentary and discover the connections between God\u2019s Word, theology, history, and Christian thought."',
+        );
+        expect(html).toContain(
+            'property="og:title" content="Gnosis | Explore Scripture, Theology & Christian History"',
+        );
+        expect(html).toContain(
+            'name="twitter:title" content="Gnosis | Explore Scripture, Theology & Christian History"',
+        );
+        expect(html).toContain('property="og:site_name" content="Gnosis"');
+        expect(html).toContain(
+            'property="og:image" content="https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg"',
+        );
+        expect(html).toContain(
+            '<meta property="og:image:width" content="1200" />',
+        );
+        expect(html).toContain(
+            '<meta property="og:image:height" content="675" />',
+        );
+        expect(html).toContain(
+            'property="og:image:alt" content="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset"',
+        );
+        // The WebSite block is static here and managed at runtime by
+        // <Seo> through the same data-seo-jsonld node.
+        const jsonLdMatch = html.match(
+            /<script type="application\/ld\+json" data-seo-jsonld>([\s\S]*?)<\/script>/,
+        );
+        expect(jsonLdMatch).not.toBeNull();
+        expect(JSON.parse(jsonLdMatch[1])).toMatchObject({
+            "@type": "WebSite",
+            name: "Gnosis",
+            url: "https://studygnosis.com/",
+            description: LANDING_DESCRIPTION,
+        });
+        // Raster favicon for Google Search (SVG is not a supported
+        // search favicon format); the SVG stays for browsers.
+        expect(html).toContain(
+            '<link rel="icon" type="image/svg+xml" sizes="any" href="/gnosis.svg" />',
+        );
+        expect(html).toContain(
+            '<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />',
+        );
+        expect(html).toContain(
+            '<link rel="apple-touch-icon" href="/favicon.png" />',
+        );
         expect(html).not.toContain('rel="canonical"');
         renderLanding(LOGGED_OUT);
         const image = screen.getByRole("img", { name: /laptop and a phone/ });
@@ -388,6 +437,18 @@ describe("LandingPage", () => {
         ).toHaveAttribute(
             "content",
             "https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg",
+        );
+        expect(
+            document.querySelector('meta[property="og:image:width"]'),
+        ).toHaveAttribute("content", "1200");
+        expect(
+            document.querySelector('meta[property="og:image:height"]'),
+        ).toHaveAttribute("content", "675");
+        expect(
+            document.querySelector('meta[property="og:image:alt"]'),
+        ).toHaveAttribute(
+            "content",
+            "A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset",
         );
         expect(
             document.querySelector('meta[name="twitter:card"]'),

@@ -29,16 +29,19 @@ export function getSiteUrl() {
     return configured.replace(/\/+$/, "");
 }
 
-// The future landing page's metadata, reserved here so the page can be
-// built later without re-deciding titles and descriptions. index.html
-// already carries these as the site-wide default.
+// The landing page's metadata. This is the site's public identity:
+// Scripture as the foundation, with theology, history, and Christian
+// thought as interconnected areas of exploration. It describes the
+// platform's direction, not a feature list — it names no feature the
+// site does not have. index.html carries these as the site-wide
+// default, and the landing page sets them explicitly through <Seo>.
 export const LANDING_TITLE =
-    "Gnosis | Bible Study & Verse-by-Verse Commentary";
+    "Gnosis | Explore Scripture, Theology & Christian History";
 
 export const LANDING_DESCRIPTION =
-    "Study Scripture with Gnosis, a Bible study platform featuring " +
-    "classic commentaries, verse-by-verse explanations, and tools to " +
-    "help you understand God\u2019s Word.";
+    "Explore Scripture alongside trusted commentary and discover the " +
+    "connections between God\u2019s Word, theology, history, and " +
+    "Christian thought.";
 
 // Display name for a chapter reference. Only Psalms differs from its
 // database name: the book is "Psalms", the reference is "Psalm 23".
