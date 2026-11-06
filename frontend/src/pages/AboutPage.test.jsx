@@ -35,7 +35,7 @@ describe("About Gnosis", () => {
     test("public navigation and all study CTAs have valid destinations", () => {
         renderAbout();
         expect(screen.getByRole("link", { name: "Explore Scripture →" })).toHaveAttribute("href", "/bible/Genesis/1");
-        for (const link of screen.getAllByRole("link", { name: "About Us" })) expect(link).toHaveAttribute("href", "/about");
+        for (const link of screen.getAllByRole("link", { name: "About" })) expect(link).toHaveAttribute("href", "/about");
         for (const link of within(screen.getByRole("navigation", { name: "On this page" })).getAllByRole("link")) {
             expect(document.querySelector(link.getAttribute("href"))).toBeInTheDocument();
         }
@@ -67,7 +67,7 @@ describe("About Gnosis", () => {
         renderAbout();
         const toggle = screen.getByRole("button", { name: "Open menu" });
         await user.click(toggle);
-        within(screen.getByRole("navigation", { name: "Mobile" })).getByRole("link", { name: "About Us" }).focus();
+        within(screen.getByRole("navigation", { name: "Mobile" })).getByRole("link", { name: "About" }).focus();
         await user.keyboard("{Escape}");
         expect(toggle).toHaveFocus();
         expect(toggle).toHaveAttribute("aria-expanded", "false");
@@ -78,7 +78,7 @@ describe("About Gnosis", () => {
         const logout = vi.fn();
         renderAbout({ user: { first_name: "Sample", last_name: "Reader" }, isAuthLoading: false, logout });
         const header = screen.getByRole("banner");
-        expect(within(header).queryByRole("link", { name: "Sign in" })).toBeNull();
+        expect(within(header).queryByRole("link", { name: "Sign In" })).toBeNull();
         await user.click(within(header).getByRole("button", { name: /Account menu/ }));
         await user.click(within(header).getByRole("button", { name: "Sign out" }));
         expect(logout).toHaveBeenCalledTimes(1);
@@ -97,17 +97,47 @@ describe("About Gnosis", () => {
     });
 });
 
-test("all four Scripture cards preserve complete KJV text, Greek and exact verse destinations", async () => {
+test("all four editorial passages preserve complete KJV text, Greek and exact verse destinations", async () => {
     const { GNOSIS_PASSAGES } = await import("./aboutContent");
     renderAbout();
-    const cards = document.querySelectorAll('.about-scripture-card');
+    const cards = document.querySelectorAll('.about-scripture-passage');
     expect(cards).toHaveLength(4);
     GNOSIS_PASSAGES.forEach((passage,index) => {
-        expect(cards[index].querySelector('blockquote').textContent).toBe(passage.quotation);
+        expect(cards[index].querySelector('.about-quotation-text').textContent).toBe(passage.quotation);
+        expect(cards[index].querySelector('blockquote').textContent).toBe(`“${passage.quotation}”`);
+        expect(cards[index].querySelector('h3')).toHaveTextContent(`Scripture — ${passage.reference}`);
         expect(cards[index].querySelector('.about-knowledge').textContent).toBe('knowledge');
         expect(cards[index].querySelector('[lang="grc"]').textContent).toBe(passage.greek);
         expect(cards[index].querySelector('a')).toHaveAttribute('href',`/bible/${encodeURIComponent(passage.book)}/${passage.chapter}?verse=${passage.verse}&translation=KJV`);
     });
+    for (const title of ["The Knowledge of Salvation", "The Depth of God's Knowledge", "The Surpassing Worth of Knowing Christ", "Growing in Knowledge"]) expect(screen.queryByText(title)).toBeNull();
+    expect(document.querySelector('.about-scripture-card')).toBeNull();
     expect(screen.getByText(/not a list of features currently available/)).toBeInTheDocument();
     expect(screen.queryByText('A Place to Pursue Deeper Understanding.')).toBeNull();
+});
+
+test("About reuses the landing navbar's centered Explore/About and account actions", async () => {
+    const user = userEvent.setup(); renderAbout();
+    const header = screen.getByRole('banner');
+    expect(header).toHaveClass('landing-header-hero','landing-header-solid');
+    const primary = within(header).getByRole('navigation',{name:'Primary'});
+    expect(primary).toHaveClass('landing-nav-center');
+    expect(within(primary).getByRole('link',{name:'About'})).toHaveAttribute('href','/about');
+    const actions = within(header).getByRole('navigation',{name:'Account'});
+    expect(within(actions).getByRole('link',{name:'Sign In'})).toHaveAttribute('href','/login');
+    expect(within(actions).getByRole('link',{name:'Start Exploring →'})).toHaveAttribute('href','/bible/Genesis/1');
+    const explore=within(primary).getByRole('button',{name:'Explore'});
+    await user.click(explore);
+    expect(within(primary).getByRole('link',{name:/Bible & Commentary/})).toHaveAttribute('href','/bible/Genesis/1');
+    await user.keyboard('{Escape}'); expect(explore).toHaveFocus(); expect(explore).toHaveAttribute('aria-expanded','false');
+});
+
+test("About mobile navbar supports the same nested Explore disclosure and Escape order", async () => {
+    const user=userEvent.setup();renderAbout();
+    const toggle=screen.getByRole('button',{name:'Open menu'});await user.click(toggle);
+    const mobile=screen.getByRole('navigation',{name:'Mobile'});
+    const explore=within(mobile).getByRole('button',{name:'Explore'});await user.click(explore);
+    within(mobile).getByRole('link',{name:/Bible & Commentary/}).focus();await user.keyboard('{Escape}');
+    expect(explore).toHaveFocus();expect(toggle).toHaveAttribute('aria-expanded','true');
+    await user.keyboard('{Escape}');expect(toggle).toHaveFocus();expect(toggle).toHaveAttribute('aria-expanded','false');
 });

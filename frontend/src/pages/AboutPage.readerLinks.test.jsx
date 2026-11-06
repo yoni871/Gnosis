@@ -20,7 +20,7 @@ beforeEach(()=>{
     bible.getTranslations.mockResolvedValue([{abbreviation:'KJV',name:'Synthetic KJV fixture'}]);
     commentary.getCommentaries.mockResolvedValue([]);commentary.getChapterCommentaries.mockResolvedValue([]);
 });
-test.each(GNOSIS_PASSAGES)('About card navigates to, selects and scrolls $reference in the actual reader',async passage=>{
+test.each(GNOSIS_PASSAGES)('About passage link navigates to, selects and scrolls $reference in the actual reader',async passage=>{
     const text=`Synthetic destination ${passage.reference}`;
     bible.getBibleChapter.mockResolvedValue([{verse_number:passage.verse,text}]);
     render(<ThemeProvider><AuthContext.Provider value={{user:null,token:null,sessionVersion:0,isAuthLoading:false,logout:vi.fn()}}><MemoryRouter initialEntries={['/about']}><Routes><Route path="/about" element={<AboutPage/>}/><Route path="/bible/:book/:chapter" element={<StudyPage/>}/></Routes></MemoryRouter></AuthContext.Provider></ThemeProvider>);

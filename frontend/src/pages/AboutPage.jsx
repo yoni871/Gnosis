@@ -11,21 +11,18 @@ import "./LandingPage.css";
 import "./LandingHero.css";
 import "./AboutPage.css";
 
-function ScriptureCard({ passage }) {
+function ScripturePassage({ passage }) {
     const [before, after] = passage.quotation.split("knowledge");
     const destination = `${chapterPath(passage.book, passage.chapter)}?verse=${passage.verse}&translation=KJV`;
     return (
-        <article className="about-scripture-card" data-about-reveal>
-            <Link to={destination} className="about-scripture-link" aria-label={`Read ${passage.reference} in Bible`}>
-                <div className="about-passage-top"><span>{passage.reference}</span><span>KJV</span></div>
-                <h3>{passage.title}</h3>
-                <blockquote>{before}<span className="about-knowledge">knowledge</span>{after}</blockquote>
-                <div className="about-passage-context">
-                    <p className="about-greek-form"><span lang="grc">{passage.greek}</span><em>{passage.transliteration}</em></p>
-                    <p>{passage.explanation}</p>
-                </div>
-                <span className="about-read-link">Read in Bible <span aria-hidden="true">→</span></span>
-            </Link>
+        <article className="about-scripture-passage" data-about-reveal aria-labelledby={`passage-${passage.book.replaceAll(" ", "-")}`}>
+            <h3 id={`passage-${passage.book.replaceAll(" ", "-")}`} className="about-passage-reference">Scripture — {passage.reference}</h3>
+            <blockquote><span aria-hidden="true">“</span><span className="about-quotation-text">{before}<span className="about-knowledge">knowledge</span>{after}</span><span aria-hidden="true">”</span></blockquote>
+            <div className="about-passage-context">
+                <p className="about-greek-form"><span lang="grc">{passage.greek}</span><em>{passage.transliteration}</em></p>
+                <p>{passage.explanation}</p>
+            </div>
+            <Link to={destination} className="about-read-link" aria-label={`Read ${passage.reference} in Bible`}>Read in Bible <span aria-hidden="true">→</span></Link>
         </article>
     );
 }
@@ -39,7 +36,7 @@ export default function AboutPage() {
             <Seo title="About Gnosis | Scripture, Commentary & Thoughtful Study"
                 description="Learn about Gnosis, a Christian Bible study application bringing Scripture, classic commentary, notes, bookmarks, and highlights into one focused space."
                 canonical={pageUrl("/about")} />
-            <LandingHeader />
+            <LandingHeader hero solid />
             <main id="landing-main" tabIndex={-1} className="about-editorial-layout">
                 <AboutSectionNavigation sections={ABOUT_SECTIONS} />
                 <div className="about-editorial-reading">
@@ -63,7 +60,7 @@ export default function AboutPage() {
                         <p className="about-editorial-eyebrow">KNOWLEDGE ROOTED IN SCRIPTURE</p>
                         <h2 id="scripture-heading" data-about-reveal>Gnosis in Scripture</h2>
                         <p className="about-section-introduction">Four passages that reflect the meaning behind the name.</p>
-                        <div className="about-scripture-cards">{GNOSIS_PASSAGES.map(passage => <ScriptureCard key={passage.reference} passage={passage} />)}</div>
+                        <div className="about-scripture-passages">{GNOSIS_PASSAGES.map(passage => <ScripturePassage key={passage.reference} passage={passage} />)}</div>
                     </section>
                     <section id="mission" tabIndex={-1} className="about-mission" aria-labelledby="mission-heading">
                         <p className="about-editorial-eyebrow">OUR MISSION</p>

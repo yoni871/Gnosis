@@ -7,10 +7,9 @@ import useClickOutside from "../hooks/useClickOutside";
 import ExploreDropdown from "./ExploreDropdown";
 import "./LandingNavbar.css";
 
-// Shared public header with a landing-only Explore/center/actions layout.
-// About keeps the original destinations and presentation. The real logo is
-// reused in both variants. Signed-in visitors retain the existing account
-// disclosure and logout call; no session/authentication contract changes.
+// Shared public navigation. The hero layout also supports a solid background
+// in normal flow for About. Both reuse the same logo, disclosures and actions;
+// no session/authentication contract changes.
 
 function initials(user) {
     const first = user?.first_name?.[0] ?? "";
@@ -98,7 +97,7 @@ function AuthLinks({ closeAll, hero = false }) {
 
 }
 
-export default function LandingHeader({ hero = false }) {
+export default function LandingHeader({ hero = false, solid = false }) {
     const { isAuthLoading } = useContext(AuthContext);
     const [mobileOpen, setMobileOpen] = useState(false);
     const trigger = useRef(null);
@@ -108,7 +107,7 @@ export default function LandingHeader({ hero = false }) {
     const closeAll = () => setMobileOpen(false);
 
     return (
-        <header ref={headerRef} className={`landing-header${hero ? " landing-header-hero" : ""}`}
+        <header ref={headerRef} className={`landing-header${hero ? " landing-header-hero" : ""}${solid ? " landing-header-solid" : ""}`}
             onBlur={(event) => {
                 if (!event.currentTarget.contains(event.relatedTarget)) closeAll();
             }}
