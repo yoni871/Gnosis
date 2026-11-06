@@ -19,6 +19,7 @@ describe("About Gnosis", () => {
         for (const name of ["Why the Name Gnosis?", "Gnosis in Scripture", "Our Mission", "Our Vision"]) {
             expect(screen.getByRole("heading", { level: 2, name })).toBeInTheDocument();
         }
+        expect(within(screen.getByRole("region", { name: "Our Mission" })).getAllByText(/^our mission$/i)).toHaveLength(1);
         expect(screen.getByText(/not connected to Gnosticism or its teachings/)).toBeInTheDocument();
         expect(screen.getByText(/not inspired Scripture, an error-free authority/)).toBeInTheDocument();
         expect(screen.getByText(/Today, Gnosis brings Scripture/)).toBeInTheDocument();

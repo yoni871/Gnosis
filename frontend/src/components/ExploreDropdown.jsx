@@ -39,7 +39,7 @@ export default function ExploreDropdown({ items = DEFAULT_ITEMS, onNavigate }) {
                 Explore <ChevronDown size={14} aria-hidden="true" />
             </button>
             {open && (
-                <ul id={id} className="landing-explore-options">
+                <ul id={id} className="landing-nav-popover landing-explore-options">
                     {items.map(item => (
                         <li key={item.to}>
                             <Link to={item.to} onClick={() => { setOpen(false); onNavigate?.(); }}>

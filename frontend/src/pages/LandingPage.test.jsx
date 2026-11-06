@@ -608,7 +608,8 @@ describe("LandingPage Continue reading", () => {
             "href",
             "/bible/Genesis/1?translation=ESV&commentary=3&verse=5",
         );
-        expect(within(hero()).getByText("Genesis 1 · ESV")).toBeInTheDocument();
+        expect(within(hero()).getByText("Genesis 1:5 · ESV")).toBeInTheDocument();
+        expect(link).toHaveAccessibleDescription("Pick up where you left off. Genesis 1:5 · ESV");
         expect(
             within(hero()).queryByRole("link", { name: "Start Exploring →" }),
         ).toBeNull();

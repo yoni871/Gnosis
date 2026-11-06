@@ -69,7 +69,7 @@ function AuthLinks({ closeAll, hero = false }) {
                     </span>
                 </button>
                 {accountOpen && (
-                    <div id={menuId} className="landing-account-menu">
+                    <div id={menuId} className="landing-nav-popover landing-account-menu">
                         <Link to="/bible/Genesis/1" onClick={closeAll}>
                             Continue studying
                         </Link>
