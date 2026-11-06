@@ -109,3 +109,153 @@ describe("ScripturePanel translation dropdown", () => {
         ).not.toBeInTheDocument();
     });
 });
+
+// The reader moves on a chapter change or an explicit jump to a verse,
+// never because a verse was deselected.
+const chapterVerses = [
+    {
+        verse_number: 1,
+        text: "In the beginning God created the heaven and the earth.",
+    },
+    {
+        verse_number: 2,
+        text: "And the earth was without form, and void.",
+    },
+    {
+        verse_number: 3,
+        text: "And God said, Let there be light.",
+    },
+];
+
+function selectionOf(...verses) {
+    return {
+        bookId: 2,
+        verses: verses.map((verse) => ({ chapter: 1, verse })),
+    };
+}
+
+function mountReader({
+    verses = chapterVerses,
+    selectedVerse = null,
+    selection = { bookId: null, verses: [] },
+} = {}) {
+    const props = {
+        verses,
+        book: "Genesis",
+        chapter: 1,
+        translation: "KJV",
+        translations,
+        selectedVerse,
+        setSelectedVerse: () => {},
+        setTranslation: () => {},
+        books: [{ id: 2, name: "Genesis" }],
+        bookmarksState: { findBookmark: () => null, error: null },
+        highlightsState: {
+            highlights: [],
+            error: null,
+            isLoading: false,
+            isSaving: false,
+        },
+        verseSelection: {
+            selection,
+            toggleVerse: () => {},
+            clearSelection: () => {},
+        },
+    };
+    const result = render(<ScripturePanel {...props} />);
+    return {
+        ...result,
+        rerenderReader: (next) =>
+            result.rerender(<ScripturePanel {...props} {...next} />),
+    };
+}
+
+describe("ScripturePanel reading scroll", () => {
+    test("deselecting the focused verse leaves the scroll position alone", () => {
+        const { rerenderReader } = mountReader({
+            selectedVerse: 2,
+            selection: selectionOf(2),
+        });
+        // The mount itself scrolls to the focused verse; clear that away.
+        Element.prototype.scrollTo.mockClear();
+        Element.prototype.scrollIntoView.mockClear();
+
+        rerenderReader({
+            selectedVerse: null,
+            verseSelection: {
+                selection: { bookId: null, verses: [] },
+                toggleVerse: () => {},
+                clearSelection: () => {},
+            },
+        });
+
+        expect(Element.prototype.scrollTo).not.toHaveBeenCalled();
+        expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
+    });
+
+    test("focus falling back to another selected verse after a deselect leaves the scroll alone", () => {
+        const { rerenderReader } = mountReader({
+            selectedVerse: 2,
+            selection: selectionOf(1, 2),
+        });
+        Element.prototype.scrollTo.mockClear();
+        Element.prototype.scrollIntoView.mockClear();
+
+        rerenderReader({
+            selectedVerse: 1,
+            verseSelection: {
+                selection: selectionOf(1),
+                toggleVerse: () => {},
+                clearSelection: () => {},
+            },
+        });
+
+        expect(Element.prototype.scrollTo).not.toHaveBeenCalled();
+        expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
+    });
+
+    test("jumping to a verse that was not selected scrolls to that verse", () => {
+        const { rerenderReader } = mountReader({
+            selectedVerse: null,
+            selection: { bookId: null, verses: [] },
+        });
+        Element.prototype.scrollTo.mockClear();
+        Element.prototype.scrollIntoView.mockClear();
+
+        rerenderReader({
+            selectedVerse: 3,
+            verseSelection: {
+                selection: selectionOf(3),
+                toggleVerse: () => {},
+                clearSelection: () => {},
+            },
+        });
+
+        expect(Element.prototype.scrollIntoView).toHaveBeenCalledTimes(1);
+        expect(
+            Element.prototype.scrollIntoView.mock.instances[0].textContent,
+        ).toContain("Let there be light");
+    });
+
+    test("a new chapter scrolls to the top when nothing is focused", () => {
+        const { rerenderReader } = mountReader({
+            selectedVerse: null,
+            selection: { bookId: null, verses: [] },
+        });
+        Element.prototype.scrollTo.mockClear();
+        Element.prototype.scrollIntoView.mockClear();
+
+        rerenderReader({
+            verses: [
+                {
+                    verse_number: 1,
+                    text: "Now the serpent was more subtil than any beast of the field.",
+                },
+            ],
+        });
+
+        expect(Element.prototype.scrollTo).toHaveBeenCalledWith(
+            expect.objectContaining({ top: 0 }),
+        );
+    });
+});

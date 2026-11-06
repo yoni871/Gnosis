@@ -1,6 +1,11 @@
-/* Keep the positioning anchor completely outside text layout. */
+/* Keep the positioning anchor in the text flow so it scrolls with its
+   verse. It used to be absolutely positioned, but no ancestor of the
+   verses is positioned, so its containing block was the viewport: the
+   anchor froze at its first on-screen spot while the verse scrolled
+   away, and the toolbar hid (or sat detached) for every verse except
+   the first. Zero size means it still takes no space in the line. */
 .gnosis-action-anchor {
-    position: absolute;
+    position: relative;
     display: inline-block;
     width: 0;
     height: 0;

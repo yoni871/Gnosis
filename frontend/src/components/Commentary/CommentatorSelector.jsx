@@ -102,7 +102,7 @@ export default function CommentatorSelector({
                     right-0
                     top-[calc(100%+6px)]
                     z-[100]
-                    max-h-[300px]
+                    max-h-[200px]
                     overflow-y-auto
                     border
                     border-[var(--border)]
