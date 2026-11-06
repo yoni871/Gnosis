@@ -226,6 +226,29 @@ test("API.Bible stripVerseHtml gives an empty marker element a space so words do
     );
 });
 
+test("API.Bible stripVerseHtml gives invisible markup a space so words do not join", () => {
+    // An HTML comment carrying no verse text between two words, and a tag
+    // that opens but never closes in this fragment, both joined the words
+    // when stripped outright ("Orwho"). They become a space instead.
+    assert.equal(
+        stripVerseHtml('“Or<!-- cross-ref -->who has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    assert.equal(
+        stripVerseHtml('“Or<span class="x">who has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    // ...but a tag that does close later still just wraps text and drops:
+    assert.equal(
+        stripVerseHtml('Who walk in the Law of the L<span class="sc">ord</span>.'),
+        "Who walk in the Law of the Lord."
+    );
+    assert.equal(
+        stripVerseHtml('Praise be to you, Lord<span class="f"></span>; teach me.'),
+        "Praise be to you, Lord; teach me."
+    );
+});
+
 test("API.Bible fetch calls the chapter endpoint with pinned params, sends the api-key header, and returns the fumsToken", async () => {
     let seenUrl = null;
     let seenHeaders = null;
