@@ -32,7 +32,7 @@ describe("CommentatorSelector dropdown scrolling", () => {
         mount();
 
         const list = screen.getByTestId("commentator-list");
-        expect(list.className).toContain("max-h-[300px]");
+        expect(list.className).toContain("max-h-[200px]");
         expect(list.className).toContain("overflow-y-auto");
 
         // The cap must not drop entries: every commentary stays in the list.

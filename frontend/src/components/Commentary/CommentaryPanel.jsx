@@ -66,44 +66,46 @@ export default function CommentaryPanel({
 
             <div
                 className="
-                    mb-[15px]
-                    mt-[22px]
-                    flex
-                    flex-col
-                    items-start
-                    gap-[7px]
-                    bg-[var(--bg-surface)]
-                    px-[11px]
-                    py-[7px]
-                    text-[11px]
-                "
-            >
-                <strong className="text-[var(--color-brand)]">
-                    {book} {chapter}
-                </strong>
-
-                <span
-                    className="
-                        text-[12px]
-                        italic
-                        leading-[1.5]
-                        text-[var(--text-muted)]
-                    "
-                >
-                    {commentary.length > 0
-                        ? commentary[0].entry_title
-                        : ""
-                    }
-                </span>
-            </div>
-
-            <div
-                className="
                     min-h-0
                     flex-1
                     overflow-y-auto
                 "
             >
+                {/* The chapter title scrolls away with the body instead of
+                    pinning itself above it, so the commentary gets the room. */}
+                <div
+                    className="
+                        mb-[15px]
+                        mt-[22px]
+                        flex
+                        flex-col
+                        items-start
+                        gap-[7px]
+                        bg-[var(--bg-surface)]
+                        px-[11px]
+                        py-[7px]
+                        text-[11px]
+                    "
+                >
+                    <strong className="text-[var(--color-brand)]">
+                        {book} {chapter}
+                    </strong>
+
+                    <span
+                        className="
+                            text-[12px]
+                            italic
+                            leading-[1.5]
+                            text-[var(--text-muted)]
+                        "
+                    >
+                        {commentary.length > 0
+                            ? commentary[0].entry_title
+                            : ""
+                        }
+                    </span>
+                </div>
+
                 {isLoading ? (
                     <div
                         role="status"
