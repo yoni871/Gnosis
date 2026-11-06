@@ -138,8 +138,11 @@ function decodeEntities(text) {
 // on either side. That covers an element with no text in it (a
 // cross-reference or footnote marker, which carries no text when notes
 // are excluded: "Or<span></span>who" -> "Orwho"), an HTML comment
-// ("Or<!-- ... -->who"), and a tag that opens but never closes in this
-// fragment. A tag that does close later just wraps text and is dropped.
+// ("Or<!-- ... -->who"), a tag that opens but never closes in this
+// fragment, and a closing tag whose opener sits before this verse's
+// first word ("Or</span>who" — a span that opened in an earlier verse
+// and closes here). A tag that does close later just wraps text and is
+// dropped.
 function stripVerseHtml(html) {
     let text = html || "";
     text = text.replace(/<!--[\s\S]*?-->/g, " ");
@@ -151,6 +154,7 @@ function stripVerseHtml(html) {
     text = text.replace(/<([a-z][a-z0-9]*)[^>]*>/gi, (match, tag, offset, str) =>
         new RegExp(`</${tag}\\s*>`, "i").test(str.slice(offset + match.length)) ? "" : " "
     );
+    text = text.replace(/([\p{L}\p{N}])(<\/[a-z][a-z0-9]*\s*>)(?=[\p{L}\p{N}])/giu, "$1 ");
     text = text.replace(/<[^>]+>/g, "");
     return decodeEntities(text)
         .replace(/\s+/g, " ")
