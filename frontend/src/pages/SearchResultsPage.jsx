@@ -111,17 +111,38 @@ function EmptyResults({ title, children }) {
 
 export default function SearchResultsPage() {
     const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
+    const [books, setBooks] = useState([]);
+    useEffect(() => {
+        let ignore = false;
+
+        getBooks()
+            .then((data) => {
+                if (!ignore) {
+                    setBooks(data);
+                }
+            })
+            .catch(console.error);
+
+        return () => {
+            ignore = true;
+        };
+    }, []);
 
     const query = searchParams.get("q") || "";
     const translation = searchParams.get("translation") || "BSB";
+    return <SearchResults key={JSON.stringify([query, translation])} query={query} translation={translation} books={books} />;
+}
+
+function SearchResults({ query, translation, books }) {
+    const navigate = useNavigate();
 
     const [searchResults, setSearchResults] = useState([]);
     const [commentaryResults, setCommentaryResults] = useState([]);
-    const [books, setBooks] = useState([]);
 
-    const [loading, setLoading] = useState(false);
-    const [searchError, setSearchError] = useState("");
+    const [bibleLoading, setBibleLoading] = useState(Boolean(query.trim()));
+    const [commentaryLoading, setCommentaryLoading] = useState(Boolean(query.trim()));
+    const loading = bibleLoading || commentaryLoading;
+    const [searchError, setSearchError] = useState({});
 
     const [selectedBook, setSelectedBook] = useState("");
     const [selectedChapter, setSelectedChapter] = useState("");
@@ -157,66 +178,28 @@ export default function SearchResultsPage() {
     });
 
 
-    useEffect(() => {
-        let ignore = false;
-
-        getBooks()
-            .then((data) => {
-                if (!ignore) {
-                    setBooks(data);
-                }
-            })
-            .catch(console.error);
-
-        return () => {
-            ignore = true;
-        };
-    }, []);
 
 
     useEffect(() => {
-        let ignore = false;
-
-        setSearchResults([]);
-        setCommentaryResults([]);
-        setSearchError("");
-        setSelectedBook("");
-        setSelectedChapter("");
-
-        if (!query.trim()) {
-            setLoading(false);
-            return;
+        const controller = new AbortController();
+        const { signal } = controller;
+        const hasQuery = Boolean(query.trim());
+        if (hasQuery) {
+            const load = (request, setResults, setLoading, kind) => {
+                request.then(data => {
+                    if (!signal.aborted) setResults(data);
+                }).catch(() => {
+                    if (!signal.aborted) setSearchError(previous => ({
+                        ...previous, [kind]: "We couldn't complete your search. Please try again."
+                    }));
+                }).finally(() => {
+                    if (!signal.aborted) setLoading(false);
+                });
+            };
+            load(searchBible(query, translation, { signal }), setSearchResults, setBibleLoading, 'bible');
+            load(searchCommentary(query, { signal }), setCommentaryResults, setCommentaryLoading, 'commentary');
         }
-
-        setLoading(true);
-
-        Promise.all([
-            searchBible(query, translation),
-            searchCommentary(query)
-        ])
-            .then(([bibleData, commentaryData]) => {
-                if (!ignore) {
-                    setSearchResults(bibleData);
-                    setCommentaryResults(commentaryData);
-                }
-            })
-            .catch((error) => {
-                if (!ignore) {
-                    console.error(error);
-                    setSearchError(
-                        "We couldn't complete your search. Please try again."
-                    );
-                }
-            })
-            .finally(() => {
-                if (!ignore) {
-                    setLoading(false);
-                }
-            });
-
-        return () => {
-            ignore = true;
-        };
+        return () => controller.abort();
     }, [query, translation]);
 
 
@@ -287,7 +270,7 @@ export default function SearchResultsPage() {
                     >
                         {tab.label}
 
-                        {!loading && !searchError && (
+                        {!loading && !Object.keys(searchError).length && (
                             <span className="
                                 rounded-full bg-[var(--bg-control-hover)]
                                 px-2 py-0.5 text-[10px]
@@ -299,33 +282,6 @@ export default function SearchResultsPage() {
                 ))}
             </div>
 
-            {loading ? (
-                <div
-                    role="status"
-                    aria-live="polite"
-                    className="
-                        flex flex-1 items-center justify-center
-                        gap-3 px-5 text-[13px] text-[var(--text-muted)]
-                    "
-                >
-                    <span className="
-                        h-4 w-4 shrink-0 animate-spin rounded-full
-                        border-2 border-[var(--border-control)]
-                        border-t-[var(--color-brand)]
-                    " />
-
-                    <span>Searching for “{query}”…</span>
-                </div>
-            ) : searchError ? (
-                <div
-                    role="alert"
-                    className="flex flex-1 items-center justify-center px-5"
-                >
-                    <EmptyResults title="Search unavailable">
-                        {searchError}
-                    </EmptyResults>
-                </div>
-            ) : (
                 <main className="
                     mx-auto grid w-full max-w-[1700px]
                     min-h-0 flex-1 grid-cols-1 gap-6
@@ -341,7 +297,9 @@ export default function SearchResultsPage() {
                         unit="verses"
                         active={activeTab === "scripture"}
                     >
-                        {filteredResults.length === 0 && (
+                        {bibleLoading && <p role="status">Searching Scripture…</p>}
+                        {searchError.bible && <p role="alert">{searchError.bible}</p>}
+                        {!bibleLoading && !searchError.bible && filteredResults.length === 0 && (
                             <EmptyResults title="No Scripture results">
                                 {query
                                     ? `No verses in ${translation} match “${query}” with these filters. Try another word or clear the filters.`
@@ -417,7 +375,9 @@ export default function SearchResultsPage() {
                         unit="entries"
                         active={activeTab === "commentary"}
                     >
-                        {filteredCommentaryResults.length === 0 && (
+                        {commentaryLoading && <p role="status">Searching commentary…</p>}
+                        {searchError.commentary && <p role="alert">{searchError.commentary}</p>}
+                        {!commentaryLoading && !searchError.commentary && filteredCommentaryResults.length === 0 && (
                             <EmptyResults title="No commentary results">
                                 {query
                                     ? `No commentary matches “${query}” with these filters. Try another word or clear the filters.`
@@ -473,7 +433,6 @@ export default function SearchResultsPage() {
                         ))}
                     </ResultsPanel>
                 </main>
-            )}
         </div>
     );
 }
