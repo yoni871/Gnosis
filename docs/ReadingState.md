@@ -3,7 +3,11 @@
 Logged-in readers return to the exact spot they left: book, chapter,
 translation, selected commentary, and focused verse. The landing page
 offers it back as a **Continue reading** button; there is no
-auto-redirect — the reader chooses to go back.
+auto-redirect — the reader chooses to go back. Logging in is the one
+exception: after a successful login the reader is taken straight to
+the saved position (the button is for coming back mid-session, not
+for the login itself). When nothing is saved, or the saved position
+cannot be loaded, login lands on Genesis 1 as before.
 
 ## How it works
 
