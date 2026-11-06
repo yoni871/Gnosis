@@ -15,7 +15,7 @@ const {
     fetchEsvChapter,
 } = require("../../src/services/licensed/esvProvider");
 const {
-    parseApiBibleVerses,
+    parseApiBibleChapter,
     stripVerseHtml,
     fetchApiBibleChapter,
     BOOK_CODES,
@@ -95,23 +95,60 @@ test("ESV fetch refuses without a key and reports HTTP failures", async () => {
 // API.Bible
 // ---------------------------------------------------------------------------
 
-test("API.Bible parser strips the number span and section headings but keeps the words", () => {
-    const verses = parseApiBibleVerses([
-        {
-            number: "1",
-            content:
-                '<p class="s1">The Creation of the World</p><p class="p"><span data-number="1" class="v">1</span>In the beginning God created the heavens and the earth.</p>',
-        },
-        {
-            number: "2",
-            content:
-                '<p class="p"><span data-number="2" class="v">2</span>Now the earth was formless and empty.</p>',
-        },
-    ]);
+test("API.Bible parser splits chapter HTML on verse spans, drops section headings, keeps the words", () => {
+    const verses = parseApiBibleChapter(
+        '<p class="s1">The Creation of the World</p>' +
+            '<p class="p"><span data-number="1" data-sid="GEN 1:1" class="v">1</span>In the beginning God created the heavens and the earth.</p>' +
+            '<p class="p"><span data-number="2" data-sid="GEN 1:2" class="v">2</span>Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.</p>'
+    );
     assert.deepEqual(verses, [
         { verse_number: 1, text: "In the beginning God created the heavens and the earth." },
-        { verse_number: 2, text: "Now the earth was formless and empty." },
+        { verse_number: 2, text: "Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters." },
     ]);
+});
+
+test("API.Bible parser handles several verses sharing one paragraph and a heading between verses", () => {
+    const verses = parseApiBibleChapter(
+        '<p class="p"><span data-number="1" data-sid="GEN 1:1" class="v">1</span>First verse. ' +
+            '<span data-number="2" data-sid="GEN 1:2" class="v">2</span>Second verse.</p>' +
+            '<p class="s1">A Later Heading</p>' +
+            '<p class="p"><span data-number="3" data-sid="GEN 1:3" class="v">3</span>Third verse.</p>'
+    );
+    assert.deepEqual(verses, [
+        { verse_number: 1, text: "First verse." },
+        { verse_number: 2, text: "Second verse." },
+        { verse_number: 3, text: "Third verse." },
+    ]);
+});
+
+test("API.Bible parser keeps poetry lines that span paragraphs under the same verse", () => {
+    const verses = parseApiBibleChapter(
+        '<p class="q1"><span data-number="1" data-sid="PSA 23:1" class="v">1</span>The Lord is my shepherd, I lack nothing.</p>' +
+            '<p class="q1"><span data-number="2" data-sid="PSA 23:2" class="v">2</span>He makes me lie down in green pastures,</p>' +
+            '<p class="q2">he leads me beside quiet waters,</p>'
+    );
+    assert.deepEqual(verses, [
+        { verse_number: 1, text: "The Lord is my shepherd, I lack nothing." },
+        { verse_number: 2, text: "He makes me lie down in green pastures, he leads me beside quiet waters," },
+    ]);
+});
+
+test("API.Bible parser fails loudly on a chapter with no verse markers", () => {
+    assert.throws(
+        () => parseApiBibleChapter('<p class="s1">The Beginning</p><p class="p">No verse spans here.</p>'),
+        (error) => error.code === "provider-format"
+    );
+});
+
+test("API.Bible parser fails loudly when verses are not consecutive from 1", () => {
+    assert.throws(
+        () =>
+            parseApiBibleChapter(
+                '<p class="p"><span data-number="1" data-sid="GEN 1:1" class="v">1</span>First verse.</p>' +
+                    '<p class="p"><span data-number="3" data-sid="GEN 1:3" class="v">3</span>Third verse.</p>'
+            ),
+        (error) => error.code === "provider-format"
+    );
 });
 
 test("API.Bible stripVerseHtml does not eat a verse that legitimately starts with a digit", () => {
@@ -121,24 +158,46 @@ test("API.Bible stripVerseHtml does not eat a verse that legitimately starts wit
     );
 });
 
-test("API.Bible fetch adds fums-version=3, sends the api-key header, and returns the fumsToken", async () => {
+test("API.Bible fetch calls the chapter endpoint with pinned params, sends the api-key header, and returns the fumsToken", async () => {
     let seenUrl = null;
     let seenHeaders = null;
     const fetchImpl = async (url, init) => {
         seenUrl = url;
         seenHeaders = init.headers;
         return fakeJsonResponse({
-            data: [
-                { number: "1", content: '<p class="p"><span data-number="1" class="v">1</span>In the beginning.</p>' },
-            ],
+            data: {
+                content:
+                    '<p class="p"><span data-number="1" data-sid="GEN 1:1" class="v">1</span>In the beginning.</p>',
+            },
             meta: { fumsToken: "test-fums-token" },
         });
     };
     const result = await fetchApiBibleChapter("Genesis", 1, "test-niv-id", { fetchImpl });
     assert.equal(result.verses[0].text, "In the beginning.");
     assert.equal(result.fumsToken, "test-fums-token");
-    assert.match(seenUrl, /\/bibles\/test-niv-id\/chapters\/GEN\.1\/verses\?fums-version=3/);
+    assert.match(seenUrl, /\/bibles\/test-niv-id\/chapters\/GEN\.1\?/);
+    assert.match(seenUrl, /content-type=html/);
+    assert.match(seenUrl, /include-verse-numbers=true/);
+    assert.match(seenUrl, /include-chapter-numbers=false/);
+    assert.match(seenUrl, /include-notes=false/);
+    assert.match(seenUrl, /fums-version=3/);
+    assert.doesNotMatch(seenUrl, /\/verses/);
     assert.equal(seenHeaders["api-key"], "test-api-bible-key");
+});
+
+test("API.Bible fetch fails loudly on a list-shaped payload with no chapter content (issue #35)", async () => {
+    const fetchImpl = async () =>
+        fakeJsonResponse({
+            data: [
+                { id: "GEN.1.1", number: "1", reference: "Genesis 1:1" },
+                { id: "GEN.1.2", number: "2", reference: "Genesis 1:2" },
+            ],
+            meta: {},
+        });
+    await assert.rejects(
+        fetchApiBibleChapter("Genesis", 1, "test-niv-id", { fetchImpl }),
+        (error) => error.code === "provider-format"
+    );
 });
 
 test("API.Bible book codes cover all 66 books exactly once", () => {
