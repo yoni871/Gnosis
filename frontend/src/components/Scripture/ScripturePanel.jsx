@@ -77,7 +77,13 @@ export default function ScripturePanel({
     // used to scroll the reader away — to the top when nothing remained
     // selected, or up to the next selected verse — even though the reader
     // was looking right at the verse they just tapped.
+    //
+    // Switching translation re-fetches the same chapter in another
+    // translation, so the verses array changes without the location
+    // changing. That must not move the reader either — the reader stays
+    // where they were reading.
     const previousVersesRef = useRef(null);
+    const displayedLocationRef = useRef(null);
     const previousSelectionRef = useRef(null);
     useEffect(() => {
         const versesChanged = previousVersesRef.current !== verses;
@@ -90,8 +96,27 @@ export default function ScripturePanel({
         previousSelectionRef.current = verseSelection.selection;
 
         if (versesChanged) {
-            // New chapter (or first load): start at the top, or at the
-            // restored verse when one is focused.
+            // Only the arrival of actual verses can move the reader. The
+            // mount run (empty verses) establishes nothing — without this
+            // guard it would record the location before any verse exists,
+            // and the scroll to a restored verse would never happen.
+            if (verses.length === 0) {
+                return;
+            }
+
+            // New verses for a NEW chapter (or first load): start at the
+            // top, or at the restored verse when one is focused. The same
+            // chapter in a new translation keeps the reader where they are.
+            const locationChanged =
+                displayedLocationRef.current === null ||
+                displayedLocationRef.current.book !== book ||
+                displayedLocationRef.current.chapter !== chapter;
+            displayedLocationRef.current = { book, chapter };
+
+            if (!locationChanged) {
+                return;
+            }
+
             if (selectedVerse) {
                 verseRefs.current[selectedVerse]?.scrollIntoView({
                     behavior: "smooth",
