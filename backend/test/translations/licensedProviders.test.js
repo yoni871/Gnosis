@@ -272,6 +272,35 @@ test("API.Bible stripVerseHtml gives a stray closing tag between two words a spa
     );
 });
 
+test("API.Bible stripVerseHtml repairs a verse-start join with no markup between the words", () => {
+    // When the provider drops the cross-reference marker entirely there is
+    // no tag to turn into a space, so "Orwho" and "Andit" survive every
+    // markup fix. The repair splits only the verse's first word, and only
+    // into a common verse-start word plus a common word.
+    assert.equal(
+        stripVerseHtml('“Orwho has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    assert.equal(
+        stripVerseHtml('‘Andit shall come to pass in the last days, says God.'),
+        "‘And it shall come to pass in the last days, says God."
+    );
+    // ...but a proper name at a verse start does not split, and neither
+    // does a genuine compound word mid-verse:
+    assert.equal(
+        stripVerseHtml('These things took place in Bethany beyond the Jordan.'),
+        "These things took place in Bethany beyond the Jordan."
+    );
+    assert.equal(
+        stripVerseHtml('For if the firstfruit is holy, the lump is also holy.'),
+        "For if the firstfruit is holy, the lump is also holy."
+    );
+    assert.equal(
+        stripVerseHtml('Who walk in the Law of the L<span class="sc">ord</span>.'),
+        "Who walk in the Law of the Lord."
+    );
+});
+
 test("API.Bible fetch calls the chapter endpoint with pinned params, sends the api-key header, and returns the fumsToken", async () => {
     let seenUrl = null;
     let seenHeaders = null;
