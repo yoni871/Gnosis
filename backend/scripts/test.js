@@ -34,7 +34,8 @@ if (require.main === module) {
         'test/auth/serverConfig.test.js', 'test/config/environment.test.js',
         'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js',
         'test/translations/licensedProviders.test.js',
-        'test/translations/licensedService.test.js'], {
+        'test/translations/licensedService.test.js',
+        'test/application/readingState.test.js'], {
         cwd: path.resolve(__dirname, '..'), env: testEnvironment(), stdio: 'inherit',
     });
     process.exitCode = result.status ?? 1;

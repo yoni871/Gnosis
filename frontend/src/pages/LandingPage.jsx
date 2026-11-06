@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import useLandingMotion from "../hooks/useLandingMotion";
+import useReadingState from "../hooks/useReadingState";
+import { readingStateLabel, readingStateUrl } from "../utils/readingState";
 import { Link } from "react-router-dom";
 
 import Seo from "../components/Seo";
@@ -54,6 +56,9 @@ function scrollToHowItWorks(event) {
 export default function LandingPage() {
     const pageRef = useRef(null);
     useLandingMotion(pageRef);
+    // A logged-in reader with a saved position gets a Continue button
+    // in place of Start Exploring; everyone else sees the page as before.
+    const { savedState } = useReadingState(null);
     const siteUrl = getSiteUrl();
     const canonical = pageUrl("/");
     const ogImage = `${siteUrl}/images/landing/sunset-hero-images/hero-1200.jpg`;
@@ -131,12 +136,21 @@ export default function LandingPage() {
                                 of God's Word.
                             </p>
                             <div className="landing-hero-ctas">
-                                <Link
-                                    to={STUDY_DESTINATION}
-                                    className="landing-btn landing-btn-primary landing-btn-large"
-                                >
-                                    Start Exploring →
-                                </Link>
+                                {savedState ? (
+                                    <Link
+                                        to={readingStateUrl(savedState)}
+                                        className="landing-btn landing-btn-primary landing-btn-large"
+                                    >
+                                        Continue reading →
+                                    </Link>
+                                ) : (
+                                    <Link
+                                        to={STUDY_DESTINATION}
+                                        className="landing-btn landing-btn-primary landing-btn-large"
+                                    >
+                                        Start Exploring →
+                                    </Link>
+                                )}
                                 <a
                                     href="#how-it-works"
                                     onClick={scrollToHowItWorks}
@@ -145,6 +159,11 @@ export default function LandingPage() {
                                     See How It Works
                                 </a>
                             </div>
+                            {savedState && (
+                                <p className="landing-continue-note">
+                                    {readingStateLabel(savedState)}
+                                </p>
+                            )}
                         </div>
                     </section>
                 </div>
