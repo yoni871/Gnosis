@@ -16,6 +16,10 @@
 // verse 1's block. The parser removes all of that markup before stripping
 // the remaining tags. (Response shape verified live against the anonymous
 // TEST key, John 3, 2026-11-06.)
+//
+// The version is pinned to NLT in the request: the API's actual default
+// is NTV (Spanish) despite the docs saying NLT is the default, so
+// without the pin the reader gets Spanish text (issue #37).
 
 const NLT_API_URL = "https://api.nlt.to/api/passages";
 const { LicensedProviderError } = require("./esvProvider");
@@ -127,8 +131,12 @@ async function fetchNltChapter(book, chapter, options = {}) {
         );
     }
     const fetchImpl = options.fetchImpl || fetch;
+    // Pin version=NLT explicitly: the API's actual default is NTV
+    // (Spanish) despite the docs saying NLT is the default, so without
+    // this the reader gets Spanish text (issue #37).
     const params = new URLSearchParams({
         ref: `${book}.${chapter}`,
+        version: "NLT",
         key: apiKey,
     });
     let response;

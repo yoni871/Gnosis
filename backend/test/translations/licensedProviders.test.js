@@ -242,7 +242,7 @@ test("NLT parser fails loudly when a verse is empty or the blocks are missing", 
     );
 });
 
-test("NLT fetch uses the ref=Book.Chapter form and the key query parameter", async () => {
+test("NLT fetch uses the ref=Book.Chapter form, pins version=NLT, and the key query parameter", async () => {
     let seenUrl = null;
     const fetchImpl = async (url) => {
         seenUrl = url;
@@ -251,5 +251,6 @@ test("NLT fetch uses the ref=Book.Chapter form and the key query parameter", asy
     const result = await fetchNltChapter("John", 3, { fetchImpl });
     assert.equal(result.verses.length, 3);
     assert.match(seenUrl, /ref=John\.3/);
+    assert.match(seenUrl, /version=NLT/);
     assert.match(seenUrl, /key=test-nlt-key/);
 });
