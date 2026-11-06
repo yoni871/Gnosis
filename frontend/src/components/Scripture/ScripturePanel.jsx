@@ -72,19 +72,88 @@ export default function ScripturePanel({
         ? bookmarksState.findBookmark(passage)
         : null;
 
+    // The reader only moves on a chapter change or an explicit jump to a
+    // verse (a click, or a pick from the verse menu). Deselecting a verse
+    // used to scroll the reader away — to the top when nothing remained
+    // selected, or up to the next selected verse — even though the reader
+    // was looking right at the verse they just tapped.
+    //
+    // Switching translation re-fetches the same chapter in another
+    // translation, so the verses array changes without the location
+    // changing. That must not move the reader either — the reader stays
+    // where they were reading.
+    const previousVersesRef = useRef(null);
+    const displayedLocationRef = useRef(null);
+    const previousSelectionRef = useRef(null);
     useEffect(() => {
-        if (selectedVerse) {
-            verseRefs.current[selectedVerse]?.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        } else {
-            scriptureScrollRef.current?.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+        const versesChanged = previousVersesRef.current !== verses;
+        previousVersesRef.current = verses;
+
+        // Remember the selection this run saw, so the next run can tell a
+        // fresh jump to a verse apart from focus falling back to a verse
+        // that was already selected.
+        const previousSelection = previousSelectionRef.current;
+        previousSelectionRef.current = verseSelection.selection;
+
+        if (versesChanged) {
+            // Only the arrival of actual verses can move the reader. The
+            // mount run (empty verses) establishes nothing — without this
+            // guard it would record the location before any verse exists,
+            // and the scroll to a restored verse would never happen.
+            if (verses.length === 0) {
+                return;
+            }
+
+            // New verses for a NEW chapter (or first load): start at the
+            // top, or at the restored verse when one is focused. The same
+            // chapter in a new translation keeps the reader where they are.
+            const locationChanged =
+                displayedLocationRef.current === null ||
+                displayedLocationRef.current.book !== book ||
+                displayedLocationRef.current.chapter !== chapter;
+            displayedLocationRef.current = { book, chapter };
+
+            if (!locationChanged) {
+                return;
+            }
+
+            if (selectedVerse) {
+                verseRefs.current[selectedVerse]?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            } else {
+                scriptureScrollRef.current?.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+            return;
         }
-    }, [selectedVerse, verses]);
+
+        if (!selectedVerse) {
+            // Deselecting or clearing a selection leaves the scroll alone.
+            return;
+        }
+
+        // Focus moved to a verse that was already selected — a deselect
+        // falling back to another selected verse. Stay where the reader is.
+        const wasAlreadySelected =
+            previousSelection?.bookId === currentBook?.id &&
+            previousSelection.verses.some(
+                (point) =>
+                    point.chapter === chapter &&
+                    point.verse === selectedVerse
+            );
+        if (wasAlreadySelected) {
+            return;
+        }
+
+        verseRefs.current[selectedVerse]?.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, [selectedVerse, verses, verseSelection.selection, currentBook, chapter]);
 
     // Enable clearing when at least one selected coordinate has a highlight.
     const hasSelectedHighlight = highlightsState.highlights.some((highlight) =>

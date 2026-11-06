@@ -34,7 +34,7 @@ export default function StudyPage() {
         chapter: urlChapter
     } = useParams();
 
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const urlVerse = searchParams.get("verse");
     const urlTranslation = searchParams.get("translation");
     const urlCommentary = searchParams.get("commentary");
@@ -166,6 +166,59 @@ export default function StudyPage() {
             setTranslation(urlTranslation);
         }
     }, [urlBook, urlChapter, urlVerse, urlTranslation]);
+
+    // Keep the URL in step with the reader, so a refresh restores the
+    // exact spot instead of the defaults. The reader already reads its
+    // position from the URL, but nothing wrote it back: the translation,
+    // commentary, and focused verse lived in state only, so a refresh
+    // dropped the translation (back to KJV), the commentary (back to
+    // Matthew Henry), and the focused verse. Replace, don't push: moving
+    // within a chapter is not a new history entry, so Back still leaves
+    // the reader instead of stepping through translations.
+    useEffect(() => {
+        // Wait until a translation is chosen. On mount the translations
+        // have not loaded yet, and writing a query without one here would
+        // wipe the ?translation= the reader arrived with.
+        if (!translation) {
+            return;
+        }
+
+        const desiredTranslation = translation;
+        const desiredCommentary =
+            commentaryState.selectedCommentator != null
+                ? String(commentaryState.selectedCommentator)
+                : null;
+        const desiredVerse =
+            selectedVerse != null ? String(selectedVerse) : null;
+
+        // Skip the write when the URL already says where the reader is,
+        // so the read effect above and this one never chase each other.
+        if (
+            searchParams.get("translation") === desiredTranslation &&
+            searchParams.get("commentary") === desiredCommentary &&
+            searchParams.get("verse") === desiredVerse
+        ) {
+            return;
+        }
+
+        const params = new URLSearchParams();
+        params.set("translation", desiredTranslation);
+        if (desiredCommentary !== null) {
+            params.set("commentary", desiredCommentary);
+        }
+        if (desiredVerse !== null) {
+            params.set("verse", desiredVerse);
+        }
+        setSearchParams(params, { replace: true });
+    }, [
+        book,
+        chapter,
+        selectedVerse,
+        translation,
+        commentaryState.selectedCommentator,
+        searchParams,
+        setSearchParams,
+    ]);
 
     // Apply the URL's destination verse once the reading location is ready.
     useEffect(() => {
