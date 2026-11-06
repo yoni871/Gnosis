@@ -19,9 +19,17 @@
 //   book. One chapter is always within that (longest chapter: Psalm 119,
 //   176 verses).
 //
-// The verses endpoint returns one HTML fragment per verse. The verse
-// number arrives inside the markup, so the parser strips the number span
-// first, then the remaining tags, then collapses whitespace.
+// The chapter endpoint returns the whole chapter as one HTML blob in
+// data.content: verse text follows a
+// <span data-number="N" data-sid="..." class="v">N</span> marker, several
+// verses may share one paragraph, and section headings ride along as
+// <p class="s*">. The parser below splits on those markers, so the
+// response shape must be re-verified against the live API before trusting
+// a format change.
+//
+// Do NOT use the chapter-verses list endpoint
+// (/bibles/{id}/chapters/{id}/verses): it returns verse metadata only
+// and no content, so every verse parses empty (issue #35).
 
 const API_BIBLE_BASE = "https://api.scripture.api.bible/v1";
 
@@ -123,17 +131,35 @@ function stripVerseHtml(html) {
     return decodeEntities(text).replace(/\s+/g, " ").trim();
 }
 
-// Parse the `data` array of a /verses response into rows. Numbers must be
-// consecutive from 1, like the ESV parser: a format change fails loudly.
-function parseApiBibleVerses(data) {
-    const verses = (data || []).map((entry) => ({
-        verse_number: parseInt(entry.number, 10),
-        text: stripVerseHtml(entry.content),
-    }));
+// Split one chapter's HTML into {verse_number, text} rows. Numbers must
+// be consecutive from 1, like the ESV parser: a format change fails
+// loudly instead of serving mis-split verses.
+function parseApiBibleChapter(html) {
+    if (typeof html !== "string" || html.length === 0) {
+        throw new LicensedProviderError(
+            "provider-format",
+            "API.Bible chapter response contained no content."
+        );
+    }
+    const parts = html.split(/<span[^>]*class="v"[^>]*>(\d+)<\/span>/);
+    // parts[0] is whatever precedes the first verse marker (section
+    // headings, if any) — discarded. Then number, segment, number, segment...
+    const verses = [];
+    for (let i = 1; i + 1 < parts.length; i += 2) {
+        const verseNumber = parseInt(parts[i], 10);
+        const verseText = stripVerseHtml(parts[i + 1]);
+        if (!verseText) {
+            throw new LicensedProviderError(
+                "provider-format",
+                `API.Bible response has an empty verse ${verseNumber}.`
+            );
+        }
+        verses.push({ verse_number: verseNumber, text: verseText });
+    }
     if (verses.length === 0) {
         throw new LicensedProviderError(
             "provider-format",
-            "API.Bible response contained no verses."
+            "API.Bible chapter response contained no verse markers."
         );
     }
     for (let i = 0; i < verses.length; i += 1) {
@@ -169,9 +195,20 @@ async function fetchApiBibleChapter(book, chapter, bibleId, options = {}) {
         );
     }
     const fetchImpl = options.fetchImpl || fetch;
+    // The chapter endpoint returns the whole chapter as HTML in
+    // data.content. The chapter-verses list endpoint must NOT be used: it
+    // returns no verse content (issue #35). Params are pinned so a changed
+    // API.Bible default cannot silently change the shape.
+    const params = new URLSearchParams({
+        "content-type": "html",
+        "include-verse-numbers": "true",
+        "include-chapter-numbers": "false",
+        "include-notes": "false",
+        "fums-version": "3",
+    });
     const url =
         `${API_BIBLE_BASE}/bibles/${bibleId}` +
-        `/chapters/${code}.${chapter}/verses?fums-version=3`;
+        `/chapters/${code}.${chapter}?${params.toString()}`;
     let response;
     try {
         response = await fetchImpl(url, { headers: { "api-key": apiKey } });
@@ -196,15 +233,22 @@ async function fetchApiBibleChapter(book, chapter, bibleId, options = {}) {
             "API.Bible response was not JSON."
         );
     }
+    const content = body && body.data && body.data.content;
+    if (typeof content !== "string" || content.length === 0) {
+        throw new LicensedProviderError(
+            "provider-format",
+            "API.Bible chapter response contained no content."
+        );
+    }
     return {
-        verses: parseApiBibleVerses(body.data),
+        verses: parseApiBibleChapter(content),
         fumsToken: (body.meta && body.meta.fumsToken) || null,
     };
 }
 
 module.exports = {
     fetchApiBibleChapter,
-    parseApiBibleVerses,
+    parseApiBibleChapter,
     stripVerseHtml,
     BOOK_CODES,
 };
