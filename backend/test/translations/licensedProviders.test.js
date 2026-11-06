@@ -158,6 +158,46 @@ test("API.Bible stripVerseHtml does not eat a verse that legitimately starts wit
     );
 });
 
+test("API.Bible parser keeps a word whole across a small-caps span and drops the gap before punctuation", () => {
+    // Live shape, Psalm 119: the divine name rides as L<span>ord</span>,
+    // and a footnote marker can sit between the word and its punctuation.
+    // The old tag strip turned every tag into a space ("L ord", "Lord ;").
+    const verses = parseApiBibleChapter(
+        '<p class="q1"><span data-number="1" data-sid="PSA 119:1" class="v">1</span>Blessed are those whose way is blameless, who walk in the Law of the L<span class="sc">ord</span>.</p>' +
+            '<p class="q1"><span data-number="2" data-sid="PSA 119:2" class="v">2</span>Praise be to you, L<span class="sc">ord</span> <span class="f"></span>; teach me your decrees.</p>'
+    );
+    assert.deepEqual(verses, [
+        { verse_number: 1, text: "Blessed are those whose way is blameless, who walk in the Law of the Lord." },
+        { verse_number: 2, text: "Praise be to you, Lord; teach me your decrees." },
+    ]);
+});
+
+test("API.Bible stripVerseHtml keeps quoted small-caps words whole, drops a footnote before punctuation, and keeps paragraph breaks as spaces", () => {
+    // Live shape, NASB John 1:23: the quoted Isaiah passage is small caps.
+    assert.equal(
+        stripVerseHtml(
+            'He said, “I am the voice of one calling out in the wilderness, ‘M<span class="sc">ake</span> the way of the L<span class="sc">ord</span> straight,’ as Isaiah said.”'
+        ),
+        "He said, “I am the voice of one calling out in the wilderness, ‘Make the way of the Lord straight,’ as Isaiah said.”"
+    );
+    // A footnote marker (empty element; include-notes=false sends no
+    // marker text) between a word and its comma leaves no gap.
+    assert.equal(
+        stripVerseHtml('Praise be to you, Lord <span class="f"></span>, teach me your decrees.'),
+        "Praise be to you, Lord, teach me your decrees."
+    );
+    // An entity-decoded comma after a space is still joined to its word.
+    assert.equal(
+        stripVerseHtml("Blessed are you, L<span>ord</span> &#44; teach me."),
+        "Blessed are you, Lord, teach me."
+    );
+    // A paragraph boundary is still a space, not a join.
+    assert.equal(
+        stripVerseHtml('He makes me lie down in green pastures,</p><p class="q2">he leads me beside quiet waters,'),
+        "He makes me lie down in green pastures, he leads me beside quiet waters,"
+    );
+});
+
 test("API.Bible fetch calls the chapter endpoint with pinned params, sends the api-key header, and returns the fumsToken", async () => {
     let seenUrl = null;
     let seenHeaders = null;

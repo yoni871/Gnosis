@@ -123,12 +123,25 @@ function decodeEntities(text) {
 // removed by its markup (not by stripping a leading number, which could
 // eat a real leading digit in the verse text). Section headings that ride
 // along in a verse's content are dropped.
+//
+// Spacing: block-level boundaries become a space (poetry lines spanning
+// paragraphs stay separate words), but inline tags are removed with NO
+// space — API.Bible wraps part of a word in a small-caps span
+// (L<span>ord</span>), and a footnote marker can sit between a word and
+// its punctuation (Lord <span></span>,). Replacing every tag with a space
+// split those words ("L ord") and left a gap before the punctuation
+// ("Lord ,"). A stripped tag must also never leave a space before
+// punctuation, so any remaining one is dropped.
 function stripVerseHtml(html) {
     let text = html || "";
     text = text.replace(/<p[^>]*class="s\d?"[^>]*>[\s\S]*?<\/p>/g, " ");
     text = text.replace(/<span[^>]*class="v"[^>]*>\d+<\/span>/g, " ");
-    text = text.replace(/<[^>]+>/g, " ");
-    return decodeEntities(text).replace(/\s+/g, " ").trim();
+    text = text.replace(/<\/?(p|div|br|h[1-6]|li|ul|ol|table|tr|td|th)[^>]*>/gi, " ");
+    text = text.replace(/<[^>]+>/g, "");
+    return decodeEntities(text)
+        .replace(/\s+/g, " ")
+        .replace(/\s+([.,;:!?])/g, "$1")
+        .trim();
 }
 
 // Split one chapter's HTML into {verse_number, text} rows. Numbers must
