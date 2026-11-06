@@ -1,0 +1,32 @@
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { afterAll, beforeAll, beforeEach, expect, test, vi } from 'vitest';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
+import { ThemeProvider } from '../context/ThemeContext';
+import AboutPage from './AboutPage';
+import StudyPage from './StudyPage';
+import { GNOSIS_PASSAGES } from './aboutContent';
+import * as bible from '../services/bibleService';
+import * as commentary from '../services/commentaryService';
+vi.mock('../services/bibleService',()=>({getBooks:vi.fn(),getTranslations:vi.fn(),getBibleChapter:vi.fn()}));
+vi.mock('../services/commentaryService',()=>({getCommentaries:vi.fn(),getChapterCommentaries:vi.fn()}));
+const descriptors = new Map(['scrollIntoView','scrollTo'].map(name=>[name,Object.getOwnPropertyDescriptor(Element.prototype,name)]));
+beforeAll(()=>{for(const name of descriptors.keys())Object.defineProperty(Element.prototype,name,{configurable:true,value:vi.fn()});});
+afterAll(()=>{for(const [name,descriptor] of descriptors){if(descriptor)Object.defineProperty(Element.prototype,name,descriptor);else delete Element.prototype[name];}});
+beforeEach(()=>{
+    vi.clearAllMocks();
+    vi.mocked(fetch).mockResolvedValue({json:async()=>Array.from({length:150},(_,i)=>({chapter:i+1}))});
+    bible.getBooks.mockResolvedValue(GNOSIS_PASSAGES.map((p,i)=>({id:i+1,name:p.book,chapters:150})));
+    bible.getTranslations.mockResolvedValue([{abbreviation:'KJV',name:'Synthetic KJV fixture'}]);
+    commentary.getCommentaries.mockResolvedValue([]);commentary.getChapterCommentaries.mockResolvedValue([]);
+});
+test.each(GNOSIS_PASSAGES)('About card navigates to, selects and scrolls $reference in the actual reader',async passage=>{
+    const text=`Synthetic destination ${passage.reference}`;
+    bible.getBibleChapter.mockResolvedValue([{verse_number:passage.verse,text}]);
+    render(<ThemeProvider><AuthContext.Provider value={{user:null,token:null,sessionVersion:0,isAuthLoading:false,logout:vi.fn()}}><MemoryRouter initialEntries={['/about']}><Routes><Route path="/about" element={<AboutPage/>}/><Route path="/bible/:book/:chapter" element={<StudyPage/>}/></Routes></MemoryRouter></AuthContext.Provider></ThemeProvider>);
+    fireEvent.click(screen.getByRole('link',{name:`Read ${passage.reference} in Bible`}));
+    const verses=await screen.findAllByText(text,{exact:false});
+    await waitFor(()=>verses.forEach(verse=>expect(verse).toHaveClass('decoration-dotted')));
+    expect(bible.getBibleChapter).toHaveBeenCalledWith(passage.book,passage.chapter,'KJV');
+    verses.forEach(verse=>expect(Element.prototype.scrollIntoView.mock.contexts).toContain(verse));
+});

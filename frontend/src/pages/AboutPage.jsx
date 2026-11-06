@@ -1,93 +1,87 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingHeader from "../components/LandingHeader";
-import PublicFooter from "../components/PublicFooter";
+import LandingFooter from "../components/LandingFooter";
+import AboutSectionNavigation from "../components/AboutSectionNavigation";
 import Seo from "../components/Seo";
-import { pageUrl } from "../utils/seo";
+import useAboutMotion from "../hooks/useAboutMotion";
+import { ABOUT_SECTIONS, GNOSIS_PASSAGES } from "./aboutContent";
+import { chapterPath, pageUrl } from "../utils/seo";
 import "./LandingPage.css";
+import "./LandingHero.css";
+import "./AboutPage.css";
 
-const PRINCIPLES = [
-    ["Scripture first", "The biblical text is the starting point and remains primary throughout your study."],
-    ["Context matters", "Read a verse within its passage, and take time to consider the surrounding chapter."],
-    ["Commentary is a tool", "Historical interpretations can help you ask better questions. They are not a replacement for Scripture or a claim to error-free understanding."],
-    ["Thoughtful study takes time", "There is no need to rush. Return to a passage, read carefully, and allow room for reflection."],
-    ["Make room for reflection", "Personal notes, bookmarks, and highlights help you revisit passages and the questions they raise."],
-];
-
-export default function AboutPage() {
+function ScriptureCard({ passage }) {
+    const [before, after] = passage.quotation.split("knowledge");
+    const destination = `${chapterPath(passage.book, passage.chapter)}?verse=${passage.verse}&translation=KJV`;
     return (
-        <div className="public-page about-page">
-            <Seo
-                title="About Gnosis | Scripture, Commentary & Thoughtful Study"
-                description="Learn about Gnosis, a Christian Bible study application bringing Scripture, classic commentary, notes, bookmarks, and highlights into one focused space."
-                canonical={pageUrl("/about")}
-            />
-            <LandingHeader />
-            <main id="landing-main" tabIndex={-1}>
-                <section className="about-intro" aria-labelledby="about-title">
-                    <div className="public-container">
-                        <p className="public-eyebrow">Scripture. Context. Reflection.</p>
-                        <h1 id="about-title">About Gnosis</h1>
-                        <p className="about-lede">Gnosis is a Bible study application built to help readers explore Scripture with clarity, context, and thoughtful reflection.</p>
-                        <p className="about-intro-note">A Christian Scripture-study application. A focused place to read, consider, and return.</p>
-                    </div>
-                </section>
-
-                <div className="about-layout public-container">
-                    <nav className="about-contents" aria-label="On this page">
-                        <p className="public-eyebrow">On this page</p>
-                        <a href="#mission">Our mission</a>
-                        <a href="#provides">What Gnosis provides</a>
-                        <a href="#name">Why the name?</a>
-                        <a href="#sources">Commentary sources</a>
-                        <a href="#principles">Study principles</a>
-                    </nav>
-                    <div className="about-reading">
-                        <section id="mission" aria-labelledby="mission-heading">
-                            <p className="public-section-number" aria-hidden="true">01 / Our purpose</p>
-                            <h2 id="mission-heading">Careful study, made more accessible</h2>
-                            <p>Our goal is to make careful Bible study more accessible by bringing Scripture, classic commentary, and personal study tools together in one focused space.</p>
-                            <p>Gnosis is designed for readers who want to understand God’s Word more deeply: to read a passage closely, explore its context, and reflect on what they have read.</p>
-                        </section>
-                        <section id="provides" aria-labelledby="provides-heading">
-                            <p className="public-section-number" aria-hidden="true">02 / Your study space</p>
-                            <h2 id="provides-heading">The text and tools, together</h2>
-                            <p>Read the Bible alongside verse-by-verse commentary without losing your place. Choose a passage, compare it with a classic commentator’s observations, and keep the biblical text in view.</p>
-                            <div className="about-tools">
-                                <article><h3>Read with context</h3><p>Explore Scripture and online Bible commentary side by side in a focused reader.</p></article>
-                                <article><h3>Keep your reflections</h3><p>Use notes, bookmarks, and highlights to organize your personal study and return to meaningful passages.</p></article>
-                            </div>
-                        </section>
-                        <section id="name" className="about-name" aria-labelledby="name-heading">
-                            <p className="public-section-number" aria-hidden="true">03 / The name</p>
-                            <h2 id="name-heading">Knowledge rooted in Scripture</h2>
-                            <p>The Greek word <em>gnosis</em> means knowledge. For this application, the name reflects the pursuit of knowing and understanding Scripture through careful reading.</p>
-                            <p>Gnosis is not connected to Gnosticism or its teachings. The application is a Christian Bible-study companion, centered on Scripture and thoughtful reflection.</p>
-                        </section>
-                        <section id="sources" aria-labelledby="sources-heading">
-                            <p className="public-section-number" aria-hidden="true">04 / Historical perspectives</p>
-                            <h2 id="sources-heading">Classic commentary, thoughtfully used</h2>
-                            <p>Gnosis makes classic public-domain commentary available alongside the biblical text. These works offer historical perspectives and assistance for study.</p>
-                            <article className="about-source"><h3>Matthew Henry</h3><p>Read Matthew Henry’s classic commentary for explanations and reflections on biblical passages.</p></article>
-                            <article className="about-source"><h3>Jamieson, Fausset &amp; Brown</h3><p>Explore <em>Commentary Critical and Explanatory on the Whole Bible</em>, by Robert Jamieson, A. R. Fausset, and David Brown.</p></article>
-                            <p className="about-source-note">Commentary is a study aid. It is not inspired Scripture, an error-free authority, or a substitute for reading the biblical text itself.</p>
-                        </section>
-                        <section id="principles" aria-labelledby="principles-heading">
-                            <p className="public-section-number" aria-hidden="true">05 / A thoughtful approach</p>
-                            <h2 id="principles-heading">Principles for a focused study</h2>
-                            <ol className="about-principles">
-                                {PRINCIPLES.map(([title, text]) => <li key={title}><h3>{title}</h3><p>{text}</p></li>)}
-                            </ol>
-                        </section>
-                    </div>
+        <article className="about-scripture-card" data-about-reveal>
+            <Link to={destination} className="about-scripture-link" aria-label={`Read ${passage.reference} in Bible`}>
+                <div className="about-passage-top"><span>{passage.reference}</span><span>KJV</span></div>
+                <h3>{passage.title}</h3>
+                <blockquote>{before}<span className="about-knowledge">knowledge</span>{after}</blockquote>
+                <div className="about-passage-context">
+                    <p className="about-greek-form"><span lang="grc">{passage.greek}</span><em>{passage.transliteration}</em></p>
+                    <p>{passage.explanation}</p>
                 </div>
-                <section className="landing-section landing-final-cta" aria-labelledby="about-cta-heading">
-                    <p className="public-eyebrow">Begin with the text</p>
-                    <h2 id="about-cta-heading">Make space for Scripture.</h2>
-                    <p>Open a passage. Read carefully. Follow the questions that help you understand.</p>
-                    <Link to="/bible/Genesis/1" className="landing-btn landing-btn-primary landing-btn-large">Start Studying</Link>
-                </section>
+                <span className="about-read-link">Read in Bible <span aria-hidden="true">→</span></span>
+            </Link>
+        </article>
+    );
+}
+export default function AboutPage() {
+    const page = useRef(null);
+    useAboutMotion(page);
+    return (
+        <div className="public-page about-page" ref={page}>
+            <link rel="preload" href="/fonts/hero/cormorant-garamond-latin-600.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+            <link rel="preload" href="/fonts/hero/inter-latin-variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+            <Seo title="About Gnosis | Scripture, Commentary & Thoughtful Study"
+                description="Learn about Gnosis, a Christian Bible study application bringing Scripture, classic commentary, notes, bookmarks, and highlights into one focused space."
+                canonical={pageUrl("/about")} />
+            <LandingHeader />
+            <main id="landing-main" tabIndex={-1} className="about-editorial-layout">
+                <AboutSectionNavigation sections={ABOUT_SECTIONS} />
+                <div className="about-editorial-reading">
+                    <section id="about-gnosis" className="about-opening" tabIndex={-1} aria-labelledby="about-title">
+                        <h1 id="about-title">About Gnosis</h1>
+                        <p>Gnosis was created with a simple conviction: the study of Scripture becomes richer when we explore its context, engage with Christian thinkers, and understand the history surrounding God's Word.</p>
+                    </section>
+                    <section id="meaning" tabIndex={-1} aria-labelledby="meaning-heading">
+                        <p className="about-editorial-eyebrow">THE MEANING OF GNOSIS</p>
+                        <h2 id="meaning-heading" data-about-reveal>Why the Name Gnosis?</h2>
+                        <div className="about-meaning-grid">
+                            <div className="about-greek-word" data-about-reveal><p lang="grc">γνῶσις</p><p><em>Gnōsis — Knowledge</em></p></div>
+                            <p>The name Gnosis comes from the Greek word <span lang="grc">γνῶσις</span> (gnōsis), meaning knowledge. Throughout the New Testament, this word is used in different contexts to describe knowledge of salvation, the depths of God's wisdom, the surpassing worth of knowing Christ, and the believer's continual growth in understanding.</p>
+                        </div>
+                        <aside className="about-gnosticism" aria-labelledby="gnosticism-heading">
+                            <h3 id="gnosticism-heading">A Note on Gnosticism</h3>
+                            <p>Although the word <em>gnosis</em> is associated with Gnosticism, Gnosis is not connected to Gnosticism or its teachings. The application is a Christian Bible-study companion, centered on Scripture and thoughtful reflection.</p>
+                        </aside>
+                    </section>
+                    <section id="scripture" tabIndex={-1} aria-labelledby="scripture-heading">
+                        <p className="about-editorial-eyebrow">KNOWLEDGE ROOTED IN SCRIPTURE</p>
+                        <h2 id="scripture-heading" data-about-reveal>Gnosis in Scripture</h2>
+                        <p className="about-section-introduction">Four passages that reflect the meaning behind the name.</p>
+                        <div className="about-scripture-cards">{GNOSIS_PASSAGES.map(passage => <ScriptureCard key={passage.reference} passage={passage} />)}</div>
+                    </section>
+                    <section id="mission" tabIndex={-1} className="about-mission" aria-labelledby="mission-heading">
+                        <p className="about-editorial-eyebrow">OUR MISSION</p>
+                        <h2 id="mission-heading" data-about-reveal>Our Mission</h2>
+                        <p className="about-statement">Make biblical knowledge more accessible and encourage thoughtful study of Scripture through its theological and historical context.</p>
+                        <p>Today, Gnosis brings Scripture alongside the commentary of Matthew Henry and Jamieson, Fausset &amp; Brown, with personal notes, bookmarks, and highlights for your study.</p>
+                        <p className="about-study-note">Commentary is a study aid. It is not inspired Scripture, an error-free authority, or a substitute for reading the biblical text itself.</p>
+                    </section>
+                    <section id="vision" tabIndex={-1} className="about-vision" aria-labelledby="vision-heading">
+                        <p className="about-editorial-eyebrow">LOOKING AHEAD</p>
+                        <h2 id="vision-heading" data-about-reveal>Our Vision</h2>
+                        <p className="about-statement">Build an interconnected Christian research and learning platform encompassing Scripture, theology, biblical and church history, original languages, hymns, and historical sermons.</p>
+                        <p>These connections represent our long-term vision, not a list of features currently available. Scripture and commentary remain the starting point.</p>
+                        <Link to="/bible/Genesis/1" className="landing-btn about-study-button">Explore Scripture →</Link>
+                    </section>
+                </div>
             </main>
-            <PublicFooter />
+            <LandingFooter />
         </div>
     );
 }

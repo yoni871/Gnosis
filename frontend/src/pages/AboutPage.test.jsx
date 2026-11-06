@@ -16,15 +16,14 @@ describe("About Gnosis", () => {
         const { container } = renderAbout();
         expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("About Gnosis");
-        for (const name of ["Careful study, made more accessible", "The text and tools, together", "Knowledge rooted in Scripture", "Classic commentary, thoughtfully used", "Principles for a focused study"]) {
+        for (const name of ["Why the Name Gnosis?", "Gnosis in Scripture", "Our Mission", "Our Vision"]) {
             expect(screen.getByRole("heading", { level: 2, name })).toBeInTheDocument();
         }
         expect(screen.getByText(/not connected to Gnosticism or its teachings/)).toBeInTheDocument();
         expect(screen.getByText(/not inspired Scripture, an error-free authority/)).toBeInTheDocument();
-        expect(screen.getByRole("heading", { name: "Matthew Henry" })).toBeInTheDocument();
-        expect(screen.getByRole("heading", { name: "Jamieson, Fausset & Brown" })).toBeInTheDocument();
+        expect(screen.getByText(/Today, Gnosis brings Scripture/)).toBeInTheDocument();
         expect(container.querySelector("main img, main picture, main video")).toBeNull();
-        const home = screen.getByRole("link", { name: "Gnosis home" });
+        const home = within(screen.getByRole("banner")).getByRole("link", { name: "Gnosis home" });
         expect(home).toHaveAttribute("href", "/");
         expect(home.querySelector("img")).toHaveAttribute("src", "/gnosis.svg");
         expect(home.querySelector("img")).toHaveAttribute("width", "40");
@@ -35,7 +34,7 @@ describe("About Gnosis", () => {
 
     test("public navigation and all study CTAs have valid destinations", () => {
         renderAbout();
-        for (const link of screen.getAllByRole("link", { name: "Start Studying" })) expect(link).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(screen.getByRole("link", { name: "Explore Scripture →" })).toHaveAttribute("href", "/bible/Genesis/1");
         for (const link of screen.getAllByRole("link", { name: "About Us" })) expect(link).toHaveAttribute("href", "/about");
         for (const link of within(screen.getByRole("navigation", { name: "On this page" })).getAllByRole("link")) {
             expect(document.querySelector(link.getAttribute("href"))).toBeInTheDocument();
@@ -96,4 +95,19 @@ describe("About Gnosis", () => {
         const config = JSON.parse(readFileSync("vercel.json", "utf8"));
         expect(config.rewrites).toContainEqual({ source: "/(.*)", destination: "/index.html" });
     });
+});
+
+test("all four Scripture cards preserve complete KJV text, Greek and exact verse destinations", async () => {
+    const { GNOSIS_PASSAGES } = await import("./aboutContent");
+    renderAbout();
+    const cards = document.querySelectorAll('.about-scripture-card');
+    expect(cards).toHaveLength(4);
+    GNOSIS_PASSAGES.forEach((passage,index) => {
+        expect(cards[index].querySelector('blockquote').textContent).toBe(passage.quotation);
+        expect(cards[index].querySelector('.about-knowledge').textContent).toBe('knowledge');
+        expect(cards[index].querySelector('[lang="grc"]').textContent).toBe(passage.greek);
+        expect(cards[index].querySelector('a')).toHaveAttribute('href',`/bible/${encodeURIComponent(passage.book)}/${passage.chapter}?verse=${passage.verse}&translation=KJV`);
+    });
+    expect(screen.getByText(/not a list of features currently available/)).toBeInTheDocument();
+    expect(screen.queryByText('A Place to Pursue Deeper Understanding.')).toBeNull();
 });

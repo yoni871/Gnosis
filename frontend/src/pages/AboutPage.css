@@ -1,0 +1,81 @@
+.about-page { --about-ivory:#faf7ef; --about-paper:#fffdf7; --about-green:#233e34; --about-gold:#856a3b; --about-rule:#d4c5a8; --about-burgundy:#783540; background:var(--about-ivory); color:#383a35; font-family:"Gnosis Hero Inter",var(--public-font-ui); }
+.about-page .landing-header { background:var(--about-ivory); border-bottom-color:var(--about-rule); font-family:inherit; }
+.about-page .landing-logo-word { font-family:"Gnosis Hero Cormorant",Georgia,serif; font-size:34px; font-weight:600; }
+.about-editorial-layout { display:grid; grid-template-columns:210px minmax(0,1fr); gap:clamp(48px,7vw,112px); max-width:1240px; margin-inline:auto; padding:clamp(56px,7vw,100px) var(--public-gutter) clamp(72px,8vw,120px); }
+.about-section-navigation { position:sticky; top:32px; align-self:start; }
+.about-sidebar { display:flex; flex-direction:column; gap:6px; }
+.about-section-navigation a { position:relative; display:flex; align-items:center; min-height:46px; padding:10px 0 10px 18px; color:#615e52; font-size:.79rem; line-height:1.6; text-decoration:none; }
+.about-section-navigation a::before { content:""; position:absolute; top:13px; bottom:13px; left:0; width:2px; background:transparent; }
+.about-section-navigation a[aria-current="location"] { color:var(--about-green); font-weight:600; }
+.about-section-navigation a[aria-current="location"]::before { background:var(--about-gold); }
+.about-section-navigation a:hover { color:var(--about-green); }
+.about-mobile-contents { display:none; }
+.about-editorial-reading { min-width:0; }
+.about-editorial-reading > section { padding-block:clamp(56px,7vw,88px); border-bottom:1px solid var(--about-rule); scroll-margin-top:32px; }
+.about-editorial-reading > section:first-child { padding-top:0; }
+.about-editorial-reading > section:last-child { padding-bottom:0; border:0; }
+.about-editorial-reading > section:focus { outline:none; }
+.about-page .about-opening h1,.about-editorial-eyebrow { margin:0 0 22px; color:var(--about-gold); font-family:"Gnosis Hero Inter",sans-serif; font-size:.67rem; font-weight:600; letter-spacing:.17em; line-height:1.8; }
+.about-opening > p { max-width:28ch; margin:0; color:var(--about-green); font-family:"Gnosis Hero Cormorant",Georgia,serif; font-size:clamp(2rem,3.2vw,2.9rem); font-weight:600; line-height:1.32; letter-spacing:-.018em; text-wrap:pretty; }
+.about-page .about-editorial-reading h2 { margin:0 0 28px; color:var(--about-green); font-family:"Gnosis Hero Cormorant",Georgia,serif; font-size:clamp(2.15rem,3.3vw,3.1rem); font-weight:600; line-height:1.12; letter-spacing:-.02em; text-wrap:pretty; }
+.about-editorial-reading p { line-height:1.9; }
+.about-meaning-grid { display:grid; grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr); gap:36px; align-items:center; margin:38px 0; }
+.about-meaning-grid > p { margin:0; font-size:.93rem; }
+.about-greek-word { border-block:1px solid var(--about-rule); padding:36px 4px; text-align:center; }
+.about-greek-word p { margin:0; }
+.about-greek-word p[lang] { color:var(--about-green); font-family:Georgia,serif; font-size:clamp(3rem,5vw,4.2rem); line-height:1.4; }
+.about-greek-word p+p { margin-top:12px; color:#645e50; font-size:.83rem; }
+.about-gnosticism { padding:26px 28px; background:#f2edde; border-left:2px solid var(--about-rule); border-radius:0 8px 8px 0; }
+.about-page .about-gnosticism h3 { margin:0 0 8px; color:var(--about-green); font-family:"Gnosis Hero Cormorant",Georgia,serif; font-size:1.5rem; }
+.about-gnosticism p { margin:0; font-size:.88rem; }
+.about-section-introduction { margin:-10px 0 36px; color:#615e52; font-size:.95rem; }
+.about-scripture-cards { display:grid; gap:28px; }
+.about-scripture-card { margin:0; min-width:0; }
+.about-scripture-link { display:block; padding:clamp(24px,4vw,42px); background:var(--about-paper); border:1px solid var(--about-rule); border-radius:16px; text-decoration:none; color:inherit; box-shadow:0 2px 5px #48391f05,0 12px 28px -16px #48391f24; transition:transform 280ms cubic-bezier(.22,.61,.36,1),box-shadow 280ms ease,border-color 240ms ease; }
+.about-passage-top { display:flex; align-items:center; justify-content:space-between; gap:16px; color:var(--about-burgundy); font-size:.75rem; font-weight:600; letter-spacing:.03em; }
+.about-passage-top > span:last-child { color:#726956; font-size:.62rem; letter-spacing:.14em; }
+.about-page .about-scripture-link h3 { margin:16px 0 24px; color:var(--about-green); font-family:"Gnosis Hero Cormorant",Georgia,serif; font-size:clamp(1.7rem,2.6vw,2.25rem); font-weight:600; line-height:1.2; letter-spacing:-.015em; }
+.about-scripture-link blockquote { margin:0; padding:0; border:0; font-family:"Gnosis Hero Cormorant",Georgia,serif; font-size:clamp(1.4rem,2vw,1.7rem); line-height:1.65; color:#343c33; }
+.about-knowledge { text-decoration-line:underline; text-decoration-color:#b39860; text-decoration-thickness:1.5px; text-underline-offset:.2em; }
+.about-passage-context { display:grid; grid-template-columns:130px minmax(0,1fr); gap:28px; margin-top:28px; padding-top:24px; border-top:1px solid #e5dcc9; }
+.about-passage-context p { margin:0; font-size:.85rem; line-height:1.8; color:#615e52; }
+.about-passage-context .about-greek-form { display:flex; flex-direction:column; gap:4px; }
+.about-greek-form span { font-family:Georgia,serif; font-size:1.5rem; color:var(--about-green); }
+.about-greek-form em { font-size:.8rem; }
+.about-read-link { display:inline-flex; align-items:center; gap:12px; margin-top:26px; min-height:32px; color:var(--about-green); font-size:.78rem; font-weight:600; }
+.about-read-link > span { color:var(--about-gold); transition:transform 280ms ease; }
+.about-page .about-editorial-reading .about-statement { color:var(--about-green); font-family:"Gnosis Hero Cormorant",Georgia,serif; font-size:clamp(1.55rem,2.6vw,2rem); line-height:1.5; margin:0 0 28px; }
+.about-mission > p:not([class]),.about-vision > p:not([class]) { font-size:.95rem; }
+.about-study-note { color:#615e52; font-size:.85rem; border-left:2px solid var(--about-rule); padding-left:20px; margin-top:28px; }
+.about-page .about-study-button { margin-top:20px; background:var(--about-green); border-color:var(--about-green); color:#fff9ed; border-radius:999px; min-height:50px; padding-inline:26px; }
+.about-page a:focus-visible,.about-page button:focus-visible { outline:2px solid var(--about-gold); outline-offset:5px; }
+.about-page .landing-closing-footer h2 { margin:0 0 14px; font-family:inherit; font-size:.8rem; font-weight:600; line-height:1.6; letter-spacing:.08em; color:#fff9ed; }
+@media (hover:hover) and (pointer:fine) {
+ .about-scripture-link:hover { transform:translateY(-4px); border-color:var(--about-gold); box-shadow:0 4px 8px #48391f08,0 20px 36px -16px #48391f30; }
+ .about-scripture-link:hover .about-read-link > span { transform:translateX(4px); }
+}
+@media (width < 900px) {
+ .about-editorial-layout { display:block; padding-top:0; }
+ .about-section-navigation { top:0; z-index:20; margin-bottom:42px; background:var(--about-ivory); border-bottom:1px solid var(--about-rule); }
+ .about-sidebar { display:none; }
+ .about-mobile-contents { display:block; }
+ .about-mobile-contents > button { width:100%; min-height:66px; padding:14px 0; display:flex; align-items:center; justify-content:space-between; gap:16px; border:0; background:transparent; color:var(--about-green); text-align:left; font:inherit; font-size:.76rem; cursor:pointer; }
+ .about-mobile-contents > button > span:first-child { color:#615e52; }
+ .about-mobile-contents nav { position:absolute; left:0; right:0; padding:12px 16px; border:1px solid var(--about-rule); border-top:0; border-radius:0 0 10px 10px; background:var(--about-paper); box-shadow:0 12px 22px #48391f12; }
+ .about-editorial-reading > section { scroll-margin-top:96px; }
+}
+@media (width < 600px) {
+ .about-meaning-grid { grid-template-columns:1fr; gap:28px; }
+ .about-greek-word { max-width:320px; width:100%; margin-inline:auto; }
+ .about-passage-context { grid-template-columns:1fr; gap:18px; }
+ .about-passage-context .about-greek-form { flex-direction:row; align-items:baseline; gap:16px; }
+ .about-gnosticism { padding:24px; }
+ .about-opening > p { font-size:2rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+ .about-scripture-link,.about-read-link > span { transition:none; }
+ .about-scripture-link:hover,.about-scripture-link:hover .about-read-link > span { transform:none; }
+}
+
+.about-page .about-opening h1 { text-transform:uppercase; }
+.about-page .about-opening > p { line-height:1.32; }
