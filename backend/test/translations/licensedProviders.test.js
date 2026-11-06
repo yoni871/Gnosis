@@ -198,6 +198,109 @@ test("API.Bible stripVerseHtml keeps quoted small-caps words whole, drops a foot
     );
 });
 
+test("API.Bible stripVerseHtml gives an empty marker element a space so words do not join", () => {
+    // Live shapes (NKJV): an empty cross-reference marker sits between the
+    // first two words of a verse. Stripping it outright joined them, and
+    // the old tag-to-space strip got these right by accident — so the
+    // empty element must become a space, while a span wrapping part of a
+    // word still strips with no space.
+    assert.equal(
+        stripVerseHtml('“Or<span class="x"></span>who has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    assert.equal(
+        stripVerseHtml('‘And<span class="x"></span>it shall come to pass in the last days, says God,'),
+        "‘And it shall come to pass in the last days, says God,"
+    );
+    assert.equal(
+        stripVerseHtml('“Blessed<span class="x"></span>are the poor in spirit, For theirs is the kingdom of heaven.”'),
+        "“Blessed are the poor in spirit, For theirs is the kingdom of heaven.”"
+    );
+    assert.equal(
+        stripVerseHtml('Who walk in the Law of the L<span class="sc">ord</span>.'),
+        "Who walk in the Law of the Lord."
+    );
+    assert.equal(
+        stripVerseHtml('Praise be to you, Lord<span class="f"></span>; teach me.'),
+        "Praise be to you, Lord; teach me."
+    );
+});
+
+test("API.Bible stripVerseHtml gives invisible markup a space so words do not join", () => {
+    // An HTML comment carrying no verse text between two words, and a tag
+    // that opens but never closes in this fragment, both joined the words
+    // when stripped outright ("Orwho"). They become a space instead.
+    assert.equal(
+        stripVerseHtml('“Or<!-- cross-ref -->who has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    assert.equal(
+        stripVerseHtml('“Or<span class="x">who has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    // ...but a tag that does close later still just wraps text and drops:
+    assert.equal(
+        stripVerseHtml('Who walk in the Law of the L<span class="sc">ord</span>.'),
+        "Who walk in the Law of the Lord."
+    );
+    assert.equal(
+        stripVerseHtml('Praise be to you, Lord<span class="f"></span>; teach me.'),
+        "Praise be to you, Lord; teach me."
+    );
+});
+
+test("API.Bible stripVerseHtml gives a stray closing tag between two words a space", () => {
+    // A span can open before this verse's first word (in an earlier verse)
+    // and close right after it: "Or</span>who". Dropping the closer joined
+    // the words, and the deployed PR #45 code still showed "Orwho" live.
+    assert.equal(
+        stripVerseHtml('“Or</span>who has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    assert.equal(
+        stripVerseHtml('‘And</a>it shall come to pass in the last days, says God.'),
+        "‘And it shall come to pass in the last days, says God."
+    );
+    // ...but a closer that is NOT between two words still just drops:
+    assert.equal(
+        stripVerseHtml('Who walk in the Law of the L<span class="sc">ord</span>.'),
+        "Who walk in the Law of the Lord."
+    );
+    assert.equal(
+        stripVerseHtml('Praise be to you, Lord<span class="f"></span>; teach me.'),
+        "Praise be to you, Lord; teach me."
+    );
+});
+
+test("API.Bible stripVerseHtml repairs a verse-start join with no markup between the words", () => {
+    // When the provider drops the cross-reference marker entirely there is
+    // no tag to turn into a space, so "Orwho" and "Andit" survive every
+    // markup fix. The repair splits only the verse's first word, and only
+    // into a common verse-start word plus a common word.
+    assert.equal(
+        stripVerseHtml('“Orwho has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    assert.equal(
+        stripVerseHtml('‘Andit shall come to pass in the last days, says God.'),
+        "‘And it shall come to pass in the last days, says God."
+    );
+    // ...but a proper name at a verse start does not split, and neither
+    // does a genuine compound word mid-verse:
+    assert.equal(
+        stripVerseHtml('These things took place in Bethany beyond the Jordan.'),
+        "These things took place in Bethany beyond the Jordan."
+    );
+    assert.equal(
+        stripVerseHtml('For if the firstfruit is holy, the lump is also holy.'),
+        "For if the firstfruit is holy, the lump is also holy."
+    );
+    assert.equal(
+        stripVerseHtml('Who walk in the Law of the L<span class="sc">ord</span>.'),
+        "Who walk in the Law of the Lord."
+    );
+});
+
 test("API.Bible fetch calls the chapter endpoint with pinned params, sends the api-key header, and returns the fumsToken", async () => {
     let seenUrl = null;
     let seenHeaders = null;

@@ -106,7 +106,11 @@ export default function CommentaryPanel({
                     </span>
                 </div>
 
-                {isLoading ? (
+                {/* The entries stay on screen while a new commentator
+                    loads, so switching commentaries does not collapse the
+                    panel and lose its scroll position. The loading note
+                    only shows when there is nothing to show yet. */}
+                {commentary.length === 0 && isLoading ? (
                     <div
                         role="status"
                         className="

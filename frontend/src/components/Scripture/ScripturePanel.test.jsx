@@ -245,7 +245,10 @@ describe("ScripturePanel reading scroll", () => {
         Element.prototype.scrollTo.mockClear();
         Element.prototype.scrollIntoView.mockClear();
 
+        // A new chapter is a new location, not just new verses: the same
+        // chapter re-fetched in another translation must stay put (below).
         rerenderReader({
+            chapter: 2,
             verses: [
                 {
                     verse_number: 1,
@@ -257,5 +260,37 @@ describe("ScripturePanel reading scroll", () => {
         expect(Element.prototype.scrollTo).toHaveBeenCalledWith(
             expect.objectContaining({ top: 0 }),
         );
+    });
+
+    test("switching translation in the same chapter leaves the scroll alone", () => {
+        const { rerenderReader } = mountReader({
+            selectedVerse: null,
+            selection: { bookId: null, verses: [] },
+        });
+        Element.prototype.scrollTo.mockClear();
+        Element.prototype.scrollIntoView.mockClear();
+
+        // Same book and chapter, new verses array and new translation:
+        // the reader re-fetches the chapter and must stay where it was.
+        rerenderReader({
+            translation: "ESV",
+            verses: [
+                {
+                    verse_number: 1,
+                    text: "In the beginning, God created the heavens and the earth.",
+                },
+                {
+                    verse_number: 2,
+                    text: "The earth was without form and void.",
+                },
+                {
+                    verse_number: 3,
+                    text: "And God said, “Let there be light,” and there was light.",
+                },
+            ],
+        });
+
+        expect(Element.prototype.scrollTo).not.toHaveBeenCalled();
+        expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
     });
 });
