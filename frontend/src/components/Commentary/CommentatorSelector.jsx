@@ -87,12 +87,16 @@ export default function CommentatorSelector({
 
             {isCommentaryOpen && (
 
-                <div className="
+                <div
+                    data-testid="commentator-list"
+                    className="
                     absolute
                     left-0
                     right-0
                     top-[calc(100%+6px)]
                     z-[100]
+                    max-h-[300px]
+                    overflow-y-auto
                     border
                     border-[var(--border)]
                     bg-[var(--bg-panel)]
