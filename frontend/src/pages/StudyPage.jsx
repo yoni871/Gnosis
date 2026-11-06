@@ -14,6 +14,7 @@ import MobileStudyNav from "../components/Study/MobileStudyNav";
 import useNotes from "../hooks/useNotes";
 import useCommentary from "../hooks/useCommentary";
 import useBookmarks from "../hooks/useBookmarks";
+import useReadingState from "../hooks/useReadingState";
 import useScripturePreviews from "../hooks/useScripturePreviews";
 import useHighlights from "../hooks/useHighlights";
 import useVerseSelection from "../hooks/useVerseSelection";
@@ -101,6 +102,16 @@ export default function StudyPage() {
         urlCommentary: urlCommentary
             ? Number(urlCommentary)
             : null
+    });
+    // Save the reading position for logged-in readers, so the landing
+    // page can offer it back as "Continue reading".
+    const currentBook = books.find((item) => item.name === book);
+    useReadingState({
+        bookId: currentBook?.id ?? null,
+        chapter,
+        translation,
+        commentaryId: commentaryState.selectedCommentator,
+        verse: selectedVerse,
     });
     //bookmark state for desktop and mobile to share
     const bookmarksState = useBookmarks();

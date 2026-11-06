@@ -62,6 +62,12 @@
     margin-bottom: 30px;
 }
 .landing-hero-ctas { gap: 14px; }
+.landing-continue-note {
+    margin: 14px 0 0;
+    font-size: 0.85rem;
+    color: #796039;
+}
+[data-theme="dark"] .landing-continue-note { color: var(--hero-gold); }
 .landing-hero-ctas .landing-btn {
     font-family: "Gnosis Hero Inter", var(--public-font-ui);
     font-size: .86rem;

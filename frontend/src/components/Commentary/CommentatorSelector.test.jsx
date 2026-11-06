@@ -42,6 +42,22 @@ describe("CommentatorSelector dropdown scrolling", () => {
         }
     });
 
+    test("the list shows commentaries in alphabetical order by name", () => {
+        mount();
+
+        const list = screen.getByTestId("commentator-list");
+        const shownNames = Array.from(list.children).map(
+            (item) => item.firstElementChild.textContent
+        );
+        const expected = [...commentators]
+            .map((commentator) => commentator.name)
+            .sort((a, b) => a.localeCompare(b));
+
+        // The fixture is deliberately not alphabetical, so this fails
+        // unless the selector sorts before rendering.
+        expect(shownNames).toEqual(expected);
+    });
+
     test("picking a commentary still selects it and closes the list", async () => {
         const onSelect = vi.fn();
         const onToggle = vi.fn();

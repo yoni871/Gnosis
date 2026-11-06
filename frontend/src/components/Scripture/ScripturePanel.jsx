@@ -21,6 +21,13 @@ export default function ScripturePanel({
     const verseRefs = useRef({});
     const scriptureScrollRef = useRef(null);
     const [isTranslationMenuOpen, setIsTranslationMenuOpen] = useState(false);
+    // The translation list arrives in database order; the menu shows it
+    // alphabetically by abbreviation so a growing list stays findable.
+    // Sorted here at render time only — the underlying order is untouched,
+    // so StudyPage's default (the third database row, KJV) does not change.
+    const sortedTranslations = [...translations].sort((a, b) =>
+        a.abbreviation.localeCompare(b.abbreviation)
+    );
     // Find the database record for the book currently being read.
     const currentBook = books.find((item) => item.name === book);
 
@@ -144,12 +151,16 @@ export default function ScripturePanel({
                         </button>
 
                         {isTranslationMenuOpen && (
-                            <div className="
+                            <div
+                                data-testid="translation-list"
+                                className="
                                 absolute
                                 right-0
                                 top-full
                                 z-[1000]
+                                max-h-[300px]
                                 min-w-[190px]
+                                overflow-y-auto
                                 border
                                 border-[var(--border)]
                                 bg-[var(--bg-panel)]
@@ -157,7 +168,7 @@ export default function ScripturePanel({
                                 shadow-lg
                             ">
 
-                                {translations.map((translationItem, index) => (
+                                {sortedTranslations.map((translationItem, index) => (
                                     <div
                                         key={translationItem.id}
                                         className={`
@@ -173,7 +184,7 @@ export default function ScripturePanel({
                                                     : ""
                                             }
                                             ${
-                                                index !== translations.length - 1
+                                                index !== sortedTranslations.length - 1
                                                     ? "border-b border-[var(--border)]"
                                                     : ""
                                             }

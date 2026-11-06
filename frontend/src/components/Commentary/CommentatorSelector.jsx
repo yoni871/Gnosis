@@ -13,6 +13,13 @@ export default function CommentatorSelector({
         setIsCommentaryOpen(false)
     })
 
+    // The commentary list arrives in database order; the menu shows it
+    // alphabetically by name so a growing list stays findable. Sorted
+    // here at render time only — the underlying order is untouched.
+    const sortedCommentators = [...commentators].sort((a, b) =>
+        a.name.localeCompare(b.name)
+    );
+
     //find the current selected commentator
     const selected = commentators.find(
         (commentator) => commentator.id === selectedCommentator
@@ -105,7 +112,7 @@ export default function CommentatorSelector({
                     "
                 >
 
-                    {commentators.map((commentator, index) => (
+                    {sortedCommentators.map((commentator, index) => (
                         <div
                             key={commentator.id}
                             className={`
@@ -122,7 +129,7 @@ export default function CommentatorSelector({
                                 : ""
                             }
                             ${
-                                index !== commentators.length - 1
+                                index !== sortedCommentators.length - 1
                                 ? "border-b border-[var(--border)]"
                                 : ""
                             }
