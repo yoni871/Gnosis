@@ -14,7 +14,8 @@ function connectionConfig(value) {
     let url;
     try { url = new URL(value); } catch { throw new Error('Invalid import connection configuration.'); }
     if (!['postgres:', 'postgresql:'].includes(url.protocol) || !url.hostname || !url.port ||
-        !url.username || !url.password || url.pathname.length < 2 || url.hash || url.search) {
+        !url.username || !url.password || url.pathname.length < 2 || url.hash || url.search ||
+        !Number.isInteger(Number(url.port)) || Number(url.port) < 1 || Number(url.port) > 65535) {
         throw new Error('Import URL requires host, port, database, user and password; URL options are not accepted.');
     }
     const host = url.hostname.replace(/^\[|\]$/g, '');

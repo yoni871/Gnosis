@@ -33,7 +33,7 @@ test('validation is the default; only explicit write can request a connection', 
 });
 test('explicit complete import URL only; no dotenv, pg defaults or URL option fallback', () => {
     assert.throws(() => connectionConfig(), /Explicit/);
-    for (const url of ['postgres://localhost/db', 'postgres://u:p@localhost:5432/db?sslmode=disable']) {
+    for (const url of ['postgres://localhost/db', 'postgres://u:p@localhost:0/db', 'postgres://u:p@localhost:5432/db?sslmode=disable']) {
         assert.throws(() => connectionConfig(url));
     }
     const c = connectionConfig('postgres://synthetic:synthetic@127.0.0.1:5432/synthetic');
