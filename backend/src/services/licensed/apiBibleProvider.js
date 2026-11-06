@@ -132,11 +132,18 @@ function decodeEntities(text) {
 // split those words ("L ord") and left a gap before the punctuation
 // ("Lord ,"). A stripped tag must also never leave a space before
 // punctuation, so any remaining one is dropped.
+//
+// One exception: an element with no text in it at all (a cross-reference
+// or footnote marker, which carries no text when notes are excluded)
+// sits BETWEEN words, so it becomes a space — stripping it outright
+// joined the words on either side ("Or<span></span>who" -> "Orwho").
 function stripVerseHtml(html) {
     let text = html || "";
     text = text.replace(/<p[^>]*class="s\d?"[^>]*>[\s\S]*?<\/p>/g, " ");
     text = text.replace(/<span[^>]*class="v"[^>]*>\d+<\/span>/g, " ");
     text = text.replace(/<\/?(p|div|br|h[1-6]|li|ul|ol|table|tr|td|th)[^>]*>/gi, " ");
+    text = text.replace(/<([a-z][a-z0-9]*)[^>]*>(?:\s|<[^>]+>)*<\/\1>/gi, " ");
+    text = text.replace(/<[^>]+\/>/g, " ");
     text = text.replace(/<[^>]+>/g, "");
     return decodeEntities(text)
         .replace(/\s+/g, " ")
