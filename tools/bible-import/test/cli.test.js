@@ -13,7 +13,7 @@ test('validation is the default; only explicit write can request a connection', 
     t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
     const file = path.join(dir, 'synthetic.xlsx');
     const book = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([[], [], [], [1, 'Genesis 1:1', 'Synthetic']]));
+    XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([['Synthetic header'], ['Synthetic license'], ['Reference', 'Verse', 'Text'], [1, 'Genesis 1:1', 'Synthetic']]));
     XLSX.writeFile(book, file);
     const blocker = path.join(dir, 'block-pg.cjs');
     fs.writeFileSync(blocker, `const M=require('node:module');const load=M._load;M._load=function(id,...rest){if(id==='pg')throw new Error('PG_LOADED');return load.call(this,id,...rest)};`);
@@ -24,6 +24,7 @@ test('validation is the default; only explicit write can request a connection', 
     for (const args of [[file], ['validate', file]]) {
         const r = run(args); assert.equal(r.status, 0, r.stderr);
         assert.equal(JSON.parse(r.stdout).status, 'validated');
+        assert.equal(JSON.parse(r.stdout).verses, 1);
     }
     const r = run(['write', file, '4', 'Synthetic']);
     assert.equal(r.status, 1); assert.doesNotMatch(r.stderr, /poison|PG_LOADED/);

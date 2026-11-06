@@ -36,7 +36,7 @@ test('restricted importer role, committed persistence, existing guard, concurren
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gnosis-import-cli-db-'));
     try {
         const book = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([[], [], [], [1, 'Genesis 3:1', 'Synthetic CLI text']]));
+        XLSX.utils.book_append_sheet(book, XLSX.utils.aoa_to_sheet([['Synthetic header'], ['Synthetic license'], ['Reference', 'Verse', 'Text'], [1, 'Genesis 3:1', 'Synthetic CLI text']]));
         const file = path.join(dir, 'synthetic.xlsx'); XLSX.writeFile(book, file);
         const url = new URL('postgresql://127.0.0.1');
         url.port = String(context.port); url.username = context.user; url.password = context.password; url.pathname = '/' + context.database;
