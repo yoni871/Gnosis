@@ -37,6 +37,8 @@ const STUDY_DESTINATION = "/bible/Genesis/1";
 const HERO_BASE = "/images/landing/sunset-hero-images/hero";
 const HERO_WIDTH = 1672;
 const HERO_HEIGHT = 941;
+const HERO_ALT =
+    "A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset";
 
 function scrollToHowItWorks(event) {
     // Preserve normal anchor behavior for modified clicks and URL/history.
@@ -55,6 +57,10 @@ export default function LandingPage() {
     const siteUrl = getSiteUrl();
     const canonical = pageUrl("/");
     const ogImage = `${siteUrl}/images/landing/sunset-hero-images/hero-1200.jpg`;
+    // hero-1200.jpg is 1200x675; the dimensions travel with the
+    // social image so scrapers need no extra fetch to lay it out.
+    const ogImageWidth = 1200;
+    const ogImageHeight = 675;
 
     return (
         <div className="public-page landing-page" ref={pageRef}>
@@ -66,6 +72,9 @@ export default function LandingPage() {
                 canonical={canonical}
                 ogType="website"
                 ogImage={ogImage}
+                ogImageWidth={ogImageWidth}
+                ogImageHeight={ogImageHeight}
+                ogImageAlt={HERO_ALT}
                 twitterCard="summary_large_image"
                 jsonLd={{
                     "@context": "https://schema.org",
@@ -105,7 +114,7 @@ export default function LandingPage() {
                                 height={HERO_HEIGHT}
                                 fetchPriority="high"
                                 decoding="async"
-                                alt="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset"
+                                alt={HERO_ALT}
                             />
                         </picture>
                     </div>

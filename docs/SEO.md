@@ -81,10 +81,15 @@ All paths are under `frontend/` unless noted.
   `noindex, nofollow` and clean canonicals (`/search` without `?q=`).
   Search results must not appear in search results, and auth pages
   must never be indexed.
-- `index.html` carries the site-wide default metadata (the
-  landing page's title and description — see section 4). It carries no
-  canonical tag on purpose: the shell is served for every route, so a
-  static canonical would point every chapter URL at the wrong address.
+- `index.html` carries the homepage's own metadata in the initial
+  HTML (title, description, Open Graph and Twitter tags, `og:image`
+  dimensions, and the `WebSite` JSON-LD block — see section 4), so
+  crawlers that do not run JavaScript still see the platform
+  identity. It carries no canonical tag on purpose: the shell is
+  served for every route, so a static canonical would point every
+  chapter URL at the wrong address. The JSON-LD script carries
+  `data-seo-jsonld`, so `<Seo>` updates or removes that same node on
+  navigation instead of creating a second `WebSite` block.
 
 ### Crawlable chapter navigation
 
@@ -196,7 +201,11 @@ and the preparation items from the SEO foundation are done:
 2. **Metadata.** The landing page sets `LANDING_TITLE` and
    `LANDING_DESCRIPTION` from `src/utils/seo.js` explicitly through
    `<Seo>`, with canonical `https://studygnosis.com/`, Open Graph
-   and Twitter tags, and `WebSite` JSON-LD.
+   and Twitter tags (including `og:image` dimensions 1200x675), and
+   `WebSite` JSON-LD. The title and description present Gnosis as
+   the broader platform — Scripture as the foundation, with
+   theology, history, and Christian thought as interconnected areas
+   of exploration — and name no feature the site does not have.
 3. **Sitemap.** `scripts/generate-sitemap.js` passes `["/", "/about"]` as
    `extraPaths`, so `public/sitemap.xml` lists 1,189 chapter URLs
    plus the homepage and `/about` (1,191 total, About last).
@@ -210,11 +219,18 @@ and the preparation items from the SEO foundation are done:
    SVG, which social previews handle poorly, so it is not used as
    the social image.
 
-The initial HTML also supplies the hero social-image URL and large Twitter
-card for crawlers that do not execute JavaScript. These are site-wide
-fallbacks; route-specific canonical, social metadata, and homepage WebSite
-JSON-LD still require rendering. No static homepage canonical or WebSite
-JSON-LD is inserted into the shared chapter HTML shell.
+The initial HTML (`frontend/index.html`) carries the same homepage
+metadata statically — title, description, Open Graph and Twitter
+tags, `og:image` dimensions, and the `WebSite` JSON-LD block — so
+crawlers that do not execute JavaScript still see the platform
+identity. Route-specific canonical and social metadata still require
+rendering, and no static canonical is inserted: the shell is served
+for every route, so a static canonical would point every chapter URL
+at the homepage. The favicon is two links: the `/gnosis.svg` logo
+for browsers, and a 192x192 PNG (`/favicon.png`, rasterized from the
+same logo mark) for Google Search, whose supported favicon formats
+do not include SVG — the SVG alone showed a generic globe in search
+results. The PNG also serves as the Apple touch icon.
 
 Public pages share the reader theme tokens, the public header, and footer.
 Landing navigation overlays the same untouched hero image at every width,
