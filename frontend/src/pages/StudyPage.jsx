@@ -77,6 +77,12 @@ export default function StudyPage() {
     );
     const [translations, setTranslations] = useState([]);
 
+    // When a licensed translation is temporarily unavailable (quota,
+    // provider outage), the reader falls back to BSB and says so once,
+    // instead of showing an empty page. Dismissed with the X, or by
+    // picking another translation.
+    const [licensedFallback, setLicensedFallback] = useState(null);
+
     // -------------------------
     // SHARED FEATURE STATE
     // -------------------------
@@ -254,7 +260,19 @@ export default function StudyPage() {
                 );
             } catch (error) {
                 if (!ignore) {
-                    console.error(error);
+                    // A licensed translation that cannot be served right
+                    // now falls back to BSB, once, with a note — never an
+                    // empty page, and never BSB text mislabelled as the
+                    // requested translation.
+                    if (
+                        error.code === "LICENSED_UNAVAILABLE" &&
+                        translation !== "BSB"
+                    ) {
+                        setLicensedFallback({ from: translation });
+                        setTranslation("BSB");
+                    } else {
+                        console.error(error);
+                    }
                 }
             }
         }
@@ -342,6 +360,20 @@ export default function StudyPage() {
                 selectedVerse={selectedVerse}
                 setSelectedVerse={setSelectedVerse}
             />
+
+            {licensedFallback && (
+                <div className="mx-auto max-w-[700px] px-4 pt-3 text-center text-[13px] text-[var(--text-muted)]">
+                    {licensedFallback.from} is temporarily unavailable — showing the Berean Standard Bible instead.
+                    <button
+                        type="button"
+                        aria-label="Dismiss"
+                        onClick={() => setLicensedFallback(null)}
+                        className="ml-2 cursor-pointer underline"
+                    >
+                        Dismiss
+                    </button>
+                </div>
+            )}
 
             <MobileStudyTabs
                 activeTab={mobileTab}

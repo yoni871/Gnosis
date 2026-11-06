@@ -1,6 +1,14 @@
 //this controller recieves the http request
 //talks to the database and sends the response
 const bibleService = require("../services/bibleService");
+const licensedTranslations = require("../services/licensed/licensedTranslations");
+
+// Licensed translations are temporarily unavailable as a whole, never
+// per-verse: the reader answers this by falling back to BSB.
+const LICENSED_UNAVAILABLE_BODY = {
+    error: "This translation is temporarily unavailable.",
+    code: "LICENSED_UNAVAILABLE",
+};
 
 const getBooks = async (req, res) => {
     try {
@@ -122,6 +130,47 @@ const getVerseCommentaries = async (req, res) => {
 const getBibleChapter = async (req, res) => {
     const { book, chapter, translation } = req.params;
     try {
+        const translationRow = await bibleService.getTranslationByAbbreviation(translation);
+        if (!translationRow) {
+            return res.status(404).json({
+                error:  "Chapter not found."
+            })
+        }
+        // Licensed translations come from the publisher's API (with a
+        // bounded 30-day cache), never from bible_verses. The response
+        // rows match the stored-translation shape exactly, so the reader
+        // needs no special case for them.
+        if (translationRow.source !== "database") {
+            if (!translationRow.enabled
+                || !licensedTranslations.isProviderConfigured(translationRow)) {
+                return res.status(503).json(LICENSED_UNAVAILABLE_BODY);
+            }
+            const chapterNumber = Number(chapter);
+            if (!Number.isInteger(chapterNumber) || chapterNumber < 1) {
+                return res.status(404).json({
+                    error:  "Chapter not found."
+                })
+            }
+            try {
+                const { verses } = await licensedTranslations.getLicensedChapter(
+                    translationRow,
+                    book,
+                    chapterNumber,
+                    req.ip
+                );
+                return res.json(verses.map((verse) => ({
+                    verse_number: verse.verse_number,
+                    text: verse.text,
+                    chapter_number: chapterNumber,
+                    book,
+                })));
+            } catch (error) {
+                // Provider detail stays in the server log; the reader only
+                // learns the translation is unavailable right now.
+                console.error(error);
+                return res.status(503).json(LICENSED_UNAVAILABLE_BODY);
+            }
+        }
         const result = await bibleService.getChapterByBook(book, chapter, translation);
         if(result.rows.length === 0) {
             return res.status(404).json({
@@ -134,7 +183,7 @@ const getBibleChapter = async (req, res) => {
         res.status(500).json({
             error: "Failed to retrieve chapter."
         });
-    }  
+    }
 }
 
 const getStudy = async (req, res) => {
