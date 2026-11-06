@@ -26,10 +26,10 @@ export default function KnowledgeDiagram({ categories = KNOWLEDGE_CATEGORIES }) 
             <figcaption id={captionId}>The Gnosis Vision{" "}<span>Planned connections</span></figcaption>
             <div className="knowledge-diagram-plane" style={{ "--vision-height": `${height}px`, "--vision-rows": rows.map(row => `${row}px`).join(" "), "--vision-hub-y": `${hubY}%` }}>
                 <svg className="knowledge-lines knowledge-lines-radial" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                    {nodes.map(node => <line key={node.id} x1="50" y1="50" x2={node.x} y2={node.y} vectorEffect="non-scaling-stroke" />)}
+                    {nodes.map(node => <path key={node.id} d={`M 50 50 L ${node.x} ${node.y}`} vectorEffect="non-scaling-stroke" />)}
                 </svg>
                 <svg className="knowledge-lines knowledge-lines-stacked" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                    {nodes.map(node => <line key={node.id} x1="50" y1={hubY} x2={(node.column + .5) / 3 * 100} y2={node.mobileY} vectorEffect="non-scaling-stroke" />)}
+                    {nodes.map(node => <path key={node.id} d={`M 50 ${hubY} L ${(node.column + .5) / 3 * 100} ${node.mobileY}`} vectorEffect="non-scaling-stroke" />)}
                 </svg>
                 <div className="knowledge-diagram-hub">
                     <p className="knowledge-verse-reference">JOHN 1:1</p>

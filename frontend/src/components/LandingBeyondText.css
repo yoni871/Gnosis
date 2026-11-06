@@ -27,7 +27,7 @@
 .knowledge-diagram figcaption span { display: block; color: #70665b; font-size: .7rem; font-weight: 400; letter-spacing: .02em; margin-top: 4px; }
 .knowledge-diagram-plane { position: relative; width: 100%; aspect-ratio: 1; margin-top: 24px; }
 .knowledge-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.knowledge-lines line { stroke: var(--vision-rule); stroke-width: 1; }
+.knowledge-lines path { fill: none; stroke: var(--vision-rule); stroke-width: 1; }
 .knowledge-lines-stacked { display: none; }
 .knowledge-diagram-hub {
     position: absolute; z-index: 1; left: 50%; top: 50%; transform: translate(-50%, -50%);
