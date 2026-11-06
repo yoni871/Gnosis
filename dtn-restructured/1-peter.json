@@ -1,0 +1,455 @@
+{
+  "book": "1 Peter",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "sojourners (e-8) As ch. 2.11; Heb. 11.13."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 2,
+      "end_chapter": 1,
+      "end_verse": 2,
+      "title": "",
+      "content": "sanctification (f-11) Hagiasmos, see Note i, Rom. 1.4. blood (g-22) 'Jesus Christ' is connected with 'obedience,' as well as with 'sprinkling of the blood.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 5,
+      "end_chapter": 1,
+      "end_verse": 5,
+      "title": "",
+      "content": "time. (a-21) The article is everywhere left out in the Greek here, making it all characteristic and descriptive."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 6,
+      "end_chapter": 1,
+      "end_verse": 6,
+      "title": "",
+      "content": "Wherein (b-1) Or 'in which [time].' trials, (c-17) Or temptations."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 8,
+      "end_chapter": 1,
+      "end_verse": 8,
+      "title": "",
+      "content": "on (d-7) 'On whom' does not, I think, refer to 'ye exult.' It may refer to both 'looking' and 'believing,' which is, I think, the natural construction. If not, it is connected simply with 'looking.' glory, (e-24) Lit. 'and glorified.' The expression relates to 'joy.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 9,
+      "end_chapter": 1,
+      "end_verse": 9,
+      "title": "",
+      "content": "souls. (f-11) Lit. 'salvation of souls,' in contrast with temporal deliverances, to which, as Jews, they were accustomed to look."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 12,
+      "end_chapter": 1,
+      "end_verse": 12,
+      "title": "",
+      "content": "by (g-34) En, 'in the power of.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 14,
+      "end_chapter": 1,
+      "end_verse": 14,
+      "title": "",
+      "content": "conformed (h-6) 'Conformed' here expresses a state. The path in which they walk is the sense here. 'Conforming yourselves' is too active and intentional. As Rom. 12.2."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 15,
+      "end_chapter": 1,
+      "end_verse": 15,
+      "title": "",
+      "content": "conversation; (i-17) i.e. 'manner of life,' and so ver. 18."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 16,
+      "end_chapter": 1,
+      "end_verse": 16,
+      "title": "",
+      "content": "written, (k-4) See Lev. 19.2. 'Holy' here is hagios. see Note i, Heb. 7.26."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 19,
+      "end_chapter": 1,
+      "end_verse": 19,
+      "title": "",
+      "content": "spot, (l-13) Or 'by precious blood, as of Christ, a lamb, &c.;' or 'by [the] precious blood of Christ, as of a lamb, &c.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 21,
+      "end_chapter": 1,
+      "end_verse": 21,
+      "title": "",
+      "content": "God. (m-28) Or 'so that your faith and hope are in God.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 25,
+      "end_chapter": 1,
+      "end_verse": 25,
+      "title": "",
+      "content": "eternity. (n-9) See Isa. 40.6-8."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 2,
+      "end_chapter": 2,
+      "end_verse": 2,
+      "title": "",
+      "content": "mental (a-8) The word here translated 'mental' has the sense of 'suited to the rational faculties' -- the mind in contrast with the body -- yet I believe there is allusion to logos, from which it is derived, and I have added 'of the word' to mark this allusion."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 6,
+      "end_chapter": 2,
+      "end_verse": 6,
+      "title": "",
+      "content": "scripture. (b-7) See Isa. 28.16. him (c-23) Or 'trusts in it,' that is, the Stone, Christ. 'On' (epi) implies reliance on; confidence in; the mind looking to another with trust. see 2Tim. 1.12."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 7,
+      "end_chapter": 2,
+      "end_verse": 7,
+      "title": "",
+      "content": "disobedient, (d-12) Or 'disbelieving.' See ch. 3.20 and 4.17. corner, (e-28) Or 'is become chief corner stone,' Ps. 118.22."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 8,
+      "end_chapter": 2,
+      "end_verse": 8,
+      "title": "",
+      "content": "disobedient (d-16) Or 'disbelieving.' See ch. 3.20 and 4.17. offence; (f-9) Lit. 'fall trap,' as Rom. 9.33; 1Cor. 1.23. see Note, Matt. 13.57. Cited from Isa. 8.14."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 9,
+      "end_chapter": 2,
+      "end_verse": 9,
+      "title": "",
+      "content": "nation, (g-12) See Ex. 19.6."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 10,
+      "end_chapter": 2,
+      "end_verse": 10,
+      "title": "",
+      "content": "mercy. (h-20) I have endeavoured to express the perfect participle of the verb 'to show mercy' by 'enjoying mercy,' and the aorist participle of the same verb by 'having found mercy.' See Hos. 1.10; 2.23."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 11,
+      "end_chapter": 2,
+      "end_verse": 11,
+      "title": "",
+      "content": "sojourners, (i-8) See Note, ch. 1.1. which (k-14) Which have this character, not simply 'which.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 12,
+      "end_chapter": 2,
+      "end_verse": 12,
+      "title": "",
+      "content": "conversation (l-3) i.e. 'manner of life.' which (m-13) The expression here does not mean exactly 'whereas' or 'wherein.' It is rather 'in that respect in which.' He does not mean in that particular thing exactly, but in respect of that very walk and course of conduct."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 15,
+      "end_chapter": 2,
+      "end_verse": 15,
+      "title": "",
+      "content": "men; (n-19) 'Senseless men' has the article here, as showing that it is not 'some men who are foolish,' but that men (not Christians) are so, are known in that character. It is the character of all who are pointed out by the name of 'men.' It is somewhat wider than 'Gentiles,' ver. 12."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 16,
+      "end_chapter": 2,
+      "end_verse": 16,
+      "title": "",
+      "content": "malice, (o-12) In the Greek there are articles before 'liberty' and 'malice,' thus emphasizing the contrast. 'that thing liberty as cloak of that thing malice.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 17,
+      "end_chapter": 2,
+      "end_verse": 17,
+      "title": "",
+      "content": "to (a-3) 'Shew honour' is the aorist; the other verbs in this verse are the present tense. Hence, 'shew honour' is more the act when occasion arises; the others, the constant habit of mind. brotherhood, (b-7) Only here and ch. 5.9."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 18,
+      "end_chapter": 2,
+      "end_verse": 18,
+      "title": "",
+      "content": "Servants, (c-1) 'Household servants,' as Rom. 14.4, not necessarily slaves. subject (d-3) See Note n, ch. 3.1."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 20,
+      "end_chapter": 2,
+      "end_verse": 20,
+      "title": "",
+      "content": "bear (e-13) Hupomeno, 'endure patiently.' see 2Tim. 2.12; Jas. 5.7 (Note f). good (f-18) Not only 'good' in the sense of 'right,' but 'beneficent.' I think his mind goes beyond the servants to doing good generally as Christians."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 21,
+      "end_chapter": 2,
+      "end_verse": 21,
+      "title": "",
+      "content": "model (g-18) A copy, as we say, to write from."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 22,
+      "end_chapter": 2,
+      "end_verse": 22,
+      "title": "",
+      "content": "mouth; (h-11) See Isa. 53.9."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 23,
+      "end_chapter": 2,
+      "end_verse": 23,
+      "title": "",
+      "content": "into (i-15) The Greek means to deliver up into the hands of another, not committing a wrong to another to vindicate. The sense must be 'gave himself up to, suffered all, as accepting all from his hand.' gave himself up to take whatever he sent who would in the end righteously judge. It has the sense of committing any one to the care of another. See Acts 14.26; 15.40. 'committed.' Compare John 19.30. 'delivered up.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 24,
+      "end_chapter": 2,
+      "end_verse": 24,
+      "title": "",
+      "content": "to (k-17) Or 'having done with;' but better as in text. stripes (l-26) Or 'bruise.' Though the word is in the singular, it is literally the marks left by scourging. 'Stripe' does not convey this. healed. (m-30) Isa. 53.5."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 1,
+      "end_chapter": 3,
+      "end_verse": 1,
+      "title": "",
+      "content": "subject (n-4) Not the aorist, a particular act, as in ch. 2.13, but the present participle, an habitual state, as in ch. 2.18. conversation (o-27) Or 'manner of life.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 2,
+      "end_chapter": 3,
+      "end_verse": 2,
+      "title": "",
+      "content": "conversation (o-5) Or 'manner of life.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 5,
+      "end_chapter": 3,
+      "end_verse": 5,
+      "title": "",
+      "content": "subject (n-16) Not the aorist, a particular act, as in ch. 2.13, but the present participle, an habitual state, as in ch. 2.18. hoped (p-9) 'Have hoped' is present, characterizing the woman."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 6,
+      "end_chapter": 3,
+      "end_verse": 6,
+      "title": "",
+      "content": "doing (q-13) That is, assuming they do."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 12,
+      "end_chapter": 3,
+      "end_verse": 12,
+      "title": "",
+      "content": "evil. (a-28) See Ps. 34.12-16."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 13,
+      "end_chapter": 3,
+      "end_verse": 13,
+      "title": "",
+      "content": "good? (b-15) Or 'him that is good.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 15,
+      "end_chapter": 3,
+      "end_verse": 15,
+      "title": "",
+      "content": "hearts, (c-9) See Isa. 8.12-13. of (d-28) Or 'a reason for,' logos, as ch. 4.5; it includes both ideas. In Matt. 12.36 it is 'account,' but in Acts 19.40 'a reason for,' as elsewhere."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 16,
+      "end_chapter": 3,
+      "end_verse": 16,
+      "title": "",
+      "content": "which (e-10) See Note m, ch. 2.12. conversation (f-25) See Note o, ver. 1."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 18,
+      "end_chapter": 3,
+      "end_verse": 18,
+      "title": "",
+      "content": "unjust, (g-13) 'Just' is singular, 'unjust' plural. There is no article in either case. It is not 'the just' par excellence, as Acts 3.14. [the] (h-31) The article being left out, it is characteristic, in contrast with 'in flesh.' Both flesh and spirit are the manner and character of what is predicated of Christ. We could say 'present in spirit,' 'fervent in spirit,' because it is characteristic. but 'made alive in spirit' conveys to the English mind the idea of an accomplished fact. It cannot be simply characteristic. In Greek, on the other hand, although conveying a fact, it has a characteristic significance. The sense given here is right."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 20,
+      "end_chapter": 3,
+      "end_verse": 20,
+      "title": "",
+      "content": "disobedient, (i-2) Or 'disbelieving.' see John 3.36 and ch. 2.7,8. longsuffering (k-5) Makrothumia. see Note.f, Jas. 5.7. saved (l-27) The Greek means 'arrive safe into a place of security through difficulty or danger,' as Acts 27.44. water. (m-29) This does not mean, I think, that they went through the water to get in, i.e. through the course of the flood. The apostle's mind does not turn to the flood, but to the water as an instrument. Water was ruin and death, and they were saved through it."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 21,
+      "end_chapter": 3,
+      "end_verse": 21,
+      "title": "",
+      "content": "demand (n-20) Or 'engagement,' or 'testimony.' The Greek word here translated 'demand' is a very difficult one, and has puzzled all critics and commentators. It means 'a question.' All the commentators speak of its use as a legal term with the sense of contract, or rather stipulations or obligations of a contract. I judge (as usual in these forms) that it refers to the question asked rather than to the asking of the question. The legal use arises from a questioning which settled the terms of the contract, hence called the questioning. I am disposed to think it is the thing demanded. It requires as before God, and has it in baptism as a figure by the resurrection of Jesus Christ. It must be remembered that 'of a good conscience' in English may be the thing requested or 'he who requests.' The form of the word in the Greek would rather make it the thing requested or demanded."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 4,
+      "end_chapter": 4,
+      "end_verse": 4,
+      "title": "",
+      "content": "corruption, (a-17) Or 'dissoluteness,' the heart being poured out into it. Or 'excess of profligacy.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 13,
+      "end_chapter": 4,
+      "end_verse": 13,
+      "title": "",
+      "content": "share (b-5) Koinonos. see Heb. 2.14."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 14,
+      "end_chapter": 4,
+      "end_verse": 14,
+      "title": "",
+      "content": "God (c-22) Or 'the Spirit of glory and of God.' There is a shade of difference in this."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 17,
+      "end_chapter": 4,
+      "end_verse": 17,
+      "title": "",
+      "content": "us, (d-20) See Ezek. 9.6. obey (e-29) Or 'believe not.' See ch. 2.7,8 and 3.20."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 18,
+      "end_chapter": 4,
+      "end_verse": 18,
+      "title": "",
+      "content": "saved, (f-7) Saved here on the earth, as through the trials and judgments which specially beset the Jewish Christians."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 1,
+      "end_chapter": 5,
+      "end_verse": 1,
+      "title": "",
+      "content": "partaker (b-24) Koinonos. see Heb. 2.14."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 2,
+      "end_chapter": 5,
+      "end_verse": 2,
+      "title": "",
+      "content": "shepherd (g-1) The aorist and characteristic. the whole conduct in this character being looked at together as constituting it. They are to act in this character, or have it by acting. It is not simply an exhortation to do it, but to acquire that character by doing it; to be so characterized; 'Be shepherders.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 3,
+      "end_chapter": 5,
+      "end_verse": 3,
+      "title": "",
+      "content": "your (a-6) Lit. 'the possessions.' What they are is wholly beside the mark. No doubt the saints were in his thoughts; but the character of the elders' conduct is what is in question. If there were no article, it would mean 'not like persons who lord it over possessions.' but here it is more definite. Do not be as persons lording it over your possessions, viewing the saints as something belonging to you. 'Possessions' is not the name of the flock, but the flock was not to be treated as the 'possessions' of the elders."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 4,
+      "end_chapter": 5,
+      "end_verse": 4,
+      "title": "",
+      "content": "unfading (b-12) Or 'amaranthine,' the amaranth plant being an image of that which does not fade or wither. The sense is the same."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 5,
+      "end_chapter": 5,
+      "end_verse": 5,
+      "title": "",
+      "content": "grace. (c-31) See Prov. 3.34."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 6,
+      "end_chapter": 5,
+      "end_verse": 6,
+      "title": "",
+      "content": "yourselves (d-2) Or 'be humbled,' aorist; also 'vigilant,' 'watch,' and 'resist' refer to characters to be won. see Note g, ver. 2."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 8,
+      "end_chapter": 5,
+      "end_verse": 8,
+      "title": "",
+      "content": "vigilant, (d-2) Or 'be humbled,' aorist; also 'vigilant,' 'watch,' and 'resist' refer to characters to be won. see Note g, ver. 2."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 9,
+      "end_chapter": 5,
+      "end_verse": 9,
+      "title": "",
+      "content": "resist, (d-2) Or 'be humbled,' aorist; also 'vigilant,' 'watch,' and 'resist' refer to characters to be won. see Note g, ver. 2. faith, (e-5) Or 'the faith.' It might be 'through faith.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 12,
+      "end_chapter": 5,
+      "end_verse": 12,
+      "title": "",
+      "content": "briefly; (f-14) Or read 'to you' after 'faithful brother' and not after 'written.' stand. (g-29) Many read 'in which stand' (imperative)."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 13,
+      "end_chapter": 5,
+      "end_verse": 13,
+      "title": "",
+      "content": "(h-1) It may be 'brotherhood,' as at ver. 9, as that is feminine; or his wife, as it is simply co-elect in the feminine."
+    }
+  ]
+}

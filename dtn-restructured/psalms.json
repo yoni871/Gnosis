@@ -1,0 +1,6295 @@
+{
+  "book": "Psalms",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "seat (a-27) Or 'in the company.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 3,
+      "end_chapter": 1,
+      "end_verse": 3,
+      "title": "",
+      "content": "[is] (b-3) Or 'will be.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 1,
+      "end_chapter": 2,
+      "end_verse": 1,
+      "title": "",
+      "content": "peoples (c-12) Leummim, a general word for 'the races of mankind.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 2,
+      "end_chapter": 2,
+      "end_verse": 2,
+      "title": "",
+      "content": "themselves, (d-7) Or 'stand up.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 4,
+      "end_chapter": 2,
+      "end_verse": 4,
+      "title": "",
+      "content": "Lord (e-10) Adonai."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 6,
+      "end_chapter": 2,
+      "end_verse": 6,
+      "title": "",
+      "content": "anointed (f-4) Or 'installed.' see Prov. 8.23."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 8,
+      "end_chapter": 2,
+      "end_verse": 8,
+      "title": "",
+      "content": "earth. (g-21) Erets, 'land,' but the plural 'ends' seems to involve the meaning 'earth.' see 1Sam. 2.8,10; Ps. 72.8; Isa. 49.6; Acts 13.47."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 9,
+      "end_chapter": 2,
+      "end_verse": 9,
+      "title": "",
+      "content": "sceptre (h-7) Or 'rod.' see Gen. 49.10."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 10,
+      "end_chapter": 2,
+      "end_verse": 10,
+      "title": "",
+      "content": "wise, (i-7) Or 'consider well.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 12,
+      "end_chapter": 2,
+      "end_verse": 12,
+      "title": "",
+      "content": "little. (k-20) Or 'for soon his anger burneth.' trust (l-27) 'Take refuge,' as Ps. 61.4. same root word as 'refuge,' in Ps. 14.6, &c., and 'trust' in 2Sam. 22.3."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 1,
+      "end_chapter": 3,
+      "end_verse": 1,
+      "title": "",
+      "content": "trouble (m-18) See Ps. 8.2, 'adversaries' and Note o."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 2,
+      "end_chapter": 3,
+      "end_verse": 2,
+      "title": "",
+      "content": "Selah. (a-14) 'Selah' is said to mean a pause. Some take it as a direction to the singers to raise their voices. Selah occurs 74 times in the O.T.. 71 in the Psalms, 17 in first book, 30 in second, 20 in third, 4 in fifth; and 3 in Habakkuk."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 1,
+      "end_chapter": 4,
+      "end_verse": 1,
+      "title": "",
+      "content": "call, (b-14) It is abstract, 'in my calling.' so ver. 3."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 3,
+      "end_chapter": 4,
+      "end_verse": 3,
+      "title": "",
+      "content": "pious (c-9) Chasid, an adjective used of man and of God; it is translated 'holy,' 'pious,' 'saint,' 'gracious.' Chesed is the noun meaning 'piety' and recognition of God on man's part, and of 'grace' and 'loving-kindness' on God's part. see 2Chron. 6.42."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 4,
+      "end_chapter": 4,
+      "end_verse": 4,
+      "title": "",
+      "content": "anger, (d-4) Or 'tremble.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 5,
+      "end_chapter": 4,
+      "end_verse": 5,
+      "title": "",
+      "content": "Offer (e-1) As Ex. 23.18; Ps. 50.14. confide (f-6) * Implying 'security without anxiety,' and so elsewhere."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 8,
+      "end_chapter": 4,
+      "end_verse": 8,
+      "title": "",
+      "content": "safety. (g-20) Or 'for thou, Jehovah, makest me [although] alone [yet] to dwell,' &c.. see Deut. 33. 28."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 1,
+      "end_chapter": 5,
+      "end_verse": 1,
+      "title": "",
+      "content": "Nehiloth. (h-6) Perhaps 'wind-instruments.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 3,
+      "end_chapter": 5,
+      "end_verse": 3,
+      "title": "",
+      "content": "up. (i-22) With the sense of 'waiting,' 'expecting.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 4,
+      "end_chapter": 5,
+      "end_verse": 4,
+      "title": "",
+      "content": "evil (k-12) Or 'the evil [man].'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 5,
+      "end_chapter": 5,
+      "end_verse": 5,
+      "title": "",
+      "content": "fools (l-2) Or 'the boastful,' 'the arrogant,' as Ps. 73.3. workers (m-12) The Hebrew word is used for 'mighty deeds,' 'achievements,' and is common in the Psalms. see Job 31.3; 34.8,22."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 7,
+      "end_chapter": 5,
+      "end_verse": 7,
+      "title": "",
+      "content": "in (n-5) Or 'through.' loving-kindness (a-10) Chesed. see Ps. 4.3. temple (b-22) Or 'palace.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 8,
+      "end_chapter": 5,
+      "end_verse": 8,
+      "title": "",
+      "content": "plain (c-14) Lit. 'straight.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 9,
+      "end_chapter": 5,
+      "end_verse": 9,
+      "title": "",
+      "content": "perversion, (d-13) 'Corrupt, depraved desires,' 'wickedness;' 'mischievous things,' Ps. 38.12. the word is plural. with (e-22) Lit. 'make smooth.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 12,
+      "end_chapter": 5,
+      "end_verse": 12,
+      "title": "",
+      "content": "shield. (f-18) Here the larger shield, one which screened the whole body. 'buckler,' Ps. 35.2; 91.4."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 1,
+      "end_chapter": 6,
+      "end_verse": 1,
+      "title": "",
+      "content": "Sheminith. (g-9) Perhaps 'upon the octave,' or 'with eight strings.' see Ps. 12; 1Chron. 15.21."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 4,
+      "end_chapter": 6,
+      "end_verse": 4,
+      "title": "",
+      "content": "loving-kindness' (a-10) Chesed. see Ps. 4.3."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 5,
+      "end_chapter": 6,
+      "end_verse": 5,
+      "title": "",
+      "content": "Sheol (h-11) i.e. 'Hades;' it vaguely expresses the place or state of the soul separated from the body. thee? (i-17) Or 'celebrate thy praises.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 7,
+      "end_chapter": 6,
+      "end_verse": 7,
+      "title": "",
+      "content": "oppressors. (k-15) Tzar, see Ps. 8.2."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 1,
+      "end_chapter": 7,
+      "end_verse": 1,
+      "title": "",
+      "content": "Shiggaion (l-1) According to some, it means 'elegy.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 4,
+      "end_chapter": 7,
+      "end_verse": 4,
+      "title": "",
+      "content": "that (m-19) Or 'or have despoiled him that,' &c."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 5,
+      "end_chapter": 7,
+      "end_verse": 5,
+      "title": "",
+      "content": "glory (a-24) Or 'cause mine honour to dwell.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 7,
+      "end_chapter": 7,
+      "end_verse": 7,
+      "title": "",
+      "content": "sakes (b-13) Or 'over them,' or 'above it,' i.e. 'the assembly.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 8,
+      "end_chapter": 7,
+      "end_verse": 8,
+      "title": "",
+      "content": "peoples. (c-7) Ammim, the peoples in connection with Israel, brought into relationship with Israel. me. (d-23) Or 'be it unto me.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 11,
+      "end_chapter": 7,
+      "end_verse": 11,
+      "title": "",
+      "content": "judge, (e-5) Or 'God judgeth the righteous.' day. (f-14) Or 'and *God is angry in every day.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 12,
+      "end_chapter": 7,
+      "end_verse": 12,
+      "title": "",
+      "content": "one (g-2) Or, 'if he,' i.e. 'the wicked one.' ready, (h-18) Or 'adjusted it.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 13,
+      "end_chapter": 7,
+      "end_verse": 13,
+      "title": "",
+      "content": "him (i-6) Or 'pointed at him.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 17,
+      "end_chapter": 7,
+      "end_verse": 17,
+      "title": "",
+      "content": "praise (k-3) Or 'thank;' and so Ps. 9.1."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 1,
+      "end_chapter": 8,
+      "end_verse": 1,
+      "title": "",
+      "content": "Gittith. (l-7) * See also Ps. 81 and 84. A musical instrument. The word is feminine. set (m-26) Possibly imperative, it would then read, '... earth! because of which set thou,' &c."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 2,
+      "end_chapter": 8,
+      "end_verse": 2,
+      "title": "",
+      "content": "praise (n-12) Or 'founded strength;' same word as in Ps. 68.34; 96.6,7; 132.8. adversaries, (o-16) Tzar, the 'adversary' of Christ, or 'oppressor' of the remnant, from within, as Ps. 3.1; 27.2,12. enemy (p-20) Oyeb, external 'enemy,' as Ex. 15.9; 23.22; Num. 10.35."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 4,
+      "end_chapter": 8,
+      "end_verse": 4,
+      "title": "",
+      "content": "man, (q-3) Enosh, 'feeble,' 'mortal man,' man looked at as a race, in contrast with distinguished individuals. see Gen. 4.26; Ps. 144.3. man, (r-14) Adam. visitest (s-17) Or 'regardest.'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 5,
+      "end_chapter": 8,
+      "end_verse": 5,
+      "title": "",
+      "content": "little (t-6) Or 'some little.' angels, (u-10) Elohim. see Ps. 97.7."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 1,
+      "end_chapter": 9,
+      "end_verse": 1,
+      "title": "",
+      "content": "Muthlabben. (a-6) Perhaps 'the death of [his] son.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 5,
+      "end_chapter": 9,
+      "end_verse": 5,
+      "title": "",
+      "content": "wicked; (b-10) The word is in the singular, and as such, characteristic; so in ver. 16. it is plural in ver. 17."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 6,
+      "end_chapter": 9,
+      "end_verse": 6,
+      "title": "",
+      "content": "perished. (c-20) Or 'their memorial hath perished [along with] them,' or 'even theirs.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 8,
+      "end_chapter": 9,
+      "end_verse": 8,
+      "title": "",
+      "content": "world (d-9) Tebel, the habitable earth. see 1Sam. 2.8; Ps 19.4; 24.1; 33.8; 98.7,9, &c.; Prov. 8.31."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 9,
+      "end_chapter": 9,
+      "end_verse": 9,
+      "title": "",
+      "content": "refuge (e-6) refuge (e-12) Strictly, 'high fortress;' 'high tower,' Ps. 18.2."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 12,
+      "end_chapter": 9,
+      "end_verse": 12,
+      "title": "",
+      "content": "he (f-8) Or 'For he that requireth blood.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 13,
+      "end_chapter": 9,
+      "end_verse": 13,
+      "title": "",
+      "content": "lifting (g-15) Or 'thou that liftest.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 16,
+      "end_chapter": 9,
+      "end_verse": 16,
+      "title": "",
+      "content": "Higgaion. (h-21) This may mean, 'to be played on the harp;' if not 'meditate.' Same word as Ps. 19.14; 92.3; Lam. 3.62."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 18,
+      "end_chapter": 9,
+      "end_verse": 18,
+      "title": "",
+      "content": "meek (i-14) Plural, or 'the afflicted ones;' 'meek' and 'afflicted' are connected in Hebrew."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 19,
+      "end_chapter": 9,
+      "end_verse": 19,
+      "title": "",
+      "content": "man (k-5) Enosh. see Ps. 8.4."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 20,
+      "end_chapter": 9,
+      "end_verse": 20,
+      "title": "",
+      "content": "men. (k-15) Enosh. see Ps. 8.4."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 2,
+      "end_chapter": 10,
+      "end_verse": 2,
+      "title": "",
+      "content": "afflicted. (a-10) Or 'Through the pride of the wicked [man], the afflicted is sore pressed.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 4,
+      "end_chapter": 10,
+      "end_verse": 4,
+      "title": "",
+      "content": "out. (b-14) Or 'The wicked in his haughtiness doth not seek [God];' or 'troubleth himself for nothing.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 5,
+      "end_chapter": 10,
+      "end_verse": 5,
+      "title": "",
+      "content": "succeed; (c-4) Lit. 'are rigid.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 10,
+      "end_chapter": 10,
+      "end_verse": 10,
+      "title": "",
+      "content": "ones. (d-14) An allusion probably to 'fangs [of a lion].'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 12,
+      "end_chapter": 10,
+      "end_verse": 12,
+      "title": "",
+      "content": "afflicted. (e-12) Others, 'the meek,' as also in Ps. 9.12. see 9.18."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 14,
+      "end_chapter": 10,
+      "end_verse": 14,
+      "title": "",
+      "content": "trouble (f-9) Or 'mischief,' as ver. 7. by (g-14) Or 'to put it into.' himself (h-20) Or 'it.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 18,
+      "end_chapter": 10,
+      "end_verse": 18,
+      "title": "",
+      "content": "man (i-13) Enosh. Ps. 8.4."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 1,
+      "end_chapter": 11,
+      "end_verse": 1,
+      "title": "",
+      "content": "bird (k-25) Or 'Flee, ye birds.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 4,
+      "end_chapter": 11,
+      "end_verse": 4,
+      "title": "",
+      "content": "temple (l-5) Or 'palace;' and so Ps. 18.6; 45.8,15, &c."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 5,
+      "end_chapter": 11,
+      "end_verse": 5,
+      "title": "",
+      "content": "wicked, (a-8) See Note, Ps. 9.5. here the singular."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 6,
+      "end_chapter": 11,
+      "end_verse": 6,
+      "title": "",
+      "content": "be (b-15) Or 'snares. fire and brimstone and a scorching wind shall be.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 7,
+      "end_chapter": 11,
+      "end_verse": 7,
+      "title": "",
+      "content": "righteousness, (c-7) Lit. 'righteousnesses.' see Note, Rev. 19.8. upright. (d-13) Or 'the upright shall see his face.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 1,
+      "end_chapter": 12,
+      "end_verse": 1,
+      "title": "",
+      "content": "Sheminith. (e-6) See Ps. 6, title. gone; (f-18) Or 'ceaseth.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 2,
+      "end_chapter": 12,
+      "end_verse": 2,
+      "title": "",
+      "content": "falsehood (g-3) Or 'vanity.' heart, (h-15) Lit. 'a heart and a heart.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 3,
+      "end_chapter": 12,
+      "end_verse": 3,
+      "title": "",
+      "content": "proud (i-12) Lit. 'great.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 5,
+      "end_chapter": 12,
+      "end_verse": 5,
+      "title": "",
+      "content": "puff. (k-30) Lit. 'one puffeth.' see Ps. 10.5."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 6,
+      "end_chapter": 12,
+      "end_verse": 6,
+      "title": "",
+      "content": "words, (l-7) Imrah. see Ps. 119.11."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 7,
+      "end_chapter": 12,
+      "end_verse": 7,
+      "title": "",
+      "content": "them (m-9) Or 'him.' see end of ver. 5."
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 5,
+      "end_chapter": 13,
+      "end_verse": 5,
+      "title": "",
+      "content": "loving-kindness; (n-9) Chesed. see Ps. 4.3 and 2Chron. 6.42."
+    },
+    {
+      "start_chapter": 14,
+      "start_verse": 1,
+      "end_chapter": 14,
+      "end_verse": 1,
+      "title": "",
+      "content": "(o-0) With this Psalm compare Ps. 53. fool (p-10) Nabal. see Ps. 53.1."
+    },
+    {
+      "start_chapter": 14,
+      "start_verse": 7,
+      "end_chapter": 14,
+      "end_verse": 7,
+      "title": "",
+      "content": "captivity (a-17) See Ps. 126.1 and Note."
+    },
+    {
+      "start_chapter": 15,
+      "start_verse": 5,
+      "end_chapter": 15,
+      "end_verse": 5,
+      "title": "",
+      "content": "reward (b-12) Or 'a bribe.'"
+    },
+    {
+      "start_chapter": 16,
+      "start_verse": 1,
+      "end_chapter": 16,
+      "end_verse": 1,
+      "title": "",
+      "content": "Michtam (c-1) Meaning doubtful. According to some, 'a golden jewel.' See Ps. 56-60."
+    },
+    {
+      "start_chapter": 16,
+      "start_verse": 3,
+      "end_chapter": 16,
+      "end_verse": 3,
+      "title": "",
+      "content": "To (d-1) The preposition is the same as before 'Jehovah' in ver. 2. but 'to' before 'thee,' at the end of ver. 2, is different. saints (e-3) Kadoshim. plural of Kadosh, which is used of God in Ps. 22.3; 71.22; 78.41; 89.18; 99.3,5; Hab. 1.12, &c., and is translated 'holy' -- 'holy one.' It is used of 'Aaron,' Ps. 106.16."
+    },
+    {
+      "start_chapter": 16,
+      "start_verse": 5,
+      "end_chapter": 16,
+      "end_verse": 5,
+      "title": "",
+      "content": "inheritance (f-7) Or 'mine assigned portion.'"
+    },
+    {
+      "start_chapter": 16,
+      "start_verse": 6,
+      "end_chapter": 16,
+      "end_verse": 6,
+      "title": "",
+      "content": "lines (g-2) Or 'portions.' see Josh. 17.5,14. fallen (h-4) See Mic. 2.5."
+    },
+    {
+      "start_chapter": 16,
+      "start_verse": 9,
+      "end_chapter": 16,
+      "end_verse": 9,
+      "title": "",
+      "content": "glory (i-7) Or 'honour.' In Acts 2.26, 'tongue,' from the LXX. But see Gen. 49.6. It may be taken as a synonym of 'soul.' see Ps. 7.5. hope. (k-15) Or 'shall rest in safety,' as Ps. 4.8."
+    },
+    {
+      "start_chapter": 16,
+      "start_verse": 10,
+      "end_chapter": 16,
+      "end_verse": 10,
+      "title": "",
+      "content": "Sheol, (l-9) See Notes to Ps. 6.5 and Matt. 11.23. One (m-16) Or 'gracious one,' chasid. see Notes to Ps. 4.3; 30.4."
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 1,
+      "end_chapter": 17,
+      "end_verse": 1,
+      "title": "",
+      "content": "right, (a-7) Strictly, 'righteousness'"
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 2,
+      "end_chapter": 17,
+      "end_verse": 2,
+      "title": "",
+      "content": "judgment (b-3) Or 'right.'"
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 4,
+      "end_chapter": 17,
+      "end_verse": 4,
+      "title": "",
+      "content": "from (c-15) Or 'I have paid attention to.'"
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 5,
+      "end_chapter": 17,
+      "end_verse": 5,
+      "title": "",
+      "content": "paths, (d-8) Or 'Hold my goings in thy paths, that my ...'"
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 6,
+      "end_chapter": 17,
+      "end_verse": 6,
+      "title": "",
+      "content": "speech. (e-19) Imrah. see Ps. 119.11."
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 7,
+      "end_chapter": 17,
+      "end_verse": 7,
+      "title": "",
+      "content": "loving-kindnesses, (f-4) Chesed. see 2Chron. 6.42."
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 8,
+      "end_chapter": 17,
+      "end_verse": 8,
+      "title": "",
+      "content": "eye, (g-8) See Deut. 32.10; Prov. 7.2,9; 20.20."
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 11,
+      "end_chapter": 17,
+      "end_verse": 11,
+      "title": "",
+      "content": "us (h-5) Or 'me.' earth. (i-18) Or 'they set their eyes to cast [us] down to the earth.'"
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 13,
+      "end_chapter": 17,
+      "end_verse": 13,
+      "title": "",
+      "content": "sword; (k-15) Or '[by] thy sword.'"
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 14,
+      "end_chapter": 17,
+      "end_verse": 14,
+      "title": "",
+      "content": "are] (l-4) Or '[by].' age. (m-13) Cheled or 'world.' so Ps. 49.1; 'life,' Ps. 89.47 and Job 11.17; also 'lifetime,' Ps. 39.5. sons, (n-34) Or [their] sons are surfeited.'"
+    },
+    {
+      "start_chapter": 17,
+      "start_verse": 15,
+      "end_chapter": 17,
+      "end_verse": 15,
+      "title": "",
+      "content": "with (o-18) Or 'as.'"
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 1,
+      "end_chapter": 18,
+      "end_verse": 1,
+      "title": "",
+      "content": "enemies (p-37) As 8.2; so vers. 3,17,37,40,48 Saul. (q-44) Compare 2Sam. 22 throughout, and Notes there."
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 2,
+      "end_chapter": 18,
+      "end_verse": 2,
+      "title": "",
+      "content": "rock, (r-4) Sela, 'a high rock,' see Isa. 16.1."
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 14,
+      "end_chapter": 18,
+      "end_verse": 14,
+      "title": "",
+      "content": "enemies]; (a-9) Lit. 'and scattered them.' lightnings, (b-14) Or 'and many lightnings.'"
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 22,
+      "end_chapter": 18,
+      "end_verse": 22,
+      "title": "",
+      "content": "ordinances (c-4) Or 'judgments.'"
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 23,
+      "end_chapter": 18,
+      "end_verse": 23,
+      "title": "",
+      "content": "upright (d-4) Or 'perfect.' as Gen. 6.9; Job 1.1; 4.6."
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 25,
+      "end_chapter": 18,
+      "end_verse": 25,
+      "title": "",
+      "content": "gracious (e-3) Chasid. see Notes, 2Sam. 22.26; 2Chron. 6.42. gracious; (f-8) Chesed. see 2Chron. 6.42."
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 27,
+      "end_chapter": 18,
+      "end_verse": 27,
+      "title": "",
+      "content": "savest (g-6) Or 'wilt save.'"
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 30,
+      "end_chapter": 18,
+      "end_verse": 30,
+      "title": "",
+      "content": "word (a-9) Imrah. see Ps. 119.11. tried. (b-13) Or 'refined.' see Ps. 12.6."
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 34,
+      "end_chapter": 18,
+      "end_verse": 34,
+      "title": "",
+      "content": "bend (c-10) Others read 'break.'"
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 45,
+      "end_chapter": 18,
+      "end_verse": 45,
+      "title": "",
+      "content": "close (d-12) Or 'fortified.' see Mic. 7.17."
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 49,
+      "end_chapter": 18,
+      "end_verse": 49,
+      "title": "",
+      "content": "thee, (e-7) Or 'celebrate thy Praises.'"
+    },
+    {
+      "start_chapter": 18,
+      "start_verse": 50,
+      "end_chapter": 18,
+      "end_verse": 50,
+      "title": "",
+      "content": "loving-kindness (f-13) Chesed. see 2Chron. 6.42."
+    },
+    {
+      "start_chapter": 19,
+      "start_verse": 2,
+      "end_chapter": 19,
+      "end_verse": 2,
+      "title": "",
+      "content": "uttereth (g-4) Lit. 'causeth to boil forth,' 'gush,' as of a stream, as Ps. 145.7."
+    },
+    {
+      "start_chapter": 19,
+      "start_verse": 4,
+      "end_chapter": 19,
+      "end_verse": 4,
+      "title": "",
+      "content": "line (h-2) That is, the 'extent' of their testimony."
+    },
+    {
+      "start_chapter": 19,
+      "start_verse": 6,
+      "end_chapter": 19,
+      "end_verse": 6,
+      "title": "",
+      "content": "forth (a-3) Or 'starting.'"
+    },
+    {
+      "start_chapter": 19,
+      "start_verse": 11,
+      "end_chapter": 19,
+      "end_verse": 11,
+      "title": "",
+      "content": "enlightened; (b-7) Or 'warned.'"
+    },
+    {
+      "start_chapter": 19,
+      "start_verse": 12,
+      "end_chapter": 19,
+      "end_verse": 12,
+      "title": "",
+      "content": "Purify (c-5) Or 'Clear.'"
+    },
+    {
+      "start_chapter": 19,
+      "start_verse": 13,
+      "end_chapter": 19,
+      "end_verse": 13,
+      "title": "",
+      "content": "[sins]; (d-8) Or 'from the presumptuous.' transgression. (e-28) Or 'from the great transgression.'"
+    },
+    {
+      "start_chapter": 20,
+      "start_verse": 1,
+      "end_chapter": 20,
+      "end_verse": 1,
+      "title": "",
+      "content": "thee; (f-25) Or 'set thee up on high.'"
+    },
+    {
+      "start_chapter": 20,
+      "start_verse": 3,
+      "end_chapter": 20,
+      "end_verse": 3,
+      "title": "",
+      "content": "accept (g-6) Or 'turn to ashes;' or 'let thy burnt-offering be fat to him.'"
+    },
+    {
+      "start_chapter": 20,
+      "start_verse": 9,
+      "end_chapter": 20,
+      "end_verse": 9,
+      "title": "",
+      "content": "call. (h-12) Or 'Let Jehovah save the king. Let him answer,' &c."
+    },
+    {
+      "start_chapter": 21,
+      "start_verse": 11,
+      "end_chapter": 21,
+      "end_verse": 11,
+      "title": "",
+      "content": "intended (a-3) Lit. 'spread out,' as 'extend,' Isa. 66. 12."
+    },
+    {
+      "start_chapter": 22,
+      "start_verse": 1,
+      "end_chapter": 22,
+      "end_verse": 1,
+      "title": "",
+      "content": "Aijeleth-Shahar. (b-6) That is, 'According to the hind of the morning.' Aijeleth is feminine."
+    },
+    {
+      "start_chapter": 22,
+      "start_verse": 8,
+      "end_chapter": 22,
+      "end_verse": 8,
+      "title": "",
+      "content": "to (c-3) Lit. 'Roll it [or 'himself'] on.'"
+    },
+    {
+      "start_chapter": 22,
+      "start_verse": 12,
+      "end_chapter": 22,
+      "end_verse": 12,
+      "title": "",
+      "content": "Many (d-1) Or 'Great.'"
+    },
+    {
+      "start_chapter": 22,
+      "start_verse": 17,
+      "end_chapter": 22,
+      "end_verse": 17,
+      "title": "",
+      "content": "count (e-3) Or 'I count.'"
+    },
+    {
+      "start_chapter": 22,
+      "start_verse": 20,
+      "end_chapter": 22,
+      "end_verse": 20,
+      "title": "",
+      "content": "power (a-12) Lit. 'the hand.'"
+    },
+    {
+      "start_chapter": 22,
+      "start_verse": 21,
+      "end_chapter": 22,
+      "end_verse": 21,
+      "title": "",
+      "content": "me. (b-17) Or 'Answer me.'"
+    },
+    {
+      "start_chapter": 22,
+      "start_verse": 30,
+      "end_chapter": 22,
+      "end_verse": 30,
+      "title": "",
+      "content": "generation. (c-15) Or 'it shall be told concerning the Lord to the [coming] generation.' but see Ps. 87.6."
+    },
+    {
+      "start_chapter": 23,
+      "start_verse": 3,
+      "end_chapter": 23,
+      "end_verse": 3,
+      "title": "",
+      "content": "restoreth (d-2) Or 'reviveth.'"
+    },
+    {
+      "start_chapter": 23,
+      "start_verse": 5,
+      "end_chapter": 23,
+      "end_verse": 5,
+      "title": "",
+      "content": "preparest (e-2) Or 'furnishest.'"
+    },
+    {
+      "start_chapter": 23,
+      "start_verse": 6,
+      "end_chapter": 23,
+      "end_verse": 6,
+      "title": "",
+      "content": "Surely (f-1) Or 'Only.'"
+    },
+    {
+      "start_chapter": 24,
+      "start_verse": 1,
+      "end_chapter": 24,
+      "end_verse": 1,
+      "title": "",
+      "content": "world, (g-14) Tebel, 'the habitable earth.' see Ps. 9.8."
+    },
+    {
+      "start_chapter": 24,
+      "start_verse": 4,
+      "end_chapter": 24,
+      "end_verse": 4,
+      "title": "",
+      "content": "blameless (a-4) Or 'innocent.'"
+    },
+    {
+      "start_chapter": 24,
+      "start_verse": 6,
+      "end_chapter": 24,
+      "end_verse": 6,
+      "title": "",
+      "content": "Jacob. (b-16) Or 'thy face [in] Jacob.'"
+    },
+    {
+      "start_chapter": 25,
+      "start_verse": 1,
+      "end_chapter": 25,
+      "end_verse": 1,
+      "title": "",
+      "content": "David.} (c-4) An acrostic Psalm; the verses begin with the Hebrew letters in alphabetical succession, as Ps. 34."
+    },
+    {
+      "start_chapter": 25,
+      "start_verse": 5,
+      "end_chapter": 25,
+      "end_verse": 5,
+      "title": "",
+      "content": "day. (d-26) Or 'every day.'"
+    },
+    {
+      "start_chapter": 25,
+      "start_verse": 7,
+      "end_chapter": 25,
+      "end_verse": 7,
+      "title": "",
+      "content": "transgressions; (e-10) See Note to Job 7.21."
+    },
+    {
+      "start_chapter": 25,
+      "start_verse": 12,
+      "end_chapter": 25,
+      "end_verse": 12,
+      "title": "",
+      "content": "choose. (f-18) Or 'that he [Jehovah] chooseth.'"
+    },
+    {
+      "start_chapter": 25,
+      "start_verse": 13,
+      "end_chapter": 25,
+      "end_verse": 13,
+      "title": "",
+      "content": "earth. (g-13) Or 'possess the land,' as Ps. 37.9,29."
+    },
+    {
+      "start_chapter": 25,
+      "start_verse": 14,
+      "end_chapter": 25,
+      "end_verse": 14,
+      "title": "",
+      "content": "secret (h-2) i.e. 'the intimate (or private) communications.' them. (i-19) Or 'and his covenant, -- to make them know [it].'"
+    },
+    {
+      "start_chapter": 25,
+      "start_verse": 17,
+      "end_chapter": 25,
+      "end_verse": 17,
+      "title": "",
+      "content": "bring (k-8) Some read 'Enlarge my heart in its troubles, and bring ...' Others read 'The troubles of my heart relieve thou, and bring ...'"
+    },
+    {
+      "start_chapter": 25,
+      "start_verse": 21,
+      "end_chapter": 25,
+      "end_verse": 21,
+      "title": "",
+      "content": "uprightness (a-4) Or 'Integrity (perfection) and uprightness shall.'"
+    },
+    {
+      "start_chapter": 26,
+      "start_verse": 1,
+      "end_chapter": 26,
+      "end_verse": 1,
+      "title": "",
+      "content": "slip. (b-25) Or 'totter,' 'waver.'"
+    },
+    {
+      "start_chapter": 26,
+      "start_verse": 4,
+      "end_chapter": 26,
+      "end_verse": 4,
+      "title": "",
+      "content": "vain (c-6) Or 'false.'"
+    },
+    {
+      "start_chapter": 26,
+      "start_verse": 5,
+      "end_chapter": 26,
+      "end_verse": 5,
+      "title": "",
+      "content": "sat (d-12) Or 'I will not sit.'"
+    },
+    {
+      "start_chapter": 27,
+      "start_verse": 1,
+      "end_chapter": 27,
+      "end_verse": 1,
+      "title": "",
+      "content": "afraid? (e-28) 'Fear' and 'be afraid' are nearly the same, but it seems that the latter is more 'terror,' even used of Jehovah. see 1Sam. 11.7; Ps. 36.1; 'fear' more in a godly sense, as Prov. 1.7, yet ver. 3 here does mean simple 'fear.'"
+    },
+    {
+      "start_chapter": 27,
+      "start_verse": 2,
+      "end_chapter": 27,
+      "end_verse": 2,
+      "title": "",
+      "content": "enemies, (f-7) See Notes, Ps. 8.2."
+    },
+    {
+      "start_chapter": 27,
+      "start_verse": 4,
+      "end_chapter": 27,
+      "end_verse": 4,
+      "title": "",
+      "content": "beauty (g-31) Or 'graciousness,' and so in Ps. 90.17."
+    },
+    {
+      "start_chapter": 27,
+      "start_verse": 10,
+      "end_chapter": 27,
+      "end_verse": 10,
+      "title": "",
+      "content": "up. (a-15) Or 'For my father and my mother have forsaken me, but Jehovah hath gathered me.'"
+    },
+    {
+      "start_chapter": 27,
+      "start_verse": 11,
+      "end_chapter": 27,
+      "end_verse": 11,
+      "title": "",
+      "content": "enemies. (b-16) Or 'those that lie in wait for me.'"
+    },
+    {
+      "start_chapter": 27,
+      "start_verse": 14,
+      "end_chapter": 27,
+      "end_verse": 14,
+      "title": "",
+      "content": "courage. (c-11) Or 'he will strengthen thy heart.'"
+    },
+    {
+      "start_chapter": 28,
+      "start_verse": 5,
+      "end_chapter": 28,
+      "end_verse": 5,
+      "title": "",
+      "content": "For (d-1) Or 'Because they regard not ... his hands, he will destroy,' &c."
+    },
+    {
+      "start_chapter": 28,
+      "start_verse": 8,
+      "end_chapter": 28,
+      "end_verse": 8,
+      "title": "",
+      "content": "salvation (e-11) Lit. 'salvations,' 'deliverances.' see Ps. 18.50; 42.5,11; 74.12."
+    },
+    {
+      "start_chapter": 28,
+      "start_verse": 9,
+      "end_chapter": 28,
+      "end_verse": 9,
+      "title": "",
+      "content": "lift (f-12) Or 'bear.' see Deut. 1.31."
+    },
+    {
+      "start_chapter": 29,
+      "start_verse": 1,
+      "end_chapter": 29,
+      "end_verse": 1,
+      "title": "",
+      "content": "Give (g-5) 'Give' (3 times), same as 'Ascribe,' Deut. 32.3."
+    },
+    {
+      "start_chapter": 29,
+      "start_verse": 6,
+      "end_chapter": 29,
+      "end_verse": 6,
+      "title": "",
+      "content": "Sirion (h-12) Hermon in Deut. 3.9."
+    },
+    {
+      "start_chapter": 29,
+      "start_verse": 9,
+      "end_chapter": 29,
+      "end_verse": 9,
+      "title": "",
+      "content": "say, (a-22) Or perhaps, 'everything saith;' the Hebrew is the same as 'every one' in Isa. 1.23."
+    },
+    {
+      "start_chapter": 29,
+      "start_verse": 10,
+      "end_chapter": 29,
+      "end_verse": 10,
+      "title": "",
+      "content": "flood; (b-5) The word used in Gen. 6.17 of the deluge."
+    },
+    {
+      "start_chapter": 30,
+      "start_verse": 1,
+      "end_chapter": 30,
+      "end_verse": 1,
+      "title": "",
+      "content": "me, (c-18) Strictly, 'drawn me up,' as out of a well."
+    },
+    {
+      "start_chapter": 30,
+      "start_verse": 4,
+      "end_chapter": 30,
+      "end_verse": 4,
+      "title": "",
+      "content": "saints (d-6) Chasid. those characterized by piety, grace, goodness; see Ps. 16.10, and Note on 2Chron. 6.42. 'Saints,' Ps. 16.3, is Kadoshim, 'holy ones.' holiness. (e-16) Or 'celebrate his holy (Kodesh) memorial,' i.e. his holy name. see Ex. 3.15."
+    },
+    {
+      "start_chapter": 30,
+      "start_verse": 8,
+      "end_chapter": 30,
+      "end_verse": 8,
+      "title": "",
+      "content": "Lord (f-9) Many read 'Jehovah.'"
+    },
+    {
+      "start_chapter": 30,
+      "start_verse": 9,
+      "end_chapter": 30,
+      "end_verse": 9,
+      "title": "",
+      "content": "praise (g-18) Or 'give thanks to;' and so ver. 12."
+    },
+    {
+      "start_chapter": 30,
+      "start_verse": 12,
+      "end_chapter": 30,
+      "end_verse": 12,
+      "title": "",
+      "content": "glory (h-3) See Ps. 7.5; 16.9, and Note."
+    },
+    {
+      "start_chapter": 31,
+      "start_verse": 3,
+      "end_chapter": 31,
+      "end_verse": 3,
+      "title": "",
+      "content": "rock (i-5) Sela, as in Ps. 18.2, first time."
+    },
+    {
+      "start_chapter": 31,
+      "start_verse": 4,
+      "end_chapter": 31,
+      "end_verse": 4,
+      "title": "",
+      "content": "Draw (k-1) Or 'Thou wilt draw.'"
+    },
+    {
+      "start_chapter": 31,
+      "start_verse": 6,
+      "end_chapter": 31,
+      "end_verse": 6,
+      "title": "",
+      "content": "vanities; (l-8) Or 'vain idols.' see Jonah 2.8."
+    },
+    {
+      "start_chapter": 31,
+      "start_verse": 10,
+      "end_chapter": 31,
+      "end_verse": 10,
+      "title": "",
+      "content": "iniquity, (a-18) Or 'my misery (distress);' but as meaning 'punishment.'"
+    },
+    {
+      "start_chapter": 31,
+      "start_verse": 11,
+      "end_chapter": 31,
+      "end_verse": 11,
+      "title": "",
+      "content": "all (b-4) Or 'Because of all.'"
+    },
+    {
+      "start_chapter": 31,
+      "start_verse": 12,
+      "end_chapter": 31,
+      "end_verse": 12,
+      "title": "",
+      "content": "in (c-4) Lit. 'from.'"
+    },
+    {
+      "start_chapter": 31,
+      "start_verse": 20,
+      "end_chapter": 31,
+      "end_verse": 20,
+      "title": "",
+      "content": "hidest (d-17) See Ps. 83.3."
+    },
+    {
+      "start_chapter": 31,
+      "start_verse": 22,
+      "end_chapter": 31,
+      "end_verse": 22,
+      "title": "",
+      "content": "haste, (e-8) Or 'agitation,' 'terror,' 'alarm.'"
+    },
+    {
+      "start_chapter": 31,
+      "start_verse": 23,
+      "end_chapter": 31,
+      "end_verse": 23,
+      "title": "",
+      "content": "saints. (f-6) Chasid. see Ps. 30.4 2Sam. 22.26."
+    },
+    {
+      "start_chapter": 32,
+      "start_verse": 6,
+      "end_chapter": 32,
+      "end_verse": 6,
+      "title": "",
+      "content": "godly (f-8) Chasid. see Ps. 30.4 2Sam. 22.26."
+    },
+    {
+      "start_chapter": 32,
+      "start_verse": 8,
+      "end_chapter": 32,
+      "end_verse": 8,
+      "title": "",
+      "content": "thee. (a-23) Or 'I will give counsel, with,' &c."
+    },
+    {
+      "start_chapter": 32,
+      "start_verse": 9,
+      "end_chapter": 32,
+      "end_verse": 9,
+      "title": "",
+      "content": "thee. (b-29) Or 'lest they come near,' &c."
+    },
+    {
+      "start_chapter": 33,
+      "start_verse": 2,
+      "end_chapter": 33,
+      "end_verse": 2,
+      "title": "",
+      "content": "ten-stringed (c-14) Ps. 92.3; 144.9."
+    },
+    {
+      "start_chapter": 33,
+      "start_verse": 5,
+      "end_chapter": 33,
+      "end_verse": 5,
+      "title": "",
+      "content": "judgment. (d-5) Or 'justice;' and so Ps. 37.28; 72.2; 101.1."
+    },
+    {
+      "start_chapter": 33,
+      "start_verse": 8,
+      "end_chapter": 33,
+      "end_verse": 8,
+      "title": "",
+      "content": "of (e-17) Or 'revere.'"
+    },
+    {
+      "start_chapter": 33,
+      "start_verse": 14,
+      "end_chapter": 33,
+      "end_verse": 14,
+      "title": "",
+      "content": "place (f-3) Strictly, 'settled place.' see Ex. 15.17; 1Kings 8.13; &c."
+    },
+    {
+      "start_chapter": 34,
+      "start_verse": 1,
+      "end_chapter": 34,
+      "end_verse": 1,
+      "title": "",
+      "content": "(a-0) An acrostic Psalm, arranged as Ps. 25. Abimelech, (b-11) Meaning, 'Father-king;' most probably the title of the Philistine kings."
+    },
+    {
+      "start_chapter": 34,
+      "start_verse": 5,
+      "end_chapter": 34,
+      "end_verse": 5,
+      "title": "",
+      "content": "not (c-12) Or 'shall not be.'"
+    },
+    {
+      "start_chapter": 34,
+      "start_verse": 8,
+      "end_chapter": 34,
+      "end_verse": 8,
+      "title": "",
+      "content": "man (d-11) Geber. so Ps. 40.4. see Job. 3.3."
+    },
+    {
+      "start_chapter": 34,
+      "start_verse": 21,
+      "end_chapter": 34,
+      "end_verse": 21,
+      "title": "",
+      "content": "destroy (e-3) Or 'destroyeth utterly.' it is the intensive form of the verb. see 1Sam. 17.51. guilt. (f-15) Or 'shall be condemned.'"
+    },
+    {
+      "start_chapter": 34,
+      "start_verse": 22,
+      "end_chapter": 34,
+      "end_verse": 22,
+      "title": "",
+      "content": "guilt. (f-18) Or 'shall be condemned.'"
+    },
+    {
+      "start_chapter": 35,
+      "start_verse": 4,
+      "end_chapter": 35,
+      "end_verse": 4,
+      "title": "",
+      "content": "life; (g-13) Heb. 'soul;' and so Ps. 38.12; &c."
+    },
+    {
+      "start_chapter": 35,
+      "start_verse": 11,
+      "end_chapter": 35,
+      "end_verse": 11,
+      "title": "",
+      "content": "witnesses (a-2) Lit. 'witnesses of violence,' as Deut. 19.16. charge (b-9) Or 'question me about.'"
+    },
+    {
+      "start_chapter": 35,
+      "start_verse": 15,
+      "end_chapter": 35,
+      "end_verse": 15,
+      "title": "",
+      "content": "slanderers (c-11) Or 'base ones.' [it] (d-20) Or 'them.'"
+    },
+    {
+      "start_chapter": 35,
+      "start_verse": 16,
+      "end_chapter": 35,
+      "end_verse": 16,
+      "title": "",
+      "content": "profane (e-2) Or 'hypocritical.'"
+    },
+    {
+      "start_chapter": 35,
+      "start_verse": 17,
+      "end_chapter": 35,
+      "end_verse": 17,
+      "title": "",
+      "content": "one (f-16) See Ps. 22.20."
+    },
+    {
+      "start_chapter": 35,
+      "start_verse": 18,
+      "end_chapter": 35,
+      "end_verse": 18,
+      "title": "",
+      "content": "people. (g-16) Or 'in the midst of a great (or mighty) people.'"
+    },
+    {
+      "start_chapter": 35,
+      "start_verse": 19,
+      "end_chapter": 35,
+      "end_verse": 19,
+      "title": "",
+      "content": "wrongfully (h-6) Or 'with false pretext.'"
+    },
+    {
+      "start_chapter": 35,
+      "start_verse": 20,
+      "end_chapter": 35,
+      "end_verse": 20,
+      "title": "",
+      "content": "land. (i-16) Or 'on the earth.'"
+    },
+    {
+      "start_chapter": 35,
+      "start_verse": 25,
+      "end_chapter": 35,
+      "end_verse": 25,
+      "title": "",
+      "content": "it. (k-13) Lit. 'our desire!'"
+    },
+    {
+      "start_chapter": 36,
+      "start_verse": 1,
+      "end_chapter": 36,
+      "end_verse": 1,
+      "title": "",
+      "content": "uttereth (a-19) As an oracle. see 'saith,' Gen. 22.16."
+    },
+    {
+      "start_chapter": 36,
+      "start_verse": 3,
+      "end_chapter": 36,
+      "end_verse": 3,
+      "title": "",
+      "content": "wickedness (b-7) Or 'vanity,' 'mischief.'"
+    },
+    {
+      "start_chapter": 36,
+      "start_verse": 4,
+      "end_chapter": 36,
+      "end_verse": 4,
+      "title": "",
+      "content": "wickedness (b-3) Or 'vanity,' 'mischief.'"
+    },
+    {
+      "start_chapter": 36,
+      "start_verse": 6,
+      "end_chapter": 36,
+      "end_verse": 6,
+      "title": "",
+      "content": "mountains; (c-7) Lit. 'mountains of *God.' see Ps. 68.15; 80.10"
+    },
+    {
+      "start_chapter": 36,
+      "start_verse": 8,
+      "end_chapter": 36,
+      "end_verse": 8,
+      "title": "",
+      "content": "pleasures. (d-23) Plural of Eden, Gen. 2.8."
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 1,
+      "end_chapter": 37,
+      "end_verse": 1,
+      "title": "",
+      "content": "(e-0) An acrostic Psalm with double verses. see Ps.25."
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 3,
+      "end_chapter": 37,
+      "end_verse": 3,
+      "title": "",
+      "content": "on (f-13) Or 'give thyself to.'"
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 5,
+      "end_chapter": 37,
+      "end_verse": 5,
+      "title": "",
+      "content": "unto (g-4) Lit. 'Roll thy way upon.' see Ps. 22.8."
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 6,
+      "end_chapter": 37,
+      "end_verse": 6,
+      "title": "",
+      "content": "judgment (h-13) Or 'thy right.'"
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 9,
+      "end_chapter": 37,
+      "end_verse": 9,
+      "title": "",
+      "content": "land. (i-17) Or 'the earth;' and so in vers. 11,22,29,34. see Ps. 25.13 and Note, Matt. 5.5."
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 10,
+      "end_chapter": 37,
+      "end_verse": 10,
+      "title": "",
+      "content": "he (k-17) Or 'it.'"
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 11,
+      "end_chapter": 37,
+      "end_verse": 11,
+      "title": "",
+      "content": "prosperity. (l-16) Or 'peace'"
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 17,
+      "end_chapter": 37,
+      "end_verse": 17,
+      "title": "",
+      "content": "upholdeth (a-12) Or 'sustaineth,' as Ps. 3.5."
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 20,
+      "end_chapter": 37,
+      "end_verse": 20,
+      "title": "",
+      "content": "lambs. (b-17) Others, 'the splendour of the meadows.'"
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 23,
+      "end_chapter": 37,
+      "end_verse": 23,
+      "title": "",
+      "content": "man (c-5) Geber, as Ps. 34.8. see Job 3.3, and cf. Job 4.17."
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 24,
+      "end_chapter": 37,
+      "end_verse": 24,
+      "title": "",
+      "content": "hand. (d-15) Others, 'upholdeth (or, 'sustaineth') [him with] his hand.'"
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 28,
+      "end_chapter": 37,
+      "end_verse": 28,
+      "title": "",
+      "content": "saints. (e-10) Chasid, as Ps. 30.4."
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 36,
+      "end_chapter": 37,
+      "end_verse": 36,
+      "title": "",
+      "content": "away, (f-4) Or 'and one passed by.'"
+    },
+    {
+      "start_chapter": 37,
+      "start_verse": 37,
+      "end_chapter": 37,
+      "end_verse": 37,
+      "title": "",
+      "content": "peace; (g-15) Or 'for there is a future to the man of peace.'"
+    },
+    {
+      "start_chapter": 38,
+      "start_verse": 1,
+      "end_chapter": 38,
+      "end_verse": 1,
+      "title": "",
+      "content": "wrath; (a-15) It is 'indignation.' from the idea of breaking out into anger.' displeasure. (b-22) 'Hot displeasure,' ('fury,' Ps. 88.7), would be rather stronger. Both words (notes a and b) are of discipline."
+    },
+    {
+      "start_chapter": 38,
+      "start_verse": 2,
+      "end_chapter": 38,
+      "end_verse": 2,
+      "title": "",
+      "content": "me, (c-7) Lit. 'have descended into me.'"
+    },
+    {
+      "start_chapter": 38,
+      "start_verse": 3,
+      "end_chapter": 38,
+      "end_verse": 3,
+      "title": "",
+      "content": "indignation; (d-11) 'Punitive anger against evil.' the same word is in Ps. 69.24; 78.49; 102,10."
+    },
+    {
+      "start_chapter": 38,
+      "start_verse": 4,
+      "end_chapter": 38,
+      "end_verse": 4,
+      "title": "",
+      "content": "over (e-6) i.e. as waters."
+    },
+    {
+      "start_chapter": 38,
+      "start_verse": 5,
+      "end_chapter": 38,
+      "end_verse": 5,
+      "title": "",
+      "content": "corrupt, (f-6) Or 'they run.'"
+    },
+    {
+      "start_chapter": 38,
+      "start_verse": 7,
+      "end_chapter": 38,
+      "end_verse": 7,
+      "title": "",
+      "content": "burning, (g-7) Or 'a loathsome [plague].'"
+    },
+    {
+      "start_chapter": 38,
+      "start_verse": 11,
+      "end_chapter": 38,
+      "end_verse": 11,
+      "title": "",
+      "content": "stroke; (h-10) Or 'plague,' as Gen. 12.17; and so in Ps. 39.10."
+    },
+    {
+      "start_chapter": 38,
+      "start_verse": 12,
+      "end_chapter": 38,
+      "end_verse": 12,
+      "title": "",
+      "content": "meditate (i-22) Or 'talk.'"
+    },
+    {
+      "start_chapter": 38,
+      "start_verse": 20,
+      "end_chapter": 38,
+      "end_verse": 20,
+      "title": "",
+      "content": "adversaries (k-9) Heb. plural of Satan, as Ps. 71.13; 109.4,20,29. Sing. in 1Chron. 21.1; Job 1 and 2; Ps. 109.6; Zech. 3.1,2."
+    },
+    {
+      "start_chapter": 39,
+      "start_verse": 1,
+      "end_chapter": 39,
+      "end_verse": 1,
+      "title": "",
+      "content": "Jeduthun. (l-6) See Ps. 62."
+    },
+    {
+      "start_chapter": 39,
+      "start_verse": 5,
+      "end_chapter": 39,
+      "end_verse": 5,
+      "title": "",
+      "content": "placed, (a-23) Or 'who standeth.'"
+    },
+    {
+      "start_chapter": 39,
+      "start_verse": 6,
+      "end_chapter": 39,
+      "end_verse": 6,
+      "title": "",
+      "content": "show; (b-7) Lit. 'in an image (shadow).' vain; (c-13) Or 'for vanity,' as vers. 5,11. Job. 7.16."
+    },
+    {
+      "start_chapter": 39,
+      "start_verse": 11,
+      "end_chapter": 39,
+      "end_verse": 11,
+      "title": "",
+      "content": "away (d-17) Lit. 'melt.'"
+    },
+    {
+      "start_chapter": 39,
+      "start_verse": 13,
+      "end_chapter": 39,
+      "end_verse": 13,
+      "title": "",
+      "content": "strength, (e-9) Or 'brighten up,' as Job 9.27; 10.20."
+    },
+    {
+      "start_chapter": 40,
+      "start_verse": 4,
+      "end_chapter": 40,
+      "end_verse": 4,
+      "title": "",
+      "content": "man (f-4) Geber. see Job 3.3."
+    },
+    {
+      "start_chapter": 40,
+      "start_verse": 6,
+      "end_chapter": 40,
+      "end_verse": 6,
+      "title": "",
+      "content": "Sacrifice (g-1) See Ex. 23.18 and Lev. 1.3, Note b. prepared (h-11) Lit. 'digged' or 'hollowed out.'"
+    },
+    {
+      "start_chapter": 40,
+      "start_verse": 7,
+      "end_chapter": 40,
+      "end_verse": 7,
+      "title": "",
+      "content": "volume (i-9) Or 'roll.'"
+    },
+    {
+      "start_chapter": 40,
+      "start_verse": 8,
+      "end_chapter": 40,
+      "end_verse": 8,
+      "title": "",
+      "content": "heart. (k-17) Lit. 'bowels.'"
+    },
+    {
+      "start_chapter": 40,
+      "start_verse": 12,
+      "end_chapter": 40,
+      "end_verse": 12,
+      "title": "",
+      "content": "iniquities (l-9) Or 'my punishments.' Gen. 19.15. see; (m-19) Or 'look at them.'"
+    },
+    {
+      "start_chapter": 40,
+      "start_verse": 13,
+      "end_chapter": 40,
+      "end_verse": 13,
+      "title": "",
+      "content": "(a-0) With vers. 13-17 compare Ps. 70."
+    },
+    {
+      "start_chapter": 40,
+      "start_verse": 15,
+      "end_chapter": 40,
+      "end_verse": 15,
+      "title": "",
+      "content": "of (b-6) Or 'for a reward of.'"
+    },
+    {
+      "start_chapter": 41,
+      "start_verse": 1,
+      "end_chapter": 41,
+      "end_verse": 1,
+      "title": "",
+      "content": "understandeth (c-13) Or 'attendeth to,' 'giveth heed to,' 'owneth.'"
+    },
+    {
+      "start_chapter": 41,
+      "start_verse": 2,
+      "end_chapter": 41,
+      "end_verse": 2,
+      "title": "",
+      "content": "land; (d-16) Or 'on the earth.' enemies. (e-28) As Ps. 8.2; also vers. 5,11."
+    },
+    {
+      "start_chapter": 41,
+      "start_verse": 5,
+      "end_chapter": 41,
+      "end_verse": 5,
+      "title": "",
+      "content": "evil. (f-5) Or 'speak evil of me.'"
+    },
+    {
+      "start_chapter": 41,
+      "start_verse": 7,
+      "end_chapter": 41,
+      "end_verse": 7,
+      "title": "",
+      "content": "hurt. (g-15) Or 'they impute evil to me.'"
+    },
+    {
+      "start_chapter": 41,
+      "start_verse": 8,
+      "end_chapter": 41,
+      "end_verse": 8,
+      "title": "",
+      "content": "unto (h-7) Or 'is poured out upon.'"
+    },
+    {
+      "start_chapter": 41,
+      "start_verse": 9,
+      "end_chapter": 41,
+      "end_verse": 9,
+      "title": "",
+      "content": "friend, (i-5) Lit. 'the man (ish) of my peace.' See Ps. 55.13."
+    },
+    {
+      "start_chapter": 42,
+      "start_verse": 1,
+      "end_chapter": 42,
+      "end_verse": 1,
+      "title": "",
+      "content": "of (a-7) Or 'for;' and so Ps. 44, &c."
+    },
+    {
+      "start_chapter": 42,
+      "start_verse": 5,
+      "end_chapter": 42,
+      "end_verse": 5,
+      "title": "",
+      "content": "praise (b-20) Or 'thank.' so ver. 11; Ps. 43.4,5; 44.8. health (c-24) Lit. 'salvations;' and so ver. 11; Ps. 43.5; 53.6; 116.13."
+    },
+    {
+      "start_chapter": 42,
+      "start_verse": 6,
+      "end_chapter": 42,
+      "end_verse": 6,
+      "title": "",
+      "content": "I (d-12) Or 'because I.' Mizar. (e-26) Or 'from the little hill.'"
+    },
+    {
+      "start_chapter": 42,
+      "start_verse": 9,
+      "end_chapter": 42,
+      "end_verse": 9,
+      "title": "",
+      "content": "of (f-18) Or 'amid.'"
+    },
+    {
+      "start_chapter": 43,
+      "start_verse": 1,
+      "end_chapter": 43,
+      "end_verse": 1,
+      "title": "",
+      "content": "me, (g-2) That is, as often, 'Do me justice.' ungodly (h-11) Heb. goi lo-chasid, 'nation not-merciful.' see Isa. 1.4 -- contrast to Ps. 86.2. see Ps. 4.3."
+    },
+    {
+      "start_chapter": 43,
+      "start_verse": 3,
+      "end_chapter": 43,
+      "end_verse": 3,
+      "title": "",
+      "content": "habitations. (i-23) Or 'tabernacles;' and so Ps. 46.4; 84.1; 132.7. see Ex. 25.9; Lev. 26.11."
+    },
+    {
+      "start_chapter": 44,
+      "start_verse": 1,
+      "end_chapter": 44,
+      "end_verse": 1,
+      "title": "",
+      "content": "work (k-26) As Isa. 45.9."
+    },
+    {
+      "start_chapter": 44,
+      "start_verse": 2,
+      "end_chapter": 44,
+      "end_verse": 2,
+      "title": "",
+      "content": "peoples, (a-18) Leummim, as Ps. 2.1; and so ver. 14."
+    },
+    {
+      "start_chapter": 44,
+      "start_verse": 4,
+      "end_chapter": 44,
+      "end_verse": 4,
+      "title": "",
+      "content": "thyself (b-2) Lit. 'Thou, He.' 'Thou [art] the Same.' see Deut. 32.39, Ps. 102.27 deliverance (c-9) Lit. 'salvations;' see note c, Ps. 42.5."
+    },
+    {
+      "start_chapter": 44,
+      "start_verse": 12,
+      "end_chapter": 44,
+      "end_verse": 12,
+      "title": "",
+      "content": "price; (d-16) Or 'hast not increased their price.'"
+    },
+    {
+      "start_chapter": 44,
+      "start_verse": 16,
+      "end_chapter": 44,
+      "end_verse": 16,
+      "title": "",
+      "content": "avenger. (e-18) As Ps. 8.2."
+    },
+    {
+      "start_chapter": 45,
+      "start_verse": 1,
+      "end_chapter": 45,
+      "end_verse": 1,
+      "title": "",
+      "content": "Shoshannim. (f-6) Meaning, 'Lilies.' composed (g-34) Or 'my occupation,' as Gen. 46.33."
+    },
+    {
+      "start_chapter": 45,
+      "start_verse": 8,
+      "end_chapter": 45,
+      "end_verse": 8,
+      "title": "",
+      "content": "glad. (a-18) Or 'from which they have gladdened thee.'"
+    },
+    {
+      "start_chapter": 45,
+      "start_verse": 9,
+      "end_chapter": 45,
+      "end_verse": 9,
+      "title": "",
+      "content": "women; (b-7) Or 'glorious ones.'"
+    },
+    {
+      "start_chapter": 45,
+      "start_verse": 12,
+      "end_chapter": 45,
+      "end_verse": 12,
+      "title": "",
+      "content": "people, (c-14) As Ps. 7.8."
+    },
+    {
+      "start_chapter": 45,
+      "start_verse": 13,
+      "end_chapter": 45,
+      "end_verse": 13,
+      "title": "",
+      "content": "within; (d-7) i.e. in the royal apartments."
+    },
+    {
+      "start_chapter": 45,
+      "start_verse": 16,
+      "end_chapter": 45,
+      "end_verse": 16,
+      "title": "",
+      "content": "earth. (e-17) As Ps. 58.2."
+    },
+    {
+      "start_chapter": 45,
+      "start_verse": 17,
+      "end_chapter": 45,
+      "end_verse": 17,
+      "title": "",
+      "content": "peoples (c-15) As Ps. 7.8. thee (f-17) Or 'give thee thanks.'"
+    },
+    {
+      "start_chapter": 46,
+      "start_verse": 1,
+      "end_chapter": 46,
+      "end_verse": 1,
+      "title": "",
+      "content": "Alamoth. (g-11) See 1Chron. 15.20 and Note."
+    },
+    {
+      "start_chapter": 46,
+      "start_verse": 4,
+      "end_chapter": 46,
+      "end_verse": 4,
+      "title": "",
+      "content": "habitations (h-18) Or 'tabernacles.' see Ps. 43.3."
+    },
+    {
+      "start_chapter": 46,
+      "start_verse": 8,
+      "end_chapter": 46,
+      "end_verse": 8,
+      "title": "",
+      "content": "works (i-4) Strictly, 'deeds.' so Ps. 66.5; Prov. 8.22."
+    },
+    {
+      "start_chapter": 47,
+      "start_verse": 1,
+      "end_chapter": 47,
+      "end_verse": 1,
+      "title": "",
+      "content": "peoples, (a-14) Ammim. Ps. 7.8."
+    },
+    {
+      "start_chapter": 47,
+      "start_verse": 3,
+      "end_chapter": 47,
+      "end_verse": 3,
+      "title": "",
+      "content": "peoples (a-4) Ammim. Ps. 7.8. nations (b-9) Leummim. see Ps. 2.1."
+    },
+    {
+      "start_chapter": 47,
+      "start_verse": 6,
+      "end_chapter": 47,
+      "end_verse": 6,
+      "title": "",
+      "content": "of (c-3) Ps. 30.12."
+    },
+    {
+      "start_chapter": 47,
+      "start_verse": 7,
+      "end_chapter": 47,
+      "end_verse": 7,
+      "title": "",
+      "content": "understanding. (d-13) Or 'for instruction.'"
+    },
+    {
+      "start_chapter": 47,
+      "start_verse": 9,
+      "end_chapter": 47,
+      "end_verse": 9,
+      "title": "",
+      "content": "peoples (a-5) people (a-11) Ammim. Ps. 7.8. willing-hearted (e-2) Or 'The nobles,' 'liberal.' [with] (f-9) Or 'are joined unto.' see Gen. 49.10. shields (g-22) See Note, Hos. 4.18."
+    },
+    {
+      "start_chapter": 48,
+      "start_verse": 2,
+      "end_chapter": 48,
+      "end_verse": 2,
+      "title": "",
+      "content": "earth, (h-9) Or 'land,' erets. see 1Sam. 2.8."
+    },
+    {
+      "start_chapter": 48,
+      "start_verse": 3,
+      "end_chapter": 48,
+      "end_verse": 3,
+      "title": "",
+      "content": "as (i-7) Or 'God is in her palaces. he is known as.'"
+    },
+    {
+      "start_chapter": 48,
+      "start_verse": 13,
+      "end_chapter": 48,
+      "end_verse": 13,
+      "title": "",
+      "content": "well (k-3) Lit. 'Set your heart on.'"
+    },
+    {
+      "start_chapter": 49,
+      "start_verse": 1,
+      "end_chapter": 49,
+      "end_verse": 1,
+      "title": "",
+      "content": "peoples; (a-16) Ammim. Ps. 7.8. world. (b-23) Or 'age.' see Ps. 17.14."
+    },
+    {
+      "start_chapter": 49,
+      "start_verse": 2,
+      "end_chapter": 49,
+      "end_verse": 2,
+      "title": "",
+      "content": "degree, (c-9) Lit. 'Both sons of Adam and sons of Ish.'"
+    },
+    {
+      "start_chapter": 49,
+      "start_verse": 3,
+      "end_chapter": 49,
+      "end_verse": 3,
+      "title": "",
+      "content": "wisdom, (d-5) Lit. 'wisdoms.'"
+    },
+    {
+      "start_chapter": 49,
+      "start_verse": 5,
+      "end_chapter": 49,
+      "end_verse": 5,
+      "title": "",
+      "content": "supplanters (e-15) Or 'of them who would trip me up.'"
+    },
+    {
+      "start_chapter": 49,
+      "start_verse": 9,
+      "end_chapter": 49,
+      "end_verse": 9,
+      "title": "",
+      "content": "corruption. (f-10) Or 'the pit.' see Job 17.14."
+    },
+    {
+      "start_chapter": 49,
+      "start_verse": 11,
+      "end_chapter": 49,
+      "end_verse": 11,
+      "title": "",
+      "content": "names. (g-24) Or 'their names are proclaimed in the lands.'"
+    },
+    {
+      "start_chapter": 49,
+      "start_verse": 13,
+      "end_chapter": 49,
+      "end_verse": 13,
+      "title": "",
+      "content": "folly, (h-6) Or 'confidence.'"
+    },
+    {
+      "start_chapter": 49,
+      "start_verse": 15,
+      "end_chapter": 49,
+      "end_verse": 15,
+      "title": "",
+      "content": "power (i-9) Lit. 'hand.' receive (k-15) Or 'take,' as Gen. 5.24."
+    },
+    {
+      "start_chapter": 49,
+      "start_verse": 19,
+      "end_chapter": 49,
+      "end_verse": 19,
+      "title": "",
+      "content": "It (l-1) i.e. his soul."
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 1,
+      "end_chapter": 50,
+      "end_verse": 1,
+      "title": "",
+      "content": "Elohim-Jehovah, (m-6) El Elohim Jehovah."
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 4,
+      "end_chapter": 50,
+      "end_verse": 4,
+      "title": "",
+      "content": "people. (a-18) As Ps. 7.8."
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 5,
+      "end_chapter": 50,
+      "end_verse": 5,
+      "title": "",
+      "content": "by (b-15) Strictly, 'over.'"
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 6,
+      "end_chapter": 50,
+      "end_verse": 6,
+      "title": "",
+      "content": "judgment (c-11) Or 'is judge.'"
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 7,
+      "end_chapter": 50,
+      "end_verse": 7,
+      "title": "",
+      "content": "people, (a-3) As Ps. 7.8."
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 11,
+      "end_chapter": 50,
+      "end_verse": 11,
+      "title": "",
+      "content": "mine. (d-17) Or 'before me.'"
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 12,
+      "end_chapter": 50,
+      "end_verse": 12,
+      "title": "",
+      "content": "world (e-12) Tebel, 'habitable earth.' see Ps. 9.8."
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 13,
+      "end_chapter": 50,
+      "end_verse": 13,
+      "title": "",
+      "content": "bulls, (f-7) Strictly 'the strong ones,' as Ps. 22.12; 68.30."
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 14,
+      "end_chapter": 50,
+      "end_verse": 14,
+      "title": "",
+      "content": "Offer (g-1) Lit. 'Sacrifice,' as Deut. 12.15; Ps. 4.5. see Lev. 7.11; 17.5-7."
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 17,
+      "end_chapter": 50,
+      "end_verse": 17,
+      "title": "",
+      "content": "correction (h-5) Or 'instruction.'"
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 20,
+      "end_chapter": 50,
+      "end_verse": 20,
+      "title": "",
+      "content": "revilest (i-9) Or 'slanderest.'"
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 22,
+      "end_chapter": 50,
+      "end_verse": 22,
+      "title": "",
+      "content": "consider (k-2) Or 'understand.'"
+    },
+    {
+      "start_chapter": 50,
+      "start_verse": 23,
+      "end_chapter": 50,
+      "end_verse": 23,
+      "title": "",
+      "content": "offereth (g-2) Lit. 'Sacrifice,' as Deut. 12.15; Ps. 4.5. see Lev. 7.11; 17.5-7. praise (l-3) Or 'thanksgiving.'"
+    },
+    {
+      "start_chapter": 51,
+      "start_verse": 6,
+      "end_chapter": 51,
+      "end_verse": 6,
+      "title": "",
+      "content": "have (a-4) Lit. 'desirest,' 'takest delight in.'"
+    },
+    {
+      "start_chapter": 51,
+      "start_verse": 7,
+      "end_chapter": 51,
+      "end_verse": 7,
+      "title": "",
+      "content": "Purge (b-1) Strictly, 'purge from sin.'"
+    },
+    {
+      "start_chapter": 51,
+      "start_verse": 10,
+      "end_chapter": 51,
+      "end_verse": 10,
+      "title": "",
+      "content": "steadfast (c-12) Or 'right.'"
+    },
+    {
+      "start_chapter": 51,
+      "start_verse": 12,
+      "end_chapter": 51,
+      "end_verse": 12,
+      "title": "",
+      "content": "me. (d-15) Or 'uphold me with a willing spirit.'"
+    },
+    {
+      "start_chapter": 51,
+      "start_verse": 19,
+      "end_chapter": 51,
+      "end_verse": 19,
+      "title": "",
+      "content": "have (e-4) Or 'take delight in.' see vers. 6,16."
+    },
+    {
+      "start_chapter": 52,
+      "start_verse": 1,
+      "end_chapter": 52,
+      "end_verse": 1,
+      "title": "",
+      "content": "continually. (f-42) Lit. 'is all the day.'"
+    },
+    {
+      "start_chapter": 52,
+      "start_verse": 2,
+      "end_chapter": 52,
+      "end_verse": 2,
+      "title": "",
+      "content": "practising (g-10) Or 'thou practiser of.'"
+    },
+    {
+      "start_chapter": 52,
+      "start_verse": 7,
+      "end_chapter": 52,
+      "end_verse": 7,
+      "title": "",
+      "content": "man (h-3) Geber. see Ps. 34.8 and Job 3.3."
+    },
+    {
+      "start_chapter": 52,
+      "start_verse": 9,
+      "end_chapter": 52,
+      "end_verse": 9,
+      "title": "",
+      "content": "thee (i-4) Or 'give thee thanks,' and so Ps. 67.3,5. good. (k-26) Or 'and I will wait on thy name; because it is good before thy godly ones.'"
+    },
+    {
+      "start_chapter": 53,
+      "start_verse": 1,
+      "end_chapter": 53,
+      "end_verse": 1,
+      "title": "",
+      "content": "Mahalath. (a-6) The meaning is uncertain. fool (b-12) As Ps. 14.1. see Notes, 1Sam. 25.3,25."
+    },
+    {
+      "start_chapter": 53,
+      "start_verse": 6,
+      "end_chapter": 53,
+      "end_verse": 6,
+      "title": "",
+      "content": "salvation (c-4) Lit. 'salvations,' as Ps. 42.5. captivity (d-17) See Ps. 126.1 and Note."
+    },
+    {
+      "start_chapter": 54,
+      "start_verse": 3,
+      "end_chapter": 54,
+      "end_verse": 3,
+      "title": "",
+      "content": "life. (e-14) As Ps. 35.4."
+    },
+    {
+      "start_chapter": 54,
+      "start_verse": 6,
+      "end_chapter": 54,
+      "end_verse": 6,
+      "title": "",
+      "content": "sacrifice (f-4) Or 'I will sacrifice a freewill offering.' praise (g-9) See Note b, Ps. 42.5. good. (h-17) Or 'thou art good.'"
+    },
+    {
+      "start_chapter": 54,
+      "start_verse": 7,
+      "end_chapter": 54,
+      "end_verse": 7,
+      "title": "",
+      "content": "trouble; (i-9) Or 'pressure.' see Ps. 4.1."
+    },
+    {
+      "start_chapter": 55,
+      "start_verse": 2,
+      "end_chapter": 55,
+      "end_verse": 2,
+      "title": "",
+      "content": "about (k-9) Or 'am restless.'"
+    },
+    {
+      "start_chapter": 55,
+      "start_verse": 3,
+      "end_chapter": 55,
+      "end_verse": 3,
+      "title": "",
+      "content": "wicked. (l-14) As Ps. 9.5. iniquity (m-18) Or 'vanity;' it is inwardly devised evil. see Job 4.8; 15.35; Pa 7.14; 10.7; 66.18; 90.10."
+    },
+    {
+      "start_chapter": 55,
+      "start_verse": 10,
+      "end_chapter": 55,
+      "end_verse": 10,
+      "title": "",
+      "content": "iniquity (a-13) See Note m, Ps 55.3."
+    },
+    {
+      "start_chapter": 55,
+      "start_verse": 11,
+      "end_chapter": 55,
+      "end_verse": 11,
+      "title": "",
+      "content": "Perversities (b-1) See Ps. 5.9 and Note d. streets. (c-15) Or 'open place.'"
+    },
+    {
+      "start_chapter": 55,
+      "start_verse": 13,
+      "end_chapter": 55,
+      "end_verse": 13,
+      "title": "",
+      "content": "man (d-6) Enosh. see Ps. 8.4,"
+    },
+    {
+      "start_chapter": 55,
+      "start_verse": 15,
+      "end_chapter": 55,
+      "end_verse": 15,
+      "title": "",
+      "content": "them, (e-5) Some read 'Desolation be upon them!'"
+    },
+    {
+      "start_chapter": 55,
+      "start_verse": 19,
+      "end_chapter": 55,
+      "end_verse": 19,
+      "title": "",
+      "content": "seated (f-10) Or 'that abideth.' they (g-23) Or 'because they with whom are no changes.'"
+    },
+    {
+      "start_chapter": 55,
+      "start_verse": 21,
+      "end_chapter": 55,
+      "end_verse": 21,
+      "title": "",
+      "content": "mouth, (h-8) Or '[The words of] his mouth were smooth as butter.'"
+    },
+    {
+      "start_chapter": 55,
+      "start_verse": 22,
+      "end_chapter": 55,
+      "end_verse": 22,
+      "title": "",
+      "content": "burden (i-3) Or 'the portion assigned to thee.'"
+    },
+    {
+      "start_chapter": 56,
+      "start_verse": 1,
+      "end_chapter": 56,
+      "end_verse": 1,
+      "title": "",
+      "content": "Jonathelem-rechokim. (k-6) 'The mute dove in the distance,' or 'the dove of the distant terebinths.' Michtam; (l-9) See Ps. 16. man (m-24) Enosh. up. (n-28) Strictly, 'pant after me,' like a wild beast thirsting for blood; and so Ps. 57.3; Amos 8.4."
+    },
+    {
+      "start_chapter": 56,
+      "start_verse": 2,
+      "end_chapter": 56,
+      "end_verse": 2,
+      "title": "",
+      "content": "up (n-6) Strictly, 'pant after me,' like a wild beast thirsting for blood; and so Ps. 57.3; Amos 8.4. haughtily. (o-19) Or 'O Most High!' as Ps. 92.8."
+    },
+    {
+      "start_chapter": 56,
+      "start_verse": 5,
+      "end_chapter": 56,
+      "end_verse": 5,
+      "title": "",
+      "content": "wrest (p-6) Or 'torture.'"
+    },
+    {
+      "start_chapter": 56,
+      "start_verse": 7,
+      "end_chapter": 56,
+      "end_verse": 7,
+      "title": "",
+      "content": "by (a-4) Or 'through.'"
+    },
+    {
+      "start_chapter": 56,
+      "start_verse": 8,
+      "end_chapter": 56,
+      "end_verse": 8,
+      "title": "",
+      "content": "countest (b-2) Or 'recountest.' bottle. (c-10) There is a paronomasia in this verse with Nod, 'wandering,' and N“d, 'bottle' (i.e. a leathern sack)."
+    },
+    {
+      "start_chapter": 56,
+      "start_verse": 9,
+      "end_chapter": 56,
+      "end_verse": 9,
+      "title": "",
+      "content": "enemies (d-4) As Ps. 8.2."
+    },
+    {
+      "start_chapter": 56,
+      "start_verse": 12,
+      "end_chapter": 56,
+      "end_verse": 12,
+      "title": "",
+      "content": "thanks (e-11) Or 'thank-offerings,' as Lev. 7.12. see 2Chron. 29.31."
+    },
+    {
+      "start_chapter": 57,
+      "start_verse": 1,
+      "end_chapter": 57,
+      "end_verse": 1,
+      "title": "",
+      "content": "Michtam; (f-9) See Ps. 16."
+    },
+    {
+      "start_chapter": 57,
+      "start_verse": 2,
+      "end_chapter": 57,
+      "end_verse": 2,
+      "title": "",
+      "content": "performeth (g-12) Or 'perfecteth.' see Ps. 138.8."
+    },
+    {
+      "start_chapter": 57,
+      "start_verse": 4,
+      "end_chapter": 57,
+      "end_verse": 4,
+      "title": "",
+      "content": "men, (h-21) Adam."
+    },
+    {
+      "start_chapter": 57,
+      "start_verse": 5,
+      "end_chapter": 57,
+      "end_verse": 5,
+      "title": "",
+      "content": "earth! (i-15) Or 'land,' erets, as also ver. 11, Ps. 58.2; 1Sam. 2.8; &c."
+    },
+    {
+      "start_chapter": 57,
+      "start_verse": 6,
+      "end_chapter": 57,
+      "end_verse": 6,
+      "title": "",
+      "content": "down. (k-13) Or 'they bowed down my soul.'"
+    },
+    {
+      "start_chapter": 57,
+      "start_verse": 8,
+      "end_chapter": 57,
+      "end_verse": 8,
+      "title": "",
+      "content": "glory; (l-3) See Ps. 16.9. wake (m-10) Or 'awake with;' and so Ps. 108.2."
+    },
+    {
+      "start_chapter": 57,
+      "start_verse": 9,
+      "end_chapter": 57,
+      "end_verse": 9,
+      "title": "",
+      "content": "nations. (n-19) Leummim. see Ps. 2.1; and so Ps. 67.4; 108.3."
+    },
+    {
+      "start_chapter": 57,
+      "start_verse": 11,
+      "end_chapter": 57,
+      "end_verse": 11,
+      "title": "",
+      "content": "earth! (o-15) See Ps. 108.1-5."
+    },
+    {
+      "start_chapter": 58,
+      "start_verse": 1,
+      "end_chapter": 58,
+      "end_verse": 1,
+      "title": "",
+      "content": "Michtam.} (f-9) See Ps. 16. it? (p-17) Some would read 'Do ye mighty ones indeed speak righteousness?'"
+    },
+    {
+      "start_chapter": 58,
+      "start_verse": 2,
+      "end_chapter": 58,
+      "end_verse": 2,
+      "title": "",
+      "content": "earth. (i-17) Or 'land,' erets, as also ver. 11, Ps. 58.2; 1Sam. 2.8; &c. out (q-9) Or 'ponder.'"
+    },
+    {
+      "start_chapter": 58,
+      "start_verse": 7,
+      "end_chapter": 58,
+      "end_verse": 7,
+      "title": "",
+      "content": "blunted. (a-19) Lit. '[the point] cut off.'"
+    },
+    {
+      "start_chapter": 59,
+      "start_verse": 9,
+      "end_chapter": 59,
+      "end_verse": 9,
+      "title": "",
+      "content": "will (b-5) Or 'My strength, I will. ...'"
+    },
+    {
+      "start_chapter": 59,
+      "start_verse": 10,
+      "end_chapter": 59,
+      "end_verse": 10,
+      "title": "",
+      "content": "loving-kindness (c-3) Or 'The God of my mercy (chesed),' as ver. 17."
+    },
+    {
+      "start_chapter": 59,
+      "start_verse": 12,
+      "end_chapter": 59,
+      "end_verse": 12,
+      "title": "",
+      "content": "lips, (d-12) Or '[Because] the sin of their mouth is the word of their lips.'"
+    },
+    {
+      "start_chapter": 59,
+      "start_verse": 15,
+      "end_chapter": 59,
+      "end_verse": 15,
+      "title": "",
+      "content": "night (e-10) Or 'murmur.'"
+    },
+    {
+      "start_chapter": 59,
+      "start_verse": 16,
+      "end_chapter": 59,
+      "end_verse": 16,
+      "title": "",
+      "content": "refuge (a-33) Strictly, 'place of escape,' as Job 11.20."
+    },
+    {
+      "start_chapter": 59,
+      "start_verse": 17,
+      "end_chapter": 59,
+      "end_verse": 17,
+      "title": "",
+      "content": "mercy. (b-19) Or 'my gracious (chesed) God.'"
+    },
+    {
+      "start_chapter": 60,
+      "start_verse": 1,
+      "end_chapter": 60,
+      "end_verse": 1,
+      "title": "",
+      "content": "Shushan. (c-6) Meaning, 'lily.' For michtam see Ps. 16 and Ps. 56 to 60."
+    },
+    {
+      "start_chapter": 60,
+      "start_verse": 2,
+      "end_chapter": 60,
+      "end_verse": 2,
+      "title": "",
+      "content": "earth (d-5) As Ps. 58.2."
+    },
+    {
+      "start_chapter": 60,
+      "start_verse": 5,
+      "end_chapter": 60,
+      "end_verse": 5,
+      "title": "",
+      "content": "me. (e-15) Or 'us.'"
+    },
+    {
+      "start_chapter": 60,
+      "start_verse": 7,
+      "end_chapter": 60,
+      "end_verse": 7,
+      "title": "",
+      "content": "strength (f-12) Or 'defence.'"
+    },
+    {
+      "start_chapter": 60,
+      "start_verse": 12,
+      "end_chapter": 60,
+      "end_verse": 12,
+      "title": "",
+      "content": "adversaries. (g-16) As Ps. 8.2; or 'oppressors.' see Ps. 108.6-13."
+    },
+    {
+      "start_chapter": 61,
+      "start_verse": 2,
+      "end_chapter": 61,
+      "end_verse": 2,
+      "title": "",
+      "content": "earth (d-6) As Ps. 58.2. me. (h-30) Or 'which is higher than I.'"
+    },
+    {
+      "start_chapter": 61,
+      "start_verse": 4,
+      "end_chapter": 61,
+      "end_verse": 4,
+      "title": "",
+      "content": "sojourn (i-3) refuge (i-12) Or 'Let me sojourn -- let me take refuge.' cohortatives."
+    },
+    {
+      "start_chapter": 61,
+      "start_verse": 6,
+      "end_chapter": 61,
+      "end_verse": 6,
+      "title": "",
+      "content": "generations. (k-17) Lit. 'as generation and generation.'"
+    },
+    {
+      "start_chapter": 61,
+      "start_verse": 7,
+      "end_chapter": 61,
+      "end_verse": 7,
+      "title": "",
+      "content": "abide (l-3) Or 'dwell;' as 'sat,' 2Sam. 7.18."
+    },
+    {
+      "start_chapter": 62,
+      "start_verse": 1,
+      "end_chapter": 62,
+      "end_verse": 1,
+      "title": "",
+      "content": "Jeduthun. (a-6) * As Ps. 39 and 77, meaning 'praising' or 'celebrating.' peacefully; (b-18) Or 'wait in silence,' as Ps. 65.1."
+    },
+    {
+      "start_chapter": 62,
+      "start_verse": 5,
+      "end_chapter": 62,
+      "end_verse": 5,
+      "title": "",
+      "content": "peacefully; (b-8) Or 'wait in silence,' as Ps. 65.1."
+    },
+    {
+      "start_chapter": 62,
+      "start_verse": 9,
+      "end_chapter": 62,
+      "end_verse": 9,
+      "title": "",
+      "content": "degree (c-4) degree, (c-11) See Note, Ps. 49.2. vanity; (d-7) vanity. (d-24) As Job 7.16; Ps. 39.5,6,11."
+    },
+    {
+      "start_chapter": 64,
+      "start_verse": 4,
+      "end_chapter": 64,
+      "end_verse": 4,
+      "title": "",
+      "content": "secret (a-6) Or 'from their hiding-places.'"
+    },
+    {
+      "start_chapter": 65,
+      "start_verse": 3,
+      "end_chapter": 65,
+      "end_verse": 3,
+      "title": "",
+      "content": "forgive (b-10) Lit. 'make atonement,' as Lev. 16.30; Deut. 21.8; Ps. 78.38; 79.9. see Note g, Lev. 5.6."
+    },
+    {
+      "start_chapter": 65,
+      "start_verse": 4,
+      "end_chapter": 65,
+      "end_verse": 4,
+      "title": "",
+      "content": "temple. (c-30) Or 'of the temple of thy holiness.'"
+    },
+    {
+      "start_chapter": 65,
+      "start_verse": 7,
+      "end_chapter": 65,
+      "end_verse": 7,
+      "title": "",
+      "content": "peoples. (d-18) Leummim. see Ps. 2.1."
+    },
+    {
+      "start_chapter": 65,
+      "start_verse": 8,
+      "end_chapter": 65,
+      "end_verse": 8,
+      "title": "",
+      "content": "tokens; (e-13) Or 'signs,' as Ps. 135.9."
+    },
+    {
+      "start_chapter": 65,
+      "start_verse": 9,
+      "end_chapter": 65,
+      "end_verse": 9,
+      "title": "",
+      "content": "earth, (f-5) As Ps. 58.2. it; (g-9) Or 'made it overflow.' their (h-24) i.e. of men. it. (i-31) i.e. the earth."
+    },
+    {
+      "start_chapter": 66,
+      "start_verse": 5,
+      "end_chapter": 66,
+      "end_verse": 5,
+      "title": "",
+      "content": "works (a-5) See Ps. 46.8."
+    },
+    {
+      "start_chapter": 66,
+      "start_verse": 8,
+      "end_chapter": 66,
+      "end_verse": 8,
+      "title": "",
+      "content": "peoples, (b-5) Ammim. see Ps. 7.8."
+    },
+    {
+      "start_chapter": 66,
+      "start_verse": 10,
+      "end_chapter": 66,
+      "end_verse": 10,
+      "title": "",
+      "content": "tried (c-10) tried. (c-15) Or 'refined.' see Ps. 12.6; 18.30, &c."
+    },
+    {
+      "start_chapter": 66,
+      "start_verse": 12,
+      "end_chapter": 66,
+      "end_verse": 12,
+      "title": "",
+      "content": "abundance. (d-24) 'Runneth over,' in Ps. 23.5, is the same word."
+    },
+    {
+      "start_chapter": 67,
+      "start_verse": 1,
+      "end_chapter": 67,
+      "end_verse": 1,
+      "title": "",
+      "content": "upon (e-26) Lit. 'with.'"
+    },
+    {
+      "start_chapter": 67,
+      "start_verse": 3,
+      "end_chapter": 67,
+      "end_verse": 3,
+      "title": "",
+      "content": "peoples (b-3) peoples (b-11) Ammim. see Ps. 7.8. praise (f-4) See Note i, Ps. 52.9."
+    },
+    {
+      "start_chapter": 67,
+      "start_verse": 4,
+      "end_chapter": 67,
+      "end_verse": 4,
+      "title": "",
+      "content": "peoples (b-14) Ammim. see Ps. 7.8. nations (g-3) nations (g-18) Leummim. see Ps. 2.1."
+    },
+    {
+      "start_chapter": 67,
+      "start_verse": 5,
+      "end_chapter": 67,
+      "end_verse": 5,
+      "title": "",
+      "content": "peoples (b-3) peoples (b-11) Ammim. see Ps. 7.8. praise (f-4) See Note i, Ps. 52.9."
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 1,
+      "end_chapter": 68,
+      "end_verse": 1,
+      "title": "",
+      "content": "him. (a-27) See Num 10.35."
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 4,
+      "end_chapter": 68,
+      "end_verse": 4,
+      "title": "",
+      "content": "for (b-12) Or 'triumph in.' Jah; (c-22) The existing One, objectively. Jah occurs 43 times from Psalms 68 to 150 and 7 times elsewhere -- Ex. 15.2, see Note; 17.16; Cant. 8.6; Isa. 12.2; 26.4; 38.11 (twice)."
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 6,
+      "end_chapter": 68,
+      "end_verse": 6,
+      "title": "",
+      "content": "families; (d-6) Or 'maketh the solitary to dwell in a home.' bound (e-10) Or 'prisoners,' as Ps. 69.33."
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 8,
+      "end_chapter": 68,
+      "end_verse": 8,
+      "title": "",
+      "content": "Israel. (f-23) See Judg. 5.3,5."
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 9,
+      "end_chapter": 68,
+      "end_verse": 9,
+      "title": "",
+      "content": "rain (g-8) Or 'a rain of free gifts.'"
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 10,
+      "end_chapter": 68,
+      "end_verse": 10,
+      "title": "",
+      "content": "flock (h-2) Or 'living assembly,' 'incorporated people;' as 'troop,' Ps. 74.19."
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 11,
+      "end_chapter": 68,
+      "end_verse": 11,
+      "title": "",
+      "content": "word. (i-5) Omer. see Note, Ps. 119.11. publishers. (k-11) i.e. women publishing victory, like Miriam. the word is feminine, see Ex. 15.20; 1Sam. 18.6."
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 13,
+      "end_chapter": 68,
+      "end_verse": 13,
+      "title": "",
+      "content": "sheepfolds, (l-7) Others, 'pots' or 'ash-grates,' but see Judg. 5.16. green (m-23) Strictly, 'greenish-yellow.'"
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 14,
+      "end_chapter": 68,
+      "end_verse": 14,
+      "title": "",
+      "content": "it, (n-7) i.e. the land."
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 15,
+      "end_chapter": 68,
+      "end_verse": 15,
+      "title": "",
+      "content": "God, (o-8) Or 'A mount of God is mount Bashan.'"
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 18,
+      "end_chapter": 68,
+      "end_verse": 18,
+      "title": "",
+      "content": "Man, (p-16) i.e. as man (Adam), in connection with mankind. dwelling (q-24) See Ex. 25.8."
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 20,
+      "end_chapter": 68,
+      "end_verse": 20,
+      "title": "",
+      "content": "salvation; (r-7) Or '*God is for us a *God of salvations.'"
+    },
+    {
+      "start_chapter": 68,
+      "start_verse": 33,
+      "end_chapter": 68,
+      "end_verse": 33,
+      "title": "",
+      "content": "old. (a-13) See Deut. 33.26, 27."
+    },
+    {
+      "start_chapter": 69,
+      "start_verse": 1,
+      "end_chapter": 69,
+      "end_verse": 1,
+      "title": "",
+      "content": "Shoshannim. (b-6) As Ps. 45."
+    },
+    {
+      "start_chapter": 69,
+      "start_verse": 12,
+      "end_chapter": 69,
+      "end_verse": 12,
+      "title": "",
+      "content": "drunkards. (a-17) Lit. 'drinkers of strong drink.'"
+    },
+    {
+      "start_chapter": 69,
+      "start_verse": 18,
+      "end_chapter": 69,
+      "end_verse": 18,
+      "title": "",
+      "content": "redeemer; (b-8) See Note, Lev. 25.25; it is rendered also 'avenger,' Num. 35.12. see Ruth 3.13; 4.8,14."
+    },
+    {
+      "start_chapter": 69,
+      "start_verse": 19,
+      "end_chapter": 69,
+      "end_verse": 19,
+      "title": "",
+      "content": "adversaries (c-12) Or 'oppressors.' Tzar, Ps 8.2."
+    },
+    {
+      "start_chapter": 69,
+      "start_verse": 21,
+      "end_chapter": 69,
+      "end_verse": 21,
+      "title": "",
+      "content": "gall (d-5) A bitter (poisonous?) plant. see Jer. 8.14; 23.15."
+    },
+    {
+      "start_chapter": 69,
+      "start_verse": 26,
+      "end_chapter": 69,
+      "end_verse": 26,
+      "title": "",
+      "content": "for (e-12) Or 'talk of.'"
+    },
+    {
+      "start_chapter": 70,
+      "start_verse": 1,
+      "end_chapter": 70,
+      "end_verse": 1,
+      "title": "",
+      "content": "remembrance.} (a-12) See Ps. 40.13-17."
+    },
+    {
+      "start_chapter": 70,
+      "start_verse": 3,
+      "end_chapter": 70,
+      "end_verse": 3,
+      "title": "",
+      "content": "of (b-6) Or 'for a reward of.'"
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 3,
+      "end_chapter": 71,
+      "end_verse": 3,
+      "title": "",
+      "content": "rock (c-24) Sela, as Ps. 18.2 (first time); 31.3, &c."
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 6,
+      "end_chapter": 71,
+      "end_verse": 6,
+      "title": "",
+      "content": "forth. (d-20) Or 'art my benefactor.'"
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 8,
+      "end_chapter": 71,
+      "end_verse": 8,
+      "title": "",
+      "content": "shall (e-3) Or 'Let my mouth.'"
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 13,
+      "end_chapter": 71,
+      "end_verse": 13,
+      "title": "",
+      "content": "adversaries (f-11) Heb. Satan. see Ps. 38.20."
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 16,
+      "end_chapter": 71,
+      "end_verse": 16,
+      "title": "",
+      "content": "recall (g-13) Or 'make mention of.'"
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 19,
+      "end_chapter": 71,
+      "end_verse": 19,
+      "title": "",
+      "content": "high, (h-8) Or 'is very high.'"
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 20,
+      "end_chapter": 71,
+      "end_verse": 20,
+      "title": "",
+      "content": "us (a-5) us (a-12) us (a-17) Or 'me.'"
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 21,
+      "end_chapter": 71,
+      "end_verse": 21,
+      "title": "",
+      "content": "side. (b-11) Or 'and thou wilt turn and comfort me.'"
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 22,
+      "end_chapter": 71,
+      "end_verse": 22,
+      "title": "",
+      "content": "thee (c-5) Or 'give thee thanks.' psaltery, (d-8) Lit. 'an instrument, a lute.'"
+    },
+    {
+      "start_chapter": 71,
+      "start_verse": 23,
+      "end_chapter": 71,
+      "end_verse": 23,
+      "title": "",
+      "content": "I (e-6) Or 'exult; for I will.'"
+    },
+    {
+      "start_chapter": 72,
+      "start_verse": 1,
+      "end_chapter": 72,
+      "end_verse": 1,
+      "title": "",
+      "content": "For (f-1) Or 'Of,' or 'Concerning.'"
+    },
+    {
+      "start_chapter": 72,
+      "start_verse": 2,
+      "end_chapter": 72,
+      "end_verse": 2,
+      "title": "",
+      "content": "judgment. (g-12) Or 'rectitude.'"
+    },
+    {
+      "start_chapter": 72,
+      "start_verse": 5,
+      "end_chapter": 72,
+      "end_verse": 5,
+      "title": "",
+      "content": "endure, (h-11) Lit. 'with the sun and before the moon.' see 'as long as the sun,' lit. 'before the sun,' ver. 17. generation. (i-15) Lit. 'generation of generations.'"
+    },
+    {
+      "start_chapter": 72,
+      "start_verse": 6,
+      "end_chapter": 72,
+      "end_verse": 6,
+      "title": "",
+      "content": "earth. (k-16) Or 'land,' see Ps. 2.8; 58.2."
+    },
+    {
+      "start_chapter": 72,
+      "start_verse": 8,
+      "end_chapter": 72,
+      "end_verse": 8,
+      "title": "",
+      "content": "earth. (k-19) Or 'land,' see Ps. 2.8; 58.2."
+    },
+    {
+      "start_chapter": 72,
+      "start_verse": 10,
+      "end_chapter": 72,
+      "end_verse": 10,
+      "title": "",
+      "content": "presents; (l-11) Or 'shall present gifts.'"
+    },
+    {
+      "start_chapter": 72,
+      "start_verse": 12,
+      "end_chapter": 72,
+      "end_verse": 12,
+      "title": "",
+      "content": "hath (m-13) Or 'and him that hath.'"
+    },
+    {
+      "start_chapter": 72,
+      "start_verse": 16,
+      "end_chapter": 72,
+      "end_verse": 16,
+      "title": "",
+      "content": "abundance (n-4) Or 'handfuls.'"
+    },
+    {
+      "start_chapter": 73,
+      "start_verse": 4,
+      "end_chapter": 73,
+      "end_verse": 4,
+      "title": "",
+      "content": "in (a-6) Some read 'until.' body (b-11) Or 'strength.'"
+    },
+    {
+      "start_chapter": 73,
+      "start_verse": 5,
+      "end_chapter": 73,
+      "end_verse": 5,
+      "title": "",
+      "content": "mankind, (c-7) Enosh. Ps. 8.4"
+    },
+    {
+      "start_chapter": 73,
+      "start_verse": 10,
+      "end_chapter": 73,
+      "end_verse": 10,
+      "title": "",
+      "content": "turn (d-4) Or 'Therefore he turns his people.'"
+    },
+    {
+      "start_chapter": 73,
+      "start_verse": 12,
+      "end_chapter": 73,
+      "end_verse": 12,
+      "title": "",
+      "content": "world. (e-11) Or 'and they are ever at rest' (i.e. careless). see Ezek. 23.42."
+    },
+    {
+      "start_chapter": 73,
+      "start_verse": 16,
+      "end_chapter": 73,
+      "end_verse": 16,
+      "title": "",
+      "content": "task (f-14) 'Labour,' 'trouble.' 'hardships,' ver. 5."
+    },
+    {
+      "start_chapter": 73,
+      "start_verse": 17,
+      "end_chapter": 73,
+      "end_verse": 17,
+      "title": "",
+      "content": "I (g-11) Or '[and] I had considered.'"
+    },
+    {
+      "start_chapter": 73,
+      "start_verse": 20,
+      "end_chapter": 73,
+      "end_verse": 20,
+      "title": "",
+      "content": "arising (h-11) Or 'in wrath.'"
+    },
+    {
+      "start_chapter": 73,
+      "start_verse": 23,
+      "end_chapter": 73,
+      "end_verse": 23,
+      "title": "",
+      "content": "holden (i-9) Properly 'seized.'"
+    },
+    {
+      "start_chapter": 73,
+      "start_verse": 28,
+      "end_chapter": 73,
+      "end_verse": 28,
+      "title": "",
+      "content": "works. (a-30) 'Things made,' 'wrought,' as Gen. 2.2."
+    },
+    {
+      "start_chapter": 74,
+      "start_verse": 2,
+      "end_chapter": 74,
+      "end_verse": 2,
+      "title": "",
+      "content": "redeemed (b-13) As Ps. 69.18, &c. portion (c-17) Lit. 'staff [for measuring];' or 'tribe.'"
+    },
+    {
+      "start_chapter": 74,
+      "start_verse": 4,
+      "end_chapter": 74,
+      "end_verse": 4,
+      "title": "",
+      "content": "adversaries (d-2) Tzar, Ps. 8.2. signs. (e-18) See Ex. 4.17; 10.2."
+    },
+    {
+      "start_chapter": 74,
+      "start_verse": 7,
+      "end_chapter": 74,
+      "end_verse": 7,
+      "title": "",
+      "content": "habitation (f-12) Mishkan, used for 'tabernacle,' Ex. 25.9, &c.; 2Chron. 29.6, Ps. 78.60. Also 'dwelleth,' Ps. 26.8."
+    },
+    {
+      "start_chapter": 74,
+      "start_verse": 8,
+      "end_chapter": 74,
+      "end_verse": 8,
+      "title": "",
+      "content": "destroy (g-8) Or 'oppress.'"
+    },
+    {
+      "start_chapter": 74,
+      "start_verse": 14,
+      "end_chapter": 74,
+      "end_verse": 14,
+      "title": "",
+      "content": "leviathan, (h-9) As Job 3.8. those (i-17) i.e. the wild beasts."
+    },
+    {
+      "start_chapter": 74,
+      "start_verse": 16,
+      "end_chapter": 74,
+      "end_verse": 16,
+      "title": "",
+      "content": "moon (k-14) Lit. 'light-bearer,' i.e. what gives light, as Gen. 1.14-16; Ex. 25.6."
+    },
+    {
+      "start_chapter": 74,
+      "start_verse": 18,
+      "end_chapter": 74,
+      "end_verse": 18,
+      "title": "",
+      "content": "foolish (l-11) Or 'vile,' 'impious.' see ver. 22 and Ps. 53.1."
+    },
+    {
+      "start_chapter": 74,
+      "start_verse": 19,
+      "end_chapter": 74,
+      "end_verse": 19,
+      "title": "",
+      "content": "beast; (m-12) Or 'Give not up thy turtle-dove unto the greedy troop' (or 'herd'). troop (n-16) Others, 'life,' as 'flock,' Ps. 68.10."
+    },
+    {
+      "start_chapter": 75,
+      "start_verse": 2,
+      "end_chapter": 75,
+      "end_verse": 2,
+      "title": "",
+      "content": "assembly, (a-6) Or 'When I shall reach (seize) the set time.' see Lev. 23.2."
+    },
+    {
+      "start_chapter": 75,
+      "start_verse": 3,
+      "end_chapter": 75,
+      "end_verse": 3,
+      "title": "",
+      "content": "earth (b-2) Or 'land,' as 1Sam. 2.8. so ver. 8."
+    },
+    {
+      "start_chapter": 75,
+      "start_verse": 6,
+      "end_chapter": 75,
+      "end_verse": 6,
+      "title": "",
+      "content": "south (c-14) Lit. 'the wilderness,' which was in the south."
+    },
+    {
+      "start_chapter": 75,
+      "start_verse": 8,
+      "end_chapter": 75,
+      "end_verse": 8,
+      "title": "",
+      "content": "foameth (d-13) Or 'it is red.'"
+    },
+    {
+      "start_chapter": 76,
+      "start_verse": 2,
+      "end_chapter": 76,
+      "end_verse": 2,
+      "title": "",
+      "content": "tent, (e-6) Lit. 'booth.'"
+    },
+    {
+      "start_chapter": 76,
+      "start_verse": 8,
+      "end_chapter": 76,
+      "end_verse": 8,
+      "title": "",
+      "content": "earth (b-12) Or 'land,' as 1Sam. 2.8. so ver. 8."
+    },
+    {
+      "start_chapter": 76,
+      "start_verse": 9,
+      "end_chapter": 76,
+      "end_verse": 9,
+      "title": "",
+      "content": "earth. (b-14) Or 'land,' as 1Sam. 2.8. so ver. 8."
+    },
+    {
+      "start_chapter": 76,
+      "start_verse": 10,
+      "end_chapter": 76,
+      "end_verse": 10,
+      "title": "",
+      "content": "thyself. (f-17) Or 'restrain.'"
+    },
+    {
+      "start_chapter": 77,
+      "start_verse": 1,
+      "end_chapter": 77,
+      "end_verse": 1,
+      "title": "",
+      "content": "Jeduthun. (a-6) As Ps. 39 and 62."
+    },
+    {
+      "start_chapter": 77,
+      "start_verse": 2,
+      "end_chapter": 77,
+      "end_verse": 2,
+      "title": "",
+      "content": "out (b-15) Or 'was poured out,' or, 'my sore ran.'"
+    },
+    {
+      "start_chapter": 77,
+      "start_verse": 8,
+      "end_chapter": 77,
+      "end_verse": 8,
+      "title": "",
+      "content": "word (c-9) Omer see Ps. 119.11."
+    },
+    {
+      "start_chapter": 77,
+      "start_verse": 11,
+      "end_chapter": 77,
+      "end_verse": 11,
+      "title": "",
+      "content": "works (d-6) Strictly, 'doings,' 'exploits,' Prov. 20.11; Mic. 2.7; 'doings' in ver. 12 and Ps. 78.11 is rather 'actions.' 'work' in ver. 12 is a 'thing done,' as Isa. 45.9."
+    },
+    {
+      "start_chapter": 77,
+      "start_verse": 20,
+      "end_chapter": 77,
+      "end_verse": 20,
+      "title": "",
+      "content": "Aaron. (e-14) See Mic. 6.4."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 2,
+      "end_chapter": 78,
+      "end_verse": 2,
+      "title": "",
+      "content": "utter (f-11) As Ps. 19.2."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 7,
+      "end_chapter": 78,
+      "end_verse": 7,
+      "title": "",
+      "content": "works (a-14) As Ps. 77.11."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 12,
+      "end_chapter": 78,
+      "end_verse": 12,
+      "title": "",
+      "content": "Zoan. (b-19) i.e. Tanis, a town in Lower Egypt."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 16,
+      "end_chapter": 78,
+      "end_verse": 16,
+      "title": "",
+      "content": "rock, (c-8) Sela, as Ps. 31.3."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 17,
+      "end_chapter": 78,
+      "end_verse": 17,
+      "title": "",
+      "content": "provoking (d-9) Or 'rebelling against;' and so ver. 40."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 19,
+      "end_chapter": 78,
+      "end_verse": 19,
+      "title": "",
+      "content": "prepare (e-12) Or 'furnish,' as Prov. 9.2."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 32,
+      "end_chapter": 78,
+      "end_verse": 32,
+      "title": "",
+      "content": "in (f-10) Or 'by.'"
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 35,
+      "end_chapter": 78,
+      "end_verse": 35,
+      "title": "",
+      "content": "redeemer. (a-15) As Ps. 69.18."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 36,
+      "end_chapter": 78,
+      "end_verse": 36,
+      "title": "",
+      "content": "flattered (b-3) The word means, 'make pretence,' elsewhere 'entice,' 'deceive.'"
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 40,
+      "end_chapter": 78,
+      "end_verse": 40,
+      "title": "",
+      "content": "provoke (c-5) Or 'rebel against.'"
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 41,
+      "end_chapter": 78,
+      "end_verse": 41,
+      "title": "",
+      "content": "grieved (d-9) Or 'limited.'"
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 42,
+      "end_chapter": 78,
+      "end_verse": 42,
+      "title": "",
+      "content": "delivered (e-10) Lit. 'redeemed.'"
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 45,
+      "end_chapter": 78,
+      "end_verse": 45,
+      "title": "",
+      "content": "dog-flies (f-3) Or 'vermin;' but it is as in Ex. 8.21."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 46,
+      "end_chapter": 78,
+      "end_verse": 46,
+      "title": "",
+      "content": "caterpillar, (g-8) Lit. 'the devourer,' a species of locust. so 1Kings 8.37; 2Chron. 6.28. see Joel 1.4."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 61,
+      "end_chapter": 78,
+      "end_verse": 61,
+      "title": "",
+      "content": "glory (h-9) Lit. 'beauty.'"
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 63,
+      "end_chapter": 78,
+      "end_verse": 63,
+      "title": "",
+      "content": "young (a-5) Or 'chosen,' as ver. 31."
+    },
+    {
+      "start_chapter": 78,
+      "start_verse": 64,
+      "end_chapter": 78,
+      "end_verse": 64,
+      "title": "",
+      "content": "lamentation. (b-12) Or 'wept not.'"
+    },
+    {
+      "start_chapter": 79,
+      "start_verse": 2,
+      "end_chapter": 79,
+      "end_verse": 2,
+      "title": "",
+      "content": "saints (c-23) As Ps. 30.4."
+    },
+    {
+      "start_chapter": 79,
+      "start_verse": 11,
+      "end_chapter": 79,
+      "end_verse": 11,
+      "title": "",
+      "content": "die; (d-23) Lit. 'the sons of death.'"
+    },
+    {
+      "start_chapter": 80,
+      "start_verse": 1,
+      "end_chapter": 80,
+      "end_verse": 1,
+      "title": "",
+      "content": "Psalm.} (a-10) Or 'On lilies. A testimony of Asaph. a Psalm.' cherubim, (b-29) Or 'dwellest above the cherubim,' so Ps. 99.1; but there the article is omitted before 'cherubim.'"
+    },
+    {
+      "start_chapter": 80,
+      "start_verse": 4,
+      "end_chapter": 80,
+      "end_verse": 4,
+      "title": "",
+      "content": "anger (c-9) Lit. 'wilt thou.'"
+    },
+    {
+      "start_chapter": 80,
+      "start_verse": 10,
+      "end_chapter": 80,
+      "end_verse": 10,
+      "title": "",
+      "content": "*God; (d-16) Or 'great cedars.' see Ps. 36.6."
+    },
+    {
+      "start_chapter": 80,
+      "start_verse": 12,
+      "end_chapter": 80,
+      "end_verse": 12,
+      "title": "",
+      "content": "fences, (e-7) Or 'enclosure-walls.' see Eccles. 10.8; Ezek. 22.30."
+    },
+    {
+      "start_chapter": 80,
+      "start_verse": 13,
+      "end_chapter": 80,
+      "end_verse": 13,
+      "title": "",
+      "content": "beast (f-12) Or 'roaming creature,' as Ps. 50.11."
+    },
+    {
+      "start_chapter": 80,
+      "start_verse": 15,
+      "end_chapter": 80,
+      "end_verse": 15,
+      "title": "",
+      "content": "which (g-4) Others, 'And protect that which.' plant (h-13) Lit. 'the son.'"
+    },
+    {
+      "start_chapter": 80,
+      "start_verse": 17,
+      "end_chapter": 80,
+      "end_verse": 17,
+      "title": "",
+      "content": "man (i-16) Or 'Adam's son,' as Ps. 8.4."
+    },
+    {
+      "start_chapter": 81,
+      "start_verse": 1,
+      "end_chapter": 81,
+      "end_verse": 1,
+      "title": "",
+      "content": "Gittith. (k-7) See Ps. 8."
+    },
+    {
+      "start_chapter": 81,
+      "start_verse": 3,
+      "end_chapter": 81,
+      "end_verse": 3,
+      "title": "",
+      "content": "time, (l-11) Others, 'at the full moon,' as Prov. 7.20; but it more probably refers to special appointment or 'reckoning,' according to the word in the original."
+    },
+    {
+      "start_chapter": 81,
+      "start_verse": 16,
+      "end_chapter": 81,
+      "end_verse": 16,
+      "title": "",
+      "content": "wheat; (a-11) Lit. 'the fat of wheat,' and so Ps. 147.14."
+    },
+    {
+      "start_chapter": 82,
+      "start_verse": 1,
+      "end_chapter": 82,
+      "end_verse": 1,
+      "title": "",
+      "content": "gods. (b-16) Elohim, 'the judges.' see Ex. 21.6."
+    },
+    {
+      "start_chapter": 82,
+      "start_verse": 3,
+      "end_chapter": 82,
+      "end_verse": 3,
+      "title": "",
+      "content": "Judge (c-1) That is, as often, 'Judge in favour of.'"
+    },
+    {
+      "start_chapter": 82,
+      "start_verse": 5,
+      "end_chapter": 82,
+      "end_verse": 5,
+      "title": "",
+      "content": "earth (d-18) Erets, 1Sam. 2.8."
+    },
+    {
+      "start_chapter": 82,
+      "start_verse": 6,
+      "end_chapter": 82,
+      "end_verse": 6,
+      "title": "",
+      "content": "gods, (b-6) Elohim, 'the judges.' see Ex. 21.6."
+    },
+    {
+      "start_chapter": 82,
+      "start_verse": 7,
+      "end_chapter": 82,
+      "end_verse": 7,
+      "title": "",
+      "content": "men, (e-6) Adam."
+    },
+    {
+      "start_chapter": 82,
+      "start_verse": 8,
+      "end_chapter": 82,
+      "end_verse": 8,
+      "title": "",
+      "content": "earth; (d-6) Erets, 1Sam. 2.8."
+    },
+    {
+      "start_chapter": 83,
+      "start_verse": 3,
+      "end_chapter": 83,
+      "end_verse": 3,
+      "title": "",
+      "content": "ones. (f-13) See Ps. 31.20."
+    },
+    {
+      "start_chapter": 83,
+      "start_verse": 8,
+      "end_chapter": 83,
+      "end_verse": 8,
+      "title": "",
+      "content": "Asshur (g-1) Assyria."
+    },
+    {
+      "start_chapter": 83,
+      "start_verse": 11,
+      "end_chapter": 83,
+      "end_verse": 11,
+      "title": "",
+      "content": "chiefs (a-12) Lit. 'anointed ones.' see Ezek. 32.30."
+    },
+    {
+      "start_chapter": 83,
+      "start_verse": 18,
+      "end_chapter": 83,
+      "end_verse": 18,
+      "title": "",
+      "content": "Jehovah, (b-11) Or 'who alone hast the name Jehovah.' High (c-15) Heb. Elyon. see Gen. 14.19, and note the omission here of 'possessor of heavens,' cf. Deut. 32.8."
+    },
+    {
+      "start_chapter": 84,
+      "start_verse": 1,
+      "end_chapter": 84,
+      "end_verse": 1,
+      "title": "",
+      "content": "Gittith. (d-7) See Ps. 8."
+    },
+    {
+      "start_chapter": 84,
+      "start_verse": 6,
+      "end_chapter": 84,
+      "end_verse": 6,
+      "title": "",
+      "content": "Baca, (e-6) Or 'of weeping.' rain (f-15) See Deut. 11.14. The autumn rain. the first with reference to the time of sowing."
+    },
+    {
+      "start_chapter": 85,
+      "start_verse": 8,
+      "end_chapter": 85,
+      "end_verse": 8,
+      "title": "",
+      "content": "ones. (a-21) Or 'saints' (chasid). see Note c and 2 Chron. 6.41,42."
+    },
+    {
+      "start_chapter": 85,
+      "start_verse": 13,
+      "end_chapter": 85,
+      "end_verse": 13,
+      "title": "",
+      "content": "way. (b-13) Or 'shall set [itself] in the way of his steps.'"
+    },
+    {
+      "start_chapter": 86,
+      "start_verse": 2,
+      "end_chapter": 86,
+      "end_verse": 2,
+      "title": "",
+      "content": "godly; (c-7) Or 'pious,' 'holy,' chasid, one who is the object of God's loving-kindness (chesed). see ver. 13 and Ps. 85.7,10, and Note to Ps. 4.3; and, by way of contrast, Ps. 43.1."
+    },
+    {
+      "start_chapter": 86,
+      "start_verse": 5,
+      "end_chapter": 86,
+      "end_verse": 5,
+      "title": "",
+      "content": "forgive, (d-9) Lit. 'forgiving.'"
+    },
+    {
+      "start_chapter": 86,
+      "start_verse": 12,
+      "end_chapter": 86,
+      "end_verse": 12,
+      "title": "",
+      "content": "praise (e-3) Or 'thank;' and so Ps. 88.10."
+    },
+    {
+      "start_chapter": 86,
+      "start_verse": 15,
+      "end_chapter": 86,
+      "end_verse": 15,
+      "title": "",
+      "content": "goodness (f-16) Or 'loving-kindness,' chesed, as in vers. 5,13, and Ps. 103.8. see Ex.34.6."
+    },
+    {
+      "start_chapter": 87,
+      "start_verse": 1,
+      "end_chapter": 87,
+      "end_verse": 1,
+      "title": "",
+      "content": "foundation (a-11) i.e. 'What he has founded.'"
+    },
+    {
+      "start_chapter": 87,
+      "start_verse": 2,
+      "end_chapter": 87,
+      "end_verse": 2,
+      "title": "",
+      "content": "habitations (b-11) Or 'tabernacles.'"
+    },
+    {
+      "start_chapter": 87,
+      "start_verse": 4,
+      "end_chapter": 87,
+      "end_verse": 4,
+      "title": "",
+      "content": "Rahab (c-6) i.e. Egypt."
+    },
+    {
+      "start_chapter": 87,
+      "start_verse": 7,
+      "end_chapter": 87,
+      "end_verse": 7,
+      "title": "",
+      "content": "dancers (d-7) Or 'pipers,' 'players on instruments.'"
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 1,
+      "end_chapter": 88,
+      "end_verse": 1,
+      "title": "",
+      "content": "Leannoth. (e-16) The meaning of Mahalath is uncertain, see Ps. 53. Leannoth may mean 'for subdued singing.'"
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 3,
+      "end_chapter": 88,
+      "end_verse": 3,
+      "title": "",
+      "content": "Sheol. (f-14) See Ps. 6.5."
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 5,
+      "end_chapter": 88,
+      "end_verse": 5,
+      "title": "",
+      "content": "Prostrate (g-1) Or 'Cast away.' hand. (h-25) i.e. 'from thy leading and helping hand.'"
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 6,
+      "end_chapter": 88,
+      "end_verse": 6,
+      "title": "",
+      "content": "places, (i-11) Or 'in darkness,' lit. 'darknesses.'"
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 7,
+      "end_chapter": 88,
+      "end_verse": 7,
+      "title": "",
+      "content": "waves. (k-15) Strictly, 'breakers,' as Ps. 42.7."
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 10,
+      "end_chapter": 88,
+      "end_verse": 10,
+      "title": "",
+      "content": "wonders (l-4) Lit. 'wonder.' shades (m-10) Or 'the dead,' as Job 26.5; Prov. 2.18; Isa. 14.9; not the same as 'dead' in this verse."
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 11,
+      "end_chapter": 88,
+      "end_verse": 11,
+      "title": "",
+      "content": "Destruction? (n-12) Heb. Abaddon."
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 12,
+      "end_chapter": 88,
+      "end_verse": 12,
+      "title": "",
+      "content": "wonders (l-3) Lit. 'wonder.'"
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 13,
+      "end_chapter": 88,
+      "end_verse": 13,
+      "title": "",
+      "content": "thee. (o-18) Lit. 'cometh to meet thee.'"
+    },
+    {
+      "start_chapter": 88,
+      "start_verse": 16,
+      "end_chapter": 88,
+      "end_verse": 16,
+      "title": "",
+      "content": "anger (a-3) The Hebrew word is plural."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 1,
+      "end_chapter": 89,
+      "end_verse": 1,
+      "title": "",
+      "content": "loving-kindness (b-12) Lit. 'loving-kindnesses,' 'mercies,' chesed, as ver. 49. The word is the same, but in the singular, in vers. 2,14,24,28,33. See Notes, Ps. 4.3; 43.1; 86.2; and Acts 13.34"
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 2,
+      "end_chapter": 89,
+      "end_verse": 2,
+      "title": "",
+      "content": "Loving-kindness (b-4) Lit. 'loving-kindnesses,' 'mercies,' chesed, as ver. 49. The word is the same, but in the singular, in vers. 2,14,24,28,33. See Notes, Ps. 4.3; 43.1; 86.2; and Acts 13.34"
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 5,
+      "end_chapter": 89,
+      "end_verse": 5,
+      "title": "",
+      "content": "celebrate (c-5) Elsewhere, 'praise,' 'confess.' wonders, (d-7) Lit. 'wonder.' congregation (e-15) As Ex. 12.3. saints. (f-18) Kadosh, as ver. 18, 'Holy One,' ver. 20, 'holy [oil],' and ver. 35, 'holiness.'"
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 6,
+      "end_chapter": 89,
+      "end_verse": 6,
+      "title": "",
+      "content": "heaven (g-5) Or 'in the sky.' mighty (h-17) Elim, plural of El. see Note, Gen. 1.1."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 7,
+      "end_chapter": 89,
+      "end_verse": 7,
+      "title": "",
+      "content": "saints, (f-12) Kadosh, as ver. 18, 'Holy One,' ver. 20, 'holy [oil],' and ver. 35, 'holiness.' for (i-15) Or 'above.'"
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 9,
+      "end_chapter": 89,
+      "end_verse": 9,
+      "title": "",
+      "content": "pride (k-4) Or 'fury.'"
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 10,
+      "end_chapter": 89,
+      "end_verse": 10,
+      "title": "",
+      "content": "Rahab (l-4) Egypt."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 18,
+      "end_chapter": 89,
+      "end_verse": 18,
+      "title": "",
+      "content": "Holy (m-8) Or 'For of (or from) Jehovah ... and of (or from) the Holy One,' and see Note f, ver. 5."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 19,
+      "end_chapter": 89,
+      "end_verse": 19,
+      "title": "",
+      "content": "One, (n-9) Chasid. see Ps. 16.10. chosen (o-24) Or a 'young man;' as 'excellent,' Cant. 5.15."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 20,
+      "end_chapter": 89,
+      "end_verse": 20,
+      "title": "",
+      "content": "holy (a-9) The Hebrew word is plural."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 21,
+      "end_chapter": 89,
+      "end_verse": 21,
+      "title": "",
+      "content": "whom (b-2) Or 'him.'"
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 27,
+      "end_chapter": 89,
+      "end_verse": 27,
+      "title": "",
+      "content": "highest (c-11) Elyon. see Ps. 83.18."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 32,
+      "end_chapter": 89,
+      "end_verse": 32,
+      "title": "",
+      "content": "stripes. (d-14) Or 'plagues,' see 2Sam. 7.14."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 35,
+      "end_chapter": 89,
+      "end_verse": 35,
+      "title": "",
+      "content": "holiness; (a-7) See Ps. 89.5 Note f."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 37,
+      "end_chapter": 89,
+      "end_verse": 37,
+      "title": "",
+      "content": "firm. (e-17) Or 'steadfast.'"
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 39,
+      "end_chapter": 89,
+      "end_verse": 39,
+      "title": "",
+      "content": "crown (f-14) Elsewhere also 'diadem.' see Note c, Num. 6.2."
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 48,
+      "end_chapter": 89,
+      "end_verse": 48,
+      "title": "",
+      "content": "power (g-16) Lit. 'hand.'"
+    },
+    {
+      "start_chapter": 89,
+      "start_verse": 50,
+      "end_chapter": 89,
+      "end_verse": 50,
+      "title": "",
+      "content": "mighty (a-19) Lit. 'many,' i.e. 'numerous.'"
+    },
+    {
+      "start_chapter": 90,
+      "start_verse": 2,
+      "end_chapter": 90,
+      "end_verse": 2,
+      "title": "",
+      "content": "forth, (b-6) Or 'given birth to,' same in Hebrew as 'begot' in Deut. 32.18. formed (c-10) Or 'brought forth,' as Deut. 32.18; Prov. 8.24,25. world, (d-15) See 1Sam. 2.8."
+    },
+    {
+      "start_chapter": 90,
+      "start_verse": 3,
+      "end_chapter": 90,
+      "end_verse": 3,
+      "title": "",
+      "content": "dust, (e-8) Lit. 'to crumbling.'"
+    },
+    {
+      "start_chapter": 90,
+      "start_verse": 9,
+      "end_chapter": 90,
+      "end_verse": 9,
+      "title": "",
+      "content": "thought. (f-17) Or 'sigh.'"
+    },
+    {
+      "start_chapter": 90,
+      "start_verse": 10,
+      "end_chapter": 90,
+      "end_verse": 10,
+      "title": "",
+      "content": "vanity, (g-27) These words are rendered 'mischief and iniquity,' when presented actively. see Job 4.8; Ps. 55.10."
+    },
+    {
+      "start_chapter": 90,
+      "start_verse": 13,
+      "end_chapter": 90,
+      "end_verse": 13,
+      "title": "",
+      "content": "thee (h-9) Or 'and be merciful to.'"
+    },
+    {
+      "start_chapter": 90,
+      "start_verse": 14,
+      "end_chapter": 90,
+      "end_verse": 14,
+      "title": "",
+      "content": "early (i-3) Or 'in the morning.'"
+    },
+    {
+      "start_chapter": 90,
+      "start_verse": 16,
+      "end_chapter": 90,
+      "end_verse": 16,
+      "title": "",
+      "content": "unto (k-11) Or 'upon.'"
+    },
+    {
+      "start_chapter": 90,
+      "start_verse": 17,
+      "end_chapter": 90,
+      "end_verse": 17,
+      "title": "",
+      "content": "beauty (l-4) See Ps. 27.4."
+    },
+    {
+      "start_chapter": 91,
+      "start_verse": 1,
+      "end_chapter": 91,
+      "end_verse": 1,
+      "title": "",
+      "content": "High (m-11) See Gen. 14.19; Ps. 83.18. Almighty. (n-19) Shaddai. see Gen. 17.1; Ex. 6.3."
+    },
+    {
+      "start_chapter": 91,
+      "start_verse": 2,
+      "end_chapter": 91,
+      "end_verse": 2,
+      "title": "",
+      "content": "of (o-3) Or 'to.'"
+    },
+    {
+      "start_chapter": 91,
+      "start_verse": 3,
+      "end_chapter": 91,
+      "end_verse": 3,
+      "title": "",
+      "content": "Surely (a-1) Or 'For.'"
+    },
+    {
+      "start_chapter": 91,
+      "start_verse": 12,
+      "end_chapter": 91,
+      "end_verse": 12,
+      "title": "",
+      "content": "foot (b-13) Or 'lest thy foot stumble.'"
+    },
+    {
+      "start_chapter": 91,
+      "start_verse": 13,
+      "end_chapter": 91,
+      "end_verse": 13,
+      "title": "",
+      "content": "lion (c-6) Strictly, 'a fierce lion,' Job 4.10. dragon (d-15) Or 'sea-monster,' or 'serpent.' see Note, Gen. 1.21."
+    },
+    {
+      "start_chapter": 91,
+      "start_verse": 14,
+      "end_chapter": 91,
+      "end_verse": 14,
+      "title": "",
+      "content": "high, (e-19) See Ps. 20.1; 69.29."
+    },
+    {
+      "start_chapter": 92,
+      "start_verse": 3,
+      "end_chapter": 92,
+      "end_verse": 3,
+      "title": "",
+      "content": "Higgaion (f-13) Perhaps an instrument of music, or the softened tones of a harp (see Ps. 9.16); or 'meditation,' as Ps. 19.14."
+    },
+    {
+      "start_chapter": 92,
+      "start_verse": 4,
+      "end_chapter": 92,
+      "end_verse": 4,
+      "title": "",
+      "content": "work; (g-10) Poal, as Isa. 45.9; 'works' masseh (next line) as 'occupation,' Gen. 46.33."
+    },
+    {
+      "start_chapter": 92,
+      "start_verse": 6,
+      "end_chapter": 92,
+      "end_verse": 6,
+      "title": "",
+      "content": "brutish (h-2) See Ps. 49.10; Prov. 12.1. fool (i-9) Kesil, as Ps. 49.10; 94.8; Prov. 1.22; 10.23, &c.. see Note, Prov. 1. 7."
+    },
+    {
+      "start_chapter": 92,
+      "start_verse": 10,
+      "end_chapter": 92,
+      "end_verse": 10,
+      "title": "",
+      "content": "anointed (k-13) Strictly, 'mingled.' see Note k, Lev. 2.4."
+    },
+    {
+      "start_chapter": 92,
+      "start_verse": 14,
+      "end_chapter": 92,
+      "end_verse": 14,
+      "title": "",
+      "content": "vigorous (a-4) Or 'shall still bear fruit.' as 'increase,' Ps. 62.10."
+    },
+    {
+      "start_chapter": 93,
+      "start_verse": 3,
+      "end_chapter": 93,
+      "end_verse": 3,
+      "title": "",
+      "content": "floods (b-2) floods (b-8) floods (b-14) Or 'rivers.' so Ps. 98.8."
+    },
+    {
+      "start_chapter": 93,
+      "start_verse": 5,
+      "end_chapter": 93,
+      "end_verse": 5,
+      "title": "",
+      "content": "ever. (c-13) Or 'length of days,' as Ps. 23.6."
+    },
+    {
+      "start_chapter": 94,
+      "start_verse": 7,
+      "end_chapter": 94,
+      "end_verse": 7,
+      "title": "",
+      "content": "Jah (d-3) See Note c, Ps. 68.4."
+    },
+    {
+      "start_chapter": 94,
+      "start_verse": 10,
+      "end_chapter": 94,
+      "end_verse": 10,
+      "title": "",
+      "content": "instructeth (e-3) Or 'chasteneth.'"
+    },
+    {
+      "start_chapter": 94,
+      "start_verse": 11,
+      "end_chapter": 94,
+      "end_verse": 11,
+      "title": "",
+      "content": "vanity. (f-10) Or 'a breath,' as Job 7.16; Ps. 39.5,6,11, &c."
+    },
+    {
+      "start_chapter": 94,
+      "start_verse": 12,
+      "end_chapter": 94,
+      "end_verse": 12,
+      "title": "",
+      "content": "Jah, (d-9) See Note c, Ps. 68.4. man (g-4) Geber. see Job 3.3."
+    },
+    {
+      "start_chapter": 94,
+      "start_verse": 15,
+      "end_chapter": 94,
+      "end_verse": 15,
+      "title": "",
+      "content": "it. (h-15) That is, 'judgment.'"
+    },
+    {
+      "start_chapter": 94,
+      "start_verse": 17,
+      "end_chapter": 94,
+      "end_verse": 17,
+      "title": "",
+      "content": "almost (i-11) Or 'soon.'"
+    },
+    {
+      "start_chapter": 94,
+      "start_verse": 20,
+      "end_chapter": 94,
+      "end_verse": 20,
+      "title": "",
+      "content": "wickedness (a-5) See Ps. 55.11, 'perversities.' see Note d, Ps. 5.9. mischief (b-12) Or 'iniquity.'"
+    },
+    {
+      "start_chapter": 95,
+      "start_verse": 4,
+      "end_chapter": 95,
+      "end_verse": 4,
+      "title": "",
+      "content": "heights (c-12) Or 'treasures,' as Job 22.25, 'heaped up.'"
+    },
+    {
+      "start_chapter": 95,
+      "start_verse": 8,
+      "end_chapter": 95,
+      "end_verse": 8,
+      "title": "",
+      "content": "Meribah, (d-7) Strife. Massah, (e-13) Temptation."
+    },
+    {
+      "start_chapter": 95,
+      "start_verse": 10,
+      "end_chapter": 95,
+      "end_verse": 10,
+      "title": "",
+      "content": "grieved (f-5) The word implies loathing."
+    },
+    {
+      "start_chapter": 95,
+      "start_verse": 11,
+      "end_chapter": 95,
+      "end_verse": 11,
+      "title": "",
+      "content": "swore (g-4) Or 'Unto whom I swore.'"
+    },
+    {
+      "start_chapter": 96,
+      "start_verse": 1,
+      "end_chapter": 96,
+      "end_verse": 1,
+      "title": "",
+      "content": "(h-0) With Ps. 96 compare 1Chron. 16. 23-33."
+    },
+    {
+      "start_chapter": 96,
+      "start_verse": 5,
+      "end_chapter": 96,
+      "end_verse": 5,
+      "title": "",
+      "content": "idols; (i-9) Or 'nonentities;' and so Ps. 97.7."
+    },
+    {
+      "start_chapter": 96,
+      "start_verse": 10,
+      "end_chapter": 96,
+      "end_verse": 10,
+      "title": "",
+      "content": "world (k-9) Tebel, 'habitable earth.' see Note f, 1Sam. 2.8; Ps. 9.8; 24.1; 89.11; Note d, 90.2; 93.1; 97.4; 98.7,9; Prov. 8.31."
+    },
+    {
+      "start_chapter": 96,
+      "start_verse": 13,
+      "end_chapter": 96,
+      "end_verse": 13,
+      "title": "",
+      "content": "world (a-17) See Ps. 96.10, Note k."
+    },
+    {
+      "start_chapter": 97,
+      "start_verse": 6,
+      "end_chapter": 97,
+      "end_verse": 6,
+      "title": "",
+      "content": "see (b-10) Or 'declared ... saw.'"
+    },
+    {
+      "start_chapter": 97,
+      "start_verse": 7,
+      "end_chapter": 97,
+      "end_verse": 7,
+      "title": "",
+      "content": "idols. (c-13) See Note, Ps. 96.5. gods. (d-18) Or 'angels,' elohim, as Ps. 8.5. see Heb. 1.6."
+    },
+    {
+      "start_chapter": 97,
+      "start_verse": 10,
+      "end_chapter": 97,
+      "end_verse": 10,
+      "title": "",
+      "content": "saints, (e-13) Or 'godly ones,' chasid. see Note, Ps. 86.2."
+    },
+    {
+      "start_chapter": 97,
+      "start_verse": 11,
+      "end_chapter": 97,
+      "end_verse": 11,
+      "title": "",
+      "content": "righteous, (f-6) The Hebrew word is singular."
+    },
+    {
+      "start_chapter": 97,
+      "start_verse": 12,
+      "end_chapter": 97,
+      "end_verse": 12,
+      "title": "",
+      "content": "remembrance (g-10) See Ex. 3.15. Holiness here is Kodesh, as Ps. 30.4."
+    },
+    {
+      "start_chapter": 98,
+      "start_verse": 6,
+      "end_chapter": 98,
+      "end_verse": 6,
+      "title": "",
+      "content": "noise (h-10) Or 'shout aloud,' as ver. 4."
+    },
+    {
+      "start_chapter": 99,
+      "start_verse": 1,
+      "end_chapter": 99,
+      "end_verse": 1,
+      "title": "",
+      "content": "cherubim. (a-11) See Note, Ps. 80.1."
+    },
+    {
+      "start_chapter": 99,
+      "start_verse": 3,
+      "end_chapter": 99,
+      "end_verse": 3,
+      "title": "",
+      "content": "praise (b-3) Or 'thank.' holy! (c-12) Kadosh. see Ps. 16.3."
+    },
+    {
+      "start_chapter": 99,
+      "start_verse": 4,
+      "end_chapter": 99,
+      "end_verse": 4,
+      "title": "",
+      "content": "justice. (d-9) Lit. 'judgment.'"
+    },
+    {
+      "start_chapter": 99,
+      "start_verse": 5,
+      "end_chapter": 99,
+      "end_verse": 5,
+      "title": "",
+      "content": "holy! (c-12) Kadosh. see Ps. 16.3."
+    },
+    {
+      "start_chapter": 99,
+      "start_verse": 9,
+      "end_chapter": 99,
+      "end_verse": 9,
+      "title": "",
+      "content": "holy (c-14) Kadosh. see Ps. 16.3."
+    },
+    {
+      "start_chapter": 100,
+      "start_verse": 1,
+      "end_chapter": 100,
+      "end_verse": 1,
+      "title": "",
+      "content": "aloud (e-6) Or 'Make a joyful noise.' see Ps. 89.15; 98.4,6 -- 'earth;' in this verse (1) may read 'land.'"
+    },
+    {
+      "start_chapter": 100,
+      "start_verse": 3,
+      "end_chapter": 100,
+      "end_verse": 3,
+      "title": "",
+      "content": "ourselves; (f-16) Others, 'and we are his.'"
+    },
+    {
+      "start_chapter": 101,
+      "start_verse": 3,
+      "end_chapter": 101,
+      "end_verse": 3,
+      "title": "",
+      "content": "aside; (g-19) Elsewhere also 'apostates,' see Hos. 5.2."
+    },
+    {
+      "start_chapter": 101,
+      "start_verse": 4,
+      "end_chapter": 101,
+      "end_verse": 4,
+      "title": "",
+      "content": "evil. (h-12) Or 'an evil person.'"
+    },
+    {
+      "start_chapter": 101,
+      "start_verse": 8,
+      "end_chapter": 101,
+      "end_verse": 8,
+      "title": "",
+      "content": "land. (i-11) Or 'earth.'"
+    },
+    {
+      "start_chapter": 102,
+      "start_verse": 4,
+      "end_chapter": 102,
+      "end_verse": 4,
+      "title": "",
+      "content": "yea, (a-9) Or 'for.'"
+    },
+    {
+      "start_chapter": 102,
+      "start_verse": 10,
+      "end_chapter": 102,
+      "end_verse": 10,
+      "title": "",
+      "content": "wrath; (b-7) See Notes, Ps. 38.1 and 3."
+    },
+    {
+      "start_chapter": 102,
+      "start_verse": 12,
+      "end_chapter": 102,
+      "end_verse": 12,
+      "title": "",
+      "content": "memorial (c-9) See Ex. 3.15."
+    },
+    {
+      "start_chapter": 102,
+      "start_verse": 14,
+      "end_chapter": 102,
+      "end_verse": 14,
+      "title": "",
+      "content": "favour (d-10) Or 'are gracious to,' as in preceding verse."
+    },
+    {
+      "start_chapter": 102,
+      "start_verse": 20,
+      "end_chapter": 102,
+      "end_verse": 20,
+      "title": "",
+      "content": "die; (e-15) Lit. 'the sons of death.'"
+    },
+    {
+      "start_chapter": 102,
+      "start_verse": 24,
+      "end_chapter": 102,
+      "end_verse": 24,
+      "title": "",
+      "content": "generation. (f-22) Lit. 'in generation of generations.' see Ps. 72.5."
+    },
+    {
+      "start_chapter": 102,
+      "start_verse": 27,
+      "end_chapter": 102,
+      "end_verse": 27,
+      "title": "",
+      "content": "Same, (g-5) Lit. 'Thou He,' a name of God, 'The existing One, who does not change.' see Deut. 32.39."
+    },
+    {
+      "start_chapter": 102,
+      "start_verse": 28,
+      "end_chapter": 102,
+      "end_verse": 28,
+      "title": "",
+      "content": "abide, (h-7) Or 'dwell,' as Ps. 37.27,29."
+    },
+    {
+      "start_chapter": 103,
+      "start_verse": 5,
+      "end_chapter": 103,
+      "end_verse": 5,
+      "title": "",
+      "content": "age (a-5) Or 'adornment,' or 'mouth.'"
+    },
+    {
+      "start_chapter": 103,
+      "start_verse": 6,
+      "end_chapter": 103,
+      "end_verse": 6,
+      "title": "",
+      "content": "justice (b-5) Lit. 'righteousnesses and judgments.'"
+    },
+    {
+      "start_chapter": 103,
+      "start_verse": 7,
+      "end_chapter": 103,
+      "end_verse": 7,
+      "title": "",
+      "content": "acts (c-9) Or 'doings.' 'exploits.' so Ps. 66.5; 78.11; 105.1."
+    },
+    {
+      "start_chapter": 103,
+      "start_verse": 11,
+      "end_chapter": 103,
+      "end_verse": 11,
+      "title": "",
+      "content": "is (d-12) Lit. 'so has prevailed.'"
+    },
+    {
+      "start_chapter": 103,
+      "start_verse": 15,
+      "end_chapter": 103,
+      "end_verse": 15,
+      "title": "",
+      "content": "man, (e-3) Enosh, 'mortal man.' see Ps. 8.4; 9.20; 144.3."
+    },
+    {
+      "start_chapter": 103,
+      "start_verse": 21,
+      "end_chapter": 103,
+      "end_verse": 21,
+      "title": "",
+      "content": "will. (f-14) Or 'good pleasure,' as Ps. 51.18."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 4,
+      "end_chapter": 104,
+      "end_verse": 4,
+      "title": "",
+      "content": "maketh (g-2) i.e. he created them so."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 13,
+      "end_chapter": 104,
+      "end_verse": 13,
+      "title": "",
+      "content": "works. (a-17) Masseh; as 'occupation,' Gen. 46.33. see Ps. 92.4."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 15,
+      "end_chapter": 104,
+      "end_verse": 15,
+      "title": "",
+      "content": "man; (b-8) man's (b-20) Enosh, Ps. 8.4."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 17,
+      "end_chapter": 104,
+      "end_verse": 17,
+      "title": "",
+      "content": "trees (c-13) Or 'cypresses,' as 1Kings 5.10, &c."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 18,
+      "end_chapter": 104,
+      "end_verse": 18,
+      "title": "",
+      "content": "rock-badgers. (d-15) As Lev. 11.5."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 23,
+      "end_chapter": 104,
+      "end_verse": 23,
+      "title": "",
+      "content": "Man (e-1) Adam."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 24,
+      "end_chapter": 104,
+      "end_verse": 24,
+      "title": "",
+      "content": "works, (a-5) Masseh; as 'occupation,' Gen. 46.33. see Ps. 92.4."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 26,
+      "end_chapter": 104,
+      "end_verse": 26,
+      "title": "",
+      "content": "leviathan, (f-7) Probably, in this instance, an animal of the whale tribe. see Job 41.1."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 30,
+      "end_chapter": 104,
+      "end_verse": 30,
+      "title": "",
+      "content": "earth. (g-16) Or 'ground.'"
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 31,
+      "end_chapter": 104,
+      "end_verse": 31,
+      "title": "",
+      "content": "works. (a-14) Masseh; as 'occupation,' Gen. 46.33. see Ps. 92.4."
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 34,
+      "end_chapter": 104,
+      "end_verse": 34,
+      "title": "",
+      "content": "him; (a-7) Or 'My meditation of him shall be pleasant.'"
+    },
+    {
+      "start_chapter": 104,
+      "start_verse": 35,
+      "end_chapter": 104,
+      "end_verse": 35,
+      "title": "",
+      "content": "be (b-3) Or 'May sinners be. ...' Hallelujah! (c-21) i.e. 'Praise ye Jah.'"
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 1,
+      "end_chapter": 105,
+      "end_verse": 1,
+      "title": "",
+      "content": "(d-0) With vers. 1-15 compare 1Chron. 16.8-22"
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 2,
+      "end_chapter": 105,
+      "end_verse": 2,
+      "title": "",
+      "content": "upon (e-9) Or 'talk of.'"
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 5,
+      "end_chapter": 105,
+      "end_verse": 5,
+      "title": "",
+      "content": "judgments (f-13) Or 'ordinances.'"
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 12,
+      "end_chapter": 105,
+      "end_verse": 12,
+      "title": "",
+      "content": "men (g-6) As Deut. 4.27."
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 19,
+      "end_chapter": 105,
+      "end_verse": 19,
+      "title": "",
+      "content": "said (h-7) word (h-11) 'Said' dabar; 'word' imrah. see Note, Ps. 119.11."
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 34,
+      "end_chapter": 105,
+      "end_verse": 34,
+      "title": "",
+      "content": "cankerworm, (a-9) Lit. 'the feeder,' a species of locust, most probably in the stage before it arrives at its perfect state, and in which it devours much herbage. see Joel 1.4."
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 37,
+      "end_chapter": 105,
+      "end_verse": 37,
+      "title": "",
+      "content": "feeble (b-15) Or 'that stumbled.'"
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 43,
+      "end_chapter": 105,
+      "end_verse": 43,
+      "title": "",
+      "content": "chosen (c-10) As 'elect,' Ps. 89.3. rejoicing; (d-12) Or 'songs of triumph.'"
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 44,
+      "end_chapter": 105,
+      "end_verse": 44,
+      "title": "",
+      "content": "peoples. (e-19) Leummim. see Ps. 2.1."
+    },
+    {
+      "start_chapter": 105,
+      "start_verse": 45,
+      "end_chapter": 105,
+      "end_verse": 45,
+      "title": "",
+      "content": "Hallelujah! (f-11) See Note, Ps. 104.35."
+    },
+    {
+      "start_chapter": 106,
+      "start_verse": 1,
+      "end_chapter": 106,
+      "end_verse": 1,
+      "title": "",
+      "content": "(g-1) With vers. 1,47,48 compare 1Chron. 16.34-36. he (h-8) Or 'it;' and so in Ps. 107.1."
+    },
+    {
+      "start_chapter": 106,
+      "start_verse": 7,
+      "end_chapter": 106,
+      "end_verse": 7,
+      "title": "",
+      "content": "rebelled (i-20) Or 'provoked [him],' as ver. 43."
+    },
+    {
+      "start_chapter": 106,
+      "start_verse": 9,
+      "end_chapter": 106,
+      "end_verse": 9,
+      "title": "",
+      "content": "wilderness. (k-21) Or 'the wilderness;' but see Ezek. 34.25."
+    },
+    {
+      "start_chapter": 106,
+      "start_verse": 16,
+      "end_chapter": 106,
+      "end_verse": 16,
+      "title": "",
+      "content": "saint (a-11) Or 'holy one' (kadosh). see Ps. 89.18."
+    },
+    {
+      "start_chapter": 106,
+      "start_verse": 26,
+      "end_chapter": 106,
+      "end_verse": 26,
+      "title": "",
+      "content": "hand (b-6) i.e. he swore. see Ex. 6.8."
+    },
+    {
+      "start_chapter": 106,
+      "start_verse": 34,
+      "end_chapter": 106,
+      "end_verse": 34,
+      "title": "",
+      "content": "as (c-7) Or 'concerning whom.'"
+    },
+    {
+      "start_chapter": 107,
+      "start_verse": 12,
+      "end_chapter": 107,
+      "end_verse": 12,
+      "title": "",
+      "content": "labour; (a-8) Or 'pain,' 'anguish.'"
+    },
+    {
+      "start_chapter": 107,
+      "start_verse": 20,
+      "end_chapter": 107,
+      "end_verse": 20,
+      "title": "",
+      "content": "destructions. (a-13) Lit. 'pits,' and so 'pit-falls.' see Job 33.18,22; Lam. 4.20."
+    },
+    {
+      "start_chapter": 107,
+      "start_verse": 22,
+      "end_chapter": 107,
+      "end_verse": 22,
+      "title": "",
+      "content": "offer (b-4) Zavach, lit. 'sacrifice,' as Ps. 4.5; 27.6; 50.14,23, &c. thanksgiving, (c-8) See Lev. 7.12. song. (d-15) Or 'with rejoicing.'"
+    },
+    {
+      "start_chapter": 107,
+      "start_verse": 43,
+      "end_chapter": 107,
+      "end_verse": 43,
+      "title": "",
+      "content": "them (e-11) Or 'Whoso is wise and observeth these things, even [they] shall.' loving-kindnesses (f-14) Chesed, as in vers. 1,8,15,21,31."
+    },
+    {
+      "start_chapter": 108,
+      "start_verse": 1,
+      "end_chapter": 108,
+      "end_verse": 1,
+      "title": "",
+      "content": "(g-0) Compare with this, Ps. 57.7-11; 60.5-12."
+    },
+    {
+      "start_chapter": 108,
+      "start_verse": 2,
+      "end_chapter": 108,
+      "end_verse": 2,
+      "title": "",
+      "content": "dawn. (h-9) Or 'awake with the dawn.'"
+    },
+    {
+      "start_chapter": 108,
+      "start_verse": 3,
+      "end_chapter": 108,
+      "end_verse": 3,
+      "title": "",
+      "content": "peoples, (i-8) As Ps. 7.8. nations. (k-19) Leummim, as Ps. 67.4."
+    },
+    {
+      "start_chapter": 108,
+      "start_verse": 6,
+      "end_chapter": 108,
+      "end_verse": 6,
+      "title": "",
+      "content": "me. (a-15) Some read 'us.'"
+    },
+    {
+      "start_chapter": 108,
+      "start_verse": 8,
+      "end_chapter": 108,
+      "end_verse": 8,
+      "title": "",
+      "content": "strength (b-11) 'defence.'"
+    },
+    {
+      "start_chapter": 108,
+      "start_verse": 13,
+      "end_chapter": 108,
+      "end_verse": 13,
+      "title": "",
+      "content": "adversaries. (c-16) Tzar, or 'oppressors,' as Ps. 8.2."
+    },
+    {
+      "start_chapter": 109,
+      "start_verse": 2,
+      "end_chapter": 109,
+      "end_verse": 2,
+      "title": "",
+      "content": "me (d-21) Or 'to me.'"
+    },
+    {
+      "start_chapter": 109,
+      "start_verse": 4,
+      "end_chapter": 109,
+      "end_verse": 4,
+      "title": "",
+      "content": "adversaries; (e-7) 'Satan,' as 1Chron. 21.1, without the article. The same word, as verb or participle, is in vers. 4,20,29, and Ps. 38.20; 71.13."
+    },
+    {
+      "start_chapter": 109,
+      "start_verse": 6,
+      "end_chapter": 109,
+      "end_verse": 6,
+      "title": "",
+      "content": "adversary (e-10) 'Satan,' as 1Chron. 21.1, without the article. The same word, as verb or participle, is in vers. 4,20,29, and Ps. 38.20; 71.13."
+    },
+    {
+      "start_chapter": 109,
+      "start_verse": 7,
+      "end_chapter": 109,
+      "end_verse": 7,
+      "title": "",
+      "content": "sin; (f-16) i.e. be imputed as sin."
+    },
+    {
+      "start_chapter": 109,
+      "start_verse": 10,
+      "end_chapter": 109,
+      "end_verse": 10,
+      "title": "",
+      "content": "places; (g-18) Or 'ruins.' so Ps. 102.6. 'waste,' Lev. 26.31,33."
+    },
+    {
+      "start_chapter": 109,
+      "start_verse": 12,
+      "end_chapter": 109,
+      "end_verse": 12,
+      "title": "",
+      "content": "kindness (h-7) Or 'continue mercy,' chesed."
+    },
+    {
+      "start_chapter": 109,
+      "start_verse": 18,
+      "end_chapter": 109,
+      "end_verse": 18,
+      "title": "",
+      "content": "clothed (i-3) Or 'And let him clothe.'"
+    },
+    {
+      "start_chapter": 109,
+      "start_verse": 20,
+      "end_chapter": 109,
+      "end_verse": 20,
+      "title": "",
+      "content": "reward (a-5) Lit. 'the [work] wrought;' 'wages,' Lev. 19.13."
+    },
+    {
+      "start_chapter": 109,
+      "start_verse": 30,
+      "end_chapter": 109,
+      "end_verse": 30,
+      "title": "",
+      "content": "celebrate (b-4) Or 'thank.' so Ps. 111.1."
+    },
+    {
+      "start_chapter": 110,
+      "start_verse": 1,
+      "end_chapter": 110,
+      "end_verse": 1,
+      "title": "",
+      "content": "said (c-5) As Gen. 22.16; Ps. 36.1."
+    },
+    {
+      "start_chapter": 110,
+      "start_verse": 3,
+      "end_chapter": 110,
+      "end_verse": 3,
+      "title": "",
+      "content": "willing (d-5) Or 'voluntary-offerings,' 'shall offer themselves willingly.' power, (e-11) Or 'forces (army).' youth. (f-29) Or '... splendour, from the womb of the morning. To thee shall be the dew of thy youth,' i.e. 'young men.' see Ps. 22.31; 45.16."
+    },
+    {
+      "start_chapter": 111,
+      "start_verse": 1,
+      "end_chapter": 111,
+      "end_verse": 1,
+      "title": "",
+      "content": "(g-0) An acrostic Psalm. The initial letter of each section of the verse follows the alphabetical order."
+    },
+    {
+      "start_chapter": 111,
+      "start_verse": 4,
+      "end_chapter": 111,
+      "end_verse": 4,
+      "title": "",
+      "content": "remembered. (a-8) Or 'He hath established a memorial of his wonderful works.'"
+    },
+    {
+      "start_chapter": 111,
+      "start_verse": 7,
+      "end_chapter": 111,
+      "end_verse": 7,
+      "title": "",
+      "content": "judgment; (b-9) Or 'justice.'"
+    },
+    {
+      "start_chapter": 111,
+      "start_verse": 9,
+      "end_chapter": 111,
+      "end_verse": 9,
+      "title": "",
+      "content": "deliverance (c-3) Or 'redemption.'"
+    },
+    {
+      "start_chapter": 112,
+      "start_verse": 1,
+      "end_chapter": 112,
+      "end_verse": 1,
+      "title": "",
+      "content": "(d-0) An acrostic Psalm like the preceding."
+    },
+    {
+      "start_chapter": 112,
+      "start_verse": 2,
+      "end_chapter": 112,
+      "end_verse": 2,
+      "title": "",
+      "content": "land; (e-8) Or 'earth.'"
+    },
+    {
+      "start_chapter": 112,
+      "start_verse": 5,
+      "end_chapter": 112,
+      "end_verse": 5,
+      "title": "",
+      "content": "is (f-8) Or 'A good man is.' judgment. (g-18) Or 'he will carry on his affairs with right judgment.'"
+    },
+    {
+      "start_chapter": 113,
+      "start_verse": 2,
+      "end_chapter": 113,
+      "end_verse": 2,
+      "title": "",
+      "content": "evermore! (h-13) See Dan. 2.20."
+    },
+    {
+      "start_chapter": 115,
+      "start_verse": 17,
+      "end_chapter": 115,
+      "end_verse": 17,
+      "title": "",
+      "content": "Jah, (a-5) See Ps. 68.4."
+    },
+    {
+      "start_chapter": 115,
+      "start_verse": 18,
+      "end_chapter": 115,
+      "end_verse": 18,
+      "title": "",
+      "content": "Jah (a-5) See Ps. 68.4. evermore. (b-12) See Ps. 113.2."
+    },
+    {
+      "start_chapter": 116,
+      "start_verse": 3,
+      "end_chapter": 116,
+      "end_verse": 3,
+      "title": "",
+      "content": "bands (c-2) As Ps. 18.4,5, according to others 'pangs.' anguish (d-9) Lit. 'anguishes,' 'distresses.' of (e-14) Or 'found.'"
+    },
+    {
+      "start_chapter": 116,
+      "start_verse": 9,
+      "end_chapter": 116,
+      "end_verse": 9,
+      "title": "",
+      "content": "land (a-8) Lit. 'lands.'"
+    },
+    {
+      "start_chapter": 116,
+      "start_verse": 11,
+      "end_chapter": 116,
+      "end_verse": 11,
+      "title": "",
+      "content": "haste, (b-5) Or 'agitation.' see Ps. 31.22. men (c-7) Or 'mankind,' Adam. see Gen. 1.27."
+    },
+    {
+      "start_chapter": 116,
+      "start_verse": 13,
+      "end_chapter": 116,
+      "end_verse": 13,
+      "title": "",
+      "content": "salvation, (d-7) Lit. 'salvations,' as Ps. 53.6."
+    },
+    {
+      "start_chapter": 116,
+      "start_verse": 15,
+      "end_chapter": 116,
+      "end_verse": 15,
+      "title": "",
+      "content": "saints. (e-12) Chasid. see Ps. 30.4."
+    },
+    {
+      "start_chapter": 116,
+      "start_verse": 17,
+      "end_chapter": 116,
+      "end_verse": 17,
+      "title": "",
+      "content": "offer (f-3) Lit. 'sacrifice,' as Ps. 50.14; 107.22, &c."
+    },
+    {
+      "start_chapter": 117,
+      "start_verse": 2,
+      "end_chapter": 117,
+      "end_verse": 2,
+      "title": "",
+      "content": "great (g-5) Or 'is powerful,' lit. 'it has prevailed.' see Ps. 103.11."
+    },
+    {
+      "start_chapter": 118,
+      "start_verse": 1,
+      "end_chapter": 118,
+      "end_verse": 1,
+      "title": "",
+      "content": "ever. (h-15) See Ps. 115.9-13 and 1Chron. 16.41."
+    },
+    {
+      "start_chapter": 118,
+      "start_verse": 10,
+      "end_chapter": 118,
+      "end_verse": 10,
+      "title": "",
+      "content": "them. (i-14) Or 'mowed them down.'"
+    },
+    {
+      "start_chapter": 118,
+      "start_verse": 14,
+      "end_chapter": 118,
+      "end_verse": 14,
+      "title": "",
+      "content": "salvation. (k-12) See Ex. 15.2; Isa. 12.2. For 'Jah' see Ps. 68.4; 89.8."
+    },
+    {
+      "start_chapter": 118,
+      "start_verse": 19,
+      "end_chapter": 118,
+      "end_verse": 19,
+      "title": "",
+      "content": "praise. (a-16) Or 'give thanks,' as vers. 21,28,29; and so Ps. 139.14."
+    },
+    {
+      "start_chapter": 118,
+      "start_verse": 22,
+      "end_chapter": 118,
+      "end_verse": 22,
+      "title": "",
+      "content": "corner. (b-13) i.e. the corner-stone."
+    },
+    {
+      "start_chapter": 118,
+      "start_verse": 26,
+      "end_chapter": 118,
+      "end_verse": 26,
+      "title": "",
+      "content": "blessed (c-13) Or 'We bless.'"
+    },
+    {
+      "start_chapter": 118,
+      "start_verse": 27,
+      "end_chapter": 118,
+      "end_verse": 27,
+      "title": "",
+      "content": "sacrifice (d-12) Strictly, 'feast.' see Mal. 2.3."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 1,
+      "end_chapter": 119,
+      "end_verse": 1,
+      "title": "",
+      "content": "(e-0) An alphabetical Psalm in periods of eight verses, each of which begins with the same Hebrew letter. The sections follow the alphabetical order."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 5,
+      "end_chapter": 119,
+      "end_verse": 5,
+      "title": "",
+      "content": "statutes! (f-10) As Ex. 12.24. 22 times in this Psalm."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 7,
+      "end_chapter": 119,
+      "end_verse": 7,
+      "title": "",
+      "content": "thanks (g-5) Or 'I will praise thee.' judgments. (h-17) Or 'ordinances.' so throughout."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 10,
+      "end_chapter": 119,
+      "end_verse": 10,
+      "title": "",
+      "content": "sought (i-7) Or 'do I seek.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 11,
+      "end_chapter": 119,
+      "end_verse": 11,
+      "title": "",
+      "content": "*word (k-2) It may be well to notice the distinction between Dabar and Imrah, so frequent in this Psalm. Dabar is 'word,' agreeing with Logos in the New Testament; Omer and Imrah mean 'a word,' 'speech,' 'what is said,' and, if we except Josh. 24.27, are only used in poetic style. The latter form (Imrah), which is feminine, alone occurs here; 'saying' might have done for it, were it not otherwise objectionable. It fixes the mind more especially on what is expressed, having thus occasionally the force of 'promise' (Omer), as Ps. 77.8, or 'command' (Imrah), as Ps. 147.15. In the sense of 'word' Imrah is found twenty-six times, of which nineteen are in this Psalm, where it is distinguished from Dabar by a dot (*) placed before 'word.' A modified form, also in the sense of 'word,' is found in Lam. 2.17."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 12,
+      "end_chapter": 119,
+      "end_verse": 12,
+      "title": "",
+      "content": "statutes. (a-8) See Note, ver. 5."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 13,
+      "end_chapter": 119,
+      "end_verse": 13,
+      "title": "",
+      "content": "judgments (b-9) Or 'ordinances.' so throughout."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 19,
+      "end_chapter": 119,
+      "end_verse": 19,
+      "title": "",
+      "content": "land; (c-7) Or 'on the earth.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 20,
+      "end_chapter": 119,
+      "end_verse": 20,
+      "title": "",
+      "content": "judgments (d-8) See Note, ver. 7; and so ver. 52."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 21,
+      "end_chapter": 119,
+      "end_verse": 21,
+      "title": "",
+      "content": "rebuked (e-3) Or 'Thou rebukest.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 25,
+      "end_chapter": 119,
+      "end_verse": 25,
+      "title": "",
+      "content": "quicken (f-8) The word has the double sense of 'making to live,' Job 33.4, and 'keeping alive,' Gen. 7.3."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 28,
+      "end_chapter": 119,
+      "end_verse": 28,
+      "title": "",
+      "content": "me (g-7) Others translate, 'raise me up.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 43,
+      "end_chapter": 119,
+      "end_verse": 43,
+      "title": "",
+      "content": "hoped (a-16) The word means 'to wait with earnest desire and longing' (see Ps. 69.3); and so vers. 49,74,81,114,147; Ps. 147.11, &c."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 45,
+      "end_chapter": 119,
+      "end_verse": 45,
+      "title": "",
+      "content": "liberty, (b-6) Lit. 'at large.' see Ps. 118.5."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 50,
+      "end_chapter": 119,
+      "end_verse": 50,
+      "title": "",
+      "content": "for (c-8) Or 'that.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 57,
+      "end_chapter": 119,
+      "end_verse": 57,
+      "title": "",
+      "content": "words. (d-13) Or 'Jehovah is my portion. I have said that I will keep thy words.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 66,
+      "end_chapter": 119,
+      "end_verse": 66,
+      "title": "",
+      "content": "believed (e-10) Or 'I believe.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 70,
+      "end_chapter": 119,
+      "end_verse": 70,
+      "title": "",
+      "content": "me, (f-10) See vers. 78 and 87."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 78,
+      "end_chapter": 119,
+      "end_verse": 78,
+      "title": "",
+      "content": "towards (a-11) Or 'have subverted.' see Ps. 146.9; Lam. 3.36."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 83,
+      "end_chapter": 119,
+      "end_verse": 83,
+      "title": "",
+      "content": "bottle (b-7) A leathern bottle."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 85,
+      "end_chapter": 119,
+      "end_verse": 85,
+      "title": "",
+      "content": "not (c-10) Or 'who are not.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 91,
+      "end_chapter": 119,
+      "end_verse": 91,
+      "title": "",
+      "content": "things (d-10) Strictly, 'all,' 'the whole.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 98,
+      "end_chapter": 119,
+      "end_verse": 98,
+      "title": "",
+      "content": "wiser (e-5) Or 'Thou makest me wiser [through] thy commandments.' me. (f-14) Or 'for it is mine.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 103,
+      "end_chapter": 119,
+      "end_verse": 103,
+      "title": "",
+      "content": "*words (a-5) Lit. 'word' (Imrah)."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 118,
+      "end_chapter": 119,
+      "end_verse": 118,
+      "title": "",
+      "content": "nought (b-5) 'trodden under foot.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 119,
+      "end_chapter": 119,
+      "end_verse": 119,
+      "title": "",
+      "content": "away (c-3) For 'puttest away' some read 'accountest.' For 'dross' LXX has 'transgressors.' earth (d-9) Or 'land.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 126,
+      "end_chapter": 119,
+      "end_verse": 126,
+      "title": "",
+      "content": "work. (e-7) Or 'to act.' see Jer. 18.23."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 130,
+      "end_chapter": 119,
+      "end_verse": 130,
+      "title": "",
+      "content": "entrance (f-2) Or 'opening,' 'declaration.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 132,
+      "end_chapter": 119,
+      "end_verse": 132,
+      "title": "",
+      "content": "unto (a-2) Or 'Look upon.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 133,
+      "end_chapter": 119,
+      "end_verse": 133,
+      "title": "",
+      "content": "iniquity (b-11) See Note m, Ps. 56.3."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 134,
+      "end_chapter": 119,
+      "end_verse": 134,
+      "title": "",
+      "content": "Deliver (c-1) Or 'Ransom.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 137,
+      "end_chapter": 119,
+      "end_verse": 137,
+      "title": "",
+      "content": "are (d-8) Or 'and upright in.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 139,
+      "end_chapter": 119,
+      "end_verse": 139,
+      "title": "",
+      "content": "oppressors (e-7) Tzar, or 'adversaries,' as Ps. 8.2; 108.13."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 140,
+      "end_chapter": 119,
+      "end_verse": 140,
+      "title": "",
+      "content": "pure, (f-5) Or 'well refined,' 'tried,' as Ps. 18.30."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 142,
+      "end_chapter": 119,
+      "end_verse": 142,
+      "title": "",
+      "content": "righteousness, (g-6) Lit. 'a righteousness for ever.' see ver. 144."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 153,
+      "end_chapter": 119,
+      "end_verse": 153,
+      "title": "",
+      "content": "forgotten (h-12) Or 'I do not forget.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 154,
+      "end_chapter": 119,
+      "end_verse": 154,
+      "title": "",
+      "content": "redeem (i-5) As Lev. 25.25; Ps. 103.4."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 157,
+      "end_chapter": 119,
+      "end_verse": 157,
+      "title": "",
+      "content": "oppressors; (e-7) Tzar, or 'adversaries,' as Ps. 8.2; 108.13."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 158,
+      "end_chapter": 119,
+      "end_verse": 158,
+      "title": "",
+      "content": "grieved; (k-9) Or 'and I loathed [them].' see Ps. 139.21."
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 165,
+      "end_chapter": 119,
+      "end_verse": 165,
+      "title": "",
+      "content": "them. (a-13) Or 'they have no stumbling-block.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 171,
+      "end_chapter": 119,
+      "end_verse": 171,
+      "title": "",
+      "content": "me (b-11) Or 'for thou teachest me.'"
+    },
+    {
+      "start_chapter": 119,
+      "start_verse": 172,
+      "end_chapter": 119,
+      "end_verse": 172,
+      "title": "",
+      "content": "of (c-6) Or 'shall respond to,' 'sing in answer to.' see Ezra 3.11."
+    },
+    {
+      "start_chapter": 120,
+      "start_verse": 1,
+      "end_chapter": 120,
+      "end_verse": 1,
+      "title": "",
+      "content": "degrees.} (d-4) Perhaps in the sense of 'going up.' see Ps. 122.4; 1Kings 12.27. Others take it morally."
+    },
+    {
+      "start_chapter": 120,
+      "start_verse": 3,
+      "end_chapter": 120,
+      "end_verse": 3,
+      "title": "",
+      "content": "tongue? (e-15) Or 'What shall the tongue of deceit give thee, what shall it add to thee?'"
+    },
+    {
+      "start_chapter": 121,
+      "start_verse": 6,
+      "end_chapter": 121,
+      "end_verse": 6,
+      "title": "",
+      "content": "smite (a-5) Or 'beat upon.' see Jonah 4.8."
+    },
+    {
+      "start_chapter": 122,
+      "start_verse": 1,
+      "end_chapter": 122,
+      "end_verse": 1,
+      "title": "",
+      "content": "said (b-11) Or 'I rejoice in them that say.'"
+    },
+    {
+      "start_chapter": 122,
+      "start_verse": 4,
+      "end_chapter": 122,
+      "end_verse": 4,
+      "title": "",
+      "content": "Israel, (c-13) Or 'Israel's custom.'"
+    },
+    {
+      "start_chapter": 122,
+      "start_verse": 7,
+      "end_chapter": 122,
+      "end_verse": 7,
+      "title": "",
+      "content": "prosperity (d-6) Or 'restful security.' see Zech. 7.7."
+    },
+    {
+      "start_chapter": 125,
+      "start_verse": 1,
+      "end_chapter": 125,
+      "end_verse": 1,
+      "title": "",
+      "content": "abideth (e-19) Or 'they cannot be moved, they abide.'"
+    },
+    {
+      "start_chapter": 125,
+      "start_verse": 3,
+      "end_chapter": 125,
+      "end_verse": 3,
+      "title": "",
+      "content": "sceptre (f-3) Or 'rod.'"
+    },
+    {
+      "start_chapter": 125,
+      "start_verse": 5,
+      "end_chapter": 125,
+      "end_verse": 5,
+      "title": "",
+      "content": "be (a-23) Or 'shall be.'"
+    },
+    {
+      "start_chapter": 126,
+      "start_verse": 1,
+      "end_chapter": 126,
+      "end_verse": 1,
+      "title": "",
+      "content": "captivity (b-9) Strictly, 'the turning,' or 'returning,' in the sense of complete restoration and establishment of full blessing. Ps. 14.7; Deut. 30.3."
+    },
+    {
+      "start_chapter": 126,
+      "start_verse": 2,
+      "end_chapter": 126,
+      "end_verse": 2,
+      "title": "",
+      "content": "nations, (c-18) Goim. see, Isa. 1.4."
+    },
+    {
+      "start_chapter": 126,
+      "start_verse": 4,
+      "end_chapter": 126,
+      "end_verse": 4,
+      "title": "",
+      "content": "south. (d-11) Heb. Negeb. see Note b, Josh. 10.40."
+    },
+    {
+      "start_chapter": 127,
+      "start_verse": 2,
+      "end_chapter": 127,
+      "end_verse": 2,
+      "title": "",
+      "content": "sorrows. (e-19) Or 'labours,' 'toils,' Prov. 5.10; 14.23."
+    },
+    {
+      "start_chapter": 127,
+      "start_verse": 5,
+      "end_chapter": 127,
+      "end_verse": 5,
+      "title": "",
+      "content": "man (f-4) Geber. see Job 3.3. 'Mighty, Ps. 127.4, is Gibbor."
+    },
+    {
+      "start_chapter": 128,
+      "start_verse": 1,
+      "end_chapter": 128,
+      "end_verse": 1,
+      "title": "",
+      "content": "Blessed (g-5) Or 'Happy.'"
+    },
+    {
+      "start_chapter": 128,
+      "start_verse": 2,
+      "end_chapter": 128,
+      "end_verse": 2,
+      "title": "",
+      "content": "thee. (h-20) Or 'If thou eat the labour of thy hands, happy art thou, and it is well with thee.'"
+    },
+    {
+      "start_chapter": 128,
+      "start_verse": 3,
+      "end_chapter": 128,
+      "end_verse": 3,
+      "title": "",
+      "content": "house; (i-15) Or 'by the sides of thy house.'"
+    },
+    {
+      "start_chapter": 128,
+      "start_verse": 4,
+      "end_chapter": 128,
+      "end_verse": 4,
+      "title": "",
+      "content": "man (f-5) Geber. see Job 3.3. 'Mighty, Ps. 127.4, is Gibbor."
+    },
+    {
+      "start_chapter": 128,
+      "start_verse": 6,
+      "end_chapter": 128,
+      "end_verse": 6,
+      "title": "",
+      "content": "Israel! (k-9) Or '... children [and] peace upon Israel.'"
+    },
+    {
+      "start_chapter": 130,
+      "start_verse": 5,
+      "end_chapter": 130,
+      "end_verse": 5,
+      "title": "",
+      "content": "hope. (a-15) As Ps. 38.15; 119.43; 131.3, &c."
+    },
+    {
+      "start_chapter": 130,
+      "start_verse": 6,
+      "end_chapter": 130,
+      "end_verse": 6,
+      "title": "",
+      "content": "morning. (b-21) Or 'more than the watchers-for-the-morning watch for the morning.'"
+    },
+    {
+      "start_chapter": 130,
+      "start_verse": 7,
+      "end_chapter": 130,
+      "end_verse": 7,
+      "title": "",
+      "content": "hope (a-3) As Ps. 38.15; 119.43; 131.3, &c. redemption; (c-17) Lit. 'ransom.'"
+    },
+    {
+      "start_chapter": 130,
+      "start_verse": 8,
+      "end_chapter": 130,
+      "end_verse": 8,
+      "title": "",
+      "content": "redeem (c-4) Lit. 'ransom.'"
+    },
+    {
+      "start_chapter": 131,
+      "start_verse": 1,
+      "end_chapter": 131,
+      "end_verse": 1,
+      "title": "",
+      "content": "myself (d-21) Lit. 'have I walked.'"
+    },
+    {
+      "start_chapter": 131,
+      "start_verse": 2,
+      "end_chapter": 131,
+      "end_verse": 2,
+      "title": "",
+      "content": "restrained (e-4) Or 'quieted.'"
+    },
+    {
+      "start_chapter": 132,
+      "start_verse": 5,
+      "end_chapter": 132,
+      "end_verse": 5,
+      "title": "",
+      "content": "habitations (f-9) Or 'tabernacles,' as Ps. 84.1, &c."
+    },
+    {
+      "start_chapter": 132,
+      "start_verse": 6,
+      "end_chapter": 132,
+      "end_verse": 6,
+      "title": "",
+      "content": "it (g-5) i.e. the ark. Ephratah, (h-7) Bethlehem-Judah. wood. (i-16) Or 'of Jaar,' used here poetically for Kirjath-jearim."
+    },
+    {
+      "start_chapter": 132,
+      "start_verse": 7,
+      "end_chapter": 132,
+      "end_verse": 7,
+      "title": "",
+      "content": "habitations, (f-6) Or 'tabernacles,' as Ps. 84.1, &c."
+    },
+    {
+      "start_chapter": 132,
+      "start_verse": 9,
+      "end_chapter": 132,
+      "end_verse": 9,
+      "title": "",
+      "content": "saints (k-11) Chasid. see Ps. 30.4."
+    },
+    {
+      "start_chapter": 132,
+      "start_verse": 10,
+      "end_chapter": 132,
+      "end_verse": 10,
+      "title": "",
+      "content": "anointed. (l-13) See 2Chron. 6.41,42."
+    },
+    {
+      "start_chapter": 132,
+      "start_verse": 17,
+      "end_chapter": 132,
+      "end_verse": 17,
+      "title": "",
+      "content": "of (a-7) Lit. 'a horn for.' forth; (b-11) Or 'sprout;' as Isa. 4.2; Jer. 33.15; Ezek. 29.21. ordained (c-14) Others read 'I will ordain.'"
+    },
+    {
+      "start_chapter": 132,
+      "start_verse": 18,
+      "end_chapter": 132,
+      "end_verse": 18,
+      "title": "",
+      "content": "crown (d-13) Or 'diadem.' see Ps. 89.39"
+    },
+    {
+      "start_chapter": 133,
+      "start_verse": 2,
+      "end_chapter": 133,
+      "end_verse": 2,
+      "title": "",
+      "content": "down (e-10) Or 'flows down.'"
+    },
+    {
+      "start_chapter": 133,
+      "start_verse": 3,
+      "end_chapter": 133,
+      "end_verse": 3,
+      "title": "",
+      "content": "evermore. (f-22) Or perhaps 'for the age.' see 1Chron. 17.14; Ps. 28.9."
+    },
+    {
+      "start_chapter": 134,
+      "start_verse": 1,
+      "end_chapter": 134,
+      "end_verse": 1,
+      "title": "",
+      "content": "night (g-15) Lit. 'in the nights.'"
+    },
+    {
+      "start_chapter": 134,
+      "start_verse": 2,
+      "end_chapter": 134,
+      "end_verse": 2,
+      "title": "",
+      "content": "in (h-5) Or 'to.' sanctuary, (i-7) Or 'of holiness,' Kodesh. see Ps. 89.5."
+    },
+    {
+      "start_chapter": 135,
+      "start_verse": 3,
+      "end_chapter": 135,
+      "end_verse": 3,
+      "title": "",
+      "content": "it (k-14) Or 'this;' but see Ps. 147.1."
+    },
+    {
+      "start_chapter": 135,
+      "start_verse": 4,
+      "end_chapter": 135,
+      "end_verse": 4,
+      "title": "",
+      "content": "possession. (l-12) Or 'peculiar treasure.' see Ex. 19.5."
+    },
+    {
+      "start_chapter": 135,
+      "start_verse": 13,
+      "end_chapter": 135,
+      "end_verse": 13,
+      "title": "",
+      "content": "memorial, (a-9) See Ex. 3.15; Ps. 102.12."
+    },
+    {
+      "start_chapter": 135,
+      "start_verse": 14,
+      "end_chapter": 135,
+      "end_verse": 14,
+      "title": "",
+      "content": "judge (b-4) Or 'vindicate.' of (c-12) See Deut. 32.36 and Note a."
+    },
+    {
+      "start_chapter": 136,
+      "start_verse": 8,
+      "end_chapter": 136,
+      "end_verse": 8,
+      "title": "",
+      "content": "over (d-5) Or 'during.'"
+    },
+    {
+      "start_chapter": 136,
+      "start_verse": 9,
+      "end_chapter": 136,
+      "end_verse": 9,
+      "title": "",
+      "content": "over (d-7) Or 'during.'"
+    },
+    {
+      "start_chapter": 136,
+      "start_verse": 15,
+      "end_chapter": 136,
+      "end_verse": 15,
+      "title": "",
+      "content": "overturned (e-2) Lit. 'shook out' or 'shot off,' as Ex. 14.27. see Job 38.13."
+    },
+    {
+      "start_chapter": 136,
+      "start_verse": 24,
+      "end_chapter": 136,
+      "end_verse": 24,
+      "title": "",
+      "content": "delivered (a-3) Lit. 'rent us from,' as Lam. 5.8. oppressors, (b-7) Or 'adversaries,' Tzar, as Ps. 8.2."
+    },
+    {
+      "start_chapter": 137,
+      "start_verse": 3,
+      "end_chapter": 137,
+      "end_verse": 3,
+      "title": "",
+      "content": "song; (c-13) Lit. 'words of song.' wail (d-19) Or 'our tormentors.'"
+    },
+    {
+      "start_chapter": 138,
+      "start_verse": 2,
+      "end_chapter": 138,
+      "end_verse": 2,
+      "title": "",
+      "content": "word (e-27) Imrah. see Ps. 119.11."
+    },
+    {
+      "start_chapter": 138,
+      "start_verse": 3,
+      "end_chapter": 138,
+      "end_verse": 3,
+      "title": "",
+      "content": "strength (f-15) Or 'mightily.'"
+    },
+    {
+      "start_chapter": 138,
+      "start_verse": 4,
+      "end_chapter": 138,
+      "end_verse": 4,
+      "title": "",
+      "content": "words (g-16) Omer. see Ps. 119.11."
+    },
+    {
+      "start_chapter": 138,
+      "start_verse": 5,
+      "end_chapter": 138,
+      "end_verse": 5,
+      "title": "",
+      "content": "in (h-5) Or 'of.'"
+    },
+    {
+      "start_chapter": 139,
+      "start_verse": 3,
+      "end_chapter": 139,
+      "end_verse": 3,
+      "title": "",
+      "content": "out (a-3) Lit. 'siftest.'"
+    },
+    {
+      "start_chapter": 139,
+      "start_verse": 4,
+      "end_chapter": 139,
+      "end_verse": 4,
+      "title": "",
+      "content": "yet (b-5) Or 'ere [even] there is.'"
+    },
+    {
+      "start_chapter": 139,
+      "start_verse": 13,
+      "end_chapter": 139,
+      "end_verse": 13,
+      "title": "",
+      "content": "me (c-10) Or 'thou didst knit me together,' as Job 10.11. See also 'hedged in,' Job 3.23, and 'cover,' Ps. 91.4."
+    },
+    {
+      "start_chapter": 139,
+      "start_verse": 15,
+      "end_chapter": 139,
+      "end_verse": 15,
+      "title": "",
+      "content": "were (d-3) Or 'framework was.'"
+    },
+    {
+      "start_chapter": 139,
+      "start_verse": 16,
+      "end_chapter": 139,
+      "end_verse": 16,
+      "title": "",
+      "content": "days (e-19) Or 'continuously.'"
+    },
+    {
+      "start_chapter": 139,
+      "start_verse": 20,
+      "end_chapter": 139,
+      "end_verse": 20,
+      "title": "",
+      "content": "wickedly, (f-6) Or 'with evil intent.' enemies. (g-14) Or '[They] who speak wickedly of thee have lifted up themselves to lying, -- thine enemies.'"
+    },
+    {
+      "start_chapter": 139,
+      "start_verse": 23,
+      "end_chapter": 139,
+      "end_verse": 23,
+      "title": "",
+      "content": "thoughts; (h-14) As Ps. 94.19, 'anxious (or conflicting) thoughts.'"
+    },
+    {
+      "start_chapter": 139,
+      "start_verse": 24,
+      "end_chapter": 139,
+      "end_verse": 24,
+      "title": "",
+      "content": "way (i-8) Or 'idolatrous way.'"
+    },
+    {
+      "start_chapter": 140,
+      "start_verse": 1,
+      "end_chapter": 140,
+      "end_verse": 1,
+      "title": "",
+      "content": "man. (k-22) Lit. 'man (Ish) of violences,' and so ver. 4."
+    },
+    {
+      "start_chapter": 140,
+      "start_verse": 7,
+      "end_chapter": 140,
+      "end_verse": 7,
+      "title": "",
+      "content": "battle. (a-19) Or 'of arming for the battle.'"
+    },
+    {
+      "start_chapter": 140,
+      "start_verse": 11,
+      "end_chapter": 140,
+      "end_verse": 11,
+      "title": "",
+      "content": "earth. (b-12) Erets, 'land.' see 1Sam. 2.8."
+    },
+    {
+      "start_chapter": 141,
+      "start_verse": 5,
+      "end_chapter": 141,
+      "end_verse": 5,
+      "title": "",
+      "content": "kindness; (c-8) Or 'smite me in kindness.' refuse. (d-24) Or 'it is oil for the head; let not my head refuse it.' calamities. (e-35) Or 'is against their evil deeds.'"
+    },
+    {
+      "start_chapter": 141,
+      "start_verse": 7,
+      "end_chapter": 141,
+      "end_verse": 7,
+      "title": "",
+      "content": "earth. (f-19) Or 'cleaveth the earth.'"
+    },
+    {
+      "start_chapter": 141,
+      "start_verse": 8,
+      "end_chapter": 141,
+      "end_verse": 8,
+      "title": "",
+      "content": "destitute. (g-18) Or 'Let not my soul be laid bare' or 'poured out.'"
+    },
+    {
+      "start_chapter": 142,
+      "start_verse": 4,
+      "end_chapter": 142,
+      "end_verse": 4,
+      "title": "",
+      "content": "refuge (a-15) 'A place of escape,' as Ps. 59.16; Amos 2.14."
+    },
+    {
+      "start_chapter": 142,
+      "start_verse": 5,
+      "end_chapter": 142,
+      "end_verse": 5,
+      "title": "",
+      "content": "refuge, (b-11) Or 'shelter;' as Isa. 25.4, Jer. 17.17."
+    },
+    {
+      "start_chapter": 142,
+      "start_verse": 7,
+      "end_chapter": 142,
+      "end_verse": 7,
+      "title": "",
+      "content": "celebrate (c-10) As Ps. 138.2. see Ps. 109.30."
+    },
+    {
+      "start_chapter": 143,
+      "start_verse": 9,
+      "end_chapter": 143,
+      "end_verse": 9,
+      "title": "",
+      "content": "refuge. (d-14) As 'covered,' Isa. 51.16."
+    },
+    {
+      "start_chapter": 143,
+      "start_verse": 10,
+      "end_chapter": 143,
+      "end_verse": 10,
+      "title": "",
+      "content": "will; (e-6) As Ps. 40.8; 103.21. me (f-17) Or 'thy Spirit is good. Lead me.' country. (g-21) Or 'land of uprightness.'"
+    },
+    {
+      "start_chapter": 143,
+      "start_verse": 11,
+      "end_chapter": 143,
+      "end_verse": 11,
+      "title": "",
+      "content": "me, (h-2) Or 'Keep me alive,' as Ps. 119.25."
+    },
+    {
+      "start_chapter": 144,
+      "start_verse": 2,
+      "end_chapter": 144,
+      "end_verse": 2,
+      "title": "",
+      "content": "mercy (i-2) See Note, Ps. 59.10."
+    },
+    {
+      "start_chapter": 144,
+      "start_verse": 3,
+      "end_chapter": 144,
+      "end_verse": 3,
+      "title": "",
+      "content": "man, (k-4) Adam as Gen. 1.26. man, (l-14) Enosh. Note here, first 'Adam,' then 'son of Enosh,' i.e. just the converse of Ps. 8.4. Here it is sinful man's fragility and impotence, there what God does in grace in exalting the 'SON OF MAN' (Adam)."
+    },
+    {
+      "start_chapter": 144,
+      "start_verse": 4,
+      "end_chapter": 144,
+      "end_verse": 4,
+      "title": "",
+      "content": "Man (a-1) Adam. vanity; (b-5) Or 'a breath,' as Ps. 62.9; 94.11. see Note b, Gen. 4.2. in vers; 8,11 the word is as 'falsehood' in Ps. 12.2, where see Note g."
+    },
+    {
+      "start_chapter": 144,
+      "start_verse": 10,
+      "end_chapter": 144,
+      "end_verse": 10,
+      "title": "",
+      "content": "salvation (c-3) Or 'victory.'"
+    },
+    {
+      "start_chapter": 144,
+      "start_verse": 13,
+      "end_chapter": 144,
+      "end_verse": 13,
+      "title": "",
+      "content": "pastures; (d-18) Or 'streets.'"
+    },
+    {
+      "start_chapter": 144,
+      "start_verse": 14,
+      "end_chapter": 144,
+      "end_verse": 14,
+      "title": "",
+      "content": "young]; (e-5) Or 'oxen well laden.'"
+    },
+    {
+      "start_chapter": 145,
+      "start_verse": 1,
+      "end_chapter": 145,
+      "end_verse": 1,
+      "title": "",
+      "content": "(f-0) An alphabetical Psalm, as Ps. 25, the 14th letter being, omitted."
+    },
+    {
+      "start_chapter": 145,
+      "start_verse": 7,
+      "end_chapter": 145,
+      "end_verse": 7,
+      "title": "",
+      "content": "utter (g-4) As Ps. 19.2."
+    },
+    {
+      "start_chapter": 145,
+      "start_verse": 10,
+      "end_chapter": 145,
+      "end_verse": 10,
+      "title": "",
+      "content": "saints (h-10) Or 'godly ones.' see Ps. 30.4."
+    },
+    {
+      "start_chapter": 145,
+      "start_verse": 12,
+      "end_chapter": 145,
+      "end_verse": 12,
+      "title": "",
+      "content": "splendour (i-15) Or 'the glory of the majesty.'"
+    },
+    {
+      "start_chapter": 145,
+      "start_verse": 13,
+      "end_chapter": 145,
+      "end_verse": 13,
+      "title": "",
+      "content": "generations. (k-15) Lit. 'in every generation and generation,' as Ps. 45.17."
+    },
+    {
+      "start_chapter": 145,
+      "start_verse": 17,
+      "end_chapter": 145,
+      "end_verse": 17,
+      "title": "",
+      "content": "kind (a-9) Chasid, as 'merciful,' Jer. 3.12."
+    },
+    {
+      "start_chapter": 145,
+      "start_verse": 21,
+      "end_chapter": 145,
+      "end_verse": 21,
+      "title": "",
+      "content": "bless (b-13) Or 'all flesh shall bless.'"
+    },
+    {
+      "start_chapter": 146,
+      "start_verse": 3,
+      "end_chapter": 146,
+      "end_verse": 3,
+      "title": "",
+      "content": "man, (c-10) Adam."
+    },
+    {
+      "start_chapter": 146,
+      "start_verse": 9,
+      "end_chapter": 146,
+      "end_verse": 9,
+      "title": "",
+      "content": "preserveth (d-2) Or 'keepeth,' as Ps. 145.20. up (e-7) Or 'upholdeth.' subvert. (f-21) Properly 'make tortuous.'"
+    },
+    {
+      "start_chapter": 147,
+      "start_verse": 1,
+      "end_chapter": 147,
+      "end_verse": 1,
+      "title": "",
+      "content": "Jah! (g-3) 'Hallelujah.' see Ps. 68.4. psalms (h-9) See Ps. 30.12; 47.6; 138.1."
+    },
+    {
+      "start_chapter": 147,
+      "start_verse": 7,
+      "end_chapter": 147,
+      "end_verse": 7,
+      "title": "",
+      "content": "psalms (h-7) See Ps. 30.12; 47.6; 138.1. Sing (i-1) As Num. 21.17. Lit. 'Respond,' as Ps. 119.172; Hos. 2.15."
+    },
+    {
+      "start_chapter": 147,
+      "start_verse": 14,
+      "end_chapter": 147,
+      "end_verse": 14,
+      "title": "",
+      "content": "wheat. (a-15) Lit 'the fat of wheat.'"
+    },
+    {
+      "start_chapter": 147,
+      "start_verse": 15,
+      "end_chapter": 147,
+      "end_verse": 15,
+      "title": "",
+      "content": "oracles (b-5) Imrah. see Note, Ps. 119.11."
+    },
+    {
+      "start_chapter": 147,
+      "start_verse": 19,
+      "end_chapter": 147,
+      "end_verse": 19,
+      "title": "",
+      "content": "judgments (c-11) Or 'ordinances.'"
+    },
+    {
+      "start_chapter": 147,
+      "start_verse": 20,
+      "end_chapter": 147,
+      "end_verse": 20,
+      "title": "",
+      "content": "judgments, (c-13) Or 'ordinances.'"
+    },
+    {
+      "start_chapter": 148,
+      "start_verse": 6,
+      "end_chapter": 148,
+      "end_verse": 6,
+      "title": "",
+      "content": "pass. (d-18) Or 'which they do not transgress.'"
+    },
+    {
+      "start_chapter": 148,
+      "start_verse": 11,
+      "end_chapter": 148,
+      "end_verse": 11,
+      "title": "",
+      "content": "peoples, (e-7) Leummim. see Ps. 2.1."
+    },
+    {
+      "start_chapter": 148,
+      "start_verse": 14,
+      "end_chapter": 148,
+      "end_verse": 14,
+      "title": "",
+      "content": "people, (f-10) people (f-24) Am (singular of Ammim, Ps. 7.8). It generally signifies Israel. saints, (g-16) Or 'godly,' chasid. see Ps. 30.4."
+    },
+    {
+      "start_chapter": 149,
+      "start_verse": 1,
+      "end_chapter": 149,
+      "end_verse": 1,
+      "title": "",
+      "content": "godly. (g-16) Or 'godly,' chasid. see Ps. 30.4. congregation (h-13) As Ex. 12.6."
+    },
+    {
+      "start_chapter": 149,
+      "start_verse": 2,
+      "end_chapter": 149,
+      "end_verse": 2,
+      "title": "",
+      "content": "Maker; (i-6) The Hebrew word for 'Maker' is plural."
+    },
+    {
+      "start_chapter": 149,
+      "start_verse": 4,
+      "end_chapter": 149,
+      "end_verse": 4,
+      "title": "",
+      "content": "people; (a-7) Am (singular of Ammim, Ps. 7.8). It generally signifies Israel."
+    },
+    {
+      "start_chapter": 149,
+      "start_verse": 5,
+      "end_chapter": 149,
+      "end_verse": 5,
+      "title": "",
+      "content": "godly (b-3) Chasid. see Ps. 30.4."
+    },
+    {
+      "start_chapter": 149,
+      "start_verse": 6,
+      "end_chapter": 149,
+      "end_verse": 6,
+      "title": "",
+      "content": "mouth, (c-10) Lit. 'throat,' as Ps. 5.9; Isa. 58.1."
+    },
+    {
+      "start_chapter": 149,
+      "start_verse": 7,
+      "end_chapter": 149,
+      "end_verse": 7,
+      "title": "",
+      "content": "nations, (d-6) Goim. see Isa. 1.4. peoples; (e-11) Leummim. see Ps. 2.1."
+    },
+    {
+      "start_chapter": 149,
+      "start_verse": 9,
+      "end_chapter": 149,
+      "end_verse": 9,
+      "title": "",
+      "content": "saints. (b-13) Chasid. see Ps. 30.4. them (f-4) Or 'exercise among them.'"
+    },
+    {
+      "start_chapter": 150,
+      "start_verse": 1,
+      "end_chapter": 150,
+      "end_verse": 1,
+      "title": "",
+      "content": "sanctuary; (g-6) Kodesh. as Ps. 134.2. firmament (h-11) Lit. the 'expanse,' as Gen. 1.6."
+    }
+  ]
+}

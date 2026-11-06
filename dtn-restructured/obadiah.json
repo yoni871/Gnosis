@@ -1,0 +1,71 @@
+{
+  "book": "Obadiah",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "(e-0) * (The title of this book, 'Obadiah'), Said to mean, 'Servant of Jah.' vision (f-2) Chazan. see Dan. 8.15."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 3,
+      "end_chapter": 1,
+      "end_verse": 3,
+      "title": "",
+      "content": "pride (g-2) Or 'presumption.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 7,
+      "end_chapter": 1,
+      "end_verse": 7,
+      "title": "",
+      "content": "thee (a-20) Lit. 'the men of thy peace.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 11,
+      "end_chapter": 1,
+      "end_verse": 11,
+      "title": "",
+      "content": "substance, (b-20) Or 'forces.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 12,
+      "end_chapter": 1,
+      "end_verse": 12,
+      "title": "",
+      "content": "disaster; (c-18) Or 'strange [fate].' see Job 31.3."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 17,
+      "end_chapter": 1,
+      "end_verse": 17,
+      "title": "",
+      "content": "deliverance, (d-8) Lit. 'escape,' or 'the escaped ones.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 19,
+      "end_chapter": 1,
+      "end_verse": 19,
+      "title": "",
+      "content": "south (e-5) Negeb; and so ver. 20. see Josh. 10.40. lowland (f-16) Shephelah; see Deut. 1.7."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 20,
+      "end_chapter": 1,
+      "end_verse": 20,
+      "title": "",
+      "content": "captives (g-3) captives (g-23) Lit. 'captivity.'"
+    }
+  ]
+}

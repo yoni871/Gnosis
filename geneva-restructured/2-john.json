@@ -1,0 +1,55 @@
+{
+  "book": "2 John",
+  "commentary": "Geneva Bible Translation Notes",
+  "author": "Geneva Bible Translators",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "(a) This is not a proper name, but is to be taken as it sounds that is to say, the worthy and noble lady. (b) Excellent and honourable woman. (1) The bond of Christian union is the true and constant profession of the truth."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 3,
+      "end_chapter": 1,
+      "end_verse": 3,
+      "title": "",
+      "content": "(c) With true knowledge which always has love united with it, and following it."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 4,
+      "end_chapter": 1,
+      "end_verse": 4,
+      "title": "",
+      "content": "(2) This true profession consists both in love towards one another which the Lord has commanded, and also especially in wholesome and sound doctrine, which also is delivered to us: for the commandment of God is a sound and sure foundation both of the rule of conduct and of doctrine, and these cannot be separated from one another, (d) According as the truth directs them."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 7,
+      "end_chapter": 1,
+      "end_verse": 7,
+      "title": "",
+      "content": "(3) Antichrists fighting against the person and office of Christ had already crept into the Church, in the time of the apostles."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 8,
+      "end_chapter": 1,
+      "end_verse": 8,
+      "title": "",
+      "content": "(4) He that makes shipwreck of doctrine, loses all. (e) Beware, and take good heed."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 10,
+      "end_chapter": 1,
+      "end_verse": 10,
+      "title": "",
+      "content": "(5) We should have nothing to do with those who defend perverse doctrine."
+    }
+  ]
+}

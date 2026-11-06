@@ -1,0 +1,63 @@
+{
+  "book": "3 John",
+  "commentary": "Geneva Bible Translation Notes",
+  "author": "Geneva Bible Translators",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "(1) An example of a Christian greeting."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 4,
+      "end_chapter": 1,
+      "end_verse": 4,
+      "title": "",
+      "content": "(a) Than these joys."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 5,
+      "end_chapter": 1,
+      "end_verse": 5,
+      "title": "",
+      "content": "(b) As becomes a believer and a Christian."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 6,
+      "end_chapter": 1,
+      "end_verse": 6,
+      "title": "",
+      "content": "(c) He commends to Gaius, either those same men whom he had entertained before returning to him, about the affairs of the Church, or else some other who had similar business."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 8,
+      "end_chapter": 1,
+      "end_verse": 8,
+      "title": "",
+      "content": "(d) That we ourselves may help the preaching of the truth."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 9,
+      "end_chapter": 1,
+      "end_verse": 9,
+      "title": "",
+      "content": "(2) Ambition and covetousness, two pestilent sins (especially in those who have any church responsibilities) are condemned in Diotrephes."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 11,
+      "end_chapter": 1,
+      "end_verse": 11,
+      "title": "",
+      "content": "(e) Has not known God."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "book": "3 John",
+  "commentary": "Haydock's Catholic Bible Commentary",
+  "author": "George Leo Haydock",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 4,
+      "end_chapter": 1,
+      "end_verse": 4,
+      "title": "",
+      "content": "No greater grace. That is, nothing that gives me greater joy and satisfaction. Ch."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 7,
+      "end_chapter": 1,
+      "end_verse": 7,
+      "title": "",
+      "content": "Taking nothing of the Gentiles. These ministers and preachers of the gospel, whom S. John recommends, took care, as S. Paul did, not to take any thing of the Gentiles, to whom they preached, lest they should be thought to preach to get money by it. But he puts Gaius in mind, that by assisting such men, he would become a fellow labourer in the gospel, and have a share in their reward. Wi."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 9,
+      "end_chapter": 1,
+      "end_verse": 10,
+      "title": "",
+      "content": "Diotrephes . . . doth not receive us, nor those we recommend, but prattles and talks against me. We know no more of this man, nor of Demetrius, of whom S. John gives so favourable a character. Wi. — It seemeth, saith Ven. Bede, that he was an arch heretic, or proud sect master—upomnhsw. I will rebuke them, and make them known to be wicked. Bede."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 14,
+      "end_chapter": 1,
+      "end_verse": 14,
+      "title": "",
+      "content": "This was a very usual salutation among the Jews, by which they wished every possible blessing might come upon their friends they thus saluted. Menochius."
+    }
+  ]
+}
