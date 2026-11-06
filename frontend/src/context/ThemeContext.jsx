@@ -5,11 +5,17 @@ const ThemeContext = createContext();
 export default ThemeContext;
 
 export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState(() => {
+        try {
+            const saved = localStorage.getItem("gnosis-theme");
+            return saved === "dark" ? "dark" : "light";
+        } catch { return "light"; }
+    });
 
     useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-}, [theme]);
+        document.documentElement.setAttribute("data-theme", theme);
+        try { localStorage.setItem("gnosis-theme", theme); } catch { /* Storage may be disabled. */ }
+    }, [theme]);
 
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>

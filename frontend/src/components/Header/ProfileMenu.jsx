@@ -2,7 +2,6 @@ import { useContext, useState } from "react"
 import {
     User,
     NotebookPen,
-    Bookmark,
     Settings,
     LogOut,
     ChevronDown,
@@ -46,6 +45,11 @@ export default function ProfileMenu() {
                     : ""
                 }
             `}
+            aria-expanded={isProfileOpen}
+            aria-controls="profile-options"
+            onKeyDown={(event) => {
+                if (event.key === "Escape") setIsProfileOpen(false);
+            }}
             onClick={() => setIsProfileOpen(!isProfileOpen)}
         >
             <div
@@ -85,7 +89,13 @@ export default function ProfileMenu() {
         </button>
 
         
-        <div className={`
+        <div id="profile-options" hidden={!isProfileOpen}
+            onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                    setIsProfileOpen(false);
+                    profileRef.current?.querySelector("button")?.focus();
+                }
+            }} className={`
             absolute
             right-0
             top-[calc(100%+8px)]
@@ -167,25 +177,6 @@ export default function ProfileMenu() {
                     className="text-[var(--text-muted)]"
                 />
                 <span>Notes</span>
-            </button>
-
-            <button className="
-                flex w-full
-                items-center
-                gap-2.5
-                rounded-md
-                px-3 py-2.5
-                text-left
-                text-[11px]
-                text-[var(--text-primary)]
-                hover:bg-[var(--bg-control-hover)]
-            ">
-                <Bookmark
-                    size={15}
-                    strokeWidth={1.8}
-                    className="text-[var(--text-muted)]"
-                />
-                <span>Bookmarks</span>
             </button>
 
             <button className="
