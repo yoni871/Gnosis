@@ -1,4 +1,6 @@
 import { resendVerification } from "../services/authService";
+import { getReadingState } from "../services/readingStateService";
+import { readingStateUrl } from "../utils/readingState";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
@@ -21,6 +23,33 @@ export default function LoginPage() {
     // generic error. The branch is on the error CODE, never the text.
     const [unverifiedEmail, setUnverifiedEmail] = useState("");
     const [resendStatus, setResendStatus] = useState("idle");
+    // Picking up where the reader stopped takes one extra round trip
+    // after the profile lands; the button shows it instead of looking
+    // finished while the reader is still being found.
+    const [isResuming, setIsResuming] = useState(false);
+
+    // After login, pick up where the reader stopped. A missing position
+    // (404) or any failure to load it falls back to Genesis 1 — login
+    // itself already succeeded, so a resume failure must not strand the
+    // reader on the login page. The token is read from storage because
+    // the context token in this closure predates the login that just
+    // completed; login() writes it to storage before fetching the
+    // profile, so it is present by the time this runs.
+    async function resumeUrl() {
+        setIsResuming(true);
+        try {
+            const token = localStorage.getItem("gnosisToken");
+            if (!token) {
+                return "/bible/Genesis/1";
+            }
+            const saved = await getReadingState(token);
+            return saved ? readingStateUrl(saved) : "/bible/Genesis/1";
+        } catch {
+            return "/bible/Genesis/1";
+        } finally {
+            setIsResuming(false);
+        }
+    }
 
     //when a form is submitted, the browser creates a submit event
     //and passes it to the handler
@@ -39,7 +68,7 @@ export default function LoginPage() {
             // A null profile means this attempt was superseded by a
             // newer auth action (issue #6) — do not navigate for it.
             if (profile) {
-                navigate("/bible/Genesis/1");
+                navigate(await resumeUrl());
             }
         } catch (error) {
             if (error.code === "EMAIL_NOT_VERIFIED") {
@@ -392,7 +421,7 @@ export default function LoginPage() {
 
                             <button
                                 type="submit"
-                                disabled={isAuthLoading}
+                                disabled={isAuthLoading || isResuming}
                                 className="
                                     group
                                     mt-2
@@ -418,7 +447,11 @@ export default function LoginPage() {
                                 "
                             >
                                 <span>
-                                    {isAuthLoading ? "Signing in..." : "Sign in"}
+                                    {isAuthLoading
+                                        ? "Signing in..."
+                                        : isResuming
+                                            ? "Opening your place…"
+                                            : "Sign in"}
                                 </span>
 
                                 {!isAuthLoading && (
