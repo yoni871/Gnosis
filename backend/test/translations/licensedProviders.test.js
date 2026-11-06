@@ -198,6 +198,34 @@ test("API.Bible stripVerseHtml keeps quoted small-caps words whole, drops a foot
     );
 });
 
+test("API.Bible stripVerseHtml gives an empty marker element a space so words do not join", () => {
+    // Live shapes (NKJV): an empty cross-reference marker sits between the
+    // first two words of a verse. Stripping it outright joined them, and
+    // the old tag-to-space strip got these right by accident — so the
+    // empty element must become a space, while a span wrapping part of a
+    // word still strips with no space.
+    assert.equal(
+        stripVerseHtml('“Or<span class="x"></span>who has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    assert.equal(
+        stripVerseHtml('‘And<span class="x"></span>it shall come to pass in the last days, says God,'),
+        "‘And it shall come to pass in the last days, says God,"
+    );
+    assert.equal(
+        stripVerseHtml('“Blessed<span class="x"></span>are the poor in spirit, For theirs is the kingdom of heaven.”'),
+        "“Blessed are the poor in spirit, For theirs is the kingdom of heaven.”"
+    );
+    assert.equal(
+        stripVerseHtml('Who walk in the Law of the L<span class="sc">ord</span>.'),
+        "Who walk in the Law of the Lord."
+    );
+    assert.equal(
+        stripVerseHtml('Praise be to you, Lord<span class="f"></span>; teach me.'),
+        "Praise be to you, Lord; teach me."
+    );
+});
+
 test("API.Bible fetch calls the chapter endpoint with pinned params, sends the api-key header, and returns the fumsToken", async () => {
     let seenUrl = null;
     let seenHeaders = null;
