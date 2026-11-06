@@ -34,6 +34,25 @@ jobs:
       - run: npm ci
       - run: npm test
 
+  offline-importer:
+    name: Offline Bible importer tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22.14.0
+          cache: npm
+          cache-dependency-path: |
+            backend/package-lock.json
+            tools/bible-import/package-lock.json
+      - run: npm ci --prefix backend --omit=dev
+      - run: npm ci --prefix tools/bible-import --ignore-scripts
+      - run: npm test --prefix tools/bible-import
+
   frontend:
     name: Frontend tests and build
     runs-on: ubuntu-latest
@@ -91,5 +110,9 @@ jobs:
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
       - run: npm run test:database -- ${{ matrix.postgres }} --ci
+        env:
+          GNOSIS_TEST_SERVICE_PORT: ${{ job.services.postgres.ports[5432] }}
+      - run: npm ci --prefix ../tools/bible-import --ignore-scripts
+      - run: npm run test:database --prefix ../tools/bible-import -- ${{ matrix.postgres }} --ci
         env:
           GNOSIS_TEST_SERVICE_PORT: ${{ job.services.postgres.ports[5432] }}
