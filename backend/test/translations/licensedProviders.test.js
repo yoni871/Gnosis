@@ -249,6 +249,29 @@ test("API.Bible stripVerseHtml gives invisible markup a space so words do not jo
     );
 });
 
+test("API.Bible stripVerseHtml gives a stray closing tag between two words a space", () => {
+    // A span can open before this verse's first word (in an earlier verse)
+    // and close right after it: "Or</span>who". Dropping the closer joined
+    // the words, and the deployed PR #45 code still showed "Orwho" live.
+    assert.equal(
+        stripVerseHtml('“Or</span>who has first given to Him And it shall be repaid to him?”'),
+        "“Or who has first given to Him And it shall be repaid to him?”"
+    );
+    assert.equal(
+        stripVerseHtml('‘And</a>it shall come to pass in the last days, says God.'),
+        "‘And it shall come to pass in the last days, says God."
+    );
+    // ...but a closer that is NOT between two words still just drops:
+    assert.equal(
+        stripVerseHtml('Who walk in the Law of the L<span class="sc">ord</span>.'),
+        "Who walk in the Law of the Lord."
+    );
+    assert.equal(
+        stripVerseHtml('Praise be to you, Lord<span class="f"></span>; teach me.'),
+        "Praise be to you, Lord; teach me."
+    );
+});
+
 test("API.Bible fetch calls the chapter endpoint with pinned params, sends the api-key header, and returns the fumsToken", async () => {
     let seenUrl = null;
     let seenHeaders = null;
