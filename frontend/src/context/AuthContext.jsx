@@ -1,5 +1,5 @@
-import { useEffect, useState, createContext } from "react";
-import { getProfile, loginUser, registerUser } from "../services/authService";
+import { useEffect, useState, createContext, useCallback } from "react";
+import { getProfile, loginUser, registerUser, refreshSession, logoutSession } from "../services/authService";
 import { createAuthSessionGuard } from "./authSession";
 
 const AuthContext = createContext(null);
@@ -36,7 +36,18 @@ export function AuthProvider({ children }) {
             }
 
             try {
-                const profile = await getProfile(token);
+                let restoredToken = token;
+                // Old seven-day JWTs have no sid and are deliberately rejected.
+                let claims;
+                try { claims = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))); } catch { /* Server validates malformed tokens. */ }
+                if (claims?.sid && claims.exp * 1000 <= Date.now() + 60000) {
+                    const renewed = await refreshSession();
+                    if (!authGuard.isCurrent(ticket)) return;
+                    restoredToken = renewed.token;
+                    localStorage.setItem("gnosisToken", restoredToken);
+                    setToken(restoredToken);
+                }
+                const profile = await getProfile(restoredToken);
                 if (!authGuard.isCurrent(ticket)) {
                     return;
                 }
@@ -124,7 +135,9 @@ export function AuthProvider({ children }) {
         return { email: data.email };
     }
 
-    function logout() {
+    const logout = useCallback((all = false) => {
+        const revocation = logoutSession(token, all === true);
+        revocation.catch(error => console.error(error.message));
         // Invalidate first: any restore/login/register already in
         // flight becomes stale and must not write state or storage
         // when it eventually finishes.
@@ -133,7 +146,56 @@ export function AuthProvider({ children }) {
         setToken(null);
         setUser(null);
         setIsAuthLoading(false);
-    }
+    }, [authGuard, token]);
+
+    useEffect(() => {
+        if (!token || !user) return;
+        const ticket = sessionVersion;
+        let pending = false;
+        let active = true;
+        let retryTimer;
+        const renew = async () => {
+            if (pending || !active || !authGuard.isCurrent(ticket)) return;
+            clearTimeout(retryTimer);
+            pending = true;
+            try {
+                const renewed = await refreshSession();
+                if (!active || !authGuard.isCurrent(ticket)) return;
+                const claimsOf = value => JSON.parse(atob(value.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+                // A different tab may have signed in to a different session.
+                if (claimsOf(token).sid !== claimsOf(renewed.token).sid) {
+                    const profile = await getProfile(renewed.token);
+                    if (!active || !authGuard.isCurrent(ticket)) return;
+                    setSessionVersion(authGuard.begin());
+                    setUser(profile);
+                }
+                localStorage.setItem("gnosisToken", renewed.token);
+                setToken(renewed.token);
+            } catch (error) {
+                if (!active || !authGuard.isCurrent(ticket)) return;
+                if (['SESSION_INVALID', 'TOKEN_INVALID', 'TOKEN_REQUIRED'].includes(error.code)) {
+                    logout();
+                } else {
+                    // Temporary transport/server failures must not erase private drafts.
+                    // Protected requests still fail closed if the access token expires.
+                    retryTimer = setTimeout(renew, 60000);
+                }
+            } finally { pending = false; }
+        };
+        const timer = setInterval(renew, 10 * 60 * 1000);
+        const onVisible = () => {
+            if (document.visibilityState === 'visible') renew();
+        };
+        document.addEventListener('visibilitychange', onVisible);
+        window.addEventListener('online', renew);
+        return () => {
+            active = false;
+            clearInterval(timer);
+            clearTimeout(retryTimer);
+            document.removeEventListener('visibilitychange', onVisible);
+            window.removeEventListener('online', renew);
+        };
+    }, [authGuard, logout, sessionVersion, token, user]);
 
     const isAuthenticated = Boolean(user);
 

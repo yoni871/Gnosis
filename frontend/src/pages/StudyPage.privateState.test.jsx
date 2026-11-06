@@ -12,7 +12,7 @@ import * as notes from '../services/notesService';
 import * as bookmarks from '../services/bookmarksService';
 import * as highlights from '../services/highlightsService';
 
-vi.mock('../services/authService', () => ({ getProfile: vi.fn(), loginUser: vi.fn(), registerUser: vi.fn() }));
+vi.mock('../services/authService', () => ({ getProfile: vi.fn(), loginUser: vi.fn(), registerUser: vi.fn(), refreshSession: vi.fn(), logoutSession: vi.fn().mockResolvedValue(undefined) }));
 vi.mock('../services/bibleService', () => ({ getBooks: vi.fn(), getTranslations: vi.fn(), getBibleChapter: vi.fn() }));
 vi.mock('../services/commentaryService', () => ({ getCommentaries: vi.fn(), getChapterCommentaries: vi.fn() }));
 vi.mock('../services/notesService', () => ({ getNotes: vi.fn(), createNote: vi.fn(), updateNote: vi.fn(), deleteNote: vi.fn() }));
@@ -43,6 +43,7 @@ afterAll(() => {
 });
 beforeEach(() => {
     vi.resetAllMocks();
+    authService.logoutSession.mockResolvedValue(undefined);
     vi.mocked(fetch).mockImplementation(async url => {
         if (!String(url).endsWith('/books/1/chapters')) throw new Error('Unexpected mocked URL');
         return { json: async () => [{ chapter: 1 }] };
@@ -146,4 +147,21 @@ test('mobile tab remains selected while its private journal is reset', async () 
     expect(notesTab).toHaveClass('text-[var(--color-brand)]');
     expect(screen.queryByText('A private note')).not.toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Write what you notice/)).toHaveValue('');
+});
+
+test.each([false, true])('renewal preserves the actual StudyPage draft (temporary failure=%s)', async fails => {
+    const token = exp => `header.${btoa(JSON.stringify({ sid: 'same-session', exp }))}.signature`;
+    const original = token(9999999999), renewed = token(9999999998);
+    localStorage.setItem('gnosisToken', original);
+    if (fails) authService.refreshSession.mockRejectedValue(new TypeError('Network unavailable'));
+    else authService.refreshSession.mockResolvedValue({ token: renewed });
+    const desktop = await mount();
+    fireEvent.click(desktop.getByRole('button', { name: 'Notes', exact: true }));
+    fireEvent.change(desktop.getByPlaceholderText(/Write what you notice/), { target: { value: 'Keep this private draft' } });
+    const version = auth.sessionVersion;
+    await act(async () => { window.dispatchEvent(new Event('online')); });
+    expect(desktop.getByPlaceholderText(/Write what you notice/)).toHaveValue('Keep this private draft');
+    expect(auth.token).toBe(fails ? original : renewed);
+    expect(auth.sessionVersion).toBe(version);
+    expect(authService.logoutSession).not.toHaveBeenCalled();
 });

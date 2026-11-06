@@ -83,6 +83,7 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
             GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq TO "${role}";
             GRANT SELECT,INSERT,DELETE ON rate_limit_attempts TO "${role}";
             GRANT SELECT,UPDATE ON rate_limit_sweep_state TO "${role}";
+            GRANT SELECT,INSERT,UPDATE ON auth_sessions,auth_refresh_tokens TO "${role}";
             GRANT SELECT,INSERT ON email_verification_tokens TO "${role}";
             GRANT UPDATE (email_verified_at) ON users TO "${role}";
             GRANT UPDATE (used_at, consumed_reason) ON email_verification_tokens TO "${role}"`);

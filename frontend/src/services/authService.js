@@ -16,8 +16,11 @@ function throwServiceError(data, fallback) {
 async function postJson(path, body, fallback) {
     const response = await fetch(`${API_URL}${path}`, {
         method: "POST",
+        signal: AbortSignal.timeout(15000),
+        credentials: "include",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "X-Gnosis-Session": "1"
         },
         body: JSON.stringify(body)
     });
@@ -36,7 +39,7 @@ export async function registerUser(userData) {
 }
 
 export async function loginUser(credentials) {
-    return postJson("/auth/login", credentials, "Unable to login.");
+    return sessionRequest(() => postJson("/auth/login", credentials, "Unable to login."));
 }
 
 export async function getProfile(token) {
@@ -65,4 +68,27 @@ export async function verifyEmail(token) {
 
 export async function resendVerification(email) {
     return postJson("/auth/resend-verification", { email }, "Unable to send a verification email.");
+}
+
+// Serialize cookie mutations, including a logout queued behind a pending login.
+let sessionQueue = Promise.resolve();
+function sessionRequest(work) {
+    const run = () => navigator.locks
+        ? navigator.locks.request('gnosis-session', work) : work();
+    const result = sessionQueue.then(run, run);
+    sessionQueue = result.catch(() => {});
+    return result;
+}
+export function refreshSession() {
+    return sessionRequest(() => postJson('/auth/refresh', {}, 'Please sign in again.'));
+}
+export function logoutSession(token, all = false) {
+    return sessionRequest(async () => {
+        const response = await fetch(`${API_URL}/auth/${all ? 'logout-all' : 'logout'}`, {
+            method: 'POST', credentials: 'include',
+            signal: AbortSignal.timeout(15000),
+            headers: { 'X-Gnosis-Session': '1', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+        });
+        if (!response.ok) throw new Error('Unable to revoke session.');
+    });
 }
