@@ -7,14 +7,14 @@ The dependency is pinned with npm registry provenance and lockfile integrity.
 
 ## Chapters
 
-- **Hero:** at suitable desktop sizes, hold for 0.6 viewport heights. Scrub a 7%
+- **Hero:** at suitable desktop sizes, hold for 0.6 viewport heights. Scrub a 10%
   scale of the intact photograph, lift/fade the copy, and blend into ivory.
   Touch/narrow/short layouts do not pin and use a smaller scene scale.
 - **Purpose:** a masked heading opens the chapter; three successive scroll
   intervals emphasize Scripture, Theology, and History through position and
   restrained icon scaling. No pin.
-- **Bible & Commentary:** the complete device composition scales from 82% to
-  100% on larger screens (91% on mobile), with coordinated copy movement.
+- **Bible & Commentary:** the complete device composition scales from 75% to
+  100% on larger screens (87.5% on mobile), with coordinated copy movement.
   Device screen overlays stay attached to their original figure. No pin.
 - **Beyond the Text:** focus on John 1:1, extend real SVG paths from the hub to
   their original endpoints, then sequence the six categories and hold the
@@ -31,6 +31,15 @@ interception. Reverse scrolling reverses the timelines. At most two pins add
 1.65 viewport heights total. Pinning requires width >=1200px, height >=900px,
 a fine pointer and hover; tall content is checked before pinning. Existing
 layout, fonts, imagery, routes and navigation remain the source of truth.
+
+Motion amplitude was strengthened approximately 30–50% from `fa3e768`, without
+changing pin lengths or adding chapters. Hero copy travels 126px on desktop;
+Purpose heading 50px and pillars 40px; the device figure travels 112px; passage
+cards travel 84px with an 11% scale excursion and staggered sequencing. Mobile
+uses smaller distances. SVG strokes taper from 1.45px back to their original 1px.
+Card hover uses the inner link while scroll transforms use its parent list item,
+so their transforms compose without fighting. Hover lift is fine-pointer only;
+reduced motion removes both lift and arrow motion.
 
 ## Lifecycle and accessibility
 

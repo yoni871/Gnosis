@@ -40,7 +40,8 @@ test('SVG paths grow from the real hub to their unchanged endpoints', () => {
     const stop = mountLandingMotion(page());
     const path = document.querySelector('path');
     const draw = mock.timelines.flatMap(t => t.calls).find(c => c[1] === path);
-    expect(draw[2]).toEqual({ attr: { d: 'M 50 50 L 50 50' } });
+    expect(draw[2]).toMatchObject({ attr: { d: 'M 50 50 L 50 50' }, strokeWidth: 1.45 });
+    expect(draw[3].strokeWidth).toBe(1);
     expect(draw[3].attr.d).toBe('M 50 50 L 80 70'); stop();
     expect(path.getAttribute('d')).toBe('M 50 50 L 80 70');
 });

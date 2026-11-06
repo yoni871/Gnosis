@@ -45,24 +45,24 @@ export function mountLandingMotion(root) {
                 start: "top top", end: () => `+=${Math.round(innerHeight * (heroPin ? .6 : .55))}`,
                 pin: heroPin, pinSpacing: true, anticipatePin: heroPin ? 1 : 0,
             })
-                .to(select(".landing-hero-img"), { scale: mobile ? 1.025 : 1.07, transformOrigin: "50% 65%", duration: 1.2 }, 0)
-                .to(select(".landing-hero-copy"), { y: mobile ? -36 : -90, opacity: 0, duration: .7 }, .12)
+                .to(select(".landing-hero-img"), { scale: mobile ? 1.035 : 1.10, transformOrigin: "50% 65%", duration: 1.2 }, 0)
+                .to(select(".landing-hero-copy"), { y: mobile ? -50 : -126, opacity: 0, duration: .7 }, .12)
                 .to(hero, { "--hero-ivory-transition": 1, duration: .5 }, .7);
 
             const purpose = timeline(select(".landing-purpose"), { start: "top 78%", end: "bottom 55%" });
-            purpose.fromTo(select("#landing-purpose-heading"), { clipPath: "inset(100% 0 0 0)", y: 36 }, { clipPath: "inset(0% 0 0 0)", y: 0, duration: .5, ease: "power2.out" }, 0);
+            purpose.fromTo(select("#landing-purpose-heading"), { clipPath: "inset(100% 0 0 0)", y: 50 }, { clipPath: "inset(0% 0 0 0)", y: 0, duration: .5, ease: "power2.out" }, 0);
             all(".landing-purpose-pillar").forEach((pillar, index) => {
-                const at = .35 + index * .46;
-                purpose.fromTo(pillar, { y: 28, opacity: .5 }, { y: 0, opacity: 1, duration: .42 }, at)
-                    .fromTo(pillar.querySelector(".landing-purpose-icon"), { scale: .82 }, { scale: 1.12, duration: .24 }, at)
+                const at = .35 + index * .58;
+                purpose.fromTo(pillar, { y: 40, x: mobile ? 0 : (index - 1) * 14, opacity: .5 }, { y: 0, x: 0, opacity: 1, duration: .42 }, at)
+                    .fromTo(pillar.querySelector(".landing-purpose-icon"), { scale: .75 }, { scale: 1.17, duration: .24 }, at)
                     .to(pillar.querySelector(".landing-purpose-icon"), { scale: 1, duration: .22 }, at + .24);
             });
 
             const showcase = timeline(select(".landing-bible-inner"), { start: "top 88%", end: "bottom 65%" });
             showcase.fromTo(select(".landing-device-showcase"), {
-                scale: mobile ? .91 : .82, y: mobile ? 36 : 80, x: mobile ? 0 : -26,
-            }, { scale: 1, x: 0, y: 0, duration: 1.3, ease: "power1.out" }, 0)
-                .fromTo(select(".landing-bible-copy"), { y: 34 }, { y: 0, duration: 1 }, .12);
+                scale: mobile ? .875 : .75, y: mobile ? 50 : 112, x: mobile ? 0 : -36,
+            }, { scale: 1, x: 0, y: 0, duration: 1.3, ease: "power2.inOut" }, 0)
+                .fromTo(select(".landing-bible-copy"), { y: 48 }, { y: 0, duration: 1 }, .12);
 
             const diagram = select(".landing-beyond-inner");
             const diagramPin = desktop && diagram.offsetHeight < innerHeight - 80;
@@ -71,24 +71,24 @@ export function mountLandingMotion(root) {
                 end: diagramPin ? () => `+=${Math.round(innerHeight * 1.05)}` : "center 42%",
                 pin: diagramPin, pinSpacing: true, anticipatePin: diagramPin ? 1 : 0,
             });
-            network.fromTo(select(".knowledge-diagram-hub"), { scale: 1.2 }, { scale: 1, duration: .65, ease: "power2.out" }, 0)
-                .fromTo(select(".landing-beyond-copy"), { y: 24 }, { y: 0, duration: .65 }, 0);
+            network.fromTo(select(".knowledge-diagram-hub"), { scale: 1.28 }, { scale: 1, duration: .65, ease: "power2.out" }, 0)
+                .fromTo(select(".landing-beyond-copy"), { y: 34 }, { y: 0, duration: .65 }, 0);
             const nodes = all(".knowledge-diagram-node");
             all(".knowledge-lines path").forEach((path, index) => {
                 const d = path.getAttribute("d");
                 const [x, y] = d.match(/-?\d+(?:\.\d+)?/g).map(Number);
-                network.fromTo(path, { attr: { d: `M ${x} ${y} L ${x} ${y}` } }, { attr: { d }, duration: .6 }, .45 + index % nodes.length * .18);
+                network.fromTo(path, { attr: { d: `M ${x} ${y} L ${x} ${y}` }, strokeWidth: 1.45 }, { attr: { d }, strokeWidth: 1, duration: .78 }, .45 + index % nodes.length * .24);
             });
             nodes.forEach((node, index) => {
-                network.fromTo(node, { scale: .86, opacity: .25 }, { scale: 1, opacity: 1, duration: .45, ease: "power2.out" }, .9 + index * .18);
+                network.fromTo(node, { scale: .80, opacity: .25 }, { scale: 1, opacity: 1, duration: .45, ease: "power2.out" }, 1.05 + index * .24);
             });
             // Hold the completed network briefly before releasing the pin.
             network.to({}, { duration: .35 });
 
             const closing = timeline(select(".landing-explore-final"), { start: "top 82%", end: "bottom 90%" });
-            closing.fromTo(select("#landing-explore-heading"), { y: 36, clipPath: "inset(100% 0 0 0)" }, { y: 0, clipPath: "inset(0% 0 0 0)", duration: .45, ease: "power2.out" }, 0)
-                .fromTo(all(".closing-passages > li"), { y: mobile ? 24 : 60, scale: .92 }, { y: 0, scale: 1, stagger: .08, duration: .6, ease: "power1.out" }, .3)
-                .fromTo([select(".closing-invitation"), select(".closing-explore-button")], { y: 20 }, { y: 0, duration: .4, stagger: .1 }, .95);
+            closing.fromTo(select("#landing-explore-heading"), { y: 50, clipPath: "inset(100% 0 0 0)" }, { y: 0, clipPath: "inset(0% 0 0 0)", duration: .45, ease: "power2.out" }, 0)
+                .fromTo(all(".closing-passages > li"), { y: mobile ? 34 : 84, scale: .89 }, { y: 0, scale: 1, stagger: .11, duration: .6, ease: "power1.out" }, .3)
+                .fromTo([select(".closing-invitation"), select(".closing-explore-button")], { y: 28 }, { y: 0, duration: .4, stagger: .1 }, 1.10);
 
             // Preserve native focus/anchor navigation. Focused controls must never
             // inherit a scrubbed opacity/transform from an offscreen chapter.
