@@ -1,0 +1,14 @@
+/* Only the enhanced hero receives this transition surface. Static defaults
+   remain unchanged; the approved photo is scaled as one intact scene. */
+.landing-page[data-scroll-narrative="active"] .landing-hero-shell {
+    isolation: isolate;
+}
+.landing-page[data-scroll-narrative="active"] .landing-hero-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: #faf7ef;
+    opacity: var(--hero-ivory-transition, 0);
+    pointer-events: none;
+}

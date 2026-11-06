@@ -1,0 +1,58 @@
+/* Scoped to this editorial introduction; reader, hero and navigation stay unchanged. */
+.landing-purpose {
+    --purpose-ivory: #faf7ef;
+    --purpose-green: #233e34;
+    --purpose-gold: #856a3b;
+    --purpose-rule: #c7b58e;
+    background: var(--purpose-ivory);
+    color: #383a35;
+    font-family: "Gnosis Hero Inter", var(--public-font-ui);
+    padding: clamp(3rem, 6vw, 5.5rem) var(--public-gutter) clamp(4rem, 8vw, 7rem);
+    text-align: center;
+}
+.landing-purpose-inner { max-width: 1120px; margin-inline: auto; }
+.landing-purpose-ornament {
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+    max-width: 420px; margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+    color: var(--purpose-gold);
+}
+.landing-purpose-ornament span { flex: 1; height: 1px; background: var(--purpose-rule); }
+.landing-purpose-ornament svg { width: 24px; height: 24px; flex: 0 0 24px; }
+.landing-purpose-eyebrow {
+    margin: 0 0 20px; color: var(--purpose-gold);
+    font-size: .65rem; font-weight: 600; letter-spacing: .18em; line-height: 1.7;
+}
+.landing-page .landing-purpose h2 {
+    max-width: 780px; margin: 0 auto 24px;
+    color: var(--purpose-green);
+    font-family: "Gnosis Hero Cormorant", "Gnosis Hero Georgia Fallback", Georgia, serif;
+    font-size: clamp(2.5rem, 4.3vw, 3.9rem); font-weight: 600;
+    line-height: 1.08; letter-spacing: -.025em; text-wrap: balance;
+}
+.landing-purpose-intro {
+    max-width: 64ch; margin: 0 auto; font-size: clamp(.95rem, 1.15vw, 1.04rem); line-height: 1.95;
+}
+.landing-purpose-pillars {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(3rem, 6vw, 5rem);
+}
+.landing-purpose-pillar { padding-inline: clamp(1.25rem, 3vw, 3rem); }
+.landing-purpose-pillar + .landing-purpose-pillar { border-left: 1px solid var(--purpose-rule); }
+.landing-purpose-icon { color: var(--purpose-gold); margin-bottom: 24px; }
+.landing-purpose-icon svg { display: block; width: 34px; height: 34px; margin-inline: auto; stroke-width: 1.25; }
+.landing-purpose .landing-purpose-pillar h3 {
+    margin: 0 0 16px; color: var(--purpose-green);
+    font-family: "Gnosis Hero Inter", var(--public-font-ui);
+    font-size: .72rem; font-weight: 600; letter-spacing: .14em; line-height: 1.7;
+}
+.landing-purpose-pillar h3 span { color: var(--purpose-gold); }
+.landing-purpose-pillar p { max-width: 30ch; margin: 0 auto; font-size: .9rem; line-height: 1.9; }
+@media (width < 768px) {
+    .landing-purpose-pillars { grid-template-columns: 1fr; gap: 2.5rem; }
+    .landing-purpose-pillar { padding: 0; }
+    .landing-purpose-pillar + .landing-purpose-pillar {
+        border-left: 0; border-top: 1px solid var(--purpose-rule);
+        padding-top: 2.5rem;
+    }
+    .landing-purpose-icon { margin-bottom: 18px; }
+}

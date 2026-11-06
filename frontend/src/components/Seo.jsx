@@ -35,12 +35,45 @@ function upsertLink(rel, href) {
     element.setAttribute("href", href);
 }
 
+function upsertJsonLd(jsonLd) {
+    const selector = 'script[type="application/ld+json"][data-seo-jsonld]';
+    let element = document.head.querySelector(selector);
+
+    if (!jsonLd) {
+        if (element) {
+            element.remove();
+        }
+        return;
+    }
+
+    if (!element) {
+        element = document.createElement("script");
+        element.setAttribute("type", "application/ld+json");
+        element.setAttribute("data-seo-jsonld", "");
+        document.head.appendChild(element);
+    }
+
+    element.textContent = JSON.stringify(jsonLd);
+}
+
+function removeMeta(attr, value) {
+    const element = document.head.querySelector(
+        `meta[${attr}="${value}"]`,
+    );
+    if (element) {
+        element.remove();
+    }
+}
+
 export default function Seo({
     title,
     description,
     canonical,
     robots = "index, follow",
     ogType = "website",
+    ogImage,
+    twitterCard = "summary",
+    jsonLd,
 }) {
     useEffect(() => {
         document.title = title;
@@ -51,7 +84,7 @@ export default function Seo({
         upsertMeta("property", "og:description", description);
         upsertMeta("property", "og:type", ogType);
         upsertMeta("property", "og:site_name", "Gnosis");
-        upsertMeta("name", "twitter:card", "summary");
+        upsertMeta("name", "twitter:card", twitterCard);
         upsertMeta("name", "twitter:title", title);
         upsertMeta("name", "twitter:description", description);
 
@@ -59,7 +92,26 @@ export default function Seo({
             upsertLink("canonical", canonical);
             upsertMeta("property", "og:url", canonical);
         }
-    }, [title, description, canonical, robots, ogType]);
+
+        if (ogImage) {
+            upsertMeta("property", "og:image", ogImage);
+            upsertMeta("name", "twitter:image", ogImage);
+        } else {
+            removeMeta("property", "og:image");
+            removeMeta("name", "twitter:image");
+        }
+
+        upsertJsonLd(jsonLd);
+    }, [
+        title,
+        description,
+        canonical,
+        robots,
+        ogType,
+        ogImage,
+        twitterCard,
+        jsonLd,
+    ]);
 
     return null;
 }

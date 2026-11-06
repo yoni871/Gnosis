@@ -3,10 +3,10 @@
 What this covers: the SEO infrastructure for studygnosis.com as of the
 SEO-foundation change — audit findings, what was implemented, the plan
 for making chapter content indexable in initial HTML, landing-page
-preparation, and the remaining Google Search Console steps.
+implementation, and the remaining Google Search Console steps.
 
 Status: the foundation in this document is implemented and tested. The
-landing page is NOT built yet (see "Landing page preparation"), and
+landing page is implemented (see section 4), and
 chapter content is NOT yet in the initial HTML (see "Indexable chapter
 content"). Nothing here has been submitted to Google; Search Console
 verification and sitemap submission are still open steps.
@@ -81,7 +81,7 @@ All paths are under `frontend/` unless noted.
   `noindex, nofollow` and clean canonicals (`/search` without `?q=`).
   Search results must not appear in search results, and auth pages
   must never be indexed.
-- `index.html` carries the site-wide default metadata (the future
+- `index.html` carries the site-wide default metadata (the
   landing page's title and description — see section 4). It carries no
   canonical tag on purpose: the shell is served for every route, so a
   static canonical would point every chapter URL at the wrong address.
@@ -98,8 +98,8 @@ All paths are under `frontend/` unless noted.
 ### Sitemap (`scripts/generate-sitemap.js`, `src/utils/sitemap.js`)
 
 - `public/sitemap.xml` lists exactly the public, canonical, indexable
-  pages: **1,189 Bible chapter URLs, nothing else.** `/` is excluded
-  while it redirects (see section 4); `/login`, `/register`, and
+  pages: **1,189 Bible chapter URLs plus the homepage and About page (1,191 total).**
+  `/login`, `/register`, and
   `/search` are excluded by design.
 - Chapter counts are verified, not guessed. The manifest
   (`src/data/bibleChapters.json`) was counted from
@@ -116,7 +116,7 @@ All paths are under `frontend/` unless noted.
   picks the new pages up automatically.
 - `lastmod`, `changefreq`, and `priority` are omitted deliberately: no
   per-chapter modification date exists, and Google ignores changefreq
-  and priority. The file is a single sitemap (1,189 URLs, far under the
+  and priority. The file is a single sitemap (1,191 URLs, far under the
   50,000 URL / 50 MB limits), so no sitemap index is needed.
 - Serving: files in `public/` are copied to the build root, and Vercel
   serves static files before the SPA-fallback rewrite applies. The
@@ -151,7 +151,7 @@ All paths are under `frontend/` unless noted.
 - `src/components/Seo.test.jsx` — tags are set, and navigating from a
   chapter to a noindex page replaces (never duplicates) them.
 - `src/utils/sitemap.test.js` — builder output, the verified manifest
-  totals (66 books, 1,189 chapters), the exact 1,189-URL production
+  totals (66 books, 1,189 chapters), the exact 1,191-URL production
   list with no duplicates, spaces, query strings, or auth/search URLs,
   and byte-equality between the committed `public/sitemap.xml` and the
   generator output.
@@ -185,35 +185,62 @@ and no page claims a feature it does not have.
   commentary` / `[Book] [Chapter] explained` pattern is the template
   itself, applied to all 1,189 chapters.
 
-## 4. Landing page preparation
+## 4. Landing page (built)
 
-The landing page is NOT built in this change. What is ready for it:
+The landing page now exists at `/` (`src/pages/LandingPage.jsx`),
+and the preparation items from the SEO foundation are done:
 
-1. **Routing.** `src/App.jsx` marks the `/` route as the LANDING PAGE
-   SWAP POINT with the exact steps: when the landing page is ready,
-   replace the redirect element with `<LandingPage />` — the redirect
-   stays until then, and the reader stays at `/bible/:book/:chapter`
-   either way.
-2. **Metadata.** `LANDING_TITLE` and `LANDING_DESCRIPTION` in
-   `src/utils/seo.js` hold the approved landing-page title and
-   description, and `index.html` already carries them as the site-wide
-   default. The landing page will set the same values explicitly
-   through `<Seo>`.
-3. **Sitemap.** When the landing page ships, pass `["/"]` as
-   `extraPaths` to `buildSitemapXml` in
-   `scripts/generate-sitemap.js` and regenerate `public/sitemap.xml`.
-   Until then `/` must stay out of the sitemap because it redirects —
-   a redirecting URL in a sitemap is a soft-404 signal to Google.
-4. **Content notes for the page itself** (not built here): introduce
-   Gnosis and its purpose, highlight Bible study features (Scripture
-   text, verse-by-verse commentary including Matthew Henry and
-   Jamieson-Fausset-Brown, notes, bookmarks, highlights), and encourage
-   visitors to start studying — with a crawlable link to
-   `/bible/Genesis/1` so crawlers reach the reader from the homepage.
-   An `og:image` asset should be created for the landing page (the
-   current `/gnosis.svg` logo is an SVG, which social previews handle
-   poorly); no og:image tag is emitted until a real raster asset
-   exists, rather than pointing at a guessed file.
+1. **Routing.** The `/` route renders `<LandingPage />`; the old
+   redirect to `/bible/Genesis/1` is gone, and the reader stays at
+   `/bible/:book/:chapter`.
+2. **Metadata.** The landing page sets `LANDING_TITLE` and
+   `LANDING_DESCRIPTION` from `src/utils/seo.js` explicitly through
+   `<Seo>`, with canonical `https://studygnosis.com/`, Open Graph
+   and Twitter tags, and `WebSite` JSON-LD.
+3. **Sitemap.** `scripts/generate-sitemap.js` passes `["/", "/about"]` as
+   `extraPaths`, so `public/sitemap.xml` lists 1,189 chapter URLs
+   plus the homepage and `/about` (1,191 total, About last).
+4. **Content.** The page introduces Gnosis and its purpose,
+   highlights Bible study features (Scripture text, verse-by-verse
+   commentary including Matthew Henry and Jamieson-Fausset-Brown,
+   notes and highlights), and links crawlers to the reader through
+   `Start Studying` (`/bible/Genesis/1`) and the Explore Scripture
+   passage links. Its `og:image` is a raster hero asset
+   (`/images/landing/sunset-hero-images/hero-1200.jpg`); the `/gnosis.svg` logo is an
+   SVG, which social previews handle poorly, so it is not used as
+   the social image.
+
+The initial HTML also supplies the hero social-image URL and large Twitter
+card for crawlers that do not execute JavaScript. These are site-wide
+fallbacks; route-specific canonical, social metadata, and homepage WebSite
+JSON-LD still require rendering. No static homepage canonical or WebSite
+JSON-LD is inserted into the shared chapter HTML shell.
+
+Public pages share the reader theme tokens, the public header, and footer.
+Landing navigation overlays the same untouched hero image at every width,
+with a restrained readability gradient. Below 1200px, copy sits below the
+image; wider screens use left-aligned overlay copy. Disclosure buttons retain
+Escape focus restoration, outside-click and focus-leave dismissal.
+Image delivery uses WebP with JPEG fallback,
+`100vw` sizes, explicit dimensions, and high hero fetch priority. There
+are no below-the-fold raster images or new dependencies.
+
+### About Gnosis
+
+`/about` is a public, indexable, text-focused page with unique title and
+description, canonical `https://studygnosis.com/about`, Open Graph and
+Twitter text metadata, and `index, follow`. It emits no organization claims
+or structured data and has no photographic content. All public About Us links lead here;
+the homepage retains only a short introduction. The existing SPA rewrite
+supports direct access and refresh without configuration changes.
+
+The page explains mission, existing study tools, the name's distinction from
+Gnosticism, the two commentary sources, and Scripture-first study principles.
+It uses the same typography, burgundy buttons, parchment surfaces and borders
+as the landing page. Both headers use the existing `/gnosis.svg` logo, with
+identical dimensions and a home link. An editorial grid groups the mission,
+resources, and principles; the contents links wrap on narrow screens. Shared
+width, gutter, spacing, radius, and color tokens keep public pages aligned. No backend or authentication contract changes.
 
 ## 5. Indexable chapter content (prerendering plan)
 
@@ -270,12 +297,15 @@ remain client-only and never leak into prerendered output.
 
 ### Structured data
 
-No JSON-LD is emitted in this change, deliberately. There is no
+No chapter JSON-LD is emitted, deliberately. There is no
 Google-supported rich-result type for Scripture text, and inventing
 `Article` markup for Bible chapters would misdescribe the content.
-`BreadcrumbList` becomes worthwhile once `/` is a real landing page
-(Home → Bible → Book → Chapter); until then a breadcrumb pointing at
-a redirecting homepage would be wrong. Add it with the landing page.
+`BreadcrumbList` becomes worthwhile now that `/` is a real landing
+page (Home → Bible → Book → Chapter). It belongs on the chapter
+pages, not on the homepage itself, so it was not added by the
+landing-page change; the homepage carries `WebSite` JSON-LD only.
+Adding `BreadcrumbList` to chapter pages is a separate, small
+follow-up.
 
 ### Semantic HTML, already in place
 
@@ -306,7 +336,7 @@ should be made. When ready:
    after deploy before submitting).
 4. **After submission, check** the Pages report for chapter URLs
    (expect gradual indexing — see section 5 on render deferral) and
-   the Sitemaps report for the 1,189 discovered URLs. If chapter pages
+   the Sitemaps report for the 1,191 discovered URLs. If chapter pages
    appear as "Crawled — currently not indexed" in large numbers, that
    is the signal to prioritize Phase 2 prerendering.
 5. **When the landing page ships**, request indexing for `/` and
@@ -317,9 +347,6 @@ should be made. When ready:
 - Phase 2 prerendering (section 5) — the remaining gap between
   "Google can render chapters" and "chapter content is in the initial
   HTML".
-- Landing page build (section 4) — content, design, and the sitemap
-  addition.
-- `og:image` raster asset for social previews (section 4).
 - `Disallow: /verify-email` in `robots.txt` when that route lands.
 - BreadcrumbList JSON-LD with the landing page (section 5).
 - If the production domain ever changes, update the default in
