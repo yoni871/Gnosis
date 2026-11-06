@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { afterAll, beforeAll, beforeEach, expect, test, vi } from 'vitest';
 import StudyPage from './StudyPage';
 import AuthContext, { AuthProvider } from '../context/AuthContext';
@@ -23,6 +23,13 @@ let auth;
 function Probe() {
     const value = useContext(AuthContext);
     useEffect(() => { auth = value; }, [value]);
+    return null;
+}
+// Records the router location so a test can read the URL the reader
+// actually shows, which MemoryRouter does not put on window.location.
+let location;
+function LocationProbe() {
+    location = useLocation();
     return null;
 }
 function deferred() {
@@ -59,8 +66,8 @@ beforeEach(() => {
     bookmarks.getBookmarks.mockResolvedValue([]);
     highlights.getHighlights.mockResolvedValue([]);
 });
-async function mount(strict = false) {
-    render(<ThemeProvider><AuthProvider><Probe /><MemoryRouter initialEntries={['/bible/Genesis/1?verse=1&translation=KJV']}><Routes><Route path="/bible/:book/:chapter" element={<StudyPage />} /></Routes></MemoryRouter></AuthProvider></ThemeProvider>, { reactStrictMode: strict });
+async function mount(strict = false, entry = '/bible/Genesis/1?verse=1&translation=KJV') {
+    render(<ThemeProvider><AuthProvider><Probe /><MemoryRouter initialEntries={[entry]}><LocationProbe /><Routes><Route path="/bible/:book/:chapter" element={<StudyPage />} /></Routes></MemoryRouter></AuthProvider></ThemeProvider>, { reactStrictMode: strict });
     await act(async () => {});
     return within(document.querySelector('main'));
 }
@@ -146,4 +153,27 @@ test('mobile tab remains selected while its private journal is reset', async () 
     expect(notesTab).toHaveClass('text-[var(--color-brand)]');
     expect(screen.queryByText('A private note')).not.toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Write what you notice/)).toHaveValue('');
+});
+
+test('the reader writes its position to the URL so a refresh restores it', async () => {
+    // The translations mock needs a third row: the reader defaults to
+    // data[2] when the URL carries no translation, and the shared mock
+    // only returns one.
+    bible.getTranslations.mockResolvedValue([
+        { abbreviation: 'BSB', name: 'Berean Standard Bible' },
+        { abbreviation: 'WEB', name: 'World English Bible' },
+        { abbreviation: 'KJV', name: 'King James Version' },
+    ]);
+    const desktop = await mount(false, '/bible/Genesis/1');
+    expect(desktop.getByText('Public Scripture stays')).toBeInTheDocument();
+
+    // Once the chapter and translations load, the URL must carry the
+    // position the reader is actually at — translation and commentary —
+    // so refreshing this page restores it instead of the defaults.
+    await waitFor(() => {
+        expect(new URLSearchParams(location.search).get('translation')).toBe('KJV');
+        expect(new URLSearchParams(location.search).get('commentary')).toBe('3');
+    });
+    expect(location.pathname).toBe('/bible/Genesis/1');
+    expect(desktop.getByText('Public Scripture stays')).toBeInTheDocument();
 });
