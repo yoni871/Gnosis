@@ -133,17 +133,24 @@ function decodeEntities(text) {
 // ("Lord ,"). A stripped tag must also never leave a space before
 // punctuation, so any remaining one is dropped.
 //
-// One exception: an element with no text in it at all (a cross-reference
-// or footnote marker, which carries no text when notes are excluded)
-// sits BETWEEN words, so it becomes a space — stripping it outright
-// joined the words on either side ("Or<span></span>who" -> "Orwho").
+// One exception: invisible markup that carries no verse text sits BETWEEN
+// words, so it becomes a space — stripping it outright joined the words
+// on either side. That covers an element with no text in it (a
+// cross-reference or footnote marker, which carries no text when notes
+// are excluded: "Or<span></span>who" -> "Orwho"), an HTML comment
+// ("Or<!-- ... -->who"), and a tag that opens but never closes in this
+// fragment. A tag that does close later just wraps text and is dropped.
 function stripVerseHtml(html) {
     let text = html || "";
+    text = text.replace(/<!--[\s\S]*?-->/g, " ");
     text = text.replace(/<p[^>]*class="s\d?"[^>]*>[\s\S]*?<\/p>/g, " ");
     text = text.replace(/<span[^>]*class="v"[^>]*>\d+<\/span>/g, " ");
     text = text.replace(/<\/?(p|div|br|h[1-6]|li|ul|ol|table|tr|td|th)[^>]*>/gi, " ");
     text = text.replace(/<([a-z][a-z0-9]*)[^>]*>(?:\s|<[^>]+>)*<\/\1>/gi, " ");
     text = text.replace(/<[^>]+\/>/g, " ");
+    text = text.replace(/<([a-z][a-z0-9]*)[^>]*>/gi, (match, tag, offset, str) =>
+        new RegExp(`</${tag}\\s*>`, "i").test(str.slice(offset + match.length)) ? "" : " "
+    );
     text = text.replace(/<[^>]+>/g, "");
     return decodeEntities(text)
         .replace(/\s+/g, " ")
