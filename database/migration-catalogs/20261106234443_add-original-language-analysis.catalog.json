@@ -1,0 +1,864 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "ol_lexical_entries.gloss",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_lexical_entries.id",
+      "definition": {
+        "type": "integer",
+        "default": "nextval('ol_lexical_entries_id_seq'::regclass)",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_lexical_entries.language",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_lexical_entries.lemma",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_lexical_entries.lexical_morphology",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_lexical_entries.source_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_lexical_entries.strong_base",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_lexical_entries.strong_number",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_lexical_entries.transliteration",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_morphology_codes.code",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_morphology_codes.expansion",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_morphology_codes.id",
+      "definition": {
+        "type": "integer",
+        "default": "nextval('ol_morphology_codes_id_seq'::regclass)",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_morphology_codes.language",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_morphology_codes.source_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_sources.attribution",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_sources.code",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_sources.description",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_sources.id",
+      "definition": {
+        "type": "integer",
+        "default": "nextval('ol_sources_id_seq'::regclass)",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_sources.language",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_sources.license",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_sources.name",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_sources.text_edition",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_sources.url",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.book_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.chapter_number",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.gloss",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.grammar_display",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.id",
+      "definition": {
+        "type": "integer",
+        "default": "nextval('ol_word_occurrences_id_seq'::regclass)",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.language",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.morphemes",
+      "definition": {
+        "type": "jsonb",
+        "default": "'[]'::jsonb",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.morphology_code",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.source_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.strong_number",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.transliteration",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.verse_number",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.word_index",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "ol_word_occurrences.word_text",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_lexical_entries.ol_lexical_entries_language_check",
+      "definition": {
+        "sql": "CHECK ((language = ANY (ARRAY['hebrew'::text, 'aramaic'::text, 'greek'::text])))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_lexical_entries.ol_lexical_entries_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_lexical_entries.ol_lexical_entries_source_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (source_id) REFERENCES ol_sources(id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_lexical_entries.ol_lexical_entries_strong_number_key",
+      "definition": {
+        "sql": "UNIQUE (strong_number)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_morphology_codes.ol_morphology_codes_language_check",
+      "definition": {
+        "sql": "CHECK ((language = ANY (ARRAY['hebrew'::text, 'aramaic'::text, 'greek'::text])))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_morphology_codes.ol_morphology_codes_natural_key",
+      "definition": {
+        "sql": "UNIQUE (language, code)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_morphology_codes.ol_morphology_codes_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_morphology_codes.ol_morphology_codes_source_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (source_id) REFERENCES ol_sources(id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_sources.ol_sources_code_key",
+      "definition": {
+        "sql": "UNIQUE (code)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_sources.ol_sources_language_check",
+      "definition": {
+        "sql": "CHECK ((language = ANY (ARRAY['hebrew'::text, 'aramaic'::text, 'greek'::text])))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_sources.ol_sources_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_book_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (book_id) REFERENCES bible_books(id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_chapter_number_check",
+      "definition": {
+        "sql": "CHECK ((chapter_number > 0))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_language_check",
+      "definition": {
+        "sql": "CHECK ((language = ANY (ARRAY['hebrew'::text, 'aramaic'::text, 'greek'::text])))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_natural_key",
+      "definition": {
+        "sql": "UNIQUE (source_id, book_id, chapter_number, verse_number, word_index)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_source_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (source_id) REFERENCES ol_sources(id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_strong_number_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (strong_number) REFERENCES ol_lexical_entries(strong_number)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_verse_number_check",
+      "definition": {
+        "sql": "CHECK ((verse_number > 0))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_word_index_check",
+      "definition": {
+        "sql": "CHECK ((word_index > 0))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_lexical_entries_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX ol_lexical_entries_pkey ON public.ol_lexical_entries USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_lexical_entries_strong_base_idx",
+      "definition": {
+        "sql": "CREATE INDEX ol_lexical_entries_strong_base_idx ON public.ol_lexical_entries USING btree (strong_base)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_lexical_entries_strong_number_key",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX ol_lexical_entries_strong_number_key ON public.ol_lexical_entries USING btree (strong_number)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_morphology_codes_natural_key",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX ol_morphology_codes_natural_key ON public.ol_morphology_codes USING btree (language, code)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_morphology_codes_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX ol_morphology_codes_pkey ON public.ol_morphology_codes USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_sources_code_key",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX ol_sources_code_key ON public.ol_sources USING btree (code)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_sources_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX ol_sources_pkey ON public.ol_sources USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_word_occurrences_natural_key",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX ol_word_occurrences_natural_key ON public.ol_word_occurrences USING btree (source_id, book_id, chapter_number, verse_number, word_index)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_word_occurrences_passage_idx",
+      "definition": {
+        "sql": "CREATE INDEX ol_word_occurrences_passage_idx ON public.ol_word_occurrences USING btree (book_id, chapter_number, verse_number, word_index)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_word_occurrences_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX ol_word_occurrences_pkey ON public.ol_word_occurrences USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "ol_word_occurrences_strong_idx",
+      "definition": {
+        "sql": "CREATE INDEX ol_word_occurrences_strong_idx ON public.ol_word_occurrences USING btree (strong_number)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "ol_lexical_entries",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "ol_lexical_entries_id_seq",
+      "definition": {
+        "rls": false,
+        "kind": "S",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "ol_morphology_codes",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "ol_morphology_codes_id_seq",
+      "definition": {
+        "rls": false,
+        "kind": "S",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "ol_sources",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "ol_sources_id_seq",
+      "definition": {
+        "rls": false,
+        "kind": "S",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "ol_word_occurrences",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "ol_word_occurrences_id_seq",
+      "definition": {
+        "rls": false,
+        "kind": "S",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "sequence",
+      "name": "ol_lexical_entries_id_seq",
+      "definition": {
+        "max": 2147483647,
+        "min": 1,
+        "type": "integer",
+        "cache": 1,
+        "cycle": false,
+        "start": 1,
+        "increment": 1,
+        "ownerTable": "ol_lexical_entries",
+        "ownerColumn": "id"
+      }
+    },
+    {
+      "kind": "sequence",
+      "name": "ol_morphology_codes_id_seq",
+      "definition": {
+        "max": 2147483647,
+        "min": 1,
+        "type": "integer",
+        "cache": 1,
+        "cycle": false,
+        "start": 1,
+        "increment": 1,
+        "ownerTable": "ol_morphology_codes",
+        "ownerColumn": "id"
+      }
+    },
+    {
+      "kind": "sequence",
+      "name": "ol_sources_id_seq",
+      "definition": {
+        "max": 2147483647,
+        "min": 1,
+        "type": "integer",
+        "cache": 1,
+        "cycle": false,
+        "start": 1,
+        "increment": 1,
+        "ownerTable": "ol_sources",
+        "ownerColumn": "id"
+      }
+    },
+    {
+      "kind": "sequence",
+      "name": "ol_word_occurrences_id_seq",
+      "definition": {
+        "max": 2147483647,
+        "min": 1,
+        "type": "integer",
+        "cache": 1,
+        "cycle": false,
+        "start": 1,
+        "increment": 1,
+        "ownerTable": "ol_word_occurrences",
+        "ownerColumn": "id"
+      }
+    }
+  ],
+  "removed": []
+}

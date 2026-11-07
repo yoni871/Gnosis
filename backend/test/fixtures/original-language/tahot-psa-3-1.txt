@@ -1,0 +1,9 @@
+# Test fixture: excerpt of STEPBible-Data (Tyndale House / STEPBible.org), CC BY 4.0.
+# Source: https://github.com/STEPBible/STEPBible-Data — do not redistribute the full dataset.
+Psa.3.1(3.2)#01=L	יְ֭הוָה	Yah.weh	O Yahweh	{H3068G}	HNpt			H3068G			{H3068G=יהוה=LORD»LORD@Gen.1.1-Heb}					
+Psa.3.1(3.2)#02=L	מָֽה\־	mah-	how!	{H4100}\H9014	HPi			H4100			{H4100=מָה=what?}\H9014=־=link					
+Psa.3.1(3.2)#03=L	רַבּ֣וּ	ra.Bu	they are many	{H7231}	HVqp3cp			H7231			{H7231=רָבַב=to multiply}					
+Psa.3.1(3.2)#04=L	צָרָ֑/י	tza.Ra/i	opponents/ my	{H6862C}/H9020	HNcmpc/Sp1bs			H6862C			{H6862C=צַר=enemy}/H9020=Ps1c=my					
+Psa.3.1(3.2)#05=L	רַ֝בִּ֗ים	ra.Bim	many [people]	{H7227A}	HAampa			H7227A			{H7227A=רַב=many}					
+Psa.3.1(3.2)#06=L	קָמִ֥ים	ka.Mim	[are] rising up	{H6965J}	HVqrmpa			H6965J			{H6965J=קוּם=: attack»to arise:4_attack;_oppose}					
+Psa.3.1(3.2)#07=L	עָלָֽ/י\׃	'a.La/i	on/ me	{H5921A}/H9030\H9016	HR/Sp1bs			H5921A			{H5921A=עַל=upon}/H9030=Os1c=me\H9016=׃=verseEnd					
