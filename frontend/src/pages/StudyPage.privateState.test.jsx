@@ -177,3 +177,60 @@ test('the reader writes its position to the URL so a refresh restores it', async
     expect(location.pathname).toBe('/bible/Genesis/1');
     expect(desktop.getByText('Public Scripture stays')).toBeInTheDocument();
 });
+
+// The multi-verse selection tests below need a chapter with more than
+// the shared mock's single verse.
+const threeVerseChapter = [
+    { verse_number: 1, text: 'First verse text' },
+    { verse_number: 2, text: 'Second verse text' },
+    { verse_number: 3, text: 'Third verse text' },
+];
+
+test('clicking verses one after another accumulates the selection and the URL carries both', async () => {
+    bible.getBibleChapter.mockResolvedValue(threeVerseChapter);
+    const desktop = await mount(false, '/bible/Genesis/1?translation=KJV');
+    expect(desktop.getByText('First verse text')).toBeInTheDocument();
+
+    fireEvent.click(desktop.getByText('First verse text'));
+    fireEvent.click(desktop.getByText('Third verse text'));
+
+    // Both verses stay selected, and the URL carries the whole list —
+    // the regression collapsed this to just the last verse clicked.
+    await waitFor(() => {
+        expect(new URLSearchParams(location.search).get('verse')).toBe('1,3');
+    });
+    expect(desktop.getByText('First verse text')).toHaveClass('underline');
+    expect(desktop.getByText('Third verse text')).toHaveClass('underline');
+    expect(desktop.getByText('Second verse text')).not.toHaveClass('underline');
+});
+
+test('a refresh restores a multi-verse selection from the URL', async () => {
+    bible.getBibleChapter.mockResolvedValue(threeVerseChapter);
+    const desktop = await mount(false, '/bible/Genesis/1?verse=1,3&translation=KJV');
+    expect(desktop.getByText('First verse text')).toBeInTheDocument();
+
+    // Both verses come back selected once the URL's list is applied.
+    await waitFor(() => {
+        expect(desktop.getByText('First verse text')).toHaveClass('underline');
+        expect(desktop.getByText('Third verse text')).toHaveClass('underline');
+    });
+    // And the URL keeps the whole list instead of collapsing to just 3.
+    expect(new URLSearchParams(location.search).get('verse')).toBe('1,3');
+    expect(desktop.getByText('Second verse text')).not.toHaveClass('underline');
+});
+
+test('deselecting one verse keeps the rest selected', async () => {
+    bible.getBibleChapter.mockResolvedValue(threeVerseChapter);
+    const desktop = await mount(false, '/bible/Genesis/1?verse=1,3&translation=KJV');
+    await waitFor(() => {
+        expect(desktop.getByText('First verse text')).toHaveClass('underline');
+    });
+
+    fireEvent.click(desktop.getByText('First verse text'));
+
+    await waitFor(() => {
+        expect(new URLSearchParams(location.search).get('verse')).toBe('3');
+    });
+    expect(desktop.getByText('First verse text')).not.toHaveClass('underline');
+    expect(desktop.getByText('Third verse text')).toHaveClass('underline');
+});

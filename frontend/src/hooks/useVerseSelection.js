@@ -47,6 +47,15 @@ export default function useVerseSelection() {
         });
     }, [setSelection]);
 
+    // Replace the current selection with an explicit set of verses in
+    // one chapter (used when restoring a selection from the URL).
+    const replaceSelectionSet = useCallback((bookId, chapter, verseNumbers) => {
+        setSelection({
+            bookId,
+            verses: verseNumbers.map((verse) => ({ chapter, verse }))
+        });
+    }, [setSelection]);
+
     // Remove selected verses missing from a successfully loaded chapter.
     const retainAvailableVerses = useCallback((bookId, chapter, verses) => {
         // Use a Set for quick verse-number lookups.
@@ -102,6 +111,7 @@ export default function useVerseSelection() {
        selection,
         toggleVerse,
         replaceSelection,
+        replaceSelectionSet,
         retainAvailableVerses,
         clearSelection
     };
