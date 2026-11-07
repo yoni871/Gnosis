@@ -64,6 +64,19 @@ function parseEsvPassages(passages) {
     return verses;
 }
 
+// The five single-chapter books. Crossway's ESV API parses a free-text
+// reference such as `q=Obadiah 1` as verse 1 of Obadiah, not chapter 1,
+// so requesting chapter 1 of these books returns a single verse. Sending
+// just the book name (`q=Obadiah`) returns the whole (only) chapter.
+// Every other book keeps the existing `q=<Book> <chapter>` format.
+const SINGLE_CHAPTER_BOOKS = new Set([
+    "Obadiah",
+    "Philemon",
+    "Jude",
+    "2 John",
+    "3 John",
+]);
+
 async function fetchEsvChapter(book, chapter, options = {}) {
     const apiKey = options.apiKey || process.env.ESV_API_KEY;
     if (!apiKey) {
@@ -73,8 +86,12 @@ async function fetchEsvChapter(book, chapter, options = {}) {
         );
     }
     const fetchImpl = options.fetchImpl || fetch;
+    const query =
+        SINGLE_CHAPTER_BOOKS.has(book) && Number(chapter) === 1
+            ? book
+            : `${book} ${chapter}`;
     const params = new URLSearchParams({
-        q: `${book} ${chapter}`,
+        q: query,
         "include-verse-numbers": "true",
         "include-headings": "false",
         "include-footnotes": "false",
