@@ -4,7 +4,7 @@ export const ABOUT_SECTIONS = [
     { id: "about-gnosis", label: "About Gnosis" },
     { id: "meaning", label: "The Meaning of Gnosis" },
     { id: "scripture", label: "Gnosis in Scripture" },
-    { id: "mission", label: "Our Mission" },
+    { id: "mission", label: "Mission" },
     { id: "vision", label: "Our Vision" },
 ];
 export const GNOSIS_PASSAGES = [

@@ -137,19 +137,18 @@ export default function LandingPage() {
                             </p>
                             <div className="landing-hero-ctas">
                                 {savedState ? (
-                                    <div className="landing-continue">
-                                        <Link
-                                            to={readingStateUrl(savedState)}
-                                            className="landing-btn landing-btn-primary landing-btn-large"
-                                            aria-describedby="landing-reading-location"
-                                        >
-                                            Continue reading →
-                                        </Link>
-                                        <p id="landing-reading-location" className="landing-continue-note">
-                                            <span>Pick up where you left off.</span>{" "}
-                                            <strong>{readingStateLabel(savedState)}</strong>
-                                        </p>
-                                    </div>
+                                    <Link
+                                        to={readingStateUrl(savedState)}
+                                        className="landing-btn landing-btn-primary landing-btn-large landing-continue"
+                                        aria-labelledby="landing-continue-label"
+                                        aria-describedby="landing-reading-location"
+                                    >
+                                        <span id="landing-continue-label" className="landing-continue-title">Continue Reading →</span>
+                                        <span id="landing-reading-location" className="landing-continue-subtitle">
+                                            Pick up where you left off ·{" "}
+                                            <span className="landing-continue-location">{readingStateLabel(savedState)}</span>
+                                        </span>
+                                    </Link>
                                 ) : (
                                     <Link
                                         to={STUDY_DESTINATION}
