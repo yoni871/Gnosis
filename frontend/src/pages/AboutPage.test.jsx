@@ -16,17 +16,21 @@ describe("About Gnosis", () => {
         const { container } = renderAbout();
         expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("About Gnosis");
-        for (const name of ["Why the Name Gnosis?", "Gnosis in Scripture", "Our Mission", "Our Vision"]) {
+        for (const name of ["Why the Name Gnosis?", "Gnosis in Scripture", "OUR MISSION", "Our Vision"]) {
             expect(screen.getByRole("heading", { level: 2, name })).toBeInTheDocument();
         }
-        expect(screen.getAllByRole("heading", { name: "Our Mission", exact: true })).toHaveLength(1);
-        expect(screen.getAllByText("Our Mission", { exact: true })).toHaveLength(1);
+        expect(screen.getAllByRole("heading", { name: "OUR MISSION", exact: true })).toHaveLength(1);
+        expect(screen.getAllByText("OUR MISSION", { exact: true })).toHaveLength(1);
         expect(within(screen.getByRole("navigation", { name: "On this page" })).getByRole("link", { name: "Mission", exact: true })).toHaveAttribute("href", "#mission");
-        const statement = within(screen.getByRole("region", { name: "Our Mission" })).getByText("Make biblical knowledge more accessible and encourage thoughtful study of Scripture through its theological and historical context.");
+        const statement = within(screen.getByRole("region", { name: "OUR MISSION" })).getByText("Make biblical knowledge more accessible and encourage thoughtful study of Scripture through its theological and historical context.");
         expect(statement.tagName).toBe("P");
         expect(screen.getByText(/not connected to Gnosticism or its teachings/)).toBeInTheDocument();
         expect(screen.getByText(/not inspired Scripture, an error-free authority/)).toBeInTheDocument();
-        expect(screen.getByText(/Today, Gnosis brings Scripture/)).toBeInTheDocument();
+        expect(screen.getByText("Today, Gnosis brings Scripture, biblical commentary, and personal study tools together in one place, helping readers explore God's Word through deeper study, reflection, and understanding.")).toBeInTheDocument();
+        expect(screen.queryByText(/Matthew Henry|Jamieson|Fausset|Brown/)).toBeNull();
+        expect(screen.getByRole("heading", { name: "OUR MISSION", level: 2 })).toHaveClass("about-editorial-eyebrow");
+        expect(screen.getByText("LOOKING AHEAD")).toHaveClass("about-editorial-eyebrow");
+        expect(statement).toHaveClass("about-statement");
         expect(container.querySelector("main img, main picture, main video")).toBeNull();
         const home = within(screen.getByRole("banner")).getByRole("link", { name: "Gnosis home" });
         expect(home).toHaveAttribute("href", "/");
