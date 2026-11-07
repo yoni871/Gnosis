@@ -45,6 +45,9 @@ function createResendClient({ fetchImpl = globalThis.fetch, baseUrl: injectedBas
                 throw new Error("Email configuration is invalid.");
             }
             const { config } = result;
+            if (env.EMAIL_DELIVERY === 'disabled') {
+                throw new Error('Email delivery is disabled for local reader testing.');
+            }
             const verificationLink = buildVerificationLink(config.frontendUrl, token);
             const response = await fetchImpl(`${baseUrl}/emails`, {
                 method: "POST",

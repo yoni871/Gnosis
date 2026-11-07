@@ -1,6 +1,10 @@
 const { Pool } = require("pg");
 require("../config/env").loadEnvironment();
 
+if (process.env.GNOSIS_LOCAL_DEV === '1') {
+    require('../config/localDevelopment').assertLocalDatabase(process.env);
+}
+
 // Production uses one connection URL.
 // Local development keeps using the existing DB_* settings.
 const config = process.env.DATABASE_URL

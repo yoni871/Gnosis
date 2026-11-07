@@ -6,7 +6,7 @@
     "node": "22.x"
   },
   "scripts": {
-    "dev": "nodemon src/server.js",
+    "dev": "nodemon scripts/local/dev.js",
     "start": "node src/server.js",
     "test": "node scripts/test.js",
     "db:migrate": "node scripts/migrate.js up",
@@ -15,7 +15,11 @@
     "db:migrate:down": "node scripts/migrate.js down",
     "db:migrate:create": "node scripts/migrate.js create",
     "test:migrations": "node scripts/test-migrations.js",
-    "test:database": "node scripts/test-database.js"
+    "test:database": "node scripts/test-database.js",
+    "local:setup": "node scripts/local/setup.js",
+    "local:prepare": "node scripts/local/prepare.js",
+    "config:check": "node scripts/check-config.js",
+    "local:check": "node scripts/local/check.js"
   },
   "keywords": [],
   "author": "",
