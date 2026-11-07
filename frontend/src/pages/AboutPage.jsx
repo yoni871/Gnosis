@@ -13,10 +13,10 @@ import "./AboutPage.css";
 
 function ScripturePassage({ passage }) {
     const [before, after] = passage.quotation.split("knowledge");
-    const destination = `${chapterPath(passage.book, passage.chapter)}?verse=${passage.verse}&translation=KJV`;
+    const destination = `${chapterPath(passage.book, passage.chapter)}?verse=${passage.verse}&translation=${passage.translation}`;
     return (
         <article className="about-scripture-passage" data-about-reveal aria-labelledby={`passage-${passage.book.replaceAll(" ", "-")}`}>
-            <h3 id={`passage-${passage.book.replaceAll(" ", "-")}`} className="about-passage-reference">Scripture — {passage.reference}</h3>
+            <h3 id={`passage-${passage.book.replaceAll(" ", "-")}`} className="about-passage-reference">Scripture — {passage.reference} <span className="about-passage-translation">({passage.translation})</span></h3>
             <blockquote><span aria-hidden="true">“</span><span className="about-quotation-text">{before}<span className="about-knowledge">knowledge</span>{after}</span><span aria-hidden="true">”</span></blockquote>
             <div className="about-passage-context">
                 <p className="about-greek-form"><span lang="grc">{passage.greek}</span><em>{passage.transliteration}</em></p>

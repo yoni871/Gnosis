@@ -115,7 +115,7 @@ test("all four editorial passages preserve complete KJV text, Greek and exact ve
     GNOSIS_PASSAGES.forEach((passage,index) => {
         expect(cards[index].querySelector('.about-quotation-text').textContent).toBe(passage.quotation);
         expect(cards[index].querySelector('blockquote').textContent).toBe(`“${passage.quotation}”`);
-        expect(cards[index].querySelector('h3')).toHaveTextContent(`Scripture — ${passage.reference}`);
+        expect(cards[index].querySelector('h3')).toHaveTextContent(`Scripture — ${passage.reference} (${passage.translation})`);
         expect(cards[index].querySelector('.about-knowledge').textContent).toBe('knowledge');
         expect(cards[index].querySelector('[lang="grc"]').textContent).toBe(passage.greek);
         expect(cards[index].querySelector('a')).toHaveAttribute('href',`/bible/${encodeURIComponent(passage.book)}/${passage.chapter}?verse=${passage.verse}&translation=KJV`);
