@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:14
+    ports:
+      - "127.0.0.1:55432:5432"
+    environment:
+      POSTGRES_USER: ${MIGRATION_DB_USER:?Run local:setup}
+      POSTGRES_PASSWORD: ${MIGRATION_DB_PASSWORD:?Run local:setup}
+      POSTGRES_DB: gnosis_local
+    volumes:
+      - gnosis_local_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d gnosis_local"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+volumes:
+  gnosis_local_data:

@@ -9,7 +9,9 @@ export default defineConfig({
     ],
 
     server: {
-        host: true,
+        host: "localhost",
+        port: 5173,
+        strictPort: true,
 
         allowedHosts: [
             "p1rzgsbr-5173.usw3.devtunnels.ms"
@@ -17,7 +19,7 @@ export default defineConfig({
 
         proxy: {
             "/api": {
-                target: "http://localhost:5000",
+                target: "http://127.0.0.1:5000",
                 changeOrigin: true
             }
         }
