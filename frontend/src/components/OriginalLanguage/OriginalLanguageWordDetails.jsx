@@ -34,6 +34,18 @@ function parseExpansionPairs(expansion) {
 import OriginalLanguageOccurrences from "./OriginalLanguageOccurrences";
 import { displayGloss, hasGloss } from "./gloss";
 
+const LANGUAGE_LABEL = {
+    hebrew: "Biblical Hebrew",
+    aramaic: "Biblical Aramaic",
+    greek: "Koine Greek",
+};
+
+const LANGUAGE_CODE = {
+    hebrew: "he",
+    aramaic: "arc",
+    greek: "el",
+};
+
 export default function OriginalLanguageWordDetails({
     word,
     language,
@@ -45,14 +57,19 @@ export default function OriginalLanguageWordDetails({
     onSelectOccurrence,
     onCloseDetail,
 }) {
-    const isRtl = language === "hebrew" || language === "aramaic";
+    // Word-level language: in a mixed passage a word carries its own
+    // language, never the passage's (e.g. an Aramaic word in Daniel
+    // 2:4 renders with Aramaic direction and labelling).
+    const wordLanguage = word.language || language;
+    const isRtl = wordLanguage === "hebrew" || wordLanguage === "aramaic";
+    const wordLangCode = LANGUAGE_CODE[wordLanguage] || (isRtl ? "he" : "el");
     return (
         <div className="gnosis-ol-word-details">
             <div className="gnosis-ol-word-details-heading">
                 <p
                     className="gnosis-ol-detail-word"
                     dir={isRtl ? "rtl" : "ltr"}
-                    lang={isRtl ? "he" : "el"}
+                    lang={wordLangCode}
                 >
                     {word.wordText}
                 </p>
@@ -69,9 +86,13 @@ export default function OriginalLanguageWordDetails({
 
             <dl className="gnosis-ol-definition-list">
                 <div>
+                    <dt>Language</dt>
+                    <dd>{LANGUAGE_LABEL[wordLanguage] || wordLanguage}</dd>
+                </div>
+                <div>
                     <dt>Lemma</dt>
                     <dd>
-                        <span dir={isRtl ? "rtl" : "ltr"} lang={isRtl ? "he" : "el"}>{word.lemma}</span>
+                        <span dir={isRtl ? "rtl" : "ltr"} lang={wordLangCode}>{word.lemma}</span>
                         {word.lemmaTransliteration ? ` (${word.lemmaTransliteration})` : ""}
                     </dd>
                 </div>
@@ -103,7 +124,7 @@ export default function OriginalLanguageWordDetails({
                     {word.morphemes.map((morpheme, index) => (
                         <div key={index} className="gnosis-ol-morpheme">
                             <p className="gnosis-ol-morpheme-word">
-                                <span dir={isRtl ? "rtl" : "ltr"} lang={isRtl ? "he" : "el"}>
+                                <span dir={isRtl ? "rtl" : "ltr"} lang={wordLangCode}>
                                     {morpheme.text}
                                 </span>
                                 {morpheme.isRoot ? " · root" : ""}

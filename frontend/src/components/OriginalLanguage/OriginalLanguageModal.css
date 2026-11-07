@@ -145,6 +145,22 @@
     margin-top: 24px;
 }
 
+/* The chapter title (Psalm superscription): deliberately quieter than
+   a verse heading and unlike any editorial heading — a small muted
+   label, then the original text and its word table. */
+.gnosis-ol-title {
+    margin-top: 24px;
+}
+
+.gnosis-ol-title-label {
+    margin: 0 0 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
 .gnosis-ol-verse-heading {
     display: flex;
     align-items: center;
@@ -180,6 +196,16 @@
 
 .gnosis-ol-table-wrap {
     overflow-x: auto;
+}
+
+/* Shown only while the table has hidden columns to the right: a
+   subtle hint that the table scrolls sideways. It lives outside the
+   scroll container so it never scrolls away or widens the page. */
+.gnosis-ol-swipe-hint {
+    margin: 6px 0 0;
+    font-size: 12px;
+    text-align: right;
+    color: var(--text-muted);
 }
 
 .gnosis-ol-table {
@@ -228,6 +254,15 @@
     font-size: 18px;
     color: var(--text-primary);
     cursor: pointer;
+}
+
+/* Marks a word whose language differs from the verse's (an Aramaic
+   word in a Hebrew passage), so the mix is visible in the table. */
+.gnosis-ol-word-language {
+    display: block;
+    margin-top: 2px;
+    font-size: 11px;
+    color: var(--text-muted);
 }
 
 .gnosis-ol-transliteration {

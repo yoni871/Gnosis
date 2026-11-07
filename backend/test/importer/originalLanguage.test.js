@@ -7,6 +7,7 @@ const {
     parseTahotLine, parseTagntLine, parseLexiconLine,
     parseMorphologyCodeFile, parseMorphologyExpansion,
     grammarDisplayForMorphemes, morphologyLookupKey, deriveLexicalEntry,
+    wordLanguageForWord,
 } = require("../../src/importer/importOriginalLanguage");
 
 const fixtures = path.join(__dirname, "..", "fixtures", "original-language");
@@ -260,6 +261,45 @@ test("grammar display joins morphemes with + and features with ·", () => {
         expansion: greek.get(morpheme.morphologyCode),
     }));
     assert.equal(grammarDisplayForMorphemes(knowledgeMorphemes), "Noun · Genitive · Singular · Feminine");
+});
+
+test("Aramaic ranges are word-level: Daniel 2:4 switches mid-verse", () => {
+    const tahot = { source: "tahot", language: "hebrew" };
+    const daniel = { ...tahot, name: "Daniel" };
+    const word = (chapter, verse, wordIndex) => ({ chapter, verse, wordIndex });
+    // Daniel 2:4 words 1–4 are Hebrew (the narrative), words 5–12
+    // Aramaic (the quoted speech) — verified against the STEPBible
+    // rows: word 4 is אֲרָמִית "Aramaic" (H-code), word 5 מַלְכָּ
+    // "O king" (A-code).
+    assert.equal(wordLanguageForWord(daniel, word(2, 4, 1)), "hebrew");
+    assert.equal(wordLanguageForWord(daniel, word(2, 4, 4)), "hebrew");
+    assert.equal(wordLanguageForWord(daniel, word(2, 4, 5)), "aramaic");
+    assert.equal(wordLanguageForWord(daniel, word(2, 4, 12)), "aramaic");
+    // The verse before the switch and the chapter after the range.
+    assert.equal(wordLanguageForWord(daniel, word(2, 3, 1)), "hebrew");
+    assert.equal(wordLanguageForWord(daniel, word(7, 28, 1)), "aramaic");
+    assert.equal(wordLanguageForWord(daniel, word(8, 1, 1)), "hebrew");
+    // Whole-passage ranges: Ezra, Jeremiah, Genesis 31:47.
+    const ezra = { ...tahot, name: "Ezra" };
+    assert.equal(wordLanguageForWord(ezra, word(4, 7, 1)), "hebrew");
+    assert.equal(wordLanguageForWord(ezra, word(4, 8, 1)), "aramaic");
+    assert.equal(wordLanguageForWord(ezra, word(6, 18, 1)), "aramaic");
+    assert.equal(wordLanguageForWord(ezra, word(6, 19, 1)), "hebrew");
+    assert.equal(wordLanguageForWord(ezra, word(7, 12, 1)), "aramaic");
+    assert.equal(wordLanguageForWord(ezra, word(7, 26, 1)), "aramaic");
+    assert.equal(wordLanguageForWord(ezra, word(7, 27, 1)), "hebrew");
+    const jeremiah = { ...tahot, name: "Jeremiah" };
+    assert.equal(wordLanguageForWord(jeremiah, word(10, 10, 1)), "hebrew");
+    assert.equal(wordLanguageForWord(jeremiah, word(10, 11, 1)), "aramaic");
+    assert.equal(wordLanguageForWord(jeremiah, word(10, 12, 1)), "hebrew");
+    const genesis = { ...tahot, name: "Genesis" };
+    assert.equal(wordLanguageForWord(genesis, word(31, 46, 1)), "hebrew");
+    assert.equal(wordLanguageForWord(genesis, word(31, 47, 1)), "aramaic");
+    assert.equal(wordLanguageForWord(genesis, word(31, 48, 1)), "hebrew");
+    // Greek passages never switch.
+    assert.equal(wordLanguageForWord(
+        { source: "tagnt", language: "greek", name: "Philippians" },
+        word(3, 8, 1)), "greek");
 });
 
 test("lexical fallback derives lemma and gloss from the word row", () => {

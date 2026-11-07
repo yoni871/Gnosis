@@ -139,9 +139,14 @@ export default function LandingPage() {
                                 {savedState ? (
                                     <Link
                                         to={readingStateUrl(savedState)}
-                                        className="landing-btn landing-btn-primary landing-btn-large"
+                                        className="landing-btn landing-btn-primary landing-btn-large landing-continue"
+                                        aria-labelledby="landing-continue-label"
+                                        aria-describedby="landing-reading-location"
                                     >
-                                        Continue reading →
+                                        <span id="landing-continue-label" className="landing-continue-title">Continue Reading →</span>
+                                        <span id="landing-reading-location" className="landing-continue-subtitle">
+                                            <span className="landing-continue-location">{readingStateLabel(savedState)}</span>
+                                        </span>
                                     </Link>
                                 ) : (
                                     <Link
@@ -159,11 +164,6 @@ export default function LandingPage() {
                                     See How It Works
                                 </a>
                             </div>
-                            {savedState && (
-                                <p className="landing-continue-note">
-                                    {readingStateLabel(savedState)}
-                                </p>
-                            )}
                         </div>
                     </section>
                 </div>

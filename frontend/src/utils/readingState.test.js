@@ -35,8 +35,12 @@ describe("readingStateUrl", () => {
 });
 
 describe("readingStateLabel", () => {
-    test("names the chapter and translation", () => {
-        expect(readingStateLabel(GENESIS_ESV)).toBe("Genesis 1 · ESV");
+    test("names the chapter, focused verse and translation", () => {
+        expect(readingStateLabel(GENESIS_ESV)).toBe("Genesis 1:5 · ESV");
+    });
+
+    test("omits a verse when the saved position has none", () => {
+        expect(readingStateLabel({ ...GENESIS_ESV, verse_number: null })).toBe("Genesis 1 · ESV");
     });
 
     test("uses the display name for Psalms", () => {
@@ -44,6 +48,6 @@ describe("readingStateLabel", () => {
             ...GENESIS_ESV,
             book: "Psalms",
             chapter_number: 23,
-        })).toBe("Psalm 23 · ESV");
+        })).toBe("Psalm 23:5 · ESV");
     });
 });

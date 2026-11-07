@@ -64,9 +64,9 @@ export default function AboutPage() {
                     </section>
                     <section id="mission" tabIndex={-1} className="about-mission" aria-labelledby="mission-heading">
                         <p className="about-editorial-eyebrow">OUR MISSION</p>
-                        <h2 id="mission-heading" data-about-reveal>Our Mission</h2>
+                        <h2 id="mission-heading" data-about-reveal>Bringing Scripture Into Focus</h2>
                         <p className="about-statement">Make biblical knowledge more accessible and encourage thoughtful study of Scripture through its theological and historical context.</p>
-                        <p>Today, Gnosis brings Scripture alongside the commentary of Matthew Henry and Jamieson, Fausset &amp; Brown, with personal notes, bookmarks, and highlights for your study.</p>
+                        <p>Today, Gnosis brings Scripture, biblical commentary, and personal study tools together in one place, helping readers explore God's Word through deeper study, reflection, and understanding.</p>
                         <p className="about-study-note">Commentary is a study aid. It is not inspired Scripture, an error-free authority, or a substitute for reading the biblical text itself.</p>
                     </section>
                     <section id="vision" tabIndex={-1} className="about-vision" aria-labelledby="vision-heading">

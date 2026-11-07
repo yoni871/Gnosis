@@ -602,13 +602,19 @@ describe("LandingPage Continue reading", () => {
         renderLanding(LOGGED_IN);
 
         const link = await within(hero()).findByRole("link", {
-            name: "Continue reading →",
+            name: "Continue Reading →",
         });
         expect(link).toHaveAttribute(
             "href",
             "/bible/Genesis/1?translation=ESV&commentary=3&verse=5",
         );
-        expect(within(hero()).getByText("Genesis 1 · ESV")).toBeInTheDocument();
+        expect(within(link).getByText(/Genesis 1:5 · ESV/)).toBeInTheDocument();
+        expect(link).toHaveAccessibleDescription("Genesis 1:5 · ESV");
+        expect(link.querySelector(".landing-continue-subtitle")).toHaveTextContent("Genesis 1:5 · ESV");
+        expect(within(hero()).queryByText(/Pick up where you left off/)).toBeNull();
+        expect(link.querySelectorAll(".landing-continue-subtitle")).toHaveLength(1);
+        expect(document.querySelectorAll("#landing-reading-location")).toHaveLength(1);
+        expect(document.querySelector(".landing-continue-note")).toBeNull();
         expect(
             within(hero()).queryByRole("link", { name: "Start Exploring →" }),
         ).toBeNull();
@@ -626,7 +632,7 @@ describe("LandingPage Continue reading", () => {
             await within(hero()).findByRole("link", { name: "Start Exploring →" }),
         ).toHaveAttribute("href", "/bible/Genesis/1");
         expect(
-            within(hero()).queryByRole("link", { name: "Continue reading →" }),
+            within(hero()).queryByRole("link", { name: "Continue Reading →" }),
         ).toBeNull();
     });
 
@@ -642,7 +648,7 @@ describe("LandingPage Continue reading", () => {
             await within(hero()).findByRole("link", { name: "Start Exploring →" }),
         ).toHaveAttribute("href", "/bible/Genesis/1");
         expect(
-            within(hero()).queryByRole("link", { name: "Continue reading →" }),
+            within(hero()).queryByRole("link", { name: "Continue Reading →" }),
         ).toBeNull();
         expect(fetchMock).not.toHaveBeenCalled();
     });

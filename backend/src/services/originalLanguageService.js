@@ -41,6 +41,28 @@ const getPassageWords = async (bookId, chapter, startVerse, endVerse) => {
     return result.rows;
 };
 
+// The chapter title: Psalm superscriptions live at verse 0 in the
+// STEPBible refs (e.g. Psa.3.0). The API returns them separately from
+// the verses — never merged into verse 1 — so the modal can render a
+// distinct "Psalm title" block.
+const getTitleWords = async (bookId, chapter) => {
+    const result = await pool.query(
+        `SELECT
+            w.id, w.book_id, w.chapter_number, w.verse_number, w.word_index,
+            w.language, w.word_text, w.transliteration, w.gloss,
+            w.strong_number, w.morphology_code, w.grammar_display, w.morphemes,
+            l.strong_base, l.lemma, l.transliteration AS lemma_transliteration,
+            l.gloss AS meaning, l.lexical_morphology
+         FROM ol_word_occurrences w
+         LEFT JOIN ol_lexical_entries l ON l.strong_number = w.strong_number
+         WHERE w.book_id = $1 AND w.chapter_number = $2
+           AND w.verse_number = 0
+         ORDER BY w.word_index`,
+        [bookId, chapter]
+    );
+    return result.rows;
+};
+
 const getWordById = async (id) => {
     const result = await pool.query(
         `SELECT
@@ -123,6 +145,6 @@ const getVerseWords = async (refs) => {
 };
 
 module.exports = {
-    getBookByName, getSources, getPassageWords, getWordById,
+    getBookByName, getSources, getPassageWords, getTitleWords, getWordById,
     getLexicalEntry, getOccurrences, getVerseWords,
 };

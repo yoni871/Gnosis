@@ -16,7 +16,7 @@ const app = require("../../src/app");
 const pool = require("../../src/db/db");
 const {
     parseTahotLine, parseMorphologyCodeFile, parseMorphologyExpansion,
-    grammarDisplayForMorphemes, morphologyLookupKey,
+    grammarDisplayForMorphemes, morphologyLookupKey, wordLanguageForWord,
 } = require("../../src/importer/importOriginalLanguage");
 
 // Canned passage rows built from the real Genesis 1:1 fixture, so the
@@ -24,6 +24,50 @@ const {
 const fixtures = path.join(__dirname, "..", "fixtures", "original-language");
 const readFixture = name => fs.readFileSync(path.join(fixtures, name), "utf8");
 const tehmc = parseMorphologyCodeFile(readFixture("tehmc-sample.txt"));
+
+// Build passage rows from a fixture the way the importer does: parse
+// each line, expand its morphology codes (falling back to the raw code
+// when the sample expansions do not cover it, as the importer does),
+// and set the word language with the importer's own range logic.
+function fixtureRows(file, { bookId, chapter, verse, bookName }) {
+    return readFixture(file)
+        .split(/\r?\n/)
+        .filter(line => line && !line.startsWith("#"))
+        .map(parseTahotLine)
+        .map((word, index) => {
+            const morphemes = word.morphemes.map((morpheme, i) => ({
+                ...morpheme,
+                expansion: tehmc.get(morphologyLookupKey(morpheme.morphologyCode, word.languageLetter, i === 0))
+                    || morpheme.morphologyCode,
+            }));
+            return {
+                id: index + 1,
+                book_id: bookId,
+                chapter_number: chapter,
+                verse_number: verse,
+                word_index: word.wordIndex,
+                language: wordLanguageForWord(
+                    { source: "tahot", language: "hebrew", name: bookName }, word),
+                word_text: word.wordText,
+                transliteration: word.transliteration,
+                gloss: word.gloss,
+                strong_number: word.rootStrong,
+                strong_base: word.rootStrong.replace(/[A-Z]$/, ""),
+                lemma: word.morphemes.find(m => m.isRoot)?.expandedTag || "",
+                lemma_transliteration: "",
+                meaning: word.gloss,
+                lexical_morphology: "",
+                morphology_code: word.morphemes.map(m => m.morphologyCode).join("/"),
+                grammar_display: grammarDisplayForMorphemes(morphemes),
+                morphemes: morphemes.map(m => ({
+                    text: m.text, transliteration: m.transliteration, gloss: m.gloss,
+                    strongNumber: m.strongNumber, morphologyCode: m.morphologyCode,
+                    morphologyExpanded: m.expansion, isRoot: m.isRoot,
+                })),
+            };
+        });
+}
+
 function passageRows() {
     return readFixture("tahot-gen-1-1.txt")
         .split(/\r?\n/)
@@ -69,12 +113,15 @@ const SOURCES = [
 ];
 
 let passageParams = null;
+let titleParams = null;
 let occurrencesParams = null;
 
 const queryMock = test.mock.method(pool, "query", async (sql, params = []) => {
     if (typeof sql === "string" && sql.includes("FROM bible_books WHERE name")) {
         if (params[0] === "Genesis") return { rows: [{ id: 1, name: "Genesis", testament: "OT" }] };
         if (params[0] === "Philippians") return { rows: [{ id: 50, name: "Philippians", testament: "NT" }] };
+        if (params[0] === "Psalms") return { rows: [{ id: 20, name: "Psalms", testament: "OT" }] };
+        if (params[0] === "Daniel") return { rows: [{ id: 28, name: "Daniel", testament: "OT" }] };
         return { rows: [] };
     }
     if (typeof sql === "string" && sql.includes("FROM ol_sources WHERE code")) {
@@ -108,9 +155,27 @@ const queryMock = test.mock.method(pool, "query", async (sql, params = []) => {
         })) };
     }
     if (typeof sql === "string" && sql.includes("FROM ol_word_occurrences w")) {
+        // The title query (verse_number = 0) is checked first: it
+        // shares the passage query's FROM clause.
+        if (sql.includes("verse_number = 0")) {
+            titleParams = params;
+            if (params[0] === 20 && params[1] === 3) {
+                return { rows: fixtureRows("tahot-psa-3-0.txt",
+                    { bookId: 20, chapter: 3, verse: 0, bookName: "Psalms" }) };
+            }
+            return { rows: [] };
+        }
         passageParams = params;
         // Genesis 1 is imported; Genesis 2 is not (Phase 1 coverage).
         if (params[0] === 1 && params[1] === 1) return { rows: passageRows() };
+        if (params[0] === 20 && params[1] === 3 && params[2] === 1 && params[3] === 1) {
+            return { rows: fixtureRows("tahot-psa-3-1.txt",
+                { bookId: 20, chapter: 3, verse: 1, bookName: "Psalms" }) };
+        }
+        if (params[0] === 28 && params[1] === 2 && params[2] === 4 && params[3] === 4) {
+            return { rows: fixtureRows("tahot-dan-2-4.txt",
+                { bookId: 28, chapter: 2, verse: 4, bookName: "Daniel" }) };
+        }
         return { rows: [] };
     }
     throw new Error(`Unexpected query in original-language test: ${sql}`);
@@ -134,6 +199,7 @@ test.after(async () => {
 
 test.beforeEach(() => {
     passageParams = null;
+    titleParams = null;
     occurrencesParams = null;
 });
 
@@ -157,10 +223,60 @@ test("GET passage returns the imported words in order with attribution", async (
     assert.equal(json.verses[0].words.length, 7);
     assert.equal(json.verses[0].words[0].wordText, passageRows()[0].word_text);
     assert.equal(json.verses[0].words[0].strongNumber, "H7225G");
+    assert.equal(json.verses[0].words[0].language, "hebrew");
     assert.equal(json.verses[0].words[0].grammarDisplay, "Preposition + Noun · Common · Feminine · Singular · Absolute");
+    assert.deepEqual(json.languages, ["hebrew"]);
+    // Genesis 1 has no chapter title: the title query ran and found
+    // nothing, so the response carries an explicit null, not a verse 0.
+    assert.deepEqual(titleParams, [1, 1]);
+    assert.equal(json.title, null);
     assert.equal(json.sources[0].code, "STEPBible-TAHOT");
     assert.equal(json.sources[0].license, "CC BY 4.0");
     assert.deepEqual(passageParams, [1, 1, 1, 1]);
+});
+
+test("GET passage returns the Psalm title separately, never as verse 1", async () => {
+    const { response, json } = await request("/api/original-language/Psalms/3?startVerse=1&endVerse=1");
+    assert.equal(response.status, 200);
+    assert.equal(json.book, "Psalms");
+    assert.equal(json.available, true);
+    assert.deepEqual(json.languages, ["hebrew"]);
+    // The title is its own object with the 6 superscription words.
+    assert.equal(json.title.words.length, 6);
+    assert.equal(json.title.words[0].wordText, "מִזְמ֥וֹר");
+    assert.equal(json.title.words[0].gloss, "a psalm");
+    assert.equal(json.title.words[0].language, "hebrew");
+    // The verses carry only verse 1 — no verse 0 group, and the title
+    // words are not duplicated into it.
+    assert.equal(json.verses.length, 1);
+    assert.equal(json.verses[0].verse, 1);
+    assert.equal(json.verses[0].words.length, 7);
+    assert.ok(!json.verses.some(verse => verse.verse === 0));
+    assert.deepEqual(titleParams, [20, 3]);
+});
+
+test("GET passage does not fetch the title when the range starts after verse 1", async () => {
+    const { response, json } = await request("/api/original-language/Psalms/3?startVerse=2&endVerse=2");
+    assert.equal(response.status, 200);
+    assert.equal(json.available, false);
+    assert.equal(json.title, null);
+    assert.equal(titleParams, null);
+});
+
+test("GET passage lists both languages of a mixed Hebrew/Aramaic verse", async () => {
+    const { response, json } = await request("/api/original-language/Daniel/2?startVerse=4&endVerse=4");
+    assert.equal(response.status, 200);
+    assert.equal(json.available, true);
+    assert.deepEqual(json.languages, ["hebrew", "aramaic"]);
+    assert.equal(json.verses.length, 1);
+    assert.equal(json.verses[0].words.length, 12);
+    // Words 1–4 Hebrew, words 5–12 Aramaic: the verse is never
+    // classified as one language.
+    const languages = json.verses[0].words.map(word => word.language);
+    assert.deepEqual(languages.slice(0, 4), ["hebrew", "hebrew", "hebrew", "hebrew"]);
+    assert.deepEqual(languages.slice(4), Array(8).fill("aramaic"));
+    assert.equal(json.verses[0].words[3].wordText, "אֲרָמִ֑ית");
+    assert.equal(json.verses[0].words[4].wordText, "מַלְכָּא֙");
 });
 
 test("GET passage defaults to a single verse and caps the range", async () => {

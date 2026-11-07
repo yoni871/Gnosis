@@ -50,6 +50,39 @@ const PHASE_1_SCOPE = [
     { book: "Php", name: "Philippians", chapters: [3], source: "tagnt", language: "greek" },
 ];
 
+// Aramaic passages in the Hebrew Bible (word-level, not per-verse).
+// Ranges are inclusive of whole verses, except the start of Daniel
+// 2:4, where the language switches mid-verse: words 1–4 are Hebrew
+// (the narrative "the Chaldeans spoke to the king in Aramaic") and
+// words 5–12 are Aramaic (the quoted speech). See
+// docs/OriginalLanguagePhase2Data.md §4. A word is Aramaic only when
+// it falls inside a range — an entire mixed verse is never classified
+// as one language.
+const ARAMAIC_RANGES = [
+    { book: "Daniel", startChapter: 2, startVerse: 4, startWordIndex: 5, endChapter: 7, endVerse: 28 },
+    { book: "Ezra", startChapter: 4, startVerse: 8, endChapter: 6, endVerse: 18 },
+    { book: "Ezra", startChapter: 7, startVerse: 12, endChapter: 7, endVerse: 26 },
+    { book: "Jeremiah", startChapter: 10, startVerse: 11, endChapter: 10, endVerse: 11 },
+    { book: "Genesis", startChapter: 31, startVerse: 47, endChapter: 31, endVerse: 47 },
+];
+
+function wordLanguageForWord(passage, word) {
+    if (passage.source !== "tahot") return passage.language;
+    for (const range of ARAMAIC_RANGES) {
+        if (range.book !== passage.name) continue;
+        const afterStart =
+            word.chapter > range.startChapter ||
+            (word.chapter === range.startChapter && word.verse > range.startVerse) ||
+            (word.chapter === range.startChapter && word.verse === range.startVerse &&
+                word.wordIndex >= (range.startWordIndex || 1));
+        const beforeEnd =
+            word.chapter < range.endChapter ||
+            (word.chapter === range.endChapter && word.verse <= range.endVerse);
+        if (afterStart && beforeEnd) return "aramaic";
+    }
+    return passage.language;
+}
+
 const SOURCE_CODES = {
     tahot: "STEPBible-TAHOT",
     tagnt: "STEPBible-TAGNT",
@@ -353,7 +386,7 @@ async function downloadStepBibleFiles(dataDir) {
 }
 
 async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
-    const counts = { lexicalEntries: 0, morphologyCodes: 0, words: 0, altRefRows: 0, warnings: [] };
+    const counts = { lexicalEntries: 0, morphologyCodes: 0, words: 0, altRefRows: 0, aramaicWords: 0, warnings: [] };
     const warn = message => {
         counts.warnings.push(message);
         console.warn(`Warning: ${message}`);
@@ -388,8 +421,11 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
     const bookResult = await pool.query("SELECT id, name FROM bible_books");
     const bookIds = new Map(bookResult.rows.map(row => [row.name, row.id]));
 
-    const lexicalSource = { hebrew: "STEPBible-TBESH", greek: "STEPBible-TBESG" };
-    const morphologySource = { hebrew: "STEPBible-TEHMC", greek: "STEPBible-TEGMC" };
+    // Aramaic words share the Hebrew lexicon (TBESH) and the Hebrew
+    // morphology expansions (TEHMC) — both files cover Aramaic — so
+    // "aramaic" maps to the Hebrew sources, not to a missing one.
+    const lexicalSource = { hebrew: "STEPBible-TBESH", aramaic: "STEPBible-TBESH", greek: "STEPBible-TBESG" };
+    const morphologySource = { hebrew: "STEPBible-TEHMC", aramaic: "STEPBible-TEHMC", greek: "STEPBible-TEGMC" };
 
     const ensureLexicalEntry = async (strongNumber, language, word) => {
         if (!strongNumber) return null;
@@ -440,6 +476,11 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
             // the import report states how many were handled this way.
             if (word.altChapter !== null) counts.altRefRows += 1;
 
+            // Word-level language: Aramaic words inside a Hebrew
+            // passage are stored as Aramaic (see ARAMAIC_RANGES).
+            const wordLang = wordLanguageForWord(passage, word);
+            if (wordLang === "aramaic") counts.aramaicWords += 1;
+
             const enriched = [];
             for (const [index, morpheme] of word.morphemes.entries()) {
                 const key = morphologyLookupKey(morpheme.morphologyCode, word.languageLetter, index === 0);
@@ -453,10 +494,10 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
                 enriched.push({ ...morpheme, expansion });
             }
             const grammarDisplay = grammarDisplayForMorphemes(enriched);
-            const rootStrong = await ensureLexicalEntry(word.rootStrong, passage.language, { ...word, language: passage.language });
+            const rootStrong = await ensureLexicalEntry(word.rootStrong, wordLang, { ...word, language: wordLang });
             for (const morpheme of enriched) {
                 if (morpheme.strongNumber && morpheme.strongNumber !== word.rootStrong) {
-                    await ensureLexicalEntry(morpheme.strongNumber, passage.language, { ...word, language: passage.language });
+                    await ensureLexicalEntry(morpheme.strongNumber, wordLang, { ...word, language: wordLang });
                 }
             }
             const morphemesJson = enriched.map(morpheme => ({
@@ -475,7 +516,8 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
                      morphology_code, grammar_display, morphemes)
                  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
                  ON CONFLICT (source_id, book_id, chapter_number, verse_number, word_index)
-                 DO UPDATE SET word_text = EXCLUDED.word_text,
+                 DO UPDATE SET language = EXCLUDED.language,
+                     word_text = EXCLUDED.word_text,
                      transliteration = EXCLUDED.transliteration,
                      gloss = EXCLUDED.gloss,
                      strong_number = EXCLUDED.strong_number,
@@ -483,7 +525,7 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
                      grammar_display = EXCLUDED.grammar_display,
                      morphemes = EXCLUDED.morphemes`,
                 [sourceIds.get(SOURCE_CODES[passage.source]), bookId, word.chapter, word.verse,
-                    word.wordIndex, passage.language, word.wordText, word.transliteration || null,
+                    word.wordIndex, wordLang, word.wordText, word.transliteration || null,
                     word.gloss || null, rootStrong,
                     word.morphemes.map(morpheme => morpheme.morphologyCode).join("/"),
                     grammarDisplay, JSON.stringify(morphemesJson)]
@@ -505,7 +547,8 @@ async function main() {
         if (args.includes("--download")) await downloadStepBibleFiles(dataDir);
         const counts = await importOriginalLanguage({ dataDir });
         console.log(`Done: ${counts.words} word occurrences, ${counts.lexicalEntries} new lexical entries, ` +
-            `${counts.morphologyCodes} new morphology codes, ${counts.altRefRows} with alternate verse numbers, ${counts.warnings.length} warnings.`);
+            `${counts.morphologyCodes} new morphology codes, ${counts.altRefRows} with alternate verse numbers, ` +
+            `${counts.aramaicWords} Aramaic words, ${counts.warnings.length} warnings.`);
     } catch (error) {
         console.error("Original-language import failed:", error.message);
         process.exitCode = 1;
@@ -519,6 +562,6 @@ if (require.main === module) main();
 module.exports = {
     importOriginalLanguage, parseTahotLine, parseTagntLine, parseLexiconLine,
     parseMorphologyCodeFile, parseMorphologyExpansion, grammarDisplayForMorphemes,
-    morphologyLookupKey, deriveLexicalEntry, splitTopLevel,
-    PHASE_1_SCOPE, STEPBIBLE_FILES,
+    morphologyLookupKey, deriveLexicalEntry, splitTopLevel, wordLanguageForWord,
+    PHASE_1_SCOPE, STEPBIBLE_FILES, ARAMAIC_RANGES,
 };

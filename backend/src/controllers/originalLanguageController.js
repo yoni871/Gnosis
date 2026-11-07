@@ -36,6 +36,7 @@ function shapeWord(row) {
     return {
         id: row.id,
         wordIndex: row.word_index,
+        language: row.language,
         wordText: row.word_text,
         transliteration: row.transliteration,
         gloss: row.gloss,
@@ -82,13 +83,31 @@ const getPassage = async (req, res) => {
                 book: bookRow.name,
                 chapter: chapterNumber,
                 language,
+                languages: [language],
                 startVerse,
                 endVerse: finalEndVerse,
                 available: false,
+                title: null,
                 verses: [],
                 sources,
                 note: `Original-language data is not available for this passage yet. ${CORPUS_NOTE}`,
             });
+        }
+        // The chapter title (Psalm superscriptions at verse 0) belongs
+        // to the chapter, not to any verse: fetch it only when the
+        // requested range starts at verse 1, and return it separately.
+        let title = null;
+        let titleRows = [];
+        if (startVerse === 1) {
+            titleRows = await originalLanguageService.getTitleWords(bookRow.id, chapterNumber);
+            if (titleRows.length > 0) title = { words: titleRows.map(shapeWord) };
+        }
+        // Languages actually present in the passage, in first-appearance
+        // order — a mixed Hebrew/Aramaic passage lists both, so the
+        // modal never classifies it as one language.
+        const languages = [];
+        for (const row of [...titleRows, ...rows]) {
+            if (!languages.includes(row.language)) languages.push(row.language);
         }
         const verses = [];
         for (const row of rows) {
@@ -103,9 +122,11 @@ const getPassage = async (req, res) => {
             book: bookRow.name,
             chapter: chapterNumber,
             language,
+            languages,
             startVerse,
             endVerse: finalEndVerse,
             available: true,
+            title,
             verses,
             sources,
         });

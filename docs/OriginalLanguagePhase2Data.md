@@ -1,8 +1,9 @@
-# Original Language Analysis — Phase 2 data handling (proposed)
+# Original Language Analysis — Phase 2 data handling
 
-Status: **proposal for Yonatan's review**. Nothing here is implemented yet
-except the parser fix in §1 (landed on this branch, tested). The full-Bible
-import does not start until Yonatan approves Phase 2.
+Status: **§1 (parser), §2 (Psalm titles) and §4 (Aramaic) are implemented
+on this branch** (see the sections); §3 (NA28 gaps) and §5 remain
+proposals for Yonatan's review. The full-Bible import does not start
+until Yonatan approves Phase 2.
 
 All numbers below were measured 2026-11-06 from the full STEPBible files
 (all 4 TAHOT files + both TAGNT files) against Gnosis's verse counts from
@@ -37,7 +38,7 @@ No schema change, no migration, no database work. The alternate number is
 not stored — if a future need arises (e.g. showing the Hebrew numbering
 in the modal), it can be added as a column then.
 
-## 2. Psalm titles at verse 0 — PROPOSED
+## 2. Psalm titles at verse 0 — IMPLEMENTED (this branch, approved 2026-11-06)
 
 **Measured facts.** 478 words across **116 chapters, all in Psalms**,
 are stored as verse 0 (e.g. `Psa.3.0(3.1)`: מִזְמוֹר, "a psalm"). They
@@ -46,7 +47,10 @@ genre, musical direction) that belong to the chapter but to no English
 verse. The full list of chapters is in the Phase 2 plan's measurement
 notes; every psalm with a superscription is included, none outside Psalms.
 
-**Proposed handling.**
+**Implemented handling** (Yonatan's approved decisions, 2026-11-06:
+separate subtly styled "Psalm title" block above verse 1; preserve the
+verse-0 mapping; never treat titles as verse 1; keep them distinct
+from editorial headings).
 - **Store** them as `verse_number = 0`. No migration is needed: the
   `ol_word_occurrences` UNIQUE key accepts 0, and the parser already
   produces it.
@@ -71,8 +75,13 @@ notes; every psalm with a superscription is included, none outside Psalms.
   to analyze ("a psalm of David" is meaningful), and dropping them
   silently would repeat the parenthetical-rows mistake.
 
-**Decision needed:** confirm the "Psalm title" block proposal (or pick
-an alternative). No implementation until Phase 2 is approved.
+**Implemented:** `getTitleWords` in the service, `title` in the passage
+response (only when the range starts at verse 1), `OriginalLanguageTitle`
+in the modal — a small muted "Psalm title" label, the original text, and
+the same word table. Verified live on a local disposable database with
+Psalm 3 (6 title words) and by API + frontend tests. The preview corpus
+is still Genesis 1 + Philippians 3 only, so no title data is live on the
+preview yet.
 
 ## 3. Verse-numbering differences — PROPOSED
 
@@ -104,7 +113,7 @@ the numbered verses match. No verse-renumbering mapping file is needed.
 - **Occurrences:** unaffected — these verses simply have no words to
   match.
 
-## 4. Aramaic transitions — PROPOSED
+## 4. Aramaic transitions — IMPLEMENTED (this branch, approved 2026-11-06)
 
 **Measured facts.** STEPBible's TAHOT does **not** mark Aramaic per
 word: Genesis 31:47 (Aramaic: Jegar-sahadutha) carries type `L` and
@@ -122,38 +131,48 @@ Chaldeans said to the king, in Aramaic"), and the Aramaic begins at
 word 5 ("O king, live forever!"). A verse-range rule alone would
 mislabel the first four words.
 
-**Proposed handling.**
+**Implemented handling** (Yonatan's approved decisions, 2026-11-06:
+show "Original Languages: Hebrew & Aramaic" where applicable; preserve
+word-level language identification; handle the Daniel 2:4 transition;
+never classify a mixed verse as one language).
 - **Importer:** an `ARAMAIC_RANGES` list (book, start chapter/verse,
   end chapter/verse) plus a word-index split for Daniel 2:4 (words 1–4
   Hebrew, 5–12 Aramaic). Words in the ranges get `language =
   'aramaic'` in `ol_word_occurrences`; Aramaic lemmas get `language =
   'aramaic'` in `ol_lexical_entries`. The schema already has the
   language column — no migration needed.
-- **Modal:** Aramaic renders RTL like Hebrew (`dir="rtl"`). The
-  subtitle shows the language(s) of the selected verses: one language
-  for a single-language selection; for a selection spanning a
-  transition (e.g. Daniel 2:3–5), the languages present, in order —
-  "Daniel 2:3–5 · Biblical Hebrew · Biblical Aramaic". The passage
-  endpoint should return a `languages` array for the passage so the
-  modal does not have to infer it.
+- **Modal:** Aramaic renders RTL like Hebrew (`dir="rtl"`, `lang="arc"`).
+  The subtitle shows the language(s) of the selected verses: one language
+  for a single-language selection; for a mixed passage, "Original
+  Languages: Hebrew & Aramaic". The passage endpoint returns a
+  `languages` array for the passage, and every word carries its own
+  `language` — the table tags Aramaic words in a Hebrew verse, and the
+  word detail shows the word's own language.
 - **Morphology/transliteration:** Aramaic codes come from the same
   TEHMC expansion file; the dry run must verify coverage for Aramaic
   codes (any code without an expansion is reported, never silently
   dropped). Transliteration follows the STEPBible scheme, as in
   Phase 1.
 
-**Decision needed:** confirm the multi-language subtitle format for
-selections spanning a transition.
+**Implemented:** `ARAMAIC_RANGES` + `wordLanguageForWord` in the
+importer (Aramaic words stored with `language = 'aramaic'`; Aramaic
+lemmas likewise; both share the Hebrew TBESH lexicon and TEHMC
+expansions). Verified live on a local disposable database with Daniel 2
+(12 words in 2:4 split 4 Hebrew / 8 Aramaic) and by importer, API, and
+frontend tests. The preview corpus is still Genesis 1 + Philippians 3
+only, so no Aramaic data is live on the preview yet.
 
 ## 5. Open decisions (Yonatan)
 
-1. Psalm-title block proposal (§2) — confirm or pick an alternative.
-2. Multi-language subtitle format for selections spanning a transition (§4).
+1. ~~Psalm-title block proposal (§2)~~ — decided 2026-11-06: separate
+   subtly styled "Psalm title" block above verse 1; implemented (§2).
+2. ~~Multi-language subtitle format (§4)~~ — decided 2026-11-06:
+   "Original Languages: Hebrew & Aramaic"; implemented (§4).
 3. Whether to pursue Online Bible permission for the fuller BDB /
    Abbott-Smith definitions in parallel (does not block Phase 2 either
    way; Phase 2 proceeds with short glosses only unless permission
    arrives).
-4. Timing of the preview `pgmigrations` swap (sessions→7, OL→8) relative
-   to PR #39's checks — see the migration-order reconciliation notes.
-   The swap is proven on an isolated test database but is NOT applied
-   to the preview branch and needs explicit approval.
+4. ~~Timing of the preview `pgmigrations` swap (sessions→7, OL→8)~~ —
+   applied 2026-11-06 evening by the PR #39 chat's renumber task and
+   verified by a read-only Neon check (row 7 sessions, row 8
+   original-language — preview history now in file order).

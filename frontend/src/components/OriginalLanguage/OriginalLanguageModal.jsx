@@ -7,6 +7,7 @@ import {
     getLemmaOccurrences,
 } from "../../services/originalLanguageService";
 import OriginalLanguagePassage from "./OriginalLanguagePassage";
+import OriginalLanguageTitle from "./OriginalLanguageTitle";
 import OriginalLanguageVerse from "./OriginalLanguageVerse";
 import OriginalLanguageWordDetails from "./OriginalLanguageWordDetails";
 import "./OriginalLanguageModal.css";
@@ -16,6 +17,21 @@ const LANGUAGE_LABEL = {
     aramaic: "Biblical Aramaic",
     greek: "Koine Greek",
 };
+
+// Short names for the mixed-language subtitle ("Original Languages:
+// Hebrew & Aramaic"), which lists every language in the passage
+// instead of classifying it as one.
+const LANGUAGE_SHORT_LABEL = {
+    hebrew: "Hebrew",
+    aramaic: "Aramaic",
+    greek: "Greek",
+};
+
+function formatLanguages(languages) {
+    if (!languages || languages.length === 0) return null;
+    if (languages.length === 1) return LANGUAGE_LABEL[languages[0]] || languages[0];
+    return `Original Languages: ${languages.map((code) => LANGUAGE_SHORT_LABEL[code] || code).join(" & ")}`;
+}
 
 function formatRange(book, chapter, startVerse, endVerse) {
     return startVerse === endVerse
@@ -155,8 +171,10 @@ export default function OriginalLanguageModal({
     }, [onClose, onNavigateToVerse]);
 
     const language = passage?.language;
-    const subtitle = language
-        ? `${formatRange(book, chapter, startVerse, endVerse)} · ${LANGUAGE_LABEL[language] || language}`
+    const languageText = formatLanguages(passage?.languages) ||
+        (language ? LANGUAGE_LABEL[language] || language : null);
+    const subtitle = languageText
+        ? `${formatRange(book, chapter, startVerse, endVerse)} · ${languageText}`
         : formatRange(book, chapter, startVerse, endVerse);
 
     return createPortal(
@@ -216,6 +234,14 @@ export default function OriginalLanguageModal({
                                     verses={englishVerses}
                                     translation={translation}
                                 />
+                                {passage.title && (
+                                    <OriginalLanguageTitle
+                                        words={passage.title.words}
+                                        language={language}
+                                        selectedWordId={selectedWord?.id ?? null}
+                                        onSelectWord={handleSelectWord}
+                                    />
+                                )}
                                 {passage.verses.map((verse) => (
                                     <OriginalLanguageVerse
                                         key={verse.verse}

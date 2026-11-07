@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 import OriginalLanguageWordTable from "./OriginalLanguageWordTable";
+import OriginalLanguageText from "./OriginalLanguageText";
 
 // One verse: the original-language text, then the word-by-word table.
 // Collapsible; expanded by default.
@@ -14,13 +15,6 @@ export default function OriginalLanguageVerse({
 }) {
     const [isExpanded, setIsExpanded] = useState(true);
     const isRtl = language === "hebrew" || language === "aramaic";
-    // Maqqef-joined words print without a space between them.
-    const originalText = words.reduce((text, word, index) => {
-        if (index === 0) return word.wordText;
-        const previous = words[index - 1].wordText;
-        return previous.endsWith("־") ? `${text}${word.wordText}` : `${text} ${word.wordText}`;
-    }, "");
-
     return (
         <section className="gnosis-ol-verse" aria-label={`Verse ${verse}`}>
             <button
@@ -43,7 +37,7 @@ export default function OriginalLanguageVerse({
                         dir={isRtl ? "rtl" : "ltr"}
                         lang={isRtl ? "he" : "el"}
                     >
-                        {originalText}
+                        <OriginalLanguageText words={words} language={language} />
                     </p>
                     <OriginalLanguageWordTable
                         words={words}

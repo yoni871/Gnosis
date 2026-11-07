@@ -18,7 +18,8 @@ export function readingStateUrl(state) {
     return `${chapterPath(state.book, state.chapter_number)}?${params.toString()}`;
 }
 
-// Short label for the Continue button's note: "Genesis 1 · ESV".
+// The saved passage and translation, including a focused verse when available.
 export function readingStateLabel(state) {
-    return `${chapterDisplayName(state.book)} ${state.chapter_number} · ${state.translation}`;
+    const verse = state.verse_number != null ? `:${state.verse_number}` : "";
+    return `${chapterDisplayName(state.book)} ${state.chapter_number}${verse} · ${state.translation}`;
 }

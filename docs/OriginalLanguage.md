@@ -153,12 +153,17 @@ attribution array. No authentication is required — the modal works logged
 in and logged out, and the data is public.
 
 - `GET /api/original-language/:book/:chapter?startVerse=&endVerse=` →
-  passage words grouped by verse, each with lemma, Strong's, expanded
-  grammar, and morphemes, plus `available` and the language. For a
-  passage with no imported data it returns 200 with `available: false`
-  and a Phase 1 coverage note, not an error. Validation: chapter 1–150,
-  verses 1–176, `endVerse >= startVerse`, at most 50 verses per request
-  (400s otherwise); unknown book 404.
+  passage words grouped by verse, each with its language, lemma,
+  Strong's, expanded grammar, and morphemes, plus `available`, the
+  passage language, and `languages` (every language actually present,
+  in first-appearance order). For a passage with no imported data it
+  returns 200 with `available: false` and a Phase 1 coverage note, not
+  an error. When the range starts at verse 1 and the chapter has a
+  title (Psalm superscriptions, stored as verse 0), the response
+  carries a separate `title` object with the title's words — never a
+  "Verse 0" group and never merged into verse 1. Validation: chapter
+  1–150, verses 1–176, `endVerse >= startVerse`, at most 50 verses per
+  request (400s otherwise); unknown book 404.
 - `GET /api/original-language/words/:id` → word detail: book/chapter/
   verse, word, transliteration, lemma + lemma transliteration, meaning,
   contextual gloss, Strong's (disambiguated + base), morphology code,
@@ -182,12 +187,16 @@ in and logged out, and the data is public.
 - `frontend/src/components/OriginalLanguage/` — `OriginalLanguageModal`
   (the dialog; lazily loaded from `ScripturePanel`, so it ships in its own
   chunk), `OriginalLanguagePassage` (English passage in a parchment
-  container), `OriginalLanguageVerse` (expandable verse section, original
-  text line), `OriginalLanguageWordTable` (word / transliteration /
-  meaning / grammar), `OriginalLanguageWordDetails` (lemma, Strong's,
-  meaning, grammar, morpheme breakdown, occurrences), and
-  `OriginalLanguageOccurrences` (reference + original-language context
-  excerpt per occurrence), plus `OriginalLanguageModal.css`.
+  container), `OriginalLanguageTitle` (the chapter title — Psalm
+  superscriptions — as a separate, subtly labelled block above verse 1),
+  `OriginalLanguageVerse` (expandable verse section, original text line),
+  `OriginalLanguageText` (the original-language line, each word with its
+  own direction and language), `OriginalLanguageWordTable` (word /
+  transliteration / meaning / grammar), `OriginalLanguageWordDetails`
+  (language, lemma, Strong's, meaning, grammar, morpheme breakdown,
+  occurrences), and `OriginalLanguageOccurrences` (reference +
+  original-language context excerpt per occurrence), plus
+  `OriginalLanguageModal.css`.
 - The toolbar button lives in `VerseActions` (a `Languages` icon between
   Highlight and the divider) and the modal state lives in
   `ScripturePanel`, which passes the selected range (min–max of the
@@ -196,8 +205,22 @@ in and logged out, and the data is public.
 
 Behaviour worth knowing:
 
-- Hebrew/Aramaic renders RTL (`dir="rtl"`, `lang="he"`), Greek LTR
-  (`lang="el"`). Maqqef-joined words print without a space between them.
+- Hebrew/Aramaic renders RTL (`dir="rtl"`, `lang="he"` for Hebrew,
+  `lang="arc"` for Aramaic), Greek LTR (`lang="el"`). Every word carries
+  its own language from the API, so a mixed passage labels each word
+  individually; the subtitle lists every language in the passage
+  ("Original Languages: Hebrew & Aramaic") instead of classifying it as
+  one, and an Aramaic word in a Hebrew verse gets a small "Aramaic" tag
+  in the table. Maqqef-joined words print without a space between them.
+- Aramaic is identified word by word at import time from explicit
+  passage ranges (`ARAMAIC_RANGES` in the importer): Daniel 2:4b–7:28,
+  Ezra 4:8–6:18 and 7:12–26, Jeremiah 10:11, Genesis 31:47. Daniel 2:4
+  splits mid-verse (words 1–4 Hebrew, 5–12 Aramaic). Aramaic words share
+  the Hebrew lexicon (TBESH) and morphology expansions (TEHMC).
+- On narrow screens the word table keeps its horizontal scroll and
+  shows a subtle "Swipe to see more →" hint only while columns are
+  hidden to the right; the hint disappears once the table is scrolled to
+  the end, and the page itself never scrolls sideways.
 - Grammar is always shown expanded ("Noun · Genitive · Singular ·
   Feminine"), with the verbatim expansion parsed into labeled pairs in
   the detail view.

@@ -90,6 +90,112 @@ const PHILIPPIANS_PASSAGE = {
     ],
 };
 
+// A Psalm with a verse-0 title (the superscription) and a mixed
+// Hebrew/Aramaic verse (Daniel 2:4: words 1–4 Hebrew, 5–12 Aramaic).
+const PSALMS_PASSAGE = {
+    book: "Psalms",
+    chapter: 3,
+    language: "hebrew",
+    languages: ["hebrew"],
+    startVerse: 1,
+    endVerse: 1,
+    available: true,
+    title: {
+        words: [
+            {
+                id: 301, wordIndex: 1, language: "hebrew", wordText: "מִזְמוֹר", transliteration: "miz.Mor",
+                gloss: "a psalm", strongNumber: "H4210", strongBase: "H4210",
+                lemma: "מִזְמוֹר", lemmaTransliteration: "miz.mor", meaning: "melody",
+                lexicalMorphology: "H:N", morphologyCode: "HNcmsa",
+                grammarDisplay: "Noun · Common · Masculine · Singular · Absolute",
+                morphemes: [
+                    { text: "מִזְמוֹר", transliteration: "miz.Mor", gloss: "a psalm", strongNumber: "H4210",
+                        morphologyCode: "HNcmsa", morphologyExpanded: "Function=Noun", isRoot: true },
+                ],
+            },
+            {
+                id: 302, wordIndex: 2, language: "hebrew", wordText: "לְדָוִד", transliteration: "le.da.Vid",
+                gloss: "of David", strongNumber: "H1732", strongBase: "H1732",
+                lemma: "דָּוִד", lemmaTransliteration: "da.vid", meaning: "David",
+                lexicalMorphology: "H:N", morphologyCode: "HR/Npm",
+                grammarDisplay: "Preposition + Noun · Proper · Masculine",
+                morphemes: [
+                    { text: "לְ", transliteration: "le.", gloss: "of", strongNumber: "H9005",
+                        morphologyCode: "HR", morphologyExpanded: "Function=Preposition", isRoot: false },
+                    { text: "דָוִד", transliteration: "da.Vid", gloss: "David", strongNumber: "H1732",
+                        morphologyCode: "Npm", morphologyExpanded: "Function=Noun", isRoot: true },
+                ],
+            },
+        ],
+    },
+    verses: [
+        {
+            verse: 1,
+            words: [
+                {
+                    id: 311, wordIndex: 1, language: "hebrew", wordText: "יְהוָה", transliteration: "ye.ho.Vah",
+                    gloss: "LORD", strongNumber: "H3068", strongBase: "H3068",
+                    lemma: "יְהוָה", lemmaTransliteration: "ye.ho.vah", meaning: "the LORD",
+                    lexicalMorphology: "H:N", morphologyCode: "HNpm",
+                    grammarDisplay: "Noun · Proper · Masculine",
+                    morphemes: [
+                        { text: "יְהוָה", transliteration: "ye.ho.Vah", gloss: "LORD", strongNumber: "H3068",
+                            morphologyCode: "HNpm", morphologyExpanded: "Function=Noun", isRoot: true },
+                    ],
+                },
+            ],
+        },
+    ],
+    sources: [
+        { code: "STEPBible-TAHOT", attribution: "Original-language data: STEPBible (Tyndale House / STEPBible.org), CC BY 4.0",
+            license: "CC BY 4.0", url: "https://github.com/STEPBible/STEPBible-Data" },
+    ],
+};
+
+const DANIEL_PASSAGE = {
+    book: "Daniel",
+    chapter: 2,
+    language: "hebrew",
+    languages: ["hebrew", "aramaic"],
+    startVerse: 4,
+    endVerse: 4,
+    available: true,
+    title: null,
+    verses: [
+        {
+            verse: 4,
+            words: [
+                {
+                    id: 401, wordIndex: 4, language: "hebrew", wordText: "אֲרָמִית", transliteration: "'a.ra.Mit",
+                    gloss: "Aramaic", strongNumber: "H0762", strongBase: "H0762",
+                    lemma: "אֲרָמִית", lemmaTransliteration: "'a.ra.mit", meaning: "Aramaic",
+                    lexicalMorphology: "H:A", morphologyCode: "HAafsc",
+                    grammarDisplay: "Adjective · Feminine · Singular · Absolute",
+                    morphemes: [
+                        { text: "אֲרָמִית", transliteration: "'a.ra.Mit", gloss: "Aramaic", strongNumber: "H0762",
+                            morphologyCode: "HAafsc", morphologyExpanded: "Function=Adjective", isRoot: true },
+                    ],
+                },
+                {
+                    id: 402, wordIndex: 5, language: "aramaic", wordText: "מַלְכָּא", transliteration: "mal.Ka'",
+                    gloss: "O king", strongNumber: "H4430", strongBase: "H4430",
+                    lemma: "מֶלֶךְ", lemmaTransliteration: "me.lekh", meaning: "king",
+                    lexicalMorphology: "A:N", morphologyCode: "ANcbsd",
+                    grammarDisplay: "Noun · Common · Masculine · Singular · Determined",
+                    morphemes: [
+                        { text: "מַלְכָּא", transliteration: "mal.Ka'", gloss: "O king", strongNumber: "H4430",
+                            morphologyCode: "ANcbsd", morphologyExpanded: "Function=Noun", isRoot: true },
+                    ],
+                },
+            ],
+        },
+    ],
+    sources: [
+        { code: "STEPBible-TAHOT", attribution: "Original-language data: STEPBible (Tyndale House / STEPBible.org), CC BY 4.0",
+            license: "CC BY 4.0", url: "https://github.com/STEPBible/STEPBible-Data" },
+    ],
+};
+
 // A passage with a word whose gloss is only a STEPBible placeholder
 // ("<the>" for the article) and a word ending in punctuation.
 const ARTICLE_PASSAGE = {
@@ -365,5 +471,61 @@ describe("OriginalLanguageModal", () => {
         expect(screen.queryByRole("button", { name: /be\.re\.Shit/ })).not.toBeInTheDocument();
         await userEvent.click(heading);
         expect(await screen.findByRole("button", { name: /be\.re\.Shit/ })).toBeInTheDocument();
+    });
+
+    test("a Psalm title renders as its own block above verse 1, never as verse 0 or verse 1", async () => {
+        const fetchMock = vi.fn(async () => ({ ok: true, json: async () => PSALMS_PASSAGE }));
+        vi.stubGlobal("fetch", fetchMock);
+        render(
+            <OriginalLanguageModal
+                book="Psalms" chapter={3} startVerse={1} endVerse={1}
+                englishVerses={[{ verse_number: 1, text: "LORD, how many are my foes!" }]}
+                translation="KJV" onClose={() => {}} onNavigateToVerse={() => {}}
+            />
+        );
+        expect(await screen.findByText("Psalms 3:1 · Biblical Hebrew")).toBeInTheDocument();
+        const title = screen.getByLabelText("Psalm title");
+        expect(within(title).getByText("Psalm title")).toBeInTheDocument();
+        expect(within(title).getByRole("button", { name: /miz\.Mor/ })).toBeInTheDocument();
+        // The title block sits above the verse section in the document.
+        const verseHeading = screen.getByRole("button", { name: "Verse 1" });
+        expect(title.compareDocumentPosition(verseHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        expect(screen.queryByText(/Verse 0/)).not.toBeInTheDocument();
+        // The title's words are selectable like verse words.
+        await userEvent.click(within(title).getByRole("button", { name: /miz\.Mor/ }));
+        const detail = screen.getByLabelText("Selected word");
+        expect(within(detail).getByText("a psalm")).toBeInTheDocument();
+        expect(within(detail).getByText("Biblical Hebrew")).toBeInTheDocument();
+    });
+
+    test("a mixed Hebrew/Aramaic passage names both languages and tags the Aramaic words", async () => {
+        const fetchMock = vi.fn(async () => ({ ok: true, json: async () => DANIEL_PASSAGE }));
+        vi.stubGlobal("fetch", fetchMock);
+        render(
+            <OriginalLanguageModal
+                book="Daniel" chapter={2} startVerse={4} endVerse={4}
+                englishVerses={[{ verse_number: 4, text: "The Chaldeans said to the king in Aramaic, “O king, live forever!”" }]}
+                translation="ESV" onClose={() => {}} onNavigateToVerse={() => {}}
+            />
+        );
+        expect(await screen.findByText("Daniel 2:4 · Original Languages: Hebrew & Aramaic")).toBeInTheDocument();
+        // The verse itself is never labelled as one language.
+        expect(screen.queryByText(/^Verse 4 · /)).not.toBeInTheDocument();
+        const aramaicWord = await screen.findByRole("button", { name: /mal\.Ka/ });
+        expect(aramaicWord).toHaveAttribute("lang", "arc");
+        expect(aramaicWord).toHaveAttribute("dir", "rtl");
+        const hebrewWord = screen.getByRole("button", { name: /'a\.ra\.Mit/ });
+        expect(hebrewWord).toHaveAttribute("lang", "he");
+        // Only the Aramaic word carries a visible language tag (the
+        // Hebrew word's Meaning cell also reads "Aramaic" — that is
+        // its gloss, not a tag — so the tag is checked by class).
+        const tags = document.querySelectorAll(".gnosis-ol-word-language");
+        expect(tags).toHaveLength(1);
+        expect(tags[0]).toHaveTextContent("Aramaic");
+        // The word detail shows the word's own language, not the passage's.
+        await userEvent.click(aramaicWord);
+        const detail = screen.getByLabelText("Selected word");
+        expect(within(detail).getByText("Biblical Aramaic")).toBeInTheDocument();
+        expect(within(detail).queryByText("Biblical Hebrew")).not.toBeInTheDocument();
     });
 });

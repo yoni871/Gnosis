@@ -412,7 +412,7 @@ export default function ScripturePanel({
                     tracking-[0.012em]
                     [word-spacing:0.03em]
                     text-[var(--text-primary)]
-                    [font-family:'Lora',Georgia,'Times_New_Roman',serif]
+                    [font-family:Georgia,'Times_New_Roman',serif]
                     hyphens-auto
                 ">
                     {verses.map((verse) => (
@@ -464,9 +464,9 @@ export default function ScripturePanel({
                                 verseRefs.current[verse.verse_number] = element;
                             }}
                             className={`
-                                inline
+                                block
                                 m-0
-                                mb-[4px]
+                                mb-[8px] last:mb-0
                                 font-[inherit]
                                 text-[inherit]
                                 leading-[inherit]

@@ -1,9 +1,10 @@
 import { useContext, useRef, useState, useId } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 import AuthContext from "../context/AuthContext";
 import useClickOutside from "../hooks/useClickOutside";
+import { shouldCloseDisclosureOnBlur } from "../utils/disclosureFocus";
 import ExploreDropdown from "./ExploreDropdown";
 import "./LandingNavbar.css";
 
@@ -24,7 +25,7 @@ function AuthLinks({ closeAll, hero = false }) {
     const [accountOpen, setAccountOpen] = useState(false);
     const trigger = useRef(null);
     const menuId = useId();
-    const accountRef = useClickOutside(() => setAccountOpen(false));
+    const accountRef = useClickOutside(() => setAccountOpen(false), "click");
     const handleSignOut = () => {
         logout();
         setAccountOpen(false);
@@ -42,7 +43,7 @@ function AuthLinks({ closeAll, hero = false }) {
             </Link>
             <div ref={accountRef} className="landing-account"
                 onBlur={(event) => {
-                    if (!event.currentTarget.contains(event.relatedTarget)) setAccountOpen(false);
+                    if (shouldCloseDisclosureOnBlur(event)) setAccountOpen(false);
                 }}
                 onKeyDown={(event) => {
                     if (event.key === "Escape" && accountOpen) {
@@ -64,19 +65,22 @@ function AuthLinks({ closeAll, hero = false }) {
                     <span className="landing-account-initials" aria-hidden="true">
                         {initials(user)}
                     </span>
-                    <span className="landing-account-name">
+                    <span className="landing-account-name" title={`${user.first_name} ${user.last_name}`}>
                         {user.first_name} {user.last_name}
                     </span>
+                    <ChevronDown size={13} className="landing-account-chevron" aria-hidden="true" />
                 </button>
                 {accountOpen && (
-                    <div id={menuId} className="landing-account-menu">
-                        <Link to="/bible/Genesis/1" onClick={closeAll}>
-                            Continue studying
-                        </Link>
-                        <button type="button" onClick={handleSignOut}>
-                            Sign out
-                        </button>
-                    </div>
+                    <ul id={menuId} className="landing-nav-popover landing-account-menu">
+                        <li>
+                            <Link to="/bible/Genesis/1" onClick={() => { setAccountOpen(false); closeAll(); }}>
+                                Continue studying
+                            </Link>
+                        </li>
+                        <li className="landing-account-signout">
+                            <button type="button" onClick={handleSignOut}>Sign out</button>
+                        </li>
+                    </ul>
                 )}
             </div>
         </>
@@ -103,13 +107,13 @@ export default function LandingHeader({ hero = false, solid = false }) {
     const trigger = useRef(null);
     // Include the toggle in the outside-click boundary; otherwise a mouse
     // press closes the menu before the toggle's click opens it again.
-    const headerRef = useClickOutside(() => setMobileOpen(false));
+    const headerRef = useClickOutside(() => setMobileOpen(false), "click");
     const closeAll = () => setMobileOpen(false);
 
     return (
         <header ref={headerRef} className={`landing-header${hero ? " landing-header-hero" : ""}${solid ? " landing-header-solid" : ""}`}
             onBlur={(event) => {
-                if (!event.currentTarget.contains(event.relatedTarget)) closeAll();
+                if (shouldCloseDisclosureOnBlur(event)) closeAll();
             }}
             onKeyDown={(event) => {
                 if (event.key === "Escape" && mobileOpen) {

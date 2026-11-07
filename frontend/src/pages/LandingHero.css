@@ -61,13 +61,7 @@
     max-width: 48ch;
     margin-bottom: 30px;
 }
-.landing-hero-ctas { gap: 14px; }
-.landing-continue-note {
-    margin: 14px 0 0;
-    font-size: 0.85rem;
-    color: #796039;
-}
-[data-theme="dark"] .landing-continue-note { color: var(--hero-gold); }
+.landing-hero-ctas { gap: 14px; align-items: flex-start; }
 .landing-hero-ctas .landing-btn {
     font-family: "Gnosis Hero Inter", var(--public-font-ui);
     font-size: .86rem;
@@ -77,6 +71,13 @@
     border-radius: 6px;
     letter-spacing: .005em;
 }
+.landing-hero-ctas .landing-continue {
+    flex-direction: column; gap: 2px; padding: 10px 18px;
+    text-align: center; min-width: 0;
+}
+.landing-continue-title { font-size: .9rem; font-weight: 600; line-height: 1.4; }
+.landing-continue-subtitle { font-size: .72rem; font-weight: 400; line-height: 1.45; color: #e0e8da; overflow-wrap: anywhere; }
+.landing-continue-location { display: inline-block; max-width: 100%; vertical-align: top; }
 .landing-hero-ctas .landing-btn-primary { background: var(--hero-green); color: var(--hero-ivory); border-color: #8d9a8a; }
 .landing-hero-ctas .landing-btn-primary:hover { background: var(--hero-green-hover); color: var(--hero-ivory); }
 .landing-hero-ctas .landing-btn-secondary { border-color: var(--public-border); }

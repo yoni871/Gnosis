@@ -1,0 +1,132 @@
+[
+  {
+    "width": 1440,
+    "continueHeight": 60.828125,
+    "subtitleInside": true,
+    "explore": {
+      "x": 455.53125,
+      "y": 81,
+      "width": 454.390625,
+      "height": 36
+    },
+    "exploreTarget": 28,
+    "profile": {
+      "x": 1054.046875,
+      "y": 81,
+      "width": 201.953125,
+      "height": 36
+    },
+    "profileTargets": [
+      28,
+      28
+    ],
+    "missionFont": "16px",
+    "missionHeadings": 1,
+    "visibleMissionText": 1,
+    "horizontalOverflow": false
+  },
+  {
+    "width": 1280,
+    "continueHeight": 60.828125,
+    "subtitleInside": true,
+    "explore": {
+      "x": 375.53125,
+      "y": 81,
+      "width": 454.390625,
+      "height": 36
+    },
+    "exploreTarget": 28,
+    "profile": {
+      "x": 974.046875,
+      "y": 81,
+      "width": 201.953125,
+      "height": 36
+    },
+    "profileTargets": [
+      28,
+      28
+    ],
+    "missionFont": "16px",
+    "missionHeadings": 1,
+    "visibleMissionText": 1,
+    "horizontalOverflow": false
+  },
+  {
+    "width": 768,
+    "continueHeight": 60.828125,
+    "subtitleInside": true,
+    "explore": {
+      "x": 59.390625,
+      "y": 159,
+      "width": 649.21875,
+      "height": 58.453125
+    },
+    "exploreTarget": 50.453125,
+    "profile": {
+      "x": 59.390625,
+      "y": 336.890625,
+      "width": 201.953125,
+      "height": 52
+    },
+    "profileTargets": [
+      44,
+      44
+    ],
+    "missionFont": "16px",
+    "missionHeadings": 1,
+    "visibleMissionText": 1,
+    "horizontalOverflow": false
+  },
+  {
+    "width": 390,
+    "continueHeight": 60.828125,
+    "subtitleInside": true,
+    "explore": {
+      "x": 45,
+      "y": 157,
+      "width": 300,
+      "height": 75.71875
+    },
+    "exploreTarget": 67.71875,
+    "profile": {
+      "x": 45,
+      "y": 334.890625,
+      "width": 201.953125,
+      "height": 52
+    },
+    "profileTargets": [
+      44,
+      44
+    ],
+    "missionFont": "15.5px",
+    "missionHeadings": 1,
+    "visibleMissionText": 1,
+    "horizontalOverflow": false
+  },
+  {
+    "width": 320,
+    "continueHeight": 77.515625,
+    "subtitleInside": true,
+    "explore": {
+      "x": 45,
+      "y": 157,
+      "width": 230,
+      "height": 75.71875
+    },
+    "exploreTarget": 67.71875,
+    "profile": {
+      "x": 45,
+      "y": 334.890625,
+      "width": 201.953125,
+      "height": 52
+    },
+    "profileTargets": [
+      44,
+      44
+    ],
+    "missionFont": "15.5px",
+    "missionHeadings": 1,
+    "visibleMissionText": 1,
+    "horizontalOverflow": false
+  }
+]
