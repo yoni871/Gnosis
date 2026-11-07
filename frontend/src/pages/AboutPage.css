@@ -73,3 +73,5 @@
 }
 
 .about-page .about-opening h1 { text-transform:uppercase; }
+
+.about-page .about-passage-translation { font-size:.85em; font-weight:400; white-space:nowrap; }
