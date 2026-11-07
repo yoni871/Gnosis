@@ -81,7 +81,11 @@ in the modal — a small muted "Psalm title" label, the original text, and
 the same word table. Verified live on a local disposable database with
 Psalm 3 (6 title words) and by API + frontend tests. The preview corpus
 is still Genesis 1 + Philippians 3 only, so no title data is live on the
-preview yet.
+preview yet. **Schema note:** the original-language table was created
+with `verse_number > 0`, which rejected verse-0 rows at import — the
+local verification caught this, and migration
+`20261107051000_allow-verse-zero-in-original-language` relaxes the
+check to `verse_number >= 0` (verse 0 is only ever a Psalm title).
 
 ## 3. Verse-numbering differences — PROPOSED
 
@@ -149,10 +153,14 @@ never classify a mixed verse as one language).
   `language` — the table tags Aramaic words in a Hebrew verse, and the
   word detail shows the word's own language.
 - **Morphology/transliteration:** Aramaic codes come from the same
-  TEHMC expansion file; the dry run must verify coverage for Aramaic
-  codes (any code without an expansion is reported, never silently
-  dropped). Transliteration follows the STEPBible scheme, as in
-  Phase 1.
+  TEHMC expansion file. Coverage is verified, not assumed: the local
+  Daniel 2 import stored 112 Aramaic (A-prefixed) morphology codes
+  with real TEHMC expansions, and every Aramaic word's morphemes carry
+  expansions (e.g. `Ta` → "Function=Particle; Form=Definite article
+  (Aramaic)"). Three Aramaic words had no TBESH lexicon row
+  (H1247I, H5665+); the importer derived their lemma/gloss from the
+  word row itself and warned, by design — nothing was invented.
+  Transliteration follows the STEPBible scheme, as in Phase 1.
 
 **Implemented:** `ARAMAIC_RANGES` + `wordLanguageForWord` in the
 importer (Aramaic words stored with `language = 'aramaic'`; Aramaic

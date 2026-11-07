@@ -68,7 +68,11 @@ downloads them into `backend/src/importer/original-language-data/`
 
 ## Database objects
 
-Added by migration `20261106234443_add-original-language-analysis.sql`:
+Added by migration `20261106234443_add-original-language-analysis.sql`,
+with the verse-0 allowance in
+`20261107051000_allow-verse-zero-in-original-language.sql` (the original
+`verse_number > 0` check rejected Psalm-title rows; verse 0 is only ever
+a Psalm title):
 
 - `ol_sources` — one row per STEPBible file (code, name, url, licence,
   attribution, text edition, language). Seeded by the migration.

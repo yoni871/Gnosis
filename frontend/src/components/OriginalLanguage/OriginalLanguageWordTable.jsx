@@ -52,10 +52,18 @@ export default function OriginalLanguageWordTable({
         wrap.addEventListener("scroll", update, { passive: true });
         // ResizeObserver is unavailable in jsdom (and very old
         // browsers); the scroll listener alone still covers scrolling.
+        // Observe the table as well as the wrap: on the production
+        // build the webfont can arrive after mount, widening the table
+        // without resizing the wrap — without this the hint would never
+        // appear even though columns are hidden.
+        const table = wrap.querySelector("table");
         const observer = typeof ResizeObserver !== "undefined"
             ? new ResizeObserver(update)
             : null;
-        if (observer) observer.observe(wrap);
+        if (observer) {
+            observer.observe(wrap);
+            if (table) observer.observe(table);
+        }
         return () => {
             wrap.removeEventListener("scroll", update);
             observer?.disconnect();

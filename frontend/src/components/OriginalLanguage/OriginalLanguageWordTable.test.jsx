@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
 
@@ -69,5 +69,37 @@ describe("OriginalLanguageWordTable", () => {
         setWrapMeasurements(wrap, { scrollWidth: 300, clientWidth: 358, scrollLeft: 0 });
         fireEvent.scroll(wrap);
         expect(screen.queryByText("Swipe to see more →")).not.toBeInTheDocument();
+    });
+
+    test("a table resize after mount re-measures and shows the hint", () => {
+        // On the production build the webfont can arrive after mount,
+        // widening the table without resizing the wrap — the hint must
+        // still appear once the table grows past the container.
+        const observed = [];
+        const callbacks = [];
+        const originalObserver = globalThis.ResizeObserver;
+        globalThis.ResizeObserver = class {
+            constructor(callback) { callbacks.push(callback); }
+            observe(element) { observed.push(element); }
+            unobserve() {}
+            disconnect() {}
+        };
+        try {
+            const onSelectWord = vi.fn();
+            render(<OriginalLanguageWordTable words={WORDS} language="hebrew" selectedWordId={null} onSelectWord={onSelectWord} />);
+            const wrap = document.querySelector(".gnosis-ol-table-wrap");
+            const table = document.querySelector(".gnosis-ol-table");
+            expect(observed).toContain(wrap);
+            expect(observed).toContain(table);
+            // At mount the table fits, so there is no hint.
+            expect(screen.queryByText("Swipe to see more →")).not.toBeInTheDocument();
+            // The font arrives and the table widens past the wrap.
+            setWrapMeasurements(wrap, { scrollWidth: 395, clientWidth: 358, scrollLeft: 0 });
+            act(() => { callbacks.forEach((callback) => callback()); });
+            expect(screen.getByText("Swipe to see more →")).toBeInTheDocument();
+        } finally {
+            if (originalObserver === undefined) delete globalThis.ResizeObserver;
+            else globalThis.ResizeObserver = originalObserver;
+        }
     });
 });
