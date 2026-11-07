@@ -19,7 +19,11 @@ describe("About Gnosis", () => {
         for (const name of ["Why the Name Gnosis?", "Gnosis in Scripture", "Our Mission", "Our Vision"]) {
             expect(screen.getByRole("heading", { level: 2, name })).toBeInTheDocument();
         }
-        expect(within(screen.getByRole("region", { name: "Our Mission" })).getAllByText(/^our mission$/i)).toHaveLength(1);
+        expect(screen.getAllByRole("heading", { name: "Our Mission", exact: true })).toHaveLength(1);
+        expect(screen.getAllByText("Our Mission", { exact: true })).toHaveLength(1);
+        expect(within(screen.getByRole("navigation", { name: "On this page" })).getByRole("link", { name: "Mission", exact: true })).toHaveAttribute("href", "#mission");
+        const statement = within(screen.getByRole("region", { name: "Our Mission" })).getByText("Make biblical knowledge more accessible and encourage thoughtful study of Scripture through its theological and historical context.");
+        expect(statement.tagName).toBe("P");
         expect(screen.getByText(/not connected to Gnosticism or its teachings/)).toBeInTheDocument();
         expect(screen.getByText(/not inspired Scripture, an error-free authority/)).toBeInTheDocument();
         expect(screen.getByText(/Today, Gnosis brings Scripture/)).toBeInTheDocument();

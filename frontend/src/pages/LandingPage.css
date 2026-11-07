@@ -84,10 +84,6 @@
 .landing-account-chip { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; max-width: 260px; padding: 5px 12px 5px 5px; border: 1px solid var(--public-border); border-radius: 9px; background: var(--public-panel); color: var(--public-ink); font-size: .9rem; cursor: pointer; }
 .landing-account-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .landing-account-initials { display: grid; place-items: center; flex: 0 0 32px; height: 32px; border-radius: 6px; background: var(--public-sand); font-size: .8rem; font-weight: 700; }
-.landing-account-menu { position: absolute; right: 0; top: calc(100% + 8px); z-index: 8; min-width: 210px; padding: 8px; background: var(--public-panel); color: var(--public-ink); border: 1px solid var(--public-border); border-radius: 10px; box-shadow: 0 8px 24px #2b252314; }
-.landing-account-menu a, .landing-account-menu button { display: flex; align-items: center; width: 100%; min-height: 46px; padding: 8px 12px; border: 0; border-radius: 6px; color: inherit; background: transparent; text-decoration: none; font: inherit; text-align: left; cursor: pointer; }
-.landing-account-menu a:hover, .landing-account-menu button:hover { background: var(--public-sand); }
-.landing-nav-mobile .landing-account-menu { left: 0; right: auto; }
 @media (min-width: 860px) {
     .landing-nav-desktop { display: flex; }
     .landing-menu-button, .landing-nav-mobile { display: none; }

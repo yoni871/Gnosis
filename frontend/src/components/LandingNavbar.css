@@ -56,17 +56,17 @@
 .public-page .landing-nav-popover {
     position: absolute; top: calc(100% + 6px); z-index: 12;
     width: max-content; min-width: 0; max-width: calc(100vw - 2 * var(--public-gutter));
-    margin: 0; padding: 6px; list-style: none;
+    margin: 0; padding: 3px; list-style: none;
     background: var(--nav-ivory); color: var(--nav-green);
     border: 1px solid color-mix(in srgb, var(--nav-green) 18%, var(--nav-ivory));
     border-radius: var(--public-radius); box-shadow: 0 6px 12px #151c170a, 0 16px 32px #151c171f;
     font-family: "Gnosis Hero Inter", var(--public-font-ui); text-shadow: none;
     animation: landing-popover-reveal 140ms ease-out;
 }
-.public-page .landing-explore-options { left: 50%; transform: translateX(-50%); width: 17rem; }
+.public-page .landing-explore-options { left: 50%; transform: translateX(-50%); width: max-content; }
 .public-page .landing-nav-popover a,
 .public-page .landing-nav-popover button {
-    display: block; width: 100%; min-height: 44px; padding: 10px 12px;
+    display: flex; align-items: baseline; gap: 10px; width: 100%; min-height: 28px; padding: 4px 8px;
     border: 0; border-radius: 4px; background: transparent; color: inherit;
     font: inherit; font-size: .8rem; line-height: 1.5; text-align: left;
     text-decoration: none; overflow-wrap: anywhere; cursor: pointer;
@@ -75,8 +75,9 @@
 .public-page .landing-nav-popover a:hover,
 .public-page .landing-nav-popover button:hover { background: #e4c99033; }
 .public-page .landing-nav-popover :focus-visible { outline: 2px solid var(--nav-green); outline-offset: -2px; box-shadow: none; }
-.landing-explore-title { display: block; font-size: .82rem; font-weight: 600; line-height: 1.5; margin-bottom: 3px; }
-.landing-explore-description { display: block; font-size: .75rem; font-weight: 400; line-height: 1.6; color: #526056; }
+.landing-explore-title { flex-shrink: 0; font-size: .8rem; font-weight: 600; line-height: 1.5; }
+.landing-explore-description { font-size: .72rem; font-weight: 400; line-height: 1.5; color: #526056; }
+.public-page .landing-account-menu { display: grid; grid-template-columns: max-content max-content; right: 0; gap: 2px; }
 @keyframes landing-popover-reveal { from { opacity: 0; margin-top: -4px; } to { opacity: 1; margin-top: 0; } }
 @media (prefers-reduced-motion: reduce) {
     .public-page .landing-nav-popover { animation: none; }
@@ -95,11 +96,14 @@
     .public-page .landing-header-hero .landing-nav-mobile .landing-btn { display: flex; margin-top: 8px; }
     .landing-nav-mobile .landing-explore-trigger { width: 100%; justify-content: space-between; }
     .public-page .landing-nav-mobile .landing-nav-popover {
-        position: static; transform: none; width: min(17rem, 100%); max-width: 100%; margin: 4px 0 8px;
-        padding: 4px; background: #fff9ed0a; color: var(--nav-ivory);
+        position: static; transform: none; width: 100%; max-width: 100%; margin: 4px 0 8px;
+        padding: 3px; background: #fff9ed0a; color: var(--nav-ivory);
         border-color: #fff9ed26; box-shadow: none;
     }
     .public-page .landing-nav-mobile .landing-account-menu { width: max-content; }
+    .public-page .landing-nav-mobile .landing-nav-popover a,
+    .public-page .landing-nav-mobile .landing-nav-popover button { min-height: 44px; }
+    .landing-nav-mobile .landing-explore-options a { flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; padding-block: 6px; }
     .landing-nav-mobile .landing-explore-description { color: #e0d8c6; }
     .public-page .landing-nav-mobile .landing-nav-popover :focus-visible { outline-color: var(--nav-gold); }
 }

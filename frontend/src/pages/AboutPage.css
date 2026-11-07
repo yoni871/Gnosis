@@ -41,7 +41,7 @@
 .about-read-link { display:inline-flex; align-items:center; gap:12px; margin-top:26px; min-height:44px; color:var(--about-green); font-size:.78rem; font-weight:600; text-decoration:none; text-underline-offset:4px; }
 .about-read-link > span { color:var(--about-gold); transition:transform 280ms ease; }
 .about-page .about-editorial-reading .about-statement { color:var(--about-green); font-family:"Gnosis Hero Cormorant",Georgia,serif; font-size:clamp(1.25rem,2vw,1.5rem); line-height:1.6; margin:0 0 28px; }
-.about-page .about-mission .about-statement { max-width:56ch; font-family:"Gnosis Hero Inter",var(--public-font-ui); font-size:clamp(1rem,1.2vw,1.125rem); font-weight:400; line-height:1.8; text-wrap:pretty; margin-bottom:24px; }
+.about-page .about-mission .about-statement { max-width:60ch; font-family:"Gnosis Hero Inter",var(--public-font-ui); font-size:1rem; font-weight:400; line-height:1.75; color:var(--about-burgundy); border-left:2px solid var(--about-rule); padding-left:16px; text-wrap:pretty; margin-bottom:18px; }
 .about-mission > p:not([class]),.about-vision > p:not([class]) { font-size:.95rem; }
 .about-study-note { color:#615e52; font-size:.85rem; border-left:2px solid var(--about-rule); padding-left:20px; margin-top:28px; }
 .about-page .about-study-button { margin-top:20px; background:var(--about-green); border-color:var(--about-green); color:#fff9ed; border-radius:999px; min-height:50px; padding-inline:26px; }
@@ -62,6 +62,7 @@
  .about-editorial-reading > section { scroll-margin-top:96px; }
 }
 @media (width < 600px) {
+ .about-page .about-mission .about-statement { font-size:.96875rem; }
  .about-meaning-grid { grid-template-columns:1fr; gap:28px; }
  .about-greek-word { max-width:320px; width:100%; margin-inline:auto; }
  .about-passage-context { grid-template-columns:1fr; gap:18px; }
