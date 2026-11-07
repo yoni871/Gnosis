@@ -46,6 +46,10 @@ router.get("/bible/:book/:chapter/:translation", getBibleChapter);
 
 router.get("/bible/:book/:chapter/study", getStudy);
 
+// Original Language Analysis (Phase 1): mounted here (not app.js) so
+// the routes live with the other Bible routes.
+router.use("/original-language", require("./originalLanguageRoutes"));
+
 
 module.exports = router;
 

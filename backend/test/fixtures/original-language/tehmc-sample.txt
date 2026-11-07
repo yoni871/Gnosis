@@ -1,0 +1,9 @@
+# Test fixture: excerpt of STEPBible-Data (Tyndale House / STEPBible.org), CC BY 4.0.
+# Source: https://github.com/STEPBible/STEPBible-Data — do not redistribute the full dataset.
+HC	Function=Conjunction 
+HR	Function=Preposition 
+HTd	Function=Particle ; Form=Definite article (Hebrew) 
+HTo	Function=Particle ; Form=Object indicator 
+HNcfsa	Function=Noun ; Form=Common ; Gender=Feminine; Number=Singular; State=Absolute
+HNcmpa	Function=Noun ; Form=Common ; Gender=Masculine; Number=Plural; State=Absolute
+HVqp3ms	Function=Verb ; Stem=Qal (hence Action=Simple; Voice=Active); Form=Perfect (hence Tense=Past/present; Mood=Indicative); Person=Third; Gender=Masculine; Number=Singular

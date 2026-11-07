@@ -35,6 +35,8 @@ if (require.main === module) {
         'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js',
         'test/translations/licensedProviders.test.js',
         'test/translations/licensedService.test.js',
+        'test/importer/originalLanguage.test.js',
+        'test/application/originalLanguage.test.js',
         'test/application/readingState.test.js'], {
         cwd: path.resolve(__dirname, '..'), env: testEnvironment(), stdio: 'inherit',
     });

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bookmark, Highlighter, X } from "lucide-react";
+import { Bookmark, Highlighter, Languages, X } from "lucide-react";
 import {
     autoUpdate,
     flip,
@@ -24,6 +24,7 @@ export default function VerseActions({
     isHighlightBusy,
     onClearHighlight,
     hasHighlight,
+    onOriginalLanguage,
     onClearSelection
 }) {
     const [isColorOpen, setIsColorOpen] = useState(false);
@@ -143,6 +144,17 @@ export default function VerseActions({
                         onClick={() => setIsColorOpen((open) => !open)}
                     >
                         <Highlighter size={18} aria-hidden="true" />
+                    </button>
+
+                    <button
+                        type="button"
+                        aria-label="Original language analysis"
+                data-testid="ol-toolbar-button"
+                        title="Original Language"
+                        className="gnosis-verse-tool"
+                        onClick={onOriginalLanguage}
+                    >
+                        <Languages size={18} aria-hidden="true" />
                     </button>
 
                     <span

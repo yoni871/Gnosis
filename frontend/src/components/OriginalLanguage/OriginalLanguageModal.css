@@ -1,0 +1,489 @@
+/* Original Language Analysis modal — burgundy headings, warm
+   ivory/parchment, thin gold borders, elegant serif, soft shadows.
+   Colors come from the app tokens (index.css), so the dark theme works. */
+
+.gnosis-ol-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgb(43 37 35 / 55%);
+}
+
+.gnosis-ol-dialog {
+    display: flex;
+    flex-direction: column;
+    width: min(88vw, 1150px);
+    max-height: 88vh;
+    overflow: hidden;
+    border: 1px solid var(--color-accent);
+    border-radius: 12px;
+    background: var(--bg-panel);
+    box-shadow:
+        0 8px 24px rgb(0 0 0 / 18%),
+        0 24px 64px rgb(0 0 0 / 22%);
+}
+
+.gnosis-ol-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.gnosis-ol-title {
+    margin: 0;
+    font-family: Lora, Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-brand);
+}
+
+.gnosis-ol-subtitle {
+    margin: 6px 0 0;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+}
+
+.gnosis-ol-close {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.gnosis-ol-close:hover {
+    background: var(--bg-control-hover);
+}
+
+.gnosis-ol-main {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+.gnosis-ol-analysis {
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;
+    padding: 20px 24px 24px;
+}
+
+.gnosis-ol-detail {
+    width: 340px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    padding: 20px;
+    border-left: 1px solid var(--border);
+    background: var(--bg-page);
+}
+
+.gnosis-ol-status {
+    margin: 0;
+    padding: 24px 8px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+/* English passage in the reader's current translation. */
+.gnosis-ol-passage {
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 8px;
+    background: var(--bg-page);
+}
+
+.gnosis-ol-passage-heading {
+    margin: 0 0 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-brand);
+}
+
+.gnosis-ol-passage-text {
+    margin: 0;
+    font-family: Lora, Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--text-primary);
+}
+
+.gnosis-ol-verse-number {
+    margin-right: 3px;
+    font-size: 0.65em;
+    font-weight: 700;
+    color: var(--color-brand);
+}
+
+/* One verse: original text + word table. */
+.gnosis-ol-verse {
+    margin-top: 24px;
+}
+
+.gnosis-ol-verse-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 0;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+    font-family: Lora, Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-brand);
+    cursor: pointer;
+}
+
+.gnosis-ol-verse-chevron {
+    transition: transform 150ms ease;
+}
+
+.gnosis-ol-verse-chevron.is-open {
+    transform: rotate(180deg);
+}
+
+.gnosis-ol-original-text {
+    margin: 14px 0;
+    font-family: Lora, Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    line-height: 2;
+    color: var(--text-primary);
+}
+
+.gnosis-ol-table-wrap {
+    overflow-x: auto;
+}
+
+.gnosis-ol-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.gnosis-ol-table th {
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: left;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.gnosis-ol-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.gnosis-ol-table tbody tr {
+    cursor: pointer;
+}
+
+.gnosis-ol-table tbody tr:hover {
+    background: var(--bg-control-hover);
+}
+
+.gnosis-ol-table tbody tr.is-selected {
+    background: rgb(122 46 58 / 8%);
+    box-shadow: inset 3px 0 0 var(--color-brand);
+}
+
+.gnosis-ol-word-button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-family: Lora, Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.gnosis-ol-transliteration {
+    font-style: italic;
+}
+
+.gnosis-ol-attribution {
+    margin: 24px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+/* Selected-word detail panel. */
+.gnosis-ol-word-details-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.gnosis-ol-detail-word {
+    margin: 0;
+    font-family: Lora, Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    line-height: 1.3;
+    color: var(--color-brand);
+}
+
+.gnosis-ol-detail-close {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    font-size: 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.gnosis-ol-detail-close:hover {
+    background: var(--bg-control-hover);
+}
+
+.gnosis-ol-detail-transliteration {
+    margin: 4px 0 16px;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.gnosis-ol-definition-list {
+    margin: 0;
+}
+
+.gnosis-ol-definition-list > div {
+    margin-bottom: 12px;
+}
+
+.gnosis-ol-definition-list dt {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.gnosis-ol-definition-list dd {
+    margin: 2px 0 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+.gnosis-ol-morphemes {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.gnosis-ol-morphemes h3,
+.gnosis-ol-occurrences h3 {
+    margin: 0 0 12px;
+    font-family: Lora, Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-brand);
+}
+
+.gnosis-ol-morpheme {
+    margin-bottom: 14px;
+}
+
+.gnosis-ol-morpheme-word {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.gnosis-ol-morpheme-word span {
+    font-family: Lora, Georgia, "Times New Roman", serif;
+    font-size: 17px;
+}
+
+.gnosis-ol-occurrences {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.gnosis-ol-occurrences-note {
+    margin: 0 0 12px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+.gnosis-ol-occurrences-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.gnosis-ol-occurrences-actions button {
+    padding: 8px 14px;
+    border: 1px solid var(--color-accent);
+    border-radius: 20px;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-brand);
+    cursor: pointer;
+}
+
+.gnosis-ol-occurrences-actions button.is-active {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    color: #fff7ec;
+}
+
+.gnosis-ol-occurrences-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.gnosis-ol-occurrence-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.gnosis-ol-occurrence {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-panel);
+    text-align: left;
+    cursor: pointer;
+}
+
+.gnosis-ol-occurrence:hover {
+    border-color: var(--color-accent);
+}
+
+.gnosis-ol-occurrence-ref {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--color-brand);
+}
+
+.gnosis-ol-occurrence-context {
+    display: block;
+    margin: 6px 0 4px;
+    font-family: Lora, Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.gnosis-ol-occurrence-gloss {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.gnosis-ol-close:focus-visible,
+.gnosis-ol-verse-heading:focus-visible,
+.gnosis-ol-word-button:focus-visible,
+.gnosis-ol-detail-close:focus-visible,
+.gnosis-ol-occurrences-actions button:focus-visible,
+.gnosis-ol-occurrence:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+}
+
+/* Mobile: full-screen, single column, no horizontal overflow. */
+@media (max-width: 768px) {
+    .gnosis-ol-backdrop {
+        padding: 0;
+    }
+
+    .gnosis-ol-dialog {
+        width: 100vw;
+        height: 100dvh;
+        max-height: none;
+        border: 0;
+        border-radius: 0;
+    }
+
+    .gnosis-ol-header {
+        padding: 16px 16px 12px;
+    }
+
+    .gnosis-ol-title {
+        font-size: 20px;
+    }
+
+    .gnosis-ol-main {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .gnosis-ol-analysis,
+    .gnosis-ol-detail {
+        overflow: visible;
+    }
+
+    .gnosis-ol-analysis {
+        padding: 16px;
+    }
+
+    .gnosis-ol-detail {
+        width: auto;
+        border-top: 1px solid var(--border);
+        border-left: 0;
+        padding: 16px;
+    }
+
+    .gnosis-ol-original-text {
+        font-size: 20px;
+    }
+
+    .gnosis-ol-table {
+        font-size: 13px;
+    }
+
+    .gnosis-ol-word-button {
+        font-size: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gnosis-ol-verse-chevron {
+        transition: none;
+    }
+}

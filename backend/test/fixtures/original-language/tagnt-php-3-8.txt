@@ -1,0 +1,31 @@
+# Test fixture: excerpt of STEPBible-Data (Tyndale House / STEPBible.org), CC BY 4.0.
+# Source: https://github.com/STEPBible/STEPBible-Data — do not redistribute the full dataset.
+Php.3.8#01=NKO	ἀλλὰ (alla)	But	G0235=CONJ	ἀλλά=but	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			Pero	but	#01	G0235					
+Php.3.8#02=NK(o)	μενοῦνγε (menounge)	rather	G3304=PRT	μενοῦνγε=but rather	NA28+NA27+Tyn+SBL+TR	μέν οὖν (o=men oun) indeed therefore - G3303=PRT + G3767=CONJ in: Treg+Byz ¦ μέν οὖν γε (o=men oun ge) indeed therefore but - G3303=PRT + G3767=CONJ + G1065=PRT in: WH		antes bien	 but rather	#02	G3304	G3303, G3767, G3303, G1065				
+Php.3.8#03=NKO	καὶ (kai)	also	G2532=CONJ	καί=and	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			también	and	#03	G2532_A					
+Php.3.8#04=NKO	ἡγοῦμαι (hēgoumai)	I count	G2233=V-PNI-1S	ἡγέομαι=to govern	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			estoy considerando	to govern	#04	G2233_A					
+Php.3.8#05=NKO	πάντα (panta)	all things	G3956=A-APN	πᾶς=all	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			a todas (cosas)	all	#05	G3956_A					
+Php.3.8#06=NKO	ζημίαν (zēmian)	loss	G2209=N-ASF	ζημία=damage/loss	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			pérdida	damage	#06	G2209					
+Php.3.8#07=NKO	εἶναι (einai)	to be	G1511=V-PAN	εἰμί=to be	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			estar siendo	to be	#07	G1511_A					
+Php.3.8#08=NKO	διὰ (dia)	because of	G1223=PREP	διά=through/because of	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			por	because of	#08	G1223_A					
+Php.3.8#09=NKO	τὸ (to)	which	G3588=T-ASN	ὁ=the/this/who	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			el	[that] which	#09»10:G5242	G3588_A					
+Php.3.8#10=NKO	ὑπερέχον (huperechon)	is excelling	G5242=V-PAP-ASN	ὑπερέχω=be higher	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			estar teniendo por encima	be higher	#10	G5242					
+Php.3.8#11=NKO	τῆς (tēs)	the	G3588=T-GSF	ὁ=the/this/who	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			el	the	#11»12:G1108	G3588_B					
+Php.3.8#12=NKO	γνώσεως (gnōseōs)	knowledge	G1108=N-GSF	γνῶσις=knowledge	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			conocimiento	knowledge	#12	G1108					
+Php.3.8#13=NKO	Χριστοῦ (Christou)	of Christ	G5547=N-GSM-T	Χριστός=Christ	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			de Ungido	Christ»Christ|Jesus@Mat.1.1	#13	G5547_A					
+Php.3.8#14=NKO	Ἰησοῦ (Iēsou)	Jesus	G2424G=N-GSM-P	Ἰησοῦς=Jesus/Joshua	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			Jesús	Jesus»Jesus|Jesus@Mat.1.1	#14	G2424					
+Php.3.8#15=NKO	τοῦ (tou)	the	G3588=T-GSM	ὁ=the/this/who	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			el	the	#15»16:G2962	G3588_C					
+Php.3.8#16=NKO	κυρίου (kuriou)	Lord	G2962G=N-GSM-T	κύριος=lord	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			Señor	: God»lord|1_God	#16	G2962					
+Php.3.8#17=NKO	μου (mou)	of mine	G3165=P-1GS	ἐγώ=I/we	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			de mí	my	#17«16:G2962	G3165	G3450				
+Php.3.8#18=NKO	δι᾽ (di᾽)	because of	G1223=PREP	διά=through/because of	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			por	through	#18	G1223_B					
+Php.3.8#19=NKO	ὃν (hon)	whom	G3739=R-ASM	ὅς, ἥ=which	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			quien	whom	#19«18:G1223	G3739					
+Php.3.8#20=NKO	τὰ (ta)	<the>	G3588=T-APN	ὁ=the/this/who	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			las	the	#20»21:G3956	G3588_D					
+Php.3.8#21=NKO	πάντα (panta)	all things	G3956=A-APN	πᾶς=all	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			todas (cosas)	all	#21	G3956_B					
+Php.3.8#22=NKO	ἐζημιώθην (ezēmiōthēn)	I have lost	G2210=V-API-1S	ζημιόω=to lose	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			sufrí pérdida	to lose	#22	G2210					
+Php.3.8#23=NKO	καὶ (kai)	and	G2532=CONJ	καί=and	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			y	and	#23	G2532_B					
+Php.3.8#24=NKO	ἡγοῦμαι (hēgoumai)	esteem [them]	G2233=V-PNI-1S	ἡγέομαι=to govern	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			estoy considerando	to govern	#24	G2233_B					
+Php.3.8#25=NKO	σκύβαλα (skubala)	rubbish	G4657=N-APN	σκύβαλον=garbage	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			piezas de basura	garbage	#25	G4657					
+Php.3.8#26=k	εἶναι, (einai)	to be	G1511=V-PAN	εἰμί=to be	TR+Byz			estar siendo	to be	#26	G1511_b					
+Php.3.8#27=NKO	ἵνα (ina)	that	G2443=CONJ	ἵνα=in order that/to	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			para que	in order that	#27	G2443	G3363				
+Php.3.8#28=NKO	Χριστὸν (Christon)	Christ	G5547=N-ASM-T	Χριστός=Christ	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			a Ungido	Christ»Christ|Jesus@Mat.1.1	#28	G5547_B					
+Php.3.8#29=NKO	κερδήσω, (kerdēsō)	I may gain	G2770=V-AAS-1S	κερδαίνω=to gain	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			gane	to gain	#29	G2770					
