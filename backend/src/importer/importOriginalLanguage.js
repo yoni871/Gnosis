@@ -149,9 +149,14 @@ function parseTahotLine(line) {
     // NFC makes the same word compare equal wherever it came from.
     const cols = line.normalize("NFC").split("\t");
     if (cols.length < 6) return null;
-    const refMatch = /^([A-Za-z0-9]+)\.(\d+)\.(\d+)#(\d+)=([A-Za-z]*)/.exec(cols[0]);
+    // Some refs carry a parenthetical alternate numbering, e.g.
+    // Gen.32.1(32.2) or Psa.3.0(3.1): the main number is the English
+    // (NRSV) verse Gnosis uses; the parenthetical is the alternate
+    // (Hebrew) numbering. The importer stores the main number and
+    // keeps the alternate only for reporting (counts.altRefRows).
+    const refMatch = /^([A-Za-z0-9]+)\.(\d+)\.(\d+)(?:\((\d+)\.(\d+)\))?#(\d+)=([A-Za-z]*)/.exec(cols[0]);
     if (!refMatch) return null;
-    const [, book, chapter, verse, wordIndex, type] = refMatch;
+    const [, book, chapter, verse, altChapter, altVerse, wordIndex, type] = refMatch;
     // "\" marks maqqef (־) and sof pasuq (׃) punctuation: it is a
     // STEPBible marker, not part of the word, so it is stripped from
     // the display text (the punctuation character itself is kept).
@@ -186,6 +191,8 @@ function parseTahotLine(line) {
     return {
         book, chapter: Number(chapter), verse: Number(verse),
         wordIndex: Number(wordIndex), type,
+        altChapter: altChapter ? Number(altChapter) : null,
+        altVerse: altVerse ? Number(altVerse) : null,
         wordText: wordParts.join(""),
         transliteration: translitParts.join("").trim(),
         gloss: glossParts.map(part => part.trim()).filter(Boolean).join(" "),
@@ -207,9 +214,12 @@ function parseTagntLine(line) {
     if (!line || line.startsWith("#")) return null;
     const cols = line.normalize("NFC").split("\t");
     if (cols.length < 6) return null;
-    const refMatch = /^([A-Za-z0-9]+)\.(\d+)\.(\d+)#(\d+)=([A-Za-z()]*)/.exec(cols[0]);
+    // As in parseTahotLine: an optional parenthetical alternate
+    // numbering, e.g. Mrk.12.15(12.14), keeps the main (English) verse
+    // and records the alternate for reporting only.
+    const refMatch = /^([A-Za-z0-9]+)\.(\d+)\.(\d+)(?:\((\d+)\.(\d+)\))?#(\d+)=([A-Za-z()]*)/.exec(cols[0]);
     if (!refMatch) return null;
-    const [, book, chapter, verse, wordIndex, type] = refMatch;
+    const [, book, chapter, verse, altChapter, altVerse, wordIndex, type] = refMatch;
     const wordMatch = /^([^(]+?)\s*\(([^)]+)\)\s*$/.exec(cols[1].trim());
     const wordText = wordMatch ? wordMatch[1].trim() : cols[1].trim();
     const transliteration = wordMatch ? wordMatch[2].trim() : "";
@@ -219,6 +229,8 @@ function parseTagntLine(line) {
     return {
         book, chapter: Number(chapter), verse: Number(verse),
         wordIndex: Number(wordIndex), type,
+        altChapter: altChapter ? Number(altChapter) : null,
+        altVerse: altVerse ? Number(altVerse) : null,
         wordText, transliteration,
         gloss: (cols[2] || "").trim(),
         strongNumber: strongNumber || null,
@@ -341,7 +353,7 @@ async function downloadStepBibleFiles(dataDir) {
 }
 
 async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
-    const counts = { lexicalEntries: 0, morphologyCodes: 0, words: 0, warnings: [] };
+    const counts = { lexicalEntries: 0, morphologyCodes: 0, words: 0, altRefRows: 0, warnings: [] };
     const warn = message => {
         counts.warnings.push(message);
         console.warn(`Warning: ${message}`);
@@ -423,6 +435,10 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
             // main text and Qere (Q); Greek — the NA28 text only.
             if (passage.source === "tahot" && !/^[LQ]/.test(word.type)) continue;
             if (passage.source === "tagnt" && !word.inNA28) continue;
+            // Rows whose ref carried a parenthetical alternate numbering
+            // are stored under the main (English) verse; count them so
+            // the import report states how many were handled this way.
+            if (word.altChapter !== null) counts.altRefRows += 1;
 
             const enriched = [];
             for (const [index, morpheme] of word.morphemes.entries()) {
@@ -489,7 +505,7 @@ async function main() {
         if (args.includes("--download")) await downloadStepBibleFiles(dataDir);
         const counts = await importOriginalLanguage({ dataDir });
         console.log(`Done: ${counts.words} word occurrences, ${counts.lexicalEntries} new lexical entries, ` +
-            `${counts.morphologyCodes} new morphology codes, ${counts.warnings.length} warnings.`);
+            `${counts.morphologyCodes} new morphology codes, ${counts.altRefRows} with alternate verse numbers, ${counts.warnings.length} warnings.`);
     } catch (error) {
         console.error("Original-language import failed:", error.message);
         process.exitCode = 1;

@@ -102,6 +102,32 @@ test("TAHOT parser ignores headers and verse lines", () => {
     assert.equal(parseTahotLine("#_Gen.1.1"), null);
 });
 
+test("TAHOT parser accepts parenthetical alternate verse numbers", () => {
+    // Gen.32.1(32.2): the main number is the English verse Gnosis
+    // uses; the parenthetical is the Hebrew alternate numbering.
+    const jacob = parseTahotLine("Gen.32.1(32.2)#01=L\tוְ/יַעֲקֹ֖ב\tve./ya.'a.Ko\tand/ Jacob\tH9002/{H3290}\tHC/Npm\t\t\tH3290\t\t\tH9002=ו=and/{H3290=יַעֲקֹב=Jacob»Israel@Gen.25.26-Rev}\t\t\t\t\t");
+    assert.equal(jacob.book, "Gen");
+    assert.equal(jacob.chapter, 32);
+    assert.equal(jacob.verse, 1);
+    assert.equal(jacob.altChapter, 32);
+    assert.equal(jacob.altVerse, 2);
+    assert.equal(jacob.wordIndex, 1);
+
+    // Psalm titles are stored as verse 0 with the Hebrew numbering
+    // in parentheses; the parser keeps the main (English) number.
+    const title = parseTahotLine("Psa.3.0(3.1)#01=L\tמִזְמ֥וֹר\tmiz.Mor\ta psalm\t{H4210}\tHNcmsa\t\t\tH4210\t\t\t{H4210=מִזְמוֹר=melody}\t\t\t\t\t");
+    assert.equal(title.book, "Psa");
+    assert.equal(title.chapter, 3);
+    assert.equal(title.verse, 0);
+    assert.equal(title.altVerse, 1);
+    assert.equal(title.gloss, "a psalm");
+
+    // A plain ref has no alternate numbering.
+    const plain = parseTahotLine(dataLines("tahot-gen-1-1.txt")[0]);
+    assert.equal(plain.altChapter, null);
+    assert.equal(plain.altVerse, null);
+});
+
 test("TAGNT Philippians 3:8 parses into words; TR-only words are flagged", () => {
     const rows = dataLines("tagnt-php-3-8.txt").map(parseTagntLine);
     assert.equal(rows.length, 29);
@@ -146,6 +172,24 @@ test("TAGNT parser ignores headers and verse lines", () => {
     assert.equal(parseTagntLine(""), null);
     assert.equal(parseTagntLine("# Php.3.8"), null);
     assert.equal(parseTagntLine("#_Php.3.8"), null);
+});
+
+test("TAGNT parser accepts parenthetical alternate verse numbers", () => {
+    // Mrk.12.15(12.14): the main number is the English verse Gnosis
+    // uses; the parenthetical is the alternate numbering.
+    const pay = parseTagntLine("Mrk.12.15(12.14)#01=NKO\tδῶμεν (dōmen)\tshall we pay\tG1325=V-2AAS-1P\tδίδωμι=to give\tNA28+NA27+Tyn+SBL+WH+Treg+TR+Byz\t\t\t¿Demos\tto give\t#01\tG1325_A\t\t\t\t\t");
+    assert.equal(pay.book, "Mrk");
+    assert.equal(pay.chapter, 12);
+    assert.equal(pay.verse, 15);
+    assert.equal(pay.altChapter, 12);
+    assert.equal(pay.altVerse, 14);
+    assert.equal(pay.wordText, nfc("δῶμεν"));
+    assert.equal(pay.inNA28, true);
+
+    // A plain ref has no alternate numbering.
+    const plain = parseTagntLine(dataLines("tagnt-php-3-8.txt")[0]);
+    assert.equal(plain.altChapter, null);
+    assert.equal(plain.altVerse, null);
 });
 
 test("lexicon rows give the short gloss, never the fuller definition", () => {
