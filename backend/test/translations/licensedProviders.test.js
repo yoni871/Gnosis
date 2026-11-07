@@ -74,6 +74,36 @@ test("ESV fetch sends the key as a Token header and requests verse numbers witho
     assert.equal(seenHeaders.Authorization, "Token test-esv-key");
 });
 
+test("ESV fetch sends just the book name for single-chapter books", async () => {
+    // Crossway's API parses `q=Obadiah 1` as verse 1, not chapter 1, so
+    // chapter 1 of a single-chapter book must be requested by book name
+    // alone. Expected verse counts: Obadiah 21, Philemon 25, Jude 25,
+    // 2 John 13, 3 John 14.
+    const cases = ["Obadiah", "Philemon", "Jude", "2 John", "3 John"];
+    for (const book of cases) {
+        let seenUrl = null;
+        const fetchImpl = async (url) => {
+            seenUrl = url;
+            return fakeJsonResponse({ passages: ["[1] One."] });
+        };
+        await fetchEsvChapter(book, 1, { fetchImpl });
+        const query = new URL(seenUrl).searchParams.get("q");
+        assert.equal(query, book, `${book} should be requested by name alone`);
+    }
+});
+
+test("ESV fetch still sends book and chapter for multi-chapter books", async () => {
+    let seenUrl = null;
+    const fetchImpl = async (url) => {
+        seenUrl = url;
+        return fakeJsonResponse({ passages: ["[1] In the beginning."] });
+    };
+    await fetchEsvChapter("Genesis", 1, { fetchImpl });
+    assert.equal(new URL(seenUrl).searchParams.get("q"), "Genesis 1");
+    await fetchEsvChapter("Psalms", 119, { fetchImpl });
+    assert.equal(new URL(seenUrl).searchParams.get("q"), "Psalms 119");
+});
+
 test("ESV fetch refuses without a key and reports HTTP failures", async () => {
     const saved = process.env.ESV_API_KEY;
     delete process.env.ESV_API_KEY;
