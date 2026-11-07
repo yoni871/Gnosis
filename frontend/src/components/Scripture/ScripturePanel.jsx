@@ -3,6 +3,7 @@ import { ChevronDown, Bookmark } from "lucide-react";
 import VerseActions from "./VerseActions";
 import { isHighlightSelected } from "../../utils/highlightUtils";
 import { getTranslationNotice } from "../../utils/translationNotice";
+import "./ScripturePanel.css";
 
 export default function ScripturePanel({
     verses = [],
@@ -391,14 +392,8 @@ export default function ScripturePanel({
                 <div className="
                     mx-auto
                     max-w-[550px]
-                    text-justify
-                    text-[1.2rem]
-                    leading-[2.05]
-                    tracking-[0.012em]
-                    [word-spacing:0.03em]
+                    scripture-reading-body
                     text-[var(--text-primary)]
-                    [font-family:Georgia,'Times_New_Roman',serif]
-                    hyphens-auto
                 ">
                     {verses.map((verse) => (
                         <span
@@ -451,7 +446,7 @@ export default function ScripturePanel({
                             className={`
                                 block
                                 m-0
-                                mb-[8px] last:mb-0
+                                mb-[14px] last:mb-0
                                 font-[inherit]
                                 text-[inherit]
                                 leading-[inherit]
