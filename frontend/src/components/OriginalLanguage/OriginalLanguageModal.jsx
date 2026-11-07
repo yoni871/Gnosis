@@ -23,6 +23,20 @@ function formatRange(book, chapter, startVerse, endVerse) {
         : `${book} ${chapter}:${startVerse}–${endVerse}`;
 }
 
+// The seeded attribution already names the licence ("…STEPBible.org),
+// CC BY 4.0"), so appending it again renders it twice —
+// "CC BY 4.0 (CC BY 4.0)". Append each licence only when it is not
+// already part of the attribution text.
+function formatAttribution(sources) {
+    const attributions = [...new Set(sources.map((source) => source.attribution))];
+    const licenses = [...new Set(sources.map((source) => source.license).filter(Boolean))];
+    const missing = licenses.filter(
+        (license) => !attributions.some((attribution) => attribution.includes(license))
+    );
+    const text = attributions.join(" ");
+    return missing.length > 0 ? `${text} (${missing.join(", ")}).` : `${text}.`;
+}
+
 // Focusable selectors for the focus trap.
 const FOCUSABLE =
     'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -214,9 +228,8 @@ export default function OriginalLanguageModal({
                                 ))}
                                 {passage.sources?.length > 0 && (
                                     <p className="gnosis-ol-attribution">
-                                        {passage.sources.map((source) => source.attribution).filter((value, index, all) => all.indexOf(value) === index).join(" ")}
-                                        {" "}({passage.sources.map((source) => source.license).filter((value, index, all) => all.indexOf(value) === index).join(", ")}).
-                                        Source:{" "}
+                                        {formatAttribution(passage.sources)}
+                                        {" "}Source:{" "}
                                         <a href={passage.sources[0].url} target="_blank" rel="noreferrer">
                                             STEPBible-Data
                                         </a>

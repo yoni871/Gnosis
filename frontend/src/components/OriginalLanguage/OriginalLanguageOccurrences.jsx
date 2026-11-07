@@ -1,6 +1,8 @@
 // Occurrences of the selected lemma (or Strong's number) in the
 // imported corpus, with the surrounding original-language words as
 // context. Each occurrence navigates the reader to its verse.
+import { displayGloss } from "./gloss";
+
 export default function OriginalLanguageOccurrences({ occurrences, onSelectOccurrence }) {
     if (occurrences.total === 0) {
         return <p>No other occurrences in the imported corpus.</p>;
@@ -25,7 +27,7 @@ export default function OriginalLanguageOccurrences({ occurrences, onSelectOccur
                         >
                             <span className="gnosis-ol-occurrence-ref">
                                 {occurrence.book} {occurrence.chapter}:{occurrence.verse}
-                                {occurrences.match === "strong" ? ` · ${occurrence.strongNumber}` : ""}
+                                {occurrences.match === "strong" ? ` · ${occurrence.strongBase || occurrence.strongNumber}` : ""}
                             </span>
                             <span
                                 className="gnosis-ol-occurrence-context"
@@ -33,7 +35,7 @@ export default function OriginalLanguageOccurrences({ occurrences, onSelectOccur
                             >
                                 {[...occurrence.context.before, occurrence.wordText, ...occurrence.context.after].join(" ")}
                             </span>
-                            <span className="gnosis-ol-occurrence-gloss">{occurrence.gloss}</span>
+                            <span className="gnosis-ol-occurrence-gloss">{displayGloss(occurrence.gloss)}</span>
                         </button>
                     </li>
                 ))}

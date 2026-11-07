@@ -201,6 +201,21 @@ Behaviour worth knowing:
 - Grammar is always shown expanded ("Noun · Genitive · Singular ·
   Feminine"), with the verbatim expansion parsed into labeled pairs in
   the detail view.
+- Display rules (see `gloss.js`): the licence is named exactly once in
+  the attribution footer (the seeded attribution already contains it);
+  Strong's numbers show the plain number (H0430) while the
+  disambiguated key (H0430G) stays internal for lemma/occurrence
+  lookups; a gloss that is only a STEPBible placeholder ("<the>",
+  "<obj.>") or empty shows an em dash instead — no definition is ever
+  invented, and glosses with real content plus bracketed supplied words
+  ("<to> the light") are kept verbatim.
+- The verse-action toolbar renders in the text flow at the end of the
+  selected verse (an inline-flex row that wraps to a line of its own),
+  so it never floats over the following verse's text; the highlight
+  colour palette is still a floating popup anchored to its button.
+- The word-detail panel scrolls inside the modal (the flex
+  `min-height: 0` chain on the dialog's columns); it cannot grow taller
+  than the modal.
 - "Find Other Occurrences" searches only the imported corpus; the modal
   says so. Clicking an occurrence closes the modal and focuses that verse
   in the reader. Cross-chapter navigation is a Phase 2 item — Phase 1
@@ -212,10 +227,9 @@ Behaviour worth knowing:
 - Closing returns the reader exactly where it was, selection preserved —
   the modal never clears the selection.
 - The main bundle stays under Vite's 500 kB warning threshold only
-  because the modal is code-split; the main chunk sits at ~500.05 kB,
-  0.05 kB over the threshold, from the toolbar button and the lazy
-  wrapper. That warning is cosmetic — the build succeeds — but the next
-  reader feature should watch the bundle size.
+  because the modal is code-split; the main chunk sits at ~499.76 kB.
+  That is close to the threshold, so the next reader feature should
+  watch the bundle size.
 
 ## Tests
 

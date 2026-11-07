@@ -32,6 +32,7 @@ function parseExpansionPairs(expansion) {
 }
 
 import OriginalLanguageOccurrences from "./OriginalLanguageOccurrences";
+import { displayGloss, hasGloss } from "./gloss";
 
 export default function OriginalLanguageWordDetails({
     word,
@@ -76,20 +77,19 @@ export default function OriginalLanguageWordDetails({
                 </div>
                 <div>
                     <dt>Strong’s number</dt>
-                    <dd>
-                        {word.strongNumber}
-                        {word.strongBase && word.strongBase !== word.strongNumber
-                            ? ` · Strong’s ${word.strongBase}`
-                            : ""}
-                    </dd>
+                    {/* Display the plain Strong's number (H0430). The
+                        disambiguated key (H0430G) is an internal
+                        lookup key for lemma/occurrence matching and
+                        is never shown. */}
+                    <dd>{word.strongBase || word.strongNumber}</dd>
                 </div>
                 <div>
                     <dt>Meaning</dt>
-                    <dd>{word.meaning || word.gloss}</dd>
+                    <dd>{displayGloss(word.meaning || word.gloss)}</dd>
                 </div>
                 <div>
                     <dt>In this verse</dt>
-                    <dd>{word.gloss}</dd>
+                    <dd>{displayGloss(word.gloss)}</dd>
                 </div>
                 <div>
                     <dt>Grammar</dt>
@@ -107,7 +107,7 @@ export default function OriginalLanguageWordDetails({
                                     {morpheme.text}
                                 </span>
                                 {morpheme.isRoot ? " · root" : ""}
-                                {morpheme.gloss ? ` — ${morpheme.gloss}` : ""}
+                                {hasGloss(morpheme.gloss) ? ` — ${morpheme.gloss}` : ""}
                             </p>
                             <dl className="gnosis-ol-definition-list gnosis-ol-morpheme-pairs">
                                 {parseExpansionPairs(morpheme.morphologyExpanded || morpheme.morphologyCode).map((pair, pairIndex) => (

@@ -90,6 +90,54 @@ const PHILIPPIANS_PASSAGE = {
     ],
 };
 
+// A passage with a word whose gloss is only a STEPBible placeholder
+// ("<the>" for the article) and a word ending in punctuation.
+const ARTICLE_PASSAGE = {
+    book: "Philippians",
+    chapter: 3,
+    language: "greek",
+    startVerse: 8,
+    endVerse: 8,
+    available: true,
+    verses: [
+        {
+            verse: 8,
+            words: [
+                {
+                    id: 201, wordIndex: 20, wordText: "τὰ", transliteration: "ta",
+                    gloss: "<the>", strongNumber: "G3588", strongBase: "G3588",
+                    lemma: "ὁ", lemmaTransliteration: "ho", meaning: "the/this/who",
+                    lexicalMorphology: "G:T", morphologyCode: "T-APN",
+                    grammarDisplay: "Definite article · Accusative · Plural · Neuter",
+                    morphemes: [
+                        { text: "τὰ", transliteration: "ta", gloss: "<the>", strongNumber: "G3588",
+                            morphologyCode: "T-APN",
+                            morphologyExpanded: "Function=Definite article; Case=Accusative; Number=Plural; Gender=Neuter",
+                            isRoot: true },
+                    ],
+                },
+                {
+                    id: 202, wordIndex: 29, wordText: "κερδήσω,", transliteration: "kerdēsō",
+                    gloss: "I may gain", strongNumber: "G2770", strongBase: "G2770",
+                    lemma: "κερδαίνω", lemmaTransliteration: "kerdainō", meaning: "to gain",
+                    lexicalMorphology: "G:V", morphologyCode: "V-AAS-1S",
+                    grammarDisplay: "Verb · Aorist · Active · Subjunctive · 1st · Singular",
+                    morphemes: [
+                        { text: "κερδήσω,", transliteration: "kerdēsō", gloss: "I may gain", strongNumber: "G2770",
+                            morphologyCode: "V-AAS-1S",
+                            morphologyExpanded: "Function=Verb; Tense=Aorist; Voice=Active; Mood=Subjunctive; Person=1st; Number=Singular",
+                            isRoot: true },
+                    ],
+                },
+            ],
+        },
+    ],
+    sources: [
+        { code: "STEPBible-TAGNT", attribution: "Original-language data: STEPBible (Tyndale House / STEPBible.org), CC BY 4.0",
+            license: "CC BY 4.0", url: "https://github.com/STEPBible/STEPBible-Data" },
+    ],
+};
+
 const OCCURRENCES = {
     strong: "H7225G",
     strongBase: "H7225",
@@ -183,8 +231,10 @@ describe("OriginalLanguageModal", () => {
         await userEvent.click(await screen.findByRole("button", { name: /be\.re\.Shit/ }));
         const detail = screen.getByLabelText("Selected word");
         expect(within(detail).getByText("first: beginning")).toBeInTheDocument();
-        expect(within(detail).getByText(/H7225G/)).toBeInTheDocument();
-        expect(within(detail).getByText(/Strong’s H7225/)).toBeInTheDocument();
+        // The plain Strong's number is shown; the disambiguated lookup
+        // key (H7225G) is an internal key and is never displayed.
+        expect(within(detail).getByText("H7225")).toBeInTheDocument();
+        expect(within(detail).queryByText(/H7225G/)).not.toBeInTheDocument();
         expect(within(detail).getByText("Preposition + Noun · Common · Feminine · Singular · Absolute")).toBeInTheDocument();
         // The verbatim morphology expansion is shown as labeled pairs.
         expect(within(detail).getByText("Feminine")).toBeInTheDocument();
@@ -267,6 +317,43 @@ describe("OriginalLanguageModal", () => {
             />
         );
         expect(await screen.findByRole("alert")).toHaveTextContent(/Failed to retrieve original-language passage/);
+    });
+
+    test("the licence is named exactly once in the attribution", async () => {
+        mount();
+        await screen.findByRole("button", { name: /be\.re\.Shit/ });
+        const attribution = screen.getByText(/Original-language data: STEPBible/);
+        expect(attribution.textContent.match(/CC BY 4\.0/g)).toHaveLength(1);
+    });
+
+    test("a placeholder-only gloss shows an em dash and a word ending in punctuation keeps one comma", async () => {
+        const fetchMock = vi.fn(async () => ({ ok: true, json: async () => ARTICLE_PASSAGE }));
+        vi.stubGlobal("fetch", fetchMock);
+        render(
+            <OriginalLanguageModal
+                book="Philippians" chapter={3} startVerse={8} endVerse={8}
+                englishVerses={[{ verse_number: 8, text: "I count all things as loss." }]}
+                translation="ESV" onClose={() => {}} onNavigateToVerse={() => {}}
+            />
+        );
+        // The article's "<the>" placeholder is not a definition: the
+        // Meaning cell shows an em dash and "<the>" appears nowhere.
+        expect(await screen.findByRole("button", { name: "τὰ, ta" })).toBeInTheDocument();
+        expect(screen.queryByText("<the>")).not.toBeInTheDocument();
+        expect(screen.getAllByText("—")).toHaveLength(1);
+        // The word ending in a comma does not double it in its
+        // accessible name.
+        expect(screen.getByRole("button", { name: "κερδήσω, kerdēsō, I may gain" })).toBeInTheDocument();
+        expect(screen.queryByText(/κερδήσω,,/)).not.toBeInTheDocument();
+
+        // In the detail panel the lexical meaning ("the/this/who") is
+        // real and shown, while "in this verse" has no standalone
+        // rendering and shows the em dash.
+        await userEvent.click(screen.getByRole("button", { name: "τὰ, ta" }));
+        const detail = screen.getByLabelText("Selected word");
+        expect(within(detail).getByText("the/this/who")).toBeInTheDocument();
+        expect(within(detail).getAllByText("—")).toHaveLength(1);
+        expect(within(detail).queryByText("<the>")).not.toBeInTheDocument();
     });
 
     test("verse sections collapse and expand", async () => {

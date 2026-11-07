@@ -1,27 +1,18 @@
-/* Keep the positioning anchor in the text flow so it scrolls with its
-   verse. It used to be absolutely positioned, but no ancestor of the
-   verses is positioned, so its containing block was the viewport: the
-   anchor froze at its first on-screen spot while the verse scrolled
-   away, and the toolbar hid (or sat detached) for every verse except
-   the first. Zero size means it still takes no space in the line. */
-.gnosis-action-anchor {
-    position: relative;
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    pointer-events: none;
-}
-
-/* Compact burgundy toolbar. */
+/* Compact burgundy toolbar. It renders in the text flow at the end of
+   the selected verse — inline, so it takes its own space (wrapping to
+   a line of its own when it does not fit on the verse's last line)
+   instead of floating over the following verse's text. It used to be a
+   fixed-position Floating UI surface anchored to a zero-size span; the
+   anchor froze against the viewport for every verse but the first, and
+   the toolbar covered the next verse's text. */
 .gnosis-verse-toolbar {
-    z-index: 70;
-    display: flex;
+    display: inline-flex;
+    vertical-align: middle;
     align-items: center;
     gap: 5px;
     width: max-content;
+    max-width: 100%;
+    margin: 6px 0 6px 10px;
     padding: 5px 7px;
     border: 1px solid rgb(255 255 255 / 15%);
     border-radius: 28px;

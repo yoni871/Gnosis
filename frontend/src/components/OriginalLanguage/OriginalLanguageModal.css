@@ -74,11 +74,13 @@
     display: flex;
     flex: 1;
     min-height: 0;
+    overflow: hidden;
 }
 
 .gnosis-ol-analysis {
     flex: 1;
     min-width: 0;
+    min-height: 0;
     overflow-y: auto;
     padding: 20px 24px 24px;
 }
@@ -86,6 +88,11 @@
 .gnosis-ol-detail {
     width: 340px;
     flex-shrink: 0;
+    /* Without this the panel's content-based minimum height lets it
+       grow taller than the modal, so its "Other occurrences" section
+       is cut off at the modal's bottom edge instead of scrolling
+       inside the panel. */
+    min-height: 0;
     overflow-y: auto;
     padding: 20px;
     border-left: 1px solid var(--border);

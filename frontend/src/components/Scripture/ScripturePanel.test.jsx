@@ -322,8 +322,8 @@ describe("ScripturePanel original language", () => {
 
     test("the toolbar offers original language analysis for the selected range", async () => {
         mountReader({ selectedVerse: 2, selection: selectionOf(1, 2) });
-        // The floating toolbar stays visibility:hidden in jsdom (floating-ui
-        // never positions without layout), so the button is queried hidden.
+        // The toolbar renders in the text flow at the end of the
+        // selected verse, so the button is present with a selection.
         expect(screen.getByTestId("ol-toolbar-button")).toBeInTheDocument();
     });
 
