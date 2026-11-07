@@ -74,6 +74,28 @@ test("ESV fetch sends the key as a Token header and requests verse numbers witho
     assert.equal(seenHeaders.Authorization, "Token test-esv-key");
 });
 
+test("ESV fetch aborts a hung provider instead of waiting forever", async () => {
+    // A fetch that honours the abort signal (as the real fetch does)
+    // but never otherwise resolves: the provider must give up after
+    // the timeout and surface a provider failure, which the caller
+    // turns into the 503 the reader answers with the BSB fallback.
+    const fetchImpl = (url, init) =>
+        new Promise((resolve, reject) => {
+            init.signal.addEventListener("abort", () => {
+                reject(new Error("This operation was aborted"));
+            });
+        });
+    await assert.rejects(
+        fetchEsvChapter("Genesis", 1, { fetchImpl, fetchTimeoutMs: 5 }),
+        (error) => {
+            assert.equal(error.name, "LicensedProviderError");
+            assert.equal(error.code, "provider");
+            assert.match(error.message, /aborted/i);
+            return true;
+        }
+    );
+});
+
 test("ESV fetch refuses without a key and reports HTTP failures", async () => {
     const saved = process.env.ESV_API_KEY;
     delete process.env.ESV_API_KEY;

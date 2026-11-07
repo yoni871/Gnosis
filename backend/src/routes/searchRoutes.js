@@ -1,8 +1,16 @@
 const express = require("express");
 const pool = require("../db/db");
+const { cacheControl } = require("../middleware/cacheHeaders");
 const router = express.Router();
 
-router.get("/search/bible", (req, res) => {
+// Search results are public and deterministic for a given query, and
+// the data changes only on import — so a repeated search for a common
+// term can be served from the edge for five minutes instead of
+// re-running the full-text query. Shorter than the reference-data
+// cache: a fresh import should show up quickly.
+const cacheSearch = cacheControl({ maxAge: 60, sMaxAge: 300, staleWhileRevalidate: 60 });
+
+router.get("/search/bible", cacheSearch, (req, res) => {
     pool.query(
         `
         SELECT
@@ -20,6 +28,12 @@ router.get("/search/bible", (req, res) => {
             ON v.translation_id = bt.id
         WHERE v.search_vector @@ plainto_tsquery('english', $1)
         AND bt.abbreviation = $2
+        -- Ranked and capped like the commentary search: without this,
+        -- a common word returned every match (6,489 verses / 1.5 MB
+        -- for "Lord") in arbitrary order, and the results page rendered
+        -- all of them. The top 100 by rank is the useful set.
+        ORDER BY ts_rank(v.search_vector, plainto_tsquery('english', $1)) DESC
+        LIMIT 100
         `,
         [req.query.q, req.query.translation || "BSB"],
         (error, result) => {
@@ -34,7 +48,7 @@ router.get("/search/bible", (req, res) => {
     )
 });
 
-router.get("/search/commentary", (req, res) => {
+router.get("/search/commentary", cacheSearch, (req, res) => {
     pool.query(
         `
         SELECT
