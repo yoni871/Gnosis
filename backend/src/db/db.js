@@ -16,7 +16,26 @@ if (process.env.GNOSIS_LOCAL_DEV === '1') {
 //               licensed cache, rate limits (the default export)
 //   Bible:      bible_books/chapters/verses/translations, ol_* tables
 //   Commentary: commentaries, sources, commentary_entries, bible_books copy
+// Boot-time guard for the split configuration. Per-project fallback to
+// DATABASE_URL stays allowed (a staged split may set one project URL at
+// a time), but once GNOSIS_SPLIT_REQUIRED=1 is set — at the production
+// cutover, when all three project URLs are in place — a missing split
+// URL fails the boot instead of silently falling back to DATABASE_URL
+// and reading Bible/Commentary data from the App database. Before the
+// cutover the flag stays unset and the fallback is the intended
+// transition behavior (and the rollback path). createPools runs at
+// require time, so a bad configuration fails the boot, not a query.
+const SPLIT_URL_NAMES = ['GNOSIS_APP_DATABASE_URL', 'GNOSIS_BIBLE_DATABASE_URL', 'GNOSIS_COMMENTARY_DATABASE_URL'];
+function assertSplitConfiguration(env) {
+    if (env.GNOSIS_SPLIT_REQUIRED !== '1') return;
+    const missing = SPLIT_URL_NAMES.filter((name) => !env[name]);
+    if (missing.length > 0) {
+        throw new Error(`Split databases are required (GNOSIS_SPLIT_REQUIRED=1) but unset: ${missing.join(', ')}.`);
+    }
+}
+
 function createPools(env = process.env) {
+    assertSplitConfiguration(env);
     const appUrl = env.GNOSIS_APP_DATABASE_URL || env.DATABASE_URL || null;
     const bibleUrl = env.GNOSIS_BIBLE_DATABASE_URL || appUrl;
     const commentaryUrl = env.GNOSIS_COMMENTARY_DATABASE_URL || appUrl;

@@ -29,6 +29,9 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
     if (typeof sql === "string" && sql.includes("FROM bible_books")) {
         return { rows: bookExists ? [{ "1": 1 }] : [] };
     }
+    if (typeof sql === "string" && sql.includes("FROM bookmarks")) {
+        return { rows: [{ id: 1, user_id: 1, book_id: 2, start_chapter: 1, start_verse: 1, end_chapter: 1, end_verse: 2 }] };
+    }
     if (typeof sql === "string" && sql.includes("INSERT INTO notes")) {
         inserted = { id: 1, user_id: params[0], book_id: params[1], content: params[6] };
         return { rows: [inserted] };
@@ -157,4 +160,16 @@ test("PUT /api/bookmarks/:id rejects an unknown book", async () => {
     });
     assert.equal(response.status, 400);
     assert.equal(json.error, "Unknown book.");
+});
+
+test("GET /api/bookmarks/:id returns 404 when the bookmark's book is missing", async () => {
+    // The bookmark row exists, but its book is gone from the Bible
+    // project: the old join returned no row, so this is a 404, not a
+    // 200 with an empty body.
+    bookExists = false;
+    const { response, json } = await request("/api/bookmarks/1", {
+        headers: { Authorization: `Bearer ${token()}` },
+    });
+    assert.equal(response.status, 404);
+    assert.equal(json.error, "Bookmark not found.");
 });

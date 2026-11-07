@@ -252,6 +252,32 @@ The current baseline may refuse Neon; compatibility cannot be certified without
 that later operator comparison. Preparing these commands is not authorization to
 run them against production.
 
+### Runtime cutover — operator only
+
+The migration commands above move the schema; these steps move the
+running application, per environment (preview first, soak, then
+production — the production switch needs a separate explicit approval):
+
+1. Set `GNOSIS_APP_DATABASE_URL`, `GNOSIS_BIBLE_DATABASE_URL`, and
+   `GNOSIS_COMMENTARY_DATABASE_URL` in Vercel for that environment,
+   pointing at the matching Neon project's pooled endpoint.
+2. Set `GNOSIS_SPLIT_REQUIRED=1` in the same environment. The backend
+   fails to boot if any of the three split URLs is missing or
+   misspelled, instead of silently falling back to `DATABASE_URL` and
+   reading Bible/Commentary data from the App database.
+3. Deploy and verify: health checks pass and a read from each project
+   succeeds (books, a commentary, a user-scoped read).
+4. Only after the split is proven in that environment, remove
+   `DATABASE_URL` from Vercel, so a missing split URL cannot fall back
+   at all. Keep `GNOSIS_SPLIT_REQUIRED=1` set.
+
+Rollback is a configuration change only: unset
+`GNOSIS_SPLIT_REQUIRED` and the three split URLs (or point them back
+at `DATABASE_URL`) and redeploy — the fallback returns the application
+to single-database mode, as long as the old project still holds all
+the data. Before the cutover the flag stays unset and the fallback is
+the intended transition behavior, not an error.
+
 ## Rollback and recovery
 
 Transactional failure rolls back schema changes and history in the pending batch.

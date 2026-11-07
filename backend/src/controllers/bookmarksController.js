@@ -174,9 +174,17 @@ const getBookmarkById = async (req, res) => {
             });
         }
 
-        return res.status(200).json(
-            (await withBookNames(result.rows))[0]
-        );
+        // A bookmark whose book is missing from the Bible project is
+        // gone, as the old join returned no row for it: 404, not a
+        // 200 with an empty body.
+        const bookmarks = await withBookNames(result.rows);
+        if (bookmarks.length === 0) {
+            return res.status(404).json({
+                error: "Bookmark not found."
+            });
+        }
+
+        return res.status(200).json(bookmarks[0]);
     } catch (error) {
         console.error(error);
 

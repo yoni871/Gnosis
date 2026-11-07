@@ -65,3 +65,31 @@ test("an App URL alone keeps all three on the same pool", () => {
     assert.equal(result.bible, result.app);
     assert.equal(result.commentary, result.app);
 });
+
+test("GNOSIS_SPLIT_REQUIRED=1 with all three split URLs creates three pools", () => {
+    const result = pools({
+        GNOSIS_SPLIT_REQUIRED: "1",
+        GNOSIS_APP_DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis_app",
+        GNOSIS_BIBLE_DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis_bible",
+        GNOSIS_COMMENTARY_DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis_commentary",
+    });
+    assert.notEqual(result.bible, result.app);
+    assert.notEqual(result.commentary, result.app);
+    assert.notEqual(result.commentary, result.bible);
+});
+
+test("GNOSIS_SPLIT_REQUIRED=1 without a split URL fails fast instead of falling back", () => {
+    assert.throws(() => pools({
+        GNOSIS_SPLIT_REQUIRED: "1",
+        DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis",
+        GNOSIS_APP_DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis_app",
+        GNOSIS_BIBLE_DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis_bible",
+    }), /GNOSIS_COMMENTARY_DATABASE_URL/);
+});
+
+test("GNOSIS_SPLIT_REQUIRED=1 with no split URLs at all fails fast", () => {
+    assert.throws(() => pools({
+        GNOSIS_SPLIT_REQUIRED: "1",
+        DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis",
+    }), /GNOSIS_APP_DATABASE_URL.*GNOSIS_BIBLE_DATABASE_URL.*GNOSIS_COMMENTARY_DATABASE_URL/);
+});
