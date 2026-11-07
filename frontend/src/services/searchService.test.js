@@ -21,3 +21,16 @@ it('passes cancellation through and never caches failures', async () => {
     await searchCommentary('cancelled-query');
     expect(fetch).toHaveBeenCalledTimes(2);
 });
+it('pages Bible search and returns the total and hasMore', async () => {
+    const pageOne = { results: [{ text: 'Lord, hear' }], total: 250, page: 1, limit: 100, hasMore: true };
+    const pageTwo = { results: [{ text: 'The Lord is' }], total: 250, page: 2, limit: 100, hasMore: true };
+    fetch.mockResolvedValueOnce({ ok: true, json: async () => pageOne });
+    fetch.mockResolvedValueOnce({ ok: true, json: async () => pageTwo });
+    await expect(searchBible('lord')).resolves.toEqual(pageOne);
+    expect(fetch.mock.calls[0][0]).toContain('page=1');
+    await expect(searchBible('lord', 'BSB', { page: 2 })).resolves.toEqual(pageTwo);
+    expect(fetch.mock.calls[1][0]).toContain('page=2');
+    // Each page is cached under its own URL, so re-reading page 1 costs no fetch.
+    await expect(searchBible('lord')).resolves.toEqual(pageOne);
+    expect(fetch).toHaveBeenCalledTimes(2);
+});
