@@ -370,6 +370,11 @@ describe("ScripturePanel original language", () => {
         const button = screen.getByTestId("ol-toolbar-button");
         expect(button).toBeInTheDocument();
         expect(button.closest(".scripture-verse")).toBeNull();
+        const toolbar = button.closest('[role="group"]');
+        for (const label of ["Bookmark", "Highlight", "Original Language"]) {
+            expect(within(toolbar).getByText(label)).toBeInTheDocument();
+        }
+        expect(within(toolbar).getByLabelText("Clear verse selection")).toBeInTheDocument();
     });
 
     test("opening the modal shows the range and the English passage; closing keeps the selection", async () => {

@@ -121,7 +121,9 @@ export default function VerseActions({
                         fill={savedBookmark ? "currentColor" : "none"}
                         aria-hidden="true"
                     />
+                    <span className="gnosis-verse-tool-label">Bookmark</span>
                 </button>
+                <span className="gnosis-tool-divider" aria-hidden="true" />
 
                 <button
                     ref={palette.refs.setReference}
@@ -136,7 +138,9 @@ export default function VerseActions({
                     onClick={() => setIsColorOpen((open) => !open)}
                 >
                     <Highlighter size={18} aria-hidden="true" />
+                    <span className="gnosis-verse-tool-label">Highlight</span>
                 </button>
+                <span className="gnosis-tool-divider" aria-hidden="true" />
 
                 <button
                     type="button"
@@ -147,6 +151,7 @@ export default function VerseActions({
                     onClick={onOriginalLanguage}
                 >
                     <Languages size={18} aria-hidden="true" />
+                    <span className="gnosis-verse-tool-label">Original Language</span>
                 </button>
 
                 <span
@@ -158,7 +163,7 @@ export default function VerseActions({
                     type="button"
                     aria-label="Clear verse selection"
                     title="Clear selection"
-                    className="gnosis-verse-tool"
+                    className="gnosis-verse-tool gnosis-verse-tool-close"
                     onClick={onClearSelection}
                 >
                     <X size={17} aria-hidden="true" />
