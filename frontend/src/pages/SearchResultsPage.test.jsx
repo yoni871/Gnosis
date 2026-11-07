@@ -36,3 +36,24 @@ it('aborts rapid consecutive searches and ignores late responses', async () => {
     await waitFor(() => expect(screen.getByText('No Scripture results')).toBeVisible());
     expect(screen.queryByText(verse.text)).not.toBeInTheDocument();
 });
+it('renders commentary match highlights instead of stripping them', async () => {
+    searchBible.mockResolvedValue([]);
+    searchCommentary.mockResolvedValue([{
+        id: 1,
+        commentary_id: 3,
+        book: 'John',
+        start_chapter: 3,
+        start_verse: 16,
+        end_chapter: 3,
+        end_verse: 16,
+        entry_title: 'John 3:16',
+        source: 'Matthew Henry',
+        excerpt: 'For God so <b>loved</b> the world',
+    }]);
+    render(<MemoryRouter initialEntries={['/search?q=loved']}><SearchResultsPage /></MemoryRouter>);
+    const match = await screen.findByText('loved');
+    expect(match.tagName).toBe('STRONG');
+    expect(screen.getByText(/For God so/)).toBeInTheDocument();
+    // No raw <b> markup leaks into the rendered text.
+    expect(document.body.textContent).not.toContain('<b>');
+});

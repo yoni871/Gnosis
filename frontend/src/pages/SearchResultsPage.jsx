@@ -28,6 +28,19 @@ function formatPassage(result) {
     return `${start}-${result.end_chapter}:${result.end_verse}`;
 }
 
+// Renders a ts_headline excerpt, keeping the <b> match markers as
+// bold text. The backend already pays to compute the headline markup;
+// the page used to strip it. Only <b>…</b> pairs are interpreted —
+// every other character renders as plain text (React escapes it), so
+// no HTML from the excerpt is ever injected.
+function renderExcerpt(excerpt) {
+    return (excerpt || "").split(/<b>([\s\S]*?)<\/b>/g).map((part, index) =>
+        index % 2 === 1
+            ? <strong key={index} className="font-semibold text-[var(--text-primary)]">{part}</strong>
+            : part
+    );
+}
+
 
 const cardStyle = `
     group block w-full rounded-xl
@@ -427,7 +440,7 @@ function SearchResults({ query, translation, books }) {
                                     mb-0 mt-2 font-serif text-[13px]
                                     leading-6 text-[var(--text-muted)]
                                 ">
-                                    {(result.excerpt || "").replace(/<\/?b>/g, "")}...
+                                    {renderExcerpt(result.excerpt)}...
                                 </p>
                             </button>
                         ))}
