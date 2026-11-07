@@ -18,8 +18,8 @@ async function check() {
     try {
         const identity=(await db.query('SELECT current_user AS role,current_database() AS db')).rows[0];
         assert.equal(identity.role,'gnosis_reader');assert.equal(identity.db,'gnosis_local');
-        const grants=(await db.query("SELECT has_sequence_privilege(current_user,'licensed_chapter_cache_id_seq','USAGE') AS cache_seq, has_table_privilege(current_user,'licensed_chapter_cache','SELECT,INSERT,UPDATE,DELETE') AS cache, has_table_privilege(current_user,'ol_word_occurrences','SELECT') AS language")).rows[0];
-        assert.ok(grants.cache_seq && grants.cache && grants.language,'Runtime provider/language grants missing');
+        const grants=(await db.query("SELECT has_sequence_privilege(current_user,'licensed_chapter_cache_id_seq','USAGE') AS cache_seq, has_table_privilege(current_user,'licensed_chapter_cache','SELECT,INSERT,UPDATE,DELETE') AS cache, has_table_privilege(current_user,'ol_word_occurrences','SELECT') AS language, has_table_privilege(current_user,'licensed_ip_limits','SELECT,INSERT,UPDATE,DELETE') AS ip_cleanup")).rows[0];
+        assert.ok(grants.cache_seq && grants.cache && grants.language && grants.ip_cleanup,'Runtime provider/language grants missing');
         const books=await json('/api/books');assert.equal(books.length,66);
         const genesis=books.find(b=>b.name==='Genesis');
         assert.equal((await json(`/api/books/${genesis.id}/chapters`)).length,50);
@@ -45,9 +45,14 @@ async function check() {
         }
         assert.equal(comments.length,commentaryKeys.length);
         console.log(`Commentaries: ${comments.length} collections, ${total} entries; exact source counts verified`);
-        assert.ok((await json('/api/search/bible?q=love&translation=BSB')).length>0);
-        assert.ok((await json('/api/search/commentary?q=God')).length>0);
-        console.log('Bible and commentary full-text search: OK (main uses unpaginated Bible results and a 100-row commentary cap)');
+        const first=await json('/api/search/bible?q=love&translation=BSB&page=1&limit=2');
+        const second=await json('/api/search/bible?q=love&translation=BSB&page=2&limit=2');
+        assert.equal(first.results.length,2);assert.equal(second.results.length,2);
+        assert.ok(first.total>4 && first.hasMore);assert.equal(first.total,second.total);
+        const coordinates=r=>`${r.book}:${r.chapter_number}:${r.verse_number}`;
+        assert.ok(second.results.every(r=>!first.results.some(a=>coordinates(a)===coordinates(r))));
+        assert.ok((await json('/api/search/commentary?q=Melchizedek')).length>0);
+        console.log('Bible search: ranked page/limit, total, hasMore and disjoint pages OK; commentary full-text search OK');
         for(const [book,chapter] of [['Genesis',1],['Philippians',3]]) {
             const p=await json(`/api/original-language/${book}/${chapter}?startVerse=1&endVerse=5`);
             assert.equal(p.available,true);assert.ok(p.verses.length>0);assert.ok(p.sources.length>0);

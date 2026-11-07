@@ -48,3 +48,19 @@ test('local Mailpit is a fixed loopback sink with no Resend credential forwardin
         }});
     await client.sendVerificationEmail({to:'test@example.invalid',token:'synthetic'});assert.ok(called);
 });
+
+test('local reference data does not stay stale in browser caches after an update',()=>{
+    const oldMode=process.env.NODE_ENV,oldLocal=process.env.GNOSIS_LOCAL_DEV;
+    try{
+        process.env.NODE_ENV='development';process.env.GNOSIS_LOCAL_DEV='1';
+        let header;let continued=false;
+        require('../../src/middleware/cacheHeaders').cacheControl()({}, {set:(name,value)=>{header=value;}},()=>{continued=true;});
+        assert.equal(header,'no-store');assert.ok(continued);
+        process.env.NODE_ENV='production';
+        require('../../src/middleware/cacheHeaders').cacheControl()({}, {set:(name,value)=>{header=value;}},()=>{});
+        assert.match(header,/^public, max-age=/);
+    }finally{
+        if(oldMode===undefined)delete process.env.NODE_ENV;else process.env.NODE_ENV=oldMode;
+        if(oldLocal===undefined)delete process.env.GNOSIS_LOCAL_DEV;else process.env.GNOSIS_LOCAL_DEV=oldLocal;
+    }
+});

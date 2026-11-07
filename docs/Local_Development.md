@@ -106,7 +106,7 @@ Do not overwrite .env.local: its PostgreSQL credentials must stay with its volum
 | ESV, NIV, NLT, NKJV, NASB | Five supported provider records | Listed only when their development keys/IDs are configured and enabled, exactly as main |
 | Commentaries | 26 collections, 323,113 unique entries | All canonical `*-restructured` collections; their repository coverage varies by author |
 | Original Language | main's Phase 1: Genesis 1 and Philippians 3 | Downloads its own public STEPBible files; no production export; unsupported passages retain main's coverage message |
-| Search | Bible full-text search and top-100 commentary matches | Main has no general search-page pagination; Original Language occurrence API supports limit/offset and is verified |
+| Search | Paginated Bible full-text search and top-100 commentary matches | Bible search uses main's ranked page/limit API, total and hasMore; distinct successive pages and Original Language limit/offset are verified |
 | Authentication | Real verification/login, 15-minute access token, rotating refresh, revocation/logout | Mailpit captures email locally instead of external delivery |
 | Private reader state | Highlights, bookmarks, notes, reading progress | Local accounts and data only; no production users copied |
 
@@ -116,6 +116,9 @@ setup/catalog omissions, not removed reader features. Main's Hebrew download URL
 also used `CC-BY` where the actual upstream filename uses `CC BY`, causing a
 404; the download URL is corrected in this fix. All reader routes, UI,
 search and authentication now run the actual latest-main implementation.
+Local reference IDs may differ from a deployed database; compare translations
+and commentaries by name. Existing local IDs remain stable so saved reader
+state is preserved. No production database is read to reproduce its IDs.
 
 The 26 collections are Augustine, Barnes, Bengel, Benson, Bullinger, Burkitt,
 Calvin, Chrysostom, Clarke, Darby Translation Notes, Ellicott, Expositor, Geneva,
@@ -169,7 +172,19 @@ and language tables, explicit auth/private-state grants and licensed cache/quota
 grants. It has no schema ownership, DDL, role creation or reference-data writes.
 Local import tracking lives in the separate `gnosis_local_dev` schema, invisible
 to the runtime role and outside public-schema migration drift comparisons.
-A prepare-wide advisory lock serializes imports. Transactions, stable natural keys
+A prepare-wide advisory lock serializes imports.
+
+PR #54 merged two index migrations timestamped before the already-applied
+Original Language migration. The updater's narrow `allowLateIndexes` mode permits
+only those two exact SHA-256-reviewed SQL files, after normal prior-schema
+validation. Unknown, duplicate or otherwise out-of-order histories still fail.
+Production rejects this mode outright; ordinary CLI ordering stays strict.
+Existing history rows/IDs/timestamps and all user data remain unchanged. The
+normal migration runner applies the missing indexes and the final catalog check
+validates the complete schema. This is not a baseline reset or general history
+repair. Other unexpected history mismatches require review rather than deletion.
+
+ Transactions, stable natural keys
 and in-place upserts preserve reference IDs and all existing private data.
 No user/private tables are truncated, reseeded or deleted by updates. Removed
 source rows are retained conservatively; the exact-count check reports unexpected
@@ -205,7 +220,9 @@ secrets and NODE_ENV=production. Mailpit and HTTP exceptions require the explici
 local profile and are rejected in production. Refresh cookies remain HttpOnly,
 SameSite=Strict, path-scoped and Secure in production; localhost HTTP omits Secure.
 Origin checks, session validation, replay rejection, revocation and rate limits
-are unchanged. Use localhost consistently in the browser, not a second origin.
+are unchanged. Public API responses use no-store in the explicit local profile
+so a reload sees newly imported datasets; main's production cache headers are
+preserved. Use localhost consistently in the browser, not a second origin.
 Vite forces development API calls through its local /api proxy even if an old
 VITE_API_URL contains a Vercel deployment. No production user data/secrets are read.
 
@@ -242,3 +259,5 @@ npm run test:database --prefix backend -- 18
 Database suites use separate disposable containers/databases, never gnosis_local.
 No command merges main/production or calls Vercel. Existing deploymentEnabled
 settings exclude this fix branch, so PR updates do not request preview deployments.
+
+[Recorded verification and remaining differences](Local_Development_Verification.md).

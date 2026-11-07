@@ -26,7 +26,7 @@ async function main() {
         await require('./isolated-database').verifyContainerIdentity(operator, env);
         await operator.query("SELECT pg_advisory_lock(7241865325823965)");
         stage = 'migrations';
-        await execute({command: 'up', target: 'local', env});
+        await execute({command: 'up', target: 'local', env, allowLateIndexes:true});
         stage = 'runtime role';
         const exists = (await operator.query("SELECT 1 FROM pg_roles WHERE rolname='gnosis_reader'")).rowCount;
         // Generated hex credentials only; never interpolate arbitrary passwords into DDL.
@@ -42,6 +42,7 @@ async function main() {
             GRANT SELECT ON ol_sources,ol_lexical_entries,ol_word_occurrences,ol_morphology_codes TO gnosis_reader;
             GRANT SELECT,INSERT,UPDATE,DELETE ON licensed_chapter_cache TO gnosis_reader;
             GRANT SELECT,INSERT,UPDATE ON licensed_api_usage,licensed_ip_limits TO gnosis_reader;
+            GRANT DELETE ON licensed_ip_limits TO gnosis_reader;
             GRANT SELECT,INSERT ON users,email_verification_tokens TO gnosis_reader;
             GRANT UPDATE(email_verified_at) ON users TO gnosis_reader;
             GRANT UPDATE(used_at,consumed_reason) ON email_verification_tokens TO gnosis_reader;
@@ -56,7 +57,7 @@ async function main() {
         await require('./import-language').importLanguage(operator, {refresh:process.argv.includes('--refresh-language')});
         stage = 'query statistics';
         await operator.query('ANALYZE bible_books; ANALYZE bible_chapters; ANALYZE bible_verses; ANALYZE commentary_entries; ANALYZE ol_word_occurrences');
-        await execute({command:'check',target:'local',env});
+        await execute({command:'check',target:'local',env,allowLateIndexes:true});
         console.log('Complete local catalog, migrations and runtime grants are ready.');
     } finally { await operator.end(); }
 }

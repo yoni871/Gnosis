@@ -31,3 +31,10 @@ test('remote Docker endpoints are rejected before any engine call',()=>{
     assert.throws(()=>assertLocalDocker({},()=>({status:0,stdout:'ssh://remote.example'})),/Remote Docker/);
     assert.doesNotThrow(()=>assertLocalDocker({},()=>({status:0,stdout:'unix:///var/run/docker.sock'})));
 });
+
+test('late-index compatibility never relaxes production or unknown migration ordering',async()=>{
+    const {orderedLocalHistory,validateLocalLateIndexes}=require('../../scripts/migrations/localLateIndexes');
+    await assert.rejects(validateLocalLateIndexes({target:'production',command:'up',env:{},dir:''}),/forbidden/);
+    assert.throws(()=>orderedLocalHistory(['baseline','unknown'],['baseline','other']),/Unknown/);
+    assert.throws(()=>orderedLocalHistory(['baseline','later'],['baseline','missing','later']),/Unreviewed/);
+});
