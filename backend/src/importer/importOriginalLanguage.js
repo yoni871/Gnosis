@@ -30,11 +30,11 @@
 // so they are deliberately left out.
 const fs = require("fs");
 const path = require("path");
-const pool = require("../db/db");
+
 
 const STEPBIBLE_BASE = "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/master";
 const STEPBIBLE_FILES = {
-    tahot: "Translators Amalgamated OT+NT/TAHOT Gen-Deu - Translators Amalgamated Hebrew OT - STEPBible.org CC-BY.txt",
+    tahot: "Translators Amalgamated OT+NT/TAHOT Gen-Deu - Translators Amalgamated Hebrew OT - STEPBible.org CC BY.txt",
     tagnt: "Translators Amalgamated OT+NT/TAGNT Act-Rev - Translators Amalgamated Greek NT - STEPBible.org CC-BY.txt",
     tbesh: "Lexicons/TBESH - Translators Brief lexicon of Extended Strongs for Hebrew - STEPBible.org CC BY.txt",
     tbesg: "Lexicons/TBESG - Translators Brief lexicon of Extended Strongs for Greek - STEPBible.org CC BY.txt",
@@ -369,23 +369,24 @@ function deriveLexicalEntry(strongNumber, word) {
     };
 }
 
-async function downloadStepBibleFiles(dataDir) {
+async function downloadStepBibleFiles(dataDir, { refresh = false } = {}) {
     fs.mkdirSync(dataDir, { recursive: true });
     for (const [key, file] of Object.entries(STEPBIBLE_FILES)) {
         const dest = path.join(dataDir, `${key}.txt`);
-        if (fs.existsSync(dest)) {
+        if (!refresh && fs.existsSync(dest)) {
             console.log(`Already present: ${key}.txt`);
             continue;
         }
         const url = `${STEPBIBLE_BASE}/${encodeURI(file)}`;
         console.log(`Downloading ${key}.txt ...`);
-        const response = await fetch(url);
+        const response = await fetch(url, { signal: AbortSignal.timeout(120000) });
         if (!response.ok) throw new Error(`Download failed for ${key}: HTTP ${response.status}`);
-        fs.writeFileSync(dest, Buffer.from(await response.arrayBuffer()));
+        fs.writeFileSync(dest + ".tmp", Buffer.from(await response.arrayBuffer()));
+        fs.renameSync(dest + ".tmp", dest);
     }
 }
 
-async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
+async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE, pool = require("../db/db") } = {}) {
     const counts = { lexicalEntries: 0, morphologyCodes: 0, words: 0, altRefRows: 0, aramaicWords: 0, warnings: [] };
     const warn = message => {
         counts.warnings.push(message);
@@ -438,7 +439,15 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
             `INSERT INTO ol_lexical_entries
                 (strong_number, strong_base, language, lemma, transliteration, gloss, lexical_morphology, source_id)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-             ON CONFLICT (strong_number) DO NOTHING RETURNING id`,
+             ON CONFLICT (strong_number) DO UPDATE SET
+                strong_base=EXCLUDED.strong_base, language=EXCLUDED.language, lemma=EXCLUDED.lemma,
+                transliteration=EXCLUDED.transliteration, gloss=EXCLUDED.gloss,
+                lexical_morphology=EXCLUDED.lexical_morphology, source_id=EXCLUDED.source_id
+             WHERE (ol_lexical_entries.strong_base,ol_lexical_entries.language,ol_lexical_entries.lemma,
+                ol_lexical_entries.transliteration,ol_lexical_entries.gloss,ol_lexical_entries.lexical_morphology,ol_lexical_entries.source_id)
+                IS DISTINCT FROM (EXCLUDED.strong_base,EXCLUDED.language,EXCLUDED.lemma,
+                EXCLUDED.transliteration,EXCLUDED.gloss,EXCLUDED.lexical_morphology,EXCLUDED.source_id)
+             RETURNING id`,
             [entry.strongNumber, entry.strongBase, language, entry.lemma || "",
                 entry.transliteration || null, entry.gloss || null,
                 entry.lexicalMorphology || null, sourceIds.get(lexicalSource[language])]
@@ -451,7 +460,9 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
         const inserted = await pool.query(
             `INSERT INTO ol_morphology_codes (code, language, expansion, source_id)
              VALUES ($1, $2, $3, $4)
-             ON CONFLICT (language, code) DO NOTHING RETURNING id`,
+             ON CONFLICT (language, code) DO UPDATE SET expansion=EXCLUDED.expansion,source_id=EXCLUDED.source_id
+             WHERE (ol_morphology_codes.expansion,ol_morphology_codes.source_id)
+                IS DISTINCT FROM (EXCLUDED.expansion,EXCLUDED.source_id) RETURNING id`,
             [code, language, expansion, sourceIds.get(morphologySource[language])]
         );
         if (inserted.rows.length > 0) counts.morphologyCodes += 1;
@@ -538,6 +549,7 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
 }
 
 async function main() {
+    const pool = require("../db/db");
     const args = process.argv.slice(2);
     const dataDirIndex = args.indexOf("--data-dir");
     const dataDir = dataDirIndex === -1
@@ -545,9 +557,9 @@ async function main() {
         : path.resolve(args[dataDirIndex + 1]);
     try {
         if (args.includes("--download")) await downloadStepBibleFiles(dataDir);
-        const counts = await importOriginalLanguage({ dataDir });
-        console.log(`Done: ${counts.words} word occurrences, ${counts.lexicalEntries} new lexical entries, ` +
-            `${counts.morphologyCodes} new morphology codes, ${counts.altRefRows} with alternate verse numbers, ` +
+        const counts = await importOriginalLanguage({ dataDir, pool });
+        console.log(`Done: ${counts.words} word occurrences, ${counts.lexicalEntries} lexical entries written, ` +
+            `${counts.morphologyCodes} morphology codes written, ${counts.altRefRows} with alternate verse numbers, ` +
             `${counts.aramaicWords} Aramaic words, ${counts.warnings.length} warnings.`);
     } catch (error) {
         console.error("Original-language import failed:", error.message);
@@ -560,7 +572,7 @@ async function main() {
 if (require.main === module) main();
 
 module.exports = {
-    importOriginalLanguage, parseTahotLine, parseTagntLine, parseLexiconLine,
+    importOriginalLanguage, downloadStepBibleFiles, parseTahotLine, parseTagntLine, parseLexiconLine,
     parseMorphologyCodeFile, parseMorphologyExpansion, grammarDisplayForMorphemes,
     morphologyLookupKey, deriveLexicalEntry, splitTopLevel, wordLanguageForWord,
     PHASE_1_SCOPE, STEPBIBLE_FILES, ARAMAIC_RANGES,

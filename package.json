@@ -1,0 +1,12 @@
+{
+  "name": "gnosis-development",
+  "private": true,
+  "engines": { "node": "22.x" },
+  "scripts": {
+    "local:update": "node scripts/local-update.cjs",
+    "local:start": "node scripts/local-services.cjs start",
+    "local:stop": "node scripts/local-services.cjs stop",
+    "local:check": "npm run local:check --prefix backend",
+    "local:test": "node backend/scripts/local/verify-account.js"
+  }
+}

@@ -1,7 +1,7 @@
 // Explicit operator command, never imported by the HTTP application.
 const path = require('node:path');
 const fs = require('node:fs');
-const { Client, Pool } = require('pg');
+const { Client } = require('pg');
 const { loadLocalEnvironment } = require('../../src/config/localDevelopment');
 const { connectionFor } = require('../migrations/config');
 const { execute } = require('../migrations/runner');
@@ -16,13 +16,15 @@ async function main() {
         || env.DB_PORT !== String(config.port) || env.DB_PASSWORD === config.password) {
         throw new Error('Local operator and runtime settings must match the isolated setup with distinct credentials.');
     }
+    require('./isolated-database').containerSystemId(env);
     const operator = new Client(config);
     stage = 'database connection';
     await operator.connect();
-    let pool;
     try {
         const identity = (await operator.query('SELECT current_database() AS db, current_user AS role')).rows[0];
         if (identity.db !== 'gnosis_local' || identity.role !== 'gnosis_local_owner') throw new Error('Unexpected local database identity.');
+        await require('./isolated-database').verifyContainerIdentity(operator, env);
+        await operator.query("SELECT pg_advisory_lock(7241865325823965)");
         stage = 'migrations';
         await execute({command: 'up', target: 'local', env});
         stage = 'runtime role';
@@ -37,6 +39,9 @@ async function main() {
             GRANT CONNECT ON DATABASE gnosis_local TO gnosis_reader;
             GRANT USAGE ON SCHEMA public TO gnosis_reader;
             GRANT SELECT ON bible_books,bible_chapters,bible_verses,bible_translations,sources,commentaries,commentary_entries TO gnosis_reader;
+            GRANT SELECT ON ol_sources,ol_lexical_entries,ol_word_occurrences,ol_morphology_codes TO gnosis_reader;
+            GRANT SELECT,INSERT,UPDATE,DELETE ON licensed_chapter_cache TO gnosis_reader;
+            GRANT SELECT,INSERT,UPDATE ON licensed_api_usage,licensed_ip_limits TO gnosis_reader;
             GRANT SELECT,INSERT ON users,email_verification_tokens TO gnosis_reader;
             GRANT UPDATE(email_verified_at) ON users TO gnosis_reader;
             GRANT UPDATE(used_at,consumed_reason) ON email_verification_tokens TO gnosis_reader;
@@ -44,49 +49,15 @@ async function main() {
             GRANT SELECT,INSERT,UPDATE ON user_reading_state,auth_sessions,auth_refresh_tokens TO gnosis_reader;
             GRANT SELECT,INSERT,DELETE ON rate_limit_attempts TO gnosis_reader;
             GRANT SELECT,UPDATE ON rate_limit_sweep_state TO gnosis_reader;
-            GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq TO gnosis_reader`);
-        stage = 'reference data';
-        const books = require('../../src/data/bible_books.json');
-        for (const book of books) await operator.query(`INSERT INTO bible_books(name,abbreviation,testament,book_order)
-            SELECT $1::varchar,$2::varchar,$3::varchar,$4::integer WHERE NOT EXISTS(SELECT 1 FROM bible_books WHERE name=$1)`,
-            [book.name, book.abbreviation, book.testament, book.book_order]);
-        // Reviewed repository workbooks only; no network or database dump.
-        stage = 'workbook imports';
-        const { parseWorkbook } = require('../../../tools/bible-import/src/parseWorkbook');
-        const { importBible } = require('../../../tools/bible-import/src/importBible');
-        pool = new Pool(config);
-        for (const [abbr, name, file] of [
-            ['BSB', 'Berean Standard Bible', '../../src/bsb.xlsx'],
-            ['KJV', 'King James Version', '../../src/data/kjv.xlsx'],
-            ['ASV', 'American Standard Version', '../../src/data/asv.xlsx'],
-        ]) {
-            await operator.query(`INSERT INTO bible_translations(name,abbreviation)
-                SELECT $1::varchar,$2::varchar WHERE NOT EXISTS(SELECT 1 FROM bible_translations WHERE abbreviation=$2)`, [name, abbr]);
-            const row = (await operator.query('SELECT id,name FROM bible_translations WHERE abbreviation=$1', [abbr])).rows[0];
-            const { records } = parseWorkbook(path.resolve(__dirname, file));
-            const result = await importBible(pool, {records, translationId: row.id, translationName: row.name});
-            console.log(`${abbr}: ${result.status} (${result.inserted} verses)`);
-        }
-        stage = 'commentary imports';
-        const source = (await operator.query(`INSERT INTO sources(name,type,description,license)
-            SELECT 'John Wesley','commentary','Local repository dataset','Public domain'
-            WHERE NOT EXISTS(SELECT 1 FROM sources WHERE name='John Wesley') RETURNING id`)).rows[0]
-            || (await operator.query("SELECT id FROM sources WHERE name='John Wesley'")).rows[0];
-        await operator.query(`INSERT INTO commentaries(source_id,title) SELECT $1::integer,$2::varchar
-            WHERE NOT EXISTS(SELECT 1 FROM commentaries WHERE title=$2)`, [source.id, "John Wesley's Notes on the Bible"]);
-        const commentary = (await operator.query('SELECT id FROM commentaries WHERE source_id=$1', [source.id])).rows[0];
-        const folder = path.resolve(__dirname, '../../../wesley-restructured');
-        for (const file of fs.readdirSync(folder).filter(name => name.endsWith('.json'))) {
-            const data = JSON.parse(fs.readFileSync(path.join(folder, file), 'utf8'));
-            if (!data.book || !Array.isArray(data.entries)) continue;
-            const book = (await operator.query('SELECT id FROM bible_books WHERE name=$1', [data.book])).rows[0];
-            if (!book) continue;
-            for (const e of data.entries) await operator.query(`INSERT INTO commentary_entries
-                (commentary_id,book_id,start_chapter,start_verse,end_chapter,end_verse,content,title)
-                VALUES($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT DO NOTHING`,
-                [commentary.id,book.id,e.start_chapter,e.start_verse,e.end_chapter,e.end_verse,e.content,e.title]);
-        }
-        console.log('Local migrations, reader grants, books, translations and Wesley commentary are ready.');
-    } finally { if (pool) await pool.end(); await operator.end(); }
+            GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq,licensed_chapter_cache_id_seq TO gnosis_reader`);
+        stage = 'reference content';
+        await require('./import-content').importContent(operator);
+        stage = 'original language';
+        await require('./import-language').importLanguage(operator, {refresh:process.argv.includes('--refresh-language')});
+        stage = 'query statistics';
+        await operator.query('ANALYZE bible_books; ANALYZE bible_chapters; ANALYZE bible_verses; ANALYZE commentary_entries; ANALYZE ol_word_occurrences');
+        await execute({command:'check',target:'local',env});
+        console.log('Complete local catalog, migrations and runtime grants are ready.');
+    } finally { await operator.end(); }
 }
 main().catch(error => { console.error(`Local preparation failed at ${stage} (${/^[A-Z0-9_]+$/.test(error.code || '') ? error.code : 'no driver code'}). Check Docker, importer dependencies and local configuration. No credentials are logged.`); process.exitCode = 1; });

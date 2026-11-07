@@ -50,9 +50,10 @@ function extractEmailAddress(value) {
 function validateEmailConfig(env = process.env) {
     const errors = [];
     const local = env.NODE_ENV === 'development' && env.GNOSIS_LOCAL_DEV === '1';
-    const disabled = env.EMAIL_DELIVERY === 'disabled';
+    const disabled = ['disabled','mailpit'].includes(env.EMAIL_DELIVERY);
+    if (env.EMAIL_DELIVERY === 'mailpit' && !local) errors.push({ field:'EMAIL_DELIVERY', message:'Mailpit is local-only.' });
     if (disabled && !local) errors.push({ field: 'EMAIL_DELIVERY', message: 'Disabled email is local-only.' });
-    if (env.EMAIL_DELIVERY && !['disabled', 'resend'].includes(env.EMAIL_DELIVERY)) {
+    if (env.EMAIL_DELIVERY && !['disabled', 'resend', 'mailpit'].includes(env.EMAIL_DELIVERY)) {
         errors.push({ field: 'EMAIL_DELIVERY', message: 'Invalid delivery mode.' });
     }
     const resendApiKey = typeof env.RESEND_API_KEY === "string" ? env.RESEND_API_KEY : "";

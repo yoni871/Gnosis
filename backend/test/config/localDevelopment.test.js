@@ -28,3 +28,23 @@ test('disabled delivery never calls the network and does not return a verificati
     const client = createResendClient({env: local, fetchImpl: () => assert.fail('Network must not run')});
     await assert.rejects(client.sendVerificationEmail({to:'test@example.invalid',token:'synthetic'}), /disabled/);
 });
+
+test('Mailpit cannot send email in production or without the explicit local profile', async () => {
+    for (const env of [{...local,EMAIL_DELIVERY:'mailpit',NODE_ENV:'production'},
+        {...local,EMAIL_DELIVERY:'mailpit',GNOSIS_LOCAL_DEV:''}]) {
+        assert.ok(validateEmailConfig(env).errors);
+        const client=createResendClient({env,fetchImpl:()=>assert.fail('Must not contact Mailpit')});
+        await assert.rejects(client.sendVerificationEmail({to:'test@example.invalid',token:'synthetic'}),/invalid/);
+    }
+});
+test('local Mailpit is a fixed loopback sink with no Resend credential forwarding', async () => {
+    let called=false;
+    const client=createResendClient({env:{...local,EMAIL_DELIVERY:'mailpit',RESEND_API_KEY:'private-marker'},
+        fetchImpl:async(url,options)=>{
+            called=true;assert.equal(url,'http://127.0.0.1:8025/api/v1/send');
+            assert.ok(!JSON.stringify(options).includes('private-marker'));
+            assert.match(JSON.parse(options.body).Text,/http:\/\/localhost:5173\/verify-email#token=/);
+            return {ok:true};
+        }});
+    await client.sendVerificationEmail({to:'test@example.invalid',token:'synthetic'});assert.ok(called);
+});
