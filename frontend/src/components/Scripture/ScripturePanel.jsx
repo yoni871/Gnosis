@@ -110,6 +110,13 @@ export default function ScripturePanel({
     const displayedLocationRef = useRef(null);
     const previousSelectionRef = useRef(null);
     useEffect(() => {
+        // Respect the reduced-motion preference, as the landing page
+        // and About navigation already do: smooth scrolling becomes an
+        // instant jump. Optional chaining matches their pattern and
+        // keeps this safe where matchMedia is unavailable (jsdom).
+        const behavior = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+            ? "instant"
+            : "smooth";
         const versesChanged = previousVersesRef.current !== verses;
         previousVersesRef.current = verses;
 
@@ -143,13 +150,13 @@ export default function ScripturePanel({
 
             if (selectedVerse) {
                 verseRefs.current[selectedVerse]?.scrollIntoView({
-                    behavior: "smooth",
+                    behavior,
                     block: "center"
                 });
             } else {
                 scriptureScrollRef.current?.scrollTo({
                     top: 0,
-                    behavior: "smooth"
+                    behavior
                 });
             }
             return;
@@ -174,7 +181,7 @@ export default function ScripturePanel({
         }
 
         verseRefs.current[selectedVerse]?.scrollIntoView({
-            behavior: "smooth",
+            behavior,
             block: "center"
         });
     }, [selectedVerse, verses, verseSelection.selection, currentBook, chapter]);

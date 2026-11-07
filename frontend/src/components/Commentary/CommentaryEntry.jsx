@@ -88,8 +88,15 @@ function CommentaryEntry({ item, book, isSelected, showTitle }) {
 
   useEffect(() => {
   if (isSelected) {
+    // Respect the reduced-motion preference, as the landing page
+    // and About navigation already do. Optional chaining matches
+    // their pattern and keeps this safe where matchMedia is
+    // unavailable (jsdom).
+    const behavior = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+      ? "instant"
+      : "smooth";
     entryRef.current?.scrollIntoView({
-      behavior: "smooth",
+      behavior,
       block: "center"
     });
   }
