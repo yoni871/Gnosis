@@ -1,0 +1,262 @@
+[
+  {
+    "width": 1440,
+    "label": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceLabel": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "statement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.84px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "28.511999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceStatement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.84px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "28.511999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "overflow": false
+  },
+  {
+    "width": 1280,
+    "label": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceLabel": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "statement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.2px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "27.359999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceStatement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.2px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "27.359999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "label": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceLabel": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "statement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.2px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "27.359999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceStatement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.2px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "27.359999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "label": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceLabel": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "statement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.2px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "27.359999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceStatement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.2px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "27.359999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "label": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceLabel": {
+      "fontFamily": "Gnosis Hero Inter, sans-serif",
+      "fontSize": "10.72px",
+      "fontWeight": "600",
+      "color": "rgb(133, 106, 59)",
+      "lineHeight": "19.296px",
+      "letterSpacing": "1.8224px",
+      "marginTop": "0px",
+      "marginBottom": "22px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "statement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.2px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "27.359999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "referenceStatement": {
+      "fontFamily": "Gnosis Hero Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+      "fontSize": "15.2px",
+      "fontWeight": "400",
+      "color": "rgb(35, 62, 52)",
+      "lineHeight": "27.359999px",
+      "letterSpacing": "normal",
+      "marginTop": "0px",
+      "marginBottom": "28px",
+      "paddingLeft": "0px",
+      "borderLeftWidth": "0px"
+    },
+    "overflow": false
+  }
+]
