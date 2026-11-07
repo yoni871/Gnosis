@@ -103,15 +103,24 @@ per project and 60 hook triggers per hour per project.
 curl -X POST <deploy-hook-url>
 ```
 
-Deploy Hooks for the currently active PRs are listed below (created in the
-dashboard; the URL itself is the secret — do not share it publicly).
+The hook URL is a secret (anyone with it can trigger a deployment and
+spend quota). **Do not commit hook URLs to this repository — it is
+public.** The URLs live only in the Vercel dashboard (Settings → Git →
+Deploy Hooks). Find the hook by name, copy its URL, and POST to it.
+
+Hooks currently set up (names only — get the URL from the dashboard):
 
 | PR | Branch | Frontend hook | Backend hook |
 | -- | ------ | ------------- | ------------ |
-| #39 Secure Session Management | `fix/7-secure-session-management` | — | — |
-| #52 Original Language Analysis | `feature/original-language-analysis` | — | — |
-| #54 Performance Optimization | `perf/full-site-optimization` | — | — |
-| #57 ESV Fix | `fix/esv-single-chapter-books` | — | — |
+| #39 Secure Session Management | `fix/7-secure-session-management` | `preview-fix-7` | `preview-fix-7` |
+| #52 Original Language Analysis | `feature/original-language-analysis` | `preview-ola` | `preview-ola` |
+| #54 Performance Optimization | `perf/full-site-optimization` | `preview-perf` | `preview-perf` |
+| #57 ESV Fix | `fix/esv-single-chapter-books` | `preview-esv` | `preview-esv` |
+
+Verified 2026-11-07: triggering a Deploy Hook creates a preview even
+for a branch whose automatic deployments are disabled (tested on the
+config branch for this change — the hook produced a completed `gnosis`
+preview deployment).
 
 ## Production promotion
 
