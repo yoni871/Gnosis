@@ -1,11 +1,12 @@
 import { StrictMode, useContext, useEffect } from 'react';
 import { act, render, screen } from '@testing-library/react';
-import { beforeEach, expect, test, vi } from 'vitest';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import AuthContext, { AuthProvider } from './AuthContext';
-import { getProfile, loginUser, registerUser } from '../services/authService';
+import { getProfile, loginUser, registerUser, refreshSession, logoutSession } from '../services/authService';
 
 vi.mock('../services/authService', () => ({
     getProfile: vi.fn(), loginUser: vi.fn(), registerUser: vi.fn(),
+    refreshSession: vi.fn(), logoutSession: vi.fn().mockResolvedValue(undefined),
 }));
 
 const oldUser = { id: 1, email: 'old@example.invalid' };
@@ -52,8 +53,12 @@ function session(user, token, loading = false) {
     expect(localStorage.getItem('gnosisToken')).toBe(token);
 }
 
+afterEach(() => { vi.useRealTimers(); });
+
 beforeEach(() => {
     for (const mock of [getProfile, loginUser, registerUser]) mock.mockReset();
+    refreshSession.mockReset();
+    logoutSession.mockResolvedValue(undefined);
     auth = undefined;
 });
 
@@ -277,4 +282,73 @@ test('publishes a read-only session version for restore, login and logout, and r
     expect(auth.sessionVersion).toBe(loginVersion);
     act(() => auth.logout());
     expect(auth.sessionVersion).toBeGreaterThan(loginVersion);
+});
+
+function sessionToken(exp, sid = 'session-one') {
+    return `header.${btoa(JSON.stringify({ exp, sid }))}.signature`;
+}
+test('an expired access token is refreshed before restoring the profile', async () => {
+    const oldToken = sessionToken(1);
+    const newToken = sessionToken(Math.floor(Date.now() / 1000) + 900);
+    localStorage.setItem('gnosisToken', oldToken);
+    refreshSession.mockResolvedValue({ token: newToken });
+    getProfile.mockResolvedValue(newUser);
+    mount();
+    await act(async () => {});
+    expect(refreshSession).toHaveBeenCalledTimes(1);
+    expect(getProfile).toHaveBeenCalledWith(newToken);
+    session(newUser, newToken);
+});
+test('logout during refresh cannot restore the previous account', async () => {
+    localStorage.setItem('gnosisToken', sessionToken(1));
+    const renewal = deferred();
+    refreshSession.mockReturnValue(renewal.promise);
+    mount();
+    act(() => auth.logout());
+    await settle(renewal, { token: sessionToken(9999999999) });
+    session(null, null);
+    expect(getProfile).not.toHaveBeenCalled();
+    expect(logoutSession).toHaveBeenCalled();
+});
+test('renewal updates credentials without changing the session version', async () => {
+    const oldToken = sessionToken(9999999999);
+    const newToken = sessionToken(9999999998);
+    localStorage.setItem('gnosisToken', oldToken);
+    getProfile.mockResolvedValue(newUser);
+    refreshSession.mockResolvedValue({ token: newToken });
+    mount();
+    await act(async () => {});
+    const version = auth.sessionVersion;
+    await act(async () => { document.dispatchEvent(new Event('visibilitychange')); });
+    session(newUser, newToken);
+    expect(auth.sessionVersion).toBe(version);
+});
+
+test('a temporary renewal failure preserves the session and retries without changing ownership', async () => {
+    vi.useFakeTimers();
+    const oldToken = sessionToken(9999999999);
+    const newToken = sessionToken(9999999998);
+    localStorage.setItem('gnosisToken', oldToken);
+    getProfile.mockResolvedValue(newUser);
+    refreshSession.mockRejectedValueOnce(new TypeError('Network unavailable')).mockResolvedValueOnce({ token: newToken });
+    mount();
+    await act(async () => {});
+    const version = auth.sessionVersion;
+    await act(async () => { window.dispatchEvent(new Event('online')); });
+    session(newUser, oldToken);
+    expect(logoutSession).not.toHaveBeenCalled();
+    await act(async () => { await vi.advanceTimersByTimeAsync(60000); });
+    session(newUser, newToken);
+    expect(auth.sessionVersion).toBe(version);
+});
+test('a rejected session ends authentication immediately on renewal', async () => {
+    const token = sessionToken(9999999999);
+    localStorage.setItem('gnosisToken', token);
+    getProfile.mockResolvedValue(newUser);
+    refreshSession.mockRejectedValue(Object.assign(new Error('Session revoked'), { code: 'SESSION_INVALID' }));
+    mount();
+    await act(async () => {});
+    await act(async () => { window.dispatchEvent(new Event('online')); });
+    session(null, null);
+    expect(logoutSession).toHaveBeenCalledWith(token, false);
 });

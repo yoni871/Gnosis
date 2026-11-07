@@ -44,6 +44,11 @@ export default function StudyPage() {
     // -------------------------
 
     const [verses, setVerses] = useState([]);
+    // True while a chapter is being fetched. The reader shows a loading
+    // note instead of an empty pane while this is true and no verses
+    // have arrived yet; once verses exist they stay visible while a
+    // new chapter loads, so switching chapters never blanks the page.
+    const [versesLoading, setVersesLoading] = useState(false);
     const [book, setBook] = useState(
         urlBook || "Genesis"
     );
@@ -287,6 +292,9 @@ export default function StudyPage() {
         const currentBook = books.find((item) => item.name === book);
 
         // Wait until the translation and book ID are available.
+        // Loading is only ever set while a fetch is actually running,
+        // and that fetch always clears it when it settles (or a newer
+        // fetch takes over), so nothing here needs to reset it.
         if (!translation || !currentBook) {
             return;
         }
@@ -295,6 +303,11 @@ export default function StudyPage() {
         let ignore = false;
 
         async function loadChapter() {
+            setVersesLoading(true);
+            // A licensed-translation fallback re-fetches as BSB; keep
+            // the loading note up across that continuation instead of
+            // flashing an empty pane between the two fetches.
+            let fallingBack = false;
             try {
                 const data = await getBibleChapter(
                     book,
@@ -332,11 +345,16 @@ export default function StudyPage() {
                         error.code === "LICENSED_UNAVAILABLE" &&
                         translation !== "BSB"
                     ) {
+                        fallingBack = true;
                         setLicensedFallback({ from: translation });
                         setTranslation("BSB");
                     } else {
                         console.error(error);
                     }
+                }
+            } finally {
+                if (!ignore && !fallingBack) {
+                    setVersesLoading(false);
                 }
             }
         }
@@ -451,6 +469,7 @@ export default function StudyPage() {
                 bookmarkPreviews={bookmarkPreviews}
                 layout={layout}
                 verses={verses}
+                versesLoading={versesLoading}
                 book={book}
                 chapter={chapter}
                 translation={translation}

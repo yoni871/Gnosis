@@ -99,7 +99,7 @@ test.each([false, true])('logout during registration neither logs in nor suppres
         expect(screen.getByText(/check your email to finish creating your account/i)).toBeInTheDocument();
     }
     expect(screen.getByTestId('location')).toHaveTextContent('/register');
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls.filter(([url]) => !url.endsWith("/logout"))).toHaveLength(1);
 });
 
 test('check-email resend requests a fresh link for the registered address', async () => {

@@ -7,6 +7,7 @@ import "./ScripturePanel.css";
 
 export default function ScripturePanel({
     verses = [],
+    versesLoading = false,
     book = "",
     chapter = 1,
     translation = "",
@@ -395,7 +396,16 @@ export default function ScripturePanel({
                     scripture-reading-body
                     text-[var(--text-primary)]
                 ">
-                    {verses.map((verse) => (
+                    {/* While the first chapter is still loading there
+                        is nothing to show yet, so say so instead of an
+                        empty pane. Once verses exist they stay visible
+                        while a new chapter loads. */}
+                    {versesLoading && verses.length === 0 ? (
+                        <p className="text-center text-[1rem] text-[var(--text-muted)]">
+                            Loading Scripture…
+                        </p>
+                    ) : (
+                        verses.map((verse) => (
                         <span
                             // Add transparency to the saved RGB color without fading the text.
                             style={{
@@ -519,7 +529,7 @@ export default function ScripturePanel({
                             )}
                             
                         </span>
-                    ))}
+                    )))}
                 </div>
 
                 {/* Copyright notice for a licensed translation. The notice
