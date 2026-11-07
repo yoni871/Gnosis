@@ -61,13 +61,14 @@
     max-width: 48ch;
     margin-bottom: 30px;
 }
-.landing-hero-ctas { gap: 14px; }
+.landing-hero-ctas { gap: 14px; align-items: flex-start; }
+.landing-continue { display: grid; gap: 14px; min-width: 0; }
 .landing-continue-note {
-    margin: 14px 0 0;
-    font-size: 0.85rem;
-    color: #796039;
+    display: grid; gap: 3px; margin: 0; padding-inline: 2px;
+    font-size: .75rem; line-height: 1.6; color: var(--hero-ivory);
 }
-[data-theme="dark"] .landing-continue-note { color: var(--hero-gold); }
+.landing-continue-note > span { color: var(--hero-gold); }
+.landing-continue-note > strong { font-size: .9rem; font-weight: 500; letter-spacing: .01em; overflow-wrap: anywhere; }
 .landing-hero-ctas .landing-btn {
     font-family: "Gnosis Hero Inter", var(--public-font-ui);
     font-size: .86rem;

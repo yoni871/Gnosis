@@ -137,12 +137,19 @@ export default function LandingPage() {
                             </p>
                             <div className="landing-hero-ctas">
                                 {savedState ? (
-                                    <Link
-                                        to={readingStateUrl(savedState)}
-                                        className="landing-btn landing-btn-primary landing-btn-large"
-                                    >
-                                        Continue reading →
-                                    </Link>
+                                    <div className="landing-continue">
+                                        <Link
+                                            to={readingStateUrl(savedState)}
+                                            className="landing-btn landing-btn-primary landing-btn-large"
+                                            aria-describedby="landing-reading-location"
+                                        >
+                                            Continue reading →
+                                        </Link>
+                                        <p id="landing-reading-location" className="landing-continue-note">
+                                            <span>Pick up where you left off.</span>{" "}
+                                            <strong>{readingStateLabel(savedState)}</strong>
+                                        </p>
+                                    </div>
                                 ) : (
                                     <Link
                                         to={STUDY_DESTINATION}
@@ -159,11 +166,6 @@ export default function LandingPage() {
                                     See How It Works
                                 </a>
                             </div>
-                            {savedState && (
-                                <p className="landing-continue-note">
-                                    {readingStateLabel(savedState)}
-                                </p>
-                            )}
                         </div>
                     </section>
                 </div>
