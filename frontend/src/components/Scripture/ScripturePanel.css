@@ -1,7 +1,22 @@
 /* Reuse the self-hosted Lora family and theme colors from index.css. */
-.scripture-panel,
+.scripture-panel {
+    --scripture-paper: #F7F0DF;
+    --scripture-grain: rgb(122 94 49 / 3%);
+    background-color: var(--scripture-paper);
+    /* Tiny tiled CSS flecks: no image request, filter, animation or overlay. */
+    background-image:
+        radial-gradient(ellipse at 20% 30%, var(--scripture-grain) 0.5px, transparent 1px),
+        radial-gradient(ellipse at 70% 80%, var(--scripture-grain) 0.5px, transparent 1px);
+    background-size: 13px 17px, 19px 23px;
+}
+
+[data-theme="dark"] .scripture-panel {
+    --scripture-paper: var(--bg-panel);
+    --scripture-grain: rgb(240 231 217 / 2%);
+}
+
 .scripture-scroll {
-    background: var(--bg-panel);
+    background: transparent;
 }
 
 .scripture-reading-body {

@@ -366,9 +366,10 @@ describe("ScripturePanel original language", () => {
 
     test("the toolbar offers original language analysis for the selected range", async () => {
         mountReader({ selectedVerse: 2, selection: selectionOf(1, 2) });
-        // The toolbar renders in the text flow at the end of the
-        // selected verse, so the button is present with a selection.
-        expect(screen.getByTestId("ol-toolbar-button")).toBeInTheDocument();
+        // The toolbar is portaled out of the verse's text flow.
+        const button = screen.getByTestId("ol-toolbar-button");
+        expect(button).toBeInTheDocument();
+        expect(button.closest(".scripture-verse")).toBeNull();
     });
 
     test("opening the modal shows the range and the English passage; closing keeps the selection", async () => {
