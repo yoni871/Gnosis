@@ -123,7 +123,7 @@ test.each([false, true])('logout prevents late login feedback, storage and navig
     state(null, null, false);
     expect(screen.getByTestId('location')).toHaveTextContent('/login');
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls.filter(([url]) => !url.endsWith("/logout"))).toHaveLength(1);
 });
 
 test.each([

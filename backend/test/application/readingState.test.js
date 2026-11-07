@@ -23,6 +23,9 @@ let commentaryExists = true;
 let lastInsertParams = null;
 
 const queryMock = test.mock.method(pool, "query", async (sql, params) => {
+    if (typeof sql === "string" && sql.includes("FROM auth_sessions")) {
+        return { rows: [{ id: '00000000-0000-4000-8000-000000000001' }] };
+    }
     if (typeof sql === "string" && sql.includes("INSERT INTO user_reading_state")) {
         lastInsertParams = params;
         savedRow = {
@@ -84,7 +87,8 @@ test.beforeEach(() => {
 });
 
 function token() {
-    return jwt.sign({ userId: 1 }, process.env.JWT_SECRET);
+    return jwt.sign({ userId: 1, sid: '00000000-0000-4000-8000-000000000001' }, process.env.JWT_SECRET,
+        { expiresIn: '15m', issuer: 'gnosis', audience: 'gnosis-api' });
 }
 
 async function request(path, options = {}) {
