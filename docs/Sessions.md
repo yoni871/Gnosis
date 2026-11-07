@@ -119,6 +119,37 @@ Before merging into main:
    automatically deploys staging, complete its isolated database/configuration
    prerequisites before that approval and merge.
 
+### Preview migration-history reconciliation (2026-11-06)
+
+The shared preview database carries migrations from unmerged branches, so its
+`pgmigrations` history does not match any single branch's file order today
+(it already holds the password-reset migration from unmerged PR #29 and the
+original-language migration from unmerged PR #52). The runner's history check
+compares applied rows to the migration files index by index and fails closed
+— it refuses to run rather than applying anything — so this is a workflow
+blocker, not data corruption, and the backend itself never runs migrations
+on startup.
+
+One pair was genuinely out of order: the original-language migration
+(`20261106234443`, applied to preview 2026-11-07 00:28 UTC) sat at history
+row 7 ahead of the sessions migration (`20261106210000`, row 8), although
+the sessions file sorts first. The two tracking rows were renumbered on
+preview only (row 7 is now sessions, row 8 is original-language), changing
+no table, no data, and no migration file. After that fix the preview history
+is `[baseline, auth-rate-limiting, email-verification, password-reset,
+licensed-translations, user-reading-state, sessions, original-language]`,
+which is exactly the file order main will have once PR #29, PR #39, and
+PR #52 have all merged — so `db:migrate:check` against main will pass then.
+Until those merges land, the check still fails against main and against any
+single branch, for the pre-existing reason that preview holds the other
+branches' migrations.
+
+Merge-order note: this branch's migration integration test expects six
+migrations and does not include the password-reset migration, because this
+branch does not carry that file. If PR #29 merges first, this branch must be
+updated with main and its test expectations reconciled to include it before
+merging (and the same applies in reverse if this PR merges first).
+
 ## Exact migration and grant procedure (operator only)
 
 Commands run from `backend/`. No command here was run against an application

@@ -25,12 +25,13 @@ const translations = [
     { id: 9, abbreviation: "NASB", name: "New American Standard Bible" },
 ];
 
-function mount() {
+function mount({ verses = [], versesLoading = false } = {}) {
     const onSelectTranslation = vi.fn();
 
     render(
         <ScripturePanel
-            verses={[]}
+            verses={verses}
+            versesLoading={versesLoading}
             book="Genesis"
             chapter={1}
             translation="KJV"
@@ -292,5 +293,36 @@ describe("ScripturePanel reading scroll", () => {
 
         expect(Element.prototype.scrollTo).not.toHaveBeenCalled();
         expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
+    });
+});
+
+describe("ScripturePanel chapter loading", () => {
+    const genesisOne = {
+        verse_number: 1,
+        text: "In the beginning God created the heaven and the earth.",
+    };
+
+    test("shows a loading note while the chapter loads instead of an empty pane", () => {
+        mount({ verses: [], versesLoading: true });
+
+        expect(screen.getByText("Loading Scripture…")).toBeInTheDocument();
+    });
+
+    test("does not show the loading note once verses arrive", () => {
+        mount({ verses: [genesisOne], versesLoading: false });
+
+        expect(
+            screen.queryByText("Loading Scripture…"),
+        ).not.toBeInTheDocument();
+        expect(screen.getByText(/In the beginning/)).toBeInTheDocument();
+    });
+
+    test("keeps showing verses while a new chapter loads", () => {
+        mount({ verses: [genesisOne], versesLoading: true });
+
+        expect(
+            screen.queryByText("Loading Scripture…"),
+        ).not.toBeInTheDocument();
+        expect(screen.getByText(/In the beginning/)).toBeInTheDocument();
     });
 });
