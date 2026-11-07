@@ -386,7 +386,7 @@ async function downloadStepBibleFiles(dataDir, { refresh = false } = {}) {
     }
 }
 
-async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE, pool = require("../db/db") } = {}) {
+async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE, pool = require("../db/db").biblePool } = {}) {
     const counts = { lexicalEntries: 0, morphologyCodes: 0, words: 0, altRefRows: 0, aramaicWords: 0, warnings: [] };
     const warn = message => {
         counts.warnings.push(message);
@@ -549,7 +549,7 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE, pool = r
 }
 
 async function main() {
-    const pool = require("../db/db");
+    const { biblePool: pool } = require("../db/db");
     const args = process.argv.slice(2);
     const dataDirIndex = args.indexOf("--data-dir");
     const dataDir = dataDirIndex === -1

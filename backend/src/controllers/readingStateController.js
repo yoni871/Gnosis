@@ -1,14 +1,5 @@
 const pool = require("../db/db");
-
-const SELECT_READING_STATE = `
-    SELECT
-        user_reading_state.*,
-        bible_books.name AS book
-    FROM user_reading_state
-    JOIN bible_books
-        ON user_reading_state.book_id = bible_books.id
-    WHERE user_reading_state.user_id = $1
-`;
+const { biblePool, commentaryPool } = require("../db/db");
 
 const isPositiveInteger = (value) => {
     return Number.isInteger(value) && value > 0;
@@ -18,7 +9,10 @@ const getReadingState = async (req, res) => {
     const userId = req.user.userId;
 
     try {
-        const result = await pool.query(SELECT_READING_STATE, [userId]);
+        const result = await pool.query(
+            "SELECT * FROM user_reading_state WHERE user_id = $1",
+            [userId]
+        );
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -26,7 +20,23 @@ const getReadingState = async (req, res) => {
             });
         }
 
-        return res.status(200).json(result.rows[0]);
+        // The book name comes from the Bible project (no join crosses
+        // the project boundary). A missing book reads as no saved
+        // position, as the old join did.
+        const book = await biblePool.query(
+            "SELECT name FROM bible_books WHERE id = $1",
+            [result.rows[0].book_id]
+        );
+        if (book.rows.length === 0) {
+            return res.status(404).json({
+                error: "No saved reading position."
+            });
+        }
+
+        return res.status(200).json({
+            ...result.rows[0],
+            book: book.rows[0].name
+        });
     } catch (error) {
         console.error(error);
 
@@ -71,47 +81,43 @@ const saveReadingState = async (req, res) => {
     }
 
     try {
-        // One round-trip validates the book, translation, and commentary
-        // together and returns the book name for the response, instead
-        // of three sequential existence checks. The upsert then returns
-        // the saved row, so no re-SELECT is needed. The error messages
-        // and their precedence (book, then translation, then commentary)
-        // are unchanged.
-        const validation = await pool.query(
-            `
-            SELECT
-                b.name AS book,
-                EXISTS (
-                    SELECT 1 FROM bible_translations WHERE abbreviation = $2
-                ) AS translation_exists,
-                CASE
-                    WHEN $3::bigint IS NULL THEN true
-                    ELSE EXISTS (
-                        SELECT 1 FROM commentaries WHERE id = $3
-                    )
-                END AS commentary_exists
-            FROM bible_books b
-            WHERE b.id = $1
-            `,
-            [bookId, translation, commentaryId ?? null]
+        // The book, translation and commentary are validated one at a
+        // time, each against its own project, instead of in one combined
+        // query. The error messages and their precedence (book, then
+        // translation, then commentary) are unchanged.
+        const book = await biblePool.query(
+            "SELECT name FROM bible_books WHERE id = $1",
+            [bookId]
         );
 
-        if (validation.rows.length === 0) {
+        if (book.rows.length === 0) {
             return res.status(400).json({
                 error: "The book does not exist."
             });
         }
 
-        if (!validation.rows[0].translation_exists) {
+        const translationExists = await biblePool.query(
+            "SELECT 1 FROM bible_translations WHERE abbreviation = $1",
+            [translation]
+        );
+
+        if (translationExists.rows.length === 0) {
             return res.status(400).json({
                 error: "The translation does not exist."
             });
         }
 
-        if (!validation.rows[0].commentary_exists) {
-            return res.status(400).json({
-                error: "The commentary does not exist."
-            });
+        if (commentaryId !== undefined && commentaryId !== null) {
+            const commentary = await commentaryPool.query(
+                "SELECT 1 FROM commentaries WHERE id = $1",
+                [commentaryId]
+            );
+
+            if (commentary.rows.length === 0) {
+                return res.status(400).json({
+                    error: "The commentary does not exist."
+                });
+            }
         }
 
         const result = await pool.query(
@@ -147,7 +153,7 @@ const saveReadingState = async (req, res) => {
 
         return res.status(200).json({
             ...result.rows[0],
-            book: validation.rows[0].book
+            book: book.rows[0].name
         });
     } catch (error) {
         console.error(error);

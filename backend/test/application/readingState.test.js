@@ -46,19 +46,20 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
         return { rows: savedRow ? [savedRow] : [] };
     }
 
-    // The PUT validates book, translation, and commentary in one
-    // combined query; the row carries the book name and the two
-    // existence flags, so one branch answers all three checks.
-    if (typeof sql === "string" && sql.includes("translation_exists")) {
-        return {
-            rows: bookExists
-                ? [{
-                    book: "Genesis",
-                    translation_exists: translationExists,
-                    commentary_exists: commentaryExists,
-                }]
-                : [],
-        };
+    // The PUT validates the book, translation, and commentary one at a
+    // time, each against its own project; the book query also returns
+    // the book name for the response. The GET looks the book name up
+    // the same way. In single-database mode the Bible and Commentary
+    // pools are the same instance as the application pool, so this one
+    // mock answers all three.
+    if (typeof sql === "string" && sql.includes("FROM bible_books")) {
+        return { rows: bookExists ? [{ name: "Genesis" }] : [] };
+    }
+    if (typeof sql === "string" && sql.includes("FROM bible_translations")) {
+        return { rows: translationExists ? [{ "1": 1 }] : [] };
+    }
+    if (typeof sql === "string" && sql.includes("FROM commentaries")) {
+        return { rows: commentaryExists ? [{ "1": 1 }] : [] };
     }
 
     throw new Error(`Unexpected query in reading-state test: ${sql}`);

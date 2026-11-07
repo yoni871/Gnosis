@@ -1,1 +1,14 @@
-{"added": [{"kind": "index", "name": "licensed_chapter_cache_fetched_idx", "definition": {"sql": "CREATE INDEX licensed_chapter_cache_fetched_idx ON public.licensed_chapter_cache USING btree (translation_id, fetched_at) INCLUDE (verse_count)", "ready": true, "valid": true}}], "removed": []}
+{
+  "added": [
+    {
+      "kind": "index",
+      "name": "licensed_chapter_cache_fetched_idx",
+      "definition": {
+        "sql": "CREATE INDEX licensed_chapter_cache_fetched_idx ON public.licensed_chapter_cache USING btree (translation_id, fetched_at) INCLUDE (verse_count)",
+        "ready": true,
+        "valid": true
+      }
+    }
+  ],
+  "removed": []
+}

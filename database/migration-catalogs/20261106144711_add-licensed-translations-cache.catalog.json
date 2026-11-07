@@ -1,0 +1,313 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "licensed_api_usage.calls",
+      "definition": {
+        "type": "integer",
+        "default": "0",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_api_usage.period",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_api_usage.provider",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_chapter_cache.book_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_chapter_cache.chapter_number",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_chapter_cache.fetched_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_chapter_cache.fums_token",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_chapter_cache.id",
+      "definition": {
+        "type": "integer",
+        "default": "nextval('licensed_chapter_cache_id_seq'::regclass)",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_chapter_cache.translation_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_chapter_cache.verse_count",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_chapter_cache.verses",
+      "definition": {
+        "type": "jsonb",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_ip_limits.calls",
+      "definition": {
+        "type": "integer",
+        "default": "0",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_ip_limits.key_hash",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "licensed_ip_limits.window_hour",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "licensed_api_usage.licensed_api_usage_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (provider, period)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "licensed_chapter_cache.licensed_chapter_cache_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "licensed_chapter_cache.unique_licensed_chapter",
+      "definition": {
+        "sql": "UNIQUE (translation_id, book_id, chapter_number)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "licensed_ip_limits.licensed_ip_limits_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (key_hash, window_hour)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "licensed_api_usage_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX licensed_api_usage_pkey ON public.licensed_api_usage USING btree (provider, period)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "licensed_chapter_cache_fetched_idx",
+      "definition": {
+        "sql": "CREATE INDEX licensed_chapter_cache_fetched_idx ON public.licensed_chapter_cache USING btree (translation_id, fetched_at)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "licensed_chapter_cache_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX licensed_chapter_cache_pkey ON public.licensed_chapter_cache USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "licensed_ip_limits_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX licensed_ip_limits_pkey ON public.licensed_ip_limits USING btree (key_hash, window_hour)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "unique_licensed_chapter",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX unique_licensed_chapter ON public.licensed_chapter_cache USING btree (translation_id, book_id, chapter_number)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "licensed_api_usage",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "licensed_chapter_cache",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "licensed_chapter_cache_id_seq",
+      "definition": {
+        "rls": false,
+        "kind": "S",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "licensed_ip_limits",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "sequence",
+      "name": "licensed_chapter_cache_id_seq",
+      "definition": {
+        "max": 2147483647,
+        "min": 1,
+        "type": "integer",
+        "cache": 1,
+        "cycle": false,
+        "start": 1,
+        "increment": 1,
+        "ownerTable": "licensed_chapter_cache",
+        "ownerColumn": "id"
+      }
+    }
+  ],
+  "removed": []
+}

@@ -6,7 +6,14 @@ and are never run at application startup, in requests, or during frontend builds
 
 ## Approved schema and adoption gate
 
-`database/migrations/` is authoritative. The owner approved the shared 11-table
+`database/migrations/<project>/` is authoritative, one history per Neon
+project: `app` (users, auth, notes, bookmarks, highlights, reading state,
+licensed-translation cache, rate limits), `bible` (translations, books,
+chapters, verses, original-language tables), and `commentary` (sources,
+commentaries, entries, plus a copy of `bible_books`). Each project has its
+own tracking table (`pgmigrations_<project>`), baseline catalog
+(`database/baseline.<project>.catalog.json`), and reference schema
+(`database/schema.<project>.sql`). The owner approved the shared 11-table
 application schema after private local/Neon schema-only review. The initial
 `20261023000000_baseline.sql` now includes nullable `users.first_name` and
 `users.last_name` as varchar(100), without defaults, plus named unique constraints
@@ -15,9 +22,21 @@ application schema after private local/Neon schema-only review. The initial
 These definitions support registration/profile queries, chapter importer upserts,
 and the chapter/verse uniqueness documented in Technical_Design.md.
 
+No foreign key crosses a project boundary: the eight cross-project references
+(`notes`, `bookmarks`, `highlights` and `commentary_entries` to `bible_books`;
+`licensed_chapter_cache` to `bible_translations` and `bible_books`; and
+`user_reading_state` to `bible_books` and `commentaries`) are plain integers
+validated by the application against the owning project's pool before writing.
+In a shared database (tests, local development) the three histories coexist
+in one database; run the Bible baseline before the Commentary baseline, since
+the Commentary copy of `bible_books` is created with `IF NOT EXISTS`. Drift
+detection (`check`) is scoped per project: another project's objects are not
+this project's drift, and an object owned by this project (including
+`bible_books`, owned by both Bible and Commentary) is still checked by it.
+
 The baseline had never been adopted anywhere, so this correction is directly in
 its CREATE TABLE definitions. Once adopted, never edit an applied migration.
-`database/schema.sql` mirrors the initial blueprint for reference only; use
+`database/schema.<project>.sql` mirrors the initial blueprint for reference only; use
 versioned migrations for initialization and upgrades. Imports and seeds remain
 separate; migrations do not populate Bible/commentary content.
 
@@ -38,8 +57,9 @@ remain private outside Git; collection guidance is in
 ## Installation and explicit targets
 
 Use Node 22 and `npm ci` from `backend/`. Stable `node-pg-migrate` is pinned at
-8.0.4. All commands below run from `backend/` and require `--target`.
-No command silently falls back to the application's DATABASE_URL.
+8.0.4. All commands below run from `backend/` and require `--target` and
+`--project` (one of `app`, `bible`, `commentary`). No command silently falls
+back to the application's DATABASE_URL.
 
 - `local`: exclusively requires MIGRATION_DB_HOST (loopback only),
   MIGRATION_DB_PORT, MIGRATION_DB_NAME, MIGRATION_DB_USER and
@@ -50,18 +70,20 @@ No command silently falls back to the application's DATABASE_URL.
 - `test`: requires MIGRATION_TEST_DATABASE_URL, with an IP loopback host and a
   name matching `gnosis_migration_test_` plus 16 lowercase hexadecimal characters.
   URL query options are forbidden. Never use a real application's database.
-- `production`: requires MIGRATION_DATABASE_URL injected by a secret manager,
-  pointing to the direct Neon endpoint with sslmode=verify-full. Pooled Neon
-  endpoints are refused. Writes additionally require MIGRATION_CONFIRM_PRODUCTION
-  set to `yes`. Do not set that flag in routine application/preview environments.
+- `production`: requires MIGRATION_APP_DATABASE_URL, MIGRATION_BIBLE_DATABASE_URL
+  and MIGRATION_COMMENTARY_DATABASE_URL injected by a secret manager, one per
+  project, each pointing to the direct Neon endpoint of its own project with
+  sslmode=verify-full. There is no fallback to the old shared
+  MIGRATION_DATABASE_URL. Pooled Neon endpoints are refused. Writes additionally
+  require MIGRATION_CONFIRM_PRODUCTION set to `yes`. Do not set that flag in
+  routine application/preview environments.
 
 Application DB_HOST, DB_PORT, DB_NAME, DB_USER and DB_PASSWORD remain exclusively
 application settings. Add the five MIGRATION_DB_* variables privately using
 backend/.env.example as the key reference. Select an authorized migration/operator
 role; do not grant extra privileges to bible_app. Changing DB_USER or PGUSER does
 not select the local migration role. This separation does not authorize adoption
-or permission changes. Test MIGRATION_TEST_DATABASE_URL and production
-MIGRATION_DATABASE_URL behavior are unchanged.
+or permission changes. Test MIGRATION_TEST_DATABASE_URL behavior is unchanged.
 
 Never paste credentials into shell history, logs, issues, or committed files.
 Do not disable TLS verification. Driver messages are suppressed because they can
@@ -73,11 +95,12 @@ Create/select an empty local database using your normal local PostgreSQL tools,
 then configure the MIGRATION_DB_* variables described above.
 
 ```sh
-npm run db:migrate:check -- --target local
-npm run db:migrate -- --target local
+npm run db:migrate:check -- --target local --project app
+npm run db:migrate -- --target local --project app
 ```
 
-The first run creates schema objects and tracking; later runs apply only pending
+Repeat per project (Bible first in a shared database, then App, then
+Commentary). The first run creates schema objects and tracking; later runs apply only pending
 migrations. An existing untracked schema is refused, even if it is only partial.
 A failed first batch may leave an empty migration tracking table, but no baseline
 DDL; it is safe to retry after resolving the failure.
@@ -85,9 +108,9 @@ DDL; it is safe to retry after resolving the failure.
 ## Adopt an existing local database
 
 ```sh
-npm run db:migrate:check -- --target local
-npm run db:migrate:baseline -- --target local
-npm run db:migrate:check -- --target local
+npm run db:migrate:check -- --target local --project app
+npm run db:migrate:baseline -- --target local --project app
+npm run db:migrate:check -- --target local --project app
 ```
 
 Check is read-only apart from session settings and an advisory lock; it does not
@@ -118,11 +141,12 @@ outcome: check history before retrying. Cleanup failures retain the primary stag
 if commit succeeded, the error explicitly says the operation completed so an
 operator does not accidentally repeat adoption.
 
-Adoption requires an exact public-schema match against baseline.catalog.json.
-That is the baseline command's rule only: adoption is for untracked baseline
-schemas, so it compares against the baseline catalog alone. The check command
-compares against the baseline plus the deltas of the migrations actually
-applied, as described above.
+Adoption requires an exact public-schema match against the project's
+baseline catalog (`database/baseline.<project>.catalog.json`). That is the
+baseline command's rule only: adoption is for untracked baseline schemas, so
+it compares against the baseline catalog alone. The check command compares
+against the baseline plus the deltas of the migrations actually applied, as
+described above.
 Comparison includes columns/defaults, constraints, indexes, sequences and their
 ownership, functions, triggers, relation options, views, rules, policies, types,
 and inheritance. It intentionally excludes row data, sequence current values,
@@ -157,13 +181,14 @@ The brief table locks also block application writes while adoption is checked.
 ## Write and run future migrations
 
 ```sh
-npm run db:migrate:create -- --target local add_example_field
-npm run db:migrate -- --target local
+npm run db:migrate:create -- --target local --project app add_example_field
+npm run db:migrate -- --target local --project app
 ```
 
 Creation is file-only and never connects to a database. Names use UTC timestamps;
 ensure timestamps are unique and ordered before merging concurrent work. Only
-versioned SQL files belong in the migration directory. Use `-- Up Migration` and
+versioned SQL files belong in the migration directory
+(`database/migrations/<project>/`). Use `-- Up Migration` and
 `-- Down Migration` sections. Never edit, rename, or remove an applied migration;
 ship a new corrective migration instead. History is validated against the exact
 ordered filename prefix; SQL content immutability remains a code-review rule.
@@ -179,7 +204,7 @@ delta, that migration's objects appear as differences. Never hand-edit a delta:
 regenerate it from the migration SQL. The integration suite regenerates every
 delta from the migration files and pins the committed files, so a migration
 cannot ship without a current delta. The baseline itself has no delta file; its
-manifest is `database/baseline.catalog.json`.
+manifest is `database/baseline.<project>.catalog.json`.
 
 Normal runs use one transaction for the pending batch and PostgreSQL advisory
 locking. A competing runner fails safely and must retry later. Lock waits are
@@ -203,18 +228,19 @@ preview deployments. The intended release order is:
    production migration connection securely injected:
 
    ```sh
-   npm run db:migrate:check -- --target production
+   npm run db:migrate:check -- --target production --project app
    ```
 
 4. If any baseline difference exists, **stop**. Review and approve reconciliation
    separately; do not drop existing objects or invent migration history.
 5. Only after those reviews and explicit production authorization, set the write
-   confirmation flag in the secure release environment and run:
+   confirmation flag in the secure release environment and run, once per
+   project (Bible first, then App, then Commentary):
 
    ```sh
-   npm run db:migrate:baseline -- --target production
-   npm run db:migrate:check -- --target production
-   npm run db:migrate -- --target production
+   npm run db:migrate:baseline -- --target production --project app
+   npm run db:migrate:check -- --target production --project app
+   npm run db:migrate -- --target production --project app
    ```
 
 6. A single release job/operator runs migrations before the compatible application

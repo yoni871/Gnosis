@@ -72,8 +72,8 @@ function docker(args) {
     return result.stdout.trim();
 }
 
-function cli(command, env) {
-    const result = spawnSync(process.execPath, ['scripts/migrate.js', command, '--target', 'test'], {
+function cli(command, env, project = 'app') {
+    const result = spawnSync(process.execPath, ['scripts/migrate.js', command, '--target', 'test', '--project', project], {
         cwd: backend, env, encoding: 'utf8', timeout: 90000,
     });
     if (result.status !== 0) throw new Error('Disposable migration CLI check failed; details suppressed.');
@@ -121,7 +121,7 @@ async function main() {
         const env = { ...testEnvironment(), MIGRATION_TEST_DATABASE_URL: url.href,
             GNOSIS_TEST_DATABASE_PRELOAD: '1',
             NODE_OPTIONS: `--require=${JSON.stringify(path.join(__dirname, 'test.js'))}` };
-        connectionFor('test', env); // Retain all existing target protections.
+        connectionFor('test', env, 'app'); // Retain all existing target protections.
         const suite = spawnSync(process.execPath, ['scripts/test-migrations.js', '--target', 'test'], {
             cwd: backend, env, stdio: 'inherit', timeout: 300000,
         });
@@ -129,10 +129,14 @@ async function main() {
         // Suite fixtures intentionally leave varied state: initialize a fresh DB for CLI smoke checks.
         await admin.query(`DROP DATABASE "${name}"`);
         await admin.query(`CREATE DATABASE "${name}"`);
-        assert.ok(cli('check', env).pending.length > 0);
-        assert.ok(cli('up', env).migrations.length > 0);
-        assert.deepEqual(cli('check', env).pending, []);
-        assert.deepEqual(cli('up', env).migrations, []);
+        // Bible first: in a shared database its baseline must run before
+        // the Commentary baseline creates the bible_books copy.
+        for (const project of ['bible', 'app', 'commentary']) {
+            assert.ok(cli('check', env, project).pending.length > 0);
+            assert.ok(cli('up', env, project).migrations.length > 0);
+            assert.deepEqual(cli('check', env, project).pending, []);
+            assert.deepEqual(cli('up', env, project).migrations, []);
+        }
         console.log(`PostgreSQL ${version}: migration suite and public CLI smoke checks passed.`);
         await withApplicationDatabase(admin, adminConfig, name, async context => {
             assert.notEqual(context.database, name);

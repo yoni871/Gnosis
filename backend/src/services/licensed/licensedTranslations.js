@@ -25,6 +25,7 @@
 
 const crypto = require("node:crypto");
 const pool = require("../../db/db");
+const { biblePool } = require("../../db/db");
 const cache = require("./licensedCache");
 const { fetchEsvChapter, LicensedProviderError } = require("./esvProvider");
 const { fetchApiBibleChapter } = require("./apiBibleProvider");
@@ -217,8 +218,13 @@ async function fetchAndStore(dbPool, translation, book, bookId, chapter, clientI
 // is the bible_translations row; `clientIp` is the request IP (req.ip).
 // Throws LicensedProviderError on any provider-side failure.
 async function getLicensedChapter(translation, book, chapter, clientIp, options = {}) {
+    // Cache, quota and IP-limit writes live in the App project; the book
+    // lookup reads bible_books in the Bible project. Tests inject one
+    // fake pool for everything via options.pool, so it doubles as the
+    // lookup pool there; production uses the Bible pool.
     const dbPool = options.pool || pool;
-    const bookId = await getBookId(dbPool, book);
+    const lookupPool = options.biblePool || (options.pool ? options.pool : biblePool);
+    const bookId = await getBookId(lookupPool, book);
     const cached = await cache.getCachedChapter(dbPool, translation.id, bookId, chapter);
     if (cached && cached.fresh) {
         await reportFums(cached.fumsToken, options);
