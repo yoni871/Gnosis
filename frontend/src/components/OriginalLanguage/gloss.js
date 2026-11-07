@@ -9,18 +9,33 @@
 // without inventing a definition.
 //
 // Glosses that mix bracketed supplied words with real content —
-// "<to> the light", "and <obj.>", "[that] which" — are STEPBible's own
-// convention for supplied words and are kept verbatim.
+// "<to> the light", "[that] which" — are STEPBible's own convention
+// for supplied words and are kept verbatim.
+//
+// One bracketed token is not a supplied word: "<obj.>" is a
+// grammatical label (the object marker), and it also appears inside
+// mixed glosses ("and <obj.>", "<obj.> them"). An angle-bracketed
+// segment ending in a period is such a label, not a word, so it is
+// stripped and the leftover whitespace collapsed; the Grammar column
+// already states the object-marker role, so nothing is lost. If
+// stripping leaves nothing, the gloss is an em dash.
+
+// Strip angle-bracketed label segments ("<obj.>") from a gloss.
+function stripLabelSegments(gloss) {
+    return gloss.replace(/<[^<>]*\.>/g, "").replace(/\s+/g, " ").trim();
+}
 
 // A gloss counts as present only when it has content beyond a
 // bracketed placeholder.
 export function hasGloss(gloss) {
-    const trimmed = (gloss || "").trim();
-    return trimmed !== "" && !/^<[^<>]*>$/.test(trimmed);
+    const cleaned = stripLabelSegments((gloss || "").trim());
+    return cleaned !== "" && !/^<[^<>]*>$/.test(cleaned);
 }
 
 // The gloss to display in the Meaning column and detail panel: the
-// gloss itself, or an em dash when the word has no standalone gloss.
+// gloss itself (labels stripped), or an em dash when the word has no
+// standalone gloss.
 export function displayGloss(gloss) {
-    return hasGloss(gloss) ? gloss : "—";
+    if (!hasGloss(gloss)) return "—";
+    return stripLabelSegments(gloss.trim());
 }
