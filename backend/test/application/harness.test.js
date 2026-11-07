@@ -55,8 +55,9 @@ test('migrated application schema permits only the approved runtime grants', asy
         assert.equal(row.select_allowed, false);
         assert.equal(row.update_allowed, false);
     }
-    for (const sql of ['SELECT * FROM pgmigrations', 'INSERT INTO pgmigrations(name) VALUES (\'forbidden\')',
-        "SELECT nextval('pgmigrations_id_seq')", 'CREATE TABLE forbidden(id integer)',
+    for (const sql of ['SELECT * FROM pgmigrations_app', 'SELECT * FROM pgmigrations_bible', 'SELECT * FROM pgmigrations_commentary',
+        'INSERT INTO pgmigrations_app(name) VALUES (\'forbidden\')',
+        "SELECT nextval('pgmigrations_app_id_seq')", 'CREATE TABLE forbidden(id integer)',
         'CREATE SCHEMA forbidden', 'CREATE TEMP TABLE forbidden(id integer)',
         "INSERT INTO bible_books(name) VALUES ('forbidden')", "UPDATE bible_books SET name='forbidden'",
         'DELETE FROM bible_books', 'TRUNCATE users', 'UPDATE users SET first_name=\'forbidden\'',

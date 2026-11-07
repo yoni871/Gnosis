@@ -109,6 +109,14 @@ async function withTransaction(pool, callback) {
 function installApplicationPool(pool) {
     const id = require.resolve('../../src/db/db');
     if (require.cache[id]) throw new Error('Install the application test pool before importing application code.');
+    // The real module exports the App pool itself with the other project
+    // pools attached; a single-database test pool plays all three roles,
+    // so application code that destructures biblePool/commentaryPool (or
+    // reads the default export) gets the same test pool either way.
+    pool.appPool = pool;
+    pool.biblePool = pool;
+    pool.commentaryPool = pool;
+    pool.createPools = () => ({ app: pool, bible: pool, commentary: pool });
     require.cache[id] = { id, filename: id, loaded: true, exports: pool };
 }
 

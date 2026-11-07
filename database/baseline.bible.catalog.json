@@ -1,0 +1,512 @@
+[
+  {
+    "kind": "column",
+    "name": "bible_books.abbreviation",
+    "definition": {
+      "type": "character varying(10)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_books.book_order",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_books.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bible_books_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_books.name",
+    "definition": {
+      "type": "character varying(50)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_books.testament",
+    "definition": {
+      "type": "character varying(2)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_chapters.book_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_chapters.chapter_number",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_chapters.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bible_chapters_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_translations.abbreviation",
+    "definition": {
+      "type": "character varying(20)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_translations.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bible_translations_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_translations.name",
+    "definition": {
+      "type": "character varying(100)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.chapter_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bible_verses_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.search_vector",
+    "definition": {
+      "type": "tsvector",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.text",
+    "definition": {
+      "type": "text",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.translation_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bible_verses.verse_number",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_books.bible_books_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_chapters.bible_chapters_book_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (book_id) REFERENCES bible_books(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_chapters.bible_chapters_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_chapters.unique_book_chapter",
+    "definition": {
+      "sql": "UNIQUE (book_id, chapter_number)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_translations.bible_translations_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_verses.bible_verses_chapter_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (chapter_id) REFERENCES bible_chapters(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_verses.bible_verses_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_verses.bible_verses_translation_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (translation_id) REFERENCES bible_translations(id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bible_verses.unique_chapter_translation_verse",
+    "definition": {
+      "sql": "UNIQUE (chapter_id, translation_id, verse_number)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "function",
+    "name": "update_bible_search_vector()",
+    "definition": {
+      "sql": "CREATE OR REPLACE FUNCTION public.update_bible_search_vector()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\nBEGIN\n    NEW.search_vector := to_tsvector(\n        'english',\n        COALESCE(NEW.text, '')\n    );\n\n    RETURN NEW;\nEND;\n$function$\n"
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_books_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bible_books_pkey ON public.bible_books USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_chapters_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bible_chapters_pkey ON public.bible_chapters USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_translations_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bible_translations_pkey ON public.bible_translations USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_verses_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bible_verses_pkey ON public.bible_verses USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bible_verses_search_idx",
+    "definition": {
+      "sql": "CREATE INDEX bible_verses_search_idx ON public.bible_verses USING gin (search_vector)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "unique_book_chapter",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX unique_book_chapter ON public.bible_chapters USING btree (book_id, chapter_number)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "unique_chapter_translation_verse",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX unique_chapter_translation_verse ON public.bible_verses USING btree (chapter_id, translation_id, verse_number)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_books",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_books_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_chapters",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_chapters_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_translations",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_translations_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_verses",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bible_verses_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bible_books_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bible_books",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bible_chapters_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bible_chapters",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bible_translations_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bible_translations",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bible_verses_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bible_verses",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "trigger",
+    "name": "bible_verses.bible_search_vector_trigger",
+    "definition": {
+      "sql": "CREATE TRIGGER bible_search_vector_trigger BEFORE INSERT OR UPDATE OF text ON public.bible_verses FOR EACH ROW EXECUTE FUNCTION update_bible_search_vector()",
+      "enabled": "O"
+    }
+  }
+]

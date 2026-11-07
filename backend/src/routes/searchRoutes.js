@@ -1,5 +1,5 @@
 const express = require("express");
-const pool = require("../db/db");
+const { biblePool, commentaryPool } = require("../db/db");
 const { cacheControl } = require("../middleware/cacheHeaders");
 const router = express.Router();
 
@@ -26,7 +26,7 @@ router.get("/search/bible", cacheSearch, (req, res) => {
     const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
     const limit = Math.min(100, Math.max(1, Number.parseInt(req.query.limit, 10) || 100));
     const offset = (page - 1) * limit;
-    pool.query(
+    biblePool.query(
         `
         SELECT
             v.text,
@@ -79,7 +79,7 @@ router.get("/search/bible", cacheSearch, (req, res) => {
 });
 
 router.get("/search/commentary", cacheSearch, (req, res) => {
-    pool.query(
+    commentaryPool.query(
         `
         SELECT
             e.id,

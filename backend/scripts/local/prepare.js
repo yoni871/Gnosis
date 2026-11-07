@@ -9,7 +9,7 @@ let stage = 'environment';
 async function main() {
     loadLocalEnvironment();
     const env = process.env;
-    const config = connectionFor('local', env);
+    const config = connectionFor('local', env, 'app'); // Local target shares one database across projects; any project selects it.
     // This command can only provision the dedicated local database and fixed roles.
     if (config.database !== 'gnosis_local' || config.user !== 'gnosis_local_owner'
         || env.DB_USER !== 'gnosis_reader' || env.DB_HOST !== config.host
@@ -26,7 +26,14 @@ async function main() {
         await require('./isolated-database').verifyContainerIdentity(operator, env);
         await operator.query("SELECT pg_advisory_lock(7241865325823965)");
         stage = 'migrations';
-        await execute({command: 'up', target: 'local', env, allowLateIndexes:true});
+        // One local database holds all three histories (one tracking
+        // table per project). Bible first: in a shared database its
+        // baseline must run before the Commentary baseline creates the
+        // bible_books copy. Only App carries the reviewed late indexes.
+        for (const project of ['bible', 'app', 'commentary']) {
+            await execute({command: 'up', target: 'local', project, env,
+                allowLateIndexes: project === 'app'});
+        }
         stage = 'runtime role';
         const exists = (await operator.query("SELECT 1 FROM pg_roles WHERE rolname='gnosis_reader'")).rowCount;
         // Generated hex credentials only; never interpolate arbitrary passwords into DDL.
@@ -57,7 +64,11 @@ async function main() {
         await require('./import-language').importLanguage(operator, {refresh:process.argv.includes('--refresh-language')});
         stage = 'query statistics';
         await operator.query('ANALYZE bible_books; ANALYZE bible_chapters; ANALYZE bible_verses; ANALYZE commentary_entries; ANALYZE ol_word_occurrences');
-        await execute({command:'check',target:'local',env,allowLateIndexes:true});
+        for (const project of ['bible', 'app', 'commentary']) {
+            const state = await execute({command:'check',target:'local',project,env,
+                allowLateIndexes: project === 'app'});
+            if (!state.baselineMatches || state.pending.length) throw new Error(`Local migration check failed for ${project}.`);
+        }
         console.log('Complete local catalog, migrations and runtime grants are ready.');
     } finally { await operator.end(); }
 }

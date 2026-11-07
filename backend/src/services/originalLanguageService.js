@@ -1,4 +1,4 @@
-const pool = require("../db/db");
+const { biblePool: pool } = require("../db/db");
 
 // Original Language Analysis (Phase 1): word-level Hebrew/Greek data
 // imported from STEPBible-Data (CC BY 4.0) for Genesis 1 and
