@@ -6,6 +6,8 @@
 #
 # Private and non-indexable areas:
 #   /login, /register -- authentication pages, never indexed
+#   /forgot-password, /reset-password -- password-reset pages, never
+#     indexed
 #   /search -- search results pages, never indexed (Google's guidance
 #     is that search results should not appear in search results)
 #
@@ -22,6 +24,8 @@ User-agent: *
 Allow: /
 Disallow: /login
 Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
 Disallow: /search
 
 Sitemap: https://studygnosis.com/sitemap.xml

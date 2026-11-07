@@ -168,3 +168,10 @@ test('a 403 without the EMAIL_NOT_VERIFIED code shows no resend panel', async ()
     expect(screen.getByRole('alert')).toHaveTextContent('Forbidden.');
     expect(screen.queryByRole('button', { name: /resend verification email/i })).not.toBeInTheDocument();
 });
+
+test('the login page links to the forgot-password page', async () => {
+    vi.stubGlobal('fetch', vi.fn());
+    mount();
+    const link = screen.getByRole('link', { name: /forgot your password/i });
+    expect(link).toHaveAttribute('href', '/forgot-password');
+});

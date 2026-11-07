@@ -8,7 +8,7 @@ import StudyPage from './StudyPage';
 import { GNOSIS_PASSAGES } from './aboutContent';
 import * as bible from '../services/bibleService';
 import * as commentary from '../services/commentaryService';
-vi.mock('../services/bibleService',()=>({getBooks:vi.fn(),getTranslations:vi.fn(),getBibleChapter:vi.fn()}));
+vi.mock('../services/bibleService',()=>({getBooks:vi.fn(),getTranslations:vi.fn(),getBibleChapter:vi.fn(),getChapters:vi.fn()}));
 vi.mock('../services/commentaryService',()=>({getCommentaries:vi.fn(),getChapterCommentaries:vi.fn()}));
 const descriptors = new Map(['scrollIntoView','scrollTo'].map(name=>[name,Object.getOwnPropertyDescriptor(Element.prototype,name)]));
 beforeAll(()=>{for(const name of descriptors.keys())Object.defineProperty(Element.prototype,name,{configurable:true,value:vi.fn()});});
@@ -18,6 +18,7 @@ beforeEach(()=>{
     vi.mocked(fetch).mockResolvedValue({json:async()=>Array.from({length:150},(_,i)=>({chapter:i+1}))});
     bible.getBooks.mockResolvedValue(GNOSIS_PASSAGES.map((p,i)=>({id:i+1,name:p.book,chapters:150})));
     bible.getTranslations.mockResolvedValue([{abbreviation:'KJV',name:'Synthetic KJV fixture'}]);
+    bible.getChapters.mockResolvedValue(Array.from({length:150},(_,i)=>({chapter:i+1})));
     commentary.getCommentaries.mockResolvedValue([]);commentary.getChapterCommentaries.mockResolvedValue([]);
 });
 test.each(GNOSIS_PASSAGES)('About passage link navigates to, selects and scrolls $reference in the actual reader',async passage=>{

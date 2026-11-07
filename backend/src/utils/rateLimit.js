@@ -50,6 +50,15 @@ const POLICIES = {
     resend_ip_email: { windowMs: 60 * 60 * 1000, limit: 5 },
     resend_ip: { windowMs: 60 * 60 * 1000, limit: 20 },
     verify_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
+    // Issue #10: forgot-password mirrors resend (an email-sending
+    // endpoint that must not leak account state), and reset-password
+    // mirrors verify (a token-guessing endpoint). Forgot counts every
+    // structurally valid request because the limiter runs before any
+    // account lookup; reset counts every structurally valid token
+    // attempt.
+    forgot_ip_email: { windowMs: 60 * 60 * 1000, limit: 5 },
+    forgot_ip: { windowMs: 60 * 60 * 1000, limit: 20 },
+    reset_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since

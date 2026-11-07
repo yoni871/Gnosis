@@ -347,6 +347,27 @@ export default function LoginPage() {
                                 />
                             </div>
 
+                            <p className="
+                                text-right
+                                text-[12px]
+                                text-[var(--text-muted)]
+                            ">
+                                <Link
+                                    to="/forgot-password"
+                                    className="
+                                        font-semibold
+                                        text-[var(--color-brand)]
+                                        underline
+                                        decoration-[var(--border-control)]
+                                        underline-offset-4
+                                        transition
+                                        hover:decoration-[var(--color-brand)]
+                                    "
+                                >
+                                    Forgot your password?
+                                </Link>
+                            </p>
+
                             {loginError && (
                                 <p
                                     role="alert"

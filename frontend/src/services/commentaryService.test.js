@@ -2,6 +2,7 @@ import { describe, expect, test, vi, beforeEach } from "vitest";
 
 import {
     getChapterCommentaries,
+    getCommentaries,
     clearCommentaryCacheForTests,
 } from "./commentaryService";
 
@@ -20,6 +21,62 @@ function jsonResponse(body, status = 200) {
 beforeEach(() => {
     clearCommentaryCacheForTests();
     vi.restoreAllMocks();
+    vi.stubGlobal('fetch', vi.fn());
+});
+
+describe('commentaryService', () => {
+    test('getCommentaries returns the list on success', async () => {
+        vi.mocked(fetch).mockResolvedValue(
+            jsonResponse([{ id: 3, name: 'Matthew Henry' }])
+        );
+
+        await expect(getCommentaries()).resolves.toEqual([
+            { id: 3, name: 'Matthew Henry' },
+        ]);
+    });
+
+    test('getCommentaries rejects when the request fails', async () => {
+        vi.mocked(fetch).mockResolvedValue(
+            jsonResponse({ error: 'Failed to retrieve commentaries.' }, 500)
+        );
+
+        await expect(getCommentaries()).rejects.toThrow(
+            'Unable to load commentaries.'
+        );
+    });
+
+    test('getCommentaries rejects when the payload is not an array', async () => {
+        vi.mocked(fetch).mockResolvedValue(
+            jsonResponse({ error: 'Failed to retrieve commentaries.' })
+        );
+
+        await expect(getCommentaries()).rejects.toThrow(
+            'Unable to load commentaries.'
+        );
+    });
+
+    test('getChapterCommentaries returns entries on success and rejects on failure', async () => {
+        vi.mocked(fetch).mockResolvedValue(
+            jsonResponse([{ id: 1, entry_title: 'Genesis 1' }])
+        );
+
+        await expect(getChapterCommentaries(1, 1, 3)).resolves.toEqual([
+            { id: 1, entry_title: 'Genesis 1' },
+        ]);
+
+        vi.mocked(fetch).mockResolvedValue(
+            jsonResponse(
+                { error: 'Failed to retrieve chapter commentaries.' },
+                500
+            )
+        );
+
+        // A different chapter: chapter 1 is cached by the success above,
+        // so the failure must use a fresh cache key.
+        await expect(getChapterCommentaries(1, 2, 3)).rejects.toThrow(
+            'Unable to load commentary.'
+        );
+    });
 });
 
 describe("getChapterCommentaries in-memory cache", () => {
@@ -49,14 +106,19 @@ describe("getChapterCommentaries in-memory cache", () => {
         expect(fetchMock).toHaveBeenCalledTimes(2);
     });
 
-    test("a non-array payload is not cached", async () => {
+    test("a failed chapter is not cached", async () => {
+        // A failed fetch rejects instead of returning the error body:
+        // CommentaryPanel calls .map on the result, so a non-array
+        // payload would crash the reader. The failure is not cached,
+        // so the next read fetches again.
         const fetchMock = vi
             .fn()
             .mockResolvedValueOnce(jsonResponse({ error: "boom" }, 500))
             .mockResolvedValueOnce(jsonResponse(GENESIS_1_MATTHEW_HENRY));
         vi.stubGlobal("fetch", fetchMock);
-        const first = await getChapterCommentaries(2, 1, 3);
-        expect(first).toEqual({ error: "boom" });
+        await expect(getChapterCommentaries(2, 1, 3)).rejects.toThrow(
+            "Unable to load commentary."
+        );
         const second = await getChapterCommentaries(2, 1, 3);
         expect(second).toEqual(GENESIS_1_MATTHEW_HENRY);
         expect(fetchMock).toHaveBeenCalledTimes(2);

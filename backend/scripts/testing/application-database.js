@@ -87,7 +87,10 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
             GRANT SELECT,INSERT,UPDATE ON auth_sessions,auth_refresh_tokens TO "${role}";
             GRANT SELECT,INSERT ON email_verification_tokens TO "${role}";
             GRANT UPDATE (email_verified_at) ON users TO "${role}";
-            GRANT UPDATE (used_at, consumed_reason) ON email_verification_tokens TO "${role}"`);
+            GRANT UPDATE (used_at, consumed_reason) ON email_verification_tokens TO "${role}";
+            GRANT SELECT,INSERT ON password_reset_tokens TO "${role}";
+            GRANT UPDATE (email_verified_at, password_hash) ON users TO "${role}";
+            GRANT UPDATE (used_at, consumed_reason) ON password_reset_tokens TO "${role}"`);
         // Small reference fixture; no imports, application data or test-owned schema.
         await provisioning.query("INSERT INTO bible_books(name) VALUES ('Synthetic harness book')");
         await provisioning.end();

@@ -100,6 +100,13 @@ export default function StudyPage() {
     );
     const [translations, setTranslations] = useState([]);
 
+    // When the opening catalog (books + translations) cannot load,
+    // the reader shows a friendly error with a retry instead of
+    // rendering with broken data. Incrementing reloadKey re-runs
+    // the load.
+    const [loadError, setLoadError] = useState(null);
+    const [reloadKey, setReloadKey] = useState(0);
+
     // When a licensed translation is temporarily unavailable (quota,
     // provider outage), the reader falls back to BSB and says so once,
     // instead of showing an empty page. Dismissed with the X, or by
@@ -435,49 +442,69 @@ export default function StudyPage() {
     }, [book, chapter, translation, books, retainAvailableVerses]);
 
     // -------------------------
-    // LOAD BOOKS
+    // LOAD BOOKS + TRANSLATIONS
     // -------------------------
 
+    // Load the opening catalog together: the reader needs both the
+    // book list and the translation list before it can show anything
+    // useful. Either request failing shows the error state below
+    // instead of the reader — the services reject on a failed
+    // request or an unexpected payload, so an error object can never
+    // land in state where the page expects arrays.
     useEffect(() => {
-        getBooks()
-            .then((data) => {
-                setBooks(data);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }, []);
+        let ignore = false;
 
-    // -------------------------
-    // LOAD TRANSLATIONS
-    // -------------------------
+        async function loadCatalog() {
+            try {
+                const [bookList, translationList] = await Promise.all([
+                    getBooks(),
+                    getTranslations()
+                ]);
 
-    useEffect(() => {
-        getTranslations()
-            .then((data) => {
-                setTranslations(data);
+                if (ignore) {
+                    return;
+                }
 
-                if (data.length > 0) {
+                setBooks(bookList);
+                setTranslations(translationList);
+                setLoadError(null);
+
+                if (translationList.length > 0) {
                     setTranslation(
                         (currentTranslation) => {
                             const translationExists =
-                                data.some(
+                                translationList.some(
                                     (item) =>
                                         item.abbreviation ===
                                         currentTranslation
                                 );
 
+                            // Keep the previous default (the third
+                            // listed translation) when the current one
+                            // is unavailable, falling back to the first
+                            // listed translation for short lists.
                             return translationExists
                                 ? currentTranslation
-                                : data[2].abbreviation;
+                                : (translationList[2] ?? translationList[0]).abbreviation;
                         }
                     );
                 }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }, []);
+            } catch (error) {
+                if (!ignore) {
+                    console.error(error);
+                    setLoadError(
+                        "We couldn’t load the Bible text."
+                    );
+                }
+            }
+        }
+
+        loadCatalog();
+
+        return () => {
+            ignore = true;
+        };
+    }, [reloadKey]);
 
 
     return (
@@ -499,6 +526,28 @@ export default function StudyPage() {
                 translation={translation}
             />
 
+            {loadError ? (
+                <main className="flex min-h-[60vh] flex-col items-center justify-center gap-3 px-6 text-center">
+                    <h1 className="text-xl font-semibold text-[var(--text-primary)]">
+                        {loadError}
+                    </h1>
+                    <p className="max-w-md text-[var(--text-muted)]">
+                        The study service is unavailable right now.
+                        Check your connection and try again.
+                    </p>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setLoadError(null);
+                            setReloadKey((key) => key + 1);
+                        }}
+                        className="mt-2 rounded-md border border-[var(--color-brand)] px-4 py-2 text-[var(--color-brand)]"
+                    >
+                        Try again
+                    </button>
+                </main>
+            ) : (
+            <>
             <SubHeader
                 verses={verses}
                 chapter={chapter}
@@ -588,6 +637,8 @@ export default function StudyPage() {
                         highlightsState.setShowLoginPrompt(false);
                     }}
                 />
+            )}
+            </>
             )}
         </>
     );
