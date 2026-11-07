@@ -87,3 +87,15 @@ test('logout waits for a pending login cookie mutation and sends the bearer cred
     expect(fetchMock.mock.calls[1][1].headers.Authorization).toBe('Bearer old-access');
     expect(fetchMock.mock.calls[1][1].credentials).toBe('include');
 });
+
+test('auth requests use the frontend own /api path, not the deployed API origin', async () => {
+    // The refresh cookie is SameSite=Strict, so it is only sent on a
+    // same-origin request. The deployed API origin (baked into VITE_API_URL
+    // for tests as https://api.example.invalid/api) must never appear here.
+    const fetchMock = vi.fn().mockResolvedValue(response({ token: 'renewed' }));
+    vi.stubGlobal('fetch', fetchMock);
+    await refreshSession();
+    const url = fetchMock.mock.calls[0][0];
+    expect(url).toBe('/api/auth/refresh');
+    expect(url).not.toContain('api.example.invalid');
+});

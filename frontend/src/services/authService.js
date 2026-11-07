@@ -1,5 +1,8 @@
 //communicates with the backend
-import API_URL from "../api/api";
+// Auth requests go through the frontend's own /api path (same-origin /api
+// proxy) so the SameSite=Strict refresh cookie is sent; see docs/Sessions.md.
+// Other services keep using the deployed API origin (API_URL).
+import { AUTH_API_URL } from "../api/api";
 
 // Issue #9: controlled backend error codes are preserved on the thrown
 // error (error.code) so pages can branch on them. Messages stay exactly
@@ -14,7 +17,7 @@ function throwServiceError(data, fallback) {
 }
 
 async function postJson(path, body, fallback) {
-    const response = await fetch(`${API_URL}${path}`, {
+    const response = await fetch(`${AUTH_API_URL}${path}`, {
         method: "POST",
         signal: AbortSignal.timeout(15000),
         credentials: "include",
@@ -43,7 +46,7 @@ export async function loginUser(credentials) {
 }
 
 export async function getProfile(token) {
-    const response = await fetch(`${API_URL}/auth/profile`, {
+    const response = await fetch(`${AUTH_API_URL}/auth/profile`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`
@@ -84,7 +87,7 @@ export function refreshSession() {
 }
 export function logoutSession(token, all = false) {
     return sessionRequest(async () => {
-        const response = await fetch(`${API_URL}/auth/${all ? 'logout-all' : 'logout'}`, {
+        const response = await fetch(`${AUTH_API_URL}/auth/${all ? 'logout-all' : 'logout'}`, {
             method: 'POST', credentials: 'include',
             signal: AbortSignal.timeout(15000),
             headers: { 'X-Gnosis-Session': '1', ...(token ? { Authorization: `Bearer ${token}` } : {}) },

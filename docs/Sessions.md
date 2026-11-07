@@ -43,6 +43,45 @@ cannot use the Strict cookie. Set FRONTEND_URL to the exact browser origin and
 NODE_ENV=production for HTTPS deployment. The development proxy origin must
 match FRONTEND_URL too.
 
+### Same-origin `/api` proxy (2026-11-07)
+
+The preview frontend and API are on different `vercel.app` subdomains, which
+browsers treat as different sites, so a `SameSite=Strict` refresh cookie is
+never sent on a direct cross-site refresh — the browser session was lost at
+the first 10-minute renewal. The fix is a same-origin proxy, not a weaker
+cookie: the cookie stays `SameSite=Strict`, `HttpOnly`, and `Secure`.
+
+- `frontend/api/auth/[...path].js` is a Vercel serverless function that
+  forwards `/api/auth/*` to the Express API. The browser calls the
+  frontend's own origin, so the cookie is same-origin and is set, stored,
+  and sent normally. Only auth endpoints are proxied; every other frontend
+  service still calls the deployed API origin directly.
+- `frontend/src/services/authService.js` uses `AUTH_API_URL = "/api"` (see
+  `frontend/src/api/api.js`). The local Vite dev proxy already maps `/api`
+  to the backend, so development is unchanged.
+- The backend origin comes from `GNOSIS_API_BASE_URL` (server-side, no
+  `/api` suffix), falling back to `VITE_API_URL` with its trailing `/api`
+  stripped. Set `GNOSIS_API_BASE_URL` per environment on the frontend
+  Vercel project: Preview branch-scoped to that branch's API deployment,
+  Production to the live API origin. The value is never baked into the
+  browser bundle.
+- The function forwards the request method, body, and headers (including
+  `Cookie`, `Authorization`, `Origin`, `X-Gnosis-Session`, and
+  `X-Forwarded-For`, so IP-based rate limiting still sees the real client),
+  and passes through the status, headers, and every `Set-Cookie` header.
+  Hop-by-hop headers and `Host` are not forwarded; redirects are never
+  followed automatically, so the cookie cannot be carried to another origin.
+- It is not an open proxy: the destination is the fixed configured backend
+  origin, never derived from the request, and the sub-path is validated to
+  stay under `/api/auth/` (a `..` segment is rejected). CSRF protection is
+  unchanged — the Strict cookie is not sent cross-site, and the backend
+  still requires `X-Gnosis-Session: 1` plus an exact `FRONTEND_URL` Origin.
+- No backend change is needed: the cookie `Path=/api/auth` already matches
+  the proxied path, and the Origin guard already expects the frontend origin.
+- Vercel routing: serverless functions in `api/` take precedence over the
+  SPA rewrite in `frontend/vercel.json`, so `/api/auth/*` reaches the
+  function and every other path still falls through to `/index.html`.
+
 Operators may periodically delete expired auth_sessions; ON DELETE CASCADE
 removes their refresh hashes. Retain all hashes for live sessions to preserve
 replay detection. Revocation cannot cancel an operation already authorized and
