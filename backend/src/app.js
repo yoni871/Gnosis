@@ -27,7 +27,7 @@ const app = express();
 // chain when the backend host is chosen, and an invalid value fails fast.
 app.set("trust proxy", resolveTrustProxy(process.env.TRUST_PROXY));
 
-app.use(cors());
+app.use(cors({ origin: new URL(process.env.FRONTEND_URL).origin, credentials: true }));
 app.use(express.json());
 
 app.use("/api", bibleRoutes);

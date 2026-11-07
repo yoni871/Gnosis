@@ -1,0 +1,14 @@
+# Test fixture: excerpt of STEPBible-Data (Tyndale House / STEPBible.org), CC BY 4.0.
+# Source: https://github.com/STEPBible/STEPBible-Data — do not redistribute the full dataset.
+Dan.2.4#01=L	וַֽ/יְדַבְּר֧וּ	va/y.da.be.Ru	and/ they spoke	H9001/{H1696G}	Hc/Vpw3mp			H1696G			H9001=ו=&/{H1696G=דָבַר=: speak»to speak:1_speak;_tell;_command}					
+Dan.2.4#02=L	הַ/כַּשְׂדִּ֛ים	ha./kas.Dim	the/ Chaldeans	H9009/{H3778}	HTd/Ngmpa			H3778			H9009=ה=the/{H3778=כַּשְׂדִּים=Chaldea»Chaldea@Gen.11.28-Act}					
+Dan.2.4#03=L	לַ/מֶּ֖לֶךְ	la./Me.lekh	to the/ king	H9005/{H4428G}	HRd/Ncmsa			H4428G			H9005=ל=to/{H4428G=מֶ֫לֶךְ=king}					
+Dan.2.4#04=L	אֲרָמִ֑ית	'a.ra.Mit	Aramaic	{H0762}	HAafsc			H0762			{H0762=אֲרָמִית=Aramaic»Aramaic@2Ki.18.26-Rev}					
+Dan.2.4#05=L	מַלְכָּ/א֙	mal.Ka/'	king/ O	{H4430}/H9010	ANcbsd/Ta			H4430			{H4430=מֶ֫לֶךְ=king}/H9010=a=the					
+Dan.2.4#06=L	לְ/עָלְמִ֣ין	le./'al.Min	for/ ever	H9005/{H5957}	AR/Ncmpa			H5957			H9005=ל=to/{H5957=עָלַם=perpetuity}					
+Dan.2.4#07=L	חֱיִ֔י	che.Yi	live!	{H2418}	AVqv2ms			H2418			{H2418=חֲיָא=to live}					
+Dan.2.4#08=L	אֱמַ֥ר	'e.Mar	tell!	{H0560}	AVqv2ms			H0560			{H0560=אֲמַר=to say}					
+Dan.2.4#09=L	חֶלְמָ֛/א	chel.Ma/'	dream/ the	{H2493}/H9010	ANcbsd/Ta			H2493			{H2493=חֵ֫לֶם=dream}/H9010=a=the					
+Dan.2.4#10=Q(K)	לְ/עַבְדָ֖/ךְ	le./'av.da.yi/kh	to/ servant/ your	H9005/{H5649}/H9021	AR/Ncbsc/Sp2ms	K= le./'av.da.yi/kh (לְ/עַבְדַּיִ/ךְ) "to/ servants/ your" (H9005/H5649/H9021=AR/Ncmpc/Sp2ms)	L= לְ/עַבְדָ֖י/ךְ ¦ ;	H5649			H9005=ל=to/{H5649=עֲבַד=servant;_slave}/H9021=Ps2m=your					
+Dan.2.4#11=L	וּ/פִשְׁרָ֥/א	u./fish.Ra/'	and/ interpretation/ the	H9002/{H6591}/H9010	AC/Ncbsd/Ta			H6591			H9002=ו=and/{H6591=פְּשַׁר=interpretation}/H9010=a=the					
+Dan.2.4#12=L	נְחַוֵּֽא\׃	ne.cha.Ve'	we will declare	{H2324}\H9016	AVpi1cp			H2324			{H2324=חֲוָה=to show}\H9016=׃=verseEnd					

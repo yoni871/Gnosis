@@ -10,6 +10,7 @@ export default function DesktopStudyLayout({
     layout,
 
     verses,
+    versesLoading = false,
     book,
     chapter,
 
@@ -59,6 +60,7 @@ export default function DesktopStudyLayout({
                     books={books}
                     bookmarksState={bookmarksState}
                     verses={verses}
+                    versesLoading={versesLoading}
                     book={book}
                     chapter={chapter}
                     translation={translation}

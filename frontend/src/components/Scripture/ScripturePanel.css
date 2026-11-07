@@ -1,0 +1,25 @@
+/* Use the bundled Inter asset even when the reader is opened directly. */
+@font-face {
+    font-family: "Gnosis Scripture Inter";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("/fonts/hero/inter-latin-variable.woff2") format("woff2");
+}
+
+.scripture-reading-body {
+    font-family: "Gnosis Scripture Inter", Inter, system-ui, sans-serif;
+    font-size: 16.5px;
+    font-weight: 400;
+    line-height: 1.55;
+    text-align: left;
+    letter-spacing: normal;
+    word-spacing: normal;
+    hyphens: manual;
+}
+
+@media (min-width: 768px) {
+    .scripture-reading-body {
+        font-size: 18px;
+    }
+}

@@ -78,11 +78,13 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
             GRANT USAGE ON SCHEMA public TO "${role}";
             GRANT SELECT ON bible_translations,bible_books,bible_chapters,bible_verses,
                 sources,commentaries,commentary_entries TO "${role}";
+            GRANT SELECT ON ol_sources,ol_lexical_entries,ol_word_occurrences,ol_morphology_codes TO "${role}";
             GRANT SELECT,INSERT ON users TO "${role}";
             GRANT SELECT,INSERT,UPDATE,DELETE ON notes,bookmarks,highlights TO "${role}";
             GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq TO "${role}";
             GRANT SELECT,INSERT,DELETE ON rate_limit_attempts TO "${role}";
             GRANT SELECT,UPDATE ON rate_limit_sweep_state TO "${role}";
+            GRANT SELECT,INSERT,UPDATE ON auth_sessions,auth_refresh_tokens TO "${role}";
             GRANT SELECT,INSERT ON email_verification_tokens TO "${role}";
             GRANT UPDATE (email_verified_at) ON users TO "${role}";
             GRANT UPDATE (used_at, consumed_reason) ON email_verification_tokens TO "${role}"`);

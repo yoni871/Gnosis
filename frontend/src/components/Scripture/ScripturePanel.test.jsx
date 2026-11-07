@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeAll, describe, expect, test, vi } from "vitest";
 
@@ -25,12 +25,13 @@ const translations = [
     { id: 9, abbreviation: "NASB", name: "New American Standard Bible" },
 ];
 
-function mount() {
+function mount({ verses = [], versesLoading = false } = {}) {
     const onSelectTranslation = vi.fn();
 
     render(
         <ScripturePanel
-            verses={[]}
+            verses={verses}
+            versesLoading={versesLoading}
             book="Genesis"
             chapter={1}
             translation="KJV"
@@ -326,5 +327,104 @@ describe("ScripturePanel reading scroll", () => {
 
         expect(Element.prototype.scrollTo).not.toHaveBeenCalled();
         expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
+    });
+});
+
+describe("ScripturePanel original language", () => {
+    const passage = {
+        book: "Genesis",
+        chapter: 1,
+        language: "hebrew",
+        startVerse: 1,
+        endVerse: 2,
+        available: true,
+        verses: [
+            {
+                verse: 1,
+                words: [
+                    {
+                        id: 1, wordIndex: 1, wordText: "בְּרֵאשִׁית", transliteration: "be.re.Shit",
+                        gloss: "in beginning", strongNumber: "H7225G", strongBase: "H7225",
+                        lemma: "רֵאשִׁית", meaning: "first: beginning", morphologyCode: "HR/Ncfsa",
+                        grammarDisplay: "Preposition + Noun",
+                        morphemes: [],
+                    },
+                ],
+            },
+        ],
+        sources: [],
+    };
+
+    test("the toolbar offers original language analysis for the selected range", async () => {
+        mountReader({ selectedVerse: 2, selection: selectionOf(1, 2) });
+        // The toolbar renders in the text flow at the end of the
+        // selected verse, so the button is present with a selection.
+        expect(screen.getByTestId("ol-toolbar-button")).toBeInTheDocument();
+    });
+
+    test("opening the modal shows the range and the English passage; closing keeps the selection", async () => {
+        vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => passage })));
+        const clearSelection = vi.fn();
+        const { rerenderReader } = mountReader({
+            selectedVerse: 2,
+            selection: selectionOf(1, 2),
+        });
+        // The test's mountReader wires a no-op clearSelection; replace it
+        // with a spy by rerendering with the same selection.
+        rerenderReader({
+            verseSelection: {
+                selection: selectionOf(1, 2),
+                toggleVerse: () => {},
+                clearSelection,
+            },
+        });
+
+        fireEvent.click(screen.getByTestId("ol-toolbar-button"));
+        expect(await screen.findByText("Genesis 1:1–2 · Biblical Hebrew")).toBeInTheDocument();
+        const dialog = screen.getByRole("dialog", { name: "Original Language Analysis" });
+        expect(within(dialog).getByText(/In the beginning God created/)).toBeInTheDocument();
+        expect(within(dialog).getByText(/And the earth was without form/)).toBeInTheDocument();
+
+        await userEvent.keyboard("{Escape}");
+        expect(clearSelection).not.toHaveBeenCalled();
+        // The selection — and its toolbar — are still there.
+        expect(screen.getByTestId("ol-toolbar-button")).toBeInTheDocument();
+        vi.unstubAllGlobals();
+    });
+
+    test("no original language button appears without a selection", () => {
+        mountReader({ selectedVerse: null, selection: { bookId: null, verses: [] } });
+        expect(screen.queryByTestId("ol-toolbar-button")).not.toBeInTheDocument();
+    });
+});
+
+describe("ScripturePanel chapter loading", () => {
+    const genesisOne = {
+        verse_number: 1,
+        text: "In the beginning God created the heaven and the earth.",
+    };
+
+    test("shows a loading note while the chapter loads instead of an empty pane", () => {
+        mount({ verses: [], versesLoading: true });
+
+        expect(screen.getByText("Loading Scripture…")).toBeInTheDocument();
+    });
+
+    test("does not show the loading note once verses arrive", () => {
+        mount({ verses: [genesisOne], versesLoading: false });
+
+        expect(
+            screen.queryByText("Loading Scripture…"),
+        ).not.toBeInTheDocument();
+        expect(screen.getByText(/In the beginning/)).toBeInTheDocument();
+    });
+
+    test("keeps showing verses while a new chapter loads", () => {
+        mount({ verses: [genesisOne], versesLoading: true });
+
+        expect(
+            screen.queryByText("Loading Scripture…"),
+        ).not.toBeInTheDocument();
+        expect(screen.getByText(/In the beginning/)).toBeInTheDocument();
     });
 });

@@ -58,6 +58,7 @@ function fakeClient() {
             if (typeof sql === "string" && /^(BEGIN|COMMIT|ROLLBACK)/.test(sql.trim())) {
                 return { rows: [] };
             }
+            if (/INSERT INTO auth_(sessions|refresh_tokens)/.test(sql)) return { rows: [] };
             handlerClientCalls += 1;
             return clientBehavior(...args);
         },

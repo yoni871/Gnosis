@@ -1,11 +1,18 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react"
 import { ChevronDown, Bookmark } from "lucide-react";
 import VerseActions from "./VerseActions";
+// The modal is only opened on demand, so it loads in its own chunk
+// instead of adding to the reader's first paint.
+const OriginalLanguageModal = lazy(() =>
+    import("../OriginalLanguage/OriginalLanguageModal")
+);
 import { isHighlightSelected } from "../../utils/highlightUtils";
 import { getTranslationNotice } from "../../utils/translationNotice";
+import "./ScripturePanel.css";
 
 export default function ScripturePanel({
     verses = [],
+    versesLoading = false,
     book = "",
     chapter = 1,
     translation = "",
@@ -21,6 +28,7 @@ export default function ScripturePanel({
     const verseRefs = useRef({});
     const scriptureScrollRef = useRef(null);
     const [isTranslationMenuOpen, setIsTranslationMenuOpen] = useState(false);
+    const [isOriginalLanguageOpen, setIsOriginalLanguageOpen] = useState(false);
     // The translation list arrives in database order; the menu shows it
     // alphabetically by abbreviation so a growing list stays findable.
     // Sorted here at render time only — the underlying order is untouched,
@@ -95,6 +103,15 @@ export default function ScripturePanel({
     const savedBookmark = passage
         ? bookmarksState.findBookmark(passage)
         : null;
+
+    // The original-language modal covers the selected verses in this
+    // chapter as one range (a non-contiguous selection spans min–max).
+    // Its state lives here, not in StudyPage, so the reader's position
+    // and selection are untouched by opening or closing it.
+    const selectedVersesInChapter = [...selectedNumbers].sort((a, b) => a - b);
+    const originalLanguageStartVerse = selectedVersesInChapter[0] ?? null;
+    const originalLanguageEndVerse =
+        selectedVersesInChapter[selectedVersesInChapter.length - 1] ?? null;
 
     // The reader only moves on a chapter change or an explicit jump to a
     // verse (a click, or a pick from the verse menu). Deselecting a verse
@@ -425,16 +442,19 @@ export default function ScripturePanel({
                 <div className="
                     mx-auto
                     max-w-[550px]
-                    text-justify
-                    text-[1.2rem]
-                    leading-[2.05]
-                    tracking-[0.012em]
-                    [word-spacing:0.03em]
+                    scripture-reading-body
                     text-[var(--text-primary)]
-                    [font-family:Georgia,'Times_New_Roman',serif]
-                    hyphens-auto
                 ">
-                    {verses.map((verse) => (
+                    {/* While the first chapter is still loading there
+                        is nothing to show yet, so say so instead of an
+                        empty pane. Once verses exist they stay visible
+                        while a new chapter loads. */}
+                    {versesLoading && verses.length === 0 ? (
+                        <p className="text-center text-[1rem] text-[var(--text-muted)]">
+                            Loading Scripture…
+                        </p>
+                    ) : (
+                        verses.map((verse) => (
                         <span
                             // Add transparency to the saved RGB color without fading the text.
                             style={{
@@ -485,7 +505,7 @@ export default function ScripturePanel({
                             className={`
                                 block
                                 m-0
-                                mb-[8px] last:mb-0
+                                mb-[14px] last:mb-0
                                 font-[inherit]
                                 text-[inherit]
                                 leading-[inherit]
@@ -549,6 +569,7 @@ export default function ScripturePanel({
                                         highlightsState.handleClearHighlights(verseSelection.selection)
                                     }
                                     hasHighlight={hasSelectedHighlight}
+                                    onOriginalLanguage={() => setIsOriginalLanguageOpen(true)}
                                     // Clear both verse selection and commentary emphasis when X is clicked.
                                     onClearSelection={() => {
                                         verseSelection.clearSelection();
@@ -558,8 +579,27 @@ export default function ScripturePanel({
                             )}
                             
                         </span>
-                    ))}
+                    )))}
                 </div>
+
+                {isOriginalLanguageOpen && originalLanguageStartVerse !== null && (
+                    <Suspense fallback={null}>
+                        <OriginalLanguageModal
+                            book={book}
+                            chapter={chapter}
+                            startVerse={originalLanguageStartVerse}
+                            endVerse={originalLanguageEndVerse}
+                            englishVerses={verses.filter(
+                                (verse) =>
+                                    verse.verse_number >= originalLanguageStartVerse &&
+                                    verse.verse_number <= originalLanguageEndVerse
+                            )}
+                            translation={translation}
+                            onClose={() => setIsOriginalLanguageOpen(false)}
+                            onNavigateToVerse={(verseNumber) => setSelectedVerse(verseNumber)}
+                        />
+                    </Suspense>
+                )}
 
                 {/* Copyright notice for a licensed translation. The notice
                     (and its link, where the licence asks for one) travels

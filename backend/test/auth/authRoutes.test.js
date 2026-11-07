@@ -142,12 +142,12 @@ test("register with the database down returns a generic 500 JSON", async () => {
 });
 
 test("profile with a valid token but the database down returns a generic 500 JSON", async () => {
-    const token = jwt.sign({ userId: 1 }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ userId: 1, sid: "00000000-0000-4000-8000-000000000001" }, process.env.JWT_SECRET, { expiresIn: "1h", issuer: "gnosis", audience: "gnosis-api" });
     const result = await request("/api/auth/profile", {
         headers: { Authorization: `Bearer ${token}` },
     });
     assertJsonError(result, 500, {
-        error: "Failed to retrieve profile.",
+        error: "Something went wrong.",
         code: "INTERNAL_ERROR",
     });
 });
