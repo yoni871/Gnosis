@@ -19,6 +19,11 @@ test('migrated application schema permits only the approved runtime grants', asy
     }
     for (const table of ['bible_translations', 'bible_books', 'bible_chapters', 'bible_verses',
         'sources', 'commentaries', 'commentary_entries']) expected.push(`${table}:SELECT`);
+    // Original Language Analysis (Phase 1): the reader only reads the
+    // imported STEPBible data; the importer runs as the operator.
+    for (const table of ['ol_sources', 'ol_lexical_entries', 'ol_word_occurrences', 'ol_morphology_codes']) {
+        expected.push(`${table}:SELECT`);
+    }
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`users:${privilege}`);
     for (const table of ['notes', 'bookmarks', 'highlights']) {
         for (const privilege of ['SELECT', 'INSERT', 'UPDATE', 'DELETE']) expected.push(`${table}:${privilege}`);
