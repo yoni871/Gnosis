@@ -19,3 +19,5 @@ node_modules/
 # the importer with --download, never committed — the STEPBible licence
 # asks that copies of the data files not be posted elsewhere.
 backend/src/importer/original-language-data/
+# Local process state, logs and downloaded data
+.local/

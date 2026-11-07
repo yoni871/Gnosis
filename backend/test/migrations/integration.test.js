@@ -597,3 +597,25 @@ test('schema change after preflight is caught by transactional revalidation with
     assert.equal((await db.query("SELECT to_regclass('public.pgmigrations') AS value")).rows[0].value,null);
     await assertLocksReleased();
 });
+
+
+test('explicit local index compatibility upgrades prior-main history without rewriting history or user data', async () => {
+    const late=['20261107005916_add-licensed-cache-verse-count-index','20261107010016_add-licensed-ip-limits-window-index'];
+    const previous=await fs.mkdtemp(path.join(scratch,'prior-main-'));
+    for(const name of await fs.readdir(migrationsDir)) {
+        if(name.endsWith('.sql') && !late.includes(name.slice(0,-4)))await fs.copyFile(path.join(migrationsDir,name),path.join(previous,name));
+    }
+    await run('up',{dir:previous});
+    const user=(await db.query("INSERT INTO users(email) VALUES('local-upgrade@example.invalid') RETURNING id")).rows[0].id;
+    const oldHistory=(await db.query('SELECT id,name,run_on FROM pgmigrations ORDER BY id')).rows;
+    await assert.rejects(run('up'),/history/); // Normal ordering remains strict.
+    const result=await run('up',{allowLateIndexes:true});
+    assert.deepEqual(result.migrations,late);
+    assert.equal((await db.query("SELECT id FROM users WHERE email='local-upgrade@example.invalid'")).rows[0].id,user);
+    const retained=(await db.query('SELECT id,name,run_on FROM pgmigrations WHERE name<>ALL($1) ORDER BY id',[late])).rows;
+    assert.deepEqual(retained,oldHistory);
+    const checked=await run('check',{allowLateIndexes:true});
+    assert.deepEqual(checked.pending,[]);assert.equal(checked.baselineMatches,true);
+    assert.deepEqual((await run('up',{allowLateIndexes:true})).migrations,[]);
+    await assert.rejects(run('down',{allowLateIndexes:true}),/forbidden/);
+});
