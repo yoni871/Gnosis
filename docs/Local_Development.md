@@ -153,5 +153,6 @@ nonempty data; the protected profile returned 401; no Vite proxy connection erro
 were recorded. A second preparation skipped existing Scripture. All 33 existing
 real-database application integration tests passed, including verification with a
 loopback email stub, session rotation/replay/revocation/expiry and rate limits.
+The migration suite also passed all 35 tests on PostgreSQL 14.
 Real email delivery and manual browser interactions were not exercised. The
 Docker Compose startup path and PostgreSQL 18 were not run on this machine.
