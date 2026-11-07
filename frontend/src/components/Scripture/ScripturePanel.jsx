@@ -216,8 +216,7 @@ export default function ScripturePanel({
             h-full
             px-[clamp(30px,5vw,75px)]
             max-[768px]:px-[20px]
-            bg-[var(--bg-header)]
-            shadow-[inset_0_0_20px_rgba(80,55,35,0.12)]
+            scripture-panel
             overflow-hidden
             flex
             flex-col
@@ -377,7 +376,7 @@ export default function ScripturePanel({
                 min-h-0
                 flex-1
                 overflow-y-auto
-                bg-[var(--bg-header)]
+                scripture-scroll
             ">
 
                 <div className="
@@ -402,40 +401,12 @@ export default function ScripturePanel({
                     <span className="text-right">CH. {chapter}</span>
                 </div>
 
-                <div className="
-                    mt-[34px]
-                    mb-[28px]
-                    text-center
-                ">
-                    <p className="
-                        m-0
-                        mb-[13px]
-                        text-[10px]
-                        font-medium
-                        tracking-[3.5px]
-                        text-[var(--text-muted)]
-                    ">
-                        - CHAPTER {chapter} -
-                    </p>
-
-                    <h2 className="
-                        m-0
-                        font-serif
-                        text-[clamp(26px,2.2vw,34px)]
-                        font-normal
-                        italic
-                        text-[var(--text-primary)]
-                    ">
-                        {book}
+                <div className="scripture-chapter-header">
+                    <h2 className="scripture-chapter-heading">
+                        {book?.toUpperCase()} {chapter}
                     </h2>
-
-                    <div className="
-                        mt-[15px]
-                        text-[13px]
-                        tracking-[3px]
-                        text-[var(--color-brand)]
-                    ">
-                        ────── † ──────
+                    <div className="scripture-chapter-divider" aria-hidden="true">
+                        <span>†</span>
                     </div>
                 </div>
 
@@ -503,9 +474,7 @@ export default function ScripturePanel({
                                 verseRefs.current[verse.verse_number] = element;
                             }}
                             className={`
-                                block
-                                m-0
-                                mb-[14px] last:mb-0
+                                scripture-verse
                                 font-[inherit]
                                 text-[inherit]
                                 leading-[inherit]
@@ -518,14 +487,7 @@ export default function ScripturePanel({
                                 }
                             `}
                         >
-                            <sup className="
-                                ml-[6px]
-                                mr-[3px]
-                                align-super
-                                text-[0.65em]
-                                font-bold
-                                text-[var(--color-brand)]
-                            ">
+                            <sup className="scripture-verse-number">
                                 {verse.verse_number}
                             </sup>
 

@@ -172,6 +172,15 @@ function mountReader({
 }
 
 describe("ScripturePanel verse presentation", () => {
+    test("the chapter heading follows book and chapter navigation", () => {
+        const { rerenderReader } = mountReader();
+        expect(screen.getByRole("heading", { name: "GENESIS 1" })).toBeInTheDocument();
+
+        rerenderReader({ book: "John", chapter: 3 });
+        expect(screen.getByRole("heading", { name: "JOHN 3" })).toBeInTheDocument();
+        expect(screen.queryByRole("heading", { name: "GENESIS 1" })).not.toBeInTheDocument();
+    });
+
     test("keeps each verse's number and complete text together in reading order", () => {
         mountReader();
 
