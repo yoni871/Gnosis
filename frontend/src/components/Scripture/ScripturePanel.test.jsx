@@ -170,6 +170,40 @@ function mountReader({
     };
 }
 
+describe("ScripturePanel verse presentation", () => {
+    test("keeps each verse's number and complete text together in reading order", () => {
+        mountReader();
+
+        const renderedVerses = chapterVerses.map(({ verse_number, text }) => {
+            const verse = screen.getByText(text);
+            expect(verse.querySelector("sup")).toHaveTextContent(String(verse_number));
+            expect(verse.textContent).toBe(`${verse_number}${text}`);
+            return verse;
+        });
+
+        expect(Array.from(renderedVerses[0].parentElement.children)).toEqual(renderedVerses);
+    });
+
+    test("clicking a verse still selects its original passage", async () => {
+        const toggleVerse = vi.fn();
+        const setSelectedVerse = vi.fn();
+        const { rerenderReader } = mountReader();
+        rerenderReader({
+            setSelectedVerse,
+            verseSelection: {
+                selection: selectionOf(),
+                toggleVerse,
+                clearSelection: vi.fn(),
+            },
+        });
+
+        await userEvent.click(screen.getByText(chapterVerses[1].text));
+
+        expect(toggleVerse).toHaveBeenCalledWith(2, 1, 2);
+        expect(setSelectedVerse).toHaveBeenCalledWith(2);
+    });
+});
+
 describe("ScripturePanel reading scroll", () => {
     test("deselecting the focused verse leaves the scroll position alone", () => {
         const { rerenderReader } = mountReader({
