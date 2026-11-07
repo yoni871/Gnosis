@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 import { getBooks, getBibleChapter, getTranslations } from "../services/bibleService";
@@ -14,6 +14,7 @@ import MobileStudyNav from "../components/Study/MobileStudyNav";
 import useNotes from "../hooks/useNotes";
 import useCommentary from "../hooks/useCommentary";
 import useBookmarks from "../hooks/useBookmarks";
+import useReadingState from "../hooks/useReadingState";
 import useScripturePreviews from "../hooks/useScripturePreviews";
 import useHighlights from "../hooks/useHighlights";
 import useVerseSelection from "../hooks/useVerseSelection";
@@ -27,13 +28,27 @@ import {
     chapterUrl,
 } from "../utils/seo";
 
+// ?verse= carries the selected verses as a comma list in click order
+// ("1,3"); a single verse stays "1", so older links keep working.
+// Anything that is not a positive integer is dropped.
+function parseVerseParam(value) {
+    if (!value) {
+        return [];
+    }
+
+    return value
+        .split(",")
+        .map((part) => Number(part))
+        .filter((number) => Number.isInteger(number) && number > 0);
+}
+
 export default function StudyPage() {
     const {
         book: urlBook,
         chapter: urlChapter
     } = useParams();
 
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const urlVerse = searchParams.get("verse");
     const urlTranslation = searchParams.get("translation");
     const urlCommentary = searchParams.get("commentary");
@@ -43,6 +58,11 @@ export default function StudyPage() {
     // -------------------------
 
     const [verses, setVerses] = useState([]);
+    // True while a chapter is being fetched. The reader shows a loading
+    // note instead of an empty pane while this is true and no verses
+    // have arrived yet; once verses exist they stay visible while a
+    // new chapter loads, so switching chapters never blanks the page.
+    const [versesLoading, setVersesLoading] = useState(false);
     const [book, setBook] = useState(
         urlBook || "Genesis"
     );
@@ -50,11 +70,14 @@ export default function StudyPage() {
         Number(urlChapter) || 1
     );
     const [books, setBooks] = useState([]);
-    const [selectedVerse, setSelectedVerse] = useState(
-        urlVerse
-            ? Number(urlVerse)
-            : null
-    );
+    const [selectedVerse, setSelectedVerse] = useState(() => {
+        // The URL carries the whole selection (?verse=1,3); the focused
+        // verse is the last one clicked.
+        const initialVerses = parseVerseParam(urlVerse);
+        return initialVerses.length > 0
+            ? initialVerses[initialVerses.length - 1]
+            : null;
+    });
 
     // -------------------------
     // LAYOUT STATE
@@ -84,6 +107,12 @@ export default function StudyPage() {
     const [loadError, setLoadError] = useState(null);
     const [reloadKey, setReloadKey] = useState(0);
 
+    // When a licensed translation is temporarily unavailable (quota,
+    // provider outage), the reader falls back to BSB and says so once,
+    // instead of showing an empty page. Dismissed with the X, or by
+    // picking another translation.
+    const [licensedFallback, setLicensedFallback] = useState(null);
+
     // -------------------------
     // SHARED FEATURE STATE
     // -------------------------
@@ -103,6 +132,16 @@ export default function StudyPage() {
             ? Number(urlCommentary)
             : null
     });
+    // Save the reading position for logged-in readers, so the landing
+    // page can offer it back as "Continue reading".
+    const currentBook = books.find((item) => item.name === book);
+    useReadingState({
+        bookId: currentBook?.id ?? null,
+        chapter,
+        translation,
+        commentaryId: commentaryState.selectedCommentator,
+        verse: selectedVerse,
+    });
     //bookmark state for desktop and mobile to share
     const bookmarksState = useBookmarks();
     // Own highlights here so desktop and mobile share the same data and actions.
@@ -110,13 +149,26 @@ export default function StudyPage() {
     // Share the exact selected verses across desktop and mobile readers.
     const verseSelection = useVerseSelection();
     // Read stable selection actions for the navigation effects.
-    const { clearSelection, replaceSelection, retainAvailableVerses } = verseSelection;
+    const { clearSelection, replaceSelectionSet, retainAvailableVerses } = verseSelection;
 
     // React Router gives each history entry a navigation key.
     const location = useLocation();
 
     // Remember which navigation has already updated the selection.
     const appliedNavigationRef = useRef(null);
+
+    // The verses selected in the chapter on screen, in click order.
+    // The URL carries this whole list (?verse=1,3) so a refresh restores
+    // the multi-verse selection, not just the focused verse.
+    const selectedVersesInChapter = useMemo(() => {
+        if (verseSelection.selection.bookId !== currentBook?.id) {
+            return [];
+        }
+
+        return verseSelection.selection.verses
+            .filter((point) => point.chapter === chapter)
+            .map((point) => point.verse);
+    }, [verseSelection.selection, currentBook, chapter]);
 
     const bookmarkPreviews = useScripturePreviews(
         bookmarksState.bookmarks,
@@ -146,9 +198,12 @@ export default function StudyPage() {
             Number(urlChapter) || 1
         );
 
+        // The URL carries the whole selection (?verse=1,3); the focused
+        // verse is the last one clicked.
+        const destinationVerses = parseVerseParam(urlVerse);
         setSelectedVerse(
-            urlVerse
-                ? Number(urlVerse)
+            destinationVerses.length > 0
+                ? destinationVerses[destinationVerses.length - 1]
                 : null
         );
 
@@ -156,6 +211,80 @@ export default function StudyPage() {
             setTranslation(urlTranslation);
         }
     }, [urlBook, urlChapter, urlVerse, urlTranslation]);
+
+    // Keep the URL in step with the reader, so a refresh restores the
+    // exact spot instead of the defaults. The reader already reads its
+    // position from the URL, but nothing wrote it back: the translation,
+    // commentary, and focused verse lived in state only, so a refresh
+    // dropped the translation (back to KJV), the commentary (back to
+    // Matthew Henry), and the focused verse. Replace, don't push: moving
+    // within a chapter is not a new history entry, so Back still leaves
+    // the reader instead of stepping through translations.
+    useEffect(() => {
+        // Wait until a translation is chosen. On mount the translations
+        // have not loaded yet, and writing a query without one here would
+        // wipe the ?translation= the reader arrived with.
+        if (!translation) {
+            return;
+        }
+
+        const desiredTranslation = translation;
+        const desiredCommentary =
+            commentaryState.selectedCommentator != null
+                ? String(commentaryState.selectedCommentator)
+                : null;
+        // The URL carries the whole selection (?verse=1,3), not just the
+        // focused verse, so a refresh restores a multi-verse selection.
+        // When nothing is selected, fall back to the focused verse:
+        // the selection is per-account private state and resets on an
+        // account switch while the focus (plain state) survives, and
+        // wiping the verse here would drop the focus the reader and
+        // the note composer still point at. A deliberate deselect
+        // clears the focus too, so the verse still drops from the URL.
+        // Until the apply effect below has restored the selection for
+        // this location, keep whatever verse the URL already carries:
+        // the selection is still empty on mount, and writing it now
+        // would wipe the ?verse= the reader arrived with before it can
+        // be restored.
+        const desiredVerse =
+            appliedNavigationRef.current === location.key
+                ? (
+                    selectedVersesInChapter.length > 0
+                        ? selectedVersesInChapter.join(",")
+                        : (selectedVerse != null ? String(selectedVerse) : null)
+                )
+                : searchParams.get("verse");
+
+        // Skip the write when the URL already says where the reader is,
+        // so the read effect above and this one never chase each other.
+        if (
+            searchParams.get("translation") === desiredTranslation &&
+            searchParams.get("commentary") === desiredCommentary &&
+            searchParams.get("verse") === desiredVerse
+        ) {
+            return;
+        }
+
+        const params = new URLSearchParams();
+        params.set("translation", desiredTranslation);
+        if (desiredCommentary !== null) {
+            params.set("commentary", desiredCommentary);
+        }
+        if (desiredVerse !== null) {
+            params.set("verse", desiredVerse);
+        }
+        setSearchParams(params, { replace: true });
+    }, [
+        book,
+        chapter,
+        location.key,
+        selectedVerse,
+        selectedVersesInChapter,
+        translation,
+        commentaryState.selectedCommentator,
+        searchParams,
+        setSearchParams,
+    ]);
 
     // Apply the URL's destination verse once the reading location is ready.
     useEffect(() => {
@@ -181,20 +310,32 @@ export default function StudyPage() {
             return;
         }
 
-        const destinationVerse = Number(urlVerse);
-        const hasDestinationVerse =
-            Number.isInteger(destinationVerse) && destinationVerse > 0;
+        const destinationVerses = parseVerseParam(urlVerse);
 
-        if (hasDestinationVerse) {
-            // Replace old selections with the explicitly requested destination.
-            replaceSelection(
-                destinationRecord.id,
-                destinationChapter,
-                destinationVerse
+        if (destinationVerses.length > 0) {
+            // Restore the whole selection the URL carries. Only replace
+            // when it differs from the current selection: the URL is
+            // rewritten by the reader itself on every click, and
+            // re-applying it here used to collapse a multi-verse
+            // selection down to the last verse clicked.
+            const matchesCurrentSelection =
+                destinationVerses.length === selectedVersesInChapter.length &&
+                destinationVerses.every(
+                    (verse, index) => verse === selectedVersesInChapter[index]
+                );
+
+            if (!matchesCurrentSelection) {
+                replaceSelectionSet(
+                    destinationRecord.id,
+                    destinationChapter,
+                    destinationVerses
+                );
+            }
+
+            // Keep commentary focused on the last verse selected.
+            setSelectedVerse(
+                destinationVerses[destinationVerses.length - 1]
             );
-
-            // Keep commentary focused on the same verse.
-            setSelectedVerse(destinationVerse);
         } else {
             // Navigation without a verse starts with no selection or emphasis.
             clearSelection();
@@ -211,8 +352,9 @@ export default function StudyPage() {
         book,
         chapter,
         books,
-        replaceSelection,
-        clearSelection
+        replaceSelectionSet,
+        clearSelection,
+        selectedVersesInChapter
     ]);
 
     // -------------------------
@@ -224,6 +366,9 @@ export default function StudyPage() {
         const currentBook = books.find((item) => item.name === book);
 
         // Wait until the translation and book ID are available.
+        // Loading is only ever set while a fetch is actually running,
+        // and that fetch always clears it when it settles (or a newer
+        // fetch takes over), so nothing here needs to reset it.
         if (!translation || !currentBook) {
             return;
         }
@@ -232,6 +377,11 @@ export default function StudyPage() {
         let ignore = false;
 
         async function loadChapter() {
+            setVersesLoading(true);
+            // A licensed-translation fallback re-fetches as BSB; keep
+            // the loading note up across that continuation instead of
+            // flashing an empty pane between the two fetches.
+            let fallingBack = false;
             try {
                 const data = await getBibleChapter(
                     book,
@@ -261,7 +411,24 @@ export default function StudyPage() {
                 );
             } catch (error) {
                 if (!ignore) {
-                    console.error(error);
+                    // A licensed translation that cannot be served right
+                    // now falls back to BSB, once, with a note — never an
+                    // empty page, and never BSB text mislabelled as the
+                    // requested translation.
+                    if (
+                        error.code === "LICENSED_UNAVAILABLE" &&
+                        translation !== "BSB"
+                    ) {
+                        fallingBack = true;
+                        setLicensedFallback({ from: translation });
+                        setTranslation("BSB");
+                    } else {
+                        console.error(error);
+                    }
+                }
+            } finally {
+                if (!ignore && !fallingBack) {
+                    setVersesLoading(false);
                 }
             }
         }
@@ -392,6 +559,20 @@ export default function StudyPage() {
                 setSelectedVerse={setSelectedVerse}
             />
 
+            {licensedFallback && (
+                <div className="mx-auto max-w-[700px] px-4 pt-3 text-center text-[13px] text-[var(--text-muted)]">
+                    {licensedFallback.from} is temporarily unavailable — showing the Berean Standard Bible instead.
+                    <button
+                        type="button"
+                        aria-label="Dismiss"
+                        onClick={() => setLicensedFallback(null)}
+                        className="ml-2 cursor-pointer underline"
+                    >
+                        Dismiss
+                    </button>
+                </div>
+            )}
+
             <MobileStudyTabs
                 activeTab={mobileTab}
                 setActiveTab={setMobileTab}
@@ -404,6 +585,7 @@ export default function StudyPage() {
                 bookmarkPreviews={bookmarkPreviews}
                 layout={layout}
                 verses={verses}
+                versesLoading={versesLoading}
                 book={book}
                 chapter={chapter}
                 translation={translation}

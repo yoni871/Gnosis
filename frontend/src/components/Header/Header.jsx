@@ -31,7 +31,7 @@ function Header({
         >
 
             <Link
-                to="/bible/Genesis/1" 
+                to="/"
                 className="flex items-center 
                             gap-2.5 
                             text-[var(--color-brand)]

@@ -15,6 +15,7 @@ const searchRoutes = require("./routes/searchRoutes");
 const notesRoutes = require("./routes/notesRoutes");
 const bookmarksRoutes = require("./routes/bookmarksRoutes");
 const highlightsRoutes = require("./routes/highlightsRoutes");
+const readingStateRoutes = require("./routes/readingStateRoutes");
 const { CLIENT_AUTH_RESPONSES, isBodyParseError, logAuthFailure } = require("./utils/authErrors");
 const { resolveTrustProxy } = require("./utils/rateLimit");
 
@@ -26,7 +27,7 @@ const app = express();
 // chain when the backend host is chosen, and an invalid value fails fast.
 app.set("trust proxy", resolveTrustProxy(process.env.TRUST_PROXY));
 
-app.use(cors());
+app.use(cors({ origin: new URL(process.env.FRONTEND_URL).origin, credentials: true }));
 app.use(express.json());
 
 app.use("/api", bibleRoutes);
@@ -35,6 +36,7 @@ app.use("/api", searchRoutes);
 app.use("/api/notes", notesRoutes);
 app.use("/api/bookmarks", bookmarksRoutes);
 app.use("/api/highlights", highlightsRoutes);
+app.use("/api/reading-state", readingStateRoutes);
 
 app.get("/", (req, res) => {
     res.json({

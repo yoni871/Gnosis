@@ -1,0 +1,39 @@
+{
+  "book": "3 John",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "in (f-10) See 2John 1, Note."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 3,
+      "end_chapter": 1,
+      "end_verse": 3,
+      "title": "",
+      "content": "truth, (g-17) Lit. 'to thy truth.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 12,
+      "end_chapter": 1,
+      "end_verse": 12,
+      "title": "",
+      "content": "knowest (a-21) Oida. see 1Cor. 8.1."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 13,
+      "end_chapter": 1,
+      "end_verse": 13,
+      "title": "",
+      "content": "not (b-12) 'Am not minded.'"
+    }
+  ]
+}

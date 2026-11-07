@@ -1,0 +1,775 @@
+{
+  "book": "Nehemiah",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "Nehemiah (c-4) Meaning, 'Comfort of Jehovah.' year, (d-21) That is, of Artaxerxes Longimanus; see ch. 2.1; Ezra 7.1. Shushan (e-26) The capital of Elam. fortress, (f-28) Or 'palace.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 6,
+      "end_chapter": 1,
+      "end_verse": 6,
+      "title": "",
+      "content": "time, (a-25) Or 'this day.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 1,
+      "end_chapter": 2,
+      "end_verse": 1,
+      "title": "",
+      "content": "Artaxerxes (b-15) See Ezra 7.1."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 3,
+      "end_chapter": 2,
+      "end_verse": 3,
+      "title": "",
+      "content": "place (c-24) Lit. 'house.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 8,
+      "end_chapter": 2,
+      "end_verse": 8,
+      "title": "",
+      "content": "forest, (d-11) Heb. 'paradise,' 'park' or 'pleasure-grounds.' palace (e-26) Or 'fortress.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 10,
+      "end_chapter": 2,
+      "end_verse": 10,
+      "title": "",
+      "content": "Horonite, (a-5) According to some, 'of Beth-Horon,' Josh. 16.3,5; according to others, 'of Horonaim in Moab,' Isa. 15.5"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 13,
+      "end_chapter": 2,
+      "end_verse": 13,
+      "title": "",
+      "content": "valley-gate, (b-9) Gate of the valley or ravine [of Hinnom]."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 15,
+      "end_chapter": 2,
+      "end_verse": 15,
+      "title": "",
+      "content": "valley, (c-10) Or 'torrent.' see Deut. 2.13."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 16,
+      "end_chapter": 2,
+      "end_verse": 16,
+      "title": "",
+      "content": "rulers (d-3) rulers, (d-36) See Ezra 9.2."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 19,
+      "end_chapter": 2,
+      "end_verse": 19,
+      "title": "",
+      "content": "Geshem (e-12) Gashmu. see ch. 6.6."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 2,
+      "end_chapter": 3,
+      "end_verse": 2,
+      "title": "",
+      "content": "them (f-4) them (f-13) Lit. 'him.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 3,
+      "end_chapter": 3,
+      "end_verse": 3,
+      "title": "",
+      "content": "Senaah (g-8) Or 'Hassenaah.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 4,
+      "end_chapter": 3,
+      "end_verse": 4,
+      "title": "",
+      "content": "Koz. (h-14) Or 'Hakkoz,' also ver. 21."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 7,
+      "end_chapter": 3,
+      "end_verse": 7,
+      "title": "",
+      "content": "seat (a-22) Or 'throne;' as Gen. 41.40. governor (b-25) Or 'pacha;' see Ezra 8.36."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 8,
+      "end_chapter": 3,
+      "end_verse": 8,
+      "title": "",
+      "content": "them (c-3) Lit. 'him.' perfumers, (d-21) Lit. 'son of perfumers.' as (e-31) Others, '[the Chaldeans] had left [the walls of] Jerusalem as far as.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 12,
+      "end_chapter": 3,
+      "end_verse": 12,
+      "title": "",
+      "content": "them (c-4) Lit. 'him.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 15,
+      "end_chapter": 3,
+      "end_verse": 15,
+      "title": "",
+      "content": "Shelah (f-40) Siloam, John 9.7. city (g-54) The part of Jerusalem thus called."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 19,
+      "end_chapter": 3,
+      "end_verse": 19,
+      "title": "",
+      "content": "angle. (h-28) Or 'turning.' so vers. 20,24,25."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 20,
+      "end_chapter": 3,
+      "end_verse": 20,
+      "title": "",
+      "content": "another (i-10) Heb. 'a second.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 21,
+      "end_chapter": 3,
+      "end_verse": 21,
+      "title": "",
+      "content": "another (i-13) Heb. 'a second.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 22,
+      "end_chapter": 3,
+      "end_verse": 22,
+      "title": "",
+      "content": "Jordan]. (k-13) See Gen. 13.10."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 23,
+      "end_chapter": 3,
+      "end_verse": 23,
+      "title": "",
+      "content": "them (c-2) them (c-12) Lit. 'him.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 24,
+      "end_chapter": 3,
+      "end_verse": 24,
+      "title": "",
+      "content": "another (i-9) Heb. 'a second.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 26,
+      "end_chapter": 3,
+      "end_verse": 26,
+      "title": "",
+      "content": "Nethinim (a-3) See Note, 1Chron. 9.2. Ophel, (b-6) See 2Chron. 27.3"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 29,
+      "end_chapter": 3,
+      "end_verse": 29,
+      "title": "",
+      "content": "them (c-2) Lit. 'him.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 30,
+      "end_chapter": 3,
+      "end_verse": 30,
+      "title": "",
+      "content": "them (c-20) Lit. 'him.' chamber. (d-30) Lit. 'lodging.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 31,
+      "end_chapter": 3,
+      "end_verse": 31,
+      "title": "",
+      "content": "the (e-6) Lit. 'son of the.' place (f-10) Lit. 'house.' of (g-27) Or 'upper chamber in.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 32,
+      "end_chapter": 3,
+      "end_verse": 32,
+      "title": "",
+      "content": "of (g-5) Or 'upper chamber in.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 4,
+      "end_chapter": 4,
+      "end_verse": 4,
+      "title": "",
+      "content": "prey (h-21) Or 'to reproach.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 6,
+      "end_chapter": 4,
+      "end_verse": 6,
+      "title": "",
+      "content": "mind (i-22) Lit. 'heart.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 8,
+      "end_chapter": 4,
+      "end_verse": 8,
+      "title": "",
+      "content": "hinder (k-15) Or 'harm.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 11,
+      "end_chapter": 4,
+      "end_verse": 11,
+      "title": "",
+      "content": "adversaries (l-3) Tzar, as Ezra 4.1."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 12,
+      "end_chapter": 4,
+      "end_verse": 12,
+      "title": "",
+      "content": "returned (m-27) Heb. 'ye return.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 14,
+      "end_chapter": 4,
+      "end_verse": 14,
+      "title": "",
+      "content": "rulers, (a-15) As Ezra 9.2."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 16,
+      "end_chapter": 4,
+      "end_verse": 16,
+      "title": "",
+      "content": "shields, (b-26) Small shields."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 19,
+      "end_chapter": 4,
+      "end_verse": 19,
+      "title": "",
+      "content": "rulers, (a-10) As Ezra 9.2."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 22,
+      "end_chapter": 4,
+      "end_verse": 22,
+      "title": "",
+      "content": "servant (c-16) Heb. 'young man;' and so ver. 23 and ch. 5.15,16."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 23,
+      "end_chapter": 4,
+      "end_verse": 23,
+      "title": "",
+      "content": "side. (d-34) Others. '... [in going to] the water;' probably a corrupt reading."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 2,
+      "end_chapter": 5,
+      "end_verse": 2,
+      "title": "",
+      "content": "procure (e-17) Or 'let us procure.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 5,
+      "end_chapter": 5,
+      "end_verse": 5,
+      "title": "",
+      "content": "hand (f-50) As Gen. 31.29."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 7,
+      "end_chapter": 5,
+      "end_verse": 7,
+      "title": "",
+      "content": "rulers, (a-14) As Ezra 9.2."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 8,
+      "end_chapter": 5,
+      "end_verse": 8,
+      "title": "",
+      "content": "redeemed (a-12) Strictly, 'bought.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 11,
+      "end_chapter": 5,
+      "end_verse": 11,
+      "title": "",
+      "content": "day (b-9) Or 'at once.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 14,
+      "end_chapter": 5,
+      "end_verse": 14,
+      "title": "",
+      "content": "bread (c-41) * i.e. what he was entitled to as governor (pacha) of Jerusalem."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 17,
+      "end_chapter": 5,
+      "end_verse": 17,
+      "title": "",
+      "content": "rulers, (d-16) See Ezra 9.2."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 2,
+      "end_chapter": 6,
+      "end_verse": 2,
+      "title": "",
+      "content": "plain (e-19) Or 'valley.' see Josh. 11.8."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 5,
+      "end_chapter": 6,
+      "end_verse": 5,
+      "title": "",
+      "content": "servant (a-5) Heb. 'young man.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 10,
+      "end_chapter": 6,
+      "end_verse": 10,
+      "title": "",
+      "content": "night (b-56) Or 'to-night.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 19,
+      "end_chapter": 6,
+      "end_verse": 19,
+      "title": "",
+      "content": "deeds (c-7) Lit. 'kindnesses;' cf. ch. 9.25. Not chasidim, which would be 'pious deeds,' as ch. 13.14. words (d-13) Or 'matters.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 5,
+      "end_chapter": 7,
+      "end_verse": 5,
+      "title": "",
+      "content": "rulers, (a-15) See Ezra 9.2. register (b-28) See Ezra 2."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 6,
+      "end_chapter": 7,
+      "end_verse": 6,
+      "title": "",
+      "content": "children (c-4) Lit. 'sons,' and so throughout the chapter."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 26,
+      "end_chapter": 7,
+      "end_verse": 26,
+      "title": "",
+      "content": "men (d-2) Enosh; and so to ver. 33."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 52,
+      "end_chapter": 7,
+      "end_verse": 52,
+      "title": "",
+      "content": "Meunim, (a-8) Or 'the Maonites.' see Ezra 2.50. Nephishesim, (b-12) Or 'the Nephusites.' see Ezra 2.50."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 63,
+      "end_chapter": 7,
+      "end_verse": 63,
+      "title": "",
+      "content": "Hobaiah, (c-8) Habaiah, Ezra 2.61."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 65,
+      "end_chapter": 7,
+      "end_verse": 65,
+      "title": "",
+      "content": "Tirshatha (d-3) See Note a, Ezra 2.63. Thummim. (e-26) See Ex. 28.30; Lev. 8.8; Num. 27.21; Deut. 33.8; 1Sam. 28.6; Ezra 2.63."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 71,
+      "end_chapter": 7,
+      "end_verse": 71,
+      "title": "",
+      "content": "pounds (a-24) Heb. maneh, as Ezra 2.69."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 73,
+      "end_chapter": 7,
+      "end_verse": 73,
+      "title": "",
+      "content": "cities, (b-42) Ch. 8 begins here in A.V. See Ezra 3.1."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 18,
+      "end_chapter": 8,
+      "end_verse": 18,
+      "title": "",
+      "content": "read (a-14) Or 'one read;' 'there was reading.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 5,
+      "end_chapter": 9,
+      "end_verse": 5,
+      "title": "",
+      "content": "eternity. (b-23) See 1Chron. 16.36; Ps. 41.13; 106.48; Dan. 2.20."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 6,
+      "end_chapter": 9,
+      "end_verse": 6,
+      "title": "",
+      "content": "Same, (c-4) Or 'Thou art He,' an expression which is really a name of God. see Deut.32.39."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 7,
+      "end_chapter": 9,
+      "end_verse": 7,
+      "title": "",
+      "content": "Same, (c-4) Or 'Thou art He,' an expression which is really a name of God. see Deut. 32.39."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 13,
+      "end_chapter": 9,
+      "end_verse": 13,
+      "title": "",
+      "content": "judgments (a-20) Or 'ordinances.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 15,
+      "end_chapter": 9,
+      "end_verse": 15,
+      "title": "",
+      "content": "sworn (b-42) Lit. 'lifted up thy hand.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 16,
+      "end_chapter": 9,
+      "end_verse": 16,
+      "title": "",
+      "content": "our (c-3) Or 'they and our.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 17,
+      "end_chapter": 9,
+      "end_verse": 17,
+      "title": "",
+      "content": "among (d-16) Lit. 'with.' forgive, (e-41) Lit. 'a God of pardons.' loving-kindness, (f-51) Chesed -- mercy. so ch. 13.22. See 2Chron. 6.42."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 25,
+      "end_chapter": 9,
+      "end_verse": 25,
+      "title": "",
+      "content": "good (a-16) goodness. (a-44) See Note c, ch. 6.19."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 34,
+      "end_chapter": 9,
+      "end_verse": 34,
+      "title": "",
+      "content": "them. (b-29) Or 'in the midst of them.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 36,
+      "end_chapter": 9,
+      "end_verse": 36,
+      "title": "",
+      "content": "servants (c-4) Or 'bondmen.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 31,
+      "end_chapter": 10,
+      "end_verse": 31,
+      "title": "",
+      "content": "debt. (a-51) Lit. 'the debt of every hand,' i.e. for which any had given his hand. Ex. 23.10,11; Deut. 15.1,2."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 32,
+      "end_chapter": 10,
+      "end_verse": 32,
+      "title": "",
+      "content": "ordinances (b-4) Lit. Lit. 'commandments.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 33,
+      "end_chapter": 10,
+      "end_verse": 33,
+      "title": "",
+      "content": "holy (c-36) Kodesh. see Note, Ex. 25.8. It might read 'consecrated things.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 37,
+      "end_chapter": 10,
+      "end_verse": 37,
+      "title": "",
+      "content": "meal (a-11) Or 'dough.' as Num. 15.20; Ezek. 44.30."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 5,
+      "end_chapter": 11,
+      "end_verse": 5,
+      "title": "",
+      "content": "Shiloni. (b-30) Or 'of the Shilonites.' see 1Chron. 9.5."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 9,
+      "end_chapter": 11,
+      "end_verse": 9,
+      "title": "",
+      "content": "Senuah (c-15) Or 'Hassenuah.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 10,
+      "end_chapter": 11,
+      "end_verse": 10,
+      "title": "",
+      "content": "of] (d-7) See 1Chron. 9.10."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 11,
+      "end_chapter": 11,
+      "end_verse": 11,
+      "title": "",
+      "content": "ruler (e-23) Or 'overseer.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 14,
+      "end_chapter": 11,
+      "end_verse": 14,
+      "title": "",
+      "content": "Gedolim. (a-20) Or 'Haggedolim.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 24,
+      "end_chapter": 11,
+      "end_verse": 24,
+      "title": "",
+      "content": "hand (b-20) i.e. at Shushan."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 25,
+      "end_chapter": 11,
+      "end_verse": 25,
+      "title": "",
+      "content": "hamlets (c-5) Or 'enclosures,' 'farms;' Gen 25.16. villages, (d-21) Lit. 'daughters,' also in vers. 27,28,30,31, and elsewhere often."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 9,
+      "end_chapter": 12,
+      "end_verse": 9,
+      "title": "",
+      "content": "watches. (a-12) Or 'in [their] charges.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 12,
+      "end_chapter": 12,
+      "end_verse": 12,
+      "title": "",
+      "content": "of (b-11) Or 'for;' and so all through this passage."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 17,
+      "end_chapter": 12,
+      "end_verse": 17,
+      "title": "",
+      "content": "Moadiah, (c-7) Maadiah, ver. 5"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 22,
+      "end_chapter": 12,
+      "end_verse": 22,
+      "title": "",
+      "content": "Johanan, (d-16) Jonathan, ver. 11. until (e-22) Or 'under.' Persian. (f-28) Darius III. Codomanus; according to those who translate 'under the reign,' it would be Darius II, Nothus."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 23,
+      "end_chapter": 12,
+      "end_verse": 23,
+      "title": "",
+      "content": "Johanan (d-21) Jonathan, ver. 11."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 29,
+      "end_chapter": 12,
+      "end_verse": 29,
+      "title": "",
+      "content": "Beth-Gilgal, (g-3) Or 'the house of Gilgal.' hamlets (h-19) See ch. 11.25."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 40,
+      "end_chapter": 12,
+      "end_verse": 40,
+      "title": "",
+      "content": "rulers (a-17) See Ezra 9.2."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 43,
+      "end_chapter": 12,
+      "end_verse": 43,
+      "title": "",
+      "content": "offered (b-5) Zevach. lit. 'sacrificed.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 44,
+      "end_chapter": 12,
+      "end_verse": 44,
+      "title": "",
+      "content": "time (c-4) Or 'on that day.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 47,
+      "end_chapter": 12,
+      "end_verse": 47,
+      "title": "",
+      "content": "consecrated (d-31) Or 'set apart as holy.'"
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 1,
+      "end_chapter": 13,
+      "end_verse": 1,
+      "title": "",
+      "content": "day (e-3) Or 'at that time,' as ch. 12.44."
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 4,
+      "end_chapter": 13,
+      "end_verse": 4,
+      "title": "",
+      "content": "chambers (f-13) Lit. 'chamber.'"
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 11,
+      "end_chapter": 13,
+      "end_verse": 11,
+      "title": "",
+      "content": "rulers, (a-6) See Ezra 9.2. together (b-20) i.e. the Levites and singers."
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 12,
+      "end_chapter": 13,
+      "end_verse": 12,
+      "title": "",
+      "content": "storehouses. (c-19) Elsewhere 'treasuries.'"
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 14,
+      "end_chapter": 13,
+      "end_verse": 14,
+      "title": "",
+      "content": "deeds (d-14) Chasidim, as 2Chron. 32.32; 35.26. see 2Sam. 22.26."
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 19,
+      "end_chapter": 13,
+      "end_verse": 19,
+      "title": "",
+      "content": "servants (e-48) Lit. 'young men,' as elsewhere."
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 30,
+      "end_chapter": 13,
+      "end_verse": 30,
+      "title": "",
+      "content": "service; (a-22) Lit. 'work.'"
+    }
+  ]
+}

@@ -560,7 +560,7 @@ test("login trims the email before lookup", async () => {
     let captured;
     const passwordHash = await realHash("correct-password", 10);
     queryBehavior = async (...args) => {
-        captured = args;
+        if (args[0].includes("SELECT * FROM users")) captured = args;
         return { rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }] };
     };
     const result = await post("/api/auth/login", validLogin({

@@ -45,6 +45,82 @@ describe("Seo", () => {
         );
     });
 
+    test("supports ogImage, twitterCard, and JSON-LD, and clears them when removed", () => {
+        const { rerender } = render(
+            <Seo
+                title="Gnosis | Bible Study & Verse-by-Verse Commentary"
+                description="Study Scripture with Gnosis."
+                canonical="https://studygnosis.com/"
+                ogImage="https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg"
+                ogImageWidth={1200}
+                ogImageHeight={675}
+                ogImageAlt="A laptop and a phone showing the Gnosis Bible study app"
+                twitterCard="summary_large_image"
+                jsonLd={{
+                    "@context": "https://schema.org",
+                    "@type": "WebSite",
+                    name: "Gnosis",
+                    url: "https://studygnosis.com/",
+                }}
+            />,
+        );
+
+        expect(metaContent("property", "og:image")).toBe(
+            "https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg",
+        );
+        expect(metaContent("name", "twitter:image")).toBe(
+            "https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg",
+        );
+        expect(metaContent("property", "og:image:width")).toBe("1200");
+        expect(metaContent("property", "og:image:height")).toBe("675");
+        expect(metaContent("property", "og:image:alt")).toBe(
+            "A laptop and a phone showing the Gnosis Bible study app",
+        );
+        expect(metaContent("name", "twitter:card")).toBe(
+            "summary_large_image",
+        );
+        const script = document.head.querySelector(
+            'script[type="application/ld+json"]',
+        );
+        expect(JSON.parse(script.textContent)).toMatchObject({
+            "@type": "WebSite",
+            name: "Gnosis",
+        });
+
+        rerender(
+            <Seo
+                title="Log in | Gnosis"
+                description="Log in to Gnosis."
+                canonical="https://studygnosis.com/login"
+                robots="noindex, nofollow"
+            />,
+        );
+
+        // Navigating away must not leave the previous page's social
+        // image or structured data behind.
+        expect(
+            document.head.querySelector('meta[property="og:image"]'),
+        ).toBeNull();
+        expect(
+            document.head.querySelector('meta[name="twitter:image"]'),
+        ).toBeNull();
+        expect(
+            document.head.querySelector('meta[property="og:image:width"]'),
+        ).toBeNull();
+        expect(
+            document.head.querySelector('meta[property="og:image:height"]'),
+        ).toBeNull();
+        expect(
+            document.head.querySelector('meta[property="og:image:alt"]'),
+        ).toBeNull();
+        expect(metaContent("name", "twitter:card")).toBe("summary");
+        expect(
+            document.head.querySelector(
+                'script[type="application/ld+json"]',
+            ),
+        ).toBeNull();
+    });
+
     test("supports noindex pages and replaces prior tags on navigation", () => {
         const { rerender } = render(
             <Seo

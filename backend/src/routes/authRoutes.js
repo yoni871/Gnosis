@@ -2,7 +2,7 @@ const express = require("express");
 const pool = require("../db/db");
 const bcrypt = require("bcrypt");
 const router = express.Router();
-const jwt = require("jsonwebtoken");
+const sessions = require("../services/sessionService");
 const authenticateToken = require("../middleware/authMiddleware");
 const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
 const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, VALIDATION_CODE } = require("../utils/authValidation");
@@ -279,7 +279,12 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
 
 
 //to login into an exisitng account
-router.post("/login", validateLogin, loginRateLimit, withRateLimitFinalize(async (req, res) => {
+router.post("/login", (req, res, next) => {
+    if (req.headers.origin && req.headers.origin !== new URL(process.env.FRONTEND_URL).origin) {
+        return res.status(403).json({ error: "Invalid session request.", code: "SESSION_REQUEST_INVALID" });
+    }
+    next();
+}, validateLogin, loginRateLimit, withRateLimitFinalize(async (req, res) => {
     const { email, password } = req.validated;
 
     let result;
@@ -341,26 +346,47 @@ router.post("/login", validateLogin, loginRateLimit, withRateLimitFinalize(async
         });
     }
 
-    let token;
+    let session;
     try {
-        token = jwt.sign(
-            { userId: user.id },
-            process.env.JWT_SECRET,
-            { expiresIn: "7d" }
-        );
+        session = await sessions.createSession(user.id);
     } catch (error) {
-        logAuthFailure("POST /api/auth/login", "token", error);
+        logAuthFailure("POST /api/auth/login", "session", error);
         await req.rateLimit.finalize("release");
         return res.status(500).json(internalErrorBody("login"));
     }
+    sessions.setCookie(res, session.refresh);
+    res.set("Cache-Control", "no-store");
 
     // Login successes do not count and do not reset prior failures.
     await req.rateLimit.finalize("release");
     res.json({
-        token: token
+        token: session.token, expiresIn: sessions.ACCESS_SECONDS
     });
 }));
 
+
+// Cookie endpoints require an explicit browser session request and a trusted origin.
+router.post("/refresh", sessions.browserSessionRequest, async (req, res) => {
+    res.set("Cache-Control", "no-store");
+    const session = await sessions.rotateSession(sessions.readCookie(req));
+    if (!session) {
+        sessions.clearCookie(res);
+        return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
+    }
+    sessions.setCookie(res, session.refresh, session.expiresAt);
+    res.json({ token: session.token, expiresIn: sessions.ACCESS_SECONDS });
+});
+router.post("/logout", sessions.browserSessionRequest, async (req, res) => {
+    await sessions.revokeRefresh(sessions.readCookie(req));
+    await sessions.revokeAccess(req.headers.authorization);
+    sessions.clearCookie(res);
+    res.set("Cache-Control", "no-store").sendStatus(204);
+});
+router.post("/logout-all", authenticateToken, async (req, res) => {
+    await pool.query("UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1", [req.user.userId]);
+    sessions.clearCookie(res);
+    res.set("Cache-Control", "no-store").sendStatus(204);
+});
 
 //to verify an email address with a link token
 // Lock order for every verify, resend, forgot, and reset transaction:

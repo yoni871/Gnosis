@@ -14,7 +14,7 @@ async function migrationFiles(dir) {
     return files.map(name => name.slice(0,-4));
 }
 
-async function history(client, names) {
+async function history(client, names, allowLateIndexes = false) {
     const exists = (await client.query("SELECT to_regclass('public.pgmigrations') IS NOT NULL AS exists")).rows[0].exists;
     if (!exists) return [];
     const columns = (await client.query("SELECT column_name,data_type,is_nullable FROM information_schema.columns WHERE table_schema='public' AND table_name='pgmigrations' ORDER BY ordinal_position")).rows;
@@ -26,6 +26,7 @@ async function history(client, names) {
         throw safeError('Unexpected migration tracking schema; no automatic repair performed.');
     }
     const rows = (await client.query('SELECT name FROM public.pgmigrations ORDER BY id')).rows.map(row => row.name);
+    if (allowLateIndexes) return require('./localLateIndexes').orderedLocalHistory(rows,names);
     if (rows.some((name, i) => name !== names[i])) {
         throw safeError('Migration history does not match the ordered migration files.');
     }
@@ -87,7 +88,8 @@ async function appliedCatalog(baseline, applied) {
 // clientFactory allows tests to observe/fault-inject real PostgreSQL queries.
 // The CLI never accepts or configures this dependency.
 async function execute({command, target, env = process.env, dir = migrationsDir,
-    clientFactory = config => new Client(config)}) {
+    clientFactory = config => new Client(config), allowLateIndexes = false}) {
+    if (allowLateIndexes) await require('./localLateIndexes').validateLocalLateIndexes({target,command,env,dir});
     const config = connectionFor(target, env);
     if (target === 'production' && command !== 'check' && env.MIGRATION_CONFIRM_PRODUCTION !== 'yes') {
         throw safeError('Production writes require MIGRATION_CONFIRM_PRODUCTION=yes after operator review.');
@@ -113,7 +115,7 @@ async function execute({command, target, env = process.env, dir = migrationsDir,
         if (!lock.rows[0].locked) throw safeError('Another migration operation is running. Retry later.');
         locked = true;
         stage = 'history validation';
-        const applied = await history(client, names);
+        const applied = await history(client, names, allowLateIndexes);
         stage = 'schema validation';
         expected = await appliedCatalog(expected, applied);
         const actual = await catalog(client);
@@ -128,7 +130,7 @@ async function execute({command, target, env = process.env, dir = migrationsDir,
             [tables.map(row => `public."${row.name}"`)])).rows[0].allowed;
         if (command === 'check') {
             completed = true;
-            return {applied, pending: names.slice(applied.length), baselineMatches: diff.length === 0,
+            return {applied, pending: names.filter(name=>!applied.includes(name)), baselineMatches: diff.length === 0,
                 differences: diff, adoptionLockPrivileges: canLock};
         }
         stage = 'schema validation';
@@ -164,7 +166,7 @@ async function execute({command, target, env = process.env, dir = migrationsDir,
         }};
         const result = await runner({dbClient:runnerClient, dir, migrationsTable:'pgmigrations', schema:'public',
             direction: command === 'down' ? 'down' : 'up', count: command === 'baseline' || command === 'down' ? 1 : Infinity,
-            fake:command === 'baseline', checkOrder:true,
+            fake:command === 'baseline', checkOrder:!allowLateIndexes,
             // The wrapper owns the advisory lock for the complete operation.
             // Ordinary up/down transaction ownership remains with the runner.
             noLock:true, singleTransaction:command !== 'baseline',

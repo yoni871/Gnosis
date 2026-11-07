@@ -20,7 +20,7 @@ export default function DesktopControls({
     translation
 }) {
     const { theme, setTheme } = useContext(ThemeContext);
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated, isAuthLoading } = useContext(AuthContext);
 
     return (
         <div className="hidden items-center gap-2.5 md:flex">
@@ -118,7 +118,24 @@ export default function DesktopControls({
                 {theme === "light" ? <Moon size={17} /> : <Sun size={17} />}
             </button>
 
-            {isAuthenticated ? (
+            {/* While the session is still being restored, show neither
+                the signed-in menu nor the signed-out links: flashing
+                "Sign in" to a signed-in reader is a false state, and
+                the placeholder keeps the header layout from shifting
+                once the real auth area appears. */}
+            {isAuthLoading ? (
+                <div
+                    aria-hidden="true"
+                    className="
+                        ml-3
+                        flex
+                        items-center
+                        border-l
+                        border-[var(--border)]
+                        pl-12
+                    "
+                />
+            ) : isAuthenticated ? (
                 <ProfileMenu />
             ) : (
                 <div

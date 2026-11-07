@@ -78,3 +78,17 @@ test('unconfirmed profiles never expose an application token', () => {
     hook.change({ ...account, user: { email: 'same@example.invalid' } });
     expect(hook.result.current.token).toBeNull();
 });
+
+test('refresh preserves drafts and pending tickets while a different session clears them', () => {
+    const token = (sid, exp) => `header.${btoa(JSON.stringify({ sid, exp }))}.signature`;
+    const hook = mount();
+    hook.change({ ...account, token: token('session-one', 100) });
+    act(() => hook.result.current.field('draft')('keep while renewing'));
+    const ticket = hook.result.current.capture();
+    hook.change({ ...account, token: token('session-one', 200) });
+    expect(hook.result.current.state.draft).toBe('keep while renewing');
+    expect(hook.result.current.isCurrent(ticket)).toBe(true);
+    hook.change({ ...account, token: token('session-two', 200) });
+    expect(hook.result.current.state.draft).toBe('');
+    expect(hook.result.current.isCurrent(ticket)).toBe(false);
+});

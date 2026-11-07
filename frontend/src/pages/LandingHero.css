@@ -1,0 +1,147 @@
+/* Hero-only typography. Fonts are self-hosted; no new runtime dependency. */
+@font-face {
+    font-family: "Gnosis Hero Cormorant";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/hero/cormorant-garamond-latin-600.woff2") format("woff2");
+}
+/* Match fallback word widths so loading the display face does not rewrap
+   the two desktop lines and push the following section. */
+@font-face {
+    font-family: "Gnosis Hero Georgia Fallback";
+    src: local("Georgia Bold"), local("Georgia");
+    font-weight: 600;
+    size-adjust: 76.87%;
+}
+@font-face {
+    font-family: "Gnosis Hero Times Fallback";
+    src: local("Times New Roman Bold"), local("Times New Roman");
+    font-weight: 600;
+    size-adjust: 92.49%;
+}
+@font-face {
+    font-family: "Gnosis Hero Inter";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("/fonts/hero/inter-latin-variable.woff2") format("woff2");
+}
+.landing-hero {
+    --hero-ivory: #fff9ed;
+    --hero-gold: #e4c990;
+    --hero-green: #233e34;
+    --hero-green-hover: #192f27;
+}
+.landing-hero-copy { font-family: "Gnosis Hero Inter", var(--public-font-ui); }
+.landing-hero-copy .public-eyebrow {
+    color: #796039;
+    font-size: .68rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+[data-theme="dark"] .landing-hero-copy .public-eyebrow { color: var(--hero-gold); }
+.landing-hero-copy h1 {
+    font-family: "Gnosis Hero Cormorant", "Gnosis Hero Georgia Fallback", "Gnosis Hero Times Fallback", serif;
+    font-size: clamp(3.2rem, 6.2vw, 5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -.025em;
+    max-width: 720px;
+    margin-bottom: 24px;
+    text-wrap: initial;
+}
+.landing-hero-copy h1 span { display: block; }
+.landing-hero-copy > p:not(.public-eyebrow) {
+    font-size: clamp(1rem, 1.25vw, 1.12rem);
+    font-weight: 400;
+    line-height: 1.8;
+    max-width: 48ch;
+    margin-bottom: 30px;
+}
+.landing-hero-ctas { gap: 14px; align-items: flex-start; }
+.landing-hero-ctas .landing-btn {
+    font-family: "Gnosis Hero Inter", var(--public-font-ui);
+    font-size: .86rem;
+    font-weight: 500;
+    min-height: 54px;
+    padding: 14px 24px;
+    border-radius: 6px;
+    letter-spacing: .005em;
+}
+.landing-hero-ctas .landing-continue {
+    flex-direction: column; gap: 2px; padding: 10px 18px;
+    text-align: center; min-width: 0;
+}
+.landing-continue-title { font-size: .9rem; font-weight: 600; line-height: 1.4; }
+.landing-continue-subtitle { font-size: .72rem; font-weight: 400; line-height: 1.45; color: #e0e8da; overflow-wrap: anywhere; }
+.landing-continue-location { display: inline-block; max-width: 100%; vertical-align: top; }
+.landing-hero-ctas .landing-btn-primary { background: var(--hero-green); color: var(--hero-ivory); border-color: #8d9a8a; }
+.landing-hero-ctas .landing-btn-primary:hover { background: var(--hero-green-hover); color: var(--hero-ivory); }
+.landing-hero-ctas .landing-btn-secondary { border-color: var(--public-border); }
+.landing-page { position: relative; }
+.landing-hero-media { overflow: hidden; overflow: clip; }
+@media (min-width: 1200px) {
+    .landing-hero-copy { padding-block: 112px 140px; color: var(--hero-ivory); }
+    .landing-hero-copy h1 { max-width: 580px; font-size: clamp(4.5rem, 5.4vw, 5rem); }
+    .landing-hero-copy > p:not(.public-eyebrow) { max-width: 470px; }
+    .landing-hero-copy .public-eyebrow { color: var(--hero-gold); }
+    .landing-hero-ctas .landing-btn-secondary { color: var(--hero-ivory); border-color: #fff9ed99; background: #20171026; }
+    .landing-hero-ctas .landing-btn-secondary:hover { background: #20171070; }
+    .landing-hero-scrim { background: linear-gradient(90deg, #171a15cf, #211c15a1 34%, #211c1533 56%, transparent 74%); }
+}
+/* The image fills a content-sized stage, including short screens and zoom.
+   At desktop sizes the approved layout above remains unchanged. */
+@media (width < 1200px) {
+    .landing-page .landing-hero-media { position: absolute; inset: 0; }
+    .landing-page .landing-hero-img { height: 100%; object-position: 65% bottom; }
+    .landing-page .landing-hero-scrim {
+        display: block; position: absolute; inset: 0; z-index: 1;
+        background: linear-gradient(90deg, #171a15c4, #211c159e 42%, #211c154d 75%);
+        pointer-events: none;
+    }
+    .landing-page .landing-hero {
+        position: relative; z-index: 2;
+        display: grid; align-items: center;
+        min-height: min(100svh, clamp(32rem, 56.25vw, 42.1875rem));
+        margin-top: 0;
+    }
+    .landing-page .landing-hero-copy {
+        padding: clamp(6.5rem, 14svh, 8rem) clamp(1.5rem, 5vw, 3.75rem) clamp(2rem, 7svh, 4rem);
+        color: var(--hero-ivory);
+    }
+    .landing-page .landing-hero-copy h1 {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        max-width: 42rem;
+        margin-bottom: clamp(1.25rem, 3vw, 1.5rem);
+    }
+    .landing-page .landing-hero-copy .public-eyebrow { color: var(--hero-gold); }
+    .landing-page .landing-hero-copy > p:not(.public-eyebrow) {
+        max-width: 44ch;
+        font-size: clamp(.95rem, 1.5vw, 1.08rem);
+        margin-bottom: clamp(1.5rem, 3vw, 1.875rem);
+    }
+    .landing-page .landing-hero-ctas .landing-btn-secondary {
+        color: var(--hero-ivory); border-color: #fff9ed99; background: #20171026;
+    }
+    .landing-page .landing-hero-ctas .landing-btn-secondary:hover { background: #20171070; }
+}
+@media (width < 1000px) {
+    .landing-page .landing-hero-copy { text-align: center; }
+    .landing-page .landing-hero-copy h1,
+    .landing-page .landing-hero-copy > p:not(.public-eyebrow) { margin-inline: auto; }
+    .landing-page .landing-hero-ctas { justify-content: center; }
+    .landing-page .landing-hero-scrim {
+        background: linear-gradient(180deg, #171a1540, #171a1599 30%, #171a15a6 70%, #171a1566);
+    }
+}
+@media (width < 768px) {
+    .landing-page .landing-hero-copy .public-eyebrow { font-size: .6rem; letter-spacing: .14em; }
+    .landing-page .landing-hero-ctas {
+        display: grid; grid-template-columns: 1fr;
+        max-width: 22rem; margin-inline: auto;
+    }
+    .landing-page .landing-hero-ctas .landing-btn { width: 100%; }
+}

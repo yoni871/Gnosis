@@ -46,7 +46,23 @@ function createResendClient({ fetchImpl = globalThis.fetch, baseUrl: injectedBas
                 throw new Error("Email configuration is invalid.");
             }
             const { config } = result;
+            if (env.EMAIL_DELIVERY === 'disabled') {
+                throw new Error('Email delivery is disabled for local reader testing.');
+            }
             const verificationLink = buildVerificationLink(config.frontendUrl, token);
+            if (env.EMAIL_DELIVERY === 'mailpit') {
+                // Fixed loopback destination, no credentials, no relay and no token logging.
+                // Validation above forbids this mode outside explicit local development.
+                const response = await fetchImpl('http://127.0.0.1:8025/api/v1/send', {
+                    method:'POST', headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({From:{Email:'gnosis@example.invalid',Name:'Gnosis Local'},
+                        To:[{Email:to}],Subject:'Verify your Gnosis account',
+                        Text:`Confirm your local Gnosis account: ${verificationLink}`}),
+                    signal:AbortSignal.timeout(RESEND_TIMEOUT_MS),
+                });
+                if(!response.ok) throw new Error('Local mailbox delivery failed.');
+                return {};
+            }
             const response = await fetchImpl(`${baseUrl}/emails`, {
                 method: "POST",
                 headers: {

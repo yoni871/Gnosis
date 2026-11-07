@@ -1,0 +1,559 @@
+{
+  "book": "Ecclesiastes",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "Preacher, (e-5) Strictly, 'a former of assemblies;' see for the sense, though not the same expression, ch. 12.11."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 11,
+      "end_chapter": 1,
+      "end_verse": 11,
+      "title": "",
+      "content": "live (a-23) Lit. 'be.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 13,
+      "end_chapter": 1,
+      "end_verse": 13,
+      "title": "",
+      "content": "men (b-31) Or 'sons of the Adam;' often in this book. The Adam is also frequent. see Gen. 1.27."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 14,
+      "end_chapter": 1,
+      "end_verse": 14,
+      "title": "",
+      "content": "wind. (c-22) Or 'feeding upon wind;' 'vexation of spirit.' but see ver. 17, and ch. 2.22."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 1,
+      "end_chapter": 2,
+      "end_verse": 1,
+      "title": "",
+      "content": "enjoy (d-15) Lit. 'see.' so ver. 24; chs. 3.13; 6.6, &c"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 3,
+      "end_chapter": 2,
+      "end_verse": 3,
+      "title": "",
+      "content": "men (b-38) Or 'sons of the Adam;' often in this book. The Adam is also frequent. see Gen. 1.27. practising (e-14) Or 'exercising.' all (f-46) Lit. 'the number of.' so chs. 5.18; 6.12."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 8,
+      "end_chapter": 2,
+      "end_verse": 8,
+      "title": "",
+      "content": "men, (b-31) Or 'sons of the Adam;' often in this book. The Adam is also frequent. see Gen. 1.27."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 11,
+      "end_chapter": 2,
+      "end_verse": 11,
+      "title": "",
+      "content": "me (g-21) Lit 'that I had laboured,' as vers. 19,20."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 14,
+      "end_chapter": 2,
+      "end_verse": 14,
+      "title": "",
+      "content": "fool (a-11) Kesil, and so generally in this Book, in which Eveel is not used. see Prov. 1.7; 18.2; 26.1; 28.26."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 15,
+      "end_chapter": 2,
+      "end_verse": 15,
+      "title": "",
+      "content": "fool (a-12) Kesil, and so generally in this Book, in which Eveel is not used. see Prov. 1.7; 18.2; 26.1; 28.26. so (b-25) Or 'more.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 19,
+      "end_chapter": 2,
+      "end_verse": 19,
+      "title": "",
+      "content": "fool? (c-13) Sakal, 'stupid,' 'infatuated.' so chs. 7.17; 10.3,14; Jer. 4.22; 5.21. as 'foolishly,' 1Sam. 13.13."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 21,
+      "end_chapter": 2,
+      "end_verse": 21,
+      "title": "",
+      "content": "skill, (d-17) Or 'equity,' 'success,' ch. 4.4, 'profit,' ch. 5.11."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 24,
+      "end_chapter": 2,
+      "end_verse": 24,
+      "title": "",
+      "content": "enjoy (e-21) Lit. 'see,' as ver. 1."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 25,
+      "end_chapter": 2,
+      "end_verse": 25,
+      "title": "",
+      "content": "eager, (f-8) Lit. 'hasten.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 1,
+      "end_chapter": 3,
+      "end_verse": 1,
+      "title": "",
+      "content": "purpose (g-12) Lit. 'pleasure,' 'occupation.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 9,
+      "end_chapter": 3,
+      "end_verse": 9,
+      "title": "",
+      "content": "laboureth? (a-11) Or 'from the labour with which he worries himself.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 11,
+      "end_chapter": 3,
+      "end_verse": 11,
+      "title": "",
+      "content": "world (b-14) i.e. 'the age;' others 'the infinite,' 'the eternal.' Olam."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 13,
+      "end_chapter": 3,
+      "end_verse": 13,
+      "title": "",
+      "content": "enjoy (c-11) Lit. 'see.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 15,
+      "end_chapter": 3,
+      "end_verse": 15,
+      "title": "",
+      "content": "past. (d-24) Lit. 'seeketh what is driven away.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 17,
+      "end_chapter": 3,
+      "end_verse": 17,
+      "title": "",
+      "content": "there (e-19) Many read 'for he has assigned a time.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 19,
+      "end_chapter": 3,
+      "end_verse": 19,
+      "title": "",
+      "content": "breath; (f-28) 'Breath' and 'spirit' are the same word in Hebrew."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 21,
+      "end_chapter": 3,
+      "end_verse": 21,
+      "title": "",
+      "content": "spirit (f-4) 'Breath' and 'spirit' are the same word in Hebrew. go (g-12) go (g-22) Or 'that goeth.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 3,
+      "end_chapter": 4,
+      "end_verse": 3,
+      "title": "",
+      "content": "fortunate (h-3) Or 'better.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 4,
+      "end_chapter": 4,
+      "end_verse": 4,
+      "title": "",
+      "content": "success (i-8) Or 'skilfulness,' as ch. 2.21."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 6,
+      "end_chapter": 4,
+      "end_verse": 6,
+      "title": "",
+      "content": "with (k-5) Or 'of.' with (a-11) Or 'of.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 8,
+      "end_chapter": 4,
+      "end_verse": 8,
+      "title": "",
+      "content": "occupation. (b-55) Or 'travail,' as ch. 3.10."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 16,
+      "end_chapter": 4,
+      "end_verse": 16,
+      "title": "",
+      "content": "them; (c-14) Or 'before whom he (i.e. the king) stood.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 3,
+      "end_chapter": 5,
+      "end_verse": 3,
+      "title": "",
+      "content": "business, (b-9) Or 'travail,' as ch. 3.10."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 6,
+      "end_chapter": 5,
+      "end_verse": 6,
+      "title": "",
+      "content": "angel, (d-16) Or 'messenger.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 9,
+      "end_chapter": 5,
+      "end_verse": 9,
+      "title": "",
+      "content": "upon (e-13) Lit. 'enslaved to.' Others understand it thus. 'The profit of the land in all respects is a king addicted to agriculture.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 17,
+      "end_chapter": 5,
+      "end_verse": 17,
+      "title": "",
+      "content": "sickness, (a-14) Lit. 'his sickness.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 18,
+      "end_chapter": 5,
+      "end_verse": 18,
+      "title": "",
+      "content": "enjoy (b-18) Lit 'see,' as ch. 2.1."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 1,
+      "end_chapter": 6,
+      "end_verse": 1,
+      "title": "",
+      "content": "among (c-16) Or 'it is great upon men (the Adam).'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 2,
+      "end_chapter": 6,
+      "end_verse": 2,
+      "title": "",
+      "content": "stranger (d-33) Or 'an alien.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 6,
+      "end_chapter": 6,
+      "end_verse": 6,
+      "title": "",
+      "content": "not (e-16) Or 'years, and hath seen no good, do not.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 7,
+      "end_chapter": 6,
+      "end_verse": 7,
+      "title": "",
+      "content": "appetite (f-13) Lit. 'soul.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 8,
+      "end_chapter": 6,
+      "end_verse": 8,
+      "title": "",
+      "content": "poor, (g-13) Or 'afflicted.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 9,
+      "end_chapter": 6,
+      "end_verse": 9,
+      "title": "",
+      "content": "desire. (f-13) Lit. 'soul.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 1,
+      "end_chapter": 7,
+      "end_verse": 1,
+      "title": "",
+      "content": "ointment, (h-8) Or '[perfumed] oil,' as Prov. 27.9; so ch. 10.1."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 11,
+      "end_chapter": 7,
+      "end_verse": 11,
+      "title": "",
+      "content": "as (a-5) Lit. 'is good with.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 12,
+      "end_chapter": 7,
+      "end_verse": 12,
+      "title": "",
+      "content": "defence; (b-10) Lit. '[one is] in the shadow of wisdom [as] in the shadow of money.' see Ps. 91.1."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 14,
+      "end_chapter": 7,
+      "end_verse": 14,
+      "title": "",
+      "content": "good, (c-7) Or 'be in prosperity.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 15,
+      "end_chapter": 7,
+      "end_verse": 15,
+      "title": "",
+      "content": "by (d-19) by (d-32) Or 'in.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 17,
+      "end_chapter": 7,
+      "end_verse": 17,
+      "title": "",
+      "content": "foolish. (e-8) As ch. 2.19."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 24,
+      "end_chapter": 7,
+      "end_verse": 24,
+      "title": "",
+      "content": "who (f-10) Or 'That which is far off and very deep, who.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 25,
+      "end_chapter": 7,
+      "end_verse": 25,
+      "title": "",
+      "content": "reason, (g-18) Or 'thought.' translated 'device' in ch. 9.10. madness; (h-30) Or 'the wickedness of folly, and the foolishness of madness.'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 5,
+      "end_chapter": 8,
+      "end_verse": 5,
+      "title": "",
+      "content": "manner. (a-18) Or 'judgment.'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 6,
+      "end_chapter": 8,
+      "end_verse": 6,
+      "title": "",
+      "content": "manner. (a-9) Or 'judgment.'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 11,
+      "end_chapter": 8,
+      "end_verse": 11,
+      "title": "",
+      "content": "set (b-21) Lit. 'is full.'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 13,
+      "end_chapter": 8,
+      "end_verse": 13,
+      "title": "",
+      "content": "shadow, (c-18) Ps. 102.11; 109.23."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 16,
+      "end_chapter": 8,
+      "end_verse": 16,
+      "title": "",
+      "content": "business (d-13) Or 'travail,' as ch. 2.23."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 17,
+      "end_chapter": 8,
+      "end_verse": 17,
+      "title": "",
+      "content": "that (e-12) Lit. 'I saw all the work of God, that.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 7,
+      "end_chapter": 9,
+      "end_verse": 7,
+      "title": "",
+      "content": "merry (a-13) Lit. 'good.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 9,
+      "end_chapter": 9,
+      "end_verse": 9,
+      "title": "",
+      "content": "Enjoy (b-1) Lit. 'see.' which (c-18) Or 'whom.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 1,
+      "end_chapter": 10,
+      "end_verse": 1,
+      "title": "",
+      "content": "honour. (d-22) Or '[so doth] a little folly [for] him who is esteemed for wisdom and honour.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 3,
+      "end_chapter": 10,
+      "end_verse": 3,
+      "title": "",
+      "content": "sense (a-14) 'Heart ' as often in Proverbs. see Prov. 15.21. to (b-20) Or 'of.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 4,
+      "end_chapter": 10,
+      "end_verse": 4,
+      "title": "",
+      "content": "offences. (c-19) Or 'gentleness allayeth great sins.' see Prov. 15.4."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 7,
+      "end_chapter": 10,
+      "end_verse": 7,
+      "title": "",
+      "content": "servants (d-4) servants (d-11) Or 'bondmen.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 9,
+      "end_chapter": 10,
+      "end_verse": 9,
+      "title": "",
+      "content": "endangered (e-12) Or 'wounded.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 11,
+      "end_chapter": 10,
+      "end_verse": 11,
+      "title": "",
+      "content": "before (f-5) Lit. 'without.' advantage. (g-12) Or 'he who hath a tongue is no better;' the word for 'charmer here is lit. 'master of the tongue.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 13,
+      "end_chapter": 10,
+      "end_verse": 13,
+      "title": "",
+      "content": "talk (h-16) Lit. 'mouth.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 16,
+      "end_chapter": 10,
+      "end_verse": 16,
+      "title": "",
+      "content": "child, (i-11) Or 'youth.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 18,
+      "end_chapter": 10,
+      "end_verse": 18,
+      "title": "",
+      "content": "fulness (k-4) Lit. 'By double slothfulness.' it is the dual. framework (l-6) Or 'the building.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 5,
+      "end_chapter": 11,
+      "end_verse": 5,
+      "title": "",
+      "content": "spirit, (m-11) Or 'the wind.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 10,
+      "end_chapter": 11,
+      "end_verse": 10,
+      "title": "",
+      "content": "youth (a-17) Or 'the prime of life.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 1,
+      "end_chapter": 12,
+      "end_verse": 1,
+      "title": "",
+      "content": "Creator (b-4) 'Creator' is in the plural."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 5,
+      "end_chapter": 12,
+      "end_verse": 5,
+      "title": "",
+      "content": "despised, (c-19) Or 'the almond-tree flourisheth,' referring to white hairs. effect; (d-31) Others, 'bursteth.' Or it may be rendered, 'and desire hath failed.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 7,
+      "end_chapter": 12,
+      "end_verse": 7,
+      "title": "",
+      "content": "spirit (e-13) See Note, Job 27.3."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 11,
+      "end_chapter": 12,
+      "end_verse": 11,
+      "title": "",
+      "content": "them] (f-13) According to others, 'those who collect [them].'"
+    }
+  ]
+}

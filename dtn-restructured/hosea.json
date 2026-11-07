@@ -1,0 +1,647 @@
+{
+  "book": "Hosea",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "(f-0) (The title of this book, 'Hosea'), Strictly 'Hoshea,' meaning, 'Deliverance.' see Num. 13.16."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 4,
+      "end_chapter": 1,
+      "end_verse": 4,
+      "title": "",
+      "content": "Jizreel; (a-9) Meaning, 'God soweth,' or 'will sow,' ch. 2.23. blood (b-19) Or 'bloodguiltiness.' it is the plural, expressive of bloodshed; so ch. 12.14."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 6,
+      "end_chapter": 1,
+      "end_verse": 6,
+      "title": "",
+      "content": "Lo-ruhamah; (c-17) Meaning, 'Not having obtained mercy.' them. (d-35) Or 'for I will utterly take them away.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 9,
+      "end_chapter": 1,
+      "end_verse": 9,
+      "title": "",
+      "content": "Lo-ammi; (e-7) Meaning, 'Not my people.' you. (f-20) Or 'not be yours.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 1,
+      "end_chapter": 2,
+      "end_verse": 1,
+      "title": "",
+      "content": "Ammi; (g-5) Ruhamah. (g-10) Meaning respectively, 'My people,' and 'Having obtained mercy.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 2,
+      "end_chapter": 2,
+      "end_verse": 2,
+      "title": "",
+      "content": "wife, (h-11) husband. (h-16) Ishshah; Ish, as vers. 7 and 16. see Gen. 2.23."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 6,
+      "end_chapter": 2,
+      "end_verse": 6,
+      "title": "",
+      "content": "wall, (i-19) Cf. Isa. 5.5."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 8,
+      "end_chapter": 2,
+      "end_verse": 8,
+      "title": "",
+      "content": "Baal. (a-33) Others, 'made into a Baal.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 10,
+      "end_chapter": 2,
+      "end_verse": 10,
+      "title": "",
+      "content": "impiety (b-7) Or 'villainy,' 'folly.' see Judg. 19.23, &c.; Isa. 9.17."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 13,
+      "end_chapter": 2,
+      "end_verse": 13,
+      "title": "",
+      "content": "jewels, (c-25) Or 'necklace.' saith (d-34) See Note a, Isa. 1.24."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 14,
+      "end_chapter": 2,
+      "end_verse": 14,
+      "title": "",
+      "content": "heart. (e-17) See Isa. 40.2. &c."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 15,
+      "end_chapter": 2,
+      "end_verse": 15,
+      "title": "",
+      "content": "sing (f-23) Or 'answer,' 'respond,' as Ex. 32.18; Num. 21.17; 1Sam. 18.7. youth (g-31) See Jer. 2.2; Ezek. 16.60."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 16,
+      "end_chapter": 2,
+      "end_verse": 16,
+      "title": "",
+      "content": "husband, (h-16) Ish, as vers. 2 and 7. Baali; (i-23) 'My master,' or 'lord,' used also for 'husband,' Isa. 54.5."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 19,
+      "end_chapter": 2,
+      "end_verse": 19,
+      "title": "",
+      "content": "judgment, (k-21) Or 'justice.' loving-kindness, (l-24) Chesed, 'piety,' 'goodness.' chs. 4.1; 6.4,6; 10.12; 12.6; 2Chron. 6.42."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 22,
+      "end_chapter": 2,
+      "end_verse": 22,
+      "title": "",
+      "content": "Jizreel. (m-19) See ch. 1.4,11."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 1,
+      "end_chapter": 3,
+      "end_verse": 1,
+      "title": "",
+      "content": "friend, (n-14) See Jer. 3.20."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 2,
+      "end_chapter": 3,
+      "end_verse": 2,
+      "title": "",
+      "content": "half-homer (o-19) * Half-homer is lethec = 15 seahs. A seah is about a peck. see Ex. 16.36; 1Kings 18.32."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 4,
+      "end_chapter": 3,
+      "end_verse": 4,
+      "title": "",
+      "content": "statue, (a-20) Or 'pillar,' 'column,' as 1Kings 14.23; Isa. 19.19, &c."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 1,
+      "end_chapter": 4,
+      "end_verse": 1,
+      "title": "",
+      "content": "goodness, (b-27) Or 'loving-kindness,' see Note l, ch. 2.19."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 6,
+      "end_chapter": 4,
+      "end_verse": 6,
+      "title": "",
+      "content": "knowledge; (c-8) knowledge, (c-13) * Lit. 'the knowledge,' see ver. 1."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 13,
+      "end_chapter": 4,
+      "end_verse": 13,
+      "title": "",
+      "content": "daughters-in-law (d-35) Or 'brides,' as Jer. 2.32."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 14,
+      "end_chapter": 4,
+      "end_verse": 14,
+      "title": "",
+      "content": "daughters-in-law (d-14) Or 'brides,' as Jer. 2.32. ruin. (e-41) Or 'shall fall,' as Prov. 10.8,10."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 15,
+      "end_chapter": 4,
+      "end_verse": 15,
+      "title": "",
+      "content": "Beth-aven, (f-21) Meaning, 'House of idols,' or 'of iniquity' -- irony for Beth-El, 'House of God.' see Amos 5.5."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 18,
+      "end_chapter": 4,
+      "end_verse": 18,
+      "title": "",
+      "content": "sour; (g-4) Or 'their orgies are vile.' men (a-13) Lit. 'shields,' see Ps. 47.9."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 1,
+      "end_chapter": 5,
+      "end_verse": 1,
+      "title": "",
+      "content": "for (b-23) Or 'against.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 2,
+      "end_chapter": 5,
+      "end_verse": 2,
+      "title": "",
+      "content": "apostasy, (c-10) Or '[with] sacrifices do they go far (or deeply) in revolt.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 4,
+      "end_chapter": 5,
+      "end_verse": 4,
+      "title": "",
+      "content": "to (d-7) Or 'they do not frame their doings to.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 7,
+      "end_chapter": 5,
+      "end_verse": 7,
+      "title": "",
+      "content": "moon (e-17) Or 'a month.' possessions. (f-23) Or 'portions.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 8,
+      "end_chapter": 5,
+      "end_verse": 8,
+      "title": "",
+      "content": "aloud (g-11) Or 'sound an alarm,' as Joel 2.1."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 11,
+      "end_chapter": 5,
+      "end_verse": 11,
+      "title": "",
+      "content": "man]. (h-16) Or '[of the king].'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 13,
+      "end_chapter": 5,
+      "end_verse": 13,
+      "title": "",
+      "content": "Jareb; (i-20) Meaning, 'he will contend;' and so ch. 10.6."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 14,
+      "end_chapter": 5,
+      "end_verse": 14,
+      "title": "",
+      "content": "lion, (k-9) Or 'fierce lion,' as ch. 13.7; Job 4.10."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 15,
+      "end_chapter": 5,
+      "end_verse": 15,
+      "title": "",
+      "content": "trespass, (l-15) Or 'guilt,' asham. see Note b, Lev. 5.1. early. (m-27) Or 'earnestly.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 4,
+      "end_chapter": 6,
+      "end_verse": 4,
+      "title": "",
+      "content": "goodness (n-17) Chesed, see ch. 2.19."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 5,
+      "end_chapter": 6,
+      "end_verse": 5,
+      "title": "",
+      "content": "light. (a-26) Or 'and thy judgments are [as] a light that goeth forth '"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 6,
+      "end_chapter": 6,
+      "end_verse": 6,
+      "title": "",
+      "content": "loving-kindness, (b-5) Chesed, 'goodness.' see ver. 4."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 8,
+      "end_chapter": 6,
+      "end_verse": 8,
+      "title": "",
+      "content": "blood. (c-14) Or 'full of bloodmarks.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 11,
+      "end_chapter": 7,
+      "end_verse": 11,
+      "title": "",
+      "content": "understanding. (d-10) Lit 'heart,' 1Kings 3.12."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 13,
+      "end_chapter": 7,
+      "end_verse": 13,
+      "title": "",
+      "content": "speak (e-26) Or 'I redeemed them, but they have spoken. ...'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 1,
+      "end_chapter": 8,
+      "end_verse": 1,
+      "title": "",
+      "content": "trumpet (a-3) Or 'horn,' as ch. 5.8."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 5,
+      "end_chapter": 8,
+      "end_verse": 5,
+      "title": "",
+      "content": "off; (b-8) Or 'He has cast off thy calf, O Samaria.' purity? (c-22) As 'innocency,' Gen. 20.5; Ps. 26.6."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 10,
+      "end_chapter": 8,
+      "end_verse": 10,
+      "title": "",
+      "content": "under (d-19) Or 'they shall be set free a little from.' princes. (e-26) Isa. 10.8."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 11,
+      "end_chapter": 8,
+      "end_verse": 11,
+      "title": "",
+      "content": "sin. (f-14) Or 'for sin,' or 'for sinning.'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 14,
+      "end_chapter": 8,
+      "end_verse": 14,
+      "title": "",
+      "content": "temples; (g-9) Or 'palaces.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 2,
+      "end_chapter": 9,
+      "end_verse": 2,
+      "title": "",
+      "content": "fail (h-15) Lit. 'deceive.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 4,
+      "end_chapter": 9,
+      "end_verse": 4,
+      "title": "",
+      "content": "themselves; (i-42) Lit. 'their soul' (i.e. appetite)."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 6,
+      "end_chapter": 9,
+      "end_verse": 6,
+      "title": "",
+      "content": "Moph (k-15) Noph (Memphis)."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 8,
+      "end_chapter": 9,
+      "end_verse": 8,
+      "title": "",
+      "content": "God? (a-7) Or 'Ephraim is on the watch [looking to others] besides my God.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 9,
+      "end_chapter": 9,
+      "end_verse": 9,
+      "title": "",
+      "content": "Gibeah. (b-11) Judg. 19.15."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 10,
+      "end_chapter": 9,
+      "end_verse": 10,
+      "title": "",
+      "content": "first-ripe (c-10) As Lev. 2.14. see Note b, Lev. 2.12."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 13,
+      "end_chapter": 9,
+      "end_verse": 13,
+      "title": "",
+      "content": "planted (d-9) Or 'as I see him, as far as Tyre, was planted.' place; (e-13) A 'pasturage' or 'habitation.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 15,
+      "end_chapter": 9,
+      "end_verse": 15,
+      "title": "",
+      "content": "rebellious. (f-37) Or 'refractory,' as ch. 4.16, 'refractory' and 'untractable.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 1,
+      "end_chapter": 10,
+      "end_verse": 1,
+      "title": "",
+      "content": "himself. (g-11) Or 'fruit according to what he is.' statues. (h-34) See Note, ch. 3.4."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 2,
+      "end_chapter": 10,
+      "end_verse": 2,
+      "title": "",
+      "content": "statues. (h-21) See Note, ch. 3.4."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 3,
+      "end_chapter": 10,
+      "end_verse": 3,
+      "title": "",
+      "content": "for (i-22) Or 'to.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 4,
+      "end_chapter": 10,
+      "end_verse": 4,
+      "title": "",
+      "content": "covenant; (k-10) Or 'they pronounce words, they swear falsely, they make a covenant.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 5,
+      "end_chapter": 10,
+      "end_verse": 5,
+      "title": "",
+      "content": "calf (l-10) Or 'the calves,' (fem.). see Note, ch. 14.2. priests (m-24) See 2Kings 23.5."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 6,
+      "end_chapter": 10,
+      "end_verse": 6,
+      "title": "",
+      "content": "Jareb. (n-13) See ch. 5.13."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 7,
+      "end_chapter": 10,
+      "end_verse": 7,
+      "title": "",
+      "content": "chips (o-10) Others, 'foam.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 9,
+      "end_chapter": 10,
+      "end_verse": 9,
+      "title": "",
+      "content": "From (a-1) Or 'More than in.' see ch. 9.9."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 10,
+      "end_chapter": 10,
+      "end_verse": 10,
+      "title": "",
+      "content": "iniquities. (b-23) See Jer. 2.13 and 1Kings 12.28."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 13,
+      "end_chapter": 10,
+      "end_verse": 13,
+      "title": "",
+      "content": "iniquity, (c-6) Elsewhere rendered 'unrighteousness' or 'wrong.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 2,
+      "end_chapter": 11,
+      "end_verse": 2,
+      "title": "",
+      "content": "called (d-3) See ver. 7, i.e. the prophets called."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 6,
+      "end_chapter": 11,
+      "end_verse": 6,
+      "title": "",
+      "content": "bars, (e-14) Or 'branches.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 8,
+      "end_chapter": 11,
+      "end_verse": 8,
+      "title": "",
+      "content": "over, (f-6) Or 'What shall I do with thee?'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 9,
+      "end_chapter": 11,
+      "end_verse": 9,
+      "title": "",
+      "content": "anger. (g-38) Some translate 'come into the city.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 10,
+      "end_chapter": 11,
+      "end_verse": 10,
+      "title": "",
+      "content": "hasten (h-20) Or 'come trembling.' west. (i-23) Or 'the sea.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 11,
+      "end_chapter": 11,
+      "end_verse": 11,
+      "title": "",
+      "content": "hasten (h-3) Or 'come trembling.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 12,
+      "end_chapter": 11,
+      "end_verse": 12,
+      "title": "",
+      "content": "(k-0) Ch. 12 in the Hebrew commences here. truth. (l-26) According to others, 'And Judah is yet unsteadfast as regards God and the true Holy One.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 5,
+      "end_chapter": 12,
+      "end_verse": 5,
+      "title": "",
+      "content": "memorial. (a-12) See Ex. 3.15."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 6,
+      "end_chapter": 12,
+      "end_verse": 6,
+      "title": "",
+      "content": "loving-kindness (b-8) Or 'goodness.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 7,
+      "end_chapter": 12,
+      "end_verse": 7,
+      "title": "",
+      "content": "merchant, (c-4) Lit. 'Canaan [is he];' see Ezek. 17.4. oppress. (d-15) Or 'to defraud.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 11,
+      "end_chapter": 12,
+      "end_verse": 11,
+      "title": "",
+      "content": "vanity. (e-9) Or 'Is Gilead iniquity? They are altogether vanity.'"
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 12,
+      "end_chapter": 12,
+      "end_verse": 12,
+      "title": "",
+      "content": "Syria, (f-8) Or 'fields,' or 'open country' of Aram.' see Gen. 28.2."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 13,
+      "end_chapter": 12,
+      "end_verse": 13,
+      "title": "",
+      "content": "preserved. (g-17) Or 'kept,' as ver. 12."
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 2,
+      "end_chapter": 13,
+      "end_verse": 2,
+      "title": "",
+      "content": "more, (h-7) See Note b, Judg. 10.6. understanding, (i-22) Or 'skilfulness.'"
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 7,
+      "end_chapter": 13,
+      "end_verse": 7,
+      "title": "",
+      "content": "lion; (k-9) Or 'fierce lion,' as ch. 5.14."
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 14,
+      "end_chapter": 13,
+      "end_verse": 14,
+      "title": "",
+      "content": "thy (a-20) thy (a-26) Or 'I will be ... thy.' plagues? (b-21) Others read, 'sting.'"
+    },
+    {
+      "start_chapter": 13,
+      "start_verse": 16,
+      "end_chapter": 13,
+      "end_verse": 16,
+      "title": "",
+      "content": "(c-0) Ch. 14 in the Hebrew commences here. guilt; (d-5) Or 'become desolate.'"
+    },
+    {
+      "start_chapter": 14,
+      "start_verse": 2,
+      "end_chapter": 14,
+      "end_verse": 2,
+      "title": "",
+      "content": "graciously; (e-18) Or 'receive what is good.' calves (f-24) Or 'young bullocks,' as Lev. 4.3; Num. 8.8; ch. 13.2. 'Calf' and 'heifer' in ch. 10.5,11, is a different and feminine word."
+    }
+  ]
+}

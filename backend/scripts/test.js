@@ -27,13 +27,22 @@ function testEnvironment() {
 
 if (require.main === module) {
     const result = spawnSync(process.execPath, ['--test',
-        'test/auth/authErrors.test.js', 'test/auth/authRoutes.test.js',
+        'test/auth/authErrors.test.js', 'test/auth/sessions.test.js', 'test/auth/authRoutes.test.js',
         'test/auth/authValidation.test.js', 'test/auth/rateLimit.test.js',
         'test/auth/emailConfig.test.js', 'test/auth/verification.test.js',
         'test/auth/resendClient.test.js', 'test/auth/emailVerification.test.js',
         'test/auth/passwordReset.test.js', 'test/auth/passwordResetRoutes.test.js',
         'test/auth/serverConfig.test.js', 'test/config/environment.test.js',
-        'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js'], {
+        'test/config/localDevelopment.test.js', 'test/local/catalog.test.js',
+        'test/local/language-download.test.js',
+        'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js',
+        'test/translations/licensedProviders.test.js',
+        'test/translations/licensedService.test.js',
+        'test/application/readingState.test.js',
+        'test/application/searchPagination.test.js',
+        'test/application/cacheHeaders.test.js',
+        'test/importer/originalLanguage.test.js',
+        'test/application/originalLanguage.test.js'], {
         cwd: path.resolve(__dirname, '..'), env: testEnvironment(), stdio: 'inherit',
     });
     process.exitCode = result.status ?? 1;

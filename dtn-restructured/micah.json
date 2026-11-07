@@ -1,0 +1,359 @@
+{
+  "book": "Micah",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "(b-0) (The title of this Book, 'Micah'), Meaning, Who is like Jah? see ch. 7.18; Ps. 68.4."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 8,
+      "end_chapter": 1,
+      "end_verse": 8,
+      "title": "",
+      "content": "stripped (a-13) Or 'barefooted.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 10,
+      "end_chapter": 1,
+      "end_verse": 10,
+      "title": "",
+      "content": "all; (b-9) Or 'in Acco (i.e. 'weeping') weep not.' Vers. 10-15 are made up of paranomasia, see Isa. 5.7 Beth-le-aphrah (c-11) House of dust."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 11,
+      "end_chapter": 1,
+      "end_verse": 11,
+      "title": "",
+      "content": "Shaphir, (d-5) Beautiful town. Zaanan (e-13) Coming forth, Josh. 15.37. Beth-ezel. (f-22) Neighbouring house. will (g-24) Or '... forth; the lamentation of Beth-ezel will.' shelter. (h-29) Or 'stay.' lit. 'standing [ground].'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 12,
+      "end_chapter": 1,
+      "end_verse": 12,
+      "title": "",
+      "content": "Maroth (i-5) Bitterness."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 14,
+      "end_chapter": 1,
+      "end_verse": 14,
+      "title": "",
+      "content": "Moresheth-Gath. (k-7) Possession of Gath. Achzib (l-11) Lying."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 15,
+      "end_chapter": 1,
+      "end_verse": 15,
+      "title": "",
+      "content": "heir, (m-8) Or, 'the possessor.' Mareshah; (n-12) Possession, inheritance. Adullam. (o-21) Or 'Even unto Adullam (meaning 'retreat') shall he come, -- the glory of Israel.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 16,
+      "end_chapter": 1,
+      "end_verse": 16,
+      "title": "",
+      "content": "eagle, (p-18) Or 'vulture.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 1,
+      "end_chapter": 2,
+      "end_verse": 1,
+      "title": "",
+      "content": "work (q-8) See Note m, Ps. 5.5. hand. (r-29) Or 'because for them their hand is God (El).' see Prov. 3.27."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 2,
+      "end_chapter": 2,
+      "end_verse": 2,
+      "title": "",
+      "content": "oppress (s-18) Or 'defraud,' see Ezek. 22.12. man (t-20) Geber, Job 3.3. man (u-26) Ish, Gen. 2.23."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 6,
+      "end_chapter": 2,
+      "end_verse": 6,
+      "title": "",
+      "content": "Prophesy (v-1) Lit. 'Drop,' in this and ver. 11, as Amos 7.16. these, (w-12) i.e. If the true prophets do not prophesy to the unjust rich men (see vers. 1,2). others translate 'They shall not prophesy of such.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 7,
+      "end_chapter": 2,
+      "end_verse": 7,
+      "title": "",
+      "content": "impatient? (x-12) Or 'Is the Spirit of Jehovah straitened?' to (y-23) Lit. 'with.' (z-0) This note set is not public domain."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 8,
+      "end_chapter": 2,
+      "end_verse": 8,
+      "title": "",
+      "content": "with (a-17) Lit. 'from off.' averse (b-28) Or 'as coming back.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 10,
+      "end_chapter": 2,
+      "end_verse": 10,
+      "title": "",
+      "content": "that (c-14) Or 'because it is defiled, it.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 12,
+      "end_chapter": 2,
+      "end_verse": 12,
+      "title": "",
+      "content": "Bozrah, (d-27) Or 'in a fold.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 5,
+      "end_chapter": 3,
+      "end_verse": 5,
+      "title": "",
+      "content": "prepare (e-29) Lit. 'hallow,' as Jer. 6.4; 51.27,28; Joel 3.9."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 9,
+      "end_chapter": 3,
+      "end_verse": 9,
+      "title": "",
+      "content": "judgment, (f-22) Or 'justice.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 12,
+      "end_chapter": 3,
+      "end_verse": 12,
+      "title": "",
+      "content": "forest. (g-29) See Jer. 26.18."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 1,
+      "end_chapter": 4,
+      "end_verse": 1,
+      "title": "",
+      "content": "But (h-1) Or 'And.' see Isa. 2.2-4."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 3,
+      "end_chapter": 4,
+      "end_verse": 3,
+      "title": "",
+      "content": "many (a-6) Or 'great.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 6,
+      "end_chapter": 4,
+      "end_verse": 6,
+      "title": "",
+      "content": "halteth, (b-11) Or 'limpeth,' as Gen 32.31; Zeph. 3.19."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 8,
+      "end_chapter": 4,
+      "end_verse": 8,
+      "title": "",
+      "content": "flock, (c-7) Or 'Migdal-eder,' Gen. 35.21."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 13,
+      "end_chapter": 4,
+      "end_verse": 13,
+      "title": "",
+      "content": "brass; (d-20) Or 'bronze.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 2,
+      "end_chapter": 5,
+      "end_verse": 2,
+      "title": "",
+      "content": "(e-0) In the Hebrew, ch.5 begins here. be (f-7) Or 'though thou be small.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 4,
+      "end_chapter": 5,
+      "end_verse": 4,
+      "title": "",
+      "content": "earth. (a-40) Or 'land.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 5,
+      "end_chapter": 5,
+      "end_verse": 5,
+      "title": "",
+      "content": "princes (b-33) As Ps. 83.11; Ezek. 32.30; &c.. cf. also 'chiefs,' Josh. 13.21."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 6,
+      "end_chapter": 5,
+      "end_verse": 6,
+      "title": "",
+      "content": "waste (c-4) Or 'feed on,' or 'rule,' Ps. 49.14; 80.13."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 9,
+      "end_chapter": 5,
+      "end_verse": 9,
+      "title": "",
+      "content": "upon (d-7) Or 'above.' adversaries, (e-9) Or 'oppressors.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 15,
+      "end_chapter": 5,
+      "end_verse": 15,
+      "title": "",
+      "content": "of. (f-20) Or 'who have not hearkened.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 4,
+      "end_chapter": 6,
+      "end_verse": 4,
+      "title": "",
+      "content": "bondage; (g-20) Lit. 'bondmen.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 5,
+      "end_chapter": 6,
+      "end_verse": 5,
+      "title": "",
+      "content": "righteousness (h-29) Lit. 'righteousnesses.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 8,
+      "end_chapter": 6,
+      "end_verse": 8,
+      "title": "",
+      "content": "goodness, (a-24) Chesed, 'mercy,' 'loving-kindness,' as 2Chron. 6.42."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 10,
+      "end_chapter": 6,
+      "end_verse": 10,
+      "title": "",
+      "content": "measure (b-16) Lit. 'ephah.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 14,
+      "end_chapter": 6,
+      "end_verse": 14,
+      "title": "",
+      "content": "thee; (c-17) Or 'thou shalt be quite cast down.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 16,
+      "end_chapter": 6,
+      "end_verse": 16,
+      "title": "",
+      "content": "desolation, (d-29) Or 'an astonishment.' thereof (e-33) i.e. Samaria, ch. 1.5."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 1,
+      "end_chapter": 7,
+      "end_verse": 1,
+      "title": "",
+      "content": "desired. (f-34) Or 'my soul desired an early fig.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 2,
+      "end_chapter": 7,
+      "end_verse": 2,
+      "title": "",
+      "content": "godly (g-2) Chasid. see Note, 2Chron. 6.42. land, (h-9) Or 'earth.' men. (i-16) The Adam -- mankind, as Gen. 1.27. net. (k-32) Or '[as] after one under a ban.' see Isa. 34.5."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 3,
+      "end_chapter": 7,
+      "end_verse": 3,
+      "title": "",
+      "content": "combine (l-32) Lit. 'weave,' 'twist.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 8,
+      "end_chapter": 7,
+      "end_verse": 8,
+      "title": "",
+      "content": "enemy. (m-7) Feminine. see ver. 10. arise; (n-13) * Lit. 'when I have fallen I have arisen.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 11,
+      "end_chapter": 7,
+      "end_verse": 11,
+      "title": "",
+      "content": "limit (a-16) Or 'bound.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 12,
+      "end_chapter": 7,
+      "end_verse": 12,
+      "title": "",
+      "content": "Egypt, (b-15) Egypt (b-18) Matsor. Isa. 19.6. river, (c-21) i.e. the Euphrates."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 14,
+      "end_chapter": 7,
+      "end_verse": 14,
+      "title": "",
+      "content": "forest, (d-16) See Ezek. 34.25."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 17,
+      "end_chapter": 7,
+      "end_verse": 17,
+      "title": "",
+      "content": "close (e-21) Or 'fortified.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 20,
+      "end_chapter": 7,
+      "end_verse": 20,
+      "title": "",
+      "content": "perform (f-3) Lit. 'give.' Abraham, (g-9) Or 'wilt give the truth [promised] to Jacob, the loving-kindness [promised] to Abraham.'"
+    }
+  ]
+}

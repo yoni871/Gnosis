@@ -487,6 +487,12 @@ Commentary retrieval uses passage ranges rather than requiring one commentary ro
 
 Bible search is connected to the frontend.
 
+Bible search is paginated: `GET /search/bible?q=…&page=1&limit=100` returns
+`{ results, total, page, limit, hasMore }` with at most 100 verses per page,
+ordered by full-text rank with a book/chapter/verse tiebreak so paging
+neither skips nor repeats a verse. The frontend loads further pages with a
+Load More button. Commentary search is still capped at 100 with a bare array.
+
 Commentary search is implemented on the backend but still requires complete frontend integration.
 
 ### 7.4 Authentication Endpoints

@@ -1,0 +1,47 @@
+{
+  "book": "2 John",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "in (a-13) I have not added 'the' as in the A.V., because it is not in the Greek, and I do not think the force of it was meant to be there. It is not 'truly love,' though, as the apostle teaches us here, there can be no truly loving but in the truth. It is the character of the love; it was love in truth. (See ver. 4.)"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 5,
+      "end_chapter": 1,
+      "end_verse": 5,
+      "title": "",
+      "content": "that (b-24) The apostle passes from his own personal beseeching into Christ's commandment 'that.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 8,
+      "end_chapter": 1,
+      "end_verse": 8,
+      "title": "",
+      "content": "wages. (c-17) That is, 'recompense for work.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 9,
+      "end_chapter": 1,
+      "end_verse": 9,
+      "title": "",
+      "content": "forward (d-3) What is called 'development.' he does not abide in what was from the beginning."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 11,
+      "end_chapter": 1,
+      "end_verse": 11,
+      "title": "",
+      "content": "partakes (e-6) Koinoneo. see Heb. 2.14."
+    }
+  ]
+}

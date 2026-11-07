@@ -1,0 +1,19 @@
+{
+  "name": "gnosis-offline-bible-import",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Explicit offline Bible workbook validation and transactional import",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node scripts/test.js",
+    "test:database": "node scripts/test-database.js",
+    "check:artifact": "node scripts/check-artifact.js"
+  },
+  "dependencies": {
+    "pg": "8.23.0",
+    "xlsx": "file:vendor/xlsx-0.20.3.tgz"
+  }
+}

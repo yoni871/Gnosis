@@ -1,15 +1,35 @@
 import './App.css'
+import { lazy, Suspense } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import ErrorBoundary from './components/ErrorBoundary';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
 import StudyPage from './pages/StudyPage';
-import SearchResultsPage from './pages/SearchResultsPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import VerifyPage from './pages/VerifyPage';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
-import ResetPasswordPage from './pages/ResetPasswordPage';
+
+// The remaining routes load on demand, so a first visit never downloads
+// or parses the auth, search, and About pages. Landing and the reader
+// stay eager: they are the two entry routes, and splitting them would
+// add a round-trip to the first paint.
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const SearchResultsPage = lazy(() => import('./pages/SearchResultsPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
+const VerifyPage = lazy(() => import('./pages/VerifyPage'));
+const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
+const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
+
+function RouteLoading() {
+    return (
+        <main
+            role="status"
+            aria-live="polite"
+            className="flex min-h-[50vh] items-center justify-center text-[14px] text-[var(--text-muted)]"
+        >
+            Loading…
+        </main>
+    );
+}
 
 function App() {
 
@@ -18,29 +38,21 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <ErrorBoundary>
+          <Suspense fallback={<RouteLoading />}>
           <Routes>
 
             {/*
-              LANDING PAGE SWAP POINT -- read before changing this route.
-              The homepage currently redirects to the reader because the
-              landing page does not exist yet. Do NOT remove this
-              redirect until the landing page is ready. When it is:
-                1. Replace this route's element with <LandingPage />.
-                2. Give the landing page its metadata from the
-                   LANDING_TITLE / LANDING_DESCRIPTION constants in
-                   src/utils/seo.js (index.html already carries them
-                   as the site-wide default).
-                3. Add "/" to the sitemap: pass ["/"] as extraPaths to
-                   buildSitemapXml in scripts/generate-sitemap.js and
-                   regenerate public/sitemap.xml. Until then "/" must
-                   stay OUT of the sitemap because it redirects.
-              The Bible study reader stays at /bible/:book/:chapter
-              either way; nothing else in this file changes.
+              The homepage is the public landing page. It sets its own
+              metadata (LANDING_TITLE / LANDING_DESCRIPTION from
+              src/utils/seo.js) and is listed in the sitemap. The Bible
+              study reader stays at /bible/:book/:chapter.
             */}
             <Route
               path="/"
-              element={<Navigate to="/bible/Genesis/1" replace />}
+              element={<LandingPage />}
             />
+
+            <Route path='/about' element={<AboutPage />} />
 
             <Route 
               path='/bible/:book/:chapter'
@@ -78,6 +90,7 @@ function App() {
             />
 
           </Routes>
+          </Suspense>
           </ErrorBoundary>
         </AuthProvider>
       </BrowserRouter>

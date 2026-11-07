@@ -49,17 +49,31 @@ function extractEmailAddress(value) {
 // one entry per bad field. Errors name the FIELD only, never the value.
 function validateEmailConfig(env = process.env) {
     const errors = [];
+    const local = env.NODE_ENV === 'development' && env.GNOSIS_LOCAL_DEV === '1';
+    const disabled = ['disabled','mailpit'].includes(env.EMAIL_DELIVERY);
+    if (env.EMAIL_DELIVERY === 'mailpit' && !local) errors.push({ field:'EMAIL_DELIVERY', message:'Mailpit is local-only.' });
+    if (disabled && !local) errors.push({ field: 'EMAIL_DELIVERY', message: 'Disabled email is local-only.' });
+    if (env.EMAIL_DELIVERY && !['disabled', 'resend', 'mailpit'].includes(env.EMAIL_DELIVERY)) {
+        errors.push({ field: 'EMAIL_DELIVERY', message: 'Invalid delivery mode.' });
+    }
     const resendApiKey = typeof env.RESEND_API_KEY === "string" ? env.RESEND_API_KEY : "";
-    if (resendApiKey.length === 0) {
+    if (!disabled && resendApiKey.length === 0) {
         errors.push({ field: "RESEND_API_KEY", message: "RESEND_API_KEY is required." });
     }
     const emailFromRaw = typeof env.EMAIL_FROM === "string" ? env.EMAIL_FROM : "";
     const emailFromAddress = extractEmailAddress(emailFromRaw);
-    if (!emailFromAddress || validateEmailAddress(emailFromAddress).error) {
+    if (!disabled && (!emailFromAddress || validateEmailAddress(emailFromAddress).error)) {
         errors.push({ field: "EMAIL_FROM", message: "EMAIL_FROM must be a structurally valid email address." });
     }
     const frontendUrlRaw = typeof env.FRONTEND_URL === "string" ? env.FRONTEND_URL : "";
-    if (!isAbsoluteHttpsUrl(frontendUrlRaw)) {
+    let localOrigin = false;
+    try {
+        const url = new URL(frontendUrlRaw);
+        localOrigin = local && url.protocol === 'http:'
+            && require('./localDevelopment').loopback(url.hostname)
+            && !url.username && !url.password && url.pathname === '/' && !url.search && !url.hash;
+    } catch { /* Invalid URL handled below. */ }
+    if (!isAbsoluteHttpsUrl(frontendUrlRaw) && !localOrigin) {
         errors.push({ field: "FRONTEND_URL", message: "FRONTEND_URL must be an absolute HTTPS URL." });
     }
     if (errors.length > 0) {

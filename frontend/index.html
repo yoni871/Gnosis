@@ -2,34 +2,88 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/gnosis.svg" />
+    <script src="/theme-init.js"></script>
+    <!--
+      Preload the homepage hero image while the shell is still parsing.
+      The hero <img> is rendered by React, so without this the browser
+      only discovers it after the JavaScript bundle downloads and
+      executes — 0.9–1.8 s of LCP load delay in every mobile Lighthouse
+      run, with the request flagged "not discoverable in initial
+      document". The imagesrcset/imagesizes below must match the
+      <picture> in src/pages/LandingPage.jsx exactly, so the preloaded
+      candidate is the same file the <img> uses (no double download).
+      The shell is served for every route, so this only fires on "/" —
+      other pages must not pay for a 156 KiB image they never show.
+    -->
+    <script>
+      if (window.location.pathname === "/") {
+        var heroPreload = document.createElement("link");
+        heroPreload.rel = "preload";
+        heroPreload.as = "image";
+        heroPreload.setAttribute("imagesrcset", "/images/landing/sunset-hero-images/hero-480.webp 480w, /images/landing/sunset-hero-images/hero-800.webp 800w, /images/landing/sunset-hero-images/hero-1280.webp 1280w, /images/landing/sunset-hero-images/hero-1672.webp 1672w");
+        heroPreload.setAttribute("imagesizes", "(max-width: 1199px) max(178svh, 100vw), 100vw");
+        heroPreload.setAttribute("fetchpriority", "high");
+        document.head.appendChild(heroPreload);
+      }
+    </script>
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/gnosis.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--
-      Site-wide default metadata. Every route renders the <Seo>
-      component, which replaces these tags at runtime with the page's
-      own title, description, canonical URL, and robots directive
-      (chapter pages get chapter-specific metadata; auth and search
-      pages get noindex). These defaults describe the site itself and
-      match the future landing page's metadata (see src/utils/seo.js);
-      when that page is built it will set the same values explicitly.
+      Homepage metadata in the initial HTML. Search engines and social
+      scrapers that do not execute JavaScript read this shell as the
+      homepage, so it carries the homepage's own title, description,
+      Open Graph and Twitter tags, and WebSite structured data
+      (see src/utils/seo.js for the same values). Every route renders
+      the <Seo> component, which replaces these tags at runtime with
+      the page's own metadata; the JSON-LD script below carries
+      data-seo-jsonld so <Seo> updates or removes that same node on
+      navigation instead of creating a second WebSite block.
       No canonical tag lives here on purpose: the SPA shell is served
       for every route, so a static canonical would point every chapter
-      URL at the wrong address.
+      URL at the wrong address. Each route sets its own canonical at
+      runtime, and the homepage's canonical is its own URL by default.
+      The PNG favicon is the Google Search favicon: Google's supported
+      formats do not include SVG, so the SVG alone showed a generic
+      globe in search results. The PNG is rasterized from the same
+      /gnosis.svg logo mark at 192x192; the SVG link stays for
+      browsers, and the PNG doubles as the Apple touch icon.
     -->
     <meta
       name="description"
-      content="Study Scripture with Gnosis, a Bible study platform featuring classic commentaries, verse-by-verse explanations, and tools to help you understand God’s Word."
+      content="Explore Scripture alongside trusted commentary and discover the connections between God’s Word, theology, history, and Christian thought."
     />
-    <meta property="og:title" content="Gnosis | Bible Study & Verse-by-Verse Commentary" />
+    <meta property="og:title" content="Gnosis | Explore Scripture, Theology & Christian History" />
     <meta
       property="og:description"
-      content="Study Scripture with Gnosis, a Bible study platform featuring classic commentaries, verse-by-verse explanations, and tools to help you understand God’s Word."
+      content="Explore Scripture alongside trusted commentary and discover the connections between God’s Word, theology, history, and Christian thought."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Gnosis" />
     <meta property="og:url" content="https://studygnosis.com/" />
-    <meta name="twitter:card" content="summary" />
-    <title>Gnosis | Bible Study & Verse-by-Verse Commentary</title>
+    <meta property="og:image" content="https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta property="og:image:alt" content="A laptop and a phone showing the Gnosis Bible study app, resting on desert sand at sunset" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gnosis | Explore Scripture, Theology & Christian History" />
+    <meta
+      name="twitter:description"
+      content="Explore Scripture alongside trusted commentary and discover the connections between God’s Word, theology, history, and Christian thought."
+    />
+    <meta name="twitter:image" content="https://studygnosis.com/images/landing/sunset-hero-images/hero-1200.jpg" />
+    <script type="application/ld+json" data-seo-jsonld>
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Gnosis",
+        "url": "https://studygnosis.com/",
+        "description": "Explore Scripture alongside trusted commentary and discover the connections between God’s Word, theology, history, and Christian thought.",
+        "inLanguage": "en"
+      }
+    </script>
+    <title>Gnosis | Explore Scripture, Theology & Christian History</title>
   </head>
   <body>
     <div id="root"></div>

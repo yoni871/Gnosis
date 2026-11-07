@@ -1,18 +1,28 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useMemo, useState, useEffect } from 'react'
 
 const ThemeContext = createContext();
 
 export default ThemeContext;
 
 export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState(() => {
+        try {
+            const saved = localStorage.getItem("gnosis-theme");
+            return saved === "dark" ? "dark" : "light";
+        } catch { return "light"; }
+    });
 
     useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-}, [theme]);
+        document.documentElement.setAttribute("data-theme", theme);
+        try { localStorage.setItem("gnosis-theme", theme); } catch { /* Storage may be disabled. */ }
+    }, [theme]);
+
+    // Memoised so consumers only re-render when the theme itself
+    // changes; setTheme is a stable setter.
+    const value = useMemo(() => ({ theme, setTheme }), [theme]);
 
     return (
-        <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ThemeContext.Provider value={value}>
             {children}
         </ThemeContext.Provider>
     )

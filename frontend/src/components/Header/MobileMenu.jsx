@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
     Menu,
@@ -12,12 +12,13 @@ import AuthContext from "../../context/AuthContext";
 import AuthActions from "./AuthActions";
 
 export default function MobileMenu({ showSearch, variant, translation }) {
+    const menuButtonRef = useRef(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMobileProfileOpen, setIsMobileProfileOpen] = useState(false);
 
     const { theme, setTheme } = useContext(ThemeContext);
 
-    const { user, isAuthenticated, logout } = useContext(AuthContext);
+    const { user, isAuthenticated, isAuthLoading, logout } = useContext(AuthContext);
 
     const mobileMenuRef = useClickOutside(() => {
         setIsMenuOpen(false);
@@ -31,8 +32,19 @@ export default function MobileMenu({ showSearch, variant, translation }) {
     };
 
   return (
-    <div ref={mobileMenuRef} className="relative md:hidden">
+    <div ref={mobileMenuRef} className="relative md:hidden"
+        onKeyDown={(event) => {
+            if (event.key === "Escape") {
+                setIsMenuOpen(false);
+                setIsMobileProfileOpen(false);
+                menuButtonRef.current?.focus();
+            }
+        }}>
+
         <button
+            ref={menuButtonRef}
+            aria-label="Open navigation menu"
+            aria-expanded={isMenuOpen}
             className='flex h-[36px] w-[36px]
             items-center justify-center
             rounded-md
@@ -88,9 +100,11 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                 </button>
 
                 {/* Profile */}
-                {isAuthenticated ? (
+                {/* While the session is still being restored, show
+                    neither the profile nor the signed-out links. */}
+                {isAuthLoading ? null : isAuthenticated ? (
                     <>
-                        <button className="
+                        <button aria-expanded={isMobileProfileOpen} className="
                             flex w-full items-center gap-3
                             rounded-md
                             p-2
@@ -167,18 +181,6 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                                     hover:bg-[var(--hover-bg)]
                                 ">
                                     Notes
-                                </button>
-
-                                <button className="
-                                    flex w-full
-                                    rounded-md
-                                    px-2 py-2
-                                    text-left
-                                    text-sm
-                                    text-[var(--text-primary)]
-                                    hover:bg-[var(--hover-bg)]
-                                ">
-                                    Bookmarks
                                 </button>
 
                                 <button className="

@@ -28,6 +28,19 @@ function formatPassage(result) {
     return `${start}-${result.end_chapter}:${result.end_verse}`;
 }
 
+// Renders a ts_headline excerpt, keeping the <b> match markers as
+// bold text. The backend already pays to compute the headline markup;
+// the page used to strip it. Only <b>…</b> pairs are interpreted —
+// every other character renders as plain text (React escapes it), so
+// no HTML from the excerpt is ever injected.
+function renderExcerpt(excerpt) {
+    return (excerpt || "").split(/<b>([\s\S]*?)<\/b>/g).map((part, index) =>
+        index % 2 === 1
+            ? <strong key={index} className="font-semibold text-[var(--text-primary)]">{part}</strong>
+            : part
+    );
+}
+
 
 const cardStyle = `
     group block w-full rounded-xl
@@ -111,17 +124,45 @@ function EmptyResults({ title, children }) {
 
 export default function SearchResultsPage() {
     const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
+    const [books, setBooks] = useState([]);
+    useEffect(() => {
+        let ignore = false;
+
+        getBooks()
+            .then((data) => {
+                if (!ignore) {
+                    setBooks(data);
+                }
+            })
+            .catch(console.error);
+
+        return () => {
+            ignore = true;
+        };
+    }, []);
 
     const query = searchParams.get("q") || "";
     const translation = searchParams.get("translation") || "BSB";
+    return <SearchResults key={JSON.stringify([query, translation])} query={query} translation={translation} books={books} />;
+}
+
+function SearchResults({ query, translation, books }) {
+    const navigate = useNavigate();
 
     const [searchResults, setSearchResults] = useState([]);
     const [commentaryResults, setCommentaryResults] = useState([]);
-    const [books, setBooks] = useState([]);
 
-    const [loading, setLoading] = useState(false);
-    const [searchError, setSearchError] = useState("");
+    // Bible search is paged (100 per page): total/hasMore come from the
+    // first page, and Load More appends each next page in rank order.
+    const [bibleTotal, setBibleTotal] = useState(0);
+    const [bibleHasMore, setBibleHasMore] = useState(false);
+    const [biblePage, setBiblePage] = useState(1);
+    const [loadingMoreBible, setLoadingMoreBible] = useState(false);
+
+    const [bibleLoading, setBibleLoading] = useState(Boolean(query.trim()));
+    const [commentaryLoading, setCommentaryLoading] = useState(Boolean(query.trim()));
+    const loading = bibleLoading || commentaryLoading;
+    const [searchError, setSearchError] = useState({});
 
     const [selectedBook, setSelectedBook] = useState("");
     const [selectedChapter, setSelectedChapter] = useState("");
@@ -157,67 +198,61 @@ export default function SearchResultsPage() {
     });
 
 
-    useEffect(() => {
-        let ignore = false;
-
-        getBooks()
-            .then((data) => {
-                if (!ignore) {
-                    setBooks(data);
-                }
-            })
-            .catch(console.error);
-
-        return () => {
-            ignore = true;
-        };
-    }, []);
 
 
     useEffect(() => {
-        let ignore = false;
+        const controller = new AbortController();
+        const { signal } = controller;
+        const hasQuery = Boolean(query.trim());
+        if (hasQuery) {
+            const load = (request, setResults, setLoading, kind) => {
+                request.then(data => {
+                    if (!signal.aborted) setResults(data);
+                }).catch(() => {
+                    if (!signal.aborted) setSearchError(previous => ({
+                        ...previous, [kind]: "We couldn't complete your search. Please try again."
+                    }));
+                }).finally(() => {
+                    if (!signal.aborted) setLoading(false);
+                });
+            };
+            load(searchBible(query, translation, { signal }), (data) => {
+                setSearchResults(data.results);
+                setBibleTotal(data.total);
+                setBibleHasMore(data.hasMore);
+                setBiblePage(data.page);
+            }, setBibleLoading, 'bible');
+            load(searchCommentary(query, { signal }), setCommentaryResults, setCommentaryLoading, 'commentary');
+        }
+        return () => controller.abort();
+    }, [query, translation]);
 
-        setSearchResults([]);
-        setCommentaryResults([]);
-        setSearchError("");
-        setSelectedBook("");
-        setSelectedChapter("");
-
-        if (!query.trim()) {
-            setLoading(false);
+    // Appends the next page in rank order. The backend order is fully
+    // deterministic, so the appended page continues exactly where the
+    // loaded results end — no verse is skipped or repeated.
+    const loadMoreBible = () => {
+        if (loadingMoreBible || !bibleHasMore) {
             return;
         }
-
-        setLoading(true);
-
-        Promise.all([
-            searchBible(query, translation),
-            searchCommentary(query)
-        ])
-            .then(([bibleData, commentaryData]) => {
-                if (!ignore) {
-                    setSearchResults(bibleData);
-                    setCommentaryResults(commentaryData);
-                }
+        const nextPage = biblePage + 1;
+        setLoadingMoreBible(true);
+        searchBible(query, translation, { page: nextPage })
+            .then((data) => {
+                setSearchResults((previous) => [...previous, ...data.results]);
+                setBibleTotal(data.total);
+                setBibleHasMore(data.hasMore);
+                setBiblePage(data.page);
             })
-            .catch((error) => {
-                if (!ignore) {
-                    console.error(error);
-                    setSearchError(
-                        "We couldn't complete your search. Please try again."
-                    );
-                }
+            .catch(() => {
+                setSearchError((previous) => ({
+                    ...previous,
+                    bible: "We couldn't load more verses. Please try again.",
+                }));
             })
             .finally(() => {
-                if (!ignore) {
-                    setLoading(false);
-                }
+                setLoadingMoreBible(false);
             });
-
-        return () => {
-            ignore = true;
-        };
-    }, [query, translation]);
+    };
 
 
     return (
@@ -287,7 +322,7 @@ export default function SearchResultsPage() {
                     >
                         {tab.label}
 
-                        {!loading && !searchError && (
+                        {!loading && !Object.keys(searchError).length && (
                             <span className="
                                 rounded-full bg-[var(--bg-control-hover)]
                                 px-2 py-0.5 text-[10px]
@@ -299,33 +334,6 @@ export default function SearchResultsPage() {
                 ))}
             </div>
 
-            {loading ? (
-                <div
-                    role="status"
-                    aria-live="polite"
-                    className="
-                        flex flex-1 items-center justify-center
-                        gap-3 px-5 text-[13px] text-[var(--text-muted)]
-                    "
-                >
-                    <span className="
-                        h-4 w-4 shrink-0 animate-spin rounded-full
-                        border-2 border-[var(--border-control)]
-                        border-t-[var(--color-brand)]
-                    " />
-
-                    <span>Searching for “{query}”…</span>
-                </div>
-            ) : searchError ? (
-                <div
-                    role="alert"
-                    className="flex flex-1 items-center justify-center px-5"
-                >
-                    <EmptyResults title="Search unavailable">
-                        {searchError}
-                    </EmptyResults>
-                </div>
-            ) : (
                 <main className="
                     mx-auto grid w-full max-w-[1700px]
                     min-h-0 flex-1 grid-cols-1 gap-6
@@ -341,7 +349,9 @@ export default function SearchResultsPage() {
                         unit="verses"
                         active={activeTab === "scripture"}
                     >
-                        {filteredResults.length === 0 && (
+                        {bibleLoading && <p role="status">Searching Scripture…</p>}
+                        {searchError.bible && <p role="alert">{searchError.bible}</p>}
+                        {!bibleLoading && !searchError.bible && filteredResults.length === 0 && (
                             <EmptyResults title="No Scripture results">
                                 {query
                                     ? `No verses in ${translation} match “${query}” with these filters. Try another word or clear the filters.`
@@ -408,6 +418,33 @@ export default function SearchResultsPage() {
                                 </div>
                             </button>
                         ))}
+
+                        {!bibleLoading && !searchError.bible && bibleTotal > 0 && !selectedBook && !selectedChapter && (
+                            <p className="text-center text-[12px] text-[var(--text-muted)]">
+                                Showing {searchResults.length} of {bibleTotal} verses
+                            </p>
+                        )}
+
+                        {!bibleLoading && !searchError.bible && bibleHasMore && (
+                            <button
+                                type="button"
+                                onClick={loadMoreBible}
+                                disabled={loadingMoreBible}
+                                className="
+                                    w-full rounded-xl border
+                                    border-[var(--border-control)]
+                                    bg-[var(--bg-panel)] px-4 py-3
+                                    font-serif text-[14px] font-semibold
+                                    text-[var(--color-brand)]
+                                    transition duration-200
+                                    hover:bg-[var(--bg-control-hover)]
+                                    disabled:opacity-60
+                                    focus-visible:outline-2 focus-visible:outline-[var(--color-brand)]
+                                "
+                            >
+                                {loadingMoreBible ? "Loading more…" : "Load more verses"}
+                            </button>
+                        )}
                     </ResultsPanel>
 
                     <ResultsPanel
@@ -417,7 +454,9 @@ export default function SearchResultsPage() {
                         unit="entries"
                         active={activeTab === "commentary"}
                     >
-                        {filteredCommentaryResults.length === 0 && (
+                        {commentaryLoading && <p role="status">Searching commentary…</p>}
+                        {searchError.commentary && <p role="alert">{searchError.commentary}</p>}
+                        {!commentaryLoading && !searchError.commentary && filteredCommentaryResults.length === 0 && (
                             <EmptyResults title="No commentary results">
                                 {query
                                     ? `No commentary matches “${query}” with these filters. Try another word or clear the filters.`
@@ -467,13 +506,12 @@ export default function SearchResultsPage() {
                                     mb-0 mt-2 font-serif text-[13px]
                                     leading-6 text-[var(--text-muted)]
                                 ">
-                                    {(result.excerpt || "").replace(/<\/?b>/g, "")}...
+                                    {renderExcerpt(result.excerpt)}...
                                 </p>
                             </button>
                         ))}
                     </ResultsPanel>
                 </main>
-            )}
         </div>
     );
 }

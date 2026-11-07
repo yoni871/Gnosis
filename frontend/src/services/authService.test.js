@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { getProfile, loginUser, registerUser, resendVerification, verifyEmail, forgotPassword, resetPassword } from '../services/authService';
+import { getProfile, loginUser, registerUser, resendVerification, verifyEmail, forgotPassword, resetPassword, refreshSession, logoutSession } from '../services/authService';
 
 function response(body, status = 200) {
     return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -87,4 +87,41 @@ test('resetPassword preserves the invalid-link code without deriving it from the
     expect(error).toBeInstanceOf(Error);
     expect(error.message).toBe('Invalid or expired password reset link.');
     expect(error.code).toBe('INVALID_RESET_LINK');
+});
+
+test('refresh includes the HttpOnly cookie and the explicit session request header', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(response({ token: 'renewed' }));
+    vi.stubGlobal('fetch', fetchMock);
+    await expect(refreshSession()).resolves.toEqual({ token: 'renewed' });
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/refresh$/);
+    expect(fetchMock.mock.calls[0][1].signal).toBeInstanceOf(AbortSignal);
+    expect(fetchMock.mock.calls[0][1].credentials).toBe('include');
+    expect(fetchMock.mock.calls[0][1].headers['X-Gnosis-Session']).toBe('1');
+});
+test('logout waits for a pending login cookie mutation and sends the bearer credential', async () => {
+    let resolveLogin;
+    const login = new Promise(resolve => { resolveLogin = resolve; });
+    const fetchMock = vi.fn().mockReturnValueOnce(login).mockResolvedValueOnce(new Response(null, { status: 204 }));
+    vi.stubGlobal('fetch', fetchMock);
+    const pendingLogin = loginUser({ email: 'synthetic@example.invalid', password: 'synthetic' });
+    const pendingLogout = logoutSession('old-access');
+    await vi.waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
+    resolveLogin(response({ token: 'new-access' }));
+    await pendingLogin;
+    await pendingLogout;
+    expect(fetchMock.mock.calls[1][0]).toMatch(/\/auth\/logout$/);
+    expect(fetchMock.mock.calls[1][1].headers.Authorization).toBe('Bearer old-access');
+    expect(fetchMock.mock.calls[1][1].credentials).toBe('include');
+});
+
+test('auth requests use the frontend own /api path, not the deployed API origin', async () => {
+    // The refresh cookie is SameSite=Strict, so it is only sent on a
+    // same-origin request. The deployed API origin (baked into VITE_API_URL
+    // for tests as https://api.example.invalid/api) must never appear here.
+    const fetchMock = vi.fn().mockResolvedValue(response({ token: 'renewed' }));
+    vi.stubGlobal('fetch', fetchMock);
+    await refreshSession();
+    const url = fetchMock.mock.calls[0][0];
+    expect(url).toBe('/api/auth/refresh');
+    expect(url).not.toContain('api.example.invalid');
 });

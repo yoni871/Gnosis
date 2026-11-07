@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
     getCommentaries,
@@ -37,6 +37,11 @@ export default function useCommentary({
     }, [urlCommentary]);
 
 
+    // Remember which location the displayed entries belong to, so a
+    // commentator switch (same chapter) keeps the old entries on screen
+    // while the new ones load, instead of emptying the panel.
+    const displayedLocationRef = useRef(null);
+
     // Load commentary for the selected book, chapter, and commentator.
     useEffect(() => {
         if (!currentBookId) {
@@ -45,7 +50,21 @@ export default function useCommentary({
 
         let ignoreResponse = false;
 
-        setCommentary([]);
+        // A new chapter starts empty and at the top. The same chapter
+        // under a new commentator keeps its entries until the new ones
+        // arrive, so the panel does not collapse and lose its scroll.
+        const locationChanged =
+            displayedLocationRef.current === null ||
+            displayedLocationRef.current.bookId !== currentBookId ||
+            displayedLocationRef.current.chapter !== chapter;
+        displayedLocationRef.current = {
+            bookId: currentBookId,
+            chapter,
+        };
+
+        if (locationChanged) {
+            setCommentary([]);
+        }
         setIsLoading(true);
         setCommentaryError("");
 
