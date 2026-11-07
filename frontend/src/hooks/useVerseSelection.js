@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 import usePrivateSession from "./usePrivateSession";
 
@@ -9,7 +9,9 @@ export default function useVerseSelection() {
     const { state: selection, setCurrent: setSelection } = usePrivateSession(EMPTY);
 
     // Select an unselected verse, or deselect one already in the collection.
-    function toggleVerse(bookId, chapter, verse) {
+    // Stable across renders (setSelection is a stable callback), so the
+    // hook's return value keeps its identity unless the selection changes.
+    const toggleVerse = useCallback((bookId, chapter, verse) => {
         setSelection((current) => {
             const point = { chapter, verse };
 
@@ -37,7 +39,7 @@ export default function useVerseSelection() {
                     : [...current.verses, point]
             };
         });
-    }
+    }, [setSelection]);
 
     // Replace the current selection when navigating to a specific verse.
     const replaceSelection = useCallback((bookId, chapter, verse) => {
@@ -107,12 +109,20 @@ export default function useVerseSelection() {
         });
     }, [setSelection]);
     // Let StudyPage read the selection and request changes through these actions.
-    return {
+    // Memoised so the returned object keeps its identity unless the
+    // selection or one of the actions changes.
+    return useMemo(() => ({
        selection,
         toggleVerse,
         replaceSelection,
         replaceSelectionSet,
         retainAvailableVerses,
         clearSelection
-    };
+    }), [
+        selection,
+        toggleVerse,
+        replaceSelection,
+        retainAvailableVerses,
+        clearSelection
+    ]);
 }

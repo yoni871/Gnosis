@@ -1,5 +1,6 @@
 const express = require("express"); //get express package
 const router = express.Router();
+const { cacheControl } = require("../middleware/cacheHeaders");
 const { 
     getBooks, 
     getChapters, 
@@ -14,8 +15,13 @@ const {
     getStudy
 } = require("../controllers/bibleController");
 
+// Reference data changes only on deploy or import, so the edge may
+// serve it for an hour (browsers revalidate after a minute). This is
+// what the reader re-fetches on every mount.
+const cacheReference = cacheControl({ maxAge: 60, sMaxAge: 3600, staleWhileRevalidate: 300 });
+
 //gets the books
-router.get("/books", getBooks);
+router.get("/books", cacheReference, getBooks);
 
 //the following gets the chapters from the database
 router.get("/books/:bookId/chapters", getChapters);
@@ -24,16 +30,16 @@ router.get("/books/:bookId/chapters", getChapters);
 router.get("/chapters/:chapterId/verses", getVerses);
 
 //the following gets the translations from the database
-router.get("/translations", getTranslations);
+router.get("/translations", cacheReference, getTranslations);
 
 //gets all available commentaries
-router.get("/commentaries", getCommentaries);
+router.get("/commentaries", cacheReference, getCommentaries);
 
 //gets the commentary for specific book
 router.get("/books/:bookId/commentaries", getBookCommentaries);
 
 //gets all available sources
-router.get("/sources", getSources);
+router.get("/sources", cacheReference, getSources);
 
 // returns the chapter specific commentary
 router.get("/books/:bookId/chapters/:chapterNumber/commentaries", getChapterCommentaries);

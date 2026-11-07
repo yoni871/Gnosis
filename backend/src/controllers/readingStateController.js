@@ -71,42 +71,50 @@ const saveReadingState = async (req, res) => {
     }
 
     try {
-        const book = await pool.query(
-            "SELECT id FROM bible_books WHERE id = $1",
-            [bookId]
+        // One round-trip validates the book, translation, and commentary
+        // together and returns the book name for the response, instead
+        // of three sequential existence checks. The upsert then returns
+        // the saved row, so no re-SELECT is needed. The error messages
+        // and their precedence (book, then translation, then commentary)
+        // are unchanged.
+        const validation = await pool.query(
+            `
+            SELECT
+                b.name AS book,
+                EXISTS (
+                    SELECT 1 FROM bible_translations WHERE abbreviation = $2
+                ) AS translation_exists,
+                CASE
+                    WHEN $3::bigint IS NULL THEN true
+                    ELSE EXISTS (
+                        SELECT 1 FROM commentaries WHERE id = $3
+                    )
+                END AS commentary_exists
+            FROM bible_books b
+            WHERE b.id = $1
+            `,
+            [bookId, translation, commentaryId ?? null]
         );
 
-        if (book.rows.length === 0) {
+        if (validation.rows.length === 0) {
             return res.status(400).json({
                 error: "The book does not exist."
             });
         }
 
-        const translationRow = await pool.query(
-            "SELECT abbreviation FROM bible_translations WHERE abbreviation = $1",
-            [translation]
-        );
-
-        if (translationRow.rows.length === 0) {
+        if (!validation.rows[0].translation_exists) {
             return res.status(400).json({
                 error: "The translation does not exist."
             });
         }
 
-        if (commentaryId !== undefined && commentaryId !== null) {
-            const commentary = await pool.query(
-                "SELECT id FROM commentaries WHERE id = $1",
-                [commentaryId]
-            );
-
-            if (commentary.rows.length === 0) {
-                return res.status(400).json({
-                    error: "The commentary does not exist."
-                });
-            }
+        if (!validation.rows[0].commentary_exists) {
+            return res.status(400).json({
+                error: "The commentary does not exist."
+            });
         }
 
-        await pool.query(
+        const result = await pool.query(
             `
             INSERT INTO user_reading_state (
                 user_id,
@@ -125,6 +133,7 @@ const saveReadingState = async (req, res) => {
                 commentary_id = EXCLUDED.commentary_id,
                 verse_number = EXCLUDED.verse_number,
                 updated_at = NOW()
+            RETURNING *
             `,
             [
                 userId,
@@ -136,9 +145,10 @@ const saveReadingState = async (req, res) => {
             ]
         );
 
-        const result = await pool.query(SELECT_READING_STATE, [userId]);
-
-        return res.status(200).json(result.rows[0]);
+        return res.status(200).json({
+            ...result.rows[0],
+            book: validation.rows[0].book
+        });
     } catch (error) {
         console.error(error);
 

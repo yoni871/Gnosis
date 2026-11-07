@@ -38,23 +38,27 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
             updated_at: "2026-11-06T19:00:00.000Z",
             book: "Genesis",
         };
-        return { rows: [] };
+        // The upsert returns the saved row (RETURNING *).
+        return { rows: [savedRow] };
     }
 
     if (typeof sql === "string" && sql.includes("FROM user_reading_state")) {
         return { rows: savedRow ? [savedRow] : [] };
     }
 
-    if (typeof sql === "string" && sql.includes("FROM bible_books WHERE id")) {
-        return { rows: bookExists ? [{ id: params[0] }] : [] };
-    }
-
-    if (typeof sql === "string" && sql.includes("FROM bible_translations WHERE abbreviation")) {
-        return { rows: translationExists ? [{ abbreviation: params[0] }] : [] };
-    }
-
-    if (typeof sql === "string" && sql.includes("FROM commentaries WHERE id")) {
-        return { rows: commentaryExists ? [{ id: params[0] }] : [] };
+    // The PUT validates book, translation, and commentary in one
+    // combined query; the row carries the book name and the two
+    // existence flags, so one branch answers all three checks.
+    if (typeof sql === "string" && sql.includes("translation_exists")) {
+        return {
+            rows: bookExists
+                ? [{
+                    book: "Genesis",
+                    translation_exists: translationExists,
+                    commentary_exists: commentaryExists,
+                }]
+                : [],
+        };
     }
 
     throw new Error(`Unexpected query in reading-state test: ${sql}`);

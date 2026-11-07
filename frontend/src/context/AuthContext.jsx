@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext, useCallback } from "react";
+import { useCallback, useEffect, useMemo, useState, createContext } from "react";
 import { getProfile, loginUser, registerUser, refreshSession, logoutSession } from "../services/authService";
 import { createAuthSessionGuard } from "./authSession";
 
@@ -80,8 +80,10 @@ export function AuthProvider({ children }) {
 
     // Shared login flow. The caller supplies the operation's epoch
     // ticket so concurrent logins coordinate instead of invalidating
-    // each other.
-    async function loginWithTicket(credentials, ticket) {
+    // each other. Stable across renders (authGuard never changes), so
+    // the context value below keeps its identity unless the session
+    // state itself changes.
+    const loginWithTicket = useCallback(async (credentials, ticket) => {
         if (!authGuard.isCurrent(ticket)) {
             return null;
         }
@@ -116,15 +118,15 @@ export function AuthProvider({ children }) {
                 setIsAuthLoading(false);
             }
         }
-    }
+    }, [authGuard]);
 
-    async function login (credentials) {
+    const login = useCallback(async (credentials) => {
         const ticket = authGuard.begin();
         setSessionVersion(ticket);
         return loginWithTicket(credentials, ticket);
-    }
+    }, [authGuard, loginWithTicket]);
 
-    async function register(userData) {
+    const register = useCallback(async (userData) => {
         // Issue #9: registration creates an unverified account and does
         // NOT log in. It touches no session state at all: no ticket, no
         // sessionVersion bump, no token, no user. Private-state owners
@@ -133,7 +135,7 @@ export function AuthProvider({ children }) {
         // The caller shows the check-email state for the returned email.
         const data = await registerUser(userData);
         return { email: data.email };
-    }
+    }, []);
 
     const logout = useCallback((all = false) => {
         const revocation = logoutSession(token, all === true);
@@ -199,18 +201,32 @@ export function AuthProvider({ children }) {
 
     const isAuthenticated = Boolean(user);
 
+    // Memoised so consumers only re-render when the session state
+    // itself changes, not when the provider re-renders for another
+    // reason.
+    const value = useMemo(() => ({
+        sessionVersion,
+        user,
+        token,
+        isAuthenticated,
+        isAuthLoading,
+        login,
+        register,
+        logout
+    }), [
+        sessionVersion,
+        user,
+        token,
+        isAuthenticated,
+        isAuthLoading,
+        login,
+        register,
+        logout
+    ]);
+
     return (
         <AuthContext.Provider
-            value={{
-                sessionVersion,
-                user,
-                token,
-                isAuthenticated,
-                isAuthLoading,
-                login,
-                register,
-                logout
-            }}
+            value={value}
         >
             {children}
         </AuthContext.Provider>
