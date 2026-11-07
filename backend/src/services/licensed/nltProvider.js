@@ -141,7 +141,15 @@ async function fetchNltChapter(book, chapter, options = {}) {
     });
     let response;
     try {
-        response = await fetchImpl(`${NLT_API_URL}?${params.toString()}`);
+        // Bounded so a hung provider fails into the 503/BSB fallback
+        // instead of holding the reader (and the serverless function)
+        // open indefinitely. The AbortError is caught below and wrapped
+        // like any other provider failure. fetchTimeoutMs is test-only;
+        // production always uses the 8 s default.
+        const timeoutMs = options.fetchTimeoutMs ?? 8000;
+        response = await fetchImpl(`${NLT_API_URL}?${params.toString()}`, {
+            signal: AbortSignal.timeout(timeoutMs),
+        });
     } catch (error) {
         throw new LicensedProviderError(
             "provider",

@@ -276,7 +276,16 @@ async function fetchApiBibleChapter(book, chapter, bibleId, options = {}) {
         `/chapters/${code}.${chapter}?${params.toString()}`;
     let response;
     try {
-        response = await fetchImpl(url, { headers: { "api-key": apiKey } });
+        // Bounded so a hung provider fails into the 503/BSB fallback
+        // instead of holding the reader (and the serverless function)
+        // open indefinitely. The AbortError is caught below and wrapped
+        // like any other provider failure. fetchTimeoutMs is test-only;
+        // production always uses the 8 s default.
+        const timeoutMs = options.fetchTimeoutMs ?? 8000;
+        response = await fetchImpl(url, {
+            headers: { "api-key": apiKey },
+            signal: AbortSignal.timeout(timeoutMs),
+        });
     } catch (error) {
         throw new LicensedProviderError(
             "provider",
