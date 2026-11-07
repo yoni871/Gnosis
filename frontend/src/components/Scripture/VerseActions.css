@@ -1,18 +1,13 @@
-/* Compact burgundy toolbar. It renders in the text flow at the end of
-   the selected verse — inline, so it takes its own space (wrapping to
-   a line of its own when it does not fit on the verse's last line)
-   instead of floating over the following verse's text. It used to be a
-   fixed-position Floating UI surface anchored to a zero-size span; the
-   anchor froze against the viewport for every verse but the first, and
-   the toolbar covered the next verse's text. */
+/* Portaled overlay: Floating UI measures the verse and clips placement to
+   the Scripture scroll area. It must never contribute to a verse line box. */
 .gnosis-verse-toolbar {
-    display: inline-flex;
-    vertical-align: middle;
+    z-index: 70;
+    display: flex;
     align-items: center;
     gap: 5px;
     width: max-content;
     max-width: 100%;
-    margin: 6px 0 6px 10px;
+    margin: 0;
     padding: 5px 7px;
     border: 1px solid rgb(255 255 255 / 15%);
     border-radius: 28px;

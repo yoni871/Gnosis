@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Bookmark, Highlighter, Languages, X } from "lucide-react";
 import {
     autoUpdate,
@@ -29,6 +29,23 @@ export default function VerseActions({
 }) {
     const [isColorOpen, setIsColorOpen] = useState(false);
 
+    const [boundary, setBoundary] = useState();
+    const overflow = { boundary, padding: 8 };
+    const toolbar = useFloating({
+        placement: "top-start",
+        strategy: "fixed",
+        whileElementsMounted: autoUpdate,
+        middleware: [offset(8), flip(overflow), shift(overflow), hide({ boundary })]
+    });
+    // This hidden marker contributes no line box. Measure the actual verse,
+    // not a zero-size inline anchor, so scrolling keeps the overlay attached.
+    const setAnchor = useCallback((node) => {
+        toolbar.refs.setReference(node?.parentElement ?? null);
+        setBoundary(node?.closest(".scripture-scroll"));
+    }, [toolbar.refs.setReference]);
+    const toolbarHidden =
+        !toolbar.isPositioned || toolbar.middlewareData.hide?.referenceHidden;
+
     // Position the pen palette relative to the highlighter button.
     const palette = useFloating({
         open: isColorOpen,
@@ -38,9 +55,9 @@ export default function VerseActions({
         whileElementsMounted: autoUpdate,
         middleware: [
             offset(12),
-            flip({ padding: 12 }),
-            shift({ padding: 12 }),
-            hide()
+            flip(overflow),
+            shift(overflow),
+            hide({ boundary })
         ]
     });
 
@@ -54,16 +71,20 @@ export default function VerseActions({
         bookmarksState.deletingId !== null;
 
     const paletteHidden =
+        toolbarHidden ||
         !palette.isPositioned ||
         palette.middlewareData.hide?.referenceHidden;
 
     return (
         <>
-            {/* In-flow toolbar: it takes its own space at the end of the
-                selected verse (wrapping to a line of its own when it
-                does not fit) instead of floating over the following
-                verse's text. It scrolls away with its verse. */}
+            <span ref={setAnchor} hidden aria-hidden="true" />
+            <FloatingPortal>
             <span
+                ref={toolbar.refs.setFloating}
+                style={{
+                    ...toolbar.floatingStyles,
+                    visibility: toolbarHidden ? "hidden" : "visible"
+                }}
                 className="gnosis-verse-toolbar"
                 role="group"
                 aria-label="Selected verse actions"
@@ -143,6 +164,7 @@ export default function VerseActions({
                     <X size={17} aria-hidden="true" />
                 </button>
             </span>
+            </FloatingPortal>
 
             {isColorOpen && (
                 <FloatingPortal>

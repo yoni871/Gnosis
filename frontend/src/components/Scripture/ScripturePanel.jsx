@@ -492,7 +492,7 @@ export default function ScripturePanel({
                             </sup>
 
                             {verse.text}
-                            {/* Show actions at the end of the selected verse. */}
+                            {/* Anchor an out-of-flow overlay to the selected verse. */}
                             {verse.verse_number === actionVerse && passage && (
                                 <VerseActions
                                     passage={passage}
