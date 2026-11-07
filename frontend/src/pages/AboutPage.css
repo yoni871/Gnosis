@@ -1,5 +1,5 @@
 .about-page { --about-ivory:#faf7ef; --about-paper:#fffdf7; --about-green:#233e34; --about-gold:#856a3b; --about-rule:#d4c5a8; --about-burgundy:#783540; background:var(--about-ivory); color:#383a35; font-family:"Gnosis Hero Inter",var(--public-font-ui); }
-.about-editorial-layout { display:grid; grid-template-columns:210px minmax(0,1fr); gap:clamp(48px,7vw,112px); max-width:1240px; margin-inline:auto; padding:clamp(56px,7vw,100px) var(--public-gutter) clamp(72px,8vw,120px); }
+.about-editorial-layout { display:grid; grid-template-columns:210px minmax(0,1fr); gap:clamp(48px,7vw,112px); max-width:1240px; margin-inline:auto; padding:clamp(32px,4vw,56px) var(--public-gutter) clamp(72px,8vw,120px); }
 .about-section-navigation { position:sticky; top:32px; align-self:start; }
 .about-sidebar { display:flex; flex-direction:column; gap:6px; }
 .about-section-navigation a { position:relative; display:flex; align-items:center; min-height:46px; padding:10px 0 10px 18px; color:#615e52; font-size:.79rem; line-height:1.6; text-decoration:none; }
@@ -73,5 +73,3 @@
 }
 
 .about-page .about-opening h1 { text-transform:uppercase; }
-
-.about-page .landing-header-solid :focus-visible { outline:3px solid #2b2523; outline-offset:3px; box-shadow:0 0 0 6px #fffdf8; }

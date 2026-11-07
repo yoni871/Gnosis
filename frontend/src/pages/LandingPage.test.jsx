@@ -609,8 +609,9 @@ describe("LandingPage Continue reading", () => {
             "/bible/Genesis/1?translation=ESV&commentary=3&verse=5",
         );
         expect(within(link).getByText(/Genesis 1:5 · ESV/)).toBeInTheDocument();
-        expect(link).toHaveAccessibleDescription("Pick up where you left off · Genesis 1:5 · ESV");
-        expect(within(link).getByText(/Pick up where you left off/)).toHaveTextContent("Genesis 1:5 · ESV");
+        expect(link).toHaveAccessibleDescription("Genesis 1:5 · ESV");
+        expect(link.querySelector(".landing-continue-subtitle")).toHaveTextContent("Genesis 1:5 · ESV");
+        expect(within(hero()).queryByText(/Pick up where you left off/)).toBeNull();
         expect(link.querySelectorAll(".landing-continue-subtitle")).toHaveLength(1);
         expect(document.querySelectorAll("#landing-reading-location")).toHaveLength(1);
         expect(document.querySelector(".landing-continue-note")).toBeNull();
