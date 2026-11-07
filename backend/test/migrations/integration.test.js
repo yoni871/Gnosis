@@ -71,7 +71,7 @@ test('check validates schema after applied migrations, not only the baseline', a
     await run('up',{dir});
     await run('up');
     const result=await run('check');
-    assert.deepEqual(result.applied,[baselineName,'20261103010729_add-auth-rate-limiting','20261104021959_add-email-verification','20261106144711_add-licensed-translations','20261106190359_add-user-reading-state']);
+    assert.deepEqual(result.applied,[baselineName,'20261103010729_add-auth-rate-limiting','20261104021959_add-email-verification','20261106144711_add-licensed-translations','20261106190359_add-user-reading-state','20261107005916_add-licensed-cache-verse-count-index','20261107010016_add-licensed-ip-limits-window-index']);
     assert.deepEqual(result.pending,[]);
     assert.equal(result.baselineMatches,true);
     assert.deepEqual(result.differences,[]);
@@ -142,7 +142,7 @@ test('existing schema refuses baseline DDL; adoption preserves data and sequence
     assert.deepEqual((await db.query('SELECT name FROM pgmigrations')).rows,[{name:baselineName}]);
     await assert.rejects(run('baseline',{dir}),/already has/);
     assert.deepEqual((await run('up',{dir})).migrations,
-        ['20261103010729_add-auth-rate-limiting','20261104021959_add-email-verification','20261106144711_add-licensed-translations','20261106190359_add-user-reading-state','29990101000000_fixture']);
+        ['20261103010729_add-auth-rate-limiting','20261104021959_add-email-verification','20261106144711_add-licensed-translations','20261106190359_add-user-reading-state','20261107005916_add-licensed-cache-verse-count-index','20261107010016_add-licensed-ip-limits-window-index','29990101000000_fixture']);
 });
 test('partial and drifted schemas refuse adoption without tracking or repairs', async () => {
     await db.query('CREATE TABLE users(id integer)');
@@ -161,10 +161,12 @@ test('failed migration rolls back schema and history and can safely retry', asyn
     const dir=await fixtureDir('-- Up Migration\nCREATE TABLE fixture(id integer); SELECT 1/0;\n-- Down Migration\nDROP TABLE fixture;');
     await assert.rejects(run('up',{dir}),/stage \[migration runner\]/);
     assert.equal((await db.query("SELECT to_regclass('public.fixture') AS value")).rows[0].value,null);
-    assert.equal((await db.query('SELECT count(*)::int AS n FROM pgmigrations')).rows[0].n,5);
+    assert.equal((await db.query('SELECT count(*)::int AS n FROM pgmigrations')).rows[0].n,7);
     await fs.writeFile(path.join(dir,'29990101000000_fixture.sql'),'-- Up Migration\nCREATE TABLE fixture(id integer);\n-- Down Migration\nDROP TABLE fixture;');
     await run('up',{dir});
     assert.deepEqual((await run('down',{dir})).migrations,['29990101000000_fixture']);
+    assert.deepEqual((await run('down',{dir})).migrations,['20261107010016_add-licensed-ip-limits-window-index']);
+    assert.deepEqual((await run('down',{dir})).migrations,['20261107005916_add-licensed-cache-verse-count-index']);
     assert.deepEqual((await run('down',{dir})).migrations,['20261106190359_add-user-reading-state']);
     assert.deepEqual((await run('down',{dir})).migrations,['20261106144711_add-licensed-translations']);
     assert.deepEqual((await run('down',{dir})).migrations,['20261104021959_add-email-verification']);
@@ -179,7 +181,7 @@ test('failed initial batch rolls back baseline DDL and supports retry', async ()
     const dir=await fixtureDir('-- Up Migration\nSELECT 1/0;\n-- Down Migration\nSELECT 1;');
     await assert.rejects(run('up',{dir}),/stage \[migration runner\]/);
     assert.equal((await db.query("SELECT to_regclass('public.users') AS value")).rows[0].value,null);
-    assert.deepEqual((await run('up')).migrations,[baselineName,'20261103010729_add-auth-rate-limiting','20261104021959_add-email-verification','20261106144711_add-licensed-translations','20261106190359_add-user-reading-state']);
+    assert.deepEqual((await run('up')).migrations,[baselineName,'20261103010729_add-auth-rate-limiting','20261104021959_add-email-verification','20261106144711_add-licensed-translations','20261106190359_add-user-reading-state','20261107005916_add-licensed-cache-verse-count-index','20261107010016_add-licensed-ip-limits-window-index']);
 });
 test('concurrent migration operation is refused while the shared advisory lock is held', async () => {
     await db.query('SELECT pg_advisory_lock($1::bigint)',[lockId]);

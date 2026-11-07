@@ -69,7 +69,7 @@
 }
 @media (max-width: 1099px) {
     .public-page .landing-header-hero .landing-nav-desktop { display: none; }
-    .public-page .landing-header-hero .landing-menu-button { display: inline-flex; }
+    .public-page .landing-header-hero .landing-menu-button { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0; }
     .public-page .landing-header-hero .landing-header-inner { min-height: 64px; padding-block: 8px; }
     .public-page .landing-header-hero .landing-logo-img { width: 32px; height: 32px; }
     .public-page .landing-header-hero .landing-logo-word { font-size: 28px; }

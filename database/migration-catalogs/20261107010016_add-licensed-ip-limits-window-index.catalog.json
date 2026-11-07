@@ -1,0 +1,1 @@
+{"added": [{"kind": "index", "name": "licensed_ip_limits_window_hour_idx", "definition": {"sql": "CREATE INDEX licensed_ip_limits_window_hour_idx ON public.licensed_ip_limits USING btree (window_hour)", "ready": true, "valid": true}}], "removed": []}
