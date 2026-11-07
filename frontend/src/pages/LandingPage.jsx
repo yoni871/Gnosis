@@ -145,7 +145,6 @@ export default function LandingPage() {
                                     >
                                         <span id="landing-continue-label" className="landing-continue-title">Continue Reading →</span>
                                         <span id="landing-reading-location" className="landing-continue-subtitle">
-                                            Pick up where you left off ·{" "}
                                             <span className="landing-continue-location">{readingStateLabel(savedState)}</span>
                                         </span>
                                     </Link>
