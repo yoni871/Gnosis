@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { ChevronDown, Bookmark } from "lucide-react";
 import VerseActions from "./VerseActions";
 import { isHighlightSelected } from "../../utils/highlightUtils";
@@ -25,47 +25,71 @@ export default function ScripturePanel({
     // alphabetically by abbreviation so a growing list stays findable.
     // Sorted here at render time only — the underlying order is untouched,
     // so StudyPage's default (the third database row, KJV) does not change.
-    const sortedTranslations = [...translations].sort((a, b) =>
-        a.abbreviation.localeCompare(b.abbreviation)
+    // Memoised: the sort runs once per translations change, not per render.
+    const sortedTranslations = useMemo(
+        () => [...translations].sort((a, b) =>
+            a.abbreviation.localeCompare(b.abbreviation)
+        ),
+        [translations]
     );
     // Find the database record for the book currently being read.
-    const currentBook = books.find((item) => item.name === book);
+    const currentBook = useMemo(
+        () => books.find((item) => item.name === book),
+        [books, book]
+    );
 
     // Look up which verses are selected in the chapter currently displayed.
-    const selectedNumbers = new Set(
-        verseSelection.selection.bookId === currentBook?.id
-            ? verseSelection.selection.verses
-                .filter((point) => point.chapter === chapter)
-                .map((point) => point.verse)
-            : []
+    // verseSelection.selection is the stable session state object, so
+    // this only recomputes when the selection actually changes.
+    const selectedNumbers = useMemo(
+        () => new Set(
+            verseSelection.selection.bookId === currentBook?.id
+                ? verseSelection.selection.verses
+                    .filter((point) => point.chapter === chapter)
+                    .map((point) => point.verse)
+                : []
+        ),
+        [verseSelection.selection, currentBook, chapter]
     );
 
     // Prefer the focused verse; otherwise use the last selected verse in this chapter.
-    const actionVerse = selectedNumbers.has(selectedVerse)
-        ? selectedVerse
-        : Array.from(selectedNumbers).pop();
+    const actionVerse = useMemo(
+        () => selectedNumbers.has(selectedVerse)
+            ? selectedVerse
+            : Array.from(selectedNumbers).pop(),
+        [selectedNumbers, selectedVerse]
+    );
 
     // Look up saved colors by verse number for the chapter being displayed.
-    const highlightColors = new Map();
+    // highlights is the stable session state array, so this only
+    // recomputes when the highlights actually change.
+    const highlightColors = useMemo(() => {
+        const colors = new Map();
 
-    for (const highlight of highlightsState.highlights) {
-        if (
-            highlight.book_id === currentBook?.id &&
-            highlight.chapter === chapter
-        ) {
-            highlightColors.set(highlight.verse, highlight.color);
+        for (const highlight of highlightsState.highlights) {
+            if (
+                highlight.book_id === currentBook?.id &&
+                highlight.chapter === chapter
+            ) {
+                colors.set(highlight.verse, highlight.color);
+            }
         }
-    }
+
+        return colors;
+    }, [highlightsState.highlights, currentBook, chapter]);
     // Keep the bookmark action tied to the verse hosting the toolbar.
-    const passage = currentBook && actionVerse !== undefined
-        ? {
-            bookId: currentBook.id,
-            startChapter: chapter,
-            startVerse: actionVerse,
-            endChapter: chapter,
-            endVerse: actionVerse
-        }
-        : null;
+    const passage = useMemo(
+        () => currentBook && actionVerse !== undefined
+            ? {
+                bookId: currentBook.id,
+                startChapter: chapter,
+                startVerse: actionVerse,
+                endChapter: chapter,
+                endVerse: actionVerse
+            }
+            : null,
+        [currentBook, actionVerse, chapter]
+    );
 
     // Check whether this exact passage is already bookmarked.
     const savedBookmark = passage
@@ -156,8 +180,11 @@ export default function ScripturePanel({
     }, [selectedVerse, verses, verseSelection.selection, currentBook, chapter]);
 
     // Enable clearing when at least one selected coordinate has a highlight.
-    const hasSelectedHighlight = highlightsState.highlights.some((highlight) =>
-        isHighlightSelected(highlight, verseSelection.selection)
+    const hasSelectedHighlight = useMemo(
+        () => highlightsState.highlights.some((highlight) =>
+            isHighlightSelected(highlight, verseSelection.selection)
+        ),
+        [highlightsState.highlights, verseSelection.selection]
     );
 
     return (

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useMemo, useRef } from "react";
 
 // Emphasizes a number at the beginning of a commentary paragraph.
 function formatParagraphText(paragraph) {
@@ -21,7 +21,7 @@ function formatParagraphText(paragraph) {
 }
 
 // Formats commentary content into separate paragraphs.
-function formatCommentary(content, isSelected) {
+function formatCommentary(content) {
 
   const cleanedContent = content
   // Remove escaped periods from the imported Markdown.
@@ -72,9 +72,19 @@ function formatPassageRange(item, book) {
   return `${startReference}-${item.end_chapter}:${item.end_verse}`;
 }
 
-export default function CommentaryEntry({ item, book, isSelected, showTitle }) {
+// Memoised: the entry's text is re-formatted (two regex passes, a
+// split, a <p> per paragraph) only when its content changes — not on
+// every verse click, which re-renders the panel but changes
+// isSelected for at most one entry. The parent passes the same item
+// object for unchanged entries, so memo skips those renders entirely.
+function CommentaryEntry({ item, book, isSelected, showTitle }) {
 
   const entryRef = useRef(null);
+
+  const formattedContent = useMemo(
+    () => formatCommentary(item.content),
+    [item.content]
+  );
 
   useEffect(() => {
   if (isSelected) {
@@ -135,9 +145,11 @@ export default function CommentaryEntry({ item, book, isSelected, showTitle }) {
         leading-[1.9]
         text-[var(--text-primary)]
       ">
-        {formatCommentary(item.content, isSelected)}
+        {formattedContent}
       </div>
 
     </section>
   )
 }
+
+export default memo(CommentaryEntry);
