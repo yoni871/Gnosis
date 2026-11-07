@@ -79,9 +79,18 @@ test("ESV fetch aborts a hung provider instead of waiting forever", async () => 
     // but never otherwise resolves: the provider must give up after
     // the timeout and surface a provider failure, which the caller
     // turns into the 503 the reader answers with the BSB fallback.
+    // The timer below keeps the event loop alive until the abort
+    // fires: AbortSignal.timeout's internal timer is unref'd, so on
+    // some Node versions the test runner would otherwise report the
+    // promise as never-settling before the abort fires.
     const fetchImpl = (url, init) =>
         new Promise((resolve, reject) => {
+            const timer = setTimeout(
+                () => reject(new Error("fetch did not abort in time")),
+                1000
+            );
             init.signal.addEventListener("abort", () => {
+                clearTimeout(timer);
                 reject(new Error("This operation was aborted"));
             });
         });
