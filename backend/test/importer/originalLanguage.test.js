@@ -10,7 +10,7 @@ const {
     grammarDisplayForMorphemes, morphologyLookupKey, deriveLexicalEntry,
     wordLanguageForWord, importOriginalLanguage, FULL_SCOPE,
 } = require("../../src/importer/importOriginalLanguage");
-const pool = require("../../src/db/db");
+const { biblePool: pool } = require("../../src/db/db");
 
 const fixtures = path.join(__dirname, "..", "fixtures", "original-language");
 const readFixture = name => fs.readFileSync(path.join(fixtures, name), "utf8");

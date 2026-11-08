@@ -129,8 +129,9 @@ const getPassage = async (req, res) => {
         // NA28 gap: it carries noOriginalText instead of an empty word
         // list, so the modal explains the absence rather than showing
         // an empty table or an error. (After the full import, the only
-        // such verses are the four NA28 omissions; the dry-run
-        // validation fails the import if any other verse is missing.)
+        // such verses are the 25 verses in the 19 gap chapters; the
+        // dry-run validation fails the import if any other verse is
+        // missing.)
         const versesByNumber = new Map();
         for (const row of rows) {
             let verse = versesByNumber.get(row.verse_number);

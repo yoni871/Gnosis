@@ -132,12 +132,15 @@ node backend/src/importer/importOriginalLanguage.js --full [--data-dir <dir>]
 node backend/src/importer/importOriginalLanguage.js [--data-dir <dir>]
 ```
 
-The importer connects with the operator's `DATABASE_URL` (the same
-convention as the other importers). It is idempotent: lexical entries,
+The importer connects to the Gnosis Bible database — the `biblePool`
+(`GNOSIS_BIBLE_DATABASE_URL`, falling back to `DATABASE_URL` in a
+single-database setup) — and writes only the `ol_*` tables there. It
+never writes Scripture (`bible_books` / `bible_chapters` / `bible_verses`)
+or commentary tables; those are read-only inputs (`bible_books` is read
+to resolve book names to ids). It is idempotent: lexical entries,
 morphology codes, and word occurrences are upserted on their natural keys,
-so re-running refreshes without duplicating. A full import writes 443,037
-words, 17,005 lexical entries, and 1,865 morphology codes; a re-run writes
-zero new rows. **Versification:** STEPBible uses NRSV numbering; Gnosis
+so re-running refreshes without duplicating; a re-run writes zero rows
+when nothing changed. A full import writes 443,037 **Versification:** STEPBible uses NRSV numbering; Gnosis
 uses BSB. They agree for 1,170 of 1,189 chapters. The nineteen exceptions are
 textual omissions, not shifts — verses that exist in BSB but have no
 words in the base text STEPBible uses: Romans 16:24–27, 2 Corinthians 13:13–14,
@@ -319,26 +322,38 @@ Behaviour worth knowing:
   added tests: the toolbar button appears for a selection, opening the
   modal shows the range and English passage and closing keeps the
   selection, and no button appears without a selection.
-- The importer was verified end to end against a disposable PostgreSQL
-  cluster: 774 words, 264 lexical entries, 175 morphology codes, 0 words
-  missing expansions, 0 words without lexical entries; spot checks on
-  Gen 1:1 and Php 3:8–9 against the source files.
+- The importer was verified end to end against disposable PostgreSQL
+  clusters: Phase 1 — 774 words, 264 lexical entries, 175 morphology
+  codes, 0 words missing expansions, 0 words without lexical entries;
+  spot checks on Gen 1:1 and Php 3:8–9 against the source files.
+  Phase 2 — the full `--full` import on fresh disposable PostgreSQL 14
+  and 18 clusters: 443,037 words (300,616 Hebrew, 4,835 Aramaic,
+  137,586 Greek), 17,005 lexical entries, 1,865 morphology codes,
+  21,909 alt-ref rows, 116 verse-0 chapters; all 30 validator checks
+  pass on both versions and the PG14/PG18 word tables are byte-identical.
+  A second full import on each version writes zero rows and leaves the
+  counts identical, and Scripture/commentary row counts are unchanged
+  by the import.
 
-## Phase 2 / full-Bible import — remaining work
+## Phase 2 / full-Bible import — done; remaining work
 
-- Full 66-book STEPBible→Gnosis abbreviation map (Phase 1 maps only
-  `Gen` and `Php`), and the full TAHOT/TAGNT file set.
-- Aramaic sections (Daniel, Ezra) — the schema carries a language
-  column, but Phase 1 has no Aramaic verses.
-- Cross-chapter occurrence navigation (the modal currently focuses a verse
-  in the already-open passage).
+Phase 2 is implemented and validated (see above): the full 66-book
+STEPBible→Gnosis abbreviation map (`FULL_SCOPE`, 1,189 chapters) and
+the full TAHOT/TAGNT file set; Aramaic sections word-level (Daniel,
+Ezra, Jeremiah 10:11, Genesis 31:47); cross-book/chapter occurrence
+navigation; verse-numbering divergences handled (Psalm titles as
+verse 0, 11 merged verses renumbered, 19 NA28-gap chapters flagged,
+parenthetical alternate refs stored under the main verse). What remains
+is deployment, not implementation:
+
+- Neon preview import: apply the Bible migrations (including the
+  verse-zero migration) to the Gnosis Bible preview project, then run
+  the importer against it — needs Yonatan's explicit approval; nothing
+  has been imported into Neon.
+- Production import: run the importer against the Gnosis Bible
+  production project (not the App database) and grant the Bible app
+  role SELECT on the `ol_*` tables, as part of the normal
+  main → production PR flow. No production data has been imported for
+  this feature.
 - Fuller lexicon definitions, pending Online Bible permission for the
   BDB/Abbott-Smith paragraphs (see the lexicon caveat above).
-- Verse-numbering divergences: STEPBible uses NRSV versification, which
-  matches Gnosis for Gen 1 and Php 3; known divergences elsewhere (e.g.
-  Psalm titles, some chapter boundaries) need a mapping before a
-  full-Bible import.
-- Production import: run the importer against the production database as
-  the operator, grant the app role SELECT (see above), and promote via
-  the normal main → production PR flow. No production data has been
-  imported for this feature.
