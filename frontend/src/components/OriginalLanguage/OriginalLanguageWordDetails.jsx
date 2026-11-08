@@ -54,6 +54,7 @@ export default function OriginalLanguageWordDetails({
     occurrencesError,
     occurrencesMatch,
     onFindOccurrences,
+    onLoadMoreOccurrences,
     onSelectOccurrence,
     onCloseDetail,
 }) {
@@ -146,9 +147,9 @@ export default function OriginalLanguageWordDetails({
             <div className="gnosis-ol-occurrences">
                 <h3>Other occurrences</h3>
                 <p className="gnosis-ol-occurrences-note">
-                    Searches the same lemma in the imported corpus — Genesis 1 and Philippians 3
-                    for Phase 1. “Strong’s” also matches the other senses that share the plain
-                    Strong’s number.
+                    Searches the same lemma in the imported corpus — the full
+                    66-book canon. “Strong’s” also matches the other senses that
+                    share the plain Strong’s number.
                 </p>
                 <div className="gnosis-ol-occurrences-actions" role="group" aria-label="Occurrence search">
                     <button
@@ -175,6 +176,15 @@ export default function OriginalLanguageWordDetails({
                         occurrences={occurrences}
                         onSelectOccurrence={onSelectOccurrence}
                     />
+                )}
+                {occurrences && occurrences.total > occurrences.occurrences.length && (
+                    <button
+                        type="button"
+                        disabled={occurrencesLoading}
+                        onClick={onLoadMoreOccurrences}
+                    >
+                        {occurrencesLoading ? "Loading…" : `Load more (${occurrences.occurrences.length} of ${occurrences.total} shown)`}
+                    </button>
                 )}
             </div>
         </div>

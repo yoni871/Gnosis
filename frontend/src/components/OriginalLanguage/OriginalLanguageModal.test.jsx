@@ -264,7 +264,7 @@ const OCCURRENCES = {
             grammarDisplay: "Noun",
             context: { before: ["בְּ", "הָ"], after: ["הַ", "שָּׁמַיִם"] } },
     ],
-    corpus: "Phase 1 corpus: Genesis 1 and Philippians 3 only.",
+    corpus: "Original-language corpus: the full 66-book canon.",
     sources: [],
 };
 
@@ -364,7 +364,69 @@ describe("OriginalLanguageModal", () => {
         await userEvent.click(screen.getByRole("button", { name: "Find Other Occurrences" }));
         await userEvent.click(await screen.findByText("Genesis 1:2"));
         expect(onClose).toHaveBeenCalled();
-        expect(onNavigateToVerse).toHaveBeenCalledWith(2);
+        expect(onNavigateToVerse).toHaveBeenCalledWith(
+            expect.objectContaining({ book: "Genesis", chapter: 1, verse: 2 }));
+    });
+
+    test("clicking an occurrence in another book navigates to its book, chapter and verse", async () => {
+        const crossBook = {
+            ...OCCURRENCES,
+            total: 1,
+            occurrences: [
+                { id: 99, book: "Exodus", chapter: 3, verse: 2, wordIndex: 1, language: "hebrew",
+                    wordText: "בְּרֵאשִׁית", transliteration: "be.re.Shit", gloss: "in beginning",
+                    strongNumber: "H7225G", strongBase: "H7225", lemma: "רֵאשִׁית",
+                    grammarDisplay: "Preposition + Noun",
+                    context: { before: [], after: ["בָּרָא"] } },
+            ],
+        };
+        const { onClose, onNavigateToVerse } = mount();
+        const fetchMock = vi.fn(async (url) => {
+            if (String(url).includes("/occurrences")) return { ok: true, json: async () => crossBook };
+            return { ok: true, json: async () => GENESIS_PASSAGE };
+        });
+        vi.stubGlobal("fetch", fetchMock);
+        await userEvent.click(await screen.findByRole("button", { name: /be\.re\.Shit/ }));
+        await userEvent.click(screen.getByRole("button", { name: "Find Other Occurrences" }));
+        await userEvent.click(await screen.findByText("Exodus 3:2"));
+        expect(onClose).toHaveBeenCalled();
+        expect(onNavigateToVerse).toHaveBeenCalledWith(
+            expect.objectContaining({ book: "Exodus", chapter: 3, verse: 2 }));
+    });
+
+    test("Load more pages through a long occurrence list instead of rendering it all", async () => {
+        const firstPage = { ...OCCURRENCES, total: 25,
+            occurrences: Array.from({ length: 20 }, (_, index) => ({
+                ...OCCURRENCES.occurrences[0],
+                id: index + 1, verse: 1, wordIndex: index + 1,
+            })) };
+        const secondPage = { ...OCCURRENCES, total: 25, offset: 20,
+            occurrences: Array.from({ length: 5 }, (_, index) => ({
+                ...OCCURRENCES.occurrences[0],
+                id: 21 + index, verse: 2, wordIndex: index + 1,
+            })) };
+        const fetchMock = vi.fn(async (url) => {
+            if (String(url).includes("/occurrences")) {
+                return { ok: true, json: async () => (String(url).includes("offset=20") ? secondPage : firstPage) };
+            }
+            return { ok: true, json: async () => GENESIS_PASSAGE };
+        });
+        vi.stubGlobal("fetch", fetchMock);
+        render(
+            <OriginalLanguageModal
+                book="Genesis" chapter={1} startVerse={1} endVerse={1}
+                englishVerses={[{ verse_number: 1, text: "In the beginning God created the heavens and the earth." }]}
+                translation="KJV" onClose={() => {}} onNavigateToVerse={() => {}}
+            />
+        );
+        await userEvent.click(await screen.findByRole("button", { name: /be\.re\.Shit/ }));
+        await userEvent.click(screen.getByRole("button", { name: "Find Other Occurrences" }));
+        expect(await screen.findByText("25 occurrences of this lemma (showing 20).")).toBeInTheDocument();
+        const loadMore = screen.getByRole("button", { name: /Load more \(20 of 25 shown\)/ });
+        await userEvent.click(loadMore);
+        expect(fetchMock).toHaveBeenCalledWith(expect.stringContaining("offset=20"));
+        await waitFor(() => expect(screen.queryByRole("button", { name: /Load more/ })).not.toBeInTheDocument());
+        expect(document.querySelectorAll(".gnosis-ol-occurrence-list li")).toHaveLength(25);
     });
 
     test("Escape closes the modal and returns focus to the opener", async () => {
@@ -395,7 +457,7 @@ describe("OriginalLanguageModal", () => {
             ok: true,
             json: async () => ({
                 ...GENESIS_PASSAGE, available: false, verses: [],
-                note: "Original-language data is not available for this passage yet. Phase 1 corpus: Genesis 1 and Philippians 3 only.",
+                note: "Original-language data is not available for this passage yet. Original-language corpus: the full 66-book canon.",
             }),
         }));
         vi.stubGlobal("fetch", fetchMock);
@@ -406,8 +468,44 @@ describe("OriginalLanguageModal", () => {
                 translation="KJV" onClose={() => {}} onNavigateToVerse={() => {}}
             />
         );
-        expect(await screen.findByText(/Phase 1 corpus: Genesis 1 and Philippians 3 only/)).toBeInTheDocument();
+        expect(await screen.findByText(/Original-language corpus: the full 66-book canon/)).toBeInTheDocument();
         expect(screen.queryByRole("table")).not.toBeInTheDocument();
+    });
+
+    test("an NA28 gap verse explains the absence instead of showing an empty table", async () => {
+        const romansPassage = {
+            book: "Romans",
+            chapter: 16,
+            language: "greek",
+            languages: ["greek"],
+            startVerse: 24,
+            endVerse: 25,
+            available: true,
+            title: null,
+            verses: [
+                { verse: 24, words: GENESIS_PASSAGE.verses[0].words },
+                { verse: 25, words: [], noOriginalText: true },
+            ],
+            sources: GENESIS_PASSAGE.sources,
+        };
+        const fetchMock = vi.fn(async () => ({ ok: true, json: async () => romansPassage }));
+        vi.stubGlobal("fetch", fetchMock);
+        render(
+            <OriginalLanguageModal
+                book="Romans" chapter={16} startVerse={24} endVerse={25}
+                englishVerses={[
+                    { verse_number: 24, text: "The grace of our Lord Jesus Christ be with you all. Amen." },
+                    { verse_number: 25, text: "Now to him who is able to strengthen you according to my gospel…" },
+                ]}
+                translation="ESV" onClose={() => {}} onNavigateToVerse={() => {}}
+            />
+        );
+        expect(await screen.findByText("Romans 16:24–25 · Koine Greek")).toBeInTheDocument();
+        // Verse 24 renders its words; verse 25 has no text to invent.
+        expect(screen.getByRole("button", { name: /be\.re\.Shit/ })).toBeInTheDocument();
+        const gap = screen.getByLabelText("Verse 25");
+        expect(within(gap).getByText("No original-language text for this verse in the NA28 edition.")).toBeInTheDocument();
+        expect(within(gap).queryByRole("table")).not.toBeInTheDocument();
     });
 
     test("a failed load shows the error", async () => {

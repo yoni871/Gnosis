@@ -1,16 +1,15 @@
 // Original Language Analysis (Phase 1) — see docs/OriginalLanguage.md.
 const originalLanguageService = require("../services/originalLanguageService");
 
-// Phase 1 covers only these passages; the API says so instead of
+// Phase 2 covers the full canon; the API says so instead of
 // pretending a passage is covered when it is not.
-const PHASE_1_COVERAGE = [
-    { book: "Genesis", chapter: 1, language: "hebrew" },
-    { book: "Philippians", chapter: 3, language: "greek" },
-];
-const CORPUS_NOTE = "Phase 1 corpus: Genesis 1 and Philippians 3 only.";
+const CORPUS_NOTE = "Original-language corpus: the full 66-book canon.";
 
 const SOURCE_CODES_BY_LANGUAGE = {
     hebrew: ["STEPBible-TAHOT", "STEPBible-TBESH", "STEPBible-TEHMC"],
+    // Aramaic shares the Hebrew sources (TAHOT/TBESH/TEHMC all cover
+    // Aramaic); there is no separate Aramaic source to look up.
+    aramaic: ["STEPBible-TAHOT", "STEPBible-TBESH", "STEPBible-TEHMC"],
     greek: ["STEPBible-TAGNT", "STEPBible-TBESG", "STEPBible-TEGMC"],
 };
 
@@ -78,7 +77,23 @@ const getPassage = async (req, res) => {
         const rows = await originalLanguageService.getPassageWords(
             bookRow.id, chapterNumber, startVerse, finalEndVerse);
         const sources = await originalLanguageService.getSources(SOURCE_CODES_BY_LANGUAGE[language]);
-        if (rows.length === 0) {
+        // No words in the requested range: either the chapter was
+        // never imported (available: false, as before) or every
+        // requested verse is a gap — a verse that exists in the
+        // English Bible but has no words in the base text STEPBible
+        // uses. The nineteen gap chapters (25 verses): Romans 16:24–27,
+        // 2 Corinthians 13:13–14, Philippians 1:16–17, John 7:53,
+        // John 5:4, Acts 8:37, Acts 15:34, Acts 24:7, Acts 28:29,
+        // Mark 7:16, Mark 9:44 and 9:46, Luke 17:36, Luke 23:17,
+        // Matthew 17:21, Matthew 18:11, Matthew 23:14, Mark 11:26,
+        // Mark 15:28, Joshua 21:36–37 (the last two are type R in
+        // TAHOT — absent from the Leningrad Codex main text). The
+        // chapter word count tells them apart: a gap verse is
+        // reported, never invented.
+        const chapterWordCount = rows.length === 0
+            ? await originalLanguageService.getChapterWordCount(bookRow.id, chapterNumber)
+            : null;
+        if (rows.length === 0 && chapterWordCount === 0) {
             return res.json({
                 book: bookRow.name,
                 chapter: chapterNumber,
@@ -109,14 +124,27 @@ const getPassage = async (req, res) => {
         for (const row of [...titleRows, ...rows]) {
             if (!languages.includes(row.language)) languages.push(row.language);
         }
-        const verses = [];
+        // Every verse in the requested range is reported, in order.
+        // A verse with no imported words in an imported chapter is an
+        // NA28 gap: it carries noOriginalText instead of an empty word
+        // list, so the modal explains the absence rather than showing
+        // an empty table or an error. (After the full import, the only
+        // such verses are the 25 verses in the 19 gap chapters; the
+        // dry-run validation fails the import if any other verse is
+        // missing.)
+        const versesByNumber = new Map();
         for (const row of rows) {
-            let verse = verses.find(entry => entry.verse === row.verse_number);
+            let verse = versesByNumber.get(row.verse_number);
             if (!verse) {
                 verse = { verse: row.verse_number, words: [] };
-                verses.push(verse);
+                versesByNumber.set(row.verse_number, verse);
             }
             verse.words.push(shapeWord(row));
+        }
+        const verses = [];
+        for (let verseNumber = startVerse; verseNumber <= finalEndVerse; verseNumber++) {
+            const verse = versesByNumber.get(verseNumber);
+            verses.push(verse || { verse: verseNumber, words: [], noOriginalText: true });
         }
         res.json({
             book: bookRow.name,
@@ -250,4 +278,4 @@ const getLemmaOccurrences = async (req, res) => {
     }
 };
 
-module.exports = { getPassage, getWord, getLemmaOccurrences, PHASE_1_COVERAGE };
+module.exports = { getPassage, getWord, getLemmaOccurrences };

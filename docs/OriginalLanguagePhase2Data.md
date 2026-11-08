@@ -1,15 +1,16 @@
 # Original Language Analysis — Phase 2 data handling
 
-Status: **§1 (parser), §2 (Psalm titles) and §4 (Aramaic) are implemented
-on this branch** (see the sections); §3 (NA28 gaps) and §5 remain
-proposals for Yonatan's review. The full-Bible import does not start
+Status: **§1 (parser), §2 (Psalm titles), §3 (NA28 gaps) and §4 (Aramaic) are implemented
+on this branch** (see the sections); §5 remains a proposal for Yonatan's review. The full-Bible import does not start
 until Yonatan approves Phase 2.
 
 All numbers below were measured 2026-11-06 from the full STEPBible files
 (all 4 TAHOT files + both TAGNT files) against Gnosis's verse counts from
-`backend/src/bsb.xlsx` (31,102 verses, 1,189 chapters). Corpus totals:
-**443,051 words** (305,465 Hebrew + 137,586 Greek), 17,271 lexical entries,
-2,121 morphology codes, all 66 books and all 1,189 chapters present.
+`backend/src/bsb.xlsx` (31,102 verses, 1,189 chapters), and corrected
+2026-11-07 by the Stage 1 source-side census with the fixed parsers
+(§1). Corpus totals:
+**443,037 words** (300,616 Hebrew + 4,835 Aramaic + 137,586 Greek), 17,005 lexical entries,
+1,865 morphology codes, all 66 books and all 1,189 chapters present.
 
 ## 1. Parenthetical alternate verse numbers — FIXED (this branch)
 
@@ -28,9 +29,9 @@ stores the **main (English) number** — which matches Gnosis's BSB
 versification — and keeps the alternate only for reporting. The import
 summary now reports `altRefRows` (kept rows that carried an alternate
 number). Verified against the full corpus with the fixed parser, no
-shim: 447,393 rows parsed, **443,051 kept**, 21,910 kept rows with an
-alternate number (31 parenthetical rows are excluded by the existing L/Q
-and NA28 inclusion rules). New parser unit tests cover a Hebrew row
+shim: 447,379 rows parsed, **443,037 kept**, 21,909 kept rows with an
+alternate number (32 parenthetical rows are excluded: 31 by the existing L/Q
+and NA28 inclusion rules, and 1 is an empty Qere omission). New parser unit tests cover a Hebrew row
 (Gen 32:1), a Psalm-title row (Psa 3:0), and a Greek row (Mrk 12:15),
 plus the plain-ref case. Backend tests: 183/183.
 
@@ -87,33 +88,50 @@ local verification caught this, and migration
 `20261107051000_allow-verse-zero-in-original-language` relaxes the
 check to `verse_number >= 0` (verse 0 is only ever a Psalm title).
 
-## 3. Verse-numbering differences — PROPOSED
+## 3. Verse-numbering differences — IMPLEMENTED (this branch)
 
 **Measured facts.** STEPBible's main refs are English (NRSV); Gnosis's
-BSB refs are English. Comparing every chapter's verse set: **1,185 of
-1,189 chapters agree verse-for-verse. Only 4 chapters differ, and all 4
-are NA28 textual omissions, not versification shifts** — verses that
-exist in BSB but have no words in the NA28 text STEPBible uses:
-- Romans 16:25–27 (the doxology)
+BSB refs are English. Comparing every chapter's verse set: **1,170 of
+1,189 chapters agree verse-for-verse. Only 19 chapters differ, and all 19
+are textual omissions, not versification shifts** — verses that
+exist in BSB but have no words in the base text STEPBible uses:
+- Romans 16:24–27 (16:24 is a doublet of 16:20b; 16:25–27 is the doxology)
 - 2 Corinthians 13:13–14
 - Philippians 1:16–17
 - John 7:53 (the pericope adulterae, John 7:53–8:11, absent from NA28)
+- John 5:4 (the angel troubling the water)
+- Acts 8:37 (the eunuch's confession)
+- Acts 15:34 (Silas remaining at Antioch)
+- Acts 24:7 (Lysias taking Paul by force)
+- Acts 28:29 (the Jews departing)
+- Mark 7:16, Mark 9:44 and 9:46, Luke 17:36, Luke 23:17, Matthew 17:21,
+  Matthew 18:11, Matthew 23:14, Mark 11:26, Mark 15:28 (TR-only verses, no NA28 text)
+- Joshua 21:36–37 (type R in TAHOT — absent from the Leningrad Codex main text)
+
+The fifteen NT gaps were found by the Stage 2 dry run (2026-11-07):
+their TAGNT rows are TR-only or TR+Byz — no NA28 text exists for them.
+Joshua 21:36–37 were found the same way: their TAHOT rows are type R,
+excluded by the L/Q inclusion rule. The verse-count check in validation
+compares all 1,189 chapters, so this list is exhaustive.
 
 There is no Psalm-title shift problem: titles sit at verse 0 (§2), and
 the numbered verses match. No verse-renumbering mapping file is needed.
 
-**Proposed handling.**
-- **Import:** the importer must NOT fail on these. Validation expects
-  exactly these 4 gaps: after import, every chapter's imported verse
+**Implemented handling.**
+- **Import:** the importer does not fail on these. Validation expects
+  exactly these 19 gaps: after import, every chapter's imported verse
   count must match Gnosis's verse count for that chapter except these
-  4 chapters (and the 116 title chapters, where verse 0 is handled
+  19 chapters (and the 116 title chapters, where verse 0 is handled
   separately per §2). Any other mismatch fails the import loudly.
 - **Modal:** the English passage still shows (it comes from the
-  translation API). A verse with no original-language words renders a
-  note — "No original-language text for this verse in the NA28
-  edition." — instead of an empty table or an error. The passage
-  endpoint should flag such verses explicitly (e.g. `noOriginalText:
-  true`) rather than making the frontend infer it from an empty list.
+  translation API). A verse with no original-language words in an
+  imported chapter renders a note — "No original-language text for this
+  verse in the NA28 edition." — instead of an empty table or an error.
+  The passage endpoint flags such verses explicitly
+  (`noOriginalText: true` on the verse) rather than making the frontend
+  infer it from an empty list. A chapter with no imported words at all
+  still returns `available: false` (the endpoint distinguishes the two
+  with a chapter word count).
 - **Occurrences:** unaffected — these verses simply have no words to
   match.
 
@@ -123,7 +141,7 @@ the numbered verses match. No verse-renumbering mapping file is needed.
 word: Genesis 31:47 (Aramaic: Jegar-sahadutha) carries type `L` and
 Hebrew-style morphology codes (`HNpl`) like its Hebrew neighbours.
 Aramaic must be identified by **passage range**. The canonical ranges
-hold **4,839 words**:
+hold **4,835 words**:
 - Daniel 2:4b–7:28
 - Ezra 4:8–6:18 and 7:12–26
 - Jeremiah 10:11

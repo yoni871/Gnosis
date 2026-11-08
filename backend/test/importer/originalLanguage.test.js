@@ -1,14 +1,16 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const os = require("node:os");
 const path = require("node:path");
 
 const {
     parseTahotLine, parseTagntLine, parseLexiconLine,
     parseMorphologyCodeFile, parseMorphologyExpansion,
     grammarDisplayForMorphemes, morphologyLookupKey, deriveLexicalEntry,
-    wordLanguageForWord,
+    wordLanguageForWord, importOriginalLanguage, FULL_SCOPE,
 } = require("../../src/importer/importOriginalLanguage");
+const { biblePool: pool } = require("../../src/db/db");
 
 const fixtures = path.join(__dirname, "..", "fixtures", "original-language");
 const readFixture = name => fs.readFileSync(path.join(fixtures, name), "utf8");
@@ -129,6 +131,45 @@ test("TAHOT parser accepts parenthetical alternate verse numbers", () => {
     assert.equal(plain.altVerse, null);
 });
 
+test("TAHOT parser normalizes Strong's markers and drops non-word slots", () => {
+    // A trailing "+" on a Strong's number means the tag also covers
+    // the next Hebrew word (Tubal-cain); it is not part of the
+    // number, so the word keys to the H8423 lexicon entry.
+    const tubal = parseTahotLine("Gen.4.22#06=L\tתּ֣וּבַל\tTu.val\tTubal-\t{H8423}+\tHNpm\t\t\tH8423_A\t\t\t{H8423=תּוּבַל־קַ֫יִן=Tubal-cain»Tubal-cain@Gen.4.22}+\t\t\t\t\t");
+    assert.equal(tubal.rootStrong, "H8423");
+    assert.ok(!tubal.morphemes.some(morpheme => morpheme.strongNumber.endsWith("+")));
+
+    // A trailing space after a Strong's number is a source quirk.
+    const outer = parseTahotLine("2Ki.16.18#10=L\tהַֽ/חִיצ֔וֹנָה\tha./chi.Tzo.nah\t<the>/ outer\tH9009/{H2435} \tHTd/Aafsa\t\t\tH2435\t\t\tH9009=ה=the/{H2435=חִיצוֹן=outer} \t\t\t\t\t");
+    assert.equal(outer.rootStrong, "H2435");
+
+    // A "//" word boundary inside a row (Gen 30:11 "בָּא גָד") is a
+    // space in the display text, and the empty separator slot is not
+    // a morpheme: the second word keeps its Strong's and grammar.
+    const fortune = parseTahotLine("Gen.30.11#03=Q(K)\tבָּ֣א//גָ֑ד\tbe.//gad\tit has come//good fortune\t{H0935G}//{H1409}\tHVqp3ms//Ncmsa\tK= be./gad (בְּ/גָד) \"with/ good fortune\" (H9003/H1409=HR/Ncfsa)\tL= בָּ֣/גָ֑ד ¦ ;\tH0935G, H1409\t\t\t{H0935G=בּוֹא=: come»to come (in):1_come;_go_in}//{H1409=גָּד=fortune}\t\t\t\t\t");
+    assert.equal(fortune.wordText, nfc("בָּ֣א גָ֑ד"));
+    assert.equal(fortune.rootStrong, "H0935G");
+    assert.equal(fortune.morphemes.length, 2);
+    assert.equal(fortune.morphemes[1].strongNumber, "H1409");
+    assert.equal(fortune.morphemes[1].morphologyCode, "Ncmsa");
+
+    // A maqqef morpheme (H9014) is punctuation, not a word part:
+    // it is dropped, and the mark stays in the word text.
+    const what = parseTahotLine("Exo.4.2#04=Q(K)\tמַה/־/זֶּ֣ה\tmah/-/zeh-\twhat/ /[is] this?\t{H4100}/H9014/{H2088}\tHPi//Tm\tK= ma.//zeh (מַ//זֶּה) \"what// [is] this?\" ({H4100}//H2088=HPi//Tm)\tL= מַ//זֶּ֣ה ¦ ;\tH4100, H2088\t\t\t{H4100=מָה=what?}/H9014=־=link/{H2088=זֶה=this}\t\t\t\t\t");
+    assert.equal(what.wordText, nfc("מַה־זֶּ֣ה"));
+    assert.equal(what.rootStrong, "H4100");
+    assert.equal(what.morphemes.length, 2);
+    assert.ok(!what.morphemes.some(morpheme => morpheme.strongNumber === "H9014"));
+
+    // A Qere omission: the Ketiv has a word but the followed Qere
+    // reading omits it, so the row is not a word at all.
+    assert.equal(parseTahotLine("Jdg.16.25#02=Q(K)\t\t[ ]\t[ ]\t\t\tK= ki (כִּי) \"for\" (H3588A=HR)\tL= כְּי ¦ ;\t\tH3588A\t\t\t\t\t\t\t"), null);
+    // The same omission with a parenthetical alternate verse number
+    // (1 Samuel 24:8 in Hebrew numbering is 24:9) is skipped too:
+    // the empty-word check runs before the reference is parsed.
+    assert.equal(parseTahotLine("1Sa.24.8(24.9)#06=Q(K)\t\t[ ]\t[ ]\t\t\tK= min- (מִן\\־) \"from\" (H4480A\\H9014=HR)\tL= מֵֽן\\־ ¦ ;\t\tH4480A\t\t\t\t\t\t\t"), null);
+});
+
 test("TAGNT Philippians 3:8 parses into words; TR-only words are flagged", () => {
     const rows = dataLines("tagnt-php-3-8.txt").map(parseTagntLine);
     assert.equal(rows.length, 29);
@@ -191,6 +232,29 @@ test("TAGNT parser accepts parenthetical alternate verse numbers", () => {
     const plain = parseTagntLine(dataLines("tagnt-php-3-8.txt")[0]);
     assert.equal(plain.altChapter, null);
     assert.equal(plain.altVerse, null);
+});
+
+test("TAGNT parser splits compound words into per-component morphemes", () => {
+    // Luk 13:11 "eighteen" (δεκαοκτὼ) is ten + eight: each component
+    // gets its own morpheme with its own grammar code, so both codes
+    // expand (a joined code like "A-NUI + G3638" has no expansion).
+    const eighteen = parseTagntLine("Luk.13.11#09=N(k)O\tδεκαοκτὼ (dekaoktō)\teighteen\tG1176=A-NUI + G3638=A-NUI\tδέκα=ten + ὀκτώ=eight\tNA28+NA27+Tyn+SBL\tδέκα καὶ ὀκτὼ (t=deka kai oktō) eighteen - G1176=A-NUI + G2532=CONJ + G3638=A-NUI in: WH+Treg+TR+Byz\t\tdiez y ocho\tten + eight\t#09\tG3638, G1176\tG2532\t\t\t\t");
+    assert.equal(eighteen.wordText, nfc("δεκαοκτὼ"));
+    assert.equal(eighteen.gloss, "eighteen");
+    assert.equal(eighteen.rootStrong, "G1176");
+    assert.equal(eighteen.strongNumber, "G1176");
+    assert.equal(eighteen.morphologyCode, "A-NUI");
+    assert.equal(eighteen.lemma, nfc("δέκα"));
+    assert.equal(eighteen.lemmaGloss, "ten");
+    assert.equal(eighteen.inNA28, true);
+    assert.equal(eighteen.morphemes.length, 2);
+    assert.equal(eighteen.morphemes[0].strongNumber, "G1176");
+    assert.equal(eighteen.morphemes[0].morphologyCode, "A-NUI");
+    assert.equal(eighteen.morphemes[0].isRoot, true);
+    assert.equal(eighteen.morphemes[1].strongNumber, "G3638");
+    assert.equal(eighteen.morphemes[1].morphologyCode, "A-NUI");
+    assert.equal(eighteen.morphemes[1].gloss, "eight");
+    assert.equal(eighteen.morphemes[1].isRoot, false);
 });
 
 test("lexicon rows give the short gloss, never the fuller definition", () => {
@@ -302,6 +366,79 @@ test("Aramaic ranges are word-level: Daniel 2:4 switches mid-verse", () => {
         word(3, 8, 1)), "greek");
 });
 
+test("downloadStepBibleFiles concatenates the TAHOT/TAGNT parts, caches completed files, and rebuilds stale ones", async () => {
+    const { downloadStepBibleFiles } = require("../../src/importer/importOriginalLanguage");
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), "ol-download-test-"));
+    try {
+        const fetched = [];
+        const realFetch = globalThis.fetch;
+        globalThis.fetch = async (url) => {
+            fetched.push(url);
+            // Multi-part files: the first part has no trailing newline,
+            // the second carries a BOM — both are normalized on join.
+            let text = "single\n";
+            // URLs are encodeURI'd, so match the distinctive part names.
+            if (String(url).includes("Gen-Deu")) text = "Gen-Deu part";
+            else if (String(url).includes("Jos-Est")) text = "\uFEFFJos-Est part\n";
+            else if (String(url).includes("Job-Sng")) text = "Job-Sng part\n";
+            else if (String(url).includes("Isa-Mal")) text = "Isa-Mal part\n";
+            else if (String(url).includes("Mat-Jhn")) text = "Mat-Jhn part";
+            else if (String(url).includes("Act-Rev")) text = "\uFEFFAct-Rev part\n";
+            return { ok: true, arrayBuffer: async () => Buffer.from(text, "utf8") };
+        };
+        try {
+            await downloadStepBibleFiles(dataDir);
+        } finally {
+            globalThis.fetch = realFetch;
+        }
+        assert.equal(
+            fs.readFileSync(path.join(dataDir, "tahot.txt"), "utf8"),
+            "Gen-Deu part\nJos-Est part\nJob-Sng part\nIsa-Mal part\n");
+        assert.equal(
+            fs.readFileSync(path.join(dataDir, "tagnt.txt"), "utf8"),
+            "Mat-Jhn part\nAct-Rev part\n");
+        assert.equal(fs.readFileSync(path.join(dataDir, "tbesh.txt"), "utf8"), "single\n");
+        // A second run fetches nothing: completed files are cached
+        // via the manifest written next to each file.
+        const before = fetched.length;
+        globalThis.fetch = async (url) => {
+            fetched.push(url);
+            return { ok: true, arrayBuffer: async () => Buffer.from("again\n", "utf8") };
+        };
+        try {
+            await downloadStepBibleFiles(dataDir);
+        } finally {
+            globalThis.fetch = realFetch;
+        }
+        assert.equal(fetched.length - before, 0);
+        assert.equal(
+            fs.readFileSync(path.join(dataDir, "tahot.txt"), "utf8"),
+            "Gen-Deu part\nJos-Est part\nJob-Sng part\nIsa-Mal part\n");
+        assert.equal(fs.readFileSync(path.join(dataDir, "tbesh.txt"), "utf8"), "single\n");
+        // A multi-part file with no manifest (e.g. a stale partial
+        // download from the old single-part downloader) is rebuilt
+        // once — the other files stay cached.
+        fs.rmSync(path.join(dataDir, "tahot.txt.parts.json"));
+        const staleBefore = fetched.length;
+        globalThis.fetch = async (url) => {
+            fetched.push(url);
+            return { ok: true, arrayBuffer: async () => Buffer.from("again\n", "utf8") };
+        };
+        try {
+            await downloadStepBibleFiles(dataDir);
+        } finally {
+            globalThis.fetch = realFetch;
+        }
+        assert.equal(fetched.length - staleBefore, 4); // TAHOT parts only
+        assert.equal(
+            fs.readFileSync(path.join(dataDir, "tahot.txt"), "utf8"),
+            "again\nagain\nagain\nagain\n");
+        assert.equal(fs.readFileSync(path.join(dataDir, "tbesh.txt"), "utf8"), "single\n");
+    } finally {
+        fs.rmSync(dataDir, { recursive: true, force: true });
+    }
+});
+
 test("lexical fallback derives lemma and gloss from the word row", () => {
     const word = parseTagntLine(dataLines("tagnt-php-3-8.txt")[11]);
     const derived = deriveLexicalEntry("G1108", { ...word, language: "greek" });
@@ -313,4 +450,185 @@ test("lexical fallback derives lemma and gloss from the word row", () => {
     assert.equal(derivedHebrew.lemma, "רֵאשִׁית");
     assert.equal(derivedHebrew.gloss, "beginning");
     assert.equal(derivedHebrew.strongBase, "H7225");
+    // A tag gloss carrying a STEPBible first-occurrence reference
+    // ("Rimmon@Jos.15.32") derives the plain gloss "Rimmon" — the
+    // "@" marker is a cross-reference, not part of the meaning.
+    const rimmon = parseTahotLine("Jos.15.32#04=L\tוְ/רִמּ֑וֹן\tve./ri.Mon\tand/ Rimmon\tH9002/{H7417I}\tHC/Npl\t\t\tH7417I\t\t\tH9002=ו=and/{H7417I=רִמּוֹן, רִמּוֹנוֹ=Rimmon@Jos.15.32}\t\t\t\t");
+    const derivedRimmon = deriveLexicalEntry("H7417I", { ...rimmon, language: "hebrew" });
+    assert.equal(derivedRimmon.lemma, "רִמּוֹן, רִמּוֹנוֹ");
+    assert.equal(derivedRimmon.gloss, "Rimmon");
+    assert.equal(derivedRimmon.strongBase, "H7417");
+});
+
+test("FULL_SCOPE covers all 66 books and 1,189 chapters with Gnosis names", () => {
+    const books = require("../../src/data/bible_books.json");
+    const names = new Set(books.map(book => book.name));
+    assert.equal(FULL_SCOPE.length, 66);
+    assert.equal(FULL_SCOPE.reduce((total, passage) => total + passage.chapters.length, 0), 1189);
+    assert.equal(new Set(FULL_SCOPE.map(passage => passage.name)).size, 66);
+    assert.equal(new Set(FULL_SCOPE.map(passage => passage.book)).size, 66);
+    for (const passage of FULL_SCOPE) {
+        assert.ok(names.has(passage.name), passage.name);
+        assert.ok(["tahot", "tagnt"].includes(passage.source), passage.book);
+        assert.ok(["hebrew", "greek"].includes(passage.language), passage.book);
+        // Chapters are exactly 1..N with no gaps.
+        assert.deepEqual(passage.chapters,
+            Array.from({ length: passage.chapters.length }, (_, index) => index + 1));
+    }
+    // Spot-checks against the measured STEPBible maxima: the
+    // abbreviations differ from Gnosis's in several places.
+    const byName = new Map(FULL_SCOPE.map(passage => [passage.name, passage]));
+    assert.equal(byName.get("Psalms").book, "Psa");
+    assert.equal(byName.get("Psalms").chapters.length, 150);
+    assert.equal(byName.get("Ezekiel").book, "Ezk");
+    assert.equal(byName.get("Joel").book, "Jol");
+    assert.equal(byName.get("Nahum").book, "Nam");
+    assert.equal(byName.get("Mark").book, "Mrk");
+    assert.equal(byName.get("John").book, "Jhn");
+    assert.equal(byName.get("Song of Solomon").book, "Sng");
+    assert.equal(byName.get("Obadiah").chapters.length, 1);
+});
+
+// Full-import loop against a mocked pool, using the real fixture
+// files as the data dir: Genesis 1, Daniel 2, Psalms 3 (title + verse
+// 1) and Philippians 3. The mock simulates a fresh database on the
+// first run (each new key inserts) and an already-imported one on the
+// second (every upsert conflicts and inserts nothing).
+const insertedLexical = new Set();
+const insertedMorphology = new Set();
+const wordUpserts = [];
+const queryMock = test.mock.method(pool, "query", async (sql, params = []) => {
+    if (typeof sql === "string" && sql.includes("FROM ol_sources")) {
+        return { rows: ["STEPBible-TAHOT", "STEPBible-TAGNT", "STEPBible-TBESH",
+            "STEPBible-TBESG", "STEPBible-TEHMC", "STEPBible-TEGMC"]
+            .map((code, index) => ({ id: index + 1, code })) };
+    }
+    if (typeof sql === "string" && sql.includes("FROM bible_books")) {
+        return { rows: [
+            { id: 1, name: "Genesis" }, { id: 28, name: "Daniel" },
+            { id: 20, name: "Psalms" }, { id: 50, name: "Philippians" },
+            { id: 4, name: "Numbers" },
+        ] };
+    }
+    if (typeof sql === "string" && sql.includes("INTO ol_lexical_entries")) {
+        if (insertedLexical.has(params[0])) return { rows: [] };
+        insertedLexical.add(params[0]);
+        return { rows: [{ id: insertedLexical.size }] };
+    }
+    if (typeof sql === "string" && sql.includes("INTO ol_morphology_codes")) {
+        const key = `${params[1]}:${params[0]}`;
+        if (insertedMorphology.has(key)) return { rows: [] };
+        insertedMorphology.add(key);
+        return { rows: [{ id: insertedMorphology.size }] };
+    }
+    if (typeof sql === "string" && sql.includes("INTO ol_word_occurrences")) {
+        wordUpserts.push({ sql, params });
+        return { rows: [] };
+    }
+    throw new Error(`Unexpected query in importer test: ${sql}`);
+});
+
+test.after(async () => {
+    queryMock.mock.restore();
+    await pool.end();
+});
+
+test("importOriginalLanguage imports the scoped chapters and is idempotent", async () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), "ol-import-test-"));
+    try {
+        fs.writeFileSync(path.join(dataDir, "tahot.txt"),
+            ["tahot-gen-1-1.txt", "tahot-dan-2-4.txt", "tahot-psa-3-0.txt", "tahot-psa-3-1.txt"]
+                .map(name => readFixture(name)).join("\n"));
+        fs.writeFileSync(path.join(dataDir, "tagnt.txt"), readFixture("tagnt-php-3-8.txt"));
+        fs.writeFileSync(path.join(dataDir, "tbesh.txt"), readFixture("tbesh-sample.txt"));
+        fs.writeFileSync(path.join(dataDir, "tbesg.txt"), readFixture("tbesg-sample.txt"));
+        fs.writeFileSync(path.join(dataDir, "tehmc.txt"), readFixture("tehmc-sample.txt"));
+        fs.writeFileSync(path.join(dataDir, "tegmc.txt"), readFixture("tegmc-sample.txt"));
+        const scope = [
+            { book: "Gen", name: "Genesis", chapters: [1], source: "tahot", language: "hebrew" },
+            { book: "Dan", name: "Daniel", chapters: [2], source: "tahot", language: "hebrew" },
+            { book: "Psa", name: "Psalms", chapters: [3], source: "tahot", language: "hebrew" },
+            { book: "Php", name: "Philippians", chapters: [3], source: "tagnt", language: "greek" },
+        ];
+
+        const first = await importOriginalLanguage({ dataDir, scope });
+        // 7 (Gen 1:1) + 12 (Dan 2:4) + 6 (Psa 3:0) + 7 (Psa 3:1) + 28
+        // (Php 3:8 in NA28; the TR-only word is excluded).
+        assert.equal(first.words, 60);
+        assert.equal(first.aramaicWords, 8);
+        assert.equal(first.altRefRows, 13);
+        assert.ok(first.lexicalEntries > 0);
+        assert.ok(first.morphologyCodes > 0);
+        assert.equal(wordUpserts.length, 60);
+        assert.ok(wordUpserts.every(upsert => upsert.sql.includes("ON CONFLICT")));
+
+        const wordKey = upsert => upsert.params.slice(1, 5).join(":");
+        const byKey = new Map(wordUpserts.map(upsert => [wordKey(upsert), upsert]));
+        // Daniel 2:4 switches mid-verse: words 1–4 Hebrew, 5–12 Aramaic.
+        assert.equal(byKey.get("28:2:4:4").params[5], "hebrew");
+        assert.equal(byKey.get("28:2:4:5").params[5], "aramaic");
+        assert.equal(byKey.get("28:2:4:12").params[5], "aramaic");
+        // Psalm titles are stored at verse 0, never merged into verse 1.
+        assert.equal([...byKey.values()].filter(upsert => upsert.params[3] === 0).length, 6);
+        // The TR-only Philippians word (#26) is not imported.
+        assert.ok(![...byKey.keys()].some(key => key === "50:3:8:26"));
+        // The sample lexicons/morphology files do not cover everything,
+        // so warnings exist — but only of the two known kinds.
+        assert.ok(first.warnings.length > 0);
+        assert.ok(first.warnings.every(message =>
+            /No lexicon row|No (hebrew|greek) morphology expansion/.test(message)));
+
+        const keysBefore = wordUpserts.map(wordKey);
+        const second = await importOriginalLanguage({ dataDir, scope });
+        // Same words re-upserted onto the same keys (no duplicates by
+        // construction), but nothing new inserted.
+        assert.equal(second.words, 60);
+        assert.equal(second.lexicalEntries, 0);
+        assert.equal(second.morphologyCodes, 0);
+        assert.equal(wordUpserts.length, 120);
+        assert.deepEqual(wordUpserts.slice(60).map(wordKey), keysBefore);
+        assert.ok(second.warnings.every(message =>
+            /No lexicon row|No (hebrew|greek) morphology expansion/.test(message)));
+    } finally {
+        fs.rmSync(dataDir, { recursive: true, force: true });
+    }
+});
+
+test("importOriginalLanguage renumbers verses spanning a Hebrew/English verse-boundary shift", async () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), "ol-import-merge-"));
+    try {
+        fs.writeFileSync(path.join(dataDir, "tahot.txt"), readFixture("tahot-num-26-1.txt"));
+        fs.writeFileSync(path.join(dataDir, "tagnt.txt"), "");
+        fs.writeFileSync(path.join(dataDir, "tbesh.txt"), readFixture("tbesh-sample.txt"));
+        fs.writeFileSync(path.join(dataDir, "tbesg.txt"), readFixture("tbesg-sample.txt"));
+        fs.writeFileSync(path.join(dataDir, "tehmc.txt"), readFixture("tehmc-sample.txt"));
+        fs.writeFileSync(path.join(dataDir, "tegmc.txt"), readFixture("tegmc-sample.txt"));
+        const scope = [
+            { book: "Num", name: "Numbers", chapters: [26], source: "tahot", language: "hebrew" },
+        ];
+
+        const result = await importOriginalLanguage({ dataDir, scope });
+        // Numbers 26:1 is 13 words in English: the tail of Hebrew
+        // 25:19 ("after the plague", 3 words) plus Hebrew 26:1
+        // ("the LORD said to Moses…", 10 words). Both groups share
+        // the English verse number, so the source word index restarts
+        // at 1 for the second group.
+        assert.equal(result.words, 13);
+        assert.deepEqual([...result.mergedVerses], ["Numbers 26:1"]);
+        const numUpserts = wordUpserts.filter(upsert =>
+            upsert.params[1] === 4 && upsert.params[2] === 26 && upsert.params[3] === 1);
+        assert.equal(numUpserts.length, 13);
+        // Stored word indices run 1–13 in file order — the second
+        // group continues where the first left off instead of
+        // overwriting it on the (book, chapter, verse, word_index)
+        // key, which would silently drop real text.
+        assert.deepEqual(numUpserts.map(upsert => upsert.params[4]),
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
+        assert.equal(numUpserts[0].params[6], nfc("וַיְהִ֖י"));
+        assert.equal(numUpserts[3].params[6], nfc("וַיֹּ֤אמֶר"));
+        assert.equal(numUpserts[11].params[6], nfc("הַכֹּהֵ֖ן"));
+        assert.equal(numUpserts[12].params[6], nfc("לֵאמֹֽר׃"));
+    } finally {
+        fs.rmSync(dataDir, { recursive: true, force: true });
+    }
 });

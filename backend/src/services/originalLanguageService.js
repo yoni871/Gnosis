@@ -93,8 +93,8 @@ const getLexicalEntry = async (strongNumber) => {
 
 // Occurrences of one lemma (same disambiguated Strong's) or, with
 // match=strong, of every disambiguated sense sharing its plain
-// Strong's number. Phase 1 searches only the imported corpus
-// (Genesis 1 and Philippians 3); the response says so.
+// Strong's number. Searches the imported corpus (the full 66-book
+// canon after the Phase 2 import); the response says so.
 const getOccurrences = async ({ strongNumber, strongBase, match, limit, offset }) => {
     const filter = match === "strong"
         ? "l.strong_base = $1"
@@ -144,7 +144,21 @@ const getVerseWords = async (refs) => {
     return result.rows;
 };
 
+// Whether a chapter has any imported words at all. The passage
+// endpoint uses this to tell an NA28 gap (chapter imported, verse
+// has no words in the NA28 edition) from a chapter that was never
+// imported (no words anywhere in the chapter).
+const getChapterWordCount = async (bookId, chapter) => {
+    const result = await pool.query(
+        `SELECT count(*)::int AS chapter_words
+         FROM ol_word_occurrences
+         WHERE book_id = $1 AND chapter_number = $2`,
+        [bookId, chapter]
+    );
+    return result.rows[0].chapter_words;
+};
+
 module.exports = {
     getBookByName, getSources, getPassageWords, getTitleWords, getWordById,
-    getLexicalEntry, getOccurrences, getVerseWords,
+    getLexicalEntry, getOccurrences, getVerseWords, getChapterWordCount,
 };

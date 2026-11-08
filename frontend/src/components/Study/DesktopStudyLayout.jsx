@@ -31,7 +31,8 @@ export default function DesktopStudyLayout({
     bookmarksState,
     bookmarkPreviews,
     highlightsState,
-    verseSelection
+    verseSelection,
+    navigateToPassage
 }) {
     return (
         <main
@@ -68,6 +69,7 @@ export default function DesktopStudyLayout({
                     selectedVerse={selectedVerse}
                     setSelectedVerse={setSelectedVerse}
                     setTranslation={setTranslation}
+                    navigateToPassage={navigateToPassage}
                 />
             </div>
 
