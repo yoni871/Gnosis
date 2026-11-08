@@ -281,11 +281,9 @@ describe("LandingPage", () => {
                 name: "Account menu for Sample Reader",
             }),
         );
-        expect(
-            within(header).getByRole("link", {
-                name: "Continue studying",
-            }),
-        ).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(within(header).getByRole("button", { name: "Profile" })).toBeVisible();
+        expect(within(header).getByRole("button", { name: "Settings" })).toBeVisible();
+        expect(within(header).queryByText("Continue studying")).toBeNull();
         await user.click(
             within(header).getByRole("button", { name: "Sign out" }),
         );

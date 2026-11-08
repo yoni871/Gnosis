@@ -171,17 +171,6 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                                     Profile
                                 </button>
 
-                                <button className="
-                                    flex w-full
-                                    rounded-md
-                                    px-2 py-2
-                                    text-left
-                                    text-sm
-                                    text-[var(--text-primary)]
-                                    hover:bg-[var(--hover-bg)]
-                                ">
-                                    Notes
-                                </button>
 
                                 <button className="
                                     flex w-full

@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import Seo from "../components/Seo";
+import PasswordInput from "../components/PasswordInput";
 import { pageUrl } from "../utils/seo";
 
 export default function LoginPage() {
@@ -127,7 +128,7 @@ export default function LoginPage() {
             ">
 
                 <Link
-                    to="/bible/Genesis/1"
+                    to="/"
                     className="
                         mb-4
                         block
@@ -318,9 +319,8 @@ export default function LoginPage() {
                                     Password
                                 </label>
 
-                                <input
-                                    id="password" 
-                                    type="password"
+                                <PasswordInput
+                                    id="password"
                                     value={password}
                                     onChange={(event) => {
                                         setPassword(event.target.value);

@@ -73,9 +73,10 @@ function AuthLinks({ closeAll, hero = false }) {
                 {accountOpen && (
                     <ul id={menuId} className="landing-nav-popover landing-account-menu">
                         <li>
-                            <Link to="/bible/Genesis/1" onClick={() => { setAccountOpen(false); closeAll(); }}>
-                                Continue studying
-                            </Link>
+                            <button type="button">Profile</button>
+                        </li>
+                        <li>
+                            <button type="button">Settings</button>
                         </li>
                         <li className="landing-account-signout">
                             <button type="button" onClick={handleSignOut}>Sign out</button>
