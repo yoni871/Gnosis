@@ -366,7 +366,7 @@ test("Aramaic ranges are word-level: Daniel 2:4 switches mid-verse", () => {
         word(3, 8, 1)), "greek");
 });
 
-test("downloadStepBibleFiles concatenates the TAHOT/TAGNT parts and skips present single files", async () => {
+test("downloadStepBibleFiles concatenates the TAHOT/TAGNT parts, caches completed files, and rebuilds stale ones", async () => {
     const { downloadStepBibleFiles } = require("../../src/importer/importOriginalLanguage");
     const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), "ol-download-test-"));
     try {
@@ -398,9 +398,8 @@ test("downloadStepBibleFiles concatenates the TAHOT/TAGNT parts and skips presen
             fs.readFileSync(path.join(dataDir, "tagnt.txt"), "utf8"),
             "Mat-Jhn part\nAct-Rev part\n");
         assert.equal(fs.readFileSync(path.join(dataDir, "tbesh.txt"), "utf8"), "single\n");
-        // A second run skips the single files but rebuilds the
-        // multi-part files, so a stale partial download never passes
-        // as complete.
+        // A second run fetches nothing: completed files are cached
+        // via the manifest written next to each file.
         const before = fetched.length;
         globalThis.fetch = async (url) => {
             fetched.push(url);
@@ -411,7 +410,26 @@ test("downloadStepBibleFiles concatenates the TAHOT/TAGNT parts and skips presen
         } finally {
             globalThis.fetch = realFetch;
         }
-        assert.equal(fetched.length - before, 6); // 4 TAHOT + 2 TAGNT parts
+        assert.equal(fetched.length - before, 0);
+        assert.equal(
+            fs.readFileSync(path.join(dataDir, "tahot.txt"), "utf8"),
+            "Gen-Deu part\nJos-Est part\nJob-Sng part\nIsa-Mal part\n");
+        assert.equal(fs.readFileSync(path.join(dataDir, "tbesh.txt"), "utf8"), "single\n");
+        // A multi-part file with no manifest (e.g. a stale partial
+        // download from the old single-part downloader) is rebuilt
+        // once — the other files stay cached.
+        fs.rmSync(path.join(dataDir, "tahot.txt.parts.json"));
+        const staleBefore = fetched.length;
+        globalThis.fetch = async (url) => {
+            fetched.push(url);
+            return { ok: true, arrayBuffer: async () => Buffer.from("again\n", "utf8") };
+        };
+        try {
+            await downloadStepBibleFiles(dataDir);
+        } finally {
+            globalThis.fetch = realFetch;
+        }
+        assert.equal(fetched.length - staleBefore, 4); // TAHOT parts only
         assert.equal(
             fs.readFileSync(path.join(dataDir, "tahot.txt"), "utf8"),
             "again\nagain\nagain\nagain\n");

@@ -507,11 +507,22 @@ async function downloadStepBibleFiles(dataDir, { refresh = false } = {}) {
     for (const [key, file] of Object.entries(STEPBIBLE_FILES)) {
         const dest = path.join(dataDir, `${key}.txt`);
         const parts = Array.isArray(file) ? file : [file];
-        // A single file is skipped when already present (unless
-        // --refresh). A multi-part file is always rebuilt from its
-        // parts, so a stale partial download (e.g. an old
-        // Gen-Deu-only tahot.txt) can never pass as the complete file.
-        if (!refresh && parts.length === 1 && fs.existsSync(dest)) {
+        // A completed download is cached: the manifest written next
+        // to it lists the parts it was assembled from, so a second
+        // run fetches nothing. A file with no (or a mismatched)
+        // manifest — e.g. an old Gen-Deu-only tahot.txt from the
+        // single-part downloader — is never trusted as complete: it
+        // is rebuilt once, then cached like the rest.
+        const manifestPath = `${dest}.parts.json`;
+        let cached = false;
+        if (!refresh && fs.existsSync(dest) && fs.existsSync(manifestPath)) {
+            try {
+                cached = JSON.stringify(JSON.parse(fs.readFileSync(manifestPath, "utf8"))) === JSON.stringify(parts);
+            } catch {
+                cached = false;
+            }
+        }
+        if (cached) {
             console.log(`Already present: ${key}.txt`);
             continue;
         }
@@ -532,6 +543,7 @@ async function downloadStepBibleFiles(dataDir, { refresh = false } = {}) {
         // leaves a partial file in place of a good one.
         fs.writeFileSync(dest + ".tmp", chunks.join(""));
         fs.renameSync(dest + ".tmp", dest);
+        fs.writeFileSync(manifestPath, JSON.stringify(parts));
     }
 }
 
