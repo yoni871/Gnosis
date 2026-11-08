@@ -1,6 +1,8 @@
-import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react"
+import { Suspense, lazy, useEffect, useId, useMemo, useRef, useState } from "react"
 import { ChevronDown, Bookmark } from "lucide-react";
 import VerseActions from "./VerseActions";
+import ReaderDropdownOptions from "../ReaderDropdownOptions";
+import useClickOutside from "../../hooks/useClickOutside";
 // The modal is only opened on demand, so it loads in its own chunk
 // instead of adding to the reader's first paint.
 const OriginalLanguageModal = lazy(() =>
@@ -28,6 +30,9 @@ export default function ScripturePanel({
     const verseRefs = useRef({});
     const scriptureScrollRef = useRef(null);
     const [isTranslationMenuOpen, setIsTranslationMenuOpen] = useState(false);
+    const translationTriggerRef = useRef(null);
+    const translationMenuId = useId();
+    const translationDropdownRef = useClickOutside(() => setIsTranslationMenuOpen(false));
     const [isOriginalLanguageOpen, setIsOriginalLanguageOpen] = useState(false);
     // The translation list arrives in database order; the menu shows it
     // alphabetically by abbreviation so a growing list stays findable.
@@ -242,8 +247,12 @@ export default function ScripturePanel({
                 ">
                     <span>HOLY BIBLE</span>
 
-                    <div className="relative">
+                    <div ref={translationDropdownRef} className="relative">
                         <button
+                            type="button"
+                            ref={translationTriggerRef}
+                            aria-expanded={isTranslationMenuOpen}
+                            aria-controls={translationMenuId}
                             className="
                                 flex
                                 items-center
@@ -270,68 +279,17 @@ export default function ScripturePanel({
                         </button>
 
                         {isTranslationMenuOpen && (
-                            <div
-                                data-testid="translation-list"
-                                className="
-                                absolute
-                                right-0
-                                top-full
-                                z-[1000]
-                                max-h-[300px]
-                                min-w-[190px]
-                                overflow-y-auto
-                                border
-                                border-[var(--border)]
-                                bg-[var(--bg-panel)]
-                                p-[4px]
-                                shadow-lg
-                            ">
-
-                                {sortedTranslations.map((translationItem, index) => (
-                                    <div
-                                        key={translationItem.id}
-                                        className={`
-                                            cursor-pointer
-                                            rounded
-                                            px-2
-                                            py-2
-                                            text-[var(--text-primary)]
-                                            hover:bg-[var(--bg-control-hover)]
-                                            ${
-                                                translation === translationItem.abbreviation
-                                                    ? "bg-[var(--bg-control-hover)] font-semibold !text-[var(--color-brand)]"
-                                                    : ""
-                                            }
-                                            ${
-                                                index !== sortedTranslations.length - 1
-                                                    ? "border-b border-[var(--border)]"
-                                                    : ""
-                                            }
-                                        `}
-                                        onClick={() => {
-                                            setTranslation(translationItem.abbreviation);
-                                            setIsTranslationMenuOpen(false);
-                                        }}
-                                    >
-                                        <div className="
-                                            text-[11px]
-                                            font-semibold
-                                        ">
-                                            {translationItem.abbreviation}
-                                        </div>
-
-                                        <div className="
-                                            mt-[2px]
-                                            text-[9px]
-                                            font-normal
-                                            text-[var(--text-muted)]
-                                        ">
-                                            {translationItem.name}
-                                        </div>
-                                    </div>
-                                ))}
-                                
-
+                            <div id={translationMenuId} className="absolute right-0 top-full z-[1000] w-[260px] max-w-[calc(100vw-32px)] rounded border border-[var(--border)] bg-[var(--bg-panel)] p-[4px] shadow-lg">
+                                <ReaderDropdownOptions
+                                    items={sortedTranslations.map((item) => ({ value: item.abbreviation, label: item.abbreviation, description: item.name }))}
+                                    selectedValue={translation}
+                                    onSelect={setTranslation}
+                                    onClose={() => setIsTranslationMenuOpen(false)}
+                                    triggerRef={translationTriggerRef}
+                                    searchLabel="Search translations"
+                                    testId="translation-list"
+                                    maxHeight={300}
+                                />
                             </div>
                         )}
                     </div>

@@ -64,6 +64,44 @@ async function openMenu() {
 }
 
 describe("ScripturePanel translation dropdown", () => {
+    test("searches names and abbreviations without changing selection, and resets after Escape or outside click", async () => {
+        const user = userEvent.setup();
+        const { onSelectTranslation } = mount();
+        await openMenu();
+        const search = screen.getByRole("searchbox", { name: "Search translations" });
+        expect(search).toHaveFocus();
+        expect(within(screen.getByTestId("translation-list")).getByRole("button", { pressed: true })).toHaveTextContent("KJV");
+        await user.type(search, "english standard");
+        expect(within(screen.getByTestId("translation-list")).getAllByRole("button")).toHaveLength(1);
+        expect(screen.getByText("ESV")).toBeVisible();
+        await user.clear(search);
+        await user.type(search, "niv");
+        expect(screen.getByText("New International Version")).toBeVisible();
+        await user.type(search, "missing");
+        expect(screen.getByRole("status")).toHaveTextContent("No results found");
+        expect(onSelectTranslation).not.toHaveBeenCalled();
+        await user.keyboard("{Escape}");
+        expect(screen.getByRole("button", { name: "KJV" })).toHaveFocus();
+        await openMenu();
+        expect(screen.getByRole("searchbox")).toHaveValue("");
+        await user.type(screen.getByRole("searchbox"), "esv");
+        await user.click(screen.getByText("HOLY BIBLE"));
+        expect(screen.queryByRole("searchbox")).toBeNull();
+        await openMenu();
+        expect(screen.getByRole("searchbox")).toHaveValue("");
+    });
+
+    test("chooses a filtered translation with arrow keys and Enter", async () => {
+        const user = userEvent.setup();
+        const { onSelectTranslation } = mount();
+        await openMenu();
+        await user.type(screen.getByRole("searchbox"), "standard");
+        await user.keyboard("{ArrowDown}{End}{Home}{Enter}");
+        expect(onSelectTranslation).toHaveBeenCalledExactlyOnceWith("ASV");
+        expect(screen.queryByRole("searchbox")).toBeNull();
+        expect(screen.getByRole("button", { name: "KJV" })).toHaveFocus();
+    });
+
     test("the open list is capped in height and scrolls instead of growing with every translation", async () => {
         mount();
 

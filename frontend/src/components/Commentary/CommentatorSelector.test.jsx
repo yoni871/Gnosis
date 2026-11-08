@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi } from "vitest";
@@ -68,4 +69,39 @@ describe("CommentatorSelector dropdown scrolling", () => {
         expect(onSelect).toHaveBeenCalledWith(7);
         expect(onToggle).toHaveBeenCalledWith(false);
     });
+});
+
+test("searches commentator names and titles, keeps selection, and resets after close", async () => {
+    const user = userEvent.setup();
+    const select = vi.fn();
+    function Selector() {
+        const [open, setOpen] = useState(false);
+        return <CommentatorSelector commentators={commentators} selectedCommentator={3}
+            setSelectedCommentator={select} isCommentaryOpen={open} setIsCommentaryOpen={setOpen} />;
+    }
+    render(<Selector />);
+    const trigger = screen.getByRole("button", { name: /Matthew Henry/ });
+    await user.click(trigger);
+    const search = screen.getByRole("searchbox", { name: "Search commentaries" });
+    expect(search).toHaveFocus();
+    expect(within(screen.getByTestId("commentator-list")).getByRole("button", { pressed: true })).toHaveTextContent("Matthew Henry");
+    await user.type(search, "BARNES");
+    expect(within(screen.getByTestId("commentator-list")).getAllByRole("button")).toHaveLength(1);
+    expect(screen.getByText("Albert Barnes")).toBeVisible();
+    await user.clear(search);
+    await user.type(search, "critical and explanatory");
+    expect(screen.getByText("Jamieson, Fausset & Brown")).toBeVisible();
+    await user.type(search, "missing");
+    expect(screen.getByRole("status")).toHaveTextContent("No results found");
+    expect(select).not.toHaveBeenCalled();
+    await user.keyboard("{Escape}");
+    expect(trigger).toHaveFocus();
+    await user.click(trigger);
+    expect(screen.getByRole("searchbox")).toHaveValue("");
+    await user.type(screen.getByRole("searchbox"), "calvin");
+    await user.keyboard("{ArrowUp}{Enter}");
+    expect(select).toHaveBeenCalledExactlyOnceWith(7);
+    expect(screen.queryByRole("searchbox")).toBeNull();
+    await user.click(trigger);
+    expect(screen.getByRole("searchbox")).toHaveValue("");
 });
