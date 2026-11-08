@@ -1,4 +1,5 @@
 const pool = require("../db/db");
+const { bookExists } = require("../utils/bookValidation");
 
 const createNote = async (req, res) => {
     const userId = req.user.userId;
@@ -26,6 +27,15 @@ const createNote = async (req, res) => {
     }
 
     try {
+        // notes keep book_id as a plain integer (no foreign key crosses
+        // the project boundary): validate it against the Bible project
+        // before writing.
+        if (!(await bookExists(bookId))) {
+            return res.status(400).json({
+                error: "Unknown book."
+            });
+        }
+
         const result = await pool.query(
             `
             INSERT INTO notes (
@@ -133,6 +143,14 @@ const updateNote = async (req, res) => {
     }
 
     try {
+        // A supplied book_id is validated against the Bible project
+        // before the update (notes keep book_id as a plain integer).
+        if (bookId !== undefined && !(await bookExists(bookId))) {
+            return res.status(400).json({
+                error: "Unknown book."
+            });
+        }
+
         const result = await pool.query(
             `
             UPDATE notes

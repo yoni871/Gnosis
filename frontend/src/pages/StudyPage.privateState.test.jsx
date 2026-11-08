@@ -13,7 +13,7 @@ import * as bookmarks from '../services/bookmarksService';
 import * as highlights from '../services/highlightsService';
 
 vi.mock('../services/authService', () => ({ getProfile: vi.fn(), loginUser: vi.fn(), registerUser: vi.fn(), refreshSession: vi.fn(), logoutSession: vi.fn().mockResolvedValue(undefined) }));
-vi.mock('../services/bibleService', () => ({ getBooks: vi.fn(), getTranslations: vi.fn(), getBibleChapter: vi.fn() }));
+vi.mock('../services/bibleService', () => ({ getBooks: vi.fn(), getTranslations: vi.fn(), getBibleChapter: vi.fn(), getChapters: vi.fn() }));
 vi.mock('../services/commentaryService', () => ({ getCommentaries: vi.fn(), getChapterCommentaries: vi.fn() }));
 vi.mock('../services/notesService', () => ({ getNotes: vi.fn(), createNote: vi.fn(), updateNote: vi.fn(), deleteNote: vi.fn() }));
 vi.mock('../services/bookmarksService', () => ({ getBookmarks: vi.fn(), createBookmark: vi.fn(), deleteBookmark: vi.fn() }));
@@ -61,6 +61,7 @@ beforeEach(() => {
     bible.getBooks.mockResolvedValue([{ id: 1, name: 'Genesis', chapters: 50 }]);
     bible.getTranslations.mockResolvedValue([{ abbreviation: 'KJV', name: 'Synthetic public translation' }]);
     bible.getBibleChapter.mockResolvedValue([{ verse_number: 1, text: 'Public Scripture stays' }]);
+    bible.getChapters.mockResolvedValue([{ chapter: 1 }]);
     commentary.getCommentaries.mockResolvedValue([{ id: 3, name: 'Public commentator' }]);
     commentary.getChapterCommentaries.mockResolvedValue([{ id: 1, entry_title: 'Public commentary stays', content: 'Public commentary text', start_chapter: 1, end_chapter: 1, start_verse: 1, end_verse: 1 }]);
     notes.getNotes.mockResolvedValue([record]);

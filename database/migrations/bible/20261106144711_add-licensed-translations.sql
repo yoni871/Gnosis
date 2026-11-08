@@ -1,6 +1,8 @@
 -- Up Migration
 --
--- Licensed translations (ESV, NIV, NLT, NKJV, NASB 2020).
+-- Licensed translations (ESV, NIV, NLT, NKJV, NASB 2020), Bible half.
+-- The cache and quota tables live in the App half:
+-- database/migrations/app/20261106144711_add-licensed-translations-cache.sql.
 --
 -- The four stored translations (BSB, WEB, KJV, ASV) live as full text in
 -- bible_verses. The licensed five may NOT be stored that way: their
@@ -16,25 +18,9 @@
 --   the licence asks for on the same page (ESV -> esv.org, NASB ->
 --   lockman.org, NIV/NKJV -> api.bible per the Starter-plan citation
 --   rule). NLT carries no link requirement, so its notice_url is NULL.
--- - licensed_chapter_cache: one row per (translation, book, chapter) that
---   a reader actually opened. verses is the chapter as JSON
---   [{verse_number, text}]. Rows expire 30 days after fetched_at (the
---   longest the API.Bible terms allow; ESV rows are additionally capped
---   at 500 verses in total by the service, per Crossway's terms).
---   fums_token is API.Bible's fair-use token for the fetch, reported on
---   each display of the cached chapter.
--- - licensed_api_usage: provider call counts per period, for the quota
---   guard. period is 'YYYY-MM' for monthly budgets (API.Bible) and
---   'YYYY-MM-DD' for daily budgets (ESV, NLT).
--- - licensed_ip_limits: per-visitor counts of uncached licensed fetches,
---   one row per (HMAC-hashed IP, hour bucket). Cached chapters are free
---   and unlimited; only calls that would hit a publisher count here.
 --
 -- No grants are in this file: like the earlier auth migrations, the
--- operator applies them at deploy time. The app role needs
--- SELECT/INSERT/UPDATE/DELETE on licensed_chapter_cache and
--- SELECT/INSERT/UPDATE on licensed_api_usage and licensed_ip_limits.
--- See docs/LicensedTranslations.md.
+-- operator applies them at deploy time. See docs/LicensedTranslations.md.
 
 ALTER TABLE bible_translations
     ADD COLUMN source TEXT NOT NULL DEFAULT 'database',
@@ -74,39 +60,7 @@ WHERE NOT EXISTS (SELECT 1 FROM bible_translations WHERE abbreviation = 'NASB');
 
 SELECT setval('bible_translations_id_seq', (SELECT MAX(id) FROM bible_translations));
 
-CREATE TABLE licensed_chapter_cache (
-    id SERIAL PRIMARY KEY,
-    translation_id INTEGER NOT NULL REFERENCES bible_translations(id),
-    book_id INTEGER NOT NULL REFERENCES bible_books(id),
-    chapter_number INTEGER NOT NULL,
-    verses JSONB NOT NULL,
-    verse_count INTEGER NOT NULL,
-    fums_token TEXT,
-    fetched_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    CONSTRAINT unique_licensed_chapter UNIQUE (translation_id, book_id, chapter_number)
-);
-
-CREATE INDEX licensed_chapter_cache_fetched_idx
-    ON licensed_chapter_cache (translation_id, fetched_at);
-
-CREATE TABLE licensed_api_usage (
-    provider TEXT NOT NULL,
-    period TEXT NOT NULL,
-    calls INTEGER NOT NULL DEFAULT 0,
-    PRIMARY KEY (provider, period)
-);
-
-CREATE TABLE licensed_ip_limits (
-    key_hash TEXT NOT NULL,
-    window_hour TIMESTAMPTZ NOT NULL,
-    calls INTEGER NOT NULL DEFAULT 0,
-    PRIMARY KEY (key_hash, window_hour)
-);
-
 -- Down Migration
-DROP TABLE licensed_ip_limits;
-DROP TABLE licensed_api_usage;
-DROP TABLE licensed_chapter_cache;
 DELETE FROM bible_translations WHERE abbreviation IN ('ESV', 'NIV', 'NLT', 'NKJV', 'NASB');
 ALTER TABLE bible_translations
     DROP COLUMN source,

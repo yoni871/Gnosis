@@ -32,7 +32,7 @@
 // so they are deliberately left out.
 const fs = require("fs");
 const path = require("path");
-const pool = require("../db/db");
+
 
 const STEPBIBLE_BASE = "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/master";
 // TAHOT and TAGNT each ship as several part files; the downloader
@@ -502,16 +502,16 @@ function deriveLexicalEntry(strongNumber, word) {
     };
 }
 
-async function downloadStepBibleFiles(dataDir) {
+async function downloadStepBibleFiles(dataDir, { refresh = false } = {}) {
     fs.mkdirSync(dataDir, { recursive: true });
     for (const [key, file] of Object.entries(STEPBIBLE_FILES)) {
         const dest = path.join(dataDir, `${key}.txt`);
         const parts = Array.isArray(file) ? file : [file];
-        // A single file is skipped when already present. A multi-part
-        // file is always rebuilt from its parts, so a stale partial
-        // download (e.g. an old Gen-Deu-only tahot.txt) can never pass
-        // as the complete file.
-        if (parts.length === 1 && fs.existsSync(dest)) {
+        // A single file is skipped when already present (unless
+        // --refresh). A multi-part file is always rebuilt from its
+        // parts, so a stale partial download (e.g. an old
+        // Gen-Deu-only tahot.txt) can never pass as the complete file.
+        if (!refresh && parts.length === 1 && fs.existsSync(dest)) {
             console.log(`Already present: ${key}.txt`);
             continue;
         }
@@ -519,7 +519,7 @@ async function downloadStepBibleFiles(dataDir) {
         for (const part of parts) {
             const url = `${STEPBIBLE_BASE}/${encodeURI(part)}`;
             console.log(`Downloading ${key}.txt (${part}) ...`);
-            const response = await fetch(url);
+            const response = await fetch(url, { signal: AbortSignal.timeout(120000) });
             if (!response.ok) throw new Error(`Download failed for ${key}: HTTP ${response.status}`);
             // Strip a leading BOM (the Mat-Jhn part carries one) and
             // make sure the part ends with a newline, so the last word
@@ -528,11 +528,14 @@ async function downloadStepBibleFiles(dataDir) {
             if (!text.endsWith("\n")) text += "\n";
             chunks.push(text);
         }
-        fs.writeFileSync(dest, chunks.join(""));
+        // Write via a temp file so an interrupted download never
+        // leaves a partial file in place of a good one.
+        fs.writeFileSync(dest + ".tmp", chunks.join(""));
+        fs.renameSync(dest + ".tmp", dest);
     }
 }
 
-async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
+async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE, pool = require("../db/db").biblePool } = {}) {
     const counts = { lexicalEntries: 0, morphologyCodes: 0, words: 0, altRefRows: 0, aramaicWords: 0, warnings: [] };
     // Verses where the Hebrew and English versifications put the
     // boundary in different places, so two STEPBible row groups share
@@ -604,7 +607,15 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
             `INSERT INTO ol_lexical_entries
                 (strong_number, strong_base, language, lemma, transliteration, gloss, lexical_morphology, source_id)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-             ON CONFLICT (strong_number) DO NOTHING RETURNING id`,
+             ON CONFLICT (strong_number) DO UPDATE SET
+                strong_base=EXCLUDED.strong_base, language=EXCLUDED.language, lemma=EXCLUDED.lemma,
+                transliteration=EXCLUDED.transliteration, gloss=EXCLUDED.gloss,
+                lexical_morphology=EXCLUDED.lexical_morphology, source_id=EXCLUDED.source_id
+             WHERE (ol_lexical_entries.strong_base,ol_lexical_entries.language,ol_lexical_entries.lemma,
+                ol_lexical_entries.transliteration,ol_lexical_entries.gloss,ol_lexical_entries.lexical_morphology,ol_lexical_entries.source_id)
+                IS DISTINCT FROM (EXCLUDED.strong_base,EXCLUDED.language,EXCLUDED.lemma,
+                EXCLUDED.transliteration,EXCLUDED.gloss,EXCLUDED.lexical_morphology,EXCLUDED.source_id)
+             RETURNING id`,
             [entry.strongNumber, entry.strongBase, language, entry.lemma || "",
                 entry.transliteration || null, entry.gloss || null,
                 entry.lexicalMorphology || null, sourceIds.get(lexicalSource[language])]
@@ -620,7 +631,9 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
         const inserted = await pool.query(
             `INSERT INTO ol_morphology_codes (code, language, expansion, source_id)
              VALUES ($1, $2, $3, $4)
-             ON CONFLICT (language, code) DO NOTHING RETURNING id`,
+             ON CONFLICT (language, code) DO UPDATE SET expansion=EXCLUDED.expansion,source_id=EXCLUDED.source_id
+             WHERE (ol_morphology_codes.expansion,ol_morphology_codes.source_id)
+                IS DISTINCT FROM (EXCLUDED.expansion,EXCLUDED.source_id) RETURNING id`,
             [code, language, expansion, sourceIds.get(morphologySource[language])]
         );
         if (inserted.rows.length > 0) counts.morphologyCodes += 1;
@@ -754,6 +767,7 @@ async function importOriginalLanguage({ dataDir, scope = PHASE_1_SCOPE } = {}) {
 }
 
 async function main() {
+    const { biblePool: pool } = require("../db/db");
     const args = process.argv.slice(2);
     const dataDirIndex = args.indexOf("--data-dir");
     const dataDir = dataDirIndex === -1
@@ -763,9 +777,9 @@ async function main() {
         if (args.includes("--download")) await downloadStepBibleFiles(dataDir);
         const full = args.includes("--full");
         if (full) console.log("Full 66-book import.");
-        const counts = await importOriginalLanguage({ dataDir, scope: full ? FULL_SCOPE : PHASE_1_SCOPE });
-        console.log(`Done: ${counts.words} word occurrences, ${counts.lexicalEntries} new lexical entries, ` +
-            `${counts.morphologyCodes} new morphology codes, ${counts.altRefRows} with alternate verse numbers, ` +
+        const counts = await importOriginalLanguage({ dataDir, scope: full ? FULL_SCOPE : PHASE_1_SCOPE, pool });
+        console.log(`Done: ${counts.words} word occurrences, ${counts.lexicalEntries} lexical entries written, ` +
+            `${counts.morphologyCodes} morphology codes written, ${counts.altRefRows} with alternate verse numbers, ` +
             `${counts.aramaicWords} Aramaic words, ${counts.warnings.length} warnings.` +
             (counts.mergedVerses.size > 0
                 ? ` ${counts.mergedVerses.size} verses span a Hebrew/English verse-boundary shift and were renumbered sequentially: ${[...counts.mergedVerses].join("; ")}.`
@@ -781,9 +795,8 @@ async function main() {
 if (require.main === module) main();
 
 module.exports = {
-    importOriginalLanguage, parseTahotLine, parseTagntLine, parseLexiconLine,
+    importOriginalLanguage, downloadStepBibleFiles, parseTahotLine, parseTagntLine, parseLexiconLine,
     parseMorphologyCodeFile, parseMorphologyExpansion, grammarDisplayForMorphemes,
     morphologyLookupKey, deriveLexicalEntry, splitTopLevel, wordLanguageForWord,
-    downloadStepBibleFiles,
     PHASE_1_SCOPE, FULL_SCOPE, STEPBIBLE_FILES, ARAMAIC_RANGES,
 };

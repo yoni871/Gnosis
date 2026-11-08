@@ -7,6 +7,11 @@
 // from cache, and a new deployment purges the edge cache.
 function cacheControl({ maxAge = 60, sMaxAge = 3600, staleWhileRevalidate = 300 } = {}) {
     return (req, res, next) => {
+        if (process.env.GNOSIS_LOCAL_DEV === '1' && process.env.NODE_ENV === 'development') {
+            // Local imports are not deployments: the next reload must see newly imported data.
+            res.set('Cache-Control','no-store');
+            return next();
+        }
         res.set(
             "Cache-Control",
             `public, max-age=${maxAge}, s-maxage=${sMaxAge}, stale-while-revalidate=${staleWhileRevalidate}`

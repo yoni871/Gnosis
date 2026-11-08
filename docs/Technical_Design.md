@@ -1455,7 +1455,17 @@ Bible_Commentary_App/
 │   └── package.json
 │
 ├── database/
-│   └── schema.sql
+│   ├── migrations/
+│   │   ├── app/
+│   │   ├── bible/
+│   │   └── commentary/
+│   ├── migration-catalogs/
+│   ├── baseline.app.catalog.json
+│   ├── baseline.bible.catalog.json
+│   ├── baseline.commentary.catalog.json
+│   ├── schema.app.sql
+│   ├── schema.bible.sql
+│   └── schema.commentary.sql
 │
 ├── docs/
 │   ├── Technical_Design.md

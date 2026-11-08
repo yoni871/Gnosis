@@ -69,7 +69,8 @@ async function main() {
         if (interrupted) throw new Error('Interrupted.');
         await admin.query(`CREATE DATABASE "${name}"`);
         const url = new URL(`postgresql://gnosis_test:synthetic-test-password@127.0.0.1:${port}/${name}`);
-        const migrate = spawnSync(process.execPath, ['scripts/migrate.js', 'up', '--target', 'test'], {
+        // The importer fixture is the Bible schema only.
+        const migrate = spawnSync(process.execPath, ['scripts/migrate.js', 'up', '--target', 'test', '--project', 'bible'], {
             cwd: path.join(root, 'backend'), env: { ...testEnvironment(), MIGRATION_TEST_DATABASE_URL: url.href },
             encoding: 'utf8', timeout: 90000,
         });

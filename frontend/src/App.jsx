@@ -2,6 +2,7 @@ import './App.css'
 import { lazy, Suspense } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
+import ErrorBoundary from './components/ErrorBoundary';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import StudyPage from './pages/StudyPage';
@@ -15,6 +16,8 @@ const SearchResultsPage = lazy(() => import('./pages/SearchResultsPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const VerifyPage = lazy(() => import('./pages/VerifyPage'));
+const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
+const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
 
 function RouteLoading() {
     return (
@@ -34,6 +37,7 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <AuthProvider>
+          <ErrorBoundary>
           <Suspense fallback={<RouteLoading />}>
           <Routes>
 
@@ -75,8 +79,19 @@ function App() {
               element={<VerifyPage />}
             />
 
+            <Route
+              path='/forgot-password'
+              element={<ForgotPasswordPage />}
+            />
+
+            <Route
+              path='/reset-password'
+              element={<ResetPasswordPage />}
+            />
+
           </Routes>
           </Suspense>
+          </ErrorBoundary>
         </AuthProvider>
       </BrowserRouter>
     </ThemeProvider>

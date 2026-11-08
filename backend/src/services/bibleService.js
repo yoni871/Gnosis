@@ -1,4 +1,4 @@
-const pool = require("../db/db");
+const { biblePool: pool, commentaryPool } = require("../db/db");
 const { get } = require("../routes/searchRoutes");
 const { isProviderConfigured } = require("./licensed/licensedTranslations");
 
@@ -52,7 +52,7 @@ const getTranslationByAbbreviation = async (abbreviation) => {
 }
 
 const getAllCommentaries = () => {
-    return pool.query(
+    return commentaryPool.query(
         `
         SELECT
             commentaries.id,
@@ -68,18 +68,18 @@ const getAllCommentaries = () => {
 }
 
 const getCommentariesByBook = (bookId) => {
-    return pool.query(
+    return commentaryPool.query(
          "SELECT * FROM commentary_entries WHERE book_id = $1",
         [bookId],
     )
 }
 
 const getAllSources = () => {
-    return pool.query("SELECT * FROM sources");
+    return commentaryPool.query("SELECT * FROM sources");
 }
 
 const getCommentariesByChapter = (bookId, chapterNumber, commentaryId) => {
-    return pool.query(
+    return commentaryPool.query(
         `
         SELECT 
             commentary_entries.id,
@@ -108,7 +108,7 @@ const getCommentariesByChapter = (bookId, chapterNumber, commentaryId) => {
 };
 
 const getCommentariesByVerse = (bookId, chapterNumber, verseNumber) => {
-    return pool.query(
+    return commentaryPool.query(
         `
         SELECT 
             commentary_entries.content,
@@ -194,7 +194,7 @@ const getStudyByChapter = async (book, chapter, commentaryId) => {
         [book, chapter],
     );
 
-    const commentariesResult = await pool.query(
+    const commentariesResult = await commentaryPool.query(
         `
         SELECT
             e.content,

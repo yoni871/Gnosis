@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { getProfile, loginUser, registerUser, resendVerification, verifyEmail, refreshSession, logoutSession } from '../services/authService';
+import { getProfile, loginUser, registerUser, resendVerification, verifyEmail, forgotPassword, resetPassword, refreshSession, logoutSession } from '../services/authService';
 
 function response(body, status = 200) {
     return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -61,6 +61,32 @@ test('resendVerification posts the email to the resend endpoint', async () => {
     await resendVerification('reader@example.invalid');
     expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/resend-verification$/);
     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ email: 'reader@example.invalid' });
+});
+
+test('forgotPassword posts the email to the forgot endpoint', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(response({ message: 'If there is an account for this email, a password reset link has been sent.' }));
+    vi.stubGlobal('fetch', fetchMock);
+    await forgotPassword('reader@example.invalid');
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/forgot-password$/);
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ email: 'reader@example.invalid' });
+});
+
+test('resetPassword posts the token and new password to the reset endpoint', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(response({ reset: true }));
+    vi.stubGlobal('fetch', fetchMock);
+    await resetPassword('synthetic-reset-token', 'a-new-password');
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/reset-password$/);
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ token: 'synthetic-reset-token', password: 'a-new-password' });
+});
+
+test('resetPassword preserves the invalid-link code without deriving it from the message', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response(
+        { error: 'Invalid or expired password reset link.', code: 'INVALID_RESET_LINK' }, 400,
+    )));
+    const error = await resetPassword('synthetic-reset-token', 'a-new-password').catch(e => e);
+    expect(error).toBeInstanceOf(Error);
+    expect(error.message).toBe('Invalid or expired password reset link.');
+    expect(error.code).toBe('INVALID_RESET_LINK');
 });
 
 test('refresh includes the HttpOnly cookie and the explicit session request header', async () => {

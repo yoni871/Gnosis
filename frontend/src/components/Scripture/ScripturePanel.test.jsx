@@ -64,6 +64,44 @@ async function openMenu() {
 }
 
 describe("ScripturePanel translation dropdown", () => {
+    test("searches names and abbreviations without changing selection, and resets after Escape or outside click", async () => {
+        const user = userEvent.setup();
+        const { onSelectTranslation } = mount();
+        await openMenu();
+        const search = screen.getByRole("searchbox", { name: "Search translations" });
+        expect(search).toHaveFocus();
+        expect(within(screen.getByTestId("translation-list")).getByRole("button", { pressed: true })).toHaveTextContent("KJV");
+        await user.type(search, "english standard");
+        expect(within(screen.getByTestId("translation-list")).getAllByRole("button")).toHaveLength(1);
+        expect(screen.getByText("ESV")).toBeVisible();
+        await user.clear(search);
+        await user.type(search, "niv");
+        expect(screen.getByText("New International Version")).toBeVisible();
+        await user.type(search, "missing");
+        expect(screen.getByRole("status")).toHaveTextContent("No results found");
+        expect(onSelectTranslation).not.toHaveBeenCalled();
+        await user.keyboard("{Escape}");
+        expect(screen.getByRole("button", { name: "KJV" })).toHaveFocus();
+        await openMenu();
+        expect(screen.getByRole("searchbox")).toHaveValue("");
+        await user.type(screen.getByRole("searchbox"), "esv");
+        await user.click(screen.getByText("HOLY BIBLE"));
+        expect(screen.queryByRole("searchbox")).toBeNull();
+        await openMenu();
+        expect(screen.getByRole("searchbox")).toHaveValue("");
+    });
+
+    test("chooses a filtered translation with arrow keys and Enter", async () => {
+        const user = userEvent.setup();
+        const { onSelectTranslation } = mount();
+        await openMenu();
+        await user.type(screen.getByRole("searchbox"), "standard");
+        await user.keyboard("{ArrowDown}{End}{Home}{Enter}");
+        expect(onSelectTranslation).toHaveBeenCalledExactlyOnceWith("ASV");
+        expect(screen.queryByRole("searchbox")).toBeNull();
+        expect(screen.getByRole("button", { name: "KJV" })).toHaveFocus();
+    });
+
     test("the open list is capped in height and scrolls instead of growing with every translation", async () => {
         mount();
 
@@ -172,6 +210,15 @@ function mountReader({
 }
 
 describe("ScripturePanel verse presentation", () => {
+    test("the chapter heading follows book and chapter navigation", () => {
+        const { rerenderReader } = mountReader();
+        expect(screen.getByRole("heading", { name: "GENESIS 1" })).toBeInTheDocument();
+
+        rerenderReader({ book: "John", chapter: 3 });
+        expect(screen.getByRole("heading", { name: "JOHN 3" })).toBeInTheDocument();
+        expect(screen.queryByRole("heading", { name: "GENESIS 1" })).not.toBeInTheDocument();
+    });
+
     test("keeps each verse's number and complete text together in reading order", () => {
         mountReader();
 
@@ -357,9 +404,15 @@ describe("ScripturePanel original language", () => {
 
     test("the toolbar offers original language analysis for the selected range", async () => {
         mountReader({ selectedVerse: 2, selection: selectionOf(1, 2) });
-        // The toolbar renders in the text flow at the end of the
-        // selected verse, so the button is present with a selection.
-        expect(screen.getByTestId("ol-toolbar-button")).toBeInTheDocument();
+        // The toolbar is portaled out of the verse's text flow.
+        const button = screen.getByTestId("ol-toolbar-button");
+        expect(button).toBeInTheDocument();
+        expect(button.closest(".scripture-verse")).toBeNull();
+        const toolbar = button.closest('[role="group"]');
+        for (const label of ["Bookmark", "Highlight", "Original Language"]) {
+            expect(within(toolbar).getByText(label)).toBeInTheDocument();
+        }
+        expect(within(toolbar).getByLabelText("Clear verse selection")).toBeInTheDocument();
     });
 
     test("opening the modal shows the range and the English passage; closing keeps the selection", async () => {

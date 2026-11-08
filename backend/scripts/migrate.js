@@ -1,6 +1,6 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
-const { parseArgs, migrationsDir, safeError } = require('./migrations/config');
+const { parseArgs, projectDir, safeError } = require('./migrations/config');
 const { execute } = require('./migrations/runner');
 
 async function main() {
@@ -10,7 +10,7 @@ async function main() {
     if (options.command === 'create') {
         const stamp = new Date().toISOString().replace(/\D/g,'').slice(0,14);
         const name = `${stamp}_${options.description}.sql`;
-        await fs.writeFile(path.join(migrationsDir,name),
+        await fs.writeFile(path.join(projectDir(options.project),name),
             '-- Up Migration\n\n-- Down Migration\nDO $$ BEGIN RAISE EXCEPTION \'Define a safe reversal or document this migration as irreversible\'; END $$;\n', {flag:'wx'});
         console.log(`Created migration ${name}.`);
     } else {

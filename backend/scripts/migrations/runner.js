@@ -2,7 +2,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const { Client } = require('pg');
 const { catalog, differences } = require('./catalog');
-const { connectionFor, safeError, migrationsDir, baselineName, lockId } = require('./config');
+const { connectionFor, safeError, migrationsDir, baselineName, lockId, projects, projectDir, migrationsTable, baselineCatalogPath } = require('./config');
 
 async function migrationFiles(dir) {
     const files = (await fs.readdir(dir)).filter(name => name.endsWith('.sql')).sort();
@@ -14,18 +14,22 @@ async function migrationFiles(dir) {
     return files.map(name => name.slice(0,-4));
 }
 
-async function history(client, names) {
-    const exists = (await client.query("SELECT to_regclass('public.pgmigrations') IS NOT NULL AS exists")).rows[0].exists;
+// `table` is always one of the allowlisted per-project tracking tables
+// (pgmigrations_<project>), never arbitrary input, so interpolating it
+// into these fixed-shape queries is safe.
+async function history(client, names, table, allowLateIndexes = false) {
+    const exists = (await client.query(`SELECT to_regclass('public.${table}') IS NOT NULL AS exists`)).rows[0].exists;
     if (!exists) return [];
-    const columns = (await client.query("SELECT column_name,data_type,is_nullable FROM information_schema.columns WHERE table_schema='public' AND table_name='pgmigrations' ORDER BY ordinal_position")).rows;
+    const columns = (await client.query(`SELECT column_name,data_type,is_nullable FROM information_schema.columns WHERE table_schema='public' AND table_name='${table}' ORDER BY ordinal_position`)).rows;
     if (JSON.stringify(columns) !== JSON.stringify([
         {column_name:'id',data_type:'integer',is_nullable:'NO'},
         {column_name:'name',data_type:'character varying',is_nullable:'NO'},
         {column_name:'run_on',data_type:'timestamp without time zone',is_nullable:'NO'}
-    ]) || (await client.query("SELECT pg_get_constraintdef(oid) AS definition FROM pg_constraint WHERE conrelid='public.pgmigrations'::regclass AND contype='p'")).rows[0]?.definition !== 'PRIMARY KEY (id)') {
+    ]) || (await client.query(`SELECT pg_get_constraintdef(oid) AS definition FROM pg_constraint WHERE conrelid='public.${table}'::regclass AND contype='p'`)).rows[0]?.definition !== 'PRIMARY KEY (id)') {
         throw safeError('Unexpected migration tracking schema; no automatic repair performed.');
     }
-    const rows = (await client.query('SELECT name FROM public.pgmigrations ORDER BY id')).rows.map(row => row.name);
+    const rows = (await client.query(`SELECT name FROM public.${table} ORDER BY id`)).rows.map(row => row.name);
+    if (allowLateIndexes) return require('./localLateIndexes').orderedLocalHistory(rows,names);
     if (rows.some((name, i) => name !== names[i])) {
         throw safeError('Migration history does not match the ordered migration files.');
     }
@@ -59,13 +63,13 @@ function stageError(stage, error) {
 // by migration name from the repo's catalog directory, matching how the
 // baseline catalog is loaded, so test directories that copy real migration
 // SQL verbatim inherit the real deltas.
-async function appliedCatalog(baseline, applied) {
+async function appliedCatalog(baseline, applied, dir) {
     const byKey = new Map(baseline.map(row => [`${row.kind}:${row.name}`, row]));
     for (const name of applied) {
         if (name === baselineName) continue;
         let delta;
         try {
-            delta = JSON.parse(await fs.readFile(path.join(migrationsDir, '..', 'migration-catalogs', `${name}.catalog.json`), 'utf8'));
+            delta = JSON.parse(await fs.readFile(path.join(dir, '..', '..', 'migration-catalogs', `${name}.catalog.json`), 'utf8'));
         } catch (error) {
             if (error.code === 'ENOENT') continue;
             throw error;
@@ -84,16 +88,60 @@ async function appliedCatalog(baseline, applied) {
     return [...byKey.values()];
 }
 
+const keyOf = row => `${row.kind}:${row.name}`;
+
+// Every object a project is known to own: its baseline catalog plus the
+// `added` rows of every committed delta for its migrations. Used to
+// scope drift detection to one project when several histories share a
+// database (tests, local development). Deltas are addressed by migration
+// name from the repo's catalog directory, like appliedCatalog does.
+async function knownKeys(project) {
+    const keys = new Set();
+    const baseline = JSON.parse(await fs.readFile(baselineCatalogPath(project), 'utf8'));
+    for (const row of baseline) keys.add(keyOf(row));
+    const catalogDir = path.resolve(projectDir(project), '../../migration-catalogs');
+    for (const file of (await fs.readdir(projectDir(project))).filter(name => name.endsWith('.sql'))) {
+        let delta;
+        try {
+            delta = JSON.parse(await fs.readFile(path.join(catalogDir, `${file.slice(0, -4)}.catalog.json`), 'utf8'));
+        } catch (error) {
+            if (error.code === 'ENOENT') continue;
+            throw error;
+        }
+        for (const row of delta.added) keys.add(keyOf(row));
+    }
+    return keys;
+}
+
 // clientFactory allows tests to observe/fault-inject real PostgreSQL queries.
 // The CLI never accepts or configures this dependency.
-async function execute({command, target, env = process.env, dir = migrationsDir,
-    clientFactory = config => new Client(config)}) {
-    const config = connectionFor(target, env);
+async function execute({command, target, project, env = process.env, dir,
+    clientFactory = config => new Client(config), allowLateIndexes = false}) {
+    if (!projects.includes(project)) throw safeError('An explicit project app, bible, or commentary is required.');
+    dir = dir || projectDir(project);
+    const table = migrationsTable(project);
+    if (allowLateIndexes) await require('./localLateIndexes').validateLocalLateIndexes({target,command,env,dir});
+    const config = connectionFor(target, env, project);
     if (target === 'production' && command !== 'check' && env.MIGRATION_CONFIRM_PRODUCTION !== 'yes') {
         throw safeError('Production writes require MIGRATION_CONFIRM_PRODUCTION=yes after operator review.');
     }
     const names = await migrationFiles(dir);
-    let expected = JSON.parse(await fs.readFile(path.join(__dirname, '../../../database/baseline.catalog.json'), 'utf8'));
+    let expected = JSON.parse(await fs.readFile(baselineCatalogPath(project), 'utf8'));
+    // Scope drift detection to this project. In a shared database the
+    // other projects' objects are live too; they are not this project's
+    // schema. An object owned by this project is never excluded, so
+    // bible_books (owned by both Bible and Commentary) is still checked
+    // by both. The no-history guard likewise ignores shared objects:
+    // bible_books existing because the Bible project created it is not
+    // untracked Commentary schema.
+    const ownKeys = await knownKeys(project);
+    const otherKeys = new Set();
+    for (const other of projects.filter(name => name !== project)) {
+        for (const key of await knownKeys(other)) otherKeys.add(key);
+    }
+    const sharedKeys = new Set([...ownKeys].filter(key => otherKeys.has(key)));
+    const liveCatalog = async (liveClient) => (await catalog(liveClient))
+        .filter(row => !otherKeys.has(keyOf(row)) || ownKeys.has(keyOf(row)));
     const client = clientFactory({...config, connectionTimeoutMillis: 10000,
         application_name: 'gnosis-migrations'});
     // Do not forward driver diagnostics: they can contain credentials or SQL data.
@@ -113,10 +161,10 @@ async function execute({command, target, env = process.env, dir = migrationsDir,
         if (!lock.rows[0].locked) throw safeError('Another migration operation is running. Retry later.');
         locked = true;
         stage = 'history validation';
-        const applied = await history(client, names);
+        const applied = await history(client, names, table, allowLateIndexes);
         stage = 'schema validation';
-        expected = await appliedCatalog(expected, applied);
-        const actual = await catalog(client);
+        expected = await appliedCatalog(expected, applied, dir);
+        const actual = await liveCatalog(client);
         const diff = differences(actual, expected);
         const tables = expected.filter(row => row.kind === 'relation' && row.definition.kind === 'r');
         stage = 'table locking';
@@ -128,7 +176,7 @@ async function execute({command, target, env = process.env, dir = migrationsDir,
             [tables.map(row => `public."${row.name}"`)])).rows[0].allowed;
         if (command === 'check') {
             completed = true;
-            return {applied, pending: names.slice(applied.length), baselineMatches: diff.length === 0,
+            return {project, applied, pending: names.filter(name=>!applied.includes(name)), baselineMatches: diff.length === 0,
                 differences: diff, adoptionLockPrivileges: canLock};
         }
         stage = 'schema validation';
@@ -146,8 +194,8 @@ async function execute({command, target, env = process.env, dir = migrationsDir,
             stage = 'table locking';
             await client.query(`LOCK TABLE ${tables.map(row => `public."${row.name}"`).join(',')} IN SHARE MODE`);
             stage = 'revalidation';
-            if (differences(await catalog(client), expected).length) throw safeError('Schema changed during validation.');
-        } else if (!applied.length && actual.length) {
+            if (differences(await liveCatalog(client), expected).length) throw safeError('Schema changed during validation.');
+        } else if (!applied.length && actual.some(row => !sharedKeys.has(keyOf(row)))) {
             throw safeError('Existing schema has no history. Use validated baseline adoption; baseline DDL was not run.');
         }
         if (command === 'down' && applied.length <= 1) throw safeError('The baseline is irreversible.');
@@ -157,14 +205,14 @@ async function execute({command, target, env = process.env, dir = migrationsDir,
         // ownership from it or exposing its potentially sensitive wrapped errors.
         const runnerClient = {query: async (...args) => {
             const sql = typeof args[0] === 'string' ? args[0] : args[0].text;
-            stage = /^(CREATE|ALTER) TABLE "public"\."pgmigrations"(?:\s|$)/.test(sql)
+            stage = new RegExp(`^(CREATE|ALTER) TABLE "public"."${table}"(?:\\s|$)`).test(sql)
                 ? 'history creation' : command === 'baseline' ? 'fake-runner' : 'migration runner';
             try { return await client.query(...args); }
             catch (error) { runnerQueryError = error; throw error; }
         }};
-        const result = await runner({dbClient:runnerClient, dir, migrationsTable:'pgmigrations', schema:'public',
+        const result = await runner({dbClient:runnerClient, dir, migrationsTable:table, schema:'public',
             direction: command === 'down' ? 'down' : 'up', count: command === 'baseline' || command === 'down' ? 1 : Infinity,
-            fake:command === 'baseline', checkOrder:true,
+            fake:command === 'baseline', checkOrder:!allowLateIndexes,
             // The wrapper owns the advisory lock for the complete operation.
             // Ordinary up/down transaction ownership remains with the runner.
             noLock:true, singleTransaction:command !== 'baseline',

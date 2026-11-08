@@ -196,25 +196,26 @@ or production database while implementing or reviewing issue #7. Select a
 reviewed environment first; keep all credentials in its secret manager.
 
 For a reviewed local preview database, set all five MIGRATION_DB_* variables
-from .env.example to that database and its operator role, then run:
+from .env.example to that database and its operator role, then run, once per
+project (Bible first in a shared database, then App, then Commentary):
 
 ```sh
-npm run db:migrate:check -- --target local
-npm run db:migrate -- --target local
-npm run db:migrate:check -- --target local
+npm run db:migrate:check -- --target local --project app
+npm run db:migrate -- --target local --project app
+npm run db:migrate:check -- --target local --project app
 ```
 
 For a reviewed remote preview database, securely inject **its preview-only**
-MIGRATION_DATABASE_URL with a direct connection and `sslmode=verify-full`.
+MIGRATION_APP_DATABASE_URL with a direct connection and `sslmode=verify-full`.
 The existing CLI calls its remote policy `production`; that target name is not
 an environment selector. The URL selects the actual database. Verify that URL
 belongs to preview before authorizing any write. The existing confirmation flag
 is required even when using that policy for a remote preview:
 
 ```sh
-npm run db:migrate:check -- --target production
-MIGRATION_CONFIRM_PRODUCTION=yes npm run db:migrate -- --target production
-npm run db:migrate:check -- --target production
+npm run db:migrate:check -- --target production --project app
+MIGRATION_CONFIRM_PRODUCTION=yes npm run db:migrate -- --target production --project app
+npm run db:migrate:check -- --target production --project app
 ```
 
 Expected new migration: `20261106210000_add-sessions.sql`; it creates
