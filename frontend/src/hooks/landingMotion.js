@@ -15,7 +15,9 @@ export function mountLandingMotion(root) {
         if (!alive || refreshFrame) return;
         refreshFrame = requestAnimationFrame(() => {
             refreshFrame = 0;
-            if (alive) ScrollTrigger.refresh();
+            // Defer geometry refreshes until scrolling stops so image loads and
+            // focus changes cannot interrupt the footer's smooth return to top.
+            if (alive) ScrollTrigger.refresh(true);
         });
     };
     try {

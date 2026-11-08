@@ -1,7 +1,6 @@
 import { useContext, useState } from "react"
 import {
     User,
-    NotebookPen,
     Settings,
     LogOut,
     ChevronDown,
@@ -114,33 +113,6 @@ export default function ProfileMenu() {
             }
         `}
     >
-            <div className="
-                px-3 py-3
-            ">
-                <div className="
-                    font-serif
-                    text-[13px]
-                    font-semibold
-                    text-[var(--text-primary)]
-                ">
-                    {`${user.first_name} ${user.last_name}`}
-                </div>
-
-                <div className="
-                    mt-1
-                    text-[10px]
-                    text-[var(--text-muted)]
-                ">
-                    {`${user.email}`}
-                </div>
-            </div>
-
-            <div className="
-                my-1
-                border-t border-[var(--border)]
-                " 
-            />
-
             <button className="
                 flex w-full
                 items-center
@@ -160,24 +132,6 @@ export default function ProfileMenu() {
                 <span>Profile</span>
             </button>
 
-            <button className="
-                flex w-full
-                items-center
-                gap-2.5
-                rounded-md
-                px-3 py-2.5
-                text-left
-                text-[11px]
-                text-[var(--text-primary)]
-                hover:bg-[var(--bg-control-hover)]
-            ">
-                <NotebookPen
-                    size={15}
-                    strokeWidth={1.8}
-                    className="text-[var(--text-muted)]"
-                />
-                <span>Notes</span>
-            </button>
 
             <button className="
                 flex w-full
@@ -197,11 +151,6 @@ export default function ProfileMenu() {
                 />
                 <span>Settings</span>
             </button>
-
-            <div className="
-                my-1
-                border-t border-[var(--border)]
-            " />
 
             <Link
                 to="/login"

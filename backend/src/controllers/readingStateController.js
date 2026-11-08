@@ -1,14 +1,5 @@
 const pool = require("../db/db");
-
-const SELECT_READING_STATE = `
-    SELECT
-        user_reading_state.*,
-        bible_books.name AS book
-    FROM user_reading_state
-    JOIN bible_books
-        ON user_reading_state.book_id = bible_books.id
-    WHERE user_reading_state.user_id = $1
-`;
+const { biblePool, commentaryPool } = require("../db/db");
 
 const isPositiveInteger = (value) => {
     return Number.isInteger(value) && value > 0;
@@ -18,7 +9,10 @@ const getReadingState = async (req, res) => {
     const userId = req.user.userId;
 
     try {
-        const result = await pool.query(SELECT_READING_STATE, [userId]);
+        const result = await pool.query(
+            "SELECT * FROM user_reading_state WHERE user_id = $1",
+            [userId]
+        );
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -26,7 +20,23 @@ const getReadingState = async (req, res) => {
             });
         }
 
-        return res.status(200).json(result.rows[0]);
+        // The book name comes from the Bible project (no join crosses
+        // the project boundary). A missing book reads as no saved
+        // position, as the old join did.
+        const book = await biblePool.query(
+            "SELECT name FROM bible_books WHERE id = $1",
+            [result.rows[0].book_id]
+        );
+        if (book.rows.length === 0) {
+            return res.status(404).json({
+                error: "No saved reading position."
+            });
+        }
+
+        return res.status(200).json({
+            ...result.rows[0],
+            book: book.rows[0].name
+        });
     } catch (error) {
         console.error(error);
 
@@ -71,8 +81,12 @@ const saveReadingState = async (req, res) => {
     }
 
     try {
-        const book = await pool.query(
-            "SELECT id FROM bible_books WHERE id = $1",
+        // The book, translation and commentary are validated one at a
+        // time, each against its own project, instead of in one combined
+        // query. The error messages and their precedence (book, then
+        // translation, then commentary) are unchanged.
+        const book = await biblePool.query(
+            "SELECT name FROM bible_books WHERE id = $1",
             [bookId]
         );
 
@@ -82,20 +96,20 @@ const saveReadingState = async (req, res) => {
             });
         }
 
-        const translationRow = await pool.query(
-            "SELECT abbreviation FROM bible_translations WHERE abbreviation = $1",
+        const translationExists = await biblePool.query(
+            "SELECT 1 FROM bible_translations WHERE abbreviation = $1",
             [translation]
         );
 
-        if (translationRow.rows.length === 0) {
+        if (translationExists.rows.length === 0) {
             return res.status(400).json({
                 error: "The translation does not exist."
             });
         }
 
         if (commentaryId !== undefined && commentaryId !== null) {
-            const commentary = await pool.query(
-                "SELECT id FROM commentaries WHERE id = $1",
+            const commentary = await commentaryPool.query(
+                "SELECT 1 FROM commentaries WHERE id = $1",
                 [commentaryId]
             );
 
@@ -106,7 +120,7 @@ const saveReadingState = async (req, res) => {
             }
         }
 
-        await pool.query(
+        const result = await pool.query(
             `
             INSERT INTO user_reading_state (
                 user_id,
@@ -125,6 +139,7 @@ const saveReadingState = async (req, res) => {
                 commentary_id = EXCLUDED.commentary_id,
                 verse_number = EXCLUDED.verse_number,
                 updated_at = NOW()
+            RETURNING *
             `,
             [
                 userId,
@@ -136,9 +151,10 @@ const saveReadingState = async (req, res) => {
             ]
         );
 
-        const result = await pool.query(SELECT_READING_STATE, [userId]);
-
-        return res.status(200).json(result.rows[0]);
+        return res.status(200).json({
+            ...result.rows[0],
+            book: book.rows[0].name
+        });
     } catch (error) {
         console.error(error);
 

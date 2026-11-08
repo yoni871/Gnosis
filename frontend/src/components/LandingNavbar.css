@@ -59,7 +59,6 @@
 .public-page .landing-header-hero .landing-nav-popover :focus-visible { outline: 2px solid var(--nav-burgundy); outline-offset: -2px; box-shadow: none; }
 .landing-explore-title { font-size: .875rem; font-weight: 600; line-height: 1.5; }
 .landing-explore-description { font-size: .78125rem; font-weight: 400; line-height: 1.55; color: var(--nav-muted); }
-.landing-account-signout { margin-top: 4px; padding-top: 4px; border-top: 1px solid #d8c9b9; }
 .public-page .landing-account-signout button { color: var(--nav-burgundy); }
 @keyframes landing-popover-reveal { from { opacity: 0; margin-top: -4px; } to { opacity: 1; margin-top: 0; } }
 @media (prefers-reduced-motion: reduce) {
@@ -69,7 +68,7 @@
 }
 @media (max-width: 1099px) {
     .public-page .landing-header-hero .landing-nav-desktop { display: none; }
-    .public-page .landing-header-hero .landing-menu-button { display: inline-flex; }
+    .public-page .landing-header-hero .landing-menu-button { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0; }
     .public-page .landing-header-hero .landing-header-inner { min-height: 64px; padding-block: 8px; }
     .public-page .landing-header-hero .landing-logo-img { width: 32px; height: 32px; }
     .public-page .landing-header-hero .landing-logo-word { font-size: 28px; }

@@ -94,14 +94,16 @@ describe("About Gnosis", () => {
         expect(logout).toHaveBeenCalledTimes(1);
     });
 
-    test("direct /about navigation and an application remount preserve the route", () => {
+    test("direct /about navigation and an application remount preserve the route", async () => {
         window.history.replaceState({}, "", "/about");
         const first = render(<App />);
-        expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("About Gnosis");
+        // AboutPage is a lazy route, so the heading arrives after its
+        // chunk loads; the second render reuses the loaded chunk.
+        expect(await screen.findByRole("heading", { level: 1 })).toHaveTextContent("About Gnosis");
         first.unmount();
         render(<App />);
         expect(window.location.pathname).toBe("/about");
-        expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("About Gnosis");
+        expect(await screen.findByRole("heading", { level: 1 })).toHaveTextContent("About Gnosis");
         const config = JSON.parse(readFileSync("vercel.json", "utf8"));
         expect(config.rewrites).toContainEqual({ source: "/(.*)", destination: "/index.html" });
     });
@@ -115,7 +117,7 @@ test("all four editorial passages preserve complete KJV text, Greek and exact ve
     GNOSIS_PASSAGES.forEach((passage,index) => {
         expect(cards[index].querySelector('.about-quotation-text').textContent).toBe(passage.quotation);
         expect(cards[index].querySelector('blockquote').textContent).toBe(`“${passage.quotation}”`);
-        expect(cards[index].querySelector('h3')).toHaveTextContent(`Scripture — ${passage.reference}`);
+        expect(cards[index].querySelector('h3')).toHaveTextContent(`Scripture — ${passage.reference} (${passage.translation})`);
         expect(cards[index].querySelector('.about-knowledge').textContent).toBe('knowledge');
         expect(cards[index].querySelector('[lang="grc"]').textContent).toBe(passage.greek);
         expect(cards[index].querySelector('a')).toHaveAttribute('href',`/bible/${encodeURIComponent(passage.book)}/${passage.chapter}?verse=${passage.verse}&translation=KJV`);

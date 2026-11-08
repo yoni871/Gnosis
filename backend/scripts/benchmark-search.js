@@ -12,7 +12,7 @@ async function main() {
         await client.query('BEGIN');
         await client.query('CREATE SCHEMA gnosis_search_benchmark');
         await client.query('SET LOCAL search_path=gnosis_search_benchmark');
-        await client.query(fs.readFileSync(path.join(__dirname, '../../database/migrations/20261023000000_baseline.sql'), 'utf8').split('-- Down Migration')[0].replace('-- Up Migration', ''));
+        await client.query(fs.readFileSync(path.join(__dirname, '../../database/migrations/commentary/20261023000000_baseline.sql'), 'utf8').split('-- Down Migration')[0].replace('-- Up Migration', ''));
         await client.query("INSERT INTO sources (name) VALUES ('Matthew Henry')");
         await client.query("INSERT INTO commentaries (title,source_id) VALUES ('Complete',1)");
         const dir = path.join(__dirname, '../../matthew-henry-restructured');

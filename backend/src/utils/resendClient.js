@@ -13,6 +13,7 @@
 
 const { validateEmailConfig, RESEND_API_BASE_URL_DEFAULT } = require("../config/emailConfig");
 const { buildVerificationLink } = require("./verification");
+const { buildPasswordResetLink } = require("./passwordReset");
 
 const RESEND_TIMEOUT_MS = 5000;
 
@@ -45,7 +46,23 @@ function createResendClient({ fetchImpl = globalThis.fetch, baseUrl: injectedBas
                 throw new Error("Email configuration is invalid.");
             }
             const { config } = result;
+            if (env.EMAIL_DELIVERY === 'disabled') {
+                throw new Error('Email delivery is disabled for local reader testing.');
+            }
             const verificationLink = buildVerificationLink(config.frontendUrl, token);
+            if (env.EMAIL_DELIVERY === 'mailpit') {
+                // Fixed loopback destination, no credentials, no relay and no token logging.
+                // Validation above forbids this mode outside explicit local development.
+                const response = await fetchImpl('http://127.0.0.1:8025/api/v1/send', {
+                    method:'POST', headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({From:{Email:'gnosis@example.invalid',Name:'Gnosis Local'},
+                        To:[{Email:to}],Subject:'Verify your Gnosis account',
+                        Text:`Confirm your local Gnosis account: ${verificationLink}`}),
+                    signal:AbortSignal.timeout(RESEND_TIMEOUT_MS),
+                });
+                if(!response.ok) throw new Error('Local mailbox delivery failed.');
+                return {};
+            }
             const response = await fetchImpl(`${baseUrl}/emails`, {
                 method: "POST",
                 headers: {
@@ -61,6 +78,44 @@ function createResendClient({ fetchImpl = globalThis.fetch, baseUrl: injectedBas
                         + `<p>If you did not create this account, you can ignore this email.</p>`,
                     text: `Welcome to Gnosis. Confirm your email address to finish creating your account: ${verificationLink}\n`
                         + `If you did not create this account, you can ignore this email.`,
+                }),
+                signal: AbortSignal.timeout(RESEND_TIMEOUT_MS),
+            });
+            if (!response.ok) {
+                const error = new Error("Resend request failed.");
+                error.status = response.status;
+                throw error;
+            }
+            return response.json().catch(() => ({}));
+        },
+        // Issue #10: sends one password-reset email. Same contract as
+        // the verification email above: throws on bad configuration, on
+        // a non-2xx provider response (with .status attached), and on a
+        // timeout. Callers treat every throw as a provider failure: the
+        // account is preserved and the issued token stays usable for a
+        // later send, so the user can request a fresh link.
+        async sendPasswordResetEmail({ to, token }) {
+            const result = validateEmailConfig(env);
+            if (result.errors) {
+                throw new Error("Email configuration is invalid.");
+            }
+            const { config } = result;
+            const resetLink = buildPasswordResetLink(config.frontendUrl, token);
+            const response = await fetchImpl(`${baseUrl}/emails`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${config.resendApiKey}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    from: config.emailFrom,
+                    to,
+                    subject: "Reset your Gnosis password",
+                    html: `<p>You asked to reset your Gnosis password. Use the link below to choose a new one:</p>`
+                        + `<p><a href="${resetLink}">Reset your password</a></p>`
+                        + `<p>This link expires after 1 hour and works only once. If you did not ask for a password reset, you can ignore this email.</p>`,
+                    text: `You asked to reset your Gnosis password. Use the link below to choose a new one: ${resetLink}\n`
+                        + `This link expires after 1 hour and works only once. If you did not ask for a password reset, you can ignore this email.`,
                 }),
                 signal: AbortSignal.timeout(RESEND_TIMEOUT_MS),
             });

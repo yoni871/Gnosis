@@ -18,7 +18,7 @@ export default function MobileMenu({ showSearch, variant, translation }) {
 
     const { theme, setTheme } = useContext(ThemeContext);
 
-    const { user, isAuthenticated, logout } = useContext(AuthContext);
+    const { user, isAuthenticated, isAuthLoading, logout } = useContext(AuthContext);
 
     const mobileMenuRef = useClickOutside(() => {
         setIsMenuOpen(false);
@@ -100,7 +100,9 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                 </button>
 
                 {/* Profile */}
-                {isAuthenticated ? (
+                {/* While the session is still being restored, show
+                    neither the profile nor the signed-out links. */}
+                {isAuthLoading ? null : isAuthenticated ? (
                     <>
                         <button aria-expanded={isMobileProfileOpen} className="
                             flex w-full items-center gap-3
@@ -169,17 +171,6 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                                     Profile
                                 </button>
 
-                                <button className="
-                                    flex w-full
-                                    rounded-md
-                                    px-2 py-2
-                                    text-left
-                                    text-sm
-                                    text-[var(--text-primary)]
-                                    hover:bg-[var(--hover-bg)]
-                                ">
-                                    Notes
-                                </button>
 
                                 <button className="
                                     flex w-full

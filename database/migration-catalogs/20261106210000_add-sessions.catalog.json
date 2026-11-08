@@ -1,0 +1,193 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "auth_refresh_tokens.session_id",
+      "definition": {
+        "type": "uuid",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "auth_refresh_tokens.token_hash",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "auth_refresh_tokens.used_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "auth_sessions.created_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "auth_sessions.expires_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "auth_sessions.id",
+      "definition": {
+        "type": "uuid",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "auth_sessions.revoked_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "auth_sessions.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "auth_refresh_tokens.auth_refresh_tokens_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (token_hash)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "auth_refresh_tokens.auth_refresh_tokens_session_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (session_id) REFERENCES auth_sessions(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "auth_sessions.auth_sessions_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "auth_sessions.auth_sessions_user_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "auth_refresh_tokens_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX auth_refresh_tokens_pkey ON public.auth_refresh_tokens USING btree (token_hash)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "auth_refresh_tokens_session_id_idx",
+      "definition": {
+        "sql": "CREATE INDEX auth_refresh_tokens_session_id_idx ON public.auth_refresh_tokens USING btree (session_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "auth_sessions_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX auth_sessions_pkey ON public.auth_sessions USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "auth_sessions_user_id_idx",
+      "definition": {
+        "sql": "CREATE INDEX auth_sessions_user_id_idx ON public.auth_sessions USING btree (user_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "auth_refresh_tokens",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "auth_sessions",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    }
+  ],
+  "removed": []
+}

@@ -104,6 +104,37 @@ test("ESV fetch still sends book and chapter for multi-chapter books", async () 
     assert.equal(new URL(seenUrl).searchParams.get("q"), "Psalms 119");
 });
 
+test("ESV fetch aborts a hung provider instead of waiting forever", async () => {
+    // A fetch that honours the abort signal (as the real fetch does)
+    // but never otherwise resolves: the provider must give up after
+    // the timeout and surface a provider failure, which the caller
+    // turns into the 503 the reader answers with the BSB fallback.
+    // The timer below keeps the event loop alive until the abort
+    // fires: AbortSignal.timeout's internal timer is unref'd, so on
+    // some Node versions the test runner would otherwise report the
+    // promise as never-settling before the abort fires.
+    const fetchImpl = (url, init) =>
+        new Promise((resolve, reject) => {
+            const timer = setTimeout(
+                () => reject(new Error("fetch did not abort in time")),
+                1000
+            );
+            init.signal.addEventListener("abort", () => {
+                clearTimeout(timer);
+                reject(new Error("This operation was aborted"));
+            });
+        });
+    await assert.rejects(
+        fetchEsvChapter("Genesis", 1, { fetchImpl, fetchTimeoutMs: 5 }),
+        (error) => {
+            assert.equal(error.name, "LicensedProviderError");
+            assert.equal(error.code, "provider");
+            assert.match(error.message, /aborted/i);
+            return true;
+        }
+    );
+});
+
 test("ESV fetch refuses without a key and reports HTTP failures", async () => {
     const saved = process.env.ESV_API_KEY;
     delete process.env.ESV_API_KEY;

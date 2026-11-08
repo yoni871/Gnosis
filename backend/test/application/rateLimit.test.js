@@ -264,7 +264,9 @@ test('two instances sweeping at once do not error or corrupt the sweep', async (
 
 test('profile reads stay unthrottled', async () => {
     const id = await seedUser('profile@example.com', 'correct-password');
-    const token = jwt.sign({ userId: id }, JWT_SECRET, { expiresIn: '1h' });
+    const sid = require('node:crypto').randomUUID();
+    await database.pool.query("INSERT INTO auth_sessions(id,user_id,expires_at) VALUES ($1,$2,now() + interval '1 hour')", [sid, id]);
+    const token = jwt.sign({ userId: id, sid }, JWT_SECRET, { expiresIn: '15m', issuer: 'gnosis', audience: 'gnosis-api' });
     for (let i = 0; i < 10; i++) {
         const response = await fetch(`${worker.url}/api/auth/profile`, {
             headers: { Authorization: `Bearer ${token}` },

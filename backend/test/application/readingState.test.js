@@ -23,6 +23,9 @@ let commentaryExists = true;
 let lastInsertParams = null;
 
 const queryMock = test.mock.method(pool, "query", async (sql, params) => {
+    if (typeof sql === "string" && sql.includes("FROM auth_sessions")) {
+        return { rows: [{ id: '00000000-0000-4000-8000-000000000001' }] };
+    }
     if (typeof sql === "string" && sql.includes("INSERT INTO user_reading_state")) {
         lastInsertParams = params;
         savedRow = {
@@ -35,23 +38,28 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
             updated_at: "2026-11-06T19:00:00.000Z",
             book: "Genesis",
         };
-        return { rows: [] };
+        // The upsert returns the saved row (RETURNING *).
+        return { rows: [savedRow] };
     }
 
     if (typeof sql === "string" && sql.includes("FROM user_reading_state")) {
         return { rows: savedRow ? [savedRow] : [] };
     }
 
-    if (typeof sql === "string" && sql.includes("FROM bible_books WHERE id")) {
-        return { rows: bookExists ? [{ id: params[0] }] : [] };
+    // The PUT validates the book, translation, and commentary one at a
+    // time, each against its own project; the book query also returns
+    // the book name for the response. The GET looks the book name up
+    // the same way. In single-database mode the Bible and Commentary
+    // pools are the same instance as the application pool, so this one
+    // mock answers all three.
+    if (typeof sql === "string" && sql.includes("FROM bible_books")) {
+        return { rows: bookExists ? [{ name: "Genesis" }] : [] };
     }
-
-    if (typeof sql === "string" && sql.includes("FROM bible_translations WHERE abbreviation")) {
-        return { rows: translationExists ? [{ abbreviation: params[0] }] : [] };
+    if (typeof sql === "string" && sql.includes("FROM bible_translations")) {
+        return { rows: translationExists ? [{ "1": 1 }] : [] };
     }
-
-    if (typeof sql === "string" && sql.includes("FROM commentaries WHERE id")) {
-        return { rows: commentaryExists ? [{ id: params[0] }] : [] };
+    if (typeof sql === "string" && sql.includes("FROM commentaries")) {
+        return { rows: commentaryExists ? [{ "1": 1 }] : [] };
     }
 
     throw new Error(`Unexpected query in reading-state test: ${sql}`);
@@ -84,7 +92,8 @@ test.beforeEach(() => {
 });
 
 function token() {
-    return jwt.sign({ userId: 1 }, process.env.JWT_SECRET);
+    return jwt.sign({ userId: 1, sid: '00000000-0000-4000-8000-000000000001' }, process.env.JWT_SECRET,
+        { expiresIn: '15m', issuer: 'gnosis', audience: 'gnosis-api' });
 }
 
 async function request(path, options = {}) {

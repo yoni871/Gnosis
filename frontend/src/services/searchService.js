@@ -18,8 +18,15 @@ async function search(path, params, signal) {
     return data;
 }
 
-export function searchBible(query, translation = 'BSB', { signal } = {}) {
-    return search('bible', { q: query, translation }, signal);
+export function searchBible(query, translation = 'BSB', { signal, page = 1, limit } = {}) {
+    // Offset pagination: the backend caps every page at 100 rows and
+    // returns { results, total, page, limit, hasMore } with a fully
+    // deterministic rank order, so the page can keep appending with
+    // Load More and never skip or repeat a verse. The page number is
+    // part of the URL, so each page is cached separately.
+    const params = { q: query, translation, page };
+    if (limit !== undefined) params.limit = limit;
+    return search('bible', params, signal);
 }
 
 export function searchCommentary(query, { signal } = {}) {

@@ -1,3 +1,5 @@
+import { useId, useRef } from "react";
+import ReaderDropdownOptions from "../ReaderDropdownOptions";
 import { ChevronDown } from 'lucide-react'
 import useClickOutside from '../../hooks/useClickOutside';
 
@@ -9,6 +11,8 @@ export default function CommentatorSelector({
     setIsCommentaryOpen
 }) {
 
+    const triggerRef = useRef(null);
+    const menuId = useId();
     const dropdownRef = useClickOutside(() => {
         setIsCommentaryOpen(false)
     })
@@ -29,6 +33,10 @@ export default function CommentatorSelector({
         <div ref={dropdownRef} className="relative w-full">
 
             <button
+                type="button"
+                ref={triggerRef}
+                aria-expanded={isCommentaryOpen}
+                aria-controls={menuId}
                 className="
                     flex
                     w-full
@@ -60,9 +68,7 @@ export default function CommentatorSelector({
                         text-[16px]
                     ">
                         {
-                            commentators.find(
-                                (commentator) => commentator.id === selectedCommentator
-                            )?.name
+                            selected?.name
                         }
                     </strong>
 
@@ -71,9 +77,7 @@ export default function CommentatorSelector({
                         text-[var(--text-muted)]
                     ">
                         {
-                            commentators.find(
-                                (commentator) => commentator.id === selectedCommentator
-                            )?.title
+                            selected?.title
                         }
                     </span>
 
@@ -93,72 +97,18 @@ export default function CommentatorSelector({
             </button>
 
             {isCommentaryOpen && (
-
-                <div
-                    data-testid="commentator-list"
-                    className="
-                    absolute
-                    left-0
-                    right-0
-                    top-[calc(100%+6px)]
-                    z-[100]
-                    max-h-[200px]
-                    overflow-y-auto
-                    border
-                    border-[var(--border)]
-                    bg-[var(--bg-panel)]
-                    p-[4px]
-                    shadow-lg
-                    "
-                >
-
-                    {sortedCommentators.map((commentator, index) => (
-                        <div
-                            key={commentator.id}
-                            className={`
-                            cursor-pointer
-                            rounded
-                            px-2
-                            py-2
-                            text-[var(--text-primary)]
-                            transition-colors
-                            hover:bg-[var(--bg-control-hover)]
-                            ${
-                                selectedCommentator === commentator.id
-                                ? "bg-[var(--bg-control-hover)] font-semibold !text-[var(--color-brand)]"
-                                : ""
-                            }
-                            ${
-                                index !== sortedCommentators.length - 1
-                                ? "border-b border-[var(--border)]"
-                                : ""
-                            }
-                            `}
-                            onClick={() => {
-                            setSelectedCommentator(commentator.id);
-                            setIsCommentaryOpen(false);
-                            }}
-                        >
-                            <div className="
-                            text-[11px]
-                            font-semibold
-                            ">
-                            {commentator.name}
-                            </div>
-
-                            <div className="
-                            mt-[2px]
-                            text-[9px]
-                            font-normal
-                            text-[var(--text-muted)]
-                            ">
-                            {commentator.title}
-                            </div>
-                        </div>
-                        ))}
-
+                <div id={menuId} className="absolute left-0 right-0 top-[calc(100%+6px)] z-[100] rounded border border-[var(--border)] bg-[var(--bg-panel)] p-[4px] shadow-lg">
+                    <ReaderDropdownOptions
+                        items={sortedCommentators.map((item) => ({ value: item.id, label: item.name, description: item.title }))}
+                        selectedValue={selectedCommentator}
+                        onSelect={setSelectedCommentator}
+                        onClose={() => setIsCommentaryOpen(false)}
+                        triggerRef={triggerRef}
+                        searchLabel="Search commentaries"
+                        testId="commentator-list"
+                        maxHeight={200}
+                    />
                 </div>
-
             )}
 
         </div>

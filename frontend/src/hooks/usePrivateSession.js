@@ -6,7 +6,13 @@ import AuthContext from "../context/AuthContext";
 export default function usePrivateSession(defaults) {
     const auth = useContext(AuthContext);
     const { sessionVersion, user, token, isAuthLoading } = auth;
-    const owner = JSON.stringify([sessionVersion, user?.id ?? null, token, isAuthLoading]);
+    // Rotation changes the credential, not ownership of drafts and pending work.
+    let credentialOwner = token;
+    try {
+        const claims = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+        credentialOwner = claims.sid || token;
+    } catch { /* Synthetic/legacy tokens keep their existing ownership behavior. */ }
+    const owner = JSON.stringify([sessionVersion, user?.id ?? null, credentialOwner, isAuthLoading]);
     const [initial] = useState(() => defaults);
     const [stored, setStored] = useReducer((current, change) => change(current),
         { owner, value: initial });

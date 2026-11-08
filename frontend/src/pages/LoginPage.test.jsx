@@ -123,7 +123,7 @@ test.each([false, true])('logout prevents late login feedback, storage and navig
     state(null, null, false);
     expect(screen.getByTestId('location')).toHaveTextContent('/login');
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls.filter(([url]) => !url.endsWith("/logout"))).toHaveLength(1);
 });
 
 test.each([
@@ -167,4 +167,11 @@ test('a 403 without the EMAIL_NOT_VERIFIED code shows no resend panel', async ()
     await settle(login, response({ error: 'Forbidden.', code: 'FORBIDDEN' }, 403));
     expect(screen.getByRole('alert')).toHaveTextContent('Forbidden.');
     expect(screen.queryByRole('button', { name: /resend verification email/i })).not.toBeInTheDocument();
+});
+
+test('the login page links to the forgot-password page', async () => {
+    vi.stubGlobal('fetch', vi.fn());
+    mount();
+    const link = screen.getByRole('link', { name: /forgot your password/i });
+    expect(link).toHaveAttribute('href', '/forgot-password');
 });

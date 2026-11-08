@@ -1,47 +1,39 @@
-/* Keep the positioning anchor in the text flow so it scrolls with its
-   verse. It used to be absolutely positioned, but no ancestor of the
-   verses is positioned, so its containing block was the viewport: the
-   anchor froze at its first on-screen spot while the verse scrolled
-   away, and the toolbar hid (or sat detached) for every verse except
-   the first. Zero size means it still takes no space in the line. */
-.gnosis-action-anchor {
-    position: relative;
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    pointer-events: none;
-}
-
-/* Compact burgundy toolbar. */
+/* Portaled overlay: Floating UI measures the verse and clips placement to
+   the Scripture scroll area. It must never contribute to a verse line box. */
 .gnosis-verse-toolbar {
     z-index: 70;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
     width: max-content;
+    max-width: calc(100vw - 56px);
+    margin: 0;
     padding: 5px 7px;
-    border: 1px solid rgb(255 255 255 / 15%);
-    border-radius: 28px;
-    background: var(--color-brand);
-    color: #fff7ec;
-    box-shadow:
-        0 3px 6px rgb(0 0 0 / 12%),
-        0 10px 25px rgb(0 0 0 / 18%);
+    border: 1px solid color-mix(in srgb, var(--color-brand) 45%, var(--bg-panel));
+    border-radius: 12px;
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-brand) 6%, var(--bg-panel)),
+        color-mix(in srgb, var(--color-brand) 12%, var(--bg-panel))
+    );
+    color: var(--color-brand);
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1.2;
+    box-shadow: 0 3px 12px rgb(43 37 35 / 12%);
 }
 
 .gnosis-verse-tool {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    width: 38px;
-    height: 38px;
-    padding: 0;
+    gap: 6px;
+    min-width: 0;
+    min-height: 38px;
+    padding: 0 8px;
     border: 0;
-    border-radius: 50%;
+    border-radius: 7px;
+    font: inherit;
     background: transparent;
     color: inherit;
     cursor: pointer;
@@ -51,19 +43,49 @@
 }
 
 .gnosis-verse-tool:hover:not(:disabled) {
-    background: rgb(255 255 255 / 14%);
+    background: color-mix(in srgb, var(--color-brand) 10%, transparent);
 }
 
 .gnosis-verse-tool.is-active {
-    background: #f5e3c8;
+    background: color-mix(in srgb, var(--color-brand) 15%, transparent);
     color: var(--color-brand);
-    box-shadow: 0 2px 5px rgb(0 0 0 / 12%);
 }
 
 .gnosis-tool-divider {
     width: 1px;
-    height: 16px;
-    background: rgb(255 255 255 / 25%);
+    height: 24px;
+    flex-shrink: 0;
+    background: color-mix(in srgb, var(--color-brand) 35%, transparent);
+}
+
+.gnosis-verse-tool svg {
+    flex-shrink: 0;
+}
+
+.gnosis-verse-tool-close {
+    flex-shrink: 0;
+    width: 30px;
+    padding: 0;
+}
+
+/* Keep the actions in one horizontal row on narrow readers; labels stay
+   visible beneath their icons instead of overflowing the Scripture panel. */
+@media (max-width: 1000px) {
+    .gnosis-verse-toolbar {
+        font-size: 10.5px;
+    }
+
+    .gnosis-verse-tool:not(.gnosis-verse-tool-close) {
+        flex-direction: column;
+        gap: 3px;
+        min-height: 48px;
+        padding: 3px;
+    }
+
+    .gnosis-verse-tool-label {
+        max-width: 78px;
+        text-align: center;
+    }
 }
 
 /* Floating UI positions this surface; don't add CSS transforms here. */
@@ -273,7 +295,7 @@
 }
 
 .gnosis-verse-tool:focus-visible {
-    outline-color: #f5e3c8;
+    outline-color: var(--color-brand);
 }
 
 .gnosis-verse-tool:disabled,
@@ -285,11 +307,14 @@
 
 /* Maintain comfortable touch targets on actual phones. */
 @media (pointer: coarse) {
-    .gnosis-verse-tool,
     .gnosis-palette-option,
     .gnosis-custom-color {
         width: 44px;
         height: 44px;
+    }
+
+    .gnosis-verse-tool {
+        min-height: 44px;
     }
 
     .gnosis-pen-picker {
