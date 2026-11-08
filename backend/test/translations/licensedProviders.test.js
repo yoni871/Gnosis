@@ -78,7 +78,7 @@ test("ESV fetch sends just the book name for single-chapter books", async () => 
     // Crossway's API parses `q=Obadiah 1` as verse 1, not chapter 1, so
     // chapter 1 of a single-chapter book must be requested by book name
     // alone. Expected verse counts: Obadiah 21, Philemon 25, Jude 25,
-    // 2 John 13, 3 John 14.
+    // 2 John 13, 3 John 15.
     const cases = ["Obadiah", "Philemon", "Jude", "2 John", "3 John"];
     for (const book of cases) {
         let seenUrl = null;
