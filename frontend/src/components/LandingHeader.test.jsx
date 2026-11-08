@@ -24,10 +24,12 @@ test('account disclosure preserves full name, action list, Tab order, Escape, an
     await user.keyboard('{Enter}');
     const list = document.getElementById(trigger.getAttribute('aria-controls'));
     expect(list.tagName).toBe('UL');
-    expect(within(list).getAllByRole('listitem')).toHaveLength(2);
+    expect(within(list).getAllByRole('listitem')).toHaveLength(3);
     expect(within(list).queryByText(/Bookmarks|Highlights/)).toBeNull();
     await user.tab();
-    expect(within(list).getByRole('link', { name: 'Continue studying' })).toHaveFocus();
+    expect(within(list).getByRole('button', { name: 'Profile' })).toHaveFocus();
+    await user.tab();
+    expect(within(list).getByRole('button', { name: 'Settings' })).toHaveFocus();
     await user.tab();
     expect(within(list).getByRole('button', { name: 'Sign out' })).toHaveFocus();
     await user.keyboard('{Escape}');
