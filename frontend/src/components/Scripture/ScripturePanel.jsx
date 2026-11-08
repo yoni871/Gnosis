@@ -23,7 +23,8 @@ export default function ScripturePanel({
     books = [],
     bookmarksState,
     highlightsState,
-    verseSelection
+    verseSelection,
+    navigateToPassage
 }) {
     const verseRefs = useRef({});
     const scriptureScrollRef = useRef(null);
@@ -596,7 +597,7 @@ export default function ScripturePanel({
                             )}
                             translation={translation}
                             onClose={() => setIsOriginalLanguageOpen(false)}
-                            onNavigateToVerse={(verseNumber) => setSelectedVerse(verseNumber)}
+                            onNavigateToVerse={navigateToPassage}
                         />
                     </Suspense>
                 )}

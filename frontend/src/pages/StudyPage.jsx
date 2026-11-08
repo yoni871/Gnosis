@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import { getBooks, getBibleChapter, getTranslations } from "../services/bibleService";
 
@@ -143,6 +143,29 @@ export default function StudyPage() {
     const verseSelection = useVerseSelection();
     // Read stable selection actions for the navigation effects.
     const { clearSelection, replaceSelectionSet, retainAvailableVerses } = verseSelection;
+
+    const navigate = useNavigate();
+
+    // Cross-passage navigation for Original Language occurrences: an
+    // occurrence in the passage already open just refocuses its verse;
+    // one in another book or chapter navigates the reader there, keeping
+    // the current translation and commentary in the URL so the reader
+    // lands in the same state it left. The URL's destination-verse
+    // effect then restores the selection at the target verse.
+    const navigateToPassage = useCallback((target) => {
+        if (!target) return;
+        if (target.book === book && target.chapter === chapter) {
+            setSelectedVerse(target.verse);
+            return;
+        }
+        const params = new URLSearchParams();
+        params.set("translation", translation);
+        if (commentaryState.selectedCommentator != null) {
+            params.set("commentary", String(commentaryState.selectedCommentator));
+        }
+        params.set("verse", String(target.verse));
+        navigate(`/bible/${target.book}/${target.chapter}?${params.toString()}`);
+    }, [book, chapter, translation, commentaryState.selectedCommentator, navigate]);
 
     // React Router gives each history entry a navigation key.
     const location = useLocation();
@@ -549,6 +572,7 @@ export default function StudyPage() {
                 setRightPanelTab={setRightPanelTab}
                 notesState={notesState}
                 commentaryState={commentaryState}
+                navigateToPassage={navigateToPassage}
             />
 
             <MobileStudyLayout
@@ -569,6 +593,7 @@ export default function StudyPage() {
                 books={books}
                 notesState={notesState}
                 commentaryState={commentaryState}
+                navigateToPassage={navigateToPassage}
             />
 
             <MobileStudyNav

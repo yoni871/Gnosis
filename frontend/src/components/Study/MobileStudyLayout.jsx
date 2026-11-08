@@ -27,7 +27,8 @@ export default function MobileStudyLayout({
     bookmarksState,
     bookmarkPreviews,
     highlightsState,
-    verseSelection
+    verseSelection,
+    navigateToPassage
 }) {
     return (
         <main
@@ -66,6 +67,7 @@ export default function MobileStudyLayout({
                         selectedVerse={selectedVerse}
                         setSelectedVerse={setSelectedVerse}
                         setTranslation={setTranslation}
+                        navigateToPassage={navigateToPassage}
                     />
                 </div>
             )}

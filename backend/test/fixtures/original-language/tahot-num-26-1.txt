@@ -1,0 +1,16 @@
+# Test fixture: excerpt of STEPBible-Data (Tyndale House / STEPBible.org), CC BY 4.0.
+# Source: https://github.com/STEPBible/STEPBible-Data — do not redistribute the full dataset.
+# Numbers 26:1: the verse spans a Hebrew/English verse-boundary shift — the tail of Hebrew 25:19 ("after the plague", 3 words) plus Hebrew 26:1 ("the LORD said to Moses", 10 words) share the English verse number 26:1.
+Num.26.1(25.19)#01=L	וַ/יְהִ֖י	va/y.Hi	and/ it was	H9001/{H1961}	Hc/Vqw3ms			H1961			H9001=ו=&/{H1961=הָיָה=to be}					
+Num.26.1(25.19)#02=L	אַחֲרֵ֣י	'a.cha.Rei	after	{H0310A}	HAcmpc			H0310A			{H0310A=אַחַר=after}					
+Num.26.1(25.19)#03=L	הַ/מַּגֵּפָ֑ה\ \פ	ha./ma.ge.Fah	the/ plague	H9009/{H4046}\ \H9017	HTd/Ncfsa			H4046			H9009=ה=the/{H4046=מַגֵּפָה=plague}\ \H9017=פ=para					
+Num.26.1#01=L	וַ/יֹּ֤אמֶר	va/i.Yo.mer	and/ he said	H9001/{H0559}	Hc/Vqw3ms			H0559_A			H9001=ו=&/{H0559=אָמַר=to say}					
+Num.26.1#02=L	יְהוָה֙	Yah.weh	Yahweh	{H3068G}	HNpt			H3068G			{H3068G=יהוה=LORD»LORD@Gen.1.1-Heb}					
+Num.26.1#03=L	אֶל\־	'el-	to	{H0413}\H9014	HR			H0413_A			{H0413=אֶל=to(wards)}\H9014=־=link					
+Num.26.1#04=L	מֹשֶׁ֔ה	mo.Sheh	Moses	{H4872}	HNpm			H4872			{H4872=מֹשֶׁה=Moses»Moses@Exo.2.10-Rev}					
+Num.26.1#05=L	וְ/אֶ֧ל	ve./'El	and/ to	H9002/{H0413}	HC/R			H0413_B			H9002=ו=and/{H0413=אֶל=to(wards)}					
+Num.26.1#06=L	אֶלְעָזָ֛ר	'el.'a.Zar	Eleazar	{H0499G}	HNpm			H0499G			{H0499G=אֶלְעָזָר=Eleazar»Eleazar@Exo.6.23-Ezr}					
+Num.26.1#07=L	בֶּן\־	ben-	[the] son of	{H1121A}\H9014	HNcmsc			H1121A			{H1121A=בֵּן=: child»son:1_child;_son}\H9014=־=link					
+Num.26.1#08=L	אַהֲרֹ֥ן	'a.ha.Ron	Aaron	{H0175}	HNpm			H0175			{H0175=אַהֲרֹן=Aaron»Aaron@Exo.4.14-Heb}					
+Num.26.1#09=L	הַ/כֹּהֵ֖ן	ha./ko.Hen	the/ priest	H9009/{H3548}	HTd/Ncmsa			H3548			H9009=ה=the/{H3548=כֹּהֵן=priest}					
+Num.26.1#10=L	לֵ/אמֹֽר\׃	le./Mor	<to>/ saying	H9005/{H0559}\H9016	HR/Vqcc			H0559_B			H9005=ל=to/{H0559=אָמַר=to say}\H9016=׃=verseEnd					

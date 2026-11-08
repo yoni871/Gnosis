@@ -9,13 +9,21 @@ selected word — lemma, Strong's number, meaning, expanded grammar, a
 morpheme breakdown, and other occurrences of the same lemma in the imported
 corpus.
 
-## Phase 1 scope
+## Scope
 
-**Genesis 1 (Biblical Hebrew) and Philippians 3 (Koine Greek) only** — 434
-Hebrew words across 31 verses, 340 Greek words across 21 verses, 774 words
-in total. No other passage has data yet; opening the modal on any other
-passage shows a coverage note instead of an error. The full-Bible import is
-Phase 2 work and needs a separate decision (see below).
+**The full 66-book canon** (Phase 2): 443,037 words across 1,189 chapters
+(300,616 Hebrew + 4,835 Aramaic + 137,586 Greek under the inclusion rules
+below), 17,005 lexical entries, 1,865 morphology codes — measured from the
+STEPBible files with the fixed parsers (source-side census, 2026-11-07) and
+re-verified by the disposable-database dry run before any preview import.
+Phase 1 covered Genesis 1
+(Biblical Hebrew) and Philippians 3 (Koine Greek) only — 774 words — as the
+demo; the full import supersedes it. Biblical Aramaic passages (Daniel 2:4b–
+7:28, Ezra 4:8–6:18 and 7:12–26, Jeremiah 10:11, Genesis 31:47) are stored
+with language `aramaic`, identified by passage range (STEPBible does not mark
+Aramaic per word); Daniel 2:4 switches mid-verse (words 1–4 Hebrew, 5–12
+Aramaic). Occurrences can be in any book: clicking one navigates the reader
+to that book, chapter and verse.
 
 ## Data sources and licences
 
@@ -32,8 +40,8 @@ The six files used:
 
 | File | Contents | Edition |
 | --- | --- | --- |
-| TAHOT Gen-Deu | Hebrew OT words (Leningrad Codex) | WLC 4.20 via OpenScriptures |
-| TAGNT Act-Rev | Greek NT words | NA27/28 text |
+| TAHOT (4 parts: Gen-Deu, Jos-Est, Job-Sng, Isa-Mal) | Hebrew OT words (Leningrad Codex) | WLC 4.20 via OpenScriptures |
+| TAGNT (2 parts: Mat-Jhn, Act-Rev) | Greek NT words | NA27/28 text |
 | TBESH | Hebrew brief lexicon (short glosses) | — |
 | TBESG | Greek brief lexicon (short glosses) | — |
 | TEHMC | Hebrew morphology-code expansions | — |
@@ -48,11 +56,12 @@ the full evaluation.
 
 **Lexicon caveat.** The TBESH header notes its brief lexicon "is based on
 Abridged BDB by Online Bible... Permission should be gained from Online
-Bible before these definitions are applied in any project." Phase 1
+Bible before these definitions are applied in any project." The importer
 therefore imports **only the short gloss** from the lexicons, never the
 fuller BDB/Abbott-Smith definition paragraphs. The word-row glosses are
-STEPBible's own and are covered by CC BY 4.0. Fuller definitions are a
-Phase 2 question, pending that permission.
+STEPBible's own and are covered by CC BY 4.0. Fuller definitions stay out
+unless that permission arrives (still pending; it does not block the full
+import).
 
 **Inclusion rules** (from the STEPBible file headers): Hebrew — include
 type `L` (Leningrad) and `Q` (Qere); exclude `K` (Ketiv), `R`, `X`. Greek
@@ -113,18 +122,37 @@ gets exactly these grants; see
 `importCommentary.js` convention):
 
 ```bash
-# Download the six STEPBible files, then import Genesis 1 + Philippians 3:
-node backend/src/importer/importOriginalLanguage.js --download
+# Download the STEPBible files, then import the full 66-book canon:
+node backend/src/importer/importOriginalLanguage.js --download --full
 
 # Re-run against already-downloaded files:
+node backend/src/importer/importOriginalLanguage.js --full [--data-dir <dir>]
+
+# Phase 1 demo scope only (Genesis 1 + Philippians 3):
 node backend/src/importer/importOriginalLanguage.js [--data-dir <dir>]
 ```
 
 The importer connects with the operator's `DATABASE_URL` (the same
 convention as the other importers). It is idempotent: lexical entries,
 morphology codes, and word occurrences are upserted on their natural keys,
-so re-running refreshes without duplicating. A first import writes 774
-words, 264 lexical entries, and 175 morphology codes.
+so re-running refreshes without duplicating. A full import writes 443,037
+words, 17,005 lexical entries, and 1,865 morphology codes; a re-run writes
+zero new rows. **Versification:** STEPBible uses NRSV numbering; Gnosis
+uses BSB. They agree for 1,170 of 1,189 chapters. The nineteen exceptions are
+textual omissions, not shifts — verses that exist in BSB but have no
+words in the base text STEPBible uses: Romans 16:24–27, 2 Corinthians 13:13–14,
+Philippians 1:16–17, John 7:53, John 5:4, Acts 8:37, Acts 15:34,
+Acts 24:7, Acts 28:29, Mark 7:16, Mark 9:44 and 9:46, Luke 17:36,
+Luke 23:17, Matthew 17:21, Matthew 18:11, Matthew 23:14, Mark 11:26,
+Mark 15:28, Joshua 21:36–37. The passage endpoint flags those verses
+with `noOriginalText: true` and the modal explains the absence; no text is
+ever invented for them. Eleven verses span a Hebrew/English verse-boundary
+shift (two STEPBible row groups share one English verse number, e.g.
+Numbers 26:1); the importer renumbers the second group after the first,
+so no word of either group is lost. Psalm superscriptions are stored as verse 0 (116
+chapters) and rendered as a separate "Psalm title" block. Parenthetical
+alternate refs (e.g. `Gen.32.1(32.2)`) are stored under the main (English)
+verse number.
 
 Notes on parsing, all verified against the source files:
 
@@ -143,8 +171,9 @@ Notes on parsing, all verified against the source files:
   ("Noun · Genitive · Singular · Feminine"), joined with " + " across
   morphemes. The verbatim expansion stays in `ol_morphology_codes` for
   the detail view.
-- Book mapping is Phase 1 only (`Gen` → Genesis, `Php` → Philippians).
-  The full 66-book STEPBible→Gnosis abbreviation map is Phase 2 work.
+- Book mapping is the full 66-book STEPBible→Gnosis abbreviation map
+  (`FULL_SCOPE` in the importer), verified against `bible_books.json`
+  and the source files' own chapter maxima (1,189 chapters).
 - When a Strong's has no lexicon row, the entry is derived from the word
   row's own expanded tags (Hebrew) or lemma=gloss (Greek), with a warning.
 
@@ -161,13 +190,16 @@ in and logged out, and the data is public.
   Strong's, expanded grammar, and morphemes, plus `available`, the
   passage language, and `languages` (every language actually present,
   in first-appearance order). For a passage with no imported data it
-  returns 200 with `available: false` and a Phase 1 coverage note, not
-  an error. When the range starts at verse 1 and the chapter has a
-  title (Psalm superscriptions, stored as verse 0), the response
-  carries a separate `title` object with the title's words — never a
-  "Verse 0" group and never merged into verse 1. Validation: chapter
-  1–150, verses 1–176, `endVerse >= startVerse`, at most 50 verses per
-  request (400s otherwise); unknown book 404.
+  returns 200 with `available: false` and a coverage note, not an
+  error. A verse with no imported words in an imported chapter is an
+  NA28 gap: it is returned as `{ verse, words: [], noOriginalText: true }`
+  and the modal explains that the NA28 edition has no text for it.
+  When the range starts at verse 1 and the chapter has a title (Psalm
+  superscriptions, stored as verse 0), the response carries a separate
+  `title` object with the title's words — never a "Verse 0" group and
+  never merged into verse 1. Validation: chapter 1–150, verses 1–176,
+  `endVerse >= startVerse`, at most 50 verses per request (400s
+  otherwise); unknown book 404.
 - `GET /api/original-language/words/:id` → word detail: book/chapter/
   verse, word, transliteration, lemma + lemma transliteration, meaning,
   contextual gloss, Strong's (disambiguated + base), morphology code,
@@ -180,8 +212,11 @@ in and logged out, and the data is public.
   Strong's 404. Each occurrence carries its reference, word, gloss, and
   up to 3 surrounding original-language words as context. `match=strong`
   returns all disambiguated senses sharing the plain Strong's number.
-  The response states the corpus explicitly: "Phase 1 corpus: Genesis 1
-  and Philippians 3 only."
+  Each occurrence carries its full reference (book, chapter, verse), so
+  clicking one navigates the reader to it — same passage: refocus the
+  verse; another book or chapter: navigate there. The response states
+  the corpus explicitly: "Original-language corpus: the full 66-book
+  canon."
 
 ## Frontend
 
@@ -243,10 +278,12 @@ Behaviour worth knowing:
 - The word-detail panel scrolls inside the modal (the flex
   `min-height: 0` chain on the dialog's columns); it cannot grow taller
   than the modal.
-- "Find Other Occurrences" searches only the imported corpus; the modal
-  says so. Clicking an occurrence closes the modal and focuses that verse
-  in the reader. Cross-chapter navigation is a Phase 2 item — Phase 1
-  occurrences all live in the passage already open.
+- "Find Other Occurrences" searches the imported corpus; the modal
+  says so. Clicking an occurrence closes the modal and navigates the
+  reader to it: same passage, the verse is refocused; another book or
+  chapter, the reader navigates there with the current translation and
+  commentary kept. Long occurrence lists page 20 at a time ("Load
+  more") instead of rendering thousands of rows.
 - Accessibility: real dialog semantics, focus trap (Tab cycles, Escape
   closes), focus returns to the opener on close, body scroll is locked
   while open, backdrop click closes, and `prefers-reduced-motion`
@@ -261,17 +298,23 @@ Behaviour worth knowing:
 ## Tests
 
 - `backend/test/importer/originalLanguage.test.js` — parser unit tests
-  against small attributed fixtures (10 tests).
+  against small attributed fixtures, the FULL_SCOPE structure (66 books,
+  1,189 chapters), and a mocked-pool import run (scoped chapters,
+  Aramaic word-level language, verse-0 titles, TR-only exclusion,
+  ON CONFLICT upserts, idempotent second run).
 - `backend/test/application/originalLanguage.test.js` — API tests with a
-  mocked pool (10 tests: passage shape/order/attribution/params,
-  50-verse cap, bad chapter/verse, unknown book, unimported chapter,
-  word detail, bad/missing word id, occurrences with context, Strong's
-  validation/limits/match modes, route ordering).
+  mocked pool (passage shape/order/attribution/params, 50-verse cap, bad
+  chapter/verse, unknown book, unimported chapter, NA28 gap flagging,
+  word detail, bad/missing word id, occurrences with context and
+  pagination, cross-book references, Strong's validation/limits/match
+  modes, route ordering).
 - `frontend/src/components/OriginalLanguage/OriginalLanguageModal.test.jsx`
-  — modal behaviour (10 tests: header/subtitle, English passage, Hebrew
-  RTL, Greek LTR + expanded grammar, word selection → detail, Find Other
-  Occurrences, occurrence click → close + navigate, Escape + focus
-  restore, close button, unimported passage, failed load, collapse/expand).
+  — modal behaviour (header/subtitle, English passage, Hebrew RTL,
+  Greek LTR + expanded grammar, word selection → detail, Find Other
+  Occurrences, occurrence click → close + navigate, cross-book
+  occurrence navigation, occurrence pagination via Load more, NA28 gap
+  note, Escape + focus restore, close button, unimported passage,
+  failed load, collapse/expand).
 - `frontend/src/components/Scripture/ScripturePanel.test.jsx` — three
   added tests: the toolbar button appears for a selection, opening the
   modal shows the range and English passage and closing keeps the

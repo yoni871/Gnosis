@@ -157,6 +157,28 @@ export default function OriginalLanguageModal({
         }
     }, []);
 
+    // Very common lemmas have thousands of occurrences; the panel
+    // pages through them 20 at a time instead of rendering them all.
+    const loadMoreOccurrences = useCallback(async () => {
+        if (!selectedWord?.strongNumber || !occurrences || occurrencesLoading) return;
+        setOccurrencesLoading(true);
+        setOccurrencesError("");
+        try {
+            const data = await getLemmaOccurrences(selectedWord.strongNumber, {
+                match: occurrencesMatch,
+                limit: 20,
+                offset: occurrences.occurrences.length,
+            });
+            setOccurrences((current) => current
+                ? { ...current, occurrences: [...current.occurrences, ...data.occurrences], offset: data.offset }
+                : data);
+        } catch (fetchError) {
+            setOccurrencesError(fetchError.message);
+        } finally {
+            setOccurrencesLoading(false);
+        }
+    }, [selectedWord, occurrences, occurrencesMatch, occurrencesLoading]);
+
     const handleSelectWord = useCallback((word) => {
         setSelectedWord(word);
         setOccurrences(null);
@@ -164,10 +186,12 @@ export default function OriginalLanguageModal({
     }, []);
 
     const handleSelectOccurrence = useCallback((occurrence) => {
-        // Phase 1 occurrences all live in the passage already open, so
-        // navigating means closing and focusing that verse in the reader.
+        // The occurrence carries its own book, chapter and verse:
+        // the reader navigates to it. An occurrence in the passage
+        // already open just refocuses that verse (the navigation
+        // handler decides that from the reference).
         onClose();
-        onNavigateToVerse?.(occurrence.verse);
+        onNavigateToVerse?.(occurrence);
     }, [onClose, onNavigateToVerse]);
 
     const language = passage?.language;
@@ -247,6 +271,7 @@ export default function OriginalLanguageModal({
                                         key={verse.verse}
                                         verse={verse.verse}
                                         words={verse.words}
+                                        noOriginalText={verse.noOriginalText}
                                         language={language}
                                         selectedWordId={selectedWord?.id ?? null}
                                         onSelectWord={handleSelectWord}
@@ -275,6 +300,7 @@ export default function OriginalLanguageModal({
                                 occurrencesError={occurrencesError}
                                 occurrencesMatch={occurrencesMatch}
                                 onFindOccurrences={(match) => loadOccurrences(selectedWord, match)}
+                                onLoadMoreOccurrences={loadMoreOccurrences}
                                 onSelectOccurrence={handleSelectOccurrence}
                                 onCloseDetail={() => handleSelectWord(null)}
                             />
