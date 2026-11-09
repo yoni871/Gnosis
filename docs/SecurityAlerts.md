@@ -121,4 +121,6 @@ DELETE FROM known_login_devices WHERE last_seen_at < now() - interval '12 months
   disposable PostgreSQL 18.6.
 - Step-up MFA: deferred, not implemented, not tested.
 - User notification emails: out of scope for this PR (separate PR).
+  They landed in the follow-up PR3 — see `docs/AccountNotifications.md`;
+  the new-device email is wired into `services/loginDevices.js`.
 - No acknowledgement workflow beyond the window semantics above.

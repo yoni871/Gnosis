@@ -47,29 +47,43 @@ test('the device key is the rate-limit HMAC discipline, not a plain hash', () =>
 
 test('a new device inserts, audits login.new_device, and reports isNew', async () => {
     const db = fakeDb();
-    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', 'SyntheticAgent/1.0'), { isNew: true });
+    const notified = [];
+    const notifyNewDevice = async (dbArg, userId) => { notified.push(userId); };
+    assert.deepEqual(
+        await recordLoginDevice(db, 7, '203.0.113.7', 'SyntheticAgent/1.0', { notifyNewDevice }),
+        { isNew: true }
+    );
     assert.equal(db.devices.size, 1);
     const kinds = db.calls.filter(([sql]) => /INSERT INTO security_events/.test(sql));
     assert.equal(kinds.length, 1);
     assert.deepEqual(kinds[0][1], ['login.new_device', 7]);
+    // PR3: the new device notifies the user exactly once.
+    assert.deepEqual(notified, [7]);
 });
 
 test('a known device refreshes last_seen_at and emits nothing', async () => {
     const db = fakeDb();
-    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', 'SyntheticAgent/1.0'), { isNew: true });
-    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', 'SyntheticAgent/1.0'), { isNew: false });
+    const notified = [];
+    const notifyNewDevice = async (dbArg, userId) => { notified.push(userId); };
+    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', 'SyntheticAgent/1.0', { notifyNewDevice }), { isNew: true });
+    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', 'SyntheticAgent/1.0', { notifyNewDevice }), { isNew: false });
     const audits = db.calls.filter(([sql]) => /INSERT INTO security_events/.test(sql));
     assert.equal(audits.length, 1);
     const updates = db.calls.filter(([sql]) => /UPDATE known_login_devices SET last_seen_at/.test(sql));
     assert.equal(updates.length, 1);
     assert.equal(updates[0][1][0], 7);
+    // A known device never notifies.
+    assert.deepEqual(notified, [7]);
 });
 
 test('devices are per user: the same device key for another user is new', async () => {
     const db = fakeDb();
-    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', 'SyntheticAgent/1.0'), { isNew: true });
-    assert.deepEqual(await recordLoginDevice(db, 8, '203.0.113.7', 'SyntheticAgent/1.0'), { isNew: true });
+    const notified = [];
+    const notifyNewDevice = async (dbArg, userId) => { notified.push(userId); };
+    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', 'SyntheticAgent/1.0', { notifyNewDevice }), { isNew: true });
+    assert.deepEqual(await recordLoginDevice(db, 8, '203.0.113.7', 'SyntheticAgent/1.0', { notifyNewDevice }), { isNew: true });
     assert.equal(db.calls.filter(([sql]) => /INSERT INTO security_events/.test(sql)).length, 2);
+    assert.deepEqual(notified, [7, 8]);
 });
 
 test('a missing IP is skipped, never collapsed into one shared device', async () => {
@@ -83,8 +97,33 @@ test('a missing IP is skipped, never collapsed into one shared device', async ()
 
 test('a missing user-agent still keys on the IP', async () => {
     const db = fakeDb();
-    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', undefined), { isNew: true });
-    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', undefined), { isNew: false });
+    const notified = [];
+    const notifyNewDevice = async (dbArg, userId) => { notified.push(userId); };
+    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', undefined, { notifyNewDevice }), { isNew: true });
+    assert.deepEqual(await recordLoginDevice(db, 7, '203.0.113.7', undefined, { notifyNewDevice }), { isNew: false });
+    assert.deepEqual(notified, [7]);
+});
+
+test('a throwing notifier never flips isNew and logs one safe line', async () => {
+    const db = fakeDb();
+    const throwing = async () => {
+        throw Object.assign(new Error('synthetic notify failure naming a secret value'), { code: 'ECONNRESET' });
+    };
+    const lines = [];
+    const original = console.error;
+    console.error = (...args) => { lines.push(args.join(' ')); };
+    try {
+        assert.deepEqual(
+            await recordLoginDevice(db, 7, '203.0.113.7', 'SyntheticAgent/1.0', { notifyNewDevice: throwing }),
+            { isNew: true }
+        );
+    } finally {
+        console.error = original;
+    }
+    assert.equal(lines.length, 1);
+    assert.match(lines[0], /^\[login-devices\] notify failed kind=login\.new_device code=ECONNRESET$/);
+    assert.ok(!lines[0].includes('synthetic notify failure'));
+    assert.ok(!lines[0].includes('secret value'));
 });
 
 test('detection failure never throws and never reports a new device', async () => {
