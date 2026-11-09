@@ -1,3 +1,4 @@
+const { logFailure } = require("../utils/safeLog");
 const { saveHighlights, 
     getHighlights: loadHighlights,
     deleteHighlight: removeHighlight,
@@ -47,10 +48,10 @@ const createHighlight = async (req, res) => {
     } catch (error) {
         if(error.code === "INVALID_PASSAGE") {
             return res.status(400).json({
-                error: error.message
+                error: "Invalid passage."
             });
         }
-        console.error(error);
+        logFailure("highlightsController", error);
         
         return res.status(500).json({
             error: "Failed to save highlights."
@@ -68,7 +69,7 @@ const getHighlights = async (req, res) => {
 
         return res.status(200).json(highlights);
     } catch (error) {
-        console.error(error);
+        logFailure("highlightsController", error);
 
         return res.status(500).json({
             error: "Failed to load highlights."
@@ -105,7 +106,7 @@ const deleteHighlight = async (req, res) => {
             id: highlight.id
         });
     } catch (error) {
-        console.error(error);
+        logFailure("highlightsController", error);
 
         return res.status(500).json({
             error: "Failed to remove highlight."
@@ -143,7 +144,7 @@ const deleteHighlightsInPassage = async (req, res) => {
             removedIds: removed.map((highlight) => highlight.id)
         });
     } catch (error) {
-        console.error(error);
+        logFailure("highlightsController", error);
 
         return res.status(500).json({
             error: "Failed to clear highlights."

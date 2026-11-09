@@ -1,3 +1,4 @@
+const { logFailure } = require("../utils/safeLog");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
 
@@ -96,7 +97,7 @@ async function saveHighlights(userId, bookId, verses, color) {
             await client.query("ROLLBACK");
         } catch (rollbackError) {
             // Record cleanup failure without replacing the original error.
-            console.error("Highlight rollback failed:", rollbackError);
+            logFailure("highlightRollback", rollbackError);
         }
 
         throw error;

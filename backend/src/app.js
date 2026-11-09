@@ -30,6 +30,7 @@ app.set("trust proxy", resolveTrustProxy(process.env.TRUST_PROXY));
 app.use(cors({ origin: new URL(process.env.FRONTEND_URL).origin, credentials: true }));
 app.use(express.json());
 
+app.use("/api", require("./utils/safeLog").requestContext);
 app.use("/api", bibleRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api", searchRoutes);
