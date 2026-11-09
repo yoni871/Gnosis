@@ -11,7 +11,7 @@ import * as notes from '../services/notesService';
 import * as bookmarks from '../services/bookmarksService';
 import * as highlights from '../services/highlightsService';
 
-vi.mock('../services/authService', () => ({ getProfile: vi.fn(), loginUser: vi.fn(), registerUser: vi.fn() }));
+vi.mock('../services/authService', () => ({ getProfile: vi.fn(), loginUser: vi.fn(), registerUser: vi.fn(), refreshSession: vi.fn(), logoutSession: vi.fn().mockResolvedValue(undefined) }));
 vi.mock('../services/bibleService', () => ({ getBooks: vi.fn(), getTranslations: vi.fn(), getBibleChapter: vi.fn(), getChapters: vi.fn() }));
 vi.mock('../services/commentaryService', () => ({ getCommentaries: vi.fn(), getChapterCommentaries: vi.fn() }));
 vi.mock('../services/notesService', () => ({ getNotes: vi.fn(), createNote: vi.fn(), updateNote: vi.fn(), deleteNote: vi.fn() }));
@@ -31,7 +31,7 @@ afterAll(() => {
 
 beforeEach(() => {
     vi.resetAllMocks();
-    localStorage.setItem('gnosisToken', 'synthetic-A');
+    authService.refreshSession.mockResolvedValue({ token: 'synthetic-A' });
     authService.getProfile.mockResolvedValue({ id: 1, first_name: 'Synthetic', last_name: 'A', email: 'a@example.invalid' });
     bible.getBooks.mockResolvedValue([{ id: 1, name: 'Genesis', chapters: 50 }]);
     bible.getTranslations.mockResolvedValue([{ abbreviation: 'KJV', name: 'Synthetic public translation' }]);

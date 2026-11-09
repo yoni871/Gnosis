@@ -240,7 +240,7 @@ export default function RegisterPage() {
                                     leading-6
                                     text-[var(--text-muted)]
                                 ">
-                                    We sent a verification link to{" "}
+                                    If this address can be registered, a verification link has been sent to{" "}
                                     <span className="
                                         font-semibold
                                         text-[var(--text-primary)]

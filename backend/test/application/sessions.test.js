@@ -61,3 +61,106 @@ test('absolute expiry prevents refresh and access, even before the JWT expires',
     assert.equal(await profile(first.data.token), 403);
     assert.equal((await post('refresh', first.cookie)).status, 401);
 });
+
+// Wait for an actual PostgreSQL lock wait, rather than relying on sleeps to
+// assume that a concurrent request reached the critical section.
+async function waitingFor(fragment) {
+    const deadline = Date.now() + 8000;
+    while (Date.now() < deadline) {
+        const result = await database.pool.query(`SELECT 1 FROM pg_stat_activity
+            WHERE usename = current_user AND pid <> pg_backend_pid()
+            AND wait_event_type = 'Lock' AND position($1 in query) > 0`, [fragment]);
+        if (result.rows.length) return;
+        await new Promise(resolve => setTimeout(resolve, 10));
+    }
+    assert.fail('Expected authentication request to wait for a database lock');
+}
+async function recovery() {
+    const crypto = require('node:crypto');
+    const token = crypto.randomBytes(32).toString('base64url');
+    await database.pool.query(`INSERT INTO password_reset_tokens(user_id,token_hash,expires_at)
+        VALUES ($1,$2,now() + interval '1 hour')`,
+    [userId, crypto.createHash('sha256').update(token).digest()]);
+    return token;
+}
+const reset = token => post('reset-password', null, null, { token, password: 'replacement-session-password' });
+async function originalPassword() {
+    await database.pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [await bcrypt.hash(password, 10), userId]);
+}
+async function rejected(credentials) {
+    assert.equal(await profile(credentials.data.token), 403);
+    assert.equal((await post('refresh', credentials.cookie)).status, 401);
+}
+test('reset invalidates all old access/refresh credentials and preserves other accounts', async () => {
+    await originalPassword();
+    const first = await login(), second = await login();
+    const other = await database.pool.query(`INSERT INTO users(first_name,last_name,email,password_hash,email_verified_at)
+        VALUES ('Other','Reader','other-session@example.invalid',$1,now()) RETURNING id`, [await bcrypt.hash(password, 10)]);
+    assert.ok(other.rows[0].id);
+    const unaffected = await post('login', null, null, { email: 'other-session@example.invalid', password });
+    const token = await recovery();
+    assert.equal((await reset(token)).status, 200);
+    await rejected(first); await rejected(second);
+    assert.equal(await profile(unaffected.data.token), 200);
+    assert.equal((await post('refresh', unaffected.cookie)).status, 200);
+    assert.equal((await login()).status, 401);
+    const replacement = await post('login', null, null, { email: 'sessions@example.invalid', password: 'replacement-session-password' });
+    assert.equal(replacement.status, 200);
+    assert.equal(await profile(replacement.data.token), 200);
+    assert.equal((await reset(token)).status, 400);
+    assert.equal(await profile(replacement.data.token), 200, 'invalid reset must not revoke current sessions');
+});
+test('reset wins the account lock: a login with the old password snapshot cannot create a session', async () => {
+    await originalPassword();
+    const token = await recovery();
+    const blocker = await database.pool.connect();
+    let resetting, loggingIn;
+    try {
+        await blocker.query('BEGIN');
+        await blocker.query('SELECT id FROM users WHERE id = $1 FOR UPDATE', [userId]);
+        resetting = reset(token);
+        await waitingFor('SELECT id FROM users WHERE id = $1 FOR UPDATE');
+        loggingIn = login();
+        await waitingFor('SELECT password_hash FROM users WHERE id = $1 FOR UPDATE');
+        await blocker.query('COMMIT');
+        assert.equal((await resetting).status, 200);
+        const result = await loggingIn;
+        assert.equal(result.status, 401);
+        assert.equal(result.cookie, undefined);
+    } finally {
+        await blocker.query('ROLLBACK'); blocker.release();
+        await Promise.allSettled([resetting, loggingIn]);
+    }
+});
+test('login wins the account lock: its newly inserted session is revoked by the waiting reset', async () => {
+    await originalPassword();
+    const token = await recovery();
+    const blocker = await database.pool.connect();
+    let loggingIn, resetting;
+    try {
+        await blocker.query('BEGIN');
+        await blocker.query('LOCK TABLE auth_sessions IN SHARE MODE');
+        loggingIn = login();
+        await waitingFor('INSERT INTO auth_sessions');
+        resetting = reset(token);
+        await waitingFor('SELECT id FROM users WHERE id = $1 FOR UPDATE');
+        await blocker.query('COMMIT');
+        const credentials = await loggingIn;
+        assert.equal(credentials.status, 200);
+        assert.equal((await resetting).status, 200);
+        await rejected(credentials);
+    } finally {
+        await blocker.query('ROLLBACK'); blocker.release();
+        await Promise.allSettled([loggingIn, resetting]);
+    }
+});
+test('refresh and reset serialize on the session family and leave no usable credential', async () => {
+    await originalPassword();
+    const credentials = await login();
+    const token = await recovery();
+    const results = await Promise.all([post('refresh', credentials.cookie), reset(token)]);
+    assert.equal(results[1].status, 200);
+    assert.ok([200, 401].includes(results[0].status));
+    await rejected(credentials);
+    if (results[0].status === 200) await rejected(results[0]);
+});

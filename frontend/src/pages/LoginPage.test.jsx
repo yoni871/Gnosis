@@ -32,6 +32,10 @@ function State() {
     </>;
 }
 function mount() {
+    const requests = fetch;
+    vi.stubGlobal('fetch', (url, options) => String(url).endsWith('/auth/refresh')
+        ? Promise.resolve(response({ error: 'No session', code: 'SESSION_INVALID' }, 401))
+        : requests(url, options));
     render(<MemoryRouter initialEntries={['/login']}><AuthProvider><State /><Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/bible/Genesis/1" element={<h1>Study destination</h1>} />
@@ -47,7 +51,7 @@ async function submit() {
 }
 function state(user, token, isAuthLoading) {
     expect(JSON.parse(screen.getByTestId('state').textContent)).toEqual({ user, token, isAuthLoading });
-    expect(localStorage.getItem('gnosisToken')).toBe(token);
+    expect(localStorage.getItem('gnosisToken')).toBeNull();
 }
 
 test('successful login stores the session and navigates only after the profile completes', async () => {

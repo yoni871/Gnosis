@@ -9,8 +9,9 @@ users sign in again after rollout.
 A login creates a session with an absolute seven-day expiry and a random
 256-bit refresh token. Only its SHA-256 hash is stored. The refresh token is
 sent exclusively as an HttpOnly, SameSite=Strict cookie scoped to `/api/auth`,
-with Secure enabled in production. Access tokens retain the existing localStorage
-storage; refresh credentials are never available to frontend JavaScript.
+with Secure enabled in production. Access tokens stay in React provider memory; refresh credentials are never
+available to frontend JavaScript. Startup removes the legacy `gnosisToken`
+localStorage entry and obtains a fresh access token through the HttpOnly cookie.
 
 `POST /api/auth/refresh` rotates the token in a transaction holding a session
 row lock. A previously consumed token revokes the whole session, including its
@@ -23,8 +24,8 @@ FRONTEND_URL exactly. CORS allows credentials only from that configured origin.
 `POST /api/auth/logout-all` requires a valid bearer token and revokes all of that
 user's sessions. Auth responses carrying tokens and logout responses use no-store.
 
-The frontend renews every ten minutes, on returning to the tab or coming online, and before
-restoring an expired access token. Auth operation guards discard late state
+The frontend renews every ten minutes, on returning to the tab or coming online, and during
+every startup to restore the session without a persistent access token. Auth operation guards discard late state
 updates. Cookie mutations are serialized, including logout after pending login,
 and Web Locks coordinate tabs where available. Concurrent refreshes without Web
 Locks can trigger replay revocation; the user must sign in again. A lost refresh
@@ -103,10 +104,10 @@ in progress when logout occurs.
   not indefinitely hold the frontend queue/Web Lock. A request whose response
   is lost may already have committed. Replaying a consumed refresh token then
   requires signing in again; rotation is never silently weakened with a grace period.
-- Access tokens remain in localStorage, as before this change. An XSS attack
-  can read the access token or act through an authenticated browser. HttpOnly
-  refresh storage and shorter access lifetime reduce exposure but do not solve
-  XSS. Continue the application's escaping/content sanitization practices.
+- Access tokens remain in provider memory only. An active XSS attack can still
+  act through an authenticated browser. HttpOnly refresh storage and shorter
+  access lifetime reduce exposure but do not solve XSS. Continue escaping and
+  content sanitization; CSP is tracked separately in Stage 3.
 - Logout clears local state immediately and attempts server revocation. If the
   network/database is unavailable, remote revocation cannot be guaranteed; the
   error is logged, and the session persists until revocation succeeds or its
@@ -261,3 +262,21 @@ old seven-day tokens again. Any approved rollback to that code must also rotate
 JWT_SECRET and force fresh sign-ins. Stop the new backend before an approved
 schema rollback; dropping these tables loses all session/replay history and must
 never run while requests still depend on them.
+
+## Password reset and Stage 1 compatibility
+
+A successful password reset revokes all account sessions in the password-change
+transaction. Session creation locks the user row and compares the current hash
+with the hash that login verified. If reset wins, stale login returns the same
+401 as invalid credentials and sets no cookie; if login wins, reset revokes its
+session. Refresh rotation serializes with revocation on the session row. All
+refresh hashes remain available for replay detection; no cleanup is introduced.
+
+Memory-only access tokens retain reload sign-in through the existing refresh
+cookie. Startup needs the same-origin auth proxy and network access; without
+those, no cached access token is used. Private drafts continue to use the existing
+ownership guards. Multiple tabs coordinate cookie mutations through Web Locks
+where available. No signing key is changed and existing database sessions are
+not bulk-revoked by deployment of this patch. Users of an older stateless-token
+production deployment still need the separately approved session-model cutover
+already described above; this patch does not authorize that rollout.

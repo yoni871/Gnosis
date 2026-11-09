@@ -2,6 +2,8 @@ const express = require("express");
 const pool = require("../db/db");
 const bcrypt = require("bcrypt");
 const router = express.Router();
+// Public dummy bcrypt value, never an account credential (cost matches signup).
+const UNKNOWN_PASSWORD_HASH = '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy';
 const sessions = require("../services/sessionService");
 const authenticateToken = require("../middleware/authMiddleware");
 const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
@@ -226,15 +228,11 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
             user = result.rows[0];
         } catch (error) {
             await client.query("ROLLBACK").catch(() => {});
-            // Duplicate email is the only client error here, exactly as
-            // before: any 23505 from the user insert is the email clash.
+            // Do not disclose existing accounts. Duplicate signup neither
+            // changes the account nor sends another verification email.
             if (error && error.code === "23505") {
-                logAuthFailure("POST /api/auth/register", "database", error);
                 await req.rateLimit.finalize("count");
-                return res.status(409).json({
-                    error: "An account with that email already exists.",
-                    code: "EMAIL_EXISTS",
-                });
+                return res.status(200).json({ email });
             }
             logAuthFailure("POST /api/auth/register", "database", error);
             await req.rateLimit.finalize("release");
@@ -262,7 +260,7 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
     }
 
     // Registration successes count toward the per-IP limit, as do
-    // duplicate-email (409) attempts above.
+    // duplicate-email attempts above.
     await req.rateLimit.finalize("count");
     // Email sending happens only after commit, with no lock held. A send
     // failure preserves the unverified account and changes nothing about
@@ -274,7 +272,7 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
     }
     // No auto-login for issue #9: the frontend shows the check-email
     // state for this address instead of a session.
-    return res.json(user);
+    return res.json({ email });
 }));
 
 
@@ -300,15 +298,6 @@ router.post("/login", (req, res, next) => {
         return res.status(status).json(body);
     }
 
-    if(result.rows.length === 0) {
-        // Unknown-email failures count, exactly like wrong passwords.
-        await req.rateLimit.finalize("count");
-        return res.status(401).json({
-            error:"Invalid email or password.",
-            code: "INVALID_CREDENTIALS"
-        })
-    }
-
     const user = result.rows[0];
 
     // Previously these two awaits ran inside the pool.query callback, so a
@@ -317,14 +306,14 @@ router.post("/login", (req, res, next) => {
     // run inside this handler's own try/catch and become controlled 500s.
     let passwordMatch;
     try {
-        passwordMatch = await bcrypt.compare(password, user.password_hash);
+        passwordMatch = await bcrypt.compare(password, user ? user.password_hash : UNKNOWN_PASSWORD_HASH);
     } catch (error) {
         logAuthFailure("POST /api/auth/login", "password", error);
         await req.rateLimit.finalize("release");
         return res.status(500).json(internalErrorBody("login"));
     }
 
-    if(!passwordMatch) {
+    if(!user || !passwordMatch) {
         await req.rateLimit.finalize("count");
         return res.status(401).json({
             error: "Invalid email or password.",
@@ -348,11 +337,15 @@ router.post("/login", (req, res, next) => {
 
     let session;
     try {
-        session = await sessions.createSession(user.id);
+        session = await sessions.createSession(user.id, user.password_hash);
     } catch (error) {
         logAuthFailure("POST /api/auth/login", "session", error);
         await req.rateLimit.finalize("release");
         return res.status(500).json(internalErrorBody("login"));
+    }
+    if (!session) {
+        await req.rateLimit.finalize("count");
+        return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
     }
     sessions.setCookie(res, session.refresh);
     res.set("Cache-Control", "no-store");
@@ -695,9 +688,8 @@ router.post("/forgot-password", validateForgot, forgotRateLimit, withRateLimitFi
 // A successful reset sets the new password and consumes the token; any
 // other still-unused token for the same account is superseded in the
 // same transaction, so an older link cannot outlive the password it
-// was issued against. Outstanding login sessions are NOT revoked here:
-// JWTs are stateless and revocation belongs to issue #7. A reset does
-// not log the user in — they sign in with the new password.
+// was issued against. All existing sessions are revoked atomically with the
+// password change. A reset does not log the user in — they sign in again.
 router.post("/reset-password", validateReset, resetRateLimit, withRateLimitFinalize(async (req, res) => {
     const tokenHash = hashPasswordResetToken(req.validated.token);
 
@@ -776,6 +768,13 @@ router.post("/reset-password", validateReset, resetRateLimit, withRateLimitFinal
         await client.query(
             "UPDATE users SET password_hash = $1 WHERE id = $2",
             [hashedPassword, user.id]
+        );
+        // Holding the user lock serializes login issuance against recovery.
+        // Refresh locks the session family: either it finishes first and the
+        // family is revoked here, or it waits and sees the revocation.
+        await client.query(
+            "UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1 AND revoked_at IS NULL",
+            [user.id]
         );
         await client.query(
             `

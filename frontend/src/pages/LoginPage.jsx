@@ -10,6 +10,7 @@ import { pageUrl } from "../utils/seo";
 
 export default function LoginPage() {
     const {
+        getAccessToken,
         login, //performs complete login process
         isAuthLoading //tells the from whether authentication is currently processing
     } = useContext(AuthContext);
@@ -32,14 +33,12 @@ export default function LoginPage() {
     // After login, pick up where the reader stopped. A missing position
     // (404) or any failure to load it falls back to Genesis 1 — login
     // itself already succeeded, so a resume failure must not strand the
-    // reader on the login page. The token is read from storage because
-    // the context token in this closure predates the login that just
-    // completed; login() writes it to storage before fetching the
-    // profile, so it is present by the time this runs.
+    // reader on the login page. Read the current in-memory credential after
+    // login completes rather than the context snapshot from before submission.
     async function resumeUrl() {
         setIsResuming(true);
         try {
-            const token = localStorage.getItem("gnosisToken");
+            const token = getAccessToken();
             if (!token) {
                 return "/bible/Genesis/1";
             }

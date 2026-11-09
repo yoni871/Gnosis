@@ -451,7 +451,7 @@ test("register passes trimmed values to the insert and hashes the password", asy
         email: "  test@example.com  ",
     }));
     assert.equal(result.response.status, 200);
-    assert.deepEqual(result.json, { id: 7, first_name: "Test", last_name: "User", email: "test@example.com" });
+    assert.deepEqual(result.json, { email: "test@example.com" });
     const userInsert = captured.find((args) => /INSERT INTO users/.test(args[0]));
     assert.ok(userInsert, "user insert must run");
     assert.equal(userInsert[1][0], "Test");
@@ -497,20 +497,20 @@ test("register preserves email case in the insert", async () => {
     assert.equal(userInsert[1][2], "Test@Example.COM");
 });
 
-test("register duplicate email still returns the existing 409", async () => {
+test("duplicate registration returns the same email-only success response", async () => {
     queryBehavior = async () => {
         throw Object.assign(new Error("duplicate key"), { code: "23505" });
     };
     const result = await post("/api/auth/register", validRegister());
-    assertJsonError(result, 409, {
-        error: "An account with that email already exists.",
-        code: "EMAIL_EXISTS",
-    });
+    assert.equal(result.response.status, 200);
+    assert.deepEqual(result.json, { email: 'test@example.com' });
 });
 
 test("login with unknown email and wrong password returns identical 401s", async () => {
     queryBehavior = async () => ({ rows: [] });
+    const beforeUnknown = callCounts().compare;
     const unknown = await post("/api/auth/login", validLogin());
+    assert.equal(callCounts().compare, beforeUnknown + 1, 'unknown accounts still perform bcrypt work');
     assertJsonError(unknown, 401, {
         error: "Invalid email or password.",
         code: "INVALID_CREDENTIALS",

@@ -35,9 +35,11 @@ function Probe() {
     return <output data-testid="auth-state">{JSON.stringify({ user, token, isAuthLoading, isAuthenticated })}</output>;
 }
 
-function mount(strict = false) {
+async function mount(strict = false) {
     const tree = <AuthProvider><Probe /></AuthProvider>;
-    return render(strict ? <StrictMode>{tree}</StrictMode> : tree);
+    const view = render(strict ? <StrictMode>{tree}</StrictMode> : tree);
+    await act(async () => {});
+    return view;
 }
 
 function begin(method, data = credentials) {
@@ -50,29 +52,32 @@ function session(user, token, loading = false) {
     expect(JSON.parse(screen.getByTestId('auth-state').textContent)).toEqual({
         user, token, isAuthLoading: loading, isAuthenticated: Boolean(user),
     });
-    expect(localStorage.getItem('gnosisToken')).toBe(token);
+    expect(localStorage.getItem('gnosisToken')).toBeNull();
+    expect(auth.getAccessToken()).toBe(token);
 }
 
 afterEach(() => { vi.useRealTimers(); });
 
+const guestRefresh = () => { throw Object.assign(new Error('No cookie session'), { code: 'SESSION_INVALID' }); };
+
 beforeEach(() => {
     for (const mock of [getProfile, loginUser, registerUser]) mock.mockReset();
-    refreshSession.mockReset();
+    refreshSession.mockReset().mockImplementation(guestRefresh);
     logoutSession.mockResolvedValue(undefined);
     auth = undefined;
 });
 
-test('guest startup finishes without requesting a profile', () => {
-    mount();
+test('guest startup finishes without requesting a profile', async () => {
+    await mount();
     session(null, null);
     expect(getProfile).not.toHaveBeenCalled();
 });
 
-test('restores a stored token and profile', async () => {
+test('restores the cookie session and profile without persistent access storage', async () => {
     const restore = deferred();
-    localStorage.setItem('gnosisToken', 'old-token');
+    refreshSession.mockResolvedValue({ token: 'old-token' });
     getProfile.mockReturnValue(restore.promise);
-    mount();
+    await mount();
     session(null, 'old-token', true);
     await settle(restore, oldUser);
     session(oldUser, 'old-token');
@@ -81,18 +86,18 @@ test('restores a stored token and profile', async () => {
 test('a current restore failure clears the invalid session', async () => {
     vi.spyOn(console, 'error').mockImplementation(() => {});
     const restore = deferred();
-    localStorage.setItem('gnosisToken', 'old-token');
+    refreshSession.mockResolvedValue({ token: 'old-token' });
     getProfile.mockReturnValue(restore.promise);
-    mount();
+    await mount();
     await settle(restore, new Error('synthetic expired token'), true);
     session(null, null);
 });
 
 test.each([false, true])('logout ignores a late restore (failure=%s)', async fail => {
     const restore = deferred();
-    localStorage.setItem('gnosisToken', 'old-token');
+    refreshSession.mockResolvedValue({ token: 'old-token' });
     getProfile.mockReturnValue(restore.promise);
-    mount();
+    await mount();
     act(() => auth.logout());
     session(null, null);
     await settle(restore, fail ? new Error('stale restore') : oldUser, fail);
@@ -102,10 +107,10 @@ test.each([false, true])('logout ignores a late restore (failure=%s)', async fai
 test.each([false, true])('a late restore cannot replace or clear a newer login (failure=%s)', async fail => {
     const restore = deferred();
     const profile = deferred();
-    localStorage.setItem('gnosisToken', 'old-token');
+    refreshSession.mockResolvedValue({ token: 'old-token' });
     getProfile.mockImplementation(token => token === 'old-token' ? restore.promise : profile.promise);
     loginUser.mockResolvedValue({ token: 'new-token' });
-    mount();
+    await mount();
     const operation = begin('login');
     await act(async () => {});
     session(null, 'new-token', true);
@@ -122,7 +127,7 @@ test.each(['login', 'profile'])('logout invalidates login during its %s request'
         loginUser.mockResolvedValue({ token: 'new-token' });
         getProfile.mockReturnValue(request.promise);
     }
-    mount();
+    await mount();
     const operation = begin('login');
     await act(async () => {});
     act(() => auth.logout());
@@ -138,7 +143,7 @@ test.each([false, true])('overlapping logins ignore the older token result and l
     const profile = deferred();
     loginUser.mockReturnValueOnce(older.promise).mockReturnValueOnce(newer.promise);
     getProfile.mockReturnValue(profile.promise);
-    mount();
+    await mount();
     const a = begin('login', { ...credentials, email: oldUser.email });
     const b = begin('login');
     await settle(older, fail ? new Error('stale login') : { token: 'old-token' }, fail);
@@ -157,7 +162,7 @@ test.each([false, true])('a stale login profile cannot replace or clear the newe
     const newProfile = deferred();
     loginUser.mockResolvedValueOnce({ token: 'old-token' }).mockResolvedValueOnce({ token: 'new-token' });
     getProfile.mockImplementation(token => token === 'old-token' ? oldProfile.promise : newProfile.promise);
-    mount();
+    await mount();
     const a = begin('login', { ...credentials, email: oldUser.email });
     await act(async () => {});
     const b = begin('login');
@@ -173,7 +178,7 @@ test('current login failure rejects, clears storage and ends loading', async () 
     const profile = deferred();
     loginUser.mockResolvedValue({ token: 'new-token' });
     getProfile.mockReturnValue(profile.promise);
-    mount();
+    await mount();
     const operation = begin('login').catch(error => error);
     await act(async () => {});
     const error = new Error('current profile failure');
@@ -185,7 +190,7 @@ test('current login failure rejects, clears storage and ends loading', async () 
 test('registration returns the registered email without starting a session', async () => {
     const registration = deferred();
     registerUser.mockReturnValue(registration.promise);
-    mount();
+    await mount();
     const data = { ...credentials, firstName: 'Synthetic', lastName: 'User' };
     const operation = begin('register', data);
     await settle(registration, { id: 2, email: data.email });
@@ -201,7 +206,7 @@ test('a registration is independent of a concurrent login', async () => {
     registerUser.mockReturnValue(registration.promise);
     loginUser.mockResolvedValue({ token: 'new-token' });
     getProfile.mockResolvedValue(newUser);
-    mount();
+    await mount();
     const registrationOperation = begin('register');
     const loginOperation = begin('login');
     await act(async () => { await loginOperation; });
@@ -215,7 +220,7 @@ test('a registration is independent of a concurrent login', async () => {
 test.each([false, true])('logout during registration neither cancels it nor logs in (failure=%s)', async fail => {
     const registration = deferred();
     registerUser.mockReturnValue(registration.promise);
-    mount();
+    await mount();
     const operation = begin('register');
     operation.catch(() => {});
     act(() => auth.logout());
@@ -229,16 +234,17 @@ test.each([false, true])('logout during registration neither cancels it nor logs
 test.each(['restore', 'login', 'registration'])('unmount invalidates pending %s without changing a remounted session', async stage => {
     const request = deferred();
     if (stage === 'restore') {
-        localStorage.setItem('gnosisToken', 'old-token');
+        refreshSession.mockResolvedValue({ token: 'old-token' });
         getProfile.mockReturnValueOnce(request.promise);
     } else if (stage === 'login') loginUser.mockReturnValue(request.promise);
     else registerUser.mockReturnValue(request.promise);
-    const old = mount();
+    const old = await mount();
     const operation = stage === 'restore' ? null : begin(stage === 'login' ? 'login' : 'register');
     old.unmount();
-    localStorage.setItem('gnosisToken', 'new-token');
+    refreshSession.mockResolvedValue({ token: 'new-token' });
+    refreshSession.mockResolvedValue({ token: 'new-token' });
     getProfile.mockResolvedValue(newUser);
-    mount();
+    await mount();
     await act(async () => {});
     await settle(request, stage === 'restore' ? oldUser : stage === 'login' ? { token: 'old-token' } : { id: 3, email: 'register@example.invalid' });
     if (stage === 'login') expect(await operation).toBeNull();
@@ -247,20 +253,21 @@ test.each(['restore', 'login', 'registration'])('unmount invalidates pending %s 
     if (stage === 'registration') expect(loginUser).not.toHaveBeenCalled();
 });
 
-test.each([false, true])('Strict Mode ignores the first restore after effect cleanup (failure=%s)', async fail => {
+test.each([false, true])('Strict Mode ignores stale startup renewal (failure=%s)', async fail => {
     const first = deferred(), second = deferred();
-    localStorage.setItem('gnosisToken', 'old-token');
-    getProfile.mockReturnValueOnce(first.promise).mockReturnValueOnce(second.promise);
-    mount(true);
-    expect(getProfile).toHaveBeenCalledTimes(2);
-    await settle(first, fail ? new Error('first restore expired') : oldUser, fail);
-    session(null, 'old-token', true);
-    await settle(second, newUser);
-    session(newUser, 'old-token');
+    refreshSession.mockReturnValueOnce(first.promise).mockReturnValueOnce(second.promise);
+    getProfile.mockResolvedValue(newUser);
+    await mount(true);
+    expect(refreshSession).toHaveBeenCalledTimes(2);
+    await settle(first, fail ? new Error('first restore expired') : { token: 'stale-token' }, fail);
+    session(null, null, true);
+    await settle(second, { token: 'new-token' });
+    session(newUser, 'new-token');
+    expect(getProfile).toHaveBeenCalledTimes(1);
 });
 
 test('publishes a read-only session version for restore, login and logout, and registration does not bump it', async () => {
-    mount();
+    await mount();
     const startup = auth.sessionVersion;
     expect(startup).toBeGreaterThan(0);
     expect(auth.setSessionVersion).toBeUndefined();
@@ -287,23 +294,23 @@ test('publishes a read-only session version for restore, login and logout, and r
 function sessionToken(exp, sid = 'session-one') {
     return `header.${btoa(JSON.stringify({ exp, sid }))}.signature`;
 }
-test('an expired access token is refreshed before restoring the profile', async () => {
+test('startup obtains a fresh access token before restoring the profile', async () => {
     const oldToken = sessionToken(1);
     const newToken = sessionToken(Math.floor(Date.now() / 1000) + 900);
-    localStorage.setItem('gnosisToken', oldToken);
+    refreshSession.mockResolvedValue({ token: oldToken });
     refreshSession.mockResolvedValue({ token: newToken });
     getProfile.mockResolvedValue(newUser);
-    mount();
+    await mount();
     await act(async () => {});
     expect(refreshSession).toHaveBeenCalledTimes(1);
     expect(getProfile).toHaveBeenCalledWith(newToken);
     session(newUser, newToken);
 });
 test('logout during refresh cannot restore the previous account', async () => {
-    localStorage.setItem('gnosisToken', sessionToken(1));
+    refreshSession.mockResolvedValue({ token: sessionToken(1) });
     const renewal = deferred();
     refreshSession.mockReturnValue(renewal.promise);
-    mount();
+    await mount();
     act(() => auth.logout());
     await settle(renewal, { token: sessionToken(9999999999) });
     session(null, null);
@@ -313,10 +320,10 @@ test('logout during refresh cannot restore the previous account', async () => {
 test('renewal updates credentials without changing the session version', async () => {
     const oldToken = sessionToken(9999999999);
     const newToken = sessionToken(9999999998);
-    localStorage.setItem('gnosisToken', oldToken);
+    refreshSession.mockResolvedValue({ token: oldToken });
     getProfile.mockResolvedValue(newUser);
     refreshSession.mockResolvedValue({ token: newToken });
-    mount();
+    await mount();
     await act(async () => {});
     const version = auth.sessionVersion;
     await act(async () => { document.dispatchEvent(new Event('visibilitychange')); });
@@ -328,10 +335,10 @@ test('a temporary renewal failure preserves the session and retries without chan
     vi.useFakeTimers();
     const oldToken = sessionToken(9999999999);
     const newToken = sessionToken(9999999998);
-    localStorage.setItem('gnosisToken', oldToken);
+    refreshSession.mockResolvedValue({ token: oldToken });
     getProfile.mockResolvedValue(newUser);
-    refreshSession.mockRejectedValueOnce(new TypeError('Network unavailable')).mockResolvedValueOnce({ token: newToken });
-    mount();
+    refreshSession.mockResolvedValueOnce({ token: oldToken }).mockRejectedValueOnce(new TypeError('Network unavailable')).mockResolvedValueOnce({ token: newToken });
+    await mount();
     await act(async () => {});
     const version = auth.sessionVersion;
     await act(async () => { window.dispatchEvent(new Event('online')); });
@@ -343,12 +350,30 @@ test('a temporary renewal failure preserves the session and retries without chan
 });
 test('a rejected session ends authentication immediately on renewal', async () => {
     const token = sessionToken(9999999999);
-    localStorage.setItem('gnosisToken', token);
+    refreshSession.mockResolvedValue({ token: token });
     getProfile.mockResolvedValue(newUser);
-    refreshSession.mockRejectedValue(Object.assign(new Error('Session revoked'), { code: 'SESSION_INVALID' }));
-    mount();
+    refreshSession.mockResolvedValueOnce({ token }).mockRejectedValue(Object.assign(new Error('Session revoked'), { code: 'SESSION_INVALID' }));
+    await mount();
     await act(async () => {});
     await act(async () => { window.dispatchEvent(new Event('online')); });
     session(null, null);
     expect(logoutSession).toHaveBeenCalledWith(token, false);
+});
+
+test('legacy persistent access credentials are removed and never used to authenticate', async () => {
+    localStorage.setItem('gnosisToken', 'legacy-credential');
+    refreshSession.mockResolvedValue({ token: 'cookie-session-token' });
+    getProfile.mockResolvedValue(newUser);
+    await mount();
+    session(newUser, 'cookie-session-token');
+    expect(getProfile).toHaveBeenCalledExactlyOnceWith('cookie-session-token');
+    expect(sessionStorage.getItem('gnosisToken')).toBeNull();
+});
+
+test('disabled browser storage does not prevent cookie session restoration', async () => {
+    vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => { throw new Error('Storage disabled'); });
+    refreshSession.mockResolvedValue({ token: 'memory-token' });
+    getProfile.mockResolvedValue(newUser);
+    await mount();
+    session(newUser, 'memory-token');
 });

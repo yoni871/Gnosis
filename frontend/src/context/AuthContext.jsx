@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, createContext } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, createContext } from "react";
 import { getProfile, loginUser, registerUser, refreshSession, logoutSession } from "../services/authService";
 import { createAuthSessionGuard } from "./authSession";
 
@@ -13,14 +13,20 @@ export function AuthProvider({ children }) {
     const [isAuthLoading, setIsAuthLoading] = useState(true);
 
     // Epoch guard for issue #6: every auth operation and every logout
-    // advances the epoch. An async operation may only mutate state or
-    // localStorage while its captured ticket is still current, so a
+    // advances the epoch. An async operation may only mutate state
+    // while its captured ticket is still current, so a
     // delayed response can never overwrite a newer session or a logout.
     const [authGuard] = useState(() => createAuthSessionGuard());
 
-    const [token, setToken] = useState(() => {
-        return localStorage.getItem("gnosisToken");
-    });
+    // Access credentials live only in this provider. The HttpOnly cookie
+    // restores a session after reload; discard legacy persistent credentials.
+    const [token, setToken] = useState(null);
+    const tokenRef = useRef(null);
+    const updateToken = useCallback(value => {
+        tokenRef.current = value;
+        setToken(value);
+    }, []);
+    const getAccessToken = useCallback(() => tokenRef.current, []);
 
     useEffect(() => {
         const ticket = authGuard.begin();
@@ -28,25 +34,12 @@ export function AuthProvider({ children }) {
 
         //restore the user's login after a page refresh
         const restoreAuth = async () => {
-            if (!token) {
-                if (authGuard.isCurrent(ticket)) {
-                    setIsAuthLoading(false);
-                }
-                return;
-            }
-
             try {
-                let restoredToken = token;
-                // Old seven-day JWTs have no sid and are deliberately rejected.
-                let claims;
-                try { claims = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))); } catch { /* Server validates malformed tokens. */ }
-                if (claims?.sid && claims.exp * 1000 <= Date.now() + 60000) {
-                    const renewed = await refreshSession();
-                    if (!authGuard.isCurrent(ticket)) return;
-                    restoredToken = renewed.token;
-                    localStorage.setItem("gnosisToken", restoredToken);
-                    setToken(restoredToken);
-                }
+                try { localStorage.removeItem("gnosisToken"); } catch { /* Storage may be disabled. */ }
+                const renewed = await refreshSession();
+                if (!authGuard.isCurrent(ticket)) return;
+                const restoredToken = renewed.token;
+                updateToken(restoredToken);
                 const profile = await getProfile(restoredToken);
                 if (!authGuard.isCurrent(ticket)) {
                     return;
@@ -56,9 +49,8 @@ export function AuthProvider({ children }) {
                 if (!authGuard.isCurrent(ticket)) {
                     return;
                 }
-                console.error(error);
-                localStorage.removeItem("gnosisToken");
-                setToken(null);
+                if (error.code !== "SESSION_INVALID") console.error(error);
+                updateToken(null);
                 setUser(null);
             } finally {
                 if (authGuard.isCurrent(ticket)) {
@@ -76,7 +68,7 @@ export function AuthProvider({ children }) {
             // newer mount or operation is not cleared.
             authGuard.invalidate();
         };
-    }, []);
+    }, [authGuard, updateToken]);
 
     // Shared login flow. The caller supplies the operation's epoch
     // ticket so concurrent logins coordinate instead of invalidating
@@ -94,8 +86,7 @@ export function AuthProvider({ children }) {
             if (!authGuard.isCurrent(ticket)) {
                 return null;
             }
-            localStorage.setItem("gnosisToken", newToken);
-            setToken(newToken);
+            updateToken(newToken);
 
             const profile = await getProfile(newToken);
             if (!authGuard.isCurrent(ticket)) {
@@ -108,8 +99,7 @@ export function AuthProvider({ children }) {
             if (!authGuard.isCurrent(ticket)) {
                 return null;
             }
-            localStorage.removeItem("gnosisToken");
-            setToken(null);
+            updateToken(null);
             setUser(null);
 
             throw error;
@@ -118,7 +108,7 @@ export function AuthProvider({ children }) {
                 setIsAuthLoading(false);
             }
         }
-    }, [authGuard]);
+    }, [authGuard, updateToken]);
 
     const login = useCallback(async (credentials) => {
         const ticket = authGuard.begin();
@@ -144,11 +134,10 @@ export function AuthProvider({ children }) {
         // flight becomes stale and must not write state or storage
         // when it eventually finishes.
         setSessionVersion(authGuard.invalidate());
-        localStorage.removeItem("gnosisToken");
-        setToken(null);
+        updateToken(null);
         setUser(null);
         setIsAuthLoading(false);
-    }, [authGuard, token]);
+    }, [authGuard, token, updateToken]);
 
     useEffect(() => {
         if (!token || !user) return;
@@ -171,8 +160,7 @@ export function AuthProvider({ children }) {
                     setSessionVersion(authGuard.begin());
                     setUser(profile);
                 }
-                localStorage.setItem("gnosisToken", renewed.token);
-                setToken(renewed.token);
+                updateToken(renewed.token);
             } catch (error) {
                 if (!active || !authGuard.isCurrent(ticket)) return;
                 if (['SESSION_INVALID', 'TOKEN_INVALID', 'TOKEN_REQUIRED'].includes(error.code)) {
@@ -197,7 +185,7 @@ export function AuthProvider({ children }) {
             document.removeEventListener('visibilitychange', onVisible);
             window.removeEventListener('online', renew);
         };
-    }, [authGuard, logout, sessionVersion, token, user]);
+    }, [authGuard, logout, sessionVersion, token, updateToken, user]);
 
     const isAuthenticated = Boolean(user);
 
@@ -208,6 +196,7 @@ export function AuthProvider({ children }) {
         sessionVersion,
         user,
         token,
+        getAccessToken,
         isAuthenticated,
         isAuthLoading,
         login,
@@ -217,6 +206,7 @@ export function AuthProvider({ children }) {
         sessionVersion,
         user,
         token,
+        getAccessToken,
         isAuthenticated,
         isAuthLoading,
         login,

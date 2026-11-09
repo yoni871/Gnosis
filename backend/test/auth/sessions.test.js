@@ -28,7 +28,8 @@ function rotationFixture(used = false, overrides = {}) {
     };
 }
 test('login issues a scoped 15-minute JWT and stores only a refresh hash atomically', async () => {
-    const result = await sessions.createSession(7);
+    behavior = async () => ({ rows: [{ password_hash: 'verified-hash' }] });
+    const result = await sessions.createSession(7, 'verified-hash');
     const claims = jwt.verify(result.token, process.env.JWT_SECRET, { algorithms: ['HS256'], issuer: 'gnosis', audience: 'gnosis-api' });
     assert.equal(claims.userId, 7);
     assert.equal(claims.exp - claims.iat, 900);
@@ -40,8 +41,8 @@ test('login issues a scoped 15-minute JWT and stores only a refresh hash atomica
     assert.equal(released, 1);
 });
 test('a failed session insert rolls back and releases the connection', async () => {
-    behavior = async sql => { if (sql.includes('INSERT')) throw new Error('synthetic'); return { rows: [] }; };
-    await assert.rejects(sessions.createSession(7));
+    behavior = async sql => { if (sql.includes('INSERT')) throw new Error('synthetic'); return { rows: [{ password_hash: 'verified-hash' }] }; };
+    await assert.rejects(sessions.createSession(7, 'verified-hash'));
     assert.equal(queries.at(-1)[0], 'ROLLBACK');
     assert.equal(released, 1);
 });
@@ -120,4 +121,16 @@ test('logout revokes a signed expired access credential but ignores forged crede
     queries = [];
     await sessions.revokeAccess('Bearer forged');
     assert.equal(queries.length, 0);
+});
+
+test('session issuance refuses a password changed after login verification, missing users and missing snapshots', async () => {
+    for (const rows of [[], [{ password_hash: 'new-hash' }]]) {
+        behavior = async () => ({ rows });
+        assert.equal(await sessions.createSession(7, 'old-hash'), null);
+        assert.ok(!queries.some(([sql]) => sql.includes('INSERT')));
+        queries = [];
+    }
+    behavior = async () => ({ rows: [{ password_hash: 'new-hash' }] });
+    assert.equal(await sessions.createSession(7), null);
+    assert.ok(!queries.some(([sql]) => sql.includes('INSERT')));
 });
