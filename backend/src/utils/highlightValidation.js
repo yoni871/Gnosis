@@ -29,11 +29,18 @@ function isValidPassage(startChapter, startVerse, endChapter, endVerse) {
     );
 }
 
+// A single chapter holds at most 176 verses (Psalm 119); 200 covers
+// any one-chapter selection plus margin while bounding the per-request
+// work — every coordinate is verified against the Bible project before
+// anything is written — and the rows one request can create.
+const MAX_HIGHLIGHT_VERSES = 200;
+
 // Accept a nonempty collection of positive integer verse coordinates.
 function isValidVerseSelection(verses) {
     return (
         Array.isArray(verses) &&
         verses.length > 0 &&
+        verses.length <= MAX_HIGHLIGHT_VERSES &&
         verses.every((point) =>
             point !== null &&
             typeof point === "object" &&
@@ -59,6 +66,7 @@ function uniqueVerses(verses) {
 }
 
 module.exports = {
+    MAX_HIGHLIGHT_VERSES,
     isValidColor,
     isValidPassage,
     isValidVerseSelection,

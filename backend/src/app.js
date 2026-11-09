@@ -16,7 +16,7 @@ const notesRoutes = require("./routes/notesRoutes");
 const bookmarksRoutes = require("./routes/bookmarksRoutes");
 const highlightsRoutes = require("./routes/highlightsRoutes");
 const readingStateRoutes = require("./routes/readingStateRoutes");
-const { CLIENT_AUTH_RESPONSES, isBodyParseError, logAuthFailure } = require("./utils/authErrors");
+const { CLIENT_AUTH_RESPONSES, isBodyParseError, isBodyTooLarge, logAuthFailure } = require("./utils/authErrors");
 const { resolveTrustProxy } = require("./utils/rateLimit");
 const { securityHeaders, privateNoStore } = require("./middleware/securityHeaders");
 
@@ -37,7 +37,24 @@ app.use(securityHeaders);
 app.set("trust proxy", resolveTrustProxy(process.env.TRUST_PROXY));
 
 app.use(cors({ origin: new URL(process.env.FRONTEND_URL).origin, credentials: true }));
-app.use(express.json());
+// The 100 KiB JSON limit is a deliberate, documented choice, not a silent
+// default: note content is capped far below it at the controller (100,000
+// characters), and an over-limit body gets a controlled 413 (N04) instead
+// of a 500.
+app.use(express.json({ limit: "100kb" }));
+
+// N03: express.json() skips bodies without a JSON Content-Type, leaving
+// req.body undefined; the user-data controllers destructure req.body
+// directly, so a body-less POST became a 500. Normalize to {} once,
+// here, so every controller sees an object and its own validation
+// returns a controlled 400. A parsed body passes through untouched, and
+// body-less GETs are unaffected (they never read req.body).
+app.use((req, res, next) => {
+    if (req.body === undefined) {
+        req.body = {};
+    }
+    next();
+});
 
 app.use("/api", bibleRoutes);
 // Audit F12: every authenticated/private response carries
@@ -78,6 +95,10 @@ app.use("/api", (req, res) => {
 app.use((error, req, res, next) => {
     if (res.headersSent) {
         return next(error);
+    }
+    if (isBodyTooLarge(error)) {
+        const { status, body } = CLIENT_AUTH_RESPONSES.bodyTooLarge;
+        return res.status(status).json(body);
     }
     if (isBodyParseError(error)) {
         const { status, body } = CLIENT_AUTH_RESPONSES.invalidBody;

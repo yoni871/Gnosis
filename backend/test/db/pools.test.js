@@ -119,6 +119,15 @@ test("sslmode=disable fails fast instead of connecting in plaintext", () => {
     }), /sslmode=disable/);
 });
 
+test("pools set statement and lock timeouts (F04 budgets)", () => {
+    const result = pools({
+        DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis",
+    });
+    for (const createdPool of [result.app, result.bible, result.commentary]) {
+        assert.equal(createdPool.options.statement_timeout, 10000);
+        assert.equal(createdPool.options.lock_timeout, 5000);
+    }
+});
 
 test("an idle pool error logs only the subsystem and safe code", () => {
     const seen = [];

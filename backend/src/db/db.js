@@ -85,7 +85,15 @@ function createPools(env = process.env) {
                 ...(url ? tlsOptionsFor(url) : {}),
                 max: 5,
                 idleTimeoutMillis: 10000,
-                connectionTimeoutMillis: 10000
+                connectionTimeoutMillis: 10000,
+                // F04 budgets: no application query may run longer than
+                // 10 s, or wait on a lock longer than 5 s. Every
+                // application query is a small indexed lookup; anything
+                // slower is a runaway, not a legitimate workload.
+                // Migrations and imports use their own clients, not
+                // these pools, so they are unaffected.
+                statement_timeout: 10000,
+                lock_timeout: 5000
             });
             // Handle errors from connections that are sitting idle.
             // Only the subsystem and the safe code are logged (audit

@@ -110,15 +110,23 @@ async function saveHighlights(userId, bookId, verses, color) {
 // Load only the highlights belonging to the supplied authenticated user.
 // Book names come from the Bible project (no join crosses the project
 // boundary); the rows are ordered by book order, then chapter, then
-// verse, exactly as the old join did.
-async function getHighlights(userId) {
+// verse, exactly as the old join did. F04: the query was unbounded —
+// callers pass a parsed { limit, offset } (limit capped at 100 by the
+// shared parser); the page is applied before the book-name join so the
+// bound holds on the database side. The page order is book_id, then
+// chapter, then verse: book ids are assigned in canonical order at seed
+// time, so this matches the book_order display sort the service applies
+// within each page, and the order is deterministic across pages.
+async function getHighlights(userId, { limit, offset } = { limit: 100, offset: 0 }) {
     const result = await pool.query(
         `
         SELECT h.*
         FROM highlights h
         WHERE h.user_id = $1
+        ORDER BY h.book_id, h.chapter, h.verse
+        LIMIT $2 OFFSET $3
         `,
-        [userId]
+        [userId, limit, offset]
     );
 
     // Return an empty array when the user has no highlights.

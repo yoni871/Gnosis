@@ -134,6 +134,14 @@ const resetRateLimit = createRateLimitMiddleware([
     { policy: "reset_ip", fields: (req, ip) => [ip] },
 ], "reset");
 
+// PR4 (F04): refresh was the one auth endpoint with no throttle. The
+// browser-session gate runs first, like validation on the other auth
+// endpoints, so only genuine browser session requests consume quota;
+// failed refreshes count and successes release, exactly like login.
+const refreshRateLimit = createRateLimitMiddleware([
+    { policy: "refresh_ip", fields: (req, ip) => [ip] },
+], "refresh");
+
 // Guarantees a reservation is always settled. Handlers finalize
 // explicitly on every path; this wrapper covers the rest: an unexpected
 // throw is an internal error and releases, while a handler that somehow
@@ -379,16 +387,18 @@ router.post("/login", (req, res, next) => {
 
 
 // Cookie endpoints require an explicit browser session request and a trusted origin.
-router.post("/refresh", sessions.browserSessionRequest, async (req, res) => {
+router.post("/refresh", sessions.browserSessionRequest, refreshRateLimit, withRateLimitFinalize(async (req, res) => {
     res.set("Cache-Control", "no-store");
     const session = await sessions.rotateSession(sessions.readCookie(req));
     if (!session) {
+        await req.rateLimit.finalize("count");
         sessions.clearCookie(res);
         return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
     }
     sessions.setCookie(res, session.refresh, session.expiresAt);
+    await req.rateLimit.finalize("release");
     res.json({ token: session.token, expiresIn: sessions.ACCESS_SECONDS });
-});
+}));
 router.post("/logout", sessions.browserSessionRequest, async (req, res) => {
     await sessions.revokeRefresh(sessions.readCookie(req));
     await sessions.revokeAccess(req.headers.authorization);

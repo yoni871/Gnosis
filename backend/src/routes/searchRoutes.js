@@ -22,8 +22,13 @@ router.get("/search/bible", cacheSearch, (req, res) => {
     // COUNT(*) OVER() returns the exact match total in the same scan,
     // so the UI can show "Showing 100 of 6,687" and know when to stop.
     // Page and limit are parsed defensively: non-numeric, zero, and
-    // negative values fall back to the first page of 100.
-    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    // negative values fall back to the first page of 100. Page is also
+    // capped at 100 (F04): at limit 100 that is OFFSET 9,900, and a
+    // ranked top-100-per-page search has no useful result past it —
+    // deeper pages are only a slow full scan. Clamping follows this
+    // route's existing forgiving convention instead of a new 400.
+    const MAX_SEARCH_PAGE = 100;
+    const page = Math.min(MAX_SEARCH_PAGE, Math.max(1, Number.parseInt(req.query.page, 10) || 1));
     const limit = Math.min(100, Math.max(1, Number.parseInt(req.query.limit, 10) || 100));
     const offset = (page - 1) * limit;
     biblePool.query(
