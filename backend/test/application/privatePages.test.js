@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
 const jwt = require('jsonwebtoken');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
-const { startBackend } = require('../helpers/backend-instance');
+const { startBackend, workerEnvironment } = require('../helpers/backend-instance');
 const context = contextFromEnvironment();
 let database, worker, bookId;
 test.before(async () => { database = await createTestPool(context); bookId = (await database.pool.query('SELECT id FROM bible_books ORDER BY id LIMIT 1')).rows[0].id; worker = await startBackend(context); });
@@ -12,7 +12,7 @@ async function account() {
     const id = (await database.pool.query('INSERT INTO users(email) VALUES ($1) RETURNING id', [`pages-${crypto.randomUUID()}@fixture.invalid`])).rows[0].id;
     const sid = crypto.randomUUID();
     await database.pool.query("INSERT INTO auth_sessions(id,user_id,expires_at) VALUES ($1,$2,now()+interval '1 hour')", [sid, id]);
-    return { id, token: jwt.sign({ userId: id, sid }, 'synthetic-application-test-jwt', { algorithm: 'HS256', issuer: 'gnosis', audience: 'gnosis-api', expiresIn: '1h' }) };
+    return { id, token: jwt.sign({ userId: id, sid }, workerEnvironment().JWT_SECRET, { algorithm: 'HS256', issuer: 'gnosis', audience: 'gnosis-api', expiresIn: '1h' }) };
 }
 async function request(user, path, method = 'GET', body) {
     const res = await fetch(worker.url + '/api/' + path, { method, headers: { Authorization: `Bearer ${user.token}`, 'Content-Type': 'application/json', Connection: 'close' },
