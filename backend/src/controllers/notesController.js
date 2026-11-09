@@ -1,4 +1,5 @@
 const pool = require("../db/db");
+const { withUser } = require("../db/userContext");
 const { bookExists } = require("../utils/bookValidation");
 
 const createNote = async (req, res) => {
@@ -36,7 +37,7 @@ const createNote = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             INSERT INTO notes (
                 user_id,
@@ -51,7 +52,7 @@ const createNote = async (req, res) => {
             RETURNING *
             `,
             [userId, bookId, startChapter, startVerse, endChapter, endVerse, content]
-        );
+        ));
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
@@ -67,14 +68,14 @@ const getNotes = async (req, res) => {
     const userId = req.user.userId;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             SELECT * FROM notes
             WHERE user_id = $1
             ORDER BY created_at DESC
             `,
             [userId]
-        );
+        ));
 
         return res.status(200).json(result.rows);
     } catch (error) {
@@ -91,14 +92,14 @@ const getNoteById = async (req, res) => {
     const noteId = req.params.id;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             SELECT * FROM notes
             WHERE id = $1
             AND user_id = $2
             `,
             [noteId, userId]
-        );
+        ));
 
         if(result.rows.length === 0) {
             return res.status(404).json({
@@ -151,7 +152,7 @@ const updateNote = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             UPDATE notes
             SET
@@ -167,7 +168,7 @@ const updateNote = async (req, res) => {
             RETURNING *
             `,
             [bookId, startChapter, startVerse, endChapter, endVerse, content, noteId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -191,7 +192,7 @@ const deleteNote = async (req, res) => {
     const noteId = req.params.id;
 
     try {
-        const result = await pool.query (
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             DELETE FROM notes
             WHERE id = $1
@@ -199,7 +200,7 @@ const deleteNote = async (req, res) => {
             RETURNING *
             `,
             [noteId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({

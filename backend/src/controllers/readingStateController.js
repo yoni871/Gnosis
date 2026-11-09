@@ -1,5 +1,6 @@
 const pool = require("../db/db");
 const { biblePool, commentaryPool } = require("../db/db");
+const { withUser } = require("../db/userContext");
 
 const isPositiveInteger = (value) => {
     return Number.isInteger(value) && value > 0;
@@ -9,10 +10,10 @@ const getReadingState = async (req, res) => {
     const userId = req.user.userId;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             "SELECT * FROM user_reading_state WHERE user_id = $1",
             [userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -120,7 +121,7 @@ const saveReadingState = async (req, res) => {
             }
         }
 
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             INSERT INTO user_reading_state (
                 user_id,
@@ -149,7 +150,7 @@ const saveReadingState = async (req, res) => {
                 commentaryId ?? null,
                 verse ?? null
             ]
-        );
+        ));
 
         return res.status(200).json({
             ...result.rows[0],

@@ -28,6 +28,10 @@ test('migrated application schema permits only the approved runtime grants', asy
     for (const table of ['notes', 'bookmarks', 'highlights']) {
         for (const privilege of ['SELECT', 'INSERT', 'UPDATE', 'DELETE']) expected.push(`${table}:${privilege}`);
     }
+    // Reading state is one row per user, upserted, never deleted: the
+    // runtime role gets SELECT/INSERT/UPDATE and no DELETE — the RLS
+    // policies mirror exactly this (see docs/RowLevelSecurity.md).
+    for (const privilege of ['SELECT', 'INSERT', 'UPDATE']) expected.push(`user_reading_state:${privilege}`);
     // Issue #4: only the permissions the limiter itself needs. Attempts
     // are never updated in place (counted rows stay, released rows are
     // deleted), and the sweep-state row is created by the migration, so
