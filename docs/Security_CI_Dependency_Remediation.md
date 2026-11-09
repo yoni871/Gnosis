@@ -29,7 +29,7 @@ scanning enablement, CodeQL service availability, and release/promotion settings
 must be verified by an authorized repository operator. Merely adding a workflow
 cannot establish that those controls are enabled or required. No workflow deploys.
 
-The baseline lint command reports 21 errors and 4 warnings in existing frontend
+The baseline lint command reports 21 errors and 3 warnings in existing frontend
 source. It is not added as a new failing gate; new dependency diagnostics are
 compared against that baseline. Full lint cleanup is separate work.
 
