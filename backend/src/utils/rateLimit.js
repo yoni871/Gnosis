@@ -320,60 +320,23 @@ function createRateLimitMiddleware(policySpecs, endpoint) {
     };
 }
 
-// Validate the TRUST_PROXY environment setting. Accepts: unset/empty,
-// "0"/"false" (disabled, the default), "true", a hop count, or a
-// comma-separated list of IPs, CIDRs, or Express subnet names (loopback,
-// linklocal, uniquelocal). Anything else fails fast at startup, so a
-// typo can never silently become a spoofable configuration. Express
-// itself validates the entries again at runtime; this is the fail-fast
-// sanity gate. No production value is guessed: the default is disabled,
-// and the operator sets the value that matches the real proxy chain.
+// Trust only explicit network identities, never a caller-controlled hop count.
 function resolveTrustProxy(value) {
-    if (value === undefined || value === "") {
-        return false;
-    }
-    if (value === "0" || value === "false") {
-        return false;
-    }
-    if (value === "true") {
-        return true;
-    }
-    if (/^\d+$/.test(value) && Number.isSafeInteger(Number(value))) {
-        return Number(value);
-    }
-    const rawParts = value.split(",");
-    if (rawParts.some((part) => part.trim() === "")) {
-        throw new Error("Invalid trust proxy configuration.");
-    }
-    const parts = rawParts.map((part) => part.trim());
-    if (parts.length > 0 && parts.every(isTrustedProxyEntry)) {
-        return parts.length === 1 ? parts[0] : parts;
-    }
-    throw new Error("Invalid trust proxy configuration.");
-}
-
-function isTrustedProxyEntry(entry) {
-    if (entry === "loopback" || entry === "linklocal" || entry === "uniquelocal") {
-        return true;
-    }
-    const [address, prefix] = entry.split("/");
-    if (prefix !== undefined && !/^\d+$/.test(prefix)) {
-        return false;
-    }
-    if (address.includes(":")) {
-        if (!/^[0-9a-fA-F:]+$/.test(address)) {
-            return false;
+    if (value === undefined || value === "" || value === "0" || value === "false") return false;
+    if (typeof value !== "string") throw new Error("Invalid trust proxy configuration.");
+    const parts = value.split(",").map(part => part.trim());
+    const { isIP } = require("node:net");
+    for (const entry of parts) {
+        if (["loopback", "linklocal", "uniquelocal"].includes(entry)) continue;
+        const pieces = entry.split("/");
+        const family = isIP(pieces[0]);
+        if (!family || pieces.length > 2 || (pieces.length === 2 &&
+            (!/^\d+$/.test(pieces[1]) || Number(pieces[1]) < 1 ||
+             Number(pieces[1]) > (family === 4 ? 32 : 128)))) {
+            throw new Error("Invalid trust proxy configuration.");
         }
-        return prefix === undefined || (Number(prefix) >= 0 && Number(prefix) <= 128);
     }
-    const octets = address.split(".");
-    if (octets.length !== 4) {
-        return false;
-    }
-    if (!octets.every((octet) => /^\d+$/.test(octet) && Number(octet) <= 255)) {
-        return false;
-    }
-    return prefix === undefined || (Number(prefix) >= 0 && Number(prefix) <= 32);
+    return parts.length === 1 ? parts[0] : parts;
 }
 
 module.exports = {
