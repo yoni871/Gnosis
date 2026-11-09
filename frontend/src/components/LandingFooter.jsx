@@ -3,7 +3,7 @@ import "./LandingFooter.css";
 
 const GROUPS = [
     { title: "Explore", links: [{ label: "Bible & Commentary", to: "/bible/Genesis/1" }] },
-    { title: "Gnosis", links: [{ label: "About", to: "/about" }, { label: "Sign In", to: "/login" }, { label: "Create Account", to: "/register" }] },
+    { title: "Gnosis", links: [{ label: "About", to: "/about" }, { label: "Privacy", to: "/privacy" }, { label: "Sign In", to: "/login" }, { label: "Create Account", to: "/register" }] },
 ];
 
 export default function LandingFooter() {

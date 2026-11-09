@@ -12,6 +12,8 @@ import StudyPage from './pages/StudyPage';
 // stay eager: they are the two entry routes, and splitting them would
 // add a round-trip to the first paint.
 const AboutPage = lazy(() => import('./pages/AboutPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const SettingsPage = lazy(() => import('./pages/SettingsPage'));
 const SearchResultsPage = lazy(() => import('./pages/SearchResultsPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
@@ -53,6 +55,10 @@ function App() {
             />
 
             <Route path='/about' element={<AboutPage />} />
+
+            <Route path='/privacy' element={<PrivacyPage />} />
+
+            <Route path='/settings' element={<SettingsPage />} />
 
             <Route 
               path='/bible/:book/:chapter'

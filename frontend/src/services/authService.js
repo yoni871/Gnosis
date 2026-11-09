@@ -84,6 +84,28 @@ export async function resetPassword(token, password) {
     return postJson("/auth/reset-password", { token, password }, "Unable to reset your password.");
 }
 
+// Account deletion: DELETE with the current password as confirmation.
+// The Authorization header makes this a credentialed request (not a
+// cookie endpoint), and credentials are included so the server can
+// clear the refresh cookie with the response.
+export async function deleteAccount(token, password) {
+    const response = await fetch(`${AUTH_API_URL}/auth/account`, {
+        method: "DELETE",
+        signal: AbortSignal.timeout(15000),
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ password }),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throwServiceError(data, "Unable to delete your account.");
+    }
+    return data;
+}
+
 // Serialize cookie mutations, including a logout queued behind a pending login.
 let sessionQueue = Promise.resolve();
 function sessionRequest(work) {

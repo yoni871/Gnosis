@@ -172,7 +172,13 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                                 </button>
 
 
-                                <button className="
+                                <Link
+                                    to="/settings"
+                                    onClick={() => {
+                                        setIsMobileProfileOpen(false);
+                                        setIsMenuOpen(false);
+                                    }}
+                                    className="
                                     flex w-full
                                     rounded-md
                                     px-2 py-2
@@ -182,7 +188,7 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                                     hover:bg-[var(--hover-bg)]
                                 ">
                                     Settings
-                                </button>
+                                </Link>
 
                                 <Link 
                                     to="/login"

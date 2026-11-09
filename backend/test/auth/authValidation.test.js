@@ -18,6 +18,7 @@ const {
     validateLoginInput,
     validateForgotPasswordInput,
     validateResetPasswordInput,
+    validateDeleteAccountInput,
 } = require("../../src/utils/authValidation");
 
 // ---------------------------------------------------------------------------
@@ -634,4 +635,20 @@ test("login accepts a short pre-existing password", async () => {
     assert.equal(result.response.status, 200);
     const decoded = jwt.verify(result.json.token, process.env.JWT_SECRET);
     assert.equal(decoded.userId, 42);
+});
+
+test("delete validator takes only the current password, with no minimum length", () => {
+    assert.deepEqual(validateDeleteAccountInput({ password: "correct-password" }), {
+        value: { password: "correct-password" },
+    });
+    // A short pre-existing password still confirms deletion: the
+    // registration minimum is not enforced on the current password.
+    assert.equal(validateDeleteAccountInput({ password: "abc" }).error, undefined);
+    assert.deepEqual(validateDeleteAccountInput({}), { error: "Password is required." });
+    assert.deepEqual(validateDeleteAccountInput({ password: "x".repeat(73) }), {
+        error: "Password must be at most 72 bytes.",
+    });
+    assert.deepEqual(validateDeleteAccountInput("not-an-object"), {
+        error: "Request body must be an object.",
+    });
 });

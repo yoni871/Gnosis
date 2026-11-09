@@ -635,6 +635,25 @@ export default function RegisterPage() {
                                 Sign in
                             </Link>
                         </p>
+
+                        <p className="
+                            mt-4
+                            text-[12px]
+                            text-[var(--text-muted)]
+                        ">
+                            <Link
+                                to="/privacy"
+                                className="
+                                    underline
+                                    decoration-[var(--border-control)]
+                                    underline-offset-4
+                                    transition
+                                    hover:decoration-[var(--color-brand)]
+                                "
+                            >
+                                Privacy Policy
+                            </Link>
+                        </p>
                 </div>
             </div>
 

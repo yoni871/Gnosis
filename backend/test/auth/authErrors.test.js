@@ -8,6 +8,7 @@ const {
     isBodyParseError,
     isBodyTooLarge,
     logAuthFailure,
+    logAuthEvent,
 } = require("../../src/utils/authErrors");
 
 test("duplicate email on register maps to 409 with the existing message", () => {
@@ -124,4 +125,25 @@ test("logAuthFailure never logs messages, stacks, or sensitive values", () => {
     assert.ok(!text.includes("password_hash"), text);
     assert.ok(!text.includes("hunter2"), text);
     assert.ok(!text.includes("/secret/path"), text);
+});
+
+test("delete endpoint keeps the generic internal message", () => {
+    assert.deepEqual(internalErrorBody("delete"), {
+        error: "Something went wrong.",
+        code: "INTERNAL_ERROR",
+    });
+});
+
+test("logAuthEvent logs route and kind only, never user data", () => {
+    const seen = [];
+    const original = console.error;
+    console.error = (...args) => {
+        seen.push(args.join(" "));
+    };
+    try {
+        logAuthEvent("DELETE /api/auth/account", "account-deleted");
+    } finally {
+        console.error = original;
+    }
+    assert.deepEqual(seen, ["[auth] DELETE /api/auth/account event=account-deleted"]);
 });

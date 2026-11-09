@@ -25,6 +25,13 @@ test('migrated application schema permits only the approved runtime grants', asy
         expected.push(`${table}:SELECT`);
     }
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`users:${privilege}`);
+    // Account deletion (F08): the runtime role may delete a user row;
+    // the user-owned rows go with it through the schema's ON DELETE
+    // CASCADE rules, so no child table gains a DELETE grant.
+    expected.push('users:DELETE');
+    // Reading state (docs/ReadingState.md): the runtime role reads and
+    // writes the position row, never deletes it directly.
+    for (const privilege of ['SELECT', 'INSERT', 'UPDATE']) expected.push(`user_reading_state:${privilege}`);
     for (const table of ['notes', 'bookmarks', 'highlights']) {
         for (const privilege of ['SELECT', 'INSERT', 'UPDATE', 'DELETE']) expected.push(`${table}:${privilege}`);
     }
