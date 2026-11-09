@@ -19,7 +19,7 @@ cited by path.
 
 | Item | Status | Owner | Evidence / notes |
 |---|---|---|---|
-| T1.1 TRUST_PROXY attestation (live attestation complete and on file, especially the client-IP chain) | OPEN | Muse 1 (DB infra track) | Audit §3.2/§6: `TRUST_PROXY` is `"true"` on Preview (verified 2026-11-09 13:11 CST — Express trusts all proxy hops, so a preview client can spoof `X-Forwarded-For` and defeat both login rate-limit buckets) and absent from Production (trust proxy disabled there, so per-IP buckets do not work as designed). Correct value (hop count or Vercel edge CIDRs — never `true`) still to be set on both scopes and verified live. See [RateLimiting](RateLimiting.md). Muse 1 status not yet confirmed (see below). |
+| T1.1 TRUST_PROXY attestation (live attestation complete and on file, especially the client-IP chain) | OPEN | Muse 1 (DB infra track) | Audit §3.2/§6: `TRUST_PROXY` is `"true"` on Preview (verified 2026-11-09 13:11 CST — Express trusts all proxy hops, so a preview client can spoof `X-Forwarded-For` and defeat both login rate-limit buckets) and absent from Production (trust proxy disabled there, so per-IP buckets do not work as designed). Correct value (hop count or Vercel edge CIDRs — never `true`) still to be set on both scopes and verified live. See [RateLimiting](RateLimiting.md). Status 2026-11-09 ~13:46 CST: NOT implemented — a Vercel config change, not code; Muse 1 owns scheduling it, and it needs Yonatan's approval plus a redeploy and a live check that a spoofed header is ignored. |
 | T1.2 Headers + CSP enforced (report-only period completed with zero legitimate violations); `X-Powered-By` disabled | OPEN | Muse 3 (PR1) | Audit F03: no helmet, no CSP, no `frame-ancestors`, no `nosniff`, no `Referrer-Policy`; `X-Powered-By: Express` still sent (confirmed live). |
 | T1.3 `no-store` on all private responses | OPEN | Muse 3 (PR1) | Audit F12: profile, notes, bookmarks, highlights, and reading-state responses carry no `no-store` directive. |
 | T1.4 Log hygiene (no raw DB errors outside auth paths; log access and retention reviewed with an authorised operator) | OPEN | Muse 3 (PR2) | Audit F02: `console.error(error)` persists in notes, bookmarks, highlights, reading-state, and bible controllers. |
@@ -32,32 +32,46 @@ cited by path.
 | T1.11 Branch protection verified live on `main` and `production` (approving review + named checks, including promotion PRs) | OPEN | Yonatan / operator (dashboard setting) | Audit F07: rulesets require a PR, but required approving reviews = 0 and required status checks are empty; CI does not cover promotion PRs. |
 | T1.12 Privacy policy published; account deletion works end-to-end on a synthetic account; retention purge scheduled | OPEN | Muse 3 (PR5) | Audit F08: no privacy policy or terms, no user-facing deletion path, no scheduled purge of expired session/token rows. |
 | T1.13 Request/collection budgets in place | OPEN | Muse 3 (PR4) | Audit F04: private list endpoints return full collections with no LIMIT/pagination; no rate limit on `POST /api/auth/refresh`; no statement/lock timeouts on either pool. Audit F09: licensed-provider budget check is check-then-act, not atomic. |
-| T1.15 Encrypted off-site backups of all three projects exist and a restore drill has passed | OPEN | Muse 1 (DB infra track) | Audit §6: backup/restore never tested. Neon Free gives a 6-hour point-in-time recovery window per project as a platform property — not a verified recovery. Muse 1 status not yet confirmed (see below). |
+| T1.15 Encrypted off-site backups of all three projects exist and a restore drill has passed | OPEN | Muse 1 (DB infra track) | Audit §6: backup/restore never tested. Neon Free gives a 6-hour point-in-time recovery window per project as a platform property — not a verified recovery. Status 2026-11-09 ~13:46 CST: Muse 1 has written a backup/restore plan (Neon PITR 6h as the restore path); no encrypted off-site backup or restore drill exists yet. Staged, awaiting Yonatan's approval post-soak. |
 | T1.16 Audit logging live with an alert rule on reuse detection | IN PROGRESS | This track (branch `security/audit-logging`) | PR link TBD — fill in when created. |
 | T1.19 `SECURITY.md` published with a private reporting channel | IN PROGRESS | This track (branch `security/security-md`) | PR #73 (https://github.com/yoni871/Gnosis/pull/73) — open, unmerged; reporting contact still a placeholder pending Yonatan's confirmation. |
 | Audit reconciled + PASS verdict | OPEN | — | Audit verdict is **FAIL as of 2026-11-09** (main `40eb9a9`): one live High (N01, preview role) and eight open Mediums. Audit report: `~/workspace/gnosis-security-audit/GnosisUserSecurityAudit.md` (held outside the repo). Prior in-repo audit: [Security_Audit.md](Security_Audit.md) (2026-11-07/08, main `14de721`). |
 | Preview 24h soak passed + production promotion | OPEN | Muse 2 (soak) / Yonatan (promotion approval) | Soak restarted T+0 11:01:41 AM CST Nov 9 after the PR #71 login fix; ends ~11:01 AM CST Nov 10. Production promotion (main → production PR) needs separate approval. Production is still at `1853b92` (pre-#39/#70 session model — the reset-revocation fix is not live there). See [Deployments](Deployments.md) and [Sessions](Sessions.md). |
-| No Critical/High open | OPEN | Muse 1 (N01) | N01 live High: preview role `gnosis_preview_app` still holds `neon_superuser` membership + `CREATEROLE`/`CREATEDB`/`REPLICATION` and can `UPDATE` `password_reset_tokens.token_hash` and `users.email`, serving live preview traffic. Clean replacement `gnosis_preview_app_next` exists and is verified, but the swap needs Yonatan's approval and has not happened. Production role `gnosis_app` is clean. Muse 1 status not yet confirmed (see below). |
+| No Critical/High open | OPEN | Muse 1 (N01) | N01 live High: preview role `gnosis_preview_app` still holds `neon_superuser` membership + `CREATEROLE`/`CREATEDB`/`REPLICATION` and can `UPDATE` `password_reset_tokens.token_hash` and `users.email`, serving live preview traffic. Clean replacement `gnosis_preview_app_next` exists and is verified, but the swap needs Yonatan's approval and has not happened. Production role `gnosis_app` is clean. Status 2026-11-09 ~13:46 CST: STAGED, not executed — the replacement role is created and grant-verified; the §13 swap needs Yonatan's approval AND the soak to have ended (~11:01 AM Nov 10). Nothing moves before then. |
 
 ## Muse 1 (DB infrastructure track) — status as found
 
-Checked chat `d058ee09` on 2026-11-09 ~13:40 CST. Muse 1 was assigned
-the DB infrastructure track at ~13:29 CST (fix the over-privileged
-preview role, least-privilege audit across all three Neon projects,
-preview/production credential separation, credential-rotation planning,
-encrypted backups + restore verification, TLS, cross-database
-integrity), with instructions not to modify live databases, rotate
-credentials, deploy, or merge without Yonatan's explicit approval.
-**Muse 1 had not replied to that assignment at the time of this check,
-so the status of N01, TRUST_PROXY, and T1.15 is not yet confirmed.**
-Its items above are marked OPEN with owner Muse 1; do not treat them
-as in progress until Muse 1 reports back.
+Checked chat `d058ee09` on 2026-11-09 ~13:40 CST, updated ~13:46 CST
+when Muse 1 replied: **no conflict with this track.** Muse 1 was
+assigned the DB infrastructure track at ~13:29 CST (fix the
+over-privileged preview role, least-privilege audit across all three
+Neon projects, preview/production credential separation,
+credential-rotation planning, encrypted backups + restore verification,
+TLS, cross-database integrity), with instructions not to modify live
+databases, rotate credentials, deploy, or merge without Yonatan's
+explicit approval. Its branch is `security/db-hardening` (commit
+`783f639`, unpushed); it touches `backend/src/db/db.js` (verified TLS
+on remote pools), `backend/scripts/local/prepare.js` (PR #29 grants),
+`backend/test/db/pools.test.js`, plus two new scripts
+(`least-privilege-audit.sql`, `verify-restore.js`). It has not touched
+rate limiting, session, or token code and will not — this track's
+emission points (`sessionService`, verification/password-reset utils)
+are unaffected. Its restore-verification script reads `pgmigrations_*`
+histories generically, so this track's new migration row will simply
+appear on both sides of any comparison — no action needed.
+**In progress (read-only, no soak impact):** a six-branch
+least-privilege audit via browser task, then live cross-database
+integrity counts. Results are pending — check chat `d058ee09` for them
+before finalizing this checklist.
 
 ## Uncertain items
 
-- **T1.1, T1.15, and the N01 High** depend on Muse 1, which had not
-  reported back when this checklist was written. Their true status may
-  be further along than OPEN — but nothing in this file claims so.
+- **T1.1, T1.15, and the N01 High** depend on Muse 1, which has now
+  replied (~13:46 CST): N01 is STAGED (swap needs Yonatan's approval
+  plus the soak to have ended); TRUST_PROXY is NOT implemented (Vercel
+  config change, needs approval + redeploy + live spoof check); T1.15
+  has a plan written but no backup or drill yet. All three stay OPEN
+  until those approvals land.
 - **T1.9 and T1.10 have no owner.** They stay OPEN until someone owns
   them.
 - **T1.16 and T1.19** are IN PROGRESS on this track's branches; T1.19
