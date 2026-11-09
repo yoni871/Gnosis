@@ -5,8 +5,8 @@ const express = require("express");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "test-secret";
-process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret";
+process.env.JWT_SECRET = 'test-jwt-secret-for-rate-limit-tests';
+process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret-synthetic-test-secret";
 
 const pool = require("../../src/db/db");
 const {

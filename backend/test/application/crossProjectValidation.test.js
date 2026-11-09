@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "synthetic-test-jwt-secret";
+process.env.JWT_SECRET = "synthetic-test-jwt-secret-synthetic-test-secret";
 process.env.RATE_LIMIT_KEY_SECRET = "synthetic-test-rate-limit-secret";
 // Issue #9: app.js validates email configuration at import time.
 process.env.RESEND_API_KEY = "re_synthetic_test_key";

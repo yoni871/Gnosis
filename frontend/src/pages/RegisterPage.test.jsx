@@ -79,9 +79,9 @@ test('VALIDATION_FAILED feedback stops registration without automatic login or n
     mount();
     await submit();
     await settle(registration, response({
-        code: 'VALIDATION_FAILED', error: 'Password must be at least 8 characters.',
+        code: 'VALIDATION_FAILED', error: 'Password must be at least 12 characters.',
     }, 400));
-    expect(screen.getByRole('alert')).toHaveTextContent('Password must be at least 8 characters.');
+    expect(screen.getByRole('alert')).toHaveTextContent('Password must be at least 12 characters.');
     expect(screen.getByRole('button', { name: /create account/i })).toBeEnabled();
     expect(screen.getByTestId('location')).toHaveTextContent('/register');
     expect(fetchMock).toHaveBeenCalledTimes(1);

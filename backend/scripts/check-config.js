@@ -1,7 +1,13 @@
 // Opt-in diagnostics: field names only, no values and no database connection.
 require('../src/config/env').loadEnvironment({quiet:true});
+const { isStrongSecret } = require('../src/utils/secretStrength');
 const env = process.env;
-const fields = ['JWT_SECRET','RATE_LIMIT_KEY_SECRET'].filter(key => !env[key]);
+const fields = ['JWT_SECRET','RATE_LIMIT_KEY_SECRET'].filter(key => !isStrongSecret(env[key]));
+// Ported from #72: the two secrets must differ. Listed under both names
+// when both are individually strong but equal.
+if (fields.length === 0 && env.JWT_SECRET === env.RATE_LIMIT_KEY_SECRET) {
+    fields.push('JWT_SECRET', 'RATE_LIMIT_KEY_SECRET');
+}
 const email = require('../src/config/emailConfig').validateEmailConfig(env);
 fields.push(...(email.errors || []).map(error => error.field));
 try { require('../src/utils/rateLimit').resolveTrustProxy(env.TRUST_PROXY); } catch { fields.push('TRUST_PROXY'); }

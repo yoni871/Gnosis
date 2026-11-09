@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret";
+process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret-synthetic-test-secret";
 process.env.ESV_API_KEY = "test-esv-key";
 process.env.API_BIBLE_KEY = "test-api-bible-key";
 process.env.API_BIBLE_NIV_ID = "test-niv-id";

@@ -3,7 +3,7 @@ const pool = require("../db/db");
 const bcrypt = require("bcrypt");
 const router = express.Router();
 // Public dummy bcrypt value, never an account credential (cost matches signup).
-const UNKNOWN_PASSWORD_HASH = '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy';
+const UNKNOWN_PASSWORD_HASH = '$2b$12$jafHcnBk3QC6ragiVaN8ae/Y6oKqxqBGFpCmAMhoH31xEbn.K5Lzu';
 const sessions = require("../services/sessionService");
 const authenticateToken = require("../middleware/authMiddleware");
 const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
@@ -21,6 +21,7 @@ const {
     hashPasswordResetToken,
 } = require("../utils/passwordReset");
 const { createResendClient } = require("../utils/resendClient");
+const { isBreachedPassword } = require("../utils/breachedPasswords");
 
 // Issue #3: validation runs as middleware, before the limiter and before
 // any hashing or database access. Only the validated (trimmed) values
@@ -187,12 +188,31 @@ const RESET_INVALID_BODY = {
 router.post("/register", validateRegister, registerRateLimit, withRateLimitFinalize(async (req, res) => {
     const { firstName, lastName, email, password } = req.validated;
 
+// Breached-password screening (roadmap T1.7): this handler runs only
+    // after the rate limiter has reserved, and the check runs before any
+    // hashing, so a breached password never reaches bcrypt and the check
+    // cannot be used as a pre-rate-limit oracle. It also runs before any
+    // database access, so an existing and a new address get the same
+    // response and no account state leaks. The rejection is logged with
+    // the allowlisted logger only (route + kind, never the password);
+    // the audit-logging track records breached-password rejections under
+    // the same kind name.
+    if (await isBreachedPassword(password)) {
+        logAuthFailure("POST /api/auth/register", "breached-password", null);
+        return res.status(400).json({
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: VALIDATION_CODE,
+        });
+    }
+
     // Hashing failures are internal errors for issue #5. Missing or
     // malformed input is rejected above by issue #3 validation and never
-    // reaches this point.
+    // reaches this point. New hashes use bcrypt cost 12 (audit N07);
+    // existing cost-10 hashes still verify on login, and re-hashing
+    // them on next login is a later change, not this one.
     let hashedPassword;
     try {
-        hashedPassword = await bcrypt.hash(password, 10);
+        hashedPassword = await bcrypt.hash(password, 12);
     } catch (error) {
         logAuthFailure("POST /api/auth/register", "password", error);
         await req.rateLimit.finalize("release");
@@ -737,12 +757,25 @@ router.post("/reset-password", validateReset, resetRateLimit, withRateLimitFinal
         return res.status(400).json(RESET_INVALID_BODY);
     }
 
+    // Breached-password screening (roadmap T1.7): same ordering as
+    // registration — after the rate limiter and after the token is known
+    // valid, before hashing. An unknown token already returned the
+    // generic body above without ever calling the breach service.
+    if (await isBreachedPassword(req.validated.password)) {
+        logAuthFailure("POST /api/auth/reset-password", "breached-password", null);
+        return res.status(400).json({
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: VALIDATION_CODE,
+        });
+    }
+
     // Hashing runs before the transaction and before any lock: a hash
     // failure is an internal error, and no lock is ever held across
-    // bcrypt. Only a known token reaches this point.
+    // bcrypt. Only a known token reaches this point. New hashes use
+    // bcrypt cost 12 (audit N07); existing cost-10 hashes still verify.
     let hashedPassword;
     try {
-        hashedPassword = await bcrypt.hash(req.validated.password, 10);
+        hashedPassword = await bcrypt.hash(req.validated.password, 12);
     } catch (error) {
         logAuthFailure("POST /api/auth/reset-password", "password", error);
         await req.rateLimit.finalize("release");

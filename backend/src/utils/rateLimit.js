@@ -35,6 +35,7 @@
 const crypto = require("node:crypto");
 const pool = require("../db/db");
 const { internalErrorBody, logAuthFailure } = require("./authErrors");
+const { isStrongSecret } = require("./secretStrength");
 
 // Approved policies. Windows are milliseconds; limits are counted
 // failures per window. No email-only pre-auth limit exists on purpose:
@@ -94,12 +95,13 @@ const SWEEP_LOCK_PAIR = [hashText32("gnosis_rate_limit_sweep"), hashText32("swee
 // sweep. Shared state in PostgreSQL enforces the global interval.
 let lastCleanupAttemptMs = 0;
 
-// The secret is read at request time (not import time) so a missing secret
-// is a controlled 500 through the middleware, mirroring the JWT secret's
-// defensive runtime check in the auth middleware.
+// The secret is read at request time (not import time) so a missing or
+// too-weak secret is a controlled 500 through the middleware, mirroring
+// the JWT secret's defensive runtime check in the auth middleware.
+// Strength (audit N06) is checked here as well as at boot.
 function getRateLimitSecret() {
     const secret = process.env.RATE_LIMIT_KEY_SECRET;
-    if (!secret) {
+    if (!isStrongSecret(secret)) {
         throw new Error("Rate limit configuration is missing.");
     }
     return secret;
