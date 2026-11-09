@@ -1,3 +1,6 @@
+const { lockBudget, ensureCapacity } = require("../utils/storageBudget");
+const { pageRows } = require("../utils/privatePages");
+const { logFailure } = require("../utils/safeLog");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
 
@@ -61,6 +64,14 @@ async function saveHighlights(userId, bookId, verses, color) {
     try {
         //start group of database operations that succeed or fail
         await client.query("BEGIN");
+        await lockBudget(client, userId);
+        const existing = await client.query(`SELECT COUNT(*)::int AS count FROM highlights h
+            JOIN jsonb_to_recordset($2::jsonb) AS p(chapter integer, verse integer)
+            ON p.chapter=h.chapter AND p.verse=h.verse WHERE h.user_id=$1 AND h.book_id=$3`,
+            [userId, JSON.stringify(selected), bookId]);
+        const matched = Number(existing.rows[0]?.count);
+        if (!Number.isSafeInteger(matched) || matched < 0 || matched > selected.length) throw new Error('Invalid highlight budget state.');
+        await ensureCapacity(client, userId, 'highlights', { add: selected.length - matched });
 
         // Insert or recolor only the exact coordinates the user selected.
         const result = await client.query(
@@ -96,7 +107,7 @@ async function saveHighlights(userId, bookId, verses, color) {
             await client.query("ROLLBACK");
         } catch (rollbackError) {
             // Record cleanup failure without replacing the original error.
-            console.error("Highlight rollback failed:", rollbackError);
+            logFailure("highlightRollback", rollbackError);
         }
 
         throw error;
@@ -109,31 +120,32 @@ async function saveHighlights(userId, bookId, verses, color) {
 // Book names come from the Bible project (no join crosses the project
 // boundary); the rows are ordered by book order, then chapter, then
 // verse, exactly as the old join did.
-async function getHighlights(userId) {
+async function getHighlights(userId, page = null) {
+    const config = page || { limit: 100, cursor: null, bookId: null, chapter: null };
     const result = await pool.query(
         `
         SELECT h.*
         FROM highlights h
-        WHERE h.user_id = $1
+        WHERE h.user_id = $1 AND ($2::integer IS NULL OR h.id < $2)
+        AND ($4::integer IS NULL OR h.book_id=$4) AND ($5::integer IS NULL OR h.chapter=$5)
+        ORDER BY h.id DESC LIMIT $3
         `,
-        [userId]
+        [userId, config.cursor, config.limit + 1, config.bookId, config.chapter]
     );
 
     // Return an empty array when the user has no highlights.
-    if (result.rows.length === 0) return [];
-    const bookIds = [...new Set(result.rows.map(row => row.book_id))];
+    const resultPage = pageRows(result.rows, config.limit);
+    if (result.rows.length === 0) return page ? resultPage : [];
+    const bookIds = [...new Set(resultPage.items.map(row => row.book_id))];
     const books = await biblePool.query(
         "SELECT id, name, book_order FROM bible_books WHERE id = ANY($1)",
         [bookIds]
     );
     const byId = new Map(books.rows.map(book => [book.id, book]));
-    return result.rows
+    resultPage.items = resultPage.items
         .filter(row => byId.has(row.book_id))
-        .map(row => ({ ...row, book: byId.get(row.book_id).name }))
-        .sort((a, b) =>
-            byId.get(a.book_id).book_order - byId.get(b.book_id).book_order
-            || a.chapter - b.chapter
-            || a.verse - b.verse);
+        .map(row => ({ ...row, book: byId.get(row.book_id).name }));
+    return page ? resultPage : resultPage.items;
 }
 
 // Delete a highlight only when it belongs to the authenticated user.

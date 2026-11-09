@@ -132,6 +132,11 @@ export default function HighlightsPanel({
                     </ul>
                 )}
             </div>
+            {highlightsState.nextCursor && <button type="button"
+                onClick={highlightsState.loadMore} disabled={highlightsState.isLoadingMore || highlightsState.isSaving}
+                className="shrink-0 rounded border border-[var(--border)] px-4 py-2 text-sm text-[var(--text-primary)] disabled:opacity-50">
+                {highlightsState.isLoadingMore ? "Loading…" : "Load more highlights"}
+            </button>}
         </aside>
     );
 }

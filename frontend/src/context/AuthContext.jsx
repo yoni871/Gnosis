@@ -30,7 +30,6 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const ticket = authGuard.begin();
-        setSessionVersion(ticket);
 
         //restore the user's login after a page refresh
         const restoreAuth = async () => {
@@ -54,6 +53,7 @@ export function AuthProvider({ children }) {
                 setUser(null);
             } finally {
                 if (authGuard.isCurrent(ticket)) {
+                    setSessionVersion(ticket);
                     setIsAuthLoading(false);
                 }
             }

@@ -1,3 +1,5 @@
+import usePassageCollection from "./usePassageCollection";
+import { appendCollection, privatePage } from "../utils/privatePages";
 import { useEffect } from "react";
 import usePrivateSession from "./usePrivateSession";
 import { mergeHighlights, createGuestHighlights, isHighlightSelected } from "../utils/highlightUtils";
@@ -8,6 +10,9 @@ import {
 } from "../services/highlightsService";
 
 const DEFAULTS = {
+    nextCursor: null,
+    isLoadingMore: false,
+    isContextLoading: false,
     highlights: [],
     isLoading: false,
     isSaving: false,
@@ -15,16 +20,33 @@ const DEFAULTS = {
     showLoginPrompt: false
 };
 
-export default function useHighlights() {
+export default function useHighlights({ bookId, chapter } = {}) {
     // Read the current authentication session.
     const { token, isAuthenticated, isAuthLoading, owner, state, field, capture, isCurrent } = usePrivateSession(DEFAULTS);
+
+    const setNextCursor = field("nextCursor");
+    const setIsLoadingMore = field("isLoadingMore");
+    async function loadMore() {
+        if (!token || !state.nextCursor || state.isLoadingMore) return;
+        const ticket = capture();
+        if (!ticket) return;
+        field("error")("");
+        setIsLoadingMore(true);
+        try {
+            const page = privatePage(await getHighlights(token, state.nextCursor));
+            if (!isCurrent(ticket)) return;
+            field("highlights")(current => appendCollection(current, page.items));
+            setNextCursor(page.nextCursor);
+        } catch (error) { if (isCurrent(ticket)) field("error")(error.message); }
+        finally { if (isCurrent(ticket)) setIsLoadingMore(false); }
+    }
 
     // Share highlighted verse records across the Study page.
     const highlights = state.highlights;
     const setHighlights = field("highlights");
 
     // Separate initial loading from save/remove actions.
-    const isLoading = state.isLoading;
+    const isLoading = state.isLoading || Boolean(bookId && state.isContextLoading);
     const setIsLoading = field("isLoading");
     const isSaving = state.isSaving;
     const setIsSaving = field("isSaving");
@@ -35,6 +57,10 @@ export default function useHighlights() {
     const showLoginPrompt = state.showLoginPrompt;
     const setShowLoginPrompt = field("showLoginPrompt");
 
+    const setIsContextLoading = field("isContextLoading");
+    usePassageCollection({ bookId, chapter, token, owner, isAuthenticated, isAuthLoading, capture, isCurrent,
+        fetchPage: getHighlights, setItems: setHighlights, setLoading: setIsContextLoading,
+        setError, maxPages: 10 });
     useEffect(() => {
         if (isAuthLoading || !isAuthenticated || !token) return;
         const ticket = capture();
@@ -42,8 +68,11 @@ export default function useHighlights() {
         async function load() {
             setIsLoading(true);
             try {
-                const data = await getHighlights(token);
-                if (active && isCurrent(ticket)) setHighlights(data);
+                const data = privatePage(await getHighlights(token));
+                if (active && isCurrent(ticket)) {
+                    setHighlights(current => appendCollection(current, data.items));
+                    setNextCursor(data.nextCursor);
+                }
             } catch (error) {
                 if (active && isCurrent(ticket)) setError(error.message);
             } finally {
@@ -52,7 +81,7 @@ export default function useHighlights() {
         }
         load();
         return () => { active = false; };
-    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoading, setHighlights, setError]);
+    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoading, setHighlights, setError, setNextCursor]);
 
     // Apply a color and report whether the operation succeeded.
     async function handleSaveHighlights(selection, color) {
@@ -205,6 +234,7 @@ export default function useHighlights() {
 
     // Expose shared highlight data, status, and actions to the Study page.
     return {
+        nextCursor: state.nextCursor, isLoadingMore: state.isLoadingMore, loadMore,
         highlights,
         isLoading,
         isSaving,

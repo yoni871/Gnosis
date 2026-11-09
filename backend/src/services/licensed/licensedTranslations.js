@@ -1,3 +1,4 @@
+const { logFailure } = require("../../utils/safeLog");
 // Licensed-translation orchestrator.
 //
 // One chapter at a time, only for the translation the reader actually
@@ -153,7 +154,7 @@ async function reportFums(fumsToken, options = {}) {
         }
     } catch (error) {
         // FUMS reporting is fire-and-forget; log at most.
-        console.error("FUMS report failed:", error.message);
+        logFailure("fumsReport", error);
     }
 }
 

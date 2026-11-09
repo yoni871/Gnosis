@@ -132,7 +132,7 @@ test("refuses to start with an invalid TRUST_PROXY value", async () => {
     const { child } = spawnServer(0, {
         NODE_ENV: "production",
         JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "separate-rate-limit-key-for-config-tests",
         TRUST_PROXY: "not-a-proxy-value",
     });
     const code = await waitForExit(child, 15000);
@@ -146,7 +146,7 @@ test("refuses to start without RESEND_API_KEY", async () => {
     const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
         JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "separate-rate-limit-key-for-config-tests",
         RESEND_API_KEY: undefined,
     });
     const code = await waitForExit(child, 15000);
@@ -159,7 +159,7 @@ test("refuses to start with an invalid EMAIL_FROM", async () => {
     const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
         JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "separate-rate-limit-key-for-config-tests",
         EMAIL_FROM: "not-an-email",
     });
     const code = await waitForExit(child, 15000);
@@ -172,7 +172,7 @@ test("refuses to start with a non-HTTPS FRONTEND_URL", async () => {
     const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
         JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "separate-rate-limit-key-for-config-tests",
         FRONTEND_URL: "http://frontend.example.invalid",
     });
     const code = await waitForExit(child, 15000);
@@ -185,7 +185,7 @@ async function malformedJsonInMode(mode, port) {
     const server = spawnServer(port, {
         NODE_ENV: mode,
         JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "separate-rate-limit-key-for-config-tests",
     });
     try {
         const output = await waitForOutput(server.child.stdout, "TEST_PORT=", 15000);

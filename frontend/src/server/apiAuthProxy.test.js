@@ -72,7 +72,7 @@ test('refresh forwards the cookie and session header and passes the Set-Cookie t
     expect(init.headers.cookie).toBe('gnosisRefresh=abc');
     expect(init.headers['x-gnosis-session']).toBe('1');
     expect(init.headers.origin).toBe('https://frontend.example.invalid');
-    expect(init.headers['x-forwarded-for']).toBe('203.0.113.7');
+    expect(init.headers['x-forwarded-for']).toBeUndefined();
     expect(init.body.toString()).toBe('{}');
 
     expect(res.statusCode).toBe(200);
@@ -193,4 +193,24 @@ test('an unreachable backend returns 502', async () => {
     const res = mockRes();
     await handler(mockReq({ url: '/api/auth/refresh', body: '{}' }), res);
     expect(res.statusCode).toBe(502);
+});
+
+ test('spoofed client identity headers never reach the backend', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(upstreamResponse({ ok: true }));
+    vi.stubGlobal('fetch', fetchMock);
+    const names = ['forwarded', 'x-forwarded-for', 'x-forwarded-host', 'x-real-ip',
+        'x-vercel-forwarded-for', 'cf-connecting-ip', 'true-client-ip'];
+    await handler(mockReq({ url: '/api/auth/login',
+        headers: Object.fromEntries(names.map(name => [name, '198.51.100.7'])) }), mockRes());
+    for (const name of names) expect(fetchMock.mock.calls[0][1].headers[name]).toBeUndefined();
+});
+
+test('oversized proxy bodies fail before any upstream request', async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+    const res = mockRes();
+    await handler(mockReq({ url: '/api/auth/login', body: 'x'.repeat(100 * 1024 + 1) }), res);
+    expect(res.statusCode).toBe(413);
+    expect(res.headers['Cache-Control']).toBe('no-store');
+    expect(fetchMock).not.toHaveBeenCalled();
 });

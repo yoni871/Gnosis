@@ -1,3 +1,5 @@
+import usePassageCollection from "./usePassageCollection";
+import { appendCollection, privatePage } from "../utils/privatePages";
 import { useEffect } from "react";
 import usePrivateSession from "./usePrivateSession";
 import {
@@ -7,6 +9,9 @@ import {
 } from "../services/bookmarksService";
 
 const DEFAULTS = {
+    nextCursor: null,
+    isLoadingMore: false,
+    isContextLoading: false,
     bookmarks: [],
     isLoading: false,
     error: "",
@@ -15,12 +20,29 @@ const DEFAULTS = {
     deletingId: null
 };
 
-export default function useBookmarks() {
+export default function useBookmarks({ bookId, chapter } = {}) {
     const { token, isAuthenticated, isAuthLoading, owner, state, field, capture, isCurrent } = usePrivateSession(DEFAULTS);
+
+    const setNextCursor = field("nextCursor");
+    const setIsLoadingMore = field("isLoadingMore");
+    async function loadMore() {
+        if (!token || !state.nextCursor || state.isLoadingMore) return;
+        const ticket = capture();
+        if (!ticket) return;
+        field("error")("");
+        setIsLoadingMore(true);
+        try {
+            const page = privatePage(await getBookmarks(token, state.nextCursor));
+            if (!isCurrent(ticket)) return;
+            field("bookmarks")(current => appendCollection(current, page.items));
+            setNextCursor(page.nextCursor);
+        } catch (error) { if (isCurrent(ticket)) field("error")(error.message); }
+        finally { if (isCurrent(ticket)) setIsLoadingMore(false); }
+    }
 
     const bookmarks = state.bookmarks;
     const setBookmarks = field("bookmarks"); //holds displayed bookmarks
-    const isLoading = state.isLoading;
+    const isLoading = state.isLoading || Boolean(bookId && state.isContextLoading);
     const setIsLoading = field("isLoading");
     const error = state.error;
     const setError = field("error");
@@ -32,6 +54,10 @@ export default function useBookmarks() {
     // Track which bookmark is being removed so its button can show progress.
     const deletingId = state.deletingId;
     const setDeletingId = field("deletingId");
+    const setIsContextLoading = field("isContextLoading");
+    usePassageCollection({ bookId, chapter, token, owner, isAuthenticated, isAuthLoading, capture, isCurrent,
+        fetchPage: getBookmarks, setItems: setBookmarks, setLoading: setIsContextLoading,
+        setError, maxPages: 20 });
     useEffect(() => {
         if (isAuthLoading || !isAuthenticated || !token) return;
         const ticket = capture();
@@ -39,8 +65,11 @@ export default function useBookmarks() {
         async function load() {
             setIsLoading(true);
             try {
-                const data = await getBookmarks(token);
-                if (active && isCurrent(ticket)) setBookmarks(data);
+                const data = privatePage(await getBookmarks(token));
+                if (active && isCurrent(ticket)) {
+                    setBookmarks(current => appendCollection(current, data.items));
+                    setNextCursor(data.nextCursor);
+                }
             } catch (error) {
                 if (active && isCurrent(ticket)) setError(error.message);
             } finally {
@@ -49,7 +78,7 @@ export default function useBookmarks() {
         }
         load();
         return () => { active = false; };
-    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoading, setBookmarks, setError]);
+    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoading, setBookmarks, setError, setNextCursor]);
 
 
     // Find a bookmark that covers exactly the same book and passage range.
@@ -188,6 +217,7 @@ export default function useBookmarks() {
 
     // Expose bookmark data and actions to the component using this hook.
     return {
+        nextCursor: state.nextCursor, isLoadingMore: state.isLoadingMore, loadMore,
         bookmarks,
         isLoading,
         error,

@@ -2,6 +2,8 @@ const express = require("express");
 const { biblePool, commentaryPool } = require("../db/db");
 const { cacheControl } = require("../middleware/cacheHeaders");
 const router = express.Router();
+const searchBudget = require("../middleware/searchBudget").createSearchBudget();
+const { validateSearch } = require("../utils/apiValidation");
 
 // Search results are public and deterministic for a given query, and
 // the data changes only on import — so a repeated search for a common
@@ -10,21 +12,11 @@ const router = express.Router();
 // cache: a fresh import should show up quickly.
 const cacheSearch = cacheControl({ maxAge: 60, sMaxAge: 300, staleWhileRevalidate: 60 });
 
-router.get("/search/bible", cacheSearch, (req, res) => {
-    // Pagination design (offset-based: ?page= is 1-based, ?limit=
-    // defaults to 100 and is clamped to 1-100, so no single response
-    // can grow back to the old multi-MB payload). Offset fits here
-    // because the result set is static between imports and the ORDER BY
-    // below is fully deterministic — rank, then book/chapter/verse — so
-    // a page boundary can neither skip nor repeat a verse. A cursor
-    // would have to encode the float rank plus the tiebreak keys for
-    // no benefit on a flat ranked list with a Load More button.
-    // COUNT(*) OVER() returns the exact match total in the same scan,
-    // so the UI can show "Showing 100 of 6,687" and know when to stop.
-    // Page and limit are parsed defensively: non-numeric, zero, and
-    // negative values fall back to the first page of 100.
-    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
-    const limit = Math.min(100, Math.max(1, Number.parseInt(req.query.limit, 10) || 100));
+router.get("/search/bible", validateSearch, searchBudget, cacheSearch, (req, res) => {
+    // Validation bounds text, page, limit and total offset before database work.
+    // Rank/book/chapter/verse ordering keeps pagination deterministic.
+    const page = Number(req.query.page || 1);
+    const limit = Number(req.query.limit || 100);
     const offset = (page - 1) * limit;
     biblePool.query(
         `
@@ -78,7 +70,7 @@ router.get("/search/bible", cacheSearch, (req, res) => {
     )
 });
 
-router.get("/search/commentary", cacheSearch, (req, res) => {
+router.get("/search/commentary", validateSearch, searchBudget, cacheSearch, (req, res) => {
     commentaryPool.query(
         `
         SELECT

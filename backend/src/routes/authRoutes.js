@@ -358,17 +358,37 @@ router.post("/login", (req, res, next) => {
 }));
 
 
-// Cookie endpoints require an explicit browser session request and a trusted origin.
-router.post("/refresh", sessions.browserSessionRequest, async (req, res) => {
-    res.set("Cache-Control", "no-store");
-    const session = await sessions.rotateSession(sessions.readCookie(req));
+// Cookie endpoints require an explicit browser session request and trusted origin.
+const refreshRateLimit = createRateLimitMiddleware([
+    { policy: "refresh_ip", fields: (req, ip) => [ip] },
+    { policy: "refresh_token", fields: req => [req.refreshCookie] },
+], "refresh");
+function validateRefresh(req, res, next) {
+    const refresh = sessions.readCookie(req);
+    if (typeof refresh !== "string" || !/^[a-f0-9]{64}$/.test(refresh)) {
+        sessions.clearCookie(res);
+        return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
+    }
+    req.refreshCookie = refresh;
+    next();
+}
+router.post("/refresh", (req, res, next) => { res.set("Cache-Control", "no-store"); next(); },
+    sessions.browserSessionRequest, validateRefresh, refreshRateLimit, withRateLimitFinalize(async (req, res) => {
+    const session = await sessions.rotateSession(req.refreshCookie);
+    // Successful and invalid credential attempts both consume reservations.
+    // An internal throw is released by withRateLimitFinalize and fails closed.
+    await req.rateLimit.finalize("count");
+    if (session?.limited) {
+        return res.status(429).set("Retry-After", String(session.retryAfter))
+            .json({ error: "Too many attempts. Please try again later.", code: "RATE_LIMITED" });
+    }
     if (!session) {
         sessions.clearCookie(res);
         return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
     }
     sessions.setCookie(res, session.refresh, session.expiresAt);
     res.json({ token: session.token, expiresIn: sessions.ACCESS_SECONDS });
-});
+}));
 router.post("/logout", sessions.browserSessionRequest, async (req, res) => {
     await sessions.revokeRefresh(sessions.readCookie(req));
     await sessions.revokeAccess(req.headers.authorization);

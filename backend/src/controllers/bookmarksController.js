@@ -1,3 +1,6 @@
+const { withUserBudget, ensureCapacity } = require("../utils/storageBudget");
+const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
+const { logFailure } = require("../utils/safeLog");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
@@ -88,7 +91,9 @@ const createBookmark = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUserBudget(userId, async client => {
+            await ensureCapacity(client, userId, "bookmarks", { add: 1 });
+            return client.query(
             `
             INSERT INTO bookmarks (
                 user_id,
@@ -110,16 +115,18 @@ const createBookmark = async (req, res) => {
                 endVerse
             ]
         );
+        });
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         if (error.code === "23505") {
             return res.status(409).json({
                 error: "This passage is already bookmarked."
             });
         }
 
-        console.error(error);
+        logFailure("bookmarksController", error);
 
         return res.status(500).json({
             error: "Failed to create bookmark."
@@ -131,21 +138,25 @@ const getBookmarks = async (req, res) => {
     const userId = req.user.userId;
 
     try {
+        const page = readPage(req, "bookmarks");
         const result = await pool.query(
             `
             SELECT bookmarks.*
             FROM bookmarks
-            WHERE bookmarks.user_id = $1
-            ORDER BY bookmarks.created_at DESC
+            WHERE bookmarks.user_id = $1 AND ($2::integer IS NULL OR bookmarks.id < $2)
+            AND ($4::integer IS NULL OR bookmarks.book_id=$4)
+            AND ($5::integer IS NULL OR (bookmarks.start_chapter <= $5 AND bookmarks.end_chapter >= $5))
+            ORDER BY bookmarks.id DESC LIMIT $3
             `,
-            [userId]
+            [userId, page.cursor, page.limit + 1, page.bookId, page.chapter]
         );
 
-        return res.status(200).json(
-            await withBookNames(result.rows)
-        );
+        const resultPage = pageRows(result.rows, page.limit);
+        resultPage.items = await withBookNames(resultPage.items);
+        return sendPage(res, resultPage, page);
     } catch (error) {
-        console.error(error);
+        if (knownResourceError(error, res)) return;
+        logFailure("bookmarksController", error);
 
         return res.status(500).json({
             error: "Failed to retrieve bookmarks."
@@ -186,7 +197,8 @@ const getBookmarkById = async (req, res) => {
 
         return res.status(200).json(bookmarks[0]);
     } catch (error) {
-        console.error(error);
+        if (knownResourceError(error, res)) return;
+        logFailure("bookmarksController", error);
 
         return res.status(500).json({
             error: "Failed to retrieve bookmark."
@@ -275,13 +287,14 @@ const updateBookmark = async (req, res) => {
         return res.status(200).json(result.rows[0]);
 
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         if (error.code === "23505") {
             return res.status(409).json({
                 error: "This passage is already bookmarked."
             });
         }
 
-        console.error(error);
+        logFailure("bookmarksController", error);
 
         return res.status(500).json({
             error: "Failed to update bookmark."
@@ -314,7 +327,8 @@ const deleteBookmark = async (req, res) => {
             message: "Bookmark deleted successfully."
         });
     } catch (error) {
-        console.error(error);
+        if (knownResourceError(error, res)) return;
+        logFailure("bookmarksController", error);
 
         return res.status(500).json({
             error: "Failed to delete bookmark."

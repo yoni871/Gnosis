@@ -1,5 +1,7 @@
 const express = require("express")
 const router = express.Router();
+router.use((req, res, next) => { res.set("Cache-Control", "no-store"); next(); });
+router.param("id", require("../utils/apiValidation").recordId);
 
 const authenticatedToken = require("../middleware/authMiddleware");
 const { createNote, getNotes, getNoteById, updateNote, deleteNote } = require("../controllers/notesController");
