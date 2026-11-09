@@ -35,7 +35,7 @@ if (require.main === module) {
         'test/auth/serverConfig.test.js', 'test/config/environment.test.js',
         'test/config/localDevelopment.test.js', 'test/local/catalog.test.js',
         'test/local/language-download.test.js',
-        'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js', 'test/dependencies/toolingSecurity.test.js',
+        'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js',
         'test/translations/licensedProviders.test.js',
         'test/translations/licensedService.test.js',
         'test/application/readingState.test.js',
@@ -43,6 +43,7 @@ if (require.main === module) {
         'test/db/pools.test.js',
         'test/application/searchPagination.test.js',
         'test/application/cacheHeaders.test.js',
+        'test/dependencies/toolingSecurity.test.js',
         'test/importer/originalLanguage.test.js',
         'test/application/originalLanguage.test.js'], {
         cwd: path.resolve(__dirname, '..'), env: testEnvironment(), stdio: 'inherit',
