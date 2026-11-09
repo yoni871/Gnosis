@@ -34,7 +34,7 @@ cited by path.
 | T1.13 Request/collection budgets in place | OPEN | Muse 3 (PR4) | Audit F04: private list endpoints return full collections with no LIMIT/pagination; no rate limit on `POST /api/auth/refresh`; no statement/lock timeouts on either pool. Audit F09: licensed-provider budget check is check-then-act, not atomic. |
 | T1.15 Encrypted off-site backups of all three projects exist and a restore drill has passed | OPEN | Muse 1 (DB infra track) | Audit §6: backup/restore never tested. Neon Free gives a 6-hour point-in-time recovery window per project as a platform property — not a verified recovery. Muse 1 status not yet confirmed (see below). |
 | T1.16 Audit logging live with an alert rule on reuse detection | IN PROGRESS | This track (branch `security/audit-logging`) | PR link TBD — fill in when created. |
-| T1.19 `SECURITY.md` published with a private reporting channel | IN PROGRESS | This track (branch `security/security-md`) | PR link TBD — fill in when created. No `SECURITY.md` exists in the repo yet. |
+| T1.19 `SECURITY.md` published with a private reporting channel | IN PROGRESS | This track (branch `security/security-md`) | PR #73 (https://github.com/yoni871/Gnosis/pull/73) — open, unmerged; reporting contact still a placeholder pending Yonatan's confirmation. |
 | Audit reconciled + PASS verdict | OPEN | — | Audit verdict is **FAIL as of 2026-11-09** (main `40eb9a9`): one live High (N01, preview role) and eight open Mediums. Audit report: `~/workspace/gnosis-security-audit/GnosisUserSecurityAudit.md` (held outside the repo). Prior in-repo audit: [Security_Audit.md](Security_Audit.md) (2026-11-07/08, main `14de721`). |
 | Preview 24h soak passed + production promotion | OPEN | Muse 2 (soak) / Yonatan (promotion approval) | Soak restarted T+0 11:01:41 AM CST Nov 9 after the PR #71 login fix; ends ~11:01 AM CST Nov 10. Production promotion (main → production PR) needs separate approval. Production is still at `1853b92` (pre-#39/#70 session model — the reset-revocation fix is not live there). See [Deployments](Deployments.md) and [Sessions](Sessions.md). |
 | No Critical/High open | OPEN | Muse 1 (N01) | N01 live High: preview role `gnosis_preview_app` still holds `neon_superuser` membership + `CREATEROLE`/`CREATEDB`/`REPLICATION` and can `UPDATE` `password_reset_tokens.token_hash` and `users.email`, serving live preview traffic. Clean replacement `gnosis_preview_app_next` exists and is verified, but the swap needs Yonatan's approval and has not happened. Production role `gnosis_app` is clean. Muse 1 status not yet confirmed (see below). |
@@ -60,7 +60,7 @@ as in progress until Muse 1 reports back.
   be further along than OPEN — but nothing in this file claims so.
 - **T1.9 and T1.10 have no owner.** They stay OPEN until someone owns
   them.
-- **T1.16 and T1.19** are IN PROGRESS on this track's branches; the PR
-  links are TBD until those PRs are created.
+- **T1.16 and T1.19** are IN PROGRESS on this track's branches; T1.19
+  is PR #73 (open); the T1.16 PR link is TBD until that PR is created.
 - **The soak** (Muse 2) ends ~11:01 AM CST Nov 10; this file records
   the schedule, not the outcome.
