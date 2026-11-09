@@ -18,6 +18,7 @@ it('keeps account actions, removes saved-reader links, and supports keyboard dis
     expect(trigger).toHaveAttribute('aria-expanded', 'true');
     expect(screen.getByRole('button', { name: 'Profile' })).toBeVisible();
     expect(screen.getByRole('button', { name: 'Settings' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Sessions & password' })).toHaveAttribute('href', '/sessions');
     expect(screen.queryByText('Notes')).not.toBeInTheDocument();
     expect(screen.queryByText('Bookmarks')).not.toBeInTheDocument();
     expect(screen.queryByText('Highlights')).not.toBeInTheDocument();
@@ -39,6 +40,7 @@ it('keeps the mobile profile compact and returns keyboard focus on Escape', asyn
     await user.click(screen.getByRole('button', { name: /Test Reader/ }));
     expect(screen.getByRole('button', { name: 'Profile' })).toBeVisible();
     expect(screen.getByRole('button', { name: 'Settings' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Sessions & password' })).toHaveAttribute('href', '/sessions');
     expect(screen.queryByText('Notes')).not.toBeInTheDocument();
     expect(screen.queryByText('Bookmarks')).not.toBeInTheDocument();
     expect(screen.queryByText('Highlights')).not.toBeInTheDocument();

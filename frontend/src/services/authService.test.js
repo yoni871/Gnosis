@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { getProfile, loginUser, registerUser, resendVerification, verifyEmail, forgotPassword, resetPassword, refreshSession, logoutSession } from '../services/authService';
+import { getProfile, loginUser, registerUser, resendVerification, verifyEmail, forgotPassword, resetPassword, refreshSession, logoutSession, getSessions, revokeSession, changePassword } from '../services/authService';
 
 function response(body, status = 200) {
     return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -124,4 +124,51 @@ test('auth requests use the frontend own /api path, not the deployed API origin'
     const url = fetchMock.mock.calls[0][0];
     expect(url).toBe('/api/auth/refresh');
     expect(url).not.toContain('api.example.invalid');
+});
+
+test('getSessions fetches the session list with the Bearer token', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(response({ sessions: [
+        { id: '00000000-0000-4000-8000-000000000001', createdAt: '2026-11-09T10:00:00.000Z', expiresAt: '2026-11-16T10:00:00.000Z', revokedAt: null, current: true },
+    ] }));
+    vi.stubGlobal('fetch', fetchMock);
+    const data = await getSessions('synthetic-token');
+    expect(data.sessions).toHaveLength(1);
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/sessions$/);
+    expect(fetchMock.mock.calls[0][1].method).toBe('GET');
+    expect(fetchMock.mock.calls[0][1].headers.Authorization).toBe('Bearer synthetic-token');
+});
+
+test('revokeSession sends a DELETE and resolves null on 204', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response(null, { status: 204 }));
+    vi.stubGlobal('fetch', fetchMock);
+    await expect(revokeSession('synthetic-token', '00000000-0000-4000-8000-000000000001')).resolves.toBeNull();
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/sessions\/00000000-0000-4000-8000-000000000001$/);
+    expect(fetchMock.mock.calls[0][1].method).toBe('DELETE');
+    expect(fetchMock.mock.calls[0][1].headers.Authorization).toBe('Bearer synthetic-token');
+});
+
+test('revokeSession preserves the backend error code on failure', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response(
+        { error: 'Session not found.', code: 'SESSION_NOT_FOUND' }, 404,
+    )));
+    const error = await revokeSession('synthetic-token', '00000000-0000-4000-8000-000000000001').catch(e => e);
+    expect(error.code).toBe('SESSION_NOT_FOUND');
+});
+
+test('changePassword posts both passwords with the Bearer token', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(response({ changed: true }));
+    vi.stubGlobal('fetch', fetchMock);
+    const data = await changePassword('synthetic-token', { currentPassword: 'old-password', newPassword: 'a-new-password' });
+    expect(data).toEqual({ changed: true });
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/change-password$/);
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ currentPassword: 'old-password', newPassword: 'a-new-password' });
+    expect(fetchMock.mock.calls[0][1].headers.Authorization).toBe('Bearer synthetic-token');
+});
+
+test('changePassword preserves the backend error code on failure', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response(
+        { error: 'Invalid email or password.', code: 'INVALID_CREDENTIALS' }, 401,
+    )));
+    const error = await changePassword('synthetic-token', { currentPassword: 'wrong', newPassword: 'a-new-password' }).catch(e => e);
+    expect(error.code).toBe('INVALID_CREDENTIALS');
 });

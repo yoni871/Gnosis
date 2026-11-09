@@ -17,6 +17,7 @@ const {
     validateLoginInput,
     validateForgotPasswordInput,
     validateResetPasswordInput,
+    validateChangePasswordInput,
 } = require("../../src/utils/authValidation");
 
 // ---------------------------------------------------------------------------
@@ -236,6 +237,28 @@ test("reset validator requires a well-formed token and a registration-strength p
         { error: "Password must be at most 72 bytes." });
     assert.deepEqual(validateResetPasswordInput({ token, password: "a-new-password", role: "admin" }),
         { value: { token, password: "a-new-password" } });
+});
+
+// Session management (T2.5): the current password follows the login
+// rule (any non-empty password is structurally valid, so a legacy
+// short password can still be changed), while the new password follows
+// the registration rule.
+test("change-password validator requires a current password and a registration-strength new password", () => {
+    assert.deepEqual(validateChangePasswordInput({ currentPassword: "old-password", newPassword: "a-new-password" }),
+        { value: { currentPassword: "old-password", newPassword: "a-new-password" } });
+    for (const body of [null, [1, 2], "text", 42, true, undefined]) {
+        assert.deepEqual(validateChangePasswordInput(body), { error: "Request body must be an object." });
+    }
+    assert.deepEqual(validateChangePasswordInput({ currentPassword: "", newPassword: "a-new-password" }),
+        { error: "Current password is required." });
+    assert.deepEqual(validateChangePasswordInput({ currentPassword: "x".repeat(73), newPassword: "a-new-password" }),
+        { error: "Current password must be at most 72 bytes." });
+    assert.deepEqual(validateChangePasswordInput({ currentPassword: "old-password", newPassword: "short" }),
+        { error: "Password must be at least 8 characters." });
+    assert.deepEqual(validateChangePasswordInput({ currentPassword: "old-password", newPassword: "x".repeat(73) }),
+        { error: "Password must be at most 72 bytes." });
+    assert.deepEqual(validateChangePasswordInput({ currentPassword: "old-password", newPassword: "a-new-password", role: "admin" }),
+        { value: { currentPassword: "old-password", newPassword: "a-new-password" } });
 });
 
 // ---------------------------------------------------------------------------
