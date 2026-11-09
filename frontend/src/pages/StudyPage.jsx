@@ -11,6 +11,7 @@ import MobileStudyLayout from "../components/Study/MobileStudyLayout";
 import MobileStudyTabs from "../components/Study/MobileStudyTabs";
 import MobileStudyNav from "../components/Study/MobileStudyNav";
 
+import useSyncedState from "../hooks/useSyncedState";
 import useNotes from "../hooks/useNotes";
 import useCommentary from "../hooks/useCommentary";
 import useBookmarks from "../hooks/useBookmarks";
@@ -63,21 +64,14 @@ export default function StudyPage() {
     // have arrived yet; once verses exist they stay visible while a
     // new chapter loads, so switching chapters never blanks the page.
     const [versesLoading, setVersesLoading] = useState(false);
-    const [book, setBook] = useState(
-        urlBook || "Genesis"
-    );
-    const [chapter, setChapter] = useState(
-        Number(urlChapter) || 1
-    );
+    const [book, setBook] = useSyncedState(urlBook || "Genesis");
+    const [chapter, setChapter] = useSyncedState(Number(urlChapter) || 1);
     const [books, setBooks] = useState([]);
-    const [selectedVerse, setSelectedVerse] = useState(() => {
-        // The URL carries the whole selection (?verse=1,3); the focused
-        // verse is the last one clicked.
-        const initialVerses = parseVerseParam(urlVerse);
-        return initialVerses.length > 0
-            ? initialVerses[initialVerses.length - 1]
-            : null;
-    });
+    const destinationVerses = parseVerseParam(urlVerse);
+    const destinationFocus = destinationVerses.at(-1) ?? null;
+    const [selectedVerse, setSelectedVerse] = useSyncedState(
+        destinationFocus, destinationFocus, JSON.stringify([book, chapter, urlVerse])
+    );
 
     // -------------------------
     // LAYOUT STATE
@@ -95,9 +89,7 @@ export default function StudyPage() {
     // TRANSLATION STATE
     // -------------------------
 
-    const [translation, setTranslation] = useState(
-        urlTranslation || ""
-    );
+    const [translation, setTranslation] = useSyncedState(urlTranslation || undefined, "");
     const [translations, setTranslations] = useState([]);
 
     // When the opening catalog (books + translations) cannot load,
@@ -143,9 +135,9 @@ export default function StudyPage() {
         verse: selectedVerse,
     });
     //bookmark state for desktop and mobile to share
-    const bookmarksState = useBookmarks();
+    const bookmarksState = useBookmarks({ bookId: currentBook?.id, chapter });
     // Own highlights here so desktop and mobile share the same data and actions.
-    const highlightsState = useHighlights();
+    const highlightsState = useHighlights({ bookId: currentBook?.id, chapter });
     // Share the exact selected verses across desktop and mobile readers.
     const verseSelection = useVerseSelection();
     // Read stable selection actions for the navigation effects.
@@ -172,7 +164,7 @@ export default function StudyPage() {
         }
         params.set("verse", String(target.verse));
         navigate(`/bible/${target.book}/${target.chapter}?${params.toString()}`);
-    }, [book, chapter, translation, commentaryState.selectedCommentator, navigate]);
+    }, [book, chapter, translation, commentaryState.selectedCommentator, navigate, setSelectedVerse]);
 
     // React Router gives each history entry a navigation key.
     const location = useLocation();
@@ -204,36 +196,7 @@ export default function StudyPage() {
     useEffect(() => {
         clearSelection();
 
-        // Remove commentary emphasis belonging to the previous location.
-        setSelectedVerse(null);
     }, [book, chapter, clearSelection]);
-
-    // -------------------------
-    // SYNC URL
-    // -------------------------
-
-    useEffect(() => {
-        setBook(
-            urlBook || "Genesis"
-        );
-
-        setChapter(
-            Number(urlChapter) || 1
-        );
-
-        // The URL carries the whole selection (?verse=1,3); the focused
-        // verse is the last one clicked.
-        const destinationVerses = parseVerseParam(urlVerse);
-        setSelectedVerse(
-            destinationVerses.length > 0
-                ? destinationVerses[destinationVerses.length - 1]
-                : null
-        );
-
-        if (urlTranslation) {
-            setTranslation(urlTranslation);
-        }
-    }, [urlBook, urlChapter, urlVerse, urlTranslation]);
 
     // Keep the URL in step with the reader, so a refresh restores the
     // exact spot instead of the defaults. The reader already reads its
@@ -355,14 +318,9 @@ export default function StudyPage() {
                 );
             }
 
-            // Keep commentary focused on the last verse selected.
-            setSelectedVerse(
-                destinationVerses[destinationVerses.length - 1]
-            );
         } else {
             // Navigation without a verse starts with no selection or emphasis.
             clearSelection();
-            setSelectedVerse(null);
         }
 
         // Mark this navigation as handled, including Back/Forward visits.
@@ -462,7 +420,7 @@ export default function StudyPage() {
             // Older responses must not overwrite a newer chapter or translation.
             ignore = true;
         };
-    }, [book, chapter, translation, books, retainAvailableVerses]);
+    }, [book, chapter, translation, books, retainAvailableVerses, setSelectedVerse, setTranslation]);
 
     // -------------------------
     // LOAD BOOKS + TRANSLATIONS
@@ -527,7 +485,7 @@ export default function StudyPage() {
         return () => {
             ignore = true;
         };
-    }, [reloadKey]);
+    }, [reloadKey, setTranslation]);
 
 
     return (

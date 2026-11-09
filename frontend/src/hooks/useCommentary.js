@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+
+import useSyncedState from "./useSyncedState";
 
 import {
     getCommentaries,
@@ -12,97 +14,29 @@ export default function useCommentary({
     books,
     urlCommentary
 }) {
-    const [commentary, setCommentary] = useState([]);
-
-    const [selectedCommentator, setSelectedCommentator] = useState(
-        urlCommentary || 3
-    );
-
+    const [selectedCommentator, setSelectedCommentator] = useSyncedState(urlCommentary || undefined, urlCommentary || 3);
     const [commentators, setCommentators] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [commentaryError, setCommentaryError] = useState("");
-
-    const currentBook = books.find(
-        (item) => item.name === book
-    );
-
-    const currentBookId = currentBook?.id;
-
-
-    // Update the selected commentary when it is provided by the URL.
+    const [response, setResponse] = useState(null);
+    const currentBookId = books.find(item => item.name === book)?.id;
+    const location = JSON.stringify([currentBookId, chapter]);
+    const requestKey = JSON.stringify([currentBookId, chapter, selectedCommentator]);
+    // Keep entries during a commentator switch, but never display another chapter.
+    const commentary = response?.location === location ? response.data : [];
+    const isLoading = Boolean(currentBookId) && response?.key !== requestKey;
+    const commentaryError = response?.key === requestKey ? response.error : "";
     useEffect(() => {
-        if (urlCommentary) {
-            setSelectedCommentator(urlCommentary);
-        }
-    }, [urlCommentary]);
-
-
-    // Remember which location the displayed entries belong to, so a
-    // commentator switch (same chapter) keeps the old entries on screen
-    // while the new ones load, instead of emptying the panel.
-    const displayedLocationRef = useRef(null);
-
-    // Load commentary for the selected book, chapter, and commentator.
-    useEffect(() => {
-        if (!currentBookId) {
-            return;
-        }
-
-        let ignoreResponse = false;
-
-        // A new chapter starts empty and at the top. The same chapter
-        // under a new commentator keeps its entries until the new ones
-        // arrive, so the panel does not collapse and lose its scroll.
-        const locationChanged =
-            displayedLocationRef.current === null ||
-            displayedLocationRef.current.bookId !== currentBookId ||
-            displayedLocationRef.current.chapter !== chapter;
-        displayedLocationRef.current = {
-            bookId: currentBookId,
-            chapter,
-        };
-
-        if (locationChanged) {
-            setCommentary([]);
-        }
-        setIsLoading(true);
-        setCommentaryError("");
-
-        getChapterCommentaries(
-            currentBookId,
-            chapter,
-            selectedCommentator
-        )
-            .then((data) => {
-                if (!ignoreResponse) {
-                    setCommentary(data);
-                }
+        if (!currentBookId) return;
+        let cancelled = false;
+        getChapterCommentaries(currentBookId, chapter, selectedCommentator)
+            .then(data => {
+                if (!cancelled) setResponse({ key: requestKey, location, data, error: "" });
             })
-            .catch((error) => {
-                if (!ignoreResponse) {
-                    console.error(error);
-                    setCommentary([]);
-
-                    setCommentaryError(
-                        "We couldn’t load this commentary. Please try again."
-                    );
-                }
-            })
-            .finally(() => {
-                if (!ignoreResponse) {
-                    setIsLoading(false);
-                }
+            .catch(() => {
+                if (!cancelled) setResponse({ key: requestKey, location, data: [],
+                    error: "We couldn’t load this commentary. Please try again." });
             });
-
-        return () => {
-            ignoreResponse = true;
-        };
-    }, [
-        currentBookId,
-        chapter,
-        selectedCommentator
-    ]);
-
+        return () => { cancelled = true; };
+    }, [currentBookId, chapter, selectedCommentator, requestKey, location]);
 
     // Load the available commentary sources once.
     useEffect(() => {

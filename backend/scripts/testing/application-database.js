@@ -100,6 +100,11 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
             GRANT UPDATE (used_at, consumed_reason) ON password_reset_tokens TO "${role}"`);
         // Small reference fixture; no imports, application data or test-owned schema.
         await provisioning.query("INSERT INTO bible_books(name) VALUES ('Synthetic harness book')");
+        await provisioning.query(`WITH chapter AS (
+            INSERT INTO bible_chapters(book_id,chapter_number)
+            SELECT id,1 FROM bible_books WHERE name='Synthetic harness book' RETURNING id)
+            INSERT INTO bible_verses(chapter_id,verse_number,text)
+            SELECT chapter.id,g,'Synthetic fixture verse' FROM chapter CROSS JOIN generate_series(1,3) g`);
         await provisioning.end();
         provisioning = undefined;
         await callback(context);

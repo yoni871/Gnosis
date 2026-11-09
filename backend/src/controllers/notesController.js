@@ -1,7 +1,14 @@
+const { withUserBudget, ensureCapacity } = require("../utils/storageBudget");
+const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
+const { validNote } = require("../utils/apiValidation");
+const { logFailure } = require("../utils/safeLog");
 const pool = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
 
 const createNote = async (req, res) => {
+    if (!validNote(req.body, req.method === "PATCH")) {
+        return res.status(400).json({ error: "Invalid note fields." });
+    }
     const userId = req.user.userId;
 
     const {
@@ -36,7 +43,9 @@ const createNote = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUserBudget(userId, async client => {
+            await ensureCapacity(client, userId, "notes", { add: 1, bytes: Buffer.byteLength(content, "utf8") });
+            return client.query(
             `
             INSERT INTO notes (
                 user_id,
@@ -52,10 +61,12 @@ const createNote = async (req, res) => {
             `,
             [userId, bookId, startChapter, startVerse, endChapter, endVerse, content]
         );
+        });
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
+        if (knownResourceError(error, res)) return;
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to create note."
@@ -67,18 +78,20 @@ const getNotes = async (req, res) => {
     const userId = req.user.userId;
 
     try {
+        const page = readPage(req, "notes");
         const result = await pool.query(
             `
             SELECT * FROM notes
-            WHERE user_id = $1
-            ORDER BY created_at DESC
+            WHERE user_id = $1 AND ($2::integer IS NULL OR id < $2)
+            ORDER BY id DESC LIMIT $3
             `,
-            [userId]
+            [userId, page.cursor, page.limit + 1]
         );
 
-        return res.status(200).json(result.rows);
+        return sendPage(res, pageRows(result.rows, page.limit), page);
     } catch (error) {
-        console.error(error);
+        if (knownResourceError(error, res)) return;
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to retrieve notes."
@@ -108,7 +121,8 @@ const getNoteById = async (req, res) => {
 
         return res.status(200).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
+        if (knownResourceError(error, res)) return;
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to retrieve note."
@@ -117,6 +131,9 @@ const getNoteById = async (req, res) => {
 };
 
 const updateNote = async (req, res) => {
+    if (!validNote(req.body, true)) {
+        return res.status(400).json({ error: "Invalid note fields." });
+    }
     const userId = req.user.userId;
     const noteId = req.params.id;
 
@@ -151,7 +168,12 @@ const updateNote = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUserBudget(userId, async client => {
+            if (content !== undefined) {
+                const old = await client.query('SELECT octet_length(content) AS bytes FROM notes WHERE id=$1 AND user_id=$2', [noteId, userId]);
+                if (old.rows.length) await ensureCapacity(client, userId, 'notes', { bytes: Buffer.byteLength(content, 'utf8') - Number(old.rows[0].bytes) });
+            }
+            return client.query(
             `
             UPDATE notes
             SET
@@ -168,6 +190,7 @@ const updateNote = async (req, res) => {
             `,
             [bookId, startChapter, startVerse, endChapter, endVerse, content, noteId, userId]
         );
+        });
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -178,7 +201,8 @@ const updateNote = async (req, res) => {
         return res.status(200).json(result.rows[0]);
 
     } catch (error) {
-        console.error(error);
+        if (knownResourceError(error, res)) return;
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to update note."
@@ -212,7 +236,8 @@ const deleteNote = async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
+        if (knownResourceError(error, res)) return;
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to delete note."

@@ -110,22 +110,16 @@ test("Bible search pages through every match with no skips and no duplicates", a
     assert.deepEqual(seen, ALL_VERSES.map(verseKey));
 });
 
-test("Bible search clamps limit to 100 and defaults invalid pages to the first page", async () => {
-    const clamped = await searchBible("?q=lord&limit=250");
-    assert.equal(clamped.limit, 100);
-    assert.equal(clamped.results.length, 100);
-
-    const small = await searchBible("?q=lord&limit=5");
-    assert.equal(small.limit, 5);
-    assert.equal(small.results.length, 5);
-    assert.equal(small.hasMore, true);
-
-    for (const suffix of ["?q=lord&page=0", "?q=lord&page=-3", "?q=lord&page=abc"]) {
-        const first = await searchBible(suffix);
-        assert.equal(first.page, 1);
-        assert.equal(first.results.length, 100);
-        assert.deepEqual(first.results.map(verseKey), ALL_VERSES.slice(0, 100).map(verseKey));
+test("Bible search rejects invalid pagination and oversized queries before SQL", async () => {
+    for (const suffix of ['?q=lord&limit=250', '?q=lord&page=0', '?q=lord&page=-3',
+        '?q=lord&page=abc', '?q=lord&page=2junk', '?q=lord&page=99999999999999999999',
+        '?q=lord&page=102', '?q=lord&q=other', '?q=' + 'x'.repeat(257), '?q=lord&translation[]=BSB']) {
+        lastBibleParams = null;
+        const response = await fetch(baseUrl + '/api/search/bible' + suffix);
+        assert.equal(response.status, 400, suffix);
+        assert.equal(lastBibleParams, null);
     }
+    assert.equal((await searchBible('?q=lord&limit=5')).limit, 5);
 });
 
 test("Bible search orders by rank with a deterministic tiebreak", async () => {

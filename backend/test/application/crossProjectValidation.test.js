@@ -23,6 +23,8 @@ let bookExists = true;
 let inserted = null;
 
 const queryMock = test.mock.method(pool, "query", async (sql, params) => {
+    if (sql === 'BEGIN' || sql === 'COMMIT' || sql === 'ROLLBACK' || sql.includes('pg_advisory_xact_lock')) return { rows: [] };
+    if (sql.includes('COUNT(*)')) return { rows: [{ count: 0, bytes: 0 }] };
     if (typeof sql === "string" && sql.includes("FROM auth_sessions")) {
         return { rows: [{ id: '00000000-0000-4000-8000-000000000001' }] };
     }
@@ -48,6 +50,8 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
     }
     throw new Error(`Unexpected query in cross-project validation test: ${sql}`);
 });
+
+test.mock.method(pool, "connect", async () => ({ query: (...args) => pool.query(...args), release() {} }));
 
 let server;
 let baseUrl;

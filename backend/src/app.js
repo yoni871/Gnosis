@@ -19,7 +19,15 @@ const readingStateRoutes = require("./routes/readingStateRoutes");
 const { CLIENT_AUTH_RESPONSES, isBodyParseError, logAuthFailure } = require("./utils/authErrors");
 const { resolveTrustProxy } = require("./utils/rateLimit");
 
+// Production includes serverless entry points that bypass server.js.
+if (process.env.NODE_ENV === "production" ||
+    (process.env.GNOSIS_TEST_ISOLATION !== "1" && process.env.GNOSIS_LOCAL_DEV !== "1")) {
+    require("./config/securityConfig").requireSecurityConfig();
+}
+
 const app = express();
+app.disable("x-powered-by");
+app.use(require("./middleware/securityHeaders"));
 
 // Issue #4: trust proxy is disabled by default and set only from the
 // validated TRUST_PROXY environment setting. No production value is
@@ -28,8 +36,9 @@ const app = express();
 app.set("trust proxy", resolveTrustProxy(process.env.TRUST_PROXY));
 
 app.use(cors({ origin: new URL(process.env.FRONTEND_URL).origin, credentials: true }));
-app.use(express.json());
+app.use(express.json({ limit: "100kb", strict: true }));
 
+app.use("/api", require("./utils/safeLog").requestContext);
 app.use("/api", bibleRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api", searchRoutes);
@@ -44,6 +53,8 @@ app.get("/", (req, res) => {
     });
 });
 
+app.use((req, res) => res.status(404).set("Cache-Control", "no-store").json({ error: "Not found.", code: "NOT_FOUND" }));
+
 // Central error handler, registered after every route so no error escapes
 // as an Express HTML page or stack trace. Only controlled JSON leaves here:
 // malformed JSON becomes a 400, everything else becomes a generic 500.
@@ -53,11 +64,18 @@ app.use((error, req, res, next) => {
     if (res.headersSent) {
         return next(error);
     }
+    res.set("Cache-Control", "no-store");
+    if (error.type === "entity.too.large") {
+        return res.status(413).json({ error: "Request body too large.", code: "BODY_TOO_LARGE" });
+    }
+    if (error.type === "encoding.unsupported" || error.type === "charset.unsupported") {
+        return res.status(415).json({ error: "Unsupported request encoding.", code: "UNSUPPORTED_ENCODING" });
+    }
     if (isBodyParseError(error)) {
         const { status, body } = CLIENT_AUTH_RESPONSES.invalidBody;
         return res.status(status).json(body);
     }
-    logAuthFailure(`${req.method} ${req.path}`, "internal", error);
+    logAuthFailure("unhandled-request", "internal", error);
     const { status, body } = CLIENT_AUTH_RESPONSES.internal;
     return res.status(status).json(body);
 });

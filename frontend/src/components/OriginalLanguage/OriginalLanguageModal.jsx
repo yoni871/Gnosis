@@ -57,7 +57,12 @@ function formatAttribution(sources) {
 const FOCUSABLE =
     'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-export default function OriginalLanguageModal({
+export default function OriginalLanguageModal(props) {
+    const key = JSON.stringify([props.book, props.chapter, props.startVerse, props.endVerse]);
+    return <PassageDialog key={key} {...props} />;
+}
+
+function PassageDialog({
     book,
     chapter,
     startVerse,
@@ -82,11 +87,6 @@ export default function OriginalLanguageModal({
     // Load the original-language passage for the selected range.
     useEffect(() => {
         let cancelled = false;
-        setIsLoading(true);
-        setError("");
-        setPassage(null);
-        setSelectedWord(null);
-        setOccurrences(null);
         getOriginalLanguagePassage(book, chapter, startVerse, endVerse)
             .then((data) => {
                 if (cancelled) return;

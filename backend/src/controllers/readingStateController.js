@@ -1,3 +1,4 @@
+const { logFailure } = require("../utils/safeLog");
 const pool = require("../db/db");
 const { biblePool, commentaryPool } = require("../db/db");
 
@@ -38,7 +39,7 @@ const getReadingState = async (req, res) => {
             book: book.rows[0].name
         });
     } catch (error) {
-        console.error(error);
+        logFailure("readingStateController", error);
 
         return res.status(500).json({
             error: "Failed to retrieve reading position."
@@ -156,7 +157,7 @@ const saveReadingState = async (req, res) => {
             book: book.rows[0].name
         });
     } catch (error) {
-        console.error(error);
+        logFailure("readingStateController", error);
 
         return res.status(500).json({
             error: "Failed to save reading position."
