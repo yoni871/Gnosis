@@ -33,6 +33,7 @@ if (require.main === module) {
         'test/auth/resendClient.test.js', 'test/auth/emailVerification.test.js',
         'test/auth/passwordReset.test.js', 'test/auth/passwordResetRoutes.test.js',
         'test/auth/serverConfig.test.js', 'test/config/environment.test.js',
+        'test/security-monitoring/abuseMonitoring.test.js',
         'test/config/localDevelopment.test.js', 'test/local/catalog.test.js',
         'test/local/language-download.test.js',
         'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js',

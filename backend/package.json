@@ -16,6 +16,7 @@
     "db:migrate:create": "node scripts/migrate.js create",
     "test:migrations": "node scripts/test-migrations.js",
     "test:database": "node scripts/test-database.js",
+    "test:abuse-monitoring": "node scripts/test-abuse-monitoring.js",
     "local:setup": "node scripts/local/setup.js",
     "local:prepare": "node scripts/local/prepare.js",
     "config:check": "node scripts/check-config.js",
