@@ -20,8 +20,8 @@ test('public/recovery/reader routes carry enforced headers and load their self-h
     for (const path of ['/', '/login', '/register', '/forgot-password', '/reset-password', '/bible/Genesis/1']) {
         const response = await page.goto(fixture.origin + path);
         expect(response.headers()['x-content-type-options']).toBe('nosniff');
-        expect(response.headers()['x-frame-options']).toBe('DENY');
-        expect(response.headers()['content-security-policy']).toContain("frame-ancestors 'none'");
+        expect(response.headers()['x-frame-options']).toBe('SAMEORIGIN');
+        expect(response.headers()['content-security-policy']).toContain("frame-ancestors 'self'");
         expect(response.headers()['permissions-policy']).toContain('camera=()');
         expect(response.headers()['referrer-policy']).toBe('strict-origin-when-cross-origin');
         await expect(page.locator('#root')).not.toBeEmpty();
@@ -40,24 +40,34 @@ test('Chromium blocks inline execution and object embedding under the actual sou
     await expect.poll(() => page.evaluate(() => window.__violations.includes('object-src'))).toBe(true);
     expect(await page.evaluate(() => window.__injectedExecuted)).toBeUndefined();
 });
-test('the browser refuses even same-origin framing of the application', async ({ page }) => {
-    const denial = page.waitForEvent('console', { predicate: message => /frame-ancestors|X-Frame-Options/i.test(message.text()) });
+// #79 posture is frame-ancestors 'self' + X-Frame-Options SAMEORIGIN (not
+// #72's DENY/'none'): same-origin framing is permitted, cross-origin
+// framing is refused. The fixture is single-origin, so the browser test
+// proves the same-origin half — the iframe loads and mounts #root.
+test('same-origin framing is permitted under frame-ancestors self', async ({ page }) => {
     await page.goto(fixture.origin + '/__fixture_frame');
-    await denial;
-    expect(page.frames().filter(frame => frame !== page.mainFrame()).length).toBeGreaterThan(0);
-    expect(await page.frameLocator('iframe').locator('#root').count()).toBe(0);
+    await expect(page.frameLocator('iframe').locator('#root')).toHaveCount(1);
 });
-test('real frontend-to-API HTTP forwarding rejects spoofed IP and Host inputs', async ({ request }) => {
+test('real frontend-to-API HTTP forwarding passes XFF through and the hop count ignores spoofed entries', async ({ request }) => {
     const response = await request.get(fixture.origin + '/api/auth/profile', { headers: {
         Host: 'attacker.invalid', Forwarded: 'for=198.51.100.66', 'X-Forwarded-For': '198.51.100.66, 203.0.113.10',
         'X-Forwarded-Host': 'attacker.invalid', 'X-Real-IP': '198.51.100.66', 'X-Vercel-Forwarded-For': '198.51.100.66',
         'CF-Connecting-IP': '198.51.100.66', 'True-Client-IP': '198.51.100.66' } });
     expect(response.status()).toBe(200);
     const data = await response.json();
-    expect(data.ip).toBe('127.0.0.1'); expect(data.host).toBe(new URL(fixture.target).host);
-    expect(Object.values(data.forwarded).every(value => value === null)).toBe(true);
+    // The proxy forwards X-Forwarded-For unchanged; the backend (trust
+    // proxy 'loopback' in this fixture) ignores the spoofed leftmost
+    // entry and takes the entry the single trusted proxy hop vouches for.
+    // #72's strip-everything model is rejected: it left the backend
+    // seeing only the proxy socket IP and silently disabled per-IP rate
+    // limiting.
+    expect(data.ip).toBe('203.0.113.10');
+    expect(data.host).toBe(new URL(fixture.target).host);
+    expect(data.forwarded['x-forwarded-for']).toBe('198.51.100.66, 203.0.113.10');
+    expect(data.forwarded['forwarded']).toBe('for=198.51.100.66');
     expect(response.headers()['x-powered-by']).toBeUndefined();
-    expect(response.headers()['content-security-policy']).toContain("default-src 'none'");
+    expect(response.headers()['content-security-policy']).toContain("default-src 'self'");
+    expect(response.headers()['content-security-policy']).toContain("frame-ancestors 'self'");
 });
 test('an oversized proxy body is rejected before any upstream request', async ({ request }) => {
     const before = await (await request.get(fixture.origin + '/__fixture_calls')).json();

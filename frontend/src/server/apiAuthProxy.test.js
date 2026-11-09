@@ -72,7 +72,7 @@ test('refresh forwards the cookie and session header and passes the Set-Cookie t
     expect(init.headers.cookie).toBe('gnosisRefresh=abc');
     expect(init.headers['x-gnosis-session']).toBe('1');
     expect(init.headers.origin).toBe('https://frontend.example.invalid');
-    expect(init.headers['x-forwarded-for']).toBeUndefined();
+    expect(init.headers['x-forwarded-for']).toBe('203.0.113.7');
     expect(init.body.toString()).toBe('{}');
 
     expect(res.statusCode).toBe(200);
@@ -195,14 +195,21 @@ test('an unreachable backend returns 502', async () => {
     expect(res.statusCode).toBe(502);
 });
 
- test('spoofed client identity headers never reach the backend', async () => {
+// The proxy forwards X-Forwarded-For unchanged so the backend's IP-based
+// rate limiting sees the real client address. #72 stripped these headers;
+// that is rejected by the integration disposition: stripping leaves the
+// backend seeing only the proxy socket IP and silently disables per-IP
+// rate limiting. Spoof protection lives in the backend's TRUST_PROXY
+// hop-count/CIDR model (backend/src/utils/rateLimit.js), proven end to
+// end by frontend/security/policy.spec.js.
+test('forwarding headers reach the backend unchanged', async () => {
     const fetchMock = vi.fn().mockResolvedValue(upstreamResponse({ ok: true }));
     vi.stubGlobal('fetch', fetchMock);
     const names = ['forwarded', 'x-forwarded-for', 'x-forwarded-host', 'x-real-ip',
         'x-vercel-forwarded-for', 'cf-connecting-ip', 'true-client-ip'];
     await handler(mockReq({ url: '/api/auth/login',
         headers: Object.fromEntries(names.map(name => [name, '198.51.100.7'])) }), mockRes());
-    for (const name of names) expect(fetchMock.mock.calls[0][1].headers[name]).toBeUndefined();
+    for (const name of names) expect(fetchMock.mock.calls[0][1].headers[name]).toBe('198.51.100.7');
 });
 
 test('oversized proxy bodies fail before any upstream request', async () => {

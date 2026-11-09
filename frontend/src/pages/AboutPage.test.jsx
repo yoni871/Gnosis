@@ -105,8 +105,7 @@ describe("About Gnosis", () => {
         expect(window.location.pathname).toBe("/about");
         expect(await screen.findByRole("heading", { level: 1 })).toHaveTextContent("About Gnosis");
         const config = JSON.parse(readFileSync("vercel.json", "utf8"));
-        expect(config.rewrites.some(rule => rule.destination === "/index.html"
-            && new RegExp(`^${rule.source}$`).test("/about"))).toBe(true);
+        expect(config.rewrites).toContainEqual({ source: "/((?!api/).*)", destination: "/index.html" });
     });
 });
 

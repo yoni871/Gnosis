@@ -326,23 +326,66 @@ function createRateLimitMiddleware(policySpecs, endpoint) {
     };
 }
 
-// Trust only explicit network identities, never a caller-controlled hop count.
+// Trust-proxy parsing (integration of #72 over main #71).
+// - "true" is REJECTED (ported from #72): trusting every proxy hop lets
+//   any client spoof X-Forwarded-For and defeat per-IP rate limiting
+//   (verified live on Preview, where TRUST_PROXY was "true").
+// - A hop count ("1", "3") is ACCEPTED: #72's hop-count rejection is
+//   REJECTED by the integration disposition. The hop-count model is the
+//   staged fix per Muse 1 (explicit hop count or edge CIDRs, never
+//   "true"), and is PROVISIONAL — the hop-count-vs-edge-CIDRs choice is
+//   an OWNER CALL for Yonatan. If he picks edge CIDRs, this branch stays
+//   valid anyway (CIDR entries are accepted below).
+// - Otherwise: false for unset/"0"/"false", else a comma-separated list
+//   of IPs, CIDRs, or Express subnet names (loopback, linklocal,
+//   uniquelocal). Anything else fails fast at startup, so a typo can
+//   never silently become a spoofable configuration.
 function resolveTrustProxy(value) {
-    if (value === undefined || value === "" || value === "0" || value === "false") return false;
-    if (typeof value !== "string") throw new Error("Invalid trust proxy configuration.");
-    const parts = value.split(",").map(part => part.trim());
-    const { isIP } = require("node:net");
-    for (const entry of parts) {
-        if (["loopback", "linklocal", "uniquelocal"].includes(entry)) continue;
-        const pieces = entry.split("/");
-        const family = isIP(pieces[0]);
-        if (!family || pieces.length > 2 || (pieces.length === 2 &&
-            (!/^\d+$/.test(pieces[1]) || Number(pieces[1]) < 1 ||
-             Number(pieces[1]) > (family === 4 ? 32 : 128)))) {
-            throw new Error("Invalid trust proxy configuration.");
-        }
+    if (value === undefined || value === "") {
+        return false;
     }
-    return parts.length === 1 ? parts[0] : parts;
+    if (value === "0" || value === "false") {
+        return false;
+    }
+    if (value === "true") {
+        throw new Error("Invalid trust proxy configuration.");
+    }
+    if (/^\d+$/.test(value) && Number.isSafeInteger(Number(value))) {
+        return Number(value);
+    }
+    const rawParts = value.split(",");
+    if (rawParts.some((part) => part.trim() === "")) {
+        throw new Error("Invalid trust proxy configuration.");
+    }
+    const parts = rawParts.map((part) => part.trim());
+    if (parts.length > 0 && parts.every(isTrustedProxyEntry)) {
+        return parts.length === 1 ? parts[0] : parts;
+    }
+    throw new Error("Invalid trust proxy configuration.");
+}
+
+function isTrustedProxyEntry(entry) {
+    if (entry === "loopback" || entry === "linklocal" || entry === "uniquelocal") {
+        return true;
+    }
+    const [address, prefix] = entry.split("/");
+    if (prefix !== undefined && !/^\d+$/.test(prefix)) {
+        return false;
+    }
+    if (address.includes(":")) {
+        if (!/^[0-9a-fA-F:]+$/.test(address)) {
+            return false;
+        }
+        return prefix === undefined || (Number(prefix) >= 0 && Number(prefix) <= 128);
+    }
+    const octets = address.split(".");
+    if (octets.length !== 4) {
+        return false;
+    }
+    if (!octets.every((octet) => /^\d+$/.test(octet) && Number(octet) <= 255)) {
+        return false;
+    }
+    return prefix === undefined || (Number(prefix) >= 0 && Number(prefix) <= 32);
 }
 
 module.exports = {

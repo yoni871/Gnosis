@@ -10,7 +10,7 @@ process.env.GNOSIS_TEST_ISOLATION = '1';
 const backendRequire = createRequire(new URL('../../backend/package.json', import.meta.url));
 const express = backendRequire('express');
 const { resolveTrustProxy } = backendRequire('./src/utils/rateLimit');
-const apiHeaders = backendRequire('./src/middleware/securityHeaders');
+const { securityHeaders } = backendRequire('./src/middleware/securityHeaders');
 const dist = fileURLToPath(new URL('../dist/', import.meta.url));
 const config = JSON.parse(fs.readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
 const headers = Object.fromEntries(config.headers.find(rule => rule.source === '/(.*)').headers.map(h => [h.key, h.value]));
@@ -21,7 +21,7 @@ const listen = server => new Promise((resolve, reject) => {
 const close = server => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); });
 export async function startFixture() {
     const app = express();
-    app.disable('x-powered-by'); app.set('trust proxy', resolveTrustProxy('loopback')); app.use(apiHeaders);
+    app.disable('x-powered-by'); app.set('trust proxy', resolveTrustProxy('loopback')); app.use(securityHeaders);
     let calls = 0;
     const forwarded = ['forwarded', 'x-forwarded-for', 'x-forwarded-host', 'x-real-ip', 'x-vercel-forwarded-for', 'cf-connecting-ip', 'true-client-ip'];
     app.all('/api/auth/:action', (req, res) => {

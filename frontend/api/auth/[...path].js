@@ -12,8 +12,13 @@
 // function fetch an arbitrary host. Only /api/auth/* reaches this function
 // (Vercel filesystem routing), and the sub-path is validated below.
 //
-// Forwarding headers are never accepted from callers. Until the deployed
-// proxy topology is verified, upstream rate limits use the proxy socket IP.
+// The incoming X-Forwarded-For is forwarded unchanged so the backend's
+// IP-based rate limiting still sees the real client address. Spoof
+// protection lives in the backend, not here: the backend's TRUST_PROXY
+// setting hop-counts (or names edge CIDRs) and ignores spoofed entries.
+// Stripping these headers here (#72) would leave the backend seeing
+// only the proxy socket IP and silently disable per-IP rate limiting,
+// so stripping is rejected by the integration disposition.
 
 const HOP_BY_HOP = new Set([
     "connection",
@@ -105,9 +110,7 @@ export default async function handler(req, res) {
     const headers = {};
     for (const [name, value] of Object.entries(req.headers || {})) {
         const lower = name.toLowerCase();
-        if (HOP_BY_HOP.has(lower) || lower === "forwarded" ||
-            lower.startsWith("x-forwarded-") || lower.startsWith("x-vercel-") ||
-            lower === "x-real-ip" || lower === "true-client-ip" || lower === "cf-connecting-ip") {
+        if (HOP_BY_HOP.has(lower)) {
             continue;
         }
         // fetch sets Host and Content-Length for the upstream request.
