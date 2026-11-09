@@ -46,6 +46,11 @@ test('migrated application schema permits only the approved runtime grants', asy
     // monitoring reads them; nothing updates or deletes them (the
     // forbidden statements below pin the append-only shape).
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`security_events:${privilege}`);
+    // T2.6 new-device detection: the runtime role records devices and
+    // refreshes last_seen_at only; the column grant below is
+    // column-level, so no table-level UPDATE row appears here (see the
+    // column-grant test below).
+    for (const privilege of ['SELECT', 'INSERT']) expected.push(`known_login_devices:${privilege}`);
     assert.deepEqual(grants.rows.map(row => `${row.table_name}:${row.privilege_type}`).sort(), expected.sort());
     assert.ok(grants.rows.every(row => row.is_grantable === 'NO'));
     const sequences = await pool.query(`SELECT c.relname,has_sequence_privilege(current_user,c.oid,'USAGE') AS usage,
@@ -53,7 +58,7 @@ test('migrated application schema permits only the approved runtime grants', asy
         has_sequence_privilege(current_user,c.oid,'UPDATE') AS update_allowed
         FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
         WHERE n.nspname='public' AND c.relkind='S' ORDER BY c.relname`);
-    const allowed = ['users_id_seq', 'notes_id_seq', 'bookmarks_id_seq', 'highlights_id_seq', 'security_events_id_seq'];
+    const allowed = ['users_id_seq', 'notes_id_seq', 'bookmarks_id_seq', 'highlights_id_seq', 'security_events_id_seq', 'known_login_devices_id_seq'];
     for (const row of sequences.rows) {
         assert.equal(row.usage, allowed.includes(row.relname));
         assert.equal(row.select_allowed, false);
@@ -79,7 +84,10 @@ test('migrated application schema permits only the approved runtime grants', asy
         "UPDATE password_reset_tokens SET expires_at=now()",
         "UPDATE password_reset_tokens SET created_at=now()",
         "UPDATE security_events SET kind='forbidden'",
-        'DELETE FROM security_events']) {
+        'DELETE FROM security_events',
+        "UPDATE known_login_devices SET user_id=999999",
+        "UPDATE known_login_devices SET device_key='\\x00'",
+        'DELETE FROM known_login_devices']) {
         await assert.rejects(pool.query(sql), { code: '42501' });
     }
 });

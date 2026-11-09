@@ -40,6 +40,7 @@ the kind strings do not change.
 | `password_reset.completed` | This PR (T1.16) | A reset token was consumed and the password changed. PR3 (breached-password checks on the reset flow) must NOT re-emit this kind at the same point; its own event is `breached_password.rejected`. |
 | `refresh_token.reused` | This PR (T1.16) | A consumed refresh token was replayed; the session family was revoked. |
 | `logout.all` | This PR (T1.16) | The logout-all revocation ran for the account. |
+| `login.new_device` | This PR (T2.6) | First login from a device key (HMAC of IP + user-agent) not previously seen for this user. |
 | `session.revoked` | PR8 (auth hardening) | A single session was revoked. |
 | `password.changed` | PR8 (auth hardening) | An authenticated password change completed. |
 | `mfa.enrolled` | PR7 (auth hardening) | TOTP enrolled. |
