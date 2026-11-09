@@ -1,7 +1,8 @@
+const { withUserBudget, ensureCapacity } = require("../utils/storageBudget");
+const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
 const pool = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
 const { logControllerError } = require("../utils/authErrors");
-const { parsePagination } = require("../utils/pagination");
 
 // The notes.content column is TEXT with no database-side bound, so the
 // application caps it: 100,000 characters is far above any real study
@@ -53,7 +54,9 @@ const createNote = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUserBudget(userId, async client => {
+            await ensureCapacity(client, userId, "notes", { add: 1, bytes: Buffer.byteLength(content, "utf8") });
+            return client.query(
             `
             INSERT INTO notes (
                 user_id,
@@ -77,9 +80,11 @@ const createNote = async (req, res) => {
                 content
             ]
         );
+        });
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("notes.create", "database", error);
 
         return res.status(500).json({
@@ -91,27 +96,25 @@ const createNote = async (req, res) => {
 const getNotes = async (req, res) => {
     const userId = req.user.userId;
 
-    // F04: the list was unbounded. Limit defaults to 100 and is capped
-    // at 100 (same as search); the applied values ride on headers so a
-    // client can see the cap without changing the array body.
-    const { limit, offset } = parsePagination(req.query);
-
+    // Cursor pagination (PR #91) replaces the OFFSET pagination main added
+    // in PR #85: stable under concurrent inserts, no deep-offset cost.
+    // A bare array + X-Next-Cursor/X-Has-More headers is returned when no
+    // pagination params are given; an envelope when they are (see
+    // utils/privatePages.js).
     try {
+        const page = readPage(req, "notes");
         const result = await pool.query(
             `
             SELECT * FROM notes
-            WHERE user_id = $1
-            ORDER BY created_at DESC
-            LIMIT $2 OFFSET $3
+            WHERE user_id = $1 AND ($2::integer IS NULL OR id < $2)
+            ORDER BY id DESC LIMIT $3
             `,
-            [userId, limit, offset]
+            [userId, page.cursor, page.limit + 1]
         );
 
-        return res.status(200)
-            .set("X-Limit", String(limit))
-            .set("X-Offset", String(offset))
-            .json(result.rows);
+        return sendPage(res, pageRows(result.rows, page.limit), page);
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("notes.list", "database", error);
 
         return res.status(500).json({
@@ -142,6 +145,7 @@ const getNoteById = async (req, res) => {
 
         return res.status(200).json(result.rows[0]);
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("notes.get", "database", error);
 
         return res.status(500).json({
@@ -191,7 +195,12 @@ const updateNote = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUserBudget(userId, async client => {
+            if (content !== undefined) {
+                const old = await client.query('SELECT octet_length(content) AS bytes FROM notes WHERE id=$1 AND user_id=$2', [noteId, userId]);
+                if (old.rows.length) await ensureCapacity(client, userId, 'notes', { bytes: Buffer.byteLength(content, 'utf8') - Number(old.rows[0].bytes) });
+            }
+            return client.query(
             `
             UPDATE notes
             SET
@@ -208,6 +217,7 @@ const updateNote = async (req, res) => {
             `,
             [bookId, startChapter, startVerse, endChapter, endVerse, content, noteId, userId]
         );
+        });
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -218,6 +228,7 @@ const updateNote = async (req, res) => {
         return res.status(200).json(result.rows[0]);
 
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("notes.update", "database", error);
 
         return res.status(500).json({
@@ -252,6 +263,7 @@ const deleteNote = async (req, res) => {
         });
 
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("notes.delete", "database", error);
 
         return res.status(500).json({

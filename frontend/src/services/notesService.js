@@ -1,8 +1,9 @@
+import { privatePageUrl } from "../utils/privatePages";
 //comunicates with the notes backend
 import API_URL from "../api/api";
 
-export async function getNotes(token) {
-    const response = await fetch(`${API_URL}/notes`, {
+export async function getNotes(token, cursor = null, filters = {}) {
+    const response = await fetch(privatePageUrl(API_URL, "notes", cursor, filters), {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`

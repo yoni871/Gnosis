@@ -1,3 +1,4 @@
+const { readPage, sendPage, knownResourceError } = require("../utils/privatePages");
 const { saveHighlights, 
     getHighlights: loadHighlights,
     deleteHighlight: removeHighlight,
@@ -5,7 +6,6 @@ const { saveHighlights,
 } = require("../services/highlightsService");
 const { isValidColor, isValidVerseSelection } = require("../utils/highlightValidation");
 const { logControllerError } = require("../utils/authErrors");
-const { parsePagination } = require("../utils/pagination");
 
 // Handle a request to apply a color to a passage.
 const createHighlight = async (req, res) => {
@@ -47,6 +47,7 @@ const createHighlight = async (req, res) => {
         //can create records or recolor existing ones.
         return res.status(200).json(highlights);
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         if(error.code === "INVALID_PASSAGE") {
             return res.status(400).json({
                 error: error.message
@@ -64,19 +65,16 @@ const createHighlight = async (req, res) => {
 const getHighlights = async (req, res) => {
     const userId = req.user.userId;
 
-    // F04: the list was unbounded. Same limit/offset convention as notes
-    // and search; the applied values ride on headers.
-    const { limit, offset } = parsePagination(req.query);
-
+    // Cursor pagination (PR #91) replaces the OFFSET pagination main added
+    // in PR #85. See utils/privatePages.js.
     try {
+        const page = readPage(req, "highlights");
         // Ask the service for records belonging to this user.
-        const highlights = await loadHighlights(userId, { limit, offset });
+        const highlights = await loadHighlights(userId, page);
 
-        return res.status(200)
-            .set("X-Limit", String(limit))
-            .set("X-Offset", String(offset))
-            .json(highlights);
+        return sendPage(res, highlights, page);
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("highlights.list", "database", error);
 
         return res.status(500).json({
@@ -114,6 +112,7 @@ const deleteHighlight = async (req, res) => {
             id: highlight.id
         });
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("highlights.delete", "database", error);
 
         return res.status(500).json({
@@ -152,6 +151,7 @@ const deleteHighlightsInPassage = async (req, res) => {
             removedIds: removed.map((highlight) => highlight.id)
         });
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("highlights.clear-passage", "database", error);
 
         return res.status(500).json({
