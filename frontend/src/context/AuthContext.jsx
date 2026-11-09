@@ -116,6 +116,36 @@ export function AuthProvider({ children }) {
         return loginWithTicket(credentials, ticket);
     }, [authGuard, loginWithTicket]);
 
+    // A passkey login already holds the access token: establish the
+    // session from it, with the same epoch guard as a password login.
+    // A passkey is a phishing-resistant factor, so this path issues a
+    // full session with no second step.
+    const loginWithToken = useCallback(async (newToken) => {
+        const ticket = authGuard.begin();
+        setSessionVersion(ticket);
+        setIsAuthLoading(true);
+        try {
+            updateToken(newToken);
+            const profile = await getProfile(newToken);
+            if (!authGuard.isCurrent(ticket)) {
+                return null;
+            }
+            setUser(profile);
+            return profile;
+        } catch (error) {
+            if (!authGuard.isCurrent(ticket)) {
+                return null;
+            }
+            updateToken(null);
+            setUser(null);
+            throw error;
+        } finally {
+            if (authGuard.isCurrent(ticket)) {
+                setIsAuthLoading(false);
+            }
+        }
+    }, [authGuard, updateToken]);
+
     const register = useCallback(async (userData) => {
         // Issue #9: registration creates an unverified account and does
         // NOT log in. It touches no session state at all: no ticket, no
@@ -200,6 +230,7 @@ export function AuthProvider({ children }) {
         isAuthenticated,
         isAuthLoading,
         login,
+        loginWithToken,
         register,
         logout
     }), [
@@ -210,6 +241,7 @@ export function AuthProvider({ children }) {
         isAuthenticated,
         isAuthLoading,
         login,
+        loginWithToken,
         register,
         logout
     ]);

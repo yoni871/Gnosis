@@ -55,6 +55,7 @@ async function main() {
             GRANT UPDATE(used_at,consumed_reason) ON email_verification_tokens TO gnosis_reader;
             GRANT SELECT,INSERT,UPDATE,DELETE ON notes,bookmarks,highlights TO gnosis_reader;
             GRANT SELECT,INSERT,UPDATE ON user_reading_state,auth_sessions,auth_refresh_tokens TO gnosis_reader;
+            GRANT SELECT,INSERT,UPDATE,DELETE ON user_passkeys,webauthn_challenges TO gnosis_reader;
             GRANT SELECT,INSERT,DELETE ON rate_limit_attempts TO gnosis_reader;
             GRANT SELECT,UPDATE ON rate_limit_sweep_state TO gnosis_reader;
             GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq,licensed_chapter_cache_id_seq TO gnosis_reader`);

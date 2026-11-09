@@ -42,6 +42,12 @@ test('migrated application schema permits only the approved runtime grants', asy
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`email_verification_tokens:${privilege}`);
     // Issue #10: the same shape for password-reset tokens.
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`password_reset_tokens:${privilege}`);
+    // Passkeys: the runtime role owns the full lifecycle of its own
+    // credentials and challenges — insert, read, update (counters,
+    // flags, labels, last-used), and delete on removal.
+    for (const table of ['user_passkeys', 'webauthn_challenges']) {
+        for (const privilege of ['SELECT', 'INSERT', 'UPDATE', 'DELETE']) expected.push(`${table}:${privilege}`);
+    }
     assert.deepEqual(grants.rows.map(row => `${row.table_name}:${row.privilege_type}`).sort(), expected.sort());
     assert.ok(grants.rows.every(row => row.is_grantable === 'NO'));
     const sequences = await pool.query(`SELECT c.relname,has_sequence_privilege(current_user,c.oid,'USAGE') AS usage,

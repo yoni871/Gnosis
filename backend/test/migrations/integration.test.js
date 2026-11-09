@@ -25,7 +25,7 @@ async function runAll(command, extra = {}) {
 }
 // Expected applied history per project, in file order.
 const PROJECTS = {
-    app: { applied: [baselineName, '20261103010729_add-auth-rate-limiting', '20261104021959_add-email-verification', '20261105231211_add-password-reset', '20261106144711_add-licensed-translations-cache', '20261106190359_add-user-reading-state', '20261106210000_add-sessions', '20261107005916_add-licensed-cache-verse-count-index', '20261107010016_add-licensed-ip-limits-window-index'] },
+    app: { applied: [baselineName, '20261103010729_add-auth-rate-limiting', '20261104021959_add-email-verification', '20261105231211_add-password-reset', '20261106144711_add-licensed-translations-cache', '20261106190359_add-user-reading-state', '20261106210000_add-sessions', '20261107005916_add-licensed-cache-verse-count-index', '20261107010016_add-licensed-ip-limits-window-index', '20261109215600_add-passkeys'] },
     bible: { applied: [baselineName, '20261106144711_add-licensed-translations', '20261106234443_add-original-language-analysis', '20261107051000_allow-verse-zero-in-original-language'] },
     commentary: { applied: [baselineName] },
 };
@@ -172,7 +172,7 @@ test('existing schema refuses baseline DDL; adoption preserves data and sequence
     assert.deepEqual((await db.query('SELECT name FROM pgmigrations_app')).rows, [{ name: baselineName }]);
     await assert.rejects(run('app', 'baseline', { dir }), /already has/);
     assert.deepEqual((await run('app', 'up', { dir })).migrations,
-        ['20261103010729_add-auth-rate-limiting', '20261104021959_add-email-verification', '20261105231211_add-password-reset', '20261106144711_add-licensed-translations-cache', '20261106190359_add-user-reading-state', '20261106210000_add-sessions', '20261107005916_add-licensed-cache-verse-count-index', '20261107010016_add-licensed-ip-limits-window-index', '29990101000000_fixture']);
+        ['20261103010729_add-auth-rate-limiting', '20261104021959_add-email-verification', '20261105231211_add-password-reset', '20261106144711_add-licensed-translations-cache', '20261106190359_add-user-reading-state', '20261106210000_add-sessions', '20261107005916_add-licensed-cache-verse-count-index', '20261107010016_add-licensed-ip-limits-window-index', '20261109215600_add-passkeys', '29990101000000_fixture']);
 
 });
 test('partial and drifted schemas refuse adoption without tracking or repairs', async () => {
@@ -192,10 +192,11 @@ test('failed migration rolls back schema and history and can safely retry', asyn
     const dir = await fixtureDir('app', '-- Up Migration\nCREATE TABLE fixture(id integer); SELECT 1/0;\n-- Down Migration\nDROP TABLE fixture;');
     await assert.rejects(run('app', 'up', { dir }), /stage \[migration runner\]/);
     assert.equal((await db.query("SELECT to_regclass('public.fixture') AS value")).rows[0].value, null);
-    assert.equal((await db.query('SELECT count(*)::int AS n FROM pgmigrations_app')).rows[0].n, 9);
+    assert.equal((await db.query('SELECT count(*)::int AS n FROM pgmigrations_app')).rows[0].n, 10);
     await fs.writeFile(path.join(dir, '29990101000000_fixture.sql'), '-- Up Migration\nCREATE TABLE fixture(id integer);\n-- Down Migration\nDROP TABLE fixture;');
     await run('app', 'up', { dir });
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['29990101000000_fixture']);
+    assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109215600_add-passkeys']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261107010016_add-licensed-ip-limits-window-index']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261107005916_add-licensed-cache-verse-count-index']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261106210000_add-sessions']);
