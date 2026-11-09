@@ -2,7 +2,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const jwt = require('jsonwebtoken');
 process.env.GNOSIS_TEST_ISOLATION = '1';
+// Keep main's long JWT_SECRET (PR #81 secret-strength boot check) and
+// add the RATE_LIMIT_KEY_SECRET the family budget needs (PR #90).
 process.env.JWT_SECRET = 'synthetic-session-test-secret-synthetic-test-secret';
+process.env.RATE_LIMIT_KEY_SECRET = 'synthetic-session-rate-limit-secret';
 process.env.FRONTEND_URL = 'https://frontend.example.invalid';
 const pool = require('../../src/db/db');
 const sessions = require('../../src/services/sessionService');
@@ -23,6 +26,8 @@ const id = '00000000-0000-4000-8000-000000000001';
 function rotationFixture(used = false, overrides = {}) {
     behavior = async sql => {
         if (sql.includes('SELECT s.*')) return { rows: [{ id, user_id: 7, expires_at: new Date(Date.now() + 600000), revoked_at: null, ...overrides }] };
+        if (sql.includes('INSERT INTO rate_limit_attempts')) return { rows: [{ id: 1 }] };
+        if (sql.includes('COUNT(*)')) return { rows: [{ count: overrides.full ? 31 : 1, oldest: new Date() }] };
         if (sql.includes('SELECT used_at')) return { rows: [{ used_at: used ? new Date() : null }] };
         return { rows: [] };
     };
@@ -139,4 +144,13 @@ test('session issuance refuses a password changed after login verification, miss
     behavior = async () => ({ rows: [{ password_hash: 'new-hash' }] });
     assert.equal(await sessions.createSession(7), null);
     assert.ok(!queries.some(([sql]) => sql.includes('INSERT')));
+});
+
+test('family budget rejection leaves the current credential usable and does not issue tokens', async () => {
+    rotationFixture(false, { full: true });
+    const result = await sessions.rotateSession('a'.repeat(64));
+    assert.equal(result.limited, true);
+    assert.ok(result.retryAfter > 0);
+    assert.ok(!queries.some(([sql]) => sql.includes('SET used_at') || sql.includes('INSERT INTO auth_refresh_tokens') || sql.includes('SET revoked_at')));
+    assert.equal(queries.at(-1)[0], 'COMMIT');
 });

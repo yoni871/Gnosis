@@ -9,6 +9,11 @@ formatted cookie before database work. Missing, duplicate and malformed cookies
 return an uncached generic 401 without limiter/session queries. Structurally
 valid requests reserve shared PostgreSQL-backed HMAC buckets: 120/socket-client
 IP/minute and 10/presented token/minute. Raw credentials and IPs are not stored.
+A stable family bucket additionally caps issuance at 30/minute across rotated
+credentials and IPs. It is reserved under the existing session-row lock in the
+rotation transaction, before consuming the old cookie or issuing a new token.
+Family throttling preserves that cookie for retry and does not extend its own
+window; it still spends the outer request budget to prevent free lookup floods.
 Both successful rotation and invalid/replayed tokens count; internal failures
 release reservations and fail closed. A later-policy store failure also releases
 an earlier reservation. Uncached 429s include Retry-After. Existing sweep cleanup

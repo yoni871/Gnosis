@@ -420,6 +420,10 @@ router.post("/refresh", (req, res, next) => { res.set("Cache-Control", "no-store
     // Successful and invalid credential attempts both consume reservations.
     // An internal throw is released by withRateLimitFinalize and fails closed.
     await req.rateLimit.finalize("count");
+    if (session?.limited) {
+        return res.status(429).set("Retry-After", String(session.retryAfter))
+            .json({ error: "Too many attempts. Please try again later.", code: "RATE_LIMITED" });
+    }
     if (!session) {
         sessions.clearCookie(res);
         return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });

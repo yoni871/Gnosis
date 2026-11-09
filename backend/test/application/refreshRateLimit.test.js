@@ -3,11 +3,11 @@ const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
 const bcrypt = require('bcrypt');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
-const { startBackend } = require('../helpers/backend-instance');
+const { startBackend, workerEnvironment } = require('../helpers/backend-instance');
 const { computeKeyHash } = require('../../src/utils/rateLimit');
 const context = contextFromEnvironment();
 let database, first, second;
-const secret = 'synthetic-application-test-rate-limit';
+const secret = workerEnvironment().RATE_LIMIT_KEY_SECRET;
 test.before(async () => { database = await createTestPool(context); first = await startBackend(context); second = await startBackend(context); });
 test.beforeEach(async () => database.pool.query('DELETE FROM rate_limit_attempts'));
 test.after(async () => { if (first) await first.stop(); if (second) await second.stop(); if (database) await database.close(); });
@@ -51,4 +51,23 @@ test('successful real rotations spend quota and preserve replay detection', asyn
     assert.equal((await refresh(second, value)).status, 401);
     const count = await database.pool.query("SELECT count(*)::int AS n FROM rate_limit_attempts WHERE policy='refresh_ip'");
     assert.equal(count.rows[0].n, 2);
+});
+
+test('stable family quota survives rotation/IP changes and throttling preserves the current cookie', async () => {
+    const password = 'synthetic-family-only-password';
+    await database.pool.query("INSERT INTO users(email,password_hash,email_verified_at) VALUES ('family-budget@fixture.invalid',$1,now())", [await bcrypt.hash(password, 4)]);
+    const login = await fetch(first.url + '/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: 'family-budget@fixture.invalid', password }) });
+    const access = (await login.json()).token;
+    const sid = require('jsonwebtoken').decode(access).sid;
+    const value = login.headers.get('set-cookie').split(';')[0].split('=')[1];
+    const key = computeKeyHash('refresh_family', [sid], secret);
+    await database.pool.query("INSERT INTO rate_limit_attempts(key_hash,policy) SELECT $1,'refresh_family' FROM generate_series(1,30)", [key]);
+    const blocked = await refresh(second, value, '203.0.113.77');
+    assert.equal(blocked.status, 429); assert.ok(Number(blocked.headers.get('retry-after')) > 0);
+    assert.equal(blocked.headers.get('set-cookie'), null);
+    const state = await database.pool.query('SELECT used_at FROM auth_refresh_tokens WHERE token_hash=$1', [require('../../src/services/sessionService').hash(value)]);
+    assert.equal(state.rows[0].used_at, null);
+    await database.pool.query("DELETE FROM rate_limit_attempts WHERE key_hash=$1 AND policy='refresh_family'", [key]);
+    assert.equal((await refresh(first, value)).status, 200);
 });

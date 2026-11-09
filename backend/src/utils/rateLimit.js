@@ -53,6 +53,7 @@ const POLICIES = {
     // main's refresh_ip 30/15 min (PR #85), which counted failures only
     // and was designed before per-token/per-family caps existed — under
     // count-successes it would be too tight for legitimate shared-IP use.
+    refresh_family: { windowMs: 60 * 1000, limit: 30 },
     refresh_ip: { windowMs: 60 * 1000, limit: 120 },
     refresh_token: { windowMs: 60 * 1000, limit: 10 },
     login_ip_email: { windowMs: 15 * 60 * 1000, limit: 5 },
