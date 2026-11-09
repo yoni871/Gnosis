@@ -128,6 +128,50 @@ test("refuses to start without RATE_LIMIT_KEY_SECRET", async () => {
     assert.ok(!stderr().includes("RATE_LIMIT_KEY_SECRET"), stderr());
 });
 
+// Audit N06: presence is not enough — a short secret must also refuse
+// to boot, with the same generic message and no value leaked.
+test("refuses to start with a short JWT_SECRET", async () => {
+    const { child, stderr } = spawnServer(0, {
+        NODE_ENV: "production",
+        JWT_SECRET: "too-short",
+        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        TEST_SECRET_MARKER: MARKER,
+    });
+    const code = await waitForExit(child, 15000);
+    assert.notEqual(code, 0);
+    assert.ok(stderr().includes("Server configuration error"), stderr());
+    assert.ok(!stderr().includes("too-short"), stderr());
+    assert.ok(!stderr().includes("JWT_SECRET"), stderr());
+});
+
+test("refuses to start with a short RATE_LIMIT_KEY_SECRET", async () => {
+    const { child, stderr } = spawnServer(0, {
+        NODE_ENV: "production",
+        JWT_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: "too-short",
+        TEST_SECRET_MARKER: MARKER,
+    });
+    const code = await waitForExit(child, 15000);
+    assert.notEqual(code, 0);
+    assert.ok(stderr().includes("Server configuration error"), stderr());
+    assert.ok(!stderr().includes("too-short"), stderr());
+    assert.ok(!stderr().includes("RATE_LIMIT_KEY_SECRET"), stderr());
+});
+
+test("starts with 64-hex secrets", async () => {
+    const server = spawnServer(0, {
+        NODE_ENV: "production",
+        JWT_SECRET: "0123456789abcdef".repeat(4),
+        RATE_LIMIT_KEY_SECRET: "fedcba9876543210".repeat(4),
+    });
+    try {
+        const output = await waitForOutput(server.child.stdout, "TEST_PORT=", 15000);
+        assert.match(output, /TEST_PORT=\d+/);
+    } finally {
+        await server.stop();
+    }
+});
+
 test("refuses to start with an invalid TRUST_PROXY value", async () => {
     const { child } = spawnServer(0, {
         NODE_ENV: "production",

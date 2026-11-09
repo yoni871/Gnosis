@@ -47,7 +47,7 @@ export default function ResetPasswordPage() {
                 setStatus("invalid");
             } else {
                 // Validation failures (for example a password shorter
-                // than 8 characters) carry the backend's message; anything
+                // than 12 characters) carry the backend's message; anything
                 // else is a generic retry prompt.
                 setError(err.code === "VALIDATION_FAILED"
                     ? err.message
@@ -113,7 +113,7 @@ export default function ResetPasswordPage() {
                                 leading-6
                                 text-[var(--text-muted)]
                             ">
-                                Your new password must be at least 8 characters. This link expires after 1 hour and works only once.
+                                Your new password must be at least 12 characters. This link expires after 1 hour and works only once.
                             </p>
 
                             <form

@@ -111,7 +111,7 @@ test('a short password shows the backend validation message and keeps the form',
     await user.type(screen.getByLabelText('New password'), 'short');
     await user.type(screen.getByLabelText('Confirm new password'), 'short');
     await user.click(screen.getByRole('button', { name: /reset my password/i }));
-    await settle(request, response({ error: 'Password must be at least 8 characters.', code: 'VALIDATION_FAILED' }, 400), false);
-    expect(screen.getByRole('alert')).toHaveTextContent('Password must be at least 8 characters.');
+    await settle(request, response({ error: 'Password must be at least 12 characters.', code: 'VALIDATION_FAILED' }, 400), false);
+    expect(screen.getByRole('alert')).toHaveTextContent('Password must be at least 12 characters.');
     expect(screen.getByRole('button', { name: /reset my password/i })).toBeInTheDocument();
 });

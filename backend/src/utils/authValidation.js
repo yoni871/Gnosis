@@ -18,9 +18,13 @@
 //   no whitespace, and no leading, trailing, or consecutive dots in
 //   either part). It is NOT lowercased, and lookup stays case-sensitive;
 //   canonicalization is a separate follow-up migration task.
-// - Registration password: required string, at least 8 characters
+// - Registration password: required string, at least 12 characters
 //   (code points), at most 72 UTF-8 bytes (bcrypt's limit: longer inputs
-//   would be silently truncated). No complexity rules. Passwords are not
+//   would be silently truncated). No complexity rules (NIST SP 800-63B-4
+//   forbids them). Breached-password screening runs in the route, after
+//   rate limiting and before hashing. NIST's single-factor floor is 15
+//   characters; 12 is the staged step while MFA is not yet offered, and
+//   the breach screen is the compensating control. Passwords are not
 //   trimmed: spaces can be part of a password.
 // - Login password: required non-empty string, at most 72 UTF-8 bytes.
 //   The registration minimum is deliberately NOT enforced here, so
@@ -29,7 +33,7 @@
 const VALIDATION_CODE = "VALIDATION_FAILED";
 const MAX_NAME_CHARS = 100;
 const MAX_EMAIL_CHARS = 254;
-const MIN_REGISTER_PASSWORD_CHARS = 8;
+const MIN_REGISTER_PASSWORD_CHARS = 12;
 const MAX_PASSWORD_BYTES = 72;
 
 // Issue #10: the reset-token format gate lives in the token module, so
@@ -178,7 +182,7 @@ function validateForgotPasswordInput(body) {
 }
 
 // Issue #10: reset-password takes a token and a new password. The new
-// password follows the registration-strength rule (at least 8
+// password follows the registration-strength rule (at least 12
 // characters, at most 72 UTF-8 bytes): a reset password is a new
 // account password, not a login of an existing one. A malformed token
 // is a validation failure (400, no quota consumed); a well-formed but

@@ -1,12 +1,13 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const crypto = require("node:crypto");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "test-secret";
-process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret";
+process.env.JWT_SECRET = "test-secret-synthetic-test-secret";
+process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret-synthetic-test-secret";
 // Issue #9: app.js validates email configuration at import time.
 process.env.RESEND_API_KEY = 'synthetic-test-resend-key';
 process.env.EMAIL_FROM = 'Gnosis Test <test@example.invalid>';
@@ -146,26 +147,26 @@ test("validator enforces the 254-character email limit", () => {
 });
 
 test("validator enforces registration password length in characters and bytes", () => {
-    for (const bad of [undefined, null, 42, "", "1234567"]) {
+    for (const bad of [undefined, null, 42, "", "1234567", "12345678901"]) {
         const result = validateRegisterInput(validRegister({ password: bad }));
-        assert.deepEqual(result, { error: bad === "" || typeof bad !== "string" ? "Password is required." : "Password must be at least 8 characters." });
+        assert.deepEqual(result, { error: bad === "" || typeof bad !== "string" ? "Password is required." : "Password must be at least 12 characters." });
     }
-    assert.equal(validateRegisterInput(validRegister({ password: "12345678" })).error, undefined);
+    assert.equal(validateRegisterInput(validRegister({ password: "123456789012" })).error, undefined);
     assert.equal(validateRegisterInput(validRegister({ password: "x".repeat(72) })).error, undefined);
     assert.deepEqual(
         validateRegisterInput(validRegister({ password: "x".repeat(73) })),
         { error: "Password must be at most 72 bytes." },
     );
     // Multibyte characters: 36 "é" are 72 bytes (pass), 37 are 74 (fail),
-    // and 7 "é" are 7 characters (fail the 8-character minimum).
+    // and 11 "é" are 11 characters (fail the 12-character minimum).
     assert.equal(validateRegisterInput(validRegister({ password: "é".repeat(36) })).error, undefined);
     assert.deepEqual(
         validateRegisterInput(validRegister({ password: "é".repeat(37) })),
         { error: "Password must be at most 72 bytes." },
     );
     assert.deepEqual(
-        validateRegisterInput(validRegister({ password: "é".repeat(7) })),
-        { error: "Password must be at least 8 characters." },
+        validateRegisterInput(validRegister({ password: "é".repeat(11) })),
+        { error: "Password must be at least 12 characters." },
     );
 });
 
@@ -231,7 +232,9 @@ test("reset validator requires a well-formed token and a registration-strength p
     // a short password is rejected even though it would be a valid login
     // password for a pre-existing account.
     assert.deepEqual(validateResetPasswordInput({ token, password: "short" }),
-        { error: "Password must be at least 8 characters." });
+        { error: "Password must be at least 12 characters." });
+    assert.deepEqual(validateResetPasswordInput({ token, password: "12345678901" }),
+        { error: "Password must be at least 12 characters." });
     assert.deepEqual(validateResetPasswordInput({ token, password: "x".repeat(73) }),
         { error: "Password must be at most 72 bytes." });
     assert.deepEqual(validateResetPasswordInput({ token, password: "a-new-password", role: "admin" }),
@@ -316,6 +319,9 @@ const compareMock = test.mock.method(bcrypt, "compare", (...args) => realCompare
 let server;
 let baseUrl;
 let stubServer;
+// PR3 (N07): when set, the stub answers HIBP range requests for this
+// prefix with the matching suffix, so a chosen password tests breached.
+let breachedRange = null;
 
 test.before(async () => {
     server = app.listen(0, "127.0.0.1");
@@ -326,12 +332,24 @@ test.before(async () => {
     // test isolation) so no test ever calls the real Resend API.
     const http = require("node:http");
     stubServer = http.createServer((req, res) => {
+        // HIBP k-anonymity range lookup: a GET for a 5-hex prefix gets
+        // the breached suffix when one is armed, otherwise an empty body
+        // (not breached). No test ever calls the real HIBP API.
+        if (req.method === "GET" && /^\/[0-9A-F]{5}$/.test(req.url)) {
+            const body = breachedRange && req.url === `/${breachedRange.prefix}`
+                ? `${breachedRange.suffix}:3\n`
+                : "";
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            res.end(body);
+            return;
+        }
         req.resume();
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end("{}");
     });
     await new Promise((resolve) => stubServer.listen(0, "127.0.0.1", resolve));
     process.env.RESEND_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
+    process.env.HIBP_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
 });
 
 test.after(async () => {
@@ -343,6 +361,7 @@ test.after(async () => {
         await new Promise((resolve) => stubServer.close(resolve));
     }
     delete process.env.RESEND_API_BASE_URL;
+    delete process.env.HIBP_API_BASE_URL;
     queryMock.mock.restore();
     connectMock.mock.restore();
     hashMock.mock.restore();
@@ -457,7 +476,7 @@ test("register passes trimmed values to the insert and hashes the password", asy
     assert.equal(userInsert[1][0], "Test");
     assert.equal(userInsert[1][1], "User");
     assert.equal(userInsert[1][2], "test@example.com");
-    assert.match(userInsert[1][3], /^\$2[ab]\$/);
+    assert.match(userInsert[1][3], /^\$2b\$12\$/, "new hashes must use bcrypt cost 12");
     assert.notEqual(userInsert[1][3], "a-valid-password");
     // Issue #9: the same transaction inserts the first verification
     // token: the user id, a 32-byte hash (never the raw token), and a
@@ -470,6 +489,27 @@ test("register passes trimmed values to the insert and hashes the password", asy
     const expiry = new Date(tokenInsert[1][2]).getTime();
     assert.ok(expiry > Date.now() + 23 * 60 * 60 * 1000 && expiry <= Date.now() + 24 * 60 * 60 * 1000);
     assert.equal(callCounts().hash, before.hash + 1, "valid registration must hash exactly once");
+});
+
+test("register rejects a breached password before bcrypt and the database", async () => {
+    // PR3 (N07): the HIBP check runs after rate limiting and before
+    // bcrypt, so a breached password costs no hash and no insert.
+    const password = "breached-password-1";
+    const sha1 = crypto.createHash("sha1").update(password, "utf8").digest("hex").toUpperCase();
+    breachedRange = { prefix: sha1.slice(0, 5), suffix: sha1.slice(5) };
+    try {
+        const before = callCounts();
+        const result = await post("/api/auth/register", validRegister({ password }));
+        assertJsonError(result, 400, {
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: "VALIDATION_FAILED",
+        });
+        const after = callCounts();
+        assert.equal(after.hash, before.hash, "a breached password must not reach bcrypt");
+        assert.equal(after.query, before.query, "a breached password must cause zero database calls");
+    } finally {
+        breachedRange = null;
+    }
 });
 
 test("register ignores unknown fields", async () => {
@@ -554,6 +594,20 @@ test("login with valid credentials performs real bcrypt comparison and JWT signi
     const decoded = jwt.verify(result.json.token, process.env.JWT_SECRET);
     assert.equal(decoded.userId, 42);
     assert.equal(callCounts().compare, before.compare + 1, "valid login must compare exactly once");
+});
+
+test("new hashes use bcrypt cost 12 while cost-10 hashes still verify", async () => {
+    // PR3: cost 12 applies to NEW hashes only; existing cost-10 hashes
+    // must keep verifying on login (re-hash on next login is a later
+    // PR, not this one). The login test above also proves a cost-10
+    // hash authenticates end to end.
+    const fresh = await realHash("a-new-password-123", 12);
+    assert.match(fresh, /^\$2b\$12\$/);
+    assert.equal(await bcrypt.compare("a-new-password-123", fresh), true);
+    const legacy = await realHash("an-old-password-1", 10);
+    assert.match(legacy, /^\$2b\$10\$/);
+    assert.equal(await bcrypt.compare("an-old-password-1", legacy), true,
+        "existing cost-10 hashes must still verify");
 });
 
 test("login trims the email before lookup", async () => {
