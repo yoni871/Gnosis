@@ -9,11 +9,11 @@ branch-rule updates or migration-tool dependency changes.
   lockfiles. It fails closed on registry/parse errors, unrecognized severity,
   and new moderate-or-higher findings. Regression tests prove exception scope,
   expiration and rejection of new/high advisories.
-- Four pre-existing backend advisory records remain temporarily tracked through
-  November 23, 2026, limited to two exact advisory URLs and moderate severity.
-  This deadline is a tracking mechanism, not production risk acceptance. The
-  migration/nodemon toolchain must be fixed with Muse 1 before that date or the
-  gate fails. No blind downgrade or migration-tool major override was applied.
+- Backend glob/minimatch advisory chains are now repaired using reviewed glob 14
+  and minimatch 11 overrides while retaining node-pg-migrate 8.0.4 and nodemon
+  3.1.14. Migration/CLI and file-matching regressions validate compatibility.
+  The temporary backend exceptions have been removed entirely; recurring or
+  new moderate-or-higher advisories fail the gate without an accepted baseline.
 - Frontend Vite/ESLint and affected transitive packages are patched; the lockfile
   is re-audited after a clean isolated install. A frontend-only minimatch 11
   override repairs ESLint/config-array's still-vulnerable major constraint.
