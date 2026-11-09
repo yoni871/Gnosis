@@ -51,8 +51,10 @@ async function main() {
             GRANT SELECT,INSERT,UPDATE ON licensed_api_usage,licensed_ip_limits TO gnosis_reader;
             GRANT DELETE ON licensed_ip_limits TO gnosis_reader;
             GRANT SELECT,INSERT ON users,email_verification_tokens TO gnosis_reader;
-            GRANT UPDATE(email_verified_at) ON users TO gnosis_reader;
+            GRANT UPDATE(email_verified_at, password_hash) ON users TO gnosis_reader;
             GRANT UPDATE(used_at,consumed_reason) ON email_verification_tokens TO gnosis_reader;
+            GRANT SELECT,INSERT ON password_reset_tokens TO gnosis_reader;
+            GRANT UPDATE(used_at,consumed_reason) ON password_reset_tokens TO gnosis_reader;
             GRANT SELECT,INSERT,UPDATE,DELETE ON notes,bookmarks,highlights TO gnosis_reader;
             GRANT SELECT,INSERT,UPDATE ON user_reading_state,auth_sessions,auth_refresh_tokens TO gnosis_reader;
             GRANT SELECT,INSERT,DELETE ON rate_limit_attempts TO gnosis_reader;

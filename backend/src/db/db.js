@@ -34,6 +34,31 @@ function assertSplitConfiguration(env) {
     }
 }
 
+const LOOPBACK_HOSTS = new Set(["127.0.0.1", "::1", "localhost"]);
+
+// Remote databases must use verified TLS, whatever the connection string
+// says. The pool previously relied on the URL carrying sslmode=require,
+// which encrypts but never verifies the server certificate — and a URL
+// with no sslmode falls back to pg's `prefer`. The OL importer already
+// enforces verified TLS for non-loopback hosts
+// (tools/bible-import/src/cli.js); the app pools now do the same.
+// Loopback stays plain: local development and tests use a
+// certificate-less local database. sslmode=disable fails the boot.
+function tlsOptionsFor(url) {
+    let parsed;
+    try {
+        parsed = new URL(url);
+    } catch {
+        throw new Error("Invalid database connection URL.");
+    }
+    const host = parsed.hostname.replace(/^\[|\]$/g, "");
+    if (LOOPBACK_HOSTS.has(host)) return {};
+    if (parsed.searchParams.get("sslmode") === "disable") {
+        throw new Error("Refusing a database connection with sslmode=disable.");
+    }
+    return { ssl: { rejectUnauthorized: true } };
+}
+
 function createPools(env = process.env) {
     assertSplitConfiguration(env);
     const appUrl = env.GNOSIS_APP_DATABASE_URL || env.DATABASE_URL || null;
@@ -56,6 +81,7 @@ function createPools(env = process.env) {
             // Each backend instance maintains a small pool of reusable connections.
             const created = new Pool({
                 ...config,
+                ...(url ? tlsOptionsFor(url) : {}),
                 max: 5,
                 idleTimeoutMillis: 10000,
                 connectionTimeoutMillis: 10000
