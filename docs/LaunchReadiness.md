@@ -83,10 +83,11 @@ remaining items are Yonatan's approvals.
   TRUST_PROXY is NOT implemented (Vercel config change, needs approval
   + redeploy + live spoof check); T1.15 has a plan written but no
   backup or drill yet. All three stay OPEN until those approvals land.
+- **RLS (Muse 3 PR9) and the Phase 4 production copy.** PR9 puts FORCE RLS on user tables (notes, bookmarks, highlights, user_reading_state, users) but NOT on `security_events` — the audit logger fires for unauthenticated events (failed logins, token replays) with no user_id, so RLS there would break it; no action needed on the audit-logging side. If RLS lands on preview user tables before Phase 4, the production copy procedure must handle it: a pg_dump/pg_restore copy run as owner reads 0 rows unless the copy session sets `SET row_security=off`, or it silently copies nothing. PR9 docs will flag it; the Phase 4 plan must account for it. (Flagged 2026-11-09 via Muse 3 from Muse 1's RLS coordination.)
 - **T1.9 and T1.10 have no owner.** They stay OPEN until someone owns
   them.
 - **T1.16 and T1.19** are IN PROGRESS on this track's branches; T1.19
   is PR #73 (open) and T1.16 is PR #78 (open); the reuse-detection
-  alert rule is PR2, in progress.
+  alert rule is PR #82 (open).
 - **The soak** (Muse 2) ends ~11:01 AM CST Nov 10; this file records
   the schedule, not the outcome.
