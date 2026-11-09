@@ -33,11 +33,11 @@ cited by path.
 | T1.12 Privacy policy published; account deletion works end-to-end on a synthetic account; retention purge scheduled | OPEN | Muse 3 (PR5) | Audit F08: no privacy policy or terms, no user-facing deletion path, no scheduled purge of expired session/token rows. |
 | T1.13 Request/collection budgets in place | OPEN | Muse 3 (PR4) | Audit F04: private list endpoints return full collections with no LIMIT/pagination; no rate limit on `POST /api/auth/refresh`; no statement/lock timeouts on either pool. Audit F09: licensed-provider budget check is check-then-act, not atomic. |
 | T1.15 Encrypted off-site backups of all three projects exist and a restore drill has passed | OPEN | Muse 1 (DB infra track) | Audit §6: backup/restore never tested. Neon Free gives a 6-hour point-in-time recovery window per project as a platform property — not a verified recovery. Status 2026-11-09 ~13:46 CST: Muse 1 has written a backup/restore plan (Neon PITR 6h as the restore path); no encrypted off-site backup or restore drill exists yet. Staged, awaiting Yonatan's approval post-soak. |
-| T1.16 Audit logging live with an alert rule on reuse detection | IN PROGRESS | This track (branch `security/audit-logging`) | PR link TBD — fill in when created. |
+| T1.16 Audit logging live with an alert rule on reuse detection | IN PROGRESS | This track (branch `security/audit-logging`) | PR #78 (https://github.com/yoni871/Gnosis/pull/78) — open, unmerged; table + helper + wiring landed. The alert rule itself is PR2 (branch `security/login-alerts`, in progress). |
 | T1.19 `SECURITY.md` published with a private reporting channel | IN PROGRESS | This track (branch `security/security-md`) | PR #73 (https://github.com/yoni871/Gnosis/pull/73) — open, unmerged; reporting contact still a placeholder pending Yonatan's confirmation. |
 | Audit reconciled + PASS verdict | OPEN | — | Audit verdict is **FAIL as of 2026-11-09** (main `40eb9a9`): one live High (N01, preview role) and eight open Mediums. Audit report: `~/workspace/gnosis-security-audit/GnosisUserSecurityAudit.md` (held outside the repo). Prior in-repo audit: [Security_Audit.md](Security_Audit.md) (2026-11-07/08, main `14de721`). |
 | Preview 24h soak passed + production promotion | OPEN | Muse 2 (soak) / Yonatan (promotion approval) | Soak restarted T+0 11:01:41 AM CST Nov 9 after the PR #71 login fix; ends ~11:01 AM CST Nov 10. Production promotion (main → production PR) needs separate approval. Production is still at `1853b92` (pre-#39/#70 session model — the reset-revocation fix is not live there). See [Deployments](Deployments.md) and [Sessions](Sessions.md). |
-| No Critical/High open | OPEN | Muse 1 (N01) | N01 live High: preview role `gnosis_preview_app` still holds `neon_superuser` membership + `CREATEROLE`/`CREATEDB`/`REPLICATION` and can `UPDATE` `password_reset_tokens.token_hash` and `users.email`, serving live preview traffic. Clean replacement `gnosis_preview_app_next` exists and is verified, but the swap needs Yonatan's approval and has not happened. Production role `gnosis_app` is clean. Status 2026-11-09 ~13:46 CST: STAGED, not executed — the replacement role is created and grant-verified; the §13 swap needs Yonatan's approval AND the soak to have ended (~11:01 AM Nov 10). Nothing moves before then. |
+| No Critical/High open | OPEN | Muse 1 (N01) | N01 live High: preview role `gnosis_preview_app` still holds `neon_superuser` membership + `CREATEROLE`/`CREATEDB`/`REPLICATION` and can `UPDATE` `password_reset_tokens.token_hash` and `users.email`, serving live preview traffic. Clean replacement `gnosis_preview_app_next` exists and is verified, but the swap needs Yonatan's approval and has not happened. Production role `gnosis_app` is clean. Status 2026-11-09 ~13:46 CST: STAGED, not executed — the replacement role is created and grant-verified; the §13 swap needs Yonatan's approval AND the soak to have ended (~11:01 AM Nov 10). Nothing moves before then. NEW (Muse 1, 2026-11-09): swap-blocking sequence gap — `licensed_chapter_cache.id` is SERIAL and the app INSERTs without an id, but no preview role holds USAGE on `licensed_chapter_cache_id_seq` (owner only); it works today only via the superuser backdoor, and the first cache miss after the swap would fail 42501. Fix: `GRANT USAGE ON SEQUENCE licensed_chapter_cache_id_seq TO gnosis_app` on preview before the swap (same statement needed in Phase 4 plan §6.2 for production). |
 
 ## Muse 1 (DB infrastructure track) — status as found
 
@@ -59,22 +59,34 @@ emission points (`sessionService`, verification/password-reset utils)
 are unaffected. Its restore-verification script reads `pgmigrations_*`
 histories generically, so this track's new migration row will simply
 appear on both sides of any comparison — no action needed.
-**In progress (read-only, no soak impact):** a six-branch
-least-privilege audit via browser task, then live cross-database
-integrity counts. Results are pending — check chat `d058ee09` for them
-before finalizing this checklist.
+**Results landed 2026-11-09 ~13:41–13:53 CST:** the six-branch
+least-privilege audit is COMPLETE (48 SELECTs, zero failures) —
+least privilege holds everywhere except N01; PUBLIC has zero grants
+on all six branches; production Bible/Commentary roles are NOLOGIN
+with no grants. Live cross-database integrity counts are COMPLETE
+(read-only): App preview has 0 of the 11 dropped tables (§6 drops
+complete); Bible/Commentary preview counts verified; production
+baseline re-confirmed. **PR #77 opened ~13:56 CST** for
+`security/db-hardening` (commit `783f639`, pushed, do-not-merge note
+until the soak ends + Yonatan's approval). One new swap-blocking
+finding: the `licensed_chapter_cache_id_seq` USAGE gap (see the N01
+row above). All hardening work is complete on Muse 1's side;
+remaining items are Yonatan's approvals.
 
 ## Uncertain items
 
 - **T1.1, T1.15, and the N01 High** depend on Muse 1, which has now
-  replied (~13:46 CST): N01 is STAGED (swap needs Yonatan's approval
-  plus the soak to have ended); TRUST_PROXY is NOT implemented (Vercel
-  config change, needs approval + redeploy + live spoof check); T1.15
-  has a plan written but no backup or drill yet. All three stay OPEN
-  until those approvals land.
+  replied (~13:46 CST) and completed its audit + integrity counts
+  (~13:41–13:53 CST; PR #77 open): N01 is STAGED (swap needs Yonatan's
+  approval plus the soak to have ended) with one new swap-blocking
+  finding (the `licensed_chapter_cache_id_seq` USAGE gap);
+  TRUST_PROXY is NOT implemented (Vercel config change, needs approval
+  + redeploy + live spoof check); T1.15 has a plan written but no
+  backup or drill yet. All three stay OPEN until those approvals land.
 - **T1.9 and T1.10 have no owner.** They stay OPEN until someone owns
   them.
 - **T1.16 and T1.19** are IN PROGRESS on this track's branches; T1.19
-  is PR #73 (open); the T1.16 PR link is TBD until that PR is created.
+  is PR #73 (open) and T1.16 is PR #78 (open); the reuse-detection
+  alert rule is PR2, in progress.
 - **The soak** (Muse 2) ends ~11:01 AM CST Nov 10; this file records
   the schedule, not the outcome.
