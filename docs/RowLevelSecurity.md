@@ -44,8 +44,9 @@ them.
   little gain: `users` rows hold no per-user private content beyond
   email and `password_hash`, and the app role's column-level grants
   (`UPDATE` only on `email_verified_at` and `password_hash`) are the
-  control there. The `20261104021959` backfill also updates `users` as
-  owner; with FORCE RLS on `users` it would silently update zero rows.
+  control there. (Migration `20261104021959` already ran and never
+  re-runs, so it is not a reason for the exclusion — the
+  unauthenticated-flow argument carries it on its own.)
 - **Tokens and sessions** (`email_verification_tokens`,
   `password_reset_tokens`, `auth_sessions`, `auth_refresh_tokens`).
   Protected by hash + single-use + the application's own checks; RLS
