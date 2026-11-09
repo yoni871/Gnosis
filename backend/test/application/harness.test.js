@@ -58,6 +58,13 @@ test('migrated application schema permits only the approved runtime grants', asy
     // column-level, so no table-level UPDATE row appears here (see the
     // column-grant test below).
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`known_login_devices:${privilege}`);
+    // TOTP MFA: enrollment, challenge, and recovery-code tables are
+    // read and inserted by the app; updates are column-level only
+    // (see the column-grant test below), so no table-level UPDATE row
+    // appears here.
+    for (const table of ['mfa_challenges', 'mfa_recovery_codes', 'user_mfa']) {
+        for (const privilege of ['SELECT', 'INSERT']) expected.push(`${table}:${privilege}`);
+    }
     assert.deepEqual(grants.rows.map(row => `${row.table_name}:${row.privilege_type}`).sort(), expected.sort());
     assert.ok(grants.rows.every(row => row.is_grantable === 'NO'));
     const sequences = await pool.query(`SELECT c.relname,has_sequence_privilege(current_user,c.oid,'USAGE') AS usage,
@@ -65,7 +72,7 @@ test('migrated application schema permits only the approved runtime grants', asy
         has_sequence_privilege(current_user,c.oid,'UPDATE') AS update_allowed
         FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
         WHERE n.nspname='public' AND c.relkind='S' ORDER BY c.relname`);
-    const allowed = ['users_id_seq', 'notes_id_seq', 'bookmarks_id_seq', 'highlights_id_seq', 'security_events_id_seq', 'known_login_devices_id_seq'];
+    const allowed = ['users_id_seq', 'notes_id_seq', 'bookmarks_id_seq', 'highlights_id_seq', 'security_events_id_seq', 'known_login_devices_id_seq', 'mfa_recovery_codes_id_seq'];
     for (const row of sequences.rows) {
         assert.equal(row.usage, allowed.includes(row.relname));
         assert.equal(row.select_allowed, false);
@@ -94,7 +101,13 @@ test('migrated application schema permits only the approved runtime grants', asy
         'DELETE FROM security_events',
         "UPDATE known_login_devices SET user_id=999999",
         "UPDATE known_login_devices SET device_key='\\x00'",
-        'DELETE FROM known_login_devices']) {
+        'DELETE FROM known_login_devices',
+        'DELETE FROM user_mfa', 'DELETE FROM mfa_challenges', 'DELETE FROM mfa_recovery_codes',
+        'UPDATE user_mfa SET user_id=999999', "UPDATE user_mfa SET created_at=now()",
+        "UPDATE mfa_challenges SET token_hash='\\x00'", 'UPDATE mfa_challenges SET user_id=999999',
+        "UPDATE mfa_challenges SET expires_at=now()", "UPDATE mfa_challenges SET created_at=now()",
+        "UPDATE mfa_recovery_codes SET code_hash='synthetic'", "UPDATE mfa_recovery_codes SET code_salt='synthetic'",
+        'UPDATE mfa_recovery_codes SET user_id=999999', "UPDATE mfa_recovery_codes SET created_at=now()"]) {
         await assert.rejects(pool.query(sql), { code: '42501' });
     }
 });
@@ -103,18 +116,27 @@ test('issue #9 and #10 column grants allow exactly the approved column updates',
     const { pool } = database;
     const columns = await pool.query(`SELECT table_name,column_name,privilege_type FROM information_schema.role_column_grants
         WHERE grantee=current_user AND table_schema='public' AND privilege_type='UPDATE'
-        AND table_name IN ('users','email_verification_tokens','password_reset_tokens') ORDER BY table_name,column_name`);
+        AND table_name IN ('users','email_verification_tokens','password_reset_tokens','user_mfa','mfa_challenges','mfa_recovery_codes') ORDER BY table_name,column_name`);
     assert.deepEqual(
         columns.rows.map(row => `${row.table_name}.${row.column_name}:${row.privilege_type}`),
         ['email_verification_tokens.consumed_reason:UPDATE', 'email_verification_tokens.used_at:UPDATE',
+            'mfa_challenges.consumed_reason:UPDATE', 'mfa_challenges.used_at:UPDATE',
+            'mfa_recovery_codes.used_at:UPDATE',
             'password_reset_tokens.consumed_reason:UPDATE', 'password_reset_tokens.used_at:UPDATE',
+            'user_mfa.enrolled:UPDATE', 'user_mfa.enrolled_at:UPDATE',
+            'user_mfa.secret_encrypted:UPDATE', 'user_mfa.updated_at:UPDATE',
             'users.email_verified_at:UPDATE', 'users.password_hash:UPDATE']);
     for (const [table, column] of [['users', 'id'], ['users', 'email'],
         ['users', 'first_name'], ['users', 'last_name'],
         ['email_verification_tokens', 'token_hash'], ['email_verification_tokens', 'user_id'],
         ['email_verification_tokens', 'expires_at'], ['email_verification_tokens', 'created_at'],
         ['password_reset_tokens', 'token_hash'], ['password_reset_tokens', 'user_id'],
-        ['password_reset_tokens', 'expires_at'], ['password_reset_tokens', 'created_at']]) {
+        ['password_reset_tokens', 'expires_at'], ['password_reset_tokens', 'created_at'],
+        ['user_mfa', 'user_id'], ['user_mfa', 'created_at'],
+        ['mfa_challenges', 'token_hash'], ['mfa_challenges', 'user_id'],
+        ['mfa_challenges', 'expires_at'], ['mfa_challenges', 'created_at'],
+        ['mfa_recovery_codes', 'code_hash'], ['mfa_recovery_codes', 'code_salt'],
+        ['mfa_recovery_codes', 'user_id'], ['mfa_recovery_codes', 'created_at']]) {
         const check = await pool.query('SELECT has_column_privilege(current_user,$1,$2,$3) AS allowed',
             [`public.${table}`, column, 'UPDATE']);
         assert.equal(check.rows[0].allowed, false, `${table}.${column} must not be updatable`);
@@ -144,6 +166,28 @@ test('issue #9 and #10 column grants allow exactly the approved column updates',
         [user.rows[0].id]);
     assert.equal(resetRow.rows[0].password_hash, 'synthetic-hash-2');
     assert.equal(resetRow.rows[0].consumed_reason, 'used');
+    // TOTP MFA positive control: enrollment columns and challenge /
+    // recovery-code consumption use the same approved columns.
+    await pool.query("INSERT INTO user_mfa(user_id,secret_encrypted) VALUES ($1,'synthetic-encrypted')",
+        [user.rows[0].id]);
+    await pool.query("UPDATE user_mfa SET enrolled=TRUE,enrolled_at=now(),secret_encrypted='synthetic-encrypted-2',updated_at=now() WHERE user_id=$1",
+        [user.rows[0].id]);
+    const challenge = await pool.query(
+        "INSERT INTO mfa_challenges(user_id,token_hash,expires_at) VALUES ($1,'\\x03',now() + interval '10 minutes') RETURNING id",
+        [user.rows[0].id]);
+    await pool.query("UPDATE mfa_challenges SET used_at=now(),consumed_reason='used' WHERE id=$1",
+        [challenge.rows[0].id]);
+    const code = await pool.query(
+        "INSERT INTO mfa_recovery_codes(user_id,code_hash,code_salt) VALUES ($1,'synthetic-hash','synthetic-salt') RETURNING id",
+        [user.rows[0].id]);
+    await pool.query("UPDATE mfa_recovery_codes SET used_at=now() WHERE id=$1", [code.rows[0].id]);
+    const mfaRow = await pool.query(
+        'SELECT enrolled, c.used_at AS challenge_used_at, c.consumed_reason, r.used_at AS code_used_at FROM user_mfa m JOIN mfa_challenges c ON c.user_id=m.user_id JOIN mfa_recovery_codes r ON r.user_id=m.user_id WHERE m.user_id=$1',
+        [user.rows[0].id]);
+    assert.equal(mfaRow.rows[0].enrolled, true);
+    assert.equal(mfaRow.rows[0].consumed_reason, 'used');
+    assert.ok(mfaRow.rows[0].challenge_used_at);
+    assert.ok(mfaRow.rows[0].code_used_at);
 });
 
 test('restricted writes persist across pools and rollback uses one independent client', async () => {

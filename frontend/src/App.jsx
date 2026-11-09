@@ -17,6 +17,7 @@ const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const SettingsPage = lazy(() => import('./pages/SettingsPage'));
 const SearchResultsPage = lazy(() => import('./pages/SearchResultsPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
+const MfaPage = lazy(() => import('./pages/MfaPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const VerifyPage = lazy(() => import('./pages/VerifyPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
@@ -87,6 +88,11 @@ function App() {
             <Route
               path='/login' 
               element={<LoginPage />}
+            />
+
+            <Route
+              path='/mfa'
+              element={<MfaPage />}
             />
 
             <Route

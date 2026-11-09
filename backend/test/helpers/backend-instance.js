@@ -26,6 +26,11 @@ function workerEnvironment() {
     // passwords against HIBP, and no test may call the real
     // api.pwnedpasswords.com.
     if (process.env.HIBP_API_BASE_URL) env.HIBP_API_BASE_URL = process.env.HIBP_API_BASE_URL;
+    // TOTP MFA: a test file may point workers at a synthetic encryption
+    // key, so MFA flows can run against the disposable database. The
+    // override is honored only under test isolation, mirroring the
+    // delivery-stub override above.
+    if (process.env.MFA_ENCRYPTION_KEY) env.MFA_ENCRYPTION_KEY = process.env.MFA_ENCRYPTION_KEY;
     return env;
 }
 

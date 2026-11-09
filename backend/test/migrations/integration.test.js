@@ -25,7 +25,7 @@ async function runAll(command, extra = {}) {
 }
 // Expected applied history per project, in file order.
 const PROJECTS = {
-    app: { applied: [baselineName, '20261103010729_add-auth-rate-limiting', '20261104021959_add-email-verification', '20261105231211_add-password-reset', '20261106144711_add-licensed-translations-cache', '20261106190359_add-user-reading-state', '20261106210000_add-sessions', '20261107005916_add-licensed-cache-verse-count-index', '20261107010016_add-licensed-ip-limits-window-index', '20261109194138_add-security-events', '20261109200233_add-known-login-devices', '20261112130000_make-note-passage-optional', '20261112210000_add-note-titles'] },
+    app: { applied: [baselineName, '20261103010729_add-auth-rate-limiting', '20261104021959_add-email-verification', '20261105231211_add-password-reset', '20261106144711_add-licensed-translations-cache', '20261106190359_add-user-reading-state', '20261106210000_add-sessions', '20261107005916_add-licensed-cache-verse-count-index', '20261107010016_add-licensed-ip-limits-window-index', '20261109150000_add-totp-mfa', '20261109194138_add-security-events', '20261109200233_add-known-login-devices', '20261112130000_make-note-passage-optional', '20261112210000_add-note-titles'] },
     bible: { applied: [baselineName, '20261106144711_add-licensed-translations', '20261106234443_add-original-language-analysis', '20261107051000_allow-verse-zero-in-original-language'] },
     commentary: { applied: [baselineName] },
 };
@@ -200,6 +200,7 @@ test('failed migration rolls back schema and history and can safely retry', asyn
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261112130000_make-note-passage-optional']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109200233_add-known-login-devices']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109194138_add-security-events']);
+    assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109150000_add-totp-mfa']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261107010016_add-licensed-ip-limits-window-index']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261107005916_add-licensed-cache-verse-count-index']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261106210000_add-sessions']);

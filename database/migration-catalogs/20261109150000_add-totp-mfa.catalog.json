@@ -1,0 +1,414 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "mfa_challenges.consumed_reason",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_challenges.created_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_challenges.expires_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_challenges.id",
+      "definition": {
+        "type": "uuid",
+        "default": "gen_random_uuid()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_challenges.token_hash",
+      "definition": {
+        "type": "bytea",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_challenges.used_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_challenges.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_recovery_codes.code_hash",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_recovery_codes.code_salt",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_recovery_codes.created_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_recovery_codes.id",
+      "definition": {
+        "type": "integer",
+        "default": "nextval('mfa_recovery_codes_id_seq'::regclass)",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_recovery_codes.used_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "mfa_recovery_codes.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_mfa.created_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_mfa.enrolled",
+      "definition": {
+        "type": "boolean",
+        "default": "false",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_mfa.enrolled_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_mfa.secret_encrypted",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_mfa.updated_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_mfa.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "mfa_challenges.mfa_challenges_consumed_reason_check",
+      "definition": {
+        "sql": "CHECK ((consumed_reason = ANY (ARRAY['used'::text, 'superseded'::text])))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "mfa_challenges.mfa_challenges_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "mfa_challenges.mfa_challenges_token_hash_key",
+      "definition": {
+        "sql": "UNIQUE (token_hash)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "mfa_challenges.mfa_challenges_user_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "mfa_recovery_codes.mfa_recovery_codes_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "mfa_recovery_codes.mfa_recovery_codes_user_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "user_mfa.user_mfa_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (user_id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "user_mfa.user_mfa_user_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "mfa_challenges_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX mfa_challenges_pkey ON public.mfa_challenges USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "mfa_challenges_token_hash_key",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX mfa_challenges_token_hash_key ON public.mfa_challenges USING btree (token_hash)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "mfa_challenges_user_id_idx",
+      "definition": {
+        "sql": "CREATE INDEX mfa_challenges_user_id_idx ON public.mfa_challenges USING btree (user_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "mfa_recovery_codes_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX mfa_recovery_codes_pkey ON public.mfa_recovery_codes USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "mfa_recovery_codes_user_id_idx",
+      "definition": {
+        "sql": "CREATE INDEX mfa_recovery_codes_user_id_idx ON public.mfa_recovery_codes USING btree (user_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "user_mfa_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX user_mfa_pkey ON public.user_mfa USING btree (user_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "mfa_challenges",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "mfa_recovery_codes",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "mfa_recovery_codes_id_seq",
+      "definition": {
+        "rls": false,
+        "kind": "S",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "user_mfa",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "sequence",
+      "name": "mfa_recovery_codes_id_seq",
+      "definition": {
+        "max": 2147483647,
+        "min": 1,
+        "type": "integer",
+        "cache": 1,
+        "cycle": false,
+        "start": 1,
+        "increment": 1,
+        "ownerTable": "mfa_recovery_codes",
+        "ownerColumn": "id"
+      }
+    }
+  ],
+  "removed": []
+}

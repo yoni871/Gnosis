@@ -3,6 +3,7 @@ const pool = require("../db/db");
 const passwordHash = require("../utils/passwordHash");
 const router = express.Router();
 const sessions = require("../services/sessionService");
+const mfaService = require("../services/mfaService");
 const authenticateToken = require("../middleware/authMiddleware");
 const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
 const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, validateDeleteAccountInput, VALIDATION_CODE } = require("../utils/authValidation");
@@ -377,6 +378,42 @@ router.post("/login", (req, res, next) => {
         return res.status(403).json({
             error: "Email not verified.",
             code: "EMAIL_NOT_VERIFIED",
+        });
+    }
+
+    // TOTP MFA (roadmap T2.3): an enrolled account receives no session
+    // from the password alone. Issue a single-use 10-minute challenge
+    // and return MFA_REQUIRED; the frontend completes login at POST
+    // /api/auth/mfa/verify. A correct password still does not count
+    // toward the login buckets, and no access token is issued here.
+    let mfaEnrolled;
+    try {
+        const mfaRow = await pool.query(
+            "SELECT enrolled FROM user_mfa WHERE user_id = $1", [user.id]);
+        mfaEnrolled = mfaRow.rows[0] ? mfaRow.rows[0].enrolled === true : false;
+    } catch (error) {
+        logAuthFailure("POST /api/auth/login", "database", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("login"));
+    }
+    if (mfaEnrolled) {
+        let challenge;
+        try {
+            challenge = await mfaService.issueMfaChallenge(pool, user.id);
+        } catch (error) {
+            logAuthFailure("POST /api/auth/login", "session", error);
+            await req.rateLimit.finalize("release");
+            return res.status(500).json(internalErrorBody("login"));
+        }
+        if (!challenge) {
+            await req.rateLimit.finalize("release");
+            return res.status(500).json(internalErrorBody("login"));
+        }
+        await req.rateLimit.finalize("release");
+        return res.status(401).json({
+            error: "Multi-factor authentication is required.",
+            code: "MFA_REQUIRED",
+            challenge,
         });
     }
 

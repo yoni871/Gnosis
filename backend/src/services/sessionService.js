@@ -25,24 +25,26 @@ async function transaction(work) {
         throw error;
     } finally { client.release(); }
 }
-async function createSession(userId, verifiedPasswordHash) {
+async function createSessionInTransaction(client, userId, verifiedPasswordHash) {
     const session = { id: crypto.randomUUID(), user_id: userId };
     const token = accessToken(session);
     const refresh = fresh();
-    const created = await transaction(async client => {
-        // Reset locks this same user row before changing the password and
-        // revoking sessions. Recheck the credential that login verified after
-        // acquiring the lock; never issue from a stale password snapshot.
-        const result = await client.query(
-            'SELECT password_hash FROM users WHERE id = $1 FOR UPDATE', [userId]);
-        if (typeof verifiedPasswordHash !== 'string'
-            || result.rows[0]?.password_hash !== verifiedPasswordHash) return false;
-        await client.query('INSERT INTO auth_sessions(id, user_id, expires_at) VALUES ($1, $2, $3)',
-            [session.id, userId, new Date(Date.now() + SESSION_MS)]);
-        await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refresh), session.id]);
-        return true;
-    });
-    return created ? { token, refresh } : null;
+    // Reset locks this same user row before changing the password and
+    // revoking sessions. Recheck the credential that login verified after
+    // acquiring the lock; never issue from a stale password snapshot.
+    const result = await client.query(
+        'SELECT password_hash FROM users WHERE id = $1 FOR UPDATE', [userId]);
+    if (typeof verifiedPasswordHash !== 'string'
+        || result.rows[0]?.password_hash !== verifiedPasswordHash) return null;
+    await client.query('INSERT INTO auth_sessions(id, user_id, expires_at) VALUES ($1, $2, $3)',
+        [session.id, userId, new Date(Date.now() + SESSION_MS)]);
+    await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refresh), session.id]);
+    return { token, refresh };
+}
+async function createSession(userId, verifiedPasswordHash) {
+    const created = await transaction(async client =>
+        createSessionInTransaction(client, userId, verifiedPasswordHash));
+    return created;
 }
 async function rotateSession(refresh) {
     if (!valid(refresh)) return null;
@@ -133,5 +135,5 @@ function browserSessionRequest(req, res, next) {
     }
     next();
 }
-module.exports = { ACCESS_SECONDS, SESSION_MS, createSession, rotateSession, revokeRefresh,
+module.exports = { ACCESS_SECONDS, SESSION_MS, createSession, createSessionInTransaction, rotateSession, revokeRefresh,
     revokeAccess, readCookie, setCookie, clearCookie, browserSessionRequest, hash };

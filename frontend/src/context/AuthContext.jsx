@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, createContext } from "react";
 import { getProfile, loginUser, registerUser, refreshSession, logoutSession } from "../services/authService";
+import { verifyMfaChallenge } from "../services/mfaService";
 import { createAuthSessionGuard } from "./authSession";
 
 const AuthContext = createContext(null);
@@ -125,6 +126,51 @@ export function AuthProvider({ children }) {
         return loginWithTicket(credentials, ticket);
     }, [authGuard, loginWithTicket]);
 
+    // Second step of a login for an MFA-enrolled account: the login
+    // call already verified the password and returned an MFA challenge
+    // instead of a session. Completing the challenge issues the session
+    // exactly like login does, under the same epoch guard.
+    const loginMfaWithTicket = useCallback(async (challenge, code, ticket) => {
+        if (!authGuard.isCurrent(ticket)) {
+            return null;
+        }
+        setIsAuthLoading(true);
+
+        try {
+            const { token: newToken } = await verifyMfaChallenge(challenge, code);
+            if (!authGuard.isCurrent(ticket)) {
+                return null;
+            }
+            updateToken(newToken);
+
+            const profile = await getProfile(newToken);
+            if (!authGuard.isCurrent(ticket)) {
+                return null;
+            }
+            setUser(profile);
+
+            return profile;
+        } catch (error) {
+            if (!authGuard.isCurrent(ticket)) {
+                return null;
+            }
+            updateToken(null);
+            setUser(null);
+
+            throw error;
+        } finally {
+            if (authGuard.isCurrent(ticket)) {
+                setIsAuthLoading(false);
+            }
+        }
+    }, [authGuard, updateToken]);
+
+    const loginMfa = useCallback(async (challenge, code) => {
+        const ticket = authGuard.begin();
+        setSessionVersion(ticket);
+        return loginMfaWithTicket(challenge, code, ticket);
+    }, [authGuard, loginMfaWithTicket]);
+
     const register = useCallback(async (userData) => {
         // Issue #9: registration creates an unverified account and does
         // NOT log in. It touches no session state at all: no ticket, no
@@ -211,6 +257,7 @@ export function AuthProvider({ children }) {
         isAuthenticated,
         isAuthLoading,
         login,
+        loginMfa,
         register,
         logout
     }), [
@@ -221,6 +268,7 @@ export function AuthProvider({ children }) {
         isAuthenticated,
         isAuthLoading,
         login,
+        loginMfa,
         register,
         logout
     ]);

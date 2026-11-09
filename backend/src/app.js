@@ -11,6 +11,7 @@ require("./config/emailConfig").requireEmailConfig();
 
 const bibleRoutes = require("./routes/bibleRoutes");
 const authRoutes = require("./routes/authRoutes");
+const mfaRoutes = require("./routes/mfaRoutes");
 const searchRoutes = require("./routes/searchRoutes");
 const notesRoutes = require("./routes/notesRoutes");
 const bookmarksRoutes = require("./routes/bookmarksRoutes");
@@ -67,6 +68,7 @@ app.use("/api", bibleRoutes);
 // error responses too. Public reference/search routes are untouched:
 // they keep their intentional public caching from cacheHeaders.js.
 app.use("/api/auth", privateNoStore, authRoutes);
+app.use("/api/auth/mfa", privateNoStore, mfaRoutes);
 app.use("/api", searchRoutes);
 app.use("/api/notes", privateNoStore, notesRoutes);
 app.use("/api/bookmarks", privateNoStore, bookmarksRoutes);

@@ -77,6 +77,15 @@ const POLICIES = {
     reset_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
     // (PR #85's refresh_ip 30/15 min lived here; PR #90 replaces it with
     // the 120/min entry at the top of this table — see that comment.)
+    // TOTP MFA (roadmap T2.3): the challenge step mirrors verify
+    // per-IP (30/15 min) with a strict per-challenge bucket (5/15
+    // min), so guessing a 6-digit code against one challenge is
+    // bounded while a burst against many challenges still trips the
+    // IP bucket. Authenticated code endpoints (enroll confirm,
+    // regenerate, disable) share one per-user+IP bucket (5/15 min).
+    mfa_verify_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
+    mfa_verify_ip_challenge: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_code_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since

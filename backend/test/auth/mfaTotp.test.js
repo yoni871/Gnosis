@@ -1,0 +1,46 @@
+const test = require("node:test");
+const assert = require("node:assert/strict");
+const {
+    isTotpCodeFormat,
+    generateTotpSecret,
+    buildOtpAuthUrl,
+    generateTotpCode,
+    verifyTotpCode,
+} = require("../../src/utils/mfaTotp");
+
+test("generated secrets are 32-char base32 and produce verifiable codes", async () => {
+    const secret = generateTotpSecret();
+    assert.equal(typeof secret, "string");
+    assert.equal(secret.length, 32);
+    assert.match(secret, /^[A-Z2-7]+$/);
+    const code = await generateTotpCode(secret);
+    assert.match(code, /^\d{6}$/);
+    assert.equal(await verifyTotpCode(secret, code), true);
+});
+
+test("a wrong code, a malformed code, and a bad secret all fail closed", async () => {
+    const secret = generateTotpSecret();
+    const code = await generateTotpCode(secret);
+    const wrong = code === "000000" ? "000001" : "000000";
+    assert.equal(await verifyTotpCode(secret, wrong), false);
+    assert.equal(await verifyTotpCode(secret, "not-a-code"), false);
+    assert.equal(await verifyTotpCode("not-a-secret!!", code), false);
+    assert.equal(await verifyTotpCode("", code), false);
+});
+
+test("isTotpCodeFormat accepts exactly six digits", () => {
+    assert.equal(isTotpCodeFormat("123456"), true);
+    assert.equal(isTotpCodeFormat("12345"), false);
+    assert.equal(isTotpCodeFormat("1234567"), false);
+    assert.equal(isTotpCodeFormat("12345a"), false);
+    assert.equal(isTotpCodeFormat(""), false);
+    assert.equal(isTotpCodeFormat(null), false);
+});
+
+test("the otpauth URL names Gnosis and carries the secret, never a code", () => {
+    const secret = generateTotpSecret();
+    const url = buildOtpAuthUrl({ label: "reader@example.invalid", secret });
+    assert.ok(url.startsWith("otpauth://totp/Gnosis:"));
+    assert.ok(url.includes(`secret=${secret}`));
+    assert.ok(url.includes("issuer=Gnosis"));
+});

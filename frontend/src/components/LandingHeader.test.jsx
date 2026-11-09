@@ -25,16 +25,19 @@ test('account disclosure preserves full name, action list, Tab order, Escape, an
     await user.keyboard('{Enter}');
     const list = document.getElementById(trigger.getAttribute('aria-controls'));
     expect(list.tagName).toBe('UL');
-    // Three items: Settings, the theme row, and Sign out. (A Profile item
-    // used to sit here with no handler — it did nothing when clicked — so
-    // it was removed; it returns when a profile page lands.)
-    expect(within(list).getAllByRole('listitem')).toHaveLength(3);
+    // Four items: Settings, Two-factor authentication, the theme row, and
+    // Sign out. (A Profile item used to sit here with no handler — it did
+    // nothing when clicked — so it was removed; it returns when a profile
+    // page lands.)
+    expect(within(list).getAllByRole('listitem')).toHaveLength(4);
     expect(within(list).queryByText(/Bookmarks|Highlights|Profile/)).toBeNull();
     await user.tab();
     expect(within(list).getByRole('link', { name: 'Settings' })).toHaveFocus();
     expect(within(list).getByRole('link', { name: 'Settings' })).toHaveAttribute('href', '/settings');
     await user.tab();
     expect(within(list).getByRole('button', { name: 'Switch to dark theme' })).toHaveFocus();
+    await user.tab();
+    expect(within(list).getByRole('link', { name: 'Two-factor authentication' })).toHaveFocus();
     await user.tab();
     expect(within(list).getByRole('button', { name: 'Sign out' })).toHaveFocus();
     await user.keyboard('{Escape}');
