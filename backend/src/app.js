@@ -11,6 +11,7 @@ require("./config/emailConfig").requireEmailConfig();
 
 const bibleRoutes = require("./routes/bibleRoutes");
 const authRoutes = require("./routes/authRoutes");
+const passkeyRoutes = require("./routes/passkeyRoutes");
 const searchRoutes = require("./routes/searchRoutes");
 const notesRoutes = require("./routes/notesRoutes");
 const bookmarksRoutes = require("./routes/bookmarksRoutes");
@@ -32,6 +33,7 @@ app.use(express.json());
 
 app.use("/api", bibleRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/auth/passkeys", passkeyRoutes);
 app.use("/api", searchRoutes);
 app.use("/api/notes", notesRoutes);
 app.use("/api/bookmarks", bookmarksRoutes);

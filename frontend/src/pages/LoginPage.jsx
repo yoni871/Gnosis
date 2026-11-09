@@ -1,4 +1,6 @@
 import { resendVerification } from "../services/authService";
+import { loginWithPasskey } from "../services/passkeyService";
+import { browserSupportsWebAuthn } from "@simplewebauthn/browser";
 import { getReadingState } from "../services/readingStateService";
 import { readingStateUrl } from "../utils/readingState";
 import { useContext, useState } from "react";
@@ -12,6 +14,7 @@ export default function LoginPage() {
     const {
         getAccessToken,
         login, //performs complete login process
+        loginWithToken, //establishes a session from a passkey login token
         isAuthLoading //tells the from whether authentication is currently processing
     } = useContext(AuthContext);
 
@@ -20,6 +23,10 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState("");
+    // Passkey sign-in is only offered where the browser supports
+    // WebAuthn; otherwise the password form is the only path.
+    const [passkeySupported] = useState(() => browserSupportsWebAuthn());
+    const [passkeyStatus, setPasskeyStatus] = useState("idle");
     // Issue #9: when the backend reports an unverified account, the page
     // shows the resend panel for the attempted address instead of a
     // generic error. The branch is on the error CODE, never the text.
@@ -87,6 +94,38 @@ export default function LoginPage() {
             setResendStatus("sent");
         } catch (error) {
             setResendStatus("error");
+        }
+    };
+
+    // Passkey sign-in: the server issues options for the account's
+    // passkeys, the browser runs the authenticator ceremony, and the
+    // returned token establishes the session like a password login.
+    // A cancelled ceremony is a plain message, not an error state.
+    const handlePasskeyLogin = async () => {
+        setLoginError("");
+        setUnverifiedEmail("");
+        if (!email.trim()) {
+            setLoginError("Enter your email address first, then choose “Sign in with a passkey”.");
+            return;
+        }
+        setPasskeyStatus("working");
+        try {
+            const { token } = await loginWithPasskey(email.trim());
+            const profile = await loginWithToken(token);
+            if (profile) {
+                navigate(await resumeUrl());
+            }
+        } catch (error) {
+            if (error.name === "NotAllowedError") {
+                setLoginError("The passkey sign-in was cancelled.");
+            } else if (error.code === "EMAIL_NOT_VERIFIED") {
+                setUnverifiedEmail(email);
+                setResendStatus("idle");
+            } else {
+                setLoginError(error.message || "Could not sign in with a passkey.");
+            }
+        } finally {
+            setPasskeyStatus("idle");
         }
     };
 
@@ -491,6 +530,49 @@ export default function LoginPage() {
                             </button>
 
                         </form>
+
+                        {passkeySupported && (
+                            <>
+                                <div className="mt-6 flex items-center gap-3 text-[11px] text-[var(--text-muted)]" aria-hidden="true">
+                                    <span className="h-px flex-1 bg-[var(--border-control)]" />
+                                    <span>or</span>
+                                    <span className="h-px flex-1 bg-[var(--border-control)]" />
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={handlePasskeyLogin}
+                                    disabled={isAuthLoading || isResuming || passkeyStatus === "working"}
+                                    className="
+                                        mt-6
+                                        flex
+                                        h-12
+                                        w-full
+                                        items-center
+                                        justify-center
+                                        border
+                                        border-[var(--border-control)]
+                                        bg-transparent
+                                        px-5
+                                        text-[12px]
+                                        font-semibold
+                                        tracking-wide
+                                        text-[var(--text-primary)]
+                                        transition-all
+                                        duration-200
+                                        hover:border-[var(--color-brand)]
+                                        hover:text-[var(--color-brand)]
+                                        disabled:cursor-not-allowed
+                                        disabled:opacity-60
+                                    "
+                                >
+                                    {passkeyStatus === "working" ? "Waiting for your device…" : "Sign in with a passkey"}
+                                </button>
+                                <p className="mt-3 text-[11px] leading-5 text-[var(--text-muted)]">
+                                    Your device checks it&apos;s really you — no password to type or phish.
+                                    Your password sign-in keeps working too.
+                                </p>
+                            </>
+                        )}
 
                         <p className="
                             mt-8

@@ -42,6 +42,27 @@ async function createSession(userId, verifiedPasswordHash) {
     });
     return created ? { token, refresh } : null;
 }
+async function createSessionForVerifiedUser(userId) {
+    // Passkey login: the caller has just verified a WebAuthn assertion
+    // in this request, so no password recheck applies — the assertion
+    // itself is the fresh credential verification. The user row is
+    // still locked and the email gate still enforced, exactly like
+    // password login, so a deleted or unverified account gets no
+    // session from a stale credential.
+    const session = { id: crypto.randomUUID(), user_id: userId };
+    const token = accessToken(session);
+    const refresh = fresh();
+    const created = await transaction(async client => {
+        const result = await client.query(
+            'SELECT email_verified_at FROM users WHERE id = $1 FOR UPDATE', [userId]);
+        if (!result.rows[0] || !result.rows[0].email_verified_at) return false;
+        await client.query('INSERT INTO auth_sessions(id, user_id, expires_at) VALUES ($1, $2, $3)',
+            [session.id, userId, new Date(Date.now() + SESSION_MS)]);
+        await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refresh), session.id]);
+        return true;
+    });
+    return created ? { token, refresh } : null;
+}
 async function rotateSession(refresh) {
     if (!valid(refresh)) return null;
     return transaction(async client => {
@@ -99,5 +120,5 @@ function browserSessionRequest(req, res, next) {
     }
     next();
 }
-module.exports = { ACCESS_SECONDS, SESSION_MS, createSession, rotateSession, revokeRefresh,
+module.exports = { ACCESS_SECONDS, SESSION_MS, createSession, createSessionForVerifiedUser, rotateSession, revokeRefresh,
     revokeAccess, readCookie, setCookie, clearCookie, browserSessionRequest, hash };

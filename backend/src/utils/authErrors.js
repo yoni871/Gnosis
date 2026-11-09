@@ -24,6 +24,9 @@ const ENDPOINT_MESSAGES = {
     // never these internal messages.
     forgot: "Something went wrong.",
     reset: "Something went wrong.",
+    // Passkeys: same generic wording; client-visible failures are the
+    // controlled 400/401/404 bodies, never these internal messages.
+    passkey: "Something went wrong.",
 };
 
 function errorBody(message, code) {
