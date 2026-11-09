@@ -1,5 +1,6 @@
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
+const { withUser, setUserContext } = require("../db/userContext");
 
 // Remove duplicate coordinates before validating and saving the selection.
 function uniqueVerses(verses) {
@@ -62,6 +63,12 @@ async function saveHighlights(userId, bookId, verses, color) {
         //start group of database operations that succeed or fail
         await client.query("BEGIN");
 
+        // Row-level security context for this transaction. This
+        // function owns its transaction (with rollback logging below),
+        // so it sets the context directly instead of via withUser; the
+        // value is transaction-local and clears on COMMIT/ROLLBACK.
+        await setUserContext(client, userId);
+
         // Insert or recolor only the exact coordinates the user selected.
         const result = await client.query(
             `
@@ -110,14 +117,14 @@ async function saveHighlights(userId, bookId, verses, color) {
 // boundary); the rows are ordered by book order, then chapter, then
 // verse, exactly as the old join did.
 async function getHighlights(userId) {
-    const result = await pool.query(
+    const result = await withUser(pool, userId, (client) => client.query(
         `
         SELECT h.*
         FROM highlights h
         WHERE h.user_id = $1
         `,
         [userId]
-    );
+    ));
 
     // Return an empty array when the user has no highlights.
     if (result.rows.length === 0) return [];
@@ -138,7 +145,7 @@ async function getHighlights(userId) {
 
 // Delete a highlight only when it belongs to the authenticated user.
 async function deleteHighlight(userId, highlightId) {
-    const result = await pool.query(
+    const result = await withUser(pool, userId, (client) => client.query(
         `
         DELETE FROM highlights
         WHERE id = $1
@@ -146,7 +153,7 @@ async function deleteHighlight(userId, highlightId) {
         RETURNING *
         `,
         [highlightId, userId]
-    );
+    ));
 
     // Return the removed record, or null if no owned record matched.
     return result.rows[0] || null;
@@ -156,7 +163,7 @@ async function deleteHighlight(userId, highlightId) {
 async function deleteHighlightsInPassage(userId, bookId, verses) {
     const selected = uniqueVerses(verses);
 
-    const result = await pool.query(
+    const result = await withUser(pool, userId, (client) => client.query(
         `
         DELETE FROM highlights h
         USING jsonb_to_recordset($3::jsonb)
@@ -168,7 +175,7 @@ async function deleteHighlightsInPassage(userId, bookId, verses) {
         RETURNING h.*
         `,
         [userId, bookId, JSON.stringify(selected)]
-    );
+    ));
 
     return result.rows;
 }

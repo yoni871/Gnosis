@@ -1,5 +1,6 @@
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
+const { withUser } = require("../db/userContext");
 const { bookExists } = require("../utils/bookValidation");
 const isValidPassageRange = (
     startChapter,
@@ -88,7 +89,7 @@ const createBookmark = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             INSERT INTO bookmarks (
                 user_id,
@@ -109,7 +110,7 @@ const createBookmark = async (req, res) => {
                 endChapter,
                 endVerse
             ]
-        );
+        ));
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
@@ -131,7 +132,7 @@ const getBookmarks = async (req, res) => {
     const userId = req.user.userId;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             SELECT bookmarks.*
             FROM bookmarks
@@ -139,7 +140,7 @@ const getBookmarks = async (req, res) => {
             ORDER BY bookmarks.created_at DESC
             `,
             [userId]
-        );
+        ));
 
         return res.status(200).json(
             await withBookNames(result.rows)
@@ -158,7 +159,7 @@ const getBookmarkById = async (req, res) => {
     const bookmarkId = req.params.id;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             SELECT bookmarks.*
             FROM bookmarks
@@ -166,7 +167,7 @@ const getBookmarkById = async (req, res) => {
             AND bookmarks.user_id = $2
             `,
             [bookmarkId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -242,7 +243,7 @@ const updateBookmark = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             UPDATE bookmarks
             SET
@@ -264,7 +265,7 @@ const updateBookmark = async (req, res) => {
                 bookmarkId,
                 userId
             ]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -294,7 +295,7 @@ const deleteBookmark = async (req, res) => {
     const bookmarkId = req.params.id;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             DELETE FROM bookmarks
             WHERE id = $1
@@ -302,7 +303,7 @@ const deleteBookmark = async (req, res) => {
             RETURNING *
             `,
             [bookmarkId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
