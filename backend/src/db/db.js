@@ -1,4 +1,5 @@
 const { Pool } = require("pg");
+const { logPoolError } = require("../utils/authErrors");
 require("../config/env").loadEnvironment();
 
 if (process.env.GNOSIS_LOCAL_DEV === '1') {
@@ -121,10 +122,10 @@ function createPools(env = process.env) {
                 connectionTimeoutMillis: 10000
             });
             // Handle errors from connections that are sitting idle.
+            // Only the subsystem and the safe code are logged (audit
+            // F02) — never the connection string or the message.
             created.on("error", (error) => {
-                const code = typeof error?.code === "string" && /^[0-9]{2}[A-Z0-9]{3}$/.test(error.code)
-                    ? error.code : "INTERNAL";
-                console.error(JSON.stringify({ operation: "database.idle", code }));
+                logPoolError(error);
             });
             byKey.set(key, created);
         }

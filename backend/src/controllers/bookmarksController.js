@@ -1,9 +1,9 @@
 const { withUserBudget, ensureCapacity } = require("../utils/storageBudget");
 const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
-const { logFailure } = require("../utils/safeLog");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
+const { logControllerError } = require("../utils/authErrors");
 const isValidPassageRange = (
     startChapter,
     startVerse,
@@ -126,7 +126,7 @@ const createBookmark = async (req, res) => {
             });
         }
 
-        logFailure("bookmarksController", error);
+        logControllerError("bookmarks.create", "database", error);
 
         return res.status(500).json({
             error: "Failed to create bookmark."
@@ -156,7 +156,7 @@ const getBookmarks = async (req, res) => {
         return sendPage(res, resultPage, page);
     } catch (error) {
         if (knownResourceError(error, res)) return;
-        logFailure("bookmarksController", error);
+        logControllerError("bookmarks.list", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve bookmarks."
@@ -198,7 +198,7 @@ const getBookmarkById = async (req, res) => {
         return res.status(200).json(bookmarks[0]);
     } catch (error) {
         if (knownResourceError(error, res)) return;
-        logFailure("bookmarksController", error);
+        logControllerError("bookmarks.get", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve bookmark."
@@ -294,7 +294,7 @@ const updateBookmark = async (req, res) => {
             });
         }
 
-        logFailure("bookmarksController", error);
+        logControllerError("bookmarks.update", "database", error);
 
         return res.status(500).json({
             error: "Failed to update bookmark."
@@ -328,7 +328,7 @@ const deleteBookmark = async (req, res) => {
         });
     } catch (error) {
         if (knownResourceError(error, res)) return;
-        logFailure("bookmarksController", error);
+        logControllerError("bookmarks.delete", "database", error);
 
         return res.status(500).json({
             error: "Failed to delete bookmark."

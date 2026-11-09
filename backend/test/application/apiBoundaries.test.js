@@ -34,19 +34,36 @@ test('private PostgreSQL failures never leak diagnostics into controller logs or
         { detail: 'private-marker', stack: 'private-marker', code: '23514' }); });
     const { createNote } = require('../../src/controllers/notesController');
     const logs = [];
-    t.mock.method(console, 'error', (...args) => logs.push(args));
+    t.mock.method(console, 'error', (...args) => logs.push(args.join(' ')));
     const res = { statusCode: 0, status(code) { this.statusCode = code; return this; }, json(body) { this.body = body; } };
     await createNote({ user: { userId: 1 }, body: good }, res);
     assert.equal(res.statusCode, 500);
     assert.ok(!JSON.stringify([logs, res.body]).includes('private-marker'));
-    assert.equal(JSON.parse(logs[0][0]).code, '23514');
+    // logHygiene style (#80, pair 2): one line carrying route, kind, and
+    // the safe code only — never the message, detail, or stack.
+    const text = logs.join('\n');
+    assert.ok(text.includes('notes.create'), text);
+    assert.ok(text.includes('kind=database'), text);
+    assert.ok(text.includes('code=23514'), text);
 });
-test('log codes cannot contain arbitrary error messages or multiline injection', t => {
+// Rewritten to logHygiene style (#80, pair 2): the shared logger records
+// only route, kind, and code — message and stack never reach the log,
+// even when they embed submitted values. NOTE: unlike #75's safeLog,
+// #80's logger does not reshape the code itself (it logs any string
+// code verbatim); at these call sites the code comes from the pg driver
+// (a 5-char SQLSTATE), never from user input. That sanitization is
+// dropped with safeLog.js — flagged in the integration report.
+test('controller logs record only route, kind, and code — never message or stack', t => {
     const logs = [];
-    t.mock.method(console, 'error', value => logs.push(JSON.parse(value)));
-    require('../../src/utils/safeLog').logFailure('synthetic', { code: 'private-marker\nINJECTED', message: 'private-marker' });
-    assert.equal(logs[0].code, 'INTERNAL');
-    assert.ok(!JSON.stringify(logs).includes('private-marker'));
+    t.mock.method(console, 'error', (...args) => logs.push(args.join(' ')));
+    const { logControllerError } = require('../../src/utils/authErrors');
+    logControllerError('notes.create', 'database', Object.assign(new Error('private-marker'),
+        { detail: 'private-marker', stack: 'private-marker', code: '23514' }));
+    assert.equal(logs.length, 1);
+    assert.ok(logs[0].includes('notes.create'), logs[0]);
+    assert.ok(logs[0].includes('kind=database'), logs[0]);
+    assert.ok(logs[0].includes('code=23514'), logs[0]);
+    assert.ok(!logs.join('').includes('private-marker'));
 });
 
 test('search budget bounds clients and concurrent work and releases slots once', () => {

@@ -49,7 +49,7 @@ app.set("trust proxy", resolveTrustProxy(process.env.TRUST_PROXY));
 app.use(cors({ origin: new URL(process.env.FRONTEND_URL).origin, credentials: true }));
 app.use(express.json({ limit: "100kb", strict: true }));
 
-app.use("/api", require("./utils/safeLog").requestContext);
+app.use("/api", require("./middleware/requestContext").requestContext);
 app.use("/api", bibleRoutes);
 // Audit F12: every authenticated/private response carries
 // `Cache-Control: private, no-store`, including error responses. The

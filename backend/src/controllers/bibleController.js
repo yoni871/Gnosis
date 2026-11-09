@@ -1,8 +1,8 @@
-const { logFailure } = require("../utils/safeLog");
 //this controller recieves the http request
 //talks to the database and sends the response
 const bibleService = require("../services/bibleService");
 const licensedTranslations = require("../services/licensed/licensedTranslations");
+const { logControllerError } = require("../utils/authErrors");
 
 // Licensed translations are temporarily unavailable as a whole, never
 // per-verse: the reader answers this by falling back to BSB.
@@ -16,7 +16,7 @@ const getBooks = async (req, res) => {
         const result = await bibleService.getAllBooks();
         res.json(result.rows);
     } catch (error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.books", "database", error);
 
         res.status(500).json({
             error: "Failed to retrieve books"
@@ -29,7 +29,7 @@ const getChapters = async (req, res) => {
         const result = await bibleService.getAllChapters(req.params.bookId);
         res.json(result.rows);
     } catch(error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.chapters", "database", error);
         res.status(500).json({
             error: "Failed to retrieve chapters."
         });
@@ -41,7 +41,7 @@ const getVerses = async (req, res) => {
         const result = await bibleService.getVersesByChapter(req.params.chapterId, req.query.translationId);
         res.json(result.rows);
     } catch(error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.verses", "database", error);
         res.status(500).json({
             error: "Failed to retrieve verses."
         });
@@ -53,7 +53,7 @@ const getTranslations = async (req, res) => {
         const result = await bibleService.getAllTranslations();
         res.json(result.rows);
     } catch(error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.translations", "database", error);
         res.status(500).json({
             error: "Failed to retrieve translations."
         });
@@ -65,7 +65,7 @@ const getCommentaries = async (req, res) => {
         const result = await bibleService.getAllCommentaries();
         res.json(result.rows);
     } catch(error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.commentaries", "database", error);
         res.status(500).json({
             error: "Failed to retrieve commentaries."
         });
@@ -77,7 +77,7 @@ const getBookCommentaries = async (req, res) => {
         const result = await bibleService.getCommentariesByBook(req.params.bookId);
         res.json(result.rows);
     } catch(error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.book-commentaries", "database", error);
         res.status(500).json({
             error: "Failed to retrieve book commentaries."
         });
@@ -89,7 +89,7 @@ const getSources = async (req, res) => {
         const result = await bibleService.getAllSources();
         res.json(result.rows);
     } catch(error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.sources", "database", error);
         res.status(500).json({
             error: "Failed to retrieve sources."
         });
@@ -111,7 +111,7 @@ const getChapterCommentaries = async (req, res) => {
         res.json(result.rows);
 
     } catch (error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.chapter-commentaries", "database", error);
         res.status(500).json({ error: "Failed to retrieve chapter commentaries." });
     }
 }
@@ -121,7 +121,7 @@ const getVerseCommentaries = async (req, res) => {
         const result = await bibleService.getCommentariesByChapter(req.params.bookId, req.params.chapterNumber, req.params.verseNumber);
         res.json(result.rows);
     } catch(error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.verse-commentaries", "database", error);
         res.status(500).json({
             error: "Failed to retrieve chapter verse commentaries."
         });
@@ -166,9 +166,10 @@ const getBibleChapter = async (req, res) => {
                     book,
                 })));
             } catch (error) {
-                // Provider detail stays in the server log; the reader only
-                // learns the translation is unavailable right now.
-                logFailure("bibleController", error);
+                // Only the route, kind, and safe code reach the server
+                // log (audit F02); the reader only learns the
+                // translation is unavailable right now.
+                logControllerError("bible.chapter", "licensed-provider", error);
                 return res.status(503).json(LICENSED_UNAVAILABLE_BODY);
             }
         }
@@ -180,7 +181,7 @@ const getBibleChapter = async (req, res) => {
         }
         res.json(result.rows);
     } catch(error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.chapter", "database", error);
         res.status(500).json({
             error: "Failed to retrieve chapter."
         });
@@ -207,7 +208,7 @@ const getStudy = async (req, res) => {
             commentaries
         });
     } catch(error) {
-        logFailure("bibleController", error);
+        logControllerError("bible.study", "database", error);
         res.status(500).json({
             error: "Failed to retrieve chapter."
         });

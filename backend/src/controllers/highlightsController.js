@@ -1,11 +1,11 @@
 const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
-const { logFailure } = require("../utils/safeLog");
 const { saveHighlights, 
     getHighlights: loadHighlights,
     deleteHighlight: removeHighlight,
     deleteHighlightsInPassage: clearPassageHighlights
 } = require("../services/highlightsService");
 const { isValidColor, isValidVerseSelection } = require("../utils/highlightValidation");
+const { logControllerError } = require("../utils/authErrors");
 
 // Handle a request to apply a color to a passage.
 const createHighlight = async (req, res) => {
@@ -53,7 +53,7 @@ const createHighlight = async (req, res) => {
                 error: "Invalid passage."
             });
         }
-        logFailure("highlightsController", error);
+        logControllerError("highlights.create", "database", error);
         
         return res.status(500).json({
             error: "Failed to save highlights."
@@ -73,7 +73,7 @@ const getHighlights = async (req, res) => {
         return sendPage(res, highlights, page);
     } catch (error) {
         if (knownResourceError(error, res)) return;
-        logFailure("highlightsController", error);
+        logControllerError("highlights.list", "database", error);
 
         return res.status(500).json({
             error: "Failed to load highlights."
@@ -111,7 +111,7 @@ const deleteHighlight = async (req, res) => {
         });
     } catch (error) {
         if (knownResourceError(error, res)) return;
-        logFailure("highlightsController", error);
+        logControllerError("highlights.delete", "database", error);
 
         return res.status(500).json({
             error: "Failed to remove highlight."
@@ -150,7 +150,7 @@ const deleteHighlightsInPassage = async (req, res) => {
         });
     } catch (error) {
         if (knownResourceError(error, res)) return;
-        logFailure("highlightsController", error);
+        logControllerError("highlights.clear-passage", "database", error);
 
         return res.status(500).json({
             error: "Failed to clear highlights."

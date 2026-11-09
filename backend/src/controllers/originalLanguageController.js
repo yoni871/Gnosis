@@ -1,6 +1,6 @@
-const { logFailure } = require("../utils/safeLog");
 // Original Language Analysis (Phase 1) — see docs/OriginalLanguage.md.
 const originalLanguageService = require("../services/originalLanguageService");
+const { logControllerError } = require("../utils/authErrors");
 
 // Phase 2 covers the full canon; the API says so instead of
 // pretending a passage is covered when it is not.
@@ -160,7 +160,7 @@ const getPassage = async (req, res) => {
             sources,
         });
     } catch (error) {
-        logFailure("originalLanguageController", error);
+        logControllerError("original-language.passage", "database", error);
         res.status(500).json({ error: "Failed to retrieve original-language passage." });
     }
 };
@@ -199,7 +199,7 @@ const getWord = async (req, res) => {
             sources,
         });
     } catch (error) {
-        logFailure("originalLanguageController", error);
+        logControllerError("original-language.word", "database", error);
         res.status(500).json({ error: "Failed to retrieve word." });
     }
 };
@@ -274,7 +274,7 @@ const getLemmaOccurrences = async (req, res) => {
             sources,
         });
     } catch (error) {
-        logFailure("originalLanguageController", error);
+        logControllerError("original-language.occurrences", "database", error);
         res.status(500).json({ error: "Failed to retrieve occurrences." });
     }
 };

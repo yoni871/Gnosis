@@ -143,11 +143,33 @@ test("invalid, unlimited and inverted database budgets fail without leaking valu
         assert.throws(() => pools(env), error => !error.message.includes("private-marker"));
     }
 });
-test("idle connection diagnostics never expose errors, details or URLs", t => {
-    const result = pools({});
-    const logs = [];
-    t.mock.method(console, 'error', value => logs.push(value));
-    result.app.emit('error', Object.assign(new Error('private-marker'), { detail: 'private-marker', code: '08006' }));
-    assert.deepEqual(JSON.parse(logs[0]), { operation: 'database.idle', code: '08006' });
-    assert.ok(!logs.join('').includes('private-marker'));
+test("an idle pool error logs only the subsystem and safe code", () => {
+    const seen = [];
+    const original = console.error;
+    console.error = (...args) => {
+        seen.push(args.join(" "));
+    };
+    try {
+        const result = pools({
+            DB_USER: "operator",
+            DB_HOST: "127.0.0.1",
+            DB_NAME: "gnosis",
+            DB_PORT: "5432",
+        });
+        const fakeUrl = ["postgres", "://", "dbuser", ":", "dbpass",
+            "@", "db.example.invalid", ":5432/gnosis"].join("");
+        const error = new Error(
+            "connect ECONNREFUSED 10.0.0.1:5432 " + fakeUrl
+        );
+        error.code = "ECONNREFUSED";
+        result.app.emit("error", error);
+    } finally {
+        console.error = original;
+    }
+    const text = seen.join("\n");
+    assert.equal(seen.length, 1);
+    assert.ok(text.includes("[db] pool error code=ECONNREFUSED"), text);
+    assert.ok(!text.includes("db.example.invalid"), text);
+    assert.ok(!text.includes("dbpass"), text);
+    assert.ok(!text.includes("10.0.0.1"), text);
 });

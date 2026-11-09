@@ -1,4 +1,3 @@
-const { logFailure } = require("../../utils/safeLog");
 // Licensed-translation orchestrator.
 //
 // One chapter at a time, only for the translation the reader actually
@@ -31,6 +30,7 @@ const cache = require("./licensedCache");
 const { fetchEsvChapter, LicensedProviderError } = require("./esvProvider");
 const { fetchApiBibleChapter } = require("./apiBibleProvider");
 const { fetchNltChapter } = require("./nltProvider");
+const { logControllerError } = require("../../utils/authErrors");
 
 const CACHE_TTL_MS = cache.CACHE_TTL_MS;
 
@@ -152,9 +152,12 @@ async function reportFums(fumsToken, options = {}) {
         } finally {
             clearTimeout(timer);
         }
-    } catch (error) {
-        // FUMS reporting is fire-and-forget; log at most.
-        logFailure("fumsReport", error);
+    } catch {
+        // FUMS reporting is fire-and-forget; log at most route and
+        // kind (audit F02/N08). The error is deliberately not bound:
+        // the report URL carries the FUMS token, and a fetch failure
+        // can embed it in its message.
+        logControllerError("licensed.fums", "report-failed");
     }
 }
 

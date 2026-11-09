@@ -46,6 +46,7 @@ if (require.main === module) {
         'test/db/pools.test.js',
         'test/application/searchPagination.test.js',
         'test/application/cacheHeaders.test.js',
+        'test/application/logHygiene.test.js',
         'test/dependencies/toolingSecurity.test.js',
         'test/importer/originalLanguage.test.js',
         'test/application/originalLanguage.test.js'], {
