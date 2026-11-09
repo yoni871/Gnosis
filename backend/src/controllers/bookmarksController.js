@@ -1,6 +1,7 @@
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
+const { logControllerError } = require("../utils/authErrors");
 const isValidPassageRange = (
     startChapter,
     startVerse,
@@ -119,7 +120,7 @@ const createBookmark = async (req, res) => {
             });
         }
 
-        console.error(error);
+        logControllerError("bookmarks.create", "database", error);
 
         return res.status(500).json({
             error: "Failed to create bookmark."
@@ -145,7 +146,7 @@ const getBookmarks = async (req, res) => {
             await withBookNames(result.rows)
         );
     } catch (error) {
-        console.error(error);
+        logControllerError("bookmarks.list", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve bookmarks."
@@ -186,7 +187,7 @@ const getBookmarkById = async (req, res) => {
 
         return res.status(200).json(bookmarks[0]);
     } catch (error) {
-        console.error(error);
+        logControllerError("bookmarks.get", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve bookmark."
@@ -281,7 +282,7 @@ const updateBookmark = async (req, res) => {
             });
         }
 
-        console.error(error);
+        logControllerError("bookmarks.update", "database", error);
 
         return res.status(500).json({
             error: "Failed to update bookmark."
@@ -314,7 +315,7 @@ const deleteBookmark = async (req, res) => {
             message: "Bookmark deleted successfully."
         });
     } catch (error) {
-        console.error(error);
+        logControllerError("bookmarks.delete", "database", error);
 
         return res.status(500).json({
             error: "Failed to delete bookmark."

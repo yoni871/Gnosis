@@ -1,4 +1,6 @@
-// Shared authentication error handling for issue #5.
+// Shared authentication error handling for issue #5, extended by the
+// log-hygiene work (audit F02, roadmap T1.4) with the shared
+// allowlisted server-side logger used outside auth as well.
 //
 // This module is intentionally dependency-free and pure, so it can be tested
 // with Node's built-in test runner without a database or any other service.
@@ -9,6 +11,10 @@
 // 2. Server logs carry route, failure kind, and database code only. They
 //    never carry request data, tokens, hashes, passwords, connection
 //    strings, secrets, error messages, or stack traces.
+//
+// There is no correlation id in the application today, so none is
+// logged. Do not invent one here; if request ids are added later, they
+// may be appended to the allowlist by a separate change.
 
 const ENDPOINT_MESSAGES = {
     register: "Can not create an account.",
@@ -83,10 +89,34 @@ function logAuthFailure(route, kind, error) {
     console.error(`[auth] ${route} failed kind=${kind} code=${code}`);
 }
 
+// Shared allowlisted logger for request paths outside auth (audit F02).
+// The same discipline as logAuthFailure: only the route, the failure
+// kind, and the safe PostgreSQL error code are recorded. The code is the
+// only error-derived value that is safe to log — it is a short fixed
+// token (for example "23505"), never user-controlled text. Everything
+// else on the error (message, stack, query, parameters) is ignored, so
+// a database error carrying private note/highlight content cannot leak
+// it into Vercel/forwarded logs. Every call site still logs one line
+// per failure, so failures stay observable.
+function logControllerError(route, kind, error) {
+    const code = error && typeof error.code === "string" ? error.code : "none";
+    console.error(`[app] ${route} failed kind=${kind} code=${code}`);
+}
+
+// Log one idle-connection pool failure (db.js pool "error" handler).
+// The pool error has no request route, so only the subsystem and the
+// safe code are recorded — never the connection string or the message.
+function logPoolError(error) {
+    const code = error && typeof error.code === "string" ? error.code : "none";
+    console.error(`[db] pool error code=${code}`);
+}
+
 module.exports = {
     resolveAuthError,
     internalErrorBody,
     CLIENT_AUTH_RESPONSES,
     isBodyParseError,
     logAuthFailure,
+    logControllerError,
+    logPoolError,
 };

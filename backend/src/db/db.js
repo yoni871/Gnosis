@@ -1,4 +1,5 @@
 const { Pool } = require("pg");
+const { logPoolError } = require("../utils/authErrors");
 require("../config/env").loadEnvironment();
 
 if (process.env.GNOSIS_LOCAL_DEV === '1') {
@@ -87,8 +88,10 @@ function createPools(env = process.env) {
                 connectionTimeoutMillis: 10000
             });
             // Handle errors from connections that are sitting idle.
+            // Only the subsystem and the safe code are logged (audit
+            // F02) — never the connection string or the message.
             created.on("error", (error) => {
-                console.error("Unexpected database connection error:", error.message);
+                logPoolError(error);
             });
             byKey.set(key, created);
         }
