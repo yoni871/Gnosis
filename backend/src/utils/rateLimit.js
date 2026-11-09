@@ -44,6 +44,17 @@ const { isStrongSecret } = require("./secretStrength");
 // failures per window. No email-only pre-auth limit exists on purpose:
 // one would let anyone lock out any account by email alone.
 const POLICIES = {
+    // Refresh budgets (PR #90): count both successful rotation and
+    // invalid/replayed credentials, so a refresh flood cannot grow token
+    // families without spending a budget. refresh_ip (120/min) is the
+    // aggregate flood bound for one IP; refresh_token (10/min per token)
+    // and refresh_family (30/min per session family, enforced in the
+    // rotation transaction) are the precise abuse controls. This replaces
+    // main's refresh_ip 30/15 min (PR #85), which counted failures only
+    // and was designed before per-token/per-family caps existed — under
+    // count-successes it would be too tight for legitimate shared-IP use.
+    refresh_ip: { windowMs: 60 * 1000, limit: 120 },
+    refresh_token: { windowMs: 60 * 1000, limit: 10 },
     login_ip_email: { windowMs: 15 * 60 * 1000, limit: 5 },
     login_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
     register_ip: { windowMs: 60 * 60 * 1000, limit: 5 },
@@ -63,13 +74,8 @@ const POLICIES = {
     forgot_ip_email: { windowMs: 60 * 60 * 1000, limit: 5 },
     forgot_ip: { windowMs: 60 * 60 * 1000, limit: 20 },
     reset_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
-    // PR4 (F04): refresh was the one auth endpoint with no throttle.
-    // It mirrors verify/reset — 30 per 15 minutes per IP — because a
-    // refresh attempt needs only a stolen or guessed cookie value, and
-    // a legitimate client refreshes at most once per 15-minute access
-    // token. Only failed refreshes count: successes release their
-    // reservation, so normal use never consumes quota.
-    refresh_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
+    // (PR #85's refresh_ip 30/15 min lived here; PR #90 replaces it with
+    // the 120/min entry at the top of this table — see that comment.)
 };
 
 // The longest window above. The sweep deletes rows older than this, since
@@ -319,13 +325,13 @@ async function maybeCleanup(dbPool, options = {}) {
 // the 429 or before the handler, never after the response.
 function createRateLimitMiddleware(policySpecs, endpoint) {
     return async (req, res, next) => {
+        const reservations = [];
         try {
             const secret = getRateLimitSecret();
             const ip = req.ip;
             if (!ip) {
                 throw new Error("Client address is unavailable.");
             }
-            const reservations = [];
             const blockedWaits = [];
             for (const spec of policySpecs) {
                 const keyHash = computeKeyHash(spec.policy, spec.fields(req, ip), secret);
@@ -364,6 +370,7 @@ function createRateLimitMiddleware(policySpecs, endpoint) {
             await maybeCleanup(pool);
             return next();
         } catch (error) {
+            await releaseReservations(pool, reservations);
             logAuthFailure(`POST /api/auth/${endpoint}`, "rate-limit", error);
             return res.status(500).json(internalErrorBody(endpoint));
         }
