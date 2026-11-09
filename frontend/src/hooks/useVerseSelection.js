@@ -122,6 +122,7 @@ export default function useVerseSelection() {
         selection,
         toggleVerse,
         replaceSelection,
+        replaceSelectionSet,
         retainAvailableVerses,
         clearSelection
     ]);

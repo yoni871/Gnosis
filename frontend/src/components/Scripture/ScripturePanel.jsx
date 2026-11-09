@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useId, useMemo, useRef, useState } from "react"
-import { ChevronDown, Bookmark } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import VerseActions from "./VerseActions";
 import ReaderDropdownOptions from "../ReaderDropdownOptions";
 import useClickOutside from "../../hooks/useClickOutside";
@@ -207,7 +207,7 @@ export default function ScripturePanel({
             behavior,
             block: "center"
         });
-    }, [selectedVerse, verses, verseSelection.selection, currentBook, chapter]);
+    }, [selectedVerse, verses, verseSelection.selection, currentBook, chapter, book]);
 
     // Enable clearing when at least one selected coordinate has a highlight.
     const hasSelectedHighlight = useMemo(

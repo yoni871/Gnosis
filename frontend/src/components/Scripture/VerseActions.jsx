@@ -31,7 +31,8 @@ export default function VerseActions({
 
     const [boundary, setBoundary] = useState();
     const overflow = { boundary, padding: 8 };
-    const toolbar = useFloating({
+    const { refs: { setReference: setToolbarReference, setFloating: setToolbarFloating },
+        floatingStyles: toolbarStyles, isPositioned: toolbarPositioned, middlewareData: toolbarData } = useFloating({
         placement: "top-start",
         strategy: "fixed",
         whileElementsMounted: autoUpdate,
@@ -40,14 +41,16 @@ export default function VerseActions({
     // This hidden marker contributes no line box. Measure the actual verse,
     // not a zero-size inline anchor, so scrolling keeps the overlay attached.
     const setAnchor = useCallback((node) => {
-        toolbar.refs.setReference(node?.parentElement ?? null);
+        setToolbarReference(node?.parentElement ?? null);
         setBoundary(node?.closest(".scripture-scroll"));
-    }, [toolbar.refs.setReference]);
+    }, [setToolbarReference]);
     const toolbarHidden =
-        !toolbar.isPositioned || toolbar.middlewareData.hide?.referenceHidden;
+        !toolbarPositioned || toolbarData.hide?.referenceHidden;
 
     // Position the pen palette relative to the highlighter button.
-    const palette = useFloating({
+    const { refs: { setReference: setPaletteReference, setFloating: setPaletteFloating },
+        context: paletteContext, floatingStyles: paletteStyles,
+        isPositioned: palettePositioned, middlewareData: paletteData } = useFloating({
         open: isColorOpen,
         onOpenChange: setIsColorOpen,
         placement: "bottom",
@@ -62,7 +65,7 @@ export default function VerseActions({
     });
 
     // Close the palette with Escape or a click outside it.
-    const dismiss = useDismiss(palette.context);
+    const dismiss = useDismiss(paletteContext);
     const { getFloatingProps } = useInteractions([dismiss]);
 
     const bookmarkBusy =
@@ -72,17 +75,17 @@ export default function VerseActions({
 
     const paletteHidden =
         toolbarHidden ||
-        !palette.isPositioned ||
-        palette.middlewareData.hide?.referenceHidden;
+        !palettePositioned ||
+        paletteData.hide?.referenceHidden;
 
     return (
         <>
             <span ref={setAnchor} hidden aria-hidden="true" />
             <FloatingPortal>
             <span
-                ref={toolbar.refs.setFloating}
+                ref={setToolbarFloating}
                 style={{
-                    ...toolbar.floatingStyles,
+                    ...toolbarStyles,
                     visibility: toolbarHidden ? "hidden" : "visible"
                 }}
                 className="gnosis-verse-toolbar"
@@ -126,7 +129,7 @@ export default function VerseActions({
                 <span className="gnosis-tool-divider" aria-hidden="true" />
 
                 <button
-                    ref={palette.refs.setReference}
+                    ref={setPaletteReference}
                     type="button"
                     disabled={isHighlightBusy}
                     aria-label="Choose highlight color"
@@ -174,16 +177,16 @@ export default function VerseActions({
             {isColorOpen && (
                 <FloatingPortal>
                     <FloatingFocusManager
-                        context={palette.context}
+                        context={paletteContext}
                         modal={false}
                     >
                         <div
-                            ref={palette.refs.setFloating}
+                            ref={setPaletteFloating}
                             {...getFloatingProps({
                                 onClick: (event) => event.stopPropagation()
                             })}
                             style={{
-                                ...palette.floatingStyles,
+                                ...paletteStyles,
                                 visibility: paletteHidden
                                     ? "hidden"
                                     : "visible"

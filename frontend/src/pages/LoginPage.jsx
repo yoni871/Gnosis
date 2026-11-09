@@ -85,7 +85,7 @@ export default function LoginPage() {
         try {
             await resendVerification(unverifiedEmail);
             setResendStatus("sent");
-        } catch (error) {
+        } catch {
             setResendStatus("error");
         }
     };

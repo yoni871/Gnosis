@@ -29,7 +29,8 @@ function Probe() {
 // actually shows, which MemoryRouter does not put on window.location.
 let location;
 function LocationProbe() {
-    location = useLocation();
+    const currentLocation = useLocation();
+    useEffect(() => { location = currentLocation; }, [currentLocation]);
     return null;
 }
 function deferred() {

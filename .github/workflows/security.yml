@@ -1,9 +1,9 @@
 name: Security
 on:
   pull_request:
-    branches: [main, production]
+    branches: [main, production, "security/**"]
   push:
-    branches: [main, production]
+    branches: [main, production, "security/**"]
   schedule:
     - cron: '23 8 * * 1'
   workflow_dispatch:
