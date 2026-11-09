@@ -1,6 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
 const { startBackend } = require('../helpers/backend-instance');
 const context = contextFromEnvironment();
@@ -27,6 +28,23 @@ async function post(path, cookie, token, body = {}) {
 const login = () => post('login', null, null, { email: 'sessions@example.invalid', password });
 async function profile(token) {
     return (await fetch(`${worker.url}/api/auth/profile`, { headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(10000) })).status;
+}
+async function getSessions(token) {
+    const response = await fetch(`${worker.url}/api/auth/sessions`, {
+        headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(10000),
+    });
+    const text = await response.text();
+    return { status: response.status, data: text ? JSON.parse(text) : null };
+}
+async function revokeSession(token, sessionId) {
+    const response = await fetch(`${worker.url}/api/auth/sessions/${sessionId}`, {
+        method: 'DELETE', headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(10000),
+    });
+    return { status: response.status, cookie: response.headers.get('set-cookie'),
+        data: response.status === 204 ? null : JSON.parse(await response.text()) };
+}
+async function changePassword(token, body) {
+    return post('change-password', null, token, body);
 }
 test('rotation, replay detection and immediate access revocation use real PostgreSQL', async () => {
     const first = await login();
@@ -163,4 +181,121 @@ test('refresh and reset serialize on the session family and leave no usable cred
     assert.ok([200, 401].includes(results[0].status));
     await rejected(credentials);
     if (results[0].status === 200) await rejected(results[0]);
+});
+
+// Session/device management (T2.5): the list, per-session revoke, and
+// authenticated password change against real PostgreSQL.
+const sessionIdOf = credentials => jwt.decode(credentials.data.token).sid;
+async function otherLogin(email) {
+    return post('login', null, null, { email, password });
+}
+test('sessions list shows only the caller’s sessions, flags the current one, and exposes no token material', async () => {
+    await originalPassword();
+    // A dedicated account: the shared sessions user already holds
+    // sessions from earlier tests in this file, so its list is not 2.
+    await database.pool.query(`INSERT INTO users(first_name,last_name,email,password_hash,email_verified_at)
+        VALUES ('List','Reader','list-sessions@example.invalid',$1,now()) ON CONFLICT (email) DO NOTHING`,
+    [await bcrypt.hash(password, 10)]);
+    await database.pool.query(`INSERT INTO users(first_name,last_name,email,password_hash,email_verified_at)
+        VALUES ('Other','Reader','other-list@example.invalid',$1,now()) ON CONFLICT (email) DO NOTHING`,
+    [await bcrypt.hash(password, 10)]);
+    const listLogin = () => post('login', null, null, { email: 'list-sessions@example.invalid', password });
+    const first = await listLogin();
+    const second = await listLogin();
+    const other = await otherLogin('other-list@example.invalid');
+    assert.equal(other.status, 200);
+    const list = await getSessions(first.data.token);
+    assert.equal(list.status, 200);
+    assert.equal(list.data.sessions.length, 2);
+    const ids = list.data.sessions.map(session => session.id).sort();
+    assert.deepEqual(ids, [sessionIdOf(first), sessionIdOf(second)].sort());
+    const current = list.data.sessions.filter(session => session.current);
+    assert.equal(current.length, 1);
+    assert.equal(current[0].id, sessionIdOf(first));
+    assert.ok(list.data.sessions.every(session => session.revokedAt === null));
+    assert.ok(!JSON.stringify(list.data).includes('token_hash'), 'no refresh-token hash may leak into the list');
+    assert.ok(!JSON.stringify(list.data).includes('refresh'), 'no refresh token may leak into the list');
+    assert.ok(list.data.sessions.every(session =>
+        Object.keys(session).sort().join() === 'createdAt,current,expiresAt,id,revokedAt'));
+});
+
+test('revoking another user’s session returns 404 and leaves that session usable', async () => {
+    await originalPassword();
+    const other = await otherLogin('other-list@example.invalid');
+    const mine = await login();
+    const result = await revokeSession(mine.data.token, sessionIdOf(other));
+    assert.equal(result.status, 404);
+    assert.deepEqual(result.data, { error: 'Session not found.', code: 'SESSION_NOT_FOUND' });
+    assert.equal(await profile(other.data.token), 200);
+    assert.equal((await post('refresh', other.cookie)).status, 200);
+});
+
+test('revoking an own session kills its refresh immediately and leaves other sessions alone', async () => {
+    await originalPassword();
+    const first = await login();
+    const second = await login();
+    const result = await revokeSession(first.data.token, sessionIdOf(second));
+    assert.equal(result.status, 204);
+    assert.equal((await post('refresh', second.cookie)).status, 401);
+    assert.equal(await profile(second.data.token), 403);
+    assert.equal(await profile(first.data.token), 200);
+    assert.equal((await post('refresh', first.cookie)).status, 200);
+});
+
+test('revoking the current session clears the refresh cookie and logs out', async () => {
+    await originalPassword();
+    const credentials = await login();
+    const result = await revokeSession(credentials.data.token, sessionIdOf(credentials));
+    assert.equal(result.status, 204);
+    assert.ok(result.cookie.includes('gnosisRefresh=;'), 'the refresh cookie must be cleared');
+    assert.ok(result.cookie.includes('Expires=Thu, 01 Jan 1970'), 'the cleared cookie must expire immediately');
+    assert.equal(await profile(credentials.data.token), 403);
+    assert.equal((await post('refresh', credentials.cookie)).status, 401);
+});
+
+test('change password rejects a wrong current password and keeps the old one', async () => {
+    await originalPassword();
+    const credentials = await login();
+    const result = await changePassword(credentials.data.token,
+        { currentPassword: 'not-the-password', newPassword: 'a-new-password' });
+    assert.equal(result.status, 401);
+    assert.deepEqual(result.data, { error: 'Invalid email or password.', code: 'INVALID_CREDENTIALS' });
+    assert.equal((await login()).status, 200);
+});
+
+test('change password revokes other sessions, keeps the current one, and swaps the credential', async () => {
+    await originalPassword();
+    const first = await login();
+    const second = await login();
+    const third = await login();
+    const result = await changePassword(first.data.token,
+        { currentPassword: password, newPassword: 'replacement-change-password' });
+    assert.equal(result.status, 200);
+    assert.deepEqual(result.data, { changed: true });
+    assert.equal(await profile(first.data.token), 200);
+    assert.equal((await post('refresh', first.cookie)).status, 200);
+    await rejected(second);
+    await rejected(third);
+    assert.equal((await login()).status, 401);
+    const replacement = await post('login', null, null, { email: 'sessions@example.invalid', password: 'replacement-change-password' });
+    assert.equal(replacement.status, 200);
+    assert.equal(await profile(replacement.data.token), 200);
+    await originalPassword();
+});
+
+test('change password counts wrong current passwords per account and blocks the sixth attempt', async () => {
+    await originalPassword();
+    const credentials = await login();
+    for (let attempt = 0; attempt < 5; attempt++) {
+        const result = await changePassword(credentials.data.token,
+            { currentPassword: 'not-the-password', newPassword: 'a-new-password' });
+        assert.equal(result.status, 401);
+    }
+    const blocked = await changePassword(credentials.data.token,
+        { currentPassword: 'not-the-password', newPassword: 'a-new-password' });
+    assert.equal(blocked.status, 429);
+    assert.deepEqual(blocked.data, { error: 'Too many attempts. Please try again later.', code: 'RATE_LIMITED' });
+    // The bucket is per (IP + account): login uses its own policies, so
+    // this block does not lock the user out of signing in.
+    assert.equal((await login()).status, 200);
 });

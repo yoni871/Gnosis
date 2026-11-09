@@ -239,6 +239,34 @@ function validateDeleteAccountInput(body) {
     };
 }
 
+// Authenticated password change: the current password follows the
+// login rule (non-empty, at most 72 UTF-8 bytes — the registration
+// minimum is deliberately NOT enforced, so accounts created before
+// this validation keep working), and the new password follows the
+// registration-strength rule (at least 8 characters; the project floor
+// stays 8 per the project lead's decision, and breached-password
+// screening runs in the route). Validation runs before the limiter, so
+// invalid input never counts.
+function validateChangePasswordInput(body) {
+    if (!isObjectBody(body)) {
+        return { error: "Request body must be an object." };
+    }
+    if (typeof body.currentPassword !== "string" || body.currentPassword.length === 0) {
+        return { error: "Current password is required." };
+    }
+    if (Buffer.byteLength(body.currentPassword, "utf8") > MAX_PASSWORD_BYTES) {
+        return { error: `Current password must be at most ${MAX_PASSWORD_BYTES} bytes.` };
+    }
+    const password = validateRegisterPassword(body.newPassword);
+    if (password.error) return password;
+    return {
+        value: {
+            currentPassword: body.currentPassword,
+            newPassword: password.value,
+        },
+    };
+}
+
 module.exports = {
     validatePasskeyLabel,
     validateLoginPassword,
@@ -247,6 +275,7 @@ module.exports = {
     validateForgotPasswordInput,
     validateResetPasswordInput,
     validateDeleteAccountInput,
+    validateChangePasswordInput,
     // Issue #9 reuses the same structural email rule for resend requests
     // and for EMAIL_FROM validation, so "structurally valid" means the
     // same thing everywhere. It never echoes the submitted value.

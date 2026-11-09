@@ -124,6 +124,14 @@ const POLICIES = {
     passkey_register_verify_user: { windowMs: 15 * 60 * 1000, limit: 5 },
     passkey_list_user: { windowMs: 15 * 60 * 1000, limit: 30 },
     passkey_rename_user: { windowMs: 15 * 60 * 1000, limit: 10 },
+    // Session management (T2.5): authenticated password change counts
+    // wrong-current-password failures per (IP + account), mirroring the
+    // login per-IP+email bucket. An authenticated caller already holds
+    // a 15-minute token, so without this the endpoint would be an
+    // unthrottled password-guessing oracle for a stolen token.
+    // Validation failures never reach the limiter, and a success
+    // releases its reservation.
+    change_password_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since
