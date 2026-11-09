@@ -68,6 +68,18 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
 let server;
 let baseUrl;
 
+// withUser borrows one pooled client per request; the stand-in client
+// answers transaction control and the set_config call itself and
+// delegates every other query to the query mock above.
+const connectMock = test.mock.method(pool, "connect", async () => ({
+    query: async (sql, params) => {
+        if (typeof sql === "string" && /^\s*(BEGIN|COMMIT|ROLLBACK)\s*;?\s*$/i.test(sql)) return { rows: [] };
+        if (typeof sql === "string" && sql.includes("set_config")) return { rows: [{ set_config: "1" }] };
+        return queryMock(sql, params);
+    },
+    release: () => {},
+}));
+
 test.before(async () => {
     server = app.listen(0, "127.0.0.1");
     await new Promise((resolve) => server.once("listening", resolve));
@@ -80,6 +92,7 @@ test.after(async () => {
     }
     await new Promise((resolve) => server.close(resolve));
     queryMock.mock.restore();
+    connectMock.mock.restore();
     await pool.end();
 });
 

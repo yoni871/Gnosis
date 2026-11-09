@@ -1,0 +1,113 @@
+{
+  "added": [
+    {
+      "kind": "policy",
+      "name": "bookmarks.user_isolation",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "*",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "highlights.user_isolation",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "*",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "notes.user_isolation",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "*",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "user_reading_state.user_isolation_insert",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": null,
+        "command": "a",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "user_reading_state.user_isolation_select",
+      "definition": {
+        "check": null,
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "r",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "user_reading_state.user_isolation_update",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "w",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "bookmarks",
+      "definition": {
+        "rls": true,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": true,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "highlights",
+      "definition": {
+        "rls": true,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": true,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "notes",
+      "definition": {
+        "rls": true,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": true,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "user_reading_state",
+      "definition": {
+        "rls": true,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": true,
+        "persistence": "p"
+      }
+    }
+  ],
+  "removed": []
+}

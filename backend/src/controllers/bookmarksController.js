@@ -2,6 +2,7 @@ const { withUserBudget, ensureCapacity } = require("../utils/storageBudget");
 const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
+const { withUser } = require("../db/userContext");
 const { bookExists } = require("../utils/bookValidation");
 const { logControllerError } = require("../utils/authErrors");
 const isValidPassageRange = (
@@ -141,7 +142,7 @@ const getBookmarks = async (req, res) => {
     // in PR #85, and adds book/chapter filters. See utils/privatePages.js.
     try {
         const page = readPage(req, "bookmarks");
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             SELECT bookmarks.*
             FROM bookmarks
@@ -151,7 +152,7 @@ const getBookmarks = async (req, res) => {
             ORDER BY bookmarks.id DESC LIMIT $3
             `,
             [userId, page.cursor, page.limit + 1, page.bookId, page.chapter]
-        );
+        ));
 
         const resultPage = pageRows(result.rows, page.limit);
         resultPage.items = await withBookNames(resultPage.items);
@@ -171,7 +172,7 @@ const getBookmarkById = async (req, res) => {
     const bookmarkId = req.params.id;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             SELECT bookmarks.*
             FROM bookmarks
@@ -179,7 +180,7 @@ const getBookmarkById = async (req, res) => {
             AND bookmarks.user_id = $2
             `,
             [bookmarkId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -256,7 +257,7 @@ const updateBookmark = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             UPDATE bookmarks
             SET
@@ -278,7 +279,7 @@ const updateBookmark = async (req, res) => {
                 bookmarkId,
                 userId
             ]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -309,7 +310,7 @@ const deleteBookmark = async (req, res) => {
     const bookmarkId = req.params.id;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             DELETE FROM bookmarks
             WHERE id = $1
@@ -317,7 +318,7 @@ const deleteBookmark = async (req, res) => {
             RETURNING *
             `,
             [bookmarkId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
