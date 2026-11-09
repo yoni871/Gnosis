@@ -122,6 +122,16 @@ test("Bible search rejects invalid pagination and oversized queries before SQL",
     assert.equal((await searchBible('?q=lord&limit=5')).limit, 5);
 });
 
+test("Bible search clamps page at 100, bounding the OFFSET", async () => {
+    // validateSearch rejects page 102+ with a 400, so the clamp can only
+    // fire at page 101 — the one page it allows past the cap.
+    const capped = await searchBible("?q=lord&page=101");
+    assert.equal(capped.page, 100);
+    assert.equal(capped.limit, 100);
+    assert.equal(lastBibleParams[2], 100);
+    assert.equal(lastBibleParams[3], 9900);
+});
+
 test("Bible search orders by rank with a deterministic tiebreak", async () => {
     await searchBible("?q=lord&page=2&limit=10");
     assert.deepEqual(lastBibleParams, ["lord", "BSB", 10, 10]);

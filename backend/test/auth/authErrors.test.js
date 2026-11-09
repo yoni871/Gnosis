@@ -6,6 +6,7 @@ const {
     internalErrorBody,
     CLIENT_AUTH_RESPONSES,
     isBodyParseError,
+    isBodyTooLarge,
     logAuthFailure,
 } = require("../../src/utils/authErrors");
 
@@ -90,6 +91,15 @@ test("isBodyParseError only matches malformed-JSON errors", () => {
     assert.equal(isBodyParseError({ type: "entity.too.large" }), false);
     assert.equal(isBodyParseError(new Error("boom")), false);
     assert.equal(isBodyParseError(null), false);
+});
+
+test("isBodyTooLarge only matches over-limit bodies, which map to 413", () => {
+    assert.equal(isBodyTooLarge({ type: "entity.too.large" }), true);
+    assert.equal(isBodyTooLarge({ type: "entity.parse.failed" }), false);
+    assert.equal(isBodyTooLarge(new Error("boom")), false);
+    assert.equal(isBodyTooLarge(null), false);
+    assert.deepEqual(CLIENT_AUTH_RESPONSES.bodyTooLarge,
+        { status: 413, body: { error: "Request body too large.", code: "BODY_TOO_LARGE" } });
 });
 
 test("logAuthFailure never logs messages, stacks, or sensitive values", () => {

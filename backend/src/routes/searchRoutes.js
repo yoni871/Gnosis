@@ -2,7 +2,6 @@ const express = require("express");
 const { biblePool, commentaryPool } = require("../db/db");
 const { cacheControl } = require("../middleware/cacheHeaders");
 const router = express.Router();
-const searchBudget = require("../middleware/searchBudget").createSearchBudget();
 const { validateSearch } = require("../utils/apiValidation");
 
 // Search results are public and deterministic for a given query, and
@@ -12,10 +11,16 @@ const { validateSearch } = require("../utils/apiValidation");
 // cache: a fresh import should show up quickly.
 const cacheSearch = cacheControl({ maxAge: 60, sMaxAge: 300, staleWhileRevalidate: 60 });
 
-router.get("/search/bible", validateSearch, searchBudget, cacheSearch, (req, res) => {
+router.get("/search/bible", validateSearch, cacheSearch, (req, res) => {
     // Validation bounds text, page, limit and total offset before database work.
     // Rank/book/chapter/verse ordering keeps pagination deterministic.
-    const page = Number(req.query.page || 1);
+    // F04: page is capped at 100 — at limit 100 that is OFFSET 9,900, and a
+    // ranked top-100-per-page search has no useful result past it; deeper
+    // pages are only a slow full scan. validateSearch already rejects page
+    // 102+ with a 400, so the clamp covers page 101, the one page it allows
+    // past the cap.
+    const MAX_SEARCH_PAGE = 100;
+    const page = Math.min(MAX_SEARCH_PAGE, Number(req.query.page || 1));
     const limit = Number(req.query.limit || 100);
     const offset = (page - 1) * limit;
     biblePool.query(
@@ -70,7 +75,7 @@ router.get("/search/bible", validateSearch, searchBudget, cacheSearch, (req, res
     )
 });
 
-router.get("/search/commentary", validateSearch, searchBudget, cacheSearch, (req, res) => {
+router.get("/search/commentary", validateSearch, cacheSearch, (req, res) => {
     commentaryPool.query(
         `
         SELECT

@@ -119,7 +119,7 @@ function createPools(env = process.env) {
                 query_timeout: statement + 1000,
                 max,
                 idleTimeoutMillis: 10000,
-                connectionTimeoutMillis: 10000
+                connectionTimeoutMillis: 10000,
             });
             // Handle errors from connections that are sitting idle.
             // Only the subsystem and the safe code are logged (audit

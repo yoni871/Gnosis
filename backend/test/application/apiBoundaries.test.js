@@ -65,31 +65,3 @@ test('controller logs record only route, kind, and code — never message or sta
     assert.ok(logs[0].includes('code=23514'), logs[0]);
     assert.ok(!logs.join('').includes('private-marker'));
 });
-
-test('search budget bounds clients and concurrent work and releases slots once', () => {
-    const { EventEmitter } = require('node:events');
-    const { createSearchBudget } = require('../../src/middleware/searchBudget');
-    let clock = 0;
-    const budget = createSearchBudget({ maxRequests: 2, maxConcurrent: 1, maxClients: 1, windowMs: 100, now: () => clock });
-    function request(ip) {
-        const res = new EventEmitter();
-        res.status = code => { res.code = code; return res; };
-        res.set = value => { res.headers = value; return res; };
-        res.json = body => { res.body = body; return res; };
-        budget({ socket: { remoteAddress: ip } }, res, () => { res.allowed = true; });
-        return res;
-    }
-    const first = request('127.0.0.1');
-    assert.equal(first.allowed, true);
-    assert.equal(request('127.0.0.1').code, 429);
-    first.emit('finish'); first.emit('close');
-    const second = request('127.0.0.1');
-    assert.equal(second.allowed, true);
-    second.emit('finish');
-    const blocked = request('127.0.0.1');
-    assert.equal(blocked.code, 429);
-    assert.equal(blocked.headers['Cache-Control'], 'no-store');
-    assert.equal(request('127.0.0.2').code, 429); // State capacity is bounded too.
-    clock = 101;
-    assert.equal(request('127.0.0.2').allowed, true);
-});

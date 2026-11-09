@@ -4,6 +4,15 @@ const { validNote } = require("../utils/apiValidation");
 const pool = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
 const { logControllerError } = require("../utils/authErrors");
+// The notes.content column is TEXT with no database-side bound, so the
+// application caps it: 100,000 characters is far above any real study
+// note and far below an abusive payload (and below the 100 KiB JSON body
+// limit, so a max-length note can still arrive in one request).
+const MAX_NOTE_CONTENT_LENGTH = 100_000;
+
+function contentTooLong(content) {
+    return typeof content === "string" && content.length > MAX_NOTE_CONTENT_LENGTH;
+}
 
 const createNote = async (req, res) => {
     if (!validNote(req.body, req.method === "PATCH")) {
@@ -31,6 +40,12 @@ const createNote = async (req, res) => {
         return res.status(400).json({
             error: "All note fields are required."
         })
+    }
+
+    if (contentTooLong(content)) {
+        return res.status(400).json({
+            error: "Note content is too long."
+        });
     }
 
     try {
@@ -76,6 +91,10 @@ const createNote = async (req, res) => {
 
 const getNotes = async (req, res) => {
     const userId = req.user.userId;
+
+    // F04: the list was unbounded. Limit defaults to 100 and is capped
+    // at 100 (same as search); the applied values ride on headers so a
+    // client can see the cap without changing the array body.
 
     try {
         const page = readPage(req, "notes");
@@ -156,6 +175,12 @@ const updateNote = async (req, res) => {
     ) {
         return res.status(400).json({
             error: "At least one field is required to update the note."
+        });
+    }
+
+    if (contentTooLong(content)) {
+        return res.status(400).json({
+            error: "Note content is too long."
         });
     }
 

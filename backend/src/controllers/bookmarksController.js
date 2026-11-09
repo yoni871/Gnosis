@@ -137,6 +137,9 @@ const createBookmark = async (req, res) => {
 const getBookmarks = async (req, res) => {
     const userId = req.user.userId;
 
+    // F04: the list was unbounded. Same limit/offset convention as notes
+    // and search; the applied values ride on headers.
+
     try {
         const page = readPage(req, "bookmarks");
         const result = await pool.query(

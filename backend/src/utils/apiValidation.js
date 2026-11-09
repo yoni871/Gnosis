@@ -1,4 +1,9 @@
-const MAX_NOTE_BYTES = 32 * 1024;
+// Integration (#85 over #75, pair 5/N2): the per-note cap is 100,000
+// bytes, not 32 KiB — it matches the 100,000-character controller cap and
+// the 100 KiB JSON body limit, so a note at the cap is reachable in one
+// request. For ASCII text bytes equal characters; multi-byte content hits
+// this byte cap first. Owner call: 100,000 vs 32 KiB.
+const MAX_NOTE_BYTES = 100_000;
 function positiveInt(value, max = 2147483647) {
     return Number.isSafeInteger(value) && value > 0 && value <= max;
 }

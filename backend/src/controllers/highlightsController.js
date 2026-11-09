@@ -65,6 +65,9 @@ const createHighlight = async (req, res) => {
 const getHighlights = async (req, res) => {
     const userId = req.user.userId;
 
+    // F04: the list was unbounded. Same limit/offset convention as notes
+    // and search; the applied values ride on headers.
+
     try {
         const page = readPage(req, "highlights");
         // Ask the service for records belonging to this user.

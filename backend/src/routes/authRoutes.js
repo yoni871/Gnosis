@@ -403,10 +403,12 @@ router.post("/refresh", (req, res, next) => { res.set("Cache-Control", "no-store
             .json({ error: "Too many attempts. Please try again later.", code: "RATE_LIMITED" });
     }
     if (!session) {
+        await req.rateLimit.finalize("count");
         sessions.clearCookie(res);
         return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
     }
     sessions.setCookie(res, session.refresh, session.expiresAt);
+    await req.rateLimit.finalize("release");
     res.json({ token: session.token, expiresIn: sessions.ACCESS_SECONDS });
 }));
 router.post("/logout", sessions.browserSessionRequest, async (req, res) => {
