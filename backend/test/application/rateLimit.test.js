@@ -183,7 +183,8 @@ test('registration per-IP limit counts successes and duplicates', async () => {
         assert.equal(result.status, 200);
     }
     const duplicate = await register(worker.url, 'new-0@example.com', 'a-valid-password');
-    assert.equal(duplicate.status, 409, 'a duplicate counts just like a success');
+    assert.equal(duplicate.status, 200, 'a duplicate has the same generic success response and still counts');
+    assert.deepEqual(duplicate.json, { email: 'new-0@example.com' });
     const blocked = await register(worker.url, 'new-4@example.com', 'a-valid-password');
     assert.equal(blocked.status, 429);
     assert.deepEqual(blocked.json, RATE_LIMITED_BODY);

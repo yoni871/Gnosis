@@ -2,7 +2,7 @@
 
 Reviewed November 8, 2026 (America/Chicago), against latest fetched `main`
 `78e76fa83d3ec557687e753872a928577bf34abb`. Scope: F01, F10 and F11 only.
-Branch: `security/stage-1-auth`; its separate pull request targets `main`.
+Branch: `security/stage-1-auth`; [PR #70](https://github.com/yoni871/Gnosis/pull/70) targets `main`.
 No merge or deployment is authorized by this report. Stage 2 requires review
 and explicit approval after this stage.
 
@@ -100,6 +100,11 @@ preserved. F10 is therefore not represented as fully closed or risk-accepted.
   No credentials or private connection strings are added. A full dependency
   advisory refresh and history-wide secret scan belong to Stage 5, not this
   interim verification. Existing dependency findings remain open.
+- The first CI run identified one rate-limit integration assertion still expecting
+  the old duplicate-signup 409. Updated it to check the generic 200/email response
+  while retaining the shared quota and 429 assertions. All 10 PostgreSQL
+  authentication rate-limit tests then passed in a fresh local disposable fixture,
+  with database/role/container cleanup verified.
 - Normal repository CI runs on the Stage 1 PR. Its result must be reviewed before
   merging. No CI configuration or GitHub protection settings are changed here.
 
