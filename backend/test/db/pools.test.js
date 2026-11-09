@@ -98,14 +98,14 @@ test("a remote URL forces verified TLS regardless of its sslmode", () => {
     const result = pools({
         DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb?sslmode=require",
     });
-    assert.deepEqual(result.app.options.ssl, { rejectUnauthorized: true });
+    assert.equal(new (require("pg").Client)(result.app.options).connectionParameters.ssl.rejectUnauthorized, true);
 });
 
 test("a remote URL without sslmode still forces verified TLS", () => {
     const result = pools({
         DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb",
     });
-    assert.deepEqual(result.app.options.ssl, { rejectUnauthorized: true });
+    assert.equal(new (require("pg").Client)(result.app.options).connectionParameters.ssl.rejectUnauthorized, true);
 });
 
 test("a loopback URL leaves TLS unset (local development has no certificates)", () => {
@@ -116,5 +116,38 @@ test("a loopback URL leaves TLS unset (local development has no certificates)", 
 test("sslmode=disable fails fast instead of connecting in plaintext", () => {
     assert.throws(() => pools({
         DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb?sslmode=disable",
-    }), /sslmode=disable/);
+    }), /unsafe database/);
+});
+
+
+test("URL compatibility flags cannot disable certificate or hostname verification", () => {
+    for (const query of ["sslmode=require&uselibpqcompat=true", "sslmode=prefer&uselibpqcompat=true", "ssl=0"]) {
+        const result = pools({ DATABASE_URL: `postgresql://role@example.invalid/test?${query}` });
+        const client = new (require("pg").Client)(result.app.options);
+        assert.equal(client.connectionParameters.ssl.rejectUnauthorized, true);
+        assert.equal(client.connectionParameters.ssl.checkServerIdentity, require("node:tls").checkServerIdentity);
+    }
+});
+test("URL timeouts/startup options cannot override resource bounds", () => {
+    const result = pools({ DATABASE_URL: "postgresql://role@127.0.0.1/test?statement_timeout=0&query_timeout=0&options=-c%20statement_timeout%3D0" });
+    const parameters = new (require("pg").Client)(result.app.options).connectionParameters;
+    assert.equal(parameters.statement_timeout, 5000);
+    assert.equal(parameters.lock_timeout, 1000);
+    assert.equal(parameters.query_timeout, 6000);
+    assert.equal(parameters.options, "-c statement_timeout=5000 -c lock_timeout=1000 -c idle_in_transaction_session_timeout=5000");
+});
+test("invalid, unlimited and inverted database budgets fail without leaking values", () => {
+    for (const env of [{ DB_STATEMENT_TIMEOUT_MS: "0" }, { DB_STATEMENT_TIMEOUT_MS: "5000junk" },
+        { DB_STATEMENT_TIMEOUT_MS: "private-marker" }, { DB_POOL_MAX: "1000" },
+        { DB_STATEMENT_TIMEOUT_MS: "500", DB_LOCK_TIMEOUT_MS: "1000" }]) {
+        assert.throws(() => pools(env), error => !error.message.includes("private-marker"));
+    }
+});
+test("idle connection diagnostics never expose errors, details or URLs", t => {
+    const result = pools({});
+    const logs = [];
+    t.mock.method(console, 'error', value => logs.push(value));
+    result.app.emit('error', Object.assign(new Error('private-marker'), { detail: 'private-marker', code: '08006' }));
+    assert.deepEqual(JSON.parse(logs[0]), { operation: 'database.idle', code: '08006' });
+    assert.ok(!logs.join('').includes('private-marker'));
 });

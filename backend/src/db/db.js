@@ -59,6 +59,15 @@ function tlsOptionsFor(url) {
     return { ssl: { rejectUnauthorized: true } };
 }
 
+function boundedInteger(env, name, fallback, min, max) {
+    const value = env[name];
+    if (value === undefined || value === "") return fallback;
+    if (!/^[1-9]\d*$/.test(value) || !Number.isSafeInteger(Number(value)) || Number(value) < min || Number(value) > max) {
+        throw new Error("Invalid database resource configuration.");
+    }
+    return Number(value);
+}
+
 function createPools(env = process.env) {
     assertSplitConfiguration(env);
     const appUrl = env.GNOSIS_APP_DATABASE_URL || env.DATABASE_URL || null;
@@ -73,22 +82,49 @@ function createPools(env = process.env) {
         password: env.DB_PASSWORD,
         port: env.DB_PORT
     };
+    const statement = boundedInteger(env, "DB_STATEMENT_TIMEOUT_MS", 5000, 100, 30000);
+    const lock = boundedInteger(env, "DB_LOCK_TIMEOUT_MS", 1000, 50, 5000);
+    const idleTransaction = boundedInteger(env, "DB_IDLE_TRANSACTION_TIMEOUT_MS", 5000, 100, 30000);
+    const max = boundedInteger(env, "DB_POOL_MAX", 5, 1, 10);
+    if (lock >= statement) throw new Error("Database lock timeout must be shorter than the statement timeout.");
     const byKey = new Map();
     const poolFor = (url) => {
         const key = url || 'local';
         if (!byKey.has(key)) {
-            const config = url ? { connectionString: url } : localConfig;
+            let config = localConfig;
+            if (url) {
+                try {
+                    // Parse once, then enforce policy. pg otherwise reparses a
+                    // connectionString after config.ssl and timeout overrides.
+                    config = require("pg-connection-string").parse(url);
+                    const policy = tlsOptionsFor(url);
+                    if (policy.ssl) config.ssl = { ...config.ssl, ...policy.ssl,
+                        checkServerIdentity: require("node:tls").checkServerIdentity };
+                } catch {
+                    throw new Error("Invalid or unsafe database connection configuration.");
+                }
+            } else if (config.host && !LOOPBACK_HOSTS.has(config.host)) {
+                config = { ...config, ssl: { rejectUnauthorized: true } };
+            }
+            // Arbitrary startup options can override enforced GUC limits.
+            const { options: _options, ...safeConfig } = config;
             // Each backend instance maintains a small pool of reusable connections.
             const created = new Pool({
-                ...config,
-                ...(url ? tlsOptionsFor(url) : {}),
-                max: 5,
+                ...safeConfig,
+                options: `-c statement_timeout=${statement} -c lock_timeout=${lock} -c idle_in_transaction_session_timeout=${idleTransaction}`,
+                statement_timeout: statement,
+                lock_timeout: lock,
+                idle_in_transaction_session_timeout: idleTransaction,
+                query_timeout: statement + 1000,
+                max,
                 idleTimeoutMillis: 10000,
                 connectionTimeoutMillis: 10000
             });
             // Handle errors from connections that are sitting idle.
             created.on("error", (error) => {
-                console.error("Unexpected database connection error:", error.message);
+                const code = typeof error?.code === "string" && /^[0-9]{2}[A-Z0-9]{3}$/.test(error.code)
+                    ? error.code : "INTERNAL";
+                console.error(JSON.stringify({ operation: "database.idle", code }));
             });
             byKey.set(key, created);
         }

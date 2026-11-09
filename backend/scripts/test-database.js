@@ -13,6 +13,8 @@ const backend = path.resolve(__dirname, '..');
 const args = process.argv.slice(2);
 const version = args[0];
 const ci = args[1] === '--ci';
+const native = args[1] === '--native';
+let nativeService;
 const allowed = ['14', '18'];
 let container;
 let activeChild;
@@ -36,7 +38,7 @@ function applicationSuite(context, intentionalFailure = false) {
     const files = intentionalFailure ? ['test/application/safety.test.js'] : [
         'test/application/harness.test.js', 'test/application/safety.test.js',
         'test/application/sessions.test.js', 'test/application/rateLimit.test.js', 'test/application/emailVerification.test.js',
-        'test/application/passwordReset.test.js',
+        'test/application/passwordReset.test.js', 'test/application/queryBudgets.test.js',
     ];
     return new Promise((resolve, reject) => {
         const child = spawn(process.execPath, ['--test', '--test-concurrency=1', ...files], {
@@ -81,7 +83,7 @@ function cli(command, env, project = 'app') {
 }
 
 async function main() {
-    if (!allowed.includes(version) || args.length !== (ci ? 2 : 1)) {
+    if (!allowed.includes(version) || args.length !== (native ? 3 : ci ? 2 : 1)) {
         throw new Error('Use npm run test:database -- 14 (or 18). --ci is reserved for GitHub service containers.');
     }
     if (ci && (process.env.GITHUB_ACTIONS !== 'true' || !/^\d+$/.test(process.env.GNOSIS_TEST_SERVICE_PORT || ''))) {
@@ -90,6 +92,9 @@ async function main() {
     let port;
     if (ci) {
         port = Number(process.env.GNOSIS_TEST_SERVICE_PORT);
+    } else if (native) {
+        nativeService = await require('./testing/native-postgres').start(args[2], version);
+        port = nativeService.port;
     } else {
         container = docker(['run', '--detach', '--rm', '--publish', '127.0.0.1::5432',
             '--env', 'POSTGRES_HOST_AUTH_METHOD=trust',
@@ -189,7 +194,8 @@ for (const signal of ['SIGINT', 'SIGTERM']) {
 main().catch(() => {
     console.error('Disposable database checks failed. No application database settings were used.');
     process.exitCode = 1;
-}).finally(() => {
+}).finally(async () => {
+    if (nativeService) await nativeService.stop();
     if (container) {
         const cleanup = spawnSync('docker', ['rm', '--force', container], { stdio: 'ignore', timeout: 30000 });
         if (cleanup.status !== 0) {
