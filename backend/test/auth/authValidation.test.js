@@ -2,6 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
 const bcrypt = require("bcrypt");
+const passwordHash = require("../../src/utils/passwordHash");
 const jwt = require("jsonwebtoken");
 
 // Explicit isolation also protects direct node --test invocations.
@@ -22,7 +23,7 @@ const {
 } = require("../../src/utils/authValidation");
 
 // ---------------------------------------------------------------------------
-// Pure validator unit tests: no server, no database, no bcrypt.
+// Pure validator unit tests: no server, no database, no password hashing.
 // ---------------------------------------------------------------------------
 
 function validRegister(overrides = {}) {
@@ -243,18 +244,19 @@ test("reset validator requires a well-formed token and a registration-strength p
 });
 
 // ---------------------------------------------------------------------------
-// Route tests: validation runs before bcrypt and before the database.
+// Route tests: validation runs before password hashing and before the database.
 // The pool is mocked in memory (no real database connection is attempted)
-// and bcrypt calls are counted through delegating mocks, so these tests
-// prove ordering: invalid input reaches neither bcrypt nor the database,
+// and password-hashing calls are counted through delegating mocks, so
+// these tests prove ordering: invalid input reaches neither hashing nor
+// the database,
 // while valid input reaches both with exactly the validated values.
 // ---------------------------------------------------------------------------
 
 const app = require("../../src/app");
 const pool = require("../../src/db/db");
 
-const realHash = bcrypt.hash;
-const realCompare = bcrypt.compare;
+const realHash = passwordHash.hashPassword;
+const realVerify = passwordHash.verifyPassword;
 
 // The mock delegates to a per-test behavior so each test controls what
 // the "database" does: throw, return rows, or capture arguments.
@@ -314,8 +316,8 @@ function fakeLimiterClient() {
 }
 let connectBehavior = async () => fakeLimiterClient();
 const connectMock = test.mock.method(pool, "connect", (...args) => connectBehavior(...args));
-const hashMock = test.mock.method(bcrypt, "hash", (...args) => realHash(...args));
-const compareMock = test.mock.method(bcrypt, "compare", (...args) => realCompare(...args));
+const hashMock = test.mock.method(passwordHash, "hashPassword", (...args) => realHash(...args));
+const verifyMock = test.mock.method(passwordHash, "verifyPassword", (...args) => realVerify(...args));
 
 let server;
 let baseUrl;
@@ -366,7 +368,7 @@ test.after(async () => {
     queryMock.mock.restore();
     connectMock.mock.restore();
     hashMock.mock.restore();
-    compareMock.mock.restore();
+    verifyMock.mock.restore();
     await pool.end();
 });
 
@@ -400,7 +402,7 @@ function callCounts() {
         query: queryMock.mock.calls.length,
         connect: connectMock.mock.calls.length,
         hash: hashMock.mock.calls.length,
-        compare: compareMock.mock.calls.length,
+        verify: verifyMock.mock.calls.length,
     };
 }
 
@@ -413,20 +415,20 @@ async function post(path, body, raw = false) {
 }
 
 // Sends an invalid request and proves it was rejected with the expected
-// 400 before any database or bcrypt call: all call counts are unchanged.
+// 400 before any database or password-hashing call: all call counts are unchanged.
 // Issue #4: validation runs before the limiter, so invalid input also
 // causes zero limiter client checkouts.
-async function assertRejected(path, body, expectedError, { raw = false, bcryptMethod = "hash" } = {}) {
+async function assertRejected(path, body, expectedError, { raw = false, hashMethod = "hash" } = {}) {
     const before = callCounts();
     const result = await post(path, body, raw);
     assertJsonError(result, 400, { error: expectedError, code: "VALIDATION_FAILED" });
     const after = callCounts();
     assert.equal(after.query, before.query, "invalid input must cause zero database calls");
     assert.equal(after.connect, before.connect, "invalid input must cause zero database checkouts");
-    assert.equal(after[bcryptMethod], before[bcryptMethod], "invalid input must not reach bcrypt");
+    assert.equal(after[hashMethod], before[hashMethod], "invalid input must not reach password hashing");
 }
 
-test("register rejects invalid input before bcrypt and the database", async () => {
+test("register rejects invalid input before password hashing and the database", async () => {
     queryBehavior = async () => {
         throw Object.assign(new Error("Synthetic database failure"), { code: "ECONNREFUSED" });
     };
@@ -444,18 +446,18 @@ test("register rejects invalid input before bcrypt and the database", async () =
         "[1, 2]", "Request body must be an object.", { raw: true });
 });
 
-test("login rejects invalid input before bcrypt and the database", async () => {
+test("login rejects invalid input before password hashing and the database", async () => {
     queryBehavior = async () => {
         throw Object.assign(new Error("Synthetic database failure"), { code: "ECONNREFUSED" });
     };
     await assertRejected("/api/auth/login",
-        validLogin({ email: "not-an-email" }), "Email address is invalid.", { bcryptMethod: "compare" });
+        validLogin({ email: "not-an-email" }), "Email address is invalid.", { hashMethod: "verify" });
     await assertRejected("/api/auth/login",
-        validLogin({ password: "" }), "Password is required.", { bcryptMethod: "compare" });
+        validLogin({ password: "" }), "Password is required.", { hashMethod: "verify" });
     await assertRejected("/api/auth/login",
-        validLogin({ password: "x".repeat(73) }), "Password must be at most 72 bytes.", { bcryptMethod: "compare" });
+        validLogin({ password: "x".repeat(73) }), "Password must be at most 72 bytes.", { hashMethod: "verify" });
     await assertRejected("/api/auth/login",
-        "[1, 2]", "Request body must be an object.", { raw: true, bcryptMethod: "compare" });
+        "[1, 2]", "Request body must be an object.", { raw: true, hashMethod: "verify" });
 });
 
 test("register passes trimmed values to the insert and hashes the password", async () => {
@@ -477,7 +479,7 @@ test("register passes trimmed values to the insert and hashes the password", asy
     assert.equal(userInsert[1][0], "Test");
     assert.equal(userInsert[1][1], "User");
     assert.equal(userInsert[1][2], "test@example.com");
-    assert.match(userInsert[1][3], /^\$2b\$12\$/, "new hashes must use bcrypt cost 12");
+    assert.match(userInsert[1][3], /^\$argon2id\$v=19\$m=19456,t=2,p=1\$/, "new hashes must be Argon2id");
     assert.notEqual(userInsert[1][3], "a-valid-password");
     // Issue #9: the same transaction inserts the first verification
     // token: the user id, a 32-byte hash (never the raw token), and a
@@ -549,15 +551,15 @@ test("duplicate registration returns the same email-only success response", asyn
 
 test("login with unknown email and wrong password returns identical 401s", async () => {
     queryBehavior = async () => ({ rows: [] });
-    const beforeUnknown = callCounts().compare;
+    const beforeUnknown = callCounts().verify;
     const unknown = await post("/api/auth/login", validLogin());
-    assert.equal(callCounts().compare, beforeUnknown + 1, 'unknown accounts still perform bcrypt work');
+    assert.equal(callCounts().verify, beforeUnknown + 1, 'unknown accounts still perform password-hash work');
     assertJsonError(unknown, 401, {
         error: "Invalid email or password.",
         code: "INVALID_CREDENTIALS",
     });
 
-    const passwordHash = await realHash("correct-password", 10);
+    const passwordHash = await realHash("correct-password");
     queryBehavior = async () => ({
         rows: [{
             id: 42,
@@ -576,8 +578,8 @@ test("login with unknown email and wrong password returns identical 401s", async
     assert.equal(wrong.response.status, unknown.response.status);
 });
 
-test("login with valid credentials performs real bcrypt comparison and JWT signing", async () => {
-    const passwordHash = await realHash("correct-password", 10);
+test("login with valid credentials performs real password comparison and JWT signing", async () => {
+    const passwordHash = await realHash("correct-password");
     queryBehavior = async () => ({
         rows: [{
             id: 42,
@@ -594,26 +596,26 @@ test("login with valid credentials performs real bcrypt comparison and JWT signi
     assert.equal(typeof result.json.token, "string");
     const decoded = jwt.verify(result.json.token, process.env.JWT_SECRET);
     assert.equal(decoded.userId, 42);
-    assert.equal(callCounts().compare, before.compare + 1, "valid login must compare exactly once");
+    assert.equal(callCounts().verify, before.verify + 1, "valid login must verify exactly once");
 });
 
-test("new hashes use bcrypt cost 12 while cost-10 hashes still verify", async () => {
-    // PR3: cost 12 applies to NEW hashes only; existing cost-10 hashes
-    // must keep verifying on login (re-hash on next login is a later
-    // PR, not this one). The login test above also proves a cost-10
-    // hash authenticates end to end.
-    const fresh = await realHash("a-new-password-123", 12);
-    assert.match(fresh, /^\$2b\$12\$/);
-    assert.equal(await bcrypt.compare("a-new-password-123", fresh), true);
-    const legacy = await realHash("an-old-password-1", 10);
+test("new hashes are Argon2id while cost-10 bcrypt hashes still verify", async () => {
+    // Argon2id applies to NEW hashes only; existing bcrypt hashes must
+    // keep verifying on login (and transparently migrate to Argon2id).
+    // The login test above also proves a bcrypt hash authenticates end
+    // to end.
+    const fresh = await realHash("a-new-password-123");
+    assert.match(fresh, /^\$argon2id\$v=19\$m=19456,t=2,p=1\$/, "new hashes must be Argon2id");
+    assert.equal(await realVerify("a-new-password-123", fresh), true);
+    const legacy = await bcrypt.hash("an-old-password-1", 10);
     assert.match(legacy, /^\$2b\$10\$/);
-    assert.equal(await bcrypt.compare("an-old-password-1", legacy), true,
-        "existing cost-10 hashes must still verify");
+    assert.equal(await realVerify("an-old-password-1", legacy), true,
+        "existing cost-10 bcrypt hashes must still verify");
 });
 
 test("login trims the email before lookup", async () => {
     let captured;
-    const passwordHash = await realHash("correct-password", 10);
+    const passwordHash = await realHash("correct-password");
     queryBehavior = async (...args) => {
         if (args[0].includes("SELECT * FROM users")) captured = args;
         return { rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }] };
@@ -627,7 +629,7 @@ test("login trims the email before lookup", async () => {
 });
 
 test("login accepts a short pre-existing password", async () => {
-    const passwordHash = await realHash("abc", 10);
+    const passwordHash = await realHash("abc");
     queryBehavior = async () => ({
         rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }],
     });
