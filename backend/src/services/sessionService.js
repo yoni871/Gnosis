@@ -1,4 +1,5 @@
 const crypto = require('node:crypto');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../db/db');
 const ACCESS_SECONDS = 15 * 60;
@@ -91,6 +92,59 @@ function setCookie(res, refresh, expiresAt = new Date(Date.now() + SESSION_MS)) 
 function clearCookie(res) {
     res.clearCookie(COOKIE, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'strict', path: '/api/auth' });
 }
+// Session/device management (T2.5): the session rows carry no device
+// metadata (no user agent, no IP is recorded), so the list identifies a
+// session only by when it was created and when it expires. Never return
+// token material: refresh-token hashes live in auth_refresh_tokens and
+// are never selected here. Revoked sessions older than 30 days are
+// excluded so the list does not accumulate indefinitely; a recently
+// revoked session stays visible so the user can see what they revoked.
+async function listSessions(userId) {
+    const result = await pool.query(`SELECT id, created_at, expires_at, revoked_at FROM auth_sessions
+        WHERE user_id = $1 AND (revoked_at IS NULL OR revoked_at > now() - interval '30 days')
+        ORDER BY created_at DESC`, [userId]);
+    return result.rows;
+}
+// Revoke one session, owned by this user only. Returns true when a live
+// session was revoked; false when the id does not exist, is already
+// revoked, or belongs to another user — all three share the same
+// outcome, so the caller answers 404 without leaking which case hit.
+async function revokeSession(userId, sessionId) {
+    const result = await pool.query(`UPDATE auth_sessions SET revoked_at = now()
+        WHERE id = $1 AND user_id = $2 AND revoked_at IS NULL RETURNING id`, [sessionId, userId]);
+    return result.rows.length > 0;
+}
+// Authenticated password change. Mirrors the reset flow's guarantees
+// without logging the user out of the device they changed from: the
+// password hash is updated and every OTHER session is revoked, so a
+// stolen session on another device dies with the old password while
+// the current session keeps working.
+//
+// Lock order matches createSession: verify the current password and
+// hash the new one before any lock, then recheck the stored hash after
+// locking the user row, so a concurrent reset (or another change) that
+// lands first makes this one fail instead of resurrecting a stale hash.
+// Returns 'ok' or 'invalid' (wrong current password, or the stored hash
+// changed between verification and locking); database/bcrypt failures
+// throw and become controlled 500s in the route.
+async function changePassword(userId, currentPassword, newPassword, currentSessionId) {
+    const row = await pool.query('SELECT password_hash FROM users WHERE id = $1', [userId]);
+    const stored = row.rows[0]?.password_hash;
+    if (typeof stored !== 'string') return 'invalid';
+    if (!await bcrypt.compare(currentPassword, stored)) return 'invalid';
+    // Cost matches register/reset at this base; the rebase onto PR #81
+    // (secret-strength/passwords) raises new hashes to cost 12.
+    const hashed = await bcrypt.hash(newPassword, 10);
+    return transaction(async client => {
+        const locked = await client.query(
+            'SELECT password_hash FROM users WHERE id = $1 FOR UPDATE', [userId]);
+        if (locked.rows[0]?.password_hash !== stored) return 'invalid';
+        await client.query('UPDATE users SET password_hash = $1 WHERE id = $2', [hashed, userId]);
+        await client.query(`UPDATE auth_sessions SET revoked_at = now()
+            WHERE user_id = $1 AND id <> $2 AND revoked_at IS NULL`, [userId, currentSessionId]);
+        return 'ok';
+    });
+}
 // Custom header requires a preflight; exact Origin checking also blocks sibling origins.
 function browserSessionRequest(req, res, next) {
     const origin = req.headers.origin;
@@ -100,4 +154,5 @@ function browserSessionRequest(req, res, next) {
     next();
 }
 module.exports = { ACCESS_SECONDS, SESSION_MS, createSession, rotateSession, revokeRefresh,
-    revokeAccess, readCookie, setCookie, clearCookie, browserSessionRequest, hash };
+    revokeAccess, readCookie, setCookie, clearCookie, browserSessionRequest, hash,
+    listSessions, revokeSession, changePassword };

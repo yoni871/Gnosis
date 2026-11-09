@@ -18,6 +18,7 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const VerifyPage = lazy(() => import('./pages/VerifyPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
+const SessionsPage = lazy(() => import('./pages/SessionsPage'));
 
 function RouteLoading() {
     return (
@@ -87,6 +88,11 @@ function App() {
             <Route
               path='/reset-password'
               element={<ResetPasswordPage />}
+            />
+
+            <Route
+              path='/sessions'
+              element={<SessionsPage />}
             />
 
           </Routes>

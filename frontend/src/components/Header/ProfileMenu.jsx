@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import {
     User,
     Settings,
+    Shield,
     LogOut,
     ChevronDown,
     ChevronUp
@@ -151,6 +152,29 @@ export default function ProfileMenu() {
                 />
                 <span>Settings</span>
             </button>
+
+            <Link
+                to="/sessions"
+                onClick={() => setIsProfileOpen(false)}
+                className="
+                    flex w-full
+                    items-center
+                    gap-2.5
+                    rounded-md
+                    px-3 py-2.5
+                    text-left
+                    text-[11px]
+                    text-[var(--text-primary)]
+                    hover:bg-[var(--bg-control-hover)]
+                "
+            >
+                <Shield
+                    size={15}
+                    strokeWidth={1.8}
+                    className="text-[var(--text-muted)]"
+                />
+                <span>Sessions &amp; password</span>
+            </Link>
 
             <Link
                 to="/login"

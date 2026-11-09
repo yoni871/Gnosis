@@ -84,6 +84,72 @@ export async function resetPassword(token, password) {
     return postJson("/auth/reset-password", { token, password }, "Unable to reset your password.");
 }
 
+// Session management (T2.5): list sessions, revoke one session, and
+// change the password while signed in. All three use the Bearer access
+// token. Revoke and change-password also send X-Gnosis-Session: the
+// revoke of the current session clears the refresh cookie, and the
+// password change revokes other sessions, so both mutate cookie state.
+export async function getSessions(token) {
+    const response = await fetch(`${AUTH_API_URL}/auth/sessions`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throwServiceError(data, "Unable to load your sessions.");
+    }
+
+    return data;
+}
+
+export async function revokeSession(token, sessionId) {
+    const response = await fetch(`${AUTH_API_URL}/auth/sessions/${encodeURIComponent(sessionId)}`, {
+        method: "DELETE",
+        signal: AbortSignal.timeout(15000),
+        headers: {
+            "X-Gnosis-Session": "1",
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    if (response.status === 204) {
+        return null;
+    }
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throwServiceError(data, "Unable to revoke the session.");
+    }
+
+    return data;
+}
+
+export async function changePassword(token, { currentPassword, newPassword }) {
+    const response = await fetch(`${AUTH_API_URL}/auth/change-password`, {
+        method: "POST",
+        signal: AbortSignal.timeout(15000),
+        headers: {
+            "Content-Type": "application/json",
+            "X-Gnosis-Session": "1",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ currentPassword, newPassword })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throwServiceError(data, "Unable to change your password.");
+    }
+
+    return data;
+}
+
 // Serialize cookie mutations, including a logout queued behind a pending login.
 let sessionQueue = Promise.resolve();
 function sessionRequest(work) {
