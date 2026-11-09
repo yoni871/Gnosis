@@ -12,8 +12,8 @@
 // function fetch an arbitrary host. Only /api/auth/* reaches this function
 // (Vercel filesystem routing), and the sub-path is validated below.
 //
-// The incoming X-Forwarded-For is forwarded unchanged so the backend's
-// IP-based rate limiting still sees the real client address.
+// Forwarding headers are never accepted from callers. Until the deployed
+// proxy topology is verified, upstream rate limits use the proxy socket IP.
 
 const HOP_BY_HOP = new Set([
     "connection",
@@ -67,6 +67,8 @@ function authSubPath(requestUrl) {
 function sendJson(res, status, body) {
     const payload = Buffer.from(JSON.stringify(body));
     res.writeHead(status, {
+        "Cache-Control": "no-store",
+        "X-Content-Type-Options": "nosniff",
         "Content-Type": "application/json",
         "Content-Length": payload.length,
     });
@@ -84,15 +86,28 @@ export default async function handler(req, res) {
     const target = `${base}/api/auth/${sub}`;
 
     const chunks = [];
-    for await (const chunk of req) {
-        chunks.push(chunk);
+    let bytes = 0;
+    try {
+        for await (const chunk of req) {
+            bytes += chunk.length;
+            if (bytes > 100 * 1024) {
+                sendJson(res, 413, { error: "Request body too large." });
+                return;
+            }
+            chunks.push(chunk);
+        }
+    } catch {
+        sendJson(res, 400, { error: "Invalid request body." });
+        return;
     }
     const body = Buffer.concat(chunks);
 
     const headers = {};
     for (const [name, value] of Object.entries(req.headers || {})) {
         const lower = name.toLowerCase();
-        if (HOP_BY_HOP.has(lower)) {
+        if (HOP_BY_HOP.has(lower) || lower === "forwarded" ||
+            lower.startsWith("x-forwarded-") || lower.startsWith("x-vercel-") ||
+            lower === "x-real-ip" || lower === "true-client-ip" || lower === "cf-connecting-ip") {
             continue;
         }
         // fetch sets Host and Content-Length for the upstream request.

@@ -148,9 +148,6 @@ test("trust proxy parsing accepts the documented values only", () => {
     assert.equal(resolveTrustProxy(""), false);
     assert.equal(resolveTrustProxy("0"), false);
     assert.equal(resolveTrustProxy("false"), false);
-    assert.equal(resolveTrustProxy("true"), true);
-    assert.equal(resolveTrustProxy("1"), 1);
-    assert.equal(resolveTrustProxy("3"), 3);
     assert.equal(resolveTrustProxy("loopback"), "loopback");
     assert.deepEqual(resolveTrustProxy("loopback, 10.0.0.0/8"), ["loopback", "10.0.0.0/8"]);
     assert.equal(resolveTrustProxy("203.0.113.1"), "203.0.113.1");
@@ -158,7 +155,7 @@ test("trust proxy parsing accepts the documented values only", () => {
 });
 
 test("trust proxy parsing rejects values that could silently spoof clients", () => {
-    for (const bad of ["-1", "yes", "not-a-proxy-value", "999.999.999.999",
+    for (const bad of ["true", "1", "3", ":::", "10.0.0.1/0", "::/0", "1.2.3.4/24/9", "-1", "yes", "not-a-proxy-value", "999.999.999.999",
         "10.0.0.0/33", "2001:db8::/129", "loopback,", ",,", "1.2.3"]) {
         assert.throws(() => resolveTrustProxy(bad), /Invalid trust proxy/, bad);
     }
