@@ -204,8 +204,8 @@ test('duplicate registration keeps exactly one token', async () => {
     const email = freshEmail('duplicate');
     assert.equal((await register(worker.url, email)).status, 200);
     const again = await register(worker.url, email);
-    assert.equal(again.status, 409);
-    assert.deepEqual(again.json, { error: 'An account with that email already exists.', code: 'EMAIL_EXISTS' });
+    assert.equal(again.status, 200);
+    assert.deepEqual(again.json, { email });
     const user = await userByEmail(email);
     assert.equal((await tokensFor(user.id)).length, 1);
     assert.equal(user.email_verified_at, null);

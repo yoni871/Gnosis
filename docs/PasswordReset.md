@@ -157,12 +157,12 @@ PostgreSQL error 42501.
 
 ## Known limitations
 
-- **Outstanding sessions are not revoked by a reset.** Login tokens
-  are stateless JWTs valid for 7 days, and revocation belongs to
-  issue #7 (session security and token revocation). A password reset
-  changes the password immediately — the old password stops working —
-  but a JWT issued before the reset still works until it expires.
-  Closing that gap is #7's work, not this change's.
+- **A successful reset revokes every session in the same transaction.**
+  Existing access tokens and all refresh descendants fail after commit.
+  Login locks the same user row and rechecks the password hash it verified,
+  so an old-password login cannot create a surviving session across reset.
+  Invalid/expired/replayed resets do not revoke sessions. Already-authorized
+  requests may finish; revocation applies at the next authorization check.
 - A reset link grants account access for 1 hour. Anyone who can read
   the recipient's inbox in that window can reset the password. That is
   inherent to email-based reset; the short TTL and single-use tokens

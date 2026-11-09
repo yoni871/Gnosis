@@ -18,6 +18,7 @@ vi.mock("../../services/authService", () => ({
 beforeEach(() => {
     vi.resetAllMocks();
     localStorage.clear();
+    authService.refreshSession.mockRejectedValue(Object.assign(new Error('No session'), { code: 'SESSION_INVALID' }));
 });
 
 function mountHeader() {
@@ -34,7 +35,7 @@ function mountHeader() {
 
 describe("Header auth loading", () => {
     test("shows neither the signed-in menu nor the signed-out links while the session is being restored", async () => {
-        localStorage.setItem("gnosisToken", "synthetic-A");
+        authService.refreshSession.mockResolvedValue({ token: "synthetic-A" });
         // Never resolves: the restore stays pending.
         authService.getProfile.mockImplementation(() => new Promise(() => {}));
 
@@ -49,7 +50,7 @@ describe("Header auth loading", () => {
     });
 
     test("shows the profile menu once the restore confirms a session", async () => {
-        localStorage.setItem("gnosisToken", "synthetic-A");
+        authService.refreshSession.mockResolvedValue({ token: "synthetic-A" });
         authService.getProfile.mockResolvedValue({
             id: 1,
             first_name: "Synthetic",

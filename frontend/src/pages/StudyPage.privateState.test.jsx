@@ -55,7 +55,7 @@ beforeEach(() => {
         if (!String(url).endsWith('/books/1/chapters')) throw new Error('Unexpected mocked URL');
         return { json: async () => [{ chapter: 1 }] };
     });
-    localStorage.setItem('gnosisToken', 'synthetic-A');
+    authService.refreshSession.mockResolvedValue({ token: 'synthetic-A' });
     authService.getProfile.mockResolvedValue({ id: 1, first_name: 'Synthetic', last_name: 'A', email: 'a@example.invalid' });
     authService.loginUser.mockResolvedValue({ token: 'synthetic-B' });
     bible.getBooks.mockResolvedValue([{ id: 1, name: 'Genesis', chapters: 50 }]);
@@ -160,7 +160,7 @@ test('mobile tab remains selected while its private journal is reset', async () 
 test.each([false, true])('renewal preserves the actual StudyPage draft (temporary failure=%s)', async fails => {
     const token = exp => `header.${btoa(JSON.stringify({ sid: 'same-session', exp }))}.signature`;
     const original = token(9999999999), renewed = token(9999999998);
-    localStorage.setItem('gnosisToken', original);
+    authService.refreshSession.mockResolvedValueOnce({ token: original });
     if (fails) authService.refreshSession.mockRejectedValue(new TypeError('Network unavailable'));
     else authService.refreshSession.mockResolvedValue({ token: renewed });
     const desktop = await mount();

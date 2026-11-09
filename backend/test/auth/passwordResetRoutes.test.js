@@ -327,6 +327,9 @@ test("reset succeeds for a valid token, updates the password, and cannot be repl
     assert.equal(first.response.status, 200);
     assert.deepEqual(first.json, { reset: true });
     assert.ok(clientQueries.some((sql) => /UPDATE users SET password_hash/.test(sql)));
+    assert.ok(clientQueries.some(sql => /UPDATE auth_sessions SET revoked_at/.test(sql)));
+    assert.ok(clientQueries.findIndex(sql => /FROM users.*FOR UPDATE/.test(sql))
+        < clientQueries.findIndex(sql => /UPDATE auth_sessions/.test(sql)));
     assert.ok(clientQueries.some((sql) => /consumed_reason = 'used'/.test(sql)));
     assert.ok(clientQueries.some((sql) => /consumed_reason = 'superseded'/.test(sql)),
         "other unused tokens for the account must supersede");
@@ -351,4 +354,21 @@ test("reset and forgot database failures are controlled 500s", async () => {
     const forgot = await post("/api/auth/forgot-password", { email: "old@example.com" });
     assert.equal(forgot.response.status, 500);
     assert.deepEqual(forgot.json, { error: "Something went wrong.", code: "INTERNAL_ERROR" });
+});
+
+test('a session-revocation failure rolls back password reset without consuming the link', async () => {
+    resetBehaviors();
+    queryBehavior = async () => ({ rows: [{ id: 'synthetic-reset', user_id: 5 }] });
+    clientBehavior = async sql => {
+        if (/FROM users/.test(sql)) return { rows: [{ id: 5 }] };
+        if (/FROM password_reset_tokens/.test(sql)) return { rows: [{ id: 'synthetic-reset', expires_at: new Date(Date.now() + 60000), consumed_reason: null }] };
+        if (/UPDATE auth_sessions/.test(sql)) throw new Error('synthetic revocation failure');
+        return { rows: [] };
+    };
+    const result = await post('/api/auth/reset-password', { token: 'a'.repeat(43), password: 'a-new-password' });
+    assert.equal(result.response.status, 500);
+    const handler = allClientQueries.slice(allClientQueries.findIndex(sql => /SELECT id FROM users/.test(sql)));
+    assert.ok(handler.includes('ROLLBACK'));
+    assert.ok(!handler.includes('COMMIT'));
+    assert.ok(!handler.some(sql => /UPDATE password_reset_tokens/.test(sql)));
 });

@@ -158,6 +158,7 @@ test("login gate: verified account logs in normally", async () => {
     queryBehavior = async () => ({
         rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }],
     });
+    clientBehavior = async () => ({ rows: [{ password_hash: passwordHash }] });
     const result = await post("/api/auth/login", { email: "old@example.com", password: "correct-password" });
     assert.equal(result.response.status, 200);
     assert.equal(jwt.verify(result.json.token, process.env.JWT_SECRET).userId, 42);
@@ -220,7 +221,7 @@ test("register success sends a link whose token matches the stored hash", async 
         firstName: "Test", lastName: "User", email: "new@example.com", password: "a-valid-password",
     });
     assert.equal(result.response.status, 200);
-    assert.deepEqual(result.json, { id: 7, first_name: "Test", last_name: "User", email: "new@example.com" });
+    assert.deepEqual(result.json, { email: "new@example.com" });
     assert.equal(stubEmails.length, 1);
     const body = JSON.parse(stubEmails[0].body);
     assert.equal(body.from, "Gnosis Test <test@example.invalid>");
@@ -413,4 +414,16 @@ test("verify and resend database failures are controlled 500s", async () => {
     const resend = await post("/api/auth/resend-verification", { email: "new@example.com" });
     assert.equal(resend.response.status, 500);
     assert.deepEqual(resend.json, { error: "Something went wrong.", code: "INTERNAL_ERROR" });
+});
+
+test('a password changed after comparison cannot issue a login cookie', async () => {
+    resetBehaviors();
+    const passwordHash = await bcrypt.hash('correct-password', 10);
+    queryBehavior = async () => ({ rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }] });
+    clientBehavior = async () => ({ rows: [{ password_hash: 'changed-by-reset' }] });
+    const result = await post('/api/auth/login', { email: 'old@example.com', password: 'correct-password' });
+    assert.equal(result.response.status, 401);
+    assert.deepEqual(result.json, { error: 'Invalid email or password.', code: 'INVALID_CREDENTIALS' });
+    assert.equal(result.response.headers.get('set-cookie'), null);
+    assert.ok(!allClientQueries.some(sql => /INSERT INTO auth_/.test(sql)));
 });
