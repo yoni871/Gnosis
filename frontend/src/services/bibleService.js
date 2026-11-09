@@ -57,7 +57,7 @@ const key = cacheKey(book, chapter, translation);
         try {
             const body = await response.json();
             code = body.code || null;
-        } catch (error) {
+        } catch {
             // An unreadable error body carries no code; the status is enough.
         }
         const error = new Error("Unable to load Scripture.");
