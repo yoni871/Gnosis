@@ -34,13 +34,14 @@ function isValidVerseSelection(verses) {
     return (
         Array.isArray(verses) &&
         verses.length > 0 &&
+        verses.length <= 500 &&
         verses.every((point) =>
             point !== null &&
             typeof point === "object" &&
-            Number.isInteger(point.chapter) &&
-            point.chapter > 0 &&
-            Number.isInteger(point.verse) &&
-            point.verse > 0
+            Number.isSafeInteger(point.chapter) &&
+            point.chapter > 0 && point.chapter <= 1000 &&
+            Number.isSafeInteger(point.verse) &&
+            point.verse > 0 && point.verse <= 1000
         )
     );
 }

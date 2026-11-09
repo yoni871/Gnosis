@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+router.param("id", require("../utils/apiValidation").recordId);
 const authenticateToken = require("../middleware/authMiddleware");
 const { 
     createBookmark, 

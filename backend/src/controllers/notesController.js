@@ -1,7 +1,12 @@
+const { validNote } = require("../utils/apiValidation");
+const { logFailure } = require("../utils/safeLog");
 const pool = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
 
 const createNote = async (req, res) => {
+    if (!validNote(req.body, req.method === "PATCH")) {
+        return res.status(400).json({ error: "Invalid note fields." });
+    }
     const userId = req.user.userId;
 
     const {
@@ -55,7 +60,7 @@ const createNote = async (req, res) => {
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to create note."
@@ -78,7 +83,7 @@ const getNotes = async (req, res) => {
 
         return res.status(200).json(result.rows);
     } catch (error) {
-        console.error(error);
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to retrieve notes."
@@ -108,7 +113,7 @@ const getNoteById = async (req, res) => {
 
         return res.status(200).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to retrieve note."
@@ -117,6 +122,9 @@ const getNoteById = async (req, res) => {
 };
 
 const updateNote = async (req, res) => {
+    if (!validNote(req.body, true)) {
+        return res.status(400).json({ error: "Invalid note fields." });
+    }
     const userId = req.user.userId;
     const noteId = req.params.id;
 
@@ -178,7 +186,7 @@ const updateNote = async (req, res) => {
         return res.status(200).json(result.rows[0]);
 
     } catch (error) {
-        console.error(error);
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to update note."
@@ -212,7 +220,7 @@ const deleteNote = async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
+        logFailure("notesController", error);
 
         return res.status(500).json({
             error: "Failed to delete note."

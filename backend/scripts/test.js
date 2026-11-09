@@ -38,7 +38,7 @@ if (require.main === module) {
         'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js',
         'test/translations/licensedProviders.test.js',
         'test/translations/licensedService.test.js',
-        'test/application/readingState.test.js',
+        'test/application/readingState.test.js', 'test/application/apiBoundaries.test.js',
         'test/application/crossProjectValidation.test.js',
         'test/db/pools.test.js',
         'test/application/searchPagination.test.js',
