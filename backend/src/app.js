@@ -34,6 +34,8 @@ app.use(securityHeaders);
 // validated TRUST_PROXY environment setting. No production value is
 // guessed here: the operator sets the value that matches the real proxy
 // chain when the backend host is chosen, and an invalid value fails fast.
+// Issue #115: "true" is rejected at boot — it trusts every hop and lets
+// a client spoof its IP; use a hop count (1 on Vercel) or CIDRs instead.
 app.set("trust proxy", resolveTrustProxy(process.env.TRUST_PROXY));
 
 app.use(cors({ origin: new URL(process.env.FRONTEND_URL).origin, credentials: true }));

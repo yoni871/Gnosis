@@ -371,13 +371,18 @@ function createRateLimitMiddleware(policySpecs, endpoint) {
 }
 
 // Validate the TRUST_PROXY environment setting. Accepts: unset/empty,
-// "0"/"false" (disabled, the default), "true", a hop count, or a
+// "0"/"false" (disabled, the default), a hop count of 1-5, or a
 // comma-separated list of IPs, CIDRs, or Express subnet names (loopback,
-// linklocal, uniquelocal). Anything else fails fast at startup, so a
-// typo can never silently become a spoofable configuration. Express
-// itself validates the entries again at runtime; this is the fail-fast
-// sanity gate. No production value is guessed: the default is disabled,
-// and the operator sets the value that matches the real proxy chain.
+// linklocal, uniquelocal). "true" is REJECTED (issue #115, audit F06):
+// it trusts every proxy hop, so any client-supplied X-Forwarded-For
+// entry becomes the client IP and defeats the per-IP rate-limit buckets.
+// A hop count above 5 is rejected for the same reason — it is "true"
+// with extra steps. Anything else fails fast at startup, so a typo can
+// never silently become a spoofable configuration. Express itself
+// validates the entries again at runtime; this is the fail-fast sanity
+// gate. No production value is guessed: the default is disabled, and
+// the operator sets the value that matches the real proxy chain
+// (hop count 1 on Vercel; the live spoof check confirms the count).
 function resolveTrustProxy(value) {
     if (value === undefined || value === "") {
         return false;
@@ -385,11 +390,22 @@ function resolveTrustProxy(value) {
     if (value === "0" || value === "false") {
         return false;
     }
-    if (value === "true") {
-        return true;
+    if (value === "true" || value === "True" || value === "TRUE") {
+        throw new Error(
+            "Invalid trust proxy configuration: \"true\" trusts every proxy hop " +
+            "and lets any client spoof its IP. Set a hop count (for example \"1\") " +
+            "or a list of trusted proxy IPs or CIDRs.",
+        );
     }
     if (/^\d+$/.test(value) && Number.isSafeInteger(Number(value))) {
-        return Number(value);
+        const hops = Number(value);
+        if (hops > 5) {
+            throw new Error(
+                "Invalid trust proxy configuration: hop count must be 1-5; " +
+                "a larger count trusts every hop the same way \"true\" does.",
+            );
+        }
+        return hops;
     }
     const rawParts = value.split(",");
     if (rawParts.some((part) => part.trim() === "")) {
