@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
 const { startBackend } = require('../helpers/backend-instance');
-const { computeKeyHash, RATE_LIMITED_BODY } = require('../../src/utils/rateLimit');
+const { attemptReservation, computeKeyHash, lockKeyPair, releaseReservations, RATE_LIMITED_BODY } = require('../../src/utils/rateLimit');
 
 const context = contextFromEnvironment(); // Fail before any connection if run directly.
 const RATE_SECRET = 'synthetic-application-test-rate-limit';
@@ -86,6 +86,43 @@ async function seedUser(email, password) {
 // derives how many failures remain before the limit (robust to order).
 // The per-IP bucket is filled by the per-IP test; the both-blocked test
 // runs right after it and relies on that full bucket.
+
+// Lock contention is tested first, while the shared per-IP bucket is still
+// empty, so the blocked login's Retry-After is deterministically 1 and the
+// test leaves the shared bucket untouched (the blocked attempt inserts
+// nothing; the post-release reservation is released).
+test('lock contention returns 429 promptly instead of hanging', async () => {
+    const email = 'lock-contention@example.com';
+    const keyHash = computeKeyHash('login_ip_email', [IP, email], RATE_SECRET);
+    const [key1, key2] = lockKeyPair('login_ip_email', keyHash);
+    // Hold the per-key advisory lock in a separate session, the way a
+    // concurrent in-flight request would.
+    const holder = await database.pool.connect();
+    try {
+        await holder.query('BEGIN');
+        await holder.query('SELECT pg_advisory_xact_lock($1, $2)', [key1, key2]);
+        const started = Date.now();
+        const blocked = await login(worker.url, email, 'wrong-password');
+        const elapsedMs = Date.now() - started;
+        assert.ok(elapsedMs < 5000,
+            `a lock-contention request must return promptly, took ${elapsedMs}ms`);
+        assert.equal(blocked.status, 429);
+        assert.deepEqual(blocked.json, RATE_LIMITED_BODY);
+        assert.equal(Number(blocked.retryAfter), 1,
+            'the lock frees in milliseconds, so the retry is 1 second');
+        assert.equal(await attemptCount('login_ip_email', [IP, email]), 0,
+            'the blocked attempt inserted nothing, so no quota is consumed');
+    } finally {
+        await holder.query('ROLLBACK');
+        holder.release();
+    }
+    // Once the holder releases, a reservation for the same key succeeds.
+    const outcome = await attemptReservation(database.pool, 'login_ip_email', keyHash);
+    assert.equal(outcome.allowed, true, 'the lock is freed once the holder rolls back');
+    await releaseReservations(database.pool, [outcome.reservation]);
+    assert.equal(await attemptCount('login_ip_email', [IP, email]), 0,
+        'the released reservation leaves no row behind');
+});
 
 test('concurrent burst is strict: exactly 5 of 20 attempts pass the email bucket', async () => {
     const email = 'burst@example.com';

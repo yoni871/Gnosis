@@ -39,6 +39,7 @@ class FakeClient {
         this.queries = [];
         this.released = 0;
         this.inserted = [];
+        this.tryLockFailures = options.tryLockFailures ?? 0;
     }
 
     async query(sql, params = []) {
@@ -51,6 +52,10 @@ class FakeClient {
             return { rows: [{ pg_advisory_xact_lock: true }] };
         }
         if (sql.includes("pg_try_advisory_xact_lock")) {
+            if (this.tryLockFailures > 0) {
+                this.tryLockFailures -= 1;
+                return { rows: [{ locked: false }] };
+            }
             return { rows: [{ locked: this.options.tryLock !== false }] };
         }
         if (sql.includes("INSERT INTO rate_limit_attempts")) {
@@ -253,7 +258,7 @@ test("reservation commits in order: lock, insert, count, commit", async () => {
     const statements = client.queries.map((query) => query.sql);
     assert.deepEqual(statements, [
         "BEGIN",
-        "SELECT pg_advisory_xact_lock($1, $2)",
+        "SELECT pg_try_advisory_xact_lock($1, $2) AS locked",
         "INSERT INTO rate_limit_attempts(key_hash, policy) VALUES ($1, $2) RETURNING id",
         `SELECT COUNT(*)::int AS count, MIN(attempted_at) AS oldest
                  FROM rate_limit_attempts
@@ -277,6 +282,35 @@ test("reservation over the limit rolls back and reports retry-after", async () =
         `retry-after must be ~60s, got ${outcome.retryAfter}`);
     assert.ok(client.queries.some((query) => query.sql === "ROLLBACK"));
     assert.ok(!client.queries.some((query) => query.sql === "COMMIT"));
+});
+
+test("reservation returns a 429-ready result when the advisory lock is held", async () => {
+    const client = new FakeClient({ tryLock: false });
+    const fakePool = { connect: async () => client, query: async () => ({ rows: [] }) };
+    const outcome = await attemptReservation(fakePool, "login_ip_email",
+        keyFor("login_ip_email", ["203.0.113.9", "user@example.com"]),
+        { lockWaitTimeoutMs: 50, lockRetryDelayMs: 5 });
+    assert.deepEqual(outcome, { allowed: false, retryAfter: 1 });
+    assert.ok(client.queries.some((query) => query.sql === "ROLLBACK"));
+    assert.ok(!client.queries.some((query) => query.sql === "COMMIT"));
+    assert.ok(!client.queries.some((query) => query.sql.includes("INSERT INTO rate_limit_attempts")),
+        "a lock-contention block inserts nothing, so no quota is consumed");
+    assert.equal(client.released, 1);
+});
+
+test("reservation retries the advisory lock and commits once it frees", async () => {
+    const client = new FakeClient({ tryLockFailures: 2 });
+    const fakePool = { connect: async () => client, query: async () => ({ rows: [] }) };
+    const outcome = await attemptReservation(fakePool, "login_ip_email",
+        keyFor("login_ip_email", ["203.0.113.9", "user@example.com"]),
+        { lockWaitTimeoutMs: 1000, lockRetryDelayMs: 1 });
+    assert.equal(outcome.allowed, true);
+    assert.equal(outcome.reservation.id, "res-1");
+    const lockAttempts = client.queries.filter((query) =>
+        query.sql.includes("pg_try_advisory_xact_lock"));
+    assert.equal(lockAttempts.length, 3, "two failed tries, then the lock is acquired");
+    assert.ok(client.queries.some((query) => query.sql === "COMMIT"));
+    assert.equal(client.released, 1);
 });
 
 test("reservation store failure rolls back, releases, and propagates", async () => {
@@ -410,6 +444,29 @@ test("middleware blocks with a generic 429 and releases earlier reservations", a
         const deletes = poolQueries.filter((query) => query.sql.includes("DELETE FROM rate_limit_attempts"));
         assert.equal(deletes.length, 1, "the earlier reservation is released, not kept");
         assert.equal(deletes[0].params[0], "res-1");
+    } finally {
+        restore();
+    }
+});
+
+test("middleware returns a generic 429 with a 1-second retry when the lock is held", async () => {
+    const client = new FakeClient({ tryLock: false });
+    const { restore } = mockPoolForMiddleware(client);
+    try {
+        const middleware = createRateLimitMiddleware([
+            { policy: "login_ip_email", fields: (req, ip) => [ip, req.validated.email] },
+        ], "login");
+        const res = fakeResponse();
+        let proceeded = false;
+        await middleware({ ip: "203.0.113.9", validated: { email: "a@example.com" } }, res, () => {
+            proceeded = true;
+        });
+        assert.equal(proceeded, false);
+        assert.equal(res.statusCode, 429);
+        assert.deepEqual(res.body, RATE_LIMITED_BODY);
+        assert.ok(!JSON.stringify(res.body).includes("login_ip"), "the body names no policy");
+        assert.equal(Number(res.headers["Retry-After"]), 1);
+        assert.equal(client.inserted.length, 0, "no quota is consumed by a lock-contention block");
     } finally {
         restore();
     }
