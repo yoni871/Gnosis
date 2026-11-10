@@ -60,6 +60,13 @@ const POLICIES = {
     forgot_ip_email: { windowMs: 60 * 60 * 1000, limit: 5 },
     forgot_ip: { windowMs: 60 * 60 * 1000, limit: 20 },
     reset_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
+    // PR4 (F04): refresh was the one auth endpoint with no throttle.
+    // It mirrors verify/reset — 30 per 15 minutes per IP — because a
+    // refresh attempt needs only a stolen or guessed cookie value, and
+    // a legitimate client refreshes at most once per 15-minute access
+    // token. Only failed refreshes count: successes release their
+    // reservation, so normal use never consumes quota.
+    refresh_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since

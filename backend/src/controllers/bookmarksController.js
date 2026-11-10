@@ -2,6 +2,7 @@ const pool = require("../db/db");
 const { biblePool } = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
 const { logControllerError } = require("../utils/authErrors");
+const { parsePagination } = require("../utils/pagination");
 const isValidPassageRange = (
     startChapter,
     startVerse,
@@ -131,6 +132,10 @@ const createBookmark = async (req, res) => {
 const getBookmarks = async (req, res) => {
     const userId = req.user.userId;
 
+    // F04: the list was unbounded. Same limit/offset convention as notes
+    // and search; the applied values ride on headers.
+    const { limit, offset } = parsePagination(req.query);
+
     try {
         const result = await pool.query(
             `
@@ -138,11 +143,15 @@ const getBookmarks = async (req, res) => {
             FROM bookmarks
             WHERE bookmarks.user_id = $1
             ORDER BY bookmarks.created_at DESC
+            LIMIT $2 OFFSET $3
             `,
-            [userId]
+            [userId, limit, offset]
         );
 
-        return res.status(200).json(
+        return res.status(200)
+            .set("X-Limit", String(limit))
+            .set("X-Offset", String(offset))
+            .json(
             await withBookNames(result.rows)
         );
     } catch (error) {

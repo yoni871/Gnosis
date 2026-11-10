@@ -128,6 +128,14 @@ test("Bible search clamps limit to 100 and defaults invalid pages to the first p
     }
 });
 
+test("Bible search clamps page at 100, bounding the OFFSET", async () => {
+    const capped = await searchBible("?q=lord&page=99999");
+    assert.equal(capped.page, 100);
+    assert.equal(capped.limit, 100);
+    assert.equal(lastBibleParams[2], 100);
+    assert.equal(lastBibleParams[3], 9900);
+});
+
 test("Bible search orders by rank with a deterministic tiebreak", async () => {
     await searchBible("?q=lord&page=2&limit=10");
     assert.deepEqual(lastBibleParams, ["lord", "BSB", 10, 10]);

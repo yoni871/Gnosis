@@ -114,7 +114,9 @@ test("a notes-list database failure logs only allowlisted fields", async () => {
     const res = fakeRes();
     try {
         const seen = await captureConsoleError(async () => {
-            await getNotes({ user: { userId: 7 } }, res);
+            // #85 reads req.query for pagination before the try block;
+            // Express always provides req.query ({} when absent).
+            await getNotes({ user: { userId: 7 }, query: {} }, res);
         });
         assert.equal(res.statusCode, 500);
         assert.deepEqual(res.body, { error: "Failed to retrieve notes." });

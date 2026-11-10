@@ -1,6 +1,17 @@
 const pool = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
 const { logControllerError } = require("../utils/authErrors");
+const { parsePagination } = require("../utils/pagination");
+
+// The notes.content column is TEXT with no database-side bound, so the
+// application caps it: 100,000 characters is far above any real study
+// note and far below an abusive payload (and below the 100 KiB JSON body
+// limit, so a max-length note can still arrive in one request).
+const MAX_NOTE_CONTENT_LENGTH = 100_000;
+
+function contentTooLong(content) {
+    return typeof content === "string" && content.length > MAX_NOTE_CONTENT_LENGTH;
+}
 
 const createNote = async (req, res) => {
     const userId = req.user.userId;
@@ -25,6 +36,12 @@ const createNote = async (req, res) => {
         return res.status(400).json({
             error: "All note fields are required."
         })
+    }
+
+    if (contentTooLong(content)) {
+        return res.status(400).json({
+            error: "Note content is too long."
+        });
     }
 
     try {
@@ -67,17 +84,26 @@ const createNote = async (req, res) => {
 const getNotes = async (req, res) => {
     const userId = req.user.userId;
 
+    // F04: the list was unbounded. Limit defaults to 100 and is capped
+    // at 100 (same as search); the applied values ride on headers so a
+    // client can see the cap without changing the array body.
+    const { limit, offset } = parsePagination(req.query);
+
     try {
         const result = await pool.query(
             `
             SELECT * FROM notes
             WHERE user_id = $1
             ORDER BY created_at DESC
+            LIMIT $2 OFFSET $3
             `,
-            [userId]
+            [userId, limit, offset]
         );
 
-        return res.status(200).json(result.rows);
+        return res.status(200)
+            .set("X-Limit", String(limit))
+            .set("X-Offset", String(offset))
+            .json(result.rows);
     } catch (error) {
         logControllerError("notes.list", "database", error);
 
@@ -140,6 +166,12 @@ const updateNote = async (req, res) => {
     ) {
         return res.status(400).json({
             error: "At least one field is required to update the note."
+        });
+    }
+
+    if (contentTooLong(content)) {
+        return res.status(400).json({
+            error: "Note content is too long."
         });
     }
 

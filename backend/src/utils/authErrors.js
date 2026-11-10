@@ -71,6 +71,10 @@ const CLIENT_AUTH_RESPONSES = {
     // Audit N05: unmatched /api/* routes return this controlled JSON 404,
     // not Express's default HTML "Cannot GET ..." page.
     notFound: { status: 404, body: errorBody("Not found.", "NOT_FOUND") },
+    // N04: an over-limit body is a client error with its own status, not
+    // an internal failure. Same { error, code } shape as every other
+    // controlled body error.
+    bodyTooLarge: { status: 413, body: errorBody("Request body too large.", "BODY_TOO_LARGE") },
     internal: { status: 500, body: errorBody("Something went wrong.", "INTERNAL_ERROR") },
 };
 
@@ -78,6 +82,13 @@ const CLIENT_AUTH_RESPONSES = {
 // type "entity.parse.failed".
 function isBodyParseError(error) {
     return Boolean(error) && (error.type === "entity.parse.failed" || (error instanceof SyntaxError && error.status === 400));
+}
+
+// Body-parser reports an over-limit body as an error with type
+// "entity.too.large" and status 413. It was previously missed here, so
+// the central handler converted it to a generic 500 (N04).
+function isBodyTooLarge(error) {
+    return Boolean(error) && error.type === "entity.too.large";
 }
 
 // Log useful server-side context without sensitive data. Only the route,
@@ -116,6 +127,7 @@ module.exports = {
     internalErrorBody,
     CLIENT_AUTH_RESPONSES,
     isBodyParseError,
+    isBodyTooLarge,
     logAuthFailure,
     logControllerError,
     logPoolError,

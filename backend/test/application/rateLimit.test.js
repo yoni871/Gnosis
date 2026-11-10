@@ -291,3 +291,52 @@ test('profile reads stay unthrottled', async () => {
         assert.equal(body.email, 'profile@example.com');
     }
 });
+
+async function refresh(url, cookie) {
+    const response = await fetch(`${url}/api/auth/refresh`, {
+        method: 'POST',
+        headers: { 'X-Gnosis-Session': '1', ...(cookie ? { Cookie: cookie } : {}) },
+        signal: AbortSignal.timeout(10000),
+    });
+    const text = await response.text();
+    return {
+        status: response.status,
+        cookie: response.headers.get('set-cookie')?.split(';')[0],
+        json: text ? JSON.parse(text) : null,
+    };
+}
+
+test('a successful refresh does not consume refresh quota', async () => {
+    const before = await attemptCount('refresh_ip', [IP]);
+    // Seed the session and refresh token directly instead of logging in:
+    // the login_ip bucket may already be full from earlier tests in this
+    // file, and this test is about the refresh bucket, not login.
+    const { randomBytes, randomUUID } = require('node:crypto');
+    const { hash } = require('../../src/services/sessionService');
+    const id = await seedUser('refresh-ok@example.com', 'correct-password');
+    const sid = randomUUID();
+    await database.pool.query("INSERT INTO auth_sessions(id,user_id,expires_at) VALUES ($1,$2,now() + interval '1 hour')", [sid, id]);
+    const refreshToken = randomBytes(32).toString('hex');
+    await database.pool.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refreshToken), sid]);
+    const refreshed = await refresh(worker.url, `gnosisRefresh=${refreshToken}`);
+    assert.equal(refreshed.status, 200);
+    assert.ok(refreshed.cookie, 'rotation must set a replacement cookie');
+    assert.equal(await attemptCount('refresh_ip', [IP]), before);
+});
+
+test('refresh is rate limited per IP after 30 failed attempts', async () => {
+    // Tests share one database and one loopback address, so the bucket
+    // may already hold failures from earlier tests in this file; read
+    // the starting count and derive what remains (same pattern as the
+    // per-IP login test above).
+    const start = await attemptCount('refresh_ip', [IP]);
+    const remaining = 30 - start;
+    assert.ok(remaining > 0, `expected refresh headroom, got ${remaining}`);
+    for (let i = 0; i < remaining; i++) {
+        assert.equal((await refresh(worker.url)).status, 401);
+    }
+    const blocked = await refresh(worker.url);
+    assert.equal(blocked.status, 429);
+    assert.deepEqual(blocked.json, RATE_LIMITED_BODY);
+    assert.equal(await attemptCount('refresh_ip', [IP]), 30);
+});
