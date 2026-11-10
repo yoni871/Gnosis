@@ -29,7 +29,7 @@ if (require.main === module) {
     const result = spawnSync(process.execPath, ['--test',
         'test/auth/authErrors.test.js', 'test/auth/sessions.test.js', 'test/auth/authRoutes.test.js',
         'test/auth/authValidation.test.js', 'test/auth/rateLimit.test.js',
-        'test/auth/emailConfig.test.js', 'test/auth/verification.test.js',
+        'test/auth/emailConfig.test.js', 'test/auth/emailTemplate.test.js', 'test/auth/verification.test.js',
         'test/auth/resendClient.test.js', 'test/auth/emailVerification.test.js',
         'test/auth/passwordReset.test.js', 'test/auth/passwordResetRoutes.test.js',
         'test/auth/serverConfig.test.js', 'test/auth/secretStrength.test.js',

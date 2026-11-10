@@ -22,11 +22,18 @@ test("a bare sender address is accepted", () => {
     assert.equal(config.emailFrom, "verify@example.com");
 });
 
+test("a missing sender falls back to the product identity (issue #118)", () => {
+    for (const env of [{ ...VALID, EMAIL_FROM: "" }, { ...VALID, EMAIL_FROM: undefined }]) {
+        const { config, errors } = validateEmailConfig(env);
+        assert.equal(errors, undefined);
+        assert.equal(config.emailFrom, "Gnosis <noreply@studygnosis.com>");
+    }
+});
+
 test("each missing or malformed value is reported by field, never by value", () => {
     const cases = [
         [{ ...VALID, RESEND_API_KEY: "" }, "RESEND_API_KEY"],
         [{ ...VALID, RESEND_API_KEY: undefined }, "RESEND_API_KEY"],
-        [{ ...VALID, EMAIL_FROM: "" }, "EMAIL_FROM"],
         [{ ...VALID, EMAIL_FROM: "not-an-email" }, "EMAIL_FROM"],
         [{ ...VALID, EMAIL_FROM: "a@.b.com" }, "EMAIL_FROM"],
         [{ ...VALID, EMAIL_FROM: "Name <not-an-email>" }, "EMAIL_FROM"],
@@ -47,9 +54,9 @@ test("each missing or malformed value is reported by field, never by value", () 
     }
 });
 
-test("all three failures are reported together", () => {
+test("missing values are reported together (the sender now has a default)", () => {
     const { errors } = validateEmailConfig({});
-    assert.deepEqual(errors.map((error) => error.field), ["RESEND_API_KEY", "EMAIL_FROM", "FRONTEND_URL"]);
+    assert.deepEqual(errors.map((error) => error.field), ["RESEND_API_KEY", "FRONTEND_URL"]);
 });
 
 test("startup failure is generic: no variable name, no value", () => {
