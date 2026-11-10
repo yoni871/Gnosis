@@ -93,3 +93,28 @@ test("GNOSIS_SPLIT_REQUIRED=1 with no split URLs at all fails fast", () => {
         DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis",
     }), /GNOSIS_APP_DATABASE_URL.*GNOSIS_BIBLE_DATABASE_URL.*GNOSIS_COMMENTARY_DATABASE_URL/);
 });
+
+test("a remote URL forces verified TLS regardless of its sslmode", () => {
+    const result = pools({
+        DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb?sslmode=require",
+    });
+    assert.deepEqual(result.app.options.ssl, { rejectUnauthorized: true });
+});
+
+test("a remote URL without sslmode still forces verified TLS", () => {
+    const result = pools({
+        DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb",
+    });
+    assert.deepEqual(result.app.options.ssl, { rejectUnauthorized: true });
+});
+
+test("a loopback URL leaves TLS unset (local development has no certificates)", () => {
+    const result = pools({ DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis" });
+    assert.equal(result.app.options.ssl, undefined);
+});
+
+test("sslmode=disable fails fast instead of connecting in plaintext", () => {
+    assert.throws(() => pools({
+        DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb?sslmode=disable",
+    }), /sslmode=disable/);
+});
