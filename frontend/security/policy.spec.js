@@ -7,7 +7,11 @@ test.beforeEach(async ({ context }) => {
     await context.route('**/*', async route => {
         const url = new URL(route.request().url());
         if (url.origin === fixture.origin) return route.continue();
-        if (url.hostname !== 'api.example.invalid') return route.abort();
+        // Mock API host is api.example.vercel.app (see check-build.js):
+        // it must stay inside the enforced CSP connect-src
+        // ('self' https://*.vercel.app) or every mocked fetch is blocked
+        // before it reaches this route.
+        if (url.hostname !== 'api.example.vercel.app') return route.abort();
         let body = [];
         if (url.pathname === '/api/books') body = [{ id: 1, name: 'Genesis', chapters: 50 }];
         else if (url.pathname === '/api/translations') body = [{ abbreviation: 'BSB', name: 'Synthetic BSB' }, { abbreviation: 'WEB', name: 'Synthetic WEB' }, { abbreviation: 'KJV', name: 'Synthetic KJV' }];

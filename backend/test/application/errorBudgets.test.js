@@ -66,6 +66,9 @@ async function answerQuery(sql, params) {
         sql.includes("pg_advisory_xact_lock"))) {
         return { rows: [] };
     }
+    if (typeof sql === "string" && sql.includes("set_config")) {
+        return { rows: [{ set_config: "1" }] };
+    }
     throw new Error(`Unexpected query in error-budgets test: ${sql}`);
 }
 

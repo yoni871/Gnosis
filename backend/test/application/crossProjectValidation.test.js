@@ -24,6 +24,7 @@ let inserted = null;
 
 const queryMock = test.mock.method(pool, "query", async (sql, params) => {
     if (sql === 'BEGIN' || sql === 'COMMIT' || sql === 'ROLLBACK' || sql.includes('pg_advisory_xact_lock')) return { rows: [] };
+    if (typeof sql === "string" && sql.includes("set_config")) return { rows: [{ set_config: "1" }] };
     if (sql.includes('COUNT(*)')) return { rows: [{ count: 0, bytes: 0 }] };
     if (typeof sql === "string" && sql.includes("FROM auth_sessions")) {
         return { rows: [{ id: '00000000-0000-4000-8000-000000000001' }] };

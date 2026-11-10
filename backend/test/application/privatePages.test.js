@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
 const jwt = require('jsonwebtoken');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
+const { withUser } = require('../../src/db/userContext');
 const { startBackend, workerEnvironment } = require('../helpers/backend-instance');
 const context = contextFromEnvironment();
 let database, worker, bookId;
@@ -20,8 +21,11 @@ async function request(user, path, method = 'GET', body) {
     const text = await res.text(); return { status: res.status, data: JSON.parse(text), res, bytes: Buffer.byteLength(text) };
 }
 async function seedNotes(user, count, content = 'Private fixture note') {
-    return database.pool.query(`INSERT INTO notes(user_id,book_id,start_chapter,start_verse,end_chapter,end_verse,content)
-        SELECT $1,$2,1,1,1,1,$3 FROM generate_series(1,$4::integer) RETURNING id`, [user.id, bookId, content, count]);
+    // Seed data runs as the app role under RLS, so it must carry the
+    // owner's context like any other user-data write: a context-free
+    // INSERT fails the policy WITH CHECK (42501).
+    return withUser(database.pool, user.id, client => client.query(`INSERT INTO notes(user_id,book_id,start_chapter,start_verse,end_chapter,end_verse,content)
+        SELECT $1,$2,1,1,1,1,$3 FROM generate_series(1,$4::integer) RETURNING id`, [user.id, bookId, content, count]));
 }
 const note = { bookId: 1, startChapter: 1, startVerse: 1, endChapter: 1, endVerse: 1, content: 'Created safely' };
 test('cursor pages isolate accounts and have no duplicates/skips despite a new insert', async () => {
@@ -59,7 +63,8 @@ test('concurrent note creation cannot exceed the per-user quota', async () => {
     const results = await Promise.all(Array.from({ length: 8 }, () => request(user, 'notes', 'POST', { ...note, bookId })));
     assert.equal(results.filter(r => r.status === 201).length, 1);
     assert.equal(results.filter(r => r.status === 409 && r.data.code === 'RESOURCE_LIMIT').length, 7);
-    assert.equal((await database.pool.query('SELECT count(*)::int AS n FROM notes WHERE user_id=$1', [user.id])).rows[0].n, 1000);
+    assert.equal((await withUser(database.pool, user.id, client =>
+        client.query('SELECT count(*)::int AS n FROM notes WHERE user_id=$1', [user.id]))).rows[0].n, 1000);
 });
 test('note byte quota blocks growth while allowing edits that free space', async () => {
     const user = await account(), seeded = await seedNotes(user, 64, 'x'.repeat(32768));
@@ -69,8 +74,8 @@ test('note byte quota blocks growth while allowing edits that free space', async
 });
 test('bookmark pages and passage filters are bounded and owner-scoped', async () => {
     const user = await account(), other = await account();
-    for (const owner of [user, other]) await database.pool.query(`INSERT INTO bookmarks(user_id,book_id,start_chapter,start_verse,end_chapter,end_verse)
-        SELECT $1,$2,1,g,1,g FROM generate_series(1,55) g`, [owner.id, bookId]);
+    for (const owner of [user, other]) await withUser(database.pool, owner.id, client => client.query(`INSERT INTO bookmarks(user_id,book_id,start_chapter,start_verse,end_chapter,end_verse)
+        SELECT $1,$2,1,g,1,g FROM generate_series(1,55) g`, [owner.id, bookId]));
     const first = await request(user, `bookmarks?limit=10&bookId=${bookId}&chapter=1`);
     assert.equal(first.status, 200); assert.equal(first.data.items.length, 10);
     const second = await request(user, `bookmarks?limit=10&cursor=${first.data.nextCursor}`);
@@ -79,8 +84,8 @@ test('bookmark pages and passage filters are bounded and owner-scoped', async ()
 });
 test('bookmark creation quota is atomic under a concurrent burst', async () => {
     const user = await account();
-    await database.pool.query(`INSERT INTO bookmarks(user_id,book_id,start_chapter,start_verse,end_chapter,end_verse)
-        SELECT $1,$2,1,g,1,g FROM generate_series(1,1999) g`, [user.id, bookId]);
+    await withUser(database.pool, user.id, client => client.query(`INSERT INTO bookmarks(user_id,book_id,start_chapter,start_verse,end_chapter,end_verse)
+        SELECT $1,$2,1,g,1,g FROM generate_series(1,1999) g`, [user.id, bookId]));
     const results = await Promise.all(Array.from({ length: 6 }, (_, i) => request(user, 'bookmarks', 'POST',
         { bookId, startChapter: 50, startVerse: i + 1, endChapter: 50, endVerse: i + 1 })));
     assert.equal(results.filter(r => r.status === 201).length, 1);
@@ -88,8 +93,8 @@ test('bookmark creation quota is atomic under a concurrent burst', async () => {
 });
 test('highlight paging/filtering and quota preserve recoloring at the limit', async () => {
     const user = await account();
-    await database.pool.query(`INSERT INTO highlights(user_id,book_id,chapter,verse,color)
-        SELECT $1,$2,2+(g/1000),1+(g%1000),'#FFD54F' FROM generate_series(1,9999) g`, [user.id, bookId]);
+    await withUser(database.pool, user.id, client => client.query(`INSERT INTO highlights(user_id,book_id,chapter,verse,color)
+        SELECT $1,$2,2+(g/1000),1+(g%1000),'#FFD54F' FROM generate_series(1,9999) g`, [user.id, bookId]));
     const body = { bookId, verses: [{ chapter: 1, verse: 1 }], color: '#112233' };
     assert.equal((await request(user, 'highlights', 'POST', body)).status, 200);
     assert.equal((await request(user, 'highlights', 'POST', { ...body, color: '#445566' })).status, 200);
