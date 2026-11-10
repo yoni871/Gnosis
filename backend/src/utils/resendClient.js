@@ -14,6 +14,7 @@
 const { validateEmailConfig, RESEND_API_BASE_URL_DEFAULT } = require("../config/emailConfig");
 const { buildVerificationLink } = require("./verification");
 const { buildPasswordResetLink } = require("./passwordReset");
+const { renderGnosisEmail } = require("./emailTemplate");
 
 const RESEND_TIMEOUT_MS = 5000;
 
@@ -63,6 +64,15 @@ function createResendClient({ fetchImpl = globalThis.fetch, baseUrl: injectedBas
                 if(!response.ok) throw new Error('Local mailbox delivery failed.');
                 return {};
             }
+            const { html, text } = renderGnosisEmail({
+                preheader: "Confirm your email address to finish creating your Gnosis account.",
+                heading: "Verify your email address",
+                intro: "Welcome to Gnosis. Confirm your email address to finish creating your account.",
+                actionUrl: verificationLink,
+                actionLabel: "Verify your email",
+                expiration: "This link expires in 24 hours and works only once.",
+                securityNote: "If you didn't create a Gnosis account, you can safely ignore this email — no account will be created.",
+            });
             const response = await fetchImpl(`${baseUrl}/emails`, {
                 method: "POST",
                 headers: {
@@ -73,11 +83,8 @@ function createResendClient({ fetchImpl = globalThis.fetch, baseUrl: injectedBas
                     from: config.emailFrom,
                     to,
                     subject: "Verify your Gnosis account",
-                    html: `<p>Welcome to Gnosis. Confirm your email address to finish creating your account:</p>`
-                        + `<p><a href="${verificationLink}">Verify your email</a></p>`
-                        + `<p>If you did not create this account, you can ignore this email.</p>`,
-                    text: `Welcome to Gnosis. Confirm your email address to finish creating your account: ${verificationLink}\n`
-                        + `If you did not create this account, you can ignore this email.`,
+                    html,
+                    text,
                 }),
                 signal: AbortSignal.timeout(RESEND_TIMEOUT_MS),
             });
@@ -101,6 +108,15 @@ function createResendClient({ fetchImpl = globalThis.fetch, baseUrl: injectedBas
             }
             const { config } = result;
             const resetLink = buildPasswordResetLink(config.frontendUrl, token);
+            const { html, text } = renderGnosisEmail({
+                preheader: "Reset your Gnosis password.",
+                heading: "Reset your password",
+                intro: "You asked to reset your Gnosis password. Use the button below to choose a new one.",
+                actionUrl: resetLink,
+                actionLabel: "Reset your password",
+                expiration: "This link expires after 1 hour and works only once.",
+                securityNote: "If you didn't ask for a password reset, you can safely ignore this email — your password won't change. Never share this link with anyone; Gnosis will never ask for your password by email.",
+            });
             const response = await fetchImpl(`${baseUrl}/emails`, {
                 method: "POST",
                 headers: {
@@ -111,11 +127,8 @@ function createResendClient({ fetchImpl = globalThis.fetch, baseUrl: injectedBas
                     from: config.emailFrom,
                     to,
                     subject: "Reset your Gnosis password",
-                    html: `<p>You asked to reset your Gnosis password. Use the link below to choose a new one:</p>`
-                        + `<p><a href="${resetLink}">Reset your password</a></p>`
-                        + `<p>This link expires after 1 hour and works only once. If you did not ask for a password reset, you can ignore this email.</p>`,
-                    text: `You asked to reset your Gnosis password. Use the link below to choose a new one: ${resetLink}\n`
-                        + `This link expires after 1 hour and works only once. If you did not ask for a password reset, you can ignore this email.`,
+                    html,
+                    text,
                 }),
                 signal: AbortSignal.timeout(RESEND_TIMEOUT_MS),
             });
