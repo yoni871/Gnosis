@@ -1,5 +1,6 @@
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
+const { logControllerError } = require("../utils/authErrors");
 
 // Remove duplicate coordinates before validating and saving the selection.
 function uniqueVerses(verses) {
@@ -96,7 +97,8 @@ async function saveHighlights(userId, bookId, verses, color) {
             await client.query("ROLLBACK");
         } catch (rollbackError) {
             // Record cleanup failure without replacing the original error.
-            console.error("Highlight rollback failed:", rollbackError);
+            // Only route, kind, and safe code are logged (audit F02).
+            logControllerError("highlights.save", "rollback-failed", rollbackError);
         }
 
         throw error;

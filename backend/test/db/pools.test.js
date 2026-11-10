@@ -118,3 +118,35 @@ test("sslmode=disable fails fast instead of connecting in plaintext", () => {
         DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb?sslmode=disable",
     }), /sslmode=disable/);
 });
+
+
+test("an idle pool error logs only the subsystem and safe code", () => {
+    const seen = [];
+    const original = console.error;
+    console.error = (...args) => {
+        seen.push(args.join(" "));
+    };
+    try {
+        const result = pools({
+            DB_USER: "operator",
+            DB_HOST: "127.0.0.1",
+            DB_NAME: "gnosis",
+            DB_PORT: "5432",
+        });
+        const fakeUrl = ["postgres", "://", "dbuser", ":", "dbpass",
+            "@", "db.example.invalid", ":5432/gnosis"].join("");
+        const error = new Error(
+            "connect ECONNREFUSED 10.0.0.1:5432 " + fakeUrl
+        );
+        error.code = "ECONNREFUSED";
+        result.app.emit("error", error);
+    } finally {
+        console.error = original;
+    }
+    const text = seen.join("\n");
+    assert.equal(seen.length, 1);
+    assert.ok(text.includes("[db] pool error code=ECONNREFUSED"), text);
+    assert.ok(!text.includes("db.example.invalid"), text);
+    assert.ok(!text.includes("dbpass"), text);
+    assert.ok(!text.includes("10.0.0.1"), text);
+});

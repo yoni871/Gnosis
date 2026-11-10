@@ -1,5 +1,6 @@
 const pool = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
+const { logControllerError } = require("../utils/authErrors");
 
 const createNote = async (req, res) => {
     const userId = req.user.userId;
@@ -55,7 +56,7 @@ const createNote = async (req, res) => {
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.create", "database", error);
 
         return res.status(500).json({
             error: "Failed to create note."
@@ -78,7 +79,7 @@ const getNotes = async (req, res) => {
 
         return res.status(200).json(result.rows);
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.list", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve notes."
@@ -108,7 +109,7 @@ const getNoteById = async (req, res) => {
 
         return res.status(200).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.get", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve note."
@@ -178,7 +179,7 @@ const updateNote = async (req, res) => {
         return res.status(200).json(result.rows[0]);
 
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.update", "database", error);
 
         return res.status(500).json({
             error: "Failed to update note."
@@ -212,7 +213,7 @@ const deleteNote = async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.delete", "database", error);
 
         return res.status(500).json({
             error: "Failed to delete note."
