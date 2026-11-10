@@ -5,7 +5,7 @@ const { DEFAULT_EMAIL_FROM, renderGnosisEmail } = require("../../src/utils/email
 const LINK = "https://frontend.example.invalid/verify-email#token=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
 test("the default sender is the product identity", () => {
-    assert.equal(DEFAULT_EMAIL_FROM, "Gnosis <noreply@studygnosis.com>");
+    assert.equal(DEFAULT_EMAIL_FROM, "Gnosis <noreply@mail.studygnosis.com>");
 });
 
 test("renders heading, button, fallback link, expiration, and security note", () => {

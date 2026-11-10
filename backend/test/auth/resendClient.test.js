@@ -175,5 +175,5 @@ test("an unset sender falls back to Gnosis noreply (issue #118)", async () => {
     const { EMAIL_FROM, ...envWithoutSender } = ENV;
     const client = createResendClient({ fetchImpl, env: envWithoutSender });
     await client.sendVerificationEmail({ to: "new@example.com", token: "a".repeat(43) });
-    assert.equal(JSON.parse(calls[0].options.body).from, "Gnosis <noreply@studygnosis.com>");
+    assert.equal(JSON.parse(calls[0].options.body).from, "Gnosis <noreply@mail.studygnosis.com>");
 });

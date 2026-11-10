@@ -26,7 +26,7 @@ test("a missing sender falls back to the product identity (issue #118)", () => {
     for (const env of [{ ...VALID, EMAIL_FROM: "" }, { ...VALID, EMAIL_FROM: undefined }]) {
         const { config, errors } = validateEmailConfig(env);
         assert.equal(errors, undefined);
-        assert.equal(config.emailFrom, "Gnosis <noreply@studygnosis.com>");
+        assert.equal(config.emailFrom, "Gnosis <noreply@mail.studygnosis.com>");
     }
 });
 

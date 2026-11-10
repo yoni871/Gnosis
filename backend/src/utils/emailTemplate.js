@@ -17,13 +17,13 @@
 // renders in plain and rich clients alike; the action is a real button
 // AND a readable fallback link (some clients strip buttons).
 //
-// The sender identity lives here, once: Gnosis <noreply@studygnosis.com>.
+// The sender identity lives here, once: Gnosis <noreply@mail.studygnosis.com>.
 // emailConfig falls back to it when EMAIL_FROM is unset; EMAIL_FROM still
 // overrides it per deployment, and a provided-but-invalid address still
 // fails validation. Nothing here touches tokens, links, expiry, or auth
 // behavior — callers pass the already-built link in as actionUrl.
 
-const DEFAULT_EMAIL_FROM = "Gnosis <noreply@studygnosis.com>";
+const DEFAULT_EMAIL_FROM = "Gnosis <noreply@mail.studygnosis.com>";
 
 function escapeHtml(value) {
     // Minimal escaper: & < > " cover text nodes and double-quoted
