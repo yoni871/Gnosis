@@ -2,12 +2,13 @@
 //
 // One layout for every automated email the backend sends: account
 // verification, password reset, and (on rebase) the security-notification
-// emails owned by PR #84 and the MFA/session email helpers in #93/#94.
-// Those PRs should call renderGnosisEmail with their own heading/intro/
-// action instead of building HTML inline — the template carries the
-// branding, the plain-text alternative, the expiration line, the security
-// note, and the footer, so notification emails cannot drift from the
-// product's look or drop the fallback link.
+// emails owned by PR #84 — backend/src/services/accountNotifications.js,
+// which builds inline HTML today for new-device sign-in, password-changed,
+// and MFA-turned-on notifications. That PR should call renderGnosisEmail
+// with its own heading/intro/action instead of building HTML inline — the
+// template carries the branding, the plain-text alternative, the expiration
+// line, the security note, and the footer, so notification emails cannot
+// drift from the product's look or drop the fallback link.
 //
 // Design: forest-green accents (#233e34, the landing-page hero green),
 // warm off-white background (#F5EFE0 page, #FAF7EF card), gold rule
@@ -95,6 +96,7 @@ function renderGnosisEmail({ preheader = "", heading, intro, actionUrl, actionLa
 <tr>
 <td style="padding: 0 0 20px 0; text-align: center;">
 <span style="font-family: Georgia, 'Times New Roman', serif; font-size: 28px; letter-spacing: 2px; color: #233e34;">Gnosis</span>
+<hr style="border: none; border-top: 2px solid #b08d57; width: 64px; margin: 12px auto 0 auto;">
 </td>
 </tr>
 <tr>

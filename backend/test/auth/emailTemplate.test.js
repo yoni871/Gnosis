@@ -32,6 +32,7 @@ test("renders heading, button, fallback link, expiration, and security note", ()
     assert.ok(html.includes("#233e34"), "forest-green accent");
     assert.ok(html.includes("#f5efe0"), "warm off-white background");
     assert.ok(html.includes("#faf7ef"), "warm card background");
+    assert.ok(html.includes("#b08d57"), "gold rule");
     assert.ok(!html.includes("<style"), "no style block: all styles are inline for client compatibility");
     assert.ok(text.includes("Verify your email address"));
     assert.ok(text.includes(`Verify your email: ${LINK}`), "text version carries label + link");
