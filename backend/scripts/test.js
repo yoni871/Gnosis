@@ -36,6 +36,7 @@ if (require.main === module) {
         'test/config/localDevelopment.test.js', 'test/local/catalog.test.js',
         'test/local/language-download.test.js',
         'test/migrations/config.test.js', 'test/dependencies/httpSecurity.test.js',
+        'test/dependencies/securityHeaders.test.js',
         'test/translations/licensedProviders.test.js',
         'test/translations/licensedService.test.js',
         'test/application/readingState.test.js',

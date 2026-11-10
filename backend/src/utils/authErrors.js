@@ -62,6 +62,9 @@ const CLIENT_AUTH_RESPONSES = {
     tokenRequired: { status: 401, body: errorBody("Access token required.", "TOKEN_REQUIRED") },
     tokenInvalid: { status: 403, body: errorBody("Invalid or expired token.", "TOKEN_INVALID") },
     invalidBody: { status: 400, body: errorBody("Invalid request body.", "INVALID_BODY") },
+    // Audit N05: unmatched /api/* routes return this controlled JSON 404,
+    // not Express's default HTML "Cannot GET ..." page.
+    notFound: { status: 404, body: errorBody("Not found.", "NOT_FOUND") },
     internal: { status: 500, body: errorBody("Something went wrong.", "INTERNAL_ERROR") },
 };
 
