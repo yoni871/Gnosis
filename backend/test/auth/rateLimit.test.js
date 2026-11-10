@@ -153,9 +153,9 @@ test("trust proxy parsing accepts the documented values only", () => {
     assert.equal(resolveTrustProxy(""), false);
     assert.equal(resolveTrustProxy("0"), false);
     assert.equal(resolveTrustProxy("false"), false);
-    assert.equal(resolveTrustProxy("true"), true);
     assert.equal(resolveTrustProxy("1"), 1);
     assert.equal(resolveTrustProxy("3"), 3);
+    assert.equal(resolveTrustProxy("5"), 5);
     assert.equal(resolveTrustProxy("loopback"), "loopback");
     assert.deepEqual(resolveTrustProxy("loopback, 10.0.0.0/8"), ["loopback", "10.0.0.0/8"]);
     assert.equal(resolveTrustProxy("203.0.113.1"), "203.0.113.1");
@@ -163,7 +163,7 @@ test("trust proxy parsing accepts the documented values only", () => {
 });
 
 test("trust proxy parsing rejects values that could silently spoof clients", () => {
-    for (const bad of ["-1", "yes", "not-a-proxy-value", "999.999.999.999",
+    for (const bad of ["true", "True", "TRUE", "6", "100", "-1", "yes", "not-a-proxy-value", "999.999.999.999",
         "10.0.0.0/33", "2001:db8::/129", "loopback,", ",,", "1.2.3"]) {
         assert.throws(() => resolveTrustProxy(bad), /Invalid trust proxy/, bad);
     }
@@ -615,6 +615,26 @@ test("with trust proxy disabled, forwarded headers are ignored", async () => {
     const keys = await runTrustProxyApp(false, ["203.0.113.7", "198.51.100.8"]);
     assert.equal(keys.length, 2);
     assert.equal(keys[0], keys[1], "both requests key on the loopback socket address");
+});
+
+test("with hop count 1, a spoofed leftmost X-Forwarded-For entry is ignored", async () => {
+    const keys = await runTrustProxyApp(1, [
+        "203.0.113.99, 198.51.100.7",
+        "198.51.100.7",
+        "198.51.100.8",
+    ]);
+    assert.equal(keys.length, 3);
+    assert.equal(keys[0], keys[1], "spoofed and direct requests from the same real IP key together");
+    assert.notEqual(keys[0], keys[2], "a different real IP keys separately");
+});
+
+test("trust proxy true lets a spoofed leftmost address win (why the parser rejects it)", async () => {
+    const keys = await runTrustProxyApp(true, [
+        "203.0.113.99, 198.51.100.7",
+        "198.51.100.7",
+    ]);
+    assert.equal(keys.length, 2);
+    assert.notEqual(keys[0], keys[1], "with trust proxy true the spoofed entry becomes the client IP");
 });
 
 test("the exported policy table matches the approved limits", () => {
