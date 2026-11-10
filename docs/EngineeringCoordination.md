@@ -4,7 +4,7 @@ Source of truth for how the Gnosis team works. Maintained by the Engineering Man
 
 - **Owner:** Engineering Manager (Main Muse)
 - **Approved by:** Project Lead (Yonatan), 2026-11-09
-- **Last updated:** 2026-11-09 (revision 2 — QA corrections applied)
+- **Last updated:** 2026-11-09 (revision 3 — QA corrections applied; merge authority + QA independence decided)
 - **Board:** GitHub Project "Gnosis Delivery" (owner: yoni871)
 - **Repository:** github.com/yoni871/Gnosis
 - **Basis:** the team reorganization plan (`gnosis-team-reorganization-plan.md`, approved 2026-11-09). Where the EM's earlier proposal differed from the plan, the plan governs; deliberate deviations are recorded in §8.
@@ -100,24 +100,27 @@ The integration branch `security/hardening-integration` is a **verification arti
 
 **Decided 2026-11-09:** team structure and lanes; max two active development tasks; five-phase merge order; integration branch as verification artifact, not a PR; QA separate and independent; the debugging agent owns the browser-test fix and the #91/#95 conflict.
 
-**Decided 2026-11-09 (revision 2, QA corrections):**
+**Decided 2026-11-09 (revision 3, QA corrections):**
 - Board columns follow the reorganization plan §8 (Backlog → Specified → In Progress → In Review → Merged → Deployed), not the EM's earlier proposal; the mapping is recorded in §3.
 - This document replaces a repo `AGENTS.md`: the agent workspace already has an `AGENTS.md` operating manual, and a second one in the repo would collide; the coordination rules live here instead. The PR template and CODEOWNERS ship in this PR as the plan requires.
 - Only the Project Lead merges (the EM-merge exception is removed).
 - Writer lanes are time-boxed to the current security integration for both developers; after it, writers are a pool.
 
+**Decided 2026-11-09 (~18:58 CST, Project Lead ruling):** only the Project Lead authorizes and performs merges. The Engineering Manager has no independent merge authority. QA verification stays independent: the ten auth PRs previously authored by the QA agent's chat go to Codex (or another independent reviewer) for verification.
+
 **Open:** secret strength (#98); SECURITY.md contact (#99); #97 GitGuardian triage (#103); QA independence question (section 9); stale-branch deletion list (issue #105 — 20 branches verified, `prototype/gnosis-laptop-scroll` held for the Project Lead's decision); branch protection settings (section 6).
 
-## 9. QA independence — open question for the Project Lead
+## 9. QA independence — decided by the Project Lead
 
-The QA agent's chat previously authored the auth/privacy PRs (#79–#81, #85, #89, #93–#97) in its former role. Until the Project Lead rules otherwise, QA verifies all other PRs directly; those ten PRs go to Codex (independent reviewer) for verification in addition to QA's checklist. Flagged by the EM, 2026-11-09.
+The QA agent's chat previously authored the auth/privacy PRs (#79–#81, #85, #89, #93–#97) in its former role. Decided by the Project Lead 2026-11-09: QA verification stays independent — QA verifies all other PRs directly; those ten PRs go to Codex (or another independent reviewer) for verification in addition to QA's checklist.
 
 ## 10. Current state (2026-11-09 evening)
 
-- 27 open security PRs (#69, #72–#97); 11 open issues (#10 + #98–#107); plus PR #108 (this coordination doc) and PR #109 (Muse 4's browser-fix + #91/#95 composition, targeting the integration branch) — 29 open PRs total.
+- 27 open security PRs (#69, #72–#97); 9 open issues (#98–#102, #105–#107, #110); plus PR #108 (this coordination doc) and PR #109 (Muse 4's browser-fix + #91/#95 composition, targeting the integration branch) — 29 open PRs total. Issues #10, #103, #104 closed 2026-11-09.
+- Issue #110 (538-second password-reset response vs 15-second frontend timeout) assigned to Developer 2; investigation only, no code changes, no Production probing without approval.
 - Muse 4's debugging is complete: PR #109 open (commits 1705c16 + dbd0e49), root cause bisected (CSP `connect-src` blocked the mocked `api.example.invalid` origin; fix moves the synthetic origin to `api.example.vercel.app`), browser 5/5, #91/#95 composed. Awaiting QA verification (issues #100, #101) and the Project Lead's approval to merge into the integration branch.
 - Developer 1's stale-branch review is complete (issue #105): 20 branches verified safe to delete, listed for the Project Lead's approval; `prototype/gnosis-laptop-scroll` held.
 - QA reviewed this document (10 corrections, applied in revision 2).
-- Audit verdict: **FAIL — do not open Gnosis to public registration yet.** One live High (N01, preview role over-privilege) plus open Mediums. Tracking issues #98–#107.
+- Audit verdict: **FAIL — do not open Gnosis to public registration yet.** One live High (N01, preview role over-privilege) plus open Mediums. Tracking issues #98–#102, #105–#110.
 - Preview soak ends ~11:01 AM CST Nov 10. Production remains at `1853b92`; `main` at `40eb9a9`.
 - Resuming: read this document, the board, the open issues/PRs, and `docs/LaunchReadiness.md`. Never rely on private chat history.
