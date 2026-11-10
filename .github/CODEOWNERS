@@ -1,0 +1,11 @@
+# CODEOWNERS — attention router only. Agents cannot be CODEOWNER approvers,
+# so these entries route sensitive paths to Yonatan as sole reviewer.
+# (Per the reorganization plan, §8 Phase 0 step 8.)
+
+/docs/LaunchReadiness.md @yoni871
+/docs/EngineeringCoordination.md @yoni871
+/backend/scripts/migrations/ @yoni871
+/backend/src/db/ @yoni871
+/backend/vercel.json @yoni871
+/frontend/vercel.json @yoni871
+/.github/ @yoni871
