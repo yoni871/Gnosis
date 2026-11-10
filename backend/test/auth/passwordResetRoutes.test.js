@@ -6,7 +6,7 @@ const crypto = require("node:crypto");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "synthetic-test-jwt-secret";
+process.env.JWT_SECRET = "synthetic-test-jwt-secret-synthetic-test-secret";
 process.env.RATE_LIMIT_KEY_SECRET = "synthetic-test-rate-limit-secret";
 // Issue #9: app.js validates email configuration at import time.
 process.env.RESEND_API_KEY = "synthetic-test-resend-key";
@@ -70,6 +70,9 @@ let baseUrl;
 let stubServer;
 let stubEmails;
 let stubMode;
+// PR3 (N07): when set, the stub answers HIBP range requests for this
+// prefix with the matching suffix, so a chosen password tests breached.
+let breachedRange = null;
 
 test.before(async () => {
     server = app.listen(0, "127.0.0.1");
@@ -80,6 +83,17 @@ test.before(async () => {
     stubEmails = [];
     stubMode = "ok";
     stubServer = http.createServer((req, res) => {
+        // HIBP k-anonymity range lookup: a GET for a 5-hex prefix gets
+        // the breached suffix when one is armed, otherwise an empty body
+        // (not breached). No test ever calls the real HIBP API.
+        if (req.method === "GET" && /^\/[0-9A-F]{5}$/.test(req.url)) {
+            const body = breachedRange && req.url === `/${breachedRange.prefix}`
+                ? `${breachedRange.suffix}:3\n`
+                : "";
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            res.end(body);
+            return;
+        }
         let body = "";
         req.on("data", (chunk) => { body += chunk; });
         req.on("end", () => {
@@ -95,6 +109,7 @@ test.before(async () => {
     });
     await new Promise((resolve) => stubServer.listen(0, "127.0.0.1", resolve));
     process.env.RESEND_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
+    process.env.HIBP_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
 });
 
 test.after(async () => {
@@ -102,6 +117,7 @@ test.after(async () => {
     await new Promise((resolve) => server.close(resolve));
     if (stubServer) await new Promise((resolve) => stubServer.close(resolve));
     delete process.env.RESEND_API_BASE_URL;
+    delete process.env.HIBP_API_BASE_URL;
     queryMock.mock.restore();
     connectMock.mock.restore();
     await pool.end();
@@ -334,6 +350,7 @@ test("reset succeeds for a valid token, updates the password, and cannot be repl
     assert.ok(clientQueries.some((sql) => /consumed_reason = 'superseded'/.test(sql)),
         "other unused tokens for the account must supersede");
     assert.equal(passwordParams[1], 5);
+    assert.match(passwordParams[0], /^\$2b\$12\$/, "reset hashes must use bcrypt cost 12");
     assert.equal(await bcrypt.compare("a-new-password", passwordParams[0]), true,
         "the stored hash must match the new password");
     assert.equal(await bcrypt.compare("the-old-password", passwordParams[0]), false,
@@ -343,6 +360,50 @@ test("reset succeeds for a valid token, updates the password, and cannot be repl
     assert.equal(replay.response.status, 400);
     assert.deepEqual(replay.json, GENERIC_RESET);
     assert.ok(!clientQueries.some((sql) => sql.trim().startsWith("UPDATE")), "a replay must write nothing");
+});
+
+test("reset rejects a breached password before hashing or updating", async () => {
+    // PR3 (N07): the HIBP check runs after the token is known valid and
+    // before bcrypt, so a breached password costs no hash and no write.
+    resetBehaviors();
+    const token = "e".repeat(43);
+    const future = new Date(Date.now() + 60 * 60 * 1000);
+    queryBehavior = async () => ({
+        rows: [{ id: "00000000-0000-0000-0000-000000000003", user_id: 5, expires_at: future, used_at: null, consumed_reason: null }],
+    });
+    const clientQueries = [];
+    clientBehavior = async (...args) => {
+        clientQueries.push(args[0]);
+        if (/FROM users/.test(args[0])) {
+            return { rows: [{ id: 5 }] };
+        }
+        if (/FROM password_reset_tokens/.test(args[0])) {
+            return {
+                rows: [{
+                    id: "00000000-0000-0000-0000-000000000003",
+                    expires_at: future,
+                    used_at: null,
+                    consumed_reason: null,
+                }],
+            };
+        }
+        return { rows: [] };
+    };
+    const password = "breached-password-1";
+    const sha1 = crypto.createHash("sha1").update(password, "utf8").digest("hex").toUpperCase();
+    breachedRange = { prefix: sha1.slice(0, 5), suffix: sha1.slice(5) };
+    try {
+        const result = await post("/api/auth/reset-password", { token, password });
+        assert.equal(result.response.status, 400);
+        assert.deepEqual(result.json, {
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: "VALIDATION_FAILED",
+        });
+        assert.ok(!clientQueries.some((sql) => sql.trim().startsWith("UPDATE")),
+            "a breached password must write nothing");
+    } finally {
+        breachedRange = null;
+    }
 });
 
 test("reset and forgot database failures are controlled 500s", async () => {

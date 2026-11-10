@@ -93,7 +93,7 @@ invalid-link pages all say this.
 - A rate limit never invalidates a token.
 - The new password follows the registration rule: at least 8
   characters, at most 72 UTF-8 bytes (bcrypt's limit), no complexity
-  rules. It is hashed with bcrypt (cost 10), exactly like
+  rules. It is hashed with bcrypt (cost 12), exactly like
   registration.
 
 ## Configuration

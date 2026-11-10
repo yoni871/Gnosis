@@ -1,5 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const http = require('node:http');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
@@ -8,20 +9,32 @@ const { computeKeyHash, RATE_LIMITED_BODY } = require('../../src/utils/rateLimit
 
 const context = contextFromEnvironment(); // Fail before any connection if run directly.
 const RATE_SECRET = 'synthetic-application-test-rate-limit';
-const JWT_SECRET = 'synthetic-application-test-jwt';
+const JWT_SECRET = 'synthetic-application-test-jwt-synthetic-test-secret';
 // Workers run with trust proxy disabled, so every request keys on the
 // loopback socket address.
 const IP = '127.0.0.1';
 
 let database;
 let worker;
+let hibpStub;
 test.before(async () => {
     database = await createTestPool(context);
+    // Loopback HIBP stub (honored only under test isolation): registers
+    // screen passwords against HIBP, and no test may call the real
+    // api.pwnedpasswords.com. Empty range body = not breached.
+    hibpStub = http.createServer((req, res) => {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('');
+    });
+    await new Promise(resolve => hibpStub.listen(0, '127.0.0.1', resolve));
+    process.env.HIBP_API_BASE_URL = `http://127.0.0.1:${hibpStub.address().port}`;
     worker = await startBackend(context);
 });
 test.after(async () => {
     if (worker) await worker.stop();
     if (database) await database.close();
+    if (hibpStub) await new Promise(resolve => hibpStub.close(resolve));
+    delete process.env.HIBP_API_BASE_URL;
 });
 
 async function post(url, path, body, headers = {}) {

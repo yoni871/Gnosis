@@ -20,7 +20,11 @@
 //   canonicalization is a separate follow-up migration task.
 // - Registration password: required string, at least 8 characters
 //   (code points), at most 72 UTF-8 bytes (bcrypt's limit: longer inputs
-//   would be silently truncated). No complexity rules. Passwords are not
+//   would be silently truncated). No complexity rules (NIST SP 800-63B-4
+//   forbids them). Breached-password screening runs in the route, after
+//   rate limiting and before hashing. NIST's single-factor floor is 15
+//   characters; the project floor is 8 per the project lead's decision,
+//   and the breach screen is the compensating control. Passwords are not
 //   trimmed: spaces can be part of a password.
 // - Login password: required non-empty string, at most 72 UTF-8 bytes.
 //   The registration minimum is deliberately NOT enforced here, so

@@ -29,8 +29,8 @@ test('isolated children ignore dotenv in both startup modes; normal loading and 
             assert.deepEqual(probe(false, mode), {
                 jwt: 'synthetic-poison-secret', database: 'synthetic-poison-url',
             });
-            assert.equal(probe(false, mode, { JWT_SECRET: 'synthetic-injected' }).jwt,
-                'synthetic-injected');
+            assert.equal(probe(false, mode, { JWT_SECRET: 'synthetic-injected-synthetic-test-secret' }).jwt,
+                'synthetic-injected-synthetic-test-secret');
         }
     } finally {
         fs.rmSync(dir, { recursive: true, force: true });
