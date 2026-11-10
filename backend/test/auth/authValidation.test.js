@@ -147,26 +147,26 @@ test("validator enforces the 254-character email limit", () => {
 });
 
 test("validator enforces registration password length in characters and bytes", () => {
-    for (const bad of [undefined, null, 42, "", "1234567", "12345678901"]) {
+    for (const bad of [undefined, null, 42, "", "1234567"]) {
         const result = validateRegisterInput(validRegister({ password: bad }));
-        assert.deepEqual(result, { error: bad === "" || typeof bad !== "string" ? "Password is required." : "Password must be at least 12 characters." });
+        assert.deepEqual(result, { error: bad === "" || typeof bad !== "string" ? "Password is required." : "Password must be at least 8 characters." });
     }
-    assert.equal(validateRegisterInput(validRegister({ password: "123456789012" })).error, undefined);
+    assert.equal(validateRegisterInput(validRegister({ password: "12345678" })).error, undefined);
     assert.equal(validateRegisterInput(validRegister({ password: "x".repeat(72) })).error, undefined);
     assert.deepEqual(
         validateRegisterInput(validRegister({ password: "x".repeat(73) })),
         { error: "Password must be at most 72 bytes." },
     );
     // Multibyte characters: 36 "é" are 72 bytes (pass), 37 are 74 (fail),
-    // and 11 "é" are 11 characters (fail the 12-character minimum).
+    // and 7 "é" are 7 characters (fail the 8-character minimum).
     assert.equal(validateRegisterInput(validRegister({ password: "é".repeat(36) })).error, undefined);
     assert.deepEqual(
         validateRegisterInput(validRegister({ password: "é".repeat(37) })),
         { error: "Password must be at most 72 bytes." },
     );
     assert.deepEqual(
-        validateRegisterInput(validRegister({ password: "é".repeat(11) })),
-        { error: "Password must be at least 12 characters." },
+        validateRegisterInput(validRegister({ password: "é".repeat(7) })),
+        { error: "Password must be at least 8 characters." },
     );
 });
 
@@ -232,9 +232,9 @@ test("reset validator requires a well-formed token and a registration-strength p
     // a short password is rejected even though it would be a valid login
     // password for a pre-existing account.
     assert.deepEqual(validateResetPasswordInput({ token, password: "short" }),
-        { error: "Password must be at least 12 characters." });
-    assert.deepEqual(validateResetPasswordInput({ token, password: "12345678901" }),
-        { error: "Password must be at least 12 characters." });
+        { error: "Password must be at least 8 characters." });
+    assert.deepEqual(validateResetPasswordInput({ token, password: "1234567" }),
+        { error: "Password must be at least 8 characters." });
     assert.deepEqual(validateResetPasswordInput({ token, password: "x".repeat(73) }),
         { error: "Password must be at most 72 bytes." });
     assert.deepEqual(validateResetPasswordInput({ token, password: "a-new-password", role: "admin" }),
