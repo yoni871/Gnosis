@@ -40,7 +40,7 @@ function applicationSuite(context, intentionalFailure = false) {
         'test/application/harness.test.js', 'test/application/safety.test.js',
         'test/application/refreshRateLimit.test.js',
         'test/application/sessions.test.js', 'test/application/rateLimit.test.js', 'test/application/emailVerification.test.js',
-        'test/application/passwordReset.test.js', 'test/application/queryBudgets.test.js',
+        'test/application/passwordReset.test.js', 'test/application/queryBudgets.test.js', 'test/application/rowLevelSecurity.test.js',
     ];
     return new Promise((resolve, reject) => {
         const child = spawn(process.execPath, ['--test', '--test-concurrency=1', ...files], {

@@ -101,6 +101,60 @@ await withUser(pool, userId, (client) => client.query('SELECT * FROM notes WHERE
   it proves, as the app role, that every RLS table isolates by user and
   that context-free reads return nothing.
 
+## Composing `withUser` with the storage budget (#91)
+
+The storage budget (`backend/src/utils/storageBudget.js`,
+`withUserBudget`, from the #85/#91 error-budgets work) also owns a
+transaction: it opens one, takes a transaction-scoped advisory lock,
+checks the quota, and commits the write with the check. Both helpers
+owning a transaction is a real conflict, not a style point — nesting
+them as two owners silently breaks both:
+
+- an inner `BEGIN` inside an outer transaction is a no-op in
+  PostgreSQL (warning only), while an inner `COMMIT` commits the
+  outer transaction early;
+- that early commit clears the transaction-local RLS context
+  (`SET LOCAL app.user_id`), so any query after it in the outer
+  callback runs with no context — and it also releases the advisory
+  lock, so the quota check and the write are no longer atomic.
+
+The resolution (integration fold, verified on disposable PostgreSQL
+18.6 as the app role): exactly one helper owns the transaction, and
+it is always `withUser`. `withUserBudget` takes an optional third
+argument, the client of an already-open transaction; when it is
+given, it takes the advisory lock and runs the work on that client
+with no `BEGIN`/`COMMIT` of its own, and when it is not given, it
+opens its own transaction exactly as before. Call sites compose
+them as:
+
+```js
+await withUser(pool, userId, client => withUserBudget(userId, async budgetClient => {
+    await ensureCapacity(budgetClient, userId, 'notes', { add: 1, bytes: ... });
+    return budgetClient.query('INSERT INTO notes (...) VALUES (...) RETURNING *', [...]);
+}, client));
+```
+
+`saveHighlights` is the one exception, as above: it already owns its
+transaction, so it calls `setUserContext` directly after `BEGIN`
+(and takes its budget lock in the same transaction). Never call the
+no-client form of `withUserBudget` from inside a `withUser`
+callback, and never wrap `withUser` inside `withUserBudget` — both
+directions nest two transaction owners. Pagination is unaffected by
+the composition: list queries run inside `withUser` (so RLS scopes
+the rows before the cursor/limit applies) and keep the #91 caps
+(notes 20, bookmarks/highlights 100) via `readPage`/`sendPage`.
+
+For Muse 3 / PR #95: when #95 rebases onto the merged #85/#91
+work, its controller rewrites must carry this composition (not the
+plain `withUser` calls from its original base, which would drop the
+quota checks) and the `withUserBudget(userId, work, client)` seam
+from `storageBudget.js`. The composed-path test in
+`backend/test/application/rowLevelSecurity.test.js` is the guard:
+it creates a note through the composed path, proves user B and
+context-free reads see nothing, proves an over-budget write is
+refused before any insert, and proves a cross-user insert under the
+owner's context fails the policy `WITH CHECK`.
+
 ## Migrations and FORCE RLS
 
 Audit of all App migrations at the time RLS landed (migration

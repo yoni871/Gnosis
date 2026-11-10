@@ -108,9 +108,17 @@ test("logPoolError logs only the subsystem and safe code", async () => {
 
 test("a notes-list database failure logs only allowlisted fields", async () => {
     const originalQuery = pool.query;
+    const originalConnect = pool.connect;
     pool.query = async () => {
         throw nastyDbError();
     };
+    // getNotes runs inside withUser, so the borrowed client — not
+    // pool.query — is what throws. The client throws on the first
+    // statement (BEGIN), exactly as the pool-level failure did.
+    pool.connect = async () => ({
+        query: async () => { throw nastyDbError(); },
+        release: () => {},
+    });
     const res = fakeRes();
     try {
         const seen = await captureConsoleError(async () => {
@@ -132,6 +140,7 @@ test("a notes-list database failure logs only allowlisted fields", async () => {
         assert.ok(!text.includes("/secret/path"), text);
     } finally {
         pool.query = originalQuery;
+        pool.connect = originalConnect;
     }
 });
 

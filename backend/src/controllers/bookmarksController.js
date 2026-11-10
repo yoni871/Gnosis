@@ -1,4 +1,5 @@
 const { withUserBudget, ensureCapacity } = require("../utils/storageBudget");
+const { withUser } = require("../db/userContext");
 const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
@@ -91,9 +92,13 @@ const createBookmark = async (req, res) => {
             });
         }
 
-        const result = await withUserBudget(userId, async client => {
-            await ensureCapacity(client, userId, "bookmarks", { add: 1 });
-            return client.query(
+        // One transaction owns both the RLS context and the budget
+        // lock: withUser opens it, withUserBudget runs inside it on the
+        // same client (see storageBudget.js — never nest the two
+        // no-client forms, the inner COMMIT would clear the context).
+        const result = await withUser(pool, userId, client => withUserBudget(userId, async budgetClient => {
+            await ensureCapacity(budgetClient, userId, "bookmarks", { add: 1 });
+            return budgetClient.query(
             `
             INSERT INTO bookmarks (
                 user_id,
@@ -115,7 +120,7 @@ const createBookmark = async (req, res) => {
                 endVerse
             ]
         );
-        });
+        }, client));
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
@@ -142,7 +147,7 @@ const getBookmarks = async (req, res) => {
 
     try {
         const page = readPage(req, "bookmarks");
-        const result = await pool.query(
+        const result = await withUser(pool, userId, client => client.query(
             `
             SELECT bookmarks.*
             FROM bookmarks
@@ -152,7 +157,7 @@ const getBookmarks = async (req, res) => {
             ORDER BY bookmarks.id DESC LIMIT $3
             `,
             [userId, page.cursor, page.limit + 1, page.bookId, page.chapter]
-        );
+        ));
 
         const resultPage = pageRows(result.rows, page.limit);
         resultPage.items = await withBookNames(resultPage.items);
@@ -172,7 +177,7 @@ const getBookmarkById = async (req, res) => {
     const bookmarkId = req.params.id;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, client => client.query(
             `
             SELECT bookmarks.*
             FROM bookmarks
@@ -180,7 +185,7 @@ const getBookmarkById = async (req, res) => {
             AND bookmarks.user_id = $2
             `,
             [bookmarkId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -257,7 +262,7 @@ const updateBookmark = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUser(pool, userId, client => client.query(
             `
             UPDATE bookmarks
             SET
@@ -279,7 +284,7 @@ const updateBookmark = async (req, res) => {
                 bookmarkId,
                 userId
             ]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -310,7 +315,7 @@ const deleteBookmark = async (req, res) => {
     const bookmarkId = req.params.id;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, client => client.query(
             `
             DELETE FROM bookmarks
             WHERE id = $1
@@ -318,7 +323,7 @@ const deleteBookmark = async (req, res) => {
             RETURNING *
             `,
             [bookmarkId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({

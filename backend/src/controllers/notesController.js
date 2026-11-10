@@ -1,4 +1,5 @@
 const { withUserBudget, ensureCapacity } = require("../utils/storageBudget");
+const { withUser } = require("../db/userContext");
 const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
 const { validNote } = require("../utils/apiValidation");
 const pool = require("../db/db");
@@ -58,9 +59,13 @@ const createNote = async (req, res) => {
             });
         }
 
-        const result = await withUserBudget(userId, async client => {
-            await ensureCapacity(client, userId, "notes", { add: 1, bytes: Buffer.byteLength(content, "utf8") });
-            return client.query(
+        // One transaction owns both the RLS context and the budget
+        // lock: withUser opens it, withUserBudget runs inside it on the
+        // same client (see storageBudget.js — never nest the two
+        // no-client forms, the inner COMMIT would clear the context).
+        const result = await withUser(pool, userId, client => withUserBudget(userId, async budgetClient => {
+            await ensureCapacity(budgetClient, userId, "notes", { add: 1, bytes: Buffer.byteLength(content, "utf8") });
+            return budgetClient.query(
             `
             INSERT INTO notes (
                 user_id,
@@ -76,7 +81,7 @@ const createNote = async (req, res) => {
             `,
             [userId, bookId, startChapter, startVerse, endChapter, endVerse, content]
         );
-        });
+        }, client));
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
@@ -98,14 +103,14 @@ const getNotes = async (req, res) => {
 
     try {
         const page = readPage(req, "notes");
-        const result = await pool.query(
+        const result = await withUser(pool, userId, client => client.query(
             `
             SELECT * FROM notes
             WHERE user_id = $1 AND ($2::integer IS NULL OR id < $2)
             ORDER BY id DESC LIMIT $3
             `,
             [userId, page.cursor, page.limit + 1]
-        );
+        ));
 
         return sendPage(res, pageRows(result.rows, page.limit), page);
     } catch (error) {
@@ -123,14 +128,14 @@ const getNoteById = async (req, res) => {
     const noteId = req.params.id;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, client => client.query(
             `
             SELECT * FROM notes
             WHERE id = $1
             AND user_id = $2
             `,
             [noteId, userId]
-        );
+        ));
 
         if(result.rows.length === 0) {
             return res.status(404).json({
@@ -193,12 +198,12 @@ const updateNote = async (req, res) => {
             });
         }
 
-        const result = await withUserBudget(userId, async client => {
+        const result = await withUser(pool, userId, client => withUserBudget(userId, async budgetClient => {
             if (content !== undefined) {
-                const old = await client.query('SELECT octet_length(content) AS bytes FROM notes WHERE id=$1 AND user_id=$2', [noteId, userId]);
-                if (old.rows.length) await ensureCapacity(client, userId, 'notes', { bytes: Buffer.byteLength(content, 'utf8') - Number(old.rows[0].bytes) });
+                const old = await budgetClient.query('SELECT octet_length(content) AS bytes FROM notes WHERE id=$1 AND user_id=$2', [noteId, userId]);
+                if (old.rows.length) await ensureCapacity(budgetClient, userId, 'notes', { bytes: Buffer.byteLength(content, 'utf8') - Number(old.rows[0].bytes) });
             }
-            return client.query(
+            return budgetClient.query(
             `
             UPDATE notes
             SET
@@ -215,7 +220,7 @@ const updateNote = async (req, res) => {
             `,
             [bookId, startChapter, startVerse, endChapter, endVerse, content, noteId, userId]
         );
-        });
+        }, client));
 
         if (result.rows.length === 0) {
             return res.status(404).json({
@@ -240,7 +245,7 @@ const deleteNote = async (req, res) => {
     const noteId = req.params.id;
 
     try {
-        const result = await pool.query (
+        const result = await withUser(pool, userId, client => client.query(
             `
             DELETE FROM notes
             WHERE id = $1
@@ -248,7 +253,7 @@ const deleteNote = async (req, res) => {
             RETURNING *
             `,
             [noteId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({

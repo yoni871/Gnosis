@@ -17,16 +17,37 @@ async function ensureCapacity(client, userId, resource, { add = 0, bytes = 0 } =
         throw publicError('RESOURCE_LIMIT', 'Saved-data limit reached. Delete older items before adding more.', 409);
     }
 }
-async function withUserBudget(userId, work) {
-    const client = await pool.connect();
+// Run `work(client)` with the per-user storage budget held by a
+// transaction-scoped advisory lock, so the quota check and the write
+// commit or roll back together and two concurrent creates for the same
+// user cannot both pass the check.
+//
+// `client` is the composition seam with RLS (`withUser` in
+// ../db/userContext.js, docs/RowLevelSecurity.md): both helpers own a
+// transaction, and nesting them is NOT safe — an inner BEGIN inside an
+// outer transaction is a no-op in PostgreSQL, while an inner COMMIT
+// commits the outer transaction early and clears the transaction-local
+// RLS context (`SET LOCAL app.user_id`), so later queries in the outer
+// callback would run with no context. So exactly one helper owns the
+// transaction: when the caller already holds one (a `withUser`
+// callback), pass its client and this function takes the lock and runs
+// the work on it without BEGIN/COMMIT; otherwise it opens its own
+// transaction exactly as before. Call sites must never call the
+// no-client form from inside a `withUser` callback.
+async function withUserBudget(userId, work, client = null) {
+    if (client) {
+        await lockBudget(client, userId);
+        return work(client);
+    }
+    const owned = await pool.connect();
     let broken = false;
     try {
-        await client.query('BEGIN'); await lockBudget(client, userId);
-        const result = await work(client);
-        await client.query('COMMIT'); return result;
+        await owned.query('BEGIN'); await lockBudget(owned, userId);
+        const result = await work(owned);
+        await owned.query('COMMIT'); return result;
     } catch (error) {
-        try { await client.query('ROLLBACK'); } catch { broken = true; }
+        try { await owned.query('ROLLBACK'); } catch { broken = true; }
         throw error;
-    } finally { client.release(broken); }
+    } finally { owned.release(broken); }
 }
 module.exports = { LIMITS, NOTE_BYTES, lockBudget, ensureCapacity, withUserBudget };

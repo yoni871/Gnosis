@@ -1,4 +1,5 @@
 const { lockBudget, ensureCapacity } = require("../utils/storageBudget");
+const { withUser, setUserContext } = require("../db/userContext");
 const { pageRows } = require("../utils/privatePages");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
@@ -64,6 +65,14 @@ async function saveHighlights(userId, bookId, verses, color) {
     try {
         //start group of database operations that succeed or fail
         await client.query("BEGIN");
+
+        // Row-level security context for this transaction. This
+        // function owns its transaction (with rollback logging below),
+        // so it sets the context directly instead of via withUser; the
+        // value is transaction-local and clears on COMMIT/ROLLBACK.
+        // The budget lock and quota check below run in the same
+        // transaction, under the same context.
+        await setUserContext(client, userId);
         await lockBudget(client, userId);
         const existing = await client.query(`SELECT COUNT(*)::int AS count FROM highlights h
             JOIN jsonb_to_recordset($2::jsonb) AS p(chapter integer, verse integer)
@@ -123,7 +132,7 @@ async function saveHighlights(userId, bookId, verses, color) {
 // verse, exactly as the old join did.
 async function getHighlights(userId, page = null) {
     const config = page || { limit: 100, cursor: null, bookId: null, chapter: null };
-    const result = await pool.query(
+    const result = await withUser(pool, userId, client => client.query(
         `
         SELECT h.*
         FROM highlights h
@@ -132,7 +141,7 @@ async function getHighlights(userId, page = null) {
         ORDER BY h.id DESC LIMIT $3
         `,
         [userId, config.cursor, config.limit + 1, config.bookId, config.chapter]
-    );
+    ));
 
     // Return an empty array when the user has no highlights.
     const resultPage = pageRows(result.rows, config.limit);
@@ -151,7 +160,7 @@ async function getHighlights(userId, page = null) {
 
 // Delete a highlight only when it belongs to the authenticated user.
 async function deleteHighlight(userId, highlightId) {
-    const result = await pool.query(
+    const result = await withUser(pool, userId, client => client.query(
         `
         DELETE FROM highlights
         WHERE id = $1
@@ -159,7 +168,7 @@ async function deleteHighlight(userId, highlightId) {
         RETURNING *
         `,
         [highlightId, userId]
-    );
+    ));
 
     // Return the removed record, or null if no owned record matched.
     return result.rows[0] || null;
@@ -169,7 +178,7 @@ async function deleteHighlight(userId, highlightId) {
 async function deleteHighlightsInPassage(userId, bookId, verses) {
     const selected = uniqueVerses(verses);
 
-    const result = await pool.query(
+    const result = await withUser(pool, userId, client => client.query(
         `
         DELETE FROM highlights h
         USING jsonb_to_recordset($3::jsonb)
@@ -181,7 +190,7 @@ async function deleteHighlightsInPassage(userId, bookId, verses) {
         RETURNING h.*
         `,
         [userId, bookId, JSON.stringify(selected)]
-    );
+    ));
 
     return result.rows;
 }

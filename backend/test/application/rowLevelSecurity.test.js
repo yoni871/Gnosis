@@ -176,3 +176,47 @@ test('withUser clears the context on commit and on rollback, and rejects bad ids
             /positive integer user id/);
     }
 });
+
+// #91 (storage budget, PR #85) composes with #95 (RLS) — integration
+// fold, security/hardening-integration. Both helpers own a transaction,
+// so they must never nest as two owners: withUser opens the one
+// transaction and withUserBudget runs inside it on the same client
+// (its optional third argument). This proves, as the app role on a
+// real database, that the quota check + insert share that transaction
+// with the RLS context: the insert lands under user A's context, user
+// B still sees nothing, an over-budget write is refused before any
+// insert, and a cross-user insert under A's context fails the policy
+// WITH CHECK (42501) instead of landing.
+test('withUserBudget composes inside withUser: quota and RLS share one transaction', async () => {
+    const { installApplicationPool } = require('../helpers/application-database');
+    installApplicationPool(database.pool);
+    const { withUserBudget, ensureCapacity } = require('../../src/utils/storageBudget');
+    const { pool } = database;
+    const createComposed = (ownerId, content) => withUser(pool, ownerId, client =>
+        withUserBudget(ownerId, async budgetClient => {
+            await ensureCapacity(budgetClient, ownerId, 'notes', { add: 1, bytes: Buffer.byteLength(content, 'utf8') });
+            return budgetClient.query(
+                `INSERT INTO notes(user_id, book_id, start_chapter, start_verse, end_chapter, end_verse, content)
+                 VALUES ($1, 1, 1, 1, 1, 2, $2) RETURNING id`,
+                [ownerId, content]);
+        }, client));
+    const noteId = (await createComposed(userA, 'composed note')).rows[0].id;
+    assert.equal((await withUser(pool, userA, client =>
+        client.query('SELECT * FROM notes WHERE id = $1', [noteId]))).rows.length, 1);
+    assert.equal((await withUser(pool, userB, client =>
+        client.query('SELECT * FROM notes WHERE id = $1', [noteId]))).rows.length, 0);
+    assert.equal((await pool.query('SELECT * FROM notes WHERE id = $1', [noteId])).rows.length, 0);
+    // Over the 2 MiB note-bytes budget: refused before any insert.
+    await assert.rejects(createComposed(userA, 'x'.repeat(2 * 1024 * 1024 + 1)),
+        error => error.code === 'RESOURCE_LIMIT');
+    assert.equal((await withUser(pool, userA, client =>
+        client.query('SELECT count(*)::int AS n FROM notes WHERE user_id = $1', [userA]))).rows[0].n, 1);
+    // Cross-user insert under A's context: the policy WITH CHECK fails it.
+    await assert.rejects(withUser(pool, userA, client =>
+        withUserBudget(userA, async budgetClient => {
+            await ensureCapacity(budgetClient, userA, 'notes', { add: 1, bytes: 9 });
+            return budgetClient.query(
+                `INSERT INTO notes(user_id, book_id, start_chapter, start_verse, end_chapter, end_verse, content)
+                 VALUES ($1, 1, 1, 1, 1, 2, 'wrong user')`, [userB]);
+        }, client)), { code: '42501' });
+});
