@@ -14,6 +14,7 @@ const { resolveTrustProxy } = backendRequire('./src/utils/rateLimit');
 // the middleware itself is the `securityHeaders` property, not the
 // whole module.
 const { securityHeaders: apiHeaders } = backendRequire('./src/middleware/securityHeaders');
+const { isBodyTooLarge, isBodyParseError, CLIENT_AUTH_RESPONSES } = backendRequire('./src/utils/authErrors');
 const dist = fileURLToPath(new URL('../dist/', import.meta.url));
 const config = JSON.parse(fs.readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
 const headers = Object.fromEntries(config.headers.find(rule => rule.source === '/(.*)').headers.map(h => [h.key, h.value]));
@@ -36,7 +37,21 @@ const listen = server => new Promise((resolve, reject) => {
 const close = server => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); });
 export async function startFixture() {
     const app = express();
-    app.disable('x-powered-by'); app.set('trust proxy', resolveTrustProxy('loopback')); app.use(apiHeaders);
+    // Trust proxy '1' — the same as production's TRUST_PROXY=1 (#117).
+    // The backend trusts exactly one hop and takes the last X-Forwarded-For
+    // entry as the client IP, ignoring spoofed earlier entries. (The
+    // fixture previously used 'loopback', which trusts any loopback hop —
+    // with it the appended real IP 127.0.0.1 is itself a trusted proxy, so
+    // the walk continues past it to the spoofed value and the spoof test
+    // cannot pass. '1' matches production, where the real client IP is
+    // the last entry added by the trusted Vercel edge.)
+    app.disable('x-powered-by'); app.set('trust proxy', resolveTrustProxy('1')); app.use(apiHeaders);
+    // The mock backend enforces the same 100 KiB JSON body cap as the real
+    // backend (#85: express.json({ limit: '100kb' }) in backend/src/app.js),
+    // so the body-cap test verifies the real protection. An over-limit body
+    // is rejected by the body parser before the auth route handler runs,
+    // so `calls` does not increment for it.
+    app.use(express.json({ limit: '100kb' }));
     let calls = 0;
     const forwarded = ['forwarded', 'x-forwarded-for', 'x-forwarded-host', 'x-real-ip', 'x-vercel-forwarded-for', 'cf-connecting-ip', 'true-client-ip'];
     app.all('/api/auth/:action', (req, res) => {
@@ -45,6 +60,23 @@ export async function startFixture() {
         if (req.params.action === 'refresh') return res.status(401).json({ error: 'No synthetic session.', code: 'SESSION_INVALID' });
         res.json({ ip: req.ip, host: req.headers.host, forwarded: Object.fromEntries(forwarded.map(name => [name, req.headers[name] || null])) });
     });
+    // Central body-error handler, mirroring backend/src/app.js: an
+    // over-limit body becomes the controlled 413, a malformed body the
+    // controlled 400. Auth responses are no-store.
+    app.use((error, req, res, next) => {
+        if (res.headersSent) return next(error);
+        if (isBodyTooLarge(error)) {
+            const { status, body } = CLIENT_AUTH_RESPONSES.bodyTooLarge;
+            res.set('Cache-Control', 'no-store');
+            return res.status(status).json(body);
+        }
+        if (isBodyParseError(error)) {
+            const { status, body } = CLIENT_AUTH_RESPONSES.invalidBody;
+            res.set('Cache-Control', 'no-store');
+            return res.status(status).json(body);
+        }
+        return next(error);
+    });
     const backend = http.createServer(app);
     const target = await listen(backend);
     process.env.GNOSIS_API_BASE_URL = target;
@@ -52,7 +84,24 @@ export async function startFixture() {
     const frontend = http.createServer(async (req, res) => {
         try {
             const url = new URL(req.url, 'http://fixture.invalid');
-            if (url.pathname.startsWith('/api/auth/')) return await proxy(req, res);
+            if (url.pathname.startsWith('/api/auth/')) {
+                // Simulate Vercel's edge: in production the edge appends
+                // the real client IP to X-Forwarded-For before the request
+                // reaches the frontend proxy. The proxy forwards XFF
+                // unchanged (PR #39, so rate limiting sees the real client
+                // IP), and the backend (TRUST_PROXY=1, #117) trusts only
+                // the last hop — the appended real IP — so spoofed earlier
+                // entries are ignored. Without this the fixture has no
+                // trusted last hop and the spoof test cannot verify the
+                // protection. This is test-only; the production proxy is
+                // unchanged.
+                const clientIp = req.socket?.remoteAddress;
+                if (clientIp) {
+                    const existing = req.headers['x-forwarded-for'];
+                    req.headers['x-forwarded-for'] = existing ? `${existing}, ${clientIp}` : clientIp;
+                }
+                return await proxy(req, res);
+            }
             if (url.pathname === '/__fixture_calls') { res.setHeader('Content-Type', 'application/json'); return res.end(JSON.stringify({ calls })); }
             if (url.pathname === '/__fixture_frame') { res.setHeader('Content-Type', 'text/html'); return res.end('<iframe src="/login"></iframe>'); }
             for (const [name, value] of Object.entries(headers)) res.setHeader(name, value);

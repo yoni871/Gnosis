@@ -16,15 +16,22 @@ cross-origin framing is rejected (the policy is frame-ancestors 'self' /
 SAMEORIGIN, so same-origin framing is allowed by design). API headers use the
 actual middleware and trust parser, and no X-Powered-By header is exposed.
 
-Two proxy tests are marked `fixme` (kept, not deleted): the spoofed-header
-rejection and the oversized-body rejection. They need the frontend proxy to
-strip caller forwarding headers and enforce a 100 KiB body cap — PR #72's
-unique changes, which are NOT in main (main's proxy forwards X-Forwarded-For
-unchanged by design, PR #39, so rate limiting sees the real client IP).
-Those proxy features need Yonatan's decision on the #39-forward vs #72-strip
-design tension before they can land; until then the two tests cannot pass
-on main. The three running tests (headers, inline/object, framing) verify
-the merged #79/#117 defenses.
+All five tests run (no fixme). The two proxy tests verify the protections
+as they exist in main, not #72's approach: the spoof test verifies #117's
+TRUST_PROXY=1 — the backend trusts exactly one hop and takes the last
+X-Forwarded-For entry (the real client IP, appended by the trusted Vercel
+edge — simulated in the fixture) as the client IP, ignoring spoofed earlier
+entries, while the proxy forwards XFF unchanged (PR #39, so rate limiting
+sees the real client IP) and does NOT strip headers. The body-cap test
+verifies #85's backend `express.json({ limit: '100kb' })` — the proxy
+forwards the oversized body and the backend's parser rejects it with a
+controlled 413 before the auth route handler runs. #72's header-stripping
+and proxy body cap were NOT adopted: stripping would hide the real client
+IP from rate limiting, and the protections already exist in main (#117
+trust, #85 body cap). The fixture's mock backend uses trust proxy '1'
+(matching production) and enforces the same 100 KiB body cap as the real
+backend, so both tests verify the real protections. The five tests verify
+the merged #79/#85/#117 defenses.
 
 ```
 npm run test:security-browser --prefix frontend

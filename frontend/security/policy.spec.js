@@ -60,33 +60,52 @@ test('the browser refuses cross-origin framing of the application', async ({ pag
     expect(page.frames().filter(frame => frame !== page.mainFrame()).length).toBeGreaterThan(0);
     expect(await page.frameLocator('iframe').locator('#root').count()).toBe(0);
 });
-// FIXME (blocked on PR #72's proxy features): the frontend proxy in main
-// forwards X-Forwarded-For unchanged by design (PR #39, so rate limiting
-// sees the real client IP) and enforces no body cap — so a spoofed XFF
-// reaches the backend (which trusts the loopback proxy) and an oversized
-// body reaches the mock backend. The header-stripping + 100 KiB proxy cap
-// are #72's unique changes (see ~/workspace/gnosis-dev2/
-// pr72-pr75-unique-changes.md); they need Yonatan's decision on the
-// #39-forward vs #72-strip design tension before they can land. Until
-// then these two proxy tests cannot pass on main, so they are marked
-// fixme (kept, not deleted) and the suite verifies headers/CSP/framing.
-test.fixme('real frontend-to-API HTTP forwarding rejects spoofed IP and Host inputs', async ({ request }) => {
+// Proxy trust and body cap, verified as they exist in main (not #72's
+// approach). The frontend proxy forwards X-Forwarded-For unchanged by
+// design (PR #39, so rate limiting sees the real client IP) — it does
+// NOT strip headers. The spoof protection is #117's TRUST_PROXY=1: the
+// backend trusts exactly one hop and takes the last XFF entry (the real
+// client IP, appended by the trusted Vercel edge — simulated in the
+// fixture) as the client IP, ignoring spoofed earlier entries. The body
+// cap is #85's backend express.json({ limit: '100kb' }): the proxy
+// forwards the body and the backend rejects it before the auth route
+// handler runs. Neither test requires #72's header-stripping or proxy
+// body cap, and neither weakens any protection.
+test('real frontend-to-API HTTP forwarding rejects spoofed IP and Host inputs', async ({ request }) => {
     const response = await request.get(fixture.origin + '/api/auth/profile', { headers: {
         Host: 'attacker.invalid', Forwarded: 'for=198.51.100.66', 'X-Forwarded-For': '198.51.100.66, 203.0.113.10',
         'X-Forwarded-Host': 'attacker.invalid', 'X-Real-IP': '198.51.100.66', 'X-Vercel-Forwarded-For': '198.51.100.66',
         'CF-Connecting-IP': '198.51.100.66', 'True-Client-IP': '198.51.100.66' } });
     expect(response.status()).toBe(200);
     const data = await response.json();
-    expect(data.ip).toBe('127.0.0.1'); expect(data.host).toBe(new URL(fixture.target).host);
-    expect(Object.values(data.forwarded).every(value => value === null)).toBe(true);
+    // The backend uses the trusted last hop — the real client IP appended
+    // by the simulated edge — not any spoofed value.
+    expect(data.ip).toBe('127.0.0.1');
+    expect(data.ip).not.toBe('198.51.100.66'); expect(data.ip).not.toBe('203.0.113.10');
+    expect(data.host).toBe(new URL(fixture.target).host);
+    expect(data.host).not.toBe('attacker.invalid');
+    // The spoofed headers ARE forwarded (PR #39 — the proxy does not
+    // strip, so rate limiting can see them), but they are not trusted:
+    // the forwarded XFF still carries the spoofed values alongside the
+    // appended real IP, yet data.ip is the real IP only.
+    expect(data.forwarded['x-forwarded-for']).toContain('198.51.100.66');
+    expect(data.forwarded['x-forwarded-for']).toContain('203.0.113.10');
+    expect(data.forwarded['x-forwarded-for']).toContain('127.0.0.1');
+    expect(data.forwarded['x-forwarded-host']).toBe('attacker.invalid');
     expect(response.headers()['x-powered-by']).toBeUndefined();
     // The API carries the same uniform CSP as the app (PR #79):
     // default-src 'self', not 'none'.
     expect(response.headers()['content-security-policy']).toContain("default-src 'self'");
 });
-test.fixme('an oversized proxy body is rejected before any upstream request', async ({ request }) => {
+test('an oversized body is rejected with 413 before any auth processing', async ({ request }) => {
     const before = await (await request.get(fixture.origin + '/__fixture_calls')).json();
-    const response = await request.post(fixture.origin + '/api/auth/login', { data: 'x'.repeat(102401) });
+    // Content-Type: application/json so the backend's express.json body
+    // parser engages and its 100 KiB limit (#85) applies. The proxy
+    // forwards the body; the backend's parser rejects it before the auth
+    // route handler runs, so no auth action is processed (calls unchanged).
+    const response = await request.post(fixture.origin + '/api/auth/login', {
+        headers: { 'Content-Type': 'application/json' }, data: 'x'.repeat(102401),
+    });
     expect(response.status()).toBe(413); expect(response.headers()['cache-control']).toBe('no-store');
     // The 413 body carries the machine-readable code too (PR #85 /
     // backend/src/utils/authErrors.js errorBody).
