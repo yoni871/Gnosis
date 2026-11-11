@@ -6,6 +6,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import App from "../App";
 import AuthContext from "../context/AuthContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import LandingPage from "./LandingPage";
 import {
     LANDING_TITLE,
@@ -21,9 +22,11 @@ const LOGGED_OUT = {
 function renderLanding(authValue) {
     return render(
         <MemoryRouter>
-            <AuthContext.Provider value={authValue}>
-                <LandingPage />
-            </AuthContext.Provider>
+            <ThemeProvider>
+                <AuthContext.Provider value={authValue}>
+                    <LandingPage />
+                </AuthContext.Provider>
+            </ThemeProvider>
         </MemoryRouter>,
     );
 }

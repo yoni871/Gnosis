@@ -27,6 +27,12 @@
 .public-page .landing-header-hero .landing-btn-primary { color: var(--nav-ink); background: var(--nav-ivory); border: 1px solid transparent; border-radius: 6px; min-height: 44px; padding: 8px 16px; font-size: .8rem; font-weight: 600; text-shadow: none; transition: background-color 160ms ease, box-shadow 160ms ease; }
 .public-page .landing-header-hero .landing-btn-primary:hover { background: #f0e3c9; box-shadow: 0 3px 12px #2117131a; }
 .public-page .landing-header-hero .landing-menu-button { background: transparent; border: 0; color: var(--nav-ivory); }
+/* Theme toggle: one button, visible at every width, next to the account
+   actions on desktop and next to the hamburger on mobile. The hero
+   header is ivory-on-dark; the unscoped rule covers a non-hero header. */
+.landing-theme-button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--public-ink); cursor: pointer; }
+.public-page .landing-header-hero .landing-theme-button { color: var(--nav-ivory); }
+.public-page .landing-header-hero .landing-theme-button:hover { color: var(--nav-gold); }
 .public-page .landing-header-hero .landing-account { width: max-content; max-width: 100%; flex-shrink: 0; }
 .public-page .landing-header-hero .landing-account-chip { display: inline-grid; grid-template-columns: 28px minmax(0, 1fr) 13px; width: max-content; max-width: 224px; min-height: 44px; gap: 8px; padding: 6px 10px 6px 6px; font-family: inherit; font-size: .8125rem; background: var(--nav-ivory); color: var(--nav-ink); }
 .public-page .landing-header-hero .landing-account-initials { flex-basis: 28px; height: 28px; background: #eee1cc; }

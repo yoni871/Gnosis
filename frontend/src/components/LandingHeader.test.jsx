@@ -3,15 +3,16 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { expect, test, vi } from 'vitest';
 import AuthContext from '../context/AuthContext';
+import { ThemeProvider } from '../context/ThemeContext';
 import LandingHeader from './LandingHeader';
 
 function mount() {
     const logout = vi.fn();
-    render(<MemoryRouter><AuthContext.Provider value={{ user: {
+    render(<MemoryRouter><ThemeProvider><AuthContext.Provider value={{ user: {
         id: 1, first_name: 'Alexandria', last_name: 'Montgomery-Worthington'
     }, isAuthLoading: false, logout }}>
         <LandingHeader hero /><button>Outside</button>
-    </AuthContext.Provider></MemoryRouter>);
+    </AuthContext.Provider></ThemeProvider></MemoryRouter>);
     return logout;
 }
 
@@ -80,4 +81,16 @@ test('clicking the changing hamburger SVG reliably opens and closes mobile navig
     expect(screen.getByRole('navigation', { name: 'Mobile' })).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Close menu' }).querySelector('svg'));
     expect(screen.queryByRole('navigation', { name: 'Mobile' })).toBeNull();
+});
+
+test('theme toggle switches between light and dark', async () => {
+    const user = userEvent.setup();
+    document.documentElement.setAttribute('data-theme', 'light');
+    mount();
+    const toggle = screen.getByRole('button', { name: 'Switch to dark theme' });
+    await user.click(toggle);
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    expect(screen.getByRole('button', { name: 'Switch to light theme' })).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Switch to light theme' }));
+    expect(document.documentElement.getAttribute('data-theme')).toBe('light');
 });
