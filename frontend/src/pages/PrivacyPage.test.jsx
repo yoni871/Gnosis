@@ -2,14 +2,17 @@ import { expect, test, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import PrivacyPage from "./PrivacyPage";
 
 function renderPrivacy() {
     return render(
         <MemoryRouter initialEntries={["/privacy"]}>
-            <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
-                <PrivacyPage />
-            </AuthContext.Provider>
+            <ThemeProvider>
+                <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
+                    <PrivacyPage />
+                </AuthContext.Provider>
+            </ThemeProvider>
         </MemoryRouter>,
     );
 }

@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import SettingsPage from "./SettingsPage";
 
 const user = { id: 7, first_name: "Test", last_name: "Reader", email: "reader@example.invalid" };
@@ -20,14 +21,16 @@ function renderSettings(auth, fetchMock) {
     vi.stubGlobal("fetch", fetchMock);
     render(
         <MemoryRouter initialEntries={["/settings"]}>
-            <AuthContext.Provider value={auth}>
-                <Location />
-                <Routes>
-                    <Route path="/settings" element={<SettingsPage />} />
-                    <Route path="/" element={<h1>Landing</h1>} />
-                    <Route path="/login" element={<h1>Login</h1>} />
-                </Routes>
-            </AuthContext.Provider>
+            <ThemeProvider>
+                <AuthContext.Provider value={auth}>
+                    <Location />
+                    <Routes>
+                        <Route path="/settings" element={<SettingsPage />} />
+                        <Route path="/" element={<h1>Landing</h1>} />
+                        <Route path="/login" element={<h1>Login</h1>} />
+                    </Routes>
+                </AuthContext.Provider>
+            </ThemeProvider>
         </MemoryRouter>,
     );
 }
