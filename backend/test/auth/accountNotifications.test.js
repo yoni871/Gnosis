@@ -36,8 +36,10 @@ test("the new-device template states what happened and when, with the wasn't-you
     assert.equal(email.subject, "New sign-in to your Gnosis account");
     assert.match(email.text, /A new device signed in to your Gnosis account at Mon, 09 Nov 2026 19:05:00 GMT\./);
     assert.match(email.text, /If this was you, you don't need to do anything\./);
-    assert.ok(email.text.includes(`If this wasn't you, reset your password right away: ${RESET_LINK}`));
-    assert.ok(email.html.includes(`<a href="${RESET_LINK}">reset your password</a>`));
+    assert.ok(email.text.includes("If this wasn't you, use the button above to reset your password right away."));
+    assert.ok(email.text.includes(`Reset your password: ${RESET_LINK}`));
+    assert.ok(email.html.includes(`href="${RESET_LINK}"`));
+    assert.ok(email.html.includes("Reset your password"));
 });
 
 test("the password-change template states what happened and when", () => {
@@ -46,7 +48,7 @@ test("the password-change template states what happened and when", () => {
     assert.match(email.text, /Your Gnosis password was changed at Mon, 09 Nov 2026 19:05:00 GMT\./);
     assert.match(email.text, /If you made this change, you don't need to do anything\./);
     assert.ok(email.text.includes(RESET_LINK));
-    assert.ok(email.html.includes(`<a href="${RESET_LINK}">reset your password</a>`));
+    assert.ok(email.html.includes(`href="${RESET_LINK}"`));
 });
 
 test("the MFA templates cover enrolment and removal", () => {

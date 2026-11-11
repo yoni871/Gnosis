@@ -41,6 +41,7 @@
 const { validateEmailConfig } = require("../config/emailConfig");
 const { validateEmailAddress } = require("../utils/authValidation");
 const { createResendClient } = require("../utils/resendClient");
+const { renderGnosisEmail } = require("../utils/emailTemplate");
 
 // Audit kinds (backend/src/utils/auditLog.js) that trigger a user
 // notification email, mapped to their template. Kind strings are the
@@ -70,7 +71,15 @@ function buildForgotPasswordLink(frontendUrl) {
 
 // Pure template rendering: kind + time + frontend origin in, subject
 // + html + text out. No database, no network, no logs — unit tests pin
-// the wording and the content policy here.
+// the wording and the content policy here. The body is the shared
+// Gnosis template (backend/src/utils/emailTemplate.js, issue #118):
+// heading + intro + a "Reset your password" button (the
+// forgot-password link, for the wasn't-you case) + the shared footer,
+// so notification emails cannot drift from the product's look or drop
+// the fallback link. The action URL must be absolute HTTPS —
+// renderGnosisEmail enforces that, so a non-HTTPS FRONTEND_URL fails
+// the send (best-effort: the caller logs one safe line and keeps its
+// original response).
 function renderAccountSecurityEmail(kind, { when, frontendUrl } = {}) {
     const template = NOTIFICATION_KINDS[kind];
     if (!template) {
@@ -78,55 +87,37 @@ function renderAccountSecurityEmail(kind, { when, frontendUrl } = {}) {
     }
     const at = formatWhen(when);
     const resetLink = buildForgotPasswordLink(frontendUrl);
-    const ifNotYou = `If this wasn't you, reset your password right away: ${resetLink}`;
-    const ifNotYouHtml = `<p>If this wasn't you, <a href="${resetLink}">reset your password</a> right away.</p>`;
-    const noAction = "If you made this change, you don't need to do anything.";
+    let heading;
+    let intro;
     switch (template) {
         case "newDevice":
-            return {
-                subject: "New sign-in to your Gnosis account",
-                html: `<p>A new device signed in to your Gnosis account at ${at}.</p>`
-                    + `<p>If this was you, you don't need to do anything.</p>`
-                    + ifNotYouHtml,
-                text: `A new device signed in to your Gnosis account at ${at}.\n`
-                    + `If this was you, you don't need to do anything.\n`
-                    + `${ifNotYou}`,
-            };
+            heading = "New sign-in to your Gnosis account";
+            intro = `A new device signed in to your Gnosis account at ${at}. If this was you, you don't need to do anything.`;
+            break;
         case "passwordChanged":
-            return {
-                subject: "Your Gnosis password was changed",
-                html: `<p>Your Gnosis password was changed at ${at}.</p>`
-                    + `<p>${noAction}</p>`
-                    + ifNotYouHtml,
-                text: `Your Gnosis password was changed at ${at}.\n`
-                    + `${noAction}\n`
-                    + `${ifNotYou}`,
-            };
+            heading = "Your Gnosis password was changed";
+            intro = `Your Gnosis password was changed at ${at}. If you made this change, you don't need to do anything.`;
+            break;
         case "mfaEnrolled":
-            return {
-                subject: "Two-factor authentication was turned on for your Gnosis account",
-                html: `<p>Two-factor authentication was turned on for your Gnosis account at ${at}.</p>`
-                    + `<p>${noAction}</p>`
-                    + ifNotYouHtml,
-                text: `Two-factor authentication was turned on for your Gnosis account at ${at}.\n`
-                    + `${noAction}\n`
-                    + `${ifNotYou}`,
-            };
+            heading = "Two-factor authentication was turned on for your Gnosis account";
+            intro = `Two-factor authentication was turned on for your Gnosis account at ${at}. If you made this change, you don't need to do anything.`;
+            break;
         case "mfaRemoved":
-            return {
-                subject: "Two-factor authentication was turned off for your Gnosis account",
-                html: `<p>Two-factor authentication was turned off for your Gnosis account at ${at}. `
-                    + `Your account no longer asks for a second step when you sign in.</p>`
-                    + `<p>${noAction}</p>`
-                    + ifNotYouHtml,
-                text: `Two-factor authentication was turned off for your Gnosis account at ${at}. `
-                    + `Your account no longer asks for a second step when you sign in.\n`
-                    + `${noAction}\n`
-                    + `${ifNotYou}`,
-            };
+            heading = "Two-factor authentication was turned off for your Gnosis account";
+            intro = `Two-factor authentication was turned off for your Gnosis account at ${at}. Your account no longer asks for a second step when you sign in. If you made this change, you don't need to do anything.`;
+            break;
         default:
             throw new Error("Unknown account notification kind.");
     }
+    const { html, text } = renderGnosisEmail({
+        preheader: heading,
+        heading,
+        intro,
+        actionUrl: resetLink,
+        actionLabel: "Reset your password",
+        securityNote: "If this wasn't you, use the button above to reset your password right away.",
+    });
+    return { subject: heading, html, text };
 }
 
 // Sends one notification email through the Resend client. Throws on
