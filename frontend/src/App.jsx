@@ -20,6 +20,7 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const VerifyPage = lazy(() => import('./pages/VerifyPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function RouteLoading() {
     return (
@@ -93,6 +94,15 @@ function App() {
             <Route
               path='/reset-password'
               element={<ResetPasswordPage />}
+            />
+
+            {/* Catch-all: without this, an unmatched URL renders a blank
+                page — React Router has nothing to show. The 404 page
+                carries the site header and footer so the visitor can
+                always navigate onward. */}
+            <Route
+              path='*'
+              element={<NotFoundPage />}
             />
 
           </Routes>
