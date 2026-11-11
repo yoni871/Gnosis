@@ -21,6 +21,8 @@ const AUDIT_EVENT_KINDS = Object.freeze([
     "password_reset.completed",
     "refresh_token.reused",
     "logout.all",
+    // Wired by this PR (T2.6): first login from an unseen device key.
+    "login.new_device",
     // Defined only; wired by the owner PR when its feature lands.
     // PR8 (auth hardening): single-session revoke, authenticated change.
     "session.revoked",

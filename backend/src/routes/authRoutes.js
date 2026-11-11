@@ -23,6 +23,7 @@ const {
 const { createResendClient } = require("../utils/resendClient");
 const { isBreachedPassword } = require("../utils/breachedPasswords");
 const { audit } = require("../utils/auditLog");
+const { recordLoginDevice } = require("../services/loginDevices");
 
 // Issue #3: validation runs as middleware, before the limiter and before
 // any hashing or database access. Only the validated (trimmed) values
@@ -395,6 +396,9 @@ router.post("/login", (req, res, next) => {
     // Best-effort, after the session committed. audit() never throws,
     // so a failed insert cannot change the 200 response.
     await audit(pool, "login.success", user.id);
+    // T2.6: best-effort new-device detection; never changes the 200
+    // response and never blocks the login (step-up MFA is deferred).
+    await recordLoginDevice(pool, user.id, req.ip, req.get("user-agent"));
     res.json({
         token: session.token, expiresIn: sessions.ACCESS_SECONDS
     });

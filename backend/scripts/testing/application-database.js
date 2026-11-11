@@ -95,6 +95,9 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
             GRANT SELECT,INSERT,UPDATE ON auth_sessions,auth_refresh_tokens TO "${role}";
             GRANT SELECT,INSERT ON security_events TO "${role}";
             GRANT USAGE ON SEQUENCE security_events_id_seq TO "${role}";
+            GRANT SELECT,INSERT ON known_login_devices TO "${role}";
+            GRANT UPDATE (last_seen_at) ON known_login_devices TO "${role}";
+            GRANT USAGE ON SEQUENCE known_login_devices_id_seq TO "${role}";
             GRANT SELECT,INSERT ON email_verification_tokens TO "${role}";
             GRANT UPDATE (used_at, consumed_reason) ON email_verification_tokens TO "${role}";
             GRANT SELECT,INSERT ON password_reset_tokens TO "${role}";

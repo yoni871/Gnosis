@@ -11,6 +11,7 @@ const EXPECTED_KINDS = [
     'password_reset.completed',
     'refresh_token.reused',
     'logout.all',
+    'login.new_device',
     'session.revoked',
     'password.changed',
     'mfa.enrolled',
