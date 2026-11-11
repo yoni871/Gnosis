@@ -17,6 +17,18 @@ const { securityHeaders: apiHeaders } = backendRequire('./src/middleware/securit
 const dist = fileURLToPath(new URL('../dist/', import.meta.url));
 const config = JSON.parse(fs.readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
 const headers = Object.fromEntries(config.headers.find(rule => rule.source === '/(.*)').headers.map(h => [h.key, h.value]));
+// Test-only allowance: the synthetic API host (api.example.invalid) must
+// be reachable or the app cannot load Bible data at all (the reader
+// shows "couldn't load the Bible text"). The real connect-src is
+// 'self' + https://*.vercel.app; the fixture appends the synthetic host
+// so the app's fetches reach the Playwright interceptor. No other CSP
+// directive is changed — the header assertions still pin the real
+// frame-ancestors, object-src, and script-src values.
+if (typeof headers['Content-Security-Policy'] === 'string') {
+    headers['Content-Security-Policy'] = headers['Content-Security-Policy'].replace(
+        /(connect-src[^;]*)/, '$1 https://api.example.invalid'
+    );
+}
 const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.woff2': 'font/woff2', '.jpg': 'image/jpeg' };
 const listen = server => new Promise((resolve, reject) => {
     server.once('error', reject); server.listen(0, '127.0.0.1', () => resolve(`http://127.0.0.1:${server.address().port}`));
@@ -53,6 +65,27 @@ export async function startFixture() {
     });
     try {
         const origin = await listen(frontend);
+        // Cross-origin framing probe: the backend target is a different
+        // origin from the frontend (different port), so a page served
+        // here that frames the app is a genuine cross-origin framer.
+        // The app's frame-ancestors 'self' / SAMEORIGIN must refuse it.
+        // (Same-origin framing is allowed by main's deliberate 'self'
+        // policy — see backend/src/middleware/securityHeaders.js — so
+        // the framing test uses this cross-origin parent, not the
+        // same-origin /__fixture_frame page.)
+        app.get('/__xorigin_frame', (req, res) => {
+            // The parent page itself must impose NO framing restriction:
+            // the backend middleware sets default-src 'self', which would
+            // block this cross-origin iframe on the parent's side and the
+            // console message would cite default-src instead of the app's
+            // frame-ancestors. Strip the parent's CSP/X-Frame-Options so
+            // the only thing that can refuse the frame is the app's own
+            // frame-ancestors 'self' / SAMEORIGIN.
+            res.removeHeader('Content-Security-Policy');
+            res.removeHeader('X-Frame-Options');
+            res.set('Content-Type', 'text/html');
+            res.end(`<iframe src="${origin}/login"></iframe>`);
+        });
         return { origin, target, async close() { await close(frontend); await close(backend); await backendRequire('./src/db/db').end(); } };
     } catch (error) { await close(backend); throw error; }
 }
