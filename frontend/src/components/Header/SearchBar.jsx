@@ -67,6 +67,8 @@ export default function SearchBar({ variant = "default", mobile = false, transla
                     className="shrink-0 text-[var(--text-muted)]"
                 />
 
+                {/* 16px below lg: iOS Safari auto-zooms on focus when an
+                    input is under 16px. Desktop keeps the compact 11px. */}
                 <input
                     ref={searchInputRef}
                     type="text"
@@ -81,7 +83,7 @@ export default function SearchBar({ variant = "default", mobile = false, transla
                     className="
                         min-w-0 flex-1
                         bg-transparent
-                        text-[11px]
+                        text-[16px] lg:text-[11px]
                         text-[var(--text-primary)]
                         outline-none
                         placeholder:text-[var(--text-muted)]
