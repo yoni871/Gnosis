@@ -259,7 +259,7 @@ function SearchResults({ query, translation, books }) {
         <div className="
             flex h-dvh flex-col overflow-hidden
             bg-[var(--bg-page)]
-            pt-[198px] min-[769px]:pt-[108px]
+            pt-[240px] min-[769px]:pt-[108px]
         ">
             {/* Search results are never indexed, and the canonical URL
                 drops the ?q= query so result variants cannot become
@@ -286,7 +286,7 @@ function SearchResults({ query, translation, books }) {
 
             {/* Mobile result tabs */}
             <div className="
-                fixed left-0 right-0 top-[154px] z-30
+                fixed left-0 right-0 top-[196px] z-30
                 grid h-[44px] grid-cols-2
                 border-b border-[var(--border)]
                 bg-[var(--bg-nav)] min-[769px]:hidden

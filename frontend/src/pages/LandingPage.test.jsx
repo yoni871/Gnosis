@@ -6,6 +6,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import App from "../App";
 import AuthContext from "../context/AuthContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import LandingPage from "./LandingPage";
 import {
     LANDING_TITLE,
@@ -21,9 +22,11 @@ const LOGGED_OUT = {
 function renderLanding(authValue) {
     return render(
         <MemoryRouter>
-            <AuthContext.Provider value={authValue}>
-                <LandingPage />
-            </AuthContext.Provider>
+            <ThemeProvider>
+                <AuthContext.Provider value={authValue}>
+                    <LandingPage />
+                </AuthContext.Provider>
+            </ThemeProvider>
         </MemoryRouter>,
     );
 }
@@ -281,7 +284,9 @@ describe("LandingPage", () => {
                 name: "Account menu for Sample Reader",
             }),
         );
-        expect(within(header).getByRole("button", { name: "Profile" })).toBeVisible();
+        // No Profile item: it had no handler and no /profile route, so it
+        // was removed (UI audit P1-2). The menu is Settings -> Sign out.
+        expect(within(header).queryByRole("button", { name: "Profile" })).toBeNull();
         expect(within(header).getByRole("link", { name: "Settings" })).toBeVisible();
         expect(within(header).getByRole("link", { name: "Settings" })).toHaveAttribute("href", "/settings");
         expect(within(header).queryByText("Continue studying")).toBeNull();
@@ -313,6 +318,11 @@ describe("LandingPage", () => {
         await user.click(toggle);
         const nav = screen.getByRole("navigation", { name: "Mobile" });
         within(nav).getByRole("link", { name: "Start Exploring →" }).focus();
+        await user.tab();
+        // The theme row follows the auth links, so one Tab lands on it and
+        // the menu stays open; a second Tab leaves the header and closes it.
+        expect(within(nav).getByRole("button", { name: "Switch to dark theme" })).toHaveFocus();
+        expect(screen.getByRole("navigation", { name: "Mobile" })).toBeInTheDocument();
         await user.tab();
         expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
         await user.click(toggle);

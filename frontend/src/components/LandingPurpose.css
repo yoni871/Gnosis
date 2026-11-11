@@ -56,3 +56,14 @@
     }
     .landing-purpose-icon { margin-bottom: 18px; }
 }
+
+/* Dark mode: same layout and type, in the deep charcoal / muted forest
+   green / warm neutral palette. The scoped variables carry the section,
+   so only the hardcoded body colour needs its own override. */
+[data-theme="dark"] .landing-purpose {
+    --purpose-ivory: #171310;
+    --purpose-green: #8fb5a0;
+    --purpose-gold: #d8b24f;
+    --purpose-rule: #473b31;
+    color: #f0e7d9;
+}

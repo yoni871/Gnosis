@@ -69,6 +69,8 @@ describe("ScripturePanel translation dropdown", () => {
         const { onSelectTranslation } = mount();
         await openMenu();
         const search = screen.getByRole("searchbox", { name: "Search translations" });
+        expect(search).not.toHaveFocus();
+        await user.click(search);
         expect(search).toHaveFocus();
         expect(within(screen.getByTestId("translation-list")).getByRole("button", { pressed: true })).toHaveTextContent("KJV");
         await user.type(search, "english standard");

@@ -49,7 +49,16 @@ export function AuthProvider({ children }) {
                 if (!authGuard.isCurrent(ticket)) {
                     return;
                 }
-                if (error.code !== "SESSION_INVALID") console.error(error);
+                // SESSION_INVALID (expired session, 401) and
+                // SESSION_REQUEST_INVALID (no refresh cookie at all, 403)
+                // are both the routine "nobody is signed in" case, not
+                // errors worth logging on every logged-out page load.
+                if (
+                    error.code !== "SESSION_INVALID" &&
+                    error.code !== "SESSION_REQUEST_INVALID"
+                ) {
+                    console.error(error);
+                }
                 updateToken(null);
                 setUser(null);
             } finally {

@@ -3,15 +3,16 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { expect, test, vi } from 'vitest';
 import AuthContext from '../context/AuthContext';
+import { ThemeProvider } from '../context/ThemeContext';
 import LandingHeader from './LandingHeader';
 
 function mount() {
     const logout = vi.fn();
-    render(<MemoryRouter><AuthContext.Provider value={{ user: {
+    render(<MemoryRouter><ThemeProvider><AuthContext.Provider value={{ user: {
         id: 1, first_name: 'Alexandria', last_name: 'Montgomery-Worthington'
     }, isAuthLoading: false, logout }}>
         <LandingHeader hero /><button>Outside</button>
-    </AuthContext.Provider></MemoryRouter>);
+    </AuthContext.Provider></ThemeProvider></MemoryRouter>);
     return logout;
 }
 
@@ -24,13 +25,16 @@ test('account disclosure preserves full name, action list, Tab order, Escape, an
     await user.keyboard('{Enter}');
     const list = document.getElementById(trigger.getAttribute('aria-controls'));
     expect(list.tagName).toBe('UL');
+    // Three items: Settings, the theme row, and Sign out. (A Profile item
+    // used to sit here with no handler — it did nothing when clicked — so
+    // it was removed; it returns when a profile page lands.)
     expect(within(list).getAllByRole('listitem')).toHaveLength(3);
-    expect(within(list).queryByText(/Bookmarks|Highlights/)).toBeNull();
-    await user.tab();
-    expect(within(list).getByRole('button', { name: 'Profile' })).toHaveFocus();
+    expect(within(list).queryByText(/Bookmarks|Highlights|Profile/)).toBeNull();
     await user.tab();
     expect(within(list).getByRole('link', { name: 'Settings' })).toHaveFocus();
     expect(within(list).getByRole('link', { name: 'Settings' })).toHaveAttribute('href', '/settings');
+    await user.tab();
+    expect(within(list).getByRole('button', { name: 'Switch to dark theme' })).toHaveFocus();
     await user.tab();
     expect(within(list).getByRole('button', { name: 'Sign out' })).toHaveFocus();
     await user.keyboard('{Escape}');
@@ -79,4 +83,49 @@ test('clicking the changing hamburger SVG reliably opens and closes mobile navig
     expect(screen.getByRole('navigation', { name: 'Mobile' })).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Close menu' }).querySelector('svg'));
     expect(screen.queryByRole('navigation', { name: 'Mobile' })).toBeNull();
+});
+
+function mountLoggedOut() {
+    render(<MemoryRouter><ThemeProvider><AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
+        <LandingHeader hero /><button>Outside</button>
+    </AuthContext.Provider></ThemeProvider></MemoryRouter>);
+}
+
+test('account menu theme row switches the theme without closing the menu', async () => {
+    const user = userEvent.setup();
+    window.localStorage.setItem('gnosis-theme', 'light');
+    mount();
+    // No standalone header toggle: the theme control lives in the menu.
+    expect(screen.queryByRole('button', { name: 'Switch to dark theme' })).toBeNull();
+    const trigger = screen.getByRole('button', { name: 'Account menu for Alexandria Montgomery-Worthington' });
+    await user.click(trigger);
+    const list = document.getElementById(trigger.getAttribute('aria-controls'));
+    await user.click(within(list).getByRole('button', { name: 'Switch to dark theme' }));
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    // The menu stays open so the change is visible immediately.
+    expect(list).toBeInTheDocument();
+    expect(within(list).getByRole('button', { name: 'Switch to light theme' })).toBeInTheDocument();
+    await user.click(within(list).getByRole('button', { name: 'Switch to light theme' }));
+    expect(document.documentElement.getAttribute('data-theme')).toBe('light');
+});
+
+test('mobile menu offers one theme row to logged-out visitors', async () => {
+    const user = userEvent.setup();
+    window.localStorage.setItem('gnosis-theme', 'light');
+    mountLoggedOut();
+    await user.click(screen.getByRole('button', { name: 'Open menu' }));
+    const mobile = screen.getByRole('navigation', { name: 'Mobile' });
+    const toggles = within(mobile).getAllByRole('button', { name: 'Switch to dark theme' });
+    expect(toggles).toHaveLength(1);
+    await user.click(toggles[0]);
+    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    expect(within(mobile).getByRole('button', { name: 'Switch to light theme' })).toBeInTheDocument();
+});
+
+test('logged-in mobile menu has no theme row outside the account menu', async () => {
+    const user = userEvent.setup();
+    mount();
+    await user.click(screen.getByRole('button', { name: 'Open menu' }));
+    const mobile = screen.getByRole('navigation', { name: 'Mobile' });
+    expect(within(mobile).queryByRole('button', { name: 'Switch to dark theme' })).toBeNull();
 });
