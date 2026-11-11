@@ -6,17 +6,11 @@ If you find a security vulnerability in Gnosis, please report it privately —
 **do not open a public GitHub issue**, and do not post details publicly
 until a fix is available (see "Coordinated disclosure" below).
 
-Contact: **[SECURITY-CONTACT — TO BE CONFIRMED BY YONATAN]**
-
-> This contact is a placeholder. The maintainer will replace it with the real
-> private reporting address before this policy is treated as final.
+Contact: **studygnosis.general@gmail.com**
 
 ## What happens next
 
-> **Proposed, not yet decided:** the response times below are a proposal for
-> the maintainer to confirm. They are not a commitment until confirmed.
-
-- We aim to acknowledge your report within **3 business days**.
+- We aim to acknowledge your report within **72 hours**.
 - We aim to send an initial assessment (whether the issue is confirmed, and
   roughly how severe it is) within **7 calendar days**.
 - We will keep you updated while a fix is prepared, and let you know when
