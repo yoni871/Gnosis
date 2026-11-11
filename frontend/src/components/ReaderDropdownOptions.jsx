@@ -49,7 +49,7 @@ export default function ReaderDropdownOptions({
                     placeholder={`${searchLabel}...`}
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
-                    className="h-9 w-full rounded border border-[var(--border)] bg-[var(--bg-input)] pl-7 pr-2 text-[12px] font-normal tracking-normal text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)] focus:border-[var(--color-brand)] focus-visible:ring-1 focus-visible:ring-[var(--color-brand)]"
+                    className="h-9 w-full rounded border border-[var(--border)] bg-[var(--bg-input)] pl-7 pr-2 text-[16px] font-normal tracking-normal text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)] focus:border-[var(--color-brand)] focus-visible:ring-1 focus-visible:ring-[var(--color-brand)]"
                 />
             </div>
             <div
