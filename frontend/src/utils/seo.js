@@ -79,3 +79,52 @@ export function chapterDescription(book, chapter) {
 export function pageUrl(path, siteUrl = getSiteUrl()) {
     return `${siteUrl}${path}`;
 }
+
+// Biblical History helpers. Routes use book/event slugs
+// (/biblical-history/genesis, /biblical-history/genesis/creation);
+// reader links still go through chapterPath (display names).
+export function historyPath(bookSlug, eventSlug) {
+    if (eventSlug) return `/biblical-history/${bookSlug}/${eventSlug}`;
+    if (bookSlug) return `/biblical-history/${bookSlug}`;
+    return "/biblical-history";
+}
+
+export function historyIndexTitle() {
+    return "Biblical History | Gnosis";
+}
+
+export function historyIndexDescription() {
+    return (
+        "Explore the ancient world behind the biblical story, book by book, " +
+        "on Gnosis — historical context for the events of Scripture."
+    );
+}
+
+export function historyBookTitle(bookTitle) {
+    return `Biblical History — ${bookTitle} | Gnosis`;
+}
+
+export function historyBookDescription(bookTitle, eventCount) {
+    const events =
+        eventCount === 1
+            ? "1 historical event"
+            : `${eventCount} historical events`;
+    return (
+        `Historical context for the book of ${bookTitle} on Gnosis: ` +
+        `${events} explored with the ancient world behind the text.`
+    );
+}
+
+export function historyEventTitle(eventTitle, rangeLabel) {
+    return rangeLabel
+        ? `${eventTitle} — ${rangeLabel} | Biblical History | Gnosis`
+        : `${eventTitle} | Biblical History | Gnosis`;
+}
+
+export function historyEventDescription(eventTitle, rangeLabel) {
+    // Descriptions must not assert a date the date-axis does not support:
+    // an unknown-dated event's description carries no year.
+    return rangeLabel
+        ? `Historical context for ${eventTitle} (${rangeLabel}) on Gnosis.`
+        : `Historical context for ${eventTitle} on Gnosis.`;
+}
