@@ -10,7 +10,10 @@ process.env.GNOSIS_TEST_ISOLATION = '1';
 const backendRequire = createRequire(new URL('../../backend/package.json', import.meta.url));
 const express = backendRequire('express');
 const { resolveTrustProxy } = backendRequire('./src/utils/rateLimit');
-const apiHeaders = backendRequire('./src/middleware/securityHeaders');
+// securityHeaders.js exports a named object (see backend/src/app.js);
+// the middleware itself is the `securityHeaders` property, not the
+// whole module.
+const { securityHeaders: apiHeaders } = backendRequire('./src/middleware/securityHeaders');
 const dist = fileURLToPath(new URL('../dist/', import.meta.url));
 const config = JSON.parse(fs.readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
 const headers = Object.fromEntries(config.headers.find(rule => rule.source === '/(.*)').headers.map(h => [h.key, h.value]));
