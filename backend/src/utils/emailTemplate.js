@@ -1,14 +1,14 @@
 // Gnosis email identity + reusable HTML template (issue #118).
 //
 // One layout for every automated email the backend sends: account
-// verification, password reset, and (on rebase) the security-notification
-// emails owned by PR #84 — backend/src/services/accountNotifications.js,
-// which builds inline HTML today for new-device sign-in, password-changed,
-// and MFA-turned-on notifications. That PR should call renderGnosisEmail
-// with its own heading/intro/action instead of building HTML inline — the
-// template carries the branding, the plain-text alternative, the expiration
-// line, the security note, and the footer, so notification emails cannot
-// drift from the product's look or drop the fallback link.
+// verification, password reset, and the security-notification emails
+// owned by PR #84 — backend/src/services/accountNotifications.js,
+// which calls renderGnosisEmail with its own heading/intro/action for
+// new-device sign-in, password-changed, and MFA-turned-on/off
+// notifications. The template carries the branding, the plain-text
+// alternative, the expiration line, the security note, and the footer,
+// so notification emails cannot drift from the product's look or drop
+// the fallback link.
 //
 // Design: forest-green accents (#233e34, the landing-page hero green),
 // warm off-white background (#F5EFE0 page, #FAF7EF card), gold rule

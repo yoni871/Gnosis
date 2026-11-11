@@ -38,7 +38,7 @@ function applicationSuite(context, intentionalFailure = false) {
         'test/application/refreshRateLimit.test.js',
         'test/application/sessions.test.js', 'test/application/rateLimit.test.js', 'test/application/emailVerification.test.js',
         'test/application/passwordReset.test.js', 'test/application/auditLog.test.js',
-        'test/application/securityAlerts.test.js',
+        'test/application/securityAlerts.test.js', 'test/application/accountNotifications.test.js',
     ];
     return new Promise((resolve, reject) => {
         const child = spawn(process.execPath, ['--test', '--test-concurrency=1', ...files], {

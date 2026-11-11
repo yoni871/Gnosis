@@ -139,6 +139,42 @@ function createResendClient({ fetchImpl = globalThis.fetch, baseUrl: injectedBas
             }
             return response.json().catch(() => ({}));
         },
+        // Account-security notifications (roadmap PR3): posts one
+        // already-built message — subject, html, text — with the same
+        // contract as the two senders above: throws on bad
+        // configuration, on a non-2xx provider response (with .status
+        // attached), and on a timeout. It deliberately mirrors
+        // sendPasswordResetEmail (no mailpit/disabled special-casing):
+        // the notification callers are best-effort, so a failed send
+        // is one safe log line and never changes an auth response.
+        async sendEmail({ to, subject, html, text }) {
+            const result = validateEmailConfig(env);
+            if (result.errors) {
+                throw new Error("Email configuration is invalid.");
+            }
+            const { config } = result;
+            const response = await fetchImpl(`${baseUrl}/emails`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${config.resendApiKey}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    from: config.emailFrom,
+                    to,
+                    subject,
+                    html,
+                    text,
+                }),
+                signal: AbortSignal.timeout(RESEND_TIMEOUT_MS),
+            });
+            if (!response.ok) {
+                const error = new Error("Resend request failed.");
+                error.status = response.status;
+                throw error;
+            }
+            return response.json().catch(() => ({}));
+        },
     };
 }
 

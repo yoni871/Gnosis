@@ -9,6 +9,12 @@
 // MFA is DEFERRED until Muse 3's TOTP work lands, and a new device
 // alone is not proof of compromise.
 //
+// A new device also notifies the user by email (roadmap PR3,
+// services/accountNotifications.js): notifyNewDeviceLogin runs after
+// the audit insert, best-effort, and can never change the login
+// outcome. The route holds no notification logic — it still calls
+// recordLoginDevice() and nothing else.
+//
 // What is stored: one row per (user, device) in known_login_devices.
 // The device key is an HMAC-SHA256 of the IP + user-agent under the
 // dedicated RATE_LIMIT_KEY_SECRET, using the same length-prefixed
@@ -28,6 +34,7 @@
 
 const { audit } = require("../utils/auditLog");
 const { computeKeyHash, getRateLimitSecret } = require("../utils/rateLimit");
+const { notifyNewDeviceLogin } = require("./accountNotifications");
 
 const DEVICE_KEY_POLICY = "known_login_device";
 
@@ -43,7 +50,9 @@ function computeDeviceKey(ip, userAgent, secret) {
 // when the device was unseen (and `login.new_device` was emitted),
 // { isNew: false } when it was already known, or when detection was
 // skipped or failed. NEVER throws and NEVER changes the login outcome.
-async function recordLoginDevice(db, userId, ip, userAgent) {
+// `deps.notifyNewDevice` defaults to the real account-notification
+// sender and is injectable so unit tests never touch the provider.
+async function recordLoginDevice(db, userId, ip, userAgent, { notifyNewDevice = notifyNewDeviceLogin } = {}) {
     try {
         if (!Number.isInteger(userId)) return { isNew: false };
         // Without a client address there is nothing to key a device on;
@@ -65,6 +74,16 @@ async function recordLoginDevice(db, userId, ip, userAgent) {
             // Best-effort, after the device row committed. audit()
             // never throws, so a failed insert cannot change the 200.
             await audit(db, "login.new_device", userId);
+            // PR3: notify the user that a new device signed in.
+            // Guarded separately so a notification failure is one
+            // safe log line and can never flip the isNew result or
+            // the login response.
+            try {
+                await notifyNewDevice(db, userId);
+            } catch (error) {
+                const code = error && typeof error.code === "string" ? error.code : "none";
+                console.error(`[login-devices] notify failed kind=login.new_device code=${code}`);
+            }
             return { isNew: true };
         }
         await db.query(
