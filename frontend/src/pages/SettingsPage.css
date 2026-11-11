@@ -46,6 +46,8 @@
 .settings-password {
     width: 100%;
     max-width: 320px;
+    /* 16px so iOS Safari does not auto-zoom on focus. */
+    font-size: 16px;
 }
 
 .settings-error {
