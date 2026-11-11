@@ -281,7 +281,9 @@ describe("LandingPage", () => {
                 name: "Account menu for Sample Reader",
             }),
         );
-        expect(within(header).getByRole("button", { name: "Profile" })).toBeVisible();
+        // No Profile item: it had no handler and no /profile route, so it
+        // was removed (UI audit P1-2). The menu is Settings -> Sign out.
+        expect(within(header).queryByRole("button", { name: "Profile" })).toBeNull();
         expect(within(header).getByRole("link", { name: "Settings" })).toBeVisible();
         expect(within(header).getByRole("link", { name: "Settings" })).toHaveAttribute("href", "/settings");
         expect(within(header).queryByText("Continue studying")).toBeNull();
