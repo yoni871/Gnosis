@@ -5,6 +5,7 @@ import { ArrowLeft, ChevronDown, Check } from "lucide-react";
 import BookSelector from "./BookSelector";
 import ChapterSelector from "./ChapterSelector";
 import VerseSelector from "./VerseSelector";
+import SearchBar from "../Header/SearchBar";
 import useClickOutside from "../../hooks/useClickOutside";
 
 
@@ -126,7 +127,7 @@ export default function SubHeader({
                 aria-label="Search filters"
                 className="
                     fixed left-0 right-0 top-[58px] z-40
-                    flex h-[96px] flex-col justify-center gap-2
+                    flex h-[138px] flex-col justify-center gap-2
                     border-b border-[var(--border)]
                     bg-[var(--bg-nav)] px-3
                     min-[769px]:h-[50px]
@@ -137,6 +138,15 @@ export default function SubHeader({
                     min-[769px]:px-9
                 "
             >
+                {/* On small screens the search box lives only in the header
+                    (desktop) and the hamburger menu — so the search page
+                    itself showed no input at all. This row makes the field
+                    visible on the page where searching is the whole point.
+                    Desktop keeps the header search bar, so this row is
+                    hidden at min-[769px]. */}
+                <div className="w-full min-[769px]:hidden">
+                    <SearchBar variant="searchResults" translation={translation} mobile />
+                </div>
                 <div className="
                     flex w-full items-center justify-between
                     min-[769px]:w-auto
