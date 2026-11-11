@@ -1,4 +1,12 @@
 // Only structural metadata is read; never rows, credentials, or sequence values.
+const { projects, migrationsTable } = require('./config');
+
+// Tracking tables are per project; their columns, primary-key index and
+// sequence are not application schema and are excluded from the
+// comparison, like the legacy pgmigrations table. The exclusion covers
+// exactly the known tracking tables: anything else that merely shares
+// the prefix (for example a stray pgmigrations_extra table) stays
+// visible, so adoption still refuses it.
 const SQL = `
 WITH objects AS (
  SELECT 'relation' kind, c.relname name,
@@ -72,11 +80,18 @@ WITH objects AS (
 SELECT kind,name,definition FROM objects ORDER BY kind,name`;
 
 async function catalog(client) {
+    const trackingTables = new Set(['pgmigrations', ...projects.map(migrationsTable)]);
     return (await client.query(SQL)).rows.filter(row => {
-        if (['column','constraint'].includes(row.kind)) return !row.name.startsWith('pgmigrations.');
-        if (row.kind === 'relation') return !['pgmigrations','pgmigrations_id_seq'].includes(row.name);
-        if (row.kind === 'index') return row.name !== 'pgmigrations_pkey';
-        if (row.kind === 'sequence') return row.name !== 'pgmigrations_id_seq';
+        if (['column','constraint'].includes(row.kind)) {
+            return ![...trackingTables].some(table => row.name.startsWith(`${table}.`));
+        }
+        if (row.kind === 'relation') {
+            // Sequences also surface as relations (relkind 'S'); the
+            // tracking tables' sequences are excluded the same way.
+            return ![...trackingTables].some(table => row.name === table || row.name === `${table}_id_seq`);
+        }
+        if (row.kind === 'index') return ![...trackingTables].some(table => row.name === `${table}_pkey`);
+        if (row.kind === 'sequence') return ![...trackingTables].some(table => row.name === `${table}_id_seq`);
         return true;
     });
 }

@@ -1,4 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+/* Lora is self-hosted (see public/fonts/lora/README.md). The Google
+   Fonts @import was a render-blocking third-party request on every
+   page. Lora ships as a variable font, so one file covers weights
+   400-700 upright and one covers 400-700 italic. */
+@font-face {
+    font-family: 'Lora';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("/fonts/lora/lora-latin-variable.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'Lora';
+    font-style: italic;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("/fonts/lora/lora-latin-variable-italic.woff2") format("woff2");
+}
 
 @import "tailwindcss";
 

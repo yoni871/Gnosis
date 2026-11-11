@@ -1,4 +1,6 @@
 const pool = require("../db/db");
+const { biblePool } = require("../db/db");
+const { logControllerError } = require("../utils/authErrors");
 
 // Remove duplicate coordinates before validating and saving the selection.
 function uniqueVerses(verses) {
@@ -16,34 +18,50 @@ async function saveHighlights(userId, bookId, verses, color) {
     // Process each selected coordinate only once.
     const selected = uniqueVerses(verses);
 
+    // The book must exist in the Bible project before anything is
+    // written: highlights keep book_id as a plain integer (no foreign
+    // key crosses the project boundary).
+    const book = await biblePool.query(
+        "SELECT 1 FROM bible_books WHERE id = $1",
+        [bookId]
+    );
+    if (book.rows.length === 0) {
+        const error = new Error("Unknown book.");
+        error.code = "INVALID_PASSAGE";
+        throw error;
+    }
+
+    // Verify every selected coordinate against the stored Bible verses
+    // (Bible project). Verses are static reference data, so verifying
+    // before the App transaction — instead of inside it, as before —
+    // cannot observe a change the insert would miss.
+    const found = await biblePool.query(
+        `
+        SELECT DISTINCT c.chapter_number AS chapter, v.verse_number AS verse
+        FROM jsonb_to_recordset($2::jsonb)
+            AS selected(chapter integer, verse integer)
+        JOIN bible_chapters c
+            ON c.book_id = $1
+            AND c.chapter_number = selected.chapter
+        JOIN bible_verses v
+            ON v.chapter_id = c.id
+            AND v.verse_number = selected.verse
+        `,
+        [bookId, JSON.stringify(selected)]
+    );
+
+    // Reject the entire operation if any selected verse is missing.
+    if (found.rows.length !== selected.length) {
+        const error = new Error("One or more selected verses do not exist.");
+        error.code = "INVALID_PASSAGE";
+        throw error;
+    }
+
     //borrow one connection for all operations in this transaction
     const client = await pool.connect();
     try {
         //start group of database operations that succeed or fail
         await client.query("BEGIN");
-
-        // Verify every selected coordinate against the stored Bible verses.
-        const found = await client.query(
-            `
-            SELECT DISTINCT c.chapter_number AS chapter, v.verse_number AS verse
-            FROM jsonb_to_recordset($2::jsonb)
-                AS selected(chapter integer, verse integer)
-            JOIN bible_chapters c
-                ON c.book_id = $1
-                AND c.chapter_number = selected.chapter
-            JOIN bible_verses v
-                ON v.chapter_id = c.id
-                AND v.verse_number = selected.verse
-            `,
-            [bookId, JSON.stringify(selected)]
-        );
-
-        // Reject the entire operation if any selected verse is missing.
-        if (found.rows.length !== selected.length) {
-            const error = new Error("One or more selected verses do not exist.");
-            error.code = "INVALID_PASSAGE";
-            throw error;
-        }
 
         // Insert or recolor only the exact coordinates the user selected.
         const result = await client.query(
@@ -79,7 +97,8 @@ async function saveHighlights(userId, bookId, verses, color) {
             await client.query("ROLLBACK");
         } catch (rollbackError) {
             // Record cleanup failure without replacing the original error.
-            console.error("Highlight rollback failed:", rollbackError);
+            // Only route, kind, and safe code are logged (audit F02).
+            logControllerError("highlights.save", "rollback-failed", rollbackError);
         }
 
         throw error;
@@ -89,20 +108,42 @@ async function saveHighlights(userId, bookId, verses, color) {
 }
 
 // Load only the highlights belonging to the supplied authenticated user.
-async function getHighlights(userId) {
+// Book names come from the Bible project (no join crosses the project
+// boundary); the rows are ordered by book order, then chapter, then
+// verse, exactly as the old join did. F04: the query was unbounded —
+// callers pass a parsed { limit, offset } (limit capped at 100 by the
+// shared parser); the page is applied before the book-name join so the
+// bound holds on the database side. The page order is book_id, then
+// chapter, then verse: book ids are assigned in canonical order at seed
+// time, so this matches the book_order display sort the service applies
+// within each page, and the order is deterministic across pages.
+async function getHighlights(userId, { limit, offset } = { limit: 100, offset: 0 }) {
     const result = await pool.query(
         `
-        SELECT h.*, b.name AS book
+        SELECT h.*
         FROM highlights h
-        JOIN bible_books b ON h.book_id = b.id
         WHERE h.user_id = $1
-        ORDER BY b.book_order, h.chapter, h.verse
+        ORDER BY h.book_id, h.chapter, h.verse
+        LIMIT $2 OFFSET $3
         `,
-        [userId]
+        [userId, limit, offset]
     );
 
     // Return an empty array when the user has no highlights.
-    return result.rows;
+    if (result.rows.length === 0) return [];
+    const bookIds = [...new Set(result.rows.map(row => row.book_id))];
+    const books = await biblePool.query(
+        "SELECT id, name, book_order FROM bible_books WHERE id = ANY($1)",
+        [bookIds]
+    );
+    const byId = new Map(books.rows.map(book => [book.id, book]));
+    return result.rows
+        .filter(row => byId.has(row.book_id))
+        .map(row => ({ ...row, book: byId.get(row.book_id).name }))
+        .sort((a, b) =>
+            byId.get(a.book_id).book_order - byId.get(b.book_id).book_order
+            || a.chapter - b.chapter
+            || a.verse - b.verse);
 }
 
 // Delete a highlight only when it belongs to the authenticated user.

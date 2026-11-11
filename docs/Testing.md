@@ -127,14 +127,18 @@ migrations; issue #4 extends it with SELECT, INSERT, and DELETE on
 `rate_limit_attempts` and SELECT and UPDATE on `rate_limit_sweep_state`.
 Issue #9 extends it with SELECT and INSERT on `email_verification_tokens`,
 UPDATE (`email_verified_at`) only on `users`, and UPDATE (`used_at`,
-`consumed_reason`) only on `email_verification_tokens`. The harness test
-asserts the exact table grants, the exact column grants for those two
+`consumed_reason`) only on `email_verification_tokens`. Issue #10 extends
+it with SELECT and INSERT on `password_reset_tokens`, UPDATE
+(`password_hash`) only in addition on `users`, and UPDATE (`used_at`,
+`consumed_reason`) only on `password_reset_tokens`. The harness test
+asserts the exact table grants, the exact column grants for those
 tables, and that every other column update the runtime role might try
 fails with PostgreSQL error 42501.
 
 Application files run in an explicit list with `node --test --test-concurrency=1`:
 `test/application/harness.test.js`, then `test/application/safety.test.js`, then
-`test/application/rateLimit.test.js`, then `test/application/emailVerification.test.js`. Add future
+`test/application/rateLimit.test.js`, then `test/application/emailVerification.test.js`,
+then `test/application/passwordReset.test.js`. Add future
 files to the runner's list deliberately. Individual cases can acquire independent
 clients or start multiple workers to exercise concurrency. Do not wrap an entire
 HTTP suite in one transaction: worker connections must see real commits.

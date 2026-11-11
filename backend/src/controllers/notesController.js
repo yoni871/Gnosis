@@ -1,4 +1,17 @@
 const pool = require("../db/db");
+const { bookExists } = require("../utils/bookValidation");
+const { logControllerError } = require("../utils/authErrors");
+const { parsePagination } = require("../utils/pagination");
+
+// The notes.content column is TEXT with no database-side bound, so the
+// application caps it: 100,000 characters is far above any real study
+// note and far below an abusive payload (and below the 100 KiB JSON body
+// limit, so a max-length note can still arrive in one request).
+const MAX_NOTE_CONTENT_LENGTH = 100_000;
+
+function contentTooLong(content) {
+    return typeof content === "string" && content.length > MAX_NOTE_CONTENT_LENGTH;
+}
 
 const createNote = async (req, res) => {
     const userId = req.user.userId;
@@ -25,7 +38,22 @@ const createNote = async (req, res) => {
         })
     }
 
+    if (contentTooLong(content)) {
+        return res.status(400).json({
+            error: "Note content is too long."
+        });
+    }
+
     try {
+        // notes keep book_id as a plain integer (no foreign key crosses
+        // the project boundary): validate it against the Bible project
+        // before writing.
+        if (!(await bookExists(bookId))) {
+            return res.status(400).json({
+                error: "Unknown book."
+            });
+        }
+
         const result = await pool.query(
             `
             INSERT INTO notes (
@@ -45,7 +73,7 @@ const createNote = async (req, res) => {
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.create", "database", error);
 
         return res.status(500).json({
             error: "Failed to create note."
@@ -56,19 +84,28 @@ const createNote = async (req, res) => {
 const getNotes = async (req, res) => {
     const userId = req.user.userId;
 
+    // F04: the list was unbounded. Limit defaults to 100 and is capped
+    // at 100 (same as search); the applied values ride on headers so a
+    // client can see the cap without changing the array body.
+    const { limit, offset } = parsePagination(req.query);
+
     try {
         const result = await pool.query(
             `
             SELECT * FROM notes
             WHERE user_id = $1
             ORDER BY created_at DESC
+            LIMIT $2 OFFSET $3
             `,
-            [userId]
+            [userId, limit, offset]
         );
 
-        return res.status(200).json(result.rows);
+        return res.status(200)
+            .set("X-Limit", String(limit))
+            .set("X-Offset", String(offset))
+            .json(result.rows);
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.list", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve notes."
@@ -98,7 +135,7 @@ const getNoteById = async (req, res) => {
 
         return res.status(200).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.get", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve note."
@@ -132,7 +169,21 @@ const updateNote = async (req, res) => {
         });
     }
 
+    if (contentTooLong(content)) {
+        return res.status(400).json({
+            error: "Note content is too long."
+        });
+    }
+
     try {
+        // A supplied book_id is validated against the Bible project
+        // before the update (notes keep book_id as a plain integer).
+        if (bookId !== undefined && !(await bookExists(bookId))) {
+            return res.status(400).json({
+                error: "Unknown book."
+            });
+        }
+
         const result = await pool.query(
             `
             UPDATE notes
@@ -160,7 +211,7 @@ const updateNote = async (req, res) => {
         return res.status(200).json(result.rows[0]);
 
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.update", "database", error);
 
         return res.status(500).json({
             error: "Failed to update note."
@@ -194,7 +245,7 @@ const deleteNote = async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
+        logControllerError("notes.delete", "database", error);
 
         return res.status(500).json({
             error: "Failed to delete note."

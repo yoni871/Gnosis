@@ -10,6 +10,7 @@ export default function DesktopStudyLayout({
     layout,
 
     verses,
+    versesLoading = false,
     book,
     chapter,
 
@@ -30,7 +31,8 @@ export default function DesktopStudyLayout({
     bookmarksState,
     bookmarkPreviews,
     highlightsState,
-    verseSelection
+    verseSelection,
+    navigateToPassage
 }) {
     return (
         <main
@@ -59,6 +61,7 @@ export default function DesktopStudyLayout({
                     books={books}
                     bookmarksState={bookmarksState}
                     verses={verses}
+                    versesLoading={versesLoading}
                     book={book}
                     chapter={chapter}
                     translation={translation}
@@ -66,6 +69,7 @@ export default function DesktopStudyLayout({
                     selectedVerse={selectedVerse}
                     setSelectedVerse={setSelectedVerse}
                     setTranslation={setTranslation}
+                    navigateToPassage={navigateToPassage}
                 />
             </div>
 

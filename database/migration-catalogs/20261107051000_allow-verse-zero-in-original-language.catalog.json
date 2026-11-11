@@ -1,0 +1,13 @@
+{
+  "added": [
+    {
+      "kind": "constraint",
+      "name": "ol_word_occurrences.ol_word_occurrences_verse_number_check",
+      "definition": {
+        "sql": "CHECK ((verse_number >= 0))",
+        "validated": true
+      }
+    }
+  ],
+  "removed": []
+}

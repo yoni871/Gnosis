@@ -1,5 +1,6 @@
-const pool = require("../db/db");
+const { biblePool: pool, commentaryPool } = require("../db/db");
 const { get } = require("../routes/searchRoutes");
+const { isProviderConfigured } = require("./licensed/licensedTranslations");
 
 const getAllBooks = () => {
     return pool.query("SELECT * FROM bible_books");
@@ -30,12 +31,28 @@ const getVersesByChapter = (chapterId, translationId) => {
     )
 }
 
-const getAllTranslations = () => {
-    return pool.query("SELECT * FROM bible_translations");
+const getAllTranslations = async () => {
+    const result = await pool.query("SELECT * FROM bible_translations");
+    // The kill-switch is `enabled`, and a licensed translation is only
+    // listed once its provider key (and Bible ID, for API.Bible) is set —
+    // so the site behaves exactly as before until the keys arrive.
+    return {
+        rows: result.rows.filter(
+            (row) => row.enabled && isProviderConfigured(row)
+        ),
+    };
+}
+
+const getTranslationByAbbreviation = async (abbreviation) => {
+    const result = await pool.query(
+        "SELECT * FROM bible_translations WHERE abbreviation = $1",
+        [abbreviation]
+    );
+    return result.rows.length === 0 ? null : result.rows[0];
 }
 
 const getAllCommentaries = () => {
-    return pool.query(
+    return commentaryPool.query(
         `
         SELECT
             commentaries.id,
@@ -51,18 +68,18 @@ const getAllCommentaries = () => {
 }
 
 const getCommentariesByBook = (bookId) => {
-    return pool.query(
+    return commentaryPool.query(
          "SELECT * FROM commentary_entries WHERE book_id = $1",
         [bookId],
     )
 }
 
 const getAllSources = () => {
-    return pool.query("SELECT * FROM sources");
+    return commentaryPool.query("SELECT * FROM sources");
 }
 
 const getCommentariesByChapter = (bookId, chapterNumber, commentaryId) => {
-    return pool.query(
+    return commentaryPool.query(
         `
         SELECT 
             commentary_entries.id,
@@ -91,7 +108,7 @@ const getCommentariesByChapter = (bookId, chapterNumber, commentaryId) => {
 };
 
 const getCommentariesByVerse = (bookId, chapterNumber, verseNumber) => {
-    return pool.query(
+    return commentaryPool.query(
         `
         SELECT 
             commentary_entries.content,
@@ -177,7 +194,7 @@ const getStudyByChapter = async (book, chapter, commentaryId) => {
         [book, chapter],
     );
 
-    const commentariesResult = await pool.query(
+    const commentariesResult = await commentaryPool.query(
         `
         SELECT
             e.content,
@@ -214,6 +231,7 @@ module.exports = {
     getAllChapters,
     getVersesByChapter,
     getAllTranslations,
+    getTranslationByAbbreviation,
     getAllCommentaries,
     getCommentariesByBook,
     getAllSources,

@@ -1,0 +1,572 @@
+[
+  {
+    "width": 1440,
+    "page": "landing",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 124
+    },
+    "background": "rgba(0, 0, 0, 0)",
+    "explore": {
+      "x": 455.53125,
+      "y": 81,
+      "width": 454.390625,
+      "height": 36
+    },
+    "exploreTrigger": {
+      "x": 647,
+      "y": 29,
+      "width": 71.078125,
+      "height": 46
+    },
+    "exploreItem": {
+      "x": 459.53125,
+      "y": 85,
+      "width": 446.390625,
+      "height": 28
+    },
+    "verticalDescription": false,
+    "account": {
+      "x": 1054.046875,
+      "y": 81,
+      "width": 201.953125,
+      "height": 36
+    },
+    "accountTrigger": {
+      "x": 1137.96875,
+      "y": 29,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 1058.046875,
+        "y": 85,
+        "width": 126.1875,
+        "height": 28
+      },
+      {
+        "x": 1186.234375,
+        "y": 85,
+        "width": 65.765625,
+        "height": 28
+      }
+    ],
+    "nameTruncated": true
+  },
+  {
+    "width": 1440,
+    "page": "about",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 124
+    },
+    "background": "rgb(35, 62, 52)",
+    "explore": {
+      "x": 455.53125,
+      "y": 81,
+      "width": 454.390625,
+      "height": 36
+    },
+    "exploreTrigger": {
+      "x": 647,
+      "y": 29,
+      "width": 71.078125,
+      "height": 46
+    },
+    "exploreItem": {
+      "x": 459.53125,
+      "y": 85,
+      "width": 446.390625,
+      "height": 28
+    },
+    "verticalDescription": false,
+    "account": {
+      "x": 1054.046875,
+      "y": 81,
+      "width": 201.953125,
+      "height": 36
+    },
+    "accountTrigger": {
+      "x": 1137.96875,
+      "y": 29,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 1058.046875,
+        "y": 85,
+        "width": 126.1875,
+        "height": 28
+      },
+      {
+        "x": 1186.234375,
+        "y": 85,
+        "width": 65.765625,
+        "height": 28
+      }
+    ],
+    "nameTruncated": true
+  },
+  {
+    "width": 1280,
+    "page": "landing",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 124
+    },
+    "background": "rgba(0, 0, 0, 0)",
+    "explore": {
+      "x": 375.53125,
+      "y": 81,
+      "width": 454.390625,
+      "height": 36
+    },
+    "exploreTrigger": {
+      "x": 567,
+      "y": 29,
+      "width": 71.078125,
+      "height": 46
+    },
+    "exploreItem": {
+      "x": 379.53125,
+      "y": 85,
+      "width": 446.390625,
+      "height": 28
+    },
+    "verticalDescription": false,
+    "account": {
+      "x": 974.046875,
+      "y": 81,
+      "width": 201.953125,
+      "height": 36
+    },
+    "accountTrigger": {
+      "x": 1057.96875,
+      "y": 29,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 978.046875,
+        "y": 85,
+        "width": 126.1875,
+        "height": 28
+      },
+      {
+        "x": 1106.234375,
+        "y": 85,
+        "width": 65.765625,
+        "height": 28
+      }
+    ],
+    "nameTruncated": true
+  },
+  {
+    "width": 1280,
+    "page": "about",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 124
+    },
+    "background": "rgb(35, 62, 52)",
+    "explore": {
+      "x": 375.53125,
+      "y": 81,
+      "width": 454.390625,
+      "height": 36
+    },
+    "exploreTrigger": {
+      "x": 567,
+      "y": 29,
+      "width": 71.078125,
+      "height": 46
+    },
+    "exploreItem": {
+      "x": 379.53125,
+      "y": 85,
+      "width": 446.390625,
+      "height": 28
+    },
+    "verticalDescription": false,
+    "account": {
+      "x": 974.046875,
+      "y": 81,
+      "width": 201.953125,
+      "height": 36
+    },
+    "accountTrigger": {
+      "x": 1057.96875,
+      "y": 29,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 978.046875,
+        "y": 85,
+        "width": 126.1875,
+        "height": 28
+      },
+      {
+        "x": 1106.234375,
+        "y": 85,
+        "width": 65.765625,
+        "height": 28
+      }
+    ],
+    "nameTruncated": true
+  },
+  {
+    "width": 768,
+    "page": "landing",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 768,
+      "height": 106
+    },
+    "background": "rgba(0, 0, 0, 0)",
+    "explore": {
+      "x": 59.390625,
+      "y": 159,
+      "width": 649.21875,
+      "height": 58.453125
+    },
+    "exploreTrigger": {
+      "x": 59.390625,
+      "y": 107,
+      "width": 649.21875,
+      "height": 48
+    },
+    "exploreItem": {
+      "x": 63.390625,
+      "y": 163,
+      "width": 641.21875,
+      "height": 50.453125
+    },
+    "verticalDescription": true,
+    "account": {
+      "x": 59.390625,
+      "y": 336.890625,
+      "width": 201.953125,
+      "height": 52
+    },
+    "accountTrigger": {
+      "x": 59.390625,
+      "y": 286.890625,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 63.390625,
+        "y": 340.890625,
+        "width": 126.1875,
+        "height": 44
+      },
+      {
+        "x": 191.578125,
+        "y": 340.890625,
+        "width": 65.765625,
+        "height": 44
+      }
+    ],
+    "nameTruncated": true
+  },
+  {
+    "width": 768,
+    "page": "about",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 768,
+      "height": 106
+    },
+    "background": "rgb(35, 62, 52)",
+    "explore": {
+      "x": 59.390625,
+      "y": 159,
+      "width": 649.21875,
+      "height": 58.453125
+    },
+    "exploreTrigger": {
+      "x": 59.390625,
+      "y": 107,
+      "width": 649.21875,
+      "height": 48
+    },
+    "exploreItem": {
+      "x": 63.390625,
+      "y": 163,
+      "width": 641.21875,
+      "height": 50.453125
+    },
+    "verticalDescription": true,
+    "account": {
+      "x": 59.390625,
+      "y": 336.890625,
+      "width": 201.953125,
+      "height": 52
+    },
+    "accountTrigger": {
+      "x": 59.390625,
+      "y": 286.890625,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 63.390625,
+        "y": 340.890625,
+        "width": 126.1875,
+        "height": 44
+      },
+      {
+        "x": 191.578125,
+        "y": 340.890625,
+        "width": 65.765625,
+        "height": 44
+      }
+    ],
+    "nameTruncated": true
+  },
+  {
+    "width": 390,
+    "page": "landing",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 104
+    },
+    "background": "rgba(0, 0, 0, 0)",
+    "explore": {
+      "x": 45,
+      "y": 157,
+      "width": 300,
+      "height": 75.71875
+    },
+    "exploreTrigger": {
+      "x": 45,
+      "y": 105,
+      "width": 300,
+      "height": 48
+    },
+    "exploreItem": {
+      "x": 49,
+      "y": 161,
+      "width": 292,
+      "height": 67.71875
+    },
+    "verticalDescription": true,
+    "account": {
+      "x": 45,
+      "y": 334.890625,
+      "width": 201.953125,
+      "height": 52
+    },
+    "accountTrigger": {
+      "x": 45,
+      "y": 284.890625,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 49,
+        "y": 338.890625,
+        "width": 126.1875,
+        "height": 44
+      },
+      {
+        "x": 177.1875,
+        "y": 338.890625,
+        "width": 65.765625,
+        "height": 44
+      }
+    ],
+    "nameTruncated": true
+  },
+  {
+    "width": 390,
+    "page": "about",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 104
+    },
+    "background": "rgb(35, 62, 52)",
+    "explore": {
+      "x": 45,
+      "y": 157,
+      "width": 300,
+      "height": 75.71875
+    },
+    "exploreTrigger": {
+      "x": 45,
+      "y": 105,
+      "width": 300,
+      "height": 48
+    },
+    "exploreItem": {
+      "x": 49,
+      "y": 161,
+      "width": 292,
+      "height": 67.71875
+    },
+    "verticalDescription": true,
+    "account": {
+      "x": 45,
+      "y": 334.890625,
+      "width": 201.953125,
+      "height": 52
+    },
+    "accountTrigger": {
+      "x": 45,
+      "y": 284.890625,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 49,
+        "y": 338.890625,
+        "width": 126.1875,
+        "height": 44
+      },
+      {
+        "x": 177.1875,
+        "y": 338.890625,
+        "width": 65.765625,
+        "height": 44
+      }
+    ],
+    "nameTruncated": true
+  },
+  {
+    "width": 320,
+    "page": "landing",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 320,
+      "height": 104
+    },
+    "background": "rgba(0, 0, 0, 0)",
+    "explore": {
+      "x": 45,
+      "y": 157,
+      "width": 230,
+      "height": 75.71875
+    },
+    "exploreTrigger": {
+      "x": 45,
+      "y": 105,
+      "width": 230,
+      "height": 48
+    },
+    "exploreItem": {
+      "x": 49,
+      "y": 161,
+      "width": 222,
+      "height": 67.71875
+    },
+    "verticalDescription": true,
+    "account": {
+      "x": 45,
+      "y": 334.890625,
+      "width": 201.953125,
+      "height": 52
+    },
+    "accountTrigger": {
+      "x": 45,
+      "y": 284.890625,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 49,
+        "y": 338.890625,
+        "width": 126.1875,
+        "height": 44
+      },
+      {
+        "x": 177.1875,
+        "y": 338.890625,
+        "width": 65.765625,
+        "height": 44
+      }
+    ],
+    "nameTruncated": true
+  },
+  {
+    "width": 320,
+    "page": "about",
+    "header": {
+      "x": 0,
+      "y": 0,
+      "width": 320,
+      "height": 104
+    },
+    "background": "rgb(35, 62, 52)",
+    "explore": {
+      "x": 45,
+      "y": 157,
+      "width": 230,
+      "height": 75.71875
+    },
+    "exploreTrigger": {
+      "x": 45,
+      "y": 105,
+      "width": 230,
+      "height": 48
+    },
+    "exploreItem": {
+      "x": 49,
+      "y": 161,
+      "width": 222,
+      "height": 67.71875
+    },
+    "verticalDescription": true,
+    "account": {
+      "x": 45,
+      "y": 334.890625,
+      "width": 201.953125,
+      "height": 52
+    },
+    "accountTrigger": {
+      "x": 45,
+      "y": 284.890625,
+      "width": 118.03125,
+      "height": 46
+    },
+    "accountItems": [
+      {
+        "x": 49,
+        "y": 338.890625,
+        "width": 126.1875,
+        "height": 44
+      },
+      {
+        "x": 177.1875,
+        "y": 338.890625,
+        "width": 65.765625,
+        "height": 44
+      }
+    ],
+    "nameTruncated": true
+  }
+]

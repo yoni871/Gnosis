@@ -31,6 +31,10 @@ function State() {
     </>;
 }
 function mount() {
+    const requests = fetch;
+    vi.stubGlobal('fetch', (url, options) => String(url).endsWith('/auth/refresh')
+        ? Promise.resolve(response({ error: 'No session', code: 'SESSION_INVALID' }, 401))
+        : requests(url, options));
     render(<MemoryRouter initialEntries={['/register']}><AuthProvider><State /><Routes>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/bible/Genesis/1" element={<h1>Study destination</h1>} />
@@ -99,7 +103,7 @@ test.each([false, true])('logout during registration neither logs in nor suppres
         expect(screen.getByText(/check your email to finish creating your account/i)).toBeInTheDocument();
     }
     expect(screen.getByTestId('location')).toHaveTextContent('/register');
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls.filter(([url]) => !url.endsWith("/logout"))).toHaveLength(1);
 });
 
 test('check-email resend requests a fresh link for the registered address', async () => {

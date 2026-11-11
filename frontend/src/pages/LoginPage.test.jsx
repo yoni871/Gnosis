@@ -26,14 +26,20 @@ function State() {
     const location = useLocation();
     return <>
         <output data-testid="location">{location.pathname}</output>
+        <output data-testid="search">{location.search}</output>
         <output data-testid="state">{JSON.stringify({ user, token, isAuthLoading })}</output>
         <button onClick={logout}>Log out test session</button>
     </>;
 }
 function mount() {
+    const requests = fetch;
+    vi.stubGlobal('fetch', (url, options) => String(url).endsWith('/auth/refresh')
+        ? Promise.resolve(response({ error: 'No session', code: 'SESSION_INVALID' }, 401))
+        : requests(url, options));
     render(<MemoryRouter initialEntries={['/login']}><AuthProvider><State /><Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/bible/Genesis/1" element={<h1>Study destination</h1>} />
+        <Route path="/bible/Psalms/119" element={<h1>Saved position</h1>} />
     </Routes></AuthProvider></MemoryRouter>);
 }
 async function submit() {
@@ -45,12 +51,12 @@ async function submit() {
 }
 function state(user, token, isAuthLoading) {
     expect(JSON.parse(screen.getByTestId('state').textContent)).toEqual({ user, token, isAuthLoading });
-    expect(localStorage.getItem('gnosisToken')).toBe(token);
+    expect(localStorage.getItem('gnosisToken')).toBeNull();
 }
 
 test('successful login stores the session and navigates only after the profile completes', async () => {
-    const login = deferred(), requestProfile = deferred();
-    const fetchMock = vi.fn().mockReturnValueOnce(login.promise).mockReturnValueOnce(requestProfile.promise);
+    const login = deferred(), requestProfile = deferred(), readingState = deferred();
+    const fetchMock = vi.fn().mockReturnValueOnce(login.promise).mockReturnValueOnce(requestProfile.promise).mockReturnValueOnce(readingState.promise);
     vi.stubGlobal('fetch', fetchMock);
     mount();
     await submit();
@@ -60,11 +66,54 @@ test('successful login stores the session and navigates only after the profile c
     state(null, 'synthetic-login-token', true);
     expect(screen.getByTestId('location')).toHaveTextContent('/login');
     await settle(requestProfile, response(profile));
+    // The profile is in, but navigation waits on the saved position.
+    expect(screen.getByRole('button', { name: /opening your place/i })).toBeDisabled();
+    expect(screen.getByTestId('location')).toHaveTextContent('/login');
+    await settle(readingState, response({ error: 'No saved reading position.' }, 404));
     state(profile, 'synthetic-login-token', false);
     expect(screen.getByRole('heading', { name: 'Study destination' })).toBeInTheDocument();
     expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/login$/);
     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ email: profile.email, password: 'synthetic-password' });
     expect(fetchMock.mock.calls[1][1].headers.Authorization).toBe('Bearer synthetic-login-token');
+    expect(fetchMock.mock.calls[2][0]).toMatch(/\/reading-state$/);
+    expect(fetchMock.mock.calls[2][1].headers.Authorization).toBe('Bearer synthetic-login-token');
+});
+
+test('login with a saved position resumes there instead of Genesis 1', async () => {
+    const login = deferred(), requestProfile = deferred(), readingState = deferred();
+    const fetchMock = vi.fn().mockReturnValueOnce(login.promise).mockReturnValueOnce(requestProfile.promise).mockReturnValueOnce(readingState.promise);
+    vi.stubGlobal('fetch', fetchMock);
+    mount();
+    await submit();
+    await settle(login, response({ token: 'synthetic-login-token' }));
+    await settle(requestProfile, response(profile));
+    await settle(readingState, response({
+        user_id: 7,
+        book_id: 19,
+        book: 'Psalms',
+        chapter_number: 119,
+        translation: 'ESV',
+        commentary_id: 3,
+        verse_number: 90,
+        updated_at: '2026-11-06T20:00:00.000Z',
+    }));
+    expect(screen.getByRole('heading', { name: 'Saved position' })).toBeInTheDocument();
+    expect(screen.getByTestId('location')).toHaveTextContent('/bible/Psalms/119');
+    expect(screen.getByTestId('search')).toHaveTextContent('translation=ESV&commentary=3&verse=90');
+    expect(fetchMock.mock.calls[2][0]).toMatch(/\/reading-state$/);
+});
+
+test('a failed reading-state load still lands on Genesis 1 after login', async () => {
+    const login = deferred(), requestProfile = deferred(), readingState = deferred();
+    const fetchMock = vi.fn().mockReturnValueOnce(login.promise).mockReturnValueOnce(requestProfile.promise).mockReturnValueOnce(readingState.promise);
+    vi.stubGlobal('fetch', fetchMock);
+    mount();
+    await submit();
+    await settle(login, response({ token: 'synthetic-login-token' }));
+    await settle(requestProfile, response(profile));
+    await settle(readingState, response({ error: 'Failed to retrieve reading position.' }, 500));
+    expect(screen.getByRole('heading', { name: 'Study destination' })).toBeInTheDocument();
+    expect(screen.getByTestId('location')).toHaveTextContent('/bible/Genesis/1');
 });
 
 test.each([false, true])('logout prevents late login feedback, storage and navigation (failure=%s)', async fail => {
@@ -78,7 +127,7 @@ test.each([false, true])('logout prevents late login feedback, storage and navig
     state(null, null, false);
     expect(screen.getByTestId('location')).toHaveTextContent('/login');
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls.filter(([url]) => !url.endsWith("/logout"))).toHaveLength(1);
 });
 
 test.each([
@@ -122,4 +171,11 @@ test('a 403 without the EMAIL_NOT_VERIFIED code shows no resend panel', async ()
     await settle(login, response({ error: 'Forbidden.', code: 'FORBIDDEN' }, 403));
     expect(screen.getByRole('alert')).toHaveTextContent('Forbidden.');
     expect(screen.queryByRole('button', { name: /resend verification email/i })).not.toBeInTheDocument();
+});
+
+test('the login page links to the forgot-password page', async () => {
+    vi.stubGlobal('fetch', vi.fn());
+    mount();
+    const link = screen.getByRole('link', { name: /forgot your password/i });
+    expect(link).toHaveAttribute('href', '/forgot-password');
 });

@@ -6,7 +6,9 @@ const {
     internalErrorBody,
     CLIENT_AUTH_RESPONSES,
     isBodyParseError,
+    isBodyTooLarge,
     logAuthFailure,
+    logAuthEvent,
 } = require("../../src/utils/authErrors");
 
 test("duplicate email on register maps to 409 with the existing message", () => {
@@ -92,6 +94,15 @@ test("isBodyParseError only matches malformed-JSON errors", () => {
     assert.equal(isBodyParseError(null), false);
 });
 
+test("isBodyTooLarge only matches over-limit bodies, which map to 413", () => {
+    assert.equal(isBodyTooLarge({ type: "entity.too.large" }), true);
+    assert.equal(isBodyTooLarge({ type: "entity.parse.failed" }), false);
+    assert.equal(isBodyTooLarge(new Error("boom")), false);
+    assert.equal(isBodyTooLarge(null), false);
+    assert.deepEqual(CLIENT_AUTH_RESPONSES.bodyTooLarge,
+        { status: 413, body: { error: "Request body too large.", code: "BODY_TOO_LARGE" } });
+});
+
 test("logAuthFailure never logs messages, stacks, or sensitive values", () => {
     const seen = [];
     const original = console.error;
@@ -114,4 +125,25 @@ test("logAuthFailure never logs messages, stacks, or sensitive values", () => {
     assert.ok(!text.includes("password_hash"), text);
     assert.ok(!text.includes("hunter2"), text);
     assert.ok(!text.includes("/secret/path"), text);
+});
+
+test("delete endpoint keeps the generic internal message", () => {
+    assert.deepEqual(internalErrorBody("delete"), {
+        error: "Something went wrong.",
+        code: "INTERNAL_ERROR",
+    });
+});
+
+test("logAuthEvent logs route and kind only, never user data", () => {
+    const seen = [];
+    const original = console.error;
+    console.error = (...args) => {
+        seen.push(args.join(" "));
+    };
+    try {
+        logAuthEvent("DELETE /api/auth/account", "account-deleted");
+    } finally {
+        console.error = original;
+    }
+    assert.deepEqual(seen, ["[auth] DELETE /api/auth/account event=account-deleted"]);
 });

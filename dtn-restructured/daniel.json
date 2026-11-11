@@ -1,0 +1,887 @@
+{
+  "book": "Daniel",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "(c-0) (The title of this book, 'Daniel'), Meaning, '*God (El) is judge.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 3,
+      "end_chapter": 1,
+      "end_verse": 3,
+      "title": "",
+      "content": "eunuchs, (d-11) Or 'chamberlains.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 4,
+      "end_chapter": 1,
+      "end_verse": 4,
+      "title": "",
+      "content": "learning (a-42) Or 'writing;' so ver. 17."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 7,
+      "end_chapter": 1,
+      "end_verse": 7,
+      "title": "",
+      "content": "Belteshazzar, (b-16) See ch. 4.8."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 11,
+      "end_chapter": 1,
+      "end_verse": 11,
+      "title": "",
+      "content": "steward, (c-6) Or 'Melzar.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 16,
+      "end_chapter": 1,
+      "end_verse": 16,
+      "title": "",
+      "content": "steward (c-3) Or 'Melzar.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 20,
+      "end_chapter": 1,
+      "end_verse": 20,
+      "title": "",
+      "content": "scribes (d-25) Or 'hieroglyphists,' as Gen. 41.8."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 2,
+      "end_chapter": 2,
+      "end_verse": 2,
+      "title": "",
+      "content": "scribes, (d-8) Or 'hieroglyphists,' as Gen. 41.8."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 4,
+      "end_chapter": 2,
+      "end_verse": 4,
+      "title": "",
+      "content": "Aramaic, (a-9) From here to the end of ch.7 the same Aramaic dialect is employed as in Ezra 4.8 to 6.18, and Jer. 10.11."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 5,
+      "end_chapter": 2,
+      "end_verse": 5,
+      "title": "",
+      "content": "command (b-10) Or 'word,' as vers. 8,9; 'matter,' ver. 10; 'thing,' ver 11."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 8,
+      "end_chapter": 2,
+      "end_verse": 8,
+      "title": "",
+      "content": "gain (c-14) Lit. 'redeem.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 11,
+      "end_chapter": 2,
+      "end_verse": 11,
+      "title": "",
+      "content": "extraordinary, (d-9) Or 'hard.' gods, (e-24) Aramaic, Elah, here in the plural."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 15,
+      "end_chapter": 2,
+      "end_verse": 15,
+      "title": "",
+      "content": "rigorous (f-15) Or 'urgent,' so ch. 3.22."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 18,
+      "end_chapter": 2,
+      "end_verse": 18,
+      "title": "",
+      "content": "God (g-8) Elah, corresponding to the Hebrew Eloah; and so throughout to end of ch. 7."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 20,
+      "end_chapter": 2,
+      "end_verse": 20,
+      "title": "",
+      "content": "ever; (h-14) See 1Chron. 16.36; Neh. 9.5; Ps. 113.2; 115.18."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 21,
+      "end_chapter": 2,
+      "end_verse": 21,
+      "title": "",
+      "content": "seasons; (a-9) Or 'and appointed times,' as ch. 3.7, 'time.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 28,
+      "end_chapter": 2,
+      "end_verse": 28,
+      "title": "",
+      "content": "days. (b-25) See Isa. 2.2."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 32,
+      "end_chapter": 2,
+      "end_verse": 32,
+      "title": "",
+      "content": "brass, (c-21) Or 'copper.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 38,
+      "end_chapter": 2,
+      "end_verse": 38,
+      "title": "",
+      "content": "hand, (a-25) Or '... children of men dwell, he hath given into thy hand the beasts of the field and the fowl of the heavens.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 41,
+      "end_chapter": 2,
+      "end_verse": 41,
+      "title": "",
+      "content": "strength (b-30) Or 'durability.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 2,
+      "end_chapter": 3,
+      "end_verse": 2,
+      "title": "",
+      "content": "governors, (c-15) Or 'pachas.' see Ezra 8.36. counsellors, (d-21) Or 'lawyers.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 4,
+      "end_chapter": 3,
+      "end_verse": 4,
+      "title": "",
+      "content": "nations, (a-13) 'Tribes of people;' and so in vers. 7,29; chs. 4.1; 5.19; 6.25; 7.14. see Gen. 25.16."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 5,
+      "end_chapter": 3,
+      "end_verse": 5,
+      "title": "",
+      "content": "cornet, (b-11) Or 'horn.' see Note, Lev. 25.10, and cf. Josh. 6.5. sambuca, (c-14) A stringed instrument."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 8,
+      "end_chapter": 3,
+      "end_verse": 8,
+      "title": "",
+      "content": "Chaldeans (d-6) Strictly, 'men, Chaldeans;' so 'men, Jews,' ver. 12. 'Men' is from Geber, and appears in vers. 12, 13, 20-27; ch. 6.5, 11, 15, 24: see Job 3.3. accused (e-10) Or 'spoke against.' lit. 'ate the pieces of.' See Note to Job 19.22."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 12,
+      "end_chapter": 3,
+      "end_verse": 12,
+      "title": "",
+      "content": "not (f-30) Or 'pray not to;' so vers. 14,17,18, &c."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 19,
+      "end_chapter": 3,
+      "end_verse": 19,
+      "title": "",
+      "content": "be (a-38) Lit. 'than it had been seen.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 21,
+      "end_chapter": 3,
+      "end_verse": 21,
+      "title": "",
+      "content": "hosen, (b-8) The wide covering of thighs and legs, used especially by the Persians."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 24,
+      "end_chapter": 3,
+      "end_verse": 24,
+      "title": "",
+      "content": "counsellors, (c-18) Or 'viziers;' and so ver. 27; chs. 4.36; 6.7."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 25,
+      "end_chapter": 3,
+      "end_verse": 25,
+      "title": "",
+      "content": "God. (d-34) Or 'of the gods.' Elah, Aramaic, in the plural, corresponding to the Hebrew Elohim. see ch. 2.11."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 3,
+      "end_chapter": 4,
+      "end_verse": 3,
+      "title": "",
+      "content": "generation. (e-25) Ch. 4 begins here in the original."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 9,
+      "end_chapter": 4,
+      "end_verse": 9,
+      "title": "",
+      "content": "for (a-26) Strictly, 'overpowereth.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 10,
+      "end_chapter": 4,
+      "end_verse": 10,
+      "title": "",
+      "content": "tree (b-16) Or 'a terebinth.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 17,
+      "end_chapter": 4,
+      "end_verse": 17,
+      "title": "",
+      "content": "decision (c-12) Or 'demand,' or 'matter.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 27,
+      "end_chapter": 4,
+      "end_verse": 27,
+      "title": "",
+      "content": "righteousness, (a-17) The LXX reads 'alms.' see Note, Matt. 6.1."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 30,
+      "end_chapter": 4,
+      "end_verse": 30,
+      "title": "",
+      "content": "kingdom (b-20) i.e. the royal residence."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 37,
+      "end_chapter": 4,
+      "end_verse": 37,
+      "title": "",
+      "content": "judgment. (a-22) Or 'justice.' abase. (b-33) See Job 40.11,12."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 5,
+      "end_chapter": 5,
+      "end_verse": 5,
+      "title": "",
+      "content": "candlestick (c-17) Or 'candelabrum.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 9,
+      "end_chapter": 5,
+      "end_verse": 9,
+      "title": "",
+      "content": "in (d-12) Lit. 'upon.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 10,
+      "end_chapter": 5,
+      "end_verse": 10,
+      "title": "",
+      "content": "queen, (e-3) See 1Kings 15.13."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 15,
+      "end_chapter": 5,
+      "end_verse": 15,
+      "title": "",
+      "content": "thing. (a-37) Or 'words;' as 'command,' ch. 2.5; 'word,' ch. 2.8."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 25,
+      "end_chapter": 5,
+      "end_verse": 25,
+      "title": "",
+      "content": "UPHARSIN. (b-12) 'Numbered, numbered, weighed, and divided.'"
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 26,
+      "end_chapter": 5,
+      "end_verse": 26,
+      "title": "",
+      "content": "thing. (a-7) Or 'words;' as 'command,' ch. 2.5; 'word,' ch. 2.8."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 4,
+      "end_chapter": 6,
+      "end_verse": 4,
+      "title": "",
+      "content": "fault; (a-27) fault (a-39) Or 'corruption,' as ch. 2.9."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 7,
+      "end_chapter": 6,
+      "end_verse": 7,
+      "title": "",
+      "content": "decree, (b-30) Strictly, 'interdict,' or 'prohibition;' and so throughout, to ver. 15."
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 17,
+      "end_chapter": 6,
+      "end_verse": 17,
+      "title": "",
+      "content": "be (a-35) Or 'that nothing might be.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 18,
+      "end_chapter": 6,
+      "end_verse": 18,
+      "title": "",
+      "content": "concubines (b-15) Or 'dancing-women;' others, 'instruments of music.'"
+    },
+    {
+      "start_chapter": 6,
+      "start_verse": 24,
+      "end_chapter": 6,
+      "end_verse": 24,
+      "title": "",
+      "content": "accused (c-12) As ch. 3.8. children, (d-24) Lit. 'sons.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 9,
+      "end_chapter": 7,
+      "end_verse": 9,
+      "title": "",
+      "content": "set, (a-6) Lit. 'cast,' placed as cushions, for sitting upon."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 13,
+      "end_chapter": 7,
+      "end_verse": 13,
+      "title": "",
+      "content": "to (b-27) Strictly, 'he reached unto,' as ch. 4.22."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 15,
+      "end_chapter": 7,
+      "end_verse": 15,
+      "title": "",
+      "content": "body, (c-14) Lit. 'its sheath.'"
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 25,
+      "end_chapter": 7,
+      "end_verse": 25,
+      "title": "",
+      "content": "out (a-13) Or 'destroy.' seasons (b-25) Or 'appointed times,' as ver. 22; ch. 2.21."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 27,
+      "end_chapter": 7,
+      "end_verse": 27,
+      "title": "",
+      "content": "His (c-31) See ver. 14."
+    },
+    {
+      "start_chapter": 7,
+      "start_verse": 28,
+      "end_chapter": 7,
+      "end_verse": 28,
+      "title": "",
+      "content": "matter. (d-8) matter (d-29) Or 'discourse,' as 'thing' ch. 5.15."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 2,
+      "end_chapter": 8,
+      "end_verse": 2,
+      "title": "",
+      "content": "fortress (e-20) See Neh. 1.1."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 9,
+      "end_chapter": 8,
+      "end_verse": 9,
+      "title": "",
+      "content": "earth]. (f-29) Or 'the beautiful.' It may be the land or the temple. see Ezek. 20.6,15; Dan. 11.16,41,45; see Ps. 50.2."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 11,
+      "end_chapter": 8,
+      "end_verse": 11,
+      "title": "",
+      "content": "he (g-2) There is here a change of gender in the original, making the little horn more personal."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 12,
+      "end_chapter": 8,
+      "end_verse": 12,
+      "title": "",
+      "content": "trial (a-5) Or 'distress;' same word as 'service,' Num. 4.3; 'suffering,' Isa. 40.2. it (b-17) i.e. the little horn. practised (c-27) Or 'wrought,' 'did great things.' see 1Sam. 26.25."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 13,
+      "end_chapter": 8,
+      "end_verse": 13,
+      "title": "",
+      "content": "one (d-13) The word denotes a certain unknown person. long (e-17) Or 'Until when.'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 14,
+      "end_chapter": 8,
+      "end_verse": 14,
+      "title": "",
+      "content": "vindicated. (f-20) Lit. 'justified.'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 15,
+      "end_chapter": 8,
+      "end_verse": 15,
+      "title": "",
+      "content": "vision, (g-12) Heb. chazan, from chozeh, seer, as vers. 1,2,13,26 (second time). appearance (h-28) Heb. mareh. Strictly 'appearance,' but rendered 'vision' in vers. 16,26 (first time), and 27; ch. 9.23."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 16,
+      "end_chapter": 8,
+      "end_verse": 16,
+      "title": "",
+      "content": "vision. (h-25) Heb. mareh. Strictly 'appearance,' but rendered 'vision' in vers. 16,26 (first time), and 27; ch. 9.23."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 17,
+      "end_chapter": 8,
+      "end_verse": 17,
+      "title": "",
+      "content": "vision (g-31) Heb. chazan, from chozeh, seer, as vers. 1,2,13,26 (second time)."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 18,
+      "end_chapter": 8,
+      "end_verse": 18,
+      "title": "",
+      "content": "stood. (i-31) Or perhaps 'set me upright,' as ch. 10.11; Gen. 19.27; but cf. the preceding verse."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 21,
+      "end_chapter": 8,
+      "end_verse": 21,
+      "title": "",
+      "content": "rough (k-3) Lit. 'hairy.' Greece; (l-9) Javan, Gen. 10.2."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 23,
+      "end_chapter": 8,
+      "end_verse": 23,
+      "title": "",
+      "content": "riddles, (m-25) Or 'dark sentences,' or 'hard sentences,' as ch. 5.12. see Num. 12.8; or 'wiles.'"
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 24,
+      "end_chapter": 8,
+      "end_verse": 24,
+      "title": "",
+      "content": "practise, (n-23) See ver. 12. saints. (o-35) Or 'holy ones;' Kodesh. see Ps. 89.7."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 25,
+      "end_chapter": 8,
+      "end_verse": 25,
+      "title": "",
+      "content": "many; (p-27) Or 'in [their] security shall destroy many.' see Jer. 12.10."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 26,
+      "end_chapter": 8,
+      "end_verse": 26,
+      "title": "",
+      "content": "vision, (g-21) Heb. chazan, from chozeh, seer, as vers. 1,2,13,26 (second time). vision (h-3) Heb. mareh. Strictly 'appearance,' but rendered 'vision' in vers. 16,26 (first time), and 27; ch. 9.23."
+    },
+    {
+      "start_chapter": 8,
+      "start_verse": 27,
+      "end_chapter": 8,
+      "end_verse": 27,
+      "title": "",
+      "content": "vision, (a-25) See Note h ver. 16. understood (b-28) Or 'explained.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 2,
+      "end_chapter": 9,
+      "end_verse": 2,
+      "title": "",
+      "content": "Jeremiah (c-27) See Jer. 25.11-12; 29.10."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 8,
+      "end_chapter": 9,
+      "end_verse": 8,
+      "title": "",
+      "content": "Lord, (d-2) Some read 'Jehovah.'"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 13,
+      "end_chapter": 9,
+      "end_verse": 13,
+      "title": "",
+      "content": "God, (e-23) Lit. 'entreated not the face of Jehovah.' understand (f-32) Or 'be skilful in.' Sachal. see Note k, Prov. 1.3."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 18,
+      "end_chapter": 9,
+      "end_verse": 18,
+      "title": "",
+      "content": "name. (a-24) See 1Kings 8.48. present (b-29) Lit. 'cause to fall,' so ver. 20. see Jer. 36.7, &c."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 23,
+      "end_chapter": 9,
+      "end_verse": 23,
+      "title": "",
+      "content": "vision. (c-33) Mareh. see Note, ch. 8.16. so ch. 10.1,7,8,16."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 24,
+      "end_chapter": 9,
+      "end_verse": 24,
+      "title": "",
+      "content": "close (d-15) Or 'to complete.' of (e-23) Or 'to seal up.' for (f-29) Or 'forgive,' see Ps. 78.38."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 25,
+      "end_chapter": 9,
+      "end_verse": 25,
+      "title": "",
+      "content": "build (g-16) Or 'build up,' or 're-build.' Messiah, (h-19) i.e. one anointed. Prince, (i-21) See 2Sam. 7.8; Isa. 55.4"
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 26,
+      "end_chapter": 9,
+      "end_verse": 26,
+      "title": "",
+      "content": "determined. (k-48) Or 'the determined [portion] of desolations.' see the following verse, and Isa. 10.22,23."
+    },
+    {
+      "start_chapter": 9,
+      "start_verse": 27,
+      "end_chapter": 9,
+      "end_verse": 27,
+      "title": "",
+      "content": "midst (l-16) Strictly, 'in the dividing of the week.' protection (m-34) Lit. 'wing.' see Isa. 8.8. It might be rendered. 'and the abominations (idols) of the desolator shall be on the pinnacle' (i.e. of the temple). abominations (n-36) idols. desolate. (o-57) Others, 'the desolator.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 1,
+      "end_chapter": 10,
+      "end_verse": 1,
+      "title": "",
+      "content": "trial (a-31) See ch. 8.12."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 2,
+      "end_chapter": 10,
+      "end_verse": 2,
+      "title": "",
+      "content": "weeks. (b-10) Lit. 'weeks of days.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 10,
+      "end_chapter": 10,
+      "end_verse": 10,
+      "title": "",
+      "content": "set (c-8) Lit. 'shook,' as Ps. 109.25; Isa. 7.2."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 11,
+      "end_chapter": 10,
+      "end_verse": 11,
+      "title": "",
+      "content": "upright; (d-21) Or 'stand where thou art.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 13,
+      "end_chapter": 10,
+      "end_verse": 13,
+      "title": "",
+      "content": "remained (e-29) Or 'prevailed.'"
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 14,
+      "end_chapter": 10,
+      "end_verse": 14,
+      "title": "",
+      "content": "days. (f-27) Or 'for those days.' 'Vision' in this verse is chazan. see ch. 8.15, Note g."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 16,
+      "end_chapter": 10,
+      "end_verse": 16,
+      "title": "",
+      "content": "vision (g-36) As vers. 1,7,8. see ch. 9.23."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 20,
+      "end_chapter": 10,
+      "end_verse": 20,
+      "title": "",
+      "content": "Greece (a-32) Heb. Javan, as ch. 8.21."
+    },
+    {
+      "start_chapter": 10,
+      "start_verse": 21,
+      "end_chapter": 10,
+      "end_verse": 21,
+      "title": "",
+      "content": "these, (b-29) Or 'in these things.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 5,
+      "end_chapter": 11,
+      "end_verse": 5,
+      "title": "",
+      "content": "south, (c-6) Heb. Negeb; and so throughout. see Josh. 10.40."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 8,
+      "end_chapter": 11,
+      "end_verse": 8,
+      "title": "",
+      "content": "princes, (d-12) Lit. 'anointed ones.' see Ps. 83.11. Others, 'molten images,' as Isa. 41.29."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 12,
+      "end_chapter": 11,
+      "end_verse": 12,
+      "title": "",
+      "content": "away, (e-9) Or 'lifted up.' prevail. (f-25) Or 'be strengthened.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 14,
+      "end_chapter": 11,
+      "end_verse": 14,
+      "title": "",
+      "content": "violent (a-17) Lit. 'violent children,' as Jer. 7.11; Ezek. 7.22."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 16,
+      "end_chapter": 11,
+      "end_verse": 16,
+      "title": "",
+      "content": "beauty, (b-28) See ch. 8.9."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 17,
+      "end_chapter": 11,
+      "end_verse": 17,
+      "title": "",
+      "content": "ones (c-18) Or 'upright conditions.' Some have 'to make an arrangement with him.' practise; (d-24) Or 'act.' see ch. 8.12."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 22,
+      "end_chapter": 11,
+      "end_verse": 22,
+      "title": "",
+      "content": "forces (e-4) Lit. 'arms,' as ver. 15. covenant. (f-21) Or 'the allied prince.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 26,
+      "end_chapter": 11,
+      "end_verse": 26,
+      "title": "",
+      "content": "dissolved; (g-17) Elsewhere 'overflow.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 28,
+      "end_chapter": 11,
+      "end_verse": 28,
+      "title": "",
+      "content": "practise, (d-23) Or 'act.' see ch. 8.12."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 30,
+      "end_chapter": 11,
+      "end_verse": 30,
+      "title": "",
+      "content": "practise; (a-25) Or 'act.' as ch. 8.12."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 31,
+      "end_chapter": 11,
+      "end_verse": 31,
+      "title": "",
+      "content": "forces (b-2) Lit. 'arms,' as ver. 15."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 32,
+      "end_chapter": 11,
+      "end_verse": 32,
+      "title": "",
+      "content": "pervert (c-11) Or 'pollute.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 33,
+      "end_chapter": 11,
+      "end_verse": 33,
+      "title": "",
+      "content": "wise (d-5) The Maschilim, from Sachal, Prov. 1.3. so ch. 12.3. Maschil psalms, 32, 42, 44, 45, 52, 53, 54, 55, 74, 78, 88, 89, 142."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 35,
+      "end_chapter": 11,
+      "end_verse": 35,
+      "title": "",
+      "content": "wise (d-5) The Maschilim, from Sachal, Prov. 1.3. so ch. 12.3. Maschil psalms, 32, 42, 44, 45, 52, 53, 54, 55, 74, 78, 88, 89, 142."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 36,
+      "end_chapter": 11,
+      "end_verse": 36,
+      "title": "",
+      "content": "*Gods; (e-29) Heb. El Elim."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 39,
+      "end_chapter": 11,
+      "end_verse": 39,
+      "title": "",
+      "content": "practise (a-4) Or 'act.' as ch. 8.12. increase (f-19) Or 'whom he shall acknowledge [and] increase.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 41,
+      "end_chapter": 11,
+      "end_verse": 41,
+      "title": "",
+      "content": "beauty, (g-9) Or 'delight.' see ch. 8.9."
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 43,
+      "end_chapter": 11,
+      "end_verse": 43,
+      "title": "",
+      "content": "Ethiopians (h-27) Heb. 'Cushites.'"
+    },
+    {
+      "start_chapter": 11,
+      "start_verse": 45,
+      "end_chapter": 11,
+      "end_verse": 45,
+      "title": "",
+      "content": "sea (i-12) Lit. 'seas,' i.e. the Mediterranean."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 2,
+      "end_chapter": 12,
+      "end_verse": 2,
+      "title": "",
+      "content": "contempt. (a-25) Or 'abhorrence.' as Isa. 66.24."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 3,
+      "end_chapter": 12,
+      "end_verse": 3,
+      "title": "",
+      "content": "wise (b-5) Maschilim, as ch. 11.33."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 4,
+      "end_chapter": 12,
+      "end_verse": 4,
+      "title": "",
+      "content": "fro, (c-22) Or 'shall diligently investigate.' see Job. 1.7; 2.2."
+    },
+    {
+      "start_chapter": 12,
+      "start_verse": 7,
+      "end_chapter": 12,
+      "end_verse": 7,
+      "title": "",
+      "content": "time, (d-44) Period between a feast and the following anniversary (Lev. 23.2). power (e-55) Lit. 'hand.'"
+    }
+  ]
+}

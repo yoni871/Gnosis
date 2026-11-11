@@ -2,6 +2,7 @@ import { useId, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import useClickOutside from "../hooks/useClickOutside";
+import { shouldCloseDisclosureOnBlur } from "../utils/disclosureFocus";
 
 const DEFAULT_ITEMS = [
     {
@@ -17,12 +18,12 @@ export default function ExploreDropdown({ items = DEFAULT_ITEMS, onNavigate }) {
     const [open, setOpen] = useState(false);
     const trigger = useRef(null);
     const id = useId();
-    const root = useClickOutside(() => setOpen(false));
+    const root = useClickOutside(() => setOpen(false), "click");
 
     return (
         <div ref={root} className="landing-explore-dropdown"
             onBlur={event => {
-                if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+                if (shouldCloseDisclosureOnBlur(event)) setOpen(false);
             }}
             onKeyDown={event => {
                 if (event.key === "Escape" && open) {
@@ -39,7 +40,7 @@ export default function ExploreDropdown({ items = DEFAULT_ITEMS, onNavigate }) {
                 Explore <ChevronDown size={14} aria-hidden="true" />
             </button>
             {open && (
-                <ul id={id} className="landing-explore-options">
+                <ul id={id} className="landing-nav-popover landing-explore-options">
                     {items.map(item => (
                         <li key={item.to}>
                             <Link to={item.to} onClick={() => { setOpen(false); onNavigate?.(); }}>

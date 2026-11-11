@@ -14,3 +14,10 @@ node_modules/
 
 # Local Vercel configuration
 .vercel/
+
+# Original-language data files (STEPBible-Data, CC BY 4.0): downloaded by
+# the importer with --download, never committed — the STEPBible licence
+# asks that copies of the data files not be posted elsewhere.
+backend/src/importer/original-language-data/
+# Local process state, logs and downloaded data
+.local/

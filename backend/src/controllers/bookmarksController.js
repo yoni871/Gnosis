@@ -1,4 +1,8 @@
 const pool = require("../db/db");
+const { biblePool } = require("../db/db");
+const { bookExists } = require("../utils/bookValidation");
+const { logControllerError } = require("../utils/authErrors");
+const { parsePagination } = require("../utils/pagination");
 const isValidPassageRange = (
     startChapter,
     startVerse,
@@ -28,6 +32,21 @@ const isValidPassageRange = (
         )
     );
 };
+
+// Book names come from the Bible project (no join crosses the project
+// boundary). Rows whose book is missing are dropped, as the old join did.
+async function withBookNames(rows) {
+    if (rows.length === 0) return [];
+    const bookIds = [...new Set(rows.map(row => row.book_id))];
+    const books = await biblePool.query(
+        "SELECT id, name FROM bible_books WHERE id = ANY($1)",
+        [bookIds]
+    );
+    const byId = new Map(books.rows.map(book => [book.id, book.name]));
+    return rows
+        .filter(row => byId.has(row.book_id))
+        .map(row => ({ ...row, book: byId.get(row.book_id) }));
+}
 
 const createBookmark = async (req, res) => {
     const userId = req.user.userId;
@@ -62,6 +81,15 @@ const createBookmark = async (req, res) => {
     }
 
     try {
+        // bookmarks keep book_id as a plain integer (no foreign key
+        // crosses the project boundary): validate it against the Bible
+        // project before writing.
+        if (!(await bookExists(bookId))) {
+            return res.status(400).json({
+                error: "Unknown book."
+            });
+        }
+
         const result = await pool.query(
             `
             INSERT INTO bookmarks (
@@ -93,7 +121,7 @@ const createBookmark = async (req, res) => {
             });
         }
 
-        console.error(error);
+        logControllerError("bookmarks.create", "database", error);
 
         return res.status(500).json({
             error: "Failed to create bookmark."
@@ -104,24 +132,30 @@ const createBookmark = async (req, res) => {
 const getBookmarks = async (req, res) => {
     const userId = req.user.userId;
 
+    // F04: the list was unbounded. Same limit/offset convention as notes
+    // and search; the applied values ride on headers.
+    const { limit, offset } = parsePagination(req.query);
+
     try {
         const result = await pool.query(
             `
-            SELECT
-                bookmarks.*,
-                bible_books.name AS book
+            SELECT bookmarks.*
             FROM bookmarks
-            JOIN bible_books
-                ON bookmarks.book_id = bible_books.id
             WHERE bookmarks.user_id = $1
             ORDER BY bookmarks.created_at DESC
+            LIMIT $2 OFFSET $3
             `,
-            [userId]
+            [userId, limit, offset]
         );
 
-        return res.status(200).json(result.rows);
+        return res.status(200)
+            .set("X-Limit", String(limit))
+            .set("X-Offset", String(offset))
+            .json(
+            await withBookNames(result.rows)
+        );
     } catch (error) {
-        console.error(error);
+        logControllerError("bookmarks.list", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve bookmarks."
@@ -136,12 +170,8 @@ const getBookmarkById = async (req, res) => {
     try {
         const result = await pool.query(
             `
-            SELECT
-                bookmarks.*,
-                bible_books.name AS book
+            SELECT bookmarks.*
             FROM bookmarks
-            JOIN bible_books
-                ON bookmarks.book_id = bible_books.id
             WHERE bookmarks.id = $1
             AND bookmarks.user_id = $2
             `,
@@ -154,9 +184,19 @@ const getBookmarkById = async (req, res) => {
             });
         }
 
-        return res.status(200).json(result.rows[0]);
+        // A bookmark whose book is missing from the Bible project is
+        // gone, as the old join returned no row for it: 404, not a
+        // 200 with an empty body.
+        const bookmarks = await withBookNames(result.rows);
+        if (bookmarks.length === 0) {
+            return res.status(404).json({
+                error: "Bookmark not found."
+            });
+        }
+
+        return res.status(200).json(bookmarks[0]);
     } catch (error) {
-        console.error(error);
+        logControllerError("bookmarks.get", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve bookmark."
@@ -204,6 +244,14 @@ const updateBookmark = async (req, res) => {
     }
 
     try {
+        // A supplied book_id is validated against the Bible project
+        // before the update (bookmarks keep book_id as a plain integer).
+        if (!(await bookExists(bookId))) {
+            return res.status(400).json({
+                error: "Unknown book."
+            });
+        }
+
         const result = await pool.query(
             `
             UPDATE bookmarks
@@ -243,7 +291,7 @@ const updateBookmark = async (req, res) => {
             });
         }
 
-        console.error(error);
+        logControllerError("bookmarks.update", "database", error);
 
         return res.status(500).json({
             error: "Failed to update bookmark."
@@ -276,7 +324,7 @@ const deleteBookmark = async (req, res) => {
             message: "Bookmark deleted successfully."
         });
     } catch (error) {
-        console.error(error);
+        logControllerError("bookmarks.delete", "database", error);
 
         return res.status(500).json({
             error: "Failed to delete bookmark."

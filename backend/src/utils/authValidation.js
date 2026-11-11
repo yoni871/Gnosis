@@ -20,7 +20,11 @@
 //   canonicalization is a separate follow-up migration task.
 // - Registration password: required string, at least 8 characters
 //   (code points), at most 72 UTF-8 bytes (bcrypt's limit: longer inputs
-//   would be silently truncated). No complexity rules. Passwords are not
+//   would be silently truncated). No complexity rules (NIST SP 800-63B-4
+//   forbids them). Breached-password screening runs in the route, after
+//   rate limiting and before hashing. NIST's single-factor floor is 15
+//   characters; the project floor is 8 per the project lead's decision,
+//   and the breach screen is the compensating control. Passwords are not
 //   trimmed: spaces can be part of a password.
 // - Login password: required non-empty string, at most 72 UTF-8 bytes.
 //   The registration minimum is deliberately NOT enforced here, so
@@ -31,6 +35,10 @@ const MAX_NAME_CHARS = 100;
 const MAX_EMAIL_CHARS = 254;
 const MIN_REGISTER_PASSWORD_CHARS = 8;
 const MAX_PASSWORD_BYTES = 72;
+
+// Issue #10: the reset-token format gate lives in the token module, so
+// this file stays dependency-free apart from that pure helper.
+const { isValidPasswordResetTokenFormat } = require("./passwordReset");
 
 function isObjectBody(body) {
     return body !== null && typeof body === "object" && !Array.isArray(body);
@@ -158,9 +166,68 @@ function validateLoginInput(body) {
     };
 }
 
+// Issue #10: forgot-password takes only an email, verified with the
+// same structural rule as registration and resend.
+function validateForgotPasswordInput(body) {
+    if (!isObjectBody(body)) {
+        return { error: "Request body must be an object." };
+    }
+    const email = validateEmail(body.email);
+    if (email.error) return email;
+    return {
+        value: {
+            email: email.value,
+        },
+    };
+}
+
+// Issue #10: reset-password takes a token and a new password. The new
+// password follows the registration-strength rule (at least 8
+// characters, at most 72 UTF-8 bytes): a reset password is a new
+// account password, not a login of an existing one. A malformed token
+// is a validation failure (400, no quota consumed); a well-formed but
+// invalid token is a generic 400 from the route.
+function validateResetPasswordInput(body) {
+    if (!isObjectBody(body)) {
+        return { error: "Request body must be an object." };
+    }
+    if (!isValidPasswordResetTokenFormat(body.token)) {
+        return { error: "Password reset token is invalid." };
+    }
+    const password = validateRegisterPassword(body.password);
+    if (password.error) return password;
+    return {
+        value: {
+            token: body.token,
+            password: password.value,
+        },
+    };
+}
+
+// Account deletion takes only the current password, as confirmation.
+// It follows the login-password rule (required, at most 72 UTF-8
+// bytes): the registration minimum is deliberately NOT enforced here,
+// so the password that was set when the account was created is the
+// one that confirms deletion, whatever its length was.
+function validateDeleteAccountInput(body) {
+    if (!isObjectBody(body)) {
+        return { error: "Request body must be an object." };
+    }
+    const password = validateLoginPassword(body.password);
+    if (password.error) return password;
+    return {
+        value: {
+            password: password.value,
+        },
+    };
+}
+
 module.exports = {
     validateRegisterInput,
     validateLoginInput,
+    validateForgotPasswordInput,
+    validateResetPasswordInput,
+    validateDeleteAccountInput,
     // Issue #9 reuses the same structural email rule for resend requests
     // and for EMAIL_FROM validation, so "structurally valid" means the
     // same thing everywhere. It never echoes the submitted value.

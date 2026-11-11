@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const pool = require("../db/db");
+const { commentaryPool: pool } = require("../db/db");
 
 
 const importCommentary = async (datasetFolder, commentaryId) => {

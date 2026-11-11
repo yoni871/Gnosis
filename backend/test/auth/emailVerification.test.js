@@ -58,6 +58,7 @@ function fakeClient() {
             if (typeof sql === "string" && /^(BEGIN|COMMIT|ROLLBACK)/.test(sql.trim())) {
                 return { rows: [] };
             }
+            if (/INSERT INTO auth_(sessions|refresh_tokens)/.test(sql)) return { rows: [] };
             handlerClientCalls += 1;
             return clientBehavior(...args);
         },
@@ -81,6 +82,14 @@ test.before(async () => {
     stubEmails = [];
     stubMode = "ok";
     stubServer = http.createServer((req, res) => {
+        // HIBP k-anonymity range lookup: a GET for a 5-hex prefix gets
+        // an empty body (not breached) and is NOT recorded as an email.
+        // No test ever calls the real HIBP API.
+        if (req.method === "GET" && /^\/[0-9A-F]{5}$/.test(req.url)) {
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            res.end("");
+            return;
+        }
         let body = "";
         req.on("data", (chunk) => { body += chunk; });
         req.on("end", () => {
@@ -96,6 +105,10 @@ test.before(async () => {
     });
     await new Promise((resolve) => stubServer.listen(0, "127.0.0.1", resolve));
     process.env.RESEND_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
+    // Same loopback stub answers HIBP range requests (200 "{}" carries
+    // no matching suffix, so passwords test as not breached); no test
+    // ever calls the real api.pwnedpasswords.com.
+    process.env.HIBP_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
 });
 
 test.after(async () => {
@@ -103,6 +116,7 @@ test.after(async () => {
     await new Promise((resolve) => server.close(resolve));
     if (stubServer) await new Promise((resolve) => stubServer.close(resolve));
     delete process.env.RESEND_API_BASE_URL;
+    delete process.env.HIBP_API_BASE_URL;
     queryMock.mock.restore();
     connectMock.mock.restore();
     await pool.end();
@@ -157,6 +171,7 @@ test("login gate: verified account logs in normally", async () => {
     queryBehavior = async () => ({
         rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }],
     });
+    clientBehavior = async () => ({ rows: [{ password_hash: passwordHash }] });
     const result = await post("/api/auth/login", { email: "old@example.com", password: "correct-password" });
     assert.equal(result.response.status, 200);
     assert.equal(jwt.verify(result.json.token, process.env.JWT_SECRET).userId, 42);
@@ -219,7 +234,7 @@ test("register success sends a link whose token matches the stored hash", async 
         firstName: "Test", lastName: "User", email: "new@example.com", password: "a-valid-password",
     });
     assert.equal(result.response.status, 200);
-    assert.deepEqual(result.json, { id: 7, first_name: "Test", last_name: "User", email: "new@example.com" });
+    assert.deepEqual(result.json, { email: "new@example.com" });
     assert.equal(stubEmails.length, 1);
     const body = JSON.parse(stubEmails[0].body);
     assert.equal(body.from, "Gnosis Test <test@example.invalid>");
@@ -412,4 +427,16 @@ test("verify and resend database failures are controlled 500s", async () => {
     const resend = await post("/api/auth/resend-verification", { email: "new@example.com" });
     assert.equal(resend.response.status, 500);
     assert.deepEqual(resend.json, { error: "Something went wrong.", code: "INTERNAL_ERROR" });
+});
+
+test('a password changed after comparison cannot issue a login cookie', async () => {
+    resetBehaviors();
+    const passwordHash = await bcrypt.hash('correct-password', 10);
+    queryBehavior = async () => ({ rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }] });
+    clientBehavior = async () => ({ rows: [{ password_hash: 'changed-by-reset' }] });
+    const result = await post('/api/auth/login', { email: 'old@example.com', password: 'correct-password' });
+    assert.equal(result.response.status, 401);
+    assert.deepEqual(result.json, { error: 'Invalid email or password.', code: 'INVALID_CREDENTIALS' });
+    assert.equal(result.response.headers.get('set-cookie'), null);
+    assert.ok(!allClientQueries.some(sql => /INSERT INTO auth_/.test(sql)));
 });

@@ -87,6 +87,40 @@ test("bad configuration throws before any fetch", async () => {
     assert.equal(called, false);
 });
 
+test("sends the password reset email with the validated config and link", async () => {
+    const calls = [];
+    const fetchImpl = async (url, options) => {
+        calls.push({ url, options });
+        return { ok: true, json: async () => ({ id: "synthetic-id" }) };
+    };
+    const client = createResendClient({ fetchImpl, env: ENV });
+    assert.equal(client.baseUrl, "https://api.resend.com");
+    const token = "a".repeat(43);
+    await client.sendPasswordResetEmail({ to: "old@example.com", token });
+    assert.equal(calls.length, 1);
+    const { url, options } = calls[0];
+    assert.equal(url, "https://api.resend.com/emails");
+    assert.equal(options.method, "POST");
+    assert.equal(options.headers.Authorization, "Bearer re_test_key");
+    const body = JSON.parse(options.body);
+    assert.equal(body.from, "Gnosis <verify@example.com>");
+    assert.equal(body.to, "old@example.com");
+    assert.equal(body.subject, "Reset your Gnosis password");
+    assert.ok(body.html.includes("https://frontend.example.invalid/reset-password#token=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+    assert.ok(body.text.includes("https://frontend.example.invalid/reset-password#token=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+    assert.ok(body.html.includes("1 hour"), "the email must state the 1-hour expiry");
+    assert.ok(options.signal instanceof AbortSignal, "a timeout signal must guard the provider call");
+});
+
+test("a password reset provider failure throws with its status", async () => {
+    const fetchImpl = async () => ({ ok: false, status: 403, json: async () => ({}) });
+    const client = createResendClient({ fetchImpl, env: ENV });
+    await assert.rejects(
+        client.sendPasswordResetEmail({ to: "old@example.com", token: "b".repeat(43) }),
+        (error) => error.status === 403
+    );
+});
+
 test("the link token hashes to the stored form", async () => {
     // The email carries the raw token; the database must hold only its
     // SHA-256 hash. This test pins the relationship the routes rely on.
@@ -94,4 +128,52 @@ test("the link token hashes to the stored form", async () => {
     const hash = crypto.createHash("sha256").update(token, "utf8").digest();
     assert.equal(hash.length, 32);
     assert.notEqual(hash.toString("hex"), token);
+});
+
+test("verification email uses the Gnosis template (issue #118)", async () => {
+    const calls = [];
+    const fetchImpl = async (url, options) => {
+        calls.push({ url, options });
+        return { ok: true, json: async () => ({ id: "synthetic-id" }) };
+    };
+    const client = createResendClient({ fetchImpl, env: ENV });
+    await client.sendVerificationEmail({ to: "new@example.com", token: "a".repeat(43) });
+    const body = JSON.parse(calls[0].options.body);
+    assert.ok(body.html.includes("Verify your email address"), "template heading");
+    assert.ok(body.html.includes(">Verify your email</a>"), "template button");
+    assert.ok(body.html.includes("copy and paste this link into your browser"), "fallback link");
+    assert.ok(body.html.includes("This link expires in 24 hours"), "expiration");
+    assert.ok(body.html.includes("safely ignore this email"), "security note");
+    assert.ok(body.html.includes("#233e34"), "forest-green branding");
+    assert.ok(body.text.includes("Verify your email: https://frontend.example.invalid/verify-email#token=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+    assert.ok(body.text.includes("This link expires in 24 hours"));
+});
+
+test("password reset email uses the Gnosis template (issue #118)", async () => {
+    const calls = [];
+    const fetchImpl = async (url, options) => {
+        calls.push({ url, options });
+        return { ok: true, json: async () => ({ id: "synthetic-id" }) };
+    };
+    const client = createResendClient({ fetchImpl, env: ENV });
+    await client.sendPasswordResetEmail({ to: "old@example.com", token: "a".repeat(43) });
+    const body = JSON.parse(calls[0].options.body);
+    assert.ok(body.html.includes("Reset your password"), "template heading");
+    assert.ok(body.html.includes(">Reset your password</a>"), "template button");
+    assert.ok(body.html.includes("This link expires after 1 hour"), "expiration");
+    assert.ok(body.html.includes("your password won't change"), "security note");
+    assert.ok(body.html.includes("never ask for your password by email"), "security note");
+    assert.ok(body.text.includes("Reset your password: https://frontend.example.invalid/reset-password#token=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+});
+
+test("an unset sender falls back to Gnosis noreply (issue #118)", async () => {
+    const calls = [];
+    const fetchImpl = async (url, options) => {
+        calls.push({ url, options });
+        return { ok: true, json: async () => ({ id: "synthetic-id" }) };
+    };
+    const { EMAIL_FROM, ...envWithoutSender } = ENV;
+    const client = createResendClient({ fetchImpl, env: envWithoutSender });
+    await client.sendVerificationEmail({ to: "new@example.com", token: "a".repeat(43) });
+    assert.equal(JSON.parse(calls[0].options.body).from, "Gnosis <noreply@mail.studygnosis.com>");
 });

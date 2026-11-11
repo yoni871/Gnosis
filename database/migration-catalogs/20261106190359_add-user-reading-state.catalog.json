@@ -1,0 +1,126 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "user_reading_state.book_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_reading_state.chapter_number",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_reading_state.commentary_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_reading_state.translation",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_reading_state.updated_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_reading_state.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_reading_state.verse_number",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "user_reading_state.user_reading_state_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (user_id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "user_reading_state.user_reading_state_user_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "user_reading_state_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX user_reading_state_pkey ON public.user_reading_state USING btree (user_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "user_reading_state",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    }
+  ],
+  "removed": []
+}

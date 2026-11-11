@@ -1,0 +1,740 @@
+[
+  {
+    "kind": "column",
+    "name": "bookmarks.book_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.created_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.end_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.end_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('bookmarks_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.start_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.start_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "bookmarks.user_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.book_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.color",
+    "definition": {
+      "type": "character varying(7)",
+      "default": "'#FFD54F'::character varying",
+      "notNull": true,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.created_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('highlights_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.updated_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.user_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "highlights.verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.book_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.content",
+    "definition": {
+      "type": "text",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.created_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.end_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.end_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('notes_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.start_chapter",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.start_verse",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.updated_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": "CURRENT_TIMESTAMP",
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "notes.user_id",
+    "definition": {
+      "type": "integer",
+      "default": null,
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.created_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.email",
+    "definition": {
+      "type": "character varying(255)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.first_name",
+    "definition": {
+      "type": "character varying(100)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.id",
+    "definition": {
+      "type": "integer",
+      "default": "nextval('users_id_seq'::regclass)",
+      "notNull": true,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.last_name",
+    "definition": {
+      "type": "character varying(100)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.password_hash",
+    "definition": {
+      "type": "character varying(255)",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": "default",
+      "generated": ""
+    }
+  },
+  {
+    "kind": "column",
+    "name": "users.updated_at",
+    "definition": {
+      "type": "timestamp without time zone",
+      "default": null,
+      "notNull": false,
+      "identity": "",
+      "collation": null,
+      "generated": ""
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bookmarks.bookmarks_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bookmarks.bookmarks_user_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "bookmarks.unique_user_bookmark",
+    "definition": {
+      "sql": "UNIQUE (user_id, book_id, start_chapter, start_verse, end_chapter, end_verse)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_positive_passage",
+    "definition": {
+      "sql": "CHECK (((chapter > 0) AND (verse > 0)))",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_unique_verse",
+    "definition": {
+      "sql": "UNIQUE (user_id, book_id, chapter, verse)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_user_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "highlights.highlights_valid_color",
+    "definition": {
+      "sql": "CHECK (((color)::text ~ '^#[0-9A-Fa-f]{6}$'::text))",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "notes.notes_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "notes.notes_user_id_fkey",
+    "definition": {
+      "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "users.users_email_key",
+    "definition": {
+      "sql": "UNIQUE (email)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "constraint",
+    "name": "users.users_pkey",
+    "definition": {
+      "sql": "PRIMARY KEY (id)",
+      "validated": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bookmarks_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX bookmarks_pkey ON public.bookmarks USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "bookmarks_user_id_idx",
+    "definition": {
+      "sql": "CREATE INDEX bookmarks_user_id_idx ON public.bookmarks USING btree (user_id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "highlights_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX highlights_pkey ON public.highlights USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "highlights_unique_verse",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX highlights_unique_verse ON public.highlights USING btree (user_id, book_id, chapter, verse)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "highlights_user_book_idx",
+    "definition": {
+      "sql": "CREATE INDEX highlights_user_book_idx ON public.highlights USING btree (user_id, book_id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "notes_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX notes_pkey ON public.notes USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "notes_user_id_idx",
+    "definition": {
+      "sql": "CREATE INDEX notes_user_id_idx ON public.notes USING btree (user_id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "unique_user_bookmark",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX unique_user_bookmark ON public.bookmarks USING btree (user_id, book_id, start_chapter, start_verse, end_chapter, end_verse)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "users_email_key",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX users_email_key ON public.users USING btree (email)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "index",
+    "name": "users_pkey",
+    "definition": {
+      "sql": "CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id)",
+      "ready": true,
+      "valid": true
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bookmarks",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "bookmarks_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "highlights",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "highlights_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "notes",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "notes_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "users",
+    "definition": {
+      "rls": false,
+      "kind": "r",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "relation",
+    "name": "users_id_seq",
+    "definition": {
+      "rls": false,
+      "kind": "S",
+      "view": null,
+      "options": null,
+      "forceRls": false,
+      "persistence": "p"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "bookmarks_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "bookmarks",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "highlights_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "highlights",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "notes_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "notes",
+      "ownerColumn": "id"
+    }
+  },
+  {
+    "kind": "sequence",
+    "name": "users_id_seq",
+    "definition": {
+      "max": 2147483647,
+      "min": 1,
+      "type": "integer",
+      "cache": 1,
+      "cycle": false,
+      "start": 1,
+      "increment": 1,
+      "ownerTable": "users",
+      "ownerColumn": "id"
+    }
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "bible_translations.enabled",
+      "definition": {
+        "type": "boolean",
+        "default": "true",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "bible_translations.notice",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "bible_translations.notice_url",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "bible_translations.source",
+      "definition": {
+        "type": "text",
+        "default": "'database'::text",
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    }
+  ],
+  "removed": []
+}

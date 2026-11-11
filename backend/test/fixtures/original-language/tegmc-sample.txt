@@ -1,0 +1,22 @@
+# Test fixture: excerpt of STEPBible-Data (Tyndale House / STEPBible.org), CC BY 4.0.
+# Source: https://github.com/STEPBible/STEPBible-Data — do not redistribute the full dataset.
+A-APN	Function=Adjective; Case=Accusative; Number=Plural; Gender=Neuter
+CONJ	Function=Conjunction
+N-APN	Function=Noun; Case=Accusative; Number=Plural; Gender=Neuter
+N-ASF	Function=Noun; Case=Accusative; Number=Singular; Gender=Feminine
+N-GSF	Function=Noun; Case=Genitive; Number=Singular; Gender=Feminine
+N-GSM-P	Function=Noun; Case=Genitive; Number=Singular; Gender=Masculine; Name type=Individual
+N-GSM-T	Function=Noun; Case=Genitive; Number=Singular; Gender=Masculine; Name type=Title
+P-1GS	Function=Personal pronoun; Person=1st; Case=Genitive; Number=Singular
+PREP	Function=Preposition
+PRT	Function=Particle or Disjunctive
+R-ASM	Function=Relative pronoun; Case=Accusative; Number=Singular; Gender=Masculine
+T-APN	Function=Definite article; Case=Accusative; Number=Plural; Gender=Neuter
+T-ASN	Function=Definite article; Case=Accusative; Number=Singular; Gender=Neuter
+T-GSF	Function=Definite article; Case=Genitive; Number=Singular; Gender=Feminine
+T-GSM	Function=Definite article; Case=Genitive; Number=Singular; Gender=Masculine
+V-AAS-1S	Function=Verb; Tense=Aorist; Voice=Active; Mood=Subjunctive; Person=1st; Number=Singular
+V-API-1S	Function=Verb; Tense=Aorist; Voice=Passive; Mood=Indicative; Person=1st; Number=Singular
+V-PAN	Function=Verb; Tense=Present; Voice=Active; Form=Infinitive
+V-PAP-ASN	Function=Verb; Tense=Present; Voice=Active; Form=Participle; Case=Accusative; Number=Singular; Gender=Neuter
+V-PNI-1S	Function=Verb; Tense=Present; Voice=Middle or Passive Deponent; Mood=Indicative; Person=1st; Number=Singular

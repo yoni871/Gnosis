@@ -14,9 +14,24 @@ test('migrated application schema permits only the approved runtime grants', asy
     const grants = await pool.query(`SELECT table_name,privilege_type,is_grantable FROM information_schema.role_table_grants
         WHERE grantee=current_user AND table_schema='public' ORDER BY table_name,privilege_type`);
     const expected = [];
+    for (const table of ['auth_sessions', 'auth_refresh_tokens']) {
+        for (const privilege of ['SELECT', 'INSERT', 'UPDATE']) expected.push(`${table}:${privilege}`);
+    }
     for (const table of ['bible_translations', 'bible_books', 'bible_chapters', 'bible_verses',
         'sources', 'commentaries', 'commentary_entries']) expected.push(`${table}:SELECT`);
+    // Original Language Analysis (Phase 1): the reader only reads the
+    // imported STEPBible data; the importer runs as the operator.
+    for (const table of ['ol_sources', 'ol_lexical_entries', 'ol_word_occurrences', 'ol_morphology_codes']) {
+        expected.push(`${table}:SELECT`);
+    }
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`users:${privilege}`);
+    // Account deletion (F08): the runtime role may delete a user row;
+    // the user-owned rows go with it through the schema's ON DELETE
+    // CASCADE rules, so no child table gains a DELETE grant.
+    expected.push('users:DELETE');
+    // Reading state (docs/ReadingState.md): the runtime role reads and
+    // writes the position row, never deletes it directly.
+    for (const privilege of ['SELECT', 'INSERT', 'UPDATE']) expected.push(`user_reading_state:${privilege}`);
     for (const table of ['notes', 'bookmarks', 'highlights']) {
         for (const privilege of ['SELECT', 'INSERT', 'UPDATE', 'DELETE']) expected.push(`${table}:${privilege}`);
     }
@@ -32,6 +47,17 @@ test('migrated application schema permits only the approved runtime grants', asy
     // grant is column-level too, so neither table gains a table-level
     // UPDATE row here (see the column-grant test below).
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`email_verification_tokens:${privilege}`);
+    // Issue #10: the same shape for password-reset tokens.
+    for (const privilege of ['SELECT', 'INSERT']) expected.push(`password_reset_tokens:${privilege}`);
+    // T1.16 audit logging: the runtime role writes audit rows and
+    // monitoring reads them; nothing updates or deletes them (the
+    // forbidden statements below pin the append-only shape).
+    for (const privilege of ['SELECT', 'INSERT']) expected.push(`security_events:${privilege}`);
+    // T2.6 new-device detection: the runtime role records devices and
+    // refreshes last_seen_at only; the column grant below is
+    // column-level, so no table-level UPDATE row appears here (see the
+    // column-grant test below).
+    for (const privilege of ['SELECT', 'INSERT']) expected.push(`known_login_devices:${privilege}`);
     assert.deepEqual(grants.rows.map(row => `${row.table_name}:${row.privilege_type}`).sort(), expected.sort());
     assert.ok(grants.rows.every(row => row.is_grantable === 'NO'));
     const sequences = await pool.query(`SELECT c.relname,has_sequence_privilege(current_user,c.oid,'USAGE') AS usage,
@@ -39,14 +65,15 @@ test('migrated application schema permits only the approved runtime grants', asy
         has_sequence_privilege(current_user,c.oid,'UPDATE') AS update_allowed
         FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
         WHERE n.nspname='public' AND c.relkind='S' ORDER BY c.relname`);
-    const allowed = ['users_id_seq', 'notes_id_seq', 'bookmarks_id_seq', 'highlights_id_seq'];
+    const allowed = ['users_id_seq', 'notes_id_seq', 'bookmarks_id_seq', 'highlights_id_seq', 'security_events_id_seq', 'known_login_devices_id_seq'];
     for (const row of sequences.rows) {
         assert.equal(row.usage, allowed.includes(row.relname));
         assert.equal(row.select_allowed, false);
         assert.equal(row.update_allowed, false);
     }
-    for (const sql of ['SELECT * FROM pgmigrations', 'INSERT INTO pgmigrations(name) VALUES (\'forbidden\')',
-        "SELECT nextval('pgmigrations_id_seq')", 'CREATE TABLE forbidden(id integer)',
+    for (const sql of ['SELECT * FROM pgmigrations_app', 'SELECT * FROM pgmigrations_bible', 'SELECT * FROM pgmigrations_commentary',
+        'INSERT INTO pgmigrations_app(name) VALUES (\'forbidden\')',
+        "SELECT nextval('pgmigrations_app_id_seq')", 'CREATE TABLE forbidden(id integer)',
         'CREATE SCHEMA forbidden', 'CREATE TEMP TABLE forbidden(id integer)',
         "INSERT INTO bible_books(name) VALUES ('forbidden')", "UPDATE bible_books SET name='forbidden'",
         'DELETE FROM bible_books', 'TRUNCATE users', 'UPDATE users SET first_name=\'forbidden\'',
@@ -54,29 +81,40 @@ test('migrated application schema permits only the approved runtime grants', asy
         "INSERT INTO rate_limit_sweep_state(id) VALUES (2)",
         'DELETE FROM rate_limit_sweep_state',
         "UPDATE users SET email='forbidden@harness.invalid'",
-        "UPDATE users SET password_hash='forbidden'",
         'UPDATE users SET id=999999',
         "UPDATE email_verification_tokens SET token_hash='\\x00'",
         'UPDATE email_verification_tokens SET user_id=999999',
         "UPDATE email_verification_tokens SET expires_at=now()",
-        "UPDATE email_verification_tokens SET created_at=now()"]) {
+        "UPDATE email_verification_tokens SET created_at=now()",
+        "UPDATE password_reset_tokens SET token_hash='\\x00'",
+        'UPDATE password_reset_tokens SET user_id=999999',
+        "UPDATE password_reset_tokens SET expires_at=now()",
+        "UPDATE password_reset_tokens SET created_at=now()",
+        "UPDATE security_events SET kind='forbidden'",
+        'DELETE FROM security_events',
+        "UPDATE known_login_devices SET user_id=999999",
+        "UPDATE known_login_devices SET device_key='\\x00'",
+        'DELETE FROM known_login_devices']) {
         await assert.rejects(pool.query(sql), { code: '42501' });
     }
 });
 
-test('issue #9 column grants allow exactly the approved column updates', async () => {
+test('issue #9 and #10 column grants allow exactly the approved column updates', async () => {
     const { pool } = database;
     const columns = await pool.query(`SELECT table_name,column_name,privilege_type FROM information_schema.role_column_grants
         WHERE grantee=current_user AND table_schema='public' AND privilege_type='UPDATE'
-        AND table_name IN ('users','email_verification_tokens') ORDER BY table_name,column_name`);
+        AND table_name IN ('users','email_verification_tokens','password_reset_tokens') ORDER BY table_name,column_name`);
     assert.deepEqual(
         columns.rows.map(row => `${row.table_name}.${row.column_name}:${row.privilege_type}`),
         ['email_verification_tokens.consumed_reason:UPDATE', 'email_verification_tokens.used_at:UPDATE',
-            'users.email_verified_at:UPDATE']);
-    for (const [table, column] of [['users', 'id'], ['users', 'email'], ['users', 'password_hash'],
+            'password_reset_tokens.consumed_reason:UPDATE', 'password_reset_tokens.used_at:UPDATE',
+            'users.email_verified_at:UPDATE', 'users.password_hash:UPDATE']);
+    for (const [table, column] of [['users', 'id'], ['users', 'email'],
         ['users', 'first_name'], ['users', 'last_name'],
         ['email_verification_tokens', 'token_hash'], ['email_verification_tokens', 'user_id'],
-        ['email_verification_tokens', 'expires_at'], ['email_verification_tokens', 'created_at']]) {
+        ['email_verification_tokens', 'expires_at'], ['email_verification_tokens', 'created_at'],
+        ['password_reset_tokens', 'token_hash'], ['password_reset_tokens', 'user_id'],
+        ['password_reset_tokens', 'expires_at'], ['password_reset_tokens', 'created_at']]) {
         const check = await pool.query('SELECT has_column_privilege(current_user,$1,$2,$3) AS allowed',
             [`public.${table}`, column, 'UPDATE']);
         assert.equal(check.rows[0].allowed, false, `${table}.${column} must not be updatable`);
@@ -94,6 +132,18 @@ test('issue #9 column grants allow exactly the approved column updates', async (
         [user.rows[0].id]);
     assert.ok(row.rows[0].email_verified_at);
     assert.equal(row.rows[0].consumed_reason, 'verified');
+    // Issue #10 positive control: password_hash and reset-token
+    // consumption use the same approved columns.
+    const resetToken = await pool.query(
+        "INSERT INTO password_reset_tokens(user_id,token_hash,expires_at) VALUES ($1,'\\x02',now() + interval '1 hour') RETURNING id",
+        [user.rows[0].id]);
+    await pool.query('UPDATE users SET password_hash=$1 WHERE id=$2', ['synthetic-hash-2', user.rows[0].id]);
+    await pool.query("UPDATE password_reset_tokens SET used_at=now(),consumed_reason='used' WHERE id=$1",
+        [resetToken.rows[0].id]);
+    const resetRow = await pool.query('SELECT password_hash,used_at,consumed_reason FROM users u JOIN password_reset_tokens t ON t.user_id=u.id WHERE u.id=$1',
+        [user.rows[0].id]);
+    assert.equal(resetRow.rows[0].password_hash, 'synthetic-hash-2');
+    assert.equal(resetRow.rows[0].consumed_reason, 'used');
 });
 
 test('restricted writes persist across pools and rollback uses one independent client', async () => {

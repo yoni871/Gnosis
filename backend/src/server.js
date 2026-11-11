@@ -1,20 +1,24 @@
 require("./config/env").loadEnvironment();
 
 const app = require("./app");
+const { isStrongSecret } = require("./utils/secretStrength");
 
-// Refuse to start without a JWT secret. The message is deliberately
-// generic: it must not reveal the secret or any other environment value.
-// The auth middleware keeps its own runtime check for the case where
-// app.js is imported without going through this file.
-if (!process.env.JWT_SECRET) {
+// Refuse to start unless the JWT secret is at least 32 random bytes
+// (audit N06). Presence alone is not enough: HS256 with a short or
+// guessable secret is offline brute-forceable. The message is
+// deliberately generic: it must not reveal the secret or any other
+// environment value. The auth middleware keeps its own runtime check
+// for the case where app.js is imported without going through this file.
+if (!isStrongSecret(process.env.JWT_SECRET)) {
     console.error("Server configuration error: required server configuration is missing.");
     process.exit(1);
 }
 
-// Issue #4: refuse to start without a rate-limit key secret, for the same
-// reason. The rate limiter keeps its own runtime check for the case where
-// app.js is imported without going through this file.
-if (!process.env.RATE_LIMIT_KEY_SECRET) {
+// Issue #4: refuse to start without a rate-limit key secret that meets
+// the same strength bar, for the same reason. The rate limiter keeps
+// its own runtime check for the case where app.js is imported without
+// going through this file.
+if (!isStrongSecret(process.env.RATE_LIMIT_KEY_SECRET)) {
     console.error("Server configuration error: required server configuration is missing.");
     process.exit(1);
 }
@@ -22,6 +26,6 @@ if (!process.env.RATE_LIMIT_KEY_SECRET) {
 // Use the configured port, or 5000 when none is supplied.
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT, ...(process.env.GNOSIS_LOCAL_DEV === "1" ? ["127.0.0.1"] : []), () => {
     console.log(`Server running on port ${PORT}`);
 });

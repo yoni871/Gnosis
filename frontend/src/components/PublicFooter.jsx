@@ -19,6 +19,10 @@ export default function PublicFooter() {
                         <Link to="/login">Sign in</Link>
                         <Link to="/register">Create account</Link>
                     </div>
+                    <div className="landing-footer-group">
+                        <h2>Legal</h2>
+                        <Link to="/privacy">Privacy Policy</Link>
+                    </div>
                 </nav>
             </div>
             <div className="landing-footer-note">

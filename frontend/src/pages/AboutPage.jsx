@@ -13,10 +13,10 @@ import "./AboutPage.css";
 
 function ScripturePassage({ passage }) {
     const [before, after] = passage.quotation.split("knowledge");
-    const destination = `${chapterPath(passage.book, passage.chapter)}?verse=${passage.verse}&translation=KJV`;
+    const destination = `${chapterPath(passage.book, passage.chapter)}?verse=${passage.verse}&translation=${passage.translation}`;
     return (
         <article className="about-scripture-passage" data-about-reveal aria-labelledby={`passage-${passage.book.replaceAll(" ", "-")}`}>
-            <h3 id={`passage-${passage.book.replaceAll(" ", "-")}`} className="about-passage-reference">Scripture — {passage.reference}</h3>
+            <h3 id={`passage-${passage.book.replaceAll(" ", "-")}`} className="about-passage-reference">Scripture — {passage.reference} <span className="about-passage-translation">({passage.translation})</span></h3>
             <blockquote><span aria-hidden="true">“</span><span className="about-quotation-text">{before}<span className="about-knowledge">knowledge</span>{after}</span><span aria-hidden="true">”</span></blockquote>
             <div className="about-passage-context">
                 <p className="about-greek-form"><span lang="grc">{passage.greek}</span><em>{passage.transliteration}</em></p>
@@ -64,9 +64,9 @@ export default function AboutPage() {
                     </section>
                     <section id="mission" tabIndex={-1} className="about-mission" aria-labelledby="mission-heading">
                         <p className="about-editorial-eyebrow">OUR MISSION</p>
-                        <h2 id="mission-heading" data-about-reveal>Our Mission</h2>
+                        <h2 id="mission-heading" data-about-reveal>Bringing Scripture Into Focus</h2>
                         <p className="about-statement">Make biblical knowledge more accessible and encourage thoughtful study of Scripture through its theological and historical context.</p>
-                        <p>Today, Gnosis brings Scripture alongside the commentary of Matthew Henry and Jamieson, Fausset &amp; Brown, with personal notes, bookmarks, and highlights for your study.</p>
+                        <p>Today, Gnosis brings Scripture, biblical commentary, and personal study tools together in one place, helping readers explore God's Word through deeper study, reflection, and understanding.</p>
                         <p className="about-study-note">Commentary is a study aid. It is not inspired Scripture, an error-free authority, or a substitute for reading the biblical text itself.</p>
                     </section>
                     <section id="vision" tabIndex={-1} className="about-vision" aria-labelledby="vision-heading">

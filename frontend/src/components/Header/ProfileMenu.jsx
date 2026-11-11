@@ -1,8 +1,6 @@
 import { useContext, useState } from "react"
 import {
     User,
-    NotebookPen,
-    Bookmark,
     Settings,
     LogOut,
     ChevronDown,
@@ -46,6 +44,11 @@ export default function ProfileMenu() {
                     : ""
                 }
             `}
+            aria-expanded={isProfileOpen}
+            aria-controls="profile-options"
+            onKeyDown={(event) => {
+                if (event.key === "Escape") setIsProfileOpen(false);
+            }}
             onClick={() => setIsProfileOpen(!isProfileOpen)}
         >
             <div
@@ -85,7 +88,13 @@ export default function ProfileMenu() {
         </button>
 
         
-        <div className={`
+        <div id="profile-options" hidden={!isProfileOpen}
+            onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                    setIsProfileOpen(false);
+                    profileRef.current?.querySelector("button")?.focus();
+                }
+            }} className={`
             absolute
             right-0
             top-[calc(100%+8px)]
@@ -104,33 +113,6 @@ export default function ProfileMenu() {
             }
         `}
     >
-            <div className="
-                px-3 py-3
-            ">
-                <div className="
-                    font-serif
-                    text-[13px]
-                    font-semibold
-                    text-[var(--text-primary)]
-                ">
-                    {`${user.first_name} ${user.last_name}`}
-                </div>
-
-                <div className="
-                    mt-1
-                    text-[10px]
-                    text-[var(--text-muted)]
-                ">
-                    {`${user.email}`}
-                </div>
-            </div>
-
-            <div className="
-                my-1
-                border-t border-[var(--border)]
-                " 
-            />
-
             <button className="
                 flex w-full
                 items-center
@@ -150,45 +132,11 @@ export default function ProfileMenu() {
                 <span>Profile</span>
             </button>
 
-            <button className="
-                flex w-full
-                items-center
-                gap-2.5
-                rounded-md
-                px-3 py-2.5
-                text-left
-                text-[11px]
-                text-[var(--text-primary)]
-                hover:bg-[var(--bg-control-hover)]
-            ">
-                <NotebookPen
-                    size={15}
-                    strokeWidth={1.8}
-                    className="text-[var(--text-muted)]"
-                />
-                <span>Notes</span>
-            </button>
 
-            <button className="
-                flex w-full
-                items-center
-                gap-2.5
-                rounded-md
-                px-3 py-2.5
-                text-left
-                text-[11px]
-                text-[var(--text-primary)]
-                hover:bg-[var(--bg-control-hover)]
-            ">
-                <Bookmark
-                    size={15}
-                    strokeWidth={1.8}
-                    className="text-[var(--text-muted)]"
-                />
-                <span>Bookmarks</span>
-            </button>
-
-            <button className="
+            <Link
+                to="/settings"
+                onClick={() => setIsProfileOpen(false)}
+                className="
                 flex w-full
                 items-center
                 gap-2.5
@@ -205,12 +153,7 @@ export default function ProfileMenu() {
                     className="text-[var(--text-muted)]"
                 />
                 <span>Settings</span>
-            </button>
-
-            <div className="
-                my-1
-                border-t border-[var(--border)]
-            " />
+            </Link>
 
             <Link
                 to="/login"

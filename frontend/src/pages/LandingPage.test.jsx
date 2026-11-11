@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { readFileSync } from "node:fs";
@@ -281,11 +281,10 @@ describe("LandingPage", () => {
                 name: "Account menu for Sample Reader",
             }),
         );
-        expect(
-            within(header).getByRole("link", {
-                name: "Continue studying",
-            }),
-        ).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(within(header).getByRole("button", { name: "Profile" })).toBeVisible();
+        expect(within(header).getByRole("link", { name: "Settings" })).toBeVisible();
+        expect(within(header).getByRole("link", { name: "Settings" })).toHaveAttribute("href", "/settings");
+        expect(within(header).queryByText("Continue studying")).toBeNull();
         await user.click(
             within(header).getByRole("button", { name: "Sign out" }),
         );
@@ -486,13 +485,13 @@ describe("LandingPage", () => {
         expect(document.getElementById("how-it-works")).toHaveClass("landing-bible");
     });
 
-    test("footer links only to routes that exist: no Privacy or Terms", () => {
+    test("footer links only to routes that exist: Privacy yes, Terms no", () => {
         renderLanding(LOGGED_OUT);
 
         const footer = screen.getByRole("contentinfo");
         expect(
-            within(footer).queryByText("Privacy"),
-        ).toBeNull();
+            within(footer).getByRole("link", { name: "Privacy" }),
+        ).toHaveAttribute("href", "/privacy");
         expect(within(footer).queryByText("Terms")).toBeNull();
         const logo = within(footer).getByRole("link", { name: "Gnosis home" });
         expect(logo).toHaveAttribute("href", "/");
@@ -545,5 +544,111 @@ describe("App routing with the landing page", () => {
                 name: "Explore Scripture. Discover Its Depth.",
             }),
         ).toBeNull();
+    });
+});
+
+function jsonResponse(body, status = 200) {
+    return {
+        ok: status >= 200 && status < 300,
+        status,
+        json: async () => body,
+    };
+}
+
+const LOGGED_IN = {
+    sessionVersion: 1,
+    user: {
+        id: 1,
+        first_name: "Test",
+        last_name: "User",
+        email: "test@example.invalid",
+    },
+    token: "test-token",
+    isAuthenticated: true,
+    isAuthLoading: false,
+    login: vi.fn(),
+    register: vi.fn(),
+    logout: vi.fn(),
+};
+
+const SAVED_ROW = {
+    user_id: 1,
+    book_id: 2,
+    chapter_number: 1,
+    translation: "ESV",
+    commentary_id: 3,
+    verse_number: 5,
+    updated_at: "2026-11-06T19:00:00.000Z",
+    book: "Genesis",
+};
+
+describe("LandingPage Continue reading", () => {
+    afterEach(() => {
+        vi.unstubAllGlobals();
+    });
+
+    // The hero is the only place the Continue button lives; other
+    // sections link to the reader too, so scope every CTA query to it.
+    function hero() {
+        return screen.getByRole("region", {
+            name: "Explore Scripture. Discover Its Depth.",
+        });
+    }
+
+    test("offers the saved position back to a logged-in reader", async () => {
+        vi.stubGlobal("fetch", vi.fn(async () => jsonResponse(SAVED_ROW)));
+
+        renderLanding(LOGGED_IN);
+
+        const link = await within(hero()).findByRole("link", {
+            name: "Continue Reading →",
+        });
+        expect(link).toHaveAttribute(
+            "href",
+            "/bible/Genesis/1?translation=ESV&commentary=3&verse=5",
+        );
+        expect(within(link).getByText(/Genesis 1:5 · ESV/)).toBeInTheDocument();
+        expect(link).toHaveAccessibleDescription("Genesis 1:5 · ESV");
+        expect(link.querySelector(".landing-continue-subtitle")).toHaveTextContent("Genesis 1:5 · ESV");
+        expect(within(hero()).queryByText(/Pick up where you left off/)).toBeNull();
+        expect(link.querySelectorAll(".landing-continue-subtitle")).toHaveLength(1);
+        expect(document.querySelectorAll("#landing-reading-location")).toHaveLength(1);
+        expect(document.querySelector(".landing-continue-note")).toBeNull();
+        expect(
+            within(hero()).queryByRole("link", { name: "Start Exploring →" }),
+        ).toBeNull();
+    });
+
+    test("keeps Start Exploring when nothing is saved yet", async () => {
+        vi.stubGlobal("fetch", vi.fn(async () => jsonResponse(
+            { error: "No saved reading position." },
+            404,
+        )));
+
+        renderLanding(LOGGED_IN);
+
+        expect(
+            await within(hero()).findByRole("link", { name: "Start Exploring →" }),
+        ).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(
+            within(hero()).queryByRole("link", { name: "Continue Reading →" }),
+        ).toBeNull();
+    });
+
+    test("never offers to continue for logged-out readers", async () => {
+        const fetchMock = vi.fn(() => {
+            throw new Error("fetch must not be called for guests");
+        });
+        vi.stubGlobal("fetch", fetchMock);
+
+        renderLanding(LOGGED_OUT);
+
+        expect(
+            await within(hero()).findByRole("link", { name: "Start Exploring →" }),
+        ).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(
+            within(hero()).queryByRole("link", { name: "Continue Reading →" }),
+        ).toBeNull();
+        expect(fetchMock).not.toHaveBeenCalled();
     });
 });

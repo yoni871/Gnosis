@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import API_URL from '../../api/api';
+import { getChapters } from '../../services/bibleService';
 import useClickOutside from '../../hooks/useClickOutside';
 
 export default function ChapterSelector({
@@ -28,8 +28,10 @@ export default function ChapterSelector({
 
         if (!bookData) return;
 
-        fetch(`${API_URL}/books/${bookData.id}/chapters`)
-            .then(response => response.json())
+        // The shared service rejects on a failed request or an
+        // unexpected payload, so an error object never lands in
+        // state where the chapter list expects an array.
+        getChapters(bookData.id)
             .then(data => {
                 setChapters(data);
             })

@@ -1,31 +1,122 @@
 const { Pool } = require("pg");
+const { logPoolError } = require("../utils/authErrors");
 require("../config/env").loadEnvironment();
 
-// Production uses one connection URL.
-// Local development keeps using the existing DB_* settings.
-const config = process.env.DATABASE_URL
-    ? {
-        connectionString: process.env.DATABASE_URL
+if (process.env.GNOSIS_LOCAL_DEV === '1') {
+    require('../config/localDevelopment').assertLocalDatabase(process.env);
+}
+
+// One pool per Neon project. GNOSIS_<PROJECT>_DATABASE_URL selects a
+// project; an unset project URL falls back to DATABASE_URL (or the local
+// DB_* settings), so a single-database deployment keeps working with one
+// shared pool: projects that resolve to the same connection string share
+// one Pool instance, and the connection count is unchanged. Set the three
+// GNOSIS_*_DATABASE_URL values to split the projects.
+//
+//   App:        users, auth, notes, bookmarks, highlights, reading state,
+//               licensed cache, rate limits (the default export)
+//   Bible:      bible_books/chapters/verses/translations, ol_* tables
+//   Commentary: commentaries, sources, commentary_entries, bible_books copy
+// Boot-time guard for the split configuration. Per-project fallback to
+// DATABASE_URL stays allowed (a staged split may set one project URL at
+// a time), but once GNOSIS_SPLIT_REQUIRED=1 is set — at the production
+// cutover, when all three project URLs are in place — a missing split
+// URL fails the boot instead of silently falling back to DATABASE_URL
+// and reading Bible/Commentary data from the App database. Before the
+// cutover the flag stays unset and the fallback is the intended
+// transition behavior (and the rollback path). createPools runs at
+// require time, so a bad configuration fails the boot, not a query.
+const SPLIT_URL_NAMES = ['GNOSIS_APP_DATABASE_URL', 'GNOSIS_BIBLE_DATABASE_URL', 'GNOSIS_COMMENTARY_DATABASE_URL'];
+function assertSplitConfiguration(env) {
+    if (env.GNOSIS_SPLIT_REQUIRED !== '1') return;
+    const missing = SPLIT_URL_NAMES.filter((name) => !env[name]);
+    if (missing.length > 0) {
+        throw new Error(`Split databases are required (GNOSIS_SPLIT_REQUIRED=1) but unset: ${missing.join(', ')}.`);
     }
-    : {
-        user: process.env.DB_USER,
-        host: process.env.DB_HOST,
-        database: process.env.DB_NAME,
-        password: process.env.DB_PASSWORD,
-        port: process.env.DB_PORT
+}
+
+const LOOPBACK_HOSTS = new Set(["127.0.0.1", "::1", "localhost"]);
+
+// Remote databases must use verified TLS, whatever the connection string
+// says. The pool previously relied on the URL carrying sslmode=require,
+// which encrypts but never verifies the server certificate — and a URL
+// with no sslmode falls back to pg's `prefer`. The OL importer already
+// enforces verified TLS for non-loopback hosts
+// (tools/bible-import/src/cli.js); the app pools now do the same.
+// Loopback stays plain: local development and tests use a
+// certificate-less local database. sslmode=disable fails the boot.
+function tlsOptionsFor(url) {
+    let parsed;
+    try {
+        parsed = new URL(url);
+    } catch {
+        throw new Error("Invalid database connection URL.");
+    }
+    const host = parsed.hostname.replace(/^\[|\]$/g, "");
+    if (LOOPBACK_HOSTS.has(host)) return {};
+    if (parsed.searchParams.get("sslmode") === "disable") {
+        throw new Error("Refusing a database connection with sslmode=disable.");
+    }
+    return { ssl: { rejectUnauthorized: true } };
+}
+
+function createPools(env = process.env) {
+    assertSplitConfiguration(env);
+    const appUrl = env.GNOSIS_APP_DATABASE_URL || env.DATABASE_URL || null;
+    const bibleUrl = env.GNOSIS_BIBLE_DATABASE_URL || appUrl;
+    const commentaryUrl = env.GNOSIS_COMMENTARY_DATABASE_URL || appUrl;
+    // Production uses one connection URL.
+    // Local development keeps using the existing DB_* settings.
+    const localConfig = appUrl ? null : {
+        user: env.DB_USER,
+        host: env.DB_HOST,
+        database: env.DB_NAME,
+        password: env.DB_PASSWORD,
+        port: env.DB_PORT
     };
+    const byKey = new Map();
+    const poolFor = (url) => {
+        const key = url || 'local';
+        if (!byKey.has(key)) {
+            const config = url ? { connectionString: url } : localConfig;
+            // Each backend instance maintains a small pool of reusable connections.
+            const created = new Pool({
+                ...config,
+                ...(url ? tlsOptionsFor(url) : {}),
+                max: 5,
+                idleTimeoutMillis: 10000,
+                connectionTimeoutMillis: 10000,
+                // F04 budgets: no application query may run longer than
+                // 10 s, or wait on a lock longer than 5 s. Every
+                // application query is a small indexed lookup; anything
+                // slower is a runaway, not a legitimate workload.
+                // Migrations and imports use their own clients, not
+                // these pools, so they are unaffected.
+                statement_timeout: 10000,
+                lock_timeout: 5000
+            });
+            // Handle errors from connections that are sitting idle.
+            // Only the subsystem and the safe code are logged (audit
+            // F02) — never the connection string or the message.
+            created.on("error", (error) => {
+                logPoolError(error);
+            });
+            byKey.set(key, created);
+        }
+        return byKey.get(key);
+    };
+    return {
+        app: poolFor(appUrl),
+        bible: poolFor(bibleUrl),
+        commentary: poolFor(commentaryUrl)
+    };
+}
 
-// Each backend instance maintains a small pool of reusable connections.
-const pool = new Pool({
-    ...config,
-    max: 5,
-    idleTimeoutMillis: 10000,
-    connectionTimeoutMillis: 10000
-});
-
-// Handle errors from connections that are sitting idle.
-pool.on("error", (error) => {
-    console.error("Unexpected database connection error:", error.message);
-});
+const pools = createPools();
+const pool = pools.app;
 
 module.exports = pool;
+module.exports.appPool = pools.app;
+module.exports.biblePool = pools.bible;
+module.exports.commentaryPool = pools.commentary;
+module.exports.createPools = createPools;

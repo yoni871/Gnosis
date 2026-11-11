@@ -5,8 +5,8 @@ const express = require("express");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "test-secret";
-process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret";
+process.env.JWT_SECRET = "test-secret-synthetic-test-secret";
+process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret-synthetic-test-secret";
 
 const pool = require("../../src/db/db");
 const {
@@ -39,6 +39,7 @@ class FakeClient {
         this.queries = [];
         this.released = 0;
         this.inserted = [];
+        this.tryLockFailures = options.tryLockFailures ?? 0;
     }
 
     async query(sql, params = []) {
@@ -51,6 +52,10 @@ class FakeClient {
             return { rows: [{ pg_advisory_xact_lock: true }] };
         }
         if (sql.includes("pg_try_advisory_xact_lock")) {
+            if (this.tryLockFailures > 0) {
+                this.tryLockFailures -= 1;
+                return { rows: [{ locked: false }] };
+            }
             return { rows: [{ locked: this.options.tryLock !== false }] };
         }
         if (sql.includes("INSERT INTO rate_limit_attempts")) {
@@ -148,9 +153,9 @@ test("trust proxy parsing accepts the documented values only", () => {
     assert.equal(resolveTrustProxy(""), false);
     assert.equal(resolveTrustProxy("0"), false);
     assert.equal(resolveTrustProxy("false"), false);
-    assert.equal(resolveTrustProxy("true"), true);
     assert.equal(resolveTrustProxy("1"), 1);
     assert.equal(resolveTrustProxy("3"), 3);
+    assert.equal(resolveTrustProxy("5"), 5);
     assert.equal(resolveTrustProxy("loopback"), "loopback");
     assert.deepEqual(resolveTrustProxy("loopback, 10.0.0.0/8"), ["loopback", "10.0.0.0/8"]);
     assert.equal(resolveTrustProxy("203.0.113.1"), "203.0.113.1");
@@ -158,7 +163,7 @@ test("trust proxy parsing accepts the documented values only", () => {
 });
 
 test("trust proxy parsing rejects values that could silently spoof clients", () => {
-    for (const bad of ["-1", "yes", "not-a-proxy-value", "999.999.999.999",
+    for (const bad of ["true", "True", "TRUE", "6", "100", "-1", "yes", "not-a-proxy-value", "999.999.999.999",
         "10.0.0.0/33", "2001:db8::/129", "loopback,", ",,", "1.2.3"]) {
         assert.throws(() => resolveTrustProxy(bad), /Invalid trust proxy/, bad);
     }
@@ -253,7 +258,7 @@ test("reservation commits in order: lock, insert, count, commit", async () => {
     const statements = client.queries.map((query) => query.sql);
     assert.deepEqual(statements, [
         "BEGIN",
-        "SELECT pg_advisory_xact_lock($1, $2)",
+        "SELECT pg_try_advisory_xact_lock($1, $2) AS locked",
         "INSERT INTO rate_limit_attempts(key_hash, policy) VALUES ($1, $2) RETURNING id",
         `SELECT COUNT(*)::int AS count, MIN(attempted_at) AS oldest
                  FROM rate_limit_attempts
@@ -277,6 +282,35 @@ test("reservation over the limit rolls back and reports retry-after", async () =
         `retry-after must be ~60s, got ${outcome.retryAfter}`);
     assert.ok(client.queries.some((query) => query.sql === "ROLLBACK"));
     assert.ok(!client.queries.some((query) => query.sql === "COMMIT"));
+});
+
+test("reservation returns a 429-ready result when the advisory lock is held", async () => {
+    const client = new FakeClient({ tryLock: false });
+    const fakePool = { connect: async () => client, query: async () => ({ rows: [] }) };
+    const outcome = await attemptReservation(fakePool, "login_ip_email",
+        keyFor("login_ip_email", ["203.0.113.9", "user@example.com"]),
+        { lockWaitTimeoutMs: 50, lockRetryDelayMs: 5 });
+    assert.deepEqual(outcome, { allowed: false, retryAfter: 1 });
+    assert.ok(client.queries.some((query) => query.sql === "ROLLBACK"));
+    assert.ok(!client.queries.some((query) => query.sql === "COMMIT"));
+    assert.ok(!client.queries.some((query) => query.sql.includes("INSERT INTO rate_limit_attempts")),
+        "a lock-contention block inserts nothing, so no quota is consumed");
+    assert.equal(client.released, 1);
+});
+
+test("reservation retries the advisory lock and commits once it frees", async () => {
+    const client = new FakeClient({ tryLockFailures: 2 });
+    const fakePool = { connect: async () => client, query: async () => ({ rows: [] }) };
+    const outcome = await attemptReservation(fakePool, "login_ip_email",
+        keyFor("login_ip_email", ["203.0.113.9", "user@example.com"]),
+        { lockWaitTimeoutMs: 1000, lockRetryDelayMs: 1 });
+    assert.equal(outcome.allowed, true);
+    assert.equal(outcome.reservation.id, "res-1");
+    const lockAttempts = client.queries.filter((query) =>
+        query.sql.includes("pg_try_advisory_xact_lock"));
+    assert.equal(lockAttempts.length, 3, "two failed tries, then the lock is acquired");
+    assert.ok(client.queries.some((query) => query.sql === "COMMIT"));
+    assert.equal(client.released, 1);
 });
 
 test("reservation store failure rolls back, releases, and propagates", async () => {
@@ -410,6 +444,29 @@ test("middleware blocks with a generic 429 and releases earlier reservations", a
         const deletes = poolQueries.filter((query) => query.sql.includes("DELETE FROM rate_limit_attempts"));
         assert.equal(deletes.length, 1, "the earlier reservation is released, not kept");
         assert.equal(deletes[0].params[0], "res-1");
+    } finally {
+        restore();
+    }
+});
+
+test("middleware returns a generic 429 with a 1-second retry when the lock is held", async () => {
+    const client = new FakeClient({ tryLock: false });
+    const { restore } = mockPoolForMiddleware(client);
+    try {
+        const middleware = createRateLimitMiddleware([
+            { policy: "login_ip_email", fields: (req, ip) => [ip, req.validated.email] },
+        ], "login");
+        const res = fakeResponse();
+        let proceeded = false;
+        await middleware({ ip: "203.0.113.9", validated: { email: "a@example.com" } }, res, () => {
+            proceeded = true;
+        });
+        assert.equal(proceeded, false);
+        assert.equal(res.statusCode, 429);
+        assert.deepEqual(res.body, RATE_LIMITED_BODY);
+        assert.ok(!JSON.stringify(res.body).includes("login_ip"), "the body names no policy");
+        assert.equal(Number(res.headers["Retry-After"]), 1);
+        assert.equal(client.inserted.length, 0, "no quota is consumed by a lock-contention block");
     } finally {
         restore();
     }
@@ -558,6 +615,26 @@ test("with trust proxy disabled, forwarded headers are ignored", async () => {
     const keys = await runTrustProxyApp(false, ["203.0.113.7", "198.51.100.8"]);
     assert.equal(keys.length, 2);
     assert.equal(keys[0], keys[1], "both requests key on the loopback socket address");
+});
+
+test("with hop count 1, a spoofed leftmost X-Forwarded-For entry is ignored", async () => {
+    const keys = await runTrustProxyApp(1, [
+        "203.0.113.99, 198.51.100.7",
+        "198.51.100.7",
+        "198.51.100.8",
+    ]);
+    assert.equal(keys.length, 3);
+    assert.equal(keys[0], keys[1], "spoofed and direct requests from the same real IP key together");
+    assert.notEqual(keys[0], keys[2], "a different real IP keys separately");
+});
+
+test("trust proxy true lets a spoofed leftmost address win (why the parser rejects it)", async () => {
+    const keys = await runTrustProxyApp(true, [
+        "203.0.113.99, 198.51.100.7",
+        "198.51.100.7",
+    ]);
+    assert.equal(keys.length, 2);
+    assert.notEqual(keys[0], keys[1], "with trust proxy true the spoofed entry becomes the client IP");
 });
 
 test("the exported policy table matches the approved limits", () => {

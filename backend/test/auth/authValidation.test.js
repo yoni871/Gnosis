@@ -1,12 +1,13 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const crypto = require("node:crypto");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "test-secret";
-process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret";
+process.env.JWT_SECRET = "test-secret-synthetic-test-secret";
+process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret-synthetic-test-secret";
 // Issue #9: app.js validates email configuration at import time.
 process.env.RESEND_API_KEY = 'synthetic-test-resend-key';
 process.env.EMAIL_FROM = 'Gnosis Test <test@example.invalid>';
@@ -15,6 +16,9 @@ process.env.FRONTEND_URL = 'https://frontend.example.invalid';
 const {
     validateRegisterInput,
     validateLoginInput,
+    validateForgotPasswordInput,
+    validateResetPasswordInput,
+    validateDeleteAccountInput,
 } = require("../../src/utils/authValidation");
 
 // ---------------------------------------------------------------------------
@@ -199,6 +203,45 @@ test("validator ignores unknown fields", () => {
     assert.deepEqual(login.value, { email: "test@example.com", password: "a-valid-password" });
 });
 
+test("forgot validator takes only a structurally valid email", () => {
+    assert.deepEqual(validateForgotPasswordInput({ email: "old@example.com" }),
+        { value: { email: "old@example.com" } });
+    assert.deepEqual(validateForgotPasswordInput({ email: "  old@example.com " }),
+        { value: { email: "old@example.com" } });
+    for (const body of [null, [1, 2], "text", 42, true, undefined]) {
+        assert.deepEqual(validateForgotPasswordInput(body), { error: "Request body must be an object." });
+    }
+    for (const email of ["not-an-email", "", "a@b", "a@.b", "a@b."]) {
+        assert.equal(validateForgotPasswordInput({ email }).error !== undefined, true, email);
+    }
+    assert.deepEqual(validateForgotPasswordInput({ email: "old@example.com", role: "admin" }),
+        { value: { email: "old@example.com" } });
+});
+
+test("reset validator requires a well-formed token and a registration-strength password", () => {
+    const token = "a".repeat(43);
+    assert.deepEqual(validateResetPasswordInput({ token, password: "a-new-password" }),
+        { value: { token, password: "a-new-password" } });
+    for (const body of [null, [1, 2], "text", 42, true, undefined]) {
+        assert.deepEqual(validateResetPasswordInput(body), { error: "Request body must be an object." });
+    }
+    for (const badToken of ["short", "a".repeat(42), "a".repeat(44), 42, null]) {
+        assert.deepEqual(validateResetPasswordInput({ token: badToken, password: "a-new-password" }),
+            { error: "Password reset token is invalid." });
+    }
+    // The new password follows the registration rule, not the login one:
+    // a short password is rejected even though it would be a valid login
+    // password for a pre-existing account.
+    assert.deepEqual(validateResetPasswordInput({ token, password: "short" }),
+        { error: "Password must be at least 8 characters." });
+    assert.deepEqual(validateResetPasswordInput({ token, password: "1234567" }),
+        { error: "Password must be at least 8 characters." });
+    assert.deepEqual(validateResetPasswordInput({ token, password: "x".repeat(73) }),
+        { error: "Password must be at most 72 bytes." });
+    assert.deepEqual(validateResetPasswordInput({ token, password: "a-new-password", role: "admin" }),
+        { value: { token, password: "a-new-password" } });
+});
+
 // ---------------------------------------------------------------------------
 // Route tests: validation runs before bcrypt and before the database.
 // The pool is mocked in memory (no real database connection is attempted)
@@ -277,6 +320,9 @@ const compareMock = test.mock.method(bcrypt, "compare", (...args) => realCompare
 let server;
 let baseUrl;
 let stubServer;
+// PR3 (N07): when set, the stub answers HIBP range requests for this
+// prefix with the matching suffix, so a chosen password tests breached.
+let breachedRange = null;
 
 test.before(async () => {
     server = app.listen(0, "127.0.0.1");
@@ -287,12 +333,24 @@ test.before(async () => {
     // test isolation) so no test ever calls the real Resend API.
     const http = require("node:http");
     stubServer = http.createServer((req, res) => {
+        // HIBP k-anonymity range lookup: a GET for a 5-hex prefix gets
+        // the breached suffix when one is armed, otherwise an empty body
+        // (not breached). No test ever calls the real HIBP API.
+        if (req.method === "GET" && /^\/[0-9A-F]{5}$/.test(req.url)) {
+            const body = breachedRange && req.url === `/${breachedRange.prefix}`
+                ? `${breachedRange.suffix}:3\n`
+                : "";
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            res.end(body);
+            return;
+        }
         req.resume();
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end("{}");
     });
     await new Promise((resolve) => stubServer.listen(0, "127.0.0.1", resolve));
     process.env.RESEND_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
+    process.env.HIBP_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
 });
 
 test.after(async () => {
@@ -304,6 +362,7 @@ test.after(async () => {
         await new Promise((resolve) => stubServer.close(resolve));
     }
     delete process.env.RESEND_API_BASE_URL;
+    delete process.env.HIBP_API_BASE_URL;
     queryMock.mock.restore();
     connectMock.mock.restore();
     hashMock.mock.restore();
@@ -412,13 +471,13 @@ test("register passes trimmed values to the insert and hashes the password", asy
         email: "  test@example.com  ",
     }));
     assert.equal(result.response.status, 200);
-    assert.deepEqual(result.json, { id: 7, first_name: "Test", last_name: "User", email: "test@example.com" });
+    assert.deepEqual(result.json, { email: "test@example.com" });
     const userInsert = captured.find((args) => /INSERT INTO users/.test(args[0]));
     assert.ok(userInsert, "user insert must run");
     assert.equal(userInsert[1][0], "Test");
     assert.equal(userInsert[1][1], "User");
     assert.equal(userInsert[1][2], "test@example.com");
-    assert.match(userInsert[1][3], /^\$2[ab]\$/);
+    assert.match(userInsert[1][3], /^\$2b\$12\$/, "new hashes must use bcrypt cost 12");
     assert.notEqual(userInsert[1][3], "a-valid-password");
     // Issue #9: the same transaction inserts the first verification
     // token: the user id, a 32-byte hash (never the raw token), and a
@@ -431,6 +490,27 @@ test("register passes trimmed values to the insert and hashes the password", asy
     const expiry = new Date(tokenInsert[1][2]).getTime();
     assert.ok(expiry > Date.now() + 23 * 60 * 60 * 1000 && expiry <= Date.now() + 24 * 60 * 60 * 1000);
     assert.equal(callCounts().hash, before.hash + 1, "valid registration must hash exactly once");
+});
+
+test("register rejects a breached password before bcrypt and the database", async () => {
+    // PR3 (N07): the HIBP check runs after rate limiting and before
+    // bcrypt, so a breached password costs no hash and no insert.
+    const password = "breached-password-1";
+    const sha1 = crypto.createHash("sha1").update(password, "utf8").digest("hex").toUpperCase();
+    breachedRange = { prefix: sha1.slice(0, 5), suffix: sha1.slice(5) };
+    try {
+        const before = callCounts();
+        const result = await post("/api/auth/register", validRegister({ password }));
+        assertJsonError(result, 400, {
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: "VALIDATION_FAILED",
+        });
+        const after = callCounts();
+        assert.equal(after.hash, before.hash, "a breached password must not reach bcrypt");
+        assert.equal(after.query, before.query, "a breached password must cause zero database calls");
+    } finally {
+        breachedRange = null;
+    }
 });
 
 test("register ignores unknown fields", async () => {
@@ -458,20 +538,20 @@ test("register preserves email case in the insert", async () => {
     assert.equal(userInsert[1][2], "Test@Example.COM");
 });
 
-test("register duplicate email still returns the existing 409", async () => {
+test("duplicate registration returns the same email-only success response", async () => {
     queryBehavior = async () => {
         throw Object.assign(new Error("duplicate key"), { code: "23505" });
     };
     const result = await post("/api/auth/register", validRegister());
-    assertJsonError(result, 409, {
-        error: "An account with that email already exists.",
-        code: "EMAIL_EXISTS",
-    });
+    assert.equal(result.response.status, 200);
+    assert.deepEqual(result.json, { email: 'test@example.com' });
 });
 
 test("login with unknown email and wrong password returns identical 401s", async () => {
     queryBehavior = async () => ({ rows: [] });
+    const beforeUnknown = callCounts().compare;
     const unknown = await post("/api/auth/login", validLogin());
+    assert.equal(callCounts().compare, beforeUnknown + 1, 'unknown accounts still perform bcrypt work');
     assertJsonError(unknown, 401, {
         error: "Invalid email or password.",
         code: "INVALID_CREDENTIALS",
@@ -517,11 +597,25 @@ test("login with valid credentials performs real bcrypt comparison and JWT signi
     assert.equal(callCounts().compare, before.compare + 1, "valid login must compare exactly once");
 });
 
+test("new hashes use bcrypt cost 12 while cost-10 hashes still verify", async () => {
+    // PR3: cost 12 applies to NEW hashes only; existing cost-10 hashes
+    // must keep verifying on login (re-hash on next login is a later
+    // PR, not this one). The login test above also proves a cost-10
+    // hash authenticates end to end.
+    const fresh = await realHash("a-new-password-123", 12);
+    assert.match(fresh, /^\$2b\$12\$/);
+    assert.equal(await bcrypt.compare("a-new-password-123", fresh), true);
+    const legacy = await realHash("an-old-password-1", 10);
+    assert.match(legacy, /^\$2b\$10\$/);
+    assert.equal(await bcrypt.compare("an-old-password-1", legacy), true,
+        "existing cost-10 hashes must still verify");
+});
+
 test("login trims the email before lookup", async () => {
     let captured;
     const passwordHash = await realHash("correct-password", 10);
     queryBehavior = async (...args) => {
-        captured = args;
+        if (args[0].includes("SELECT * FROM users")) captured = args;
         return { rows: [{ id: 42, password_hash: passwordHash, email_verified_at: new Date() }] };
     };
     const result = await post("/api/auth/login", validLogin({
@@ -541,4 +635,20 @@ test("login accepts a short pre-existing password", async () => {
     assert.equal(result.response.status, 200);
     const decoded = jwt.verify(result.json.token, process.env.JWT_SECRET);
     assert.equal(decoded.userId, 42);
+});
+
+test("delete validator takes only the current password, with no minimum length", () => {
+    assert.deepEqual(validateDeleteAccountInput({ password: "correct-password" }), {
+        value: { password: "correct-password" },
+    });
+    // A short pre-existing password still confirms deletion: the
+    // registration minimum is not enforced on the current password.
+    assert.equal(validateDeleteAccountInput({ password: "abc" }).error, undefined);
+    assert.deepEqual(validateDeleteAccountInput({}), { error: "Password is required." });
+    assert.deepEqual(validateDeleteAccountInput({ password: "x".repeat(73) }), {
+        error: "Password must be at most 72 bytes.",
+    });
+    assert.deepEqual(validateDeleteAccountInput("not-an-object"), {
+        error: "Request body must be an object.",
+    });
 });

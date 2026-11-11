@@ -13,11 +13,14 @@
 //   IP or email address and never a plain hash (which is dictionary
 //   reversible). Inputs use an unambiguous length-prefixed encoding, not
 //   delimiter joins, so different field splits can never collide.
-// - Reservations: a short transaction takes a per-key advisory lock,
-//   inserts a provisional row, counts, and commits or rolls back. The lock
-//   is never held across bcrypt, database, or network work, and the
-//   provisional row counts while the attempt is in flight, so a burst is
-//   strict: exactly N of M concurrent attempts pass.
+// - Reservations: a short transaction takes a per-key advisory lock
+//   non-blockingly (pg_try_advisory_xact_lock), retried inside a bounded
+//   2-second window, inserts a provisional row, counts, and commits or
+//   rolls back. The retry keeps a burst strict (exactly N of M concurrent
+//   attempts pass) while the window bounds the wait: only a lock held
+//   past the whole window yields a 429 instead of an indefinite hang.
+//   The lock is never held across bcrypt, database, or network work, and
+//   the provisional row counts while the attempt is in flight.
 // - After the attempt, a counted failure keeps its row; a success or an
 //   internal error deletes it. A crash leaves at most in-flight phantom
 //   rows, which expire with the window.
@@ -35,11 +38,24 @@
 const crypto = require("node:crypto");
 const pool = require("../db/db");
 const { internalErrorBody, logAuthFailure } = require("./authErrors");
+const { isStrongSecret } = require("./secretStrength");
 
 // Approved policies. Windows are milliseconds; limits are counted
 // failures per window. No email-only pre-auth limit exists on purpose:
 // one would let anyone lock out any account by email alone.
 const POLICIES = {
+    // Refresh budgets (PR #90): count both successful rotation and
+    // invalid/replayed credentials, so a refresh flood cannot grow token
+    // families without spending a budget. refresh_ip (120/min) is the
+    // aggregate flood bound for one IP; refresh_token (10/min per token)
+    // and refresh_family (30/min per session family, enforced in the
+    // rotation transaction) are the precise abuse controls. This replaces
+    // main's refresh_ip 30/15 min (PR #85), which counted failures only
+    // and was designed before per-token/per-family caps existed — under
+    // count-successes it would be too tight for legitimate shared-IP use.
+    refresh_family: { windowMs: 60 * 1000, limit: 30 },
+    refresh_ip: { windowMs: 60 * 1000, limit: 120 },
+    refresh_token: { windowMs: 60 * 1000, limit: 10 },
     login_ip_email: { windowMs: 15 * 60 * 1000, limit: 5 },
     login_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
     register_ip: { windowMs: 60 * 60 * 1000, limit: 5 },
@@ -50,6 +66,17 @@ const POLICIES = {
     resend_ip_email: { windowMs: 60 * 60 * 1000, limit: 5 },
     resend_ip: { windowMs: 60 * 60 * 1000, limit: 20 },
     verify_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
+    // Issue #10: forgot-password mirrors resend (an email-sending
+    // endpoint that must not leak account state), and reset-password
+    // mirrors verify (a token-guessing endpoint). Forgot counts every
+    // structurally valid request because the limiter runs before any
+    // account lookup; reset counts every structurally valid token
+    // attempt.
+    forgot_ip_email: { windowMs: 60 * 60 * 1000, limit: 5 },
+    forgot_ip: { windowMs: 60 * 60 * 1000, limit: 20 },
+    reset_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
+    // (PR #85's refresh_ip 30/15 min lived here; PR #90 replaces it with
+    // the 120/min entry at the top of this table — see that comment.)
 };
 
 // The longest window above. The sweep deletes rows older than this, since
@@ -80,12 +107,13 @@ const SWEEP_LOCK_PAIR = [hashText32("gnosis_rate_limit_sweep"), hashText32("swee
 // sweep. Shared state in PostgreSQL enforces the global interval.
 let lastCleanupAttemptMs = 0;
 
-// The secret is read at request time (not import time) so a missing secret
-// is a controlled 500 through the middleware, mirroring the JWT secret's
-// defensive runtime check in the auth middleware.
+// The secret is read at request time (not import time) so a missing or
+// too-weak secret is a controlled 500 through the middleware, mirroring
+// the JWT secret's defensive runtime check in the auth middleware.
+// Strength (audit N06) is checked here as well as at boot.
 function getRateLimitSecret() {
     const secret = process.env.RATE_LIMIT_KEY_SECRET;
-    if (!secret) {
+    if (!isStrongSecret(secret)) {
         throw new Error("Rate limit configuration is missing.");
     }
     return secret;
@@ -124,22 +152,60 @@ function lockKeyPair(policy, keyHash) {
     return [hashText32(policy), hashText32(keyHash.toString("hex"))];
 }
 
-// One reservation attempt for one policy: lock, insert, count, commit or
-// roll back, all inside one short transaction on one checked-out client.
-// Returns { allowed: true, reservation } or { allowed: false, retryAfter }
-// where retryAfter is whole seconds until the oldest counted attempt
-// leaves the window, so a 429 never extends its own window.
-async function attemptReservation(dbPool, policyName, keyHash) {
+// One reservation attempt for one policy: non-blocking lock, insert,
+// count, commit or roll back, all inside one short transaction on one
+// checked-out client.
+// Returns { allowed: true, reservation } or { allowed: false, retryAfter }.
+// For an over-limit bucket retryAfter is whole seconds until the oldest
+// counted attempt leaves the window, so a 429 never extends its own
+// window; for a lock that is already held it is 1, because the holder's
+// transaction is short and the lock frees in milliseconds.
+//
+// The lock is taken with pg_try_advisory_xact_lock and retried inside a
+// bounded window (LOCK_WAIT_TIMEOUT_MS): the holder's transaction is
+// milliseconds long, so a waiter normally acquires the lock after a few
+// short retries and the burst stays strict (exactly N of M concurrent
+// attempts pass). A single try with no retry would make the limiter lossy
+// under concurrency — legitimate under-limit requests would get a 429 just
+// for arriving while the lock was held. Only a lock held past the whole
+// window (a stuck holder) yields the 429, so the wait is bounded and no
+// request hangs indefinitely. The window and delay are overridable via
+// options for tests.
+const LOCK_WAIT_TIMEOUT_MS = 2000;
+const LOCK_RETRY_DELAY_MS = 10;
+
+async function attemptReservation(dbPool, policyName, keyHash, options = {}) {
     const policy = POLICIES[policyName];
     if (!policy) {
         throw new Error("Unknown rate limit policy.");
     }
+    const lockWaitTimeoutMs = options.lockWaitTimeoutMs ?? LOCK_WAIT_TIMEOUT_MS;
+    const lockRetryDelayMs = options.lockRetryDelayMs ?? LOCK_RETRY_DELAY_MS;
     const client = await dbPool.connect();
     try {
         await client.query("BEGIN");
         try {
             const [key1, key2] = lockKeyPair(policyName, keyHash);
-            await client.query("SELECT pg_advisory_xact_lock($1, $2)", [key1, key2]);
+            const deadline = Date.now() + lockWaitTimeoutMs;
+            for (;;) {
+                const lock = await client.query(
+                    "SELECT pg_try_advisory_xact_lock($1, $2) AS locked",
+                    [key1, key2],
+                );
+                if (lock.rows[0].locked) {
+                    break;
+                }
+                if (Date.now() >= deadline) {
+                    // Another request holds this key's lock and it did not
+                    // free inside the window. Return a 429 instead of
+                    // waiting indefinitely: the holder's transaction is
+                    // short, so the lock frees in milliseconds, and no
+                    // quota is consumed (nothing was inserted yet).
+                    await client.query("ROLLBACK");
+                    return { allowed: false, retryAfter: 1 };
+                }
+                await new Promise((resolve) => setTimeout(resolve, lockRetryDelayMs));
+            }
             const inserted = await client.query(
                 "INSERT INTO rate_limit_attempts(key_hash, policy) VALUES ($1, $2) RETURNING id",
                 [keyHash, policyName],
@@ -260,13 +326,13 @@ async function maybeCleanup(dbPool, options = {}) {
 // the 429 or before the handler, never after the response.
 function createRateLimitMiddleware(policySpecs, endpoint) {
     return async (req, res, next) => {
+        const reservations = [];
         try {
             const secret = getRateLimitSecret();
             const ip = req.ip;
             if (!ip) {
                 throw new Error("Client address is unavailable.");
             }
-            const reservations = [];
             const blockedWaits = [];
             for (const spec of policySpecs) {
                 const keyHash = computeKeyHash(spec.policy, spec.fields(req, ip), secret);
@@ -305,6 +371,7 @@ function createRateLimitMiddleware(policySpecs, endpoint) {
             await maybeCleanup(pool);
             return next();
         } catch (error) {
+            await releaseReservations(pool, reservations);
             logAuthFailure(`POST /api/auth/${endpoint}`, "rate-limit", error);
             return res.status(500).json(internalErrorBody(endpoint));
         }
@@ -312,13 +379,18 @@ function createRateLimitMiddleware(policySpecs, endpoint) {
 }
 
 // Validate the TRUST_PROXY environment setting. Accepts: unset/empty,
-// "0"/"false" (disabled, the default), "true", a hop count, or a
+// "0"/"false" (disabled, the default), a hop count of 1-5, or a
 // comma-separated list of IPs, CIDRs, or Express subnet names (loopback,
-// linklocal, uniquelocal). Anything else fails fast at startup, so a
-// typo can never silently become a spoofable configuration. Express
-// itself validates the entries again at runtime; this is the fail-fast
-// sanity gate. No production value is guessed: the default is disabled,
-// and the operator sets the value that matches the real proxy chain.
+// linklocal, uniquelocal). "true" is REJECTED (issue #115, audit F06):
+// it trusts every proxy hop, so any client-supplied X-Forwarded-For
+// entry becomes the client IP and defeats the per-IP rate-limit buckets.
+// A hop count above 5 is rejected for the same reason — it is "true"
+// with extra steps. Anything else fails fast at startup, so a typo can
+// never silently become a spoofable configuration. Express itself
+// validates the entries again at runtime; this is the fail-fast sanity
+// gate. No production value is guessed: the default is disabled, and
+// the operator sets the value that matches the real proxy chain
+// (hop count 1 on Vercel; the live spoof check confirms the count).
 function resolveTrustProxy(value) {
     if (value === undefined || value === "") {
         return false;
@@ -326,11 +398,22 @@ function resolveTrustProxy(value) {
     if (value === "0" || value === "false") {
         return false;
     }
-    if (value === "true") {
-        return true;
+    if (value === "true" || value === "True" || value === "TRUE") {
+        throw new Error(
+            "Invalid trust proxy configuration: \"true\" trusts every proxy hop " +
+            "and lets any client spoof its IP. Set a hop count (for example \"1\") " +
+            "or a list of trusted proxy IPs or CIDRs.",
+        );
     }
     if (/^\d+$/.test(value) && Number.isSafeInteger(Number(value))) {
-        return Number(value);
+        const hops = Number(value);
+        if (hops > 5) {
+            throw new Error(
+                "Invalid trust proxy configuration: hop count must be 1-5; " +
+                "a larger count trusts every hop the same way \"true\" does.",
+            );
+        }
+        return hops;
     }
     const rawParts = value.split(",");
     if (rawParts.some((part) => part.trim() === "")) {
@@ -375,6 +458,7 @@ module.exports = {
     RATE_LIMITED_BODY,
     getRateLimitSecret,
     computeKeyHash,
+    lockKeyPair,
     attemptReservation,
     releaseReservations,
     maybeCleanup,

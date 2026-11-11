@@ -4,6 +4,8 @@ const { saveHighlights,
     deleteHighlightsInPassage: clearPassageHighlights
 } = require("../services/highlightsService");
 const { isValidColor, isValidVerseSelection } = require("../utils/highlightValidation");
+const { logControllerError } = require("../utils/authErrors");
+const { parsePagination } = require("../utils/pagination");
 
 // Handle a request to apply a color to a passage.
 const createHighlight = async (req, res) => {
@@ -50,7 +52,7 @@ const createHighlight = async (req, res) => {
                 error: error.message
             });
         }
-        console.error(error);
+        logControllerError("highlights.create", "database", error);
         
         return res.status(500).json({
             error: "Failed to save highlights."
@@ -62,13 +64,20 @@ const createHighlight = async (req, res) => {
 const getHighlights = async (req, res) => {
     const userId = req.user.userId;
 
+    // F04: the list was unbounded. Same limit/offset convention as notes
+    // and search; the applied values ride on headers.
+    const { limit, offset } = parsePagination(req.query);
+
     try {
         // Ask the service for records belonging to this user.
-        const highlights = await loadHighlights(userId);
+        const highlights = await loadHighlights(userId, { limit, offset });
 
-        return res.status(200).json(highlights);
+        return res.status(200)
+            .set("X-Limit", String(limit))
+            .set("X-Offset", String(offset))
+            .json(highlights);
     } catch (error) {
-        console.error(error);
+        logControllerError("highlights.list", "database", error);
 
         return res.status(500).json({
             error: "Failed to load highlights."
@@ -105,7 +114,7 @@ const deleteHighlight = async (req, res) => {
             id: highlight.id
         });
     } catch (error) {
-        console.error(error);
+        logControllerError("highlights.delete", "database", error);
 
         return res.status(500).json({
             error: "Failed to remove highlight."
@@ -143,7 +152,7 @@ const deleteHighlightsInPassage = async (req, res) => {
             removedIds: removed.map((highlight) => highlight.id)
         });
     } catch (error) {
-        console.error(error);
+        logControllerError("highlights.clear-passage", "database", error);
 
         return res.status(500).json({
             error: "Failed to clear highlights."

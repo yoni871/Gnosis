@@ -69,7 +69,8 @@ async function main() {
         if (interrupted) throw new Error('Interrupted.');
         await admin.query(`CREATE DATABASE "${name}"`);
         const url = new URL(`postgresql://gnosis_test:synthetic-test-password@127.0.0.1:${port}/${name}`);
-        const migrate = spawnSync(process.execPath, ['scripts/migrate.js', 'up', '--target', 'test'], {
+        // The importer fixture is the Bible schema only.
+        const migrate = spawnSync(process.execPath, ['scripts/migrate.js', 'up', '--target', 'test', '--project', 'bible'], {
             cwd: path.join(root, 'backend'), env: { ...testEnvironment(), MIGRATION_TEST_DATABASE_URL: url.href },
             encoding: 'utf8', timeout: 90000,
         });
@@ -88,9 +89,21 @@ async function main() {
             GRANT SELECT,INSERT,UPDATE ON bible_chapters TO "${role}";
             GRANT SELECT,INSERT ON bible_verses TO "${role}";
             GRANT USAGE ON SEQUENCE bible_chapters_id_seq,bible_verses_id_seq TO "${role}";
-            INSERT INTO bible_books(id,name) VALUES(1,'Genesis');
-            INSERT INTO bible_translations(id,name) VALUES(4,'Synthetic Translation'),(5,'Synthetic Rollback'),(6,'Synthetic CLI');`);
-        await runTests({ host: '127.0.0.1', port, database: name, user: role, password });
+            INSERT INTO bible_books(id,name) VALUES(1,'Genesis');`);
+        // Allocate the synthetic translation IDs from the sequence instead of
+        // hardcoding them: migrations own bible_translations rows (the licensed
+        // translations already occupy ids 5-9), so fixed ids collide with the
+        // migrated schema. Sequence allocation stays valid no matter how many
+        // translation rows later migrations add.
+        const inserted = await fixture.query(
+            `INSERT INTO bible_translations(name) VALUES($1),($2),($3) RETURNING id, name`,
+            ['Synthetic Translation', 'Synthetic Rollback', 'Synthetic CLI']);
+        const translationIds = {};
+        for (const row of inserted.rows) translationIds[row.name] = row.id;
+        const translations = { persistence: translationIds['Synthetic Translation'],
+            rollback: translationIds['Synthetic Rollback'], cli: translationIds['Synthetic CLI'] };
+        for (const id of Object.values(translations)) assert.ok(Number.isSafeInteger(id) && id >= 1);
+        await runTests({ host: '127.0.0.1', port, database: name, user: role, password, translations });
     } catch (error) { primary = error; }
     try {
         if (fixture) { await fixture.end(); adminClients.delete(fixture); }

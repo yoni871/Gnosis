@@ -1,0 +1,152 @@
+[
+  {
+    "width": 1440,
+    "button": {
+      "x": 1032,
+      "y": 14,
+      "width": 224,
+      "height": 44
+    },
+    "avatar": {
+      "x": 1039,
+      "y": 22,
+      "width": 28,
+      "height": 28
+    },
+    "name": {
+      "width": 149,
+      "scroll": 228,
+      "title": "Alexandria Montgomery-Worthington"
+    },
+    "menu": {
+      "x": 1016,
+      "y": 66,
+      "width": 240,
+      "height": 111
+    },
+    "focus": {
+      "width": "2px",
+      "shadow": "none"
+    }
+  },
+  {
+    "width": 1280,
+    "button": {
+      "x": 952,
+      "y": 14,
+      "width": 224,
+      "height": 44
+    },
+    "avatar": {
+      "x": 959,
+      "y": 22,
+      "width": 28,
+      "height": 28
+    },
+    "name": {
+      "width": 149,
+      "scroll": 228,
+      "title": "Alexandria Montgomery-Worthington"
+    },
+    "menu": {
+      "x": 936,
+      "y": 66,
+      "width": 240,
+      "height": 111
+    },
+    "focus": {
+      "width": "2px",
+      "shadow": "none"
+    }
+  },
+  {
+    "width": 768,
+    "button": {
+      "x": 402.609375,
+      "y": 237,
+      "width": 260,
+      "height": 44
+    },
+    "avatar": {
+      "x": 409.609375,
+      "y": 245,
+      "width": 28,
+      "height": 28
+    },
+    "name": {
+      "width": 185,
+      "scroll": 228,
+      "title": "Alexandria Montgomery-Worthington"
+    },
+    "menu": {
+      "x": 402.609375,
+      "y": 287,
+      "width": 260,
+      "height": 111
+    },
+    "focus": {
+      "width": "2px",
+      "shadow": "none"
+    }
+  },
+  {
+    "width": 390,
+    "button": {
+      "x": 39,
+      "y": 237,
+      "width": 260,
+      "height": 44
+    },
+    "avatar": {
+      "x": 46,
+      "y": 245,
+      "width": 28,
+      "height": 28
+    },
+    "name": {
+      "width": 185,
+      "scroll": 228,
+      "title": "Alexandria Montgomery-Worthington"
+    },
+    "menu": {
+      "x": 39,
+      "y": 287,
+      "width": 260,
+      "height": 111
+    },
+    "focus": {
+      "width": "2px",
+      "shadow": "none"
+    }
+  },
+  {
+    "width": 320,
+    "button": {
+      "x": 37,
+      "y": 237,
+      "width": 246,
+      "height": 44
+    },
+    "avatar": {
+      "x": 44,
+      "y": 245,
+      "width": 28,
+      "height": 28
+    },
+    "name": {
+      "width": 171,
+      "scroll": 228,
+      "title": "Alexandria Montgomery-Worthington"
+    },
+    "menu": {
+      "x": 37,
+      "y": 287,
+      "width": 246,
+      "height": 111
+    },
+    "focus": {
+      "width": "2px",
+      "shadow": "none"
+    }
+  }
+]

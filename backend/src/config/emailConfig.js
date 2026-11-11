@@ -1,10 +1,12 @@
 // Email verification configuration for issue #9.
 //
-// All domain-specific values live outside source code: the Resend API key
-// comes only from RESEND_API_KEY, the sender address only from
-// EMAIL_FROM, and verification links are built only from FRONTEND_URL.
-// Nothing here hardcodes a sender, a domain, or a frontend origin, so a
-// future custom domain requires only dashboard changes and a redeploy.
+// The Resend API key comes only from RESEND_API_KEY, and verification
+// links are built only from FRONTEND_URL. The sender address comes from
+// EMAIL_FROM when set, and otherwise falls back to the product identity
+// (DEFAULT_EMAIL_FROM, defined once in utils/emailTemplate.js, issue
+// #118) — so the sender is a product constant with a per-deployment
+// override, not a value each deployment must remember to set. A
+// provided-but-invalid EMAIL_FROM still fails validation below.
 //
 // Validation is centralized here and imported through app.js, because
 // Vercel does not run server.js: any serverless wrapper must import the
@@ -15,6 +17,7 @@
 // carry a value.
 
 const { validateEmailAddress } = require("../utils/authValidation");
+const { DEFAULT_EMAIL_FROM } = require("../utils/emailTemplate");
 
 const RESEND_API_BASE_URL_DEFAULT = "https://api.resend.com";
 
@@ -49,17 +52,37 @@ function extractEmailAddress(value) {
 // one entry per bad field. Errors name the FIELD only, never the value.
 function validateEmailConfig(env = process.env) {
     const errors = [];
+    const local = env.NODE_ENV === 'development' && env.GNOSIS_LOCAL_DEV === '1';
+    const disabled = ['disabled','mailpit'].includes(env.EMAIL_DELIVERY);
+    if (env.EMAIL_DELIVERY === 'mailpit' && !local) errors.push({ field:'EMAIL_DELIVERY', message:'Mailpit is local-only.' });
+    if (disabled && !local) errors.push({ field: 'EMAIL_DELIVERY', message: 'Disabled email is local-only.' });
+    if (env.EMAIL_DELIVERY && !['disabled', 'resend', 'mailpit'].includes(env.EMAIL_DELIVERY)) {
+        errors.push({ field: 'EMAIL_DELIVERY', message: 'Invalid delivery mode.' });
+    }
     const resendApiKey = typeof env.RESEND_API_KEY === "string" ? env.RESEND_API_KEY : "";
-    if (resendApiKey.length === 0) {
+    if (!disabled && resendApiKey.length === 0) {
         errors.push({ field: "RESEND_API_KEY", message: "RESEND_API_KEY is required." });
     }
-    const emailFromRaw = typeof env.EMAIL_FROM === "string" ? env.EMAIL_FROM : "";
+    // The sender is the product identity by default (issue #118);
+    // EMAIL_FROM overrides it per deployment. An unset or blank
+    // EMAIL_FROM falls back to the default; a provided-but-invalid
+    // address still fails validation.
+    const emailFromRaw = typeof env.EMAIL_FROM === "string" && env.EMAIL_FROM.trim() !== ""
+        ? env.EMAIL_FROM
+        : DEFAULT_EMAIL_FROM;
     const emailFromAddress = extractEmailAddress(emailFromRaw);
-    if (!emailFromAddress || validateEmailAddress(emailFromAddress).error) {
+    if (!disabled && (!emailFromAddress || validateEmailAddress(emailFromAddress).error)) {
         errors.push({ field: "EMAIL_FROM", message: "EMAIL_FROM must be a structurally valid email address." });
     }
     const frontendUrlRaw = typeof env.FRONTEND_URL === "string" ? env.FRONTEND_URL : "";
-    if (!isAbsoluteHttpsUrl(frontendUrlRaw)) {
+    let localOrigin = false;
+    try {
+        const url = new URL(frontendUrlRaw);
+        localOrigin = local && url.protocol === 'http:'
+            && require('./localDevelopment').loopback(url.hostname)
+            && !url.username && !url.password && url.pathname === '/' && !url.search && !url.hash;
+    } catch { /* Invalid URL handled below. */ }
+    if (!isAbsoluteHttpsUrl(frontendUrlRaw) && !localOrigin) {
         errors.push({ field: "FRONTEND_URL", message: "FRONTEND_URL must be an absolute HTTPS URL." });
     }
     if (errors.length > 0) {

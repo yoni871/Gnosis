@@ -1,27 +1,40 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const http = require('node:http');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
 const { startBackend } = require('../helpers/backend-instance');
-const { computeKeyHash, RATE_LIMITED_BODY } = require('../../src/utils/rateLimit');
+const { attemptReservation, computeKeyHash, lockKeyPair, releaseReservations, RATE_LIMITED_BODY } = require('../../src/utils/rateLimit');
 
 const context = contextFromEnvironment(); // Fail before any connection if run directly.
 const RATE_SECRET = 'synthetic-application-test-rate-limit';
-const JWT_SECRET = 'synthetic-application-test-jwt';
+const JWT_SECRET = 'synthetic-application-test-jwt-synthetic-test-secret';
 // Workers run with trust proxy disabled, so every request keys on the
 // loopback socket address.
 const IP = '127.0.0.1';
 
 let database;
 let worker;
+let hibpStub;
 test.before(async () => {
     database = await createTestPool(context);
+    // Loopback HIBP stub (honored only under test isolation): registers
+    // screen passwords against HIBP, and no test may call the real
+    // api.pwnedpasswords.com. Empty range body = not breached.
+    hibpStub = http.createServer((req, res) => {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('');
+    });
+    await new Promise(resolve => hibpStub.listen(0, '127.0.0.1', resolve));
+    process.env.HIBP_API_BASE_URL = `http://127.0.0.1:${hibpStub.address().port}`;
     worker = await startBackend(context);
 });
 test.after(async () => {
     if (worker) await worker.stop();
     if (database) await database.close();
+    if (hibpStub) await new Promise(resolve => hibpStub.close(resolve));
+    delete process.env.HIBP_API_BASE_URL;
 });
 
 async function post(url, path, body, headers = {}) {
@@ -73,6 +86,43 @@ async function seedUser(email, password) {
 // derives how many failures remain before the limit (robust to order).
 // The per-IP bucket is filled by the per-IP test; the both-blocked test
 // runs right after it and relies on that full bucket.
+
+// Lock contention is tested first, while the shared per-IP bucket is still
+// empty, so the blocked login's Retry-After is deterministically 1 and the
+// test leaves the shared bucket untouched (the blocked attempt inserts
+// nothing; the post-release reservation is released).
+test('lock contention returns 429 promptly instead of hanging', async () => {
+    const email = 'lock-contention@example.com';
+    const keyHash = computeKeyHash('login_ip_email', [IP, email], RATE_SECRET);
+    const [key1, key2] = lockKeyPair('login_ip_email', keyHash);
+    // Hold the per-key advisory lock in a separate session, the way a
+    // concurrent in-flight request would.
+    const holder = await database.pool.connect();
+    try {
+        await holder.query('BEGIN');
+        await holder.query('SELECT pg_advisory_xact_lock($1, $2)', [key1, key2]);
+        const started = Date.now();
+        const blocked = await login(worker.url, email, 'wrong-password');
+        const elapsedMs = Date.now() - started;
+        assert.ok(elapsedMs < 5000,
+            `a lock-contention request must return promptly, took ${elapsedMs}ms`);
+        assert.equal(blocked.status, 429);
+        assert.deepEqual(blocked.json, RATE_LIMITED_BODY);
+        assert.equal(Number(blocked.retryAfter), 1,
+            'the lock frees in milliseconds, so the retry is 1 second');
+        assert.equal(await attemptCount('login_ip_email', [IP, email]), 0,
+            'the blocked attempt inserted nothing, so no quota is consumed');
+    } finally {
+        await holder.query('ROLLBACK');
+        holder.release();
+    }
+    // Once the holder releases, a reservation for the same key succeeds.
+    const outcome = await attemptReservation(database.pool, 'login_ip_email', keyHash);
+    assert.equal(outcome.allowed, true, 'the lock is freed once the holder rolls back');
+    await releaseReservations(database.pool, [outcome.reservation]);
+    assert.equal(await attemptCount('login_ip_email', [IP, email]), 0,
+        'the released reservation leaves no row behind');
+});
 
 test('concurrent burst is strict: exactly 5 of 20 attempts pass the email bucket', async () => {
     const email = 'burst@example.com';
@@ -183,7 +233,8 @@ test('registration per-IP limit counts successes and duplicates', async () => {
         assert.equal(result.status, 200);
     }
     const duplicate = await register(worker.url, 'new-0@example.com', 'a-valid-password');
-    assert.equal(duplicate.status, 409, 'a duplicate counts just like a success');
+    assert.equal(duplicate.status, 200, 'a duplicate has the same generic success response and still counts');
+    assert.deepEqual(duplicate.json, { email: 'new-0@example.com' });
     const blocked = await register(worker.url, 'new-4@example.com', 'a-valid-password');
     assert.equal(blocked.status, 429);
     assert.deepEqual(blocked.json, RATE_LIMITED_BODY);
@@ -264,7 +315,9 @@ test('two instances sweeping at once do not error or corrupt the sweep', async (
 
 test('profile reads stay unthrottled', async () => {
     const id = await seedUser('profile@example.com', 'correct-password');
-    const token = jwt.sign({ userId: id }, JWT_SECRET, { expiresIn: '1h' });
+    const sid = require('node:crypto').randomUUID();
+    await database.pool.query("INSERT INTO auth_sessions(id,user_id,expires_at) VALUES ($1,$2,now() + interval '1 hour')", [sid, id]);
+    const token = jwt.sign({ userId: id, sid }, JWT_SECRET, { expiresIn: '15m', issuer: 'gnosis', audience: 'gnosis-api' });
     for (let i = 0; i < 10; i++) {
         const response = await fetch(`${worker.url}/api/auth/profile`, {
             headers: { Authorization: `Bearer ${token}` },
@@ -274,4 +327,62 @@ test('profile reads stay unthrottled', async () => {
         const body = await response.json();
         assert.equal(body.email, 'profile@example.com');
     }
+});
+
+async function refresh(url, cookie) {
+    const response = await fetch(`${url}/api/auth/refresh`, {
+        method: 'POST',
+        headers: { 'X-Gnosis-Session': '1', ...(cookie ? { Cookie: cookie } : {}) },
+        signal: AbortSignal.timeout(10000),
+    });
+    const text = await response.text();
+    return {
+        status: response.status,
+        cookie: response.headers.get('set-cookie')?.split(';')[0],
+        json: text ? JSON.parse(text) : null,
+    };
+}
+
+test('a successful refresh consumes refresh quota', async () => {
+    const before = await attemptCount('refresh_ip', [IP]);
+    // Seed the session and refresh token directly instead of logging in:
+    // the login_ip bucket may already be full from earlier tests in this
+    // file, and this test is about the refresh bucket, not login.
+    const { randomBytes, randomUUID } = require('node:crypto');
+    const { hash } = require('../../src/services/sessionService');
+    const id = await seedUser('refresh-ok@example.com', 'correct-password');
+    const sid = randomUUID();
+    await database.pool.query("INSERT INTO auth_sessions(id,user_id,expires_at) VALUES ($1,$2,now() + interval '1 hour')", [sid, id]);
+    const refreshToken = randomBytes(32).toString('hex');
+    await database.pool.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refreshToken), sid]);
+    const refreshed = await refresh(worker.url, `gnosisRefresh=${refreshToken}`);
+    assert.equal(refreshed.status, 200);
+    assert.ok(refreshed.cookie, 'rotation must set a replacement cookie');
+    // PR #90: successful rotations count (a stolen token must not rotate
+    // without bound), so the refresh_ip count grows by one.
+    assert.equal(await attemptCount('refresh_ip', [IP]), before + 1);
+});
+
+test('refresh is rate limited per IP after 120 failed attempts', async () => {
+    // Tests share one database and one loopback address, so the bucket
+    // may already hold failures from earlier tests in this file; read
+    // the starting count and derive what remains (same pattern as the
+    // per-IP login test above).
+    const start = await attemptCount('refresh_ip', [IP]);
+    const remaining = 120 - start;
+    assert.ok(remaining > 0, `expected refresh headroom, got ${remaining}`);
+    // Each failed attempt must carry a well-formed but unknown refresh
+    // cookie: PR #90's validateRefresh rejects a missing/malformed cookie
+    // with 401 BEFORE the rate limiter runs, so cookie-less attempts do
+    // not consume quota. A fresh token per attempt keeps the per-token
+    // budget (10/min) out of the way so this test exercises the IP cap.
+    const { randomBytes } = require('node:crypto');
+    for (let i = 0; i < remaining; i++) {
+        const bogus = randomBytes(32).toString('hex');
+        assert.equal((await refresh(worker.url, `gnosisRefresh=${bogus}`)).status, 401);
+    }
+    const blocked = await refresh(worker.url, `gnosisRefresh=${randomBytes(32).toString('hex')}`);
+    assert.equal(blocked.status, 429);
+    assert.deepEqual(blocked.json, RATE_LIMITED_BODY);
+    assert.equal(await attemptCount('refresh_ip', [IP]), 120);
 });

@@ -1,0 +1,8 @@
+# Test fixture: excerpt of STEPBible-Data (Tyndale House / STEPBible.org), CC BY 4.0.
+# Source: https://github.com/STEPBible/STEPBible-Data — do not redistribute the full dataset.
+Psa.3.0(3.1)#01=L	מִזְמ֥וֹר	miz.Mor	a psalm	{H4210}	HNcmsa			H4210			{H4210=מִזְמוֹר=melody}					
+Psa.3.0(3.1)#02=L	לְ/דָוִ֑ד	le./da.Vid	of/ David	H9005/{H1732}	HR/Npm			H1732			H9005=ל=to/{H1732=דָּוִד=David»David@Rut.4.17-Rev}					
+Psa.3.0(3.1)#03=L	בְּ֝/בָרְח֗/וֹ	be./va.re.Ch/o	when/ fled/ he	H9003/{H1272}/H9043	HR/Vqcc/Sp3ms			H1272			H9003=ב=in/{H1272=בָּרַח=to flee}/H9043=Ss3m=he					
+Psa.3.0(3.1)#04=L	מִ/פְּנֵ֤י\׀	mi./pe.Nei	from/ before	H9006/{H6440G}\H9015	HR/Ncmpc			H6440G			H9006=מ=from/{H6440G=פָּנֶה=: before»face:2_before;_to;_front}\H9015=׀=separate					
+Psa.3.0(3.1)#05=L	אַבְשָׁל֬וֹם	'av.sha.Lom	Absalom	{H0053}	HNpm			H0053			{H0053=אֲבִישָׁלוֹם=Absalom»Absalom@2Sa.3.3-Psa}					
+Psa.3.0(3.1)#06=L	בְּנֽ/וֹ\׃	be.N/o	son/ his	{H1121A}/H9023\H9016	HNcmsc/Sp3ms			H1121A			{H1121A=בֵּן=: child»son:1_child;_son}/H9023=Ps3m=his\H9016=׃=verseEnd					

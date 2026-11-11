@@ -3,7 +3,7 @@ import "./LandingFooter.css";
 
 const GROUPS = [
     { title: "Explore", links: [{ label: "Bible & Commentary", to: "/bible/Genesis/1" }] },
-    { title: "Gnosis", links: [{ label: "About", to: "/about" }, { label: "Sign In", to: "/login" }, { label: "Create Account", to: "/register" }] },
+    { title: "Gnosis", links: [{ label: "About", to: "/about" }, { label: "Privacy", to: "/privacy" }, { label: "Sign In", to: "/login" }, { label: "Create Account", to: "/register" }] },
 ];
 
 export default function LandingFooter() {
@@ -12,7 +12,10 @@ export default function LandingFooter() {
             <div className="landing-closing-footer-inner">
                 <div className="landing-closing-footer-main">
                     <div className="landing-closing-footer-brand">
-                        <Link to="/" className="landing-closing-logo" aria-label="Gnosis home">
+                        <Link to="/" className="landing-closing-logo" aria-label="Gnosis home" onClick={(event) => {
+                            event.preventDefault();
+                            window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+                        }}>
                             <img src="/gnosis.svg" alt="" width="40" height="40" />
                             <span>Gnosis</span>
                         </Link>

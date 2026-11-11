@@ -2,10 +2,12 @@ const express = require("express");
 const pool = require("../db/db");
 const bcrypt = require("bcrypt");
 const router = express.Router();
-const jwt = require("jsonwebtoken");
+// Public dummy bcrypt value, never an account credential (cost matches signup).
+const UNKNOWN_PASSWORD_HASH = '$2b$12$jafHcnBk3QC6ragiVaN8ae/Y6oKqxqBGFpCmAMhoH31xEbn.K5Lzu';
+const sessions = require("../services/sessionService");
 const authenticateToken = require("../middleware/authMiddleware");
-const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
-const { validateRegisterInput, validateLoginInput, validateEmailAddress, VALIDATION_CODE } = require("../utils/authValidation");
+const { resolveAuthError, internalErrorBody, logAuthFailure, logAuthEvent } = require("../utils/authErrors");
+const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, validateDeleteAccountInput, VALIDATION_CODE } = require("../utils/authValidation");
 const { createRateLimitMiddleware } = require("../utils/rateLimit");
 const {
     VERIFICATION_TTL_MS,
@@ -13,7 +15,15 @@ const {
     hashVerificationToken,
     isValidVerificationTokenFormat,
 } = require("../utils/verification");
+const {
+    PASSWORD_RESET_TTL_MS,
+    generatePasswordResetToken,
+    hashPasswordResetToken,
+} = require("../utils/passwordReset");
 const { createResendClient } = require("../utils/resendClient");
+const { isBreachedPassword } = require("../utils/breachedPasswords");
+const { audit } = require("../utils/auditLog");
+const { recordLoginDevice } = require("../services/loginDevices");
 
 // Issue #3: validation runs as middleware, before the limiter and before
 // any hashing or database access. Only the validated (trimmed) values
@@ -63,6 +73,37 @@ function validateVerify(req, res, next) {
     return next();
 }
 
+// Issue #10: forgot-password takes only an email, verified with the
+// same structural rule as registration; reset-password takes a token
+// and a new password. Both run before the limiter, so invalid input
+// never counts.
+function validateDelete(req, res, next) {
+    const validation = validateDeleteAccountInput(req.body);
+    if (validation.error) {
+        return res.status(400).json({ error: validation.error, code: VALIDATION_CODE });
+    }
+    req.validated = validation.value;
+    return next();
+}
+
+function validateForgot(req, res, next) {
+    const validation = validateForgotPasswordInput(req.body);
+    if (validation.error) {
+        return res.status(400).json({ error: validation.error, code: VALIDATION_CODE });
+    }
+    req.validated = validation.value;
+    return next();
+}
+
+function validateReset(req, res, next) {
+    const validation = validateResetPasswordInput(req.body);
+    if (validation.error) {
+        return res.status(400).json({ error: validation.error, code: VALIDATION_CODE });
+    }
+    req.validated = validation.value;
+    return next();
+}
+
 // Issue #4: rate limiting runs after validation and before the handler.
 // Login is limited per (IP + submitted email) and per IP across accounts;
 // registration is limited per IP. The submitted email (not a looked-up
@@ -89,6 +130,32 @@ const resendRateLimit = createRateLimitMiddleware([
 const verifyRateLimit = createRateLimitMiddleware([
     { policy: "verify_ip", fields: (req, ip) => [ip] },
 ], "verify");
+
+// Issue #10: forgot-password mirrors resend (per-IP+email and per-IP,
+// so a flood against one address cannot lock out others), and
+// reset-password mirrors verify (per-IP token guessing). Both limiters
+// run before any account lookup, so unknown, unverified, and verified
+// addresses all count identically.
+const forgotRateLimit = createRateLimitMiddleware([
+    { policy: "forgot_ip_email", fields: (req, ip) => [ip, req.validated.email] },
+    { policy: "forgot_ip", fields: (req, ip) => [ip] },
+], "forgot");
+
+const resetRateLimit = createRateLimitMiddleware([
+    { policy: "reset_ip", fields: (req, ip) => [ip] },
+], "reset");
+
+// PR4 (F04): refresh was the one auth endpoint with no throttle. The
+// browser-session gate runs first, like validation on the other auth
+// endpoints, so only genuine browser session requests consume quota.
+// PR #90: both successful and failed rotations count (see the /refresh
+// handler), and the budgets are refresh_ip (aggregate flood bound) plus
+// refresh_token (10/min per token) — a stolen token must not rotate
+// without bound. The per-family budget lives in the rotation transaction.
+const refreshRateLimit = createRateLimitMiddleware([
+    { policy: "refresh_ip", fields: (req, ip) => [ip] },
+    { policy: "refresh_token", fields: req => [req.refreshCookie] },
+], "refresh");
 
 // Guarantees a reservation is always settled. Handlers finalize
 // explicitly on every path; this wrapper covers the rest: an unexpected
@@ -124,17 +191,52 @@ const RESEND_GENERIC_BODY = {
     message: "If there is an unverified account for this email, a new verification link has been sent.",
 };
 
+// Issue #10: every forgot-password request shares this one body,
+// whether the address is unknown, unverified, or verified. It never
+// claims an email was sent, so no response can leak account state.
+const FORGOT_GENERIC_BODY = {
+    message: "If there is an account for this email, a password reset link has been sent.",
+};
+
+// Issue #10: every invalid reset token shares this one body, whether
+// the token is superseded, expired, used, nonexistent, or inconsistent
+// with the account. The client learns nothing about which case it hit.
+const RESET_INVALID_BODY = {
+    error: "Invalid or expired password reset link.",
+    code: "INVALID_RESET_LINK",
+};
+
 
 //to register an account
 router.post("/register", validateRegister, registerRateLimit, withRateLimitFinalize(async (req, res) => {
     const { firstName, lastName, email, password } = req.validated;
 
+// Breached-password screening (roadmap T1.7): this handler runs only
+    // after the rate limiter has reserved, and the check runs before any
+    // hashing, so a breached password never reaches bcrypt and the check
+    // cannot be used as a pre-rate-limit oracle. It also runs before any
+    // database access, so an existing and a new address get the same
+    // response and no account state leaks. The rejection is logged with
+    // the allowlisted logger only (route + kind, never the password);
+    // the audit-logging track records breached-password rejections under
+    // the dotted kind name breached_password.rejected (its allowlist does
+    // not accept the hyphenated log label used here).
+    if (await isBreachedPassword(password)) {
+        logAuthFailure("POST /api/auth/register", "breached-password", null);
+        return res.status(400).json({
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: VALIDATION_CODE,
+        });
+    }
+
     // Hashing failures are internal errors for issue #5. Missing or
     // malformed input is rejected above by issue #3 validation and never
-    // reaches this point.
+    // reaches this point. New hashes use bcrypt cost 12 (audit N07);
+    // existing cost-10 hashes still verify on login, and re-hashing
+    // them on next login is a later change, not this one.
     let hashedPassword;
     try {
-        hashedPassword = await bcrypt.hash(password, 10);
+        hashedPassword = await bcrypt.hash(password, 12);
     } catch (error) {
         logAuthFailure("POST /api/auth/register", "password", error);
         await req.rateLimit.finalize("release");
@@ -170,15 +272,11 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
             user = result.rows[0];
         } catch (error) {
             await client.query("ROLLBACK").catch(() => {});
-            // Duplicate email is the only client error here, exactly as
-            // before: any 23505 from the user insert is the email clash.
+            // Do not disclose existing accounts. Duplicate signup neither
+            // changes the account nor sends another verification email.
             if (error && error.code === "23505") {
-                logAuthFailure("POST /api/auth/register", "database", error);
                 await req.rateLimit.finalize("count");
-                return res.status(409).json({
-                    error: "An account with that email already exists.",
-                    code: "EMAIL_EXISTS",
-                });
+                return res.status(200).json({ email });
             }
             logAuthFailure("POST /api/auth/register", "database", error);
             await req.rateLimit.finalize("release");
@@ -206,7 +304,7 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
     }
 
     // Registration successes count toward the per-IP limit, as do
-    // duplicate-email (409) attempts above.
+    // duplicate-email attempts above.
     await req.rateLimit.finalize("count");
     // Email sending happens only after commit, with no lock held. A send
     // failure preserves the unverified account and changes nothing about
@@ -218,12 +316,17 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
     }
     // No auto-login for issue #9: the frontend shows the check-email
     // state for this address instead of a session.
-    return res.json(user);
+    return res.json({ email });
 }));
 
 
 //to login into an exisitng account
-router.post("/login", validateLogin, loginRateLimit, withRateLimitFinalize(async (req, res) => {
+router.post("/login", (req, res, next) => {
+    if (req.headers.origin && req.headers.origin !== new URL(process.env.FRONTEND_URL).origin) {
+        return res.status(403).json({ error: "Invalid session request.", code: "SESSION_REQUEST_INVALID" });
+    }
+    next();
+}, validateLogin, loginRateLimit, withRateLimitFinalize(async (req, res) => {
     const { email, password } = req.validated;
 
     let result;
@@ -239,15 +342,6 @@ router.post("/login", validateLogin, loginRateLimit, withRateLimitFinalize(async
         return res.status(status).json(body);
     }
 
-    if(result.rows.length === 0) {
-        // Unknown-email failures count, exactly like wrong passwords.
-        await req.rateLimit.finalize("count");
-        return res.status(401).json({
-            error:"Invalid email or password.",
-            code: "INVALID_CREDENTIALS"
-        })
-    }
-
     const user = result.rows[0];
 
     // Previously these two awaits ran inside the pool.query callback, so a
@@ -256,15 +350,18 @@ router.post("/login", validateLogin, loginRateLimit, withRateLimitFinalize(async
     // run inside this handler's own try/catch and become controlled 500s.
     let passwordMatch;
     try {
-        passwordMatch = await bcrypt.compare(password, user.password_hash);
+        passwordMatch = await bcrypt.compare(password, user ? user.password_hash : UNKNOWN_PASSWORD_HASH);
     } catch (error) {
         logAuthFailure("POST /api/auth/login", "password", error);
         await req.rateLimit.finalize("release");
         return res.status(500).json(internalErrorBody("login"));
     }
 
-    if(!passwordMatch) {
+    if(!user || !passwordMatch) {
         await req.rateLimit.finalize("count");
+        // Best-effort, after the credential verdict. Unknown emails
+        // record a null user; the response is unchanged either way.
+        await audit(pool, "login.failure", user ? user.id : null);
         return res.status(401).json({
             error: "Invalid email or password.",
             code: "INVALID_CREDENTIALS"
@@ -285,33 +382,205 @@ router.post("/login", validateLogin, loginRateLimit, withRateLimitFinalize(async
         });
     }
 
-    let token;
+    let session;
     try {
-        token = jwt.sign(
-            { userId: user.id },
-            process.env.JWT_SECRET,
-            { expiresIn: "7d" }
-        );
+        session = await sessions.createSession(user.id, user.password_hash);
     } catch (error) {
-        logAuthFailure("POST /api/auth/login", "token", error);
+        logAuthFailure("POST /api/auth/login", "session", error);
         await req.rateLimit.finalize("release");
         return res.status(500).json(internalErrorBody("login"));
     }
+    if (!session) {
+        await req.rateLimit.finalize("count");
+        // The password changed after login verified it: the same
+        // credential failure as a wrong password.
+        await audit(pool, "login.failure", user.id);
+        return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
+    }
+    sessions.setCookie(res, session.refresh);
+    res.set("Cache-Control", "no-store");
 
     // Login successes do not count and do not reset prior failures.
     await req.rateLimit.finalize("release");
+    // Best-effort, after the session committed. audit() never throws,
+    // so a failed insert cannot change the 200 response.
+    await audit(pool, "login.success", user.id);
+    // T2.6: best-effort new-device detection; never changes the 200
+    // response and never blocks the login (step-up MFA is deferred).
+    await recordLoginDevice(pool, user.id, req.ip, req.get("user-agent"));
     res.json({
-        token: token
+        token: session.token, expiresIn: sessions.ACCESS_SECONDS
     });
 }));
 
 
+// Cookie endpoints require an explicit browser session request and a trusted origin.
+// PR #90: validate the refresh cookie before touching the store (absent or
+// malformed -> 401), and count BOTH successful and failed rotations against
+// the refresh budgets (a stolen token must not rotate without bound).
+function validateRefresh(req, res, next) {
+    const refresh = sessions.readCookie(req);
+    if (typeof refresh !== "string" || !/^[a-f0-9]{64}$/.test(refresh)) {
+        sessions.clearCookie(res);
+        return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
+    }
+    req.refreshCookie = refresh;
+    next();
+}
+router.post("/refresh", (req, res, next) => { res.set("Cache-Control", "no-store"); next(); },
+    sessions.browserSessionRequest, validateRefresh, refreshRateLimit, withRateLimitFinalize(async (req, res) => {
+    const session = await sessions.rotateSession(req.refreshCookie);
+    // Successful and invalid credential attempts both consume reservations.
+    // An internal throw is released by withRateLimitFinalize and fails closed.
+    await req.rateLimit.finalize("count");
+    if (session?.limited) {
+        return res.status(429).set("Retry-After", String(session.retryAfter))
+            .json({ error: "Too many attempts. Please try again later.", code: "RATE_LIMITED" });
+    }
+    if (!session) {
+        sessions.clearCookie(res);
+        return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
+    }
+    sessions.setCookie(res, session.refresh, session.expiresAt);
+    res.json({ token: session.token, expiresIn: sessions.ACCESS_SECONDS });
+}));
+router.post("/logout", sessions.browserSessionRequest, async (req, res) => {
+    await sessions.revokeRefresh(sessions.readCookie(req));
+    await sessions.revokeAccess(req.headers.authorization);
+    sessions.clearCookie(res);
+    res.set("Cache-Control", "no-store").sendStatus(204);
+});
+router.post("/logout-all", authenticateToken, async (req, res) => {
+    await pool.query("UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1", [req.user.userId]);
+    await audit(pool, "logout.all", req.user.userId);
+    sessions.clearCookie(res);
+    res.set("Cache-Control", "no-store").sendStatus(204);
+});
+
+// Self-serve account deletion. The current password is the
+// confirmation: deletion is irreversible, so a stolen access token
+// alone must not be enough to erase an account. The whole deletion
+// runs in one transaction — revoke every session, then delete the
+// user row — so a failure leaves the account exactly as it was.
+// The user-owned rows (notes, bookmarks, highlights, reading state,
+// verification/reset tokens, sessions, and refresh tokens via their
+// session) are removed by the schema's ON DELETE CASCADE rules, not
+// by explicit DELETEs here: the runtime role deliberately holds no
+// DELETE grant on those tables, and the cascade is the schema's own
+// stated deletion mechanism (see the baseline migration). The one
+// grant this endpoint needs is DELETE ON users, applied by the
+// operator at deploy time (see docs/AccountDeletion.md); without it
+// the delete fails closed with a 500 and nothing is removed. The
+// refresh cookie is cleared with the success response, and the
+// deleted access token stops working immediately because its session
+// row is gone.
+//
+// Audit note: the audit-logging track (branch security/audit-logging,
+// not yet merged) owns the audit_events table and the audit() helper.
+// Once this code rebases onto it, emit two events from this handler,
+// with the user id captured BEFORE the user row is deleted:
+//   account-deletion-requested (after the password confirms, before
+//   the transaction) and account-deletion-completed (after commit).
+// Until then the completion is logged through the allowlisted
+// logAuthEvent helper only (route + kind, no user data).
+router.delete("/account", authenticateToken, validateDelete, async (req, res) => {
+    const userId = req.user.userId;
+
+    // The password check runs before the transaction and before any
+    // lock: no lock is ever held across bcrypt, following the reset
+    // flow. A wrong password is an ordinary client error and is not
+    // logged; the response is the same invalid-credentials body as
+    // login, so it reveals nothing about account state.
+    let storedHash;
+    try {
+        const result = await pool.query(
+            "SELECT password_hash FROM users WHERE id = $1",
+            [userId]
+        );
+        storedHash = result.rows[0] ? result.rows[0].password_hash : null;
+    } catch (error) {
+        logAuthFailure("DELETE /api/auth/account", "database", error);
+        return res.status(500).json(internalErrorBody("delete"));
+    }
+    let passwordMatch = false;
+    if (storedHash) {
+        try {
+            passwordMatch = await bcrypt.compare(req.validated.password, storedHash);
+        } catch (error) {
+            logAuthFailure("DELETE /api/auth/account", "password", error);
+            return res.status(500).json(internalErrorBody("delete"));
+        }
+    }
+    if (!storedHash || !passwordMatch) {
+        return res.status(401).json({
+            error: "Invalid email or password.",
+            code: "INVALID_CREDENTIALS",
+        });
+    }
+
+    let client;
+    try {
+        client = await pool.connect();
+    } catch (error) {
+        logAuthFailure("DELETE /api/auth/account", "database", error);
+        return res.status(500).json(internalErrorBody("delete"));
+    }
+    try {
+        await client.query("BEGIN");
+        const userResult = await client.query(
+            "SELECT password_hash FROM users WHERE id = $1 FOR UPDATE",
+            [userId]
+        );
+        const user = userResult.rows[0];
+        // Recheck the credential login verified after acquiring the
+        // lock, following the session-creation pattern: a password
+        // change (or a concurrent deletion) between the check above
+        // and this lock must not delete the account on a stale
+        // snapshot.
+        if (!user || user.password_hash !== storedHash) {
+            await client.query("ROLLBACK");
+            return res.status(401).json({
+                error: "Invalid email or password.",
+                code: "INVALID_CREDENTIALS",
+            });
+        }
+        // Sessions are revoked in the same transaction as the
+        // deletion, then removed with the user row by the foreign-key
+        // cascade (auth_refresh_tokens cascades from auth_sessions).
+        // The explicit revoke makes the intent visible here instead
+        // of relying on the cascade alone.
+        await client.query(
+            "UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1 AND revoked_at IS NULL",
+            [userId]
+        );
+        // The user-row delete removes every user-owned row through
+        // the schema's ON DELETE CASCADE rules (notes, bookmarks,
+        // highlights, user_reading_state, email_verification_tokens,
+        // password_reset_tokens, auth_sessions, and auth_refresh_tokens
+        // via auth_sessions). No explicit child DELETEs: the runtime
+        // role holds no DELETE grant on those tables, by design.
+        await client.query("DELETE FROM users WHERE id = $1", [userId]);
+        await client.query("COMMIT");
+    } catch (error) {
+        await client.query("ROLLBACK").catch(() => {});
+        logAuthFailure("DELETE /api/auth/account", "database", error);
+        return res.status(500).json(internalErrorBody("delete"));
+    } finally {
+        client.release();
+    }
+    sessions.clearCookie(res);
+    res.set("Cache-Control", "no-store");
+    logAuthEvent("DELETE /api/auth/account", "account-deleted");
+    return res.json({ deleted: true });
+});
+
 //to verify an email address with a link token
-// Lock order for every verify and resend transaction: resolve the user
-// (or the token's user) for routing, lock the user row FOR UPDATE, then
-// lock and recheck the token rows, then write and commit. No lock is
-// ever held across a Resend call, and token rows are locked in id order,
-// so concurrent verify and resend pairs cannot deadlock.
+// Lock order for every verify, resend, forgot, and reset transaction:
+// resolve the user (or the token's user) for routing, lock the user
+// row FOR UPDATE, then lock and recheck the token rows, then write and
+// commit. No lock is ever held across a Resend call, and token rows
+// are locked in id order, so concurrent verify/resend/forgot/reset
+// pairs cannot deadlock.
 router.post("/verify-email", validateVerify, verifyRateLimit, withRateLimitFinalize(async (req, res) => {
     const tokenHash = hashVerificationToken(req.validated.token);
 
@@ -503,6 +772,247 @@ router.post("/resend-verification", validateResend, resendRateLimit, withRateLim
         logAuthFailure("POST /api/auth/resend-verification", "email", error);
     }
     return res.status(200).json(RESEND_GENERIC_BODY);
+}));
+
+
+//to request a password reset email
+// Issue #10: only verified accounts receive a reset link. An
+// unverified account cannot log in until it verifies, so a reset link
+// would be useless to it — the login page's resend flow is its path.
+// Unknown and unverified addresses share the exact generic response
+// with verified ones, and they count exactly the same: the limiter
+// ran before this lookup, so no response can leak account state.
+router.post("/forgot-password", validateForgot, forgotRateLimit, withRateLimitFinalize(async (req, res) => {
+    const { email } = req.validated;
+
+    let userRow;
+    try {
+        const result = await pool.query(
+            "SELECT id, email_verified_at FROM users WHERE email = $1",
+            [email]
+        );
+        userRow = result.rows[0];
+    } catch (error) {
+        logAuthFailure("POST /api/auth/forgot-password", "database", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("forgot"));
+    }
+
+    if (!userRow || !userRow.email_verified_at) {
+        await req.rateLimit.finalize("count");
+        return res.status(200).json(FORGOT_GENERIC_BODY);
+    }
+
+    let client;
+    try {
+        client = await pool.connect();
+    } catch (error) {
+        logAuthFailure("POST /api/auth/forgot-password", "database", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("forgot"));
+    }
+    let token;
+    try {
+        await client.query("BEGIN");
+        const locked = await client.query(
+            "SELECT email_verified_at FROM users WHERE id = $1 FOR UPDATE",
+            [userRow.id]
+        );
+        if (!locked.rows[0] || !locked.rows[0].email_verified_at) {
+            // Deleted or unverified between routing and locking: same
+            // generic response.
+            await client.query("ROLLBACK");
+            await req.rateLimit.finalize("count");
+            return res.status(200).json(FORGOT_GENERIC_BODY);
+        }
+        // Lock every unused token row in deterministic id order, then
+        // supersede exactly the locked set. The user-row lock serializes
+        // concurrent forgot requests for this account, so both may
+        // complete and send, with the later one superseding the earlier.
+        await client.query(
+            `
+            SELECT id FROM password_reset_tokens
+            WHERE user_id = $1 AND consumed_reason IS NULL
+            ORDER BY id FOR UPDATE
+            `,
+            [userRow.id]
+        );
+        await client.query(
+            `
+            UPDATE password_reset_tokens
+            SET used_at = now(), consumed_reason = 'superseded'
+            WHERE user_id = $1 AND consumed_reason IS NULL
+            `,
+            [userRow.id]
+        );
+        const fresh = generatePasswordResetToken();
+        token = fresh.token;
+        await client.query(
+            `
+            INSERT INTO password_reset_tokens(user_id, token_hash, expires_at)
+            VALUES ($1, $2, $3)
+            `,
+            [userRow.id, fresh.tokenHash, new Date(Date.now() + PASSWORD_RESET_TTL_MS)]
+        );
+        await client.query("COMMIT");
+    } catch (error) {
+        await client.query("ROLLBACK").catch(() => {});
+        logAuthFailure("POST /api/auth/forgot-password", "database", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("forgot"));
+    } finally {
+        client.release();
+    }
+
+    // The transaction is closed before any network call: no lock is held
+    // across the Resend request. A send failure preserves the account
+    // and its fresh token, and the response is unchanged either way.
+    await req.rateLimit.finalize("count");
+    try {
+        await createResendClient().sendPasswordResetEmail({ to: email, token });
+    } catch (error) {
+        logAuthFailure("POST /api/auth/forgot-password", "email", error);
+    }
+    return res.status(200).json(FORGOT_GENERIC_BODY);
+}));
+
+
+//to reset a password with a link token
+// A successful reset sets the new password and consumes the token; any
+// other still-unused token for the same account is superseded in the
+// same transaction, so an older link cannot outlive the password it
+// was issued against. All existing sessions are revoked atomically with the
+// password change. A reset does not log the user in — they sign in again.
+router.post("/reset-password", validateReset, resetRateLimit, withRateLimitFinalize(async (req, res) => {
+    const tokenHash = hashPasswordResetToken(req.validated.token);
+
+    let tokenRow;
+    try {
+        const result = await pool.query(
+            `
+            SELECT id, user_id, expires_at, used_at, consumed_reason
+            FROM password_reset_tokens
+            WHERE token_hash = $1
+            `,
+            [tokenHash]
+        );
+        tokenRow = result.rows[0];
+    } catch (error) {
+        logAuthFailure("POST /api/auth/reset-password", "database", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("reset"));
+    }
+
+    if (!tokenRow) {
+        // Unknown token: structurally valid, so it counts against the
+        // reset limit, but the response is the generic one.
+        await req.rateLimit.finalize("count");
+        return res.status(400).json(RESET_INVALID_BODY);
+    }
+
+    // Breached-password screening (roadmap T1.7): same ordering as
+    // registration — after the rate limiter and after the token is known
+    // valid, before hashing. An unknown token already returned the
+    // generic body above without ever calling the breach service.
+    if (await isBreachedPassword(req.validated.password)) {
+        logAuthFailure("POST /api/auth/reset-password", "breached-password", null);
+        return res.status(400).json({
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: VALIDATION_CODE,
+        });
+    }
+
+    // Hashing runs before the transaction and before any lock: a hash
+    // failure is an internal error, and no lock is ever held across
+    // bcrypt. Only a known token reaches this point. New hashes use
+    // bcrypt cost 12 (audit N07); existing cost-10 hashes still verify.
+    let hashedPassword;
+    try {
+        hashedPassword = await bcrypt.hash(req.validated.password, 12);
+    } catch (error) {
+        logAuthFailure("POST /api/auth/reset-password", "password", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("reset"));
+    }
+
+    let client;
+    try {
+        client = await pool.connect();
+    } catch (error) {
+        logAuthFailure("POST /api/auth/reset-password", "database", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("reset"));
+    }
+    try {
+        await client.query("BEGIN");
+        const userResult = await client.query(
+            "SELECT id FROM users WHERE id = $1 FOR UPDATE",
+            [tokenRow.user_id]
+        );
+        const user = userResult.rows[0];
+        const freshResult = await client.query(
+            `
+            SELECT id, expires_at, used_at, consumed_reason
+            FROM password_reset_tokens
+            WHERE id = $1 FOR UPDATE
+            `,
+            [tokenRow.id]
+        );
+        const current = freshResult.rows[0];
+        const now = new Date();
+        // Every non-success state shares the generic response: used,
+        // superseded, expired, missing user, or an inconsistent row
+        // (used but unreasoned) is impossible by construction and still
+        // gets no detail. A used token is never idempotent-success here:
+        // unlike verification, a replayed reset must not re-apply.
+        if (!user || !current || current.consumed_reason !== null
+            || new Date(current.expires_at) <= now) {
+            await client.query("ROLLBACK");
+            await req.rateLimit.finalize("count");
+            return res.status(400).json(RESET_INVALID_BODY);
+        }
+        await client.query(
+            "UPDATE users SET password_hash = $1 WHERE id = $2",
+            [hashedPassword, user.id]
+        );
+        // Holding the user lock serializes login issuance against recovery.
+        // Refresh locks the session family: either it finishes first and the
+        // family is revoked here, or it waits and sees the revocation.
+        await client.query(
+            "UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1 AND revoked_at IS NULL",
+            [user.id]
+        );
+        await client.query(
+            `
+            UPDATE password_reset_tokens
+            SET used_at = now(), consumed_reason = 'used'
+            WHERE id = $1
+            `,
+            [current.id]
+        );
+        await client.query(
+            `
+            UPDATE password_reset_tokens
+            SET used_at = now(), consumed_reason = 'superseded'
+            WHERE user_id = $1 AND consumed_reason IS NULL AND id <> $2
+            `,
+            [user.id, current.id]
+        );
+        await client.query("COMMIT");
+        // Best-effort, after the password change, session revocation,
+        // and token consumption committed. audit() never throws, so a
+        // failed insert cannot change the 200 response.
+        await audit(pool, "password_reset.completed", user.id);
+        await req.rateLimit.finalize("count");
+        return res.status(200).json({ reset: true });
+    } catch (error) {
+        await client.query("ROLLBACK").catch(() => {});
+        logAuthFailure("POST /api/auth/reset-password", "database", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("reset"));
+    } finally {
+        client.release();
+    }
 }));
 
 

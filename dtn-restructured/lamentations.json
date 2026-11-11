@@ -1,0 +1,295 @@
+{
+  "book": "Lamentations",
+  "commentary": "Darby Translation Notes",
+  "author": "John Nelson Darby",
+  "entries": [
+    {
+      "start_chapter": 1,
+      "start_verse": 1,
+      "end_chapter": 1,
+      "end_verse": 1,
+      "title": "",
+      "content": "(a-0) In chs. 1 and 2 the initial letter of each verse, consisting of three parts or lines, follows the alphabetical order."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 5,
+      "end_chapter": 1,
+      "end_verse": 5,
+      "title": "",
+      "content": "adversaries (b-2) adversary. (b-29) Or 'oppressor,' Tzar; so vers. 7,10,17. see Note o, Ps. 8.2, and Ps. 78.61. head, (c-6) See Deut. 28.44."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 7,
+      "end_chapter": 1,
+      "end_verse": 7,
+      "title": "",
+      "content": "wanderings, (d-10) Or 'miseries.' see ch. 3.19; Isa. 58.7. into (e-15) Or 'by.' ruin. (f-49) Or 'cessation' or 'days of rest,' and see Lev. 26.43."
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 8,
+      "end_chapter": 1,
+      "end_verse": 8,
+      "title": "",
+      "content": "grievously (g-3) Lit. 'sinned a sin.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 11,
+      "end_chapter": 1,
+      "end_verse": 11,
+      "title": "",
+      "content": "soul. (a-19) Or 'life.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 13,
+      "end_chapter": 1,
+      "end_verse": 13,
+      "title": "",
+      "content": "prevaileth (b-13) Or 'he causeth it to prevail.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 15,
+      "end_chapter": 1,
+      "end_verse": 15,
+      "title": "",
+      "content": "assembly (c-19) Or 'a solemn assembly.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 17,
+      "end_chapter": 1,
+      "end_verse": 17,
+      "title": "",
+      "content": "him; (d-24) Or 'Jehovah hath given his adversaries round about charge against Jacob.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 18,
+      "end_chapter": 1,
+      "end_verse": 18,
+      "title": "",
+      "content": "commandment. (e-10) Lit. 'his mouth.'"
+    },
+    {
+      "start_chapter": 1,
+      "start_verse": 19,
+      "end_chapter": 1,
+      "end_verse": 19,
+      "title": "",
+      "content": "soul. (a-28) Or 'life.'"
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 3,
+      "end_chapter": 2,
+      "end_verse": 3,
+      "title": "",
+      "content": "his (a-16) Or 'turned back his' (i.e. Israel's)."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 6,
+      "end_chapter": 2,
+      "end_verse": 6,
+      "title": "",
+      "content": "assembly. (b-18) feast (b-23) Or 'solemn assembly.' The same word appears in the original for 'assembly,' ch. 1.15 and here, and set feast. Num. 10.10."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 7,
+      "end_chapter": 2,
+      "end_verse": 7,
+      "title": "",
+      "content": "feast. (b-45) Or 'solemn assembly.' The same word appears in the original for 'assembly,' ch. 1.15 and here, and set feast. Num. 10.10."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 8,
+      "end_chapter": 2,
+      "end_verse": 8,
+      "title": "",
+      "content": "destroying; (c-26) Lit. 'swallowing up,' as vers. 2,5,16."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 14,
+      "end_chapter": 2,
+      "end_verse": 14,
+      "title": "",
+      "content": "expulsion. (a-33) Or 'seduction,' and see Jer. 27.10."
+    },
+    {
+      "start_chapter": 2,
+      "start_verse": 22,
+      "end_chapter": 2,
+      "end_verse": 22,
+      "title": "",
+      "content": "side; (b-17) See Jer. 6.25."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 1,
+      "end_chapter": 3,
+      "end_verse": 1,
+      "title": "",
+      "content": "(c-0) In this chapter, each verse in every succeeding set of three begins with the same Hebrew letter; and the whole in alphabetical order. man (d-4) Geber; and so in vers. 27,35,39. see Job 3.3."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 13,
+      "end_chapter": 3,
+      "end_verse": 13,
+      "title": "",
+      "content": "arrows (a-5) Lit. 'sons.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 19,
+      "end_chapter": 3,
+      "end_verse": 19,
+      "title": "",
+      "content": "wandering, (b-7) Or 'my misery.' see ch. 1.7."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 39,
+      "end_chapter": 3,
+      "end_verse": 39,
+      "title": "",
+      "content": "man (c-8) Geber, Job 3.3. 'living man' in this verse is Adam. punishment (d-11) chet; sin, also punishment, Isa. 1.18, 'sins.' see Zech. 14.19."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 47,
+      "end_chapter": 3,
+      "end_verse": 47,
+      "title": "",
+      "content": "ruin. (e-11) Lit. 'breach.' see Jer. 6.14; 8.21; Amos 6.6."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 48,
+      "end_chapter": 3,
+      "end_verse": 48,
+      "title": "",
+      "content": "ruin (e-11) Lit. 'breach.' see Jer. 6.14; 8.21; Amos 6.6."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 52,
+      "end_chapter": 3,
+      "end_verse": 52,
+      "title": "",
+      "content": "me (a-10) Or 'Mine enemies have without cause chased me.'"
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 53,
+      "end_chapter": 3,
+      "end_verse": 53,
+      "title": "",
+      "content": "pit, (b-9) See Note, Jer. 37.16."
+    },
+    {
+      "start_chapter": 3,
+      "start_verse": 58,
+      "end_chapter": 3,
+      "end_verse": 58,
+      "title": "",
+      "content": "cause (c-6) Lit. 'causes.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 1,
+      "end_chapter": 4,
+      "end_verse": 1,
+      "title": "",
+      "content": "(d-0) In this chapter the initial Hebrew letter of each verse, consisting of two parts or lines, follows the alphabetical order."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 6,
+      "end_chapter": 4,
+      "end_verse": 6,
+      "title": "",
+      "content": "punishment (e-3) * The Hebrew word is used for iniquity, also the punishment of iniquity, as here and ver. 22, and three times in Ezek. 14.10. First used in Gen. 4.13. see Zech. 14.19, where, however, a different word is used. See Lam. 3.39."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 7,
+      "end_chapter": 4,
+      "end_verse": 7,
+      "title": "",
+      "content": "Nazarites (f-2) Or 'princes.'"
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 15,
+      "end_chapter": 4,
+      "end_verse": 15,
+      "title": "",
+      "content": "Unclean! (a-6) See Isa. 52.11."
+    },
+    {
+      "start_chapter": 4,
+      "start_verse": 16,
+      "end_chapter": 4,
+      "end_verse": 16,
+      "title": "",
+      "content": "divided (b-6) Or 'hath dispersed,' see Gen. 49.7."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 6,
+      "end_chapter": 5,
+      "end_verse": 6,
+      "title": "",
+      "content": "Asshur, (c-10) i.e. the Assyrians."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 8,
+      "end_chapter": 5,
+      "end_verse": 8,
+      "title": "",
+      "content": "deliverer (d-8) Lit. 'none that rendeth away.' see Ps. 136.24."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 10,
+      "end_chapter": 5,
+      "end_verse": 10,
+      "title": "",
+      "content": "gloweth (e-3) * Or 'fiery red,' as 'burned,' Gen. 43.30; 'yearned,' 1Kings 3.26; 'kindled,' Hos. 11.8."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 12,
+      "end_chapter": 5,
+      "end_verse": 12,
+      "title": "",
+      "content": "elders (f-11) Or 'the aged,' as ch. 4.16."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 14,
+      "end_chapter": 5,
+      "end_verse": 14,
+      "title": "",
+      "content": "music. (a-13) * Neginoth, 'stringed instruments,' as Title, Ps 4, 6, 54, 55, 61, 67, 76. The verb is, 'to strike the strings:' Isa. 38.20; Lam. 3.14; Hab. 3.19."
+    },
+    {
+      "start_chapter": 5,
+      "start_verse": 19,
+      "end_chapter": 5,
+      "end_verse": 19,
+      "title": "",
+      "content": "dwellest (b-3) Or 'sittest.' see Ps. 80.1."
+    }
+  ]
+}

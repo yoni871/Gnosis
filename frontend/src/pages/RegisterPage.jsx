@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import Seo from "../components/Seo";
+import PasswordInput from "../components/PasswordInput";
 import { pageUrl } from "../utils/seo";
 
 export default function RegisterPage() {
@@ -98,7 +99,7 @@ export default function RegisterPage() {
             ">
 
                 <Link
-                    to="/bible/Genesis/1"
+                    to="/"
                     className="
                         mb-4
                         block
@@ -239,7 +240,7 @@ export default function RegisterPage() {
                                     leading-6
                                     text-[var(--text-muted)]
                                 ">
-                                    We sent a verification link to{" "}
+                                    If this address can be registered, a verification link has been sent to{" "}
                                     <span className="
                                         font-semibold
                                         text-[var(--text-primary)]
@@ -511,9 +512,8 @@ export default function RegisterPage() {
                                     Password
                                 </label>
 
-                                <input
-                                    id="password" 
-                                    type="password"
+                                <PasswordInput
+                                    id="password"
                                     value={password}
                                     onChange={(event) => {
                                         setPassword(event.target.value);
@@ -633,6 +633,25 @@ export default function RegisterPage() {
                                 "
                             >
                                 Sign in
+                            </Link>
+                        </p>
+
+                        <p className="
+                            mt-4
+                            text-[12px]
+                            text-[var(--text-muted)]
+                        ">
+                            <Link
+                                to="/privacy"
+                                className="
+                                    underline
+                                    decoration-[var(--border-control)]
+                                    underline-offset-4
+                                    transition
+                                    hover:decoration-[var(--color-brand)]
+                                "
+                            >
+                                Privacy Policy
                             </Link>
                         </p>
                 </div>

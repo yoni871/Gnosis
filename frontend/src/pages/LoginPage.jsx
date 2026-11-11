@@ -1,12 +1,16 @@
 import { resendVerification } from "../services/authService";
+import { getReadingState } from "../services/readingStateService";
+import { readingStateUrl } from "../utils/readingState";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import Seo from "../components/Seo";
+import PasswordInput from "../components/PasswordInput";
 import { pageUrl } from "../utils/seo";
 
 export default function LoginPage() {
     const {
+        getAccessToken,
         login, //performs complete login process
         isAuthLoading //tells the from whether authentication is currently processing
     } = useContext(AuthContext);
@@ -21,6 +25,31 @@ export default function LoginPage() {
     // generic error. The branch is on the error CODE, never the text.
     const [unverifiedEmail, setUnverifiedEmail] = useState("");
     const [resendStatus, setResendStatus] = useState("idle");
+    // Picking up where the reader stopped takes one extra round trip
+    // after the profile lands; the button shows it instead of looking
+    // finished while the reader is still being found.
+    const [isResuming, setIsResuming] = useState(false);
+
+    // After login, pick up where the reader stopped. A missing position
+    // (404) or any failure to load it falls back to Genesis 1 — login
+    // itself already succeeded, so a resume failure must not strand the
+    // reader on the login page. Read the current in-memory credential after
+    // login completes rather than the context snapshot from before submission.
+    async function resumeUrl() {
+        setIsResuming(true);
+        try {
+            const token = getAccessToken();
+            if (!token) {
+                return "/bible/Genesis/1";
+            }
+            const saved = await getReadingState(token);
+            return saved ? readingStateUrl(saved) : "/bible/Genesis/1";
+        } catch {
+            return "/bible/Genesis/1";
+        } finally {
+            setIsResuming(false);
+        }
+    }
 
     //when a form is submitted, the browser creates a submit event
     //and passes it to the handler
@@ -39,7 +68,7 @@ export default function LoginPage() {
             // A null profile means this attempt was superseded by a
             // newer auth action (issue #6) — do not navigate for it.
             if (profile) {
-                navigate("/bible/Genesis/1");
+                navigate(await resumeUrl());
             }
         } catch (error) {
             if (error.code === "EMAIL_NOT_VERIFIED") {
@@ -98,7 +127,7 @@ export default function LoginPage() {
             ">
 
                 <Link
-                    to="/bible/Genesis/1"
+                    to="/"
                     className="
                         mb-4
                         block
@@ -289,9 +318,8 @@ export default function LoginPage() {
                                     Password
                                 </label>
 
-                                <input
-                                    id="password" 
-                                    type="password"
+                                <PasswordInput
+                                    id="password"
                                     value={password}
                                     onChange={(event) => {
                                         setPassword(event.target.value);
@@ -317,6 +345,27 @@ export default function LoginPage() {
                                     "
                                 />
                             </div>
+
+                            <p className="
+                                text-right
+                                text-[12px]
+                                text-[var(--text-muted)]
+                            ">
+                                <Link
+                                    to="/forgot-password"
+                                    className="
+                                        font-semibold
+                                        text-[var(--color-brand)]
+                                        underline
+                                        decoration-[var(--border-control)]
+                                        underline-offset-4
+                                        transition
+                                        hover:decoration-[var(--color-brand)]
+                                    "
+                                >
+                                    Forgot your password?
+                                </Link>
+                            </p>
 
                             {loginError && (
                                 <p
@@ -392,7 +441,7 @@ export default function LoginPage() {
 
                             <button
                                 type="submit"
-                                disabled={isAuthLoading}
+                                disabled={isAuthLoading || isResuming}
                                 className="
                                     group
                                     mt-2
@@ -418,7 +467,11 @@ export default function LoginPage() {
                                 "
                             >
                                 <span>
-                                    {isAuthLoading ? "Signing in..." : "Sign in"}
+                                    {isAuthLoading
+                                        ? "Signing in..."
+                                        : isResuming
+                                            ? "Opening your place…"
+                                            : "Sign in"}
                                 </span>
 
                                 {!isAuthLoading && (
@@ -463,6 +516,25 @@ export default function LoginPage() {
                                 "
                             >
                                 Create one
+                            </Link>
+                        </p>
+
+                        <p className="
+                            mt-4
+                            text-[12px]
+                            text-[var(--text-muted)]
+                        ">
+                            <Link
+                                to="/privacy"
+                                className="
+                                    underline
+                                    decoration-[var(--border-control)]
+                                    underline-offset-4
+                                    transition
+                                    hover:decoration-[var(--color-brand)]
+                                "
+                            >
+                                Privacy Policy
                             </Link>
                         </p>
 

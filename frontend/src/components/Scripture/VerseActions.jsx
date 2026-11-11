@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Bookmark, Highlighter, X } from "lucide-react";
+import { useCallback, useState } from "react";
+import { Bookmark, Highlighter, Languages, X } from "lucide-react";
 import {
     autoUpdate,
     flip,
@@ -24,23 +24,27 @@ export default function VerseActions({
     isHighlightBusy,
     onClearHighlight,
     hasHighlight,
+    onOriginalLanguage,
     onClearSelection
 }) {
     const [isColorOpen, setIsColorOpen] = useState(false);
 
-    // Position the toolbar beside its anchor at the selected verse's end.
+    const [boundary, setBoundary] = useState();
+    const overflow = { boundary, padding: 8 };
     const toolbar = useFloating({
-        placement: "bottom-end",
+        placement: "top-start",
         strategy: "fixed",
         whileElementsMounted: autoUpdate,
-        middleware: [
-            offset(10),
-            flip({ padding: 12 }),
-            shift({ padding: 12 }),
-            // Hide controls if their verse scrolls outside the reader.
-            hide()
-        ]
+        middleware: [offset(8), flip(overflow), shift(overflow), hide({ boundary })]
     });
+    // This hidden marker contributes no line box. Measure the actual verse,
+    // not a zero-size inline anchor, so scrolling keeps the overlay attached.
+    const setAnchor = useCallback((node) => {
+        toolbar.refs.setReference(node?.parentElement ?? null);
+        setBoundary(node?.closest(".scripture-scroll"));
+    }, [toolbar.refs.setReference]);
+    const toolbarHidden =
+        !toolbar.isPositioned || toolbar.middlewareData.hide?.referenceHidden;
 
     // Position the pen palette relative to the highlighter button.
     const palette = useFloating({
@@ -51,9 +55,9 @@ export default function VerseActions({
         whileElementsMounted: autoUpdate,
         middleware: [
             offset(12),
-            flip({ padding: 12 }),
-            shift({ padding: 12 }),
-            hide()
+            flip(overflow),
+            shift(overflow),
+            hide({ boundary })
         ]
     });
 
@@ -66,10 +70,6 @@ export default function VerseActions({
         bookmarksState.isSaving ||
         bookmarksState.deletingId !== null;
 
-    const toolbarHidden =
-        !toolbar.isPositioned ||
-        toolbar.middlewareData.hide?.referenceHidden;
-
     const paletteHidden =
         toolbarHidden ||
         !palette.isPositioned ||
@@ -77,89 +77,98 @@ export default function VerseActions({
 
     return (
         <>
-            {/* This zero-size anchor does not push Scripture text around. */}
-            <span
-                ref={toolbar.refs.setReference}
-                className="gnosis-action-anchor"
-                aria-hidden="true"
-            />
-
-            {/* Render outside the reader's overflow-clipping container. */}
+            <span ref={setAnchor} hidden aria-hidden="true" />
             <FloatingPortal>
-                <div
-                    ref={toolbar.refs.setFloating}
-                    style={{
-                        ...toolbar.floatingStyles,
-                        visibility: toolbarHidden ? "hidden" : "visible"
+            <span
+                ref={toolbar.refs.setFloating}
+                style={{
+                    ...toolbar.floatingStyles,
+                    visibility: toolbarHidden ? "hidden" : "visible"
+                }}
+                className="gnosis-verse-toolbar"
+                role="group"
+                aria-label="Selected verse actions"
+                // Clicking a tool must not toggle the verse underneath.
+                onClick={(event) => event.stopPropagation()}
+            >
+                <button
+                    type="button"
+                    disabled={bookmarkBusy}
+                    aria-label={
+                        savedBookmark
+                            ? "Remove bookmark"
+                            : "Bookmark passage"
+                    }
+                    aria-pressed={Boolean(savedBookmark)}
+                    title={
+                        savedBookmark
+                            ? "Remove bookmark"
+                            : "Bookmark passage"
+                    }
+                    className="gnosis-verse-tool"
+                    onClick={() => {
+                        if (savedBookmark) {
+                            bookmarksState.handleDeleteBookmark(
+                                savedBookmark.id
+                            );
+                        } else {
+                            bookmarksState.handleAddBookmarks(passage);
+                        }
                     }}
-                    className="gnosis-verse-toolbar"
-                    role="group"
-                    aria-label="Selected verse actions"
-                    // Portal events still bubble through the React tree.
-                    onClick={(event) => event.stopPropagation()}
                 >
-                    <button
-                        type="button"
-                        disabled={bookmarkBusy}
-                        aria-label={
-                            savedBookmark
-                                ? "Remove bookmark"
-                                : "Bookmark passage"
-                        }
-                        aria-pressed={Boolean(savedBookmark)}
-                        title={
-                            savedBookmark
-                                ? "Remove bookmark"
-                                : "Bookmark passage"
-                        }
-                        className="gnosis-verse-tool"
-                        onClick={() => {
-                            if (savedBookmark) {
-                                bookmarksState.handleDeleteBookmark(
-                                    savedBookmark.id
-                                );
-                            } else {
-                                bookmarksState.handleAddBookmarks(passage);
-                            }
-                        }}
-                    >
-                        <Bookmark
-                            size={18}
-                            fill={savedBookmark ? "currentColor" : "none"}
-                            aria-hidden="true"
-                        />
-                    </button>
-
-                    <button
-                        ref={palette.refs.setReference}
-                        type="button"
-                        disabled={isHighlightBusy}
-                        aria-label="Choose highlight color"
-                        aria-expanded={isColorOpen}
-                        title="Highlight"
-                        className={`gnosis-verse-tool ${
-                            isColorOpen ? "is-active" : ""
-                        }`}
-                        onClick={() => setIsColorOpen((open) => !open)}
-                    >
-                        <Highlighter size={18} aria-hidden="true" />
-                    </button>
-
-                    <span
-                        className="gnosis-tool-divider"
+                    <Bookmark
+                        size={18}
+                        fill={savedBookmark ? "currentColor" : "none"}
                         aria-hidden="true"
                     />
+                    <span className="gnosis-verse-tool-label">Bookmark</span>
+                </button>
+                <span className="gnosis-tool-divider" aria-hidden="true" />
 
-                    <button
-                        type="button"
-                        aria-label="Clear verse selection"
-                        title="Clear selection"
-                        className="gnosis-verse-tool"
-                        onClick={onClearSelection}
-                    >
-                        <X size={17} aria-hidden="true" />
-                    </button>
-                </div>
+                <button
+                    ref={palette.refs.setReference}
+                    type="button"
+                    disabled={isHighlightBusy}
+                    aria-label="Choose highlight color"
+                    aria-expanded={isColorOpen}
+                    title="Highlight"
+                    className={`gnosis-verse-tool ${
+                        isColorOpen ? "is-active" : ""
+                    }`}
+                    onClick={() => setIsColorOpen((open) => !open)}
+                >
+                    <Highlighter size={18} aria-hidden="true" />
+                    <span className="gnosis-verse-tool-label">Highlight</span>
+                </button>
+                <span className="gnosis-tool-divider" aria-hidden="true" />
+
+                <button
+                    type="button"
+                    aria-label="Original language analysis"
+            data-testid="ol-toolbar-button"
+                    title="Original Language"
+                    className="gnosis-verse-tool"
+                    onClick={onOriginalLanguage}
+                >
+                    <Languages size={18} aria-hidden="true" />
+                    <span className="gnosis-verse-tool-label">Original Language</span>
+                </button>
+
+                <span
+                    className="gnosis-tool-divider"
+                    aria-hidden="true"
+                />
+
+                <button
+                    type="button"
+                    aria-label="Clear verse selection"
+                    title="Clear selection"
+                    className="gnosis-verse-tool gnosis-verse-tool-close"
+                    onClick={onClearSelection}
+                >
+                    <X size={17} aria-hidden="true" />
+                </button>
+            </span>
             </FloatingPortal>
 
             {isColorOpen && (
