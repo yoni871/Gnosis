@@ -343,7 +343,7 @@ async function refresh(url, cookie) {
     };
 }
 
-test('a successful refresh does not consume refresh quota', async () => {
+test('a successful refresh consumes refresh quota', async () => {
     const before = await attemptCount('refresh_ip', [IP]);
     // Seed the session and refresh token directly instead of logging in:
     // the login_ip bucket may already be full from earlier tests in this
@@ -358,22 +358,31 @@ test('a successful refresh does not consume refresh quota', async () => {
     const refreshed = await refresh(worker.url, `gnosisRefresh=${refreshToken}`);
     assert.equal(refreshed.status, 200);
     assert.ok(refreshed.cookie, 'rotation must set a replacement cookie');
-    assert.equal(await attemptCount('refresh_ip', [IP]), before);
+    // PR #90: successful rotations count (a stolen token must not rotate
+    // without bound), so the refresh_ip count grows by one.
+    assert.equal(await attemptCount('refresh_ip', [IP]), before + 1);
 });
 
-test('refresh is rate limited per IP after 30 failed attempts', async () => {
+test('refresh is rate limited per IP after 120 failed attempts', async () => {
     // Tests share one database and one loopback address, so the bucket
     // may already hold failures from earlier tests in this file; read
     // the starting count and derive what remains (same pattern as the
     // per-IP login test above).
     const start = await attemptCount('refresh_ip', [IP]);
-    const remaining = 30 - start;
+    const remaining = 120 - start;
     assert.ok(remaining > 0, `expected refresh headroom, got ${remaining}`);
+    // Each failed attempt must carry a well-formed but unknown refresh
+    // cookie: PR #90's validateRefresh rejects a missing/malformed cookie
+    // with 401 BEFORE the rate limiter runs, so cookie-less attempts do
+    // not consume quota. A fresh token per attempt keeps the per-token
+    // budget (10/min) out of the way so this test exercises the IP cap.
+    const { randomBytes } = require('node:crypto');
     for (let i = 0; i < remaining; i++) {
-        assert.equal((await refresh(worker.url)).status, 401);
+        const bogus = randomBytes(32).toString('hex');
+        assert.equal((await refresh(worker.url, `gnosisRefresh=${bogus}`)).status, 401);
     }
-    const blocked = await refresh(worker.url);
+    const blocked = await refresh(worker.url, `gnosisRefresh=${randomBytes(32).toString('hex')}`);
     assert.equal(blocked.status, 429);
     assert.deepEqual(blocked.json, RATE_LIMITED_BODY);
-    assert.equal(await attemptCount('refresh_ip', [IP]), 30);
+    assert.equal(await attemptCount('refresh_ip', [IP]), 120);
 });

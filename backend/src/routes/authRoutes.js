@@ -137,10 +137,14 @@ const resetRateLimit = createRateLimitMiddleware([
 
 // PR4 (F04): refresh was the one auth endpoint with no throttle. The
 // browser-session gate runs first, like validation on the other auth
-// endpoints, so only genuine browser session requests consume quota;
-// failed refreshes count and successes release, exactly like login.
+// endpoints, so only genuine browser session requests consume quota.
+// PR #90: both successful and failed rotations count (see the /refresh
+// handler), and the budgets are refresh_ip (aggregate flood bound) plus
+// refresh_token (10/min per token) — a stolen token must not rotate
+// without bound. The per-family budget lives in the rotation transaction.
 const refreshRateLimit = createRateLimitMiddleware([
     { policy: "refresh_ip", fields: (req, ip) => [ip] },
+    { policy: "refresh_token", fields: req => [req.refreshCookie] },
 ], "refresh");
 
 // Guarantees a reservation is always settled. Handlers finalize
@@ -398,16 +402,33 @@ router.post("/login", (req, res, next) => {
 
 
 // Cookie endpoints require an explicit browser session request and a trusted origin.
-router.post("/refresh", sessions.browserSessionRequest, refreshRateLimit, withRateLimitFinalize(async (req, res) => {
-    res.set("Cache-Control", "no-store");
-    const session = await sessions.rotateSession(sessions.readCookie(req));
+// PR #90: validate the refresh cookie before touching the store (absent or
+// malformed -> 401), and count BOTH successful and failed rotations against
+// the refresh budgets (a stolen token must not rotate without bound).
+function validateRefresh(req, res, next) {
+    const refresh = sessions.readCookie(req);
+    if (typeof refresh !== "string" || !/^[a-f0-9]{64}$/.test(refresh)) {
+        sessions.clearCookie(res);
+        return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
+    }
+    req.refreshCookie = refresh;
+    next();
+}
+router.post("/refresh", (req, res, next) => { res.set("Cache-Control", "no-store"); next(); },
+    sessions.browserSessionRequest, validateRefresh, refreshRateLimit, withRateLimitFinalize(async (req, res) => {
+    const session = await sessions.rotateSession(req.refreshCookie);
+    // Successful and invalid credential attempts both consume reservations.
+    // An internal throw is released by withRateLimitFinalize and fails closed.
+    await req.rateLimit.finalize("count");
+    if (session?.limited) {
+        return res.status(429).set("Retry-After", String(session.retryAfter))
+            .json({ error: "Too many attempts. Please try again later.", code: "RATE_LIMITED" });
+    }
     if (!session) {
-        await req.rateLimit.finalize("count");
         sessions.clearCookie(res);
         return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
     }
     sessions.setCookie(res, session.refresh, session.expiresAt);
-    await req.rateLimit.finalize("release");
     res.json({ token: session.token, expiresIn: sessions.ACCESS_SECONDS });
 }));
 router.post("/logout", sessions.browserSessionRequest, async (req, res) => {

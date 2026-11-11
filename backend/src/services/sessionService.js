@@ -2,6 +2,7 @@ const crypto = require('node:crypto');
 const jwt = require('jsonwebtoken');
 const pool = require('../db/db');
 const { audit } = require('../utils/auditLog');
+const { computeKeyHash, getRateLimitSecret, POLICIES } = require('../utils/rateLimit');
 const ACCESS_SECONDS = 15 * 60;
 const SESSION_MS = 7 * 24 * 60 * 60 * 1000;
 const COOKIE = 'gnosisRefresh';
@@ -60,6 +61,20 @@ async function rotateSession(refresh) {
             // revoked session (both also return null).
             return { reused: true, userId: session.user_id };
         }
+        // The family row is already locked: count and issue in this SAME
+        // transaction so rotation/IP changes cannot evade a stable family budget.
+        const key = computeKeyHash('refresh_family', [session.id], getRateLimitSecret());
+        const reserved = await client.query("INSERT INTO rate_limit_attempts(key_hash,policy) VALUES ($1,'refresh_family') RETURNING id", [key]);
+        const counted = await client.query(`SELECT COUNT(*)::int AS count, MIN(attempted_at) AS oldest FROM rate_limit_attempts
+            WHERE key_hash=$1 AND policy='refresh_family' AND attempted_at > now()-($2 * INTERVAL '1 millisecond')`,
+            [key, POLICIES.refresh_family.windowMs]);
+        const budget = counted.rows[0];
+        if (!Number.isInteger(budget?.count)) throw new Error('Invalid refresh budget state.');
+        if (budget.count > POLICIES.refresh_family.limit) {
+            await client.query('DELETE FROM rate_limit_attempts WHERE id=$1', [reserved.rows[0].id]);
+            return { limited: true, retryAfter: Math.max(1, Math.ceil((new Date(budget.oldest).getTime()
+                + POLICIES.refresh_family.windowMs - Date.now()) / 1000)) };
+        }
         const token = accessToken(session);
         const replacement = fresh();
         await client.query('UPDATE auth_refresh_tokens SET used_at = now() WHERE token_hash = $1', [hash(refresh)]);
@@ -71,6 +86,13 @@ async function rotateSession(refresh) {
         // throws, so a failed insert cannot change the 401 response.
         await audit(pool, 'refresh_token.reused', outcome.userId);
         return null;
+    }
+    // PR #90: a family-budget exceedance is returned as-is (not unwrapped
+    // via outcome.rotated) so the route can answer 429 with Retry-After.
+    // Without this the rebase's outcome wrapper swallowed the limit and
+    // the route saw undefined (a 401) instead of the 429.
+    if (outcome && outcome.limited) {
+        return outcome;
     }
     return outcome ? outcome.rotated : null;
 }
