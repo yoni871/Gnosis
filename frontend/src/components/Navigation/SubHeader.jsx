@@ -372,11 +372,11 @@ export default function SubHeader({
             />
 
             <span className="
-                whitespace-nowrap rounded-full
+                hidden whitespace-nowrap rounded-full
                 border border-[var(--border)]
                 bg-[var(--bg-panel)] px-2 py-1
                 text-[var(--text-muted)]
-                sm:px-3 sm:text-[11px]
+                sm:inline-block sm:px-3 sm:text-[11px]
             ">
                 {verses.length} verses
             </span>
