@@ -319,6 +319,11 @@ describe("LandingPage", () => {
         const nav = screen.getByRole("navigation", { name: "Mobile" });
         within(nav).getByRole("link", { name: "Start Exploring →" }).focus();
         await user.tab();
+        // The theme row follows the auth links, so one Tab lands on it and
+        // the menu stays open; a second Tab leaves the header and closes it.
+        expect(within(nav).getByRole("button", { name: "Switch to dark theme" })).toHaveFocus();
+        expect(screen.getByRole("navigation", { name: "Mobile" })).toBeInTheDocument();
+        await user.tab();
         expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
         await user.click(toggle);
         await user.click(screen.getByRole("heading", { level: 1 }));

@@ -64,3 +64,17 @@
     .knowledge-diagram-node svg { width: 21px; height: 21px; }
     .knowledge-diagram-hub { top: var(--vision-hub-y); width: min(74%, 250px); min-height: 112px; padding: 16px 12px; }
 }
+
+/* Dark mode: charcoal section, sage-green headings, rose burgundy accents.
+   The hub and nodes become panels so they stay distinct from the section. */
+[data-theme="dark"] .landing-beyond, [data-theme="dark"] .knowledge-diagram {
+    --vision-cream: #171310;
+    --vision-green: #8fb5a0;
+    --vision-burgundy: #c96a72;
+    --vision-gold: #d8b24f;
+    --vision-rule: #473b31;
+}
+[data-theme="dark"] .landing-beyond { color: #f0e7d9; }
+[data-theme="dark"] .knowledge-diagram { color: #f0e7d9; }
+[data-theme="dark"] .knowledge-diagram figcaption span { color: #b8aa99; }
+[data-theme="dark"] .knowledge-diagram-hub, [data-theme="dark"] .knowledge-diagram-node { background: #29221d; border-color: #4a3e33; }

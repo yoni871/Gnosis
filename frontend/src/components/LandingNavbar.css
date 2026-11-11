@@ -27,12 +27,19 @@
 .public-page .landing-header-hero .landing-btn-primary { color: var(--nav-ink); background: var(--nav-ivory); border: 1px solid transparent; border-radius: 6px; min-height: 44px; padding: 8px 16px; font-size: .8rem; font-weight: 600; text-shadow: none; transition: background-color 160ms ease, box-shadow 160ms ease; }
 .public-page .landing-header-hero .landing-btn-primary:hover { background: #f0e3c9; box-shadow: 0 3px 12px #2117131a; }
 .public-page .landing-header-hero .landing-menu-button { background: transparent; border: 0; color: var(--nav-ivory); }
-/* Theme toggle: one button, visible at every width, next to the account
-   actions on desktop and next to the hamburger on mobile. The hero
-   header is ivory-on-dark; the unscoped rule covers a non-hero header. */
-.landing-theme-button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--public-ink); cursor: pointer; }
-.public-page .landing-header-hero .landing-theme-button { color: var(--nav-ivory); }
-.public-page .landing-header-hero .landing-theme-button:hover { color: var(--nav-gold); }
+/* Dark mode: the dropdowns (Explore options, account menu) are ivory in
+   light mode; on a dark page they become warm panels. The hero header
+   itself stays ivory-on-dark in both themes (it sits over the photo). */
+[data-theme="dark"] .public-page .landing-nav-popover {
+    background: #29221d; color: #f0e7d9;
+    border-color: #473b31;
+    box-shadow: 0 4px 10px #0000001f, 0 14px 32px #00000059;
+}
+[data-theme="dark"] .public-page .landing-nav-popover a:hover,
+[data-theme="dark"] .public-page .landing-nav-popover button:hover { background: #e4c9901f; }
+[data-theme="dark"] .landing-explore-description { color: #b8aa99; }
+[data-theme="dark"] .public-page .landing-account-signout button { color: #c96a72; }
+[data-theme="dark"] .public-page .landing-header-hero .landing-nav-popover :focus-visible { outline-color: #c45a64; }
 .public-page .landing-header-hero .landing-account { width: max-content; max-width: 100%; flex-shrink: 0; }
 .public-page .landing-header-hero .landing-account-chip { display: inline-grid; grid-template-columns: 28px minmax(0, 1fr) 13px; width: max-content; max-width: 224px; min-height: 44px; gap: 8px; padding: 6px 10px 6px 6px; font-family: inherit; font-size: .8125rem; background: var(--nav-ivory); color: var(--nav-ink); }
 .public-page .landing-header-hero .landing-account-initials { flex-basis: 28px; height: 28px; background: #eee1cc; }
@@ -66,6 +73,12 @@
 .landing-explore-title { font-size: .875rem; font-weight: 600; line-height: 1.5; }
 .landing-explore-description { font-size: .78125rem; font-weight: 400; line-height: 1.55; color: var(--nav-muted); }
 .public-page .landing-account-signout button { color: var(--nav-burgundy); }
+/* Theme row inside the account menu: icon + label, matching the popover
+   buttons. The mobile-menu theme row is the logged-out equivalent. */
+.public-page .landing-nav-popover .landing-theme-row { gap: 10px; }
+.landing-mobile-theme { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--public-ink); font: inherit; font-size: .85rem; cursor: pointer; text-align: left; }
+.public-page .landing-header-hero .landing-nav-mobile .landing-mobile-theme { color: var(--nav-ivory); }
+.public-page .landing-header-hero .landing-nav-mobile .landing-mobile-theme:hover { color: var(--nav-gold); }
 @keyframes landing-popover-reveal { from { opacity: 0; margin-top: -4px; } to { opacity: 1; margin-top: 0; } }
 @media (prefers-reduced-motion: reduce) {
     .public-page .landing-nav-popover { animation: none; }

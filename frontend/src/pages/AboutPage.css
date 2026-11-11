@@ -75,3 +75,27 @@
 .about-page .about-opening h1 { text-transform:uppercase; }
 
 .about-page .about-passage-translation { font-size:.85em; font-weight:400; white-space:nowrap; }
+
+/* Dark mode: same editorial layout, in the deep charcoal / muted forest
+   green / warm neutral palette. The scoped variables carry most of the
+   page; only the hardcoded body and muted colours need overrides. */
+[data-theme="dark"] .about-page {
+    --about-ivory: #171310;
+    --about-paper: #29221d;
+    --about-green: #8fb5a0;
+    --about-gold: #d8b24f;
+    --about-rule: #473b31;
+    --about-burgundy: #c96a72;
+    color: #f0e7d9;
+}
+[data-theme="dark"] .about-section-navigation a { color: #b8aa99; }
+[data-theme="dark"] .about-greek-word p + p { color: #b8aa99; }
+[data-theme="dark"] .about-gnosticism { background: #29221d; }
+[data-theme="dark"] .about-section-introduction { color: #b8aa99; }
+[data-theme="dark"] .about-scripture-passage blockquote { color: #f0e7d9; }
+[data-theme="dark"] .about-knowledge { text-decoration-color: #d8b24f; }
+[data-theme="dark"] .about-passage-context p { color: #b8aa99; }
+[data-theme="dark"] .about-study-note { color: #b8aa99; }
+[data-theme="dark"] .about-page .about-study-button { background: #2e4a3c; border-color: #2e4a3c; color: #f0e7d9; }
+[data-theme="dark"] .about-mobile-contents > button > span:first-child { color: #b8aa99; }
+[data-theme="dark"] .about-mobile-contents nav { box-shadow: 0 12px 22px #00000059; }

@@ -2,14 +2,17 @@ import { expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import NotFoundPage from "./NotFoundPage";
 
 function renderNotFound() {
     return render(
         <MemoryRouter initialEntries={["/nonexistent-page-xyz"]}>
-            <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
-                <NotFoundPage />
-            </AuthContext.Provider>
+            <ThemeProvider>
+                <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
+                    <NotFoundPage />
+                </AuthContext.Provider>
+            </ThemeProvider>
         </MemoryRouter>,
     );
 }
