@@ -87,6 +87,13 @@ async function rotateSession(refresh) {
         await audit(pool, 'refresh_token.reused', outcome.userId);
         return null;
     }
+    // PR #90: a family-budget exceedance is returned as-is (not unwrapped
+    // via outcome.rotated) so the route can answer 429 with Retry-After.
+    // Without this the rebase's outcome wrapper swallowed the limit and
+    // the route saw undefined (a 401) instead of the 429.
+    if (outcome && outcome.limited) {
+        return outcome;
+    }
     return outcome ? outcome.rotated : null;
 }
 async function revokeRefresh(refresh) {
