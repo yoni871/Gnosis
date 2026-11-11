@@ -500,6 +500,18 @@
         overflow: visible;
     }
 
+    /* The analysis column is flex: 1 (basis 0%) and the detail panel is
+       flex-shrink: 0. In the single-column layout, once a word is
+       selected the detail panel grows past the available height and the
+       analysis column is crushed to a few pixels; with overflow: visible
+       its content then paints on top of the detail panel (the "Verse 1"
+       heading and chevron land on the LEMMA label). Size both columns
+       to their content so the whole stack scrolls inside .gnosis-ol-main. */
+    .gnosis-ol-analysis,
+    .gnosis-ol-detail {
+        flex: none;
+    }
+
     .gnosis-ol-analysis {
         padding: 16px;
     }
