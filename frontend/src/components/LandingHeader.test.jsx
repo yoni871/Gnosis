@@ -24,10 +24,11 @@ test('account disclosure preserves full name, action list, Tab order, Escape, an
     await user.keyboard('{Enter}');
     const list = document.getElementById(trigger.getAttribute('aria-controls'));
     expect(list.tagName).toBe('UL');
-    expect(within(list).getAllByRole('listitem')).toHaveLength(3);
-    expect(within(list).queryByText(/Bookmarks|Highlights/)).toBeNull();
-    await user.tab();
-    expect(within(list).getByRole('button', { name: 'Profile' })).toHaveFocus();
+    // Two items: Settings and Sign out. (A Profile item used to sit here
+    // with no handler — it did nothing when clicked — so it was removed;
+    // it returns when a profile page lands.)
+    expect(within(list).getAllByRole('listitem')).toHaveLength(2);
+    expect(within(list).queryByText(/Bookmarks|Highlights|Profile/)).toBeNull();
     await user.tab();
     expect(within(list).getByRole('link', { name: 'Settings' })).toHaveFocus();
     expect(within(list).getByRole('link', { name: 'Settings' })).toHaveAttribute('href', '/settings');

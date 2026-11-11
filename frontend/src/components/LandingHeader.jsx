@@ -72,9 +72,10 @@ function AuthLinks({ closeAll, hero = false }) {
                 </button>
                 {accountOpen && (
                     <ul id={menuId} className="landing-nav-popover landing-account-menu">
-                        <li>
-                            <button type="button">Profile</button>
-                        </li>
+                        {/* No Profile item: there is no profile page, and the
+                            button that used to sit here had no handler — it
+                            did nothing when clicked. The item returns when a
+                            profile page lands. */}
                         <li>
                             <Link to="/settings" onClick={() => { setAccountOpen(false); closeAll(); }}>Settings</Link>
                         </li>
