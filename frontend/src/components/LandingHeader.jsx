@@ -23,6 +23,7 @@ function initials(user) {
 // Desktop and mobile disclosures must own separate refs and state.
 function AuthLinks({ closeAll, hero = false }) {
     const { user, logout } = useContext(AuthContext);
+    const { theme, setTheme } = useContext(ThemeContext);
     const [accountOpen, setAccountOpen] = useState(false);
     const trigger = useRef(null);
     const menuId = useId();
@@ -80,6 +81,21 @@ function AuthLinks({ closeAll, hero = false }) {
                         <li>
                             <Link to="/settings" onClick={() => { setAccountOpen(false); closeAll(); }}>Settings</Link>
                         </li>
+                        {/* Theme lives here now, not as a button in the
+                            header: the standalone header toggle crowded the
+                            navigation. The menu stays open on toggle so the
+                            change is visible immediately. */}
+                        <li>
+                            <button
+                                type="button"
+                                className="landing-theme-row"
+                                aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+                                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                            >
+                                {theme === "light" ? <Moon size={15} aria-hidden="true" /> : <Sun size={15} aria-hidden="true" />}
+                                {theme === "light" ? "Dark mode" : "Light mode"}
+                            </button>
+                        </li>
                         <li className="landing-account-signout">
                             <button type="button" onClick={handleSignOut}>Sign out</button>
                         </li>
@@ -105,12 +121,10 @@ function AuthLinks({ closeAll, hero = false }) {
 }
 
 export default function LandingHeader({ hero = false, solid = false }) {
-    const { isAuthLoading } = useContext(AuthContext);
+    const { user, isAuthLoading } = useContext(AuthContext);
     const { theme, setTheme } = useContext(ThemeContext);
     const [mobileOpen, setMobileOpen] = useState(false);
     const trigger = useRef(null);
-    // Include the toggle in the outside-click boundary; otherwise a mouse
-    // press closes the menu before the toggle's click opens it again.
     const headerRef = useClickOutside(() => setMobileOpen(false), "click");
     const closeAll = () => setMobileOpen(false);
 
@@ -157,19 +171,6 @@ export default function LandingHeader({ hero = false, solid = false }) {
                     </nav>
                 )}
 
-                {/* The reader header has a theme toggle; the site header
-                    did not, so visitors on the landing, about, privacy
-                    and settings pages could not switch themes without
-                    going to the reader first. */}
-                <button
-                    type="button"
-                    className="landing-theme-button"
-                    aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
-                    onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                >
-                    {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-                </button>
-
                 <button
                     type="button"
                     className="landing-menu-button"
@@ -194,6 +195,22 @@ export default function LandingHeader({ hero = false, solid = false }) {
                         {hero ? "About" : "About Us"}
                     </Link>
                     {!isAuthLoading && <AuthLinks closeAll={closeAll} hero={hero} />}
+                    {/* Logged-out visitors have no account menu, so the
+                        theme control lives here on mobile; logged-in
+                        visitors get it inside the account dropdown
+                        instead, so it is never shown twice. Desktop
+                        logged-out visitors get it in the footer. */}
+                    {!isAuthLoading && !user && (
+                        <button
+                            type="button"
+                            className="landing-mobile-theme"
+                            aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+                            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                        >
+                            {theme === "light" ? <Moon size={18} aria-hidden="true" /> : <Sun size={18} aria-hidden="true" />}
+                            {theme === "light" ? "Dark mode" : "Light mode"}
+                        </button>
+                    )}
                 </nav>
             )}
         </header>

@@ -30,3 +30,14 @@
     .landing-bible-inner { grid-template-columns: 1fr; gap: clamp(1.5rem, 5vw, 2.5rem); }
     .landing-bible-copy { max-width: 620px; }
 }
+
+/* Dark mode: deep charcoal section, sage-green headings, forest-green CTA. */
+[data-theme="dark"] .landing-bible {
+    --bible-green: #8fb5a0;
+    --bible-gold: #d8b24f;
+    background: #1e1813;
+    color: #f0e7d9;
+}
+[data-theme="dark"] .landing-bible .landing-bible-cta { background: #2e4a3c; border-color: #2e4a3c; color: #f0e7d9; }
+[data-theme="dark"] .landing-bible .landing-bible-cta:hover { background: #3a5f4c; border-color: #3a5f4c; }
+[data-theme="dark"] .landing-bible-landscape { color: #d8b24f; opacity: .1; }
