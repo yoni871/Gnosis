@@ -59,8 +59,14 @@ test('reuse of a consumed refresh token commits revocation of the whole family',
     rotationFixture(true);
     assert.equal(await sessions.rotateSession('a'.repeat(64)), null);
     assert.ok(queries.some(([sql]) => sql.includes('SET revoked_at')));
-    assert.equal(queries.at(-1)[0], 'COMMIT');
-    assert.ok(!queries.some(([sql]) => sql.includes('INSERT')));
+    // The audit row lands after the revocation commits, never inside
+    // the transaction: it records the committed reuse, and an audit
+    // failure cannot roll the revocation back.
+    const commitIndex = queries.findIndex(([sql]) => sql === 'COMMIT');
+    const auditIndex = queries.findIndex(([sql]) => sql.includes('INSERT INTO security_events'));
+    assert.ok(commitIndex >= 0 && auditIndex > commitIndex);
+    assert.deepEqual(queries[auditIndex][1], ['refresh_token.reused', 7]);
+    assert.ok(!queries.some(([sql]) => sql.includes('INSERT INTO auth_refresh_tokens')));
 });
 test('expired or revoked sessions cannot refresh', async () => {
     for (const overrides of [{ revoked_at: new Date() }, { expires_at: new Date(0) }]) {

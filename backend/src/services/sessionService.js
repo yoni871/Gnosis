@@ -1,6 +1,7 @@
 const crypto = require('node:crypto');
 const jwt = require('jsonwebtoken');
 const pool = require('../db/db');
+const { audit } = require('../utils/auditLog');
 const ACCESS_SECONDS = 15 * 60;
 const SESSION_MS = 7 * 24 * 60 * 60 * 1000;
 const COOKIE = 'gnosisRefresh';
@@ -44,7 +45,7 @@ async function createSession(userId, verifiedPasswordHash) {
 }
 async function rotateSession(refresh) {
     if (!valid(refresh)) return null;
-    return transaction(async client => {
+    const outcome = await transaction(async client => {
         // Lock the family first. A concurrent rotation rechecks used_at after waiting.
         const result = await client.query(`SELECT s.* FROM auth_sessions s
             JOIN auth_refresh_tokens t ON t.session_id = s.id WHERE t.token_hash = $1 FOR UPDATE OF s`, [hash(refresh)]);
@@ -53,14 +54,25 @@ async function rotateSession(refresh) {
         const current = await client.query('SELECT used_at FROM auth_refresh_tokens WHERE token_hash = $1', [hash(refresh)]);
         if (!current.rows[0] || current.rows[0].used_at) {
             await client.query('UPDATE auth_sessions SET revoked_at = now() WHERE id = $1', [session.id]);
-            return null;
+            // Reuse is reported to the caller instead of audited here:
+            // the audit row must land after this revocation commits, and
+            // only rotateSession can tell reuse apart from an expired or
+            // revoked session (both also return null).
+            return { reused: true, userId: session.user_id };
         }
         const token = accessToken(session);
         const replacement = fresh();
         await client.query('UPDATE auth_refresh_tokens SET used_at = now() WHERE token_hash = $1', [hash(refresh)]);
         await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(replacement), session.id]);
-        return { token, refresh: replacement, expiresAt: session.expires_at };
+        return { rotated: { token, refresh: replacement, expiresAt: session.expires_at } };
     });
+    if (outcome && outcome.reused) {
+        // Best-effort, after the revocation committed. audit() never
+        // throws, so a failed insert cannot change the 401 response.
+        await audit(pool, 'refresh_token.reused', outcome.userId);
+        return null;
+    }
+    return outcome ? outcome.rotated : null;
 }
 async function revokeRefresh(refresh) {
     if (valid(refresh)) await pool.query(`UPDATE auth_sessions SET revoked_at = now()

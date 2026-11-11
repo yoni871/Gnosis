@@ -22,6 +22,7 @@ const {
 } = require("../utils/passwordReset");
 const { createResendClient } = require("../utils/resendClient");
 const { isBreachedPassword } = require("../utils/breachedPasswords");
+const { audit } = require("../utils/auditLog");
 
 // Issue #3: validation runs as middleware, before the limiter and before
 // any hashing or database access. Only the validated (trimmed) values
@@ -204,7 +205,8 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
     // response and no account state leaks. The rejection is logged with
     // the allowlisted logger only (route + kind, never the password);
     // the audit-logging track records breached-password rejections under
-    // the same kind name.
+    // the dotted kind name breached_password.rejected (its allowlist does
+    // not accept the hyphenated log label used here).
     if (await isBreachedPassword(password)) {
         logAuthFailure("POST /api/auth/register", "breached-password", null);
         return res.status(400).json({
@@ -343,6 +345,9 @@ router.post("/login", (req, res, next) => {
 
     if(!user || !passwordMatch) {
         await req.rateLimit.finalize("count");
+        // Best-effort, after the credential verdict. Unknown emails
+        // record a null user; the response is unchanged either way.
+        await audit(pool, "login.failure", user ? user.id : null);
         return res.status(401).json({
             error: "Invalid email or password.",
             code: "INVALID_CREDENTIALS"
@@ -373,6 +378,9 @@ router.post("/login", (req, res, next) => {
     }
     if (!session) {
         await req.rateLimit.finalize("count");
+        // The password changed after login verified it: the same
+        // credential failure as a wrong password.
+        await audit(pool, "login.failure", user.id);
         return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
     }
     sessions.setCookie(res, session.refresh);
@@ -380,6 +388,9 @@ router.post("/login", (req, res, next) => {
 
     // Login successes do not count and do not reset prior failures.
     await req.rateLimit.finalize("release");
+    // Best-effort, after the session committed. audit() never throws,
+    // so a failed insert cannot change the 200 response.
+    await audit(pool, "login.success", user.id);
     res.json({
         token: session.token, expiresIn: sessions.ACCESS_SECONDS
     });
@@ -407,6 +418,7 @@ router.post("/logout", sessions.browserSessionRequest, async (req, res) => {
 });
 router.post("/logout-all", authenticateToken, async (req, res) => {
     await pool.query("UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1", [req.user.userId]);
+    await audit(pool, "logout.all", req.user.userId);
     sessions.clearCookie(res);
     res.set("Cache-Control", "no-store").sendStatus(204);
 });
@@ -836,6 +848,10 @@ router.post("/reset-password", validateReset, resetRateLimit, withRateLimitFinal
             [user.id, current.id]
         );
         await client.query("COMMIT");
+        // Best-effort, after the password change, session revocation,
+        // and token consumption committed. audit() never throws, so a
+        // failed insert cannot change the 200 response.
+        await audit(pool, "password_reset.completed", user.id);
         await req.rateLimit.finalize("count");
         return res.status(200).json({ reset: true });
     } catch (error) {

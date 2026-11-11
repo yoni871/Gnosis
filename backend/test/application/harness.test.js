@@ -42,6 +42,10 @@ test('migrated application schema permits only the approved runtime grants', asy
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`email_verification_tokens:${privilege}`);
     // Issue #10: the same shape for password-reset tokens.
     for (const privilege of ['SELECT', 'INSERT']) expected.push(`password_reset_tokens:${privilege}`);
+    // T1.16 audit logging: the runtime role writes audit rows and
+    // monitoring reads them; nothing updates or deletes them (the
+    // forbidden statements below pin the append-only shape).
+    for (const privilege of ['SELECT', 'INSERT']) expected.push(`security_events:${privilege}`);
     assert.deepEqual(grants.rows.map(row => `${row.table_name}:${row.privilege_type}`).sort(), expected.sort());
     assert.ok(grants.rows.every(row => row.is_grantable === 'NO'));
     const sequences = await pool.query(`SELECT c.relname,has_sequence_privilege(current_user,c.oid,'USAGE') AS usage,
@@ -49,7 +53,7 @@ test('migrated application schema permits only the approved runtime grants', asy
         has_sequence_privilege(current_user,c.oid,'UPDATE') AS update_allowed
         FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
         WHERE n.nspname='public' AND c.relkind='S' ORDER BY c.relname`);
-    const allowed = ['users_id_seq', 'notes_id_seq', 'bookmarks_id_seq', 'highlights_id_seq'];
+    const allowed = ['users_id_seq', 'notes_id_seq', 'bookmarks_id_seq', 'highlights_id_seq', 'security_events_id_seq'];
     for (const row of sequences.rows) {
         assert.equal(row.usage, allowed.includes(row.relname));
         assert.equal(row.select_allowed, false);
@@ -73,7 +77,9 @@ test('migrated application schema permits only the approved runtime grants', asy
         "UPDATE password_reset_tokens SET token_hash='\\x00'",
         'UPDATE password_reset_tokens SET user_id=999999',
         "UPDATE password_reset_tokens SET expires_at=now()",
-        "UPDATE password_reset_tokens SET created_at=now()"]) {
+        "UPDATE password_reset_tokens SET created_at=now()",
+        "UPDATE security_events SET kind='forbidden'",
+        'DELETE FROM security_events']) {
         await assert.rejects(pool.query(sql), { code: '42501' });
     }
 });
