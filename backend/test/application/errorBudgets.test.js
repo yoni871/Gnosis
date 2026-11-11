@@ -27,6 +27,18 @@ const HIGHLIGHT_ROWS = [{ id: 1, user_id: 1, book_id: 2, chapter: 1, verse: 1, c
 // application pool, so this one mock answers both sides (same pattern as
 // the cross-project validation tests).
 const queryMock = test.mock.method(pool, "query", async (sql, params) => {
+    // The per-user budget lock is a non-blocking try-lock (PR #91, bounded
+    // per PR #114): the mock grants it immediately, as the real function
+    // does when the lock is free. BEGIN/COMMIT/ROLLBACK are no-ops here.
+    if (typeof sql === "string" && sql.includes("pg_try_advisory_xact_lock")) {
+        return { rows: [{ locked: true }] };
+    }
+    if (sql === "BEGIN" || sql === "COMMIT" || sql === "ROLLBACK") {
+        return { rows: [] };
+    }
+    if (typeof sql === "string" && sql.includes("COUNT(*)")) {
+        return { rows: [{ count: 0, bytes: 0 }] };
+    }
     if (typeof sql === "string" && sql.includes("FROM auth_sessions")) {
         return { rows: [{ id: "00000000-0000-4000-8000-000000000001" }] };
     }
@@ -56,6 +68,13 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
     }
     throw new Error(`Unexpected query in error-budgets test: ${sql}`);
 });
+
+// withUserBudget takes a pooled client (pool.connect), not pool.query, so
+// the mock client delegates to the same mocked query above.
+test.mock.method(pool, "connect", async () => ({
+    query: (...args) => pool.query(...args),
+    release() {},
+}));
 
 let server;
 let baseUrl;
@@ -136,42 +155,51 @@ test("N04: an oversized JSON body gets a controlled 413", async () => {
     assert.deepEqual(result.json, { error: "Request body too large.", code: "BODY_TOO_LARGE" });
 });
 
-test("F04: the notes list caps limit at 100 and reports the applied values", async () => {
-    const capped = await request("/api/notes?limit=500");
-    assert.equal(capped.response.status, 200);
-    assert.equal(capped.response.headers.get("x-limit"), "100");
-    assert.equal(capped.response.headers.get("x-offset"), "0");
-    assert.deepEqual(lastListQuery.params, [1, 100, 0]);
-    assert.match(lastListQuery.sql, /LIMIT \$2 OFFSET \$3/);
+test("F04: the notes list uses cursor pagination and rejects an over-max limit", async () => {
+    // Cursor pagination (PR #91) replaces the OFFSET pagination main added
+    // in PR #85: an over-max limit is a controlled 400 (INVALID_PAGE), not
+    // a clamp, and the page rides on X-Next-Cursor/X-Has-More, not
+    // X-Limit/X-Offset. Notes cap at 20 per page.
+    const over = await request("/api/notes?limit=500");
+    assert.equal(over.response.status, 400);
+    assert.deepEqual(over.json, { error: "Invalid saved-data page parameters.", code: "INVALID_PAGE" });
 
-    const paged = await request("/api/notes?limit=5&offset=10");
+    const paged = await request("/api/notes?limit=5");
     assert.equal(paged.response.status, 200);
-    assert.equal(paged.response.headers.get("x-limit"), "5");
-    assert.equal(paged.response.headers.get("x-offset"), "10");
-    assert.deepEqual(lastListQuery.params, [1, 5, 10]);
+    assert.equal(paged.response.headers.get("x-next-cursor"), "");
+    assert.equal(paged.response.headers.get("x-has-more"), "false");
+    assert.deepEqual(lastListQuery.params, [1, null, 6]);
+    assert.match(lastListQuery.sql, /id < \$2/);
+    assert.doesNotMatch(lastListQuery.sql, /OFFSET/);
 
     const defaults = await request("/api/notes");
     assert.equal(defaults.response.status, 200);
-    assert.equal(defaults.response.headers.get("x-limit"), "100");
-    assert.equal(defaults.response.headers.get("x-offset"), "0");
-    assert.deepEqual(lastListQuery.params, [1, 100, 0]);
+    assert.deepEqual(lastListQuery.params, [1, null, 21]);
 });
 
-test("F04: the bookmarks list caps limit at 100 and reports the applied values", async () => {
-    const result = await request("/api/bookmarks?limit=500");
+test("F04: the bookmarks list uses cursor pagination and rejects an over-max limit", async () => {
+    const over = await request("/api/bookmarks?limit=500");
+    assert.equal(over.response.status, 400);
+    assert.deepEqual(over.json, { error: "Invalid saved-data page parameters.", code: "INVALID_PAGE" });
+
+    const result = await request("/api/bookmarks?limit=5");
     assert.equal(result.response.status, 200);
-    assert.equal(result.response.headers.get("x-limit"), "100");
-    assert.equal(result.response.headers.get("x-offset"), "0");
-    assert.deepEqual(lastListQuery.params, [1, 100, 0]);
-    assert.equal(result.json[0].book, "Exodus");
+    assert.equal(result.response.headers.get("x-next-cursor"), "");
+    assert.equal(result.response.headers.get("x-has-more"), "false");
+    assert.deepEqual(lastListQuery.params, [1, null, 6, null, null]);
+    assert.equal(result.json.items[0].book, "Exodus");
 });
 
-test("F04: the highlights list caps limit at 100 and reports the applied values", async () => {
-    const result = await request("/api/highlights?limit=500");
+test("F04: the highlights list uses cursor pagination and rejects an over-max limit", async () => {
+    const over = await request("/api/highlights?limit=500");
+    assert.equal(over.response.status, 400);
+    assert.deepEqual(over.json, { error: "Invalid saved-data page parameters.", code: "INVALID_PAGE" });
+
+    const result = await request("/api/highlights?limit=5");
     assert.equal(result.response.status, 200);
-    assert.equal(result.response.headers.get("x-limit"), "100");
-    assert.equal(result.response.headers.get("x-offset"), "0");
-    assert.deepEqual(lastListQuery.params, [1, 100, 0]);
+    assert.equal(result.response.headers.get("x-next-cursor"), "");
+    assert.equal(result.response.headers.get("x-has-more"), "false");
+    assert.deepEqual(lastListQuery.params, [1, null, 6, null, null]);
 });
 
 test("F04: note content over 100,000 characters is rejected on create and update", async () => {

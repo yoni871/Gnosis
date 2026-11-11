@@ -31,7 +31,7 @@ function pageRows(rows, limit) {
     return { items, hasMore, nextCursor: hasMore ? String(items.at(-1).id) : null };
 }
 function sendPage(res, page, config) {
-    res.set('Cache-Control', 'no-store');
+    res.set('Cache-Control', 'private, no-store');
     res.set('X-Next-Cursor', page.nextCursor || '');
     res.set('X-Has-More', String(page.hasMore));
     return res.status(200).json(config.envelope ? page : page.items);
@@ -39,7 +39,7 @@ function sendPage(res, page, config) {
 function knownResourceError(error, res) {
     if (!['INVALID_PAGE', 'ITEM_TOO_LARGE', 'RESOURCE_LIMIT', 'RESOURCE_BUSY'].includes(error?.code)) return false;
     if (error.status === 429) res.set('Retry-After', '1');
-    res.status(error.status).set('Cache-Control', 'no-store').json({ error: error.message, code: error.code });
+    res.status(error.status).set('Cache-Control', 'private, no-store').json({ error: error.message, code: error.code });
     return true;
 }
 module.exports = { readPage, pageRows, sendPage, knownResourceError, publicError, MAX_PAGE_BYTES };

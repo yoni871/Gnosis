@@ -30,7 +30,7 @@ test('cursor pages isolate accounts and have no duplicates/skips despite a new i
     const ids = []; let cursor = null, iteration = 0;
     do {
         const page = await request(user, 'notes?limit=7' + (cursor ? `&cursor=${cursor}` : ''));
-        assert.equal(page.status, 200); assert.equal(page.res.headers.get('cache-control'), 'no-store');
+        assert.equal(page.status, 200); assert.equal(page.res.headers.get('cache-control'), 'private, no-store');
         assert.ok(page.data.items.every(item => item.user_id === user.id));
         assert.ok(!JSON.stringify(page.data).includes('other-private-marker'));
         ids.push(...page.data.items.map(row => row.id)); cursor = page.data.nextCursor;
