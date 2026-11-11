@@ -1,8 +1,9 @@
 import { useContext, useRef, useState, useId } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 
 import AuthContext from "../context/AuthContext";
+import ThemeContext from "../context/ThemeContext";
 import useClickOutside from "../hooks/useClickOutside";
 import { shouldCloseDisclosureOnBlur } from "../utils/disclosureFocus";
 import ExploreDropdown from "./ExploreDropdown";
@@ -104,6 +105,7 @@ function AuthLinks({ closeAll, hero = false }) {
 
 export default function LandingHeader({ hero = false, solid = false }) {
     const { isAuthLoading } = useContext(AuthContext);
+    const { theme, setTheme } = useContext(ThemeContext);
     const [mobileOpen, setMobileOpen] = useState(false);
     const trigger = useRef(null);
     // Include the toggle in the outside-click boundary; otherwise a mouse
@@ -153,6 +155,19 @@ export default function LandingHeader({ hero = false, solid = false }) {
                         {!isAuthLoading && <AuthLinks closeAll={closeAll} hero />}
                     </nav>
                 )}
+
+                {/* The reader header has a theme toggle; the site header
+                    did not, so visitors on the landing, about, privacy
+                    and settings pages could not switch themes without
+                    going to the reader first. */}
+                <button
+                    type="button"
+                    className="landing-theme-button"
+                    aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+                    onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                >
+                    {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+                </button>
 
                 <button
                     type="button"
