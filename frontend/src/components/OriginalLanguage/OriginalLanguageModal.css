@@ -279,6 +279,13 @@
 }
 
 /* Selected-word detail panel. */
+
+/* The bottom-sheet handle exists only on mobile (≤768px), where the
+   detail panel becomes a sheet; on desktop it is never shown. */
+.gnosis-ol-sheet-handle {
+    display: none;
+}
+
 .gnosis-ol-word-details-heading {
     display: flex;
     align-items: flex-start;
@@ -462,6 +469,7 @@
 .gnosis-ol-verse-heading:focus-visible,
 .gnosis-ol-word-button:focus-visible,
 .gnosis-ol-detail-close:focus-visible,
+.gnosis-ol-sheet-handle:focus-visible,
 .gnosis-ol-occurrences-actions button:focus-visible,
 .gnosis-ol-occurrence:focus-visible {
     outline: 2px solid var(--color-brand);
@@ -523,6 +531,60 @@
         padding: 16px;
     }
 
+    /* Bottom sheet (mobile, word selected): the detail panel leaves
+       the column and docks to the bottom of the screen at 45% height
+       (85% when expanded — the height comes from the
+       --gnosis-ol-sheet-height variable on the dialog). The handle
+       stays pinned at the sheet's top while its content scrolls. */
+    .gnosis-ol-sheet-handle {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 10px 0 8px;
+        border: 0;
+        background: var(--bg-page);
+        cursor: grab;
+        touch-action: none;
+    }
+
+    .gnosis-ol-sheet-handle:active {
+        cursor: grabbing;
+    }
+
+    .gnosis-ol-sheet-handle-pill {
+        display: block;
+        width: 40px;
+        height: 5px;
+        border-radius: 3px;
+        background: var(--border);
+    }
+
+    .gnosis-ol-dialog--has-selection .gnosis-ol-detail {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        height: var(--gnosis-ol-sheet-height, 45dvh);
+        overflow-y: auto;
+        padding: 0 16px 16px;
+        border-top: 1px solid var(--border);
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -8px 24px rgb(0 0 0 / 18%);
+        transition: height 200ms ease;
+    }
+
+    .gnosis-ol-dialog--has-selection .gnosis-ol-main {
+        /* Keep the word table scrollable above the sheet: this much
+           padding lets the last rows scroll clear of it. */
+        padding-bottom: var(--gnosis-ol-sheet-height, 45dvh);
+    }
+
     .gnosis-ol-original-text {
         font-size: 20px;
     }
@@ -538,6 +600,10 @@
 
 @media (prefers-reduced-motion: reduce) {
     .gnosis-ol-verse-chevron {
+        transition: none;
+    }
+
+    .gnosis-ol-dialog--has-selection .gnosis-ol-detail {
         transition: none;
     }
 }
