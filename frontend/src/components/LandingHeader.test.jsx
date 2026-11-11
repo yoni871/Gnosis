@@ -29,7 +29,8 @@ test('account disclosure preserves full name, action list, Tab order, Escape, an
     await user.tab();
     expect(within(list).getByRole('button', { name: 'Profile' })).toHaveFocus();
     await user.tab();
-    expect(within(list).getByRole('button', { name: 'Settings' })).toHaveFocus();
+    expect(within(list).getByRole('link', { name: 'Settings' })).toHaveFocus();
+    expect(within(list).getByRole('link', { name: 'Settings' })).toHaveAttribute('href', '/settings');
     await user.tab();
     expect(within(list).getByRole('button', { name: 'Sign out' })).toHaveFocus();
     await user.keyboard('{Escape}');

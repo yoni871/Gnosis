@@ -6,9 +6,10 @@
 // The sitemap lists only public, canonical, indexable pages:
 //  - every Bible chapter URL from the verified chapter manifest
 //    (frontend/src/data/bibleChapters.json)
-//  - any extra static public paths passed in (currently "/" and "/about",
-//    the public landing and About pages; /search, /login, /register must never
-//    be indexed, so they are never passed here)
+//  - any extra static public paths passed in (currently "/", "/about",
+//    and "/privacy", the public landing, About, and Privacy pages;
+//    /search, /login, /register must never be indexed, so they are
+//    never passed here)
 //
 // lastmod, changefreq, and priority are deliberately omitted: no
 // per-chapter modification date exists, and Google ignores changefreq

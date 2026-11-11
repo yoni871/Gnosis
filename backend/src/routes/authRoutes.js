@@ -6,8 +6,8 @@ const router = express.Router();
 const UNKNOWN_PASSWORD_HASH = '$2b$12$jafHcnBk3QC6ragiVaN8ae/Y6oKqxqBGFpCmAMhoH31xEbn.K5Lzu';
 const sessions = require("../services/sessionService");
 const authenticateToken = require("../middleware/authMiddleware");
-const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
-const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, VALIDATION_CODE } = require("../utils/authValidation");
+const { resolveAuthError, internalErrorBody, logAuthFailure, logAuthEvent } = require("../utils/authErrors");
+const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, validateDeleteAccountInput, VALIDATION_CODE } = require("../utils/authValidation");
 const { createRateLimitMiddleware } = require("../utils/rateLimit");
 const {
     VERIFICATION_TTL_MS,
@@ -77,6 +77,15 @@ function validateVerify(req, res, next) {
 // same structural rule as registration; reset-password takes a token
 // and a new password. Both run before the limiter, so invalid input
 // never counts.
+function validateDelete(req, res, next) {
+    const validation = validateDeleteAccountInput(req.body);
+    if (validation.error) {
+        return res.status(400).json({ error: validation.error, code: VALIDATION_CODE });
+    }
+    req.validated = validation.value;
+    return next();
+}
+
 function validateForgot(req, res, next) {
     const validation = validateForgotPasswordInput(req.body);
     if (validation.error) {
@@ -446,6 +455,123 @@ router.post("/logout-all", authenticateToken, async (req, res) => {
     await audit(pool, "logout.all", req.user.userId);
     sessions.clearCookie(res);
     res.set("Cache-Control", "no-store").sendStatus(204);
+});
+
+// Self-serve account deletion. The current password is the
+// confirmation: deletion is irreversible, so a stolen access token
+// alone must not be enough to erase an account. The whole deletion
+// runs in one transaction — revoke every session, then delete the
+// user row — so a failure leaves the account exactly as it was.
+// The user-owned rows (notes, bookmarks, highlights, reading state,
+// verification/reset tokens, sessions, and refresh tokens via their
+// session) are removed by the schema's ON DELETE CASCADE rules, not
+// by explicit DELETEs here: the runtime role deliberately holds no
+// DELETE grant on those tables, and the cascade is the schema's own
+// stated deletion mechanism (see the baseline migration). The one
+// grant this endpoint needs is DELETE ON users, applied by the
+// operator at deploy time (see docs/AccountDeletion.md); without it
+// the delete fails closed with a 500 and nothing is removed. The
+// refresh cookie is cleared with the success response, and the
+// deleted access token stops working immediately because its session
+// row is gone.
+//
+// Audit note: the audit-logging track (branch security/audit-logging,
+// not yet merged) owns the audit_events table and the audit() helper.
+// Once this code rebases onto it, emit two events from this handler,
+// with the user id captured BEFORE the user row is deleted:
+//   account-deletion-requested (after the password confirms, before
+//   the transaction) and account-deletion-completed (after commit).
+// Until then the completion is logged through the allowlisted
+// logAuthEvent helper only (route + kind, no user data).
+router.delete("/account", authenticateToken, validateDelete, async (req, res) => {
+    const userId = req.user.userId;
+
+    // The password check runs before the transaction and before any
+    // lock: no lock is ever held across bcrypt, following the reset
+    // flow. A wrong password is an ordinary client error and is not
+    // logged; the response is the same invalid-credentials body as
+    // login, so it reveals nothing about account state.
+    let storedHash;
+    try {
+        const result = await pool.query(
+            "SELECT password_hash FROM users WHERE id = $1",
+            [userId]
+        );
+        storedHash = result.rows[0] ? result.rows[0].password_hash : null;
+    } catch (error) {
+        logAuthFailure("DELETE /api/auth/account", "database", error);
+        return res.status(500).json(internalErrorBody("delete"));
+    }
+    let passwordMatch = false;
+    if (storedHash) {
+        try {
+            passwordMatch = await bcrypt.compare(req.validated.password, storedHash);
+        } catch (error) {
+            logAuthFailure("DELETE /api/auth/account", "password", error);
+            return res.status(500).json(internalErrorBody("delete"));
+        }
+    }
+    if (!storedHash || !passwordMatch) {
+        return res.status(401).json({
+            error: "Invalid email or password.",
+            code: "INVALID_CREDENTIALS",
+        });
+    }
+
+    let client;
+    try {
+        client = await pool.connect();
+    } catch (error) {
+        logAuthFailure("DELETE /api/auth/account", "database", error);
+        return res.status(500).json(internalErrorBody("delete"));
+    }
+    try {
+        await client.query("BEGIN");
+        const userResult = await client.query(
+            "SELECT password_hash FROM users WHERE id = $1 FOR UPDATE",
+            [userId]
+        );
+        const user = userResult.rows[0];
+        // Recheck the credential login verified after acquiring the
+        // lock, following the session-creation pattern: a password
+        // change (or a concurrent deletion) between the check above
+        // and this lock must not delete the account on a stale
+        // snapshot.
+        if (!user || user.password_hash !== storedHash) {
+            await client.query("ROLLBACK");
+            return res.status(401).json({
+                error: "Invalid email or password.",
+                code: "INVALID_CREDENTIALS",
+            });
+        }
+        // Sessions are revoked in the same transaction as the
+        // deletion, then removed with the user row by the foreign-key
+        // cascade (auth_refresh_tokens cascades from auth_sessions).
+        // The explicit revoke makes the intent visible here instead
+        // of relying on the cascade alone.
+        await client.query(
+            "UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1 AND revoked_at IS NULL",
+            [userId]
+        );
+        // The user-row delete removes every user-owned row through
+        // the schema's ON DELETE CASCADE rules (notes, bookmarks,
+        // highlights, user_reading_state, email_verification_tokens,
+        // password_reset_tokens, auth_sessions, and auth_refresh_tokens
+        // via auth_sessions). No explicit child DELETEs: the runtime
+        // role holds no DELETE grant on those tables, by design.
+        await client.query("DELETE FROM users WHERE id = $1", [userId]);
+        await client.query("COMMIT");
+    } catch (error) {
+        await client.query("ROLLBACK").catch(() => {});
+        logAuthFailure("DELETE /api/auth/account", "database", error);
+        return res.status(500).json(internalErrorBody("delete"));
+    } finally {
+        client.release();
+    }
+    sessions.clearCookie(res);
+    res.set("Cache-Control", "no-store");
+    logAuthEvent("DELETE /api/auth/account", "account-deleted");
+    return res.json({ deleted: true });
 });
 
 //to verify an email address with a link token

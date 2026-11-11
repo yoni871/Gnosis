@@ -282,7 +282,8 @@ describe("LandingPage", () => {
             }),
         );
         expect(within(header).getByRole("button", { name: "Profile" })).toBeVisible();
-        expect(within(header).getByRole("button", { name: "Settings" })).toBeVisible();
+        expect(within(header).getByRole("link", { name: "Settings" })).toBeVisible();
+        expect(within(header).getByRole("link", { name: "Settings" })).toHaveAttribute("href", "/settings");
         expect(within(header).queryByText("Continue studying")).toBeNull();
         await user.click(
             within(header).getByRole("button", { name: "Sign out" }),
@@ -484,13 +485,13 @@ describe("LandingPage", () => {
         expect(document.getElementById("how-it-works")).toHaveClass("landing-bible");
     });
 
-    test("footer links only to routes that exist: no Privacy or Terms", () => {
+    test("footer links only to routes that exist: Privacy yes, Terms no", () => {
         renderLanding(LOGGED_OUT);
 
         const footer = screen.getByRole("contentinfo");
         expect(
-            within(footer).queryByText("Privacy"),
-        ).toBeNull();
+            within(footer).getByRole("link", { name: "Privacy" }),
+        ).toHaveAttribute("href", "/privacy");
         expect(within(footer).queryByText("Terms")).toBeNull();
         const logo = within(footer).getByRole("link", { name: "Gnosis home" });
         expect(logo).toHaveAttribute("href", "/");

@@ -133,7 +133,10 @@ export default function ProfileMenu() {
             </button>
 
 
-            <button className="
+            <Link
+                to="/settings"
+                onClick={() => setIsProfileOpen(false)}
+                className="
                 flex w-full
                 items-center
                 gap-2.5
@@ -150,7 +153,7 @@ export default function ProfileMenu() {
                     className="text-[var(--text-muted)]"
                 />
                 <span>Settings</span>
-            </button>
+            </Link>
 
             <Link
                 to="/login"

@@ -38,8 +38,8 @@ const chapterCounts = JSON.parse(
     readFileSync(path.join(root, "src/data/bibleChapters.json"), "utf8"),
 );
 
-// The public landing and About pages follow the chapter URLs.
-const xml = buildSitemapXml(siteUrl, chapterCounts, ["/", "/about"]);
+// The public landing, About, and Privacy pages follow the chapter URLs.
+const xml = buildSitemapXml(siteUrl, chapterCounts, ["/", "/about", "/privacy"]);
 const outputPath = path.join(root, "public/sitemap.xml");
 
 writeFileSync(outputPath, xml);
@@ -47,5 +47,5 @@ writeFileSync(outputPath, xml);
 const total = Object.values(chapterCounts).reduce((sum, n) => sum + n, 0);
 console.log(
     `Wrote ${outputPath} (${Object.keys(chapterCounts).length} books, ` +
-        `${total} chapter URLs, plus the homepage and About page) for ${siteUrl}`,
+        `${total} chapter URLs, plus the homepage, About page, and Privacy page) for ${siteUrl}`,
 );

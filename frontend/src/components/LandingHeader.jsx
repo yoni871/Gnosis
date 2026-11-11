@@ -76,7 +76,7 @@ function AuthLinks({ closeAll, hero = false }) {
                             <button type="button">Profile</button>
                         </li>
                         <li>
-                            <button type="button">Settings</button>
+                            <Link to="/settings" onClick={() => { setAccountOpen(false); closeAll(); }}>Settings</Link>
                         </li>
                         <li className="landing-account-signout">
                             <button type="button" onClick={handleSignOut}>Sign out</button>

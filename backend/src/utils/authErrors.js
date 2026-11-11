@@ -30,6 +30,8 @@ const ENDPOINT_MESSAGES = {
     // never these internal messages.
     forgot: "Something went wrong.",
     reset: "Something went wrong.",
+    // Account deletion shares the same generic wording.
+    delete: "Something went wrong.",
 };
 
 function errorBody(message, code) {
@@ -122,6 +124,16 @@ function logPoolError(error) {
     console.error(`[db] pool error code=${code}`);
 }
 
+// Log a completed security-relevant event the same allowlisted way:
+// route + kind only, never a user identifier, email, token, or request
+// data. This is a stopgap until the audit-logging track's audit()
+// helper lands (branch security/audit-logging): events logged here
+// must be re-emitted through audit() once this code rebases onto it,
+// and this helper must not grow a second event vocabulary of its own.
+function logAuthEvent(route, kind) {
+    console.error(`[auth] ${route} event=${kind}`);
+}
+
 module.exports = {
     resolveAuthError,
     internalErrorBody,
@@ -131,4 +143,5 @@ module.exports = {
     logAuthFailure,
     logControllerError,
     logPoolError,
+    logAuthEvent,
 };

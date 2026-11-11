@@ -204,11 +204,30 @@ function validateResetPasswordInput(body) {
     };
 }
 
+// Account deletion takes only the current password, as confirmation.
+// It follows the login-password rule (required, at most 72 UTF-8
+// bytes): the registration minimum is deliberately NOT enforced here,
+// so the password that was set when the account was created is the
+// one that confirms deletion, whatever its length was.
+function validateDeleteAccountInput(body) {
+    if (!isObjectBody(body)) {
+        return { error: "Request body must be an object." };
+    }
+    const password = validateLoginPassword(body.password);
+    if (password.error) return password;
+    return {
+        value: {
+            password: password.value,
+        },
+    };
+}
+
 module.exports = {
     validateRegisterInput,
     validateLoginInput,
     validateForgotPasswordInput,
     validateResetPasswordInput,
+    validateDeleteAccountInput,
     // Issue #9 reuses the same structural email rule for resend requests
     // and for EMAIL_FROM validation, so "structurally valid" means the
     // same thing everywhere. It never echoes the submitted value.
