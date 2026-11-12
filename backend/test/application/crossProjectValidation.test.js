@@ -117,6 +117,29 @@ test("POST /api/notes writes when the book exists", async () => {
     assert.equal(inserted.book_id, 2);
 });
 
+test("POST /api/notes creates an independent note without a book lookup", async () => {
+    bookExists = false;
+    const { response, json } = await request("/api/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token()}` },
+        body: JSON.stringify({ content: "Compare John 3:16 with Genesis 1:1–3." }),
+    });
+    assert.equal(response.status, 201);
+    assert.equal(json.book_id, null);
+    assert.equal(inserted.content, "Compare John 3:16 with Genesis 1:1–3.");
+});
+
+test("POST /api/notes rejects partial legacy passage coordinates", async () => {
+    const { response, json } = await request("/api/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token()}` },
+        body: JSON.stringify({ content: "Incomplete", bookId: 2 }),
+    });
+    assert.equal(response.status, 400);
+    assert.match(json.error, /every passage field/i);
+    assert.equal(inserted, null);
+});
+
 test("PATCH /api/notes/:id rejects an unknown book", async () => {
     bookExists = false;
     const { response, json } = await request("/api/notes/1", {

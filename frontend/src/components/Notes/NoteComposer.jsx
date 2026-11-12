@@ -7,7 +7,7 @@ export default function NoteComposer({
 }) {
     return (
         <>
-            {/* Selected passage */}
+            {/* Optional starting passage */}
             <div className="mb-5">
                 <div
                     className="
@@ -34,7 +34,7 @@ export default function NoteComposer({
                             text-[var(--text-muted)]
                         "
                     >
-                        Selected Passage
+                        Starting Passage (Optional)
                     </p>
                 </div>
 
@@ -72,15 +72,14 @@ export default function NoteComposer({
                                 text-[var(--text-muted)]
                             "
                         >
-                            Select a verse from Scripture
-                            when you're ready to write.
+                            Write freely, or select a verse to attach a starting passage.
                         </p>
                     </div>
                 )}
             </div>
 
             {/* Note composer */}
-            {passageLabel && (
+            {(
                 <div
                     className="
                         relative
@@ -139,7 +138,7 @@ export default function NoteComposer({
                                     text-[var(--color-brand)]
                                 "
                             >
-                                {passageLabel}
+                                {passageLabel || "Independent note"}
                             </p>
                         </div>
 

@@ -9,7 +9,8 @@ export default function NotesPanel({
     chapter,
     selectedVerse,
     books,
-    notesState
+    notesState,
+    navigateToPassage
 }) {
     const {
         isAuthenticated,
@@ -188,6 +189,7 @@ export default function NotesPanel({
                     onCancelEdit={handleCancelEdit}
                     onUpdate={handleUpdateNote}
                     onDelete={handleDeleteNote}
+                    onNavigate={navigateToPassage}
                 />
             </div>
         </section>

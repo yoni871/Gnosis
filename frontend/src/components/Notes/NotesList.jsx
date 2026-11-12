@@ -17,7 +17,8 @@ export default function NotesList({
     onStartEdit,
     onCancelEdit,
     onUpdate,
-    onDelete
+    onDelete,
+    onNavigate
 }) {
     return (
         <>
@@ -144,6 +145,7 @@ export default function NotesList({
                         onCancelEdit={onCancelEdit}
                         onUpdate={onUpdate}
                         onDelete={onDelete}
+                        onNavigate={onNavigate}
                     />
                 ))}
         </>

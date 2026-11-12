@@ -2,6 +2,7 @@ import {
     formatNoteDate,
     getNoteReference
 } from "./notesUtils";
+import ScriptureMentions from "./NoteScriptureMentions";
 
 export default function NoteCard({
     note,
@@ -19,7 +20,8 @@ export default function NoteCard({
     onStartEdit,
     onCancelEdit,
     onUpdate,
-    onDelete
+    onDelete,
+    onNavigate
 }) {
     const isEditing = editingNoteId === note.id;
     const isDeleting = deletingNoteId === note.id;
@@ -233,7 +235,7 @@ export default function NoteCard({
                                 text-[var(--text-primary)]
                             "
                         >
-                            {note.content}
+                            <ScriptureMentions content={note.content} books={books} onNavigate={onNavigate} />
                         </p>
                     </div>
 
