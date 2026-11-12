@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { afterEach, expect, test, vi } from "vitest";
 const mock = vi.hoisted(() => ({ conditions: {}, timelines: [], cleanup: null, revert: vi.fn(), refresh: vi.fn(), fail: false }));
 vi.mock('gsap/ScrollTrigger', () => ({ ScrollTrigger: { refresh: mock.refresh } }));
@@ -55,4 +57,9 @@ test('partial initialization reverts safely to the static page', () => {
     const root = page(); mock.fail = true; const stop = mountLandingMotion(root);
     expect(mock.revert).toHaveBeenCalled();
     expect(root).not.toHaveAttribute('data-scroll-narrative'); stop();
+});
+test('hero transition surface follows the active theme instead of flashing light', () => {
+    const css = readFileSync(join(process.cwd(), 'src/hooks/landingMotion.css'), 'utf8');
+    expect(css).toContain('background: var(--public-panel, #faf7ef)');
+    expect(css).not.toMatch(/landing-hero-shell::after\s*\{[^}]*background:\s*#faf7ef;/s);
 });
