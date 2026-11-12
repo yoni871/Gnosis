@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.js",
-    "prebuild": "node scripts/generate-sitemap.js",
+    "predev": "node scripts/build-history-content-dev.js",
+    "prebuild": "node scripts/generate-sitemap.js && node scripts/build-history-content.js",
     "build": "vite build",
+    "postbuild": "node scripts/check-history-gate.js",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "env -u HISTORY_INCLUDE_UNPUBLISHED node scripts/build-history-content.js && vitest run",
     "test:watch": "vitest",
     "build:check": "node scripts/check-build.js",
     "test:security-browser": "node scripts/check-build.js && playwright test"
@@ -22,7 +24,9 @@
     "lucide-react": "^1.38.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.18.3",
+    "remark-gfm": "^4.0.1",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {

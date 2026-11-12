@@ -21,6 +21,12 @@ const VerifyPage = lazy(() => import('./pages/VerifyPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+// Biblical History: three lazy routes, declared before the catch-all.
+// The Markdown renderer travels with these routes only — a reader who
+// never opens History downloads none of it.
+const BiblicalHistoryIndexPage = lazy(() => import('./pages/BiblicalHistoryIndexPage'));
+const BiblicalHistoryBookPage = lazy(() => import('./pages/BiblicalHistoryBookPage'));
+const BiblicalHistoryEventPage = lazy(() => import('./pages/BiblicalHistoryEventPage'));
 
 function RouteLoading() {
     return (
@@ -94,6 +100,26 @@ function App() {
             <Route
               path='/reset-password'
               element={<ResetPasswordPage />}
+            />
+
+            {/*
+              Biblical History: the index lists all 66 books, a book page
+              shows its events and timeline, and the event route is the
+              same book page with one event's panel open.
+            */}
+            <Route
+              path='/biblical-history'
+              element={<BiblicalHistoryIndexPage />}
+            />
+
+            <Route
+              path='/biblical-history/:book'
+              element={<BiblicalHistoryBookPage />}
+            />
+
+            <Route
+              path='/biblical-history/:book/:event'
+              element={<BiblicalHistoryEventPage />}
             />
 
             {/* Catch-all: without this, an unmatched URL renders a blank

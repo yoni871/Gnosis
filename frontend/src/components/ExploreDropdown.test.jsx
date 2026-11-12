@@ -44,6 +44,7 @@ test("closes on toggle, outside click, and focus leaving the disclosure", async 
     await user.click(trigger);
     await user.tab();
     await user.tab();
+    await user.tab();
     expect(screen.getByRole("button", { name: "Outside" })).toHaveFocus();
     expect(trigger).toHaveAttribute("aria-expanded", "false");
 });
@@ -55,6 +56,17 @@ test("navigates to the reader and notifies its enclosing navigation", async () =
     await user.click(screen.getByRole("button", { name: "Explore" }));
     await user.click(screen.getByRole("link", { name: /Bible & Commentary/ }));
     expect(screen.getByLabelText("Current path")).toHaveTextContent("/bible/Genesis/1");
+    expect(onNavigate).toHaveBeenCalledOnce();
+    expect(screen.queryByRole("link")).toBeNull();
+});
+
+test("navigates to Biblical History and notifies its enclosing navigation", async () => {
+    const user = userEvent.setup();
+    const onNavigate = vi.fn();
+    mount({ onNavigate });
+    await user.click(screen.getByRole("button", { name: "Explore" }));
+    await user.click(screen.getByRole("link", { name: /Biblical History/ }));
+    expect(screen.getByLabelText("Current path")).toHaveTextContent("/biblical-history/genesis");
     expect(onNavigate).toHaveBeenCalledOnce();
     expect(screen.queryByRole("link")).toBeNull();
 });
