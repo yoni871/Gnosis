@@ -20,10 +20,11 @@ function renderIndex() {
 }
 
 describe("BiblicalHistoryIndexPage", () => {
-    it("lists all 66 books with Upcoming states and no unpublished titles", () => {
+    it("lists all 66 books with Genesis published and the other 65 Upcoming, and no other event titles", () => {
         renderIndex();
         expect(screen.getByRole("heading", { level: 1, name: "Biblical History" })).toBeInTheDocument();
-        expect(screen.getAllByText("Upcoming")).toHaveLength(66);
+        expect(screen.getAllByText("Upcoming")).toHaveLength(65);
+        expect(screen.getByText("1 event")).toBeInTheDocument();
         expect(screen.queryByText(/Creation/)).toBeNull();
         expect(screen.getByRole("link", { name: /Genesis/ })).toHaveAttribute("href", "/biblical-history/genesis");
     });

@@ -23,11 +23,14 @@ function renderBook(path) {
 }
 
 describe("BiblicalHistoryBookPage", () => {
-    it("renders Genesis with an Upcoming state in a production build", () => {
+    it("renders Genesis with its published Creation event in a production build", () => {
         renderBook("/biblical-history/genesis");
         expect(screen.getByRole("heading", { level: 1, name: "Genesis" })).toBeInTheDocument();
-        expect(screen.getByText(/No historical events published yet/)).toBeInTheDocument();
-        expect(screen.queryByText(/Creation/)).toBeNull();
+        expect(screen.getByText(/1 historical event/)).toBeInTheDocument();
+        expect(screen.queryByText(/No historical events published yet/)).toBeNull();
+        expect(screen.getByRole("link", { name: /Creation/ })).toHaveAttribute(
+            "href", "/biblical-history/genesis/creation",
+        );
         expect(document.title).toBe("Biblical History — Genesis | Gnosis");
     });
 
@@ -44,10 +47,11 @@ describe("BiblicalHistoryBookPage", () => {
         expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
     });
 
-    it("renders the 404 page for an unpublished event in a production build", () => {
+    it("renders the published event panel for Genesis / Creation in a production build", () => {
         renderBook("/biblical-history/genesis/creation");
-        expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
-        expect(screen.queryByText(/Creation/)).toBeNull();
+        expect(screen.queryByRole("heading", { level: 1, name: "Page not found" })).toBeNull();
+        expect(screen.getByRole("dialog", { name: "Creation" })).toBeInTheDocument();
+        expect(document.title).toBe("Creation — Genesis 1:1–2:3 | Biblical History | Gnosis");
     });
 
     it("renders the 404 page for an event not connected to the requested book", () => {

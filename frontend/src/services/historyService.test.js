@@ -1,7 +1,7 @@
 // Service tests. These run against the production-mode generated
 // directory (npm test generates published-only content first), so the
-// in-review Creation event is NOT present: every book is "Upcoming" and every
-// loader returns nothing. Dev-mode loading is covered by the content-lib
+// published Creation event IS present: Genesis has one event and every
+// other book is "Upcoming". Dev-mode loading is covered by the content-lib
 // tests (which generate into temp dirs) and the local dev-flag preview.
 import { describe, expect, it } from "vitest";
 import {
@@ -65,9 +65,14 @@ describe("listBooks", () => {
         expect(books[39].title).toBe("Matthew");
         expect(books[65].title).toBe("Revelation");
     });
-    it("marks every book Upcoming in a production build (no published events)", () => {
+    it("marks every book except Genesis Upcoming in a production build (one published event)", () => {
         const books = listBooks();
-        expect(books.every((book) => book.eventCount === 0 && !book.hasEvents)).toBe(true);
+        const genesis = books.find((book) => book.id === "genesis");
+        expect(genesis.eventCount).toBe(1);
+        expect(genesis.hasEvents).toBe(true);
+        const rest = books.filter((book) => book.id !== "genesis");
+        expect(rest).toHaveLength(65);
+        expect(rest.every((book) => book.eventCount === 0 && !book.hasEvents)).toBe(true);
     });
 });
 
@@ -78,11 +83,21 @@ describe("book/event lookups in a production build", () => {
         expect(getBookTitle("song-of-solomon")).toBe("Song of Solomon");
         expect(getBookTitle("not-a-book")).toBeNull();
     });
-    it("returns no generated book, events, or event for Genesis", () => {
-        expect(getBook("genesis")).toBeNull();
-        expect(listEventsForBook("genesis")).toEqual([]);
-        expect(getEvent("event-creation")).toBeNull();
-        expect(getEventBySlug("creation")).toBeNull();
+    it("returns the generated book, events, and event for Genesis", () => {
+        const book = getBook("genesis");
+        expect(book).not.toBeNull();
+        expect(book.id).toBe("genesis");
+        const events = listEventsForBook("genesis");
+        expect(events).toHaveLength(1);
+        expect(events[0].id).toBe("event-creation");
+        expect(events[0].title).toBe("Creation");
+        expect(getEvent("event-creation")).not.toBeNull();
+        expect(getEvent("event-creation").title).toBe("Creation");
+        expect(getEventBySlug("creation")).not.toBeNull();
+        expect(getEventBySlug("creation").id).toBe("event-creation");
+        // No other book has generated content yet.
+        expect(getBook("exodus")).toBeNull();
+        expect(listEventsForBook("exodus")).toEqual([]);
     });
 });
 

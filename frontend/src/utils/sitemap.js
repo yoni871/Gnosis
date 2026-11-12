@@ -10,6 +10,12 @@
 //    and "/privacy", the public landing, About, and Privacy pages;
 //    /search, /login, /register must never be indexed, so they are
 //    never passed here)
+//  - Biblical History pages with published content, derived from the
+//    published-only generated manifest (see historySitemapPaths):
+//    the index, book pages with published content, and published event
+//    URLs. Unpublished events never appear — the manifest is
+//    published-only by construction, and the helper additionally
+//    requires each event id to be listed in it.
 //
 // lastmod, changefreq, and priority are deliberately omitted: no
 // per-chapter modification date exists, and Google ignores changefreq
@@ -35,6 +41,37 @@ export function chapterUrls(siteUrl, chapterCounts) {
     }
 
     return urls;
+}
+
+// Biblical History sitemap paths, derived from the PUBLISHED-ONLY
+// generated manifest — never from the source tree, so an unpublished
+// event cannot appear by construction. `manifest` is the generated
+// manifest.json ({ books: [bookId], events: [eventId], ... }); `books`
+// is the generated book records ({ id, events: [{ eventId }] }).
+// Returns ["/biblical-history", "/biblical-history/<book>",
+// "/biblical-history/<book>/<event-slug>", ...]: the index first, then
+// each published book with its published events, all sorted
+// deterministically. Returns [] when nothing is published — a book with
+// no published content gets no URL, and an event listed in no generated
+// book (or not in the manifest) gets none either.
+export function historySitemapPaths(manifest, books) {
+    const publishedBooks = [...(manifest?.books ?? [])].sort();
+    if (publishedBooks.length === 0) return [];
+    const publishedEvents = new Set(manifest?.events ?? []);
+    const byId = new Map((books ?? []).map((book) => [book.id, book]));
+    const paths = ["/biblical-history"];
+    for (const bookId of publishedBooks) {
+        paths.push(`/biblical-history/${encodeURIComponent(bookId)}`);
+        const slugs = (byId.get(bookId)?.events ?? [])
+            .map((entry) => entry.eventId)
+            .filter((id) => typeof id === "string" && publishedEvents.has(id))
+            .map((id) => id.replace(/^event-/, ""))
+            .sort();
+        for (const slug of slugs) {
+            paths.push(`/biblical-history/${encodeURIComponent(bookId)}/${encodeURIComponent(slug)}`);
+        }
+    }
+    return paths;
 }
 
 export function buildSitemapXml(siteUrl, chapterCounts, extraPaths = []) {

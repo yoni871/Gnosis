@@ -22,7 +22,7 @@ afterEach(() => {
     while (tempDirs.length > 0) rmSync(tempDirs.pop(), { recursive: true, force: true });
 });
 
-function makeTempTree({ eventStatus = "published" } = {}) {
+function makeTempTree({ eventStatus = "published", markSourcesVerified = true } = {}) {
     const dir = mkdtempSync(path.join(tmpdir(), "history-content-"));
     tempDirs.push(dir);
     const contentDir = path.join(dir, "content");
@@ -31,16 +31,21 @@ function makeTempTree({ eventStatus = "published" } = {}) {
     const event = JSON.parse(readFileSync(eventPath, "utf8"));
     event.status = eventStatus;
     writeFileSync(eventPath, JSON.stringify(event, null, 2));
-    // The shipped sources are deliberately not-independently-verified;
-    // a published event citing them would fail check 10 without an
-    // editorial override, so the fixture registry marks every source
-    // verified. (The shipped in-review event is unaffected.)
-    const registryPath = path.join(contentDir, "sources", "references.json");
-    const registry = JSON.parse(readFileSync(registryPath, "utf8"));
-    for (const source of Object.values(registry)) {
-        source.verification = "verified";
+    // By default the fixture registry marks every source verified, so
+    // fail-closed mutations are not confounded by check 10 (a published
+    // event citing a not-independently-verified source without an
+    // editorial override fails validation). Pass markSourcesVerified:
+    // false to keep the shipped verification states — the check-10
+    // override tests do that, so the shipped Brown record stays
+    // not-independently-verified in the fixture.
+    if (markSourcesVerified) {
+        const registryPath = path.join(contentDir, "sources", "references.json");
+        const registry = JSON.parse(readFileSync(registryPath, "utf8"));
+        for (const source of Object.values(registry)) {
+            source.verification = "verified";
+        }
+        writeFileSync(registryPath, JSON.stringify(registry, null, 2));
     }
-    writeFileSync(registryPath, JSON.stringify(registry, null, 2));
     return { contentDir, outDir: path.join(dir, "generated") };
 }
 
@@ -56,9 +61,32 @@ function mutateMd(contentDir, relativePath, replacement) {
 }
 
 describe("validateHistoryContent on the shipped tree", () => {
-    it("passes the real Creation in-review content with no errors", () => {
+    it("passes the real published Creation content with its editorial override", () => {
+        const event = JSON.parse(readFileSync(path.join(repoContentDir, "events", "creation.json"), "utf8"));
+        expect(event.status).toBe("published");
+        expect(event.review.editorialOverride).toBe(true);
+        const registry = JSON.parse(readFileSync(path.join(repoContentDir, "sources", "references.json"), "utf8"));
+        // Brown is the only cited source still not-independently-verified;
+        // the override is what lets the published event cite him (check 10).
+        expect(registry["source-brown-cosmic-temple"].verification).toBe("not-independently-verified");
+        expect(event.sources).toContain("source-brown-cosmic-temple");
         const { errors } = validateHistoryContent({ contentDir: repoContentDir, bibleChapters });
         expect(errors).toEqual([]);
+    });
+
+    it("passes a published temp-tree copy with the shipped verification states and the override intact", () => {
+        const { contentDir } = makeTempTree({ eventStatus: "published", markSourcesVerified: false });
+        const { errors } = validateHistoryContent({ contentDir, bibleChapters });
+        expect(errors).toEqual([]);
+    });
+
+    it("fails check 10 when the same published event has no editorial override", () => {
+        const { contentDir } = makeTempTree({ eventStatus: "published", markSourcesVerified: false });
+        mutateJson(contentDir, "events/creation.json", (event) => {
+            event.review.editorialOverride = false;
+        });
+        const { errors } = validateHistoryContent({ contentDir, bibleChapters });
+        expect(errors.some((error) => /published event cites not-independently-verified source "source-brown-cosmic-temple" without a review\.editorialOverride/.test(error))).toBe(true);
     });
 });
 
@@ -95,6 +123,68 @@ describe("generateHistoryContent — the publication gate", () => {
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
         ]);
+    });
+});
+
+describe("generateHistoryContent — internal editorial metadata never ships", () => {
+    // The source tree keeps the full review record and source
+    // verification for research and validation; the generated copy must
+    // contain none of it. The strip happens at generation time, so it
+    // covers every build path (prebuild, the Vite gate plugin, dev-flag
+    // generation). Public content — prose, connection notes, source
+    // authors/titles/details/links, qualifications — must survive it.
+    const generatedText = (outDir) => {
+        const eventJson = readFileSync(path.join(outDir, "events", "creation.json"), "utf8");
+        const sourcesJson = readFileSync(path.join(outDir, "sources.json"), "utf8");
+        return { eventJson, sourcesJson };
+    };
+
+    it("strips review and verification from published generation, keeps the sources intact", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "published", markSourcesVerified: false });
+        // The validator still passes with the override in the SOURCE
+        // (check 10 positive case): the strip must not break validation.
+        expect(validateHistoryContent({ contentDir, bibleChapters }).errors).toEqual([]);
+        const { manifest } = generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
+        });
+        expect(manifest.events).toEqual(["event-creation"]);
+        const { eventJson, sourcesJson } = generatedText(outDir);
+        const event = JSON.parse(eventJson);
+        expect(event).not.toHaveProperty("review");
+        expect(event.title).toBe("Creation");
+        expect(event.connections).toHaveLength(28);
+        expect(event.sources).toHaveLength(6);
+        expect(eventJson).not.toContain("Kantor");
+        expect(eventJson).not.toContain("editorialOverride");
+        expect(eventJson).not.toContain("not-independently-verified");
+        const sources = JSON.parse(sourcesJson);
+        expect(Object.keys(sources)).toHaveLength(6);
+        for (const source of Object.values(sources)) {
+            expect(source).not.toHaveProperty("verification");
+            expect(source).not.toHaveProperty("verificationDetail");
+            expect(source.author).toBeTruthy();
+            expect(source.title).toBeTruthy();
+            expect(source.url).toBeTruthy();
+        }
+        expect(sourcesJson).not.toContain("not-independently-verified");
+        expect(sourcesJson).not.toContain("verificationDetail");
+        // ... while the SOURCE files still carry the full record.
+        const sourceEvent = JSON.parse(readFileSync(path.join(contentDir, "events", "creation.json"), "utf8"));
+        expect(sourceEvent.review.editorialOverride).toBe(true);
+        expect(sourceEvent.review.notes).toContain("Kantor");
+        const registry = JSON.parse(readFileSync(path.join(contentDir, "sources", "references.json"), "utf8"));
+        expect(registry["source-brown-cosmic-temple"].verification).toBe("not-independently-verified");
+        expect(registry["source-brown-cosmic-temple"].verificationDetail).toBeTruthy();
+    });
+
+    it("strips review from dev-flag generation too", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
+        generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
+        });
+        const event = JSON.parse(readFileSync(path.join(outDir, "events", "creation.json"), "utf8"));
+        expect(event).not.toHaveProperty("review");
+        expect(event.title).toBe("Creation");
     });
 });
 
