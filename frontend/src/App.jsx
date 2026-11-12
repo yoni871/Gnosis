@@ -6,6 +6,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import StudyPage from './pages/StudyPage';
+import ScrollManager from './components/Navigation/ScrollManager';
 
 // The remaining routes load on demand, so a first visit never downloads
 // or parses the auth, search, and About pages. Landing and the reader
@@ -46,6 +47,7 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <AuthProvider>
+          <ScrollManager />
           <ErrorBoundary>
           <Suspense fallback={<RouteLoading />}>
           <Routes>
