@@ -22,7 +22,7 @@ function publishedHistoryPaths() {
     return historySitemapPaths(manifest, books);
 }
 
-const BH_PATHS = ["/biblical-history", "/biblical-history/genesis", "/biblical-history/genesis/creation"];
+const BH_PATHS = ["/biblical-history", "/biblical-history/books", "/biblical-history/genesis", "/biblical-history/genesis/creation"];
 
 describe("chapterUrls", () => {
     test("lists every chapter in book order, ascending", () => {
@@ -67,9 +67,10 @@ describe("historySitemapPaths", () => {
     const manifest = { books: ["genesis"], events: ["event-creation"], sources: [], topics: [] };
     const books = [{ id: "genesis", events: [{ eventId: "event-creation", narrativeOrder: 1 }] }];
 
-    test("lists the index, a published book page, and its published event URL", () => {
+    test("lists the homepage, directory, a published book page, and its published event URL", () => {
         expect(historySitemapPaths(manifest, books)).toEqual([
             "/biblical-history",
+            "/biblical-history/books",
             "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
         ]);
@@ -85,6 +86,7 @@ describe("historySitemapPaths", () => {
         // record for it exists.
         expect(historySitemapPaths(manifest, otherBooks)).toEqual([
             "/biblical-history",
+            "/biblical-history/books",
             "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
         ]);
@@ -104,6 +106,7 @@ describe("historySitemapPaths", () => {
         // published event in the manifest — it must not get a URL.
         expect(historySitemapPaths(manifest, booksWithDraft)).toEqual([
             "/biblical-history",
+            "/biblical-history/books",
             "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
         ]);
@@ -127,6 +130,7 @@ describe("historySitemapPaths", () => {
         ];
         expect(historySitemapPaths(multi, multiBooks)).toEqual([
             "/biblical-history",
+            "/biblical-history/books",
             "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
             "/biblical-history/psalms",
@@ -156,7 +160,7 @@ describe("verified chapter manifest", () => {
 });
 
 describe("production sitemap output", () => {
-    test("contains exactly the 1,189 canonical chapter URLs plus the homepage, About page, Privacy page, and the 3 published Biblical History URLs, nothing else", () => {
+    test("contains exactly the 1,189 canonical chapter URLs plus the homepage, About page, Privacy page, and the 4 public Biblical History URLs, nothing else", () => {
         const historyPaths = publishedHistoryPaths();
         expect(historyPaths).toEqual(BH_PATHS);
         const xml = buildSitemapXml(SITE_URL, chapterCounts, ["/", "/about", "/privacy", ...historyPaths]);
@@ -164,16 +168,17 @@ describe("production sitemap output", () => {
             ([, url]) => url,
         );
 
-        expect(urls).toHaveLength(1195);
-        expect(new Set(urls).size).toBe(1195);
+        expect(urls).toHaveLength(1196);
+        expect(new Set(urls).size).toBe(1196);
         expect(urls[0]).toBe("https://studygnosis.com/bible/Genesis/1");
-        expect(urls[urls.length - 7]).toBe(
+        expect(urls[urls.length - 8]).toBe(
             "https://studygnosis.com/bible/Revelation/22",
         );
-        expect(urls[urls.length - 6]).toBe("https://studygnosis.com/");
-        expect(urls[urls.length - 5]).toBe("https://studygnosis.com/about");
-        expect(urls[urls.length - 4]).toBe("https://studygnosis.com/privacy");
-        expect(urls[urls.length - 3]).toBe("https://studygnosis.com/biblical-history");
+        expect(urls[urls.length - 7]).toBe("https://studygnosis.com/");
+        expect(urls[urls.length - 6]).toBe("https://studygnosis.com/about");
+        expect(urls[urls.length - 5]).toBe("https://studygnosis.com/privacy");
+        expect(urls[urls.length - 4]).toBe("https://studygnosis.com/biblical-history");
+        expect(urls[urls.length - 3]).toBe("https://studygnosis.com/biblical-history/books");
         expect(urls[urls.length - 2]).toBe("https://studygnosis.com/biblical-history/genesis");
         expect(urls[urls.length - 1]).toBe("https://studygnosis.com/biblical-history/genesis/creation");
         expect(urls.filter(url => url === "https://studygnosis.com/about")).toHaveLength(1);
@@ -193,7 +198,7 @@ describe("production sitemap output", () => {
         // Only the published Biblical History pages appear: no other
         // book (the other 65 are Upcoming) and no unpublished event.
         const bhUrls = urls.filter((url) => url.includes("/biblical-history"));
-        expect(bhUrls).toHaveLength(3);
+        expect(bhUrls).toHaveLength(4);
         expect(urls.some((url) => url.includes("/biblical-history/exodus"))).toBe(false);
     });
 

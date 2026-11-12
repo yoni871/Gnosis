@@ -66,7 +66,7 @@ test("navigates to Biblical History and notifies its enclosing navigation", asyn
     mount({ onNavigate });
     await user.click(screen.getByRole("button", { name: "Explore" }));
     await user.click(screen.getByRole("link", { name: /Biblical History/ }));
-    expect(screen.getByLabelText("Current path")).toHaveTextContent("/biblical-history/genesis");
+    expect(screen.getByLabelText("Current path")).toHaveTextContent("/biblical-history");
     expect(onNavigate).toHaveBeenCalledOnce();
     expect(screen.queryByRole("link")).toBeNull();
 });
