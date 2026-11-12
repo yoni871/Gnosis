@@ -85,6 +85,20 @@ To preview an unpublished record locally (never in CI or production):
 HISTORY_INCLUDE_UNPUBLISHED=1 npm run dev
 ```
 
+## Sources and verification status
+
+Each source in `sources/references.json` carries `verification`
+(`verified` | `not-independently-verified`) and `verificationDetail`
+(the sections/pages actually consulted and the claims they support).
+These are internal editorial records: the public Sources list renders
+author, title, publication details, and the original-source link only,
+and never renders a verification badge or label. A source is marked
+`verified` only when the full text (or, for institutional pages, the
+actual page) has been consulted and every cited claim confirmed;
+abstract-only checks stay `not-independently-verified`. Contested
+interpretations are qualified in the prose and connection notes, not in
+badges — removing the badges does not remove those qualifications.
+
 The flag only affects `npm run dev` (its `predev` hook). It has no effect
 on any build: `npm run build`, `npm run build:check`, and direct
 `vite build` always generate published-only content, and the postbuild
