@@ -353,10 +353,6 @@
     color: var(--color-brand);
 }
 
-.history-source-verification {
-    color: var(--text-muted);
-}
-
 .history-overview h2,
 .history-ancient-world h2,
 .history-scripture-tab h2 {

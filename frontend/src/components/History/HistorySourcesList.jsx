@@ -1,6 +1,12 @@
 // The sources for one event, resolved from the source registry and
 // rendered as a labelled list. Each entry carries an id anchor
 // (`#source-<id>`) so footnote links in the prose resolve here.
+//
+// Source verification status (`verification`, `verificationDetail`) is
+// an internal editorial record in the registry and is deliberately NOT
+// rendered here: the public list shows author, title, publication
+// details, and the original-source link only. Contested-interpretation
+// qualifications live in the prose and connection notes, not in badges.
 import { getSource } from "../../services/historyService";
 
 function formatSource(source) {
@@ -23,9 +29,6 @@ export default function HistorySourcesList({ sourceIds = [] }) {
                 {sources.map(({ id, source }) => (
                     <li key={id} id={`source-${id}`}>
                         <span>{formatSource(source)}</span>
-                        {source.verification === "not-independently-verified" && (
-                            <span className="history-source-verification"> — Not independently verified</span>
-                        )}
                         {source.url && (
                             <>
                                 {" "}
