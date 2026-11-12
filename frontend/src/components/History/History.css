@@ -608,7 +608,21 @@
        and timeline hint are hidden — they all return when the sheet
        expands — and the header/timeline padding tightens, leaving the
        tab row visible and tappable with a sliver of content below it.
-       The development-content badge stays visible in both states. */
+       The development-content badge stays visible in both states.
+       Short-screen guard (320px fix): at 320x568, 45dvh is 256px but
+       the fixed chrome alone is ~344px (handle 23 + header 163 with the
+       badge + 68px wrapped-label tab row + timeline 89), so the timeline
+       still covered the tabs and overflowed the sheet by ~20px. The
+       collapsed sheet therefore has a 400px minimum height on mobile:
+       it fits the chrome plus a two-line title and a content sliver, and
+       only binds where 45dvh falls short (viewport height < ~889px) —
+       on taller screens 45dvh still wins. The sheet may end up taller
+       than 45dvh on very short screens; that is the accepted trade-off
+       for keeping every tab visible and tappable. */
+    .history-panel-dialog--collapsed {
+        min-height: 400px;
+    }
+
     .history-panel-dialog--collapsed .history-panel-book-note,
     .history-panel-dialog--collapsed .history-connection-chips,
     .history-panel-dialog--collapsed .history-timeline-hint {
