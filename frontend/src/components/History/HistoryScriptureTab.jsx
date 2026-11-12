@@ -25,6 +25,11 @@ export default function HistoryScriptureTab({ event }) {
     return (
         <div className="history-scripture-tab">
             <h2 id="history-section-scripture-heading">Scripture</h2>
+            <p className="history-confidence-note">
+                These labels describe how closely a passage relates to this event in wording and theme —
+                not how certain every interpretive claim in its note is. Interpretive readings are
+                qualified in the notes themselves.
+            </p>
             <section aria-labelledby="history-primary-passage-heading">
                 <h3 id="history-primary-passage-heading">Primary Passage</h3>
                 <p>

@@ -444,6 +444,13 @@
     color: var(--text-muted);
 }
 
+.history-confidence-note {
+    margin: 0 0 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
 /* ---------- Book index / book header ---------- */
 
 .history-book-index section {

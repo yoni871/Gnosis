@@ -53,7 +53,23 @@ are derived by `formatScriptureRange()` — never store a label string.
   proposed | unknown`. `traditional` requires `traditionalSystem`;
   `unknown` requires `yearStart`/`yearEnd` null.
 - **Claim confidence** (`confidence` on connections): `established |
-  probable | debated | traditional | unknown`.
+  probable | debated | traditional | unknown`. **Connection confidence
+  means confidence that the passage is textually relevant to the event,
+  NOT certainty that every interpretive claim in the connection's note is
+  established.** Interpretive readings must be qualified in the note
+  itself (e.g. "contested", "interpretive", "debated"), and the Scripture
+  tab states this distinction where the badges are shown. A separate
+  `interpretationStatus` field (splitting link confidence from
+  interpretation confidence) is a possible later change — do not invent
+  it in a content PR; it needs a schema, validator, and renderer change.
+
+## Footnote numbering
+
+Footnote numbers run continuously through the whole event in
+first-citation order (Overview, then Ancient World, then Why This Context
+Matters) — never restarting at 1 per section. `resolveHistoryFootnotes`
+takes an optional shared footnote list for this; `loadEventSections`
+threads one list through every section.
 
 ## Editorial statuses and the build gate
 

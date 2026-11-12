@@ -288,12 +288,10 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
             },
-            {
-                id: "source-kantor-genesis-opening",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Origins of “In the Beginning . . .”: Genesis 1:1 in Light of the Biblical Hebrew Reading Traditions",
-            },
+            // source-kantor-genesis-opening is deliberately absent: it is
+            // kept unreferenced in the shared registry (editorial
+            // corrections, 2026-11-11) so no event cites it, and the gate
+            // only lists sources cited by non-published events.
         ]);
     });
 });

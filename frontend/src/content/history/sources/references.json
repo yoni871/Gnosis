@@ -8,7 +8,7 @@
     "pagesOrSection": "The Seven Pillars of Creation, chapter 3, pp. 33–78",
     "url": "https://doi.org/10.1093/acprof:oso/9780199730797.003.0003",
     "verification": "not-independently-verified",
-    "verificationDetail": "bibliography-and-abstract-checked",
+    "verificationDetail": "bibliography-and-abstract-checked; Oxford abstract page returned 403 on the 2026-11-11 re-check; full chapter not consulted.",
     "licenseNote": "All rights reserved; original paraphrase and citation only. Full chapter not consulted."
   },
   "source-met-mesopotamian-creation": {
@@ -19,20 +19,20 @@
     "year": 2009,
     "pagesOrSection": "Heilbrunn Timeline essay",
     "url": "https://www.metmuseum.org/essays/epic-of-creation-mesopotamia",
-    "verification": "not-independently-verified",
-    "verificationDetail": "institutional-page-checked",
+    "verification": "verified",
+    "verificationDetail": "Met essay fetched 2026-11-11: Enuma Elish as theological legitimization of Marduk's rise, his battle with Tiamat, creation from her body, and humans created to release the gods from burdensome labour all confirmed on the page.",
     "licenseNote": "Do not reproduce museum prose or illustrations without rights review."
   },
   "source-oracc-marduk": {
     "id": "source-oracc-marduk",
-    "author": "ORACC / Ancient Mesopotamian Gods and Goddesses",
+    "author": "Nicole Brisch",
     "title": "Marduk (god)",
     "publisher": "Oracc, University of Pennsylvania / collaborators",
-    "year": null,
+    "year": 2019,
     "pagesOrSection": "Functions",
     "url": "https://oracc.museum.upenn.edu/amgg/listofdeities/marduk/index.html",
-    "verification": "not-independently-verified",
-    "verificationDetail": "institutional-page-checked",
+    "verification": "verified",
+    "verificationDetail": "ORACC page fetched 2026-11-11: author credit 'Nicole Brisch, Marduk (god), Ancient Mesopotamian Gods and Goddesses, Oracc and the UK Higher Education Academy, 2019' confirmed; Enuma elish elevation-of-Marduk claim confirmed (Functions section: the epic's main focus is Marduk's elevation, creation is its vehicle).",
     "licenseNote": "Paraphrase with credit; verify project-specific licensing before reproducing translations."
   },
   "source-mcdowell-human-identity": {
@@ -44,7 +44,7 @@
     "pagesOrSection": "1(3): 29–44",
     "url": "https://doi.org/10.35068/aabner.v1i3.830",
     "verification": "not-independently-verified",
-    "verificationDetail": "bibliography-and-abstract-checked",
+    "verificationDetail": "Publisher abstract fetched 2026-11-11: Atrahasis humans-created-to-relieve-lower-gods'-toil claim confirmed; full article not read.",
     "licenseNote": "CC BY-NC-ND 4.0 for article; only original summaries and citations in Gnosis."
   },
   "source-crouch-image-of-god": {
@@ -56,7 +56,7 @@
     "pagesOrSection": "16(1)",
     "url": "https://doi.org/10.1163/15692124-12341277",
     "verification": "not-independently-verified",
-    "verificationDetail": "bibliography-and-repository-checked",
+    "verificationDetail": "Repository abstract fetched 2026-11-11: royal/chaoskampf reconstruction confirmed as the article's proposal ('suggests'); cite as a contested proposal, never as consensus; full text not read.",
     "licenseNote": "Repository copy lists CC BY 4.0; cite independent original summary; check version-specific terms for reuse."
   },
   "source-british-museum-shabaka": {
@@ -67,8 +67,8 @@
     "year": 2022,
     "pagesOrSection": "EA498, heart/tongue passage",
     "url": "https://www.britishmuseum.org/sites/default/files/2022-11/Shabaka_Stone_transcript_Hieroglyphs_unlocking_ancient_Egypt_The_British_Musuem.pdf",
-    "verification": "not-independently-verified",
-    "verificationDetail": "institutional-primary-text-and-guide-checked",
+    "verification": "verified",
+    "verificationDetail": "Museum transcript fetched 2026-11-11: Ptah creating through heart and tongue confirmed verbatim; no transcript reproduced.",
     "licenseNote": "Do not reproduce photograph or transcript at length; rights not cleared."
   },
   "source-kantor-genesis-opening": {
@@ -80,7 +80,7 @@
     "pagesOrSection": "144(4): 601–636",
     "url": "https://doi.org/10.15699/jbl.1444.2025.2",
     "verification": "not-independently-verified",
-    "verificationDetail": "bibliography-and-abstract-checked",
-    "licenseNote": "All rights reserved; full text not examined."
+    "verificationDetail": "bibliography-and-abstract-checked; Cambridge repository abstract confirms the Gen 1:1 syntax focus; full article embargoed until 2027-06-15 per the 2026-11-11 desk review (no embargo string visible in the repository page text fetched that day); not cited by any event — do not cite in public content until a verified discussion of Gen 1:1 syntax is added.",
+    "licenseNote": "All rights reserved; full text not examined. Do not cite in public content until a verified discussion of Gen 1:1 syntax is added; full article embargoed until 2027-06-15."
   }
 }
