@@ -18,9 +18,10 @@ describe("HistoryBookIndex", () => {
         expect(screen.getByRole("link", { name: /Revelation/ })).toHaveAttribute("href", "/biblical-history/revelation");
     });
 
-    it("marks every book Upcoming in a production build and ships no unpublished titles", () => {
+    it("marks every book except Genesis Upcoming in a production build and ships no other event titles", () => {
         render(<MemoryRouter><HistoryBookIndex /></MemoryRouter>);
-        expect(screen.getAllByText("Upcoming")).toHaveLength(66);
+        expect(screen.getAllByText("Upcoming")).toHaveLength(65);
+        expect(screen.getByText("1 event")).toBeInTheDocument();
         expect(screen.queryByText(/Creation/)).toBeNull();
     });
 });

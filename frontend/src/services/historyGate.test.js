@@ -3,8 +3,14 @@
 // real generated directory is never touched. Sandboxes mirror the
 // frontend layout the scripts resolve against (scripts/ + src/content/
 // history + src/data/bibleChapters.json + src/utils/historyContent.js).
-// Fixtures are copies of the real shipped content tree, so the shipped
-// Creation in-review content (status "in-review") is itself under test.
+// Fixtures are copies of the real shipped content tree, with the copied
+// Creation event flipped back to "in-review" (see makeSandbox): the
+// shipped event is now published, so without that flip the sandbox would
+// contain no non-published record at all and every "fails when..." test
+// would pass vacuously. The flip restores a genuinely non-published
+// fixture — check 10 applies only to published events, and
+// findNonPublishedRecords lists by status — so the gate is still tested
+// against a real draft leak, not a weakened expectation.
 import {
     cpSync,
     existsSync,
@@ -46,6 +52,16 @@ function makeSandbox() {
         path.join(frontendDir, "src", "utils", "historyContent.js"),
         path.join(dir, "src", "utils", "historyContent.js"),
     );
+    // The shipped Creation event is published, so the sandbox copy is
+    // flipped back to "in-review": the gate tests need a genuinely
+    // non-published record in the fixture, or the gate's early return
+    // ("no non-published records exist") would make every leak test
+    // pass without exercising the leak checks at all. This is the only
+    // mutation the sandbox makes to the shipped tree.
+    const sandboxEventPath = path.join(dir, "src", "content", "history", "events", "creation.json");
+    const sandboxEvent = JSON.parse(readFileSync(sandboxEventPath, "utf8"));
+    sandboxEvent.status = "in-review";
+    writeFileSync(sandboxEventPath, JSON.stringify(sandboxEvent, null, 2));
     return dir;
 }
 

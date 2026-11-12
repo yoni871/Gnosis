@@ -22,7 +22,7 @@ afterEach(() => {
     while (tempDirs.length > 0) rmSync(tempDirs.pop(), { recursive: true, force: true });
 });
 
-function makeTempTree({ eventStatus = "published" } = {}) {
+function makeTempTree({ eventStatus = "published", markSourcesVerified = true } = {}) {
     const dir = mkdtempSync(path.join(tmpdir(), "history-content-"));
     tempDirs.push(dir);
     const contentDir = path.join(dir, "content");
@@ -31,16 +31,21 @@ function makeTempTree({ eventStatus = "published" } = {}) {
     const event = JSON.parse(readFileSync(eventPath, "utf8"));
     event.status = eventStatus;
     writeFileSync(eventPath, JSON.stringify(event, null, 2));
-    // The shipped sources are deliberately not-independently-verified;
-    // a published event citing them would fail check 10 without an
-    // editorial override, so the fixture registry marks every source
-    // verified. (The shipped in-review event is unaffected.)
-    const registryPath = path.join(contentDir, "sources", "references.json");
-    const registry = JSON.parse(readFileSync(registryPath, "utf8"));
-    for (const source of Object.values(registry)) {
-        source.verification = "verified";
+    // By default the fixture registry marks every source verified, so
+    // fail-closed mutations are not confounded by check 10 (a published
+    // event citing a not-independently-verified source without an
+    // editorial override fails validation). Pass markSourcesVerified:
+    // false to keep the shipped verification states — the check-10
+    // override tests do that, so the shipped Brown record stays
+    // not-independently-verified in the fixture.
+    if (markSourcesVerified) {
+        const registryPath = path.join(contentDir, "sources", "references.json");
+        const registry = JSON.parse(readFileSync(registryPath, "utf8"));
+        for (const source of Object.values(registry)) {
+            source.verification = "verified";
+        }
+        writeFileSync(registryPath, JSON.stringify(registry, null, 2));
     }
-    writeFileSync(registryPath, JSON.stringify(registry, null, 2));
     return { contentDir, outDir: path.join(dir, "generated") };
 }
 
@@ -56,9 +61,32 @@ function mutateMd(contentDir, relativePath, replacement) {
 }
 
 describe("validateHistoryContent on the shipped tree", () => {
-    it("passes the real Creation in-review content with no errors", () => {
+    it("passes the real published Creation content with its editorial override", () => {
+        const event = JSON.parse(readFileSync(path.join(repoContentDir, "events", "creation.json"), "utf8"));
+        expect(event.status).toBe("published");
+        expect(event.review.editorialOverride).toBe(true);
+        const registry = JSON.parse(readFileSync(path.join(repoContentDir, "sources", "references.json"), "utf8"));
+        // Brown is the only cited source still not-independently-verified;
+        // the override is what lets the published event cite him (check 10).
+        expect(registry["source-brown-cosmic-temple"].verification).toBe("not-independently-verified");
+        expect(event.sources).toContain("source-brown-cosmic-temple");
         const { errors } = validateHistoryContent({ contentDir: repoContentDir, bibleChapters });
         expect(errors).toEqual([]);
+    });
+
+    it("passes a published temp-tree copy with the shipped verification states and the override intact", () => {
+        const { contentDir } = makeTempTree({ eventStatus: "published", markSourcesVerified: false });
+        const { errors } = validateHistoryContent({ contentDir, bibleChapters });
+        expect(errors).toEqual([]);
+    });
+
+    it("fails check 10 when the same published event has no editorial override", () => {
+        const { contentDir } = makeTempTree({ eventStatus: "published", markSourcesVerified: false });
+        mutateJson(contentDir, "events/creation.json", (event) => {
+            event.review.editorialOverride = false;
+        });
+        const { errors } = validateHistoryContent({ contentDir, bibleChapters });
+        expect(errors.some((error) => /published event cites not-independently-verified source "source-brown-cosmic-temple" without a review\.editorialOverride/.test(error))).toBe(true);
     });
 });
 
