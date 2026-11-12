@@ -213,4 +213,15 @@ describe("shared content helpers", () => {
             { key: "source-b", number: 2, known: true },
         ]);
     });
+    it("resolveHistoryFootnotes continues numbering from an existing list instead of restarting", () => {
+        const shared = [];
+        const first = resolveHistoryFootnotes("A.[^source-a]", ["source-a", "source-b"], shared);
+        const second = resolveHistoryFootnotes("B.[^source-b] C.[^source-a]", ["source-a", "source-b"], shared);
+        expect(first.markdown).toBe("A.[1](#source-source-a)");
+        expect(second.markdown).toBe("B.[2](#source-source-b) C.[1](#source-source-a)");
+        expect(second.footnotes).toEqual([
+            { key: "source-a", number: 1, known: true },
+            { key: "source-b", number: 2, known: true },
+        ]);
+    });
 });

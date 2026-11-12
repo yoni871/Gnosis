@@ -121,8 +121,11 @@ export function findFootnoteKeys(mdText) {
 // sources list (anchors `#source-<id>`), in first-citation order. The
 // renderer turns these into ordinary links; the sources list carries the
 // matching ids. Returns { markdown, footnotes: [{ key, number }] }.
-export function resolveHistoryFootnotes(mdText, knownSourceIds = []) {
-    const footnotes = [];
+// Pass an existing `footnotes` array (from an earlier section) to keep
+// numbering continuous across sections instead of restarting at 1 —
+// loadEventSections threads one array through the whole event.
+export function resolveHistoryFootnotes(mdText, knownSourceIds = [], existingFootnotes = null) {
+    const footnotes = existingFootnotes ?? [];
     const markdown = String(mdText ?? "").replace(/\[\^([^\]]+)\]/g, (match, key) => {
         let entry = footnotes.find((f) => f.key === key);
         if (!entry) {

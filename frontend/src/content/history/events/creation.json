@@ -45,7 +45,7 @@
       "endVerse": 25,
       "type": "thematic",
       "confidence": "established",
-      "note": "Humanity, land, divine formation, vocation; distinct narrative"
+      "note": "Humanity, land, divine formation, vocation; a distinct creation narrative, thematically related rather than the same account as Genesis 1:1–2:3"
     },
     {
       "id": "conn-cre-003",
@@ -57,7 +57,7 @@
       "endVerse": 24,
       "type": "thematic",
       "confidence": "established",
-      "note": "Disorder, curse, mortality, exile from created/garden order"
+      "note": "Disorder, curse, mortality, exile from created/garden order — interpretive thematic link: the fall read against the created order"
     },
     {
       "id": "conn-cre-004",
@@ -81,7 +81,7 @@
       "endVerse": 7,
       "type": "thematic",
       "confidence": "established",
-      "note": "Renewed blessing, multiplication, image of God, rule context after Flood"
+      "note": "Renewed blessing, multiplication, image of God; dominion phrasing here is less direct than in Genesis 1"
     },
     {
       "id": "conn-cre-006",
@@ -117,7 +117,7 @@
       "endVerse": 8,
       "type": "thematic",
       "confidence": "established",
-      "note": "Human glory, dominion over creatures; major image/vocation parallel (royal background debated)"
+      "note": "Human glory, dominion over creatures; major image/vocation parallel — the royal-combat historical reconstruction behind it is contested, no consensus implied"
     },
     {
       "id": "conn-cre-009",
@@ -153,7 +153,7 @@
       "endVerse": 17,
       "type": "thematic",
       "confidence": "established",
-      "note": "Creation intertwined with sea/chaos combat imagery"
+      "note": "Creator and sea-combat imagery in this psalm; Genesis 1 itself does not describe combat — the combat imagery belongs to Psalm 74"
     },
     {
       "id": "conn-cre-012",
@@ -201,7 +201,7 @@
       "endVerse": 31,
       "type": "thematic",
       "confidence": "established",
-      "note": "Wisdom associated with creation; a proposed link between Proverbs 8 and the syntax of Genesis 1:1 is debated"
+      "note": "Wisdom present at creation; thematic link only — no grammatical or syntactical link between Proverbs 8 and Genesis 1:1 is asserted (proposed syntax link removed pending verification)"
     },
     {
       "id": "conn-cre-016",
@@ -237,7 +237,7 @@
       "endVerse": 18,
       "type": "prophetic-reference",
       "confidence": "established",
-      "note": "Exclusive divine creation and ordering; *bārāʾ* prominent"
+      "note": "Exclusive divine creation and ordering; the Hebrew verb bārāʾ (H1254) occurs six times in this range (Isa 45:7 ×2, 45:8, 45:12, 45:18 ×2), verified against the repo's Original Language data via the Preview API 2026-11-11"
     },
     {
       "id": "conn-cre-019",
@@ -249,7 +249,7 @@
       "endVerse": 11,
       "type": "thematic",
       "confidence": "established",
-      "note": "Creator/redemptive victory expressed with Rahab/sea combat imagery"
+      "note": "Redemptive victory expressed with Rahab/sea combat imagery; the historical exodus (sea deliverance) reference and the creation inference are distinct"
     },
     {
       "id": "conn-cre-020",
@@ -261,7 +261,7 @@
       "endVerse": 26,
       "type": "thematic",
       "confidence": "established",
-      "note": "Reuses *tōhû wābōhû* in de-creation imagery"
+      "note": "Reuses tōhû wābōhû (Jer 4:23) in de-creation imagery — the Hebrew phrase (tōhû H8414, bōhû H922) verified against the repo's Original Language data via the Preview API 2026-11-11"
     },
     {
       "id": "conn-cre-021",
@@ -285,7 +285,7 @@
       "endVerse": 14,
       "type": "thematic",
       "confidence": "established",
-      "note": "Creation/light vocabulary integrated with incarnation theology"
+      "note": "Creation/light vocabulary integrated with incarnation theology — weaker as an independent Genesis 1 connection; labelled thematic only"
     },
     {
       "id": "conn-cre-023",
@@ -309,7 +309,7 @@
       "endVerse": 11,
       "type": "thematic",
       "confidence": "established",
-      "note": "Genesis seventh-day rest applied typologically to eschatological rest"
+      "note": "Genesis seventh-day rest applied typologically to rest; the 'eschatological' reading is an interpretive application, attributed rather than asserted as the text's own claim"
     },
     {
       "id": "conn-cre-025",
@@ -357,7 +357,7 @@
       "endVerse": 5,
       "type": "thematic",
       "confidence": "established",
-      "note": "Creation/Eden motifs: river, tree of life, light, human reign (also connects to Genesis 2–3)"
+      "note": "Creation/Eden motifs: river, tree of life, light, human reign — mostly relates to Genesis 2–3 rather than Genesis 1"
     }
   ],
   "sources": [
@@ -366,14 +366,13 @@
     "source-oracc-marduk",
     "source-mcdowell-human-identity",
     "source-crouch-image-of-god",
-    "source-british-museum-shabaka",
-    "source-kantor-genesis-opening"
+    "source-british-museum-shabaka"
   ],
   "review": {
     "author": "Gnosis research draft (AI-assisted)",
-    "reviewer": "None — editorial review not yet performed.",
-    "lastReviewed": "Not yet reviewed",
+    "reviewer": "Editorial desk review, 2026-11-11 (recommendations only; NOT approval to publish)",
+    "lastReviewed": "2026-11-11",
     "checklistVersion": "standards-1.1-section-14",
-    "notes": "Editorial review required. Source verification incomplete. Publication prohibited."
+    "notes": "Editorial corrections applied 2026-11-11 (see PR editorial/creation-corrections): ORACC attribution corrected to Nicole Brisch; Kantor removed from event sources (kept unreferenced in the shared registry; full article embargoed until 2027-06-15); Proverbs 8 / Gen 1:1 syntax link removed from the public note; Isaiah 45 bārāʾ and Jeremiah 4 tōhû wābōhû notes verified against the repo's Original Language data via the Preview API. Confidence on connections means confidence that the passage is textually relevant to Creation, NOT certainty that every interpretive claim in its note is established — interpretive readings are qualified in the notes themselves. A separate interpretationStatus field (splitting link confidence from interpretation confidence) is deferred to a later PR; it is not invented here. Still unresolved: Brown's full chapter remains inaccessible (Oxford abstract page returned 403 on re-check); McDowell and Crouch verified from abstracts/repository pages only, full texts not read; Kantor's full article is embargoed until 2027-06-15. Publication prohibited; status stays in-review."
   }
 }

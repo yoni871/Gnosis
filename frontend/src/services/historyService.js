@@ -155,14 +155,18 @@ export async function loadEventSections(eventId) {
     const mdText = await loader();
     const parsed = parseHistoryMarkdown(mdText);
     const known = Object.keys(generatedSources);
+    // One shared footnote list threads through every section so footnote
+    // numbers run continuously through the event instead of restarting
+    // at 1 in each section (editorial fix, 2026-11-11).
+    const footnotes = [];
     return {
-        overview: resolveHistoryFootnotes(parsed.overview, known),
-        ancientWorld: resolveHistoryFootnotes(parsed.ancientWorld, known),
+        overview: resolveHistoryFootnotes(parsed.overview, known, footnotes),
+        ancientWorld: resolveHistoryFootnotes(parsed.ancientWorld, known, footnotes),
         ancientWorldSubsections: parsed.ancientWorldSubsections.map((sub) => ({
             heading: sub.heading,
-            ...resolveHistoryFootnotes(sub.body, known),
+            ...resolveHistoryFootnotes(sub.body, known, footnotes),
         })),
-        whyItMatters: resolveHistoryFootnotes(parsed.whyItMatters, known),
+        whyItMatters: resolveHistoryFootnotes(parsed.whyItMatters, known, footnotes),
     };
 }
 
