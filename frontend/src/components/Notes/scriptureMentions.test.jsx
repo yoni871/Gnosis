@@ -5,10 +5,10 @@ import ScriptureMentions from "./NoteScriptureMentions";
 import { parseScriptureMentions } from "./scriptureMentions";
 
 const books = [
-    { id: 1, name: "Genesis", chapter_count: 50 },
-    { id: 19, name: "Psalms", chapter_count: 150 },
-    { id: 43, name: "John", chapter_count: 21 },
-    { id: 50, name: "Philippians", chapter_count: 4 }
+    { id: 1, name: "Genesis", chapter_count: 50, verse_counts: { 1: 31, 2: 25 } },
+    { id: 19, name: "Psalms", chapter_count: 150, verse_counts: { 23: 6 } },
+    { id: 43, name: "John", chapter_count: 21, verse_counts: { 3: 36 } },
+    { id: 50, name: "Philippians", chapter_count: 4, verse_counts: { 3: 21 } }
 ];
 
 describe("Scripture mentions", () => {
@@ -29,6 +29,39 @@ describe("Scripture mentions", () => {
         const parts = parseScriptureMentions("John 99:1 and Genesis 1:3–1", books);
         expect(parts.some((part) => part.type === "reference")).toBe(false);
         expect(parts.map((part) => part.text).join("")).toBe("John 99:1 and Genesis 1:3–1");
+    });
+
+    test("leaves out-of-range verses and range ends as ordinary text", () => {
+        const content = "John 3:99, Genesis 1:1–32, and Genesis 1:30–2:26 stay plain.";
+        const parts = parseScriptureMentions(content, books);
+        expect(parts.some((part) => part.type === "reference")).toBe(false);
+        expect(parts.map((part) => part.text).join("")).toBe(content);
+    });
+
+    test("accepts cross-chapter ranges within the verse counts", () => {
+        const parts = parseScriptureMentions("Genesis 1:30–2:3", books);
+        expect(parts).toHaveLength(1);
+        expect(parts[0]).toMatchObject({
+            type: "reference",
+            startChapter: 1,
+            startVerse: 30,
+            endChapter: 2,
+            endVerse: 3
+        });
+    });
+
+    test("rejects a chapter with no verses stored for it", () => {
+        const partial = [{ id: 1, name: "Genesis", chapter_count: 50, verse_counts: { 1: 31 } }];
+        const parts = parseScriptureMentions("Genesis 2:1", partial);
+        expect(parts.some((part) => part.type === "reference")).toBe(false);
+        expect(parts.map((part) => part.text).join("")).toBe("Genesis 2:1");
+    });
+
+    test("validates chapters but skips verse bounds when verse data is absent", () => {
+        const sparse = [{ id: 43, name: "John", chapter_count: 21 }];
+        const parts = parseScriptureMentions("John 3:99 is unchecked, John 99:1 is not.", sparse);
+        expect(parts.filter((part) => part.type === "reference").map((part) => part.text))
+            .toEqual(["John 3:99"]);
     });
 
     test("renders accessible links that navigate to the full range", async () => {
