@@ -31,13 +31,15 @@ function makeTempTree({ eventStatus = "published" } = {}) {
     const event = JSON.parse(readFileSync(eventPath, "utf8"));
     event.status = eventStatus;
     writeFileSync(eventPath, JSON.stringify(event, null, 2));
-    // The shipped placeholder source is deliberately
-    // not-independently-verified; a published event citing it would fail
-    // check 10 without an editorial override, so the fixture registry
-    // marks it verified. (The shipped draft is unaffected.)
+    // The shipped sources are deliberately not-independently-verified;
+    // a published event citing them would fail check 10 without an
+    // editorial override, so the fixture registry marks every source
+    // verified. (The shipped in-review event is unaffected.)
     const registryPath = path.join(contentDir, "sources", "references.json");
     const registry = JSON.parse(readFileSync(registryPath, "utf8"));
-    registry["source-dev-placeholder"].verification = "verified";
+    for (const source of Object.values(registry)) {
+        source.verification = "verified";
+    }
     writeFileSync(registryPath, JSON.stringify(registry, null, 2));
     return { contentDir, outDir: path.join(dir, "generated") };
 }
@@ -54,7 +56,7 @@ function mutateMd(contentDir, relativePath, replacement) {
 }
 
 describe("validateHistoryContent on the shipped tree", () => {
-    it("passes the real Creation development content with no errors", () => {
+    it("passes the real Creation in-review content with no errors", () => {
         const { errors } = validateHistoryContent({ contentDir: repoContentDir, bibleChapters });
         expect(errors).toEqual([]);
     });

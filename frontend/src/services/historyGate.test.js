@@ -4,7 +4,7 @@
 // frontend layout the scripts resolve against (scripts/ + src/content/
 // history + src/data/bibleChapters.json + src/utils/historyContent.js).
 // Fixtures are copies of the real shipped content tree, so the shipped
-// Creation development content (status "draft") is itself under test.
+// Creation in-review content (status "in-review") is itself under test.
 import {
     cpSync,
     existsSync,
@@ -106,7 +106,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         },
     );
 
-    it("--include-unpublished still generates the draft (the dev opt-in)", () => {
+    it("--include-unpublished still generates the unpublished event (the dev opt-in)", () => {
         const sandbox = makeSandbox();
         const result = runNode("scripts/build-history-content.js", {
             args: ["--include-unpublished"],
@@ -119,7 +119,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
     });
 
-    it("a production generation overwrites a stale draft generated directory", () => {
+    it("a production generation overwrites a stale unpublished generated directory", () => {
         const sandbox = makeSandbox();
         // Stale output from a dev-flag run.
         runNode("scripts/build-history-content.js", {
@@ -141,7 +141,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
 });
 
 describe("build-history-content-dev.js — the dev-only flag reader", () => {
-    it("includes drafts only when HISTORY_INCLUDE_UNPUBLISHED is '1'", () => {
+    it("includes unpublished content only when HISTORY_INCLUDE_UNPUBLISHED is '1'", () => {
         const sandbox = makeSandbox();
         const result = runNode("scripts/build-history-content-dev.js", {
             env: { HISTORY_INCLUDE_UNPUBLISHED: "1" },
@@ -207,19 +207,19 @@ describe("check-history-gate.js — never skips, checks ids, titles, sources", (
     it("fails when dist/ contains a non-published source id", () => {
         const sandbox = makeSandbox();
         runNode("scripts/build-history-content.js", { cwd: sandbox });
-        writeDistFile(sandbox, "assets/app.js", 'const key = "source-dev-placeholder";');
+        writeDistFile(sandbox, "assets/app.js", 'const key = "source-brown-cosmic-temple";');
         const result = runGate(sandbox);
         expect(result.status).toBe(1);
-        expect(result.stderr).toMatch(/source-dev-placeholder/);
+        expect(result.stderr).toMatch(/source-brown-cosmic-temple/);
     });
 
     it("fails when dist/ contains a non-published source title but no id", () => {
         const sandbox = makeSandbox();
-        // Give the placeholder source a title that shares nothing with
+        // Give a real source a title that shares nothing with
         // the event title, so only the source-title check can fire.
         const registryPath = path.join(sandbox, "src", "content", "history", "sources", "references.json");
         const registry = JSON.parse(readFileSync(registryPath, "utf8"));
-        registry["source-dev-placeholder"].title = "Zebra Quokka Field Notes";
+        registry["source-brown-cosmic-temple"].title = "Zebra Quokka Field Notes";
         writeFileSync(registryPath, JSON.stringify(registry, null, 2));
         runNode("scripts/build-history-content.js", { cwd: sandbox });
         writeDistFile(sandbox, "assets/app.js", 'const title = "Zebra Quokka Field Notes";');
@@ -246,17 +246,53 @@ describe("check-history-gate.js — never skips, checks ids, titles, sources", (
     });
 });
 
-describe("findNonPublishedRecords — titles and draft-only sources", () => {
-    it("returns the draft event with its title and its draft-only source", () => {
+describe("findNonPublishedRecords — titles and unpublished-only sources", () => {
+    it("returns the in-review event with its title and its unpublished-only sources", () => {
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
         expect(findNonPublishedRecords({ contentDir })).toEqual([
-            { id: "event-creation", kind: "event", status: "draft", title: "Creation" },
+            { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
             {
-                id: "source-dev-placeholder",
+                id: "source-brown-cosmic-temple",
                 kind: "source",
                 status: "unpublished-only",
-                title: "Placeholder source for the Creation development event",
+                title: "The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3",
+            },
+            {
+                id: "source-met-mesopotamian-creation",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Mesopotamian Creation Myths",
+            },
+            {
+                id: "source-oracc-marduk",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Marduk (god)",
+            },
+            {
+                id: "source-mcdowell-human-identity",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Human Identity and Purpose Redefined: Gen 1:26–28 and 2:5–25 in Context",
+            },
+            {
+                id: "source-crouch-image-of-god",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Made in the Image of God: The Creation of אדם, the Commissioning of the King and the Chaoskampf of YHWH",
+            },
+            {
+                id: "source-british-museum-shabaka",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
+            },
+            {
+                id: "source-kantor-genesis-opening",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Origins of “In the Beginning . . .”: Genesis 1:1 in Light of the Biblical Hebrew Reading Traditions",
             },
         ]);
     });
@@ -305,8 +341,8 @@ describe("historyGatePlugin — the direct vite build path", () => {
         const text = distText(sandbox);
         expect(text).not.toContain("event-creation");
         expect(text).not.toContain("Creation");
-        expect(text).not.toContain("source-dev-placeholder");
-        expect(text).not.toContain("Placeholder source for the Creation development event");
+        expect(text).not.toContain("source-brown-cosmic-temple");
+        expect(text).not.toContain("The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3");
         // The postbuild gate passes on the result as well.
         expect(runGate(sandbox).status).toBe(0);
     });
