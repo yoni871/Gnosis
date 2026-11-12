@@ -6,17 +6,21 @@
 //
 //   node scripts/build-history-content.js
 //
-// Runs via the "prebuild" and "predev" hooks, so every build and every
-// local dev start regenerates it. Fails the build (exit 1) on any
-// validation error — a broken record blocks the build, never ships.
+// Runs via the "prebuild" hook and from check-build.js, so every build
+// regenerates it. Fails the build (exit 1) on any validation error — a
+// broken record blocks the build, never ships.
 //
-// Local draft preview is an explicit opt-in only:
+// Production builds are ALWAYS published-only. This script never reads
+// HISTORY_INCLUDE_UNPUBLISHED from the environment: the only way to
+// include unpublished records is the explicit CLI flag
 //
-//   HISTORY_INCLUDE_UNPUBLISHED=1 node scripts/build-history-content.js
+//   node scripts/build-history-content.js --include-unpublished
 //
-// That flag must NEVER be set in CI or production builds: with it, draft /
-// in-review / verified records are generated too, so an author can preview
-// a draft locally. The script prints a warning banner when it is on.
+// which only the dev-only wrapper (build-history-content-dev.js, run by
+// the "predev" hook) passes. A stray flag in CI, on a build machine, or
+// in a developer's shell therefore has no effect on any build — the
+// script warns about it and builds published-only. The script prints a
+// warning banner when the flag is on.
 
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -32,12 +36,24 @@ const bibleChapters = JSON.parse(
     readFileSync(path.join(root, "src", "data", "bibleChapters.json"), "utf8"),
 );
 
-const includeUnpublished = process.env.HISTORY_INCLUDE_UNPUBLISHED === "1";
+const includeUnpublished = process.argv.includes("--include-unpublished");
+
+// A stray HISTORY_INCLUDE_UNPUBLISHED in the environment has no effect
+// on any build (see above) — warn about it, unless the explicit flag
+// was also passed (the dev wrapper translates the variable into the flag,
+// so there is nothing to warn about on that path).
+if (!includeUnpublished && process.env.HISTORY_INCLUDE_UNPUBLISHED !== undefined) {
+    console.warn(
+        "WARNING: HISTORY_INCLUDE_UNPUBLISHED is set in the environment but is ignored by builds — " +
+            "unpublished History content is available only via `npm run dev` (predev). " +
+            "Building published-only content.",
+    );
+}
 
 if (includeUnpublished) {
     console.warn(
-        "WARNING: HISTORY_INCLUDE_UNPUBLISHED=1 — generating unpublished History content. " +
-            "Local development only; never set this in CI or production builds.",
+        "WARNING: --include-unpublished — generating unpublished History content. " +
+            "Local development only; never use this flag for a production build.",
     );
 }
 

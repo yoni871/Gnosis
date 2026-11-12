@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.js",
-    "predev": "node scripts/build-history-content.js",
+    "predev": "node scripts/build-history-content-dev.js",
     "prebuild": "node scripts/generate-sitemap.js && node scripts/build-history-content.js",
     "build": "vite build",
     "postbuild": "node scripts/check-history-gate.js",

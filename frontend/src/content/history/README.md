@@ -69,6 +69,11 @@ To preview an unpublished record locally (never in CI or production):
 HISTORY_INCLUDE_UNPUBLISHED=1 npm run dev
 ```
 
+The flag only affects `npm run dev` (its `predev` hook). It has no effect
+on any build: `npm run build`, `npm run build:check`, and direct
+`vite build` always generate published-only content, and the postbuild
+gate fails the build if any non-published record reaches `dist/`.
+
 ## Adding an event
 
 1. Add `events/<slug>.json` + `events/<slug>.md` (see `creation.*` for the

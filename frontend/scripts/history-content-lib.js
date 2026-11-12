@@ -12,9 +12,12 @@
 // This module is pure logic (no process exits, no console output): the CLI
 // wrapper (build-history-content.js) and the tests both call it.
 //
-// Local dev preview is an explicit opt-in: HISTORY_INCLUDE_UNPUBLISHED=1
-// (read by the CLI, never set in CI or production builds) also generates
-// unpublished records so an author can preview a draft locally.
+// Local dev preview is an explicit opt-in: the --include-unpublished CLI
+// flag on build-history-content.js (passed only by the dev-only wrapper
+// build-history-content-dev.js, run by the "predev" hook) also generates
+// unpublished records so an author can preview a draft locally. No build
+// path reads HISTORY_INCLUDE_UNPUBLISHED from the environment, so a stray
+// flag can never leak drafts into a production bundle.
 
 import { readdirSync, readFileSync, rmSync, mkdirSync, writeFileSync, existsSync } from "node:fs";
 import path from "node:path";
@@ -512,16 +515,35 @@ export function validateHistoryContent({ contentDir, bibleChapters }) {
     return { errors, warnings, counts: { books: books.size, events: events.size, topics: topics.size, sources: Object.keys(sources).length } };
 }
 
-// Collect every non-published record id (for the CI gate check).
-export function findNonPublishedIds({ contentDir }) {
-    const out = [];
+// Collect every non-published record (for the CI gate check): events and
+// topics whose status is not "published", plus source-registry entries
+// cited only by non-published records. The registry has no status field;
+// "cited only by drafts" is what makes a source non-published for the
+// gate — such a source can reach a bundle only through a draft record.
+// Titles are included: a leaked Markdown file carries no id, but it
+// carries its title, so the gate must be able to match on that too.
+export function findNonPublishedRecords({ contentDir }) {
+    const records = [];
+    const citedByPublished = new Set();
+    const citedByUnpublished = new Set();
     const scan = (dir, kind) => {
         for (const file of listFilesRecursive(dir)) {
             if (!file.endsWith(".json")) continue;
             try {
                 const data = readJson(file);
-                if (isRecord(data) && typeof data.id === "string" && data.status && data.status !== "published") {
-                    out.push({ id: data.id, kind, status: data.status });
+                if (!isRecord(data) || typeof data.id !== "string") continue;
+                const published = data.status === "published";
+                const cited = published ? citedByPublished : citedByUnpublished;
+                for (const key of data.sources ?? []) {
+                    if (typeof key === "string") cited.add(key);
+                }
+                if (!published && data.status) {
+                    records.push({
+                        id: data.id,
+                        kind,
+                        status: data.status,
+                        title: typeof data.title === "string" ? data.title : null,
+                    });
                 }
             } catch {
                 // Invalid JSON is the validator's job, not the gate's.
@@ -530,7 +552,102 @@ export function findNonPublishedIds({ contentDir }) {
     };
     scan(path.join(contentDir, "events"), "event");
     scan(path.join(contentDir, "topics"), "topic");
-    return out;
+    let registry = {};
+    try {
+        registry = readJson(path.join(contentDir, "sources", "references.json"));
+    } catch {
+        // Invalid JSON is the validator's job, not the gate's.
+    }
+    for (const key of citedByUnpublished) {
+        if (citedByPublished.has(key)) continue;
+        const source = registry[key];
+        records.push({
+            id: key,
+            kind: "source",
+            status: "unpublished-only",
+            title: isRecord(source) && typeof source.title === "string" ? source.title : null,
+        });
+    }
+    return records;
+}
+
+// Collect every non-published record id (for the CI gate check).
+export function findNonPublishedIds({ contentDir }) {
+    return findNonPublishedRecords({ contentDir })
+        .filter((record) => record.kind !== "source")
+        .map(({ id, kind, status }) => ({ id, kind, status }));
+}
+
+// The publication gate, shared by the postbuild CLI (check-history-gate.js)
+// and the Vite build plugin (history-gate-plugin.js). Checks the generated
+// manifest AND dist/ for any non-published record — its id, its title, or
+// a draft-only source entry. Returns { failures, nonPublished }.
+//
+// This NEVER skips: a manifest generated with unpublished content is
+// itself a failure, not a reason to stand down — a dev-flag build is not
+// a production build, and the gate's job is to prove the production
+// artifact is clean.
+export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
+    const failures = [];
+    const nonPublished = findNonPublishedRecords({ contentDir });
+    if (nonPublished.length === 0) {
+        return { failures, nonPublished };
+    }
+
+    const manifestPath = path.join(generatedDir, "manifest.json");
+    if (!existsSync(manifestPath)) {
+        failures.push("generated manifest is missing — run the History content build first.");
+    } else {
+        let manifest = null;
+        try {
+            manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+        } catch {
+            failures.push("generated manifest is not valid JSON.");
+        }
+        if (manifest !== null) {
+            if (manifest.includeUnpublished === true) {
+                failures.push(
+                    "generated manifest was built with unpublished content (includeUnpublished is true) — " +
+                        "a production build must be published-only.",
+                );
+            }
+            const listedEvents = new Set(manifest.events ?? []);
+            const listedTopics = new Set(manifest.topics ?? []);
+            const listedSources = new Set(manifest.sources ?? []);
+            for (const record of nonPublished) {
+                if (record.kind === "event" && listedEvents.has(record.id)) {
+                    failures.push(`manifest lists non-published id "${record.id}" (status ${record.status}).`);
+                } else if (record.kind === "topic" && listedTopics.has(record.id)) {
+                    failures.push(`manifest lists non-published id "${record.id}" (status ${record.status}).`);
+                } else if (record.kind === "source" && listedSources.has(record.id)) {
+                    failures.push(`manifest lists non-published source "${record.id}" (cited only by unpublished records).`);
+                }
+            }
+        }
+    }
+
+    // No non-published id, title, or source entry may appear in any built asset.
+    function* textFiles(dir) {
+        for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            const full = path.join(dir, entry.name);
+            if (entry.isDirectory()) yield* textFiles(full);
+            else if (/\.(js|css|html|json|txt|xml|map)$/.test(entry.name)) yield full;
+        }
+    }
+    if (existsSync(distDir)) {
+        for (const file of textFiles(distDir)) {
+            const text = readFileSync(file, "utf8");
+            for (const record of nonPublished) {
+                if (text.includes(record.id)) {
+                    failures.push(`dist/${path.relative(distDir, file)} contains non-published ${record.kind} id "${record.id}" (status ${record.status}).`);
+                }
+                if (record.title && text.includes(record.title)) {
+                    failures.push(`dist/${path.relative(distDir, file)} contains non-published ${record.kind} title "${record.title}" (id "${record.id}").`);
+                }
+            }
+        }
+    }
+    return { failures, nonPublished };
 }
 
 // Validate, then write only the included records into the generated

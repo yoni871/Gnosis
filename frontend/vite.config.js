@@ -1,11 +1,13 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
+import { historyGatePlugin } from "./scripts/history-gate-plugin.js";
 
 export default defineConfig({
     plugins: [
         react(),
-        tailwindcss()
+        tailwindcss(),
+        historyGatePlugin()
     ],
 
     server: {
