@@ -23,6 +23,12 @@ let bookExists = true;
 let inserted = null;
 
 const queryMock = test.mock.method(pool, "query", async (sql, params) => {
+    // The per-user budget lock is a non-blocking try-lock (PR #91, bounded
+    // per PR #114): the mock grants it immediately, as the real function
+    // does when the lock is free.
+    if (sql.includes('pg_try_advisory_xact_lock')) return { rows: [{ locked: true }] };
+    if (sql === 'BEGIN' || sql === 'COMMIT' || sql === 'ROLLBACK' || sql.includes('pg_advisory_xact_lock')) return { rows: [] };
+    if (sql.includes('COUNT(*)')) return { rows: [{ count: 0, bytes: 0 }] };
     if (typeof sql === "string" && sql.includes("FROM auth_sessions")) {
         return { rows: [{ id: '00000000-0000-4000-8000-000000000001' }] };
     }
@@ -48,6 +54,8 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
     }
     throw new Error(`Unexpected query in cross-project validation test: ${sql}`);
 });
+
+test.mock.method(pool, "connect", async () => ({ query: (...args) => pool.query(...args), release() {} }));
 
 let server;
 let baseUrl;

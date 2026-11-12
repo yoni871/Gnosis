@@ -192,6 +192,11 @@ export default function NotesPanel({
                     onNavigate={navigateToPassage}
                 />
             </div>
+            {notesState.nextCursor && <button type="button"
+                onClick={notesState.loadMore} disabled={notesState.isLoadingMore || notesState.isSavingNote || notesState.isUpdatingNote}
+                className="shrink-0 rounded border border-[var(--border)] px-4 py-2 text-sm text-[var(--text-primary)] disabled:opacity-50">
+                {notesState.isLoadingMore ? "Loading…" : "Load more notes"}
+            </button>}
         </section>
     );
 }

@@ -1,8 +1,9 @@
+const { withUserBudget, ensureCapacity } = require("../utils/storageBudget");
+const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
 const { bookExists } = require("../utils/bookValidation");
 const { logControllerError } = require("../utils/authErrors");
-const { parsePagination } = require("../utils/pagination");
 const isValidPassageRange = (
     startChapter,
     startVerse,
@@ -90,7 +91,9 @@ const createBookmark = async (req, res) => {
             });
         }
 
-        const result = await pool.query(
+        const result = await withUserBudget(userId, async client => {
+            await ensureCapacity(client, userId, "bookmarks", { add: 1 });
+            return client.query(
             `
             INSERT INTO bookmarks (
                 user_id,
@@ -112,9 +115,11 @@ const createBookmark = async (req, res) => {
                 endVerse
             ]
         );
+        });
 
         return res.status(201).json(result.rows[0]);
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         if (error.code === "23505") {
             return res.status(409).json({
                 error: "This passage is already bookmarked."
@@ -132,29 +137,27 @@ const createBookmark = async (req, res) => {
 const getBookmarks = async (req, res) => {
     const userId = req.user.userId;
 
-    // F04: the list was unbounded. Same limit/offset convention as notes
-    // and search; the applied values ride on headers.
-    const { limit, offset } = parsePagination(req.query);
-
+    // Cursor pagination (PR #91) replaces the OFFSET pagination main added
+    // in PR #85, and adds book/chapter filters. See utils/privatePages.js.
     try {
+        const page = readPage(req, "bookmarks");
         const result = await pool.query(
             `
             SELECT bookmarks.*
             FROM bookmarks
-            WHERE bookmarks.user_id = $1
-            ORDER BY bookmarks.created_at DESC
-            LIMIT $2 OFFSET $3
+            WHERE bookmarks.user_id = $1 AND ($2::integer IS NULL OR bookmarks.id < $2)
+            AND ($4::integer IS NULL OR bookmarks.book_id=$4)
+            AND ($5::integer IS NULL OR (bookmarks.start_chapter <= $5 AND bookmarks.end_chapter >= $5))
+            ORDER BY bookmarks.id DESC LIMIT $3
             `,
-            [userId, limit, offset]
+            [userId, page.cursor, page.limit + 1, page.bookId, page.chapter]
         );
 
-        return res.status(200)
-            .set("X-Limit", String(limit))
-            .set("X-Offset", String(offset))
-            .json(
-            await withBookNames(result.rows)
-        );
+        const resultPage = pageRows(result.rows, page.limit);
+        resultPage.items = await withBookNames(resultPage.items);
+        return sendPage(res, resultPage, page);
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("bookmarks.list", "database", error);
 
         return res.status(500).json({
@@ -196,6 +199,7 @@ const getBookmarkById = async (req, res) => {
 
         return res.status(200).json(bookmarks[0]);
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("bookmarks.get", "database", error);
 
         return res.status(500).json({
@@ -285,6 +289,7 @@ const updateBookmark = async (req, res) => {
         return res.status(200).json(result.rows[0]);
 
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         if (error.code === "23505") {
             return res.status(409).json({
                 error: "This passage is already bookmarked."
@@ -324,6 +329,7 @@ const deleteBookmark = async (req, res) => {
             message: "Bookmark deleted successfully."
         });
     } catch (error) {
+        if (knownResourceError(error, res)) return;
         logControllerError("bookmarks.delete", "database", error);
 
         return res.status(500).json({

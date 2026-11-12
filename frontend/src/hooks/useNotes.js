@@ -1,3 +1,4 @@
+import { appendCollection, privatePage } from "../utils/privatePages";
 import { useEffect } from "react";
 import usePrivateSession from "./usePrivateSession";
 import {
@@ -8,6 +9,9 @@ import {
 } from "../services/notesService";
 
 const DEFAULTS = {
+    nextCursor: null,
+    isLoadingMore: false,
+    isContextLoading: false,
     notes: [],
     isLoadingNotes: false,
     notesError: "",
@@ -27,6 +31,23 @@ export default function useNotes({
     books
 }) {
     const { token, isAuthenticated, isAuthLoading, owner, state, field, capture, isCurrent } = usePrivateSession(DEFAULTS);
+
+    const setNextCursor = field("nextCursor");
+    const setIsLoadingMore = field("isLoadingMore");
+    async function loadMore() {
+        if (!token || !state.nextCursor || state.isLoadingMore) return;
+        const ticket = capture();
+        if (!ticket) return;
+        field("notesError")("");
+        setIsLoadingMore(true);
+        try {
+            const page = privatePage(await getNotes(token, state.nextCursor));
+            if (!isCurrent(ticket)) return;
+            field("notes")(current => appendCollection(current, page.items));
+            setNextCursor(page.nextCursor);
+        } catch (error) { if (isCurrent(ticket)) field("notesError")(error.message); }
+        finally { if (isCurrent(ticket)) setIsLoadingMore(false); }
+    }
 
     // -------------------------
     // NOTES STATE
@@ -85,8 +106,11 @@ export default function useNotes({
         async function load() {
             setIsLoadingNotes(true);
             try {
-                const data = await getNotes(token);
-                if (active && isCurrent(ticket)) setNotes(data);
+                const data = privatePage(await getNotes(token));
+                if (active && isCurrent(ticket)) {
+                    setNotes(current => appendCollection(current, data.items));
+                    setNextCursor(data.nextCursor);
+                }
             } catch (error) {
                 if (active && isCurrent(ticket)) setNotesError(error.message);
             } finally {
@@ -95,7 +119,7 @@ export default function useNotes({
         }
         load();
         return () => { active = false; };
-    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoadingNotes, setNotes, setNotesError]);
+    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoadingNotes, setNotes, setNotesError, setNextCursor]);
 
     // -------------------------
     // CREATE NOTE
@@ -282,6 +306,7 @@ export default function useNotes({
     }
 
     return {
+        nextCursor: state.nextCursor, isLoadingMore: state.isLoadingMore, loadMore,
         isAuthenticated,
         isAuthLoading,
 

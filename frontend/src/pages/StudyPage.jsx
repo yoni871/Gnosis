@@ -143,9 +143,9 @@ export default function StudyPage() {
         verse: selectedVerse,
     });
     //bookmark state for desktop and mobile to share
-    const bookmarksState = useBookmarks();
+    const bookmarksState = useBookmarks({ bookId: currentBook?.id, chapter });
     // Own highlights here so desktop and mobile share the same data and actions.
-    const highlightsState = useHighlights();
+    const highlightsState = useHighlights({ bookId: currentBook?.id, chapter });
     // Share the exact selected verses across desktop and mobile readers.
     const verseSelection = useVerseSelection();
     // Read stable selection actions for the navigation effects.

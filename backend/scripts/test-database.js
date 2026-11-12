@@ -34,6 +34,7 @@ function applicationSuite(context, intentionalFailure = false) {
     const env = { ...workerEnvironment(), GNOSIS_APPLICATION_TEST_CONTEXT: JSON.stringify(context) };
     if (intentionalFailure) env.GNOSIS_APPLICATION_EXPECT_FAILURE = '1';
     const files = intentionalFailure ? ['test/application/safety.test.js'] : [
+        'test/application/privatePages.test.js',
         'test/application/harness.test.js', 'test/application/safety.test.js',
         'test/application/refreshRateLimit.test.js',
         'test/application/sessions.test.js', 'test/application/rateLimit.test.js', 'test/application/emailVerification.test.js',
