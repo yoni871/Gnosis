@@ -9,9 +9,13 @@ export function clampStudySplit(percent, width) {
     if (!Number.isFinite(width) || width <= MIN_SCRIPTURE_WIDTH + MIN_COMMENTARY_WIDTH + DIVIDER_WIDTH) {
         return Math.min(70, Math.max(40, percent));
     }
-    const available = width - DIVIDER_WIDTH;
-    const minimum = (MIN_SCRIPTURE_WIDTH / available) * 100;
-    const maximum = 100 - (MIN_COMMENTARY_WIDTH / available) * 100;
+    // The grid is `${split}% 8px minmax(0, 1fr)`, so the percentage applies to
+    // the FULL container width and the 8px divider comes out of the remainder:
+    // Scripture is split% of width, commentary is width - split% of width - 8px.
+    // Clamping against (width - DIVIDER_WIDTH) instead undershot the commentary
+    // minimum by ~5-6px (rendered 294px at max drag instead of 300px).
+    const minimum = (MIN_SCRIPTURE_WIDTH / width) * 100;
+    const maximum = ((width - MIN_COMMENTARY_WIDTH - DIVIDER_WIDTH) / width) * 100;
     return Math.min(maximum, Math.max(minimum, percent));
 }
 
