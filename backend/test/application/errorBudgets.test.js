@@ -122,7 +122,7 @@ test("N03: a JSON body with no Content-Type gets a controlled 400, not a 500", a
     for (const contentType of [undefined, "text/plain"]) {
         const result = await rawRequest({ path: "/api/notes", body: JSON.stringify(NOTE), contentType });
         assert.equal(result.status, 400, `Content-Type ${contentType}`);
-        assert.deepEqual(result.json, { error: "All note fields are required." });
+        assert.deepEqual(result.json, { error: "Note content is required." });
     }
 });
 
