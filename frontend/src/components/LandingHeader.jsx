@@ -96,11 +96,6 @@ function AuthLinks({ closeAll, hero = false }) {
                                 {theme === "light" ? "Dark mode" : "Light mode"}
                             </button>
                         </li>
-                        <li>
-                            <Link to="/mfa" onClick={() => setAccountOpen(false)}>
-                                Two-factor authentication
-                            </Link>
-                        </li>
                         <li className="landing-account-signout">
                             <button type="button" onClick={handleSignOut}>Sign out</button>
                         </li>

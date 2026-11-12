@@ -337,11 +337,14 @@ async function regenerateRecoveryCodes(db, userId, password, code) {
 // Disable MFA: password + a valid TOTP code OR a recovery code.
 // The secret is cleared and enrollment revoked in one update, and
 // all still-unused recovery codes are marked used. A recovery code
-// spent here is consumed, like a login. Existing sessions are NOT
-// revoked by this PR (open question for the PR review: whether
-// disabling MFA should revoke other sessions like a password reset
-// does).
-async function disableMfa(db, userId, password, code) {
+// spent here is consumed, like a login. Disabling also revokes every
+// OTHER session: the device that turned MFA off keeps working, every
+// other signed-in device must sign in again (same rule as a password
+// change). The recovery flows (email reset / operator-assisted) revoke
+// ALL sessions instead — they do not exist yet and are not part of
+// this change. sessionId is the current session's id, validated as a
+// 36-character UUID by authMiddleware before it reaches the route.
+async function disableMfa(db, userId, password, code, sessionId) {
     const key = requireMfaKey();
     const userResult = await db.query(
         "SELECT id, password_hash FROM users WHERE id = $1", [userId]);
@@ -407,6 +410,13 @@ async function disableMfa(db, userId, password, code) {
         await client.query(
             "UPDATE mfa_recovery_codes SET used_at = now() WHERE user_id = $1 AND used_at IS NULL",
             [userId]);
+        // Revoke every other session (PR #94 changePassword precedent).
+        // The current session (id = sessionId) is untouched, so the
+        // device that disabled MFA stays signed in.
+        await client.query(
+            `UPDATE auth_sessions SET revoked_at = now()
+             WHERE user_id = $1 AND id <> $2 AND revoked_at IS NULL`,
+            [userId, sessionId]);
         await client.query("COMMIT");
         // AUDIT (rebase onto PR #78): audit(pool, "mfa.removed", userId)
         // Note: usedRecoveryId is already spent above (marked used by

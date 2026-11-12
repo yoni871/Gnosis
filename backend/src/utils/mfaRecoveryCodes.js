@@ -5,8 +5,8 @@
 // Hash choice: SHA-256 with a per-code random 16-byte salt, NOT
 // bcrypt. Verification scans up to ten unused candidate hashes, and
 // bcrypt would make one login attempt take seconds; SHA-256 keeps it
-// milliseconds. That is safe here because each code carries ~71 bits
-// of entropy (12 characters from a 62-character alphabet, ambiguous
+// milliseconds. That is safe here because each code carries ~59.5 bits
+// of entropy (12 characters from a 31-character alphabet, ambiguous
 // characters removed), single use, and rate-limited verification —
 // offline brute force of a leaked hash is infeasible at that entropy,
 // and a used code can never be replayed. The plaintext code never

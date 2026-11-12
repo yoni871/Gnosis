@@ -260,7 +260,7 @@ router.post("/disable", authenticateToken, validatePasswordCode, codeRateLimit,
     withRateLimitFinalize(async (req, res) => {
         let result;
         try {
-            result = await mfa.disableMfa(pool, req.user.userId, req.validated.password, req.validated.code);
+            result = await mfa.disableMfa(pool, req.user.userId, req.validated.password, req.validated.code, req.user.sid);
         } catch (error) {
             return handleMfaError("POST /api/auth/mfa/disable", error, req, res);
         }

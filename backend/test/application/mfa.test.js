@@ -171,6 +171,38 @@ test('disabling MFA requires password plus a code; login returns to password-onl
     assert.equal((await login(email)).status, 200);
 });
 
+test('disabling MFA revokes other sessions but keeps the current one', async () => {
+    const { userId, email } = await freshUser();
+    const { secret } = await enrollAndConfirm(email, userId);
+    // Two sessions: the current one (used to disable) and another.
+    const currentToken = await loginWithTotp(email, secret);
+    const otherToken = await loginWithTotp(email, secret);
+    assert.equal(await profile(currentToken), 200);
+    assert.equal(await profile(otherToken), 200);
+    const disabled = await request('mfa/disable', { token: currentToken, body: { password, code: await generateTotpCode(secret) } });
+    assert.equal(disabled.status, 200);
+    assert.deepEqual(disabled.data, { disabled: true });
+    assert.deepEqual((await get('mfa/status', currentToken)).data, { enrolled: false });
+    // The current session still works; the other session is revoked.
+    // (A revoked token is rejected as TOKEN_INVALID, 403.)
+    assert.equal(await profile(currentToken), 200);
+    assert.equal(await profile(otherToken), 403);
+    // Enrollment is cleared; exactly one session (the current one)
+    // is alive and every other session for the user is revoked.
+    const mfa = await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]);
+    assert.equal(mfa.rows[0].enrolled, false);
+    const currentSid = JSON.parse(Buffer.from(currentToken.split('.')[1], 'base64url').toString('utf8')).sid;
+    const sessions = await database.pool.query('SELECT id, revoked_at FROM auth_sessions WHERE user_id = $1', [userId]);
+    assert.ok(sessions.rows.length >= 2);
+    for (const session of sessions.rows) {
+        if (session.id === currentSid) {
+            assert.equal(session.revoked_at, null);
+        } else {
+            assert.ok(session.revoked_at !== null, `session ${session.id} should be revoked`);
+        }
+    }
+});
+
 test('five wrong codes trip the per-challenge rate limit', async () => {
     const { userId, email } = await freshUser();
     await enrollAndConfirm(email, userId);
