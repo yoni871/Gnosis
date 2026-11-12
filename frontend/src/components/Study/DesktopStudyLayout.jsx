@@ -139,6 +139,7 @@ export default function DesktopStudyLayout({
                             selectedVerse={selectedVerse}
                             books={books}
                             notesState={notesState}
+                            navigateToPassage={navigateToPassage}
                         />
                     )}
 

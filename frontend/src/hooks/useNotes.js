@@ -145,11 +145,6 @@ export default function useNotes({
                 : null
         );
 
-        if (!passage) {
-            setNotesError("Select a passage before saving your note.");
-            return;
-        }
-
         // Capture the content and target submitted by this save.
         const content = noteContent.trim();
 
@@ -159,7 +154,7 @@ export default function useNotes({
         try {
             const newNote = await createNote(token, {
                 // Copy the passage coordinates into the request body.
-                ...passage,
+                ...(passage || {}),
                 content
             });
 

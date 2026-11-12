@@ -25,16 +25,15 @@ const createNote = async (req, res) => {
         content
     } = req.body;
 
-    if(
-        !bookId ||
-        !startChapter ||
-        !startVerse ||
-        !endChapter ||
-        !endVerse ||
-        !content
-    ) {
+    const passageFields = [bookId, startChapter, startVerse, endChapter, endVerse];
+    const hasPassage = passageFields.every((value) => value !== undefined && value !== null);
+    const hasPartialPassage = passageFields.some((value) => value !== undefined && value !== null) && !hasPassage;
+
+    if (!content || hasPartialPassage) {
         return res.status(400).json({
-            error: "All note fields are required."
+            error: hasPartialPassage
+                ? "Provide every passage field or omit the passage."
+                : "Note content is required."
         })
     }
 
@@ -48,7 +47,7 @@ const createNote = async (req, res) => {
         // notes keep book_id as a plain integer (no foreign key crosses
         // the project boundary): validate it against the Bible project
         // before writing.
-        if (!(await bookExists(bookId))) {
+        if (hasPassage && !(await bookExists(bookId))) {
             return res.status(400).json({
                 error: "Unknown book."
             });
@@ -68,7 +67,15 @@ const createNote = async (req, res) => {
             VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING *
             `,
-            [userId, bookId, startChapter, startVerse, endChapter, endVerse, content]
+            [
+                userId,
+                hasPassage ? bookId : null,
+                hasPassage ? startChapter : null,
+                hasPassage ? startVerse : null,
+                hasPassage ? endChapter : null,
+                hasPassage ? endVerse : null,
+                content
+            ]
         );
 
         return res.status(201).json(result.rows[0]);

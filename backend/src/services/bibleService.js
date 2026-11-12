@@ -3,7 +3,28 @@ const { get } = require("../routes/searchRoutes");
 const { isProviderConfigured } = require("./licensed/licensedTranslations");
 
 const getAllBooks = () => {
-    return pool.query("SELECT * FROM bible_books");
+    // Chapter and verse counts come from the stored Bible data itself, so
+    // callers (e.g. the Scripture-mention parser) validate references against
+    // what the reader can actually render. chapter_count is the HIGHEST
+    // chapter number (0 when the book has no chapters) — not a row count, so
+    // a partially seeded book still validates its highest chapter; for
+    // complete data the highest number equals the count. verse_counts is null
+    // for a book with no verses at all, and omits chapters that have no
+    // verses. Verse counts are per chapter across all stored translations
+    // (COUNT DISTINCT verse_number), since the stored translations share one
+    // versification.
+    return pool.query(`
+        SELECT b.*,
+            (SELECT COALESCE(MAX(chapter_number), 0)::int FROM bible_chapters c WHERE c.book_id = b.id) AS chapter_count,
+            (SELECT jsonb_object_agg(c.chapter_number::text, vc.verse_count)
+               FROM bible_chapters c
+               JOIN (SELECT chapter_id, COUNT(DISTINCT verse_number)::int AS verse_count
+                       FROM bible_verses GROUP BY chapter_id) vc
+                 ON vc.chapter_id = c.id
+              WHERE c.book_id = b.id) AS verse_counts
+          FROM bible_books b
+         ORDER BY b.book_order
+    `);
 };
 
 const getAllChapters = (bookId) => {
