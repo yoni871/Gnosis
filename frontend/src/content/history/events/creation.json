@@ -237,7 +237,7 @@
       "endVerse": 18,
       "type": "prophetic-reference",
       "confidence": "established",
-      "note": "Exclusive divine creation and ordering; the Hebrew verb bārāʾ (H1254) occurs six times in this range (Isa 45:7 ×2, 45:8, 45:12, 45:18 ×2), verified against the repo's Original Language data via the Preview API 2026-11-11"
+      "note": "Exclusive divine creation and ordering; the Hebrew verb bārāʾ (H1254) occurs six times in this range (Isa 45:7 ×2, 45:8, 45:12, 45:18 ×2), verified against the repo's Original Language data via the Preview API 2026-11-11; re-checked 2026-11-12"
     },
     {
       "id": "conn-cre-019",
@@ -261,7 +261,7 @@
       "endVerse": 26,
       "type": "thematic",
       "confidence": "established",
-      "note": "Reuses tōhû wābōhû (Jer 4:23) in de-creation imagery — the Hebrew phrase (tōhû H8414, bōhû H922) verified against the repo's Original Language data via the Preview API 2026-11-11"
+      "note": "Reuses tōhû wābōhû (Jer 4:23) in de-creation imagery — the Hebrew phrase (tōhû H8414, bōhû H0922) verified against the repo's Original Language data via the Preview API 2026-11-11; re-checked 2026-11-12"
     },
     {
       "id": "conn-cre-021",
@@ -370,9 +370,9 @@
   ],
   "review": {
     "author": "Gnosis research draft (AI-assisted)",
-    "reviewer": "Editorial desk review, 2026-11-11 (recommendations only; NOT approval to publish)",
-    "lastReviewed": "2026-11-11",
+    "reviewer": "Desk review 2026-11-11 (recommendations only); editorial corrections PR #140 (2026-11-11); full-text verification PR #141 (2026-11-12); editorial-readiness pass 2026-11-12 — none of these is approval to publish",
+    "lastReviewed": "2026-11-12",
     "checklistVersion": "standards-1.1-section-14",
-    "notes": "Editorial corrections applied 2026-11-11 (see PR editorial/creation-corrections): ORACC attribution corrected to Nicole Brisch; Kantor removed from event sources (kept unreferenced in the shared registry; full article embargoed until 2027-06-15); Proverbs 8 / Gen 1:1 syntax link removed from the public note; Isaiah 45 bārāʾ and Jeremiah 4 tōhû wābōhû notes verified against the repo's Original Language data via the Preview API. Confidence on connections means confidence that the passage is textually relevant to Creation, NOT certainty that every interpretive claim in its note is established — interpretive readings are qualified in the notes themselves. A separate interpretationStatus field (splitting link confidence from interpretation confidence) is deferred to a later PR; it is not invented here. Still unresolved: Brown's full chapter remains inaccessible (Oxford abstract page returned 403 on re-check); McDowell and Crouch verified from abstracts/repository pages only, full texts not read; Kantor's full article is embargoed until 2027-06-15. Publication prohibited; status stays in-review."
+    "notes": "Editorial history: desk review 2026-11-11 (recommendations only); corrections applied in PR #140 (2026-11-11): ORACC attribution corrected to Nicole Brisch; Kantor removed from event sources (kept unreferenced in the shared registry; full article embargoed until 2027-06-15); Proverbs 8 / Gen 1:1 syntax link removed from the public note; Isaiah 45 bārāʾ and Jeremiah 4 tōhû wābōhû notes verified against the repo's Original Language data via the Preview API and re-checked in this readiness pass (bārāʾ 6× in Isa 45:7–18; tōhû H8414 + bōhû H0922 in Jer 4:23). Full-text verification completed in PR #141 (2026-11-12): McDowell (Gordon-Conwell PDF, AABNER 1(3) 2021, pp. 29–44) and Crouch (Nottingham repository preview PDF, JANER 16(1) 2016) verified from full texts; Brown NOT upgraded — his Oxford abstract explicitly supports attributing the cosmic-temple interpretation to him, but the full chapter has not been read (OUP abstract page returns 403 to automated fetch). Readiness pass 2026-11-12: all 29 Scripture ranges (primary + 28 connections) re-verified against stored KJV via the Preview API; all 6 cited sources resolve in the registry and all 9 footnotes resolve; Kantor unreferenced by design; source links checked (full per-link table in the readiness PR body — all seven registry URLs resolve to their intended pages; four return 403/429/empty-reply to automated fetches, which is host bot-gating, not dead links). Confidence on connections means confidence that the passage is textually relevant to Creation, NOT certainty that every interpretive claim in its note is established — interpretive readings are qualified in the notes themselves. A separate interpretationStatus field (splitting link confidence from interpretation confidence) is deferred to a later PR; it is not invented here. Still unresolved: Brown's full chapter inaccessible — a future publication would need either full-text verification of Brown or a recorded review.editorialOverride (the validator blocks publishing an event citing a not-independently-verified source without one); Kantor embargoed until 2027-06-15; interpretationStatus deferred. Publication prohibited; status stays in-review."
   }
 }
