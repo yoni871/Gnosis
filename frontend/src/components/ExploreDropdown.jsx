@@ -13,7 +13,7 @@ const DEFAULT_ITEMS = [
     {
         title: "Biblical History",
         description: "Explore the ancient world behind the biblical story, book by book.",
-        to: "/biblical-history/genesis",
+        to: "/biblical-history",
     },
 ];
 

@@ -21,10 +21,11 @@ const VerifyPage = lazy(() => import('./pages/VerifyPage'));
 const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'));
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
-// Biblical History: three lazy routes, declared before the catch-all.
+// Biblical History routes, declared before the catch-all.
 // The Markdown renderer travels with these routes only — a reader who
 // never opens History downloads none of it.
 const BiblicalHistoryIndexPage = lazy(() => import('./pages/BiblicalHistoryIndexPage'));
+const BiblicalHistoryBooksPage = lazy(() => import('./pages/BiblicalHistoryBooksPage'));
 const BiblicalHistoryBookPage = lazy(() => import('./pages/BiblicalHistoryBookPage'));
 const BiblicalHistoryEventPage = lazy(() => import('./pages/BiblicalHistoryEventPage'));
 
@@ -110,6 +111,11 @@ function App() {
             <Route
               path='/biblical-history'
               element={<BiblicalHistoryIndexPage />}
+            />
+
+            <Route
+              path='/biblical-history/books'
+              element={<BiblicalHistoryBooksPage />}
             />
 
             <Route

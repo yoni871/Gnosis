@@ -31,6 +31,9 @@ describe("BiblicalHistoryBookPage", () => {
         expect(screen.getByRole("link", { name: /Creation/ })).toHaveAttribute(
             "href", "/biblical-history/genesis/creation",
         );
+        expect(screen.getByRole("link", { name: "All books" })).toHaveAttribute(
+            "href", "/biblical-history/books",
+        );
         expect(document.title).toBe("Biblical History — Genesis | Gnosis");
     });
 

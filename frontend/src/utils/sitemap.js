@@ -48,7 +48,7 @@ export function chapterUrls(siteUrl, chapterCounts) {
 // event cannot appear by construction. `manifest` is the generated
 // manifest.json ({ books: [bookId], events: [eventId], ... }); `books`
 // is the generated book records ({ id, events: [{ eventId }] }).
-// Returns ["/biblical-history", "/biblical-history/<book>",
+// Returns ["/biblical-history", "/biblical-history/books", "/biblical-history/<book>",
 // "/biblical-history/<book>/<event-slug>", ...]: the index first, then
 // each published book with its published events, all sorted
 // deterministically. Returns [] when nothing is published — a book with
@@ -59,7 +59,7 @@ export function historySitemapPaths(manifest, books) {
     if (publishedBooks.length === 0) return [];
     const publishedEvents = new Set(manifest?.events ?? []);
     const byId = new Map((books ?? []).map((book) => [book.id, book]));
-    const paths = ["/biblical-history"];
+    const paths = ["/biblical-history", "/biblical-history/books"];
     for (const bookId of publishedBooks) {
         paths.push(`/biblical-history/${encodeURIComponent(bookId)}`);
         const slugs = (byId.get(bookId)?.events ?? [])

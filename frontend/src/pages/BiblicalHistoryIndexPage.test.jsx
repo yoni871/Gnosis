@@ -20,13 +20,19 @@ function renderIndex() {
 }
 
 describe("BiblicalHistoryIndexPage", () => {
-    it("lists all 66 books with Genesis published and the other 65 Upcoming, and no other event titles", () => {
+    it("presents the editorial introduction without rendering the 66-book directory", () => {
         renderIndex();
-        expect(screen.getByRole("heading", { level: 1, name: "Biblical History" })).toBeInTheDocument();
-        expect(screen.getAllByText("Upcoming")).toHaveLength(65);
-        expect(screen.getByText("1 event")).toBeInTheDocument();
-        expect(screen.queryByText(/Creation/)).toBeNull();
-        expect(screen.getByRole("link", { name: /Genesis/ })).toHaveAttribute("href", "/biblical-history/genesis");
+        expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
+        expect(screen.getByRole("heading", { name: "What Is Biblical History?" })).toBeInTheDocument();
+        expect(screen.getAllByRole("listitem")).toHaveLength(4);
+        expect(screen.queryByText("Upcoming")).toBeNull();
+    });
+
+    it("links its actions to the recommendation, Creation event, and book directory", () => {
+        renderIndex();
+        expect(screen.getByRole("link", { name: "Start Exploring" })).toHaveAttribute("href", "#history-start");
+        expect(screen.getByRole("link", { name: "Explore Creation" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+        expect(screen.getByRole("link", { name: "Browse Books" })).toHaveAttribute("href", "/biblical-history/books");
     });
 
     it("sets indexable metadata for the index page", () => {
