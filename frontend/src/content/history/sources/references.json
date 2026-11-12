@@ -44,7 +44,7 @@
     "pagesOrSection": "1(3): 29–44",
     "url": "https://doi.org/10.35068/aabner.v1i3.830",
     "verification": "verified",
-    "verificationDetail": "Full article read 2026-11-12 (Gordon-Conwell PDF, AABNER 1(3) 2021, pp. 29-44, CC BY-NC-ND 4.0). Abstract (p. 30) and Introduction (pp. 31-32) confirm the Atrahasis claim: humans created as the new working class 'to bear the yoke' and 'to carry the toil of the gods' after the Igigi rebellion; Introduction (p. 32) confirms humans as God's royal representatives, created in his image and commissioned to rule - 'the royal children of God'; 'Royal and Priestly Functions of One Created' (p. 36) and 'Adam as Royal Gardener' (p. 37) confirm the royal/priestly portrait and the democratization of royal image language to all humanity.",
+    "verificationDetail": "Full article read 2026-11-12 (Gordon-Conwell PDF, AABNER 1(3) 2021, pp. 29-44, CC BY-NC-ND 4.0). Abstract (p. 30) and Introduction (p. 32) confirm the Atrahasis claim: humans created as the new working class 'to bear the yoke' and 'to carry the toil of the gods' after the Igigi rebellion; Introduction (p. 32) confirms humans as God's royal representatives, created in his image and commissioned to rule - 'the royal children of God'; 'Royal and Priestly Functions of One Created' (p. 36) and 'Adam as Royal Gardener' (p. 37) confirm the royal/priestly portrait and the democratization of royal image language to all humanity.",
     "licenseNote": "CC BY-NC-ND 4.0 for article; only original summaries and citations in Gnosis."
   },
   "source-crouch-image-of-god": {
@@ -55,8 +55,8 @@
     "year": 2016,
     "pagesOrSection": "16(1)",
     "url": "https://doi.org/10.1163/15692124-12341277",
-    "verification": "verified",
-    "verificationDetail": "Full article read 2026-11-12 (Nottingham repository preview PDF, JANER 16(1) 2016; direct download returned 403, full text read via the repository preview). Abstract and section 1 Introduction confirm the king as YHWH's representative and counterpart in the battle against chaos; section 3.1 Genesis 1 confirms the royal background of image-of-God language (Esarhaddon as image of Bel/Shamash; Egyptian pharaoh as image of Re; Clines' democratization) and dominion language (rdh, kbsh) as royal terminology; section 3.2 Psalm 8 confirms the royal figure crowned with glory and honor, ruling as YHWH's counterpart; section 4 Conclusions states the reconstruction is 'inevitably speculative' - cite as a contested proposal, never as consensus.",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Abstract and repository metadata only, checked 2026-11-12: Nottingham ePrints states \"Full text not available from this repository\"; DOI 10.1163/15692124-12341277 returns HTTP 403; no other copy found after four search rounds. Full text not accessible; no body-text claim verified. Abstract-level thesis only: the king as YHWH's representative and counterpart in the battle against chaos (Genesis 1 and Psalms 8, 18, 89).",
     "licenseNote": "Repository copy lists CC BY 4.0; cite independent original summary; check version-specific terms for reuse."
   },
   "source-british-museum-shabaka": {
@@ -92,7 +92,7 @@
     "pagesOrSection": "Coniectanea Biblica OT Series 58, pp. 3–21 (author-hosted offprint)",
     "url": "http://www.stordalen.info/Terje/Bibliography_files/2010 Stordalen, God_of_Eden-Narrative.pdf",
     "verification": "verified",
-    "verificationDetail": "Full chapter read 2026-11-12 (author-hosted offprint, stordalen.info, offprint pp. 1–21): knowledge of good and bad as moral maturity the most common sense (fn 10, p. 5; Deut 2:39; 2 Sam 19:36; Isa 7:15f); serpent-as-cosmic-opponent a disputed topic (pp. 13–14); death via exclusion from the tree of life (pp. 10–12); tentative 6th/5th-century dating one scholar's proposal (fn 61, p. 16). Mettinger passages as reported by Stordalen and Clark 1969 / Stordalen 2000 remain unverified.",
+    "verificationDetail": "Full chapter read 2026-11-12 (author-hosted offprint, stordalen.info, offprint pp. 1–21): knowledge of good and bad as moral maturity the most common sense (fn 10, p. 5; Deut 2:39; 2 Sam 19:36; Isa 7:15f); serpent-as-cosmic-opponent a disputed topic (pp. 13–14); death via exclusion from the tree of life (pp. 11–12); tentative 6th/5th-century dating one scholar's proposal (fn 61, p. 16). Mettinger passages as reported by Stordalen and Clark 1969 / Stordalen 2000 remain unverified.",
     "licenseNote": "All rights reserved; original paraphrase and citation only."
   },
   "source-etcsl-enki-ninmah": {
@@ -103,7 +103,7 @@
     "pagesOrSection": "ETCSL 1.1.2, full translation",
     "url": "https://etcsl.orinst.ox.ac.uk/section1/tr112.htm",
     "verification": "verified",
-    "verificationDetail": "Full translation opened and read 2026-11-12: gods knead clay from the top of the abzu (lines 24–37); the forming is followed by a divine contest over defective humans, with no breath of life. CDLI composite Q000333 confirms the manuscript picture (Old Babylonian witnesses from Nippur, c. 1900–1600 BCE; Nineveh witness K.1711 Neo-Assyrian, c. 911–612 BCE); the ORACC catalogue entry itself was not directly opened.",
+    "verificationDetail": "Full translation opened and read 2026-11-12: Enki instructs Namma to knead clay from the top of the abzu (lines 24–37); the actual kneading is lines 56–61; the explicit toil-relief motive is lines 12–23; the forming is followed by a divine contest over defective humans, with no breath of life. CDLI composite Q000333 confirms the manuscript picture (Old Babylonian witnesses from Nippur, c. 1900–1600 BCE; Nineveh witness K.1711 Neo-Assyrian, c. 911–612 BCE); the ORACC catalogue entry itself was not directly opened.",
     "licenseNote": "Paraphrase with credit; verify project licensing before reproducing translations at length."
   },
   "source-bdb-lexicon": {
@@ -133,7 +133,7 @@
     "id": "source-skinner-genesis",
     "author": "John Skinner",
     "title": "Genesis: A Critical and Exegetical Commentary",
-    "publisher": "T. & T. Clark",
+    "publisher": "Charles Scribner's Sons, New York, 1910 (ICC; T&T Clark series co-publisher)",
     "year": 1910,
     "pagesOrSection": "International Critical Commentary; commentary on Genesis 2–3",
     "url": "https://archive.org/details/criticalexegetic00skinuoft",
@@ -162,7 +162,7 @@
     "pagesOrSection": "Continental Commentaries; commentary pp. 197–274 (English translation of 2nd German edition, 1976)",
     "url": "https://archive.org/details/westermann_genesis202508",
     "verification": "verified",
-    "verificationDetail": "Full text read 2026-11-12 (archive.org westermann_genesis202508, files named Claus.*; English translation, commentary pp. 197–274): rivers — The problem about the passage 2:10–14 has not yet been clarified (p. 215); functional/collective mastery reading of knowledge of good and evil, explicitly rejecting the moral-knowledge reading; sexual-experience reading quite untenable (pp. 242–243, also pp. 234–236); Satan-in-disguise abandoned in modern exegesis; de-mythologizes work in Gen 2:15 (agricultural/stewardship, not priestly). Westermann pp. 186–196 (History of the Exegesis / Setting in Life) not read — immaterial.",
+    "verificationDetail": "Full text read 2026-11-12 (archive.org westermann_genesis202508, files named Claus.*; English translation, commentary pp. 197–274): rivers — The problem about the passage 2:10–14 has not yet been clarified (p. 214); functional/collective mastery reading of knowledge of good and evil, explicitly rejecting the moral-knowledge reading; sexual-experience reading quite untenable (p. 242, also pp. 234–236); Satan-in-disguise abandoned in modern exegesis; de-mythologizes work in Gen 2:15 (agricultural/stewardship, not priestly). Westermann pp. 186–196 (History of the Exegesis / Setting in Life) not read — immaterial.",
     "licenseNote": "All rights reserved; original summary and citation only."
   },
   "source-jvl-paradise": {
@@ -184,12 +184,12 @@
     "year": 2019,
     "pagesOrSection": "Winter 2019 newsletter",
     "verification": "verified",
-    "verificationDetail": "Read 2026-11-12: Ashurnasirpal II throne-room relief, Nimrud, 865–860 BCE, British Museum 124531 — stylised sacred tree flanked by the king and apkallu genii under a winged disk; the sacred tree as a programmatic emblem of universal kingship and divine order. The tree is a royal/ideological emblem, not a narrative scene.",
+    "verificationDetail": "Read 2026-11-12: Ashurnasirpal II throne-room relief, Nimrud, British Museum 124531 — stylised sacred tree flanked by the king and genii under a winged disk; the sacred tree as a programmatic emblem of universal kingship and universal control. The tree is a royal/ideological emblem, not a narrative scene.",
     "licenseNote": "Original summary and citation only."
   },
   "source-balogh-tree-of-life": {
     "id": "source-balogh-tree-of-life",
-    "author": "Csaba Balogh",
+    "author": "Amy L. Balogh",
     "title": "The Tree of Life in Ancient Near Eastern Iconography",
     "publisher": "Brill",
     "year": 2020,
@@ -206,12 +206,12 @@
     "year": 1964,
     "pagesOrSection": "Expedition 6(3)",
     "verification": "verified",
-    "verificationDetail": "Read 2026-11-12 (Penn Museum Expedition article; also Kramer 1961, Mythology of Sumer and Akkad, archive.org text): Dilmun as a pure land without sickness or death, watered into a garden — a divine paradise, numerous parallels with the biblical paradise story, with the gods-not-humans difference stressed.",
+    "verificationDetail": "Read 2026-11-12 (Penn Museum Expedition article; also Kramer 1961, Mythology of Sumer and Akkad, archive.org text): Dilmun as a pure land without sickness or death, watered into a garden — a divine paradise, a paradise of the gods, with the gods-not-humans difference implicit.",
     "licenseNote": "Original summary and citation only."
   },
   "source-benthall-two-trees": {
     "id": "source-benthall-two-trees",
-    "author": "Jonathan Benthall",
+    "author": "Al Benthall",
     "title": "A Tale of Two Trees: Knowledge and Life in the Book of Genesis",
     "publisher": "Nova et Vetera (English edition)",
     "year": 2011,

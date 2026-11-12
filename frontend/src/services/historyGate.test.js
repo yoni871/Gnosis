@@ -371,17 +371,21 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "A Tale of Two Trees: Knowledge and Life in the Book of Genesis",
             },
             {
-                id: "source-brown-cosmic-temple",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3",
-            },
-            {
                 id: "source-scriptorium-lamassu",
                 kind: "source",
                 status: "unpublished-only",
                 title: "Lamassu (Human-Headed Winged Bull)",
             },
+            {
+                id: "source-brown-cosmic-temple",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3",
+            },
+            // Order note (QA corrections, 2026-11-12): Brown is no longer
+            // cited by the Adam and Eve event, so it is first cited by
+            // Creation (scanned after adam-and-eve.json) and now follows
+            // Scriptorium in citation order. Same 21 records; order only.
             {
                 id: "source-british-museum-shabaka",
                 kind: "source",
