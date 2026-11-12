@@ -6,7 +6,7 @@ const router = express.Router();
 const UNKNOWN_PASSWORD_HASH = '$2b$12$jafHcnBk3QC6ragiVaN8ae/Y6oKqxqBGFpCmAMhoH31xEbn.K5Lzu';
 const sessions = require("../services/sessionService");
 const authenticateToken = require("../middleware/authMiddleware");
-const { resolveAuthError, internalErrorBody, logAuthFailure, logAuthEvent } = require("../utils/authErrors");
+const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
 const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, validateDeleteAccountInput, VALIDATION_CODE } = require("../utils/authValidation");
 const { createRateLimitMiddleware } = require("../utils/rateLimit");
 const {
@@ -475,14 +475,13 @@ router.post("/logout-all", authenticateToken, async (req, res) => {
 // deleted access token stops working immediately because its session
 // row is gone.
 //
-// Audit note: the audit-logging track (branch security/audit-logging,
-// not yet merged) owns the audit_events table and the audit() helper.
-// Once this code rebases onto it, emit two events from this handler,
-// with the user id captured BEFORE the user row is deleted:
-//   account-deletion-requested (after the password confirms, before
-//   the transaction) and account-deletion-completed (after commit).
-// Until then the completion is logged through the allowlisted
-// logAuthEvent helper only (route + kind, no user data).
+// Audit note: the deletion is audit-logged through audit() (issue
+// #137), after the transaction commits, with the user id captured
+// BEFORE the user row is deleted (userId is bound at the top of this
+// handler). The kind is account_deletion.completed, the allowlisted
+// name in docs/SecurityEvents.md. A "requested" event before the
+// transaction was considered and left out: this handler emits the
+// completion only.
 router.delete("/account", authenticateToken, validateDelete, async (req, res) => {
     const userId = req.user.userId;
 
@@ -570,7 +569,13 @@ router.delete("/account", authenticateToken, validateDelete, async (req, res) =>
     }
     sessions.clearCookie(res);
     res.set("Cache-Control", "no-store");
-    logAuthEvent("DELETE /api/auth/account", "account-deleted");
+    // Best-effort, after the deletion committed. audit() never throws,
+    // so a logging failure cannot turn a completed deletion into a 500.
+    // The kind is account_deletion.completed: the allowlisted,
+    // documented name for this event (docs/SecurityEvents.md). The old
+    // stopgap string "account-deleted" is not in the audit allowlist,
+    // so audit() would throw on it.
+    await audit(pool, "account_deletion.completed", userId);
     return res.json({ deleted: true });
 });
 
