@@ -602,6 +602,27 @@
         font-size: 20px;
     }
 
+    /* Collapsed sheet (D1): the fixed chrome must fit in 45dvh, or the
+       bottom-anchored timeline covers the section tab row and overflows
+       the sheet. In the collapsed state the book note, cross-book chips,
+       and timeline hint are hidden — they all return when the sheet
+       expands — and the header/timeline padding tightens, leaving the
+       tab row visible and tappable with a sliver of content below it.
+       The development-content badge stays visible in both states. */
+    .history-panel-dialog--collapsed .history-panel-book-note,
+    .history-panel-dialog--collapsed .history-connection-chips,
+    .history-panel-dialog--collapsed .history-timeline-hint {
+        display: none;
+    }
+
+    .history-panel-dialog--collapsed .history-panel-header {
+        padding: 12px 16px 8px;
+    }
+
+    .history-panel-dialog--collapsed .history-timeline {
+        padding: 8px 16px 10px;
+    }
+
     .history-book-header h1 {
         font-size: 26px;
     }

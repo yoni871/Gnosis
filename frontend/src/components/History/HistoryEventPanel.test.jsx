@@ -3,12 +3,18 @@
 // tests exercise the panel itself — focus/Escape/return, the sheet, the
 // tabs, the timeline, and the development-content badge — against fixture
 // data shaped exactly like the real Creation record.
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
+import { ThemeProvider } from "../../context/ThemeContext";
+import BiblicalHistoryBookPage from "../../pages/BiblicalHistoryBookPage";
+import BiblicalHistoryEventPage from "../../pages/BiblicalHistoryEventPage";
 import HistoryEventPanel from "./HistoryEventPanel";
+
+vi.mock("../components/Header/Header", () => ({ default: () => null }));
 
 const FIXTURE_EVENT = {
     id: "event-creation",
@@ -45,6 +51,17 @@ vi.mock("../../services/historyService", async (importOriginal) => {
     return {
         ...actual,
         getBookTitle: (bookId) => (bookId === "genesis" ? "Genesis" : bookId),
+        getBook: (bookId) => (bookId === "genesis"
+            ? {
+                id: "genesis",
+                title: "Genesis",
+                testament: "OT",
+                introduction: "Genesis opens the biblical story.",
+                events: [{ eventId: "event-creation", narrativeOrder: 1, bookNote: "The opening of the biblical story." }],
+            }
+            : null),
+        listBooks: () => [{ id: "genesis", title: "Genesis", testament: "OT" }],
+        getEventBySlug: (slug) => (slug === "creation" ? FIXTURE_EVENT : null),
         listEventsForBook: () => [{ ...FIXTURE_EVENT, narrativeOrder: 1 }],
         getBooksForEvent: () => [
             { id: "genesis", title: "Genesis" },
@@ -149,5 +166,79 @@ describe("HistoryEventPanel", () => {
         expect(handle).toHaveAttribute("aria-expanded", "true");
         await user.click(screen.getByTestId("history-panel-close"));
         expect(onClose).toHaveBeenCalled();
+    });
+});
+
+describe("HistoryEventPanel — focus return across the close navigation (D2)", () => {
+    function renderBookPage(path) {
+        return render(
+            <MemoryRouter initialEntries={[path]}>
+                <ThemeProvider>
+                    <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
+                        <Routes>
+                            <Route path="/biblical-history/:book" element={<BiblicalHistoryBookPage />} />
+                            <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryEventPage />} />
+                        </Routes>
+                    </AuthContext.Provider>
+                </ThemeProvider>
+            </MemoryRouter>,
+        );
+    }
+
+    it("returns focus to the event link after mouse-open + Escape close", async () => {
+        const user = userEvent.setup();
+        renderBookPage("/biblical-history/genesis");
+        const link = document.getElementById("history-event-link-creation");
+        expect(link).not.toBeNull();
+        await user.click(link);
+        await waitFor(() => expect(screen.getByRole("dialog", { name: "Creation" })).toBeInTheDocument());
+        await user.keyboard("{Escape}");
+        await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+        // The close navigation unmounts and remounts the book page, so
+        // the link is a new node — focus must land on the new node, not
+        // the detached one the panel captured on open.
+        const relink = document.getElementById("history-event-link-creation");
+        expect(relink).not.toBeNull();
+        expect(relink).not.toBe(link);
+        await waitFor(() => expect(document.activeElement).toBe(relink));
+    });
+
+    it("returns focus to the event link after keyboard-open + close-button close", async () => {
+        const user = userEvent.setup();
+        renderBookPage("/biblical-history/genesis");
+        const link = document.getElementById("history-event-link-creation");
+        link.focus();
+        await user.keyboard("{Enter}");
+        await waitFor(() => expect(screen.getByRole("dialog", { name: "Creation" })).toBeInTheDocument());
+        await user.click(screen.getByTestId("history-panel-close"));
+        await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+        await waitFor(() =>
+            expect(document.activeElement).toBe(document.getElementById("history-event-link-creation")),
+        );
+    });
+});
+
+describe("HistoryEventPanel — collapsed sheet state (D1)", () => {
+    const originalMatchMedia = window.matchMedia;
+    afterEach(() => {
+        window.matchMedia = originalMatchMedia;
+    });
+
+    it("marks the dialog collapsed on mobile until the sheet expands", async () => {
+        window.matchMedia = vi.fn((query) => ({
+            matches: query === "(max-width: 768px)",
+            media: query,
+            addEventListener: vi.fn(),
+            removeEventListener: vi.fn(),
+            addListener: vi.fn(),
+            removeListener: vi.fn(),
+        }));
+        const user = userEvent.setup();
+        renderPanel();
+        const dialog = screen.getByRole("dialog", { name: "Creation" });
+        expect(dialog).toHaveClass("history-panel-dialog--collapsed");
+        expect(screen.getByRole("tablist")).toHaveAttribute("aria-orientation", "horizontal");
+        await user.click(screen.getByTestId("history-sheet-handle"));
+        expect(dialog).not.toHaveClass("history-panel-dialog--collapsed");
     });
 });

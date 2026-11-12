@@ -13,6 +13,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import {
+    eventSlug,
     getBooksForEvent,
     getBookTitle,
     listEventsForBook,
@@ -26,6 +27,7 @@ import HistoryOverview from "./HistoryOverview";
 import HistoryScriptureTab from "./HistoryScriptureTab";
 import HistorySourcesList from "./HistorySourcesList";
 import HistoryTimeline from "./HistoryTimeline";
+import { useHistoryIsMobile } from "./useHistoryIsMobile";
 import { HISTORY_SECTIONS } from "../../utils/historyContent";
 import "./History.css";
 
@@ -41,6 +43,12 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
     const [sheetDragOffset, setSheetDragOffset] = useState(0);
     const sheetDragStartYRef = useRef(null);
     const sheetDidDragRef = useRef(false);
+    const isMobile = useHistoryIsMobile();
+    // The collapsed mobile sheet (45dvh) cannot fit the full header, so
+    // the book note, cross-book chips, and timeline hint are hidden until
+    // the sheet expands — otherwise the bottom-anchored timeline covers
+    // the section tab row (D1).
+    const isSheetCollapsed = isMobile && !isSheetExpanded;
 
     const dialogRef = useRef(null);
     const previouslyFocusedRef = useRef(null);
@@ -102,9 +110,24 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
         return () => {
             document.removeEventListener("keydown", onKeyDown, true);
             document.body.style.overflow = previousOverflow;
-            previouslyFocusedRef.current?.focus?.();
+            // Focus return (D2): the book page unmounts and remounts on
+            // the close navigation, so the node captured on open is
+            // detached by close time — focusing it is a no-op and focus
+            // falls to BODY. Restore by the opener's stable id instead;
+            // the remounted book page renders the same link. (A deep-link
+            // open has no opener node, and the id lookup covers that too.)
+            // Fall back to the captured node only if it is still mounted
+            // (the no-route-change case, e.g. a state-toggled panel).
+            const opener = document.getElementById(`history-event-link-${eventSlug(event.id)}`);
+            if (opener) {
+                opener.focus();
+            } else if (previouslyFocusedRef.current?.isConnected) {
+                previouslyFocusedRef.current.focus();
+            }
         };
-    }, [onClose]);
+        // event.id is stable for the panel's lifetime (the parent keys the
+        // panel by event id), so the effect still runs once per mount.
+    }, [onClose, event.id]);
 
     // Mobile bottom sheet: the handle drags to expand/collapse/dismiss, and
     // a tap on it toggles expand/collapse. (Same pattern as the OL modal.)
@@ -158,7 +181,7 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                 role="dialog"
                 aria-modal="true"
                 aria-label={event.title}
-                className="history-panel-dialog"
+                className={`history-panel-dialog${isSheetCollapsed ? " history-panel-dialog--collapsed" : ""}`}
                 style={{
                     "--history-sheet-height": isSheetExpanded ? "85dvh" : "45dvh",
                     transform: sheetDragOffset !== 0 ? `translateY(${sheetDragOffset}px)` : undefined,
