@@ -55,6 +55,8 @@ describe("LandingPage", () => {
         expect(within(section).getByRole("img", { name: /actual Gnosis reader/ })).toHaveAttribute("loading", "lazy");
         expect(within(section).getAllByRole("listitem")).toHaveLength(3);
         expect(within(section).getByRole("img", { name: "Gnosis mobile Scripture view showing John 1 in the KJV" })).toHaveAttribute("src", "/images/landing/bible-commentary/mobile-scripture-856.jpg");
+        expect(within(section).getByText("Compare trusted perspectives on a passage's meaning, context, and enduring significance.")).toBeInTheDocument();
+        expect(within(section).queryByText(/Matthew Henry|Jamieson|Fausset|Brown/i)).toBeNull();
         const devices = within(section).getByRole("figure", { name: "Gnosis on one laptop and one smartphone" });
         expect(within(devices).getAllByRole("img")).toHaveLength(2);
         for (const badge of ["KJV Bible", "Trusted Commentaries", "Smooth Study Experience"]) expect(within(section).queryByText(badge)).toBeNull();
