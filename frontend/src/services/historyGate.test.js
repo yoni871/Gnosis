@@ -131,8 +131,11 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         expect(result.status).toBe(0);
         const manifest = readManifest(sandbox);
         expect(manifest.includeUnpublished).toBe(true);
-        expect(manifest.events).toEqual(["event-creation"]);
+        // The sandbox flips Creation to in-review; the shipped Adam and
+        // Eve event is in-review, so the dev opt-in includes both.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-creation"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
+        expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
     });
 
     it("a production generation overwrites a stale unpublished generated directory", () => {
@@ -164,7 +167,9 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
             cwd: sandbox,
         });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-creation"]);
+        // The sandbox flips Creation to in-review; the shipped Adam and
+        // Eve event is in-review, so the dev opt-in includes both.
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-creation"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
     });
 
@@ -267,25 +272,8 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
         expect(findNonPublishedRecords({ contentDir })).toEqual([
+            { id: "event-adam-and-eve", kind: "event", status: "in-review", title: "Adam and Eve" },
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
-            {
-                id: "source-brown-cosmic-temple",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3",
-            },
-            {
-                id: "source-met-mesopotamian-creation",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Mesopotamian Creation Myths",
-            },
-            {
-                id: "source-oracc-marduk",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Marduk (god)",
-            },
             {
                 id: "source-mcdowell-human-identity",
                 kind: "source",
@@ -297,6 +285,102 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 kind: "source",
                 status: "unpublished-only",
                 title: "Made in the Image of God: The Creation of אדם, the Commissioning of the King and the Chaoskampf of YHWH",
+            },
+            {
+                id: "source-stordalen-eden-narrative",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The God of the Eden Narrative",
+            },
+            {
+                id: "source-etcsl-enki-ninmah",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Enki and Ninmaḫ (ETCSL 1.1.2)",
+            },
+            {
+                id: "source-met-mesopotamian-creation",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Mesopotamian Creation Myths",
+            },
+            {
+                id: "source-bdb-lexicon",
+                kind: "source",
+                status: "unpublished-only",
+                title: "A Hebrew and English Lexicon of the Old Testament",
+            },
+            {
+                id: "source-keil-delitzsch-genesis",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Biblical Commentary on the Old Testament, Vol. I",
+            },
+            {
+                id: "source-skinner-genesis",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Genesis: A Critical and Exegetical Commentary",
+            },
+            {
+                id: "source-ryle-genesis",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Book of Genesis (Cambridge Bible for Schools and Colleges)",
+            },
+            {
+                id: "source-westermann-genesis",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Genesis 1–11: A Commentary",
+            },
+            {
+                id: "source-oracc-marduk",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Marduk (god)",
+            },
+            {
+                id: "source-jvl-paradise",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Paradise (Encyclopaedia Judaica)",
+            },
+            {
+                id: "source-isaw-sacred-tree",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Expansionist Politics and the Creation of an Emblem of Universal Kingship",
+            },
+            {
+                id: "source-balogh-tree-of-life",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Tree of Life in Ancient Near Eastern Iconography",
+            },
+            {
+                id: "source-kramer-dilmun",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Indus Civilization and Dilmun, the Sumerian Paradise Land",
+            },
+            {
+                id: "source-benthall-two-trees",
+                kind: "source",
+                status: "unpublished-only",
+                title: "A Tale of Two Trees: Knowledge and Life in the Book of Genesis",
+            },
+            {
+                id: "source-brown-cosmic-temple",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3",
+            },
+            {
+                id: "source-scriptorium-lamassu",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Lamassu (Human-Headed Winged Bull)",
             },
             {
                 id: "source-british-museum-shabaka",

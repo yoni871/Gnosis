@@ -82,5 +82,153 @@
     "verification": "not-independently-verified",
     "verificationDetail": "bibliography-and-abstract-checked; Cambridge repository abstract confirms the Gen 1:1 syntax focus; full article embargoed until 2027-06-15 per the 2026-11-11 desk review (no embargo string visible in the repository page text fetched that day); not cited by any event — do not cite in public content until a verified discussion of Gen 1:1 syntax is added.",
     "licenseNote": "All rights reserved; full text not examined. Do not cite in public content until a verified discussion of Gen 1:1 syntax is added; full article embargoed until 2027-06-15."
+  },
+  "source-stordalen-eden-narrative": {
+    "id": "source-stordalen-eden-narrative",
+    "author": "Terje Stordalen",
+    "title": "The God of the Eden Narrative",
+    "publisher": "Eisenbrauns (in Enigmas and Images: Studies in Honor of Tryggve N. D. Mettinger)",
+    "year": 2011,
+    "pagesOrSection": "Coniectanea Biblica OT Series 58, pp. 3–21 (author-hosted offprint)",
+    "url": "http://www.stordalen.info/Terje/Bibliography_files/2010 Stordalen, God_of_Eden-Narrative.pdf",
+    "verification": "verified",
+    "verificationDetail": "Full chapter read 2026-11-12 (author-hosted offprint, stordalen.info, offprint pp. 1–21): knowledge of good and bad as moral maturity the most common sense (fn 10, p. 5; Deut 2:39; 2 Sam 19:36; Isa 7:15f); serpent-as-cosmic-opponent a disputed topic (pp. 13–14); death via exclusion from the tree of life (pp. 10–12); tentative 6th/5th-century dating one scholar's proposal (fn 61, p. 16). Mettinger passages as reported by Stordalen and Clark 1969 / Stordalen 2000 remain unverified.",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
+  },
+  "source-etcsl-enki-ninmah": {
+    "id": "source-etcsl-enki-ninmah",
+    "author": "Electronic Text Corpus of Sumerian Literature (ETCSL)",
+    "title": "Enki and Ninmaḫ (ETCSL 1.1.2)",
+    "publisher": "University of Oxford",
+    "pagesOrSection": "ETCSL 1.1.2, full translation",
+    "url": "https://etcsl.orinst.ox.ac.uk/section1/tr112.htm",
+    "verification": "verified",
+    "verificationDetail": "Full translation opened and read 2026-11-12: gods knead clay from the top of the abzu (lines 24–37); the forming is followed by a divine contest over defective humans, with no breath of life. CDLI composite Q000333 confirms the manuscript picture (Old Babylonian witnesses from Nippur, c. 1900–1600 BCE; Nineveh witness K.1711 Neo-Assyrian, c. 911–612 BCE); the ORACC catalogue entry itself was not directly opened.",
+    "licenseNote": "Paraphrase with credit; verify project licensing before reproducing translations at length."
+  },
+  "source-bdb-lexicon": {
+    "id": "source-bdb-lexicon",
+    "author": "Francis Brown, Samuel Rolles Driver, and Charles Augustus Briggs",
+    "title": "A Hebrew and English Lexicon of the Old Testament",
+    "publisher": "Clarendon Press",
+    "year": 1906,
+    "pagesOrSection": "Entries consulted 2026-11-12: ʿāpār H6083, nišmâ H5397, ṣēlāʿ H6763, ʿābad H5647, šāmar H8104, nāḥāš H5175, ʿārûm H6175 (BibleHub digitisation)",
+    "verification": "verified",
+    "verificationDetail": "All 7 entries consulted in full 2026-11-12 (BibleHub Brown-Driver-Briggs sections only; BibleHub Topical Lexicon sections are modern devotional commentary, NOT BDB, and were never cited). Key findings: side is ṣēlāʿ's dominant sense, rib the exceptional one, used of a human body only in Gen 2:21–22; BDB does NOT label Gen 2:15 cultic; šāmar 2:15/3:24 bookend; Eden serpent (sense 1d) distinct from the mythological dragon (sense 3). BDB misprint flagged: prints garden Genesis 2:16 (J) for the garden-tilling citation; the infinitive is in 2:15 — cite 2:15. BDB findings are BDB's, not current lexical consensus (HALOT/DCH not consulted).",
+    "licenseNote": "Public domain (1906); original summary and citation only."
+  },
+  "source-keil-delitzsch-genesis": {
+    "id": "source-keil-delitzsch-genesis",
+    "author": "C. F. Keil and F. Delitzsch",
+    "title": "Biblical Commentary on the Old Testament, Vol. I",
+    "publisher": "T. & T. Clark",
+    "year": 1869,
+    "pagesOrSection": "Vol. I (The Pentateuch), commentary on Genesis 2–3 (trans. James Martin)",
+    "url": "https://archive.org/details/biblicalcomm01keiluoft",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-12 (archive.org biblicalcomm01keiluoft): rib argued explicitly, p. 89, from the plural ṣelaʿot; the serpent is Satan's real instrument (an interpretive identification, not a textual one); man created for eternal life (against Skinner, Ryle, and Westermann). Reads Gen 2:15 as agricultural/stewardship, not priestly.",
+    "licenseNote": "Public domain (1869); original summary and citation only."
+  },
+  "source-skinner-genesis": {
+    "id": "source-skinner-genesis",
+    "author": "John Skinner",
+    "title": "Genesis: A Critical and Exegetical Commentary",
+    "publisher": "T. & T. Clark",
+    "year": 1910,
+    "pagesOrSection": "International Critical Commentary; commentary on Genesis 2–3",
+    "url": "https://archive.org/details/criticalexegetic00skinuoft",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-12 (archive.org criticalexegetic00skinuoft; also Gutenberg 77363): civilisation/cultural reading of knowledge of good and evil (following Wellhausen, with Gunkel's maturity as a leading alternative); sexual-experience reading rejected as the meaning of the final form (p. 76, a still greater perversion); no spirit/Satan identification in the narrative (later development, Wis 2:24; Rev 20:2); rivers: Indus/Ganges leaning, impossible to identify; Adapa affinities far more instructive (pp. 91–92). Reads Gen 2:15 as agricultural/stewardship, not priestly.",
+    "licenseNote": "Public domain (1910); original summary and citation only."
+  },
+  "source-ryle-genesis": {
+    "id": "source-ryle-genesis",
+    "author": "Herbert E. Ryle",
+    "title": "The Book of Genesis (Cambridge Bible for Schools and Colleges)",
+    "publisher": "Cambridge University Press",
+    "year": 1914,
+    "pagesOrSection": "Commentary on Genesis 2–3 (printing consulted 1921)",
+    "url": "https://biblehub.com/commentaries/cambridge/genesis/2.htm",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-12 (BibleHub Cambridge commentary, Gen 2–3; URL verified to resolve to the Cambridge Bible Genesis 2 commentary): moral discernment reading of knowledge of good and evil; seven theories for the rivers with no verdict; no Satan identification in the narrative (later development). Reads Gen 2:15 as agricultural/stewardship, not priestly.",
+    "licenseNote": "Public domain (1914); original summary and citation only."
+  },
+  "source-westermann-genesis": {
+    "id": "source-westermann-genesis",
+    "author": "Claus Westermann",
+    "title": "Genesis 1–11: A Commentary",
+    "publisher": "Augsburg / SPCK",
+    "year": 1984,
+    "pagesOrSection": "Continental Commentaries; commentary pp. 197–274 (English translation of 2nd German edition, 1976)",
+    "url": "https://archive.org/details/westermann_genesis202508",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-12 (archive.org westermann_genesis202508, files named Claus.*; English translation, commentary pp. 197–274): rivers — The problem about the passage 2:10–14 has not yet been clarified (p. 215); functional/collective mastery reading of knowledge of good and evil, explicitly rejecting the moral-knowledge reading; sexual-experience reading quite untenable (pp. 242–243, also pp. 234–236); Satan-in-disguise abandoned in modern exegesis; de-mythologizes work in Gen 2:15 (agricultural/stewardship, not priestly). Westermann pp. 186–196 (History of the Exegesis / Setting in Life) not read — immaterial.",
+    "licenseNote": "All rights reserved; original summary and citation only."
+  },
+  "source-jvl-paradise": {
+    "id": "source-jvl-paradise",
+    "author": "Encyclopaedia Judaica",
+    "title": "Paradise (Encyclopaedia Judaica)",
+    "publisher": "Jewish Virtual Library",
+    "pagesOrSection": "Paradise article, read in full",
+    "url": "https://www.jewishvirtuallibrary.org/paradise",
+    "verification": "verified",
+    "verificationDetail": "Article opened and read in full 2026-11-12: Gilgamesh plant episode; Adapa in detail (some relationship does seem indicated); serpent demythologization (quite possibly intentional); Enki and Ninhursag / Dilmun; rivers two-schools survey. Cited as the article, not as primary-text evidence.",
+    "licenseNote": "Original summary and citation only."
+  },
+  "source-isaw-sacred-tree": {
+    "id": "source-isaw-sacred-tree",
+    "author": "Institute for the Study of the Ancient World (NYU)",
+    "title": "Expansionist Politics and the Creation of an Emblem of Universal Kingship",
+    "publisher": "ISAW Newsletter 23",
+    "year": 2019,
+    "pagesOrSection": "Winter 2019 newsletter",
+    "verification": "verified",
+    "verificationDetail": "Read 2026-11-12: Ashurnasirpal II throne-room relief, Nimrud, 865–860 BCE, British Museum 124531 — stylised sacred tree flanked by the king and apkallu genii under a winged disk; the sacred tree as a programmatic emblem of universal kingship and divine order. The tree is a royal/ideological emblem, not a narrative scene.",
+    "licenseNote": "Original summary and citation only."
+  },
+  "source-balogh-tree-of-life": {
+    "id": "source-balogh-tree-of-life",
+    "author": "Csaba Balogh",
+    "title": "The Tree of Life in Ancient Near Eastern Iconography",
+    "publisher": "Brill",
+    "year": 2020,
+    "pagesOrSection": "Brill volume chapter",
+    "verification": "verified",
+    "verificationDetail": "Chapter read 2026-11-12 via a mirror URL (copy of a Brill PDF hosted outside Brill) — content is Brill 2020, but the host is not Brill; prefer locating the chapter via Brill or a library before citing. Verified from it: the phrase tree of life is rare in ANE texts outside the Bible and appears on no extant image; Sacred Tree is the neutral term; meaning is multivalent by place, period, and tradition.",
+    "licenseNote": "All rights reserved; original summary and citation only. Do not reproduce the chapter."
+  },
+  "source-kramer-dilmun": {
+    "id": "source-kramer-dilmun",
+    "author": "Samuel Noah Kramer",
+    "title": "The Indus Civilization and Dilmun, the Sumerian Paradise Land",
+    "publisher": "Expedition (Penn Museum)",
+    "year": 1964,
+    "pagesOrSection": "Expedition 6(3)",
+    "verification": "verified",
+    "verificationDetail": "Read 2026-11-12 (Penn Museum Expedition article; also Kramer 1961, Mythology of Sumer and Akkad, archive.org text): Dilmun as a pure land without sickness or death, watered into a garden — a divine paradise, numerous parallels with the biblical paradise story, with the gods-not-humans difference stressed.",
+    "licenseNote": "Original summary and citation only."
+  },
+  "source-benthall-two-trees": {
+    "id": "source-benthall-two-trees",
+    "author": "Jonathan Benthall",
+    "title": "A Tale of Two Trees: Knowledge and Life in the Book of Genesis",
+    "publisher": "Nova et Vetera (English edition)",
+    "year": 2011,
+    "pagesOrSection": "9(2): 341–360",
+    "verification": "verified",
+    "verificationDetail": "Full article read 2026-11-12 (pp. 341–360): the 3:2–3 in the midst of the garden ambiguity (pp. 345–347, via Mettinger second-hand); the two-trees-together survey (pp. 347–352; Ephrem: tree of life as Holy of Holies, tree of knowledge as veil/gateway); Gordis's sexual-experience reading of knowing good and evil as one candidate (pp. 344, 353–355). The Mettinger passages Benthall reports (pp. 38, 10, 134) are not verified against Mettinger; Gordis 1957 not read in the original. Benthall's own sex/procreation thesis is single-source interpretive — usable only as his own proposal, qualified.",
+    "licenseNote": "Original summary and citation only."
+  },
+  "source-scriptorium-lamassu": {
+    "id": "source-scriptorium-lamassu",
+    "author": "The Scriptorium",
+    "title": "Lamassu (Human-Headed Winged Bull)",
+    "publisher": "The Scriptorium (Biblical Archaeology)",
+    "pagesOrSection": "Biblical Archaeology article",
+    "url": "https://www.thescriptorium.io/biblical-archaeology/lamassu-winged-bull-nimrud-met",
+    "verification": "verified",
+    "verificationDetail": "Page opened and read 2026-11-12: lamassu as colossal protective deity, human-headed winged bull, installed as threshold guardian at the ceremonial gates of the Northwest Palace of Ashurnasirpal II at Nimrud (883–859 BCE), three to four meters tall; British Museum acc. nos. 118802–118873. Cited for the guardian-threshold pattern only; the cherubim are NOT identified with lamassu.",
+    "licenseNote": "Original summary and citation only."
   }
 }

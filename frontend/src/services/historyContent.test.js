@@ -115,12 +115,15 @@ describe("generateHistoryContent — the publication gate", () => {
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-creation"]);
+        // The fixture flips Creation to "draft"; the shipped Adam and Eve
+        // event is in-review, so the dev opt-in includes both.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-creation"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
         expect(findNonPublishedIds({ contentDir })).toEqual([
+            { id: "event-adam-and-eve", kind: "event", status: "in-review" },
             { id: "event-creation", kind: "event", status: "draft" },
         ]);
     });
