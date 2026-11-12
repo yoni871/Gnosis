@@ -653,6 +653,30 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
 // Validate, then write only the included records into the generated
 // directory. Returns { manifest, warnings }. Throws Error on validation
 // failure (fail closed — the build must not proceed).
+//
+// Internal editorial metadata never ships: the source tree keeps the
+// full review record (review.notes, reviewer history, editorial
+// overrides) and source verification (verification, verificationDetail)
+// for research and validation, but none of it reaches generated output.
+// Validation reads the override from the SOURCES first (check 10), and
+// nothing at runtime reads review or verification fields — the public
+// Sources list renders author/title/details/link only, and the panel
+// badge renders from status only — so stripping here, at generation
+// time, is safe. It covers every build path (prebuild, the Vite gate
+// plugin, dev-flag generation) because they all go through this function.
+function stripInternalMetadata(data) {
+    const publicData = { ...data };
+    delete publicData.review;
+    return publicData;
+}
+
+function stripSourceInternal(source) {
+    const publicSource = { ...source };
+    delete publicSource.verification;
+    delete publicSource.verificationDetail;
+    return publicSource;
+}
+
 export function generateHistoryContent({ contentDir, outputDir, includeUnpublished, bibleChapters }) {
     const { errors, warnings } = validateHistoryContent({ contentDir, bibleChapters });
     if (errors.length > 0) {
@@ -674,10 +698,13 @@ export function generateHistoryContent({ contentDir, outputDir, includeUnpublish
         sources: [],
     };
 
-    // Events (JSON + Markdown) and topics.
+    // Events (JSON + Markdown) and topics. The JSON is re-serialized
+    // without the internal review record (see stripInternalMetadata):
+    // the source file keeps it, the generated copy must not.
     const copyPair = (srcJson, destDir) => {
         const base = path.basename(srcJson, ".json");
-        writeFileSync(path.join(destDir, `${base}.json`), readFileSync(srcJson, "utf8"));
+        const data = stripInternalMetadata(readJson(srcJson));
+        writeFileSync(path.join(destDir, `${base}.json`), JSON.stringify(data, null, 2));
         const md = srcJson.replace(/\.json$/, ".md");
         if (existsSync(md)) {
             writeFileSync(path.join(destDir, `${base}.md`), readFileSync(md, "utf8"));
@@ -719,6 +746,8 @@ export function generateHistoryContent({ contentDir, outputDir, includeUnpublish
     }
 
     // Sources registry: only sources cited by an included event or topic.
+    // Verification fields are internal editorial records — they stay in
+    // the source registry and never reach the generated copy.
     const cited = new Set();
     for (const file of listFilesRecursive(path.join(outputDir, "events"))) {
         if (!file.endsWith(".json")) continue;
@@ -732,7 +761,7 @@ export function generateHistoryContent({ contentDir, outputDir, includeUnpublish
     const filtered = {};
     for (const key of [...cited].sort()) {
         if (registry[key]) {
-            filtered[key] = registry[key];
+            filtered[key] = stripSourceInternal(registry[key]);
             manifest.sources.push(key);
         }
     }

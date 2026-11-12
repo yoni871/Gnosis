@@ -7,7 +7,7 @@
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.js",
     "predev": "node scripts/build-history-content-dev.js",
-    "prebuild": "node scripts/generate-sitemap.js && node scripts/build-history-content.js",
+    "prebuild": "node scripts/build-history-content.js && node scripts/generate-sitemap.js",
     "build": "vite build",
     "postbuild": "node scripts/check-history-gate.js",
     "lint": "eslint .",

@@ -79,6 +79,18 @@ verified records exist in this tree for PR review only — they never reach
 `dist/`, the sitemap, or any deployed build. Unpublished event *titles*
 do not ship either.
 
+Internal editorial metadata never ships either. The source tree keeps
+the full review record (`review.notes`, reviewer history, editorial
+overrides) and source verification (`verification`,
+`verificationDetail`) for research and validation, but the generator
+strips them at generation time (`generateHistoryContent`): generated
+event/topic JSON has no `review` key and generated `sources.json` has
+no `verification`/`verificationDetail`. Nothing at runtime reads those
+fields — validation reads the override from the sources before
+generation, and the public UI renders from `status` only. Do not add
+editorial fields to generated output to work around a check; fix the
+source record instead.
+
 To preview an unpublished record locally (never in CI or production):
 
 ```
@@ -107,8 +119,8 @@ gate fails the build if any non-published record reaches `dist/`.
 ## Adding an event
 
 1. Add `events/<slug>.json` + `events/<slug>.md` (see `creation.*` for the
-   shape — it is researched content, `status: "in-review"`, unpublished
-   until an editor approves it).
+   shape — it is researched content, now `published` after editorial
+   approval; a new event starts at `draft` or `in-review`).
 2. Add the event to its book file(s) in `books/` with a `narrativeOrder`
    and a short `bookNote` (≤ ~60 words) per book.
 3. Add any new sources to `sources/references.json` and cite them as

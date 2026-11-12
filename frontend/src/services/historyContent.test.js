@@ -126,6 +126,68 @@ describe("generateHistoryContent — the publication gate", () => {
     });
 });
 
+describe("generateHistoryContent — internal editorial metadata never ships", () => {
+    // The source tree keeps the full review record and source
+    // verification for research and validation; the generated copy must
+    // contain none of it. The strip happens at generation time, so it
+    // covers every build path (prebuild, the Vite gate plugin, dev-flag
+    // generation). Public content — prose, connection notes, source
+    // authors/titles/details/links, qualifications — must survive it.
+    const generatedText = (outDir) => {
+        const eventJson = readFileSync(path.join(outDir, "events", "creation.json"), "utf8");
+        const sourcesJson = readFileSync(path.join(outDir, "sources.json"), "utf8");
+        return { eventJson, sourcesJson };
+    };
+
+    it("strips review and verification from published generation, keeps the sources intact", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "published", markSourcesVerified: false });
+        // The validator still passes with the override in the SOURCE
+        // (check 10 positive case): the strip must not break validation.
+        expect(validateHistoryContent({ contentDir, bibleChapters }).errors).toEqual([]);
+        const { manifest } = generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
+        });
+        expect(manifest.events).toEqual(["event-creation"]);
+        const { eventJson, sourcesJson } = generatedText(outDir);
+        const event = JSON.parse(eventJson);
+        expect(event).not.toHaveProperty("review");
+        expect(event.title).toBe("Creation");
+        expect(event.connections).toHaveLength(28);
+        expect(event.sources).toHaveLength(6);
+        expect(eventJson).not.toContain("Kantor");
+        expect(eventJson).not.toContain("editorialOverride");
+        expect(eventJson).not.toContain("not-independently-verified");
+        const sources = JSON.parse(sourcesJson);
+        expect(Object.keys(sources)).toHaveLength(6);
+        for (const source of Object.values(sources)) {
+            expect(source).not.toHaveProperty("verification");
+            expect(source).not.toHaveProperty("verificationDetail");
+            expect(source.author).toBeTruthy();
+            expect(source.title).toBeTruthy();
+            expect(source.url).toBeTruthy();
+        }
+        expect(sourcesJson).not.toContain("not-independently-verified");
+        expect(sourcesJson).not.toContain("verificationDetail");
+        // ... while the SOURCE files still carry the full record.
+        const sourceEvent = JSON.parse(readFileSync(path.join(contentDir, "events", "creation.json"), "utf8"));
+        expect(sourceEvent.review.editorialOverride).toBe(true);
+        expect(sourceEvent.review.notes).toContain("Kantor");
+        const registry = JSON.parse(readFileSync(path.join(contentDir, "sources", "references.json"), "utf8"));
+        expect(registry["source-brown-cosmic-temple"].verification).toBe("not-independently-verified");
+        expect(registry["source-brown-cosmic-temple"].verificationDetail).toBeTruthy();
+    });
+
+    it("strips review from dev-flag generation too", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
+        generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
+        });
+        const event = JSON.parse(readFileSync(path.join(outDir, "events", "creation.json"), "utf8"));
+        expect(event).not.toHaveProperty("review");
+        expect(event.title).toBe("Creation");
+    });
+});
+
 describe("validateHistoryContent — fail closed", () => {
     const expectErrorMatching = (contentDir, pattern) => {
         const { errors } = validateHistoryContent({ contentDir, bibleChapters });
