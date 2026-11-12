@@ -71,6 +71,15 @@ async function userExists(id) {
     return result.rows[0].n === 1;
 }
 
+async function auditCompletedRows(id) {
+    const result = await database.pool.query(
+        `SELECT kind, user_id FROM security_events
+         WHERE user_id = $1 AND kind = 'account_deletion.completed'`,
+        [id]
+    );
+    return result.rows;
+}
+
 async function allUserRows(id) {
     return {
         notes: await count('notes', id),
@@ -170,6 +179,8 @@ test('a wrong password is a 401 and deletes nothing', async () => {
         verificationTokens: 1, resetTokens: 1, sessions: 2,
     });
     assert.equal(await profile(session.data.token), 200);
+    // A refused deletion writes no completion audit row.
+    assert.deepEqual(await auditCompletedRows(userId), []);
 });
 
 test('the correct password deletes the account, its data, and its sessions', async () => {
@@ -192,6 +203,12 @@ test('the correct password deletes the account, its data, and its sessions', asy
     assert.equal((await database.pool.query(
         'SELECT count(*)::int AS n FROM auth_refresh_tokens'
     )).rows[0].n, 1, 'only the other account\'s refresh token survives');
+
+    // The deletion is audit-logged with the deleted user's id (issue #137).
+    const auditRows = await auditCompletedRows(userId);
+    assert.equal(auditRows.length, 1);
+    assert.equal(auditRows[0].kind, 'account_deletion.completed');
+    assert.equal(auditRows[0].user_id, userId);
 
     // Both of the deleted account's credentials are dead immediately.
     assert.equal(await profile(first.data.token), 403);
