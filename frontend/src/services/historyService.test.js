@@ -1,6 +1,6 @@
 // Service tests. These run against the production-mode generated
 // directory (npm test generates published-only content first), so the
-// draft Creation event is NOT present: every book is "Upcoming" and every
+// in-review Creation event is NOT present: every book is "Upcoming" and every
 // loader returns nothing. Dev-mode loading is covered by the content-lib
 // tests (which generate into temp dirs) and the local dev-flag preview.
 import { describe, expect, it } from "vitest";

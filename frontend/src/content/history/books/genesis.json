@@ -1,1 +1,13 @@
-{"events":[{"bookNote":"The opening of the biblical story: God creates the heavens and the earth, and rests on the seventh day.","eventId":"event-creation","narrativeOrder":1}],"id":"genesis","introduction":"Genesis opens the biblical story: God creates the heavens and the earth, humanity falls and is promised redemption, and God calls Abraham's family to carry that promise forward. Its history runs from Creation through the patriarchs in Egypt.","testament":"OT","title":"Genesis"}
+{
+  "id": "genesis",
+  "title": "Genesis",
+  "testament": "OT",
+  "introduction": "Genesis opens with God creating and ordering the heavens and the earth. Biblical History presents the passage alongside carefully qualified ancient cultural and literary context.",
+  "events": [
+    {
+      "eventId": "event-creation",
+      "narrativeOrder": 1,
+      "bookNote": "Genesis 1:1–2:3 introduces the Bible’s account of creation and culminates in the seventh day. No independently established event date is assigned."
+    }
+  ]
+}

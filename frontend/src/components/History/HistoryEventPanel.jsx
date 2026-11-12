@@ -212,7 +212,11 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                         </p>
                         {event.status !== "published" && (
                             <p className="history-dev-badge" role="note">
-                                Development content — not researched editorial content
+                                {event.status === "draft"
+                                    ? "Development content — not researched editorial content"
+                                    : event.status === "in-review"
+                                        ? "In review — unpublished editorial content"
+                                        : "Verified — unpublished editorial content"}
                             </p>
                         )}
                         {event.bookNote && (

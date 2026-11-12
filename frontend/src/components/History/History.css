@@ -619,6 +619,31 @@
        on taller screens 45dvh still wins. The sheet may end up taller
        than 45dvh on very short screens; that is the accepted trade-off
        for keeping every tab visible and tappable. */
+    /* Expanded sheet (320px regression, Creation integration): the
+       expanded header grows with the book note, and on a short screen
+       the fixed chrome (handle + header + tab row + timeline) can exceed
+       85dvh, so the bottom-anchored timeline covers the tab row — the
+       same failure mode the collapsed min-height guard fixed. Two
+       bounds, mirroring that fix: the book note is clamped to 3 lines
+       in the sheet header (the full note stays on the book page), and
+       the expanded sheet has a 520px minimum height. Arithmetic at
+       320x568: handle 23 + header ~248 with the clamped note + tab row
+       68 + timeline 141 + a content sliver ≈ 480–520; the guard binds
+       only where 85dvh falls short (viewport height < ~612px) — on
+       taller screens 85dvh still wins. The sheet may end up taller
+       than 85dvh on very short screens; that is the accepted trade-off
+       for keeping every tab visible and tappable. */
+    .history-panel-book-note {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .history-panel-dialog:not(.history-panel-dialog--collapsed) {
+        min-height: 520px;
+    }
+
     .history-panel-dialog--collapsed {
         min-height: 400px;
     }

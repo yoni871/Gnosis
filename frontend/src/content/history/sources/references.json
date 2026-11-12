@@ -1,1 +1,86 @@
-{"source-dev-placeholder":{"author":"Gnosis development content","id":"source-dev-placeholder","licenseNote":"Development placeholder; not a real citation.","pagesOrSection":null,"publisher":"Gnosis (development only)","title":"Placeholder source for the Creation development event","url":null,"verification":"not-independently-verified","year":null}}
+{
+  "source-brown-cosmic-temple": {
+    "id": "source-brown-cosmic-temple",
+    "author": "William P. Brown",
+    "title": "The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3",
+    "publisher": "Oxford University Press",
+    "year": 2010,
+    "pagesOrSection": "The Seven Pillars of Creation, chapter 3, pp. 33–78",
+    "url": "https://doi.org/10.1093/acprof:oso/9780199730797.003.0003",
+    "verification": "not-independently-verified",
+    "verificationDetail": "bibliography-and-abstract-checked",
+    "licenseNote": "All rights reserved; original paraphrase and citation only. Full chapter not consulted."
+  },
+  "source-met-mesopotamian-creation": {
+    "id": "source-met-mesopotamian-creation",
+    "author": "Ira Spar",
+    "title": "Mesopotamian Creation Myths",
+    "publisher": "The Metropolitan Museum of Art",
+    "year": 2009,
+    "pagesOrSection": "Heilbrunn Timeline essay",
+    "url": "https://www.metmuseum.org/essays/epic-of-creation-mesopotamia",
+    "verification": "not-independently-verified",
+    "verificationDetail": "institutional-page-checked",
+    "licenseNote": "Do not reproduce museum prose or illustrations without rights review."
+  },
+  "source-oracc-marduk": {
+    "id": "source-oracc-marduk",
+    "author": "ORACC / Ancient Mesopotamian Gods and Goddesses",
+    "title": "Marduk (god)",
+    "publisher": "Oracc, University of Pennsylvania / collaborators",
+    "year": null,
+    "pagesOrSection": "Functions",
+    "url": "https://oracc.museum.upenn.edu/amgg/listofdeities/marduk/index.html",
+    "verification": "not-independently-verified",
+    "verificationDetail": "institutional-page-checked",
+    "licenseNote": "Paraphrase with credit; verify project-specific licensing before reproducing translations."
+  },
+  "source-mcdowell-human-identity": {
+    "id": "source-mcdowell-human-identity",
+    "author": "Catherine McDowell",
+    "title": "Human Identity and Purpose Redefined: Gen 1:26–28 and 2:5–25 in Context",
+    "publisher": "Advances in Ancient, Biblical, and Near Eastern Research",
+    "year": 2021,
+    "pagesOrSection": "1(3): 29–44",
+    "url": "https://doi.org/10.35068/aabner.v1i3.830",
+    "verification": "not-independently-verified",
+    "verificationDetail": "bibliography-and-abstract-checked",
+    "licenseNote": "CC BY-NC-ND 4.0 for article; only original summaries and citations in Gnosis."
+  },
+  "source-crouch-image-of-god": {
+    "id": "source-crouch-image-of-god",
+    "author": "C. L. Crouch",
+    "title": "Made in the Image of God: The Creation of אדם, the Commissioning of the King and the Chaoskampf of YHWH",
+    "publisher": "Journal of Ancient Near Eastern Religions",
+    "year": 2016,
+    "pagesOrSection": "16(1)",
+    "url": "https://doi.org/10.1163/15692124-12341277",
+    "verification": "not-independently-verified",
+    "verificationDetail": "bibliography-and-repository-checked",
+    "licenseNote": "Repository copy lists CC BY 4.0; cite independent original summary; check version-specific terms for reuse."
+  },
+  "source-british-museum-shabaka": {
+    "id": "source-british-museum-shabaka",
+    "author": "British Museum",
+    "title": "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
+    "publisher": "British Museum",
+    "year": 2022,
+    "pagesOrSection": "EA498, heart/tongue passage",
+    "url": "https://www.britishmuseum.org/sites/default/files/2022-11/Shabaka_Stone_transcript_Hieroglyphs_unlocking_ancient_Egypt_The_British_Musuem.pdf",
+    "verification": "not-independently-verified",
+    "verificationDetail": "institutional-primary-text-and-guide-checked",
+    "licenseNote": "Do not reproduce photograph or transcript at length; rights not cleared."
+  },
+  "source-kantor-genesis-opening": {
+    "id": "source-kantor-genesis-opening",
+    "author": "Benjamin Kantor",
+    "title": "The Origins of “In the Beginning . . .”: Genesis 1:1 in Light of the Biblical Hebrew Reading Traditions",
+    "publisher": "Journal of Biblical Literature",
+    "year": 2025,
+    "pagesOrSection": "144(4): 601–636",
+    "url": "https://doi.org/10.15699/jbl.1444.2025.2",
+    "verification": "not-independently-verified",
+    "verificationDetail": "bibliography-and-abstract-checked",
+    "licenseNote": "All rights reserved; full text not examined."
+  }
+}

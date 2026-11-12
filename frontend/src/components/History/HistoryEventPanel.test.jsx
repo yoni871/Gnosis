@@ -1,5 +1,5 @@
 // Panel tests. The service layer is mocked (the real generated content is
-// production-mode: the draft Creation event is not generated), so these
+// production-mode: the in-review Creation event is not generated), so these
 // tests exercise the panel itself — focus/Escape/return, the sheet, the
 // tabs, the timeline, and the development-content badge — against fixture
 // data shaped exactly like the real Creation record.
@@ -89,6 +89,20 @@ describe("HistoryEventPanel", () => {
         expect(screen.getByText("The opening of the biblical story.")).toBeInTheDocument();
         await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
         expect(screen.getByText("Why it matters prose.")).toBeInTheDocument();
+    });
+
+    it("renders the in-review badge for researched unpublished content", async () => {
+        render(
+            <MemoryRouter initialEntries={["/biblical-history/genesis/creation"]}>
+                <HistoryEventPanel
+                    event={{ ...FIXTURE_EVENT, status: "in-review" }}
+                    bookId="genesis"
+                    onClose={vi.fn()}
+                />
+            </MemoryRouter>,
+        );
+        expect(screen.getByText("In review — unpublished editorial content")).toBeInTheDocument();
+        expect(screen.queryByText("Development content — not researched editorial content")).toBeNull();
     });
 
     it("shows cross-book chips for the other books carrying the event", () => {

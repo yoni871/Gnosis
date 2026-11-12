@@ -77,8 +77,8 @@ gate fails the build if any non-published record reaches `dist/`.
 ## Adding an event
 
 1. Add `events/<slug>.json` + `events/<slug>.md` (see `creation.*` for the
-   shape — it is development content, `status: "draft"`, not researched
-   editorial content).
+   shape — it is researched content, `status: "in-review"`, unpublished
+   until an editor approves it).
 2. Add the event to its book file(s) in `books/` with a `narrativeOrder`
    and a short `bookNote` (≤ ~60 words) per book.
 3. Add any new sources to `sources/references.json` and cite them as
