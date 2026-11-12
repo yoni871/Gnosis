@@ -1,9 +1,12 @@
+import { useCallback, useRef, useState } from "react";
 import ScripturePanel from "../Scripture/ScripturePanel";
 import CommentaryPanel from "../Commentary/CommentaryPanel";
 import NotesPanel from "../Notes/NotesPanel";
 import DesktopStudyTabs from "./DesktopStudyTabs";
 import BookmarksPanel from "../Bookmarks/BookmarksPanel";
 import HighlightsPanel from "../Highlights/HighlightsPanel";
+import StudySplitDivider from "./StudySplitDivider";
+import { clampStudySplit, DEFAULT_STUDY_SPLIT, readStudySplit, STUDY_SPLIT_STORAGE_KEY } from "./studySplit";
 
 
 export default function DesktopStudyLayout({
@@ -34,14 +37,32 @@ export default function DesktopStudyLayout({
     verseSelection,
     navigateToPassage
 }) {
+    const containerRef = useRef(null);
+    const [split, setSplit] = useState(readStudySplit);
+    const updateSplit = useCallback((position, isPercent = false) => {
+        const container = containerRef.current;
+        if (!container) return;
+        const width = container.getBoundingClientRect().width;
+        const percent = isPercent
+            ? position
+            : ((position - container.getBoundingClientRect().left) / width) * 100;
+        const next = clampStudySplit(percent, width);
+        setSplit(next);
+        window.localStorage.setItem(STUDY_SPLIT_STORAGE_KEY, String(next));
+    }, []);
+    const resetSplit = useCallback(() => updateSplit(DEFAULT_STUDY_SPLIT, true), [updateSplit]);
+    const sideBySide = layout === "side";
+
     return (
         <main
+            ref={containerRef}
+            style={sideBySide ? { gridTemplateColumns: `${split}% 8px minmax(0, 1fr)` } : undefined}
             className={`
                 mt-[108px]
                 grid
                 ${
-                    layout === "side"
-                        ? "grid-cols-[60%_40%]"
+                    sideBySide
+                        ? ""
                         : "grid-rows-2"
                 }
                 h-[calc(100vh-108px)]
@@ -72,6 +93,14 @@ export default function DesktopStudyLayout({
                     navigateToPassage={navigateToPassage}
                 />
             </div>
+
+            {sideBySide && (
+                <StudySplitDivider
+                    value={split}
+                    onChange={updateSplit}
+                    onReset={resetSplit}
+                />
+            )}
 
             <div
                 className="
