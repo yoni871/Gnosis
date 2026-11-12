@@ -1,0 +1,483 @@
+{
+  "category": "event",
+  "claims": [
+    {
+      "assessment": "established",
+      "claim": "Genesis 2:4–3:24 is a distinct narrative from Genesis 1:1–2:3, not a continuation of the six-day sequence.",
+      "evidence": "Textual: the 2:4 toledot seam; Gen 2 as a second account that elaborates further (McDowell 2021, p. 36, verified from full text).",
+      "id": "clm-ae-001"
+    },
+    {
+      "assessment": "probable",
+      "claim": "Gen 2:4b–3:24 is the non-Priestly strand; Gen 2:4a is assigned to the conflator.",
+      "evidence": "Carr handout (author's own synthesis, verified). The book's multi-layer model is unverified.",
+      "id": "clm-ae-002"
+    },
+    {
+      "assessment": "established",
+      "claim": "Mesopotamian stories picture gods forming humans from clay (clay from the abzu).",
+      "evidence": "Enki and Ninmaḫ, full ETCSL translation read (lines 24–37).",
+      "id": "clm-ae-003"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The clay-forming motif is a genuine parallel to Gen 2:7 at motif level.",
+      "evidence": "Shared ANE anthropological vocabulary (also Atrahasis).",
+      "id": "clm-ae-004"
+    },
+    {
+      "assessment": "unknown",
+      "claim": "Any literary relationship between Enki and Ninmaḫ and Genesis 2:7.",
+      "evidence": "No scholar consulted claims borrowing; relationship unassessed beyond motif level.",
+      "id": "clm-ae-005"
+    },
+    {
+      "assessment": "established",
+      "claim": "Genesis 2:7's animating act — God breathing nišmat ḥayyîm — has no counterpart in Enki and Ninmaḫ.",
+      "evidence": "ETCSL translation read; no breath act in the text. BDB nišmâ sense 2 (God's breath in man).",
+      "id": "clm-ae-006"
+    },
+    {
+      "assessment": "established",
+      "claim": "Gilgamesh Tablet XI's plant confers rejuvenation (restored youth), not immortality.",
+      "evidence": "Thompson 1928 translation; Cambridge Companion excerpt; BiblicalTraining summary. Folded-in verdict (former clm-ae-008, editorial verification F1): this fact entails the Gilgamesh plant is NOT a 'tree of life' parallel — different motif (rejuvenation, not immortality); the plant is not a tree, not in a garden. Do not label it so.",
+      "id": "clm-ae-007"
+    },
+    {
+      "assessment": "debated — verdict: no",
+      "claim": "The Gilgamesh serpent speaks, tempts, or deceives.",
+      "evidence": "Opportunistic animal acting on scent/instinct; no dialogue, no prohibition. 'Debated — verdict: no' is a verdict on the claim as phrased, not a Research Agent §8 confidence label.",
+      "id": "clm-ae-009"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Adapa is a contrastive ANE parallel to Genesis 2–3 (refusal through obedience vs. eating through disobedience).",
+      "evidence": "Roux; Encyclopaedia Judaica 'Paradise'. A contrastive parallel, not a source: refusal through obedience vs. eating through disobedience, with the inverted outcome stated explicitly. Skinner pp. 91–92 supports the contrastive reading ('far more instructive affinities'); Westermann pp. 245–246 states the inverted outcome but says the Adapa narrative 'cannot be alleged as a parallel to Gen 3' and never ranks it strongest.",
+      "id": "clm-ae-010"
+    },
+    {
+      "assessment": "unknown",
+      "claim": "Any literary relationship between Adapa and Genesis 2–3.",
+      "evidence": "Encyclopaedia Judaica: 'some relationship does seem indicated' is itself a qualified suggestion, not evidence of borrowing.",
+      "id": "clm-ae-011"
+    },
+    {
+      "assessment": "established",
+      "claim": "No ancient text calls the Assyrian sacred tree a 'tree of life'.",
+      "evidence": "Balogh 2020 (read via mirror PDF — prefer Brill/library before citing); Parpola 1993 (excerpt). No text or image attests the name.",
+      "id": "clm-ae-012"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The Assyrian sacred tree signified fertility / cosmic order / kingship.",
+      "evidence": "Multiple modern reconstructions; no consensus; no cuneiform text discusses the symbolism (Parpola, via excerpt).",
+      "id": "clm-ae-013"
+    },
+    {
+      "assessment": "probable (survey-limited)",
+      "claim": "No serpent figure surveyed speaks to a human and deceives them into disobeying a divine command.",
+      "evidence": "ANE serpent survey. Joines 1974 not read; a counter-example could exist. Phrase as 'no serpent figure surveyed'.",
+      "id": "clm-ae-014"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Genesis 3's presentation of the serpent is a demythologization of ANE serpent symbolism.",
+      "evidence": "Encyclopaedia Judaica presents it as a reading; Wenham/Sarna cited for a polemical reading. Interpretation, not textual fact.",
+      "id": "clm-ae-015"
+    },
+    {
+      "assessment": "probable",
+      "claim": "Dilmun in Enki and Ninhursag is the closest divine-garden parallel to Eden.",
+      "evidence": "Kramer 1961/1964; ETCSL-derived text. Gods, not humans — difference stated.",
+      "id": "clm-ae-016"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Tigris and Euphrates are the rivers named in Gen 2:14.",
+      "evidence": "Text + no scholarly dispute.",
+      "id": "clm-ae-017"
+    },
+    {
+      "assessment": "unknown",
+      "claim": "Pishon and Gihon are identified with specific modern rivers.",
+      "evidence": "No identification established; two schools of proposed identifications. Skinner: Indian rivers least-bad, identification likely impossible (pp. 64–66); Keil: Pishon = Cyrus as 'more probable conjecture' (p. 82), Gihon = Araxes asserted flatly (p. 83); Westermann p. 214",
+      "id": "clm-ae-018"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Cush in Gen 2:13 is Nubia/Ethiopia.",
+      "evidence": "Usually Nubia, but the Kassite Cush (Luristan) is a genuine alternative. Do not present as settled.",
+      "id": "clm-ae-019"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The karibu etymology of Hebrew kerûb.",
+      "evidence": "Tyndale Open Bible Dictionary cautions; etymology uncertain. Westermann pp. 273–274 endorses Akkadian kāribu/kuribu; Skinner and Keil disagree — a live disagreement, not settled either way.",
+      "id": "clm-ae-020"
+    },
+    {
+      "assessment": "probable",
+      "claim": "ANE winged guardians at sacred thresholds (lamassu, sphinx) illuminate the function of the cherubim in Gen 3:24.",
+      "evidence": "Guardian-threshold pattern as shared ANE iconography; functional resemblance only. The cherubim are lamassu/sphinxes: debated — do not assert identity.",
+      "id": "clm-ae-021"
+    },
+    {
+      "assessment": "probable",
+      "claim": "'East of Eden' (3:24) is a literary motif, not geography.",
+      "evidence": "Textual observation (cf. Gen 4:16).",
+      "id": "clm-ae-022"
+    },
+    {
+      "assessment": "probable",
+      "claim": "'Knowledge of good and evil' most commonly means moral maturity — per Stordalen.",
+      "evidence": "Stordalen 2011, fn 10, p. 5 (verified), with citations. One verified full-text source; not doubly confirmed. Attribution (editorial verification F3): 'most common' is Stordalen's report, not a consensus established by this dossier. Competing readings the commentaries support: moral discernment (Ryle; Keil); civilisation/cultural knowledge (Skinner, following Wellhausen — with Gunkel's maturity as a leading alternative); functional mastery (Westermann, who explicitly rejects the moral-knowledge reading). Do NOT present maturity as the consensus.",
+      "id": "clm-ae-023"
+    },
+    {
+      "assessment": "debated",
+      "claim": "'Knowledge of good and evil' is an idiom for the range of sexual experience.",
+      "evidence": "Gordis 1957, reported by Benthall (verified), pp. 347, 354–355. One candidate reading; Gordis not read in the original. Strengthened note (editorial verification F4): the major commentaries consulted reject the sexual-experience reading as the meaning of the final form — Skinner p. 76 ('a still greater perversion'); Westermann p. 242 ('quite untenable', also pp. 234–236). Keep as a debated candidate only, not as a live contender.",
+      "id": "clm-ae-024"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The ʿābad/šāmar pairing in Gen 2:15 marks a priestly role for Adam.",
+      "evidence": "McDowell 2021 (verified) + BDB (verified) disagree in emphasis: BDB does not label 2:15 cultic. McDowell's own fn 22 anachronism caveat applies — verified verbatim from the Gordon-Conwell PDF (AABNER 1(3) 2021, p. 38): the duties later reserved for the Israelite priesthood were originally a human task, to serve God in his sacred space, to mediate the blessing and presence of God, and to cultivate his temple and the world. The prose paraphrases this caveat (no quotation marks in the public prose); the full wording is preserved here. Strengthened note (editorial verification F5): none of the four verified commentaries supports a priestly reading of 2:15 — all four read it as agricultural/stewardship (Westermann explicitly de-mythologizes work). Among verified sources the priestly reading rests on McDowell alone. (the 'archetypal priest' label is Wenham's, quoted by McDowell, fn 18 = Wenham 1987, 67; Wenham 1994, 401)",
+      "id": "clm-ae-025"
+    },
+    {
+      "assessment": "debated — verdict: no",
+      "claim": "'Rib' is the settled translation of ṣēlāʿ in Gen 2:21–22.",
+      "evidence": "BDB headword gloss is 'rib, side' and sense 1 is 'rib of man Gen 2:21, 22 (J)'; the 'side dominant / rib exceptional' framing is BibleHub's Topical Lexicon, not BDB. What BDB supports is human-body use only in Gen 2:21–22, with side/architectural senses elsewhere. BDB alone does not settle it. Note (editorial verification F6, corrected): the 'side dominant' framing is a BibleHub Topical Lexicon observation, not a BDB lexical observation; the commentaries consulted render 'rib' — Keil argues it explicitly, p. 89, from the plural ṣelaʿot. Do not present 'side' as the commentaries' reading.",
+      "id": "clm-ae-026"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Death in Genesis 2–3 comes via exclusion from the tree of life.",
+      "evidence": "Stordalen (verified) vs. Mettinger 2007: 19–20 (unverified, second-hand). 3:19 ties death to dust; 'on the day you eat' does not follow conventional legal phraseology — Mettinger's observation, reported by Stordalen (fn 43 → Mettinger 2007:22), second-hand. Note the split (editorial verification F7): three of four verified commentaries are against Keil's 'created for eternal life' — Skinner and Ryle: man capable of immortality, not by nature immortal; Westermann refuses 'immortality' on 3:22 (p. 272) in favour of 'living on' / overcoming death's boundary; the threat is not fulfilled — Skinner does explain it (God changed His purpose and modified the penalty, p. 95), not merely acknowledge it.",
+      "id": "clm-ae-027"
+    },
+    {
+      "assessment": "unverified — verification status, not a confidence label",
+      "claim": "The tree of life functioned as a reward for obedience (unmentioned until 3:22).",
+      "evidence": "Mettinger's thesis (2007), known second-hand only. Do not present as verified. EXCLUDED from the article prose: no claim with status unverified enters the public article.",
+      "id": "clm-ae-028"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Genesis 2–3 dates to the 6th/5th century BCE.",
+      "evidence": "Stordalen's tentative proposal (fn 61, p. 16; Stordalen 2000 not read). One scholar's proposal, not consensus.",
+      "id": "clm-ae-029"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The serpent is a cosmic opponent / chaos creature.",
+      "evidence": "Stordalen: cosmic-opponent reading is 'a disputed topic' (verified verbatim, pp. 13–14). BDB keeps the Eden serpent (sense 1d, 'crafty tempter') distinct from the mythological serpent/dragon (sense 3). Commentary positions (verified from full text): Skinner/Ryle — no spirit/Satan identification in the narrative; later development (Wis 2:24; Rev 20:2). Keil — the serpent is Satan's real instrument. Westermann's third position — Satan-in-disguise 'abandoned in modern exegesis'; the origin of evil is inexplicable; no etiology for evil.",
+      "id": "clm-ae-030a"
+    },
+    {
+      "assessment": "unverified — no textual basis",
+      "claim": "The serpent is Satan.",
+      "evidence": "No text identifies the serpent with Satan. 2 Cor 11:3 names the deception only (conn-ae-015, reception, not evidence about identity). Commentary positions: Skinner/Ryle — no Satan identification in the narrative (later development, Wis 2:24; Rev 20:2); Keil — the serpent is Satan's real instrument (an interpretive identification, not a textual one); Westermann — Satan-in-disguise 'abandoned in modern exegesis'. EXCLUDED from the article prose as a claim: the article presents the serpent as the text presents it and records the identification question as debated/unverified.",
+      "id": "clm-ae-030b"
+    },
+    {
+      "assessment": "debated — verdict: no (on the surface)",
+      "claim": "The woman made a 'mistake' in Gen 3:3 by naming the wrong tree.",
+      "evidence": "Benthall via Mettinger (second-hand): both trees are 'in the midst of the garden' (2:9); she names no tree. Deeper-level double entendre is Mettinger's reading, unverified.",
+      "id": "clm-ae-031"
+    },
+    {
+      "assessment": "debated — verdict: no",
+      "claim": "The 2:25/3:1 naked/crafty wordplay uses one 'naked' word through the passage.",
+      "evidence": "OL word rows (verified 2026-11-12): 2:25 H6174, 3:1 H6175, post-Fall nakedness H5903 ×3. Wordplay is 2:25 ↔ 3:1 only.",
+      "id": "clm-ae-032"
+    },
+    {
+      "assessment": "established",
+      "claim": "ʿābad and šāmar bracket the event (charge 2:15; tilling 3:23; guarding 3:24).",
+      "evidence": "OL word rows (verified 2026-11-12): H5647 ×3, H8104 ×2, locations verified.",
+      "id": "clm-ae-033"
+    },
+    {
+      "assessment": "established",
+      "claim": "Dust frames the event (formed 2:7 → serpent eats dust 3:14 → return to dust 3:19 ×2).",
+      "evidence": "OL word rows (verified 2026-11-12): H6083 ×4, locations verified. BDB sense 1b/1a.",
+      "id": "clm-ae-034"
+    },
+    {
+      "assessment": "established",
+      "claim": "The exact phrase nišmat ḥayyîm occurs once in the passage (2:7).",
+      "evidence": "OL word rows (verified 2026-11-12): H5397 ×1 in the passage.",
+      "id": "clm-ae-035"
+    }
+  ],
+  "connections": [
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 3,
+      "endVerse": 24,
+      "id": "conn-ae-001",
+      "note": "The primary account: the garden, the forming of the human, the command, the transgression, the judgments, and the expulsion.",
+      "startChapter": 2,
+      "startVerse": 4,
+      "type": "direct-account"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 2,
+      "endVerse": 3,
+      "id": "conn-ae-002",
+      "note": "The first creation account, a distinct narrative of ordering and rest; Genesis 2:4–3:24 retells the making of humanity from inside the garden rather than continuing the six-day sequence.",
+      "startChapter": 1,
+      "startVerse": 1,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 1,
+      "endVerse": 28,
+      "id": "conn-ae-003",
+      "note": "Image and vocation language originating here and carried into Genesis 2, where the human is formed and charged to work and keep the garden; the image language itself is stated in Genesis 1, not Genesis 2.",
+      "startChapter": 1,
+      "startVerse": 26,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 4,
+      "endVerse": 16,
+      "id": "conn-ae-004",
+      "note": "The first generation after exile; Cain settles 'east of Eden' (4:16), continuing the eastward movement and banishment of Genesis 3:23–24.",
+      "startChapter": 4,
+      "startVerse": 1,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 5,
+      "endVerse": 3,
+      "id": "conn-ae-005",
+      "note": "Seth's birth and the genealogy that traces Adam's likeness to his son; the narrative sequel to the garden, distinct from Creation's use of Genesis 5:1–3 for the image language alone.",
+      "startChapter": 4,
+      "startVerse": 25,
+      "type": "background"
+    },
+    {
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "confidence": "established",
+      "endChapter": 11,
+      "endVerse": 9,
+      "id": "conn-ae-006",
+      "note": "Peaceable-kingdom imagery reversing the enmity of Genesis 3, with a child at the serpent's den (11:8); restoration imagery, not a narration of Eden.",
+      "startChapter": 11,
+      "startVerse": 6,
+      "type": "thematic"
+    },
+    {
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "confidence": "established",
+      "endChapter": 65,
+      "endVerse": 25,
+      "id": "conn-ae-007",
+      "note": "New heavens and new earth with Eden-like peace; the serpent eating dust (65:25) recalls the judgment of Genesis 3:14 — restoration imagery, not a return to the garden as narrated.",
+      "startChapter": 65,
+      "startVerse": 17,
+      "type": "thematic"
+    },
+    {
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "confidence": "established",
+      "endChapter": 28,
+      "endVerse": 19,
+      "id": "conn-ae-008",
+      "note": "Lament over the king of Tyre set 'in Eden, the garden of God' (28:13), with a covering cherub; Eden imagery applied to a king's pride and fall — thematic only, it does not narrate the Fall.",
+      "startChapter": 28,
+      "startVerse": 11,
+      "type": "thematic"
+    },
+    {
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "confidence": "established",
+      "endChapter": 31,
+      "endVerse": 9,
+      "id": "conn-ae-009",
+      "note": "Oracle against Pharaoh comparing his greatness to a cedar in Eden, envied by the trees of the garden of God; Eden imagery, not an account of the garden.",
+      "startChapter": 31,
+      "startVerse": 1,
+      "type": "thematic"
+    },
+    {
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "confidence": "established",
+      "endChapter": 36,
+      "endVerse": 35,
+      "id": "conn-ae-010",
+      "note": "The restored land described as 'like the garden of Eden'; a restoration simile invoking Eden, not a description of it.",
+      "startChapter": 36,
+      "startVerse": 35,
+      "type": "thematic"
+    },
+    {
+      "book": "Joel",
+      "bookId": "joel",
+      "confidence": "established",
+      "endChapter": 2,
+      "endVerse": 3,
+      "id": "conn-ae-011",
+      "note": "The land before the locusts 'as the garden of Eden', desolate behind them; Eden as the measure of a land's ruin, not a narration of the garden.",
+      "startChapter": 2,
+      "startVerse": 3,
+      "type": "thematic"
+    },
+    {
+      "book": "Romans",
+      "bookId": "romans",
+      "confidence": "established",
+      "endChapter": 5,
+      "endVerse": 21,
+      "id": "conn-ae-012",
+      "note": "Adam and Christ set in parallel: sin and death entering through one man, life through another; theological reception of Genesis 2–3, not what the Genesis narrative itself states.",
+      "startChapter": 5,
+      "startVerse": 12,
+      "type": "thematic"
+    },
+    {
+      "book": "1 Corinthians",
+      "bookId": "1-corinthians",
+      "confidence": "established",
+      "endChapter": 15,
+      "endVerse": 22,
+      "id": "conn-ae-013",
+      "note": "'In Adam all die'; the Adam/Christ parallel as theological reception, not a narration of the garden.",
+      "startChapter": 15,
+      "startVerse": 21,
+      "type": "thematic"
+    },
+    {
+      "book": "1 Corinthians",
+      "bookId": "1-corinthians",
+      "confidence": "established",
+      "endChapter": 15,
+      "endVerse": 49,
+      "id": "conn-ae-014",
+      "note": "'The first man Adam was made a living soul', quoting Genesis 2:7, and 'of the earth, earthy'; Paul's reading of the forming from dust as theological reception.",
+      "startChapter": 15,
+      "startVerse": 45,
+      "type": "thematic"
+    },
+    {
+      "book": "2 Corinthians",
+      "bookId": "2-corinthians",
+      "confidence": "established",
+      "endChapter": 11,
+      "endVerse": 3,
+      "id": "conn-ae-015",
+      "note": "The only New Testament passage naming the Genesis 3 deception directly: the serpent beguiling Eve; reception of the narrative, not evidence about the serpent's identity.",
+      "startChapter": 11,
+      "startVerse": 3,
+      "type": "thematic"
+    },
+    {
+      "book": "1 Timothy",
+      "bookId": "1-timothy",
+      "confidence": "established",
+      "endChapter": 2,
+      "endVerse": 14,
+      "id": "conn-ae-016",
+      "note": "'Adam was first formed, then Eve', and Eve deceived; a New Testament use of the formation and deception order — interpretively contested in its application, and presented here as reception only.",
+      "startChapter": 2,
+      "startVerse": 13,
+      "type": "thematic"
+    },
+    {
+      "book": "Revelation",
+      "bookId": "revelation",
+      "confidence": "established",
+      "endChapter": 2,
+      "endVerse": 7,
+      "id": "conn-ae-017",
+      "note": "The tree of life promised to the conqueror, 'in the midst of the paradise of God'; the tree of Genesis 2:9 and 3:22–24 taken up as eschatological promise, not as garden history.",
+      "startChapter": 2,
+      "startVerse": 7,
+      "type": "thematic"
+    },
+    {
+      "book": "Revelation",
+      "bookId": "revelation",
+      "confidence": "established",
+      "endChapter": 22,
+      "endVerse": 5,
+      "id": "conn-ae-018",
+      "note": "River and tree of life restored, and 'no more curse' (22:3) reversing the judgments of Genesis 3; eschatological reversal of the garden's loss — Creation already connects this range (conn-cre-028) for the creation motifs, and this note claims it for the Genesis 2–3 reversal specifically.",
+      "startChapter": 22,
+      "startVerse": 1,
+      "type": "thematic"
+    }
+  ],
+  "date": {
+    "label": "No independently established date",
+    "note": "Chronology is narrative only; the passage provides no independently datable historical coordinates.",
+    "traditionalSystem": null,
+    "type": "unknown",
+    "yearEnd": null,
+    "yearStart": null
+  },
+  "id": "event-adam-and-eve",
+  "locations": [],
+  "primaryScripture": {
+    "book": "Genesis",
+    "bookId": "genesis",
+    "endChapter": 3,
+    "endVerse": 24,
+    "startChapter": 2,
+    "startVerse": 4
+  },
+  "relatedEvents": [
+    "event-creation"
+  ],
+  "review": {
+    "author": "Gnosis research draft (AI-assisted)",
+    "checklistVersion": "standards-1.1-section-14",
+    "lastReviewed": "2026-11-12",
+    "notes": "Stage 2 draft 2026-11-12, status in-review (NOT published). Branch point: main 51a562a (#144 merged). Claim count: 35 substantive claim rows — arithmetic: 35 original register rows, minus clm-ae-008 folded into clm-ae-007 (F1), plus the clm-ae-030 split replacing one row with two, 030a + 030b (F2) = 35. Marker rows 008 and 030 are retained in the dossier only, not in this file. Corrections applied: F1 fold 008 into 007; F2 split 030 into 030a (cosmic-opponent identity, debated) and 030b (Satan identification, unverified); F3 clm-ae-023 reworded to explicit Stordalen attribution with competing readings; F4 clm-ae-024 strengthened with Skinner/Westermann rejections; F5 clm-ae-025 strengthened (no commentary support; McDowell alone); F6 clm-ae-026 note (the 'side dominant' framing is BibleHub's Topical Lexicon, not BDB; commentaries render rib); F7 clm-ae-027 split noted (three of four commentaries against Keil). Convention notes applied: 'debated — verdict: no' is a verdict on the claim as phrased, not a §8 confidence label; 'unverified' on 028 and 030b is a verification status, not a confidence label. Editorial exception (Yonatan, 2026-11-12): drafting proceeds WITHOUT Mettinger 2007, Walton 2015, or HALOT/DCH full texts — none is verified and none is presented as verified anywhere in this draft; second-hand uses are labelled as such (clm-ae-023 via Stordalen; clm-ae-027 counter-position; clm-ae-028 excluded from the article; clm-ae-031 via Benthall). McDowell 2021 fn 22 anachronism caveat re-verified verbatim from the Gordon-Conwell PDF (AABNER 1(3) 2021, p. 38) 2026-11-12; the prose paraphrases it (no quotation marks in the public prose, per the standing rule) and the full wording is preserved in clm-ae-025. Standards §3 confidence table verified against the source Doc v1.1 (established / probable / debated / traditional / unknown; per individual claim; historical claims, not the spiritual authority of Scripture). Connections: 18/18 verified live against stored KJV via the Preview API 2026-11-12 (Stage 1); overlaps with Creation are editor-visible here: conn-ae-005 overlaps conn-cre-004 (distinct reason: genealogy sequel vs image language alone) and conn-ae-018 overlaps conn-cre-028 (distinct reason: Genesis 2–3 reversal vs creation motifs); conn-ae-003 is the weakest include; conn-ae-016 (1 Timothy 2:13–14) is the first to cut if NT reception is limited. All 7 NT connections (012–018) label the link as reception, never as what Genesis 2–3 itself says. Sources: 17 cited (Brown 2010 removed from this event's sources array; it remains in the shared registry as not-independently-verified, uncited by this event) — no editorialOverride is granted or presumed; that is a publication-time decision. The BM Shabaka Stone (already in the shared registry, cited by published Creation) is NOT cited by this draft's prose: the dossier rates it minimal relevance and the 400-word Ancient World cap forced the cut; the Memphite contrast is dossier §2 material only. The Creation-dossier correction for clm-cre-014 (Nineveh witness Neo-Assyrian; OB witnesses from Nippur) stays a separate workspace file and was NOT applied to any published Creation content. Open decisions for Yonatan: whether Creation's published record ever gains event-adam-and-eve in relatedEvents (this draft links one-way only, from the new event); whether the seven NT reception connections stay as-is or are trimmed (016 first to cut); whether the rivers discussion stays at this brief, cautious depth.",
+    "reviewer": "Stage 2 draft 2026-11-12 — in-review; Stage 1 dossier editorial verification PASS with F1–F7 applied; not approved for publication"
+  },
+  "sources": [
+    "source-mcdowell-human-identity",
+    "source-crouch-image-of-god",
+    "source-stordalen-eden-narrative",
+    "source-etcsl-enki-ninmah",
+    "source-met-mesopotamian-creation",
+    "source-bdb-lexicon",
+    "source-keil-delitzsch-genesis",
+    "source-skinner-genesis",
+    "source-ryle-genesis",
+    "source-westermann-genesis",
+    "source-oracc-marduk",
+    "source-jvl-paradise",
+    "source-isaw-sacred-tree",
+    "source-balogh-tree-of-life",
+    "source-kramer-dilmun",
+    "source-benthall-two-trees",
+    "source-scriptorium-lamassu"
+  ],
+  "status": "in-review",
+  "title": "Adam and Eve",
+  "topics": []
+}

@@ -8,6 +8,11 @@
       "eventId": "event-creation",
       "narrativeOrder": 1,
       "bookNote": "Genesis 1:1–2:3 introduces the Bible’s account of creation and culminates in the seventh day. No independently established event date is assigned."
+    },
+    {
+      "eventId": "event-adam-and-eve",
+      "narrativeOrder": 2,
+      "bookNote": "Genesis 2:4–3:24 tells a second, distinct creation account: the garden, the forming of the human, the command, the transgression, the judgments, and the expulsion. No independently established event date is assigned."
     }
   ]
 }
