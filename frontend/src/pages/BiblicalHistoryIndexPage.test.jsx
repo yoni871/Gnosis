@@ -5,8 +5,6 @@ import AuthContext from "../context/AuthContext";
 import { ThemeProvider } from "../context/ThemeContext";
 import BiblicalHistoryIndexPage from "./BiblicalHistoryIndexPage";
 
-vi.mock("../components/Header/Header", () => ({ default: () => null }));
-
 function renderIndex() {
     return render(
         <MemoryRouter initialEntries={["/biblical-history"]}>
@@ -22,6 +20,8 @@ function renderIndex() {
 describe("BiblicalHistoryIndexPage", () => {
     it("presents the editorial introduction without rendering the 66-book directory", () => {
         renderIndex();
+        expect(screen.getByRole("navigation", { name: "Primary" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Explore" })).toBeInTheDocument();
         expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
         expect(screen.getByRole("heading", { name: "What Is Biblical History?" })).toBeInTheDocument();
         expect(screen.getAllByRole("listitem")).toHaveLength(4);
