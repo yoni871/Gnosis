@@ -153,7 +153,8 @@ export default function NoteCard({
                             px-4
                             py-4
                             font-serif
-                            text-[14px]
+                            text-base
+                            sm:text-[14px]
                             leading-7
                             text-[var(--text-primary)]
                             outline-none

@@ -179,7 +179,8 @@ export default function NoteComposer({
                             px-6
                             py-5
                             font-serif
-                            text-[15px]
+                            text-base
+                            sm:text-[15px]
                             leading-8
                             text-[var(--text-primary)]
                             outline-none
