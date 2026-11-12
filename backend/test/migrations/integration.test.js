@@ -192,11 +192,12 @@ test('failed migration rolls back schema and history and can safely retry', asyn
     const dir = await fixtureDir('app', '-- Up Migration\nCREATE TABLE fixture(id integer); SELECT 1/0;\n-- Down Migration\nDROP TABLE fixture;');
     await assert.rejects(run('app', 'up', { dir }), /stage \[migration runner\]/);
     assert.equal((await db.query("SELECT to_regclass('public.fixture') AS value")).rows[0].value, null);
-    assert.equal((await db.query('SELECT count(*)::int AS n FROM pgmigrations_app')).rows[0].n, 11);
+    assert.equal((await db.query('SELECT count(*)::int AS n FROM pgmigrations_app')).rows[0].n, PROJECTS.app.applied.length);
     await fs.writeFile(path.join(dir, '29990101000000_fixture.sql'), '-- Up Migration\nCREATE TABLE fixture(id integer);\n-- Down Migration\nDROP TABLE fixture;');
     await run('app', 'up', { dir });
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['29990101000000_fixture']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261112130000_make-note-passage-optional']);
+    assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109200233_add-known-login-devices']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109194138_add-security-events']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261107010016_add-licensed-ip-limits-window-index']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261107005916_add-licensed-cache-verse-count-index']);
