@@ -136,7 +136,9 @@ export function AuthProvider({ children }) {
         return { email: data.email };
     }, []);
 
-    const logout = useCallback((all = false) => {
+    const logout = useCallback((all = false, forced = false) => {
+        const event = new CustomEvent("gnosis:before-sign-out", { cancelable: true, detail: { forced } });
+        if (!window.dispatchEvent(event) && !forced) return;
         const revocation = logoutSession(token, all === true);
         revocation.catch(error => console.error(error.message));
         // Invalidate first: any restore/login/register already in
@@ -173,7 +175,7 @@ export function AuthProvider({ children }) {
             } catch (error) {
                 if (!active || !authGuard.isCurrent(ticket)) return;
                 if (['SESSION_INVALID', 'TOKEN_INVALID', 'TOKEN_REQUIRED'].includes(error.code)) {
-                    logout();
+                    logout(false, true);
                 } else {
                     // Temporary transport/server failures must not erase private drafts.
                     // Protected requests still fail closed if the access token expires.

@@ -29,6 +29,7 @@ export default function NotesLibrary({
     onSelectNote,
     selectedNoteId,
     notes,
+    documents = {},
     books,
     isLoadingNotes,
     notesError,
@@ -257,6 +258,8 @@ export default function NotesLibrary({
                 {!isLoadingNotes &&
                     visibleNotes.map((note) => {
                         const selected = note.id === selectedNoteId;
+                        const doc = documents[note.id];
+                        const dirty = doc && (doc.uncertain || doc.title !== doc.saved.title || doc.content !== doc.saved.content);
                         const stamp =
                             note.updated_at &&
                             note.updated_at !== note.created_at
@@ -299,6 +302,7 @@ export default function NotesLibrary({
                                     "
                                 >
                                     {note.title?.trim() || getNoteReference(note, books)}
+                                    {dirty && <span className="ml-2 text-[10px] font-sans font-medium text-[var(--text-muted)]">Unsaved</span>}
                                 </span>
                                 <span
                                     className="

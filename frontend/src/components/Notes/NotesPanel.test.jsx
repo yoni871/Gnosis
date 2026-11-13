@@ -35,6 +35,9 @@ const NOTES = [
 ];
 
 function baseState(overrides = {}) {
+    const selected = NOTES.find(note => note.id === overrides.editingNoteId);
+    const content = overrides.editContent ?? selected?.content ?? "";
+    const saved = { title: "", content };
     return {
         isAuthenticated: true,
         isAuthLoading: false,
@@ -57,8 +60,8 @@ function baseState(overrides = {}) {
         handleUpdateNote: vi.fn(),
         handleDeleteNote: vi.fn(),
         handleCreateDocument: vi.fn().mockResolvedValue(null),
-        scheduleDocumentSave: vi.fn(),
-        saveStatus: "saved",
+        documents: selected ? { [selected.id]: { ...saved, saved, saving: false, error: "" } } : {},
+        changeDocument: vi.fn(), saveDocument: vi.fn(), cancelDocument: vi.fn(),
         nextCursor: null,
         isLoadingMore: false,
         loadMore: vi.fn(),
@@ -147,12 +150,14 @@ test("New Note creates an independent document for the current passage", async (
     });
 });
 
-test("shows the selected note with title, rich editor, autosave status, and delete", async () => {
+test("shows the selected note with title, rich editor, save controls, and delete", async () => {
     renderPanel(baseState({ editingNoteId: 2, editContent: "The Lord is my shepherd." }));
     expect(screen.getByRole("textbox", { name: "Note title" })).toHaveValue("");
     expect(screen.getByRole("textbox", { name: "Note content" })).toHaveTextContent("The Lord is my shepherd.");
     expect(screen.getByText(/^Saved/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Delete" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Save" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Cancel" })).toBeDisabled();
 });
 
 test("shows the empty library state when there are no notes", async () => {
