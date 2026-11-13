@@ -217,6 +217,37 @@ test('five wrong codes trip the per-challenge rate limit', async () => {
     assert.equal(limited.data.code, 'RATE_LIMITED');
 });
 
+test('five wrong codes across fresh challenges trip the per-user rate limit', async () => {
+    const { userId, email } = await freshUser();
+    await enrollAndConfirm(email, userId);
+    // Each login issues a fresh challenge, so the per-challenge bucket
+    // never trips; only the per-IP+user bucket accumulates. Five wrong
+    // codes across five challenges, then the sixth is 429.
+    for (let attempt = 0; attempt < 5; attempt++) {
+        const challenged = await login(email);
+        assert.equal(challenged.status, 401, `login ${attempt + 1}`);
+        const wrong = await request('mfa/verify', { body: { challenge: challenged.data.challenge, code: '000000' } });
+        assert.equal(wrong.status, 401, `attempt ${attempt + 1}`);
+    }
+    const sixth = await login(email);
+    assert.equal(sixth.status, 401);
+    const limited = await request('mfa/verify', { body: { challenge: sixth.data.challenge, code: '000000' } });
+    assert.equal(limited.status, 429);
+    assert.equal(limited.data.code, 'RATE_LIMITED');
+});
+
+test('five enrollment starts trip the per-user enroll rate limit', async () => {
+    const { userId, email } = await freshUser();
+    const token = (await login(email)).data.token;
+    for (let attempt = 0; attempt < 5; attempt++) {
+        const started = await request('mfa/enroll', { token, body: {} });
+        assert.equal(started.status, 200, `attempt ${attempt + 1}: ${JSON.stringify(started.data)}`);
+    }
+    const limited = await request('mfa/enroll', { token, body: {} });
+    assert.equal(limited.status, 429);
+    assert.equal(limited.data.code, 'RATE_LIMITED');
+});
+
 test('mixed key versions: a version-1 row decrypts via the previous key, a version-2 row via the current key', async () => {
     // This exercises the key ring at the service level (the worker's
     // env is fixed at startup, so the rotation is driven here with

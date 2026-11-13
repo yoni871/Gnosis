@@ -79,12 +79,18 @@ const POLICIES = {
     // the 120/min entry at the top of this table — see that comment.)
     // TOTP MFA (roadmap T2.3): the challenge step mirrors verify
     // per-IP (30/15 min) with a strict per-challenge bucket (5/15
-    // min), so guessing a 6-digit code against one challenge is
-    // bounded while a burst against many challenges still trips the
-    // IP bucket. Authenticated code endpoints (enroll confirm,
-    // regenerate, disable) share one per-user+IP bucket (5/15 min).
+    // min) and a per-IP+user bucket (5/15 min), so guessing a 6-digit
+    // code against one challenge is bounded while a burst against
+    // many challenges still trips the IP bucket and a burst against
+    // one account trips the per-user bucket even from many IPs.
+    // Authenticated code endpoints (enroll confirm, regenerate,
+    // disable) share one per-user+IP bucket (5/15 min); enrollment
+    // start has its own per-user+IP bucket (5/15 min) so a flood of
+    // enrollment starts cannot spend the code endpoints' budget.
     mfa_verify_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
     mfa_verify_ip_challenge: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_verify_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_enroll_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
     mfa_code_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
 };
 

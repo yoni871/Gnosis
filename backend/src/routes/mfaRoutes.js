@@ -23,7 +23,7 @@ const authenticateToken = require("../middleware/authMiddleware");
 const { internalErrorBody, logAuthFailure } = require("../utils/authErrors");
 const { VALIDATION_CODE } = require("../utils/authValidation");
 const { createRateLimitMiddleware } = require("../utils/rateLimit");
-const { isValidMfaChallengeTokenFormat } = require("../utils/mfaChallenge");
+const { isValidMfaChallengeTokenFormat, hashMfaChallengeToken } = require("../utils/mfaChallenge");
 const { isTotpCodeFormat } = require("../utils/mfaTotp");
 const { isRecoveryCodeFormat } = require("../utils/mfaRecoveryCodes");
 const mfa = require("../services/mfaService");
@@ -102,11 +102,53 @@ function validatePasswordTotp(req, res, next) {
 }
 
 // TOTP verification attempts are rate-limited like the verify
-// endpoint: 30/15 min per IP, 5/15 min per IP + challenge. A wrong
-// code counts; a success or an internal failure does not.
+// endpoint: 30/15 min per IP, 5/15 min per IP + challenge, 5/15 min
+// per IP + user. A wrong code counts; a success or an internal
+// failure does not. Distributed guessing is bounded by the
+// combination: per-IP (30/15) caps one source, per-user (5/15)
+// caps one account even from many IPs, and per-challenge (5/15)
+// caps one challenge, which itself expires in 10 minutes and is
+// single-use — so no attacker can brute-force a 6-digit code
+// within a challenge's lifetime. The per-user bucket needs the
+// challenge's user id, resolved by resolveMfaChallengeUser before
+// this limiter runs (the same pre-resolution pattern the login
+// limiter uses with the submitted email); an unresolvable challenge
+// keys on the shared "unknown" value, so unknown challenges are
+// still bounded by the per-IP bucket.
 const verifyRateLimit = createRateLimitMiddleware([
     { policy: "mfa_verify_ip", fields: (req, ip) => [ip] },
     { policy: "mfa_verify_ip_challenge", fields: (req, ip) => [ip, req.validated.challenge] },
+    { policy: "mfa_verify_ip_user", fields: (req, ip) => [ip, req.mfaChallengeUserId] },
+], "mfa");
+
+// Resolves the user id for the validated challenge token so the
+// per-IP+user bucket can be keyed before the limiter runs. Runs
+// after validateVerify. An unknown, expired, or already-used
+// challenge keys on "unknown" (bounded by the per-IP bucket).
+async function resolveMfaChallengeUser(req, res, next) {
+    let userId = "unknown";
+    try {
+        const tokenHash = hashMfaChallengeToken(req.validated.challenge);
+        const result = await pool.query(
+            "SELECT user_id FROM mfa_challenges WHERE token_hash = $1", [tokenHash]);
+        if (result.rows[0]) {
+            userId = String(result.rows[0].user_id);
+        }
+    } catch {
+        // Lookup failure leaves "unknown"; the limiter and handler
+        // fail closed on their own if the store is down.
+    }
+    req.mfaChallengeUserId = userId;
+    return next();
+}
+
+// Enrollment start is rate-limited per IP + user (5/15 min), so a
+// flood of enrollment starts cannot mint secrets or spend the code
+// endpoints' budget. Every start counts (the resend pattern:
+// enrollment is an infrequent action, not a guessable code); an
+// internal failure releases the reservation.
+const enrollRateLimit = createRateLimitMiddleware([
+    { policy: "mfa_enroll_ip_user", fields: (req, ip) => [ip, String(req.user.userId)] },
 ], "mfa");
 
 // Authenticated code endpoints share one per-user+IP bucket (5/15
@@ -158,7 +200,8 @@ router.get("/status", authenticateToken, async (req, res) => {
     }
 });
 
-router.post("/enroll", authenticateToken, async (req, res) => {
+router.post("/enroll", authenticateToken, enrollRateLimit,
+    withRateLimitFinalize(async (req, res) => {
     let userRow;
     try {
         const result = await pool.query("SELECT email FROM users WHERE id = $1", [req.user.userId]);
@@ -182,7 +225,7 @@ router.post("/enroll", authenticateToken, async (req, res) => {
     } catch (error) {
         return handleMfaError("POST /api/auth/mfa/enroll", error, req, res);
     }
-});
+}));
 
 router.post("/enroll/confirm", authenticateToken, validateTotpCode, codeRateLimit,
     withRateLimitFinalize(async (req, res) => {
@@ -223,7 +266,7 @@ router.post("/verify", (req, res, next) => {
         return res.status(403).json({ error: "Invalid session request.", code: "SESSION_REQUEST_INVALID" });
     }
     next();
-}, validateVerify, verifyRateLimit, withRateLimitFinalize(async (req, res) => {
+}, validateVerify, resolveMfaChallengeUser, verifyRateLimit, withRateLimitFinalize(async (req, res) => {
     let result;
     try {
         result = await mfa.verifyMfaChallenge(pool, req.validated.challenge, req.validated.code);

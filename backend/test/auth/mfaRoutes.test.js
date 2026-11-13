@@ -24,8 +24,33 @@ let queryBehavior = async () => {
     throw Object.assign(new Error("Synthetic database failure"), { code: "ECONNREFUSED" });
 };
 const queryMock = test.mock.method(pool, "query", async (...args) => queryBehavior(...args));
+// The /enroll rate limiter (and the cleanup sweep) use pool.connect, so
+// the fake client answers the limiter's own queries: BEGIN/COMMIT,
+// the advisory lock, the reservation INSERT, and the count. The
+// sweep finds no sweep-state row and skips. Any other query throws,
+// so a route reaching the database unexpectedly is still caught.
 const connectMock = test.mock.method(pool, "connect", async () => {
-    throw Object.assign(new Error("Synthetic database failure"), { code: "ECONNREFUSED" });
+    return {
+        query: async (sql) => {
+            if (typeof sql === "string" && (sql === "BEGIN" || sql === "COMMIT" || sql === "ROLLBACK")) {
+                return { rows: [] };
+            }
+            if (typeof sql === "string" && sql.includes("pg_try_advisory_xact_lock")) {
+                return { rows: [{ locked: true }] };
+            }
+            if (typeof sql === "string" && sql.includes("INSERT INTO rate_limit_attempts")) {
+                return { rows: [{ id: 1 }] };
+            }
+            if (typeof sql === "string" && sql.includes("FROM rate_limit_attempts")) {
+                return { rows: [{ count: 1, oldest: new Date() }] };
+            }
+            if (typeof sql === "string" && sql.includes("FROM rate_limit_sweep_state")) {
+                return { rows: [] };
+            }
+            throw new Error(`Unexpected connect query in MFA test: ${sql}`);
+        },
+        release: () => {},
+    };
 });
 
 let server;
