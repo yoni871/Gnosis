@@ -25,11 +25,17 @@ export const HISTORY_WORD_RANGES = {
     whyItMatters: [50, 100],
 };
 
-// The event panel's sections, in order (plan §2.2).
+// The event study's sections, in order (plan §2.2, redesigned 2026-11-12):
+// Story is the Overview prose, Context the Ancient World prose,
+// Connections the Scripture connections, Sources the sources list. The
+// rail/tabs show these short labels; the ids are stable so existing
+// tab/panel aria wiring (history-tab-<id> / history-section-<id>) is
+// unchanged.
 export const HISTORY_SECTIONS = [
-    { id: "overview", label: "Overview" },
-    { id: "ancient-world", label: "Ancient World" },
-    { id: "scripture", label: "Scripture" },
+    { id: "overview", label: "Story" },
+    { id: "ancient-world", label: "Context" },
+    { id: "scripture", label: "Connections" },
+    { id: "sources", label: "Sources" },
 ];
 
 // "1 Samuel" -> "1-samuel"; "Song of Solomon" -> "song-of-solomon".

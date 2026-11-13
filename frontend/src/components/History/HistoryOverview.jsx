@@ -1,27 +1,14 @@
-// The Overview section: title, primary Scripture reference, date label,
-// the 80–150-word prose, and "Why This Context Matters" as its own
-// labelled subsection.
-import { formatScriptureRange, readerLinkFor } from "../../services/historyService";
-import { Link } from "react-router-dom";
-import HistoryDateLabel from "./HistoryDateLabel";
+// The Story section: the 80–150-word Overview prose, and "Why This
+// Context Matters" as its own labelled subsection.
+//
+// The event title, primary Scripture reference, and date already head
+// the study page itself, so this section renders prose only — no
+// repeated title block.
 import HistoryMarkdown from "./HistoryMarkdown";
 
-export default function HistoryOverview({ event, sections }) {
-    if (!event) return null;
-    const rangeLabel = formatScriptureRange(event.primaryScripture);
-    const readerLink = readerLinkFor(event.primaryScripture);
+export default function HistoryOverview({ sections }) {
     return (
         <div className="history-overview">
-            <h2 id="history-section-overview-heading">{event.title}</h2>
-            <p className="history-primary-reference">
-                {readerLink ? (
-                    <Link to={readerLink}>{rangeLabel}</Link>
-                ) : (
-                    <span>{rangeLabel}</span>
-                )}
-                {" · "}
-                <HistoryDateLabel date={event.date} />
-            </p>
             <HistoryMarkdown markdown={sections?.overview?.markdown} />
             <section aria-labelledby="history-why-heading">
                 <h3 id="history-why-heading">Why This Context Matters</h3>

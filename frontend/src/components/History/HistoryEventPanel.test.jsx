@@ -13,8 +13,19 @@ import { ThemeProvider } from "../../context/ThemeContext";
 import BiblicalHistoryBookPage from "../../pages/BiblicalHistoryBookPage";
 import BiblicalHistoryEventPage from "../../pages/BiblicalHistoryEventPage";
 import HistoryEventPanel from "./HistoryEventPanel";
+import { loadEventSections } from "../../services/historyService";
 
 vi.mock("../components/Header/Header", () => ({ default: () => null }));
+
+// The companion fetches the passage with the reader's chapter loader;
+// the fixture verses cover the mocked range (Genesis 1:1–2:3).
+vi.mock("../../services/bibleService", () => ({
+    getBibleChapter: vi.fn(async (book, chapter) =>
+        chapter === 1
+            ? [{ verse_number: 1, text: "In the beginning God created the heavens and the earth." }]
+            : [{ verse_number: 1, text: "Thus the heavens and the earth were finished." }],
+    ),
+}));
 
 const FIXTURE_EVENT = {
     id: "event-creation",
@@ -33,7 +44,7 @@ const FIXTURE_EVENT = {
             note: "The primary account.",
         },
     ],
-    sources: ["source-dev-placeholder"],
+    sources: ["source-bdb-lexicon"],
     bookNote: "The opening of the biblical story.",
 };
 
@@ -113,24 +124,82 @@ describe("HistoryEventPanel", () => {
         );
     });
 
-    it("switches tabs: Scripture shows the assembled passages, Ancient World the subsections", async () => {
+    it("switches tabs: Connections shows passage buttons that open the companion, Context the subsections", async () => {
         const user = userEvent.setup();
         renderPanel();
         await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
-        await user.click(screen.getByRole("tab", { name: "Scripture" }));
+        await user.click(screen.getByRole("tab", { name: "Connections" }));
         expect(screen.getByRole("heading", { name: "Primary Passage" })).toBeInTheDocument();
         // The primary passage and the connection share the same range, so
-        // the link appears twice — both must land in the reader.
-        const rangeLinks = screen.getAllByRole("link", { name: "Genesis 1:1–2:3" });
-        expect(rangeLinks).toHaveLength(2);
-        for (const link of rangeLinks) {
-            expect(link).toHaveAttribute("href", "/bible/Genesis/1?verse=1");
-        }
+        // the button appears twice — both open the passage in the
+        // companion instead of navigating away.
+        const rangeButtons = screen.getAllByRole("button", { name: /Read Genesis 1:1–2:3 alongside the study/ });
+        expect(rangeButtons).toHaveLength(2);
+        await user.click(rangeButtons[1]);
+        expect(await screen.findByRole("heading", { name: "Genesis 1:1–2:3" })).toBeInTheDocument();
+        expect(screen.getByText("In the beginning God created the heavens and the earth.")).toBeInTheDocument();
+        expect(screen.getByRole("link", { name: "Open in the reader" })).toHaveAttribute(
+            "href", "/bible/Genesis/1?verse=1",
+        );
         expect(screen.getByText("The primary account.")).toBeInTheDocument();
         expect(screen.getByText("Traditional")).toBeInTheDocument();
-        await user.click(screen.getByRole("tab", { name: "Ancient World" }));
+        // Closing the companion keeps the Connections section active.
+        await user.click(screen.getByTestId("history-companion-close"));
+        await waitFor(() => expect(screen.queryByRole("heading", { name: "Genesis 1:1–2:3" })).toBeNull());
+        expect(screen.getByRole("tab", { name: "Connections" })).toHaveAttribute("aria-selected", "true");
+        expect(screen.getByRole("heading", { name: "Primary Passage" })).toBeInTheDocument();
+        await user.click(screen.getByRole("tab", { name: "Context" }));
         expect(screen.getByRole("button", { name: /Creation in the ancient Near East/ })).toBeInTheDocument();
         expect(screen.getByText("Subsection prose.")).toBeInTheDocument();
+    });
+
+    it("shows Sources as its own section, not under the other sections", async () => {
+        const user = userEvent.setup();
+        renderPanel();
+        await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
+        expect(screen.queryByRole("heading", { name: "Sources" })).toBeNull();
+        await user.click(screen.getByRole("tab", { name: "Sources" }));
+        expect(screen.getByRole("heading", { name: "Sources" })).toBeInTheDocument();
+        expect(screen.getByText(/A Hebrew and English Lexicon of the Old Testament/)).toBeInTheDocument();
+        await user.click(screen.getByRole("tab", { name: "Story" }));
+        expect(screen.queryByRole("heading", { name: "Sources" })).toBeNull();
+    });
+
+    it("a footnote link in the prose switches to Sources and lands on the cited source", async () => {
+        const user = userEvent.setup();
+        vi.mocked(loadEventSections).mockResolvedValueOnce({
+            ...FIXTURE_SECTIONS,
+            overview: {
+                markdown: "Overview prose with a note.[1](#source-source-bdb-lexicon)",
+                footnotes: [],
+            },
+        });
+        renderPanel();
+        await waitFor(() => expect(screen.getByText(/Overview prose with a note/)).toBeInTheDocument());
+        await user.click(screen.getByRole("link", { name: "1" }));
+        await waitFor(() =>
+            expect(screen.getByRole("tab", { name: "Sources" })).toHaveAttribute("aria-selected", "true"),
+        );
+        expect(document.getElementById("source-source-bdb-lexicon")).not.toBeNull();
+        expect(screen.getByText(/A Hebrew and English Lexicon of the Old Testament/)).toBeInTheDocument();
+    });
+
+    it("opens the primary passage from the header Scripture button; Escape closes the companion first", async () => {
+        const user = userEvent.setup();
+        const onClose = vi.fn();
+        renderPanel({ onClose });
+        await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
+        await user.click(screen.getByTestId("history-scripture-button"));
+        expect(await screen.findByRole("heading", { name: "Genesis 1:1–2:3" })).toBeInTheDocument();
+        expect(screen.getByTestId("history-scripture-button")).toHaveAttribute("aria-expanded", "true");
+        await user.keyboard("{Escape}");
+        await waitFor(() => expect(screen.queryByRole("heading", { name: "Genesis 1:1–2:3" })).toBeNull());
+        expect(onClose).not.toHaveBeenCalled();
+        expect(screen.getByRole("dialog", { name: "Creation" })).toBeInTheDocument();
+        // The Story section is untouched by opening and closing the companion.
+        expect(screen.getByRole("tab", { name: "Story" })).toHaveAttribute("aria-selected", "true");
+        await user.keyboard("{Escape}");
+        expect(onClose).toHaveBeenCalled();
     });
 
     it("has a bottom-anchored timeline with no previous/next buttons", async () => {
