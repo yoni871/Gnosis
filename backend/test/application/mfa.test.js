@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const crypto = require('node:crypto');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
 const { startBackend } = require('../helpers/backend-instance');
-const { generateTotpCode } = require('../../src/utils/mfaTotp');
+const { generateTotpCode, generateTotpCodeForStep } = require('../../src/utils/mfaTotp');
 const { decryptTotpSecret } = require('../../src/utils/mfaCrypto');
 const { hashPassword } = require('../../src/utils/passwordHash');
 const { computeKeyHash } = require('../../src/utils/rateLimit');
@@ -103,31 +103,27 @@ async function loginWithTotp(email, secret) {
     // TOTP step burning (F6) makes a code's 30-second step single-use
     // per account, so two logins back-to-back cannot share a code.
     // If the first code is rejected because its step was already
-    // burned (e.g. a prior login in the same step), wait for the
-    // step to advance and retry once with a fresh code. A genuinely
-    // wrong code still fails (the retry uses a fresh, correct code).
+    // burned (a prior login in the same step), retry immediately
+    // with a code from the next step (still within the server's
+    // ±1-step tolerance) instead of waiting for the clock. A
+    // genuinely wrong code still fails (the retry uses a fresh,
+    // correct code).
     for (let attempt = 0; attempt < 2; attempt++) {
         const challenged = await login(email);
         assert.equal(challenged.status, 401);
         assert.equal(challenged.data.code, 'MFA_REQUIRED');
-        const code = await generateTotpCode(secret);
+        const code = attempt === 0
+            ? await generateTotpCode(secret)
+            : await generateTotpCodeForStep(secret, 1);
         const verified = await request('mfa/verify', { body: { challenge: challenged.data.challenge, code } });
         if (verified.status === 200) {
             assert.ok(verified.data.token);
             assert.ok(verified.cookie);
             return verified.data.token;
         }
-        // A 401 here is a burned step (the code was correct for the
-        // current step but already used). Wait for the step to roll
-        // over, then retry with a fresh code.
         assert.equal(verified.status, 401, JSON.stringify(verified.data));
-        const stepAt = () => Math.floor(Date.now() / 1000 / 30);
-        const burnedStep = stepAt();
-        while (stepAt() === burnedStep) {
-            await new Promise((resolve) => setTimeout(resolve, 500));
-        }
     }
-    throw new Error('loginWithTotp: retry after step rollover also failed');
+    throw new Error('loginWithTotp: retry with a next-step code also failed');
 }
 
 test('enrollment requires confirmation; an unenrolled secret cannot gate login', async () => {
@@ -410,23 +406,21 @@ test('mixed key versions: a version-1 row decrypts via the previous key, a versi
     };
     const verifyViaService = async (userId, secret, passwordHash) => {
         // TOTP step burning (F6): a code's step is single-use, so a
-        // second verify in the same step must wait for the step to
-        // roll over and retry with a fresh code.
+        // second verify in the same step retries immediately with a
+        // code from the next step (still within tolerance) instead
+        // of waiting for the clock.
         for (let attempt = 0; attempt < 2; attempt++) {
             const challenge = await mfaService.issueMfaChallenge(database.pool, userId, passwordHash);
             assert.ok(challenge);
-            const code = await generateTotpCode(secret);
+            const code = attempt === 0
+                ? await generateTotpCode(secret)
+                : await generateTotpCodeForStep(secret, 1);
             const result = await mfaService.verifyMfaChallenge(database.pool, challenge, code);
             if (result.ok) {
                 return result.session;
             }
-            const stepAt = () => Math.floor(Date.now() / 1000 / 30);
-            const burnedStep = stepAt();
-            while (stepAt() === burnedStep) {
-                await new Promise((resolve) => setTimeout(resolve, 500));
-            }
         }
-        throw new Error('verifyViaService: retry after step rollover also failed');
+        throw new Error('verifyViaService: retry with a next-step code also failed');
     };
     // User A enrolls under K1 (version 1).
     process.env.MFA_ENCRYPTION_KEY = K1;
@@ -599,16 +593,9 @@ test('F6: a TOTP code cannot be replayed with a fresh challenge', async () => {
     const replay = await request('mfa/verify', { body: { challenge: second.data.challenge, code } });
     assert.equal(replay.status, 401);
     assert.equal(replay.data.code, 'INVALID_MFA_CODE');
-    // A genuinely new code (next step) still works. Wait for the
-    // time step to advance so the fresh code is from an unburned
-    // step (at most one 30-second period).
-    const stepAt = () => Math.floor(Date.now() / 1000 / 30);
-    const burnedStep = stepAt();
-    while (stepAt() === burnedStep) {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-    }
+    // A genuinely new code (next step) still works.
     const fresh = await login(email);
-    const nextCode = await generateTotpCode(secret);
+    const nextCode = await generateTotpCodeForStep(secret, 1);
     const ok = await request('mfa/verify', { body: { challenge: fresh.data.challenge, code: nextCode } });
     assert.equal(ok.status, 200, JSON.stringify(ok.data));
 });

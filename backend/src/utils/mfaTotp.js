@@ -38,6 +38,17 @@ async function generateTotpCode(secret) {
     return createTotp().generate({ secret });
 }
 
+// Test helper only: generate the code for a time step offset from the
+// current one (offset 1 = the next 30-second step). Tests use it to
+// get a code from a fresh step without waiting for the clock: TOTP
+// step burning (F6) makes a step single-use, so a second login in
+// the same step takes a code from the next step (still within the
+// server's ±1-step tolerance). Never used in request handling.
+async function generateTotpCodeForStep(secret, stepOffset) {
+    const step = Math.floor(Date.now() / 1000 / TOTP_PERIOD_SECONDS) + stepOffset;
+    return createTotp().generate({ secret, epoch: step * TOTP_PERIOD_SECONDS });
+}
+
 // TOTP time step in seconds (RFC 6238 default). A code is valid for
 // the step it was generated in; the step number is
 // floor(epochSeconds / TOTP_PERIOD_SECONDS).
@@ -88,6 +99,7 @@ module.exports = {
     generateTotpSecret,
     buildOtpAuthUrl,
     generateTotpCode,
+    generateTotpCodeForStep,
     verifyTotpCode,
     verifyTotpCodeStep,
 };
