@@ -50,6 +50,18 @@
     },
     {
       "kind": "column",
+      "name": "mfa_challenges.password_hash",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
       "name": "mfa_challenges.token_hash",
       "definition": {
         "type": "bytea",

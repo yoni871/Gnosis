@@ -399,6 +399,28 @@ router.post("/login", (req, res, next) => {
         return res.status(500).json(internalErrorBody("login"));
     }
     if (mfaEnrolled) {
+        // Transparent Argon2id migration for MFA logins (PR #96 gap):
+        // the plaintext password is available here, at login, and
+        // only here — the later /mfa/verify step has just the
+        // challenge token and a code, so it cannot re-hash. Migrate
+        // BEFORE issuing the challenge, so the challenge is bound to
+        // the post-migration hash (issueMfaChallenge reads the
+        // current hash under the user lock). Same compare-and-swap
+        // and best-effort discipline as the non-MFA login below: a
+        // concurrent reset wins and is never clobbered, and a failed
+        // write never fails the login — the bcrypt hash stays for
+        // the next login.
+        if (passwordHash.isBcryptHash(user.password_hash)) {
+            try {
+                const migratedHash = await passwordHash.hashPassword(password);
+                await pool.query(
+                    "UPDATE users SET password_hash = $1 WHERE id = $2 AND password_hash = $3",
+                    [migratedHash, user.id, user.password_hash]
+                );
+            } catch (error) {
+                logAuthFailure("POST /api/auth/login", "rehash", error);
+            }
+        }
         let challenge;
         try {
             challenge = await mfaService.issueMfaChallenge(pool, user.id);

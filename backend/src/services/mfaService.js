@@ -3,11 +3,15 @@
 // All database work runs through the application pool with the same
 // discipline as the verification/reset flows: the user row is locked
 // FOR UPDATE before any recheck, token rows are re-read under the
-// lock, and bcrypt never runs inside a transaction. A TOTP code or
-// recovery code is verified only after the challenge (or enrollment)
-// row is rechecked, and the challenge is consumed in the same
-// transaction that issues the session — so a consumed challenge can
-// never issue twice, and a failed verify never consumes anything.
+// lock, and password verification never runs inside a transaction. A
+// TOTP code or recovery code is verified only after the challenge (or
+// enrollment) row is rechecked, and the challenge is consumed in the
+// same transaction that issues the session — so a consumed challenge
+// can never issue twice, and a failed verify never consumes anything.
+//
+// Password checks use the shared passwordHash utility (PR #96):
+// Argon2id and legacy bcrypt hashes both verify, so MFA flows keep
+// working for accounts that already migrated to Argon2id.
 //
 // Failure discipline follows authErrors.js: nothing here logs a code,
 // a secret, a token, or a password. Callers log route + kind + code
@@ -15,7 +19,7 @@
 // each event point with an AUDIT comment naming the kind; this PR
 // does not invent its own audit table.
 
-const bcrypt = require("bcrypt");
+const passwordHash = require("../utils/passwordHash");
 const pool = require("../db/db");
 const sessions = require("./sessionService");
 const { getMfaEncryptionKey, getCurrentMfaKeyVersion, getMfaEncryptionKeyForVersion, encryptTotpSecret, decryptTotpSecret } = require("../utils/mfaCrypto");
@@ -153,6 +157,11 @@ async function confirmEnrollment(db, userId, code) {
 // Any still-unused challenge for the account is superseded first, so
 // exactly one challenge is live. The raw token is returned to the
 // caller (the login response); only its hash is stored.
+// The challenge is bound to the account's current password hash
+// (read under the user lock at issue time): if the password changes
+// or resets before the challenge is used, verifyMfaChallenge sees
+// the mismatch and invalidates the challenge, so a stale challenge
+// can never issue a session.
 async function issueMfaChallenge(db, userId) {
     const { token, tokenHash } = generateMfaChallengeToken();
     const expiresAt = new Date(Date.now() + MFA_CHALLENGE_TTL_MS);
@@ -160,7 +169,7 @@ async function issueMfaChallenge(db, userId) {
     try {
         await client.query("BEGIN");
         const locked = await client.query(
-            "SELECT id FROM users WHERE id = $1 FOR UPDATE", [userId]);
+            "SELECT id, password_hash FROM users WHERE id = $1 FOR UPDATE", [userId]);
         if (!locked.rows[0]) {
             await client.query("ROLLBACK");
             return null;
@@ -170,8 +179,8 @@ async function issueMfaChallenge(db, userId) {
              WHERE user_id = $1 AND consumed_reason IS NULL`,
             [userId]);
         await client.query(
-            "INSERT INTO mfa_challenges(user_id, token_hash, expires_at) VALUES ($1, $2, $3)",
-            [userId, tokenHash, expiresAt]);
+            "INSERT INTO mfa_challenges(user_id, token_hash, password_hash, expires_at) VALUES ($1, $2, $3, $4)",
+            [userId, tokenHash, locked.rows[0].password_hash, expiresAt]);
         await client.query("COMMIT");
         return token;
     } catch (error) {
@@ -198,7 +207,7 @@ async function verifyMfaChallenge(db, challengeToken, code) {
     try {
         await client.query("BEGIN");
         const challengeResult = await client.query(
-            `SELECT id, user_id, expires_at, used_at, consumed_reason
+            `SELECT id, user_id, password_hash, expires_at, used_at, consumed_reason
              FROM mfa_challenges WHERE token_hash = $1 FOR UPDATE`,
             [tokenHash]);
         const challenge = challengeResult.rows[0];
@@ -214,6 +223,20 @@ async function verifyMfaChallenge(db, challengeToken, code) {
         const user = userResult.rows[0];
         if (!user) {
             await client.query("ROLLBACK");
+            return { ok: false, reason: "challenge" };
+        }
+        // Password-reset race: the challenge is bound to the password
+        // hash login verified (stored at issue time). If the password
+        // changed or reset since — reset, change, or a transparent
+        // migration that landed after the challenge was issued — the
+        // hashes differ and the challenge is dead: mark it superseded
+        // so it can never be retried, and issue nothing. A stale
+        // challenge must never complete a login for a new password.
+        if (challenge.password_hash !== user.password_hash) {
+            await client.query(
+                `UPDATE mfa_challenges SET used_at = now(), consumed_reason = 'superseded' WHERE id = $1`,
+                [challenge.id]);
+            await client.query("COMMIT");
             return { ok: false, reason: "challenge" };
         }
         const mfa = await client.query(
@@ -267,8 +290,11 @@ async function verifyMfaChallenge(db, challengeToken, code) {
         // challenge consumption and the login are atomic: no session
         // without a consumed challenge, and no reusable challenge
         // after a session. createSessionInTransaction rechecks the
-        // password hash under the user lock, exactly like login.
-        const session = await sessions.createSessionInTransaction(client, user.id, user.password_hash);
+        // password hash under the user lock, exactly like login —
+        // here it is given the hash the challenge was bound to (the
+        // one login verified), so a password change that landed
+        // after the binding check above still blocks issuance.
+        const session = await sessions.createSessionInTransaction(client, user.id, challenge.password_hash);
         if (!session) {
             await client.query("ROLLBACK");
             return { ok: false, reason: "session" };
@@ -284,9 +310,11 @@ async function verifyMfaChallenge(db, challengeToken, code) {
     }
 }
 
-// Check the account password outside any transaction (bcrypt never
-// runs under a lock), then verify the TOTP code. Shared by regenerate
-// and disable; both require the password AND a valid code.
+// Check the account password outside any transaction (password
+// verification never runs under a lock), then verify the TOTP code.
+// Shared by regenerate and disable; both require the password AND a
+// valid code. Uses the shared passwordHash utility so Argon2id and
+// legacy bcrypt hashes both verify (PR #96).
 async function verifyPasswordAndTotp(db, userId, password, code) {
     // Fail closed early when no encryption key is configured; the
     // per-row decrypt below (decryptRowSecret) also fails closed.
@@ -299,7 +327,7 @@ async function verifyPasswordAndTotp(db, userId, password, code) {
     }
     let passwordMatch;
     try {
-        passwordMatch = await bcrypt.compare(password, user.password_hash);
+        passwordMatch = await passwordHash.verifyPassword(password, user.password_hash);
     } catch {
         return { ok: false, reason: "password" };
     }
@@ -383,7 +411,7 @@ async function disableMfa(db, userId, password, code, sessionId) {
     }
     let passwordMatch;
     try {
-        passwordMatch = await bcrypt.compare(password, user.password_hash);
+        passwordMatch = await passwordHash.verifyPassword(password, user.password_hash);
     } catch {
         return { ok: false, reason: "password" };
     }

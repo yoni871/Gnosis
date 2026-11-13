@@ -32,10 +32,18 @@ CREATE INDEX mfa_recovery_codes_user_id_idx ON mfa_recovery_codes(user_id);
 -- base64url, SHA-256 hash only, consumed_reason single-use tracking.
 -- Only the challenge holder may complete login; the challenge itself
 -- grants nothing without a valid TOTP or recovery code.
+-- password_hash binds the challenge to the credential login verified:
+-- if the password changes or resets before the challenge is used
+-- (reset, change, or transparent Argon2id migration), the stored hash
+-- no longer matches the account's and the challenge is invalidated,
+-- so a stale challenge can never issue a session. The value is the
+-- same password hash already stored on users.password_hash (same
+-- database, same access controls); it is a hash, never a password.
 CREATE TABLE mfa_challenges (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     token_hash BYTEA NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
     expires_at TIMESTAMPTZ NOT NULL,
     used_at TIMESTAMPTZ,
     consumed_reason TEXT CHECK (consumed_reason IN ('used', 'superseded')),

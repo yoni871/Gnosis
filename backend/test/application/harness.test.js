@@ -174,7 +174,7 @@ test('issue #9 and #10 column grants allow exactly the approved column updates',
     await pool.query("UPDATE user_mfa SET enrolled=TRUE,enrolled_at=now(),secret_encrypted='synthetic-encrypted-2',updated_at=now() WHERE user_id=$1",
         [user.rows[0].id]);
     const challenge = await pool.query(
-        "INSERT INTO mfa_challenges(user_id,token_hash,expires_at) VALUES ($1,'\\x03',now() + interval '10 minutes') RETURNING id",
+        "INSERT INTO mfa_challenges(user_id,token_hash,password_hash,expires_at) VALUES ($1,'\\x03','synthetic-hash-3',now() + interval '10 minutes') RETURNING id",
         [user.rows[0].id]);
     await pool.query("UPDATE mfa_challenges SET used_at=now(),consumed_reason='used' WHERE id=$1",
         [challenge.rows[0].id]);

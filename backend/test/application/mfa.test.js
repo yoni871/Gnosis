@@ -6,6 +6,7 @@ const { contextFromEnvironment, createTestPool } = require('../helpers/applicati
 const { startBackend } = require('../helpers/backend-instance');
 const { generateTotpCode } = require('../../src/utils/mfaTotp');
 const { decryptTotpSecret } = require('../../src/utils/mfaCrypto');
+const { hashPassword } = require('../../src/utils/passwordHash');
 const mfaService = require('../../src/services/mfaService');
 
 // Synthetic encryption key for the disposable worker only. The test
@@ -312,6 +313,56 @@ test('an enrolled admin logs in via MFA normally', async () => {
     const events = await database.pool.query(
         "SELECT kind FROM security_events WHERE user_id = $1 AND kind = 'mfa.enrollment_required'", [userId]);
     assert.equal(events.rows.length, 1);
+});
+
+test('an MFA login migrates a bcrypt password hash to Argon2id', async () => {
+    const { userId, email } = await freshUser();
+    const { secret } = await enrollAndConfirm(email, userId);
+    // Rewind the account to a pre-#96 bcrypt hash (as if it enrolled
+    // MFA before Argon2id existed): the next MFA login must migrate
+    // it, because /mfa/verify never sees the plaintext password.
+    await database.pool.query('UPDATE users SET password_hash = $1 WHERE id = $2',
+        [await bcrypt.hash(password, 10), userId]);
+    const before = await database.pool.query('SELECT password_hash FROM users WHERE id = $1', [userId]);
+    assert.match(before.rows[0].password_hash, /^\$2b\$10\$/);
+    const token = await loginWithTotp(email, secret);
+    assert.equal(await profile(token), 200);
+    const after = await database.pool.query('SELECT password_hash FROM users WHERE id = $1', [userId]);
+    assert.match(after.rows[0].password_hash, /^\$argon2id\$v=19\$m=19456,t=2,p=1\$/);
+    // The migrated hash keeps working: a second MFA login succeeds
+    // and leaves the hash untouched (no re-migration).
+    const second = await loginWithTotp(email, secret);
+    assert.equal(await profile(second), 200);
+    const again = await database.pool.query('SELECT password_hash FROM users WHERE id = $1', [userId]);
+    assert.equal(again.rows[0].password_hash, after.rows[0].password_hash);
+});
+
+test('a password change after the challenge is issued invalidates the challenge', async () => {
+    const { userId, email } = await freshUser();
+    const { secret } = await enrollAndConfirm(email, userId);
+    const challenged = await login(email);
+    assert.equal(challenged.status, 401);
+    assert.equal(challenged.data.code, 'MFA_REQUIRED');
+    // The password changes (reset) before MFA completes: the stored
+    // hash no longer matches the one the challenge was bound to.
+    const newPassword = 'synthetic-mfa-new-password';
+    await database.pool.query('UPDATE users SET password_hash = $1 WHERE id = $2',
+        [await hashPassword(newPassword), userId]);
+    // The stale challenge is dead: even the right TOTP code fails,
+    // and it cannot be retried (it was superseded on first use).
+    const stale = await request('mfa/verify', { body: { challenge: challenged.data.challenge, code: await generateTotpCode(secret) } });
+    assert.equal(stale.status, 401);
+    assert.equal(stale.data.code, 'INVALID_MFA_CODE');
+    const retry = await request('mfa/verify', { body: { challenge: challenged.data.challenge, code: await generateTotpCode(secret) } });
+    assert.equal(retry.status, 401);
+    assert.equal(retry.data.code, 'INVALID_MFA_CODE');
+    // Login with the new password issues a fresh challenge that works.
+    const fresh = await login(email, newPassword);
+    assert.equal(fresh.status, 401);
+    assert.equal(fresh.data.code, 'MFA_REQUIRED');
+    const verified = await request('mfa/verify', { body: { challenge: fresh.data.challenge, code: await generateTotpCode(secret) } });
+    assert.equal(verified.status, 200);
+    assert.equal(await profile(verified.data.token), 200);
 });
 
 test('mixed key versions: a version-1 row decrypts via the previous key, a version-2 row via the current key', async () => {
