@@ -74,6 +74,13 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/biblical-history/books",
+      "destination": "/biblical-history#history-books",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!api/).*)",

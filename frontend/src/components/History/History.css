@@ -486,10 +486,10 @@
 .history-archive-mark { margin: 28px 0 0; color: #e8ded1a8; font-size: .57rem; letter-spacing: .15em; text-transform: uppercase; }
 .history-hero-scroll { position: absolute; bottom: 28px; left: var(--public-gutter); z-index: 2; display: flex; align-items: center; gap: 12px; margin: 0; color: #fff9ed8f; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }.history-hero-scroll span { width: 46px; height: 1px; background: var(--history-gold); }
 
-.history-definition, .history-journey, .history-home-start, .history-home-more { width: min(100%, 1200px); margin: auto; padding-inline: var(--public-gutter); }
+.history-definition, .history-journey, .history-home-start, .history-scripture { width: min(100%, 1200px); margin: auto; padding-inline: var(--public-gutter); }
 .history-definition { display: grid; grid-template-columns: 120px minmax(0, 1.3fr) minmax(260px, .7fr); gap: clamp(36px, 6vw, 88px); align-items: start; padding-block: clamp(90px, 11vw, 150px); }
 .history-definition-index { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; color: var(--public-muted); font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; }.history-definition-index span:first-child { color: var(--color-accent-text); font-size: 1.8rem; font-family: "Gnosis History Cormorant", serif; }
-.history-definition-copy h2, .history-journey h2, .history-home-start h2, .history-home-more h2 { margin: 0; font-size: clamp(2.7rem, 5vw, 4.8rem); font-weight: 600; line-height: .98; }
+.history-definition-copy h2, .history-journey h2, .history-home-start h2, .history-scripture h2 { margin: 0; font-size: clamp(2.7rem, 5vw, 4.8rem); font-weight: 600; line-height: .98; }
 .history-definition-copy > p:last-child { max-width: 650px; margin: 30px 0 0; color: var(--public-muted); font: 400 1.04rem/1.9 "Gnosis History Inter", sans-serif; }
 .history-definition blockquote { position: relative; margin: 40px 0 0; padding: 30px 0 0 30px; border-top: 1px solid var(--public-border); color: var(--color-brand); font: 600 1.65rem/1.35 "Gnosis History Cormorant", serif; }.history-definition blockquote span { position: absolute; top: 17px; left: 0; color: var(--color-accent-text); font-size: 2.5rem; }
 
@@ -509,8 +509,28 @@
 .history-home-action--light { color: var(--history-ivory); background: transparent; border-color: #d6b5748f; }.history-home-action--light:hover { color: var(--history-night); }
 .history-creation-seal { position: relative; z-index: 1; display: grid; width: 220px; height: 220px; place-content: center; justify-self: end; border: 1px solid #d6b57475; border-radius: 50%; text-align: center; }.history-creation-seal::before { position: absolute; inset: 11px; content: ""; border: 1px solid #d6b57438; border-radius: 50%; }.history-creation-seal span, .history-creation-seal small { color: var(--history-gold); font: 600 .6rem/1.5 "Gnosis History Inter", sans-serif; letter-spacing: .16em; text-transform: uppercase; }.history-creation-seal b { font-size: 2rem; font-weight: 600; }
 
-.history-home-more { display: grid; grid-template-columns: 1fr auto; gap: 12px 60px; align-items: end; padding-block: 20px clamp(90px, 10vw, 140px); }.history-home-more > div { grid-row: 1 / 3; }.history-home-more > p { margin: 0; color: var(--public-muted); }.history-home-books-link { display: flex; min-width: 330px; align-items: center; justify-content: space-between; padding: 18px 0; color: var(--color-brand); border-block: 1px solid var(--public-border); font-size: .84rem; font-weight: 600; text-decoration: none; transition: padding 180ms ease, color 180ms ease; }.history-home-books-link:hover { padding-inline: 10px; color: var(--color-accent-text); }
-.history-home-action:focus-visible, .history-home-books-link:focus-visible { outline-color: var(--history-gold); }
+.history-scripture { padding-block: 24px clamp(90px, 10vw, 140px); scroll-margin-top: 88px; --history-drawer-bg: #EEE5D5; --history-drawer-border: #DCCDBB; --history-book-bg: #FBF7EF; --history-book-bg-hover: #F3EAD9; --history-book-border: #D6C4AC; --history-book-border-hover: #C9B08E; --history-book-text: #463329; }
+[data-theme="dark"] .history-scripture { --history-drawer-bg: #241D18; --history-drawer-border: #473B31; --history-book-bg: #2A231E; --history-book-bg-hover: #332A23; --history-book-border: #57493A; --history-book-border-hover: #D8B24F; --history-book-text: #F0E7D9; }
+.history-scripture > header { margin-bottom: 28px; }
+.history-scripture-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.history-browse-books { flex-shrink: 0; display: inline-flex; min-height: 52px; align-items: center; gap: 12px; padding: 12px 24px; color: var(--history-ivory); background: var(--public-brand); border: 1px solid var(--public-brand); border-radius: var(--public-radius); font: 600 .86rem/1 "Gnosis History Inter", sans-serif; letter-spacing: .03em; cursor: pointer; transition: background-color 180ms ease, transform 180ms ease; }
+.history-browse-books:hover { background: var(--public-hover); transform: translateY(-2px); }
+.history-browse-books span { font-size: .8rem; line-height: 1; }
+@keyframes history-drawer-up { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.history-book-drawer { margin-top: 4px; padding: 6px 22px 18px; background: var(--history-drawer-bg); border: 1px solid var(--history-drawer-border); border-radius: var(--public-radius); animation: history-drawer-up 280ms ease; }
+@media (prefers-reduced-motion: reduce) { .history-book-drawer { animation: none; } }
+.history-testament-tabs { display: flex; gap: 34px; border-bottom: 1px solid var(--public-border); }
+.history-testament-tabs button { position: relative; display: inline-flex; min-height: 58px; align-items: center; gap: 10px; padding: 0; color: var(--public-muted); background: transparent; border: 0; font: 600 .78rem/1 "Gnosis History Inter", sans-serif; letter-spacing: .04em; cursor: pointer; }
+.history-testament-tabs button::after { position: absolute; right: 0; bottom: -1px; left: 0; height: 2px; content: ""; background: var(--color-brand); transform: scaleX(0); transition: transform 180ms ease; }
+.history-testament-tabs button[aria-selected="true"] { color: var(--color-brand); }.history-testament-tabs button[aria-selected="true"]::after { transform: scaleX(1); }
+.history-testament-tabs button span { display: grid; min-width: 24px; height: 24px; place-items: center; color: var(--color-accent-text); border: 1px solid var(--public-border); border-radius: 50%; font-size: .58rem; }
+.history-book-selector [role="tabpanel"] { padding-top: 22px; }
+.history-book-chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-height: 240px; margin: 0; padding: 2px; overflow-y: auto; overscroll-behavior: contain; list-style: none; }
+.history-book-chips a { display: flex; min-height: 48px; align-items: center; justify-content: center; padding: 12px 14px; color: var(--history-book-text); background: var(--history-book-bg); border: 1px solid var(--history-book-border); border-radius: 8px; font-size: .8rem; font-weight: 600; text-align: center; text-decoration: none; transition: background-color 160ms ease, border-color 160ms ease; }
+.history-book-chips a:hover { background: var(--history-book-bg-hover); border-color: var(--history-book-border-hover); }
+.history-book-scroll-hint { margin: 16px 0 0; color: var(--public-muted); font-size: .68rem; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+.history-browse-books:focus-visible, .history-home-action:focus-visible, .history-testament-tabs button:focus-visible { outline-color: var(--history-gold); }
+.history-book-chips a:focus-visible { outline: 2px solid var(--history-gold); outline-offset: 2px; }
 
 .history-book-index section {
     margin-bottom: 28px;
@@ -634,7 +654,8 @@
     .history-hero-scroll { display: none; }
     .history-definition { display: block; padding-block: 82px; }
     .history-definition-index { flex-direction: row; align-items: center; margin-bottom: 48px; }
-    .history-definition-copy h2, .history-journey h2, .history-home-start h2, .history-home-more h2 { font-size: clamp(2.7rem, 13vw, 4rem); }
+    .history-definition-copy h2, .history-journey h2, .history-home-start h2, .history-scripture h2 { font-size: clamp(2.7rem, 13vw, 4rem); }
+    .history-scripture > header h2 { font-size: clamp(1.75rem, 10vw, 4rem); }
     .history-definition blockquote { margin-top: 54px; }
     .history-journey { padding-block: 78px; }
     .history-journey > header { display: block; }.history-journey > header > p:last-child { margin-top: 24px; }
@@ -647,7 +668,14 @@
     .history-home-recommendation { display: block; min-height: 0; padding: 38px 26px 42px; }
     .history-creation-number { margin-bottom: 54px; font-size: 2.6rem; }
     .history-home-recommendation h3 { font-size: clamp(3rem, 14vw, 4.4rem); }
-    .history-home-more { display: block; padding-block: 12px 90px; }.history-home-more > p { margin: 24px 0; }.history-home-books-link { min-width: 0; width: 100%; }
+    .history-scripture { padding-block: 12px 90px; }
+    .history-scripture > header { margin-bottom: 24px; }
+    .history-scripture-heading-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .history-testament-tabs { gap: 26px; }
+    .history-testament-tabs button { min-height: 54px; }
+    .history-book-drawer { padding: 4px 14px 16px; }
+    .history-book-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .history-book-chips a { padding-inline: 11px; }
 
     .history-panel-backdrop {
         justify-content: stretch;

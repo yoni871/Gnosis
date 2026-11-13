@@ -3,7 +3,7 @@ import { lazy, Suspense } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import ErrorBoundary from './components/ErrorBoundary';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import StudyPage from './pages/StudyPage';
 import ScrollManager from './components/Navigation/ScrollManager';
@@ -26,7 +26,6 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 // The Markdown renderer travels with these routes only — a reader who
 // never opens History downloads none of it.
 const BiblicalHistoryIndexPage = lazy(() => import('./pages/BiblicalHistoryIndexPage'));
-const BiblicalHistoryBooksPage = lazy(() => import('./pages/BiblicalHistoryBooksPage'));
 const BiblicalHistoryBookPage = lazy(() => import('./pages/BiblicalHistoryBookPage'));
 const BiblicalHistoryEventPage = lazy(() => import('./pages/BiblicalHistoryEventPage'));
 
@@ -117,7 +116,7 @@ function App() {
 
             <Route
               path='/biblical-history/books'
-              element={<BiblicalHistoryBooksPage />}
+              element={<Navigate to='/biblical-history#history-books' replace />}
             />
 
             <Route

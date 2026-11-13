@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import LandingHeader from "../components/LandingHeader";
+import HistoryBookSelector from "../components/History/HistoryBookSelector";
 import Seo from "../components/Seo";
 import useHistoryHomeMotion from "../hooks/useHistoryHomeMotion";
 import { historyIndexDescription, historyIndexTitle, historyPath, pageUrl } from "../utils/seo";
@@ -26,7 +27,14 @@ function scrollToStart(event) {
 
 export default function BiblicalHistoryIndexPage() {
     const pageRef = useRef(null);
+    const browseButtonRef = useRef(null);
+    const [booksOpen, setBooksOpen] = useState(false);
     useHistoryHomeMotion(pageRef);
+
+    const closeBooks = () => {
+        setBooksOpen(false);
+        browseButtonRef.current?.focus();
+    };
 
     return (
         <div className="public-page history-home" ref={pageRef}>
@@ -97,10 +105,33 @@ export default function BiblicalHistoryIndexPage() {
                     </article>
                 </section>
 
-                <section className="history-home-more" aria-labelledby="history-more-heading" data-history-reveal>
-                    <div><p className="history-home-eyebrow">The complete collection</p><h2 id="history-more-heading">Explore More</h2></div>
-                    <p>Or explore by Bible book.</p>
-                    <Link className="history-home-books-link" to="/biblical-history/books"><span>Browse Books</span><span aria-hidden="true">66 books&nbsp; →</span></Link>
+                <section id="history-books" className="history-scripture" aria-labelledby="history-books-heading">
+                    <header data-history-reveal>
+                        <p className="history-home-eyebrow">The complete collection</p>
+                        <div className="history-scripture-heading-row">
+                            <h2 id="history-books-heading">Explore by Scripture</h2>
+                            <button
+                                ref={browseButtonRef}
+                                type="button"
+                                className="history-browse-books"
+                                aria-expanded={booksOpen}
+                                aria-controls="history-book-drawer"
+                                onClick={() => (booksOpen ? closeBooks() : setBooksOpen(true))}
+                                onKeyDown={(event) => {
+                                    if (event.key === "Escape" && booksOpen) {
+                                        event.preventDefault();
+                                        closeBooks();
+                                    }
+                                }}
+                            >
+                                {booksOpen ? "Close Books" : "Browse Books"}
+                                <span aria-hidden="true">{booksOpen ? "↑" : "↓"}</span>
+                            </button>
+                        </div>
+                    </header>
+                    <div data-history-books-reveal>
+                        <HistoryBookSelector open={booksOpen} onClose={closeBooks} />
+                    </div>
                 </section>
             </main>
         </div>

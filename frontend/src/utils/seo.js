@@ -100,14 +100,6 @@ export function historyIndexDescription() {
     );
 }
 
-export function historyBooksTitle() {
-    return "Browse Biblical History by Book | Gnosis";
-}
-
-export function historyBooksDescription() {
-    return "Browse all 66 books of the Bible and explore their published historical context on Gnosis.";
-}
-
 export function historyBookTitle(bookTitle) {
     return `Biblical History — ${bookTitle} | Gnosis`;
 }
