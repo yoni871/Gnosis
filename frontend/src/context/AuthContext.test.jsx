@@ -73,6 +73,22 @@ test('guest startup finishes without requesting a profile', async () => {
     expect(getProfile).not.toHaveBeenCalled();
 });
 
+test('a canceled sign-out reports cancellation and preserves the session', async () => {
+    refreshSession.mockResolvedValue({ token: 'old-token' });
+    getProfile.mockResolvedValue(oldUser);
+    await mount();
+    const cancel = event => event.preventDefault();
+    window.addEventListener('gnosis:before-sign-out', cancel);
+    logoutSession.mockClear();
+    try {
+        let result;
+        act(() => { result = auth.logout(); });
+        expect(result).toBe(false);
+        session(oldUser, 'old-token');
+        expect(logoutSession).not.toHaveBeenCalled();
+    } finally { window.removeEventListener('gnosis:before-sign-out', cancel); }
+});
+
 test('restores the cookie session and profile without persistent access storage', async () => {
     const restore = deferred();
     refreshSession.mockResolvedValue({ token: 'old-token' });

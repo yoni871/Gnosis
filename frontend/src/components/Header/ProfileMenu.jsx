@@ -18,8 +18,11 @@ export default function ProfileMenu() {
         setIsProfileOpen(false)
     });
 
-    const handleLogout = () => {
-        logout();
+    const handleLogout = (event) => {
+        if (logout() === false) {
+            event.preventDefault();
+            return;
+        }
         setIsProfileOpen(false);
     };
 

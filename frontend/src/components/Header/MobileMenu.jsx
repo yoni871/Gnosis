@@ -25,8 +25,11 @@ export default function MobileMenu({ showSearch, variant, translation }) {
         setIsMobileProfileOpen(false);
     });
 
-    const handleLogout = () => {
-        logout();
+    const handleLogout = (event) => {
+        if (logout() === false) {
+            event.preventDefault();
+            return;
+        }
         setIsMobileProfileOpen(false);
         setIsMenuOpen(false);
     };

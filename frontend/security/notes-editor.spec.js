@@ -4,17 +4,20 @@ import { startFixture } from './fixture';
 let fixture;
 let saved;
 let second;
+let logoutCalls;
 test.beforeAll(async () => { fixture = await startFixture(); });
 // The policy suite in this worker owns the shared backend pool's final cleanup.
 test.afterAll(async () => { await fixture?.close({ endPool: false }); });
 test.beforeEach(async ({ context, page }) => {
     saved = { id: 7, title: 'Test note', content: '<p></p>', created_at: '2026-01-01T00:00:00Z' };
     second = { id: 8, title: 'Second note', content: '<p>Second body</p>', created_at: '2026-01-01T00:00:00Z' };
+    logoutCalls = 0;
     await context.route('**/*', async route => {
         const url = new URL(route.request().url());
         if (!url.pathname.startsWith('/api/')) return url.origin === fixture.origin ? route.continue() : route.abort();
         let body = [];
         if (url.pathname === '/api/auth/refresh') body = { token: 'synthetic-token' };
+        else if (url.pathname === '/api/auth/logout') { logoutCalls += 1; body = {}; }
         else if (url.pathname === '/api/auth/profile') body = { id: 7, first_name: 'Test', last_name: 'Reader' };
         else if (url.pathname === '/api/books') body = [
             { id: 1, name: 'Genesis', chapters: 50, chapter_count: 50, verse_counts: { 1: 31 } },
@@ -66,6 +69,65 @@ for (const [device, viewport] of [['desktop', { width: 1440, height: 900 }], ['m
         await expect.poll(() => saved.title).toBe('First draft');
         await expect.poll(() => saved.content).toContain('First body');
         await expect(panel.getByText(/^Saved/)).toBeVisible();
+    });
+
+    test(`${device}: cancel sign-out keeps the current page, session, and note draft`, async ({ page }) => {
+        await page.setViewportSize(viewport);
+        if (device === 'mobile') await page.locator('nav.fixed.bottom-0').getByRole('button', { name: 'Notes' }).click();
+        const panel = device === 'desktop' ? page.locator('main').first() : page.locator('main').last();
+        const title = panel.getByRole('textbox', { name: 'Note title' });
+        const editor = panel.getByRole('textbox', { name: 'Note content' });
+        await title.fill('Unsaved title');
+        await editor.click();
+        await page.keyboard.type('Unsaved body');
+        if (device === 'mobile') await page.getByRole('button', { name: 'Open navigation menu' }).click();
+        await page.locator('header').getByRole('button', { name: /Test Reader/ }).filter({ visible: true }).click();
+        page.once('dialog', dialog => dialog.dismiss());
+        await page.locator('header').getByRole('link', { name: 'Sign out' }).filter({ visible: true }).click();
+        await expect(page).toHaveURL(/\/bible\/Genesis\/1/);
+        await expect(title).toHaveValue('Unsaved title');
+        await expect(editor).toHaveText('Unsaved body');
+        expect(logoutCalls).toBe(0);
+        page.once('dialog', dialog => dialog.accept());
+        await page.locator('header').getByRole('link', { name: 'Sign out' }).filter({ visible: true }).click();
+        await expect(page).toHaveURL(/\/login/);
+        await expect.poll(() => logoutCalls).toBe(1);
+    });
+
+    test(`${device}: saved paragraphs, headings, and lists use compact readable spacing`, async ({ page }) => {
+        saved = { ...saved, content: '<h2>Heading</h2><p>First paragraph.</p><p>John 3:16 and another paragraph.</p><ul><li>First item</li><li>Second item</li></ul><ol><li>One</li><li>Two</li></ol>' };
+        await page.setViewportSize(viewport);
+        await page.reload();
+        if (device === 'mobile') await page.locator('nav.fixed.bottom-0').getByRole('button', { name: 'Notes' }).click();
+        const panel = device === 'desktop' ? page.locator('main').first() : page.locator('main').last();
+        if (device === 'desktop') await panel.getByRole('button', { name: 'Notes', exact: true }).click();
+        await panel.getByRole('button', { name: 'Library' }).click();
+        await panel.getByRole('button', { name: /Test note/ }).click();
+        const editor = panel.getByRole('textbox', { name: 'Note content' });
+        await expect(editor.locator('h2')).toHaveText('Heading');
+        await expect(editor.locator('a[data-scripture]')).toHaveCount(1);
+        const spacing = await editor.evaluate(element => {
+            const style = selector => getComputedStyle(element.querySelector(selector));
+            return {
+                lineHeight: parseFloat(getComputedStyle(element).lineHeight) / parseFloat(getComputedStyle(element).fontSize),
+                paragraphMargin: parseFloat(style('p').marginBottom),
+                listParagraphMargin: parseFloat(style('li p').marginBottom),
+                listItemMargin: parseFloat(style('li').marginBottom),
+                headingLineHeight: parseFloat(style('h2').lineHeight) / parseFloat(style('h2').fontSize),
+            };
+        });
+        expect(spacing.lineHeight).toBeCloseTo(1.65, 1);
+        expect(spacing.paragraphMargin).toBeGreaterThan(0);
+        expect(spacing.paragraphMargin).toBeLessThan(10);
+        expect(spacing.listParagraphMargin).toBe(0);
+        expect(spacing.listItemMargin).toBeLessThan(3);
+        expect(spacing.headingLineHeight).toBeCloseTo(1.3, 1);
+        if (device === 'mobile') {
+            await editor.locator('a[data-scripture]').click();
+            await expect(page.getByRole('button', { name: 'Close Scripture' })).toBeVisible();
+            await page.getByRole('button', { name: 'Close Scripture' }).click();
+            await expect(editor).toContainText('John 3:16 and another paragraph.');
+        }
     });
 }
 

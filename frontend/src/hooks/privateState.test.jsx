@@ -59,7 +59,7 @@ test('notes discard drafts, passage, editing state and feedback on every session
     act(() => hook.result.current.handleStartNote(passage));
     expect(hook.result.current.notesError).not.toBe('');
     await hook.change({ ...B, isAuthLoading: true });
-    expect(hook.result.current).toMatchObject({ notes: [], noteContent: '', draftPassage: null, editingNoteId: null, editContent: '', notesError: '', isSavingNote: false, isUpdatingNote: false, deletingNoteId: null, isLoadingNotes: false });
+    expect(hook.result.current).toMatchObject({ notes: [], noteContent: '', draftPassage: null, editingNoteId: null, notesError: '', isSavingNote: false, deletingNoteId: null, isLoadingNotes: false });
     await hook.change(B);
     expect(hook.result.current.notes).toHaveLength(1);
     await hook.change(guest);
@@ -103,8 +103,7 @@ for (const feature of features) {
 }
 
 const mutations = [
-    { name: 'note create', hook: useJournal, mock: notes.createNote, prepare: h => h.setNoteContent('draft'), run: h => h.handleSaveNote(), result: record, busy: 'isSavingNote', data: 'notes' },
-    { name: 'note update', hook: useJournal, mock: notes.updateNote, prepare: h => h.handleStartEdit(record), run: h => h.handleUpdateNote(7), result: record, busy: 'isUpdatingNote', data: 'notes' },
+    { name: 'note create', hook: useJournal, mock: notes.createNote, prepare: () => {}, run: h => h.handleCreateDocument(), result: record, busy: 'isSavingNote', data: 'notes' },
     { name: 'note delete', hook: useJournal, mock: notes.deleteNote, prepare: () => {}, run: h => h.handleDeleteNote(7), busy: 'deletingNoteId', data: 'notes' },
     { name: 'bookmark create', hook: useBookmarks, mock: bookmarks.createBookmark, prepare: () => {}, run: h => h.handleAddBookmarks({ ...passage, startVerse: 2 }), result: record, busy: 'isSaving', data: 'bookmarks' },
     { name: 'bookmark delete', hook: useBookmarks, mock: bookmarks.deleteBookmark, prepare: () => {}, run: h => h.handleDeleteBookmark(7), busy: 'deletingId', data: 'bookmarks' },
@@ -191,18 +190,18 @@ test.each([false, true])('preview snapshots ignore stale completion (%s), retain
 
 test('current failures retain the draft for retry; old failures cannot replace B feedback or editing state', async () => {
     const old = deferred();
-    notes.createNote.mockReturnValueOnce(old.promise).mockRejectedValueOnce(new Error('B failure'));
+    notes.updateNote.mockReturnValueOnce(old.promise).mockRejectedValueOnce(new Error('B failure'));
     const hook = await mount(useJournal);
-    act(() => hook.result.current.setNoteContent('A draft'));
+    act(() => { hook.result.current.handleStartEdit(record); hook.result.current.changeDocument(7, { content: 'A draft' }); });
     let operation;
-    act(() => { operation = hook.result.current.handleSaveNote(); });
+    act(() => { operation = hook.result.current.saveDocument(7); });
     await hook.change(B);
-    act(() => { hook.result.current.setNoteContent('B draft'); hook.result.current.handleStartEdit({ ...record, content: 'B edit' }); });
-    await act(async () => { await hook.result.current.handleSaveNote(); });
-    expect(hook.result.current.notesError).toBe('B failure');
+    act(() => { hook.result.current.handleStartEdit(record); hook.result.current.changeDocument(7, { content: 'B edit' }); });
+    await act(async () => { await hook.result.current.saveDocument(7); });
+    expect(hook.result.current.documents[7].error).toBe('B failure');
     await settle(old, null, true);
     expect(await operation).toBe(false);
-    expect(hook.result.current).toMatchObject({ noteContent: 'B draft', editContent: 'B edit', editingNoteId: 7, notesError: 'B failure', isSavingNote: false });
+    expect(hook.result.current).toMatchObject({ editingNoteId: 7, documents: { 7: { content: 'B edit', error: 'B failure' } } });
 });
 
 test('overlapping saves remain bound to their note across rapid switches', async () => {
@@ -270,8 +269,7 @@ test('same-user reauthentication clears drafts even when user ID and token are r
 
 test('a token without confirmed user ID cannot load or mutate private records', async () => {
     const hook = await mount(useJournal, { ...A, user: { email: 'synthetic@example.invalid' } });
-    act(() => hook.result.current.setNoteContent('draft'));
-    await act(async () => { await hook.result.current.handleSaveNote(); });
+    await act(async () => { await hook.result.current.handleCreateDocument(); });
     expect(notes.getNotes).not.toHaveBeenCalled();
     expect(notes.createNote).not.toHaveBeenCalled();
 });

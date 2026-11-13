@@ -138,7 +138,7 @@ export function AuthProvider({ children }) {
 
     const logout = useCallback((all = false, forced = false) => {
         const event = new CustomEvent("gnosis:before-sign-out", { cancelable: true, detail: { forced } });
-        if (!window.dispatchEvent(event) && !forced) return;
+        if (!window.dispatchEvent(event) && !forced) return false;
         const revocation = logoutSession(token, all === true);
         revocation.catch(error => console.error(error.message));
         // Invalidate first: any restore/login/register already in
@@ -148,6 +148,7 @@ export function AuthProvider({ children }) {
         updateToken(null);
         setUser(null);
         setIsAuthLoading(false);
+        return true;
     }, [authGuard, token, updateToken]);
 
     useEffect(() => {
