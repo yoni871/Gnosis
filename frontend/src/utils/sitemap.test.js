@@ -152,23 +152,24 @@ describe("verified chapter manifest", () => {
 });
 
 describe("production sitemap output", () => {
-    test("contains exactly the 1,189 canonical chapter URLs plus the homepage, About page, Privacy page, and the 3 public Biblical History URLs, nothing else", () => {
+    test("contains exactly the 1,189 canonical chapter URLs plus the homepage, About page, Privacy page, Trace the Doctrine page, and the 3 public Biblical History URLs, nothing else", () => {
         const historyPaths = publishedHistoryPaths();
         expect(historyPaths).toEqual(BH_PATHS);
-        const xml = buildSitemapXml(SITE_URL, chapterCounts, ["/", "/about", "/privacy", ...historyPaths]);
+        const xml = buildSitemapXml(SITE_URL, chapterCounts, ["/", "/about", "/privacy", "/trace-the-doctrine", ...historyPaths]);
         const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(
             ([, url]) => url,
         );
 
-        expect(urls).toHaveLength(1195);
-        expect(new Set(urls).size).toBe(1195);
+        expect(urls).toHaveLength(1196);
+        expect(new Set(urls).size).toBe(1196);
         expect(urls[0]).toBe("https://studygnosis.com/bible/Genesis/1");
-        expect(urls[urls.length - 7]).toBe(
+        expect(urls[urls.length - 8]).toBe(
             "https://studygnosis.com/bible/Revelation/22",
         );
-        expect(urls[urls.length - 6]).toBe("https://studygnosis.com/");
-        expect(urls[urls.length - 5]).toBe("https://studygnosis.com/about");
-        expect(urls[urls.length - 4]).toBe("https://studygnosis.com/privacy");
+        expect(urls[urls.length - 7]).toBe("https://studygnosis.com/");
+        expect(urls[urls.length - 6]).toBe("https://studygnosis.com/about");
+        expect(urls[urls.length - 5]).toBe("https://studygnosis.com/privacy");
+        expect(urls[urls.length - 4]).toBe("https://studygnosis.com/trace-the-doctrine");
         expect(urls[urls.length - 3]).toBe("https://studygnosis.com/biblical-history");
         expect(urls[urls.length - 2]).toBe("https://studygnosis.com/biblical-history/genesis/adam-and-eve");
         expect(urls[urls.length - 1]).toBe("https://studygnosis.com/biblical-history/genesis/creation");
@@ -202,7 +203,7 @@ describe("production sitemap output", () => {
             "utf8",
         );
         expect(committed).toBe(
-            buildSitemapXml(SITE_URL, chapterCounts, ["/", "/about", "/privacy", ...publishedHistoryPaths()]),
+            buildSitemapXml(SITE_URL, chapterCounts, ["/", "/about", "/privacy", "/trace-the-doctrine", ...publishedHistoryPaths()]),
         );
     });
 });

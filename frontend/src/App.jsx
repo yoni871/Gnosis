@@ -28,6 +28,8 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const BiblicalHistoryIndexPage = lazy(() => import('./pages/BiblicalHistoryIndexPage'));
 const BiblicalHistoryBookRedirect = lazy(() => import('./pages/BiblicalHistoryBookRedirect'));
 const BiblicalHistoryEventPage = lazy(() => import('./pages/BiblicalHistoryEventPage'));
+// Trace the Doctrine homepage (homepage only — no study workspace yet).
+const TraceTheDoctrinePage = lazy(() => import('./pages/TraceTheDoctrinePage'));
 
 function RouteLoading() {
     return (
@@ -129,6 +131,17 @@ function App() {
             <Route
               path='/biblical-history/:book/:event'
               element={<BiblicalHistoryEventPage />}
+            />
+
+            {/*
+              Trace the Doctrine: homepage only. The doctrine study
+              workspace is not implemented, so this route has no
+              sub-routes — the page introduces the planned categories
+              and links onward to the reader and Biblical History.
+            */}
+            <Route
+              path='/trace-the-doctrine'
+              element={<TraceTheDoctrinePage />}
             />
 
             {/* Catch-all: without this, an unmatched URL renders a blank
