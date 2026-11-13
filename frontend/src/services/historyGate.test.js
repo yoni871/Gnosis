@@ -517,6 +517,61 @@ describe("checkHistoryGate — claims detector", () => {
         expect(result.stderr).toMatch(/History gate FAILED/);
         expect(result.stderr).toMatch(/"claims":/);
     });
+
+    it("fails when dist/ contains the inlined unquoted claims: key (compiled form)", () => {
+        const sandbox = makeAllPublishedSandbox();
+        buildPublished(sandbox);
+        // Rolldown inlines generated JSON with unquoted keys: the leaked
+        // register shows up as `claims:()=>u`, with no `"claims":` and
+        // no claim id for the other patterns to catch.
+        writeDistFile(sandbox, "assets/app.js", 'const e={id:"event-adam-and-eve",claims:()=>u};');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/History gate FAILED/);
+        expect(result.stderr).toMatch(/unquoted claims:/);
+        expect(result.stderr).toMatch(/assets\/app\.js/);
+        // Only the unquoted-key detection fires on this fixture.
+        expect(result.stderr).not.toMatch(/internal claim id/);
+        expect(result.stderr).not.toMatch(/serialized "claims":/);
+    });
+
+    it("fails when dist/ contains an unquoted claims: array of register rows", () => {
+        const sandbox = makeAllPublishedSandbox();
+        buildPublished(sandbox);
+        writeDistFile(sandbox, "assets/app.js", 'const e={id:"event-adam-and-eve",claims:[{id:"clm-ae-028",claim:"The tree of life functioned as a reward for obedience."}]};');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/History gate FAILED/);
+        expect(result.stderr).toMatch(/unquoted claims:/);
+        // The register rows inside the array trip the claim-id pattern too.
+        expect(result.stderr).toMatch(/internal claim id/);
+    });
+
+    it("fails when dist/ contains a bare claim id with no claims key at all", () => {
+        const sandbox = makeAllPublishedSandbox();
+        buildPublished(sandbox);
+        writeDistFile(sandbox, "assets/app.js", 'const note = "see clm-ae-028 for the unverified tree-of-life claim";');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/History gate FAILED/);
+        expect(result.stderr).toMatch(/internal claim id/);
+        expect(result.stderr).toMatch(/assets\/app\.js/);
+        // Only the claim-id detection fires on this fixture.
+        expect(result.stderr).not.toMatch(/unquoted claims:/);
+        expect(result.stderr).not.toMatch(/serialized "claims":/);
+    });
+
+    it("passes dist/ prose containing 'claims:' not after { or ,", () => {
+        const sandbox = makeAllPublishedSandbox();
+        buildPublished(sandbox);
+        // Prose "claims:" after a space (and the bare word "claims"
+        // without a colon, as in adam-and-eve.json's evidence field)
+        // must not trip the anchored unquoted-key pattern.
+        writeDistFile(sandbox, "assets/app.js", 'const note = "He claims: \\"the text says otherwise.\\" No scholar consulted claims borrowing.";');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(0);
+        expect(result.stdout).toMatch(/no non-published records exist/);
+    });
 });
 
 describe("historyGatePlugin — the direct vite build path", () => {
