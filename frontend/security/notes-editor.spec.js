@@ -4,7 +4,8 @@ import { startFixture } from './fixture';
 let fixture;
 let saved;
 test.beforeAll(async () => { fixture = await startFixture(); });
-test.afterAll(async () => { await fixture?.close(); });
+// The policy suite in this worker owns the shared backend pool's final cleanup.
+test.afterAll(async () => { await fixture?.close({ endPool: false }); });
 test.beforeEach(async ({ context, page }) => {
     saved = { id: 7, title: 'Test note', content: '<p></p>', created_at: '2026-01-01T00:00:00Z' };
     await context.route('**/*', async route => {
