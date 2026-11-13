@@ -509,7 +509,7 @@
 .history-home-action--light { color: var(--history-ivory); background: transparent; border-color: #d6b5748f; }.history-home-action--light:hover { color: var(--history-night); }
 .history-creation-seal { position: relative; z-index: 1; display: grid; width: 220px; height: 220px; place-content: center; justify-self: end; border: 1px solid #d6b57475; border-radius: 50%; text-align: center; }.history-creation-seal::before { position: absolute; inset: 11px; content: ""; border: 1px solid #d6b57438; border-radius: 50%; }.history-creation-seal span, .history-creation-seal small { color: var(--history-gold); font: 600 .6rem/1.5 "Gnosis History Inter", sans-serif; letter-spacing: .16em; text-transform: uppercase; }.history-creation-seal b { font-size: 2rem; font-weight: 600; }
 
-.history-scripture { padding-block: 24px clamp(90px, 10vw, 140px); scroll-margin-top: 24px; }
+.history-scripture { padding-block: 24px clamp(90px, 10vw, 140px); scroll-margin-top: 88px; }
 .history-scripture > header { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr); gap: 48px; align-items: end; margin-bottom: 42px; }
 .history-scripture > header > p { max-width: 430px; margin: 0; color: var(--public-muted); font-size: .94rem; line-height: 1.75; }
 .history-book-selector { border-top: 1px solid var(--public-border); }
