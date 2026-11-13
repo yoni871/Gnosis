@@ -1,17 +1,19 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
-import NoteCard from "./NoteCard";
-import NoteComposer from "./NoteComposer";
+import NotesEditor from "./NotesEditor";
 
+// The Notes 2.0 editor slot replaced the NoteComposer / NoteCard textareas
+// (PR: Notes UI Foundation). The iOS zoom rule still applies to the slot:
+// 16px on mobile, desktop sizes unchanged, and zoom must stay enabled.
 describe("mobile notes inputs", () => {
-    test("new-note textarea uses a 16px mobile font without disabling zoom", () => {
+    test("new-note editor uses a 16px mobile font without disabling zoom", () => {
         render(
-            <NoteComposer
-                passageLabel="John 3:16"
-                noteContent=""
-                setNoteContent={() => {}}
-                isSavingNote={false}
-                onSave={() => {}}
+            <NotesEditor
+                value=""
+                onChange={() => {}}
+                placeholder="Write a note..."
+                ariaLabel="New reflection on John 3:16"
+                className="sm:text-[15px]"
             />
         );
 
@@ -21,30 +23,13 @@ describe("mobile notes inputs", () => {
             .not.toMatch(/user-scalable\s*=\s*no|maximum-scale\s*=\s*1/i);
     });
 
-    test("edit textarea uses a 16px mobile font", () => {
+    test("edit editor uses a 16px mobile font", () => {
         render(
-            <NoteCard
-                note={{
-                    id: 1,
-                    book_id: 1,
-                    start_chapter: 1,
-                    start_verse: 1,
-                    end_chapter: 1,
-                    end_verse: 1,
-                    content: "A note"
-                }}
-                index={0}
-                totalNotes={1}
-                books={[{ id: 1, name: "Genesis" }]}
-                editingNoteId={1}
-                editContent="A note"
-                setEditContent={() => {}}
-                isUpdatingNote={false}
-                deletingNoteId={null}
-                onStartEdit={() => {}}
-                onCancelEdit={() => {}}
-                onUpdate={() => {}}
-                onDelete={() => {}}
+            <NotesEditor
+                value="A note"
+                onChange={() => {}}
+                ariaLabel="Edit reflection on Genesis 1:1"
+                className="sm:text-[14px]"
             />
         );
 

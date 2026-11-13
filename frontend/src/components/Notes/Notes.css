@@ -1,0 +1,43 @@
+/* Notes 2.0 library drawer.
+   Slides in from the left edge of the Notes panel (~200ms) and overlays the
+   editor without resizing it. The drawer is absolutely positioned inside the
+   panel, which clips it with overflow-hidden, so it can never cover
+   Scripture. Visibility flips only after the slide-out finishes, so the
+   drawer is never focusable while closed. */
+
+.notes-library-drawer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    border-right: 1px solid var(--border);
+    background: var(--bg-panel);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 200ms ease-out, visibility 0s linear 200ms;
+}
+
+.notes-library-drawer[data-open="true"] {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 200ms ease-out, visibility 0s linear 0s;
+}
+
+@media (min-width: 768px) {
+    .notes-library-drawer {
+        width: 320px;
+        max-width: 85%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .notes-library-drawer {
+        transition: none;
+    }
+}
