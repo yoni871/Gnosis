@@ -255,12 +255,25 @@
 
 .history-event-nav--mobile .history-event-nav-tab {
     flex: 1;
+    min-width: 0;
     flex-direction: row;
     justify-content: center;
-    padding: 12px 8px;
-    font-size: 14px;
+    padding: 12px 6px;
+    font-size: 13px;
     border-radius: 0;
     border-bottom: 2px solid transparent;
+}
+
+.history-event-nav--mobile .history-event-nav-label {
+    white-space: nowrap;
+    overflow-wrap: normal;
+}
+
+@media (max-width: 360px) {
+    .history-event-nav--mobile .history-event-nav-tab {
+        padding: 12px 4px;
+        font-size: 12px;
+    }
 }
 
 .history-event-nav--mobile .history-event-nav-icon {
