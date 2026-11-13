@@ -205,28 +205,60 @@ test('current failures retain the draft for retry; old failures cannot replace B
     expect(hook.result.current).toMatchObject({ noteContent: 'B draft', editContent: 'B edit', editingNoteId: 7, notesError: 'B failure', isSavingNote: false });
 });
 
-test('note autosaves are serialized so a slow older response cannot overwrite a newer edit', async () => {
-    vi.useFakeTimers();
-    const first = deferred();
-    notes.updateNote.mockReturnValueOnce(first.promise)
-        .mockResolvedValueOnce({ ...record, title: 'Newest', content: '<p>Newest</p>' });
+test('overlapping saves remain bound to their note across rapid switches', async () => {
+    const first = deferred(), second = deferred();
+    const noteA = { ...record, id: 701, title: 'A', content: 'body A' };
+    const noteB = { ...record, id: 702, title: 'B', content: 'body B' };
+    notes.getNotes.mockResolvedValue([noteA, noteB]);
+    notes.updateNote.mockReturnValueOnce(first.promise).mockReturnValueOnce(second.promise);
     const hook = await mount(useJournal);
-    act(() => hook.result.current.handleStartEdit(record));
+    act(() => hook.result.current.handleStartEdit(noteA));
+    act(() => hook.result.current.changeDocument(701, { title: 'A edit', content: 'A draft' }));
+    act(() => { void hook.result.current.saveDocument(701); });
+    act(() => hook.result.current.handleStartEdit(noteB));
+    act(() => hook.result.current.changeDocument(702, { title: 'B edit', content: 'B draft' }));
+    act(() => { void hook.result.current.saveDocument(702); });
+    act(() => hook.result.current.changeDocument(701, { content: 'late callback' }));
+    await settle(second, { ...noteB, title: 'B edit', content: 'B draft' });
+    await settle(first, { ...noteA, title: 'A edit', content: 'A draft' });
+    expect(hook.result.current.editingNoteId).toBe(702);
+    expect(hook.result.current.documents[701]).toMatchObject({ title: 'A edit', content: 'A draft', saving: false });
+    expect(hook.result.current.documents[702]).toMatchObject({ title: 'B edit', content: 'B draft', saving: false });
+    expect(notes.updateNote).toHaveBeenNthCalledWith(1, 'synthetic-A', 701, { title: 'A edit', content: 'A draft' });
+    expect(notes.updateNote).toHaveBeenNthCalledWith(2, 'synthetic-A', 702, { title: 'B edit', content: 'B draft' });
+});
 
-    act(() => hook.result.current.scheduleDocumentSave(7, { title: 'Older', content: '<p>Older</p>' }));
-    await act(async () => { await vi.advanceTimersByTimeAsync(650); });
-    act(() => hook.result.current.scheduleDocumentSave(7, { title: 'Newest', content: '<p>Newest</p>' }));
-    await act(async () => { await vi.advanceTimersByTimeAsync(650); });
-    expect(notes.updateNote).toHaveBeenCalledTimes(1);
-
-    await settle(first, { ...record, title: 'Older', content: '<p>Older</p>' });
-    await act(async () => {});
+test('a failed save keeps the draft; cancel restores the last confirmed version', async () => {
+    const note = { ...record, id: 703, title: 'Original', content: 'Original body' };
+    notes.getNotes.mockResolvedValue([note]);
+    notes.updateNote.mockRejectedValueOnce(new Error('Offline'));
+    notes.updateNote.mockResolvedValueOnce(note);
+    const hook = await mount(useJournal);
+    act(() => hook.result.current.handleStartEdit(note));
+    act(() => hook.result.current.changeDocument(note.id, { title: 'Draft', content: 'Draft body' }));
+    await act(async () => { await hook.result.current.saveDocument(note.id); });
+    expect(hook.result.current.documents[note.id]).toMatchObject({ title: 'Draft', content: 'Draft body', error: 'Offline' });
+    await act(async () => { await hook.result.current.cancelDocument(note.id); });
+    expect(hook.result.current.documents[note.id]).toMatchObject({ title: 'Original', content: 'Original body', error: '' });
     expect(notes.updateNote).toHaveBeenCalledTimes(2);
-    expect(notes.updateNote).toHaveBeenLastCalledWith('synthetic-A', 7, {
-        title: 'Newest', content: '<p>Newest</p>',
-    });
-    expect(hook.result.current.notes[0]).toMatchObject({ title: 'Newest', content: '<p>Newest</p>' });
-    vi.useRealTimers();
+    expect(notes.updateNote).toHaveBeenLastCalledWith('synthetic-A', note.id, { title: 'Original', content: 'Original body' });
+});
+
+test('an in-flight save can finish after unmount and the same session restores its draft', async () => {
+    const note = { ...record, id: 704, title: 'Before', content: 'Before body' };
+    notes.getNotes.mockResolvedValue([note]);
+    const request = deferred();
+    notes.updateNote.mockReturnValueOnce(request.promise);
+    const first = await mount(useJournal);
+    act(() => first.result.current.handleStartEdit(note));
+    act(() => first.result.current.changeDocument(note.id, { title: 'After', content: 'After body' }));
+    act(() => { void first.result.current.saveDocument(note.id); });
+    first.unmount();
+    const next = await mount(useJournal);
+    act(() => next.result.current.handleStartEdit(note));
+    expect(next.result.current.documents[note.id]).toMatchObject({ title: 'After', content: 'After body', saving: true });
+    await settle(request, { ...note, title: 'After', content: 'After body' });
+    expect(next.result.current.documents[note.id]).toMatchObject({ title: 'After', content: 'After body', saving: false });
 });
 
 test('same-user reauthentication clears drafts even when user ID and token are reused', async () => {

@@ -123,6 +123,7 @@ test('late rendered save cannot clear B selection or change B journal/feedback',
     const save = deferred();
     notes.updateNote.mockReturnValue(save.promise);
     fireEvent.change(openLoadedNote(desktop), { target: { value: 'A submitted draft' } });
+    fireEvent.click(desktop.getByRole('button', { name: 'Save', exact: true }));
     await waitFor(() => expect(notes.updateNote).toHaveBeenCalledTimes(1), { timeout: 1500 });
     await switchAccount();
     fireEvent.click(desktop.getByText('Public Scripture stays'));

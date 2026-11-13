@@ -8,13 +8,15 @@ const EMPTY_BOOKS = [];
 
 export default function NotesEditor({
     value, onChange, placeholder, disabled = false, autoFocus = false,
-    ariaLabel, inputRef, className = "", books = EMPTY_BOOKS, onReferenceClick,
+    ariaLabel, inputRef, className = "", books = EMPTY_BOOKS, onReferenceClick, onFormatState,
 }) {
     const onChangeRef = useRef(onChange);
     const onReferenceClickRef = useRef(onReferenceClick);
+    const onFormatStateRef = useRef(onFormatState);
     const lastEmitted = useRef(null);
     useEffect(() => { onChangeRef.current = onChange; }, [onChange]);
     useEffect(() => { onReferenceClickRef.current = onReferenceClick; }, [onReferenceClick]);
+    useEffect(() => { onFormatStateRef.current = onFormatState; }, [onFormatState]);
     const editor = useEditor({
         extensions: [
             StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
@@ -45,6 +47,11 @@ export default function NotesEditor({
             lastEmitted.current = html;
             onChangeRef.current(html);
         },
+        onTransaction: ({ editor: current }) => onFormatStateRef.current?.({
+            bold: current.isActive("bold"), italic: current.isActive("italic"),
+            underline: current.isActive("underline"), heading: current.isActive("heading"),
+            list: current.isActive("bulletList"), orderedList: current.isActive("orderedList"),
+        }),
     }, [books]);
 
     useEffect(() => {

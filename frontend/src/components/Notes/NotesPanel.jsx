@@ -195,6 +195,7 @@ export default function NotesPanel({
                     onSelectNote={handleSelectNote}
                     selectedNoteId={notesState.editingNoteId}
                     notes={notes}
+                    documents={notesState.documents}
                     books={books}
                     isLoadingNotes={notesState.isLoadingNotes}
                     notesError={notesState.notesError}

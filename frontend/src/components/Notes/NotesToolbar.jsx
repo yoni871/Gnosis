@@ -18,7 +18,7 @@ const ACTIONS = [
     { id: "redo", label: "Redo", Icon: Redo2 },
 ];
 
-export default function NotesToolbar({ onFormat, disabled = false }) {
+export default function NotesToolbar({ onFormat, disabled = false, active = {} }) {
     return (
         <div
             role="toolbar"
@@ -42,10 +42,11 @@ export default function NotesToolbar({ onFormat, disabled = false }) {
                     type="button"
                     aria-label={label}
                     title={label}
+                    aria-pressed={id === "undo" || id === "redo" ? undefined : Boolean(active[id])}
                     disabled={disabled}
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => onFormat?.(id)}
-                    className="
+                    className={`
                         flex
                         h-8
                         w-8
@@ -62,7 +63,8 @@ export default function NotesToolbar({ onFormat, disabled = false }) {
                         focus-visible:outline-[var(--color-accent)]
                         disabled:cursor-not-allowed
                         disabled:opacity-40
-                    "
+                        ${active[id] ? "bg-[var(--bg-selected)] text-[var(--color-brand)] ring-1 ring-inset ring-[var(--color-accent)]" : ""}
+                    `}
                 >
                     <Icon size={16} aria-hidden="true" />
                 </button>
