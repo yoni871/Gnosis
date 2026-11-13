@@ -281,12 +281,6 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "Human Identity and Purpose Redefined: Gen 1:26–28 and 2:5–25 in Context",
             },
             {
-                id: "source-crouch-image-of-god",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Made in the Image of God: The Creation of אדם, the Commissioning of the King and the Chaoskampf of YHWH",
-            },
-            {
                 id: "source-stordalen-eden-narrative",
                 kind: "source",
                 status: "unpublished-only",
@@ -386,6 +380,16 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
             // cited by the Adam and Eve event, so it is first cited by
             // Creation (scanned after adam-and-eve.json) and now follows
             // Scriptorium in citation order. Same 21 records; order only.
+            // Order note (publication preparation, 2026-11-12): Crouch is no
+            // longer cited by the Adam and Eve event, so it is first cited by
+            // Creation (scanned after adam-and-eve.json) and now follows
+            // Brown in citation order. Same 21 records; order only.
+            {
+                id: "source-crouch-image-of-god",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Made in the Image of God: The Creation of אדם, the Commissioning of the King and the Chaoskampf of YHWH",
+            },
             {
                 id: "source-british-museum-shabaka",
                 kind: "source",
