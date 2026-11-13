@@ -76,8 +76,10 @@ if (existsSync(booksDir)) {
 const historyPaths = historySitemapPaths(manifest, generatedBooks);
 
 // The public landing, About, and Privacy pages follow the chapter URLs,
-// then the Biblical History pages.
-const xml = buildSitemapXml(siteUrl, chapterCounts, ["/", "/about", "/privacy", ...historyPaths]);
+// then the Biblical History pages, then the Trace the Doctrine homepage
+// (a public landing page like About/Privacy — it lists planned
+// categories only, and no study-workspace URL exists to list).
+const xml = buildSitemapXml(siteUrl, chapterCounts, ["/", "/about", "/privacy", "/trace-the-doctrine", ...historyPaths]);
 const outputPath = path.join(root, "public/sitemap.xml");
 
 writeFileSync(outputPath, xml);
@@ -85,7 +87,7 @@ writeFileSync(outputPath, xml);
 const total = Object.values(chapterCounts).reduce((sum, n) => sum + n, 0);
 console.log(
     `Wrote ${outputPath} (${Object.keys(chapterCounts).length} books, ` +
-        `${total} chapter URLs, plus the homepage, About page, and Privacy page` +
+        `${total} chapter URLs, plus the homepage, About page, Privacy page, and Trace the Doctrine page` +
         (historyPaths.length > 0 ? `, plus ${historyPaths.length} Biblical History page(s)` : ", no published Biblical History pages") +
         `) for ${siteUrl}`,
 );

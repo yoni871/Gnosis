@@ -8,6 +8,8 @@ import {
     chapterPath,
     chapterTitle,
     chapterUrl,
+    doctrineIndexDescription,
+    doctrineIndexTitle,
     getSiteUrl,
     pageUrl,
 } from "./seo";
@@ -106,5 +108,16 @@ describe("chapterDescription", () => {
 describe("pageUrl", () => {
     test("builds absolute URLs for non-chapter pages", () => {
         expect(pageUrl("/login")).toBe("https://studygnosis.com/login");
+    });
+});
+
+describe("doctrineIndex metadata", () => {
+    test("titles the Trace the Doctrine homepage", () => {
+        expect(doctrineIndexTitle()).toBe("Trace the Doctrine | Gnosis");
+    });
+
+    test("promises planned studies, not published ones", () => {
+        expect(doctrineIndexDescription()).toMatch(/Planned studies/);
+        expect(doctrineIndexDescription()).not.toMatch(/published study|available now/i);
     });
 });

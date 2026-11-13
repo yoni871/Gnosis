@@ -131,3 +131,18 @@ export function historyEventDescription(eventTitle, rangeLabel) {
         ? `Historical context for ${eventTitle} (${rangeLabel}) on Gnosis.`
         : `Historical context for ${eventTitle} on Gnosis.`;
 }
+
+// Trace the Doctrine helpers. The homepage introduces planned doctrine
+// categories only — no study workspace or published study exists yet —
+// so the description says exactly that and promises no content.
+export function doctrineIndexTitle() {
+    return "Trace the Doctrine | Gnosis";
+}
+
+export function doctrineIndexDescription() {
+    return (
+        "Explore how Christian doctrines have been understood, explained, " +
+        "and debated throughout church history — beginning with the " +
+        "biblical text. Planned studies on Gnosis, starting with the Trinity."
+    );
+}

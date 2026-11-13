@@ -7,9 +7,9 @@
 //  - every Bible chapter URL from the verified chapter manifest
 //    (frontend/src/data/bibleChapters.json)
 //  - any extra static public paths passed in (currently "/", "/about",
-//    and "/privacy", the public landing, About, and Privacy pages;
-//    /search, /login, /register must never be indexed, so they are
-//    never passed here)
+//    "/privacy", and "/trace-the-doctrine", the public landing, About,
+//    Privacy, and Trace the Doctrine pages; /search, /login, /register
+//    must never be indexed, so they are never passed here)
 //  - Biblical History pages with published content, derived from the
 //    published-only generated manifest (see historySitemapPaths):
 //    the index and published event URLs. Book-page URLs are NOT

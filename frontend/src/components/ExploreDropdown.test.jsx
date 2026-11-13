@@ -42,6 +42,9 @@ test("closes on toggle, outside click, and focus leaving the disclosure", async 
     await user.click(screen.getByRole("button", { name: "Outside" }));
     expect(trigger).toHaveAttribute("aria-expanded", "false");
     await user.click(trigger);
+    // Tab through all three entries (Bible & Commentary, Biblical
+    // History, Trace the Doctrine) to the Outside button.
+    await user.tab();
     await user.tab();
     await user.tab();
     await user.tab();
@@ -67,6 +70,17 @@ test("navigates to Biblical History and notifies its enclosing navigation", asyn
     await user.click(screen.getByRole("button", { name: "Explore" }));
     await user.click(screen.getByRole("link", { name: /Biblical History/ }));
     expect(screen.getByLabelText("Current path")).toHaveTextContent("/biblical-history");
+    expect(onNavigate).toHaveBeenCalledOnce();
+    expect(screen.queryByRole("link")).toBeNull();
+});
+
+test("navigates to Trace the Doctrine and notifies its enclosing navigation", async () => {
+    const user = userEvent.setup();
+    const onNavigate = vi.fn();
+    mount({ onNavigate });
+    await user.click(screen.getByRole("button", { name: "Explore" }));
+    await user.click(screen.getByRole("link", { name: /Trace the Doctrine/ }));
+    expect(screen.getByLabelText("Current path")).toHaveTextContent("/trace-the-doctrine");
     expect(onNavigate).toHaveBeenCalledOnce();
     expect(screen.queryByRole("link")).toBeNull();
 });
