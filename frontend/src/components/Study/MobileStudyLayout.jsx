@@ -103,10 +103,9 @@ export default function MobileStudyLayout({
                         selectedVerse={selectedVerse}
                         books={books}
                         notesState={notesState}
-                        navigateToPassage={(target) => {
-                            navigateToPassage(target);
-                            setMobileTab("scripture");
-                        }}
+                        mobile
+                        translation={translation}
+                        navigateToPassage={(target) => { navigateToPassage(target); setMobileTab("scripture"); }}
                     />
                 </div>
             )}

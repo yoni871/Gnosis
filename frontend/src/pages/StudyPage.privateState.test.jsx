@@ -85,17 +85,17 @@ test.each([false, true])('actual StudyPage resets drafts/actions across accounts
     expect(desktop.getByText('Public Scripture stays')).toBeInTheDocument();
     expect(desktop.getAllByText('Public commentary stays').length).toBeGreaterThan(0);
     fireEvent.click(desktop.getByRole('button', { name: 'Notes', exact: true }));
-    expect(desktop.getByText('A private note')).toBeInTheDocument();
-    const composer = desktop.getByPlaceholderText(/Write what you notice/);
-    fireEvent.change(composer, { target: { value: 'A unsaved draft' } });
+    expect(desktop.getAllByText('A private note').length).toBeGreaterThan(0);
+    const editor = desktop.getByRole('textbox', { name: 'Note content' });
+    fireEvent.input(editor, { target: { innerHTML: 'A unsaved draft' } });
     fireEvent.click(screen.getByText('Stack'));
     expect(document.querySelector('main')).toHaveClass('grid-rows-2');
     const scriptureCalls = bible.getBibleChapter.mock.calls.length;
     const commentaryCalls = commentary.getChapterCommentaries.mock.calls.length;
     await switchAccount();
     expect(desktop.queryByText('A private note')).not.toBeInTheDocument();
-    expect(desktop.queryByDisplayValue('A unsaved draft')).not.toBeInTheDocument();
-    expect(desktop.getByPlaceholderText(/Write what you notice/)).toHaveValue('');
+    expect(desktop.queryByRole('textbox', { name: 'Note content' })).not.toBeInTheDocument();
+    expect(desktop.getByRole('button', { name: 'Create a note' })).toBeInTheDocument();
     expect(screen.queryAllByLabelText('Choose highlight color')).toHaveLength(0);
     expect(desktop.getByText('Public Scripture stays')).toBeInTheDocument();
     expect(desktop.getByRole('button', { name: /KJV/ })).toBeInTheDocument();
@@ -110,15 +110,13 @@ test.each([false, true])('actual StudyPage resets drafts/actions across accounts
 test('late rendered save cannot clear B selection or change B journal/feedback', async () => {
     const desktop = await mount();
     fireEvent.click(desktop.getByRole('button', { name: 'Notes', exact: true }));
-    fireEvent.change(desktop.getByPlaceholderText(/Write what you notice/), { target: { value: 'A submitted draft' } });
     const save = deferred();
-    notes.createNote.mockReturnValue(save.promise);
-    fireEvent.click(desktop.getByRole('button', { name: /Save/i }));
+    notes.updateNote.mockReturnValue(save.promise);
+    fireEvent.input(desktop.getByRole('textbox', { name: 'Note content' }), { target: { innerHTML: 'A submitted draft' } });
+    await waitFor(() => expect(notes.updateNote).toHaveBeenCalled());
     await switchAccount();
     fireEvent.click(desktop.getByText('Public Scripture stays'));
-    fireEvent.change(desktop.getByPlaceholderText(/Write what you notice/), { target: { value: 'B draft' } });
     await act(async () => { save.resolve({ ...record, content: 'A late saved note' }); await save.promise; });
-    expect(desktop.getByPlaceholderText(/Write what you notice/)).toHaveValue('B draft');
     expect(desktop.queryByText('A late saved note')).not.toBeInTheDocument();
     expect(screen.getAllByLabelText('Choose highlight color').length).toBeGreaterThan(0);
 });
@@ -150,11 +148,11 @@ test('mobile tab remains selected while its private journal is reset', async () 
     const mobileNav = within(document.querySelector('nav.fixed.bottom-0'));
     const notesTab = mobileNav.getByRole('button', { name: 'Notes' });
     fireEvent.click(notesTab);
-    expect(screen.getAllByText('A private note')).toHaveLength(1);
+    expect(screen.getAllByText('A private note').length).toBeGreaterThan(0);
     await switchAccount();
     expect(notesTab).toHaveClass('text-[var(--color-brand)]');
     expect(screen.queryByText('A private note')).not.toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Write what you notice/)).toHaveValue('');
+    expect(screen.queryByRole('textbox', { name: 'Note content' })).not.toBeInTheDocument();
 });
 
 test.each([false, true])('renewal preserves the actual StudyPage draft (temporary failure=%s)', async fails => {
@@ -165,10 +163,11 @@ test.each([false, true])('renewal preserves the actual StudyPage draft (temporar
     else authService.refreshSession.mockResolvedValue({ token: renewed });
     const desktop = await mount();
     fireEvent.click(desktop.getByRole('button', { name: 'Notes', exact: true }));
-    fireEvent.change(desktop.getByPlaceholderText(/Write what you notice/), { target: { value: 'Keep this private draft' } });
+    const editor = desktop.getByRole('textbox', { name: 'Note content' });
+    fireEvent.input(editor, { target: { innerHTML: 'Keep this private draft' } });
     const version = auth.sessionVersion;
     await act(async () => { window.dispatchEvent(new Event('online')); });
-    expect(desktop.getByPlaceholderText(/Write what you notice/)).toHaveValue('Keep this private draft');
+    expect(desktop.getByRole('textbox', { name: 'Note content' })).toHaveTextContent('Keep this private draft');
     expect(auth.token).toBe(fails ? original : renewed);
     expect(auth.sessionVersion).toBe(version);
     expect(authService.logoutSession).not.toHaveBeenCalled();

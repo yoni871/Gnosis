@@ -1,0 +1,10 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "notes.title",
+      "definition": { "type": "character varying(200)", "default": null, "notNull": false, "identity": "", "collation": null, "generated": "" }
+    }
+  ],
+  "removed": []
+}

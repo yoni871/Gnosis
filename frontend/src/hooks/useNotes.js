@@ -305,6 +305,40 @@ export default function useNotes({
         }
     }
 
+    // Gnosis Notes 2.0 creates an independent document immediately so its
+    // title and rich-text body can be autosaved with ordinary PATCH requests.
+    async function createDocument() {
+        const ticket = capture();
+        if (!ticket || !token || isSavingNote) return null;
+        setNotesError("");
+        setIsSavingNote(true);
+        try {
+            const note = await createNote(token, { title: "", content: "<p><br></p>" });
+            if (!isCurrent(ticket)) return null;
+            setNotes((current) => [note, ...current]);
+            return note;
+        } catch (error) {
+            if (isCurrent(ticket)) setNotesError(error.message);
+            return null;
+        } finally {
+            if (isCurrent(ticket)) setIsSavingNote(false);
+        }
+    }
+
+    async function saveDocument(noteId, title, content) {
+        const ticket = capture();
+        if (!ticket || !token || !noteId) return false;
+        try {
+            const updated = await updateNote(token, noteId, { title, content: content || "<p><br></p>" });
+            if (!isCurrent(ticket)) return false;
+            setNotes((current) => current.map((note) => note.id === noteId ? updated : note));
+            return true;
+        } catch (error) {
+            if (isCurrent(ticket)) setNotesError(error.message);
+            return false;
+        }
+    }
+
     return {
         nextCursor: state.nextCursor, isLoadingMore: state.isLoadingMore, loadMore,
         isAuthenticated,
@@ -330,6 +364,8 @@ export default function useNotes({
         handleCancelEdit,
         handleUpdateNote,
         handleDeleteNote,
+        createDocument,
+        saveDocument,
         draftPassage,
         handleStartNote
     };
