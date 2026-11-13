@@ -189,6 +189,82 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         expect(event).not.toHaveProperty("review");
         expect(event.title).toBe("Creation");
     });
+
+    it("strips claims from a published event carrying them, including unverified claims 028 and 030b", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "published" });
+        // Flip Adam and Eve to published in the fixture (sources are
+        // marked verified by default, so check 10 does not block it):
+        // this is the shape publication would take, and the generated
+        // copy must carry none of the research claims register.
+        mutateJson(contentDir, "events/adam-and-eve.json", (event) => {
+            event.status = "published";
+        });
+        expect(validateHistoryContent({ contentDir, bibleChapters }).errors).toEqual([]);
+        const { manifest } = generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
+        });
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-creation"]);
+        expect(manifest.books).toEqual(["genesis"]);
+        const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
+        const event = JSON.parse(eventJson);
+        expect(event).not.toHaveProperty("claims");
+        expect(event).not.toHaveProperty("review");
+        expect(event.title).toBe("Adam and Eve");
+        expect(event.connections).toHaveLength(18);
+        expect(event.sources).toHaveLength(16);
+        expect(eventJson).not.toContain("clm-ae-028");
+        expect(eventJson).not.toContain("clm-ae-030b");
+        expect(eventJson).not.toContain("The serpent is Satan.");
+        expect(eventJson).not.toContain("reward for obedience");
+        // ... while the SOURCE file still carries the full register.
+        const sourceEvent = JSON.parse(readFileSync(path.join(contentDir, "events", "adam-and-eve.json"), "utf8"));
+        expect(sourceEvent.claims).toHaveLength(35);
+        expect(sourceEvent.claims.find((claim) => claim.id === "clm-ae-028").claim)
+            .toBe("The tree of life functioned as a reward for obedience (unmentioned until 3:22).");
+        expect(sourceEvent.claims.find((claim) => claim.id === "clm-ae-030b").claim).toBe("The serpent is Satan.");
+    });
+
+    it("strips claims from dev-flag generation of the in-review event too", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
+        const { manifest } = generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
+        });
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-creation"]);
+        const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
+        const event = JSON.parse(eventJson);
+        expect(event).not.toHaveProperty("claims");
+        expect(event).not.toHaveProperty("review");
+        expect(event.title).toBe("Adam and Eve");
+        expect(event.connections).toHaveLength(18);
+        expect(event.sources).toHaveLength(16);
+        expect(eventJson).not.toContain("clm-ae-028");
+        expect(eventJson).not.toContain("clm-ae-030b");
+        expect(eventJson).not.toContain("The serpent is Satan.");
+        expect(eventJson).not.toContain("reward for obedience");
+        // Creation carries no claims array in its source, so the strip
+        // is a no-op for it — and its generated copy stays claims-free.
+        const creation = JSON.parse(readFileSync(path.join(outDir, "events", "creation.json"), "utf8"));
+        expect(creation).not.toHaveProperty("claims");
+        expect(creation).not.toHaveProperty("review");
+        expect(creation.title).toBe("Creation");
+    });
+
+    it("keeps the claims register in the source files (preservation)", () => {
+        const sourceEvent = JSON.parse(readFileSync(path.join(repoContentDir, "events", "adam-and-eve.json"), "utf8"));
+        expect(sourceEvent.status).toBe("in-review");
+        expect(sourceEvent.claims).toHaveLength(35);
+        const ids = sourceEvent.claims.map((claim) => claim.id);
+        expect(ids).toContain("clm-ae-028");
+        expect(ids).toContain("clm-ae-030b");
+        expect(sourceEvent.claims.find((claim) => claim.id === "clm-ae-028").assessment)
+            .toBe("unverified — verification status, not a confidence label");
+        expect(sourceEvent.claims.find((claim) => claim.id === "clm-ae-030b").assessment)
+            .toBe("unverified — no textual basis");
+        // Creation has no claims array at all — the strip must be a
+        // no-op for it, never a source mutation.
+        const creation = JSON.parse(readFileSync(path.join(repoContentDir, "events", "creation.json"), "utf8"));
+        expect(creation).not.toHaveProperty("claims");
+    });
 });
 
 describe("validateHistoryContent — fail closed", () => {

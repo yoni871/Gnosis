@@ -581,7 +581,11 @@ export function findNonPublishedIds({ contentDir }) {
 // The publication gate, shared by the postbuild CLI (check-history-gate.js)
 // and the Vite build plugin (history-gate-plugin.js). Checks the generated
 // manifest AND dist/ for any non-published record — its id, its title, or
-// a draft-only source entry. Returns { failures, nonPublished }.
+// a draft-only source entry. It also checks, on EVERY run (including the
+// all-published path, where the non-published early return below would
+// otherwise stand the gate down), that no generated event/topic JSON
+// carries the internal research claims register and that no built asset
+// contains a serialized "claims": key. Returns { failures, nonPublished }.
 //
 // This NEVER skips: a manifest generated with unpublished content is
 // itself a failure, not a reason to stand down — a dev-flag build is not
@@ -590,6 +594,49 @@ export function findNonPublishedIds({ contentDir }) {
 export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
     const failures = [];
     const nonPublished = findNonPublishedRecords({ contentDir });
+
+    // Claims detector — runs before the non-published early return, so it
+    // also fires on the publication path (everything published, nothing
+    // non-published left to match on): if a published event ever shipped
+    // its claims register, the id/title checks below would be silent by
+    // design. Match the literal serialized key '"claims":', not the bare
+    // word "claims": public prose contains it (conn-ae-018's note,
+    // "…this note claims it for the Genesis 2–3 reversal…").
+    for (const dir of [path.join(generatedDir, "events"), path.join(generatedDir, "topics")]) {
+        for (const file of listFilesRecursive(dir)) {
+            if (!file.endsWith(".json")) continue;
+            let parsed = null;
+            try {
+                parsed = JSON.parse(readFileSync(file, "utf8"));
+            } catch {
+                failures.push(`generated ${path.relative(generatedDir, file)} is not valid JSON.`);
+                continue;
+            }
+            if (isRecord(parsed) && Object.hasOwn(parsed, "claims")) {
+                failures.push(
+                    `generated ${path.relative(generatedDir, file)} carries the internal "claims" register ` +
+                        `(id "${typeof parsed.id === "string" ? parsed.id : "?"}") — research claims never ship.`,
+                );
+            }
+        }
+    }
+
+    function* textFiles(dir) {
+        for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            const full = path.join(dir, entry.name);
+            if (entry.isDirectory()) yield* textFiles(full);
+            else if (/\.(js|css|html|json|txt|xml|map)$/.test(entry.name)) yield full;
+        }
+    }
+    if (existsSync(distDir)) {
+        for (const file of textFiles(distDir)) {
+            const text = readFileSync(file, "utf8");
+            if (text.includes('"claims":')) {
+                failures.push(`dist/${path.relative(distDir, file)} contains a serialized "claims": key — the internal claims register never ships.`);
+            }
+        }
+    }
+
     if (nonPublished.length === 0) {
         return { failures, nonPublished };
     }
@@ -627,13 +674,6 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
     }
 
     // No non-published id, title, or source entry may appear in any built asset.
-    function* textFiles(dir) {
-        for (const entry of readdirSync(dir, { withFileTypes: true })) {
-            const full = path.join(dir, entry.name);
-            if (entry.isDirectory()) yield* textFiles(full);
-            else if (/\.(js|css|html|json|txt|xml|map)$/.test(entry.name)) yield full;
-        }
-    }
     if (existsSync(distDir)) {
         for (const file of textFiles(distDir)) {
             const text = readFileSync(file, "utf8");
@@ -656,10 +696,12 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
 //
 // Internal editorial metadata never ships: the source tree keeps the
 // full review record (review.notes, reviewer history, editorial
-// overrides) and source verification (verification, verificationDetail)
+// overrides), the research claims register (claims — including
+// unverified claims such as clm-ae-028 and clm-ae-030b, which no UI
+// renders), and source verification (verification, verificationDetail)
 // for research and validation, but none of it reaches generated output.
 // Validation reads the override from the SOURCES first (check 10), and
-// nothing at runtime reads review or verification fields — the public
+// nothing at runtime reads review, claims, or verification fields — the public
 // Sources list renders author/title/details/link only, and the panel
 // badge renders from status only — so stripping here, at generation
 // time, is safe. It covers every build path (prebuild, the Vite gate
@@ -667,6 +709,7 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
 function stripInternalMetadata(data) {
     const publicData = { ...data };
     delete publicData.review;
+    delete publicData.claims;
     return publicData;
 }
 
@@ -699,8 +742,9 @@ export function generateHistoryContent({ contentDir, outputDir, includeUnpublish
     };
 
     // Events (JSON + Markdown) and topics. The JSON is re-serialized
-    // without the internal review record (see stripInternalMetadata):
-    // the source file keeps it, the generated copy must not.
+    // without the internal review record and claims register (see
+    // stripInternalMetadata): the source file keeps them, the generated
+    // copy must not.
     const copyPair = (srcJson, destDir) => {
         const base = path.basename(srcJson, ".json");
         const data = stripInternalMetadata(readJson(srcJson));

@@ -31,19 +31,23 @@ const distDir = path.join(root, "dist");
 
 const { failures, nonPublished } = checkHistoryGate({ contentDir, generatedDir, distDir });
 
+if (!existsSync(distDir)) {
+    console.log("History gate: dist/ not present — skipping the bundle scan (manifest check only).");
+}
+
+// Failures first: the claims detector runs even when nothing is
+// non-published (the all-published path), so its failures must not be
+// swallowed by the "nothing to leak" exit below.
+if (failures.length > 0) {
+    console.error(`History gate FAILED:\n${failures.map((f) => `  - ${f}`).join("\n")}`);
+    process.exit(1);
+}
+
 if (nonPublished.length === 0) {
     console.log("History gate: no non-published records exist; nothing to leak.");
     process.exit(0);
 }
 
-if (!existsSync(distDir)) {
-    console.log("History gate: dist/ not present — skipping the bundle scan (manifest check only).");
-}
-
-if (failures.length > 0) {
-    console.error(`History gate FAILED:\n${failures.map((f) => `  - ${f}`).join("\n")}`);
-    process.exit(1);
-}
 console.log(
     `History gate passed: ${nonPublished.length} non-published record(s) ` +
         `(${nonPublished.map((r) => r.id).join(", ")}) appear in neither the manifest nor dist/.`,
