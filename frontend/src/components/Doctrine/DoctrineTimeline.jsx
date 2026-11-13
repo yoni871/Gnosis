@@ -68,6 +68,11 @@ export default function DoctrineTimeline({
         <nav className="doctrine-timeline" aria-label={`Historical interpretations of ${passage?.label ?? "this passage"}`}>
             <header className="doctrine-timeline-header">
                 <p className="doctrine-panel-eyebrow">Historical Timeline</p>
+                {entries.length > 0 && (
+                    <p className="doctrine-timeline-hint" id="doctrine-timeline-hint">
+                        Use the Left and Right arrow keys to move between interpreters.
+                    </p>
+                )}
                 <p className="doctrine-demonstration-badge">Demonstration data</p>
             </header>
             {entries.length === 0 ? (
@@ -77,9 +82,6 @@ export default function DoctrineTimeline({
                 </p>
             ) : (
                 <>
-                    <p className="doctrine-timeline-hint" id="doctrine-timeline-hint">
-                        Use the Left and Right arrow keys to move between interpreters.
-                    </p>
                     <ul
                         className="doctrine-timeline-strip"
                         aria-describedby="doctrine-timeline-hint"

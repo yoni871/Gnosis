@@ -60,7 +60,7 @@ export default function TraceTheDoctrineTrinityPage() {
                     <h1 id="doctrine-study-heading">The Trinity</h1>
                     <p className="doctrine-study-sub">From Scripture through Christian history</p>
                 </header>
-                <div data-doctrine-reveal>
+                <div className="doctrine-study-workspace-wrap" data-doctrine-reveal>
                     <DoctrineWorkspace />
                 </div>
             </main>
