@@ -1,0 +1,1 @@
+{"added":[{"definition":{"collation":null,"default":"1","generated":"","identity":"","notNull":true,"type":"integer"},"kind":"column","name":"user_mfa.key_version"}],"removed":[]}

@@ -6,6 +6,7 @@ const { contextFromEnvironment, createTestPool } = require('../helpers/applicati
 const { startBackend } = require('../helpers/backend-instance');
 const { generateTotpCode } = require('../../src/utils/mfaTotp');
 const { decryptTotpSecret } = require('../../src/utils/mfaCrypto');
+const mfaService = require('../../src/services/mfaService');
 
 // Synthetic encryption key for the disposable worker only. The test
 // file sets it before startBackend, and backend-instance forwards it
@@ -76,7 +77,7 @@ async function enrollAndConfirm(email, userId) {
     assert.equal(confirmed.data.enrolled, true);
     assert.equal(confirmed.data.recoveryCodes.length, 10);
     for (const recoveryCode of confirmed.data.recoveryCodes) {
-        assert.match(recoveryCode, /^[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}$/);
+        assert.match(recoveryCode, /^[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}$/);
     }
     return { secret, recoveryCodes: confirmed.data.recoveryCodes };
 }
@@ -214,4 +215,58 @@ test('five wrong codes trip the per-challenge rate limit', async () => {
     const limited = await request('mfa/verify', { body: { challenge: challenged.data.challenge, code: '000000' } });
     assert.equal(limited.status, 429);
     assert.equal(limited.data.code, 'RATE_LIMITED');
+});
+
+test('mixed key versions: a version-1 row decrypts via the previous key, a version-2 row via the current key', async () => {
+    // This exercises the key ring at the service level (the worker's
+    // env is fixed at startup, so the rotation is driven here with
+    // the test pool). K1 is the original key (version 1); K2 is the
+    // rotated key (version 2), with K1 staged as previous.
+    const K1 = MFA_KEY;
+    const K2 = crypto.randomBytes(32).toString('hex');
+    const enrollViaService = async (email, userId) => {
+        const started = await mfaService.startEnrollment(database.pool, userId, email);
+        const code = await generateTotpCode(started.secret);
+        const confirmed = await mfaService.confirmEnrollment(database.pool, userId, code);
+        assert.equal(confirmed.ok, true);
+        return started.secret;
+    };
+    const verifyViaService = async (userId, secret) => {
+        const challenge = await mfaService.issueMfaChallenge(database.pool, userId);
+        assert.ok(challenge);
+        const code = await generateTotpCode(secret);
+        const result = await mfaService.verifyMfaChallenge(database.pool, challenge, code);
+        assert.equal(result.ok, true, JSON.stringify(result));
+        return result.session;
+    };
+    // User A enrolls under K1 (version 1).
+    process.env.MFA_ENCRYPTION_KEY = K1;
+    delete process.env.MFA_ENCRYPTION_KEY_PREVIOUS;
+    delete process.env.MFA_KEY_VERSION;
+    const a = await freshUser();
+    const secretA = await enrollViaService(a.email, a.userId);
+    const rowA = await database.pool.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [a.userId]);
+    assert.equal(rowA.rows[0].key_version, 1);
+    // Rotation: K2 becomes current (version 2), K1 becomes previous.
+    // User B enrolls under K2 (version 2).
+    process.env.MFA_ENCRYPTION_KEY = K2;
+    process.env.MFA_ENCRYPTION_KEY_PREVIOUS = K1;
+    process.env.MFA_KEY_VERSION = '2';
+    const b = await freshUser();
+    const secretB = await enrollViaService(b.email, b.userId);
+    const rowB = await database.pool.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [b.userId]);
+    assert.equal(rowB.rows[0].key_version, 2);
+    // Both users verify: A's version-1 secret decrypts via the
+    // previous key, B's version-2 secret via the current key.
+    await verifyViaService(a.userId, secretA);
+    await verifyViaService(b.userId, secretB);
+    // Without the previous key, A's version-1 row fails closed
+    // (MfaUnavailableError) while B's version-2 row still works.
+    delete process.env.MFA_ENCRYPTION_KEY_PREVIOUS;
+    await assert.rejects(verifyViaService(a.userId, secretA), { name: 'MfaUnavailableError' });
+    await verifyViaService(b.userId, secretB);
+    // Restore the worker's key for the remaining tests.
+    process.env.MFA_ENCRYPTION_KEY = MFA_KEY;
+    delete process.env.MFA_ENCRYPTION_KEY_PREVIOUS;
+    delete process.env.MFA_KEY_VERSION;
 });

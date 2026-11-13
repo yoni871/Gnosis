@@ -18,7 +18,7 @@
 const bcrypt = require("bcrypt");
 const pool = require("../db/db");
 const sessions = require("./sessionService");
-const { getMfaEncryptionKey, encryptTotpSecret, decryptTotpSecret } = require("../utils/mfaCrypto");
+const { getMfaEncryptionKey, getCurrentMfaKeyVersion, getMfaEncryptionKeyForVersion, encryptTotpSecret, decryptTotpSecret } = require("../utils/mfaCrypto");
 const { MFA_CHALLENGE_TTL_MS, generateMfaChallengeToken, hashMfaChallengeToken } = require("../utils/mfaChallenge");
 const { generateRecoveryCodeSet, normalizeRecoveryCode, matchesRecoveryCode } = require("../utils/mfaRecoveryCodes");
 const { generateTotpSecret, buildOtpAuthUrl, verifyTotpCode } = require("../utils/mfaTotp");
@@ -41,6 +41,24 @@ function requireMfaKey() {
     return key;
 }
 
+// Decrypt a user_mfa row's secret using the key version recorded on
+// the row (design §3.2). A row without a version (only possible before
+// the key_version migration runs) is treated as version 1, the
+// original key. An unknown version or a decryption failure is a
+// controlled 503, never a bypass.
+function decryptRowSecret(row) {
+    const version = Number.isInteger(row.key_version) ? row.key_version : 1;
+    const key = getMfaEncryptionKeyForVersion(version);
+    if (!key) {
+        throw new MfaUnavailableError();
+    }
+    try {
+        return decryptTotpSecret(row.secret_encrypted, key);
+    } catch {
+        throw new MfaUnavailableError();
+    }
+}
+
 async function getMfaStatus(db, userId) {
     const result = await db.query("SELECT enrolled FROM user_mfa WHERE user_id = $1", [userId]);
     return { enrolled: result.rows[0] ? result.rows[0].enrolled === true : false };
@@ -52,17 +70,20 @@ async function getMfaStatus(db, userId) {
 // returned exactly once, here; it is never returned again. An already
 // enrolled account must disable MFA first (409 at the route).
 // Re-enrolling over an abandoned unenrolled row replaces its secret.
+// The row records the current key version, so a later rotation knows
+// which key encrypted it (design §3.2).
 async function startEnrollment(db, userId, email) {
     const key = requireMfaKey();
     const secret = generateTotpSecret();
     const encrypted = encryptTotpSecret(secret, key);
     await db.query(
-        `INSERT INTO user_mfa(user_id, secret_encrypted, enrolled, enrolled_at, updated_at)
-         VALUES ($1, $2, FALSE, NULL, now())
+        `INSERT INTO user_mfa(user_id, secret_encrypted, key_version, enrolled, enrolled_at, updated_at)
+         VALUES ($1, $2, $3, FALSE, NULL, now())
          ON CONFLICT (user_id) DO UPDATE
          SET secret_encrypted = EXCLUDED.secret_encrypted,
+             key_version = EXCLUDED.key_version,
              enrolled = FALSE, enrolled_at = NULL, updated_at = now()`,
-        [userId, encrypted]
+        [userId, encrypted, getCurrentMfaKeyVersion()]
     );
     return { otpauthUrl: buildOtpAuthUrl({ label: email, secret }), secret };
 }
@@ -73,7 +94,9 @@ async function startEnrollment(db, userId, email) {
 // are marked used first, so only the new set is live. A wrong code
 // changes nothing.
 async function confirmEnrollment(db, userId, code) {
-    const key = requireMfaKey();
+    // Fail closed early when no encryption key is configured; the
+    // per-row decrypt below (decryptRowSecret) also fails closed.
+    requireMfaKey();
     const client = await db.connect();
     try {
         await client.query("BEGIN");
@@ -84,7 +107,7 @@ async function confirmEnrollment(db, userId, code) {
             return { ok: false, reason: "no-user" };
         }
         const mfa = await client.query(
-            "SELECT secret_encrypted, enrolled FROM user_mfa WHERE user_id = $1 FOR UPDATE",
+            "SELECT secret_encrypted, key_version, enrolled FROM user_mfa WHERE user_id = $1 FOR UPDATE",
             [userId]);
         const row = mfa.rows[0];
         if (!row || row.enrolled) {
@@ -93,7 +116,7 @@ async function confirmEnrollment(db, userId, code) {
         }
         let secret;
         try {
-            secret = decryptTotpSecret(row.secret_encrypted, key);
+            secret = decryptRowSecret(row);
         } catch {
             await client.query("ROLLBACK");
             throw new MfaUnavailableError();
@@ -167,7 +190,9 @@ async function issueMfaChallenge(db, userId) {
 // impossible, and the whole second factor fails closed rather than
 // silently degrading.
 async function verifyMfaChallenge(db, challengeToken, code) {
-    const key = requireMfaKey();
+    // Fail closed early when no encryption key is configured; the
+    // per-row decrypt below (decryptRowSecret) also fails closed.
+    requireMfaKey();
     const tokenHash = hashMfaChallengeToken(challengeToken);
     const client = await db.connect();
     try {
@@ -192,7 +217,7 @@ async function verifyMfaChallenge(db, challengeToken, code) {
             return { ok: false, reason: "challenge" };
         }
         const mfa = await client.query(
-            "SELECT secret_encrypted, enrolled FROM user_mfa WHERE user_id = $1",
+            "SELECT secret_encrypted, key_version, enrolled FROM user_mfa WHERE user_id = $1",
             [user.id]);
         const row = mfa.rows[0];
         if (!row || !row.enrolled) {
@@ -201,7 +226,7 @@ async function verifyMfaChallenge(db, challengeToken, code) {
         }
         let secret;
         try {
-            secret = decryptTotpSecret(row.secret_encrypted, key);
+            secret = decryptRowSecret(row);
         } catch {
             await client.query("ROLLBACK");
             throw new MfaUnavailableError();
@@ -263,7 +288,9 @@ async function verifyMfaChallenge(db, challengeToken, code) {
 // runs under a lock), then verify the TOTP code. Shared by regenerate
 // and disable; both require the password AND a valid code.
 async function verifyPasswordAndTotp(db, userId, password, code) {
-    const key = requireMfaKey();
+    // Fail closed early when no encryption key is configured; the
+    // per-row decrypt below (decryptRowSecret) also fails closed.
+    requireMfaKey();
     const userResult = await db.query(
         "SELECT id, password_hash FROM users WHERE id = $1", [userId]);
     const user = userResult.rows[0];
@@ -280,14 +307,14 @@ async function verifyPasswordAndTotp(db, userId, password, code) {
         return { ok: false, reason: "password" };
     }
     const mfa = await db.query(
-        "SELECT secret_encrypted, enrolled FROM user_mfa WHERE user_id = $1", [userId]);
+        "SELECT secret_encrypted, key_version, enrolled FROM user_mfa WHERE user_id = $1", [userId]);
     const row = mfa.rows[0];
     if (!row || !row.enrolled) {
         return { ok: false, reason: "code" };
     }
     let secret;
     try {
-        secret = decryptTotpSecret(row.secret_encrypted, key);
+        secret = decryptRowSecret(row);
     } catch {
         throw new MfaUnavailableError();
     }
@@ -345,7 +372,9 @@ async function regenerateRecoveryCodes(db, userId, password, code) {
 // this change. sessionId is the current session's id, validated as a
 // 36-character UUID by authMiddleware before it reaches the route.
 async function disableMfa(db, userId, password, code, sessionId) {
-    const key = requireMfaKey();
+    // Fail closed early when no encryption key is configured; the
+    // per-row decrypt below (decryptRowSecret) also fails closed.
+    requireMfaKey();
     const userResult = await db.query(
         "SELECT id, password_hash FROM users WHERE id = $1", [userId]);
     const user = userResult.rows[0];
@@ -362,14 +391,14 @@ async function disableMfa(db, userId, password, code, sessionId) {
         return { ok: false, reason: "password" };
     }
     const mfa = await db.query(
-        "SELECT secret_encrypted, enrolled FROM user_mfa WHERE user_id = $1", [userId]);
+        "SELECT secret_encrypted, key_version, enrolled FROM user_mfa WHERE user_id = $1", [userId]);
     const row = mfa.rows[0];
     if (!row || !row.enrolled) {
         return { ok: false, reason: "code" };
     }
     let secret;
     try {
-        secret = decryptTotpSecret(row.secret_encrypted, key);
+        secret = decryptRowSecret(row);
     } catch {
         throw new MfaUnavailableError();
     }
