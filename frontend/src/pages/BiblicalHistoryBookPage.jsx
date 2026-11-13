@@ -1,15 +1,17 @@
 // One book: its introduction, its events in narrative order, the event
 // timeline, and (on the event route) the open event panel.
 //
-// The event route is a view of this page, not a separate page: the event
-// exists in the context of a book, so landing directly on
-// /biblical-history/:book/:event shows the book's timeline with the
-// event's panel open, and Back returns to the book. Unknown book slugs,
-// and events that do not exist or are not connected to this book, render
-// the 404 page — never a blank page, never another book's event.
+// The book URL itself (/biblical-history/:book) no longer renders this
+// page: it redirects to the book's first published event, or renders
+// this page's Upcoming state when the book has no published events.
+// The event route is the study page — the book's timeline with the
+// event's panel open. Closing the panel returns to the book directory
+// on the index page. Unknown book slugs, and events that do not exist
+// or are not connected to this book, render the 404 page — never a
+// blank page, never another book's event.
 import { useCallback } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Header from "../components/Header/Header";
+import LandingHeader from "../components/LandingHeader";
 import Seo from "../components/Seo";
 import HistoryBookHeader from "../components/History/HistoryBookHeader";
 import HistoryDateLabel from "../components/History/HistoryDateLabel";
@@ -34,6 +36,7 @@ import {
 } from "../utils/seo";
 import { formatScriptureRange } from "../utils/historyContent";
 import NotFoundPage from "./NotFoundPage";
+import "./LandingPage.css";
 import "../components/History/History.css";
 
 export default function BiblicalHistoryBookPage() {
@@ -50,8 +53,19 @@ export default function BiblicalHistoryBookPage() {
         ? events.find((entry) => entry.id === openEvent.id)
         : null;
 
+    // Closing the panel returns to the book directory on the index
+    // page. It must not navigate to the book URL: that URL redirects
+    // to the book's first published event, so closing from Creation
+    // would reopen Creation's panel (and closing from any later event
+    // would switch to Creation) instead of closing.
+    //
+    // The book whose event was just open travels in location state:
+    // the index opens its directory at that book and returns focus to
+    // the book's entry there — the #161 focus return, restored at the
+    // index level now that the book page is retired. Without the state
+    // the index focuses nothing and focus would fall to BODY.
     const closePanel = useCallback(() => {
-        navigate(historyPath(bookSlug));
+        navigate("/biblical-history#history-books", { state: { focusBook: bookSlug } });
     }, [navigate, bookSlug]);
 
     if (!bookTitle) {
@@ -68,27 +82,63 @@ export default function BiblicalHistoryBookPage() {
         ? { ...openEvent, bookNote: openEventEntry.bookNote }
         : openEvent;
 
+    const firstEvent = events[0] ?? null;
+
     const title = openEvent
         ? historyEventTitle(openEvent.title, formatScriptureRange(openEvent.primaryScripture))
         : historyBookTitle(bookTitle);
     const description = openEvent
         ? historyEventDescription(openEvent.title, formatScriptureRange(openEvent.primaryScripture))
         : historyBookDescription(bookTitle, events.length);
+    // Canonical never points at a book-page URL: the book URL has no
+    // view of its own. An open event canonicalizes to its event URL;
+    // the Upcoming stub canonicalizes to the index — it is not in the
+    // sitemap and must not mint a book-page URL of its own.
     const canonical = pageUrl(
-        openEvent ? historyPath(bookSlug, eventSlug(openEvent.id)) : historyPath(bookSlug),
+        openEvent ? historyPath(bookSlug, eventSlug(openEvent.id)) : "/biblical-history",
     );
 
     return (
-        <div className="min-h-screen bg-[var(--bg-page)] pt-[58px] text-[var(--text-primary)]">
+        <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)]">
             <Seo title={title} description={description} canonical={canonical} />
-            <Header />
-            <main className="mx-auto max-w-3xl px-6 py-8">
+            {/*
+              The study experience uses the landing navbar, not the
+              reader header: logo left, Explore dropdown before the
+              account area, profile/name or Sign In / Sign Up far right
+              — no search, translation, layout, or commentary controls.
+              The header is the About-page treatment (hero + solid):
+              hero for the Explore dropdown and account actions, solid
+              so it stays readable over the page instead of transparent
+              over a photo. It lives in its own public-page wrapper so
+              the landing navbar's scoped styles and variables apply
+              without restyling the study interface below it.
+            */}
+            <div className="public-page">
+                <LandingHeader hero solid />
+            </div>
+            <main id="landing-main" tabIndex={-1} className="mx-auto max-w-3xl px-6 py-8">
                 <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--text-muted)]">
                     <Link to="/biblical-history#history-books" className="text-[var(--color-brand)]">
                         All books
                     </Link>
                     {" / "}
-                    <span aria-current="page">{bookTitle}</span>
+                    {firstEvent ? (
+                        <Link
+                            to={historyPath(bookSlug, eventSlug(firstEvent.id))}
+                            className="text-[var(--color-brand)]"
+                            aria-current={openEvent ? undefined : "page"}
+                        >
+                            {bookTitle}
+                        </Link>
+                    ) : (
+                        <span aria-current="page">{bookTitle}</span>
+                    )}
+                    {openEvent && (
+                        <>
+                            {" / "}
+                            <span aria-current="page">{openEvent.title}</span>
+                        </>
+                    )}
                 </nav>
 
                 {book ? (

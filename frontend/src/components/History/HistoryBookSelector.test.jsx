@@ -18,7 +18,10 @@ test("shows one canonical testament at a time, book names only, with a scroll hi
     const user = userEvent.setup();
     mount();
     expect(screen.getAllByRole("link")).toHaveLength(39);
-    expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis");
+    // Genesis has published events, so its chip opens the first one
+    // directly; the other books keep their book URL (Upcoming page).
+    expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+    expect(screen.getByRole("link", { name: "Exodus" })).toHaveAttribute("href", "/biblical-history/exodus");
     expect(screen.queryByText("Upcoming")).toBeNull();
     expect(screen.queryByText(/event/)).toBeNull();
     expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
@@ -27,6 +30,13 @@ test("shows one canonical testament at a time, book names only, with a scroll hi
     expect(screen.getAllByRole("link")).toHaveLength(27);
     expect(screen.getByRole("link", { name: "Matthew" })).toHaveAttribute("href", "/biblical-history/matthew");
     expect(screen.getByRole("link", { name: "Revelation" })).toHaveAttribute("href", "/biblical-history/revelation");
+    expect(screen.queryByText("Genesis")).toBeNull();
+});
+
+test("starts on the testament given by initialTestament", () => {
+    mount({ initialTestament: "NT" });
+    expect(screen.getByRole("tab", { name: /New Testament/ })).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByRole("link", { name: "Matthew" })).toBeInTheDocument();
     expect(screen.queryByText("Genesis")).toBeNull();
 });
 

@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import LandingHeader from "../components/LandingHeader";
 import HistoryBookSelector from "../components/History/HistoryBookSelector";
 import Seo from "../components/Seo";
 import useHistoryHomeMotion from "../hooks/useHistoryHomeMotion";
+import { listBooks } from "../services/historyService";
 import { historyIndexDescription, historyIndexTitle, historyPath, pageUrl } from "../utils/seo";
 import "./LandingPage.css";
 import "../components/History/History.css";
@@ -28,8 +29,41 @@ function scrollToStart(event) {
 export default function BiblicalHistoryIndexPage() {
     const pageRef = useRef(null);
     const browseButtonRef = useRef(null);
-    const [booksOpen, setBooksOpen] = useState(false);
+    const location = useLocation();
+    // Panel-close return: the study page navigates here with the book
+    // whose event was just open in location state, so focus can return
+    // to that book's entry in the directory instead of falling to BODY
+    // — the #161 focus return, restored at the index level now that
+    // the book page is retired. The id is validated against the book
+    // list, so only a real book opens the drawer and takes focus; an
+    // unknown id falls back to the directory heading, and an ordinary
+    // visit (no state) focuses nothing.
+    const focusBookId = typeof location.state?.focusBook === "string" ? location.state.focusBook : null;
+    const focusBook = focusBookId ? listBooks().find((book) => book.id === focusBookId) ?? null : null;
+    const [booksOpen, setBooksOpen] = useState(Boolean(focusBook));
+    const focusReturnedRef = useRef(false);
     useHistoryHomeMotion(pageRef);
+
+    useEffect(() => {
+        if (!focusBookId || focusReturnedRef.current) return;
+        focusReturnedRef.current = true;
+        // The drawer is open for this arrival, so the book's entry is
+        // in the DOM (on the book's testament tab). Focus it without
+        // scrolling: the hash scroll already landed the section, and
+        // focusing must not move it. No entry (unknown id) falls back
+        // to the directory heading, which carries tabIndex -1 for this.
+        // The id is re-validated against the book list here, so the
+        // selector only ever runs with a real book slug.
+        const book = listBooks().find((entry) => entry.id === focusBookId) ?? null;
+        const target = book
+            ? document.querySelector(`[data-history-book="${book.id}"]`)
+            : null;
+        if (target instanceof HTMLElement) {
+            target.focus({ preventScroll: true });
+            return;
+        }
+        document.getElementById("history-books-heading")?.focus({ preventScroll: true });
+    }, [focusBookId]);
 
     const closeBooks = () => {
         setBooksOpen(false);
@@ -109,7 +143,7 @@ export default function BiblicalHistoryIndexPage() {
                     <header data-history-reveal>
                         <p className="history-home-eyebrow">The complete collection</p>
                         <div className="history-scripture-heading-row">
-                            <h2 id="history-books-heading">Explore by Scripture</h2>
+                            <h2 id="history-books-heading" tabIndex={-1}>Explore by Scripture</h2>
                             <button
                                 ref={browseButtonRef}
                                 type="button"
@@ -130,7 +164,7 @@ export default function BiblicalHistoryIndexPage() {
                         </div>
                     </header>
                     <div data-history-books-reveal>
-                        <HistoryBookSelector open={booksOpen} onClose={closeBooks} />
+                        <HistoryBookSelector open={booksOpen} onClose={closeBooks} initialTestament={focusBook?.testament ?? "OT"} />
                     </div>
                 </section>
             </main>

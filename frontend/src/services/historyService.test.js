@@ -11,6 +11,7 @@ import {
     getBookTitle,
     getEvent,
     getEventBySlug,
+    getFirstPublishedEvent,
     listBooks,
     listEventsForBook,
     readerLinkFor,
@@ -104,6 +105,20 @@ describe("book/event lookups in a production build", () => {
         // No other book has generated content yet.
         expect(getBook("exodus")).toBeNull();
         expect(listEventsForBook("exodus")).toEqual([]);
+    });
+});
+
+describe("getFirstPublishedEvent", () => {
+    it("returns the first published event by narrative order for Genesis", () => {
+        const first = getFirstPublishedEvent("genesis");
+        expect(first).not.toBeNull();
+        expect(first.id).toBe("event-creation");
+        expect(first.title).toBe("Creation");
+    });
+    it("returns null for a book with no published events and for an unknown book", () => {
+        expect(getFirstPublishedEvent("exodus")).toBeNull();
+        expect(getFirstPublishedEvent("revelation")).toBeNull();
+        expect(getFirstPublishedEvent("not-a-book")).toBeNull();
     });
 });
 

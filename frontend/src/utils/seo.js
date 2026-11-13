@@ -81,8 +81,11 @@ export function pageUrl(path, siteUrl = getSiteUrl()) {
 }
 
 // Biblical History helpers. Routes use book/event slugs
-// (/biblical-history/genesis, /biblical-history/genesis/creation);
-// reader links still go through chapterPath (display names).
+// (/biblical-history/genesis/creation); the book-only path
+// (/biblical-history/genesis) is the redirect source — it sends books
+// with published events to their first event and serves the Upcoming
+// page for books without any. Reader links still go through
+// chapterPath (display names).
 export function historyPath(bookSlug, eventSlug) {
     if (eventSlug) return `/biblical-history/${bookSlug}/${eventSlug}`;
     if (bookSlug) return `/biblical-history/${bookSlug}`;

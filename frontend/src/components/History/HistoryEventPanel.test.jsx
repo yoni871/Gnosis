@@ -10,12 +10,11 @@ import { useState } from "react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import { ThemeProvider } from "../../context/ThemeContext";
-import BiblicalHistoryBookPage from "../../pages/BiblicalHistoryBookPage";
+import BiblicalHistoryBookRedirect from "../../pages/BiblicalHistoryBookRedirect";
 import BiblicalHistoryEventPage from "../../pages/BiblicalHistoryEventPage";
+import BiblicalHistoryIndexPage from "../../pages/BiblicalHistoryIndexPage";
 import HistoryEventPanel from "./HistoryEventPanel";
 import { loadEventSections } from "../../services/historyService";
-
-vi.mock("../components/Header/Header", () => ({ default: () => null }));
 
 // The companion fetches the passage with the reader's chapter loader;
 // the fixture verses cover the mocked range (Genesis 1:1–2:3).
@@ -252,14 +251,19 @@ describe("HistoryEventPanel", () => {
     });
 });
 
-describe("HistoryEventPanel — focus return across the close navigation (D2)", () => {
+describe("HistoryEventPanel — close returns focus to the index book entry", () => {
+    // The routes mirror App.jsx: the book route is the redirect, the
+    // event route is the study page, and the index is the real page —
+    // these tests pin the close destination AND the focus return to
+    // the book's entry in the index directory.
     function renderBookPage(path) {
         return render(
             <MemoryRouter initialEntries={[path]}>
                 <ThemeProvider>
                     <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
                         <Routes>
-                            <Route path="/biblical-history/:book" element={<BiblicalHistoryBookPage />} />
+                            <Route path="/biblical-history" element={<BiblicalHistoryIndexPage />} />
+                            <Route path="/biblical-history/:book" element={<BiblicalHistoryBookRedirect />} />
                             <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryEventPage />} />
                         </Routes>
                     </AuthContext.Provider>
@@ -268,25 +272,29 @@ describe("HistoryEventPanel — focus return across the close navigation (D2)", 
         );
     }
 
-    it("returns focus to the event link after mouse-open + Escape close", async () => {
+    it("returns to the index after mouse-open + Escape close — focus lands on the Genesis entry", async () => {
         const user = userEvent.setup();
         renderBookPage("/biblical-history/genesis");
+        // The book URL redirects to the first event, so the panel is
+        // already open; the event link is still in the shell behind it.
         const link = document.getElementById("history-event-link-creation");
         expect(link).not.toBeNull();
         await user.click(link);
         await waitFor(() => expect(screen.getByRole("dialog", { name: "Creation" })).toBeInTheDocument());
         await user.keyboard("{Escape}");
         await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
-        // The close navigation unmounts and remounts the book page, so
-        // the link is a new node — focus must land on the new node, not
-        // the detached one the panel captured on open.
-        const relink = document.getElementById("history-event-link-creation");
-        expect(relink).not.toBeNull();
-        expect(relink).not.toBe(link);
-        await waitFor(() => expect(document.activeElement).toBe(relink));
+        // Close lands on the index book directory, not the retired book
+        // page — so there is no event link left to return focus to.
+        // Focus returns to the Genesis entry in the directory instead.
+        expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
+        expect(document.getElementById("history-event-link-creation")).toBeNull();
+        const genesisEntry = document.querySelector('[data-history-book="genesis"]');
+        expect(genesisEntry).not.toBeNull();
+        await waitFor(() => expect(genesisEntry).toHaveFocus());
+        expect(document.activeElement).not.toBe(document.body);
     });
 
-    it("returns focus to the event link after keyboard-open + close-button close", async () => {
+    it("returns to the index after keyboard-open + close-button close — focus lands on the Genesis entry", async () => {
         const user = userEvent.setup();
         renderBookPage("/biblical-history/genesis");
         const link = document.getElementById("history-event-link-creation");
@@ -295,9 +303,11 @@ describe("HistoryEventPanel — focus return across the close navigation (D2)", 
         await waitFor(() => expect(screen.getByRole("dialog", { name: "Creation" })).toBeInTheDocument());
         await user.click(screen.getByTestId("history-panel-close"));
         await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
-        await waitFor(() =>
-            expect(document.activeElement).toBe(document.getElementById("history-event-link-creation")),
-        );
+        expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
+        const genesisEntry = document.querySelector('[data-history-book="genesis"]');
+        expect(genesisEntry).not.toBeNull();
+        await waitFor(() => expect(genesisEntry).toHaveFocus());
+        expect(document.activeElement).not.toBe(document.body);
     });
 });
 

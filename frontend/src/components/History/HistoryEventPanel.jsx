@@ -150,6 +150,14 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
             // open has no opener node, and the id lookup covers that too.)
             // Fall back to the captured node only if it is still mounted
             // (the no-route-change case, e.g. a state-toggled panel).
+            //
+            // On the close navigation itself this lookup finds nothing:
+            // the book page is retired, so the panel closes to the index
+            // book directory. That path is owned by the index page —
+            // closePanel passes the open book in location state and
+            // BiblicalHistoryIndexPage opens the directory at that book
+            // and focuses its entry (heading fallback when there is no
+            // entry). This cleanup only covers the no-navigation case.
             const opener = document.getElementById(`history-event-link-${eventSlug(event.id)}`);
             if (opener) {
                 opener.focus();

@@ -6,9 +6,9 @@ import AuthContext from "../context/AuthContext";
 import { ThemeProvider } from "../context/ThemeContext";
 import BiblicalHistoryIndexPage from "./BiblicalHistoryIndexPage";
 
-function renderIndex() {
+function renderIndex(initialEntries = ["/biblical-history"]) {
     return render(
-        <MemoryRouter initialEntries={["/biblical-history"]}>
+        <MemoryRouter initialEntries={initialEntries}>
             <ThemeProvider>
                 <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
                     <BiblicalHistoryIndexPage />
@@ -47,11 +47,43 @@ describe("BiblicalHistoryIndexPage", () => {
         expect(screen.getByRole("link", { name: "Explore Creation" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
         expect(screen.getByRole("heading", { name: "Explore by Scripture" })).toBeInTheDocument();
         await user.click(screen.getByRole("button", { name: /Browse Books/ }));
-        expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis");
+        // Genesis opens its first published event directly; the book
+        // URL would redirect there anyway.
+        expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
     });
 
     it("sets indexable metadata for the index page", () => {
         renderIndex();
         expect(document.title).toBe("Biblical History | Gnosis");
+    });
+
+    it("opens the directory at the book named in panel-close state and focuses its entry", () => {
+        // The target is the book that was open, not a hardcoded
+        // Genesis: Exodus has no published events, so only the
+        // location-state mechanism can land focus on its entry.
+        renderIndex([{ pathname: "/biblical-history", hash: "#history-books", state: { focusBook: "exodus" } }]);
+        expect(screen.getByRole("button", { name: /Close Books/ })).toHaveAttribute("aria-expanded", "true");
+        expect(document.querySelector('[data-history-book="exodus"]')).toHaveFocus();
+        expect(document.activeElement).not.toBe(document.body);
+    });
+
+    it("opens the New Testament tab for a panel-close return to an NT book", () => {
+        renderIndex([{ pathname: "/biblical-history", hash: "#history-books", state: { focusBook: "matthew" } }]);
+        expect(screen.getByRole("tab", { name: /New Testament/ })).toHaveAttribute("aria-selected", "true");
+        expect(document.querySelector('[data-history-book="matthew"]')).toHaveFocus();
+        expect(document.activeElement).not.toBe(document.body);
+    });
+
+    it("falls back to the directory heading when the panel-close book has no entry", () => {
+        renderIndex([{ pathname: "/biblical-history", hash: "#history-books", state: { focusBook: "nosuchbook" } }]);
+        expect(screen.getByRole("button", { name: /Browse Books/ })).toHaveAttribute("aria-expanded", "false");
+        expect(screen.getByRole("heading", { name: "Explore by Scripture" })).toHaveFocus();
+        expect(document.activeElement).not.toBe(document.body);
+    });
+
+    it("focuses nothing on an ordinary visit without panel-close state", () => {
+        renderIndex();
+        expect(screen.getByRole("button", { name: /Browse Books/ })).toHaveAttribute("aria-expanded", "false");
+        expect(document.activeElement).toBe(document.body);
     });
 });

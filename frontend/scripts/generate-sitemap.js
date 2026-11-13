@@ -11,8 +11,9 @@
 // data ever changes, recount from the import source and update the
 // manifest; this script then picks the new pages up automatically.
 //
-// Biblical History URLs (index, book pages with published content,
-// published event URLs) come from the PUBLISHED-ONLY generated manifest
+// Biblical History URLs (index and published event URLs — never
+// book-page URLs, which redirect to the book's first published event)
+// come from the PUBLISHED-ONLY generated manifest
 // (frontend/src/generated/history/manifest.json) and the generated book
 // records — never from the source tree, so an unpublished event cannot
 // appear by construction. This REVERSES the earlier standing decision
