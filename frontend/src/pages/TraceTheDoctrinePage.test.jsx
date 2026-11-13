@@ -38,7 +38,7 @@ describe("TraceTheDoctrinePage", () => {
         }
     });
 
-    it("features the Trinity with its passages, timeline, and an anchor Begin Exploring action — not a workspace link", () => {
+    it("features the Trinity with its passages, timeline, and a Preview workspace link", () => {
         renderPage();
         expect(screen.getByRole("heading", { level: 2, name: "The Trinity" })).toBeInTheDocument();
         expect(screen.getByText("Trace biblical passages and their interpretation from the early Church through major theological controversies and councils.")).toBeInTheDocument();
@@ -46,19 +46,20 @@ describe("TraceTheDoctrinePage", () => {
         expect(screen.getByRole("link", { name: "Matthew 28:19" })).toHaveAttribute("href", "/bible/Matthew/28");
         expect(screen.getByText("Historical Timeline")).toBeInTheDocument();
         const action = screen.getByRole("link", { name: /Begin Exploring/ });
-        expect(action).toHaveAttribute("href", "#doctrines");
-        expect(action.getAttribute("href")).not.toMatch(/study|workspace/);
-        expect(screen.getByText("The study workspace is not yet available — this page introduces the planned study.")).toBeInTheDocument();
+        expect(action).toHaveAttribute("href", "/trace-the-doctrine/trinity");
+        expect(screen.getByText("The Trinity study workspace is available as a preview — its historical entries are demonstration data pending research.")).toBeInTheDocument();
     });
 
-    it("lists all six planned doctrines, each with a Coming Soon state", () => {
+    it("lists all six planned doctrines, the Trinity as Preview and the other five Coming Soon", () => {
         renderPage();
         const directory = document.getElementById("doctrines");
         for (const title of ["The Trinity", "The Incarnation", "Salvation", "The Holy Spirit", "The Church", "The Resurrection"]) {
             expect(within(directory).getByRole("heading", { level: 3, name: title })).toBeInTheDocument();
         }
-        // One pill on the featured panel plus one per directory card.
-        expect(screen.getAllByText("Coming Soon")).toHaveLength(7);
+        // One Preview pill on the featured panel, one on the Trinity
+        // card, and one Coming Soon pill per remaining directory card.
+        expect(screen.getAllByText("Preview")).toHaveLength(2);
+        expect(screen.getAllByText("Coming Soon")).toHaveLength(5);
         expect(screen.getByText("Planned categories for future studies. Each will trace its doctrine from the biblical text through centuries of Christian thought — none is published yet.")).toBeInTheDocument();
     });
 
