@@ -47,8 +47,12 @@ export function mountLandingMotion(root) {
                 start: "top top", end: () => `+=${Math.round(innerHeight * (heroPin ? .6 : .55))}`,
                 pin: heroPin, pinSpacing: true, anticipatePin: heroPin ? 1 : 0,
             })
-                .to(select(".landing-hero-img"), { scale: mobile ? 1.035 : 1.10, transformOrigin: "50% 65%", duration: 1.2 }, 0)
-                .to(select(".landing-hero-copy"), { y: mobile ? -50 : -126, opacity: 0, duration: .7 }, .12)
+                .to(select(".landing-hero-img"), { scale: mobile ? 1.035 : 1.10, yPercent: mobile ? -1 : -4, transformOrigin: "50% 65%", duration: 1.2 }, 0)
+                .to(all(".landing-hero-copy h1 span"), { y: mobile ? -34 : -82, stagger: .1, duration: .7 }, .06)
+                .to(select(".landing-hero-copy > p:not(.public-eyebrow)"), { y: mobile ? -28 : -58, opacity: .35, duration: .62 }, .16)
+                .to(select(".landing-hero-ctas"), { y: mobile ? -20 : -42, opacity: 0, duration: .48 }, .25)
+                .to(select(".landing-hero-copy .public-eyebrow"), { y: mobile ? -18 : -34, opacity: 0, duration: .42 }, .28)
+                .to(select(".landing-hero-copy"), { opacity: 0, duration: .3 }, .55)
                 .to(hero, { "--hero-ivory-transition": 1, duration: .5 }, .7);
 
             const purpose = timeline(select(".landing-purpose"), { start: "top 78%", end: "bottom 55%" });
@@ -62,9 +66,15 @@ export function mountLandingMotion(root) {
 
             const showcase = timeline(select(".landing-bible-inner"), { start: "top 88%", end: "bottom 65%" });
             showcase.fromTo(select(".landing-device-showcase"), {
-                scale: mobile ? .875 : .75, y: mobile ? 50 : 112, x: mobile ? 0 : -36,
-            }, { scale: 1, x: 0, y: 0, duration: 1.3, ease: "power2.inOut" }, 0)
+                scale: mobile ? .875 : .75, y: mobile ? 50 : 112, x: mobile ? 0 : -36, rotateY: mobile ? 0 : -5, transformPerspective: 1100,
+            }, { scale: 1, x: 0, y: 0, rotateY: 0, duration: 1.3, ease: "power2.inOut" }, 0)
                 .fromTo(select(".landing-bible-copy"), { y: 48 }, { y: 0, duration: 1 }, .12);
+
+            // A short, scroll-linked exit gives the reader and device a sense
+            // of depth without adding another pinned chapter or obscuring copy.
+            timeline(select(".landing-bible-inner"), { start: "bottom 70%", end: "bottom 25%" })
+                .to(select(".landing-device-showcase"), { y: mobile ? -16 : -48, scale: mobile ? .985 : .96, duration: .7 }, 0)
+                .to(select(".landing-bible-copy"), { y: mobile ? -10 : -26, duration: .55 }, .08);
 
             const diagram = select(".landing-beyond-inner");
             const diagramPin = desktop && diagram.offsetHeight < innerHeight - 80;

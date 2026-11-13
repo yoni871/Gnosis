@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import LandingHeader from "../components/LandingHeader";
+import HistoryBookSelector from "../components/History/HistoryBookSelector";
 import Seo from "../components/Seo";
 import useHistoryHomeMotion from "../hooks/useHistoryHomeMotion";
 import { historyIndexDescription, historyIndexTitle, historyPath, pageUrl } from "../utils/seo";
@@ -97,10 +98,14 @@ export default function BiblicalHistoryIndexPage() {
                     </article>
                 </section>
 
-                <section className="history-home-more" aria-labelledby="history-more-heading" data-history-reveal>
-                    <div><p className="history-home-eyebrow">The complete collection</p><h2 id="history-more-heading">Explore More</h2></div>
-                    <p>Or explore by Bible book.</p>
-                    <Link className="history-home-books-link" to="/biblical-history/books"><span>Browse Books</span><span aria-hidden="true">66 books&nbsp; →</span></Link>
+                <section id="history-books" className="history-scripture" aria-labelledby="history-books-heading">
+                    <header data-history-reveal>
+                        <div><p className="history-home-eyebrow">The complete collection</p><h2 id="history-books-heading">Explore by Scripture</h2></div>
+                        <p>Choose a book of the Bible to explore its historical context and events.</p>
+                    </header>
+                    <div data-history-books-reveal>
+                        <HistoryBookSelector />
+                    </div>
                 </section>
             </main>
         </div>

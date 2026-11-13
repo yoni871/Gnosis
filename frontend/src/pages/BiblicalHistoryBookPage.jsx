@@ -84,7 +84,7 @@ export default function BiblicalHistoryBookPage() {
             <Header />
             <main className="mx-auto max-w-3xl px-6 py-8">
                 <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--text-muted)]">
-                    <Link to="/biblical-history/books" className="text-[var(--color-brand)]">
+                    <Link to="/biblical-history#history-books" className="text-[var(--color-brand)]">
                         All books
                     </Link>
                     {" / "}
