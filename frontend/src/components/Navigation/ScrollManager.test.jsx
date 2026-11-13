@@ -65,7 +65,7 @@ describe("ScrollManager", () => {
     test("scrolls to #history-books on a direct visit", () => {
         render(<MemoryRouter initialEntries={["/biblical-history#history-books"]}><TestRoutes /></MemoryRouter>);
         expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
-            behavior: "smooth",
+            behavior: "instant",
             block: "start",
         });
         expect(window.scrollTo).not.toHaveBeenCalled();
@@ -74,7 +74,7 @@ describe("ScrollManager", () => {
     test("scrolls to #history-books through the retired /books redirect", () => {
         render(<MemoryRouter initialEntries={["/biblical-history/books"]}><TestRoutes /></MemoryRouter>);
         expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
-            behavior: "smooth",
+            behavior: "instant",
             block: "start",
         });
         expect(window.scrollTo).not.toHaveBeenCalled();
@@ -84,7 +84,7 @@ describe("ScrollManager", () => {
         render(<MemoryRouter initialEntries={["/biblical-history/genesis"]}><TestRoutes /></MemoryRouter>);
         await userEvent.click(screen.getByRole("link", { name: "All books" }));
         expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
-            behavior: "smooth",
+            behavior: "instant",
             block: "start",
         });
         expect(window.scrollTo).not.toHaveBeenCalled();
@@ -102,5 +102,42 @@ describe("ScrollManager", () => {
             behavior: "instant",
             block: "start",
         });
+    });
+
+    test("retries until #history-books appears (lazy route chunk)", () => {
+        const frames = [];
+        vi.stubGlobal("requestAnimationFrame", (callback) => {
+            frames.push(callback);
+            return frames.length;
+        });
+        vi.stubGlobal("cancelAnimationFrame", vi.fn());
+
+        // The route is still in its Suspense fallback: no target yet.
+        const { rerender } = render(
+            <MemoryRouter initialEntries={["/biblical-history#history-books"]}>
+                <ScrollManager />
+                <Routes>
+                    <Route path="/biblical-history" element={<div>Loading…</div>} />
+                </Routes>
+            </MemoryRouter>
+        );
+        expect(window.HTMLElement.prototype.scrollIntoView).not.toHaveBeenCalled();
+        expect(frames).toHaveLength(1);
+
+        // The lazy chunk resolves and the section appears.
+        rerender(
+            <MemoryRouter initialEntries={["/biblical-history#history-books"]}>
+                <ScrollManager />
+                <Routes>
+                    <Route path="/biblical-history" element={<section id="history-books"><h2>Explore by Scripture</h2></section>} />
+                </Routes>
+            </MemoryRouter>
+        );
+        frames.forEach((callback) => callback());
+        expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
+            behavior: "instant",
+            block: "start",
+        });
+        expect(window.scrollTo).not.toHaveBeenCalled();
     });
 });
