@@ -8,24 +8,14 @@ import { doctrineIndexDescription, doctrineIndexTitle, pageUrl } from "../utils/
 import "./LandingPage.css";
 import "./TraceTheDoctrinePage.css";
 
-// Trace the Doctrine homepage ONLY. The interactive doctrine study
-// workspace does not exist yet and no Trinity study content has been
-// written, so nothing on this page may imply otherwise: "Begin
-// Exploring" scrolls to the directory of planned categories, every
-// category carries a Coming Soon state, and the search covers only
-// the six planned categories listed on this page.
+// Trace the Doctrine homepage. The Trinity study workspace exists
+// as a preview (route /trace-the-doctrine/trinity): "Begin Exploring"
+// links to it, and the featured panel carries a Preview pill. The
+// other five categories are still planned only — each carries a Coming
+// Soon state, and the search covers only the six planned categories
+// listed on this page.
 
 const ERAS = ["Scripture", "Early Church", "Councils", "Reformation", "Today"];
-
-function scrollToDoctrines(event) {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
-    const target = document.getElementById("doctrines");
-    if (!target?.scrollIntoView) return;
-    event.preventDefault();
-    if (window.location.hash !== "#doctrines") window.history.pushState(null, "", "#doctrines");
-    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    target.scrollIntoView({ behavior: reduce ? "instant" : "smooth", block: "start" });
-}
 
 function useReveal(rootRef) {
     useEffect(() => {
@@ -129,8 +119,8 @@ export default function TraceTheDoctrinePage() {
                             <p className="doctrine-eyebrow doctrine-eyebrow--light">Featured Doctrine</p>
                             <h2 id="doctrine-featured-heading">The Trinity</h2>
                             <p className="doctrine-featured-desc">Trace biblical passages and their interpretation from the early Church through major theological controversies and councils.</p>
-                            <p className="doctrine-featured-soon"><span className="doctrine-pill doctrine-pill--light">Coming Soon</span> The study workspace is not yet available — this page introduces the planned study.</p>
-                            <a className="doctrine-featured-action" href="#doctrines" onClick={scrollToDoctrines}>Begin Exploring <span aria-hidden="true">↓</span></a>
+                            <p className="doctrine-featured-soon"><span className="doctrine-pill doctrine-pill--light">Preview</span> The Trinity study workspace is available as a preview — its historical entries are demonstration data pending research.</p>
+                            <Link className="doctrine-featured-action" to="/trace-the-doctrine/trinity">Begin Exploring <span aria-hidden="true">→</span></Link>
                         </div>
                         <div className="doctrine-featured-traced">
                             <p className="doctrine-featured-traced-kicker">Traced through</p>
@@ -179,7 +169,11 @@ export default function TraceTheDoctrinePage() {
                                     <article className="doctrine-card">
                                         <div className="doctrine-card-top">
                                             <span className="doctrine-card-numeral" aria-hidden="true">{doctrine.numeral}</span>
-                                            <span className="doctrine-pill">Coming Soon</span>
+                                            {doctrine.id === "trinity" ? (
+                                                <span className="doctrine-pill">Preview</span>
+                                            ) : (
+                                                <span className="doctrine-pill">Coming Soon</span>
+                                            )}
                                         </div>
                                         <h3>{doctrine.title}</h3>
                                         <p>{doctrine.description}</p>
