@@ -121,13 +121,6 @@
     color: var(--text-muted);
 }
 
-.history-panel-book-note {
-    margin: 10px 0 0;
-    font-size: 14px;
-    font-style: italic;
-    color: var(--text-muted);
-}
-
 .history-dev-badge {
     margin: 10px 0 0;
     padding: 8px 10px;
@@ -429,8 +422,30 @@
     color: var(--color-brand);
 }
 
-.history-scripture-companion-footer span {
-    color: var(--text-muted);
+/* The translation dropdown: a compact native select in the footer,
+   replacing the static "King James Version" label. */
+.history-companion-translation select {
+    max-width: 180px;
+    min-height: 32px;
+    padding: 6px 8px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.history-companion-translation select:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.history-companion-translation select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 /* A connection reference that opens the passage in the companion
@@ -682,6 +697,79 @@
     margin: 20px 0 8px;
     font-size: 16px;
     color: var(--text-primary);
+}
+
+/* ---------- Story: editorial reading experience ---------- */
+
+/* The Story's own heading, larger than the shared section headings,
+   with room to breathe before the takeaway. */
+.history-overview > .history-overview-heading {
+    margin: 0 0 20px;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+
+/* Story prose reads larger and looser than the other sections: the
+   Overview is the reading experience, not a reference list. */
+.history-overview .history-markdown p {
+    margin: 0 0 18px;
+    font-size: 17px;
+    line-height: 1.85;
+}
+
+/* A modest drop cap opens the Story — the one editorial flourish,
+   maroon, no animation. Scoped to the Overview's own markdown (a
+   direct child), so the Why section's first paragraph is untouched. */
+.history-overview > .history-markdown p:first-child::first-letter {
+    float: left;
+    padding: 0.06em 0.1em 0 0;
+    font-size: 3.1em;
+    font-weight: 600;
+    line-height: 0.85;
+    color: var(--color-brand);
+}
+
+/* Key Takeaway: the event's book note, set apart as a callout so the
+   reader meets the event's essence before the prose. */
+.history-takeaway {
+    margin: 0 0 28px;
+    padding: 18px 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--color-brand);
+    border-radius: 0 10px 10px 0;
+}
+
+.history-takeaway-eyebrow {
+    margin: 0 0 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-brand);
+}
+
+.history-takeaway-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+}
+
+/* "Why This Context Matters" is the Story's reflective coda, not a
+   second wall of text: a hairline above it and a forest heading set it
+   apart from the Overview. */
+.history-overview .history-why {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.history-overview .history-why h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    color: var(--history-forest);
 }
 
 .history-primary-reference {
@@ -1057,11 +1145,13 @@
 
     /* Collapsed sheet (D1): the fixed chrome must fit in 45dvh, or the
        bottom-anchored timeline covers the section tab row and overflows
-       the sheet. In the collapsed state the book note, cross-book chips,
-       and timeline hint are hidden — they all return when the sheet
-       expands — and the header/timeline padding tightens, leaving the
-       tab row visible and tappable with a sliver of content below it.
+       the sheet. In the collapsed state the cross-book chips and
+       timeline hint are hidden — they return when the sheet expands —
+       and the header/timeline padding tightens, leaving the tab row
+       visible and tappable with a sliver of content below it.
        The development-content badge stays visible in both states.
+       (The event's book note no longer sits in the header — it is the
+       Story's Key Takeaway now — so the header stays short.)
        Short-screen guard (320px fix): at 320x568, 45dvh is 256px but
        the fixed chrome alone is ~344px (handle 23 + header 163 with the
        badge + 68px wrapped-label tab row + timeline 89), so the timeline
@@ -1072,26 +1162,17 @@
        on taller screens 45dvh still wins. The sheet may end up taller
        than 45dvh on very short screens; that is the accepted trade-off
        for keeping every tab visible and tappable. */
-    /* Expanded sheet (320px regression, Creation integration): the
-       expanded header grows with the book note, and on a short screen
-       the fixed chrome (handle + header + tab row + timeline) can exceed
-       85dvh, so the bottom-anchored timeline covers the tab row — the
-       same failure mode the collapsed min-height guard fixed. Two
-       bounds, mirroring that fix: the book note is clamped to 3 lines
-       in the sheet header (the full note stays on the book page), and
-       the expanded sheet has a 520px minimum height. Arithmetic at
-       320x568: handle 23 + header ~248 with the clamped note + tab row
-       68 + timeline 141 + a content sliver ≈ 480–520; the guard binds
-       only where 85dvh falls short (viewport height < ~612px) — on
-       taller screens 85dvh still wins. The sheet may end up taller
+    /* Expanded sheet (320px regression, Creation integration): on a
+       short screen the fixed chrome (handle + header + tab row +
+       timeline) can exceed 85dvh, so the bottom-anchored timeline
+       covers the tab row — the same failure mode the collapsed
+       min-height guard fixed. The expanded sheet therefore has a 520px
+       minimum height. Arithmetic at 320x568: handle 23 + header ~210 +
+       tab row 68 + timeline 141 + a content sliver ≈ 480–520; the guard
+       binds only where 85dvh falls short (viewport height < ~612px) —
+       on taller screens 85dvh still wins. The sheet may end up taller
        than 85dvh on very short screens; that is the accepted trade-off
        for keeping every tab visible and tappable. */
-    .history-panel-book-note {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
 
     .history-panel-dialog:not(.history-panel-dialog--collapsed) {
         min-height: 520px;
@@ -1101,7 +1182,6 @@
         min-height: 400px;
     }
 
-    .history-panel-dialog--collapsed .history-panel-book-note,
     .history-panel-dialog--collapsed .history-connection-chips,
     .history-panel-dialog--collapsed .history-timeline-hint {
         display: none;

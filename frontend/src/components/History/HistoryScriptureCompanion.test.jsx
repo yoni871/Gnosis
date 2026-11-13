@@ -1,6 +1,8 @@
 // Companion tests: the passage is fetched with the reader's own
 // chapter loader, trimmed to the connection's exact verse range, and
 // the companion never navigates — the reader stays one link away.
+// The translation dropdown is the reader's own list: switching it
+// refetches the same range in the new translation.
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -29,9 +31,17 @@ const CHAPTER_2 = [
     { verse_number: 4, text: "Chapter two verse four." },
 ];
 
-const { getBibleChapter } = vi.hoisted(() => ({ getBibleChapter: vi.fn() }));
+const TRANSLATIONS = [
+    { abbreviation: "KJV", name: "King James Version" },
+    { abbreviation: "ESV", name: "English Standard Version" },
+];
 
-vi.mock("../../services/bibleService", () => ({ getBibleChapter }));
+const { getBibleChapter, getTranslations } = vi.hoisted(() => ({
+    getBibleChapter: vi.fn(),
+    getTranslations: vi.fn(),
+}));
+
+vi.mock("../../services/bibleService", () => ({ getBibleChapter, getTranslations }));
 
 function renderCompanion({ passage = PASSAGE, onClose = vi.fn() } = {}) {
     return {
@@ -47,6 +57,7 @@ function renderCompanion({ passage = PASSAGE, onClose = vi.fn() } = {}) {
 describe("HistoryScriptureCompanion", () => {
     beforeEach(() => {
         vi.clearAllMocks();
+        getTranslations.mockResolvedValue(TRANSLATIONS);
     });
 
     it("fetches both chapters in KJV and shows only the cited verses", async () => {
@@ -66,10 +77,34 @@ describe("HistoryScriptureCompanion", () => {
         expect(getBibleChapter).toHaveBeenCalledWith("Genesis", 1, "KJV");
         expect(getBibleChapter).toHaveBeenCalledWith("Genesis", 2, "KJV");
         expect(screen.getByRole("heading", { name: "Genesis 1:1–2:3" })).toBeInTheDocument();
-        expect(screen.getByText("King James Version")).toBeInTheDocument();
+        const translationSelect = screen.getByTestId("history-companion-translation");
+        expect(translationSelect).toHaveValue("KJV");
+        expect(screen.getByRole("option", { name: "King James Version" })).toBeInTheDocument();
         expect(screen.getByRole("link", { name: "Open in the reader" })).toHaveAttribute(
             "href", "/bible/Genesis/1?verse=1",
         );
+    });
+
+    it("switching the translation refetches the same range in the new translation", async () => {
+        const user = userEvent.setup();
+        getBibleChapter.mockImplementation(async (book, chapter, translation) => {
+            if (translation === "ESV") {
+                return chapter === 1
+                    ? [{ verse_number: 1, text: "ESV chapter one verse one." }]
+                    : [{ verse_number: 1, text: "ESV chapter two verse one." }];
+            }
+            return chapter === 1 ? CHAPTER_1 : CHAPTER_2;
+        });
+        renderCompanion();
+        expect(await screen.findByText("Chapter one verse one.")).toBeInTheDocument();
+        const translationSelect = screen.getByTestId("history-companion-translation");
+        await user.selectOptions(translationSelect, "ESV");
+        expect(await screen.findByText("ESV chapter one verse one.")).toBeInTheDocument();
+        expect(screen.getByText("ESV chapter two verse one.")).toBeInTheDocument();
+        expect(screen.queryByText("Chapter one verse one.")).toBeNull();
+        expect(getBibleChapter).toHaveBeenCalledWith("Genesis", 1, "ESV");
+        expect(getBibleChapter).toHaveBeenCalledWith("Genesis", 2, "ESV");
+        expect(translationSelect).toHaveValue("ESV");
     });
 
     it("shows an error with a retry that reloads the passage", async () => {
