@@ -96,8 +96,9 @@ describe("generateHistoryContent — the publication gate", () => {
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-creation"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-creation"]);
         expect(manifest.books).toEqual(["genesis"]);
+        expect(existsSync(path.join(outDir, "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.md"))).toBe(true);
     });
@@ -106,8 +107,12 @@ describe("generateHistoryContent — the publication gate", () => {
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.events).toEqual([]);
-        expect(manifest.books).toEqual([]);
+        // The fixture flips Creation to "draft"; the shipped Adam and
+        // Eve event is published, so production generation still
+        // includes it — only the draft is excluded.
+        expect(manifest.events).toEqual(["event-adam-and-eve"]);
+        expect(manifest.books).toEqual(["genesis"]);
+        expect(existsSync(path.join(outDir, "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.json"))).toBe(false);
     });
     it("includes the draft only with the local-dev opt-in", () => {
@@ -122,8 +127,9 @@ describe("generateHistoryContent — the publication gate", () => {
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
+        // Adam and Eve is published now, so only the draft Creation
+        // event is non-published in this fixture.
         expect(findNonPublishedIds({ contentDir })).toEqual([
-            { id: "event-adam-and-eve", kind: "event", status: "in-review" },
             { id: "event-creation", kind: "event", status: "draft" },
         ]);
     });
@@ -150,7 +156,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-creation"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-creation"]);
         const { eventJson, sourcesJson } = generatedText(outDir);
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("review");
@@ -161,13 +167,22 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         expect(eventJson).not.toContain("editorialOverride");
         expect(eventJson).not.toContain("not-independently-verified");
         const sources = JSON.parse(sourcesJson);
-        expect(Object.keys(sources)).toHaveLength(6);
-        for (const source of Object.values(sources)) {
+        expect(Object.keys(sources)).toHaveLength(19);
+        const fixtureRegistry = JSON.parse(readFileSync(path.join(contentDir, "sources", "references.json"), "utf8"));
+        for (const [id, source] of Object.entries(sources)) {
             expect(source).not.toHaveProperty("verification");
             expect(source).not.toHaveProperty("verificationDetail");
             expect(source.author).toBeTruthy();
             expect(source.title).toBeTruthy();
-            expect(source.url).toBeTruthy();
+            // Five of the newly published Adam and Eve sources carry no
+            // URL in the registry (BDB, ISAW, Balogh, Kramer, Benthall):
+            // the strip must preserve exactly what the registry has —
+            // keep a URL when one exists, invent none when it does not.
+            if (fixtureRegistry[id].url) {
+                expect(source.url).toBe(fixtureRegistry[id].url);
+            } else {
+                expect(source).not.toHaveProperty("url");
+            }
         }
         expect(sourcesJson).not.toContain("not-independently-verified");
         expect(sourcesJson).not.toContain("verificationDetail");
@@ -251,7 +266,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
 
     it("keeps the claims register in the source files (preservation)", () => {
         const sourceEvent = JSON.parse(readFileSync(path.join(repoContentDir, "events", "adam-and-eve.json"), "utf8"));
-        expect(sourceEvent.status).toBe("in-review");
+        expect(sourceEvent.status).toBe("published");
         expect(sourceEvent.claims).toHaveLength(35);
         const ids = sourceEvent.claims.map((claim) => claim.id);
         expect(ids).toContain("clm-ae-028");

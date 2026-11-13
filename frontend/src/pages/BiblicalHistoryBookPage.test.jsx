@@ -23,13 +23,16 @@ function renderBook(path) {
 }
 
 describe("BiblicalHistoryBookPage", () => {
-    it("renders Genesis with its published Creation event in a production build", () => {
+    it("renders Genesis with its two published events in a production build", () => {
         renderBook("/biblical-history/genesis");
         expect(screen.getByRole("heading", { level: 1, name: "Genesis" })).toBeInTheDocument();
-        expect(screen.getByText(/1 historical event/)).toBeInTheDocument();
+        expect(screen.getByText(/2 historical events/)).toBeInTheDocument();
         expect(screen.queryByText(/No historical events published yet/)).toBeNull();
         expect(screen.getByRole("link", { name: /Creation/ })).toHaveAttribute(
             "href", "/biblical-history/genesis/creation",
+        );
+        expect(screen.getByRole("link", { name: /Adam and Eve/ })).toHaveAttribute(
+            "href", "/biblical-history/genesis/adam-and-eve",
         );
         expect(screen.getByRole("link", { name: "All books" })).toHaveAttribute(
             "href", "/biblical-history#history-books",
