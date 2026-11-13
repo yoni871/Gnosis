@@ -12,6 +12,7 @@ import AuthContext from "../../context/AuthContext";
 import { ThemeProvider } from "../../context/ThemeContext";
 import BiblicalHistoryBookRedirect from "../../pages/BiblicalHistoryBookRedirect";
 import BiblicalHistoryEventPage from "../../pages/BiblicalHistoryEventPage";
+import BiblicalHistoryIndexPage from "../../pages/BiblicalHistoryIndexPage";
 import HistoryEventPanel from "./HistoryEventPanel";
 import { loadEventSections } from "../../services/historyService";
 
@@ -250,25 +251,18 @@ describe("HistoryEventPanel", () => {
     });
 });
 
-describe("HistoryEventPanel — close returns to the index (D2 retired with the book page)", () => {
+describe("HistoryEventPanel — close returns focus to the index book entry", () => {
     // The routes mirror App.jsx: the book route is the redirect, the
-    // event route is the study page, and the index is a stub — these
-    // tests pin the close destination, not the index page itself.
+    // event route is the study page, and the index is the real page —
+    // these tests pin the close destination AND the focus return to
+    // the book's entry in the index directory.
     function renderBookPage(path) {
         return render(
             <MemoryRouter initialEntries={[path]}>
                 <ThemeProvider>
                     <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
                         <Routes>
-                            <Route
-                                path="/biblical-history"
-                                element={(
-                                    <main>
-                                        <h1>Discover the History Behind Scripture.</h1>
-                                        <section id="history-books"><h2>Explore by Scripture</h2></section>
-                                    </main>
-                                )}
-                            />
+                            <Route path="/biblical-history" element={<BiblicalHistoryIndexPage />} />
                             <Route path="/biblical-history/:book" element={<BiblicalHistoryBookRedirect />} />
                             <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryEventPage />} />
                         </Routes>
@@ -278,7 +272,7 @@ describe("HistoryEventPanel — close returns to the index (D2 retired with the 
         );
     }
 
-    it("returns to the index after mouse-open + Escape close — the book page no longer exists to return to", async () => {
+    it("returns to the index after mouse-open + Escape close — focus lands on the Genesis entry", async () => {
         const user = userEvent.setup();
         renderBookPage("/biblical-history/genesis");
         // The book URL redirects to the first event, so the panel is
@@ -291,12 +285,16 @@ describe("HistoryEventPanel — close returns to the index (D2 retired with the 
         await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
         // Close lands on the index book directory, not the retired book
         // page — so there is no event link left to return focus to.
+        // Focus returns to the Genesis entry in the directory instead.
         expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
         expect(document.getElementById("history-event-link-creation")).toBeNull();
-        await waitFor(() => expect(document.activeElement).toBe(document.body));
+        const genesisEntry = document.querySelector('[data-history-book="genesis"]');
+        expect(genesisEntry).not.toBeNull();
+        await waitFor(() => expect(genesisEntry).toHaveFocus());
+        expect(document.activeElement).not.toBe(document.body);
     });
 
-    it("returns to the index after keyboard-open + close-button close", async () => {
+    it("returns to the index after keyboard-open + close-button close — focus lands on the Genesis entry", async () => {
         const user = userEvent.setup();
         renderBookPage("/biblical-history/genesis");
         const link = document.getElementById("history-event-link-creation");
@@ -306,7 +304,10 @@ describe("HistoryEventPanel — close returns to the index (D2 retired with the 
         await user.click(screen.getByTestId("history-panel-close"));
         await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
         expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
-        await waitFor(() => expect(document.activeElement).toBe(document.body));
+        const genesisEntry = document.querySelector('[data-history-book="genesis"]');
+        expect(genesisEntry).not.toBeNull();
+        await waitFor(() => expect(genesisEntry).toHaveFocus());
+        expect(document.activeElement).not.toBe(document.body);
     });
 });
 

@@ -8,8 +8,8 @@ const TESTAMENTS = [
     { id: "NT", label: "New Testament" },
 ];
 
-export default function HistoryBookSelector({ books = listBooks(), open = false, onClose }) {
-    const [testament, setTestament] = useState("OT");
+export default function HistoryBookSelector({ books = listBooks(), open = false, onClose, initialTestament = "OT" }) {
+    const [testament, setTestament] = useState(initialTestament);
     const tabs = useRef([]);
     const visibleBooks = books.filter((book) => book.testament === testament);
 

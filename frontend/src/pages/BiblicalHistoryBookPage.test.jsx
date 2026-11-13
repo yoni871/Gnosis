@@ -1,20 +1,23 @@
 import { describe, expect, it, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { ThemeProvider } from "../context/ThemeContext";
 import BiblicalHistoryBookRedirect from "./BiblicalHistoryBookRedirect";
 import BiblicalHistoryEventPage from "./BiblicalHistoryEventPage";
+import BiblicalHistoryIndexPage from "./BiblicalHistoryIndexPage";
 
 // The routes mirror App.jsx: the book route is the redirect, the event
-// route is the study page.
+// route is the study page, and the index is the book directory the
+// panel closes back to.
 function renderBook(path, authValue = { user: null, isAuthLoading: false, logout: vi.fn() }) {
     return render(
         <MemoryRouter initialEntries={[path]}>
             <ThemeProvider>
                 <AuthContext.Provider value={authValue}>
                     <Routes>
+                        <Route path="/biblical-history" element={<BiblicalHistoryIndexPage />} />
                         <Route path="/biblical-history/:book" element={<BiblicalHistoryBookRedirect />} />
                         <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryEventPage />} />
                     </Routes>
@@ -130,5 +133,22 @@ describe("BiblicalHistoryBookPage", () => {
     it("renders the 404 page for an event not connected to the requested book", () => {
         renderBook("/biblical-history/exodus/creation");
         expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
+    });
+
+    it("returns focus to the Genesis entry after closing the Adam and Eve panel with Escape", async () => {
+        const user = userEvent.setup();
+        renderBook("/biblical-history/genesis/adam-and-eve");
+        expect(screen.getByRole("dialog", { name: "Adam and Eve" })).toBeInTheDocument();
+        await user.keyboard("{Escape}");
+        await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+        // Close lands on the index book directory with the directory
+        // open at the book that was open — Adam and Eve is a Genesis
+        // event, so its entry is the Genesis entry, not a hardcoded
+        // panel target.
+        expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
+        const genesisEntry = document.querySelector('[data-history-book="genesis"]');
+        expect(genesisEntry).not.toBeNull();
+        await waitFor(() => expect(genesisEntry).toHaveFocus());
+        expect(document.activeElement).not.toBe(document.body);
     });
 });

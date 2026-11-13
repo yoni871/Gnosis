@@ -33,6 +33,13 @@ test("shows one canonical testament at a time, book names only, with a scroll hi
     expect(screen.queryByText("Genesis")).toBeNull();
 });
 
+test("starts on the testament given by initialTestament", () => {
+    mount({ initialTestament: "NT" });
+    expect(screen.getByRole("tab", { name: /New Testament/ })).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByRole("link", { name: "Matthew" })).toBeInTheDocument();
+    expect(screen.queryByText("Genesis")).toBeNull();
+});
+
 test("calls onClose on Escape from inside the drawer", async () => {
     const user = userEvent.setup();
     const onClose = vi.fn();

@@ -58,9 +58,15 @@ export default function BiblicalHistoryBookPage() {
     // to the book's first published event, so closing from Creation
     // would reopen Creation's panel (and closing from any later event
     // would switch to Creation) instead of closing.
+    //
+    // The book whose event was just open travels in location state:
+    // the index opens its directory at that book and returns focus to
+    // the book's entry there — the #161 focus return, restored at the
+    // index level now that the book page is retired. Without the state
+    // the index focuses nothing and focus would fall to BODY.
     const closePanel = useCallback(() => {
-        navigate("/biblical-history#history-books");
-    }, [navigate]);
+        navigate("/biblical-history#history-books", { state: { focusBook: bookSlug } });
+    }, [navigate, bookSlug]);
 
     if (!bookTitle) {
         return <NotFoundPage />;
