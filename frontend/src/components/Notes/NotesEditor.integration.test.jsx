@@ -16,6 +16,7 @@ beforeAll(() => {
     });
 });
 
+
 describe("Notes rich-text editor", () => {
     test("detects valid inline references and navigates from the editor", async () => {
         const onReferenceClick = vi.fn();
@@ -49,4 +50,13 @@ describe("Notes rich-text editor", () => {
         expect(sanitizeNoteHtml('<p onclick="bad()"><strong>Safe</strong><script>alert(1)</script></p>'))
             .toBe("<p><strong>Safe</strong></p>");
     });
+
+    test("sanitizer round trips Scripture marks without allowing arbitrary classes or attributes", () => {
+        const html = '<p><a data-scripture="true" data-target="{}" class="note-scripture-link">John 3:16</a> and text</p>';
+        expect(sanitizeNoteHtml(html)).toBe(html);
+        expect(sanitizeNoteHtml(sanitizeNoteHtml(html))).toBe(html);
+        expect(sanitizeNoteHtml('<p><a data-scripture="true" class="evil" onclick="bad()">John</a></p>'))
+            .toBe('<p><a data-scripture="true" class="note-scripture-link">John</a></p>');
+    });
+
 });

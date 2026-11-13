@@ -12,6 +12,7 @@ export default function NotesEditor({
 }) {
     const onChangeRef = useRef(onChange);
     const onReferenceClickRef = useRef(onReferenceClick);
+    const lastEmitted = useRef(null);
     useEffect(() => { onChangeRef.current = onChange; }, [onChange]);
     useEffect(() => { onReferenceClickRef.current = onReferenceClick; }, [onReferenceClick]);
     const editor = useEditor({
@@ -39,7 +40,11 @@ export default function NotesEditor({
             },
             transformPastedHTML: sanitizeNoteHtml,
         },
-        onUpdate: ({ editor: current }) => onChangeRef.current(current.getHTML()),
+        onUpdate: ({ editor: current }) => {
+            const html = current.getHTML();
+            lastEmitted.current = html;
+            onChangeRef.current(html);
+        },
     }, [books]);
 
     useEffect(() => {
@@ -47,8 +52,9 @@ export default function NotesEditor({
     }, [editor, disabled]);
     useEffect(() => {
         if (!editor || editor.isDestroyed) return;
+        if (value === lastEmitted.current) return;
         const safe = sanitizeNoteHtml(value);
-        if (editor.getHTML() !== safe) editor.commands.setContent(safe, { emitUpdate: false });
+        if (sanitizeNoteHtml(editor.getHTML()) !== safe) editor.commands.setContent(safe, { emitUpdate: false });
     }, [editor, value]);
 
     useImperativeHandle(inputRef, () => ({

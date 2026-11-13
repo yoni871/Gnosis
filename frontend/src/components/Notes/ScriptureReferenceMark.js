@@ -27,13 +27,16 @@ export default Mark.create({
                 if (!transactions.some((transaction) => transaction.docChanged || transaction.getMeta(key) === "scan")) return null;
                 if (transactions.some((transaction) => transaction.getMeta(key) === true)) return null;
                 const transaction = newState.tr;
-                transaction.removeMark(0, newState.doc.content.size, type);
+                const expected = [];
+                const existing = [];
                 newState.doc.descendants((node, position) => {
                     if (!node.isTextblock) return;
                     const segments = [];
                     let text = "";
                     node.descendants((child, childPosition) => {
                         if (!child.isText || !child.text) return;
+                        const mark = type.isInSet(child.marks);
+                        if (mark) existing.push({ from: position + 1 + childPosition, to: position + 1 + childPosition + child.text.length, target: mark.attrs.target });
                         segments.push({ from: text.length, to: text.length + child.text.length, position: position + 1 + childPosition });
                         text += child.text;
                     });
@@ -45,18 +48,22 @@ export default Mark.create({
                             for (const segment of segments) {
                                 const from = Math.max(offset, segment.from);
                                 const to = Math.min(end, segment.to);
-                                if (from < to) transaction.addMark(
-                                    segment.position + from - segment.from,
-                                    segment.position + to - segment.from,
-                                    type.create({ target: JSON.stringify(part) })
-                                );
+                                if (from < to) expected.push({ from: segment.position + from - segment.from,
+                                    to: segment.position + to - segment.from, target: JSON.stringify(part) });
                             }
                         }
                         offset += length;
                     }
                     return false;
                 });
-                return transaction.steps.length ? transaction.setMeta(key, true) : null;
+                const same = (a, b) => a.from === b.from && a.to === b.to && a.target === b.target;
+                for (const mark of existing) {
+                    if (!expected.some((candidate) => same(mark, candidate))) transaction.removeMark(mark.from, mark.to, type);
+                }
+                for (const mark of expected) {
+                    if (!existing.some((candidate) => same(mark, candidate))) transaction.addMark(mark.from, mark.to, type.create({ target: mark.target }));
+                }
+                return transaction.steps.length ? transaction.setMeta(key, true).setMeta("addToHistory", false) : null;
             }
         })];
     }

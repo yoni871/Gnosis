@@ -43,6 +43,7 @@ export default function NotesToolbar({ onFormat, disabled = false }) {
                     aria-label={label}
                     title={label}
                     disabled={disabled}
+                    onMouseDown={(event) => event.preventDefault()}
                     onClick={() => onFormat?.(id)}
                     className="
                         flex

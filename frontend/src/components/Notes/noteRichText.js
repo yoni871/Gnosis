@@ -11,7 +11,9 @@ export function sanitizeNoteHtml(value = "") {
         }
         for (const attribute of [...element.attributes]) {
             const scriptureAttribute = element.tagName === "A" && ["data-scripture", "data-target"].includes(attribute.name);
-            if (!scriptureAttribute) element.removeAttribute(attribute.name);
+            const scriptureClass = element.tagName === "A" && element.hasAttribute("data-scripture") && attribute.name === "class";
+            if (scriptureClass) element.setAttribute("class", "note-scripture-link");
+            else if (!scriptureAttribute) element.removeAttribute(attribute.name);
         }
         if (element.tagName === "A" && !element.hasAttribute("data-scripture")) element.replaceWith(...element.childNodes);
     }
