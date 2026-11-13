@@ -138,6 +138,32 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
     });
 
+    it("dev-opt-in generation strips the claims register from the generated event JSON", () => {
+        const sandbox = makeSandbox();
+        const result = runNode("scripts/build-history-content.js", {
+            args: ["--include-unpublished"],
+            cwd: sandbox,
+        });
+        expect(result.status).toBe(0);
+        const generatedPath = path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json");
+        const generatedText = readFileSync(generatedPath, "utf8");
+        const generated = JSON.parse(generatedText);
+        expect(generated).not.toHaveProperty("claims");
+        expect(generated).not.toHaveProperty("review");
+        expect(generated.title).toBe("Adam and Eve");
+        expect(generatedText).not.toContain("clm-ae-028");
+        expect(generatedText).not.toContain("clm-ae-030b");
+        expect(generatedText).not.toContain("The serpent is Satan.");
+        expect(generatedText).not.toContain("reward for obedience");
+        // ... while the sandbox SOURCE still carries the full register.
+        const source = JSON.parse(readFileSync(
+            path.join(sandbox, "src", "content", "history", "events", "adam-and-eve.json"), "utf8",
+        ));
+        expect(source.claims).toHaveLength(35);
+        expect(source.claims.map((claim) => claim.id)).toContain("clm-ae-028");
+        expect(source.claims.map((claim) => claim.id)).toContain("clm-ae-030b");
+    });
+
     it("a production generation overwrites a stale unpublished generated directory", () => {
         const sandbox = makeSandbox();
         // Stale output from a dev-flag run.
@@ -401,6 +427,95 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
             // corrections, 2026-11-11) so no event cites it, and the gate
             // only lists sources cited by non-published events.
         ]);
+    });
+});
+
+describe("checkHistoryGate — claims detector", () => {
+    // A sandbox where BOTH events are published: the claims detector
+    // must fire on this all-published path, where the gate's
+    // non-published early return would otherwise stand it down. The
+    // fixture source still carries Adam and Eve's full 35-claim
+    // register (including unverified 028 and 030b); generation strips
+    // it, and these tests prove the gate catches it if it ever leaks.
+    function makeAllPublishedSandbox() {
+        const sandbox = makeSandbox();
+        for (const name of ["creation.json", "adam-and-eve.json"]) {
+            const eventPath = path.join(sandbox, "src", "content", "history", "events", name);
+            const event = JSON.parse(readFileSync(eventPath, "utf8"));
+            event.status = "published";
+            writeFileSync(eventPath, JSON.stringify(event, null, 2));
+        }
+        // Check 10 applies to published events: mark every source
+        // verified so the fixture validates without an override.
+        const registryPath = path.join(sandbox, "src", "content", "history", "sources", "references.json");
+        const registry = JSON.parse(readFileSync(registryPath, "utf8"));
+        for (const source of Object.values(registry)) {
+            source.verification = "verified";
+        }
+        writeFileSync(registryPath, JSON.stringify(registry, null, 2));
+        return sandbox;
+    }
+
+    function buildPublished(sandbox) {
+        const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
+        expect(result.status).toBe(0);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-creation"]);
+        expect(readManifest(sandbox).includeUnpublished).toBe(false);
+    }
+
+    it("passes a clean all-published build — conn-ae-018's prose 'claims' is not a leak", () => {
+        const sandbox = makeAllPublishedSandbox();
+        buildPublished(sandbox);
+        // The generated Adam and Eve JSON carries conn-ae-018's note,
+        // which contains the bare word "claims" ("…this note claims it
+        // for the Genesis 2–3 reversal…") — the detector must not fire
+        // on that, in generated output or in a built asset.
+        const generated = JSON.parse(readFileSync(
+            path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"), "utf8",
+        ));
+        expect(generated).not.toHaveProperty("claims");
+        expect(JSON.stringify(generated.connections)).toContain("this note claims it for the Genesis 2–3 reversal");
+        writeDistFile(sandbox, "assets/app.js", 'const note = "Creation already connects this range (conn-cre-028) for the creation motifs, and this note claims it for the Genesis 2–3 reversal specifically.";');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(0);
+        expect(result.stdout).toMatch(/no non-published records exist/);
+        // ... while the SOURCE still carries the full register.
+        const source = JSON.parse(readFileSync(
+            path.join(sandbox, "src", "content", "history", "events", "adam-and-eve.json"), "utf8",
+        ));
+        expect(source.claims).toHaveLength(35);
+        expect(source.claims.map((claim) => claim.id)).toContain("clm-ae-028");
+        expect(source.claims.map((claim) => claim.id)).toContain("clm-ae-030b");
+    });
+
+    it("fails when a generated event JSON carries a claims register", () => {
+        const sandbox = makeAllPublishedSandbox();
+        buildPublished(sandbox);
+        // Simulate a leak: reintroduce the claims register into the
+        // generated copy, as a pre-fix generator would have written it.
+        const generatedPath = path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json");
+        const generated = JSON.parse(readFileSync(generatedPath, "utf8"));
+        const source = JSON.parse(readFileSync(
+            path.join(sandbox, "src", "content", "history", "events", "adam-and-eve.json"), "utf8",
+        ));
+        generated.claims = source.claims;
+        writeFileSync(generatedPath, JSON.stringify(generated, null, 2));
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/History gate FAILED/);
+        expect(result.stderr).toMatch(/adam-and-eve\.json/);
+        expect(result.stderr).toMatch(/claims/);
+        expect(result.stderr).toMatch(/event-adam-and-eve/);
+    });
+
+    it('fails when dist/ contains a serialized "claims": key', () => {
+        const sandbox = makeAllPublishedSandbox();
+        buildPublished(sandbox);
+        writeDistFile(sandbox, "assets/app.js", 'const data = {"claims": [{"id": "clm-ae-028", "claim": "The tree of life functioned as a reward for obedience (unmentioned until 3:22)."}]};');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/History gate FAILED/);
+        expect(result.stderr).toMatch(/"claims":/);
     });
 });
 

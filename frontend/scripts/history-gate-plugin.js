@@ -50,12 +50,14 @@ export function historyGatePlugin() {
             });
         },
         closeBundle() {
-            const { failures, nonPublished } = checkHistoryGate({
+            // No early return on "nothing non-published": the claims
+            // detector inside checkHistoryGate runs on the all-published
+            // path too, and its failures must fail the build.
+            const { failures } = checkHistoryGate({
                 contentDir,
                 generatedDir: outputDir,
                 distDir: outDir,
             });
-            if (nonPublished.length === 0) return;
             if (failures.length > 0) {
                 throw new Error(`History gate FAILED:\n${failures.map((f) => `  - ${f}`).join("\n")}`);
             }
