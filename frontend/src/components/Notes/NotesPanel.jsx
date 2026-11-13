@@ -3,6 +3,7 @@ import NotesHeader from "./NotesHeader";
 import NotesEditorArea from "./NotesEditorArea";
 import NotesLibrary from "./NotesLibrary";
 import NotesLoggedOut from "./NotesLoggedOut";
+import ScripturePreviewSheet from "./ScripturePreviewSheet";
 
 // Notes 2.0 — UI Foundation (Phase 1).
 //
@@ -24,12 +25,16 @@ export default function NotesPanel({
     selectedVerse,
     books,
     notesState,
+    navigateToPassage,
+    mobile = false,
+    translation,
     // Optional: Codex's rich-text editor calls this with the chosen
     // formatting action (e.g. "bold"). Until the editor lands, the
     // toolbar is presentational and this is a no-op.
     onFormat,
 }) {
     const [libraryOpen, setLibraryOpen] = useState(false);
+    const [previewReference, setPreviewReference] = useState(null);
     const editorRef = useRef(null);
     const libraryButtonRef = useRef(null);
 
@@ -38,7 +43,6 @@ export default function NotesPanel({
         isAuthLoading,
         notes,
         handleStartEdit,
-        handleCancelEdit,
     } = notesState;
 
     // Wait until AuthContext finishes restoring the user.
@@ -138,10 +142,19 @@ export default function NotesPanel({
 
     // Start a fresh note: leave any note being edited, close the library,
     // and focus the composer.
-    const handleNewNote = () => {
-        handleCancelEdit();
+    const handleNewNote = async () => {
+        const passage = target ? {
+            bookId: target.bookId, startChapter: target.startChapter, startVerse: target.startVerse,
+            endChapter: target.endChapter, endVerse: target.endVerse,
+        } : null;
+        await notesState.handleCreateDocument(passage);
         setLibraryOpen(false);
         requestAnimationFrame(() => editorRef.current?.focus());
+    };
+
+    const openReference = (reference) => {
+        if (mobile) setPreviewReference(reference);
+        else navigateToPassage?.(reference);
     };
 
     return (
@@ -173,6 +186,7 @@ export default function NotesPanel({
                     passageLabel={passageLabel}
                     editorRef={editorRef}
                     onFormat={onFormat}
+                    onReferenceClick={openReference}
                 />
 
                 <NotesLibrary
@@ -184,8 +198,16 @@ export default function NotesPanel({
                     books={books}
                     isLoadingNotes={notesState.isLoadingNotes}
                     notesError={notesState.notesError}
+                    nextCursor={notesState.nextCursor}
+                    isLoadingMore={notesState.isLoadingMore}
+                    loadMore={notesState.loadMore}
                 />
             </div>
+            <ScripturePreviewSheet key={previewReference?.text || "closed"} reference={previewReference} translation={translation}
+                onClose={() => setPreviewReference(null)} onOpen={(reference) => {
+                    setPreviewReference(null);
+                    navigateToPassage?.(reference);
+                }} />
         </section>
     );
 }

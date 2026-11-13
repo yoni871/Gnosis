@@ -1,4 +1,4 @@
-import { Bold, Italic, List, Underline } from "lucide-react";
+import { Bold, Heading2, Italic, List, ListOrdered, Redo2, Underline, Undo2 } from "lucide-react";
 
 // Compact formatting toolbar — presentation only.
 //
@@ -11,7 +11,11 @@ const ACTIONS = [
     { id: "bold", label: "Bold", Icon: Bold },
     { id: "italic", label: "Italic", Icon: Italic },
     { id: "underline", label: "Underline", Icon: Underline },
+    { id: "heading", label: "Heading", Icon: Heading2 },
     { id: "list", label: "Bulleted list", Icon: List },
+    { id: "orderedList", label: "Numbered list", Icon: ListOrdered },
+    { id: "undo", label: "Undo", Icon: Undo2 },
+    { id: "redo", label: "Redo", Icon: Redo2 },
 ];
 
 export default function NotesToolbar({ onFormat, disabled = false }) {

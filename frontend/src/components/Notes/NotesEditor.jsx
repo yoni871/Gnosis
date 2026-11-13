@@ -1,63 +1,69 @@
-// Notes 2.0 editor slot — the component boundary for the rich-text editor.
-//
-// Phase 1 renders the existing plain-text textarea so current Notes keep
-// working with no behavior change. Codex's rich-text editor replaces this
-// component's internals, keeping the same props, so the layout never
-// imports an editor engine directly.
-//
-// Integration contract (see the PR description for the full interface):
-//   value: string                — the note content
-//   onChange: (value) => void    — called with the new content
-//   placeholder?: string
-//   disabled?: boolean
-//   autoFocus?: boolean
-//   ariaLabel?: string
-//   inputRef?: ref               — the underlying editable element, for
-//                                  focusing from the panel header
-//   className?: string           — extra classes (e.g. the desktop font
-//                                  size); the base size stays text-base
-//                                  (16px) so iOS never zooms on focus.
+import { useEffect, useImperativeHandle, useRef } from "react";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import ScriptureReferenceMark from "./ScriptureReferenceMark";
+import { sanitizeNoteHtml } from "./noteRichText";
+
+const EMPTY_BOOKS = [];
+
 export default function NotesEditor({
-    value,
-    onChange,
-    placeholder,
-    disabled = false,
-    autoFocus = false,
-    ariaLabel,
-    inputRef,
-    className = "",
+    value, onChange, placeholder, disabled = false, autoFocus = false,
+    ariaLabel, inputRef, className = "", books = EMPTY_BOOKS, onReferenceClick,
 }) {
-    return (
-        <textarea
-            ref={inputRef}
-            value={value}
-            disabled={disabled}
-            onChange={(event) => onChange(event.target.value)}
-            placeholder={placeholder}
-            autoFocus={autoFocus}
-            aria-label={ariaLabel}
-            // 16px text prevents iOS Safari from zooming on focus.
-            className={`
-                block
-                h-full
-                min-h-0
-                w-full
-                flex-1
-                resize-none
-                border-0
-                bg-transparent
-                px-5
-                py-4
-                font-serif
-                text-base
-                leading-8
-                text-[var(--text-primary)]
-                outline-none
-                placeholder:text-[var(--text-muted)]
-                placeholder:opacity-60
-                disabled:opacity-50
-                ${className}
-            `}
-        />
-    );
+    const onChangeRef = useRef(onChange);
+    const onReferenceClickRef = useRef(onReferenceClick);
+    useEffect(() => { onChangeRef.current = onChange; }, [onChange]);
+    useEffect(() => { onReferenceClickRef.current = onReferenceClick; }, [onReferenceClick]);
+    const editor = useEditor({
+        extensions: [
+            StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
+            ScriptureReferenceMark.configure({ books }),
+        ],
+        content: sanitizeNoteHtml(value),
+        editable: !disabled,
+        autofocus: autoFocus,
+        immediatelyRender: false,
+        editorProps: {
+            attributes: {
+                role: "textbox", "aria-multiline": "true", "aria-label": ariaLabel || "Note content",
+                "data-placeholder": placeholder || "", class: `notes-tiptap-editor text-base ${className}`,
+            },
+            handleDOMEvents: {
+                click(_view, event) {
+                    const link = event.target.closest?.("a[data-scripture]");
+                    if (!link) return false;
+                    event.preventDefault();
+                    try { onReferenceClickRef.current?.(JSON.parse(link.dataset.target)); } catch { /* malformed legacy mark */ }
+                    return true;
+                },
+            },
+            transformPastedHTML: sanitizeNoteHtml,
+        },
+        onUpdate: ({ editor: current }) => onChangeRef.current(current.getHTML()),
+    }, [books]);
+
+    useEffect(() => {
+        if (editor && !editor.isDestroyed && editor.isEditable === disabled) editor.setEditable(!disabled, false);
+    }, [editor, disabled]);
+    useEffect(() => {
+        if (!editor || editor.isDestroyed) return;
+        const safe = sanitizeNoteHtml(value);
+        if (editor.getHTML() !== safe) editor.commands.setContent(safe, { emitUpdate: false });
+    }, [editor, value]);
+
+    useImperativeHandle(inputRef, () => ({
+        focus: () => editor?.commands.focus(),
+        format: (action) => {
+            const chain = editor?.chain().focus();
+            const commands = {
+                bold: () => chain?.toggleBold().run(), italic: () => chain?.toggleItalic().run(),
+                underline: () => chain?.toggleUnderline().run(), list: () => chain?.toggleBulletList().run(),
+                orderedList: () => chain?.toggleOrderedList().run(), heading: () => chain?.toggleHeading({ level: 2 }).run(),
+                undo: () => chain?.undo().run(), redo: () => chain?.redo().run(),
+            };
+            commands[action]?.();
+        },
+    }), [editor]);
+
+    return <EditorContent editor={editor} className="h-full min-h-0" />;
 }

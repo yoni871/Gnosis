@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, Search, X } from "lucide-react";
 import { formatNoteDate, getNoteReference } from "./notesUtils";
 import NotesEmptyState from "./NotesEmptyState";
+import { notePlainText } from "./noteRichText";
 import "./Notes.css";
 
 // Sliding Notes library. Overlays the editor from the left edge of the
@@ -12,7 +13,7 @@ import "./Notes.css";
 // editor (handled by the panel).
 
 function notePreview(note) {
-    const firstLine = (note.content || "")
+    const firstLine = notePlainText(note.content || "")
         .split("\n")
         .map((line) => line.trim())
         .find((line) => line.length > 0);
@@ -31,6 +32,9 @@ export default function NotesLibrary({
     books,
     isLoadingNotes,
     notesError,
+    nextCursor,
+    isLoadingMore,
+    loadMore,
 }) {
     const [query, setQuery] = useState("");
     const searchRef = useRef(null);
@@ -45,9 +49,11 @@ export default function NotesLibrary({
         if (!needle) return notes;
         return notes.filter((note) => {
             const reference = getNoteReference(note, books).toLowerCase();
+            const title = (note.title || "").toLowerCase();
             return (
+                title.includes(needle) ||
                 reference.includes(needle) ||
-                (note.content || "").toLowerCase().includes(needle)
+                notePlainText(note.content || "").toLowerCase().includes(needle)
             );
         });
     }, [notes, books, query]);
@@ -292,7 +298,7 @@ export default function NotesLibrary({
                                         text-[var(--color-brand)]
                                     "
                                 >
-                                    {getNoteReference(note, books)}
+                                    {note.title?.trim() || getNoteReference(note, books)}
                                 </span>
                                 <span
                                     className="
@@ -321,6 +327,12 @@ export default function NotesLibrary({
                             </button>
                         );
                     })}
+                {!query.trim() && nextCursor && (
+                    <button type="button" onClick={loadMore} disabled={isLoadingMore}
+                        className="mt-2 w-full rounded-lg px-3 py-2 text-xs font-medium text-[var(--color-brand)] hover:bg-[var(--hover-bg)] disabled:opacity-60">
+                        {isLoadingMore ? "Loading…" : "Load more notes"}
+                    </button>
+                )}
             </div>
         </div>
     );

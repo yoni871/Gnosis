@@ -139,6 +139,7 @@ export default function DesktopStudyLayout({
                             selectedVerse={selectedVerse}
                             books={books}
                             notesState={notesState}
+                            translation={translation}
                             navigateToPassage={navigateToPassage}
                         />
                     )}
@@ -157,17 +158,14 @@ export default function DesktopStudyLayout({
                         <HighlightsPanel
                             // Capture the highlighted passage, then open Notes if starting succeeds.
                             onAddNote={(highlight) => {
-                                const started = notesState.handleStartNote({
+                                setRightPanelTab("notes");
+                                void notesState.handleCreateDocument({
                                     bookId: highlight.book_id,
                                     startChapter: highlight.chapter,
                                     startVerse: highlight.verse,
                                     endChapter: highlight.chapter,
                                     endVerse: highlight.verse
                                 });
-
-                                if (started) {
-                                    setRightPanelTab("notes");
-                                }
                             }}
                             highlightsState={highlightsState}
                             // Reuse the shared previews already loaded by StudyPage.

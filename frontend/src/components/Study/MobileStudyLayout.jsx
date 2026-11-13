@@ -103,6 +103,8 @@ export default function MobileStudyLayout({
                         selectedVerse={selectedVerse}
                         books={books}
                         notesState={notesState}
+                        mobile
+                        translation={translation}
                         navigateToPassage={(target) => {
                             navigateToPassage(target);
                             setMobileTab("scripture");
@@ -129,17 +131,14 @@ export default function MobileStudyLayout({
                     <HighlightsPanel
                         // Capture the highlighted passage before switching to the Notes tab.
                         onAddNote={(highlight) => {
-                            const started = notesState.handleStartNote({
+                            setMobileTab("notes");
+                            void notesState.handleCreateDocument({
                                 bookId: highlight.book_id,
                                 startChapter: highlight.chapter,
                                 startVerse: highlight.verse,
                                 endChapter: highlight.chapter,
                                 endVerse: highlight.verse
                             });
-
-                            if (started) {
-                                setMobileTab("notes");
-                            }
                         }}
                         highlightsState={highlightsState}
                         scripturePreviews={bookmarkPreviews}

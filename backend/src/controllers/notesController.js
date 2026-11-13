@@ -9,9 +9,14 @@ const { logControllerError } = require("../utils/authErrors");
 // note and far below an abusive payload (and below the 100 KiB JSON body
 // limit, so a max-length note can still arrive in one request).
 const MAX_NOTE_CONTENT_LENGTH = 100_000;
+const MAX_NOTE_TITLE_LENGTH = 200;
 
 function contentTooLong(content) {
     return typeof content === "string" && content.length > MAX_NOTE_CONTENT_LENGTH;
+}
+
+function invalidTitle(title) {
+    return title !== undefined && (typeof title !== "string" || title.length > MAX_NOTE_TITLE_LENGTH);
 }
 
 const createNote = async (req, res) => {
@@ -23,7 +28,8 @@ const createNote = async (req, res) => {
         startVerse,
         endChapter,
         endVerse,
-        content
+        content,
+        title
     } = req.body;
 
     const passageFields = [bookId, startChapter, startVerse, endChapter, endVerse];
@@ -43,6 +49,7 @@ const createNote = async (req, res) => {
             error: "Note content is too long."
         });
     }
+    if (invalidTitle(title)) return res.status(400).json({ error: "Note title is too long." });
 
     try {
         // notes keep book_id as a plain integer (no foreign key crosses
@@ -55,7 +62,7 @@ const createNote = async (req, res) => {
         }
 
         const result = await withUserBudget(userId, async client => {
-            await ensureCapacity(client, userId, "notes", { add: 1, bytes: Buffer.byteLength(content, "utf8") });
+            await ensureCapacity(client, userId, "notes", { add: 1, bytes: Buffer.byteLength(content, "utf8") + Buffer.byteLength(title || "", "utf8") });
             return client.query(
             `
             INSERT INTO notes (
@@ -65,9 +72,10 @@ const createNote = async (req, res) => {
                 start_verse,
                 end_chapter,
                 end_verse,
-                content
+                content,
+                title
             )
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             RETURNING *
             `,
             [
@@ -77,7 +85,8 @@ const createNote = async (req, res) => {
                 hasPassage ? startVerse : null,
                 hasPassage ? endChapter : null,
                 hasPassage ? endVerse : null,
-                content
+                content,
+                title?.trim() || null
             ]
         );
         });
@@ -164,7 +173,8 @@ const updateNote = async (req, res) => {
         startVerse,
         endChapter,
         endVerse,
-        content
+        content,
+        title
     } = req.body;
 
     if (
@@ -173,7 +183,8 @@ const updateNote = async (req, res) => {
         startVerse === undefined &&
         endChapter === undefined &&
         endVerse === undefined &&
-        content === undefined
+        content === undefined &&
+        title === undefined
     ) {
         return res.status(400).json({
             error: "At least one field is required to update the note."
@@ -185,6 +196,7 @@ const updateNote = async (req, res) => {
             error: "Note content is too long."
         });
     }
+    if (invalidTitle(title)) return res.status(400).json({ error: "Note title is too long." });
 
     try {
         // A supplied book_id is validated against the Bible project
@@ -196,9 +208,12 @@ const updateNote = async (req, res) => {
         }
 
         const result = await withUserBudget(userId, async client => {
-            if (content !== undefined) {
-                const old = await client.query('SELECT octet_length(content) AS bytes FROM notes WHERE id=$1 AND user_id=$2', [noteId, userId]);
-                if (old.rows.length) await ensureCapacity(client, userId, 'notes', { bytes: Buffer.byteLength(content, 'utf8') - Number(old.rows[0].bytes) });
+            if (content !== undefined || title !== undefined) {
+                const old = await client.query("SELECT content, COALESCE(title,'') AS title, octet_length(content) + octet_length(COALESCE(title,'')) AS bytes FROM notes WHERE id=$1 AND user_id=$2", [noteId, userId]);
+                if (old.rows.length) {
+                    const nextBytes = Buffer.byteLength(content ?? old.rows[0].content, "utf8") + Buffer.byteLength(title ?? old.rows[0].title, "utf8");
+                    await ensureCapacity(client, userId, 'notes', { bytes: nextBytes - Number(old.rows[0].bytes) });
+                }
             }
             return client.query(
             `
@@ -210,12 +225,14 @@ const updateNote = async (req, res) => {
                 end_chapter = COALESCE($4, end_chapter),
                 end_verse = COALESCE($5, end_verse),
                 content = COALESCE($6, content),
+                title = CASE WHEN $7 THEN NULLIF($8, '') ELSE title END,
                 updated_at = CURRENT_TIMESTAMP
-            WHERE id = $7
-            AND user_id = $8
+            WHERE id = $9
+            AND user_id = $10
             RETURNING *
             `,
-            [bookId, startChapter, startVerse, endChapter, endVerse, content, noteId, userId]
+            [bookId, startChapter, startVerse, endChapter, endVerse, content,
+                title !== undefined, title?.trim() ?? null, noteId, userId]
         );
         });
 
