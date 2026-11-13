@@ -107,24 +107,27 @@ export default function BiblicalHistoryIndexPage() {
 
                 <section id="history-books" className="history-scripture" aria-labelledby="history-books-heading">
                     <header data-history-reveal>
-                        <div><p className="history-home-eyebrow">The complete collection</p><h2 id="history-books-heading">Explore by Scripture</h2></div>
-                        <button
-                            ref={browseButtonRef}
-                            type="button"
-                            className="history-browse-books"
-                            aria-expanded={booksOpen}
-                            aria-controls="history-book-drawer"
-                            onClick={() => (booksOpen ? closeBooks() : setBooksOpen(true))}
-                            onKeyDown={(event) => {
-                                if (event.key === "Escape" && booksOpen) {
-                                    event.preventDefault();
-                                    closeBooks();
-                                }
-                            }}
-                        >
-                            {booksOpen ? "Close Books" : "Browse Books"}
-                            <span aria-hidden="true">{booksOpen ? "↑" : "↓"}</span>
-                        </button>
+                        <p className="history-home-eyebrow">The complete collection</p>
+                        <div className="history-scripture-heading-row">
+                            <h2 id="history-books-heading">Explore by Scripture</h2>
+                            <button
+                                ref={browseButtonRef}
+                                type="button"
+                                className="history-browse-books"
+                                aria-expanded={booksOpen}
+                                aria-controls="history-book-drawer"
+                                onClick={() => (booksOpen ? closeBooks() : setBooksOpen(true))}
+                                onKeyDown={(event) => {
+                                    if (event.key === "Escape" && booksOpen) {
+                                        event.preventDefault();
+                                        closeBooks();
+                                    }
+                                }}
+                            >
+                                {booksOpen ? "Close Books" : "Browse Books"}
+                                <span aria-hidden="true">{booksOpen ? "↑" : "↓"}</span>
+                            </button>
+                        </div>
                     </header>
                     <div data-history-books-reveal>
                         <HistoryBookSelector open={booksOpen} onClose={closeBooks} />

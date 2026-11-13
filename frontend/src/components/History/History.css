@@ -511,7 +511,8 @@
 
 .history-scripture { padding-block: 24px clamp(90px, 10vw, 140px); scroll-margin-top: 88px; --history-drawer-bg: #EEE5D5; --history-drawer-border: #DCCDBB; --history-book-bg: #FBF7EF; --history-book-bg-hover: #F3EAD9; --history-book-border: #D6C4AC; --history-book-border-hover: #C9B08E; --history-book-text: #463329; }
 [data-theme="dark"] .history-scripture { --history-drawer-bg: #241D18; --history-drawer-border: #473B31; --history-book-bg: #2A231E; --history-book-bg-hover: #332A23; --history-book-border: #57493A; --history-book-border-hover: #D8B24F; --history-book-text: #F0E7D9; }
-.history-scripture > header { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+.history-scripture > header { margin-bottom: 28px; }
+.history-scripture-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .history-browse-books { flex-shrink: 0; display: inline-flex; min-height: 52px; align-items: center; gap: 12px; padding: 12px 24px; color: var(--history-ivory); background: var(--public-brand); border: 1px solid var(--public-brand); border-radius: var(--public-radius); font: 600 .86rem/1 "Gnosis History Inter", sans-serif; letter-spacing: .03em; cursor: pointer; transition: background-color 180ms ease, transform 180ms ease; }
 .history-browse-books:hover { background: var(--public-hover); transform: translateY(-2px); }
 .history-browse-books span { font-size: .8rem; line-height: 1; }
@@ -654,6 +655,7 @@
     .history-definition { display: block; padding-block: 82px; }
     .history-definition-index { flex-direction: row; align-items: center; margin-bottom: 48px; }
     .history-definition-copy h2, .history-journey h2, .history-home-start h2, .history-scripture h2 { font-size: clamp(2.7rem, 13vw, 4rem); }
+    .history-scripture > header h2 { font-size: clamp(1.75rem, 10vw, 4rem); }
     .history-definition blockquote { margin-top: 54px; }
     .history-journey { padding-block: 78px; }
     .history-journey > header { display: block; }.history-journey > header > p:last-child { margin-top: 24px; }
@@ -667,7 +669,8 @@
     .history-creation-number { margin-bottom: 54px; font-size: 2.6rem; }
     .history-home-recommendation h3 { font-size: clamp(3rem, 14vw, 4.4rem); }
     .history-scripture { padding-block: 12px 90px; }
-    .history-scripture > header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .history-scripture > header { margin-bottom: 24px; }
+    .history-scripture-heading-row { flex-direction: column; align-items: flex-start; gap: 16px; }
     .history-testament-tabs { gap: 26px; }
     .history-testament-tabs button { min-height: 54px; }
     .history-book-drawer { padding: 4px 14px 16px; }
