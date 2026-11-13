@@ -2,6 +2,8 @@ import { useEffect, useImperativeHandle, useRef } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import ScriptureReferenceMark from "./ScriptureReferenceMark";
+import { NoteSpacingExtension } from "./NoteSpacingExtension";
+import { readActiveSpacing } from "./noteSpacing";
 import { sanitizeNoteHtml } from "./noteRichText";
 
 const EMPTY_BOOKS = [];
@@ -21,6 +23,7 @@ export default function NotesEditor({
         extensions: [
             StarterKit.configure({ heading: { levels: [1, 2, 3] } }),
             ScriptureReferenceMark.configure({ books }),
+            NoteSpacingExtension,
         ],
         content: sanitizeNoteHtml(value),
         editable: !disabled,
@@ -51,6 +54,7 @@ export default function NotesEditor({
             bold: current.isActive("bold"), italic: current.isActive("italic"),
             underline: current.isActive("underline"), heading: current.isActive("heading"),
             list: current.isActive("bulletList"), orderedList: current.isActive("orderedList"),
+            ...readActiveSpacing(current.state),
         }),
     }, [books]);
 
@@ -67,6 +71,14 @@ export default function NotesEditor({
     useImperativeHandle(inputRef, () => ({
         focus: () => editor?.commands.focus(),
         format: (action) => {
+            // Spacing actions carry a value: { kind: "lineHeight", value: "2" }
+            // or { kind: "paragraphSpacing", value: "large" }. They run as a
+            // single focused transaction (selection preserved, one Undo step).
+            if (action && typeof action === "object") {
+                if (action.kind === "lineHeight") editor?.chain().focus().setLineHeight(action.value).run();
+                else if (action.kind === "paragraphSpacing") editor?.chain().focus().setParagraphSpacing(action.value).run();
+                return;
+            }
             const chain = editor?.chain().focus();
             const commands = {
                 bold: () => chain?.toggleBold().run(), italic: () => chain?.toggleItalic().run(),

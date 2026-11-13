@@ -38,6 +38,21 @@
 .notes-tiptap-editor li > p { margin: 0; }
 .notes-tiptap-editor > :first-child { margin-top: 0; }
 .notes-tiptap-editor > :last-child { margin-bottom: 0; }
+/* Spacing controls (NoteSpacingExtension): data attributes on a paragraph
+   or heading. Specificity (0,2,1) beats the base p / heading / li > p /
+   :first-child / :last-child rules above, so an explicit setting always
+   wins — including on the paragraph inside a list item, which is how a
+   spaced list item gets its gap without double margins. Paragraph spacing
+   sets margin-top: 0 so the gap between blocks is exactly the chosen
+   value, not the base top margin plus it. */
+.notes-tiptap-editor p[data-line-height="1"], .notes-tiptap-editor h1[data-line-height="1"], .notes-tiptap-editor h2[data-line-height="1"], .notes-tiptap-editor h3[data-line-height="1"] { line-height: 1; }
+.notes-tiptap-editor p[data-line-height="1.15"], .notes-tiptap-editor h1[data-line-height="1.15"], .notes-tiptap-editor h2[data-line-height="1.15"], .notes-tiptap-editor h3[data-line-height="1.15"] { line-height: 1.15; }
+.notes-tiptap-editor p[data-line-height="1.5"], .notes-tiptap-editor h1[data-line-height="1.5"], .notes-tiptap-editor h2[data-line-height="1.5"], .notes-tiptap-editor h3[data-line-height="1.5"] { line-height: 1.5; }
+.notes-tiptap-editor p[data-line-height="2"], .notes-tiptap-editor h1[data-line-height="2"], .notes-tiptap-editor h2[data-line-height="2"], .notes-tiptap-editor h3[data-line-height="2"] { line-height: 2; }
+.notes-tiptap-editor p[data-paragraph-spacing="none"], .notes-tiptap-editor h1[data-paragraph-spacing="none"], .notes-tiptap-editor h2[data-paragraph-spacing="none"], .notes-tiptap-editor h3[data-paragraph-spacing="none"] { margin-top: 0; margin-bottom: 0; }
+.notes-tiptap-editor p[data-paragraph-spacing="small"], .notes-tiptap-editor h1[data-paragraph-spacing="small"], .notes-tiptap-editor h2[data-paragraph-spacing="small"], .notes-tiptap-editor h3[data-paragraph-spacing="small"] { margin-top: 0; margin-bottom: .25em; }
+.notes-tiptap-editor p[data-paragraph-spacing="medium"], .notes-tiptap-editor h1[data-paragraph-spacing="medium"], .notes-tiptap-editor h2[data-paragraph-spacing="medium"], .notes-tiptap-editor h3[data-paragraph-spacing="medium"] { margin-top: 0; margin-bottom: .5em; }
+.notes-tiptap-editor p[data-paragraph-spacing="large"], .notes-tiptap-editor h1[data-paragraph-spacing="large"], .notes-tiptap-editor h2[data-paragraph-spacing="large"], .notes-tiptap-editor h3[data-paragraph-spacing="large"] { margin-top: 0; margin-bottom: 1em; }
 .note-scripture-link { color: var(--color-brand); cursor: pointer; font-weight: 600; text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: 3px; }
 
 [aria-label="Formatting"] button[aria-pressed="true"] {
