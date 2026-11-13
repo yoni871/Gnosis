@@ -47,7 +47,9 @@ describe("BiblicalHistoryIndexPage", () => {
         expect(screen.getByRole("link", { name: "Explore Creation" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
         expect(screen.getByRole("heading", { name: "Explore by Scripture" })).toBeInTheDocument();
         await user.click(screen.getByRole("button", { name: /Browse Books/ }));
-        expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis");
+        // Genesis opens its first published event directly; the book
+        // URL would redirect there anyway.
+        expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
     });
 
     it("sets indexable metadata for the index page", () => {

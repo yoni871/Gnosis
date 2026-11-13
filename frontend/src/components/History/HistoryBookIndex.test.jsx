@@ -11,7 +11,7 @@ describe("HistoryBookIndex", () => {
         // Sections are <section> elements; Testing Library maps them to region only with an accessible name.
         expect(ot).toHaveLength(39);
         expect(nt).toHaveLength(27);
-        expect(screen.getByRole("link", { name: /Genesis/ })).toHaveAttribute("href", "/biblical-history/genesis");
+        expect(screen.getByRole("link", { name: /Genesis/ })).toHaveAttribute("href", "/biblical-history/genesis/creation");
         expect(screen.getByRole("link", { name: /Song of Solomon/ })).toHaveAttribute(
             "href", "/biblical-history/song-of-solomon",
         );

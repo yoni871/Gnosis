@@ -26,7 +26,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 // The Markdown renderer travels with these routes only — a reader who
 // never opens History downloads none of it.
 const BiblicalHistoryIndexPage = lazy(() => import('./pages/BiblicalHistoryIndexPage'));
-const BiblicalHistoryBookPage = lazy(() => import('./pages/BiblicalHistoryBookPage'));
+const BiblicalHistoryBookRedirect = lazy(() => import('./pages/BiblicalHistoryBookRedirect'));
 const BiblicalHistoryEventPage = lazy(() => import('./pages/BiblicalHistoryEventPage'));
 
 function RouteLoading() {
@@ -105,9 +105,11 @@ function App() {
             />
 
             {/*
-              Biblical History: the index lists all 66 books, a book page
-              shows its events and timeline, and the event route is the
-              same book page with one event's panel open.
+              Biblical History: the index lists all 66 books, the book
+              route redirects to the book's first published event (or
+              its Upcoming state when it has none), and the event route
+              is the study page — the book's timeline with one event's
+              panel open.
             */}
             <Route
               path='/biblical-history'
@@ -121,7 +123,7 @@ function App() {
 
             <Route
               path='/biblical-history/:book'
-              element={<BiblicalHistoryBookPage />}
+              element={<BiblicalHistoryBookRedirect />}
             />
 
             <Route

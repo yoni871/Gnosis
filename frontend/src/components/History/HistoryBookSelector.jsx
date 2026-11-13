@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { listBooks } from "../../services/historyService";
+import { eventSlug, getFirstPublishedEvent, listBooks } from "../../services/historyService";
 import { historyPath } from "../../utils/seo";
 
 const TESTAMENTS = [
@@ -74,13 +74,23 @@ export default function HistoryBookSelector({ books = listBooks(), open = false,
                 tabIndex={0}
             >
                 <ul className="history-book-chips">
-                    {visibleBooks.map((book) => (
-                        <li key={book.id}>
-                            <Link to={historyPath(book.id)} data-history-book={book.id}>
-                                {book.title}
-                            </Link>
-                        </li>
-                    ))}
+                    {visibleBooks.map((book) => {
+                        // A book with published events opens its first
+                        // event directly — the book URL redirects there
+                        // anyway. A book with none keeps its Upcoming
+                        // page at the book URL.
+                        const firstEvent = book.hasEvents ? getFirstPublishedEvent(book.id) : null;
+                        const to = firstEvent
+                            ? historyPath(book.id, eventSlug(firstEvent.id))
+                            : historyPath(book.id);
+                        return (
+                            <li key={book.id}>
+                                <Link to={to} data-history-book={book.id}>
+                                    {book.title}
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
                 <p className="history-book-scroll-hint">Scroll for more books <span aria-hidden="true">↓</span></p>
             </div>

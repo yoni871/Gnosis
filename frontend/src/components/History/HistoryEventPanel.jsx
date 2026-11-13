@@ -150,6 +150,14 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
             // open has no opener node, and the id lookup covers that too.)
             // Fall back to the captured node only if it is still mounted
             // (the no-route-change case, e.g. a state-toggled panel).
+            //
+            // Note: closing now navigates to the index book directory,
+            // not the book page (the book URL redirects to the first
+            // event), so the event link is not in the DOM after close
+            // and neither the id lookup nor the captured node applies —
+            // focus falls to BODY. That is the current behaviour; a
+            // focus target on the index for panel-close returns is an
+            // open follow-up, not part of this redirect.
             const opener = document.getElementById(`history-event-link-${eventSlug(event.id)}`);
             if (opener) {
                 opener.focus();
