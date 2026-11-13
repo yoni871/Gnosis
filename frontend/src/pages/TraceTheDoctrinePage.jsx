@@ -37,6 +37,7 @@ function useReveal(rootRef) {
             targets.forEach((el) => el.classList.add("is-visible"));
             return undefined;
         }
+        root.classList.add("doctrine-reveal-ready");
         const observer = new IntersectionObserver(
             (entries) => {
                 for (const entry of entries) {
@@ -49,7 +50,7 @@ function useReveal(rootRef) {
             { rootMargin: "0px 0px -8% 0px", threshold: 0.1 },
         );
         root.querySelectorAll("[data-doctrine-reveal]").forEach((el) => observer.observe(el));
-        return () => observer.disconnect();
+        return () => { observer.disconnect(); root.classList.remove("doctrine-reveal-ready"); };
     }, [rootRef]);
 }
 
