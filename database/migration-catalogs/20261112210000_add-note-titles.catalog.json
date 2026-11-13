@@ -3,7 +3,7 @@
     {
       "kind": "column",
       "name": "notes.title",
-      "definition": { "type": "character varying(200)", "default": null, "notNull": false, "identity": "", "collation": null, "generated": "" }
+      "definition": { "type": "character varying(200)", "default": null, "notNull": false, "identity": "", "collation": "default", "generated": "" }
     }
   ],
   "removed": []
