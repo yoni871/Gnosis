@@ -21,7 +21,8 @@ describe("HistoryBookIndex", () => {
     it("marks every book except Genesis Upcoming in a production build and ships no other event titles", () => {
         render(<MemoryRouter><HistoryBookIndex /></MemoryRouter>);
         expect(screen.getAllByText("Upcoming")).toHaveLength(65);
-        expect(screen.getByText("1 event")).toBeInTheDocument();
+        expect(screen.getByText("2 events")).toBeInTheDocument();
         expect(screen.queryByText(/Creation/)).toBeNull();
+        expect(screen.queryByText(/Adam and Eve/)).toBeNull();
     });
 });

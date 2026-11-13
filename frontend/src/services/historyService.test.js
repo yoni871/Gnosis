@@ -1,6 +1,6 @@
 // Service tests. These run against the production-mode generated
 // directory (npm test generates published-only content first), so the
-// published Creation event IS present: Genesis has one event and every
+// published Creation and Adam and Eve events ARE present: Genesis has two events and every
 // other book is "Upcoming". Dev-mode loading is covered by the content-lib
 // tests (which generate into temp dirs) and the local dev-flag preview.
 import { describe, expect, it } from "vitest";
@@ -65,10 +65,10 @@ describe("listBooks", () => {
         expect(books[39].title).toBe("Matthew");
         expect(books[65].title).toBe("Revelation");
     });
-    it("marks every book except Genesis Upcoming in a production build (one published event)", () => {
+    it("marks every book except Genesis Upcoming in a production build (two published events)", () => {
         const books = listBooks();
         const genesis = books.find((book) => book.id === "genesis");
-        expect(genesis.eventCount).toBe(1);
+        expect(genesis.eventCount).toBe(2);
         expect(genesis.hasEvents).toBe(true);
         const rest = books.filter((book) => book.id !== "genesis");
         expect(rest).toHaveLength(65);
@@ -88,13 +88,19 @@ describe("book/event lookups in a production build", () => {
         expect(book).not.toBeNull();
         expect(book.id).toBe("genesis");
         const events = listEventsForBook("genesis");
-        expect(events).toHaveLength(1);
+        expect(events).toHaveLength(2);
         expect(events[0].id).toBe("event-creation");
         expect(events[0].title).toBe("Creation");
+        expect(events[1].id).toBe("event-adam-and-eve");
+        expect(events[1].title).toBe("Adam and Eve");
         expect(getEvent("event-creation")).not.toBeNull();
         expect(getEvent("event-creation").title).toBe("Creation");
         expect(getEventBySlug("creation")).not.toBeNull();
         expect(getEventBySlug("creation").id).toBe("event-creation");
+        expect(getEvent("event-adam-and-eve")).not.toBeNull();
+        expect(getEvent("event-adam-and-eve").title).toBe("Adam and Eve");
+        expect(getEventBySlug("adam-and-eve")).not.toBeNull();
+        expect(getEventBySlug("adam-and-eve").id).toBe("event-adam-and-eve");
         // No other book has generated content yet.
         expect(getBook("exodus")).toBeNull();
         expect(listEventsForBook("exodus")).toEqual([]);

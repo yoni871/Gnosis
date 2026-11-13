@@ -114,9 +114,31 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
             expect(result.status).toBe(0);
             const manifest = readManifest(sandbox);
             expect(manifest.includeUnpublished).toBe(false);
-            expect(manifest.events).toEqual([]);
-            expect(manifest.books).toEqual([]);
-            expect(manifest.sources).toEqual([]);
+            // The sandbox flips Creation to in-review; the shipped Adam
+            // and Eve event is published, so published-only generation
+            // still ships it — with the 16 sources it cites — and
+            // nothing unpublished.
+            expect(manifest.events).toEqual(["event-adam-and-eve"]);
+            expect(manifest.books).toEqual(["genesis"]);
+            expect(manifest.sources).toEqual([
+                "source-balogh-tree-of-life",
+                "source-bdb-lexicon",
+                "source-benthall-two-trees",
+                "source-etcsl-enki-ninmah",
+                "source-isaw-sacred-tree",
+                "source-jvl-paradise",
+                "source-keil-delitzsch-genesis",
+                "source-kramer-dilmun",
+                "source-mcdowell-human-identity",
+                "source-met-mesopotamian-creation",
+                "source-oracc-marduk",
+                "source-ryle-genesis",
+                "source-scriptorium-lamassu",
+                "source-skinner-genesis",
+                "source-stordalen-eden-narrative",
+                "source-westermann-genesis",
+            ]);
+            expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
             expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(false);
             expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.md"))).toBe(false);
         },
@@ -179,7 +201,10 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
             cwd: sandbox,
         });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual([]);
+        // Only the published Adam and Eve event survives the
+        // production generation; the stale Creation drafts are gone.
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve"]);
+        expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(false);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.md"))).toBe(false);
     });
@@ -203,7 +228,9 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         const sandbox = makeSandbox();
         const result = runNode("scripts/build-history-content-dev.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual([]);
+        // Published-only: the published Adam and Eve event ships; the
+        // in-review Creation fixture does not.
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     });
 });
@@ -297,119 +324,20 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
     it("returns the in-review event with its title and its unpublished-only sources", () => {
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
+        // Adam and Eve is published now, so the sandbox's only
+        // non-published event is Creation (flipped to in-review by
+        // makeSandbox) — with the three sources cited only by it.
+        // McDowell, Met, and ORACC are no longer unpublished-only:
+        // the published Adam and Eve event cites them too. Brown,
+        // Crouch, and Shabaka follow in Creation's citation order.
         expect(findNonPublishedRecords({ contentDir })).toEqual([
-            { id: "event-adam-and-eve", kind: "event", status: "in-review", title: "Adam and Eve" },
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
-            {
-                id: "source-mcdowell-human-identity",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Human Identity and Purpose Redefined: Gen 1:26–28 and 2:5–25 in Context",
-            },
-            {
-                id: "source-stordalen-eden-narrative",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The God of the Eden Narrative",
-            },
-            {
-                id: "source-etcsl-enki-ninmah",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Enki and Ninmaḫ (ETCSL 1.1.2)",
-            },
-            {
-                id: "source-met-mesopotamian-creation",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Mesopotamian Creation Myths",
-            },
-            {
-                id: "source-bdb-lexicon",
-                kind: "source",
-                status: "unpublished-only",
-                title: "A Hebrew and English Lexicon of the Old Testament",
-            },
-            {
-                id: "source-keil-delitzsch-genesis",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Biblical Commentary on the Old Testament, Vol. I",
-            },
-            {
-                id: "source-skinner-genesis",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Genesis: A Critical and Exegetical Commentary",
-            },
-            {
-                id: "source-ryle-genesis",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Book of Genesis (Cambridge Bible for Schools and Colleges)",
-            },
-            {
-                id: "source-westermann-genesis",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Genesis 1–11: A Commentary",
-            },
-            {
-                id: "source-oracc-marduk",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Marduk (god)",
-            },
-            {
-                id: "source-jvl-paradise",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Paradise (Encyclopaedia Judaica)",
-            },
-            {
-                id: "source-isaw-sacred-tree",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Expansionist Politics and the Creation of an Emblem of Universal Kingship",
-            },
-            {
-                id: "source-balogh-tree-of-life",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Tree of Life in Ancient Near Eastern Iconography",
-            },
-            {
-                id: "source-kramer-dilmun",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Indus Civilization and Dilmun, the Sumerian Paradise Land",
-            },
-            {
-                id: "source-benthall-two-trees",
-                kind: "source",
-                status: "unpublished-only",
-                title: "A Tale of Two Trees: Knowledge and Life in the Book of Genesis",
-            },
-            {
-                id: "source-scriptorium-lamassu",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Lamassu (Human-Headed Winged Bull)",
-            },
             {
                 id: "source-brown-cosmic-temple",
                 kind: "source",
                 status: "unpublished-only",
                 title: "The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3",
             },
-            // Order note (QA corrections, 2026-11-12): Brown is no longer
-            // cited by the Adam and Eve event, so it is first cited by
-            // Creation (scanned after adam-and-eve.json) and now follows
-            // Scriptorium in citation order. Same 21 records; order only.
-            // Order note (publication preparation, 2026-11-12): Crouch is no
-            // longer cited by the Adam and Eve event, so it is first cited by
-            // Creation (scanned after adam-and-eve.json) and now follows
-            // Brown in citation order. Same 21 records; order only.
             {
                 id: "source-crouch-image-of-god",
                 kind: "source",
@@ -613,7 +541,7 @@ describe("historyGatePlugin — the direct vite build path", () => {
             encoding: "utf8",
         });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual([]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve"]);
         const text = distText(sandbox);
         expect(text).not.toContain("event-creation");
         expect(text).not.toContain("Creation");
