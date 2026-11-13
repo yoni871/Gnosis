@@ -38,7 +38,7 @@ function applicationSuite(context, intentionalFailure = false) {
         'test/application/harness.test.js', 'test/application/safety.test.js',
         'test/application/refreshRateLimit.test.js',
         'test/application/sessions.test.js', 'test/application/rateLimit.test.js', 'test/application/emailVerification.test.js',
-        'test/application/passwordReset.test.js', 'test/application/auditLog.test.js',
+        'test/application/passwordReset.test.js', 'test/application/passwordMigration.test.js', 'test/application/auditLog.test.js',
         'test/application/securityAlerts.test.js', 'test/application/accountNotifications.test.js', 'test/application/accountDeletion.test.js',
     ];
     return new Promise((resolve, reject) => {

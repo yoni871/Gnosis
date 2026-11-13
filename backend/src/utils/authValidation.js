@@ -1,9 +1,9 @@
 // Server-side input validation for issue #3.
 //
 // This module is intentionally dependency-free and pure: it never touches
-// the database, bcrypt, JWT, logs, or the network, and it never echoes a
+// the database, password hashing, JWT, logs, or the network, and it never echoes a
 // submitted value. Routes call it first, before any hashing or query, and
-// only the returned `value` (never the raw body) reaches bcrypt or the
+// only the returned `value` (never the raw body) reaches password hashing or the
 // database. Unknown fields are ignored: only known fields are read.
 //
 // Approved rules for issue #3:
@@ -19,12 +19,15 @@
 //   either part). It is NOT lowercased, and lookup stays case-sensitive;
 //   canonicalization is a separate follow-up migration task.
 // - Registration password: required string, at least 8 characters
-//   (code points), at most 72 UTF-8 bytes (bcrypt's limit: longer inputs
-//   would be silently truncated). No complexity rules (NIST SP 800-63B-4
-//   forbids them). Breached-password screening runs in the route, after
-//   rate limiting and before hashing. NIST's single-factor floor is 15
-//   characters; the project floor is 8 per the project lead's decision,
-//   and the breach screen is the compensating control. Passwords are not
+//   (code points), at most 72 UTF-8 bytes. The cap is kept from the
+//   bcrypt era (longer inputs were silently truncated by bcrypt);
+//   Argon2id has no such limit, but the cap stays so a password valid
+//   at registration stays valid at login, which enforces the same cap.
+//   No complexity rules (NIST SP 800-63B-4 forbids them).
+//   Breached-password screening runs in the route, after rate limiting
+//   and before hashing. NIST's single-factor floor is 15 characters;
+//   the project floor is 8 per the project lead's decision, and the
+//   breach screen is the compensating control. Passwords are not
 //   trimmed: spaces can be part of a password.
 // - Login password: required non-empty string, at most 72 UTF-8 bytes.
 //   The registration minimum is deliberately NOT enforced here, so

@@ -7,7 +7,7 @@
 //
 // Two rules shape everything here:
 // 1. Clients only ever see controlled messages. Nothing from a database,
-//    bcrypt, or JWT failure is copied into a response.
+//    password-hashing, or JWT failure is copied into a response.
 // 2. Server logs carry route, failure kind, and database code only. They
 //    never carry request data, tokens, hashes, passwords, connection
 //    strings, secrets, error messages, or stack traces.

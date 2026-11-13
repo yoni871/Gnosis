@@ -1,9 +1,7 @@
 const express = require("express");
 const pool = require("../db/db");
-const bcrypt = require("bcrypt");
+const passwordHash = require("../utils/passwordHash");
 const router = express.Router();
-// Public dummy bcrypt value, never an account credential (cost matches signup).
-const UNKNOWN_PASSWORD_HASH = '$2b$12$jafHcnBk3QC6ragiVaN8ae/Y6oKqxqBGFpCmAMhoH31xEbn.K5Lzu';
 const sessions = require("../services/sessionService");
 const authenticateToken = require("../middleware/authMiddleware");
 const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
@@ -27,7 +25,7 @@ const { recordLoginDevice } = require("../services/loginDevices");
 
 // Issue #3: validation runs as middleware, before the limiter and before
 // any hashing or database access. Only the validated (trimmed) values
-// below ever reach bcrypt or the query. Validation failures are not
+// below ever reach password hashing or the query. Validation failures are not
 // logged: they are ordinary client errors, and logging them could record
 // submitted values. Because validation runs first, invalid input never
 // creates a rate-limit reservation and never counts.
@@ -213,8 +211,8 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
 
 // Breached-password screening (roadmap T1.7): this handler runs only
     // after the rate limiter has reserved, and the check runs before any
-    // hashing, so a breached password never reaches bcrypt and the check
-    // cannot be used as a pre-rate-limit oracle. It also runs before any
+    // hashing, so a breached password never reaches password hashing
+    // and the check cannot be used as a pre-rate-limit oracle. It also runs before any
     // database access, so an existing and a new address get the same
     // response and no account state leaks. The rejection is logged with
     // the allowlisted logger only (route + kind, never the password);
@@ -231,12 +229,12 @@ router.post("/register", validateRegister, registerRateLimit, withRateLimitFinal
 
     // Hashing failures are internal errors for issue #5. Missing or
     // malformed input is rejected above by issue #3 validation and never
-    // reaches this point. New hashes use bcrypt cost 12 (audit N07);
-    // existing cost-10 hashes still verify on login, and re-hashing
-    // them on next login is a later change, not this one.
+    // reaches this point. New hashes are Argon2id (passwordHash module);
+    // existing bcrypt hashes still verify on login and transparently
+    // migrate to Argon2id on next login (see the login handler).
     let hashedPassword;
     try {
-        hashedPassword = await bcrypt.hash(password, 12);
+        hashedPassword = await passwordHash.hashPassword(password);
     } catch (error) {
         logAuthFailure("POST /api/auth/register", "password", error);
         await req.rateLimit.finalize("release");
@@ -350,7 +348,7 @@ router.post("/login", (req, res, next) => {
     // run inside this handler's own try/catch and become controlled 500s.
     let passwordMatch;
     try {
-        passwordMatch = await bcrypt.compare(password, user ? user.password_hash : UNKNOWN_PASSWORD_HASH);
+        passwordMatch = await passwordHash.verifyPassword(password, user ? user.password_hash : passwordHash.UNKNOWN_PASSWORD_HASH);
     } catch (error) {
         logAuthFailure("POST /api/auth/login", "password", error);
         await req.rateLimit.finalize("release");
@@ -397,6 +395,30 @@ router.post("/login", (req, res, next) => {
         await audit(pool, "login.failure", user.id);
         return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
     }
+
+    // Transparent Argon2id migration: a bcrypt hash that just verified is
+    // re-hashed after the session is issued, so session issuance still
+    // binds to the hash login verified (createSession rechecks it above).
+    // Migrating after issuance also keeps concurrent logins working:
+    // both issue from the same bcrypt hash, and the first migration wins.
+    // The update is compare-and-swap on the hash that was verified, so
+    // a password reset that lands between verification and this write
+    // wins instead: the update matches zero rows and the new password is
+    // never clobbered by a hash of the old one. A migration failure is
+    // best-effort and never fails the login; the bcrypt hash stays in
+    // place for the next login.
+    if (passwordHash.isBcryptHash(user.password_hash)) {
+        try {
+            const migratedHash = await passwordHash.hashPassword(password);
+            await pool.query(
+                "UPDATE users SET password_hash = $1 WHERE id = $2 AND password_hash = $3",
+                [migratedHash, user.id, user.password_hash]
+            );
+        } catch (error) {
+            logAuthFailure("POST /api/auth/login", "rehash", error);
+        }
+    }
+
     sessions.setCookie(res, session.refresh);
     res.set("Cache-Control", "no-store");
 
@@ -486,8 +508,8 @@ router.delete("/account", authenticateToken, validateDelete, async (req, res) =>
     const userId = req.user.userId;
 
     // The password check runs before the transaction and before any
-    // lock: no lock is ever held across bcrypt, following the reset
-    // flow. A wrong password is an ordinary client error and is not
+    // lock: no lock is ever held across password hashing, following the
+    // reset flow. A wrong password is an ordinary client error and is not
     // logged; the response is the same invalid-credentials body as
     // login, so it reveals nothing about account state.
     let storedHash;
@@ -504,7 +526,7 @@ router.delete("/account", authenticateToken, validateDelete, async (req, res) =>
     let passwordMatch = false;
     if (storedHash) {
         try {
-            passwordMatch = await bcrypt.compare(req.validated.password, storedHash);
+            passwordMatch = await passwordHash.verifyPassword(req.validated.password, storedHash);
         } catch (error) {
             logAuthFailure("DELETE /api/auth/account", "password", error);
             return res.status(500).json(internalErrorBody("delete"));
@@ -929,11 +951,11 @@ router.post("/reset-password", validateReset, resetRateLimit, withRateLimitFinal
 
     // Hashing runs before the transaction and before any lock: a hash
     // failure is an internal error, and no lock is ever held across
-    // bcrypt. Only a known token reaches this point. New hashes use
-    // bcrypt cost 12 (audit N07); existing cost-10 hashes still verify.
+    // password hashing. Only a known token reaches this point. New
+    // hashes are Argon2id (passwordHash module).
     let hashedPassword;
     try {
-        hashedPassword = await bcrypt.hash(req.validated.password, 12);
+        hashedPassword = await passwordHash.hashPassword(req.validated.password);
     } catch (error) {
         logAuthFailure("POST /api/auth/reset-password", "password", error);
         await req.rateLimit.finalize("release");

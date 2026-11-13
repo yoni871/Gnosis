@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const http = require("node:http");
-const bcrypt = require("bcrypt");
+const { verifyPassword } = require("../../src/utils/passwordHash");
 const crypto = require("node:crypto");
 
 // Explicit isolation also protects direct node --test invocations.
@@ -350,10 +350,10 @@ test("reset succeeds for a valid token, updates the password, and cannot be repl
     assert.ok(clientQueries.some((sql) => /consumed_reason = 'superseded'/.test(sql)),
         "other unused tokens for the account must supersede");
     assert.equal(passwordParams[1], 5);
-    assert.match(passwordParams[0], /^\$2b\$12\$/, "reset hashes must use bcrypt cost 12");
-    assert.equal(await bcrypt.compare("a-new-password", passwordParams[0]), true,
+    assert.match(passwordParams[0], /^\$argon2id\$v=19\$m=19456,t=2,p=1\$/, "reset hashes must be Argon2id");
+    assert.equal(await verifyPassword("a-new-password", passwordParams[0]), true,
         "the stored hash must match the new password");
-    assert.equal(await bcrypt.compare("the-old-password", passwordParams[0]), false,
+    assert.equal(await verifyPassword("the-old-password", passwordParams[0]), false,
         "the stored hash must not match the old password");
     clientQueries.length = 0;
     const replay = await post("/api/auth/reset-password", { token, password: "another-password" });
