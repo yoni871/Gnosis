@@ -214,6 +214,7 @@ test('failed migration rolls back schema and history and can safely retry', asyn
     await fs.writeFile(path.join(dir, '29990101000000_fixture.sql'), '-- Up Migration\nCREATE TABLE fixture(id integer);\n-- Down Migration\nDROP TABLE fixture;');
     await run('app', 'up', { dir });
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['29990101000000_fixture']);
+    assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261113000000_mfa-session-assurance']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261112210000_add-note-titles']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261112180000_add-mfa-key-version']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261112130000_make-note-passage-optional']);
