@@ -28,12 +28,12 @@ function stopApplicationProcess(child, signal) {
     }
 }
 
-function applicationSuite(context, intentionalFailure = false) {
+function applicationSuite(context, intentionalFailure = false, rotationOnly = false) {
     if (interrupted) throw new Error('Disposable run interrupted.');
     // Never pass the migration environment or operator configuration here.
     const env = { ...workerEnvironment(), GNOSIS_APPLICATION_TEST_CONTEXT: JSON.stringify(context) };
     if (intentionalFailure) env.GNOSIS_APPLICATION_EXPECT_FAILURE = '1';
-    const files = intentionalFailure ? ['test/application/safety.test.js'] : [
+    const files = intentionalFailure ? ['test/application/safety.test.js'] : rotationOnly ? ['test/application/mfaKeyRotation.test.js'] : [
         'test/application/privatePages.test.js',
         'test/application/harness.test.js', 'test/application/safety.test.js',
         'test/application/refreshRateLimit.test.js',
@@ -146,6 +146,12 @@ async function main() {
             assert.notEqual(context.database, name);
             const result = await applicationSuite(context);
             assert.equal(result.status, 0, 'Application integration suite failed.');
+        });
+        // Rotation scans every enrolled factor and must have a private fixture
+        // with its own key, rather than other tests' synthetic MFA rows.
+        await withApplicationDatabase(admin, adminConfig, name, async context => {
+            const result = await applicationSuite(context, false, true);
+            assert.equal(result.status, 0, 'MFA key rotation integration test failed.');
         });
         console.log(`PostgreSQL ${version}: application tests passed; generated database and role removal verified.`);
         const marker = new Error('Expected application test process failure.');

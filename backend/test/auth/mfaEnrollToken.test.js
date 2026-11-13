@@ -23,7 +23,7 @@ test("an enrollment token verifies and carries the mfa-enroll purpose", () => {
     // Bound to the verified credential: the payload carries a digest
     // of the password hash, never the hash itself.
     assert.equal(decoded.pwd, digestPasswordHash(PASSWORD_HASH));
-    assert.deepEqual(verifyMfaEnrollToken(token), { userId: 7, passwordHashDigest: digestPasswordHash(PASSWORD_HASH) });
+    assert.deepEqual(verifyMfaEnrollToken(token), { userId: 7, passwordHashDigest: digestPasswordHash(PASSWORD_HASH), expiresAt: decoded.exp });
 });
 
 test("a session JWT is not an enrollment token", () => {

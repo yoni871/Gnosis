@@ -160,6 +160,7 @@ const enrollRateLimit = createRateLimitMiddleware([
 // a success or an internal failure does not.
 const codeRateLimit = createRateLimitMiddleware([
     { policy: "mfa_code_ip_user", fields: (req, ip) => [ip, String(req.user.userId)] },
+    { policy: "mfa_code_user", fields: (req) => [String(req.user.userId)] },
 ], "mfa");
 
 // Mirrors authRoutes.withRateLimitFinalize: handlers finalize
@@ -224,8 +225,11 @@ router.post("/enroll", authenticateMfaEnroll, enrollRateLimit,
                 code: "MFA_ALREADY_ENROLLED",
             });
         }
-        const enrollment = await mfa.startEnrollment(pool, req.user.userId, userRow.email);
+        const enrollment = await mfa.startEnrollment(pool, req.user.userId, userRow.email, req.user);
         if (!enrollment.ok) {
+            if (enrollment.reason === "unauthorized") {
+                return noStore(res).status(403).json({ error: "Authentication is no longer valid.", code: "TOKEN_INVALID" });
+            }
             // startEnrollment rechecked under its own lock, so this
             // is the atomic already-enrolled outcome (a concurrent
             // enrollment completed between the status check above
@@ -245,11 +249,15 @@ router.post("/enroll/confirm", authenticateMfaEnroll, validateTotpCode, codeRate
     withRateLimitFinalize(async (req, res) => {
         let result;
         try {
-            result = await mfa.confirmEnrollment(pool, req.user.userId, req.validated.code);
+            result = await mfa.confirmEnrollment(pool, req.user.userId, req.validated.code, req.user);
         } catch (error) {
             return handleMfaError("POST /api/auth/mfa/enroll/confirm", error, req, res);
         }
         if (!result.ok) {
+            if (result.reason === "unauthorized") {
+                await req.rateLimit.finalize("release");
+                return noStore(res).status(403).json({ error: "Authentication is no longer valid.", code: "TOKEN_INVALID" });
+            }
             if (result.reason === "code") {
                 await req.rateLimit.finalize("count");
                 return noStore(res).status(401).json(INVALID_MFA_CODE_BODY);

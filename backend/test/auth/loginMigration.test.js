@@ -109,8 +109,8 @@ function useUser({ storedHash, recheckHash = storedHash, onUpdate } = {}) {
                 }],
             };
         }
-        if (typeof sql === "string" && sql.includes("SELECT password_hash FROM users")) {
-            return { rows: [{ password_hash: recheckHash }] };
+        if (typeof sql === "string" && sql.includes("SELECT password_hash, email FROM users")) {
+            return { rows: [{ password_hash: recheckHash, email: 'test@example.com' }] };
         }
         if (typeof sql === "string" && sql.includes("UPDATE users SET password_hash")) {
             updates.push(args);

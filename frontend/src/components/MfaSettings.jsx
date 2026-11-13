@@ -366,7 +366,8 @@ export default function MfaSettings({ enrollToken = null }) {
                     </h2>
                     <p className="mt-2 text-[13px] leading-6 text-[var(--text-muted)]">
                         Signing in now asks for a code from your authenticator app after your
-                        password. Lost your device? A recovery code signs you in instead.
+                        password. Each authenticator code can be used once; wait for the next
+                        code before another action. Lost your device? A recovery code signs you in instead.
                     </p>
                 </section>
 

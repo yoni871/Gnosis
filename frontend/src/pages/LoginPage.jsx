@@ -339,7 +339,7 @@ export default function LoginPage() {
                                 leading-5
                                 text-[var(--text-muted)]
                             ">
-                                Enter the 6-digit code from your authenticator app. A recovery code works here too if you cannot reach your authenticator.
+                                Enter the 6-digit code from your authenticator app. If you just used a code, wait for the next one. A recovery code works here too if you cannot reach your authenticator.
                             </p>
 
                             {loginError && (

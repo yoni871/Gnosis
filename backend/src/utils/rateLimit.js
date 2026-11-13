@@ -102,6 +102,7 @@ const POLICIES = {
     mfa_verify_challenge: { windowMs: 15 * 60 * 1000, limit: 5 },
     mfa_enroll_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
     mfa_code_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_code_user: { windowMs: 15 * 60 * 1000, limit: 5 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since

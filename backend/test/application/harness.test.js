@@ -65,6 +65,7 @@ test('migrated application schema permits only the approved runtime grants', asy
     for (const table of ['mfa_challenges', 'mfa_recovery_codes', 'user_mfa']) {
         for (const privilege of ['SELECT', 'INSERT']) expected.push(`${table}:${privilege}`);
     }
+    expected.push('mfa_challenges:DELETE');
     assert.deepEqual(grants.rows.map(row => `${row.table_name}:${row.privilege_type}`).sort(), expected.sort());
     assert.ok(grants.rows.every(row => row.is_grantable === 'NO'));
     const sequences = await pool.query(`SELECT c.relname,has_sequence_privilege(current_user,c.oid,'USAGE') AS usage,
@@ -102,7 +103,7 @@ test('migrated application schema permits only the approved runtime grants', asy
         "UPDATE known_login_devices SET user_id=999999",
         "UPDATE known_login_devices SET device_key='\\x00'",
         'DELETE FROM known_login_devices',
-        'DELETE FROM user_mfa', 'DELETE FROM mfa_challenges', 'DELETE FROM mfa_recovery_codes',
+        'DELETE FROM user_mfa', 'DELETE FROM mfa_recovery_codes',
         'UPDATE user_mfa SET user_id=999999', "UPDATE user_mfa SET created_at=now()",
         "UPDATE mfa_challenges SET token_hash='\\x00'", 'UPDATE mfa_challenges SET user_id=999999',
         "UPDATE mfa_challenges SET expires_at=now()", "UPDATE mfa_challenges SET created_at=now()",
@@ -124,7 +125,7 @@ test('issue #9 and #10 column grants allow exactly the approved column updates',
             'mfa_recovery_codes.used_at:UPDATE',
             'password_reset_tokens.consumed_reason:UPDATE', 'password_reset_tokens.used_at:UPDATE',
             'user_mfa.enrolled:UPDATE', 'user_mfa.enrolled_at:UPDATE',
-            'user_mfa.key_version:UPDATE', 'user_mfa.last_totp_step:UPDATE',
+            'user_mfa.key_version:UPDATE', 'user_mfa.last_totp_step:UPDATE', 'user_mfa.mfa_generation:UPDATE',
             'user_mfa.secret_encrypted:UPDATE', 'user_mfa.updated_at:UPDATE',
             'users.email_verified_at:UPDATE', 'users.password_hash:UPDATE']);
     for (const [table, column] of [['users', 'id'], ['users', 'email'],

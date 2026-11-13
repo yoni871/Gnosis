@@ -106,7 +106,8 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
             GRANT UPDATE (email_verified_at, password_hash) ON users TO "${role}";
             GRANT UPDATE (used_at, consumed_reason) ON password_reset_tokens TO "${role}";
             GRANT SELECT,INSERT ON user_mfa,mfa_challenges,mfa_recovery_codes TO "${role}";
-            GRANT UPDATE (enrolled,enrolled_at,secret_encrypted,key_version,last_totp_step,updated_at) ON user_mfa TO "${role}";
+            GRANT DELETE ON mfa_challenges TO "${role}";
+            GRANT UPDATE (enrolled,enrolled_at,secret_encrypted,key_version,last_totp_step,mfa_generation,updated_at) ON user_mfa TO "${role}";
             GRANT UPDATE (used_at, consumed_reason) ON mfa_challenges TO "${role}";
             GRANT UPDATE (used_at) ON mfa_recovery_codes TO "${role}"`);
         // Small reference fixture; no imports, application data or test-owned schema.

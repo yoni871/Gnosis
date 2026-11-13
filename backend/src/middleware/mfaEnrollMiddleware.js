@@ -68,7 +68,7 @@ const authenticateMfaEnroll = async (req, res, next) => {
             const { status, body } = CLIENT_AUTH_RESPONSES.internal;
             return res.status(status).json(body);
         }
-        req.user = { userId: enroll.userId, mfaEnroll: true };
+        req.user = { userId: enroll.userId, mfaEnroll: true, passwordHashDigest: enroll.passwordHashDigest, expiresAt: enroll.expiresAt };
         return next();
     }
     // Session JWT: same verification as authenticateToken, including

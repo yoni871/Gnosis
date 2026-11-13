@@ -65,7 +65,7 @@ function verifyMfaEnrollToken(token) {
             || typeof payload.pwd !== "string" || payload.pwd === "") {
             return null;
         }
-        return { userId: payload.userId, passwordHashDigest: payload.pwd };
+        return { userId: payload.userId, passwordHashDigest: payload.pwd, expiresAt: payload.exp };
     } catch {
         return null;
     }

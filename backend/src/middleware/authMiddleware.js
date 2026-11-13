@@ -41,7 +41,7 @@ const authenticateToken = async (req, res, next) => {
         return invalid();
     }
     try {
-        const result = await pool.query(`SELECT id FROM auth_sessions
+        const result = await pool.query(`SELECT id, mfa_verified, mfa_generation FROM auth_sessions
             WHERE id = $1 AND user_id = $2 AND revoked_at IS NULL AND expires_at > now()`, [user.sid, user.userId]);
         if (!result.rows[0]) return invalid();
         // Admin-mandatory MFA (design §9), enforced throughout
@@ -58,11 +58,12 @@ const authenticateToken = async (req, res, next) => {
         // enrolled.
         if (getAdminEmails().size > 0) {
             const adminCheck = await pool.query(
-                `SELECT u.email, m.enrolled FROM users u
+                `SELECT u.email, m.enrolled, m.mfa_generation FROM users u
                  LEFT JOIN user_mfa m ON m.user_id = u.id WHERE u.id = $1`,
                 [user.userId]);
             const adminRow = adminCheck.rows[0];
-            if (adminRow && isAdminEmail(adminRow.email) && adminRow.enrolled !== true) {
+            if (adminRow && isAdminEmail(adminRow.email) && (adminRow.enrolled !== true || result.rows[0].mfa_verified !== true
+                || !result.rows[0].mfa_generation || result.rows[0].mfa_generation !== adminRow.mfa_generation)) {
                 return res.status(403).json({
                     error: "Multi-factor authentication is required for this account.",
                     code: "MFA_ENROLLMENT_REQUIRED",

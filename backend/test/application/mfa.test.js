@@ -7,7 +7,8 @@ const { startBackend } = require('../helpers/backend-instance');
 const { generateTotpCode, generateTotpCodeForStep } = require('../../src/utils/mfaTotp');
 const { decryptTotpSecret } = require('../../src/utils/mfaCrypto');
 const { hashPassword } = require('../../src/utils/passwordHash');
-const { computeKeyHash } = require('../../src/utils/rateLimit');
+const { computeKeyHash, attemptReservation } = require('../../src/utils/rateLimit');
+const { digestPasswordHash } = require('../../src/utils/mfaEnrollToken');
 const mfaService = require('../../src/services/mfaService');
 
 // The rate-limit secret the disposable worker uses (backend-instance).
@@ -72,6 +73,16 @@ const login = (email, pw = password) => request('login', { body: { email, passwo
 async function profile(token) {
     return (await fetch(`${worker.url}/api/auth/profile`, { headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(10000) })).status;
 }
+function pauseConnect(pool) {
+    let release;
+    let reached;
+    const paused = new Promise(resolve => { reached = resolve; });
+    const proceed = new Promise(resolve => { release = resolve; });
+    return {
+        paused, release,
+        pool: { query: (...args) => pool.query(...args), connect: async () => { reached(); await proceed; return pool.connect(); } },
+    };
+}
 async function enrollAndConfirm(email, userId) {
     const token = (await login(email)).data.token;
     const started = await request('mfa/enroll', { token, body: {} });
@@ -89,7 +100,7 @@ async function enrollAndConfirm(email, userId) {
     // A failed confirmation leaves the secret unenrolled: login is
     // still password-only.
     assert.equal((await login(email)).status, 200);
-    const code = await generateTotpCode(secret);
+    const code = await generateTotpCodeForStep(secret, -1);
     const confirmed = await request('mfa/enroll/confirm', { token, body: { code } });
     assert.equal(confirmed.status, 200, JSON.stringify(confirmed.data));
     assert.equal(confirmed.data.enrolled, true);
@@ -179,7 +190,7 @@ test('regenerating recovery codes invalidates the old set', async () => {
     const token = await loginWithTotp(email, secret);
     const wrongPassword = await request('mfa/recovery-codes/regenerate', { token, body: { password: 'wrong-password', code: await generateTotpCode(secret) } });
     assert.equal(wrongPassword.status, 401);
-    const regenerated = await request('mfa/recovery-codes/regenerate', { token, body: { password, code: await generateTotpCode(secret) } });
+    const regenerated = await request('mfa/recovery-codes/regenerate', { token, body: { password, code: await generateTotpCodeForStep(secret, 1) } });
     assert.equal(regenerated.status, 200);
     assert.equal(regenerated.data.recoveryCodes.length, 10);
     assert.ok(!regenerated.data.recoveryCodes.some((code) => recoveryCodes.includes(code)));
@@ -198,7 +209,7 @@ test('disabling MFA requires password plus a code; login returns to password-onl
     assert.equal(wrongPassword.status, 401);
     const wrongCode = await request('mfa/disable', { token, body: { password, code: '000000' } });
     assert.equal(wrongCode.status, 401);
-    const disabled = await request('mfa/disable', { token, body: { password, code: await generateTotpCode(secret) } });
+    const disabled = await request('mfa/disable', { token, body: { password, code: await generateTotpCodeForStep(secret, 1) } });
     assert.equal(disabled.status, 200);
     assert.deepEqual(disabled.data, { disabled: true });
     assert.deepEqual((await get('mfa/status', token)).data, { enrolled: false });
@@ -207,13 +218,13 @@ test('disabling MFA requires password plus a code; login returns to password-onl
 
 test('disabling MFA revokes other sessions but keeps the current one', async () => {
     const { userId, email } = await freshUser();
-    const { secret } = await enrollAndConfirm(email, userId);
+    const { secret, recoveryCodes } = await enrollAndConfirm(email, userId);
     // Two sessions: the current one (used to disable) and another.
     const currentToken = await loginWithTotp(email, secret);
     const otherToken = await loginWithTotp(email, secret);
     assert.equal(await profile(currentToken), 200);
     assert.equal(await profile(otherToken), 200);
-    const disabled = await request('mfa/disable', { token: currentToken, body: { password, code: await generateTotpCode(secret) } });
+    const disabled = await request('mfa/disable', { token: currentToken, body: { password, code: recoveryCodes[0] } });
     assert.equal(disabled.status, 200);
     assert.deepEqual(disabled.data, { disabled: true });
     assert.deepEqual((await get('mfa/status', currentToken)).data, { enrolled: false });
@@ -384,7 +395,7 @@ test('a password change after the challenge is issued invalidates the challenge'
     const fresh = await login(email, newPassword);
     assert.equal(fresh.status, 401);
     assert.equal(fresh.data.code, 'MFA_REQUIRED');
-    const verified = await request('mfa/verify', { body: { challenge: fresh.data.challenge, code: await generateTotpCode(secret) } });
+    const verified = await request('mfa/verify', { body: { challenge: fresh.data.challenge, code: await generateTotpCodeForStep(secret, 1) } });
     assert.equal(verified.status, 200);
     assert.equal(await profile(verified.data.token), 200);
 });
@@ -399,7 +410,7 @@ test('mixed key versions: a version-1 row decrypts via the previous key, a versi
     const enrollViaService = async (email, userId) => {
         const started = await mfaService.startEnrollment(database.pool, userId, email);
         assert.equal(started.ok, true, JSON.stringify(started));
-        const code = await generateTotpCode(started.secret);
+        const code = await generateTotpCodeForStep(started.secret, -1);
         const confirmed = await mfaService.confirmEnrollment(database.pool, userId, code);
         assert.equal(confirmed.ok, true);
         return started.secret;
@@ -504,6 +515,47 @@ test('F2: concurrent enrollment starts never reset an enrolled factor', async ()
     assert.equal((await request('mfa/enroll', { token, body: {} })).status, 409);
 });
 
+test('F2: first-time enrollment holds the user lock before inserting the missing MFA row', async () => {
+    const { userId, email } = await freshUser();
+    let releaseInsert;
+    let reachedInsert;
+    const paused = new Promise(resolve => { reachedInsert = resolve; });
+    const proceed = new Promise(resolve => { releaseInsert = resolve; });
+    const delayedPool = {
+        async connect() {
+            const client = await database.pool.connect();
+            return {
+                query: async (sql, params) => {
+                    if (typeof sql === 'string' && sql.includes('INSERT INTO user_mfa')) {
+                        reachedInsert();
+                        await proceed;
+                    }
+                    return client.query(sql, params);
+                },
+                release: () => client.release(),
+            };
+        },
+    };
+    const first = mfaService.startEnrollment(delayedPool, userId, email);
+    await paused;
+    let secondFinished = false;
+    const second = mfaService.startEnrollment(database.pool, userId, email).then(value => {
+        secondFinished = true;
+        return value;
+    });
+    try {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        assert.equal(secondFinished, false, 'second start must wait for the missing-row owner lock');
+    } finally {
+        releaseInsert();
+    }
+    assert.equal((await first).ok, true);
+    const latest = await second;
+    assert.equal(latest.ok, true);
+    assert.equal((await mfaService.confirmEnrollment(database.pool, userId, await generateTotpCode(latest.secret))).ok, true);
+    assert.deepEqual(await mfaService.startEnrollment(database.pool, userId, email), { ok: false, reason: 'already-enrolled' });
+});
+
 test('F3: an admin cannot disable MFA, and a session without MFA is refused', async () => {
     const { userId, email } = await freshAdminUser(2);
     // Enroll the admin via the enrollment token.
@@ -516,6 +568,17 @@ test('F3: an admin cannot disable MFA, and a session without MFA is refused', as
     assert.equal(confirmed.status, 200);
     const token = await loginWithTotp(email, secret);
     assert.equal(await profile(token), 200);
+    // Enrollment alone cannot elevate a pre-existing password-only session.
+    const freshChallenge = await login(email);
+    const legacy = await request('mfa/verify', { body: { challenge: freshChallenge.data.challenge, code: confirmed.data.recoveryCodes[0] } });
+    assert.equal(legacy.status, 200);
+    const legacySid = JSON.parse(Buffer.from(legacy.data.token.split('.')[1], 'base64url').toString('utf8')).sid;
+    await database.pool.query('UPDATE auth_sessions SET mfa_verified = FALSE WHERE id = $1', [legacySid]);
+    assert.equal(await profile(legacy.data.token), 403);
+    assert.equal((await request('refresh', { cookie: legacy.cookie })).status, 401);
+    const replacementChallenge = await login(email);
+    const assured = await request('mfa/verify', { body: { challenge: replacementChallenge.data.challenge, code: confirmed.data.recoveryCodes[1] } });
+    assert.equal(assured.status, 200);
     // Disable is forbidden for an admin, even with a valid password
     // and code: 403, and the factor stays enrolled.
     const disabled = await request('mfa/disable', { token, body: { password, code: await generateTotpCode(secret) } });
@@ -523,6 +586,9 @@ test('F3: an admin cannot disable MFA, and a session without MFA is refused', as
     assert.equal(disabled.data.code, 'MFA_REQUIRED');
     const row = await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]);
     assert.equal(row.rows[0].enrolled, true);
+    await database.pool.query('UPDATE user_mfa SET mfa_generation = gen_random_uuid() WHERE user_id = $1', [userId]);
+    assert.equal(await profile(token), 403, 'an old MFA session must not survive factor replacement');
+    assert.equal((await request('refresh', { cookie: assured.cookie })).status, 401);
     // If the factor is removed by any other path, the existing
     // session is refused: admin MFA is enforced throughout
     // authenticated session use, not only at login.
@@ -575,6 +641,51 @@ test('F5: two concurrent disables with one recovery code — only one succeeds',
     assert.equal(row.rows[0].enrolled, false);
 });
 
+test('F5: a replaced authenticator cannot authorize a paused recovery-code regeneration', async () => {
+    const { userId, email } = await freshUser();
+    const { secret, recoveryCodes } = await enrollAndConfirm(email, userId);
+    const token = await loginWithTotp(email, secret);
+    const sid = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8')).sid;
+    const gate = pauseConnect(database.pool);
+    const stale = mfaService.regenerateRecoveryCodes(gate.pool, userId, password, await generateTotpCodeForStep(secret, 1));
+    await gate.paused;
+    try {
+        assert.equal((await mfaService.disableMfa(database.pool, userId, password, recoveryCodes[0], sid)).ok, true);
+        const replacement = await mfaService.startEnrollment(database.pool, userId, email);
+        assert.equal((await mfaService.confirmEnrollment(database.pool, userId, await generateTotpCodeForStep(replacement.secret, -1))).ok, true);
+    } finally { gate.release(); }
+    assert.deepEqual(await stale, { ok: false, reason: 'code' });
+});
+
+test('F5: a replaced authenticator cannot authorize a paused disable', async () => {
+    const { userId, email } = await freshUser();
+    const { secret, recoveryCodes } = await enrollAndConfirm(email, userId);
+    const token = await loginWithTotp(email, secret);
+    const sid = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8')).sid;
+    const gate = pauseConnect(database.pool);
+    const stale = mfaService.disableMfa(gate.pool, userId, password, await generateTotpCodeForStep(secret, 1), sid);
+    await gate.paused;
+    try {
+        assert.equal((await mfaService.disableMfa(database.pool, userId, password, recoveryCodes[0], sid)).ok, true);
+        const replacement = await mfaService.startEnrollment(database.pool, userId, email);
+        assert.equal((await mfaService.confirmEnrollment(database.pool, userId, await generateTotpCodeForStep(replacement.secret, -1))).ok, true);
+    } finally { gate.release(); }
+    assert.deepEqual(await stale, { ok: false, reason: 'code' });
+    assert.equal((await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId])).rows[0].enrolled, true);
+});
+
+test('F4: concurrent distributed account reservations are bounded independently of IP', async () => {
+    const user = 'synthetic-distributed-account';
+    const key = computeKeyHash('mfa_code_user', [user], RATE_LIMIT_SECRET);
+    const results = await Promise.all(Array.from({ length: 12 }, async (_, index) => {
+        const ipKey = computeKeyHash('mfa_code_ip_user', [`192.0.2.${index + 1}`, user], RATE_LIMIT_SECRET);
+        assert.equal((await attemptReservation(database.pool, 'mfa_code_ip_user', ipKey)).allowed, true);
+        return attemptReservation(database.pool, 'mfa_code_user', key);
+    }));
+    assert.equal(results.filter(result => result.allowed).length, 5);
+    assert.equal(results.filter(result => !result.allowed).length, 7);
+});
+
 test('F6: a TOTP code cannot be replayed with a fresh challenge', async () => {
     const { userId, email } = await freshUser();
     const { secret } = await enrollAndConfirm(email, userId);
@@ -600,6 +711,20 @@ test('F6: a TOTP code cannot be replayed with a fresh challenge', async () => {
     assert.equal(ok.status, 200, JSON.stringify(ok.data));
 });
 
+test('F6: accepted login and recovery-regeneration TOTP steps cannot authorize further sensitive actions', async () => {
+    const { userId, email } = await freshUser();
+    const { secret } = await enrollAndConfirm(email, userId);
+    const challenged = await login(email);
+    const loginCode = await generateTotpCode(secret);
+    const verified = await request('mfa/verify', { body: { challenge: challenged.data.challenge, code: loginCode } });
+    assert.equal(verified.status, 200);
+    assert.equal((await request('mfa/recovery-codes/regenerate', { token: verified.data.token, body: { password, code: loginCode } })).status, 401);
+    const newCode = await generateTotpCodeForStep(secret, 1);
+    assert.equal((await request('mfa/recovery-codes/regenerate', { token: verified.data.token, body: { password, code: newCode } })).status, 200);
+    assert.equal((await request('mfa/recovery-codes/regenerate', { token: verified.data.token, body: { password, code: newCode } })).status, 401);
+    assert.equal((await request('mfa/disable', { token: verified.data.token, body: { password, code: newCode } })).status, 401);
+});
+
 test('F7: a password reset invalidates an admin enrollment token', async () => {
     const { userId, email } = await freshAdminUser(3);
     // The admin logs in and receives an enrollment token bound to
@@ -621,4 +746,72 @@ test('F7: a password reset invalidates an admin enrollment token', async () => {
     assert.equal(fresh.status, 403);
     assert.equal(fresh.data.code, 'MFA_ENROLLMENT_REQUIRED');
     assert.equal((await request('mfa/enroll', { token: fresh.data.enrollToken, body: {} })).status, 200);
+});
+
+test('F7: enrollment authorization is rechecked after a concurrent password reset', async () => {
+    const { userId, email, passwordHash } = await freshUser();
+    const auth = { mfaEnroll: true, passwordHashDigest: digestPasswordHash(passwordHash), expiresAt: Math.floor(Date.now() / 1000) + 600 };
+    const gate = pauseConnect(database.pool);
+    const pending = mfaService.startEnrollment(gate.pool, userId, email, auth);
+    await gate.paused;
+    try { await database.pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [await hashPassword('synthetic-new-password'), userId]); }
+    finally { gate.release(); }
+    assert.equal((await pending).ok, false);
+    assert.equal((await database.pool.query('SELECT 1 FROM user_mfa WHERE user_id = $1', [userId])).rowCount, 0);
+});
+
+test('F7: confirmation and expired enrollment authorization are rejected after reset', async () => {
+    const { userId, email, passwordHash } = await freshUser();
+    const started = await mfaService.startEnrollment(database.pool, userId, email);
+    const auth = { mfaEnroll: true, passwordHashDigest: digestPasswordHash(passwordHash), expiresAt: Math.floor(Date.now() / 1000) + 600 };
+    const gate = pauseConnect(database.pool);
+    const pending = mfaService.confirmEnrollment(gate.pool, userId, await generateTotpCode(started.secret), auth);
+    await gate.paused;
+    try { await database.pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [await hashPassword('synthetic-new-password'), userId]); }
+    finally { gate.release(); }
+    assert.equal((await pending).ok, false);
+    assert.equal((await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId])).rows[0].enrolled, false);
+    assert.equal((await mfaService.startEnrollment(database.pool, userId, email, { ...auth, expiresAt: 1 })).ok, false);
+});
+
+test('challenge issuance retains at most one challenge per account under concurrency', async () => {
+    const { userId, passwordHash } = await freshUser();
+    const tokens = await Promise.all(Array.from({ length: 12 }, () => mfaService.issueMfaChallenge(database.pool, userId, passwordHash)));
+    assert.equal(tokens.filter(Boolean).length, 12);
+    assert.equal((await database.pool.query('SELECT count(*)::int AS n FROM mfa_challenges WHERE user_id = $1', [userId])).rows[0].n, 1);
+});
+
+test('challenge verification and issuance serialize in user-first order', async () => {
+    const { userId, email } = await freshUser();
+    const { secret } = await enrollAndConfirm(email, userId);
+    const currentHash = (await database.pool.query('SELECT password_hash FROM users WHERE id = $1', [userId])).rows[0].password_hash;
+    const challenge = await mfaService.issueMfaChallenge(database.pool, userId, currentHash);
+    let releaseUser;
+    let lockedUser;
+    const locked = new Promise(resolve => { lockedUser = resolve; });
+    const proceed = new Promise(resolve => { releaseUser = resolve; });
+    const delayedPool = {
+        async connect() {
+            const client = await database.pool.connect();
+            return {
+                query: async (sql, params) => {
+                    const result = await client.query(sql, params);
+                    if (typeof sql === 'string' && sql.includes('SELECT id, password_hash FROM users') && sql.includes('FOR UPDATE')) {
+                        lockedUser();
+                        await proceed;
+                    }
+                    return result;
+                },
+                release: () => client.release(),
+            };
+        },
+    };
+    const verification = mfaService.verifyMfaChallenge(delayedPool, challenge, await generateTotpCode(secret));
+    await locked;
+    let issuanceFinished = false;
+    const issuance = mfaService.issueMfaChallenge(database.pool, userId, currentHash).then(result => { issuanceFinished = true; return result; });
+    try { await new Promise(resolve => setTimeout(resolve, 100)); assert.equal(issuanceFinished, false); }
+    finally { releaseUser(); }
+    assert.equal((await verification).ok, true);
+    assert.ok(await issuance);
 });
