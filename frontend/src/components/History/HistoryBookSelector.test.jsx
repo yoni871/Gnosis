@@ -1,34 +1,27 @@
-import { expect, test } from "vitest";
+import { expect, test, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import HistoryBookSelector from "./HistoryBookSelector";
 
-function mount() {
-    return render(<MemoryRouter><HistoryBookSelector /></MemoryRouter>);
+function mount(props = {}) {
+    return render(<MemoryRouter><HistoryBookSelector open {...props} /></MemoryRouter>);
 }
 
-async function openDrawer(user) {
-    await user.click(screen.getByRole("button", { name: /Browse Books/ }));
-}
-
-test("starts closed showing only the Browse Books button", () => {
-    mount();
-    expect(screen.getByRole("button", { name: /Browse Books/ })).toHaveAttribute("aria-expanded", "false");
+test("renders nothing while closed", () => {
+    render(<MemoryRouter><HistoryBookSelector open={false} /></MemoryRouter>);
     expect(screen.queryByRole("tablist")).toBeNull();
     expect(screen.queryByRole("link", { name: /Genesis/ })).toBeNull();
-    expect(screen.queryByText("Upcoming")).toBeNull();
 });
 
-test("opens a drawer with one canonical testament at a time, book names only", async () => {
+test("shows one canonical testament at a time, book names only, with a scroll hint", async () => {
     const user = userEvent.setup();
     mount();
-    await openDrawer(user);
-    expect(screen.getByRole("button", { name: /Close Books/ })).toHaveAttribute("aria-expanded", "true");
     expect(screen.getAllByRole("link")).toHaveLength(39);
     expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis");
     expect(screen.queryByText("Upcoming")).toBeNull();
     expect(screen.queryByText(/event/)).toBeNull();
+    expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
     expect(screen.queryByText("Matthew")).toBeNull();
     await user.click(screen.getByRole("tab", { name: /New Testament/ }));
     expect(screen.getAllByRole("link")).toHaveLength(27);
@@ -37,24 +30,18 @@ test("opens a drawer with one canonical testament at a time, book names only", a
     expect(screen.queryByText("Genesis")).toBeNull();
 });
 
-test("closes the drawer from the button and from Escape", async () => {
+test("calls onClose on Escape from inside the drawer", async () => {
     const user = userEvent.setup();
-    mount();
-    await openDrawer(user);
-    expect(screen.getAllByRole("link")).toHaveLength(39);
-    await user.click(screen.getByRole("button", { name: /Close Books/ }));
-    expect(screen.queryByRole("link", { name: /Genesis/ })).toBeNull();
-    expect(screen.getByRole("button", { name: /Browse Books/ })).toHaveAttribute("aria-expanded", "false");
-    await openDrawer(user);
+    const onClose = vi.fn();
+    mount({ onClose });
+    screen.getByRole("tab", { name: /Old Testament/ }).focus();
     await user.keyboard("{Escape}");
-    expect(screen.queryByRole("link", { name: /Genesis/ })).toBeNull();
-    expect(screen.getByRole("button", { name: /Browse Books/ })).toHaveFocus();
+    expect(onClose).toHaveBeenCalledTimes(1);
 });
 
 test("supports roving tab focus with arrow, Home, and End keys", async () => {
     const user = userEvent.setup();
     mount();
-    await openDrawer(user);
     const tablist = screen.getByRole("tablist", { name: "Choose a testament" });
     const oldTab = within(tablist).getByRole("tab", { name: /Old Testament/ });
     const newTab = within(tablist).getByRole("tab", { name: /New Testament/ });

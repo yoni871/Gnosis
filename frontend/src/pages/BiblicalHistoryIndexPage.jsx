@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import LandingHeader from "../components/LandingHeader";
 import HistoryBookSelector from "../components/History/HistoryBookSelector";
@@ -27,7 +27,14 @@ function scrollToStart(event) {
 
 export default function BiblicalHistoryIndexPage() {
     const pageRef = useRef(null);
+    const browseButtonRef = useRef(null);
+    const [booksOpen, setBooksOpen] = useState(false);
     useHistoryHomeMotion(pageRef);
+
+    const closeBooks = () => {
+        setBooksOpen(false);
+        browseButtonRef.current?.focus();
+    };
 
     return (
         <div className="public-page history-home" ref={pageRef}>
@@ -101,10 +108,26 @@ export default function BiblicalHistoryIndexPage() {
                 <section id="history-books" className="history-scripture" aria-labelledby="history-books-heading">
                     <header data-history-reveal>
                         <div><p className="history-home-eyebrow">The complete collection</p><h2 id="history-books-heading">Explore by Scripture</h2></div>
-                        <p>Choose a book of the Bible to explore its historical context and events.</p>
+                        <button
+                            ref={browseButtonRef}
+                            type="button"
+                            className="history-browse-books"
+                            aria-expanded={booksOpen}
+                            aria-controls="history-book-drawer"
+                            onClick={() => (booksOpen ? closeBooks() : setBooksOpen(true))}
+                            onKeyDown={(event) => {
+                                if (event.key === "Escape" && booksOpen) {
+                                    event.preventDefault();
+                                    closeBooks();
+                                }
+                            }}
+                        >
+                            {booksOpen ? "Close Books" : "Browse Books"}
+                            <span aria-hidden="true">{booksOpen ? "↑" : "↓"}</span>
+                        </button>
                     </header>
                     <div data-history-books-reveal>
-                        <HistoryBookSelector />
+                        <HistoryBookSelector open={booksOpen} onClose={closeBooks} />
                     </div>
                 </section>
             </main>

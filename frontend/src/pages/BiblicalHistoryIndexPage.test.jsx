@@ -26,12 +26,18 @@ describe("BiblicalHistoryIndexPage", () => {
         expect(screen.getByRole("button", { name: "Explore" })).toBeInTheDocument();
         expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
         expect(screen.getByRole("heading", { name: "What Is Biblical History?" })).toBeInTheDocument();
-        expect(screen.getByRole("button", { name: /Browse Books/ })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: /Browse Books/ })).toHaveAttribute("aria-expanded", "false");
         expect(screen.queryByRole("tabpanel")).toBeNull();
         expect(screen.queryByText("Upcoming")).toBeNull();
+        expect(screen.queryByText("Choose a book of the Bible to explore its historical context and events.")).toBeNull();
         await user.click(screen.getByRole("button", { name: /Browse Books/ }));
+        expect(screen.getByRole("button", { name: /Close Books/ })).toHaveAttribute("aria-expanded", "true");
         expect(within(screen.getByRole("tabpanel")).getAllByRole("listitem")).toHaveLength(39);
         expect(screen.queryByText("Upcoming")).toBeNull();
+        expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
+        await user.keyboard("{Escape}");
+        expect(screen.queryByRole("tabpanel")).toBeNull();
+        expect(screen.getByRole("button", { name: /Browse Books/ })).toHaveFocus();
     });
 
     it("links its actions to the recommendation and Creation event", async () => {
