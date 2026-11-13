@@ -403,35 +403,57 @@ router.post("/login", (req, res, next) => {
         // the plaintext password is available here, at login, and
         // only here — the later /mfa/verify step has just the
         // challenge token and a code, so it cannot re-hash. Migrate
-        // BEFORE issuing the challenge, so the challenge is bound to
-        // the post-migration hash (issueMfaChallenge reads the
-        // current hash under the user lock). Same compare-and-swap
-        // and best-effort discipline as the non-MFA login below: a
-        // concurrent reset wins and is never clobbered, and a failed
-        // write never fails the login — the bcrypt hash stays for
-        // the next login.
+        // BEFORE issuing the challenge, and track the verified hash:
+        // it is the hash login actually verified, post-migration.
+        // issueMfaChallenge is given that hash and atomically
+        // confirms it still matches the current credential under the
+        // user lock, so a password reset that lands between
+        // verification and issuance issues no challenge.
+        let verifiedHash = user.password_hash;
         if (passwordHash.isBcryptHash(user.password_hash)) {
             try {
                 const migratedHash = await passwordHash.hashPassword(password);
-                await pool.query(
+                const migrated = await pool.query(
                     "UPDATE users SET password_hash = $1 WHERE id = $2 AND password_hash = $3",
                     [migratedHash, user.id, user.password_hash]
                 );
+                if (migrated.rowCount === 1) {
+                    // Migration won: the verified credential is now
+                    // the Argon2id hash.
+                    verifiedHash = migratedHash;
+                } else {
+                    // A concurrent password change/reset won the
+                    // compare-and-swap: the password login just
+                    // verified is no longer current. Fail as a wrong
+                    // password (same as createSession's null), and
+                    // issue no challenge.
+                    await req.rateLimit.finalize("count");
+                    await audit(pool, "login.failure", user.id);
+                    return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
+                }
             } catch (error) {
                 logAuthFailure("POST /api/auth/login", "rehash", error);
+                // Best-effort: a failed write leaves the bcrypt hash;
+                // verifiedHash stays the hash login verified, and
+                // issueMfaChallenge's atomic confirm is the safety
+                // net if the credential changed anyway.
             }
         }
         let challenge;
         try {
-            challenge = await mfaService.issueMfaChallenge(pool, user.id);
+            challenge = await mfaService.issueMfaChallenge(pool, user.id, verifiedHash);
         } catch (error) {
             logAuthFailure("POST /api/auth/login", "session", error);
             await req.rateLimit.finalize("release");
             return res.status(500).json(internalErrorBody("login"));
         }
         if (!challenge) {
-            await req.rateLimit.finalize("release");
-            return res.status(500).json(internalErrorBody("login"));
+            // The password was reset/changed between login's
+            // verification and challenge issuance. No challenge was
+            // issued; fail as a wrong password.
+            await req.rateLimit.finalize("count");
+            await audit(pool, "login.failure", user.id);
+            return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
         }
         await req.rateLimit.finalize("release");
         return res.status(401).json({
@@ -449,7 +471,10 @@ router.post("/login", (req, res, next) => {
     if (!mfaEnrolled && isAdminEmail(user.email)) {
         let enrollToken;
         try {
-            enrollToken = createMfaEnrollToken(user.id);
+            // The token is bound to the credential login verified
+            // (the password hash): a reset after this login
+            // invalidates it (F7).
+            enrollToken = createMfaEnrollToken(user.id, user.password_hash);
         } catch (error) {
             logAuthFailure("POST /api/auth/login", "token", error);
             await req.rateLimit.finalize("release");

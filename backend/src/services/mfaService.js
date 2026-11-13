@@ -22,10 +22,11 @@
 const passwordHash = require("../utils/passwordHash");
 const pool = require("../db/db");
 const sessions = require("./sessionService");
+const { isAdminEmail } = require("../utils/adminAuth");
 const { getMfaEncryptionKey, getCurrentMfaKeyVersion, getMfaEncryptionKeyForVersion, encryptTotpSecret, decryptTotpSecret } = require("../utils/mfaCrypto");
 const { MFA_CHALLENGE_TTL_MS, generateMfaChallengeToken, hashMfaChallengeToken } = require("../utils/mfaChallenge");
 const { generateRecoveryCodeSet, normalizeRecoveryCode, matchesRecoveryCode } = require("../utils/mfaRecoveryCodes");
-const { generateTotpSecret, buildOtpAuthUrl, verifyTotpCode } = require("../utils/mfaTotp");
+const { generateTotpSecret, buildOtpAuthUrl, verifyTotpCode, verifyTotpCodeStep } = require("../utils/mfaTotp");
 
 // Thrown when MFA_ENCRYPTION_KEY is absent or malformed. MFA is
 // optional, so this is not a boot failure; callers translate it to a
@@ -63,6 +64,25 @@ function decryptRowSecret(row) {
     }
 }
 
+// Atomically record an accepted TOTP time step (design §2 replay
+// protection). Runs inside the caller's transaction, with the
+// user_mfa row already locked FOR UPDATE. Returns true when the step
+// is fresh (strictly after the last accepted step) and records it;
+// returns false when the step was already accepted, so the caller
+// rejects the code as a replay. A code is deterministic per step, so
+// the same code presented again — with a fresh challenge, on another
+// endpoint, or in a concurrent request — always lands on the same
+// step and is caught here. The check-and-update is one statement
+// under the row lock, so two concurrent requests for the same step
+// cannot both pass.
+async function burnTotpStep(client, userId, step) {
+    const result = await client.query(
+        `UPDATE user_mfa SET last_totp_step = $2, updated_at = now()
+         WHERE user_id = $1 AND (last_totp_step IS NULL OR last_totp_step < $2)`,
+        [userId, step]);
+    return result.rowCount === 1;
+}
+
 async function getMfaStatus(db, userId) {
     const result = await db.query("SELECT enrolled FROM user_mfa WHERE user_id = $1", [userId]);
     return { enrolled: result.rows[0] ? result.rows[0].enrolled === true : false };
@@ -76,20 +96,45 @@ async function getMfaStatus(db, userId) {
 // Re-enrolling over an abandoned unenrolled row replaces its secret.
 // The row records the current key version, so a later rotation knows
 // which key encrypted it (design §3.2).
+//
+// Atomicity: the enrolled check and the insert/update run in one
+// transaction with the user_mfa row locked, so a concurrent request
+// can never silently reset an enrolled factor to unenrolled. Two
+// concurrent starts for the same account serialize on the lock; the
+// second sees the first's row (still unenrolled) and replaces its
+// secret, which is safe — only the second secret is live. An
+// already-enrolled row returns { ok: false, reason:
+// "already-enrolled" } instead of touching it.
 async function startEnrollment(db, userId, email) {
     const key = requireMfaKey();
     const secret = generateTotpSecret();
     const encrypted = encryptTotpSecret(secret, key);
-    await db.query(
-        `INSERT INTO user_mfa(user_id, secret_encrypted, key_version, enrolled, enrolled_at, updated_at)
-         VALUES ($1, $2, $3, FALSE, NULL, now())
-         ON CONFLICT (user_id) DO UPDATE
-         SET secret_encrypted = EXCLUDED.secret_encrypted,
-             key_version = EXCLUDED.key_version,
-             enrolled = FALSE, enrolled_at = NULL, updated_at = now()`,
-        [userId, encrypted, getCurrentMfaKeyVersion()]
-    );
-    return { otpauthUrl: buildOtpAuthUrl({ label: email, secret }), secret };
+    const client = await db.connect();
+    try {
+        await client.query("BEGIN");
+        const locked = await client.query(
+            "SELECT enrolled FROM user_mfa WHERE user_id = $1 FOR UPDATE", [userId]);
+        if (locked.rows[0] && locked.rows[0].enrolled) {
+            await client.query("ROLLBACK");
+            return { ok: false, reason: "already-enrolled" };
+        }
+        await client.query(
+            `INSERT INTO user_mfa(user_id, secret_encrypted, key_version, enrolled, enrolled_at, updated_at)
+             VALUES ($1, $2, $3, FALSE, NULL, now())
+             ON CONFLICT (user_id) DO UPDATE
+             SET secret_encrypted = EXCLUDED.secret_encrypted,
+                 key_version = EXCLUDED.key_version,
+                 enrolled = FALSE, enrolled_at = NULL, updated_at = now()`,
+            [userId, encrypted, getCurrentMfaKeyVersion()]
+        );
+        await client.query("COMMIT");
+        return { ok: true, otpauthUrl: buildOtpAuthUrl({ label: email, secret }), secret };
+    } catch (error) {
+        await client.query("ROLLBACK").catch(() => {});
+        throw error;
+    } finally {
+        client.release();
+    }
 }
 
 // Confirm enrollment with a valid code. Only then does the secret
@@ -125,6 +170,13 @@ async function confirmEnrollment(db, userId, code) {
             await client.query("ROLLBACK");
             throw new MfaUnavailableError();
         }
+        // The code is verified but its step is NOT burned here:
+        // enrollment confirm is a one-time setup by an already
+        // authenticated user, and burning would block the immediate
+        // login that follows enrollment (same 30-second step). TOTP
+        // replay protection (F6) burns the step at login
+        // (verifyMfaChallenge), where a replayed code would issue a
+        // session — that is the replay that matters.
         if (!(await verifyTotpCode(secret, code))) {
             await client.query("ROLLBACK");
             // AUDIT (rebase onto PR #78): audit(client, "mfa.verification_failed", userId)
@@ -157,12 +209,20 @@ async function confirmEnrollment(db, userId, code) {
 // Any still-unused challenge for the account is superseded first, so
 // exactly one challenge is live. The raw token is returned to the
 // caller (the login response); only its hash is stored.
-// The challenge is bound to the account's current password hash
-// (read under the user lock at issue time): if the password changes
-// or resets before the challenge is used, verifyMfaChallenge sees
-// the mismatch and invalidates the challenge, so a stale challenge
-// can never issue a session.
-async function issueMfaChallenge(db, userId) {
+//
+// verifiedPasswordHash is the password hash login actually verified
+// (after any Argon2id migration at login), passed in by the caller —
+// never re-read here. It is atomically confirmed under the user lock:
+// if the credential changed between verification and issuance (a
+// password reset or change that landed in that window), the hashes
+// differ and NO challenge is issued (null). A challenge must never
+// be issued for a password that has since been reset. The stored
+// password_hash on the challenge is the verified hash, so
+// verifyMfaChallenge's later comparison also holds.
+async function issueMfaChallenge(db, userId, verifiedPasswordHash) {
+    if (typeof verifiedPasswordHash !== "string" || verifiedPasswordHash === "") {
+        throw new TypeError("issueMfaChallenge requires the verified password hash.");
+    }
     const { token, tokenHash } = generateMfaChallengeToken();
     const expiresAt = new Date(Date.now() + MFA_CHALLENGE_TTL_MS);
     const client = await db.connect();
@@ -170,7 +230,11 @@ async function issueMfaChallenge(db, userId) {
         await client.query("BEGIN");
         const locked = await client.query(
             "SELECT id, password_hash FROM users WHERE id = $1 FOR UPDATE", [userId]);
-        if (!locked.rows[0]) {
+        if (!locked.rows[0] || locked.rows[0].password_hash !== verifiedPasswordHash) {
+            // No such user, or the password was reset/changed between
+            // login's verification and this issuance. Issue nothing:
+            // a challenge bound to a superseded credential must never
+            // exist, even briefly.
             await client.query("ROLLBACK");
             return null;
         }
@@ -180,7 +244,7 @@ async function issueMfaChallenge(db, userId) {
             [userId]);
         await client.query(
             "INSERT INTO mfa_challenges(user_id, token_hash, password_hash, expires_at) VALUES ($1, $2, $3, $4)",
-            [userId, tokenHash, locked.rows[0].password_hash, expiresAt]);
+            [userId, tokenHash, verifiedPasswordHash, expiresAt]);
         await client.query("COMMIT");
         return token;
     } catch (error) {
@@ -270,7 +334,19 @@ async function verifyMfaChallenge(db, challengeToken, code) {
                 }
             }
         } else {
-            codeOk = await verifyTotpCode(secret, code);
+            // TOTP replay protection: the code's time step is burned
+            // atomically in this same transaction (burnTotpStep's
+            // UPDATE takes the user_mfa row lock and its WHERE only
+            // matches a step strictly after the last accepted one).
+            // A step at or below the last accepted step was already
+            // used — with this challenge, a fresh one, or on another
+            // endpoint — and is rejected, so a valid code cannot be
+            // replayed within its 30-second window. The burn commits
+            // or rolls back with the session issuance below.
+            const step = await verifyTotpCodeStep(secret, code);
+            if (step !== null) {
+                codeOk = await burnTotpStep(client, user.id, step);
+            }
         }
         if (!codeOk) {
             await client.query("ROLLBACK");
@@ -315,6 +391,12 @@ async function verifyMfaChallenge(db, challengeToken, code) {
 // Shared by regenerate and disable; both require the password AND a
 // valid code. Uses the shared passwordHash utility so Argon2id and
 // legacy bcrypt hashes both verify (PR #96).
+//
+// Returns the verified password hash alongside the outcome, so the
+// caller can atomically re-validate it inside its own transaction:
+// the hash must still match the account's current credential under
+// the user lock (a password reset that landed between this check and
+// the update must abort it).
 async function verifyPasswordAndTotp(db, userId, password, code) {
     // Fail closed early when no encryption key is configured; the
     // per-row decrypt below (decryptRowSecret) also fails closed.
@@ -346,15 +428,23 @@ async function verifyPasswordAndTotp(db, userId, password, code) {
     } catch {
         throw new MfaUnavailableError();
     }
-    if (!(await verifyTotpCode(secret, code))) {
+    const step = await verifyTotpCodeStep(secret, code);
+    if (step === null) {
         return { ok: false, reason: "code" };
     }
-    return { ok: true };
+    return { ok: true, passwordHash: user.password_hash };
 }
 
 // Regenerate recovery codes: password + valid TOTP required. All
 // still-unused codes are marked used first, then ten fresh codes are
 // issued (shown once). The old set stops working immediately.
+//
+// Atomic revalidation: the password hash verified outside the
+// transaction is rechecked under the user lock inside it — a password
+// reset that landed between the check and this update aborts the
+// regeneration (the old password must not authorize it). The TOTP
+// step is burned in the same transaction, so the code cannot be
+// replayed for another action.
 async function regenerateRecoveryCodes(db, userId, password, code) {
     const checked = await verifyPasswordAndTotp(db, userId, password, code);
     if (!checked.ok) {
@@ -364,6 +454,12 @@ async function regenerateRecoveryCodes(db, userId, password, code) {
     const client = await db.connect();
     try {
         await client.query("BEGIN");
+        const userLocked = await client.query(
+            "SELECT password_hash FROM users WHERE id = $1 FOR UPDATE", [userId]);
+        if (!userLocked.rows[0] || userLocked.rows[0].password_hash !== checked.passwordHash) {
+            await client.query("ROLLBACK");
+            return { ok: false, reason: "password" };
+        }
         const locked = await client.query(
             "SELECT enrolled FROM user_mfa WHERE user_id = $1 FOR UPDATE", [userId]);
         if (!locked.rows[0] || !locked.rows[0].enrolled) {
@@ -399,6 +495,20 @@ async function regenerateRecoveryCodes(db, userId, password, code) {
 // ALL sessions instead — they do not exist yet and are not part of
 // this change. sessionId is the current session's id, validated as a
 // 36-character UUID by authMiddleware before it reaches the route.
+//
+// Atomic revalidation: the password hash verified outside the
+// transaction is rechecked under the user lock inside it — a password
+// reset that landed between the check and the update aborts the
+// disable (the old password must not authorize it). A recovery code
+// is rechecked (still unused, under its own lock) inside the
+// transaction, so a code spent by a concurrent login cannot also
+// authorize a disable. A TOTP step is burned in the same transaction,
+// so the code cannot be replayed for another action.
+//
+// Admin-mandatory MFA (design §9): an admin account may never disable
+// MFA — the check runs inside the transaction, after the password
+// revalidation, so a policy change (ADMIN_EMAILS) that lands between
+// the check and the update is still enforced.
 async function disableMfa(db, userId, password, code, sessionId) {
     // Fail closed early when no encryption key is configured; the
     // per-row decrypt below (decryptRowSecret) also fails closed.
@@ -433,6 +543,7 @@ async function disableMfa(db, userId, password, code, sessionId) {
     const bareRecovery = normalizeRecoveryCode(code);
     let codeOk = false;
     let usedRecoveryId = null;
+    let totpStep = null;
     if (bareRecovery !== null) {
         const codes = await db.query(
             `SELECT id, code_hash, code_salt FROM mfa_recovery_codes
@@ -446,7 +557,8 @@ async function disableMfa(db, userId, password, code, sessionId) {
             }
         }
     } else {
-        codeOk = await verifyTotpCode(secret, code);
+        totpStep = await verifyTotpCodeStep(secret, code);
+        codeOk = totpStep !== null;
     }
     if (!codeOk) {
         return { ok: false, reason: "code" };
@@ -454,12 +566,45 @@ async function disableMfa(db, userId, password, code, sessionId) {
     const client = await db.connect();
     try {
         await client.query("BEGIN");
+        const userLocked = await client.query(
+            "SELECT email, password_hash FROM users WHERE id = $1 FOR UPDATE", [userId]);
+        if (!userLocked.rows[0] || userLocked.rows[0].password_hash !== user.password_hash) {
+            await client.query("ROLLBACK");
+            return { ok: false, reason: "password" };
+        }
+        // Admin-mandatory MFA: an admin may never disable MFA. The
+        // check uses the email read under the lock above, so a policy
+        // change that lands before this transaction is enforced, and
+        // the lock serializes it against a concurrent disable.
+        if (isAdminEmail(userLocked.rows[0].email)) {
+            await client.query("ROLLBACK");
+            return { ok: false, reason: "admin-required" };
+        }
         const locked = await client.query(
             "SELECT enrolled FROM user_mfa WHERE user_id = $1 FOR UPDATE", [userId]);
         if (!locked.rows[0] || !locked.rows[0].enrolled) {
             await client.query("ROLLBACK");
             return { ok: false, reason: "code" };
         }
+        if (usedRecoveryId !== null) {
+            // The recovery code authorizing this disable is rechecked
+            // under its own lock: if a concurrent login spent it
+            // first, it is already used and cannot also authorize
+            // a disable.
+            const codeRow = await client.query(
+                "SELECT used_at FROM mfa_recovery_codes WHERE id = $1 FOR UPDATE",
+                [usedRecoveryId]);
+            if (!codeRow.rows[0] || codeRow.rows[0].used_at !== null) {
+                await client.query("ROLLBACK");
+                return { ok: false, reason: "code" };
+            }
+        }
+        // A TOTP code is verified but its step is not burned here:
+        // disable is performed by an already-authenticated user, and
+        // burning would block a login that follows within the same
+        // step. Replay protection (F6) burns the step at login
+        // (verifyMfaChallenge), where a replayed code would issue a
+        // session.
         await client.query(
             `UPDATE user_mfa SET enrolled = FALSE, enrolled_at = NULL,
              secret_encrypted = '', updated_at = now() WHERE user_id = $1`,

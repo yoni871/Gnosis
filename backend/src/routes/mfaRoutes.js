@@ -104,22 +104,25 @@ function validatePasswordTotp(req, res, next) {
 
 // TOTP verification attempts are rate-limited like the verify
 // endpoint: 30/15 min per IP, 5/15 min per IP + challenge, 5/15 min
-// per IP + user. A wrong code counts; a success or an internal
-// failure does not. Distributed guessing is bounded by the
-// combination: per-IP (30/15) caps one source, per-user (5/15)
-// caps one account even from many IPs, and per-challenge (5/15)
-// caps one challenge, which itself expires in 10 minutes and is
-// single-use — so no attacker can brute-force a 6-digit code
-// within a challenge's lifetime. The per-user bucket needs the
-// challenge's user id, resolved by resolveMfaChallengeUser before
-// this limiter runs (the same pre-resolution pattern the login
-// limiter uses with the submitted email); an unresolvable challenge
-// keys on the shared "unknown" value, so unknown challenges are
-// still bounded by the per-IP bucket.
+// per IP + user, and — independently of IP — 5/15 min per account
+// and 5/15 min per challenge. A wrong code counts; a success or an
+// internal failure does not. The IP-independent buckets bound
+// distributed guessing: an attacker rotating source addresses cannot
+// bypass the per-IP buckets, and requesting a fresh challenge does
+// not reset the per-account bucket. A 6-digit code cannot be
+// brute-forced within a challenge's 10-minute lifetime under these
+// limits. The per-user bucket needs the challenge's user id,
+// resolved by resolveMfaChallengeUser before this limiter runs (the
+// same pre-resolution pattern the login limiter uses with the
+// submitted email); an unresolvable challenge keys on the shared
+// "unknown" value, so unknown challenges are still bounded by the
+// per-IP bucket.
 const verifyRateLimit = createRateLimitMiddleware([
     { policy: "mfa_verify_ip", fields: (req, ip) => [ip] },
     { policy: "mfa_verify_ip_challenge", fields: (req, ip) => [ip, req.validated.challenge] },
     { policy: "mfa_verify_ip_user", fields: (req, ip) => [ip, req.mfaChallengeUserId] },
+    { policy: "mfa_verify_user", fields: (req) => [req.mfaChallengeUserId] },
+    { policy: "mfa_verify_challenge", fields: (req) => [req.validated.challenge] },
 ], "mfa");
 
 // Resolves the user id for the validated challenge token so the
@@ -222,7 +225,17 @@ router.post("/enroll", authenticateMfaEnroll, enrollRateLimit,
             });
         }
         const enrollment = await mfa.startEnrollment(pool, req.user.userId, userRow.email);
-        return noStore(res).json(enrollment);
+        if (!enrollment.ok) {
+            // startEnrollment rechecked under its own lock, so this
+            // is the atomic already-enrolled outcome (a concurrent
+            // enrollment completed between the status check above
+            // and the start). The enrolled factor is untouched.
+            return noStore(res).status(409).json({
+                error: "Two-factor authentication is already enabled. Disable it before setting up a new authenticator.",
+                code: "MFA_ALREADY_ENROLLED",
+            });
+        }
+        return noStore(res).json({ otpauthUrl: enrollment.otpauthUrl, secret: enrollment.secret });
     } catch (error) {
         return handleMfaError("POST /api/auth/mfa/enroll", error, req, res);
     }
@@ -309,6 +322,16 @@ router.post("/disable", authenticateToken, validatePasswordCode, codeRateLimit,
             return handleMfaError("POST /api/auth/mfa/disable", error, req, res);
         }
         if (!result.ok) {
+            if (result.reason === "admin-required") {
+                // Admin-mandatory MFA: an admin may never disable
+                // MFA. A 403 (not a 401): the credentials were valid,
+                // the action is forbidden by policy.
+                await req.rateLimit.finalize("release");
+                return noStore(res).status(403).json({
+                    error: "Multi-factor authentication is required for this account and cannot be disabled.",
+                    code: "MFA_REQUIRED",
+                });
+            }
             await req.rateLimit.finalize("count");
             return noStore(res).status(401).json(INVALID_MFA_CREDENTIALS_BODY);
         }

@@ -57,7 +57,7 @@ async function main() {
             GRANT SELECT,INSERT ON password_reset_tokens TO gnosis_reader;
             GRANT UPDATE(used_at,consumed_reason) ON password_reset_tokens TO gnosis_reader;
             GRANT SELECT,INSERT ON user_mfa,mfa_challenges,mfa_recovery_codes TO gnosis_reader;
-            GRANT UPDATE(enrolled,enrolled_at,secret_encrypted,key_version,updated_at) ON user_mfa TO gnosis_reader;
+            GRANT UPDATE(enrolled,enrolled_at,secret_encrypted,key_version,last_totp_step,updated_at) ON user_mfa TO gnosis_reader;
             GRANT UPDATE(used_at,consumed_reason) ON mfa_challenges TO gnosis_reader;
             GRANT UPDATE(used_at) ON mfa_recovery_codes TO gnosis_reader;
             GRANT SELECT,INSERT,UPDATE,DELETE ON notes,bookmarks,highlights TO gnosis_reader;

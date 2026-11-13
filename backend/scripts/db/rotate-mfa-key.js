@@ -114,12 +114,21 @@ async function main() {
         let rotated = 0;
         let skipped = 0;
         let failed = 0;
+        // User ids whose secret failed to decrypt under the previous
+        // key. They are EXCLUDED from later batches: a failed row's
+        // key_version never changes (it is skipped, not updated), so
+        // without this exclusion the same rows would be fetched again
+        // on every iteration and the loop would never terminate.
+        // They are reported at the end (failed > 0 → exit 1) and
+        // need the key-loss path (§4), not a retry.
+        const failedIds = [];
         for (;;) {
             const batch = await client.query(
                 `SELECT user_id, secret_encrypted FROM user_mfa
                  WHERE enrolled = TRUE AND key_version = $1
+                 AND NOT (user_id = ANY($3))
                  ORDER BY user_id LIMIT $2`,
-                [previous, BATCH_SIZE]);
+                [previous, BATCH_SIZE, failedIds]);
             if (batch.rows.length === 0) {
                 break;
             }
@@ -131,8 +140,12 @@ async function main() {
                     // Undecryptable under the previous key: corrupt or
                     // encrypted under an unknown key. Log the user id
                     // only and skip; the key-loss path (§4) handles it.
+                    // The id is recorded so the row is excluded from
+                    // later batches (see failedIds above) — otherwise
+                    // it would be fetched and skipped forever.
                     console.error(`rotate-mfa-key: user ${row.user_id} failed to decrypt; skipped`);
                     failed += 1;
+                    failedIds.push(row.user_id);
                     continue;
                 }
                 const encrypted = encryptTotpSecret(secret, currentKey);

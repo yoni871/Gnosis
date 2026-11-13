@@ -3,14 +3,16 @@ const assert = require("node:assert/strict");
 const jwt = require("jsonwebtoken");
 const {
     MFA_ENROLL_PURPOSE,
+    digestPasswordHash,
     createMfaEnrollToken,
     verifyMfaEnrollToken,
 } = require("../../src/utils/mfaEnrollToken");
 
 process.env.JWT_SECRET = "synthetic-test-jwt-secret-synthetic-test-jwt-secret";
+const PASSWORD_HASH = "synthetic-password-hash";
 
 test("an enrollment token verifies and carries the mfa-enroll purpose", () => {
-    const token = createMfaEnrollToken(7);
+    const token = createMfaEnrollToken(7, PASSWORD_HASH);
     const decoded = jwt.decode(token);
     assert.equal(decoded.userId, 7);
     assert.equal(decoded.purpose, MFA_ENROLL_PURPOSE);
@@ -18,7 +20,10 @@ test("an enrollment token verifies and carries the mfa-enroll purpose", () => {
     assert.equal(decoded.aud, "gnosis-api");
     // Ten-minute expiry.
     assert.equal(decoded.exp - decoded.iat, 600);
-    assert.deepEqual(verifyMfaEnrollToken(token), { userId: 7 });
+    // Bound to the verified credential: the payload carries a digest
+    // of the password hash, never the hash itself.
+    assert.equal(decoded.pwd, digestPasswordHash(PASSWORD_HASH));
+    assert.deepEqual(verifyMfaEnrollToken(token), { userId: 7, passwordHashDigest: digestPasswordHash(PASSWORD_HASH) });
 });
 
 test("a session JWT is not an enrollment token", () => {
@@ -43,7 +48,7 @@ test("a token with the wrong purpose, wrong audience, or tampered payload is rej
         { algorithm: "HS256", expiresIn: 600, issuer: "gnosis", audience: "other-api" }
     );
     assert.equal(verifyMfaEnrollToken(wrongAudience), null);
-    const token = createMfaEnrollToken(7);
+    const token = createMfaEnrollToken(7, PASSWORD_HASH);
     const parts = token.split(".");
     const tampered = `${parts[0]}.${parts[1]}.${"A".repeat(parts[2].length)}`;
     assert.equal(verifyMfaEnrollToken(tampered), null);
@@ -52,7 +57,9 @@ test("a token with the wrong purpose, wrong audience, or tampered payload is rej
     assert.equal(verifyMfaEnrollToken("not-a-token"), null);
 });
 
-test("a non-integer userId cannot mint an enrollment token", () => {
-    assert.throws(() => createMfaEnrollToken("7"), TypeError);
-    assert.throws(() => createMfaEnrollToken(null), TypeError);
+test("a non-integer userId or missing password hash cannot mint an enrollment token", () => {
+    assert.throws(() => createMfaEnrollToken("7", PASSWORD_HASH), TypeError);
+    assert.throws(() => createMfaEnrollToken(null, PASSWORD_HASH), TypeError);
+    assert.throws(() => createMfaEnrollToken(7), TypeError);
+    assert.throws(() => createMfaEnrollToken(7, ""), TypeError);
 });

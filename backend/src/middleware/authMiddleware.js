@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const pool = require("../db/db");
 const { isStrongSecret } = require("../utils/secretStrength");
+const { getAdminEmails, isAdminEmail } = require("../utils/adminAuth");
 const { CLIENT_AUTH_RESPONSES, logAuthFailure } = require("../utils/authErrors");
 
 const authenticateToken = async (req, res, next) => {
@@ -43,6 +44,31 @@ const authenticateToken = async (req, res, next) => {
         const result = await pool.query(`SELECT id FROM auth_sessions
             WHERE id = $1 AND user_id = $2 AND revoked_at IS NULL AND expires_at > now()`, [user.sid, user.userId]);
         if (!result.rows[0]) return invalid();
+        // Admin-mandatory MFA (design §9), enforced throughout
+        // authenticated session use — not only at login. If the
+        // account is an admin (ADMIN_EMAILS) and MFA is not
+        // enrolled, the session is refused: an admin who disables
+        // MFA (blocked at disableMfa, but also if the factor is
+        // removed by any other path) or an account that becomes an
+        // admin after login (ADMIN_EMAILS changed) cannot keep
+        // using an existing session without MFA. The check is one
+        // indexed lookup per request, and only runs when admins are
+        // configured at all (an empty ADMIN_EMAILS means no admins,
+        // so no query is needed); a missing user_mfa row means not
+        // enrolled.
+        if (getAdminEmails().size > 0) {
+            const adminCheck = await pool.query(
+                `SELECT u.email, m.enrolled FROM users u
+                 LEFT JOIN user_mfa m ON m.user_id = u.id WHERE u.id = $1`,
+                [user.userId]);
+            const adminRow = adminCheck.rows[0];
+            if (adminRow && isAdminEmail(adminRow.email) && adminRow.enrolled !== true) {
+                return res.status(403).json({
+                    error: "Multi-factor authentication is required for this account.",
+                    code: "MFA_ENROLLMENT_REQUIRED",
+                });
+            }
+        }
         req.user = user;
         return next();
     } catch (error) {

@@ -9,6 +9,14 @@ CREATE TABLE user_mfa (
     secret_encrypted TEXT NOT NULL,
     enrolled BOOLEAN NOT NULL DEFAULT FALSE,
     enrolled_at TIMESTAMPTZ,
+    -- Last accepted TOTP time step (30-second periods since the Unix
+    -- epoch). A code whose step is <= this value has already been
+    -- accepted and is rejected, so a valid code cannot be replayed
+    -- within its validity window — not with a fresh challenge, not
+    -- on another endpoint. NULL until the first TOTP code is
+    -- accepted. Updated atomically (under the user_mfa row lock) in
+    -- the same transaction that consumes the code.
+    last_totp_step BIGINT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );

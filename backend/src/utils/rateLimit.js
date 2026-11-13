@@ -87,9 +87,19 @@ const POLICIES = {
     // disable) share one per-user+IP bucket (5/15 min); enrollment
     // start has its own per-user+IP bucket (5/15 min) so a flood of
     // enrollment starts cannot spend the code endpoints' budget.
+    // The verify endpoint also has IP-independent buckets
+    // (mfa_verify_user, mfa_verify_challenge, 5/15 min each): the
+    // per-IP buckets alone do not bound distributed guessing, since
+    // an attacker with many source addresses can rotate IPs and
+    // request a fresh challenge per attempt. The shared per-account
+    // bucket caps one account regardless of source, and the shared
+    // per-challenge bucket caps one challenge regardless of source;
+    // a fresh challenge does not reset either.
     mfa_verify_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
     mfa_verify_ip_challenge: { windowMs: 15 * 60 * 1000, limit: 5 },
     mfa_verify_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_verify_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_verify_challenge: { windowMs: 15 * 60 * 1000, limit: 5 },
     mfa_enroll_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
     mfa_code_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
 };

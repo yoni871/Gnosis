@@ -26,7 +26,7 @@ const jwt = require("jsonwebtoken");
 const pool = require("../db/db");
 const { isStrongSecret } = require("../utils/secretStrength");
 const { CLIENT_AUTH_RESPONSES, logAuthFailure } = require("../utils/authErrors");
-const { verifyMfaEnrollToken } = require("../utils/mfaEnrollToken");
+const { verifyMfaEnrollToken, digestPasswordHash } = require("../utils/mfaEnrollToken");
 
 const authenticateMfaEnroll = async (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -49,9 +49,25 @@ const authenticateMfaEnroll = async (req, res, next) => {
     }
     const token = match[1];
     // Enrollment-scoped token first: it is the only token with the
-    // mfa-enroll purpose, and a session JWT never carries it.
+    // mfa-enroll purpose, and a session JWT never carries it. The
+    // token is bound to the credential login verified (a SHA-256
+    // digest of the password hash); the account's current password
+    // hash is re-read and compared, so a password reset or change
+    // after the token was issued invalidates it.
     const enroll = verifyMfaEnrollToken(token);
     if (enroll) {
+        try {
+            const userRow = await pool.query(
+                "SELECT password_hash FROM users WHERE id = $1", [enroll.userId]);
+            const current = userRow.rows[0];
+            if (!current || digestPasswordHash(current.password_hash) !== enroll.passwordHashDigest) {
+                return invalid();
+            }
+        } catch (error) {
+            logAuthFailure("mfaEnrollMiddleware", "database", error);
+            const { status, body } = CLIENT_AUTH_RESPONSES.internal;
+            return res.status(status).json(body);
+        }
         req.user = { userId: enroll.userId, mfaEnroll: true };
         return next();
     }
