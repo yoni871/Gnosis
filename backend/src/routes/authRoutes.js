@@ -23,6 +23,8 @@ const { createResendClient } = require("../utils/resendClient");
 const { isBreachedPassword } = require("../utils/breachedPasswords");
 const { audit } = require("../utils/auditLog");
 const { recordLoginDevice } = require("../services/loginDevices");
+const { isAdminEmail } = require("../utils/adminAuth");
+const { createMfaEnrollToken } = require("../utils/mfaEnrollToken");
 
 // Issue #3: validation runs as middleware, before the limiter and before
 // any hashing or database access. Only the validated (trimmed) values
@@ -414,6 +416,29 @@ router.post("/login", (req, res, next) => {
             error: "Multi-factor authentication is required.",
             code: "MFA_REQUIRED",
             challenge,
+        });
+    }
+
+    // Admin-mandatory MFA (design §9): an admin account without
+    // enrolled MFA gets no session. Return 403 with a short-lived
+    // enrollment-scoped token instead; the frontend routes the admin
+    // to enrollment with it. A correct password still does not count
+    // toward the login buckets. Regular users are unaffected.
+    if (!mfaEnrolled && isAdminEmail(user.email)) {
+        let enrollToken;
+        try {
+            enrollToken = createMfaEnrollToken(user.id);
+        } catch (error) {
+            logAuthFailure("POST /api/auth/login", "token", error);
+            await req.rateLimit.finalize("release");
+            return res.status(500).json(internalErrorBody("login"));
+        }
+        await req.rateLimit.finalize("release");
+        await audit(pool, "mfa.enrollment_required", user.id);
+        return res.status(403).json({
+            error: "Multi-factor authentication is required for this account. Set up an authenticator to continue.",
+            code: "MFA_ENROLLMENT_REQUIRED",
+            enrollToken,
         });
     }
 

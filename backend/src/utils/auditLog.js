@@ -32,6 +32,7 @@ const AUDIT_EVENT_KINDS = Object.freeze([
     "mfa.verified",
     "mfa.verification_failed",
     "mfa.removed",
+    "mfa.enrollment_required",
     "recovery_code.used",
     "recovery_codes.regenerated",
     // PR5 (auth hardening): account deletion request/completion.

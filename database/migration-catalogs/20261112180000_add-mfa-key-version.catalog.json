@@ -1,1 +1,17 @@
-{"added":[{"definition":{"collation":null,"default":"1","generated":"","identity":"","notNull":true,"type":"integer"},"kind":"column","name":"user_mfa.key_version"}],"removed":[]}
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "user_mfa.key_version",
+      "definition": {
+        "type": "integer",
+        "default": "1",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    }
+  ],
+  "removed": []
+}

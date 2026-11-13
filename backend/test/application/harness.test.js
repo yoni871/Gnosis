@@ -124,6 +124,7 @@ test('issue #9 and #10 column grants allow exactly the approved column updates',
             'mfa_recovery_codes.used_at:UPDATE',
             'password_reset_tokens.consumed_reason:UPDATE', 'password_reset_tokens.used_at:UPDATE',
             'user_mfa.enrolled:UPDATE', 'user_mfa.enrolled_at:UPDATE',
+            'user_mfa.key_version:UPDATE',
             'user_mfa.secret_encrypted:UPDATE', 'user_mfa.updated_at:UPDATE',
             'users.email_verified_at:UPDATE', 'users.password_hash:UPDATE']);
     for (const [table, column] of [['users', 'id'], ['users', 'email'],

@@ -15,8 +15,14 @@ function throwServiceError(data, fallback) {
     }
     // TOTP MFA: the login challenge token travels on the MFA_REQUIRED
     // error so the login page can complete the second step with it.
+    // Admin-mandatory MFA: the enrollment token travels on the
+    // MFA_ENROLLMENT_REQUIRED error the same way, so the login page
+    // can route the admin to enrollment with it.
     if (data.challenge) {
         error.challenge = data.challenge;
+    }
+    if (data.enrollToken) {
+        error.enrollToken = data.enrollToken;
     }
     throw error;
 }

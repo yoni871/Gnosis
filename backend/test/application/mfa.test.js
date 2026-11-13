@@ -14,6 +14,11 @@ const mfaService = require('../../src/services/mfaService');
 // override. The key never leaves this disposable run.
 const MFA_KEY = crypto.randomBytes(32).toString('hex');
 process.env.MFA_ENCRYPTION_KEY = MFA_KEY;
+// Admin-mandatory MFA (design §9): these synthetic admin emails are
+// forwarded to the worker the same way, so the login gate can be
+// exercised. The admin users are created by the tests below.
+const ADMIN_EMAILS = ['mfa-admin-1@example.invalid', 'mfa-admin-2@example.invalid'];
+process.env.ADMIN_EMAILS = ADMIN_EMAILS.join(',');
 
 const context = contextFromEnvironment();
 let database, worker;
@@ -34,6 +39,13 @@ async function freshUser() {
     const email = `mfa-${userCounter}@example.invalid`;
     const result = await database.pool.query(`INSERT INTO users(first_name,last_name,email,password_hash,email_verified_at)
         VALUES ('Mfa','Reader',$1,$2,now()) RETURNING id`, [email, await bcrypt.hash(password, 4)]);
+    return { userId: result.rows[0].id, email };
+}
+
+async function freshAdminUser(index) {
+    const email = ADMIN_EMAILS[index];
+    const result = await database.pool.query(`INSERT INTO users(first_name,last_name,email,password_hash,email_verified_at)
+        VALUES ('Mfa','Admin',$1,$2,now()) RETURNING id`, [email, await bcrypt.hash(password, 4)]);
     return { userId: result.rows[0].id, email };
 }
 
@@ -246,6 +258,60 @@ test('five enrollment starts trip the per-user enroll rate limit', async () => {
     const limited = await request('mfa/enroll', { token, body: {} });
     assert.equal(limited.status, 429);
     assert.equal(limited.data.code, 'RATE_LIMITED');
+});
+
+test('admin without MFA gets 403 MFA_ENROLLMENT_REQUIRED, enrolls with the token, then logs in via MFA', async () => {
+    const { userId, email } = await freshAdminUser(0);
+    // No session is issued: 403 with an enrollment token.
+    const denied = await login(email);
+    assert.equal(denied.status, 403, JSON.stringify(denied.data));
+    assert.equal(denied.data.code, 'MFA_ENROLLMENT_REQUIRED');
+    assert.match(denied.data.enrollToken, /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/);
+    const enrollToken = denied.data.enrollToken;
+    // The enrollment token authorizes only enrollment: it cannot
+    // read status or the profile (no session exists for it).
+    assert.equal((await get('mfa/status', enrollToken)).status, 403);
+    assert.equal(await profile(enrollToken), 403);
+    // Enroll with the token, then confirm with a TOTP code.
+    const started = await request('mfa/enroll', { token: enrollToken, body: {} });
+    assert.equal(started.status, 200, JSON.stringify(started.data));
+    const code = await generateTotpCode(started.data.secret);
+    const confirmed = await request('mfa/enroll/confirm', { token: enrollToken, body: { code } });
+    assert.equal(confirmed.status, 200, JSON.stringify(confirmed.data));
+    assert.equal(confirmed.data.enrolled, true);
+    assert.equal(confirmed.data.recoveryCodes.length, 10);
+    // The admin now logs in via MFA normally.
+    const token = await loginWithTotp(email, started.data.secret);
+    assert.equal(await profile(token), 200);
+    // The enrollment token is spent for enrollment: it cannot
+    // re-enroll an already-enrolled account.
+    assert.equal((await request('mfa/enroll', { token: enrollToken, body: {} })).status, 409);
+});
+
+test('a regular user without MFA logs in normally', async () => {
+    const { userId, email } = await freshUser();
+    const result = await login(email);
+    assert.equal(result.status, 200, JSON.stringify(result.data));
+    assert.ok(result.data.token);
+});
+
+test('an enrolled admin logs in via MFA normally', async () => {
+    const { userId, email } = await freshAdminUser(1);
+    // Enroll via the enrollment token, then the MFA login flow.
+    const denied = await login(email);
+    assert.equal(denied.status, 403);
+    const enrollToken = denied.data.enrollToken;
+    const started = await request('mfa/enroll', { token: enrollToken, body: {} });
+    assert.equal(started.status, 200);
+    const code = await generateTotpCode(started.data.secret);
+    const confirmed = await request('mfa/enroll/confirm', { token: enrollToken, body: { code } });
+    assert.equal(confirmed.status, 200);
+    const token = await loginWithTotp(email, started.data.secret);
+    assert.equal(await profile(token), 200);
+    // The admin's enrollment is recorded in the audit log.
+    const events = await database.pool.query(
+        "SELECT kind FROM security_events WHERE user_id = $1 AND kind = 'mfa.enrollment_required'", [userId]);
+    assert.equal(events.rows.length, 1);
 });
 
 test('mixed key versions: a version-1 row decrypts via the previous key, a version-2 row via the current key', async () => {

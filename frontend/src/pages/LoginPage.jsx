@@ -79,6 +79,12 @@ export default function LoginPage() {
         } catch (error) {
             if (error.code === "MFA_REQUIRED") {
                 setMfaChallenge(error.challenge);
+            } else if (error.code === "MFA_ENROLLMENT_REQUIRED") {
+                // Admin-mandatory MFA (design §9): this account must
+                // enroll before it can sign in. Route to Settings →
+                // Security with the short-lived enrollment token; the
+                // token grants only enrollment and is spent there.
+                navigate("/settings", { state: { mfaEnrollToken: error.enrollToken } });
             } else if (error.code === "EMAIL_NOT_VERIFIED") {
                 setUnverifiedEmail(email);
                 setResendStatus("idle");

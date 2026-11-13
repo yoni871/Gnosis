@@ -18,6 +18,7 @@ const EXPECTED_KINDS = [
     'mfa.verified',
     'mfa.verification_failed',
     'mfa.removed',
+    'mfa.enrollment_required',
     'recovery_code.used',
     'recovery_codes.regenerated',
     'account_deletion.requested',

@@ -20,6 +20,7 @@ const pool = require("../db/db");
 const router = express.Router();
 const sessions = require("../services/sessionService");
 const authenticateToken = require("../middleware/authMiddleware");
+const authenticateMfaEnroll = require("../middleware/mfaEnrollMiddleware");
 const { internalErrorBody, logAuthFailure } = require("../utils/authErrors");
 const { VALIDATION_CODE } = require("../utils/authValidation");
 const { createRateLimitMiddleware } = require("../utils/rateLimit");
@@ -200,7 +201,7 @@ router.get("/status", authenticateToken, async (req, res) => {
     }
 });
 
-router.post("/enroll", authenticateToken, enrollRateLimit,
+router.post("/enroll", authenticateMfaEnroll, enrollRateLimit,
     withRateLimitFinalize(async (req, res) => {
     let userRow;
     try {
@@ -227,7 +228,7 @@ router.post("/enroll", authenticateToken, enrollRateLimit,
     }
 }));
 
-router.post("/enroll/confirm", authenticateToken, validateTotpCode, codeRateLimit,
+router.post("/enroll/confirm", authenticateMfaEnroll, validateTotpCode, codeRateLimit,
     withRateLimitFinalize(async (req, res) => {
         let result;
         try {

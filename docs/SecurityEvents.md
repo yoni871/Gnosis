@@ -47,6 +47,7 @@ the kind strings do not change.
 | `mfa.verified` | PR7 (auth hardening) | TOTP verification succeeded. |
 | `mfa.verification_failed` | PR7 (auth hardening) | TOTP verification failed. |
 | `mfa.removed` | PR7 (auth hardening) | TOTP removed. |
+| `mfa.enrollment_required` | PR #93 (TOTP MFA) | An admin account without enrolled MFA attempted login; no session was issued and an enrollment-scoped token was returned. |
 | `recovery_code.used` | PR7 (auth hardening) | A recovery code was used. |
 | `recovery_codes.regenerated` | PR7 (auth hardening) | Recovery codes were regenerated. |
 | `account_deletion.requested` | PR5 (auth hardening) | Account deletion was requested. |

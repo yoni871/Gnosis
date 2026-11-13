@@ -7,6 +7,14 @@
 // disabling needs the password plus a current authenticator code
 // or a recovery code. Turning MFA off also revokes every other
 // session; the device that turned it off stays signed in.
+//
+// Enrollment-token mode: when the `enrollToken` prop is set, the
+// component runs the enrollment flow for an admin who reached the
+// login gate without enrolled MFA (design §9). There is no session
+// yet, so the status check and the signed-in sections (regenerate,
+// disable) are skipped; the short-lived token authorizes only
+// /enroll and /enroll/confirm. Once confirmed, the admin signs in
+// normally with the new authenticator.
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
@@ -68,8 +76,10 @@ const buttonClass = `
     disabled:opacity-60
 `;
 
-export default function MfaSettings() {
+export default function MfaSettings({ enrollToken = null }) {
     const { user, getAccessToken, isAuthenticated, isAuthLoading } = useContext(AuthContext);
+    // Enrollment-token mode: an admin enrolling before first sign-in.
+    const enrollmentOnly = enrollToken !== null;
 
     const [loading, setLoading] = useState(true);
     const [enrolled, setEnrolled] = useState(false);
@@ -86,6 +96,14 @@ export default function MfaSettings() {
     const [notice, setNotice] = useState("");
 
     useEffect(() => {
+        if (enrollmentOnly) {
+            // No session and no status to load: enrollment is required
+            // and not yet done. The token authorizes only /enroll and
+            // /enroll/confirm.
+            setEnrolled(false);
+            setLoading(false);
+            return;
+        }
         if (isAuthLoading) return;
         if (!isAuthenticated) {
             setLoading(false);
@@ -106,9 +124,11 @@ export default function MfaSettings() {
                 }
             });
         return () => { active = false; };
-    }, [isAuthLoading, isAuthenticated, getAccessToken]);
+    }, [enrollmentOnly, isAuthLoading, isAuthenticated, getAccessToken]);
 
-    const token = () => getAccessToken();
+    // In enrollment-token mode the token authorizes enrollment; in
+    // the normal mode the session token does.
+    const token = () => (enrollmentOnly ? enrollToken : getAccessToken());
 
     async function handleStart(event) {
         event.preventDefault();
@@ -135,7 +155,9 @@ export default function MfaSettings() {
             setEnroll(null);
             setConfirmCode("");
             setRecoveryCodes(result.recoveryCodes);
-            setNotice("Two-factor authentication is on. Save your recovery codes below — they are shown only once.");
+            setNotice(enrollmentOnly
+                ? "Two-factor authentication is on. Save your recovery codes below — they are shown only once. Then sign in normally with your password and a code from your authenticator."
+                : "Two-factor authentication is on. Save your recovery codes below — they are shown only once.");
         } catch (err) {
             setError(err.message);
         } finally {
@@ -192,7 +214,7 @@ export default function MfaSettings() {
         return <p role="status" className="mt-2 text-[14px] text-[var(--text-muted)]">Loading…</p>;
     }
 
-    if (!isAuthenticated) {
+    if (!enrollmentOnly && !isAuthenticated) {
         return (
             <p className="mt-2 text-[14px] text-[var(--text-muted)]">
                 <Link to="/login" className="font-semibold text-[var(--color-brand)] underline underline-offset-4">
@@ -243,13 +265,14 @@ export default function MfaSettings() {
             {!enrolled && !enroll && (
                 <section>
                     <h2 className="font-serif text-[20px] font-semibold text-[var(--text-primary)]">
-                        Two-factor authentication is off
+                        {enrollmentOnly
+                            ? "Two-factor authentication is required for this account"
+                            : "Two-factor authentication is off"}
                     </h2>
                     <p className="mt-2 text-[13px] leading-6 text-[var(--text-muted)]">
-                        Add a second step to signing in: a 6-digit code from an authenticator
-                        app, with single-use recovery codes as a backup. Setting it up takes
-                        a minute: add the secret to your authenticator app, then confirm with
-                        a code from the app.
+                        {enrollmentOnly
+                            ? "This account must set up an authenticator before it can sign in. Add the secret to your authenticator app, then confirm with a code from the app — setup takes a minute."
+                            : "Add a second step to signing in: a 6-digit code from an authenticator app, with single-use recovery codes as a backup. Setting it up takes a minute: add the secret to your authenticator app, then confirm with a code from the app."}
                     </p>
                     <form onSubmit={handleStart} className="mt-5">
                         <button type="submit" disabled={busy} className={buttonClass}>
@@ -270,7 +293,11 @@ export default function MfaSettings() {
                         below. No QR code is shown yet — type the secret in exactly as written.
                     </p>
                     <p className="mt-4 text-[13px] leading-6 text-[var(--text-muted)]">
-                        Account: <span className="font-semibold text-[var(--text-primary)]">{user ? user.email : ""}</span>
+                        {user ? (
+                            <>Account: <span className="font-semibold text-[var(--text-primary)]">{user.email}</span></>
+                        ) : (
+                            <>This setup is for the account that just signed in. The token expires in 10 minutes — start again from the sign-in page if it runs out.</>
+                        )}
                     </p>
                     <div className="mt-3 flex items-center gap-3 rounded-lg border border-[var(--border-control)] px-4 py-3">
                         <code className="flex-1 break-all font-mono text-[14px] tracking-wider text-[var(--text-primary)]">
@@ -316,7 +343,22 @@ export default function MfaSettings() {
                 </section>
             )}
 
-            {enrolled && (
+            {enrolled && enrollmentOnly && !recoveryCodes && (
+                <section>
+                    <h2 className="font-serif text-[20px] font-semibold text-[var(--text-primary)]">
+                        Two-factor authentication is on
+                    </h2>
+                    <p className="mt-2 text-[13px] leading-6 text-[var(--text-muted)]">
+                        Your authenticator is set up.{" "}
+                        <Link to="/login" className="font-semibold text-[var(--color-brand)] underline underline-offset-4">
+                            Sign in
+                        </Link>{" "}
+                        with your password and a code from your authenticator.
+                    </p>
+                </section>
+            )}
+
+            {enrolled && !enrollmentOnly && (
                 <>
                 <section>
                     <h2 className="font-serif text-[20px] font-semibold text-[var(--text-primary)]">

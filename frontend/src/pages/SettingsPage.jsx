@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import Seo from "../components/Seo";
 import LandingHeader from "../components/LandingHeader";
@@ -23,6 +23,12 @@ import "./SettingsPage.css";
 export default function SettingsPage() {
     const { user, token, isAuthLoading, logout } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    // Admin-mandatory MFA (design §9): the login page routes an admin
+    // who must enroll here with a short-lived enrollment token. There
+    // is no session yet, so only the Security section renders — the
+    // account and deletion sections still need a signed-in user.
+    const mfaEnrollToken = location.state?.mfaEnrollToken ?? null;
     const [password, setPassword] = useState("");
     const [deleteError, setDeleteError] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
@@ -53,6 +59,15 @@ export default function SettingsPage() {
                 <h1>Settings</h1>
                 {isAuthLoading ? (
                     <p role="status">Loading…</p>
+                ) : mfaEnrollToken ? (
+                    <section aria-labelledby="settings-security-heading">
+                        <h2 id="settings-security-heading">Security</h2>
+                        <p>
+                            Two-factor authentication is required for this account
+                            before it can sign in. Set up an authenticator below.
+                        </p>
+                        <MfaSettings enrollToken={mfaEnrollToken} />
+                    </section>
                 ) : !user ? (
                     <p>
                         Sign in to manage your account.{" "}
