@@ -95,6 +95,24 @@ export default function HistoryTimeline({ events = [], currentEventId, bookId })
                         </li>
                     );
                 })}
+                {/* One trailing, non-interactive "Upcoming" slot. The
+                    generated bundle holds published events only, so an
+                    unpublished event has no record — and no title — to
+                    render here; this is the same generic marker the book
+                    index uses for books without published events, not a
+                    placeholder event. It is a plain span (never a link
+                    or button), so it takes no tab stop and arrow-key
+                    navigation skips it. */}
+                <li className="history-timeline-node-item">
+                    <span
+                        className="history-timeline-node history-timeline-node--upcoming"
+                        aria-disabled="true"
+                    >
+                        <span className="history-timeline-node-dot" aria-hidden="true" />
+                        <span className="history-timeline-node-title">Upcoming</span>
+                        <span className="history-timeline-node-date">More to come</span>
+                    </span>
+                </li>
             </ul>
         </nav>
     );

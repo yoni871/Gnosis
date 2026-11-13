@@ -90,4 +90,23 @@ describe("HistoryTimeline", () => {
         await user.click(screen.getByRole("button", { name: /The Flood/ }));
         expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/flood");
     });
+
+    it("ends with one generic Upcoming slot that is not a link or button and never navigates", async () => {
+        const user = userEvent.setup();
+        renderTimeline();
+        const upcoming = screen.getByText("Upcoming");
+        expect(upcoming.closest("button")).toBeNull();
+        expect(upcoming.closest("a")).toBeNull();
+        expect(upcoming.closest("[aria-disabled='true']")).not.toBeNull();
+        // Clicking it navigates nowhere.
+        await user.click(upcoming);
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/creation");
+        // Keyboard navigation skips it: End lands on the last real event.
+        const creation = screen.getByRole("button", { name: /Creation/ });
+        creation.focus();
+        await user.keyboard("{End}");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/abraham");
+        await user.keyboard("{ArrowRight}");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/creation");
+    });
 });

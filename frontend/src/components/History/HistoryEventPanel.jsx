@@ -1,19 +1,27 @@
-// The event details panel.
+// The event study page.
 //
-// Desktop: a side panel docked to the right of the viewport. Mobile
-// (≤768px): a bottom sheet at 45dvh collapsed / 85dvh expanded, following
-// the OriginalLanguageModal pattern (createPortal, focus trap, Escape to
-// close, focus return, drag handle, prefers-reduced-motion).
+// Desktop: a wide study workspace — a compact left rail (Story /
+// Context / Connections, Sources pinned at the bottom), a spacious
+// reading column, an optional Scripture companion beside the content,
+// and a slim timeline along the bottom. Mobile (≤768px): the previously
+// approved single-column design — a bottom sheet at 45dvh collapsed /
+// 85dvh expanded (the OriginalLanguageModal pattern: createPortal,
+// focus trap, Escape to close, focus return, drag handle,
+// prefers-reduced-motion), horizontal section tabs, the timeline at the
+// bottom, and the Scripture companion as an inline block inside the
+// sheet instead of a side panel.
 //
-// Inside: the section navigation (vertical sidebar on desktop, compact
-// tabs on mobile), the section panels, the sources list, and — anchored
-// at the panel's bottom — the timeline. The panel is a modal dialog on
-// both layouts, so focus behaviour is the same everywhere.
+// The panel is a modal dialog on both layouts, so focus behaviour is
+// the same everywhere. One section shows at a time, without reloading;
+// opening or closing the Scripture companion never resets the active
+// section. Sources is its own section: a footnote link in the prose
+// switches to it and scrolls to the cited source.
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { X } from "lucide-react";
+import { BookOpen, X } from "lucide-react";
 import {
     eventSlug,
+    formatScriptureRange,
     getBooksForEvent,
     getBookTitle,
     listEventsForBook,
@@ -24,6 +32,7 @@ import HistoryConnectionChips from "./HistoryConnectionChips";
 import HistoryDateLabel from "./HistoryDateLabel";
 import HistoryEventNav from "./HistoryEventNav";
 import HistoryOverview from "./HistoryOverview";
+import HistoryScriptureCompanion from "./HistoryScriptureCompanion";
 import HistoryScriptureTab from "./HistoryScriptureTab";
 import HistorySourcesList from "./HistorySourcesList";
 import HistoryTimeline from "./HistoryTimeline";
@@ -39,6 +48,7 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
     const [activeTab, setActiveTab] = useState("overview");
     const [sections, setSections] = useState(null);
     const [sectionsError, setSectionsError] = useState("");
+    const [companionPassage, setCompanionPassage] = useState(null);
     const [isSheetExpanded, setIsSheetExpanded] = useState(false);
     const [sheetDragOffset, setSheetDragOffset] = useState(0);
     const sheetDragStartYRef = useRef(null);
@@ -52,6 +62,9 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
 
     const dialogRef = useRef(null);
     const previouslyFocusedRef = useRef(null);
+    const scriptureButtonRef = useRef(null);
+    const companionPassageRef = useRef(null);
+    const pendingFootnoteRef = useRef(null);
 
     const timelineEvents = listEventsForBook(bookId);
     const otherBooks = getBooksForEvent(event.id);
@@ -76,8 +89,23 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
         };
     }, [event.id]);
 
+    useEffect(() => {
+        companionPassageRef.current = companionPassage;
+    }, [companionPassage]);
+
+    const openCompanion = useCallback((passage) => {
+        if (passage) setCompanionPassage(passage);
+    }, []);
+
+    const closeCompanion = useCallback(() => {
+        setCompanionPassage(null);
+        scriptureButtonRef.current?.focus();
+    }, []);
+
     // Dialog semantics: remember the opener, focus the dialog, trap Tab,
     // close on Escape, lock background scroll, restore focus on close.
+    // Escape closes the Scripture companion first when it is open — the
+    // panel itself only closes on Escape with no companion open.
     useEffect(() => {
         previouslyFocusedRef.current = document.activeElement;
         const dialog = dialogRef.current;
@@ -89,6 +117,10 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
         function onKeyDown(keyboardEvent) {
             if (keyboardEvent.key === "Escape") {
                 keyboardEvent.stopPropagation();
+                if (companionPassageRef.current) {
+                    closeCompanion();
+                    return;
+                }
                 onClose();
                 return;
             }
@@ -127,7 +159,8 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
         };
         // event.id is stable for the panel's lifetime (the parent keys the
         // panel by event id), so the effect still runs once per mount.
-    }, [onClose, event.id]);
+        // closeCompanion is stable (refs + setState only).
+    }, [onClose, event.id, closeCompanion]);
 
     // Mobile bottom sheet: the handle drags to expand/collapse/dismiss, and
     // a tap on it toggles expand/collapse. (Same pattern as the OL modal.)
@@ -167,6 +200,29 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
         setIsSheetExpanded((expanded) => !expanded);
     }, []);
 
+    // Sources is its own section, so a footnote link in the prose has no
+    // sources list to land on while another section is showing. Intercept
+    // it: switch to Sources, then scroll to the cited source once the
+    // list renders.
+    const handleContentClick = useCallback((clickEvent) => {
+        const link = clickEvent.target.closest?.("a.history-footnote-link");
+        if (!link) return;
+        const href = link.getAttribute("href");
+        if (!href || !href.startsWith("#source-")) return;
+        clickEvent.preventDefault();
+        pendingFootnoteRef.current = href.slice(1);
+        setActiveTab("sources");
+    }, []);
+
+    useEffect(() => {
+        if (activeTab !== "sources" || !pendingFootnoteRef.current) return;
+        const id = pendingFootnoteRef.current;
+        pendingFootnoteRef.current = null;
+        const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+        // jsdom (tests) has no scrollIntoView; guard the call.
+        document.getElementById(id)?.scrollIntoView?.({ behavior: reduced ? "auto" : "smooth", block: "nearest" });
+    }, [activeTab, sections]);
+
     const activeSection = HISTORY_SECTIONS.find((section) => section.id === activeTab) ?? HISTORY_SECTIONS[0];
 
     return createPortal(
@@ -181,7 +237,7 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                 role="dialog"
                 aria-modal="true"
                 aria-label={event.title}
-                className={`history-panel-dialog${isSheetCollapsed ? " history-panel-dialog--collapsed" : ""}`}
+                className={`history-panel-dialog history-study${isSheetCollapsed ? " history-panel-dialog--collapsed" : ""}`}
                 style={{
                     "--history-sheet-height": isSheetExpanded ? "85dvh" : "45dvh",
                     transform: sheetDragOffset !== 0 ? `translateY(${sheetDragOffset}px)` : undefined,
@@ -202,12 +258,14 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                     <span className="history-sheet-handle-pill" aria-hidden="true" />
                 </button>
                 <header className="history-panel-header">
-                    <div>
+                    <div className="history-study-heading">
                         <p className="history-panel-eyebrow">
                             {bookTitle} · Biblical History
                         </p>
                         <h2 className="history-panel-title">{event.title}</h2>
                         <p className="history-panel-meta">
+                            {formatScriptureRange(event.primaryScripture)}
+                            {" · "}
                             <HistoryDateLabel date={event.date} />
                         </p>
                         {event.status !== "published" && (
@@ -223,22 +281,40 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                             <p className="history-panel-book-note">{event.bookNote}</p>
                         )}
                     </div>
-                    <button
-                        type="button"
-                        data-testid="history-panel-close"
-                        aria-label="Close event details"
-                        className="history-panel-close"
-                        onClick={onClose}
-                    >
-                        <X size={20} aria-hidden="true" />
-                    </button>
+                    <div className="history-study-actions">
+                        <button
+                            type="button"
+                            ref={scriptureButtonRef}
+                            data-testid="history-scripture-button"
+                            className="history-scripture-button"
+                            aria-expanded={Boolean(companionPassage)}
+                            aria-controls="history-scripture-companion"
+                            disabled={!event.primaryScripture}
+                            onClick={() => {
+                                if (companionPassage) closeCompanion();
+                                else openCompanion(event.primaryScripture);
+                            }}
+                        >
+                            <BookOpen size={15} aria-hidden="true" />
+                            <span>Scripture</span>
+                        </button>
+                        <button
+                            type="button"
+                            data-testid="history-panel-close"
+                            aria-label="Close event details"
+                            className="history-panel-close"
+                            onClick={onClose}
+                        >
+                            <X size={20} aria-hidden="true" />
+                        </button>
+                    </div>
                 </header>
 
                 <HistoryConnectionChips event={event} books={otherBooks} currentBookId={bookId} />
 
-                <div className="history-panel-main">
+                <div className="history-study-body">
                     <HistoryEventNav activeId={activeTab} onSelect={setActiveTab} />
-                    <div className="history-panel-content">
+                    <div className="history-study-content" onClick={handleContentClick}>
                         {sectionsError && (
                             <p className="history-panel-status" role="alert">{sectionsError}</p>
                         )}
@@ -252,18 +328,34 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                                 aria-labelledby={`history-tab-${activeSection.id}`}
                             >
                                 {activeTab === "overview" && (
-                                    <HistoryOverview event={event} sections={sections} />
+                                    <HistoryOverview sections={sections} />
                                 )}
                                 {activeTab === "ancient-world" && (
                                     <HistoryAncientWorld subsections={sections.ancientWorldSubsections} />
                                 )}
                                 {activeTab === "scripture" && (
-                                    <HistoryScriptureTab event={event} />
+                                    <HistoryScriptureTab event={event} onOpenPassage={openCompanion} />
                                 )}
-                                <HistorySourcesList sourceIds={event.sources ?? []} />
+                                {activeTab === "sources" && (
+                                    <HistorySourcesList sourceIds={event.sources ?? []} />
+                                )}
                             </div>
                         )}
+                        {isMobile && companionPassage && (
+                            <HistoryScriptureCompanion
+                                key={formatScriptureRange(companionPassage)}
+                                passage={companionPassage}
+                                onClose={closeCompanion}
+                            />
+                        )}
                     </div>
+                    {!isMobile && companionPassage && (
+                        <HistoryScriptureCompanion
+                            key={formatScriptureRange(companionPassage)}
+                            passage={companionPassage}
+                            onClose={closeCompanion}
+                        />
+                    )}
                 </div>
 
                 <HistoryTimeline
