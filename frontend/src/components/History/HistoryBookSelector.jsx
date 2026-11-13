@@ -9,9 +9,30 @@ const TESTAMENTS = [
 ];
 
 export default function HistoryBookSelector({ books = listBooks() }) {
+    const [open, setOpen] = useState(false);
     const [testament, setTestament] = useState("OT");
     const tabs = useRef([]);
+    const browseButtonRef = useRef(null);
     const visibleBooks = books.filter((book) => book.testament === testament);
+
+    const closeDrawer = () => {
+        setOpen(false);
+        browseButtonRef.current?.focus();
+    };
+
+    const handleBrowseKeyDown = (event) => {
+        if (event.key === "Escape" && open) {
+            event.preventDefault();
+            closeDrawer();
+        }
+    };
+
+    const handleDrawerKeyDown = (event) => {
+        if (event.key === "Escape") {
+            event.preventDefault();
+            closeDrawer();
+        }
+    };
 
     const selectTab = (index) => {
         const next = TESTAMENTS[index];
@@ -32,45 +53,64 @@ export default function HistoryBookSelector({ books = listBooks() }) {
 
     return (
         <div className="history-book-selector">
-            <div className="history-testament-tabs" role="tablist" aria-label="Choose a testament">
-                {TESTAMENTS.map((item, index) => {
-                    const selected = testament === item.id;
-                    return (
-                        <button
-                            key={item.id}
-                            ref={(element) => { tabs.current[index] = element; }}
-                            type="button"
-                            role="tab"
-                            id={`history-tab-${item.id.toLowerCase()}`}
-                            aria-selected={selected}
-                            aria-controls="history-book-tabpanel"
-                            tabIndex={selected ? 0 : -1}
-                            onClick={() => setTestament(item.id)}
-                            onKeyDown={(event) => handleTabKeyDown(event, index)}
-                        >
-                            {item.label}
-                            <span>{item.id === "OT" ? 39 : 27}</span>
-                        </button>
-                    );
-                })}
-            </div>
-            <div
-                id="history-book-tabpanel"
-                role="tabpanel"
-                aria-labelledby={`history-tab-${testament.toLowerCase()}`}
-                tabIndex={0}
+            <button
+                ref={browseButtonRef}
+                type="button"
+                className="history-browse-books"
+                aria-expanded={open}
+                aria-controls="history-book-drawer"
+                onClick={() => (open ? closeDrawer() : setOpen(true))}
+                onKeyDown={handleBrowseKeyDown}
             >
-                <ul className="history-book-chips">
-                    {visibleBooks.map((book) => (
-                        <li key={book.id}>
-                            <Link to={historyPath(book.id)} data-history-book={book.id}>
-                                <span>{book.title}</span>
-                                <small>{book.hasEvents ? `${book.eventCount} ${book.eventCount === 1 ? "event" : "events"}` : "Upcoming"}</small>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                {open ? "Close Books" : "Browse Books"}
+                <span aria-hidden="true">{open ? "↑" : "↓"}</span>
+            </button>
+            {open && (
+                <div
+                    id="history-book-drawer"
+                    className="history-book-drawer"
+                    onKeyDown={handleDrawerKeyDown}
+                >
+                    <div className="history-testament-tabs" role="tablist" aria-label="Choose a testament">
+                        {TESTAMENTS.map((item, index) => {
+                            const selected = testament === item.id;
+                            return (
+                                <button
+                                    key={item.id}
+                                    ref={(element) => { tabs.current[index] = element; }}
+                                    type="button"
+                                    role="tab"
+                                    id={`history-tab-${item.id.toLowerCase()}`}
+                                    aria-selected={selected}
+                                    aria-controls="history-book-tabpanel"
+                                    tabIndex={selected ? 0 : -1}
+                                    onClick={() => setTestament(item.id)}
+                                    onKeyDown={(event) => handleTabKeyDown(event, index)}
+                                >
+                                    {item.label}
+                                    <span>{item.id === "OT" ? 39 : 27}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                    <div
+                        id="history-book-tabpanel"
+                        role="tabpanel"
+                        aria-labelledby={`history-tab-${testament.toLowerCase()}`}
+                        tabIndex={0}
+                    >
+                        <ul className="history-book-chips">
+                            {visibleBooks.map((book) => (
+                                <li key={book.id}>
+                                    <Link to={historyPath(book.id)} data-history-book={book.id}>
+                                        {book.title}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
