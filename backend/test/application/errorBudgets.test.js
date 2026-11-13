@@ -229,6 +229,18 @@ test("F04: note content over 100,000 characters is rejected on create and update
     assert.equal(atLimit.json.content.length, 100_000);
 });
 
+test("note titles are bounded on create and update", async () => {
+    for (const [path, method] of [["/api/notes", "POST"], ["/api/notes/1", "PATCH"]]) {
+        const result = await request(path, {
+            method,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...(method === "POST" ? NOTE : {}), title: "x".repeat(201) }),
+        });
+        assert.equal(result.response.status, 400);
+        assert.deepEqual(result.json, { error: "Note title is too long." });
+    }
+});
+
 test("F04: highlight verse selections over 200 are rejected", async () => {
     const verses = Array.from({ length: 201 }, (_, i) => ({ chapter: 1, verse: i + 1 }));
     const result = await request("/api/highlights", {

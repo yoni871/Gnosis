@@ -205,6 +205,30 @@ test('current failures retain the draft for retry; old failures cannot replace B
     expect(hook.result.current).toMatchObject({ noteContent: 'B draft', editContent: 'B edit', editingNoteId: 7, notesError: 'B failure', isSavingNote: false });
 });
 
+test('note autosaves are serialized so a slow older response cannot overwrite a newer edit', async () => {
+    vi.useFakeTimers();
+    const first = deferred();
+    notes.updateNote.mockReturnValueOnce(first.promise)
+        .mockResolvedValueOnce({ ...record, title: 'Newest', content: '<p>Newest</p>' });
+    const hook = await mount(useJournal);
+    act(() => hook.result.current.handleStartEdit(record));
+
+    act(() => hook.result.current.scheduleDocumentSave(7, { title: 'Older', content: '<p>Older</p>' }));
+    await act(async () => { await vi.advanceTimersByTimeAsync(650); });
+    act(() => hook.result.current.scheduleDocumentSave(7, { title: 'Newest', content: '<p>Newest</p>' }));
+    await act(async () => { await vi.advanceTimersByTimeAsync(650); });
+    expect(notes.updateNote).toHaveBeenCalledTimes(1);
+
+    await settle(first, { ...record, title: 'Older', content: '<p>Older</p>' });
+    await act(async () => {});
+    expect(notes.updateNote).toHaveBeenCalledTimes(2);
+    expect(notes.updateNote).toHaveBeenLastCalledWith('synthetic-A', 7, {
+        title: 'Newest', content: '<p>Newest</p>',
+    });
+    expect(hook.result.current.notes[0]).toMatchObject({ title: 'Newest', content: '<p>Newest</p>' });
+    vi.useRealTimers();
+});
+
 test('same-user reauthentication clears drafts even when user ID and token are reused', async () => {
     const hook = await mount(useJournal);
     act(() => hook.result.current.setNoteContent('old draft'));

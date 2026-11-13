@@ -1,5 +1,5 @@
 import { appendCollection, privatePage } from "../utils/privatePages";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import usePrivateSession from "./usePrivateSession";
 import {
     createNote,
@@ -19,7 +19,9 @@ const DEFAULTS = {
     isSavingNote: false,
     draftPassage: null,
     editingNoteId: null,
+    editTitle: "",
     editContent: "",
+    saveStatus: "saved",
     isUpdatingNote: false,
     deletingNoteId: null
 };
@@ -81,6 +83,9 @@ export default function useNotes({
     const setEditingNoteId = field("editingNoteId");
     const editContent = state.editContent;
     const setEditContent = field("editContent");
+    const editTitle = state.editTitle;
+    const setEditTitle = field("editTitle");
+    const setSaveStatus = field("saveStatus");
     const isUpdatingNote = state.isUpdatingNote;
     const setIsUpdatingNote = field("isUpdatingNote");
 
@@ -90,6 +95,12 @@ export default function useNotes({
 
     const deletingNoteId = state.deletingNoteId;
     const setDeletingNoteId = field("deletingNoteId");
+    const saveTimers = useRef(new Map());
+    const pendingSaves = useRef(new Map());
+    const revisions = useRef(new Map());
+    const saveChains = useRef(new Map());
+    const activeNoteId = useRef(editingNoteId);
+    useEffect(() => { activeNoteId.current = editingNoteId; }, [editingNoteId]);
 
     const currentBook = books.find(
         (item) => item.name === book
@@ -207,8 +218,11 @@ export default function useNotes({
 
     function handleStartEdit(note) {
         if (!capture()) return false;
+        if (editingNoteId && editingNoteId !== note.id) void flushDocumentSave(editingNoteId);
         setEditingNoteId(note.id);
+        setEditTitle(note.title || "");
         setEditContent(note.content);
+        setSaveStatus("saved");
         setNotesError("");
     }
 
@@ -219,6 +233,7 @@ export default function useNotes({
     function handleCancelEdit() {
         if (!capture()) return false;
         setEditingNoteId(null);
+        setEditTitle("");
         setEditContent("");
     }
 
@@ -293,7 +308,11 @@ export default function useNotes({
             );
 
             if (editingNoteId === noteId) {
+                clearTimeout(saveTimers.current.get(noteId));
+                saveTimers.current.delete(noteId);
+                pendingSaves.current.delete(noteId);
                 setEditingNoteId(null);
+                setEditTitle("");
                 setEditContent("");
             }
             return true;
@@ -304,6 +323,94 @@ export default function useNotes({
             if (isCurrent(ticket)) setDeletingNoteId(null);
         }
     }
+
+    async function handleCreateDocument(passage = null) {
+        const ticket = capture();
+        if (!ticket || !token || isSavingNote) return null;
+        if (editingNoteId) await flushDocumentSave(editingNoteId);
+        setIsSavingNote(true);
+        setNotesError("");
+        try {
+            const note = await createNote(token, { ...(passage || {}), title: "", content: "<p></p>" });
+            if (!isCurrent(ticket)) return null;
+            setNotes((current) => [note, ...current]);
+            setEditingNoteId(note.id);
+            setEditTitle("");
+            setEditContent(note.content);
+            setSaveStatus("saved");
+            return note;
+        } catch (error) {
+            if (isCurrent(ticket)) setNotesError(error.message);
+            return null;
+        } finally {
+            if (isCurrent(ticket)) setIsSavingNote(false);
+        }
+    }
+
+    async function persistDocument(noteId, draft, revision) {
+        const previous = saveChains.current.get(noteId) || Promise.resolve();
+        const save = previous.catch(() => {}).then(async () => {
+            const ticket = capture();
+            if (!ticket || !token) return false;
+            try {
+                const updated = await updateNote(token, noteId, draft);
+                if (!isCurrent(ticket) || revisions.current.get(noteId) !== revision) return false;
+                pendingSaves.current.delete(noteId);
+                setNotes((current) => current.map((note) => note.id === noteId ? updated : note));
+                if (activeNoteId.current === noteId) setSaveStatus("saved");
+                return true;
+            } catch (error) {
+                if (isCurrent(ticket) && revisions.current.get(noteId) === revision) {
+                    setNotesError(error.message);
+                    if (activeNoteId.current === noteId) setSaveStatus("error");
+                }
+                return false;
+            }
+        });
+        saveChains.current.set(noteId, save);
+        return save.finally(() => {
+            if (saveChains.current.get(noteId) === save) saveChains.current.delete(noteId);
+        });
+    }
+
+    function scheduleDocumentSave(noteId, draft) {
+        if (!noteId) return;
+        const revision = (revisions.current.get(noteId) || 0) + 1;
+        revisions.current.set(noteId, revision);
+        pendingSaves.current.set(noteId, { draft, revision });
+        setNotes((current) => current.map((note) => note.id === noteId ? { ...note, ...draft } : note));
+        clearTimeout(saveTimers.current.get(noteId));
+        setNotesError("");
+        setSaveStatus("saving");
+        saveTimers.current.set(noteId, setTimeout(() => {
+            saveTimers.current.delete(noteId);
+            void persistDocument(noteId, draft, revision);
+        }, 650));
+    }
+
+    async function flushDocumentSave(noteId) {
+        clearTimeout(saveTimers.current.get(noteId));
+        saveTimers.current.delete(noteId);
+        const pending = pendingSaves.current.get(noteId);
+        return pending ? persistDocument(noteId, pending.draft, pending.revision) : true;
+    }
+
+    useEffect(() => {
+        for (const timer of saveTimers.current.values()) clearTimeout(timer);
+        saveTimers.current.clear();
+        pendingSaves.current.clear();
+        revisions.current.clear();
+        saveChains.current.clear();
+    }, [owner]);
+
+    useEffect(() => () => {
+        for (const timer of saveTimers.current.values()) clearTimeout(timer);
+        for (const [noteId, pending] of pendingSaves.current) {
+            void persistDocument(noteId, pending.draft, pending.revision);
+        }
+    // The latest draft refs are intentionally flushed only on unmount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return {
         nextCursor: state.nextCursor, isLoadingMore: state.isLoadingMore, loadMore,
@@ -319,9 +426,12 @@ export default function useNotes({
         isSavingNote,
 
         editingNoteId,
+        editTitle,
+        setEditTitle,
         editContent,
         setEditContent,
         isUpdatingNote,
+        saveStatus: state.saveStatus,
 
         deletingNoteId,
 
@@ -330,6 +440,9 @@ export default function useNotes({
         handleCancelEdit,
         handleUpdateNote,
         handleDeleteNote,
+        handleCreateDocument,
+        scheduleDocumentSave,
+        flushDocumentSave,
         draftPassage,
         handleStartNote
     };

@@ -39,13 +39,19 @@ function deferred() {
 }
 const record = { id: 1, content: 'A private note', book_id: 1, start_chapter: 1, start_verse: 1, end_chapter: 1, end_verse: 1, created_at: '2026-01-01T00:00:00Z' };
 const scrollDescriptors = new Map(['scrollIntoView', 'scrollTo'].map(name => [name, Object.getOwnPropertyDescriptor(Element.prototype, name)]));
+const rangeDescriptors = new Map(['getClientRects', 'getBoundingClientRect'].map(name => [name, Object.getOwnPropertyDescriptor(Range.prototype, name)]));
 beforeAll(() => {
     for (const name of scrollDescriptors.keys()) Object.defineProperty(Element.prototype, name, { configurable: true, value: vi.fn() });
+    for (const name of rangeDescriptors.keys()) Object.defineProperty(Range.prototype, name, { configurable: true, value: () => name === 'getClientRects' ? [] : { left: 0, right: 0, top: 0, bottom: 0, width: 0, height: 0 } });
 });
 afterAll(() => {
     for (const [name, descriptor] of scrollDescriptors) {
         if (descriptor) Object.defineProperty(Element.prototype, name, descriptor);
         else delete Element.prototype[name];
+    }
+    for (const [name, descriptor] of rangeDescriptors) {
+        if (descriptor) Object.defineProperty(Range.prototype, name, descriptor);
+        else delete Range.prototype[name];
     }
 });
 beforeEach(() => {
@@ -79,6 +85,11 @@ async function switchAccount() {
     notes.getNotes.mockResolvedValue([]);
     await act(async () => { await auth.login({ email: 'b@example.invalid', password: 'synthetic-only' }); });
 }
+function openLoadedNote(scope = screen) {
+    fireEvent.click(scope.getByRole('button', { name: /Library/ }));
+    fireEvent.click(scope.getByRole('button', { name: /Genesis 1:1/ }));
+    return scope.getByRole('textbox', { name: 'Note title' });
+}
 
 test.each([false, true])('actual StudyPage resets drafts/actions across accounts and retains public reader state (Strict Mode=%s)', async strict => {
     const desktop = await mount(strict);
@@ -86,8 +97,7 @@ test.each([false, true])('actual StudyPage resets drafts/actions across accounts
     expect(desktop.getAllByText('Public commentary stays').length).toBeGreaterThan(0);
     fireEvent.click(desktop.getByRole('button', { name: 'Notes', exact: true }));
     expect(desktop.getByText('A private note')).toBeInTheDocument();
-    const composer = desktop.getByPlaceholderText(/Write what you notice/);
-    fireEvent.change(composer, { target: { value: 'A unsaved draft' } });
+    fireEvent.change(openLoadedNote(desktop), { target: { value: 'A unsaved draft' } });
     fireEvent.click(screen.getByText('Stack'));
     expect(document.querySelector('main')).toHaveClass('grid-rows-2');
     const scriptureCalls = bible.getBibleChapter.mock.calls.length;
@@ -95,7 +105,7 @@ test.each([false, true])('actual StudyPage resets drafts/actions across accounts
     await switchAccount();
     expect(desktop.queryByText('A private note')).not.toBeInTheDocument();
     expect(desktop.queryByDisplayValue('A unsaved draft')).not.toBeInTheDocument();
-    expect(desktop.getByPlaceholderText(/Write what you notice/)).toHaveValue('');
+    expect(desktop.getByText('Choose a note or create a new one')).toBeInTheDocument();
     expect(screen.queryAllByLabelText('Choose highlight color')).toHaveLength(0);
     expect(desktop.getByText('Public Scripture stays')).toBeInTheDocument();
     expect(desktop.getByRole('button', { name: /KJV/ })).toBeInTheDocument();
@@ -110,15 +120,14 @@ test.each([false, true])('actual StudyPage resets drafts/actions across accounts
 test('late rendered save cannot clear B selection or change B journal/feedback', async () => {
     const desktop = await mount();
     fireEvent.click(desktop.getByRole('button', { name: 'Notes', exact: true }));
-    fireEvent.change(desktop.getByPlaceholderText(/Write what you notice/), { target: { value: 'A submitted draft' } });
     const save = deferred();
-    notes.createNote.mockReturnValue(save.promise);
-    fireEvent.click(desktop.getByRole('button', { name: /Save/i }));
+    notes.updateNote.mockReturnValue(save.promise);
+    fireEvent.change(openLoadedNote(desktop), { target: { value: 'A submitted draft' } });
+    await waitFor(() => expect(notes.updateNote).toHaveBeenCalledTimes(1), { timeout: 1500 });
     await switchAccount();
     fireEvent.click(desktop.getByText('Public Scripture stays'));
-    fireEvent.change(desktop.getByPlaceholderText(/Write what you notice/), { target: { value: 'B draft' } });
     await act(async () => { save.resolve({ ...record, content: 'A late saved note' }); await save.promise; });
-    expect(desktop.getByPlaceholderText(/Write what you notice/)).toHaveValue('B draft');
+    expect(desktop.getByText('Choose a note or create a new one')).toBeInTheDocument();
     expect(desktop.queryByText('A late saved note')).not.toBeInTheDocument();
     expect(screen.getAllByLabelText('Choose highlight color').length).toBeGreaterThan(0);
 });
@@ -154,7 +163,7 @@ test('mobile tab remains selected while its private journal is reset', async () 
     await switchAccount();
     expect(notesTab).toHaveClass('text-[var(--color-brand)]');
     expect(screen.queryByText('A private note')).not.toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Write what you notice/)).toHaveValue('');
+    expect(screen.getAllByText('Choose a note or create a new one').length).toBeGreaterThan(0);
 });
 
 test.each([false, true])('renewal preserves the actual StudyPage draft (temporary failure=%s)', async fails => {
@@ -165,10 +174,10 @@ test.each([false, true])('renewal preserves the actual StudyPage draft (temporar
     else authService.refreshSession.mockResolvedValue({ token: renewed });
     const desktop = await mount();
     fireEvent.click(desktop.getByRole('button', { name: 'Notes', exact: true }));
-    fireEvent.change(desktop.getByPlaceholderText(/Write what you notice/), { target: { value: 'Keep this private draft' } });
+    fireEvent.change(openLoadedNote(desktop), { target: { value: 'Keep this private draft' } });
     const version = auth.sessionVersion;
     await act(async () => { window.dispatchEvent(new Event('online')); });
-    expect(desktop.getByPlaceholderText(/Write what you notice/)).toHaveValue('Keep this private draft');
+    expect(desktop.getByRole('textbox', { name: 'Note title' })).toHaveValue('Keep this private draft');
     expect(auth.token).toBe(fails ? original : renewed);
     expect(auth.sessionVersion).toBe(version);
     expect(authService.logoutSession).not.toHaveBeenCalled();

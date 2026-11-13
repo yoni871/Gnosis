@@ -3,7 +3,7 @@ const { publicError } = require('./privatePages');
 const LIMITS = Object.freeze({ notes: 1000, bookmarks: 2000, highlights: 10000 });
 const NOTE_BYTES = 2 * 1024 * 1024;
 const COUNTS = {
-    notes: 'SELECT COUNT(*)::int AS count, COALESCE(SUM(octet_length(content)),0)::bigint AS bytes FROM notes WHERE user_id=$1',
+    notes: "SELECT COUNT(*)::int AS count, COALESCE(SUM(octet_length(content) + octet_length(COALESCE(title,''))),0)::bigint AS bytes FROM notes WHERE user_id=$1",
     bookmarks: 'SELECT COUNT(*)::int AS count FROM bookmarks WHERE user_id=$1',
     highlights: 'SELECT COUNT(*)::int AS count FROM highlights WHERE user_id=$1',
 };

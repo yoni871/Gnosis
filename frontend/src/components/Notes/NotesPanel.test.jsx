@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { expect, test, vi } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -46,6 +45,8 @@ function baseState(overrides = {}) {
         setNoteContent: vi.fn(),
         isSavingNote: false,
         editingNoteId: null,
+        editTitle: "",
+        setEditTitle: vi.fn(),
         editContent: "",
         setEditContent: vi.fn(),
         isUpdatingNote: false,
@@ -55,6 +56,12 @@ function baseState(overrides = {}) {
         handleCancelEdit: vi.fn(),
         handleUpdateNote: vi.fn(),
         handleDeleteNote: vi.fn(),
+        handleCreateDocument: vi.fn().mockResolvedValue(null),
+        scheduleDocumentSave: vi.fn(),
+        saveStatus: "saved",
+        nextCursor: null,
+        isLoadingMore: false,
+        loadMore: vi.fn(),
         draftPassage: null,
         ...overrides,
     };
@@ -75,14 +82,12 @@ function renderPanel(notesState, props = {}) {
     );
 }
 
-test("renders the compact header and the composer for the selected verse", () => {
+test("renders the compact header and independent-note empty state", () => {
     renderPanel(baseState());
     expect(screen.getByRole("button", { name: /Library/ })).toHaveAttribute("aria-expanded", "false");
     expect(screen.getByRole("heading", { name: /Notes/ })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /New Note/ })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Romans 8:28" })).toBeInTheDocument();
-    expect(screen.getByRole("textbox", { name: /New reflection on Romans 8:28/ })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Save Reflection" })).toBeInTheDocument();
+    expect(screen.getByText("Choose a note or create a new one")).toBeInTheDocument();
     // The library is closed: no note rows are reachable.
     expect(screen.queryByRole("button", { name: /The Lord is my shepherd/ })).toBeNull();
 });
@@ -131,20 +136,22 @@ test("Escape closes the drawer and returns focus to the Library button", async (
     expect(screen.getByRole("button", { name: /Library/ })).toHaveFocus();
 });
 
-test("New Note leaves the note being edited and focuses the composer", async () => {
+test("New Note creates an independent document for the current passage", async () => {
     const user = userEvent.setup();
     const state = baseState({ editingNoteId: 1, editContent: "God works all things together for good." });
     renderPanel(state);
-    expect(screen.getByRole("textbox", { name: /Edit reflection on Romans 8:28/ })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Note content" })).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: /New Note/ }));
-    expect(state.handleCancelEdit).toHaveBeenCalled();
+    expect(state.handleCreateDocument).toHaveBeenCalledWith({
+        bookId: 45, startChapter: 8, startVerse: 28, endChapter: 8, endVerse: 28,
+    });
 });
 
-test("shows the selected note in the editor with Save Changes, Cancel, and Delete", () => {
+test("shows the selected note with title, rich editor, autosave status, and delete", async () => {
     renderPanel(baseState({ editingNoteId: 2, editContent: "The Lord is my shepherd." }));
-    expect(screen.getByRole("textbox", { name: /Edit reflection on Psalms 23:1/ })).toHaveValue("The Lord is my shepherd.");
-    expect(screen.getByRole("button", { name: "Save Changes" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Note title" })).toHaveValue("");
+    expect(screen.getByRole("textbox", { name: "Note content" })).toHaveTextContent("The Lord is my shepherd.");
+    expect(screen.getByText(/^Saved/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Delete" })).toBeInTheDocument();
 });
 
@@ -155,13 +162,13 @@ test("shows the empty library state when there are no notes", async () => {
     expect(screen.getByText("A blank page")).toBeInTheDocument();
 });
 
-test("keeps the editor mounted while the drawer opens and closes", async () => {
+test("keeps the rich editor mounted while the drawer opens and closes", async () => {
     const user = userEvent.setup();
-    renderPanel(baseState({ noteContent: "draft in progress" }));
-    const editor = screen.getByRole("textbox", { name: /New reflection on Romans 8:28/ });
-    expect(editor).toHaveValue("draft in progress");
+    renderPanel(baseState({ editingNoteId: 1, editContent: "draft in progress" }));
+    const editor = screen.getByRole("textbox", { name: "Note content" });
+    expect(editor).toHaveTextContent("draft in progress");
     await user.click(screen.getByRole("button", { name: /Library/ }));
     await user.keyboard("{Escape}");
-    expect(screen.getByRole("textbox", { name: /New reflection on Romans 8:28/ })).toHaveValue("draft in progress");
-    expect(editor).toBe(screen.getByRole("textbox", { name: /New reflection on Romans 8:28/ }));
+    expect(screen.getByRole("textbox", { name: "Note content" })).toHaveTextContent("draft in progress");
+    expect(editor).toBe(screen.getByRole("textbox", { name: "Note content" }));
 });

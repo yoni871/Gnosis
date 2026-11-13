@@ -135,6 +135,6 @@ export async function startFixture() {
             res.set('Content-Type', 'text/html');
             res.end(`<iframe src="${origin}/login"></iframe>`);
         });
-        return { origin, target, async close() { await close(frontend); await close(backend); await backendRequire('./src/db/db').end(); } };
+        return { origin, target, async close({ endPool = true } = {}) { await close(frontend); await close(backend); if (endPool) await backendRequire('./src/db/db').end(); } };
     } catch (error) { await close(backend); throw error; }
 }
