@@ -169,7 +169,7 @@
     border-radius: 4px;
     background: var(--bg-surface, transparent);
     color: var(--public-ink);
-    font: 600 .85rem/1.4 var(--public-font-ui);
+    font: 400 .85rem/1.4 var(--public-font-ui);
     cursor: pointer;
 }
 .doctrine-translation-select:focus-visible {
