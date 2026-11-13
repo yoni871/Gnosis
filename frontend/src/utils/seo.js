@@ -146,3 +146,21 @@ export function doctrineIndexDescription() {
         "biblical text. Planned studies on Gnosis, starting with the Trinity."
     );
 }
+
+// Trace the Doctrine study-workspace helpers. A workspace page is a
+// preview study, never an indexed publication: the page itself renders
+// <Seo> with robots="noindex, nofollow" and the route is never listed
+// in the sitemap. The description says the study is a preview and that
+// its historical entries are demonstration data pending research —
+// nothing here claims verified research.
+export function doctrineStudyTitle(doctrineTitle) {
+    return `${doctrineTitle} — Trace the Doctrine | Gnosis`;
+}
+
+export function doctrineStudyDescription(doctrineTitle) {
+    return (
+        `A preview study tracing ${doctrineTitle} from Scripture through ` +
+        `Christian history on Gnosis. The historical interpretation ` +
+        `entries are demonstration data pending research.`
+    );
+}
