@@ -578,6 +578,33 @@ export function findNonPublishedIds({ contentDir }) {
         .map(({ id, kind, status }) => ({ id, kind, status }));
 }
 
+// Dist-scan patterns for the internal research claims register, in its
+// compiled forms. The generated-JSON check below (Object.hasOwn "claims")
+// and the quoted-key dist check ('"claims":') catch the serialized
+// forms; these two catch what a minified bundle actually contains:
+//
+// - UNQUOTED_CLAIMS_KEY: Rolldown inlines generated JSON with unquoted
+//   keys, so a leaked register shows up as `claims:()=>u`,
+//   `claims:[{...}]`, or `claims:u` — the quoted check never sees it
+//   (dist/ has no .json assets). Anchored to `{` or `,` so ordinary
+//   prose "claims" does not fire: prose "claims:" normally follows a
+//   space or a quote, not an object-literal position.
+//   TRADE-OFF, stated plainly: prose of the form `, claims: …` (a comma
+//   immediately before "claims:") DOES trip this pattern — the anchor
+//   cannot tell a comma in code from a comma in prose. No current
+//   Biblical History content has that shape (grep: zero "claims:"
+//   occurrences in the content tree), and the failure message names the
+//   unquoted-key shape so the author can tell a prose false positive
+//   from a real leak. Do not "fix" this by dropping the `,` anchor:
+//   minified object literals separate keys with commas, so the anchor
+//   is what catches `claims:` after the first key.
+// - CLAIM_ID: claim ids (clm-ae-028, clm-ae-030b, clm-cre-014, …) exist
+//   only in the internal register; they never appear in public prose.
+//   Any occurrence in a built asset is a leak of register content,
+//   whatever key shape carried it.
+const UNQUOTED_CLAIMS_KEY = /(?:^|[{,])\s*claims\s*:/;
+const CLAIM_ID = /clm-[a-z]+-\d+[a-z]?/;
+
 // The publication gate, shared by the postbuild CLI (check-history-gate.js)
 // and the Vite build plugin (history-gate-plugin.js). Checks the generated
 // manifest AND dist/ for any non-published record — its id, its title, or
@@ -585,7 +612,9 @@ export function findNonPublishedIds({ contentDir }) {
 // all-published path, where the non-published early return below would
 // otherwise stand the gate down), that no generated event/topic JSON
 // carries the internal research claims register and that no built asset
-// contains a serialized "claims": key. Returns { failures, nonPublished }.
+// contains the register in serialized ("claims":), compiled (unquoted
+// claims: key), or fragmentary (bare claim id) form. Returns
+// { failures, nonPublished }.
 //
 // This NEVER skips: a manifest generated with unpublished content is
 // itself a failure, not a reason to stand down — a dev-flag build is not
@@ -633,6 +662,12 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
             const text = readFileSync(file, "utf8");
             if (text.includes('"claims":')) {
                 failures.push(`dist/${path.relative(distDir, file)} contains a serialized "claims": key — the internal claims register never ships.`);
+            }
+            if (UNQUOTED_CLAIMS_KEY.test(text)) {
+                failures.push(`dist/${path.relative(distDir, file)} contains an unquoted claims: key (compiled form of the internal claims register) — the internal claims register never ships.`);
+            }
+            if (CLAIM_ID.test(text)) {
+                failures.push(`dist/${path.relative(distDir, file)} contains an internal claim id (clm-…) — the internal claims register never ships.`);
             }
         }
     }
