@@ -121,23 +121,25 @@ describe("generateHistoryContent — the publication gate", () => {
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
         // The fixture flips Creation to "draft"; the shipped Adam and Eve
-        // event is published, and the shipped Cain and Abel event and
-        // Cain's Descendants are in-review, so the dev opt-in includes
-        // the draft plus both in-review events.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
+        // event is published, and the shipped Cain and Abel, Cain's
+        // Descendants, and Seth events are in-review, so the dev opt-in
+        // includes the draft plus all three in-review events.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-seth-early-generations"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
         // Adam and Eve is published now, so the non-published records in
-        // this fixture are the draft Creation event and the two shipped
-        // in-review events, Cain and Abel and Cain's Descendants
+        // this fixture are the draft Creation event and the three shipped
+        // in-review events, Cain and Abel, Cain's Descendants, and Seth
         // (file order: cain-and-abel sorts before cains-descendants,
-        // which sorts before creation).
+        // which sorts before creation, which sorts before
+        // seth-early-generations).
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-cain-and-abel", kind: "event", status: "in-review" },
             { id: "event-cains-descendants", kind: "event", status: "in-review" },
             { id: "event-creation", kind: "event", status: "draft" },
+            { id: "event-seth-early-generations", kind: "event", status: "in-review" },
         ]);
     });
 });
@@ -204,9 +206,10 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
 
     it("strips review from dev-flag generation too", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
-        generateHistoryContent({
+        const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-seth-early-generations"]);
         const event = JSON.parse(readFileSync(path.join(outDir, "events", "creation.json"), "utf8"));
         expect(event).not.toHaveProperty("review");
         expect(event.title).toBe("Creation");
@@ -251,7 +254,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-seth-early-generations"]);
         const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -284,6 +287,33 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         expect(creation).not.toHaveProperty("claims");
         expect(creation).not.toHaveProperty("review");
         expect(creation.title).toBe("Creation");
+    });
+
+    it("strips claims from dev-flag generation of the in-review Seth event too", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
+        const { manifest } = generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
+        });
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-seth-early-generations"]);
+        const eventJson = readFileSync(path.join(outDir, "events", "seth-early-generations.json"), "utf8");
+        const event = JSON.parse(eventJson);
+        expect(event).not.toHaveProperty("claims");
+        expect(event).not.toHaveProperty("review");
+        expect(event.title).toBe("Seth and the Early Generations");
+        expect(event.connections).toHaveLength(10);
+        expect(event.sources).toHaveLength(9);
+        expect(eventJson).not.toContain("clm-se-001");
+        expect(eventJson).not.toContain("clm-se-027");
+        expect(eventJson).not.toContain("when he dies, judgment");
+        // ... while the SOURCE file still carries the full register,
+        // including the unresolved Jerome claim (027), which the prose
+        // never asserts.
+        const sourceEvent = JSON.parse(readFileSync(path.join(contentDir, "events", "seth-early-generations.json"), "utf8"));
+        expect(sourceEvent.claims).toHaveLength(30);
+        expect(sourceEvent.claims.find((claim) => claim.id === "clm-se-027").assessment)
+            .toBe("UNRESOLVED — do not state as fact");
+        expect(sourceEvent.claims.find((claim) => claim.id === "clm-se-001").assessment)
+            .toBe("VERIFIED (secondary)");
     });
 
     it("keeps the claims register in the source files (preservation)", () => {
