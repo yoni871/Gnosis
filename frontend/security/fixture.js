@@ -36,6 +36,26 @@ const listen = server => new Promise((resolve, reject) => {
 });
 const close = server => new Promise(resolve => { server.closeAllConnections(); server.close(resolve); });
 export async function startFixture() {
+    // Fail fast when dist was not built by scripts/check-build.js: a plain
+    // `vite build` bakes the `/api` fallback (src/api/api.js) instead of
+    // the synthetic https://api.example.invalid/api origin, so the reader
+    // fetches same-origin HTML from this fixture instead of the mocked API
+    // and policy.spec.js:23 fails with a misleading 5s timeout that looks
+    // exactly like the #79/#109 CSP regression (mocked verse text never
+    // renders). The browser suite must run via `npm run
+    // test:security-browser`, which builds first; a stale or plain-build
+    // dist is an environment error, not a security failure.
+    const distAssets = path.join(dist, 'assets');
+    let builtForSyntheticApi = false;
+    try {
+        for (const name of fs.readdirSync(distAssets)) {
+            if (!name.endsWith('.js')) continue;
+            if (fs.readFileSync(path.join(distAssets, name), 'utf8').includes('api.example.invalid/api')) { builtForSyntheticApi = true; break; }
+        }
+    } catch { /* Missing/unreadable dist: fall through to the explicit error. */ }
+    if (!builtForSyntheticApi) {
+        throw new Error('security fixture: frontend/dist was not built by frontend/scripts/check-build.js (expected the synthetic https://api.example.invalid/api origin in the bundle). Run `npm run test:security-browser` from frontend/ instead of `playwright test` against a plain `vite build` dist.');
+    }
     const app = express();
     // Trust proxy '1' — the same as production's TRUST_PROXY=1 (#117).
     // The backend trusts exactly one hop and takes the last X-Forwarded-For

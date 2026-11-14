@@ -19,6 +19,31 @@
 
 @import "tailwindcss";
 
+/* Visually-hidden (screen-reader-only) labels — defined here in plain
+   CSS on purpose, NOT as a Tailwind utility. Tailwind's `sr-only`
+   utility is generated on demand by the @tailwindcss/vite plugin, so
+   any dev-server invocation that does not run this repo's vite config
+   (e.g. a scratch --config used to add HTTPS for signed-in checks)
+   serves a stylesheet with no Tailwind utilities at all — and every
+   `sr-only` label then renders visibly (verified: "Genesis 1:26
+   Translation [KJV]" on the Trinity workspace, while the rest of the
+   page, which is hand-written CSS, looked fine). This plain rule is
+   identical to Tailwind v4's `sr-only` declarations, loads with
+   index.css on every page in every environment (dev, prod, tests),
+   and keeps the element in the DOM and the accessibility tree. Do
+   not delete it in favour of the Tailwind utility. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 :root {
     --bg-page: #F5EFE0;
     --bg-header: rgba(244, 233, 205, 0.96);
