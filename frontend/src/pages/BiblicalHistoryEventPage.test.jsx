@@ -74,6 +74,11 @@ describe("BiblicalHistoryEventPage", () => {
         expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
         expect(screen.queryByRole("dialog")).toBeNull();
         expect(document.querySelector(".history-panel-backdrop")).toBeNull();
+        // The page root carries the hook the desktop one-screen layout
+        // hangs off: at desktop widths the study shares 100dvh with the
+        // header, breadcrumb, and timeline, and the two panels scroll
+        // independently.
+        expect(document.querySelector(".history-event-root")).toBeInTheDocument();
         expect(screen.queryByRole("heading", { level: 1, name: "Genesis" })).toBeNull();
         expect(screen.queryByText(/historical events/)).toBeNull();
         expect(screen.queryByText(/Events in Genesis/)).toBeNull();

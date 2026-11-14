@@ -20,10 +20,13 @@
     --history-on-forest: #1d2b20;
 }
 
-/* The study page: a centered page column under the landing navbar. The
-   workspace fills it in normal document flow — the page scrolls as a
-   page, with the rail, reading column, companion, and timeline laid out
-   in order. No backdrop, no fixed dialog, no sheet. */
+/* The study page: a centered page column under the landing navbar. On
+   mobile the workspace fills it in normal document flow — the page
+   scrolls as a page, with the rail, reading column, companion, and
+   timeline laid out in order. On desktop (min-width: 769px, see the
+   block below) the study shares 100dvh with the header and timeline,
+   and the reading column and companion scroll inside their own panels.
+   No backdrop, no fixed dialog, no sheet. */
 .history-event-page {
     width: min(1180px, 100%);
     margin: 0 auto;
@@ -941,6 +944,65 @@
 .history-connection-open:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+}
+
+/* ---------- Desktop: one screen, no page scroll ---------- */
+/* At desktop widths the whole study is a viewport-height flex column,
+   mirroring the Trace the Doctrine workspace: landing header, breadcrumb,
+   study header, connection chips, study body, and timeline share
+   100dvh. The study body takes whatever height remains; the reading
+   column and the Scripture companion scroll inside their own panels
+   while the page, header, rail, and timeline stay put. Mobile is
+   untouched — this block only applies above the 768px breakpoint. */
+@media (min-width: 769px) {
+    .history-event-root {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+    }
+    .history-event-root > .public-page {
+        flex: none;
+    }
+    .history-event-page {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 0;
+    }
+    .history-event-breadcrumb {
+        flex: none;
+    }
+    .history-study {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .history-study-body {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+    .history-study-content {
+        min-height: 0;
+        overflow-y: auto;
+        /* position: relative makes this the containing block for the
+           absolutely positioned .sr-only labels inside the prose
+           ("Verse N:"): without it they position against the initial
+           containing block, escape this scroll container, and inflate
+           the document height — the page would scroll even though the
+           layout fits. Same for the companion body below. */
+        position: relative;
+    }
+    .history-scripture-companion-body {
+        overflow-y: auto;
+        position: relative;
+    }
+    .history-timeline {
+        flex: none;
+    }
 }
 
 /* ---------- Mobile: single scrolling column ---------- */
