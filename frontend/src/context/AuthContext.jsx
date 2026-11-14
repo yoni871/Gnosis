@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, createContext } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, createContext } from "react";
 import { getProfile, loginUser, registerUser, refreshSession, logoutSession } from "../services/authService";
 import { verifyMfaChallenge } from "../services/mfaService";
 import { createAuthSessionGuard } from "./authSession";
@@ -8,16 +8,26 @@ const AuthContext = createContext(null);
 export default AuthContext;
 
 export function AuthProvider({ children }) {
-    // Read-only ownership snapshot for consumers; only this provider advances it.
-    const [sessionVersion, setSessionVersion] = useState(0);
-    const [user, setUser] = useState(null);
-    const [isAuthLoading, setIsAuthLoading] = useState(true);
-
     // Epoch guard for issue #6: every auth operation and every logout
     // advances the epoch. An async operation may only mutate state
     // while its captured ticket is still current, so a
     // delayed response can never overwrite a newer session or a logout.
     const [authGuard] = useState(() => createAuthSessionGuard());
+
+    // Read-only ownership snapshot for consumers; only this provider advances it.
+    // The version IS the guard's epoch, read through useSyncExternalStore.
+    // It used to be a useState mirror updated with a synchronous
+    // setSessionVersion(ticket) inside the restore effect, which
+    // react-hooks/set-state-in-effect forbids (cascading render: the
+    // effect's job is to sync with the external guard, not to setState
+    // synchronously). The guard now notifies subscribers on every
+    // begin()/invalidate(), so the published version follows the epoch
+    // with identical timing — at operation start, including while a
+    // restore is still in flight — and can never drift from it.
+    const sessionVersion = useSyncExternalStore(authGuard.subscribe, authGuard.getSnapshot);
+
+    const [user, setUser] = useState(null);
+    const [isAuthLoading, setIsAuthLoading] = useState(true);
 
     // Access credentials live only in this provider. The HttpOnly cookie
     // restores a session after reload; discard legacy persistent credentials.
@@ -30,8 +40,10 @@ export function AuthProvider({ children }) {
     const getAccessToken = useCallback(() => tokenRef.current, []);
 
     useEffect(() => {
+        // begin() advances the epoch and notifies the sessionVersion
+        // subscription, so the published version already reflects this
+        // restore before its async work settles. No setState here.
         const ticket = authGuard.begin();
-        setSessionVersion(ticket);
 
         //restore the user's login after a page refresh
         const restoreAuth = async () => {
@@ -122,7 +134,6 @@ export function AuthProvider({ children }) {
 
     const login = useCallback(async (credentials) => {
         const ticket = authGuard.begin();
-        setSessionVersion(ticket);
         return loginWithTicket(credentials, ticket);
     }, [authGuard, loginWithTicket]);
 
@@ -167,7 +178,6 @@ export function AuthProvider({ children }) {
 
     const loginMfa = useCallback(async (challenge, code) => {
         const ticket = authGuard.begin();
-        setSessionVersion(ticket);
         return loginMfaWithTicket(challenge, code, ticket);
     }, [authGuard, loginMfaWithTicket]);
 
@@ -189,8 +199,9 @@ export function AuthProvider({ children }) {
         revocation.catch(error => console.error(error.message));
         // Invalidate first: any restore/login/register already in
         // flight becomes stale and must not write state or storage
-        // when it eventually finishes.
-        setSessionVersion(authGuard.invalidate());
+        // when it eventually finishes. invalidate() also notifies the
+        // sessionVersion subscription.
+        authGuard.invalidate();
         updateToken(null);
         setUser(null);
         setIsAuthLoading(false);
@@ -215,7 +226,10 @@ export function AuthProvider({ children }) {
                 if (claimsOf(token).sid !== claimsOf(renewed.token).sid) {
                     const profile = await getProfile(renewed.token);
                     if (!active || !authGuard.isCurrent(ticket)) return;
-                    setSessionVersion(authGuard.begin());
+                    // A different tab signed in to a different session:
+                    // start a new epoch (notifies the sessionVersion
+                    // subscription) so private state re-keys to it.
+                    authGuard.begin();
                     setUser(profile);
                 }
                 updateToken(renewed.token);

@@ -57,7 +57,7 @@ export default function RegisterPage() {
         try {
             await resendVerification(registeredEmail);
             setResendStatus("sent");
-        } catch (error) {
+        } catch {
             setResendStatus("error");
         }
     };
