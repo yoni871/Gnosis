@@ -13,7 +13,7 @@
     "check:artifact": "node scripts/check-artifact.js"
   },
   "dependencies": {
-    "pg": "8.23.0",
+    "pg": "8.23.1",
     "xlsx": "file:vendor/xlsx-0.20.3.tgz"
   }
 }
