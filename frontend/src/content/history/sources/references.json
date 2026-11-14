@@ -381,5 +381,74 @@
     "verification": "verified",
     "verificationDetail": "Full entry read 2026-11-14: seven as 'the symbol of perfection, and also the symbol of rest… used also to mean abundantly (Genesis 4:15, 24)'. Cited for the completeness gloss only; not the modern commentaries' reading.",
     "licenseNote": "Public domain; original summary and citation only."
+  },
+  "source-maarten-eisegesis": {
+    "id": "source-maarten-eisegesis",
+    "author": "Maarten J. Paul",
+    "title": "Genesis 4:17–24: A Case-Study in Eisegesis",
+    "publisher": "Tyndale Bulletin",
+    "year": 1996,
+    "pagesOrSection": "47:1, pp. 143–162",
+    "url": "https://doi.org/10.53751/001c.30385",
+    "verification": "verified",
+    "verificationDetail": "Full article read 2026-11-14 (Tyndale Bulletin 47:1 (1996), all 1,560 lines of the PDF): the interpretation-history survey from Jubilees to Ellul, including the Gabriel–Westermann dispute and Maarten's assessment (pp. 157–162).",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
+  },
+  "source-etcsl-sumerian-king-list": {
+    "id": "source-etcsl-sumerian-king-list",
+    "author": "Electronic Text Corpus of Sumerian Literature (ETCSL)",
+    "title": "The Sumerian King List (ETCSL 2.1.1)",
+    "publisher": "University of Oxford",
+    "pagesOrSection": "ETCSL 2.1.1, full translation",
+    "url": "https://etcsl.orinst.ox.ac.uk/section2/tr211.htm",
+    "verification": "verified",
+    "verificationDetail": "Full composite translation read directly 2026-11-14: eight pre-flood kings in five cities ruling 241,200 years, then the flood; the ten-king, 432,000-year total is the WB-62 variant.",
+    "licenseNote": "Paraphrase with credit; verify project licensing before reproducing translations at length."
+  },
+  "source-met-uruk-first-city": {
+    "id": "source-met-uruk-first-city",
+    "author": "Department of Ancient Near Eastern Art",
+    "title": "Uruk: The First City",
+    "publisher": "The Metropolitan Museum of Art",
+    "year": 2003,
+    "pagesOrSection": "Heilbrunn Timeline essay, October 2003",
+    "url": "https://www.metmuseum.org/essays/uruk-the-first-city",
+    "verification": "verified",
+    "verificationDetail": "Met essay page read directly 2026-11-14: by around 3200 BCE Uruk was the largest settlement in southern Mesopotamia, a true city dominated by monumental mud-brick buildings.",
+    "licenseNote": "Do not reproduce museum prose or illustrations without rights review."
+  },
+  "source-met-nahal-mishmar": {
+    "id": "source-met-nahal-mishmar",
+    "author": "Department of Ancient Near Eastern Art",
+    "title": "The Nahal Mishmar Treasure",
+    "publisher": "The Metropolitan Museum of Art",
+    "year": 2004,
+    "pagesOrSection": "Heilbrunn Timeline essay, October 2004",
+    "verification": "verified",
+    "verificationDetail": "Full essay text read 2026-11-14 via a mirror of the Met page (the Met page URL was not returned by search): 442 objects, 429 copper, Chalcolithic c. 4000–3300 BCE, lost-wax casting, Timna copper. Prefer the Met page itself before citing further.",
+    "licenseNote": "Do not reproduce museum prose or illustrations without rights review."
+  },
+  "source-jvl-kenite": {
+    "id": "source-jvl-kenite",
+    "author": "Yohanan Aharoni and S. D. Sperling",
+    "title": "Kenite (Encyclopaedia Judaica)",
+    "publisher": "Jewish Virtual Library",
+    "year": 2008,
+    "pagesOrSection": "Kenite article, 2nd edition, read in full",
+    "url": "https://www.jewishvirtuallibrary.org/jsource/judaica/ejud_0002_0012_0_11033.html",
+    "verification": "verified",
+    "verificationDetail": "Full article read 2026-11-14: the Kenites as metal-working clans from the south, with no genealogy connecting them to Cain; the metalworking identification rests on the root qyn in cognate languages.",
+    "licenseNote": "Original summary and citation only."
+  },
+  "source-wikipedia-musical-instrument": {
+    "id": "source-wikipedia-musical-instrument",
+    "author": "Wikipedia contributors",
+    "title": "Musical instrument",
+    "publisher": "Wikipedia",
+    "pagesOrSection": "Lyres of Ur passage",
+    "url": "https://en.wikipedia.org/wiki/Musical_instrument",
+    "verification": "verified",
+    "verificationDetail": "Full page read 2026-11-14 for the Lyres of Ur passage: nine lyres, two harps, silver double flute from the Royal Cemetery at Ur, carbon dated c. 2600–2500 BCE. The Met 'Ur: The Royal Graves' essay itself was not opened.",
+    "licenseNote": "CC BY-SA; paraphrase with credit."
   }
 }

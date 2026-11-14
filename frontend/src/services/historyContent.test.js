@@ -121,19 +121,22 @@ describe("generateHistoryContent — the publication gate", () => {
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
         // The fixture flips Creation to "draft"; the shipped Adam and Eve
-        // event is published, and the shipped Cain and Abel event is
-        // in-review, so the dev opt-in includes the draft plus Cain and
-        // Abel.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
+        // event is published, and the shipped Cain and Abel event and
+        // Cain's Descendants are in-review, so the dev opt-in includes
+        // the draft plus both in-review events.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
         // Adam and Eve is published now, so the non-published records in
-        // this fixture are the draft Creation event and the shipped
-        // in-review Cain and Abel event.
+        // this fixture are the draft Creation event and the two shipped
+        // in-review events, Cain and Abel and Cain's Descendants
+        // (file order: cain-and-abel sorts before cains-descendants,
+        // which sorts before creation).
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-cain-and-abel", kind: "event", status: "in-review" },
+            { id: "event-cains-descendants", kind: "event", status: "in-review" },
             { id: "event-creation", kind: "event", status: "draft" },
         ]);
     });
@@ -248,7 +251,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
         const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -260,6 +263,21 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         expect(eventJson).not.toContain("clm-ae-030b");
         expect(eventJson).not.toContain("The serpent is Satan.");
         expect(eventJson).not.toContain("reward for obedience");
+        // Cain's Descendants carries its own claims register in the
+        // source, so the strip must apply to it too — and its generated
+        // copy must carry no claim ids at all.
+        const cainsJson = readFileSync(path.join(outDir, "events", "cains-descendants.json"), "utf8");
+        const cains = JSON.parse(cainsJson);
+        expect(cains).not.toHaveProperty("claims");
+        expect(cains).not.toHaveProperty("review");
+        expect(cains.title).toBe("Cain's Descendants");
+        expect(cains.connections).toHaveLength(25);
+        expect(cains.sources).toHaveLength(11);
+        expect(cainsJson).not.toContain("clm-cd-");
+        // ... while the SOURCE file still carries the full register.
+        const sourceCains = JSON.parse(readFileSync(path.join(contentDir, "events", "cains-descendants.json"), "utf8"));
+        expect(sourceCains.claims).toHaveLength(31);
+        expect(sourceCains.claims.map((claim) => claim.id)).toContain("clm-cd-036");
         // Creation carries no claims array in its source, so the strip
         // is a no-op for it — and its generated copy stays claims-free.
         const creation = JSON.parse(readFileSync(path.join(outDir, "events", "creation.json"), "utf8"));
