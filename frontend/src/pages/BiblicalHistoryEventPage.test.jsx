@@ -1,3 +1,7 @@
+// Event study page tests: the routes mirror App.jsx — the book route
+// is the redirect, the event route is the standalone study page, and
+// the index is the homepage. These pin the header, the redirect, the
+// SEO, the 404s, and event-to-event navigation through the timeline.
 import { describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -8,10 +12,7 @@ import BiblicalHistoryBookRedirect from "./BiblicalHistoryBookRedirect";
 import BiblicalHistoryEventPage from "./BiblicalHistoryEventPage";
 import BiblicalHistoryIndexPage from "./BiblicalHistoryIndexPage";
 
-// The routes mirror App.jsx: the book route is the redirect, the event
-// route is the study page, and the index is the book directory the
-// panel closes back to.
-function renderBook(path, authValue = { user: null, isAuthLoading: false, logout: vi.fn() }) {
+function renderStudy(path, authValue = { user: null, isAuthLoading: false, logout: vi.fn() }) {
     return render(
         <MemoryRouter initialEntries={[path]}>
             <ThemeProvider>
@@ -31,10 +32,10 @@ function canonicalHref() {
     return document.querySelector('link[rel="canonical"]')?.getAttribute("href");
 }
 
-describe("BiblicalHistoryBookPage header", () => {
+describe("BiblicalHistoryEventPage header", () => {
     it("shows the landing navbar signed out: maroon logo, Explore, Sign In / Start Exploring, no reader controls", async () => {
         const user = userEvent.setup();
-        renderBook("/biblical-history/genesis/creation");
+        renderStudy("/biblical-history/genesis/creation");
         expect(screen.getByRole("link", { name: "Gnosis home" })).toHaveAttribute("href", "/");
         expect(screen.getByRole("link", { name: "Sign In" })).toHaveAttribute("href", "/login");
         expect(screen.getByRole("link", { name: /Start Exploring/ })).toHaveAttribute("href", "/bible/Genesis/1");
@@ -52,7 +53,7 @@ describe("BiblicalHistoryBookPage header", () => {
     });
 
     it("shows the signed-in profile and name in the landing navbar", () => {
-        renderBook("/biblical-history/genesis/creation", {
+        renderStudy("/biblical-history/genesis/creation", {
             user: { id: 1, first_name: "Test", last_name: "Reader" },
             isAuthLoading: false,
             logout: vi.fn(),
@@ -64,24 +65,21 @@ describe("BiblicalHistoryBookPage header", () => {
     });
 });
 
-describe("BiblicalHistoryBookPage", () => {
+describe("BiblicalHistoryEventPage", () => {
     it("redirects /biblical-history/genesis to the Creation study page in a production build", () => {
-        renderBook("/biblical-history/genesis");
+        renderStudy("/biblical-history/genesis");
         // The redirect lands on the first published event by
-        // narrativeOrder, with its panel open.
-        expect(screen.getByRole("dialog", { name: "Creation" })).toBeInTheDocument();
+        // narrativeOrder, as a standalone page — no book shell behind
+        // it, no dialog, no backdrop.
+        expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
+        expect(screen.queryByRole("dialog")).toBeNull();
+        expect(document.querySelector(".history-panel-backdrop")).toBeNull();
+        expect(screen.queryByRole("heading", { level: 1, name: "Genesis" })).toBeNull();
+        expect(screen.queryByText(/historical events/)).toBeNull();
+        expect(screen.queryByText(/Events in Genesis/)).toBeNull();
+        expect(screen.queryByText(/No historical events published yet/)).toBeNull();
         expect(document.title).toBe("Creation — Genesis 1:1–2:3 | Biblical History | Gnosis");
         expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis/creation");
-        // The book shell is still behind the panel: heading, event list.
-        expect(screen.getByRole("heading", { level: 1, name: "Genesis" })).toBeInTheDocument();
-        expect(screen.getByText(/2 historical events/)).toBeInTheDocument();
-        expect(screen.queryByText(/No historical events published yet/)).toBeNull();
-        expect(screen.getByRole("link", { name: /Creation/ })).toHaveAttribute(
-            "href", "/biblical-history/genesis/creation",
-        );
-        expect(screen.getByRole("link", { name: /Adam and Eve/ })).toHaveAttribute(
-            "href", "/biblical-history/genesis/adam-and-eve",
-        );
         // Breadcrumb: the book crumb links to the first event (never
         // the obsolete book-page URL), the open event is current.
         const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
@@ -94,10 +92,11 @@ describe("BiblicalHistoryBookPage", () => {
         expect(within(breadcrumb).getByText("Creation")).toHaveAttribute("aria-current", "page");
     });
 
-    it("renders the published event panel for a direct Genesis / Adam and Eve link", () => {
-        renderBook("/biblical-history/genesis/adam-and-eve");
+    it("renders the published event page for a direct Genesis / Adam and Eve link", () => {
+        renderStudy("/biblical-history/genesis/adam-and-eve");
         expect(screen.queryByRole("heading", { level: 1, name: "Page not found" })).toBeNull();
-        expect(screen.getByRole("dialog", { name: "Adam and Eve" })).toBeInTheDocument();
+        expect(screen.getByRole("heading", { level: 1, name: "Adam and Eve" })).toBeInTheDocument();
+        expect(screen.queryByRole("dialog")).toBeNull();
         expect(document.title).toBe("Adam and Eve — Genesis 2:4–3:24 | Biblical History | Gnosis");
         expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis/adam-and-eve");
         const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
@@ -107,49 +106,65 @@ describe("BiblicalHistoryBookPage", () => {
         expect(within(breadcrumb).getByText("Adam and Eve")).toHaveAttribute("aria-current", "page");
     });
 
-    it("keeps the Upcoming state for a book with no published events, with no redirect", () => {
-        renderBook("/biblical-history/1-samuel");
-        expect(screen.getByRole("heading", { level: 1, name: "1 Samuel" })).toBeInTheDocument();
-        expect(screen.getByText(/No historical events published yet/)).toBeInTheDocument();
-        expect(screen.queryByRole("dialog")).toBeNull();
-        expect(screen.getByRole("link", { name: /Read 1 Samuel 1 in the Bible/ })).toHaveAttribute(
-            "href", "/bible/1%20Samuel/1",
-        );
-        // No event to open, so the book title stays plain current-page
-        // text — and the canonical points at the index, never at a
-        // book-page URL.
-        const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
-        expect(within(breadcrumb).queryByRole("link", { name: "1 Samuel" })).toBeNull();
-        expect(within(breadcrumb).getByText("1 Samuel")).toHaveAttribute("aria-current", "page");
+    it("redirects a book with no published events to the homepage, where it is marked Coming Soon", async () => {
+        renderStudy("/biblical-history/1-samuel");
+        // No Upcoming page any more: the book URL lands on the index
+        // book directory, opened at 1 Samuel, with its Coming Soon chip
+        // focused — and nothing else claims the book has events.
+        expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
+        expect(screen.queryByText(/No historical events published yet/)).toBeNull();
+        expect(screen.queryByRole("heading", { level: 1, name: "Page not found" })).toBeNull();
+        expect(screen.getByRole("button", { name: /Close Books/ })).toHaveAttribute("aria-expanded", "true");
+        const chip = document.querySelector('[data-history-book="1-samuel"]');
+        expect(chip).not.toBeNull();
+        expect(chip).toHaveTextContent("Coming Soon");
+        expect(chip.tagName).not.toBe("A");
+        await waitFor(() => expect(chip).toHaveFocus());
+        expect(document.activeElement).not.toBe(document.body);
+        // The homepage keeps its own indexable metadata.
+        expect(document.title).toBe("Biblical History | Gnosis");
         expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history");
-        expect(document.title).toBe("Biblical History — 1 Samuel | Gnosis");
     });
 
     it("renders the 404 page for an unknown book slug", () => {
-        renderBook("/biblical-history/not-a-book");
+        renderStudy("/biblical-history/not-a-book");
         expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
     });
 
     it("renders the 404 page for an event not connected to the requested book", () => {
-        renderBook("/biblical-history/exodus/creation");
+        renderStudy("/biblical-history/exodus/creation");
         expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
     });
 
-    it("returns focus to the Genesis entry after closing the Adam and Eve panel with Escape", async () => {
+    it("navigates Creation → Adam and Eve → Creation through the timeline", async () => {
         const user = userEvent.setup();
-        renderBook("/biblical-history/genesis/adam-and-eve");
-        expect(screen.getByRole("dialog", { name: "Adam and Eve" })).toBeInTheDocument();
-        // The companion opens by default, so the first Escape closes it
-        // and only the second closes the panel.
-        await user.keyboard("{Escape}");
-        await waitFor(() => expect(screen.queryByRole("heading", { name: "Genesis 2:4–3:24" })).toBeNull());
-        await user.keyboard("{Escape}");
-        await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+        renderStudy("/biblical-history/genesis/creation");
+        expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
+        await user.click(screen.getByRole("button", { name: /Adam and Eve/ }));
+        await waitFor(() => expect(
+            screen.getByRole("heading", { level: 1, name: "Adam and Eve" }),
+        ).toBeInTheDocument());
+        expect(document.title).toBe("Adam and Eve — Genesis 2:4–3:24 | Biblical History | Gnosis");
+        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis/adam-and-eve");
+        await user.click(screen.getByRole("button", { name: /^Creation/ }));
+        await waitFor(() => expect(
+            screen.getByRole("heading", { level: 1, name: "Creation" }),
+        ).toBeInTheDocument());
+        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis/creation");
+    });
+
+    it("returns to the index after closing the Adam and Eve page — focus lands on the Genesis entry", async () => {
+        const user = userEvent.setup();
+        renderStudy("/biblical-history/genesis/adam-and-eve");
+        expect(screen.getByRole("heading", { level: 1, name: "Adam and Eve" })).toBeInTheDocument();
+        await user.click(screen.getByTestId("history-study-close"));
+        await waitFor(() => expect(
+            screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." }),
+        ).toBeInTheDocument());
         // Close lands on the index book directory with the directory
         // open at the book that was open — Adam and Eve is a Genesis
         // event, so its entry is the Genesis entry, not a hardcoded
-        // panel target.
-        expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
+        // target.
         const genesisEntry = document.querySelector('[data-history-book="genesis"]');
         expect(genesisEntry).not.toBeNull();
         await waitFor(() => expect(genesisEntry).toHaveFocus());

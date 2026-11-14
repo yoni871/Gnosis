@@ -77,15 +77,34 @@ export default function HistoryBookSelector({ books = listBooks(), open = false,
                     {visibleBooks.map((book) => {
                         // A book with published events opens its first
                         // event directly — the book URL redirects there
-                        // anyway. A book with none keeps its Upcoming
-                        // page at the book URL.
+                        // anyway. A book with none is not a link: it
+                        // shows a Coming Soon chip here on the homepage,
+                        // and its book URL redirects back to this
+                        // directory. The chip carries tabIndex -1 (never
+                        // a tab stop — it is not interactive) so the
+                        // panel-close focus return can still land on it.
                         const firstEvent = book.hasEvents ? getFirstPublishedEvent(book.id) : null;
-                        const to = firstEvent
-                            ? historyPath(book.id, eventSlug(firstEvent.id))
-                            : historyPath(book.id);
+                        if (!firstEvent) {
+                            return (
+                                <li key={book.id}>
+                                    <span
+                                        className="history-book-chip history-book-chip--upcoming"
+                                        data-history-book={book.id}
+                                        tabIndex={-1}
+                                    >
+                                        <span>{book.title}</span>
+                                        <span className="history-book-chip-soon">Coming Soon</span>
+                                    </span>
+                                </li>
+                            );
+                        }
                         return (
                             <li key={book.id}>
-                                <Link to={to} data-history-book={book.id}>
+                                <Link
+                                    to={historyPath(book.id, eventSlug(firstEvent.id))}
+                                    className="history-book-chip"
+                                    data-history-book={book.id}
+                                >
                                     {book.title}
                                 </Link>
                             </li>

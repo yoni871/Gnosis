@@ -50,7 +50,7 @@ for (const { value } of eagerValues(
 )) {
     if (value && typeof value.id === "string") generatedEvents.set(value.id, value);
 }
-// Event prose is code-split per event and fetched only when its panel opens.
+// Event prose is code-split per event and fetched only when its study page opens.
 const eventMarkdownLoaders = import.meta.glob("../generated/history/events/*.md", {
     query: "?raw",
     import: "default",
@@ -112,8 +112,8 @@ export function listEventsForBook(bookId) {
 // First published event for a book, in narrative order — the book's
 // landing event now that the book URL redirects to it (see
 // BiblicalHistoryBookRedirect). Null when the book has no published
-// events: such books keep their Upcoming page instead of redirecting
-// to an event that does not exist.
+// events: such books redirect to the homepage, where they are marked
+// Coming Soon, instead of redirecting to an event that does not exist.
 export function getFirstPublishedEvent(bookId) {
     const events = listEventsForBook(bookId);
     return events.length > 0 ? events[0] : null;
