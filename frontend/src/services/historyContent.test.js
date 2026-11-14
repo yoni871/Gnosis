@@ -121,15 +121,19 @@ describe("generateHistoryContent — the publication gate", () => {
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
         // The fixture flips Creation to "draft"; the shipped Adam and Eve
-        // event is in-review, so the dev opt-in includes both.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-creation"]);
+        // event is published, and the shipped Cain and Abel event is
+        // in-review, so the dev opt-in includes the draft plus Cain and
+        // Abel.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
-        // Adam and Eve is published now, so only the draft Creation
-        // event is non-published in this fixture.
+        // Adam and Eve is published now, so the non-published records in
+        // this fixture are the draft Creation event and the shipped
+        // in-review Cain and Abel event.
         expect(findNonPublishedIds({ contentDir })).toEqual([
+            { id: "event-cain-and-abel", kind: "event", status: "in-review" },
             { id: "event-creation", kind: "event", status: "draft" },
         ]);
     });
@@ -244,7 +248,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-creation"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
         const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");

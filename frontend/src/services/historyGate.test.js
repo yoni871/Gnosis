@@ -5,10 +5,11 @@
 // history + src/data/bibleChapters.json + src/utils/historyContent.js).
 // Fixtures are copies of the real shipped content tree, with the copied
 // Creation event flipped back to "in-review" (see makeSandbox): the
-// shipped event is now published, so without that flip the sandbox would
-// contain no non-published record at all and every "fails when..." test
-// would pass vacuously. The flip restores a genuinely non-published
-// fixture — check 10 applies only to published events, and
+// shipped Creation event is now published, and the shipped Cain and Abel
+// event is in-review, so without that flip the sandbox would still
+// contain a non-published record — but the leak tests match against
+// Creation by id, so the flip keeps a genuinely non-published Creation
+// fixture. Check 10 applies only to published events, and
 // findNonPublishedRecords lists by status — so the gate is still tested
 // against a real draft leak, not a weakened expectation.
 import {
@@ -53,11 +54,11 @@ function makeSandbox() {
         path.join(dir, "src", "utils", "historyContent.js"),
     );
     // The shipped Creation event is published, so the sandbox copy is
-    // flipped back to "in-review": the gate tests need a genuinely
-    // non-published record in the fixture, or the gate's early return
-    // ("no non-published records exist") would make every leak test
-    // pass without exercising the leak checks at all. This is the only
-    // mutation the sandbox makes to the shipped tree.
+    // flipped back to "in-review": the leak tests match against Creation
+    // by id, so the gate needs a genuinely non-published Creation fixture
+    // alongside the shipped in-review Cain and Abel event, or the leak
+    // checks would not exercise the Creation assertions at all. This is
+    // the only mutation the sandbox makes to the shipped tree.
     const sandboxEventPath = path.join(dir, "src", "content", "history", "events", "creation.json");
     const sandboxEvent = JSON.parse(readFileSync(sandboxEventPath, "utf8"));
     sandboxEvent.status = "in-review";
@@ -153,9 +154,10 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         expect(result.status).toBe(0);
         const manifest = readManifest(sandbox);
         expect(manifest.includeUnpublished).toBe(true);
-        // The sandbox flips Creation to in-review; the shipped Adam and
-        // Eve event is in-review, so the dev opt-in includes both.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-creation"]);
+        // The sandbox flips Creation to in-review; the shipped Cain and
+        // Abel event is in-review too, so the dev opt-in includes all
+        // three events.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
     });
@@ -218,9 +220,10 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
             cwd: sandbox,
         });
         expect(result.status).toBe(0);
-        // The sandbox flips Creation to in-review; the shipped Adam and
-        // Eve event is in-review, so the dev opt-in includes both.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-creation"]);
+        // The sandbox flips Creation to in-review; the shipped Cain and
+        // Abel event is in-review too, so the dev opt-in includes all
+        // three events.
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
     });
 
@@ -324,14 +327,100 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
     it("returns the in-review event with its title and its unpublished-only sources", () => {
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
-        // Adam and Eve is published now, so the sandbox's only
-        // non-published event is Creation (flipped to in-review by
-        // makeSandbox) — with the three sources cited only by it.
+        // Adam and Eve is published now, so the sandbox's non-published
+        // events are the shipped in-review Cain and Abel event and
+        // Creation (flipped to in-review by makeSandbox) — listed first,
+        // then the sources cited only by them, in citation order.
         // McDowell, Met, and ORACC are no longer unpublished-only:
         // the published Adam and Eve event cites them too. Brown,
         // Crouch, and Shabaka follow in Creation's citation order.
         expect(findNonPublishedRecords({ contentDir })).toEqual([
+            { id: "event-cain-and-abel", kind: "event", status: "in-review", title: "Cain and Abel" },
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
+            {
+                id: "source-etcsl-sheep-and-grain",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The debate between Grain and Sheep (ETCSL 5.3.2)",
+            },
+            {
+                id: "source-oracc-nebuchadnezzar-011",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Nebuchadnezzar II 011 (ORACC RIBO Q005482)",
+            },
+            {
+                id: "source-oracc-saa-07-212",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Aššur Temple Offerings, Day 25 (SAA 07 212; tablet ADD 1013)",
+            },
+            {
+                id: "source-gunkel-genesis",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Genesis übersetzt und erklärt (Handkommentar zum Alten Testament)",
+            },
+            {
+                id: "source-clarke-commentary",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Holy Bible… with a Commentary and Critical Notes",
+            },
+            {
+                id: "source-jfb-commentary",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Commentary Critical and Explanatory on the Whole Bible",
+            },
+            {
+                id: "source-christ-over-all-genesis-4-7",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Cross in Genesis 4.7",
+            },
+            {
+                id: "source-hammurabi-code",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Code of Hammurabi (King translation)",
+            },
+            {
+                id: "source-bloch-blood-vengeance",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Blood Vengeance in Ancient Near Eastern Context",
+            },
+            {
+                id: "source-encyclopedia-crime-punishment",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Crime and Punishment",
+            },
+            {
+                id: "source-austin-gobeil-tattooed-mummy",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Embodying the Divine: A Tattooed Female Mummy from Deir el-Medina",
+            },
+            {
+                id: "source-smiths-seven",
+                kind: "source",
+                status: "unpublished-only",
+                title: "'Seven' (Smith's Dictionary of the Bible)",
+            },
+            {
+                id: "source-ats-seven",
+                kind: "source",
+                status: "unpublished-only",
+                title: "'Seven' (American Tract Society Bible Dictionary)",
+            },
+            {
+                id: "source-easton-seven",
+                kind: "source",
+                status: "unpublished-only",
+                title: "'Seven' (Illustrated Bible Dictionary)",
+            },
             {
                 id: "source-brown-cosmic-temple",
                 kind: "source",
@@ -359,7 +448,7 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
 });
 
 describe("checkHistoryGate — claims detector", () => {
-    // A sandbox where BOTH events are published: the claims detector
+    // A sandbox where ALL events are published: the claims detector
     // must fire on this all-published path, where the gate's
     // non-published early return would otherwise stand it down. The
     // fixture source still carries Adam and Eve's full 35-claim
@@ -367,7 +456,7 @@ describe("checkHistoryGate — claims detector", () => {
     // it, and these tests prove the gate catches it if it ever leaks.
     function makeAllPublishedSandbox() {
         const sandbox = makeSandbox();
-        for (const name of ["creation.json", "adam-and-eve.json"]) {
+        for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json"]) {
             const eventPath = path.join(sandbox, "src", "content", "history", "events", name);
             const event = JSON.parse(readFileSync(eventPath, "utf8"));
             event.status = "published";
@@ -387,7 +476,7 @@ describe("checkHistoryGate — claims detector", () => {
     function buildPublished(sandbox) {
         const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-creation"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     }
 
