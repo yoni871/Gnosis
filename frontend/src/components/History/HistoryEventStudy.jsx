@@ -12,7 +12,9 @@
 //
 // This is ordinary page content in the document flow: no portal, no
 // backdrop, no dialog semantics, no focus trap, no scroll lock, no
-// bottom sheet. The page scrolls as a page. Escape closes the
+// bottom sheet. On desktop the study shares 100dvh with the header and
+// timeline and the reading column and companion scroll independently;
+// on mobile the page scrolls as a page. Escape closes the
 // Scripture companion when it is open and otherwise does nothing —
 // there is no modal to close, and browser Back is the way back.
 // The close button returns to the Biblical History homepage's book

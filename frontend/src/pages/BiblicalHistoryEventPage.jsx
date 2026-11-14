@@ -72,7 +72,7 @@ export default function BiblicalHistoryEventPage() {
     const firstEvent = events[0] ?? null;
 
     return (
-        <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)]">
+        <div className="history-event-root min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)]">
             <Seo
                 title={historyEventTitle(openEvent.title, formatScriptureRange(openEvent.primaryScripture))}
                 description={historyEventDescription(openEvent.title, formatScriptureRange(openEvent.primaryScripture))}
