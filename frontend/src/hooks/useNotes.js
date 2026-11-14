@@ -47,20 +47,11 @@ const DEFAULTS = {
     isSavingNote: false,
     draftPassage: null,
     editingNoteId: null,
-    editTitle: "",
-    editContent: "",
     documents: {},
-    saveStatus: "saved",
-    isUpdatingNote: false,
     deletingNoteId: null
 };
 
-export default function useNotes({
-    book,
-    chapter,
-    selectedVerse,
-    books
-}) {
+export default function useNotes() {
     const { token, isAuthenticated, isAuthLoading, owner, state, field, capture, isCurrent, setCurrent } = usePrivateSession(DEFAULTS);
 
     const setNextCursor = field("nextCursor");
@@ -110,12 +101,6 @@ export default function useNotes({
 
     const editingNoteId = state.editingNoteId;
     const setEditingNoteId = field("editingNoteId");
-    const editContent = state.editContent;
-    const setEditContent = field("editContent");
-    const editTitle = state.editTitle;
-    const setEditTitle = field("editTitle");
-    const isUpdatingNote = state.isUpdatingNote;
-    const setIsUpdatingNote = field("isUpdatingNote");
 
     // -------------------------
     // DELETE NOTE STATE
@@ -127,10 +112,6 @@ export default function useNotes({
     const ownerRef = useRef(owner);
     const draftRef = useRef(null);
     if (!draftRef.current) draftRef.current = documentDrafts.get(owner) || {};
-
-    const currentBook = books.find(
-        (item) => item.name === book
-    );
 
     // -------------------------
     // LOAD NOTES
@@ -184,60 +165,6 @@ export default function useNotes({
         return true;
     }
 
-    // Save the captured draft passage, or the currently focused verse.
-    async function handleSaveNote() {
-        const ticket = capture();
-        if (!ticket) return false;
-        // Prevent empty notes, unauthenticated requests, and repeated saves.
-        if (!token || isSavingNote || !noteContent.trim()) {
-            return;
-        }
-
-        // Prefer the passage explicitly attached when the draft was started.
-        const passage = draftPassage || (
-            currentBook && selectedVerse
-                ? {
-                    bookId: currentBook.id,
-                    startChapter: chapter,
-                    startVerse: selectedVerse,
-                    endChapter: chapter,
-                    endVerse: selectedVerse
-                }
-                : null
-        );
-
-        // Capture the content and target submitted by this save.
-        const content = noteContent.trim();
-
-        setNotesError("");
-        setIsSavingNote(true);
-
-        try {
-            const newNote = await createNote(token, {
-                // Copy the passage coordinates into the request body.
-                ...(passage || {}),
-                content
-            });
-
-            if (!isCurrent(ticket)) return false;
-            setNotes((currentNotes) => [
-                newNote,
-                ...currentNotes
-            ]);
-
-            // Reset the completed draft after the backend confirms success.
-            setNoteContent("");
-            setDraftPassage(null);
-            return true;
-        } catch (error) {
-            if (!isCurrent(ticket)) return false;
-            // Preserve the content and passage so the user can retry.
-            setNotesError(error.message);
-        } finally {
-            if (isCurrent(ticket)) setIsSavingNote(false);
-        }
-    }
-
     // -------------------------
     // START EDITING
     // -------------------------
@@ -247,65 +174,7 @@ export default function useNotes({
         activeNoteId.current = note.id;
         const doc = draftRef.current[note.id] || makeDocument(note);
         publishDocuments({ ...draftRef.current, [note.id]: doc });
-        setCurrent(current => ({ ...current, editingNoteId: note.id, editTitle: doc.title,
-            editContent: doc.content, notesError: "" }));
-    }
-
-    // -------------------------
-    // CANCEL EDITING
-    // -------------------------
-
-    function handleCancelEdit() {
-        if (!capture()) return false;
-        setEditingNoteId(null);
-        setEditTitle("");
-        setEditContent("");
-    }
-
-    // -------------------------
-    // UPDATE NOTE
-    // -------------------------
-
-    async function handleUpdateNote(noteId) {
-        const ticket = capture();
-        if (!ticket) return false;
-        if (
-            !token ||
-            !editContent.trim()
-        ) {
-            return;
-        }
-
-        setNotesError("");
-        setIsUpdatingNote(true);
-
-        try {
-            const updatedNote = await updateNote(
-                token,
-                noteId,
-                {
-                    content: editContent.trim()
-                }
-            );
-
-            if (!isCurrent(ticket)) return false;
-            setNotes((currentNotes) =>
-                currentNotes.map((note) =>
-                    note.id === noteId
-                        ? updatedNote
-                        : note
-                )
-            );
-
-            setEditingNoteId(null);
-            setEditContent("");
-            return true;
-        } catch (error) {
-            if (!isCurrent(ticket)) return false;
-            setNotesError(error.message);
-        } finally {
-            if (isCurrent(ticket)) setIsUpdatingNote(false);
-        }
+        setCurrent(current => ({ ...current, editingNoteId: note.id, notesError: "" }));
     }
 
     // -------------------------
@@ -335,8 +204,6 @@ export default function useNotes({
             if (activeNoteId.current === noteId) {
                 activeNoteId.current = null;
                 setEditingNoteId(null);
-                setEditTitle("");
-                setEditContent("");
             }
             const next = { ...draftRef.current };
             delete next[noteId];
@@ -473,19 +340,11 @@ export default function useNotes({
         isSavingNote,
 
         editingNoteId,
-        editTitle,
-        setEditTitle,
-        editContent,
-        setEditContent,
-        isUpdatingNote,
         documents: state.documents,
 
         deletingNoteId,
 
-        handleSaveNote,
         handleStartEdit,
-        handleCancelEdit,
-        handleUpdateNote,
         handleDeleteNote,
         handleCreateDocument,
         changeDocument,

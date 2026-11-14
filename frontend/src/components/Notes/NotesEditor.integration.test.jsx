@@ -46,6 +46,29 @@ describe("Notes rich-text editor", () => {
         expect(editor).toHaveTextContent("Grace");
     });
 
+    test("spacing commands apply data attributes, keep the text, and report the active setting", async () => {
+        const editorRef = createRef();
+        const onChange = vi.fn();
+        const onFormatState = vi.fn();
+        render(<NotesEditor value="<p>Grace</p><p>Peace</p>" onChange={onChange} books={books}
+            inputRef={editorRef} ariaLabel="Note content" onFormatState={onFormatState} />);
+        const editor = screen.getByRole("textbox", { name: "Note content" });
+        await waitFor(() => expect(editorRef.current).toBeTruthy());
+        fireEvent.focus(editor);
+        editorRef.current.format({ kind: "lineHeight", value: "2" });
+        await waitFor(() => expect(onChange).toHaveBeenCalledWith(
+            expect.stringContaining('<p data-line-height="2">Grace</p>'),
+        ));
+        editorRef.current.format({ kind: "paragraphSpacing", value: "large" });
+        await waitFor(() => expect(onChange).toHaveBeenCalledWith(
+            expect.stringContaining('data-paragraph-spacing="large"'),
+        ));
+        expect(editor).toHaveTextContent("GracePeace");
+        expect(onFormatState).toHaveBeenCalledWith(expect.objectContaining({
+            lineHeight: "2", paragraphSpacing: "large",
+        }));
+    });
+
     test("removes executable markup while retaining supported formatting", () => {
         expect(sanitizeNoteHtml('<p onclick="bad()"><strong>Safe</strong><script>alert(1)</script></p>'))
             .toBe("<p><strong>Safe</strong></p>");
@@ -57,6 +80,20 @@ describe("Notes rich-text editor", () => {
         expect(sanitizeNoteHtml(sanitizeNoteHtml(html))).toBe(html);
         expect(sanitizeNoteHtml('<p><a data-scripture="true" class="evil" onclick="bad()">John</a></p>'))
             .toBe('<p><a data-scripture="true" class="note-scripture-link">John</a></p>');
+    });
+
+    test("sanitizer keeps whitelisted spacing attributes on paragraphs and headings", () => {
+        const html = '<h2 data-line-height="2">Title</h2><p data-line-height="1.15" data-paragraph-spacing="large">Body</p>';
+        expect(sanitizeNoteHtml(html)).toBe(html);
+        expect(sanitizeNoteHtml(sanitizeNoteHtml(html))).toBe(html);
+    });
+
+    test("sanitizer strips spacing values outside the allowlist and spacing on other tags", () => {
+        expect(sanitizeNoteHtml('<p data-line-height="3">Body</p>')).toBe("<p>Body</p>");
+        expect(sanitizeNoteHtml('<p data-paragraph-spacing="huge">Body</p>')).toBe("<p>Body</p>");
+        expect(sanitizeNoteHtml('<p data-line-height="1.5; color: red">Body</p>')).toBe("<p>Body</p>");
+        expect(sanitizeNoteHtml('<ul><li data-line-height="2">Item</li></ul>')).toBe("<ul><li>Item</li></ul>");
+        expect(sanitizeNoteHtml('<p style="line-height: 2">Body</p>')).toBe("<p>Body</p>");
     });
 
 });
