@@ -26,6 +26,7 @@ const id = '00000000-0000-4000-8000-000000000001';
 function rotationFixture(used = false, overrides = {}) {
     behavior = async sql => {
         if (sql.includes('SELECT s.*')) return { rows: [{ id, user_id: 7, expires_at: new Date(Date.now() + 600000), revoked_at: null, ...overrides }] };
+        if (sql.includes('SELECT u.email, m.enrolled')) return { rows: [{ email: 'user@example.invalid', enrolled: false }] };
         if (sql.includes('INSERT INTO rate_limit_attempts')) return { rows: [{ id: 1 }] };
         if (sql.includes('COUNT(*)')) return { rows: [{ count: overrides.full ? 31 : 1, oldest: new Date() }] };
         if (sql.includes('SELECT used_at')) return { rows: [{ used_at: used ? new Date() : null }] };

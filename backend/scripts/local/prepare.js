@@ -56,11 +56,16 @@ async function main() {
             GRANT UPDATE(used_at,consumed_reason) ON email_verification_tokens TO gnosis_reader;
             GRANT SELECT,INSERT ON password_reset_tokens TO gnosis_reader;
             GRANT UPDATE(used_at,consumed_reason) ON password_reset_tokens TO gnosis_reader;
+            GRANT SELECT,INSERT ON user_mfa,mfa_challenges,mfa_recovery_codes TO gnosis_reader;
+            GRANT DELETE ON mfa_challenges TO gnosis_reader;
+            GRANT UPDATE(enrolled,enrolled_at,secret_encrypted,key_version,last_totp_step,mfa_generation,updated_at) ON user_mfa TO gnosis_reader;
+            GRANT UPDATE(used_at,consumed_reason) ON mfa_challenges TO gnosis_reader;
+            GRANT UPDATE(used_at) ON mfa_recovery_codes TO gnosis_reader;
             GRANT SELECT,INSERT,UPDATE,DELETE ON notes,bookmarks,highlights TO gnosis_reader;
             GRANT SELECT,INSERT,UPDATE ON user_reading_state,auth_sessions,auth_refresh_tokens TO gnosis_reader;
             GRANT SELECT,INSERT,DELETE ON rate_limit_attempts TO gnosis_reader;
             GRANT SELECT,UPDATE ON rate_limit_sweep_state TO gnosis_reader;
-            GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq,licensed_chapter_cache_id_seq TO gnosis_reader`);
+            GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq,licensed_chapter_cache_id_seq,mfa_recovery_codes_id_seq TO gnosis_reader`);
         stage = 'reference content';
         await require('./import-content').importContent(operator);
         stage = 'original language';

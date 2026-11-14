@@ -17,7 +17,7 @@ async function migrationFiles(dir) {
 // `table` is always one of the allowlisted per-project tracking tables
 // (pgmigrations_<project>), never arbitrary input, so interpolating it
 // into these fixed-shape queries is safe.
-async function history(client, names, table, allowLateIndexes = false) {
+async function history(client, names, table, allowLateIndexes = false, mfaCompatibility = false) {
     const exists = (await client.query(`SELECT to_regclass('public.${table}') IS NOT NULL AS exists`)).rows[0].exists;
     if (!exists) return [];
     const columns = (await client.query(`SELECT column_name,data_type,is_nullable FROM information_schema.columns WHERE table_schema='public' AND table_name='${table}' ORDER BY ordinal_position`)).rows;
@@ -30,6 +30,20 @@ async function history(client, names, table, allowLateIndexes = false) {
     }
     const rows = (await client.query(`SELECT name FROM public.${table} ORDER BY id`)).rows.map(row => row.name);
     if (allowLateIndexes) return require('./localLateIndexes').orderedLocalHistory(rows,names);
+    if (rows.some((name, i) => name !== names[i]) && mfaCompatibility) {
+        const approved = ['20261109150000_add-totp-mfa', '20261112180000_add-mfa-key-version'];
+        const ordinaryNames = names.filter(name => !approved.includes(name));
+        const ordinaryRows = rows.filter(name => !approved.includes(name));
+        const mfaRows = rows.filter(name => approved.includes(name));
+        if (rows[0] !== names[0] || new Set(rows).size !== rows.length || rows.some(name => !names.includes(name))
+            || ordinaryRows.some((name, i) => name !== ordinaryNames[i])
+            || mfaRows.some((name, i) => name !== approved[i])) {
+            throw safeError('Migration history does not match the ordered migration files.');
+        }
+        const ordered = [...rows].sort((a, b) => names.indexOf(a) - names.indexOf(b));
+        Object.defineProperty(ordered, 'mfaLate', { value: true });
+        return ordered;
+    }
     if (rows.some((name, i) => name !== names[i])) {
         throw safeError('Migration history does not match the ordered migration files.');
     }
@@ -161,7 +175,19 @@ async function execute({command, target, project, env = process.env, dir,
         if (!lock.rows[0].locked) throw safeError('Another migration operation is running. Retry later.');
         locked = true;
         stage = 'history validation';
-        const applied = await history(client, names, table, allowLateIndexes);
+        let mfaCompatibility = false;
+        if (project === 'app' && !allowLateIndexes && names.includes('20261109150000_add-totp-mfa')
+            && names.includes('20261112180000_add-mfa-key-version')) {
+            const { createHash } = require('node:crypto');
+            const approved = [
+                ['20261109150000_add-totp-mfa', 'ce3d0c3e37f9ebab784f7a13b12764a4e8436e62648de23ba74f67309138acc6'],
+                ['20261112180000_add-mfa-key-version', '58c33db89afc2a98a506b00b3c86a412d08bdd7ac1dc7004dd7ab29ef6ccfab8'],
+            ];
+            mfaCompatibility = (await Promise.all(approved.map(async ([name, hash]) =>
+                createHash('sha256').update(await fs.readFile(path.join(dir, `${name}.sql`))).digest('hex') === hash))).every(Boolean);
+        }
+        const applied = await history(client, names, table, allowLateIndexes, mfaCompatibility);
+        if (applied.mfaLate && command === 'down') throw safeError('Rollback of late MFA history requires an explicit operator plan.');
         stage = 'schema validation';
         expected = await appliedCatalog(expected, applied, dir);
         const actual = await liveCatalog(client);
@@ -212,7 +238,7 @@ async function execute({command, target, project, env = process.env, dir,
         }};
         const result = await runner({dbClient:runnerClient, dir, migrationsTable:table, schema:'public',
             direction: command === 'down' ? 'down' : 'up', count: command === 'baseline' || command === 'down' ? 1 : Infinity,
-            fake:command === 'baseline', checkOrder:!allowLateIndexes,
+            fake:command === 'baseline', checkOrder:!allowLateIndexes && !applied.mfaLate,
             // The wrapper owns the advisory lock for the complete operation.
             // Ordinary up/down transaction ownership remains with the runner.
             noLock:true, singleTransaction:command !== 'baseline',

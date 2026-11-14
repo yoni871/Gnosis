@@ -3,6 +3,7 @@ const pool = require("../db/db");
 const passwordHash = require("../utils/passwordHash");
 const router = express.Router();
 const sessions = require("../services/sessionService");
+const mfaService = require("../services/mfaService");
 const authenticateToken = require("../middleware/authMiddleware");
 const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
 const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, validateDeleteAccountInput, VALIDATION_CODE } = require("../utils/authValidation");
@@ -22,6 +23,8 @@ const { createResendClient } = require("../utils/resendClient");
 const { isBreachedPassword } = require("../utils/breachedPasswords");
 const { audit } = require("../utils/auditLog");
 const { recordLoginDevice } = require("../services/loginDevices");
+const { isAdminEmail } = require("../utils/adminAuth");
+const { createMfaEnrollToken } = require("../utils/mfaEnrollToken");
 
 // Issue #3: validation runs as middleware, before the limiter and before
 // any hashing or database access. Only the validated (trimmed) values
@@ -377,6 +380,112 @@ router.post("/login", (req, res, next) => {
         return res.status(403).json({
             error: "Email not verified.",
             code: "EMAIL_NOT_VERIFIED",
+        });
+    }
+
+    // TOTP MFA (roadmap T2.3): an enrolled account receives no session
+    // from the password alone. Issue a single-use 10-minute challenge
+    // and return MFA_REQUIRED; the frontend completes login at POST
+    // /api/auth/mfa/verify. A correct password still does not count
+    // toward the login buckets, and no access token is issued here.
+    let mfaEnrolled;
+    try {
+        const mfaRow = await pool.query(
+            "SELECT enrolled FROM user_mfa WHERE user_id = $1", [user.id]);
+        mfaEnrolled = mfaRow.rows[0] ? mfaRow.rows[0].enrolled === true : false;
+    } catch (error) {
+        logAuthFailure("POST /api/auth/login", "database", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("login"));
+    }
+    if (mfaEnrolled) {
+        // Transparent Argon2id migration for MFA logins (PR #96 gap):
+        // the plaintext password is available here, at login, and
+        // only here — the later /mfa/verify step has just the
+        // challenge token and a code, so it cannot re-hash. Migrate
+        // BEFORE issuing the challenge, and track the verified hash:
+        // it is the hash login actually verified, post-migration.
+        // issueMfaChallenge is given that hash and atomically
+        // confirms it still matches the current credential under the
+        // user lock, so a password reset that lands between
+        // verification and issuance issues no challenge.
+        let verifiedHash = user.password_hash;
+        if (passwordHash.isBcryptHash(user.password_hash)) {
+            try {
+                const migratedHash = await passwordHash.hashPassword(password);
+                const migrated = await pool.query(
+                    "UPDATE users SET password_hash = $1 WHERE id = $2 AND password_hash = $3",
+                    [migratedHash, user.id, user.password_hash]
+                );
+                if (migrated.rowCount === 1) {
+                    // Migration won: the verified credential is now
+                    // the Argon2id hash.
+                    verifiedHash = migratedHash;
+                } else {
+                    // A concurrent password change/reset won the
+                    // compare-and-swap: the password login just
+                    // verified is no longer current. Fail as a wrong
+                    // password (same as createSession's null), and
+                    // issue no challenge.
+                    await req.rateLimit.finalize("count");
+                    await audit(pool, "login.failure", user.id);
+                    return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
+                }
+            } catch (error) {
+                logAuthFailure("POST /api/auth/login", "rehash", error);
+                // Best-effort: a failed write leaves the bcrypt hash;
+                // verifiedHash stays the hash login verified, and
+                // issueMfaChallenge's atomic confirm is the safety
+                // net if the credential changed anyway.
+            }
+        }
+        let challenge;
+        try {
+            challenge = await mfaService.issueMfaChallenge(pool, user.id, verifiedHash);
+        } catch (error) {
+            logAuthFailure("POST /api/auth/login", "session", error);
+            await req.rateLimit.finalize("release");
+            return res.status(500).json(internalErrorBody("login"));
+        }
+        if (!challenge) {
+            // The password was reset/changed between login's
+            // verification and challenge issuance. No challenge was
+            // issued; fail as a wrong password.
+            await req.rateLimit.finalize("count");
+            await audit(pool, "login.failure", user.id);
+            return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
+        }
+        await req.rateLimit.finalize("release");
+        return res.status(401).json({
+            error: "Multi-factor authentication is required.",
+            code: "MFA_REQUIRED",
+            challenge,
+        });
+    }
+
+    // Admin-mandatory MFA (design §9): an admin account without
+    // enrolled MFA gets no session. Return 403 with a short-lived
+    // enrollment-scoped token instead; the frontend routes the admin
+    // to enrollment with it. A correct password still does not count
+    // toward the login buckets. Regular users are unaffected.
+    if (!mfaEnrolled && isAdminEmail(user.email)) {
+        let enrollToken;
+        try {
+            // The token is bound to the credential login verified
+            // (the password hash): a reset after this login
+            // invalidates it (F7).
+            enrollToken = createMfaEnrollToken(user.id, user.password_hash);
+        } catch (error) {
+            logAuthFailure("POST /api/auth/login", "token", error);
+            await req.rateLimit.finalize("release");
+            return res.status(500).json(internalErrorBody("login"));
+        }
+        await req.rateLimit.finalize("release");
+        await audit(pool, "mfa.enrollment_required", user.id);
+        return res.status(403).json({
+            error: "Multi-factor authentication is required for this account. Set up an authenticator to continue.",
+            code: "MFA_ENROLLMENT_REQUIRED",
+            enrollToken,
         });
     }
 

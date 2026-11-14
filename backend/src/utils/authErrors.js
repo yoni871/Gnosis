@@ -32,6 +32,8 @@ const ENDPOINT_MESSAGES = {
     reset: "Something went wrong.",
     // Account deletion shares the same generic wording.
     delete: "Something went wrong.",
+    // TOTP MFA: the MFA endpoints share the same generic wording.
+    mfa: "Something went wrong.",
 };
 
 function errorBody(message, code) {

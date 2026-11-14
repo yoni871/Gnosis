@@ -77,6 +77,32 @@ const POLICIES = {
     reset_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
     // (PR #85's refresh_ip 30/15 min lived here; PR #90 replaces it with
     // the 120/min entry at the top of this table — see that comment.)
+    // TOTP MFA (roadmap T2.3): the challenge step mirrors verify
+    // per-IP (30/15 min) with a strict per-challenge bucket (5/15
+    // min) and a per-IP+user bucket (5/15 min), so guessing a 6-digit
+    // code against one challenge is bounded while a burst against
+    // many challenges still trips the IP bucket and a burst against
+    // one account trips the per-user bucket even from many IPs.
+    // Authenticated code endpoints (enroll confirm, regenerate,
+    // disable) share one per-user+IP bucket (5/15 min); enrollment
+    // start has its own per-user+IP bucket (5/15 min) so a flood of
+    // enrollment starts cannot spend the code endpoints' budget.
+    // The verify endpoint also has IP-independent buckets
+    // (mfa_verify_user, mfa_verify_challenge, 5/15 min each): the
+    // per-IP buckets alone do not bound distributed guessing, since
+    // an attacker with many source addresses can rotate IPs and
+    // request a fresh challenge per attempt. The shared per-account
+    // bucket caps one account regardless of source, and the shared
+    // per-challenge bucket caps one challenge regardless of source;
+    // a fresh challenge does not reset either.
+    mfa_verify_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
+    mfa_verify_ip_challenge: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_verify_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_verify_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_verify_challenge: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_enroll_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_code_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    mfa_code_user: { windowMs: 15 * 60 * 1000, limit: 5 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since

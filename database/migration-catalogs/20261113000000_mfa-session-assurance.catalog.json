@@ -1,0 +1,41 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "auth_sessions.mfa_generation",
+      "definition": {
+        "type": "uuid",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "auth_sessions.mfa_verified",
+      "definition": {
+        "type": "boolean",
+        "default": "false",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_mfa.mfa_generation",
+      "definition": {
+        "type": "uuid",
+        "default": "gen_random_uuid()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    }
+  ],
+  "removed": []
+}

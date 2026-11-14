@@ -3,6 +3,7 @@ const path = require('node:path');
 const { randomBytes } = require('node:crypto');
 const example = fs.readFileSync(path.resolve(__dirname, '../../.env.example'), 'utf8');
 const values = { JWT_SECRET: randomBytes(32).toString('hex'), RATE_LIMIT_KEY_SECRET: randomBytes(32).toString('hex'),
+    MFA_ENCRYPTION_KEY: randomBytes(32).toString('hex'),
     DB_PASSWORD: randomBytes(24).toString('hex'), MIGRATION_DB_PASSWORD: randomBytes(24).toString('hex') };
 const content = example.replace(/^([A-Z_]+)=(.*)$/gm, (line, key) => key in values ? `${key}=${values[key]}` : line);
 try {

@@ -12,6 +12,7 @@ export default function LoginPage() {
     const {
         getAccessToken,
         login, //performs complete login process
+        loginMfa, //completes login after the MFA challenge
         isAuthLoading //tells the from whether authentication is currently processing
     } = useContext(AuthContext);
 
@@ -20,6 +21,11 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState("");
+    // TOTP MFA: when the backend answers MFA_REQUIRED, the login form
+    // gives way to the code step. The challenge token lives only in
+    // this component's state until the code is submitted.
+    const [mfaChallenge, setMfaChallenge] = useState(null);
+    const [mfaCode, setMfaCode] = useState("");
     // Issue #9: when the backend reports an unverified account, the page
     // shows the resend panel for the attempted address instead of a
     // generic error. The branch is on the error CODE, never the text.
@@ -71,12 +77,39 @@ export default function LoginPage() {
                 navigate(await resumeUrl());
             }
         } catch (error) {
-            if (error.code === "EMAIL_NOT_VERIFIED") {
+            if (error.code === "MFA_REQUIRED") {
+                setMfaChallenge(error.challenge);
+            } else if (error.code === "MFA_ENROLLMENT_REQUIRED") {
+                // Admin-mandatory MFA (design §9): this account must
+                // enroll before it can sign in. Route to Settings →
+                // Security with the short-lived enrollment token; the
+                // token grants only enrollment and is spent there.
+                navigate("/settings", { state: { mfaEnrollToken: error.enrollToken } });
+            } else if (error.code === "EMAIL_NOT_VERIFIED") {
                 setUnverifiedEmail(email);
                 setResendStatus("idle");
             } else {
                 setLoginError(error.message);
             }
+        }
+    }
+
+    // Second step of login for an MFA-enrolled account: submit the
+    // authenticator code (or a recovery code) with the challenge.
+    // A wrong code is an ordinary login error; the challenge stays so
+    // the user can retry without re-entering their password.
+    const handleMfaSubmit = async (event) => {
+        event.preventDefault();
+        setLoginError("");
+
+        try {
+            const profile = await loginMfa(mfaChallenge, mfaCode);
+
+            if (profile) {
+                navigate(await resumeUrl());
+            }
+        } catch (error) {
+            setLoginError(error.message);
         }
     }
 
@@ -250,6 +283,157 @@ export default function LoginPage() {
                             Sign in to save your progress and personalize your study experience.
                         </p>
 
+                        {mfaChallenge && (
+                        <form
+                        onSubmit={handleMfaSubmit}
+                        className="
+                            mt-7
+                            space-y-5
+                        ">
+
+                            <div>
+                                <label
+                                htmlFor="mfa-code"
+                                className="
+                                    mb-1
+                                    block
+                                    text-[10px]
+                                    font-semibold
+                                    uppercase
+                                    tracking-[0.14em]
+                                    text-[var(--text-muted)]
+                                ">
+                                    Verification code
+                                </label>
+
+                                <input
+                                    id="mfa-code"
+                                    type="text"
+                                    inputMode="numeric"
+                                    value={mfaCode}
+                                    onChange={(event) => setMfaCode(event.target.value)}
+                                    autoComplete="one-time-code"
+                                    required
+                                    placeholder="6-digit code or recovery code"
+                                    className="
+                                        h-12
+                                        w-full
+                                        border-0
+                                        border-b
+                                        border-[var(--border-control)]
+                                        bg-transparent
+                                        px-0
+                                        text-[14px]
+                                        text-[var(--text-primary)]
+                                        outline-none
+                                        transition-colors
+                                        placeholder:text-[var(--text-muted)]
+                                        focus:border-[var(--color-brand)]
+                                        focus:ring-0
+                                    "
+                                />
+                            </div>
+
+                            <p className="
+                                text-[12px]
+                                leading-5
+                                text-[var(--text-muted)]
+                            ">
+                                Enter the 6-digit code from your authenticator app. If you just used a code, wait for the next one. A recovery code works here too if you cannot reach your authenticator.
+                            </p>
+
+                            {loginError && (
+                                <p
+                                    role="alert"
+                                    className="
+                                        rounded-lg
+                                        border
+                                        border-[var(--color-brand)]
+                                        bg-[var(--bg-selected)]
+                                        px-3
+                                        py-2.5
+                                        text-[11px]
+                                        leading-5
+                                        text-[var(--color-brand)]
+                                    "
+                                >
+                                    {loginError}
+                                </p>
+                            )}
+
+                            <button
+                                type="submit"
+                                disabled={isAuthLoading || isResuming}
+                                className="
+                                    group
+                                    mt-2
+                                    flex
+                                    h-12
+                                    w-full
+                                    items-center
+                                    justify-between
+                                    border
+                                    border-[var(--color-brand)]
+                                    bg-[var(--color-brand)]
+                                    px-5
+                                    text-[12px]
+                                    font-semibold
+                                    tracking-wide
+                                    text-white
+                                    transition-all
+                                    duration-200
+                                    hover:bg-transparent
+                                    hover:text-[var(--color-brand)]
+                                    disabled:cursor-not-allowed
+                                    disabled:opacity-60
+                                "
+                            >
+                                <span>
+                                    {isAuthLoading ? "Verifying..." : "Verify and sign in"}
+                                </span>
+
+                                {!isAuthLoading && (
+                                    <span
+                                        aria-hidden="true"
+                                        className="
+                                            text-[18px]
+                                            font-normal
+                                            transition-transform
+                                            duration-200
+                                            group-hover:translate-x-1
+                                        "
+                                    >
+                                        →
+                                    </span>
+                                )}
+                            </button>
+
+                            <p className="
+                                text-right
+                                text-[12px]
+                                text-[var(--text-muted)]
+                            ">
+                                <button
+                                    type="button"
+                                    onClick={() => { setMfaChallenge(null); setMfaCode(""); setLoginError(""); }}
+                                    className="
+                                        font-semibold
+                                        text-[var(--color-brand)]
+                                        underline
+                                        decoration-[var(--border-control)]
+                                        underline-offset-4
+                                        transition
+                                        hover:decoration-[var(--color-brand)]
+                                    "
+                                >
+                                    Back to sign in
+                                </button>
+                            </p>
+
+                        </form>
+                        )}
+
+                        {!mfaChallenge && (
                         <form 
                         onSubmit={handleSubmit}
                         className="
@@ -491,6 +675,7 @@ export default function LoginPage() {
                             </button>
 
                         </form>
+                        )}
 
                         <p className="
                             mt-8
