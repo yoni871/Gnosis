@@ -230,5 +230,156 @@
     "verification": "verified",
     "verificationDetail": "Page opened and read 2026-11-12: lamassu as colossal protective deity, human-headed winged bull, installed as threshold guardian at the ceremonial gates of the Northwest Palace of Ashurnasirpal II at Nimrud (883–859 BCE), three to four meters tall; British Museum acc. nos. 118802–118873. Cited for the guardian-threshold pattern only; the cherubim are NOT identified with lamassu.",
     "licenseNote": "Original summary and citation only."
+  },
+  "source-gunkel-genesis": {
+    "id": "source-gunkel-genesis",
+    "author": "Hermann Gunkel",
+    "title": "Genesis übersetzt und erklärt (Handkommentar zum Alten Testament)",
+    "publisher": "Vandenhoeck & Ruprecht",
+    "year": 1922,
+    "pagesOrSection": "5th edition; '2. Qain und Abel 4(1) 2–16,' pp. 41–48",
+    "url": "https://archive.org/details/genesisbersetz01gunk",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-14 (archive.org genesisbersetz01gunk, 5th edition Göttingen 1922 — the plan's '1902' corrected): Gen 4:1–16 commentary pp. 41–48; the mark naturally on Cain's body; the material (animal vs vegetable) explanation; the Kenites identification after Ed. Meyer; Gen 4:6–7 probably corrupt.",
+    "licenseNote": "Public domain (1922); original summary and citation only."
+  },
+  "source-clarke-commentary": {
+    "id": "source-clarke-commentary",
+    "author": "Adam Clarke",
+    "title": "The Holy Bible… with a Commentary and Critical Notes",
+    "year": "1810–1826",
+    "pagesOrSection": "Commentary on Genesis 4 vv. 1–13 (BibleHub)",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-14 (BibleHub Clarke, Genesis 4): Gen 4:7 sin-offering reading ('a sin-offering lieth at thy door'); 4:7b antecedent is Abel (primogeniture); Heb 11:4 faith reading; Cain's fault was bringing no sin-offering. Gen 4 vv. 1–13 only.",
+    "licenseNote": "Public domain; original summary and citation only."
+  },
+  "source-jfb-commentary": {
+    "id": "source-jfb-commentary",
+    "author": "Robert Jamieson, Andrew Robert Fausset, David Brown",
+    "title": "Commentary Critical and Explanatory on the Whole Bible",
+    "year": 1871,
+    "pagesOrSection": "Commentary on Genesis 4:7 only (BibleHub)",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-14 (BibleHub JFB, Genesis 4): Gen 4:7 only — the sin-offering interpretation ('a sin offering crouching… shall by its blood expiate thy sin'), judged by JFB 'the true one'; the masculine participle explained by a male lamb. No other Gen 4 verse consulted.",
+    "licenseNote": "Public domain; original summary and citation only."
+  },
+  "source-christ-over-all-genesis-4-7": {
+    "id": "source-christ-over-all-genesis-4-7",
+    "author": "Christ Over All",
+    "title": "The Cross in Genesis 4.7",
+    "publisher": "christoverall.com",
+    "pagesOrSection": "Full article",
+    "verification": "verified",
+    "verificationDetail": "Full article read 2026-11-14 (christoverall.com): contemporary confessional article, not peer-reviewed; argues the sin-offering translation of Gen 4:7 on lexical, grammatical, and contextual grounds; 4:7b pronoun is Abel (citing Turretin, second-hand). HALOT 306 and DCH 3:198–200 are cited second-hand via this article — neither was consulted.",
+    "licenseNote": "All rights reserved; original summary and citation only."
+  },
+  "source-etcsl-sheep-and-grain": {
+    "id": "source-etcsl-sheep-and-grain",
+    "author": "Electronic Text Corpus of Sumerian Literature (ETCSL)",
+    "title": "The debate between Grain and Sheep (ETCSL 5.3.2)",
+    "publisher": "University of Oxford",
+    "pagesOrSection": "ETCSL 5.3.2, full translation (193 lines); manuscripts Old Babylonian, c. 1900–1600 BCE, predominantly Nippur",
+    "url": "https://etcsl.orinst.ox.ac.uk/cgi-bin/etcsl.cgi?text=t.5.3.2#",
+    "verification": "verified",
+    "verificationDetail": "Full translation opened and read 2026-11-14: the sisters Grain and Sheep dispute which sustains the land; Enki proposes the verdict to Enlil (lines 180–193); Grain declared the greater; the sisters 'stand together'. CDLI composite Q000761 confirms the manuscript picture (Old Babylonian, Nippur). No offering, no rejection, no murder in the poem.",
+    "licenseNote": "Paraphrase with credit; verify project licensing before reproducing translations at length."
+  },
+  "source-oracc-nebuchadnezzar-011": {
+    "id": "source-oracc-nebuchadnezzar-011",
+    "author": "Nebuchadnezzar II",
+    "title": "Nebuchadnezzar II 011 (ORACC RIBO Q005482)",
+    "publisher": "ORACC",
+    "pagesOrSection": "Full inscription; reigned 604–562 BCE; Borsippa/Babylon",
+    "url": "https://oracc.museum.upenn.edu/ribo/Q005482",
+    "verification": "verified",
+    "verificationDetail": "Full inscription opened and read 2026-11-14: daily provisioning for the table of Nabû and Nanāya — one fattened prize bull, sixteen prime quality pasillu-sheep, fish, birds, eggs, honey, ghee, milk, oil, beer, wine (col. iii 3′); ginû-offerings (col. iii 15′–17′); grain stockpiling (col. iv 25′–28′). Grain as bulk staple of divine provisioning, alongside meat.",
+    "licenseNote": "Paraphrase with credit; verify project-specific licensing before reproducing translations."
+  },
+  "source-oracc-saa-07-212": {
+    "id": "source-oracc-saa-07-212",
+    "author": "State Archives of Assyria 7 (Fales & Postgate)",
+    "title": "Aššur Temple Offerings, Day 25 (SAA 07 212; tablet ADD 1013)",
+    "publisher": "ORACC",
+    "pagesOrSection": "Full text; 7th century BCE, Aššur temple",
+    "url": "http://oracc.museum.upenn.edu/asbp/P335834",
+    "verification": "verified",
+    "verificationDetail": "Full text opened and read 2026-11-14: one day's offerings — whole/fattened sheep, cuts of meat, loaves, beers, seeds, dates; ginû loaves as regular offerings; first-fruits are dates imposed by the king on Akkad (rev. 12–13), not firstborn livestock.",
+    "licenseNote": "Paraphrase with credit; verify project-specific licensing before reproducing translations."
+  },
+  "source-hammurabi-code": {
+    "id": "source-hammurabi-code",
+    "author": "Hammurabi",
+    "title": "Code of Hammurabi (King translation)",
+    "publisher": "Hanover College (History Dept.)",
+    "pagesOrSection": "Full code (reign c. 1792–1750 BCE, Middle Chronology; stele Louvre Sb 8)",
+    "url": "http://history.hanover.edu/courses/excerpts/211ham.html",
+    "verification": "verified",
+    "verificationDetail": "King translation opened in full via Hanover 2026-11-14 (prologue, laws 1–282 with ellipses in that excerpt, epilogue): no general murder law; §§1–5 procedure (elders, oath, ordeal); §§23–24 city pays 1 mina for an unsolved killing; §§206–214 brawl/oath/compensation; §153 impalement (only clear deliberate-murder case); §§229–231 negligence; §§250–252 goring ox. §§226–227 and §146 (abbuttum) were consulted only via search-result text of the Harper/King translations and eHammurabi, not opened in full — the abbuttum form claim is probable, not verified from this source.",
+    "licenseNote": "Public domain translation; original summary and citation only."
+  },
+  "source-bloch-blood-vengeance": {
+    "id": "source-bloch-blood-vengeance",
+    "author": "Yigal Bloch",
+    "title": "Blood Vengeance in Ancient Near Eastern Context",
+    "publisher": "TheTorah.com",
+    "year": 2022,
+    "pagesOrSection": "Full article, including footnotes",
+    "url": "https://thetorah.com/article/blood-vengeance-in-ancient-near-eastern-context",
+    "verification": "verified",
+    "verificationDetail": "Full article opened and read 2026-11-14: Barmash's thesis (southern Babylonian state procedure vs. northern blood feud; no blood avenger in OB Babylonia) as quoted in the article; Mari letters A.697 and A.3680 and dīn napištim compensation second-hand via the article (Durand and the Akkadian not read). The article itself is verified; the Mari letters and Roth translations it cites are second-hand.",
+    "licenseNote": "Original summary and citation only."
+  },
+  "source-encyclopedia-crime-punishment": {
+    "id": "source-encyclopedia-crime-punishment",
+    "author": "Encyclopedia.com",
+    "title": "Crime and Punishment",
+    "publisher": "Encyclopedia.com",
+    "pagesOrSection": "Full article",
+    "url": "https://www.encyclopedia.com/history/news-wires-white-papers-and-books/crime-and-punishment-2",
+    "verification": "verified",
+    "verificationDetail": "Full article opened and read 2026-11-14 (synthesis of Roth, Hoffner, Finkelstein/Jacobsen, Wiseman): Middle Assyrian Laws A §10/B §2 (victim's kin chooses killing or compensation) and Hittite Laws §§1–6 plus Telipinu §49 (lord of the blood chooses) as quoted there from Roth/Hoffner, whose editions were not opened — the laws are presented as probable, not verified from the primary editions. The Nippur trial tablet itself was not opened (second-hand via Finkelstein, ANET 542, and Jacobsen 1970 as cited there).",
+    "licenseNote": "Original summary and citation only."
+  },
+  "source-austin-gobeil-tattooed-mummy": {
+    "id": "source-austin-gobeil-tattooed-mummy",
+    "author": "Anne Austin and Cédric Gobeil",
+    "title": "Embodying the Divine: A Tattooed Female Mummy from Deir el-Medina",
+    "publisher": "Bulletin de l'Institut français d'archéologie orientale (BIFAO) 116",
+    "year": 2017,
+    "pagesOrSection": "pp. 23–46",
+    "url": "https://www.ifao.egnet.net/bifao/116/03",
+    "verification": "verified",
+    "verificationDetail": "Full text opened and read 2026-11-14 (BIFAO 116: 23–46): torso of a female mummy (aged 25–34; Ramesside, some early 21st Dynasty burials, roughly 13th–11th centuries BC) with at least 30 tattoos (wadjet-eyes, seated baboons, nefer-signs, snakes) on neck, shoulders, arms, and back; the authors' 'drawn amulet' / prophylactic reading (p. 28) is their argued interpretation, not a textual statement; the practitioner reading is probable/debated and the Hathor-devotee reading has 'no definitive evidence'.",
+    "licenseNote": "All rights reserved; original summary and citation only. Do not reproduce figures."
+  },
+  "source-smiths-seven": {
+    "id": "source-smiths-seven",
+    "author": "William Smith (ed.)",
+    "title": "'Seven' (Smith's Dictionary of the Bible)",
+    "year": 1863,
+    "pagesOrSection": "'Seven' entry",
+    "verification": "verified",
+    "verificationDetail": "Full entry read 2026-11-14: 'Seven is used for any round number, or for completeness, as we say a dozen'. Cited for the completeness gloss on Gen 4:15's 'sevenfold' only; none of the five verified modern commentaries reads 4:15 this way.",
+    "licenseNote": "Public domain; original summary and citation only."
+  },
+  "source-ats-seven": {
+    "id": "source-ats-seven",
+    "author": "American Tract Society",
+    "title": "'Seven' (American Tract Society Bible Dictionary)",
+    "year": 1859,
+    "pagesOrSection": "'Seven' entry",
+    "verification": "verified",
+    "verificationDetail": "Full entry read 2026-11-14: 'seven times, or sevenfold, means often, abundantly, completely, Genesis 4:15, 24'. Cited for the completeness gloss only; not the modern commentaries' reading.",
+    "licenseNote": "Public domain; original summary and citation only."
+  },
+  "source-easton-seven": {
+    "id": "source-easton-seven",
+    "author": "Matthew George Easton",
+    "title": "'Seven' (Illustrated Bible Dictionary)",
+    "year": 1897,
+    "pagesOrSection": "'Seven' entry",
+    "verification": "verified",
+    "verificationDetail": "Full entry read 2026-11-14: seven as 'the symbol of perfection, and also the symbol of rest… used also to mean abundantly (Genesis 4:15, 24)'. Cited for the completeness gloss only; not the modern commentaries' reading.",
+    "licenseNote": "Public domain; original summary and citation only."
   }
 }
