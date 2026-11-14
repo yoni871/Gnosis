@@ -450,5 +450,62 @@
     "verification": "verified",
     "verificationDetail": "Full page read 2026-11-14 for the Lyres of Ur passage: nine lyres, two harps, silver double flute from the Royal Cemetery at Ur, carbon dated c. 2600–2500 BCE. The Met 'Ur: The Royal Graves' essay itself was not opened.",
     "licenseNote": "CC BY-SA; paraphrase with credit."
+  },
+  "source-nets-septuagint-genesis": {
+    "id": "source-nets-septuagint-genesis",
+    "author": "Albert Pietersma and Benjamin G. Wright (eds.); Genesis translated by John William Wevers",
+    "title": "A New English Translation of the Septuagint: Genesis",
+    "publisher": "Oxford University Press",
+    "year": 2007,
+    "pagesOrSection": "Genesis 5 (Wevers translation, based on the Göttingen edition)",
+    "verification": "verified",
+    "verificationDetail": "Genesis 5 read in full 2026-11-14: Methuselah 167/802/969 (5:25-27), Lamech 188/565/753, creation-to-Flood total 2242. NETS states it is based on Wevers' Göttingen edition (1974); no NETS footnote altering 5:25 was seen. The Göttingen edition itself was not directly consulted.",
+    "licenseNote": "Brief quotation for scholarly citation only; paraphrase otherwise."
+  },
+  "source-young-septuagint-masoretic-chronology": {
+    "id": "source-young-septuagint-masoretic-chronology",
+    "author": "John A. Young",
+    "title": "Septuagintal Versus Masoretic Chronology in Genesis 5 and 11",
+    "publisher": "Proceedings of the Fifth International Conference on Creationism (Creation Science Fellowship)",
+    "year": 2003,
+    "pagesOrSection": "Paper 29 (table on printed p. 420; full page range not confirmed)",
+    "url": "https://cedarville.tind.io/record/21005/files/ICC5_29_Septuagintal_Versus_Masoretic_Chronology.pdf",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-14: the SP table (Jared 62/785/847, Methuselah 67/653/720, Lamech 53/600/653) and the LXX table (Methuselah 167/802/969; Flood 2242), the Göttingen apparatus content for 167/802 vs 187/782, and the judgement that deciding between 167 and 187 is premature. Cited second-hand through Young for Hendel 1998, Klein 1974, Rahlfs 1935, Brooke-McLean-Thackeray 1906 — none read directly.",
+    "licenseNote": "Paraphrase only; numbers/tables are facts and may be reproduced as data with citation."
+  },
+  "source-smith-methuselah-begetting-age": {
+    "id": "source-smith-methuselah-begetting-age",
+    "author": "Henry B. Smith Jr.",
+    "title": "Methuselah's Begetting Age in Genesis 5:25 and the Primeval Chronology of the Septuagint: A Closer Look at the Textual and Historical Evidence",
+    "publisher": "Answers Research Journal",
+    "year": 2017,
+    "pagesOrSection": "Answers Research Journal 10 (2017): 169-179",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-14. Cited for the case that 187 is the original LXX reading only. The same author's 2017 assertion that Papyri 911 and 961 preserve 187 was retracted in 2026; do NOT cite Smith 2017 for the papyri.",
+    "licenseNote": "Paraphrase only."
+  },
+  "source-adamtoabraham-methuselah-flood": {
+    "id": "source-adamtoabraham-methuselah-flood",
+    "author": "adamtoabraham.com",
+    "title": "Did Methuselah Survive the Flood? The Septuagint's 167 vs. 187-Year Mystery — Part 1",
+    "publisher": "adamtoabraham.com",
+    "year": 2026,
+    "pagesOrSection": "Published 2026-09-05, updated 2026-09-28",
+    "url": "https://adamtoabraham.com/2026/09/05/did-methuselah-survive-the-flood-the-septuagints-167-vs-187-year-mystery-part-1/",
+    "verification": "verified",
+    "verificationDetail": "Full article read 2026-11-14. A recent web source, not a peer-reviewed publication — used for the Göttingen apparatus summary and image (Wevers 1974, p. 106), the Papyrus 911 line-length re-analysis, Smith's 2026 retraction (endnote 12), and the Eusebius/Theophilus/Jerome/Augustine reception notes. Cite Wevers/Young/Smith for the underlying claims wherever they support them.",
+    "licenseNote": "Paraphrase only; cite by URL."
+  },
+  "source-djd-xii-qumran-cave-4": {
+    "id": "source-djd-xii-qumran-cave-4",
+    "author": "Emanuel Ulrich and Frank Moore Cross (eds.); 4QGen-b published by J. R. Davila",
+    "title": "Qumran Cave 4.VII: Genesis to Numbers (Discoveries in the Judaean Desert XII)",
+    "publisher": "Clarendon Press",
+    "year": 1994,
+    "pagesOrSection": "4QGen-b (4Q2), pp. 31-38, pls. VI-VIII",
+    "verification": "not-independently-verified",
+    "verificationDetail": "DJD XII pp. 31-38 NOT read directly this session (tier b): the 4QGen-b contents (Gen 1:1-27; 2:14-19; 4:2-4; 5:13) are established via Young 2003 (citing Scanlin 1993 and DJD XII, pp. 31-37) and catalogue listings. Cited only for the fragment's contents and the negative result (one word from Gen 5, the name Cainan; no genealogy numbers).",
+    "licenseNote": "Paraphrase only; contents list is factual."
   }
 }

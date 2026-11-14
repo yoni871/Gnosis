@@ -23,6 +23,11 @@
       "eventId": "event-cains-descendants",
       "narrativeOrder": 4,
       "bookNote": "Genesis 4:17–24 traces Cain's line after exile: the first city, named for Enoch, and the crafts and song of Lamech's household. No independently established event date is assigned."
+    },
+    {
+      "eventId": "event-seth-early-generations",
+      "narrativeOrder": 5,
+      "bookNote": "Genesis 4:25–5:32 moves from Seth's birth to a ten-generation genealogy ending with Noah. The passage records long lives and repeated deaths, with Enoch as the exception, and no independently established date is assigned."
     }
   ]
 }

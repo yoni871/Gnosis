@@ -155,11 +155,12 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         const manifest = readManifest(sandbox);
         expect(manifest.includeUnpublished).toBe(true);
         // The sandbox flips Creation to in-review; the shipped Cain and
-        // Abel and Cain's Descendants events are in-review too, so the
-        // dev opt-in includes all four events.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
+        // Abel, Cain's Descendants, and Seth events are in-review too,
+        // so the dev opt-in includes all five events.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-seth-early-generations"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
+        expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "seth-early-generations.json"))).toBe(true);
     });
 
     it("dev-opt-in generation strips the claims register from the generated event JSON", () => {
@@ -221,9 +222,9 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         });
         expect(result.status).toBe(0);
         // The sandbox flips Creation to in-review; the shipped Cain and
-        // Abel and Cain's Descendants events are in-review too, so the
-        // dev opt-in includes all four events.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
+        // Abel, Cain's Descendants, and Seth events are in-review too,
+        // so the dev opt-in includes all five events.
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
     });
 
@@ -328,21 +329,26 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
         // Adam and Eve is published now, so the sandbox's non-published
-        // Adam and Eve is published now, so the sandbox's non-published
-        // events are the shipped in-review Cain and Abel and Cain's
-        // Descendants events and Creation (flipped to in-review by
-        // makeSandbox) — listed first, then the sources cited only by
-        // them, in citation order per event (file order: cain-and-abel,
-        // cains-descendants, creation). McDowell, Met, and ORACC are no
+        // events are the shipped in-review Cain and Abel, Cain's
+        // Descendants, and Seth events and Creation (flipped to
+        // in-review by makeSandbox) — listed first, then the sources
+        // cited only by them, in citation order per event (file order:
+        // cain-and-abel, cains-descendants, creation,
+        // seth-early-generations). McDowell, Met, and ORACC are no
         // longer unpublished-only: the published Adam and Eve event
         // cites them too. BDB, Keil, Ryle, Skinner, and Westermann are
         // likewise shared with published Adam and Eve, so Cain's
         // Descendants contributes only its six new sources. Brown,
         // Crouch, and Shabaka follow in Creation's citation order.
+        // Seth cites six sources no published event cites, but the
+        // Sumerian King List is already listed under Cain's
+        // Descendants (which sorts first), so Seth's group shows its
+        // other five, in citation order.
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-cain-and-abel", kind: "event", status: "in-review", title: "Cain and Abel" },
             { id: "event-cains-descendants", kind: "event", status: "in-review", title: "Cain's Descendants" },
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
+            { id: "event-seth-early-generations", kind: "event", status: "in-review", title: "Seth and the Early Generations" },
             {
                 id: "source-etcsl-sheep-and-grain",
                 kind: "source",
@@ -480,6 +486,36 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
             },
+            {
+                id: "source-nets-septuagint-genesis",
+                kind: "source",
+                status: "unpublished-only",
+                title: "A New English Translation of the Septuagint: Genesis",
+            },
+            {
+                id: "source-young-septuagint-masoretic-chronology",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Septuagintal Versus Masoretic Chronology in Genesis 5 and 11",
+            },
+            {
+                id: "source-smith-methuselah-begetting-age",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Methuselah's Begetting Age in Genesis 5:25 and the Primeval Chronology of the Septuagint: A Closer Look at the Textual and Historical Evidence",
+            },
+            {
+                id: "source-adamtoabraham-methuselah-flood",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Did Methuselah Survive the Flood? The Septuagint's 167 vs. 187-Year Mystery — Part 1",
+            },
+            {
+                id: "source-djd-xii-qumran-cave-4",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Qumran Cave 4.VII: Genesis to Numbers (Discoveries in the Judaean Desert XII)",
+            },
             // source-kantor-genesis-opening is deliberately absent: it is
             // kept unreferenced in the shared registry (editorial
             // corrections, 2026-11-11) so no event cites it, and the gate
@@ -495,13 +531,13 @@ describe("checkHistoryGate — claims detector", () => {
     // fixture source still carries Adam and Eve's full 35-claim
     // register (including unverified 028 and 030b); generation strips
     // it, and these tests prove the gate catches it if it ever leaks.
-    // Cain and Abel and Cain's Descendants are flipped to published
-    // here too, so the sandbox has no non-published records at all —
-    // otherwise their in-review status would take the gate down the
-    // other path.
+    // Cain and Abel, Cain's Descendants, and Seth are flipped to
+    // published here too, so the sandbox has no non-published records
+    // at all — otherwise their in-review status would take the gate
+    // down the other path.
     function makeAllPublishedSandbox() {
         const sandbox = makeSandbox();
-        for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json"]) {
+        for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json", "seth-early-generations.json"]) {
             const eventPath = path.join(sandbox, "src", "content", "history", "events", name);
             const event = JSON.parse(readFileSync(eventPath, "utf8"));
             event.status = "published";
@@ -521,7 +557,7 @@ describe("checkHistoryGate — claims detector", () => {
     function buildPublished(sandbox) {
         const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     }
 
@@ -679,6 +715,8 @@ describe("historyGatePlugin — the direct vite build path", () => {
         const text = distText(sandbox);
         expect(text).not.toContain("event-creation");
         expect(text).not.toContain("Creation");
+        expect(text).not.toContain("event-seth-early-generations");
+        expect(text).not.toContain("Seth and the Early Generations");
         expect(text).not.toContain("source-brown-cosmic-temple");
         expect(text).not.toContain("The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3");
         // The postbuild gate passes on the result as well.
