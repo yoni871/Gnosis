@@ -155,9 +155,9 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         const manifest = readManifest(sandbox);
         expect(manifest.includeUnpublished).toBe(true);
         // The sandbox flips Creation to in-review; the shipped Cain and
-        // Abel event is in-review too, so the dev opt-in includes all
-        // three events.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
+        // Abel and Cain's Descendants events are in-review too, so the
+        // dev opt-in includes all four events.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
     });
@@ -221,9 +221,9 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         });
         expect(result.status).toBe(0);
         // The sandbox flips Creation to in-review; the shipped Cain and
-        // Abel event is in-review too, so the dev opt-in includes all
-        // three events.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
+        // Abel and Cain's Descendants events are in-review too, so the
+        // dev opt-in includes all four events.
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
     });
 
@@ -328,14 +328,20 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
         // Adam and Eve is published now, so the sandbox's non-published
-        // events are the shipped in-review Cain and Abel event and
-        // Creation (flipped to in-review by makeSandbox) — listed first,
-        // then the sources cited only by them, in citation order.
-        // McDowell, Met, and ORACC are no longer unpublished-only:
-        // the published Adam and Eve event cites them too. Brown,
+        // Adam and Eve is published now, so the sandbox's non-published
+        // events are the shipped in-review Cain and Abel and Cain's
+        // Descendants events and Creation (flipped to in-review by
+        // makeSandbox) — listed first, then the sources cited only by
+        // them, in citation order per event (file order: cain-and-abel,
+        // cains-descendants, creation). McDowell, Met, and ORACC are no
+        // longer unpublished-only: the published Adam and Eve event
+        // cites them too. BDB, Keil, Ryle, Skinner, and Westermann are
+        // likewise shared with published Adam and Eve, so Cain's
+        // Descendants contributes only its six new sources. Brown,
         // Crouch, and Shabaka follow in Creation's citation order.
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-cain-and-abel", kind: "event", status: "in-review", title: "Cain and Abel" },
+            { id: "event-cains-descendants", kind: "event", status: "in-review", title: "Cain's Descendants" },
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
             {
                 id: "source-etcsl-sheep-and-grain",
@@ -422,6 +428,41 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "'Seven' (Illustrated Bible Dictionary)",
             },
             {
+                id: "source-etcsl-sumerian-king-list",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Sumerian King List (ETCSL 2.1.1)",
+            },
+            {
+                id: "source-jvl-kenite",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Kenite (Encyclopaedia Judaica)",
+            },
+            {
+                id: "source-maarten-eisegesis",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Genesis 4:17–24: A Case-Study in Eisegesis",
+            },
+            {
+                id: "source-met-nahal-mishmar",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Nahal Mishmar Treasure",
+            },
+            {
+                id: "source-met-uruk-first-city",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Uruk: The First City",
+            },
+            {
+                id: "source-wikipedia-musical-instrument",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Musical instrument",
+            },            {
                 id: "source-brown-cosmic-temple",
                 kind: "source",
                 status: "unpublished-only",
@@ -448,15 +489,19 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
 });
 
 describe("checkHistoryGate — claims detector", () => {
-    // A sandbox where ALL events are published: the claims detector
+    // A sandbox where ALL FOUR events are published: the claims detector
     // must fire on this all-published path, where the gate's
     // non-published early return would otherwise stand it down. The
     // fixture source still carries Adam and Eve's full 35-claim
     // register (including unverified 028 and 030b); generation strips
     // it, and these tests prove the gate catches it if it ever leaks.
+    // Cain and Abel and Cain's Descendants are flipped to published
+    // here too, so the sandbox has no non-published records at all —
+    // otherwise their in-review status would take the gate down the
+    // other path.
     function makeAllPublishedSandbox() {
         const sandbox = makeSandbox();
-        for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json"]) {
+        for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json"]) {
             const eventPath = path.join(sandbox, "src", "content", "history", "events", name);
             const event = JSON.parse(readFileSync(eventPath, "utf8"));
             event.status = "published";
@@ -476,7 +521,7 @@ describe("checkHistoryGate — claims detector", () => {
     function buildPublished(sandbox) {
         const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-creation"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     }
 

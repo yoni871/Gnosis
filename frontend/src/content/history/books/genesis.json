@@ -18,6 +18,11 @@
       "eventId": "event-cain-and-abel",
       "narrativeOrder": 3,
       "bookNote": "Genesis 4:1–16 tells the first births, the offerings, the warning, the murder, the curse, and the protective mark, ending with Cain's departure to Nod, east of Eden. No independently established event date is assigned."
+    },
+    {
+      "eventId": "event-cains-descendants",
+      "narrativeOrder": 4,
+      "bookNote": "Genesis 4:17–24 traces Cain's line after exile: the first city, named for Enoch, and the crafts and song of Lamech's household. No independently established event date is assigned."
     }
   ]
 }
