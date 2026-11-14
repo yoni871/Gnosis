@@ -2,7 +2,8 @@
 //
 // Desktop: a wide study workspace — a compact left rail (Story /
 // Context / Connections, Sources pinned at the bottom), a spacious
-// reading column, an optional Scripture companion beside the content,
+// reading column, a Scripture companion beside the content (open by
+// default with the event's primary passage, closable and reopenable),
 // and a slim timeline along the bottom. Mobile (≤768px): the previously
 // approved single-column design — a bottom sheet at 45dvh collapsed /
 // 85dvh expanded (the OriginalLanguageModal pattern: createPortal,
@@ -48,7 +49,15 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
     const [activeTab, setActiveTab] = useState("overview");
     const [sections, setSections] = useState(null);
     const [sectionsError, setSectionsError] = useState("");
-    const [companionPassage, setCompanionPassage] = useState(null);
+    // The companion opens by default with the event's primary passage
+    // (Creation: Genesis 1:1–2:3), so the reader meets the Scripture
+    // beside the Story without a click — and only that passage, never
+    // a whole chapter. companionAutoOpened tracks whether the current
+    // open is that initial default: the companion must not steal focus
+    // from the panel's own close button on mount, but a companion the
+    // user opens (or reopens) focuses its close control as before.
+    const [companionPassage, setCompanionPassage] = useState(event.primaryScripture ?? null);
+    const [companionAutoOpened, setCompanionAutoOpened] = useState(Boolean(event.primaryScripture));
     const [isSheetExpanded, setIsSheetExpanded] = useState(false);
     const [sheetDragOffset, setSheetDragOffset] = useState(0);
     const sheetDragStartYRef = useRef(null);
@@ -99,6 +108,7 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
 
     const closeCompanion = useCallback(() => {
         setCompanionPassage(null);
+        setCompanionAutoOpened(false);
         scriptureButtonRef.current?.focus();
     }, []);
 
@@ -285,9 +295,6 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                                         : "Verified — unpublished editorial content"}
                             </p>
                         )}
-                        {event.bookNote && (
-                            <p className="history-panel-book-note">{event.bookNote}</p>
-                        )}
                     </div>
                     <div className="history-study-actions">
                         <button
@@ -336,7 +343,7 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                                 aria-labelledby={`history-tab-${activeSection.id}`}
                             >
                                 {activeTab === "overview" && (
-                                    <HistoryOverview sections={sections} />
+                                    <HistoryOverview sections={sections} event={event} />
                                 )}
                                 {activeTab === "ancient-world" && (
                                     <HistoryAncientWorld subsections={sections.ancientWorldSubsections} />
@@ -354,6 +361,7 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                                 key={formatScriptureRange(companionPassage)}
                                 passage={companionPassage}
                                 onClose={closeCompanion}
+                                focusCloseOnOpen={!companionAutoOpened}
                             />
                         )}
                     </div>
@@ -362,6 +370,7 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                             key={formatScriptureRange(companionPassage)}
                             passage={companionPassage}
                             onClose={closeCompanion}
+                            focusCloseOnOpen={!companionAutoOpened}
                         />
                     )}
                 </div>

@@ -139,6 +139,10 @@ describe("BiblicalHistoryBookPage", () => {
         const user = userEvent.setup();
         renderBook("/biblical-history/genesis/adam-and-eve");
         expect(screen.getByRole("dialog", { name: "Adam and Eve" })).toBeInTheDocument();
+        // The companion opens by default, so the first Escape closes it
+        // and only the second closes the panel.
+        await user.keyboard("{Escape}");
+        await waitFor(() => expect(screen.queryByRole("heading", { name: "Genesis 2:4–3:24" })).toBeNull());
         await user.keyboard("{Escape}");
         await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
         // Close lands on the index book directory with the directory

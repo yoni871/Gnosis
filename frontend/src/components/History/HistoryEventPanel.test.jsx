@@ -24,6 +24,10 @@ vi.mock("../../services/bibleService", () => ({
             ? [{ verse_number: 1, text: "In the beginning God created the heavens and the earth." }]
             : [{ verse_number: 1, text: "Thus the heavens and the earth were finished." }],
     ),
+    getTranslations: vi.fn(async () => [
+        { abbreviation: "KJV", name: "King James Version" },
+        { abbreviation: "ESV", name: "English Standard Version" },
+    ]),
 }));
 
 const FIXTURE_EVENT = {
@@ -96,9 +100,24 @@ describe("HistoryEventPanel", () => {
         expect(screen.getByText("Development content — not researched editorial content")).toBeInTheDocument();
         // The date label appears twice: the panel header and the timeline node.
         expect(screen.getAllByText("No established date")).toHaveLength(2);
-        expect(screen.getByText("The opening of the biblical story.")).toBeInTheDocument();
         await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
+        // The book note lives in the Story's Key Takeaway, which renders
+        // with the sections — not in the panel header.
+        expect(screen.getByText("The opening of the biblical story.")).toBeInTheDocument();
         expect(screen.getByText("Why it matters prose.")).toBeInTheDocument();
+    });
+
+    it("shows the event's book note as the Story's Key Takeaway, and only there", async () => {
+        renderPanel();
+        await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
+        expect(screen.getByRole("heading", { name: "The Story" })).toBeInTheDocument();
+        expect(screen.getByText("Key Takeaway")).toBeInTheDocument();
+        // The book note appears once — in the takeaway, not repeated in
+        // the panel header.
+        expect(screen.getAllByText("The opening of the biblical story.")).toHaveLength(1);
+        expect(document.querySelector(".history-takeaway")).toHaveTextContent(
+            "The opening of the biblical story.",
+        );
     });
 
     it("renders the in-review badge for researched unpublished content", async () => {
@@ -183,14 +202,23 @@ describe("HistoryEventPanel", () => {
         expect(screen.getByText(/A Hebrew and English Lexicon of the Old Testament/)).toBeInTheDocument();
     });
 
-    it("opens the primary passage from the header Scripture button; Escape closes the companion first", async () => {
+    it("opens with the primary passage by default; the Scripture button toggles it; Escape closes the companion first", async () => {
         const user = userEvent.setup();
         const onClose = vi.fn();
         renderPanel({ onClose });
         await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
+        // Default open: the primary passage is already beside the Story,
+        // with only the cited verses.
+        expect(await screen.findByRole("heading", { name: "Genesis 1:1–2:3" })).toBeInTheDocument();
+        expect(screen.getByText("In the beginning God created the heavens and the earth.")).toBeInTheDocument();
+        expect(screen.getByTestId("history-scripture-button")).toHaveAttribute("aria-expanded", "true");
+        // The button closes it; clicking again reopens it.
+        await user.click(screen.getByTestId("history-scripture-button"));
+        await waitFor(() => expect(screen.queryByRole("heading", { name: "Genesis 1:1–2:3" })).toBeNull());
+        expect(screen.getByTestId("history-scripture-button")).toHaveAttribute("aria-expanded", "false");
         await user.click(screen.getByTestId("history-scripture-button"));
         expect(await screen.findByRole("heading", { name: "Genesis 1:1–2:3" })).toBeInTheDocument();
-        expect(screen.getByTestId("history-scripture-button")).toHaveAttribute("aria-expanded", "true");
+        // Escape closes the companion first (the panel stays open).
         await user.keyboard("{Escape}");
         await waitFor(() => expect(screen.queryByRole("heading", { name: "Genesis 1:1–2:3" })).toBeNull());
         expect(onClose).not.toHaveBeenCalled();
@@ -231,6 +259,10 @@ describe("HistoryEventPanel", () => {
         const opener = screen.getByRole("button", { name: "Open Creation" });
         await user.click(opener);
         await waitFor(() => expect(screen.getByRole("dialog", { name: "Creation" })).toBeInTheDocument());
+        // The companion opens by default, so the first Escape closes it
+        // and only the second closes the panel.
+        await user.keyboard("{Escape}");
+        await waitFor(() => expect(screen.queryByRole("heading", { name: "Genesis 1:1–2:3" })).toBeNull());
         await user.keyboard("{Escape}");
         expect(onClose).toHaveBeenCalled();
         await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
@@ -281,6 +313,10 @@ describe("HistoryEventPanel — close returns focus to the index book entry", ()
         expect(link).not.toBeNull();
         await user.click(link);
         await waitFor(() => expect(screen.getByRole("dialog", { name: "Creation" })).toBeInTheDocument());
+        // The companion opens by default, so the first Escape closes it
+        // and only the second closes the panel.
+        await user.keyboard("{Escape}");
+        await waitFor(() => expect(screen.queryByRole("heading", { name: "Genesis 1:1–2:3" })).toBeNull());
         await user.keyboard("{Escape}");
         await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
         // Close lands on the index book directory, not the retired book
