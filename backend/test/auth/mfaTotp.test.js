@@ -5,6 +5,7 @@ const {
     generateTotpSecret,
     buildOtpAuthUrl,
     generateTotpCode,
+    generateTotpCodeForStep,
     verifyTotpCode,
 } = require("../../src/utils/mfaTotp");
 
@@ -43,4 +44,24 @@ test("the otpauth URL names Gnosis and carries the secret, never a code", () => 
     assert.ok(url.startsWith("otpauth://totp/Gnosis:"));
     assert.ok(url.includes(`secret=${secret}`));
     assert.ok(url.includes("issuer=Gnosis"));
+});
+
+// RFC 6238 Appendix B test vectors (SHA-1, secret = ASCII
+// "12345678901234567890"), truncated to 6 digits. This pins the
+// implementation to the standard so any authenticator app agrees
+// with the server — and it is what the otplib implementation it
+// replaced produced for the same epochs.
+test("matches RFC 6238 test vectors (SHA-1, 6-digit truncation)", async () => {
+    const secret = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ";
+    const nowStep = Math.floor(Date.now() / 1000 / 30);
+    const cases = [
+        [59, "287082"],
+        [1111111109, "081804"],
+        [1234567890, "005924"],
+    ];
+    for (const [epoch, expected] of cases) {
+        const step = Math.floor(epoch / 30);
+        const code = await generateTotpCodeForStep(secret, step - nowStep);
+        assert.equal(code, expected);
+    }
 });
