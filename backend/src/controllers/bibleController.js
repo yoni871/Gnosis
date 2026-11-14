@@ -137,6 +137,17 @@ const getBibleChapter = async (req, res) => {
                 error:  "Chapter not found."
             })
         }
+        // Resolve the :book segment to its canonical name first, so
+        // lowercase / uppercase / mixed-case spellings all work and
+        // every downstream consumer sees the canonical name. An
+        // unknown book 404s exactly as before.
+        const canonicalBook = await bibleService.resolveBookName(book);
+        if (!canonicalBook) {
+            return res.status(404).json({
+                error:  "Chapter not found."
+            })
+        }
+        const canonicalName = canonicalBook.name;
         // Licensed translations come from the publisher's API (with a
         // bounded 30-day cache), never from bible_verses. The response
         // rows match the stored-translation shape exactly, so the reader
@@ -155,7 +166,7 @@ const getBibleChapter = async (req, res) => {
             try {
                 const { verses } = await licensedTranslations.getLicensedChapter(
                     translationRow,
-                    book,
+                    canonicalName,
                     chapterNumber,
                     req.ip
                 );
@@ -163,7 +174,7 @@ const getBibleChapter = async (req, res) => {
                     verse_number: verse.verse_number,
                     text: verse.text,
                     chapter_number: chapterNumber,
-                    book,
+                    book: canonicalName,
                 })));
             } catch (error) {
                 // Only the route, kind, and safe code reach the server
@@ -173,7 +184,7 @@ const getBibleChapter = async (req, res) => {
                 return res.status(503).json(LICENSED_UNAVAILABLE_BODY);
             }
         }
-        const result = await bibleService.getChapterByBook(book, chapter, translation);
+        const result = await bibleService.getChapterByBook(canonicalName, chapter, translation);
         if(result.rows.length === 0) {
             return res.status(404).json({
                 error:  "Chapter not found."
@@ -192,7 +203,16 @@ const getStudy = async (req, res) => {
     const { book, chapter } = req.params;
     const commentaryId = req.query.commentaryId;
     try {
-        const result = await bibleService.getStudyByChapter(book, chapter, commentaryId);
+        // Same canonical resolution as the chapter endpoint: the
+        // study lookup keys on the book name too.
+        const canonicalBook = await bibleService.resolveBookName(book);
+        if (!canonicalBook) {
+            return res.status(404).json({
+                error: "Chapter not found."
+            });
+        }
+        const canonicalName = canonicalBook.name;
+        const result = await bibleService.getStudyByChapter(canonicalName, chapter, commentaryId);
         const verses = result.verses.rows;
         const commentaries = result.commentaries.rows;
 
@@ -202,7 +222,7 @@ const getStudy = async (req, res) => {
             });
 }
         res.json({
-            book,
+            book: canonicalName,
             chapter,
             verses,
             commentaries
