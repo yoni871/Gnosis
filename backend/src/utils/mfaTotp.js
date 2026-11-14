@@ -178,6 +178,7 @@ module.exports = {
     TOTP_CODE_PATTERN,
     TOTP_EPOCH_TOLERANCE_SECONDS,
     TOTP_PERIOD_SECONDS,
+    base32Encode,
     isTotpCodeFormat,
     generateTotpSecret,
     buildOtpAuthUrl,
