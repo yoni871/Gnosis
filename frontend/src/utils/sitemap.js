@@ -14,10 +14,11 @@
 //    published-only generated manifest (see historySitemapPaths):
 //    the index and published event URLs. Book-page URLs are NOT
 //    listed — a book URL redirects to the book's first published
-//    event (or serves an Upcoming stub), so it is not a canonical
-//    page of its own. Unpublished events never appear — the manifest
-//    is published-only by construction, and the helper additionally
-//    requires each event id to be listed in it.
+//    event (or to the homepage, where the book is marked Coming Soon),
+//    so it is not a canonical page of its own. Unpublished events
+//    never appear — the manifest is published-only by construction,
+//    and the helper additionally requires each event id to be listed
+//    in it.
 //
 // lastmod, changefreq, and priority are deliberately omitted: no
 // per-chapter modification date exists, and Google ignores changefreq

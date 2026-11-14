@@ -6,7 +6,7 @@
    timeline dot, and the Scripture companion — as --history-forest
    variables scoped to .history-study only, light and dark. */
 
-/* ---------- Event study: dialog, desktop workspace / mobile sheet ---------- */
+/* ---------- Event study: standalone page, desktop workspace / mobile single column ---------- */
 
 .history-study {
     --history-forest: #2e5339;
@@ -20,38 +20,30 @@
     --history-on-forest: #1d2b20;
 }
 
-.history-panel-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 60;
-    display: flex;
-    justify-content: flex-end;
-    background: rgb(0 0 0 / 40%);
+/* The study page: a centered page column under the landing navbar. The
+   workspace fills it in normal document flow — the page scrolls as a
+   page, with the rail, reading column, companion, and timeline laid out
+   in order. No backdrop, no fixed dialog, no sheet. */
+.history-event-page {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    padding: 0 28px 48px;
 }
 
-.history-panel-dialog {
-    display: flex;
-    flex-direction: column;
-    width: min(1180px, 100vw);
-    height: 100%;
-    min-height: 0;
-    overflow: hidden;
-    background: var(--bg-page);
-    border-left: 1px solid var(--border);
-    box-shadow: -12px 0 32px rgb(0 0 0 / 18%);
+.history-event-breadcrumb {
+    margin: 0 0 8px;
+    padding-top: 24px;
+    font-size: 14px;
+    color: var(--text-muted);
 }
 
-.history-sheet-handle {
-    display: none;
-}
-
-.history-panel-header {
+.history-study-header {
     display: flex;
     flex: none;
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    padding: 24px 28px 16px;
+    padding: 8px 0 16px;
     border-bottom: 1px solid var(--border);
 }
 
@@ -99,7 +91,7 @@
     cursor: default;
 }
 
-.history-panel-eyebrow {
+.history-study-eyebrow {
     margin: 0 0 6px;
     font-size: 11px;
     font-weight: 600;
@@ -108,14 +100,14 @@
     color: var(--color-brand);
 }
 
-.history-panel-title {
+.history-study-title {
     margin: 0;
     font-size: 30px;
     line-height: 1.2;
     color: var(--text-primary);
 }
 
-.history-panel-meta {
+.history-study-meta {
     margin: 6px 0 0;
     font-size: 14px;
     color: var(--text-muted);
@@ -132,7 +124,7 @@
     border-radius: 6px;
 }
 
-.history-panel-close {
+.history-study-close {
     flex: none;
     display: flex;
     align-items: center;
@@ -147,29 +139,26 @@
     cursor: pointer;
 }
 
-.history-panel-close:hover {
+.history-study-close:hover {
     color: var(--text-primary);
     background: var(--bg-surface);
 }
 
-.history-panel-status {
+.history-study-status {
     padding: 16px 0;
     color: var(--text-muted);
 }
 
 /* The study body: rail (stationary) + reading column (+ companion
-   aside on desktop). Only the reading column — and the companion, when
-   open — scroll; the rail and the bottom timeline stay put. */
+   aside on desktop). The page scrolls as a whole; the rail and the
+   companion sit beside the reading column in normal flow. */
 .history-study-body {
     display: flex;
-    flex: 1;
-    min-height: 0;
 }
 
 .history-study-content {
     flex: 1;
     min-width: 0;
-    overflow-y: auto;
     padding: 28px 32px 32px;
 }
 
@@ -364,7 +353,7 @@
 .history-scripture-companion-body {
     flex: 1;
     min-height: 0;
-    overflow-y: auto;
+    overflow-y: visible;
     padding: 16px 20px;
 }
 
@@ -470,7 +459,6 @@
 /* ---------- Timeline (anchored at the study bottom) ---------- */
 
 .history-timeline {
-    flex: none;
     padding: 12px 16px 14px;
     background: var(--bg-surface);
     border-top: 1px solid var(--border);
@@ -929,105 +917,23 @@
 .history-testament-tabs button span { display: grid; min-width: 24px; height: 24px; place-items: center; color: var(--color-accent-text); border: 1px solid var(--public-border); border-radius: 50%; font-size: .58rem; }
 .history-book-selector [role="tabpanel"] { padding-top: 22px; }
 .history-book-chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-height: 240px; margin: 0; padding: 2px; overflow-y: auto; overscroll-behavior: contain; list-style: none; }
-.history-book-chips a { display: flex; min-height: 48px; align-items: center; justify-content: center; padding: 12px 14px; color: var(--history-book-text); background: var(--history-book-bg); border: 1px solid var(--history-book-border); border-radius: 8px; font-size: .8rem; font-weight: 600; text-align: center; text-decoration: none; transition: background-color 160ms ease, border-color 160ms ease; }
+.history-book-chips a, .history-book-chips .history-book-chip { display: flex; min-height: 48px; align-items: center; justify-content: center; padding: 12px 14px; color: var(--history-book-text); background: var(--history-book-bg); border: 1px solid var(--history-book-border); border-radius: 8px; font-size: .8rem; font-weight: 600; text-align: center; text-decoration: none; transition: background-color 160ms ease, border-color 160ms ease; }
 .history-book-chips a:hover { background: var(--history-book-bg-hover); border-color: var(--history-book-border-hover); }
+/* Coming Soon: not a link — same chip shape, stacked label, muted, no
+   hover affordance. Not a tab stop (tabIndex -1 on the element); the
+   focus-return mechanism lands on it programmatically. */
+.history-book-chips .history-book-chip--upcoming { flex-direction: column; gap: 2px; color: var(--public-muted); cursor: default; }
+.history-book-chips .history-book-chip--upcoming:hover { background: var(--history-book-bg); border-color: var(--history-book-border); }
+.history-book-chip-soon { font-size: .66rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .history-book-scroll-hint { margin: 16px 0 0; color: var(--public-muted); font-size: .68rem; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
 .history-browse-books:focus-visible, .history-home-action:focus-visible, .history-testament-tabs button:focus-visible { outline-color: var(--history-gold); }
 .history-book-chips a:focus-visible { outline: 2px solid var(--history-gold); outline-offset: 2px; }
 
-.history-book-index section {
-    margin-bottom: 28px;
-}
-
-.history-book-index h2 {
-    margin: 0 0 10px;
-    font-size: 18px;
-    color: var(--text-primary);
-}
-
-.history-book-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.history-book-list-item + .history-book-list-item {
-    border-top: 1px solid var(--border);
-}
-
-.history-book-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 16px;
-    color: var(--text-primary);
-    text-decoration: none;
-    background: var(--bg-panel);
-}
-
-.history-book-link:hover {
-    background: var(--bg-surface);
-}
-
-.history-book-name {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.history-book-meta {
-    font-size: 14px;
-    color: var(--text-muted);
-    white-space: nowrap;
-}
-
-.history-book-upcoming {
-    color: var(--text-muted);
-    font-style: italic;
-}
-
-.history-book-header {
-    margin-bottom: 24px;
-}
-
-.history-book-eyebrow {
-    margin: 0 0 6px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-brand);
-}
-
-.history-book-header h1 {
-    margin: 0 0 10px;
-    font-size: 32px;
-    color: var(--text-primary);
-}
-
-.history-book-introduction {
-    max-width: 68ch;
-}
-
-.history-book-meta {
-    margin: 12px 0 0;
-    font-size: 14px;
-    color: var(--text-muted);
-}
-
-.history-book-meta a {
-    color: var(--color-brand);
-}
-
 /* ---------- Focus visibility (accent token, never colour alone) ---------- */
 
-.history-panel-dialog button:focus-visible,
-.history-panel-dialog a:focus-visible,
+.history-study button:focus-visible,
+.history-study a:focus-visible,
 .history-timeline-node:focus-visible,
-.history-book-link:focus-visible,
 .history-ancient-subsection h3 button:focus-visible,
 .history-scripture-button:focus-visible,
 .history-scripture-companion-close:focus-visible,
@@ -1037,7 +943,7 @@
     outline-offset: 2px;
 }
 
-/* ---------- Mobile: bottom sheet ---------- */
+/* ---------- Mobile: single scrolling column ---------- */
 
 @media (max-width: 1024px) {
     .history-hero-inner { grid-template-columns: 1fr .72fr; gap: 42px; }
@@ -1082,49 +988,13 @@
     .history-testament-tabs button { min-height: 54px; }
     .history-book-drawer { padding: 4px 14px 16px; }
     .history-book-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .history-book-chips a { padding-inline: 11px; }
+    .history-book-chips a, .history-book-chips .history-book-chip { padding-inline: 11px; }
 
-    .history-panel-backdrop {
-        justify-content: stretch;
-        align-items: flex-end;
-    }
-
-    .history-panel-dialog {
-        width: auto;
-        height: var(--history-sheet-height, 45dvh);
-        border-left: 0;
-        border-top: 1px solid var(--border);
-        border-radius: 16px 16px 0 0;
-        box-shadow: 0 -8px 24px rgb(0 0 0 / 18%);
-        transition: height 200ms ease;
-    }
-
-    .history-sheet-handle {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        display: flex;
-        flex-shrink: 0;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        padding: 10px 0 8px;
-        border: 0;
-        background: var(--bg-panel);
-        cursor: grab;
-        touch-action: none;
-    }
-
-    .history-sheet-handle:active {
-        cursor: grabbing;
-    }
-
-    .history-sheet-handle-pill {
-        display: block;
-        width: 40px;
-        height: 5px;
-        border-radius: 3px;
-        background: var(--border);
+    /* The study page on mobile: a single scrolling column. No sheet,
+       no handle, no fixed chrome — the header, tabs, content,
+       companion, and timeline flow in order and the page scrolls. */
+    .history-event-page {
+        padding: 0 16px 32px;
     }
 
     .history-study-body {
@@ -1139,72 +1009,13 @@
         max-width: none;
     }
 
-    .history-panel-title {
+    .history-study-title {
         font-size: 20px;
-    }
-
-    /* Collapsed sheet (D1): the fixed chrome must fit in 45dvh, or the
-       bottom-anchored timeline covers the section tab row and overflows
-       the sheet. In the collapsed state the cross-book chips and
-       timeline hint are hidden — they return when the sheet expands —
-       and the header/timeline padding tightens, leaving the tab row
-       visible and tappable with a sliver of content below it.
-       The development-content badge stays visible in both states.
-       (The event's book note no longer sits in the header — it is the
-       Story's Key Takeaway now — so the header stays short.)
-       Short-screen guard (320px fix): at 320x568, 45dvh is 256px but
-       the fixed chrome alone is ~344px (handle 23 + header 163 with the
-       badge + 68px wrapped-label tab row + timeline 89), so the timeline
-       still covered the tabs and overflowed the sheet by ~20px. The
-       collapsed sheet therefore has a 400px minimum height on mobile:
-       it fits the chrome plus a two-line title and a content sliver, and
-       only binds where 45dvh falls short (viewport height < ~889px) —
-       on taller screens 45dvh still wins. The sheet may end up taller
-       than 45dvh on very short screens; that is the accepted trade-off
-       for keeping every tab visible and tappable. */
-    /* Expanded sheet (320px regression, Creation integration): on a
-       short screen the fixed chrome (handle + header + tab row +
-       timeline) can exceed 85dvh, so the bottom-anchored timeline
-       covers the tab row — the same failure mode the collapsed
-       min-height guard fixed. The expanded sheet therefore has a 520px
-       minimum height. Arithmetic at 320x568: handle 23 + header ~210 +
-       tab row 68 + timeline 141 + a content sliver ≈ 480–520; the guard
-       binds only where 85dvh falls short (viewport height < ~612px) —
-       on taller screens 85dvh still wins. The sheet may end up taller
-       than 85dvh on very short screens; that is the accepted trade-off
-       for keeping every tab visible and tappable. */
-
-    .history-panel-dialog:not(.history-panel-dialog--collapsed) {
-        min-height: 520px;
-    }
-
-    .history-panel-dialog--collapsed {
-        min-height: 400px;
-    }
-
-    .history-panel-dialog--collapsed .history-connection-chips,
-    .history-panel-dialog--collapsed .history-timeline-hint {
-        display: none;
-    }
-
-    .history-panel-dialog--collapsed .history-panel-header {
-        padding: 12px 16px 8px;
-    }
-
-    .history-panel-dialog--collapsed .history-timeline {
-        padding: 8px 16px 10px;
-    }
-
-    .history-book-header h1 {
-        font-size: 26px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .history-home *, .history-home *::before, .history-home *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
-    .history-panel-dialog {
-        transition: none;
-    }
     .history-event-nav-tab,
     .history-scripture-button {
         transition: none;

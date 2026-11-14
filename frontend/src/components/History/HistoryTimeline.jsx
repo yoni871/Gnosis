@@ -1,5 +1,5 @@
 // The continuous timeline strip, anchored at the bottom of the event
-// panel (and under the event list on the book page).
+// study page.
 //
 // No library, no proportional-to-year axis: the strip is evenly spaced,
 // one node per event, in biblical narrative order — even spacing claims
@@ -98,11 +98,11 @@ export default function HistoryTimeline({ events = [], currentEventId, bookId })
                 {/* One trailing, non-interactive "Upcoming" slot. The
                     generated bundle holds published events only, so an
                     unpublished event has no record — and no title — to
-                    render here; this is the same generic marker the book
-                    index uses for books without published events, not a
-                    placeholder event. It is a plain span (never a link
-                    or button), so it takes no tab stop and arrow-key
-                    navigation skips it. */}
+                    render here; this is the same generic marker the
+                    homepage uses for books without published events
+                    (Coming Soon chips), not a placeholder event. It is
+                    a plain span (never a link or button), so it takes
+                    no tab stop and arrow-key navigation skips it. */}
                 <li className="history-timeline-node-item">
                     <span
                         className="history-timeline-node history-timeline-node--upcoming"

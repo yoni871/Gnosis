@@ -8,7 +8,7 @@
 // A Key Takeaway opens the Story: the event's book note, already
 // authored editorial content, set apart as a callout so the reader
 // meets the event's essence before the prose. It is the only place the
-// book note appears in the panel — the header no longer repeats it.
+// book note appears in the study — the header no longer repeats it.
 // Events without a book note simply have no takeaway.
 import HistoryMarkdown from "./HistoryMarkdown";
 
