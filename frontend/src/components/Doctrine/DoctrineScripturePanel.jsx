@@ -87,26 +87,31 @@ export default function DoctrineScripturePanel({
         <section className="doctrine-scripture-panel" aria-label={`Scripture: ${passage.label}`}>
             <header className="doctrine-panel-header">
                 <p className="doctrine-panel-eyebrow">Scripture</p>
-                <h2 className="doctrine-panel-title">{passage.label}</h2>
-                <label className="doctrine-translation-label" htmlFor="doctrine-translation-select">
-                    Translation
-                </label>
-                <select
-                    id="doctrine-translation-select"
-                    className="doctrine-translation-select"
-                    value={translation}
-                    onChange={(event) => onTranslationChange?.(event.target.value)}
-                >
-                    {translations.length === 0 ? (
-                        <option value="KJV">KJV</option>
-                    ) : (
-                        translations.map((item) => (
-                            <option key={item.abbreviation} value={item.abbreviation}>
-                                {item.abbreviation}
-                            </option>
-                        ))
-                    )}
-                </select>
+                <div className="doctrine-scripture-title-row">
+                    <h2 className="doctrine-panel-title">{passage.label}</h2>
+                    {/* The label stays associated for assistive tech and
+                        tests (getByLabelText) but is visually hidden: the
+                        selector sits beside the reference, not under it. */}
+                    <label className="sr-only" htmlFor="doctrine-translation-select">
+                        Translation
+                    </label>
+                    <select
+                        id="doctrine-translation-select"
+                        className="doctrine-translation-select"
+                        value={translation}
+                        onChange={(event) => onTranslationChange?.(event.target.value)}
+                    >
+                        {translations.length === 0 ? (
+                            <option value="KJV">KJV</option>
+                        ) : (
+                            translations.map((item) => (
+                                <option key={item.abbreviation} value={item.abbreviation}>
+                                    {item.abbreviation}
+                                </option>
+                            ))
+                        )}
+                    </select>
+                </div>
             </header>
             <div className="doctrine-scripture-body">
                 {isLoading && (
