@@ -338,7 +338,7 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         // longer unpublished-only: the published Adam and Eve event
         // cites them too. BDB, Keil, Ryle, Skinner, and Westermann are
         // likewise shared with published Adam and Eve, so Cain's
-        // Descendants contributes only its six new sources. Brown,
+        // Descendants contributes only its seven new sources. Brown,
         // Crouch, and Shabaka follow in Creation's citation order.
         // Seth cites six sources no published event cites, but the
         // Sumerian King List is already listed under Cain's
@@ -438,6 +438,12 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 kind: "source",
                 status: "unpublished-only",
                 title: "The Sumerian King List (ETCSL 2.1.1)",
+            },
+            {
+                id: "source-gabriel-cainite-genealogy",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Die Kainitengenealogie Gn 4,17–24",
             },
             {
                 id: "source-jvl-kenite",

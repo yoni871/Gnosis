@@ -394,6 +394,17 @@
     "verificationDetail": "Full article read 2026-11-14 (Tyndale Bulletin 47:1 (1996), all 1,560 lines of the PDF): the interpretation-history survey from Jubilees to Ellul, including the Gabriel–Westermann dispute and Maarten's assessment (pp. 157–162).",
     "licenseNote": "All rights reserved; original paraphrase and citation only."
   },
+  "source-gabriel-cainite-genealogy": {
+    "id": "source-gabriel-cainite-genealogy",
+    "author": "Gabriel",
+    "title": "Die Kainitengenealogie Gn 4,17–24",
+    "publisher": "Biblica",
+    "year": 1959,
+    "pagesOrSection": "40, pp. 409–427",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Full text not read directly this session; known only via Maarten 1996, pp. 157–159 (survey of Gabriel, Biblica 40 (1959) 409–427). Cited second-hand only — for the implicit-condemnation reading in clm-cd-036 and the article's Lamech's-song subsection.",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
+  },
   "source-etcsl-sumerian-king-list": {
     "id": "source-etcsl-sumerian-king-list",
     "author": "Electronic Text Corpus of Sumerian Literature (ETCSL)",
