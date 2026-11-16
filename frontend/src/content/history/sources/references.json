@@ -601,5 +601,125 @@
     "url": "https://www.chabad.org/library/bible_cdo/aid/8171/jewish/showrashi/trueChapter-6.htm",
     "verification": "verified",
     "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Rosenbaum & Silbermann 1929–1934, Gen 6:2, 6:3, 6:4, 6:6 (Chabad, read in full): the royal reading ('sons of the princes and the judges'); the 120 years as a respite; 'also after that' before the Flood, in Enosh's generation."
+  },
+  "source-dalley-myths-mesopotamia": {
+    "id": "source-dalley-myths-mesopotamia",
+    "author": "Stephanie Dalley (trans.)",
+    "title": "Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others",
+    "publisher": "Oxford University Press (Oxford World's Classics), 1989; rev. ed. 2000",
+    "year": 1989,
+    "pagesOrSection": "Atrahasis (pp. 1-38 in the 1989 pagination; OBV + SBV) and Gilgamesh, Tablet XI",
+    "verification": "verified",
+    "verificationDetail": "Full text read 2026-11-16 via archive.org (djvu.txt of the volume). Text base stated in Dalley's notes: Lambert & Millard 1969, Moran 1987. One entry covers both Atrahasis and Gilgamesh XI; cite with page/section (Atrahasis III / Gilgamesh XI) to keep the two distinct. SHARED with the EM's Great Flood event (Gen 7:1-8:19) — do not duplicate.",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
+  },
+  "source-etcsl-flood-story": {
+    "id": "source-etcsl-flood-story",
+    "author": "Electronic Text Corpus of Sumerian Literature (ETCSL)",
+    "title": "The Flood story (ETCSL 1.7.4)",
+    "publisher": "University of Oxford",
+    "pagesOrSection": "ETCSL 1.7.4, full translation",
+    "url": "https://etcsl.orinst.ox.ac.uk/cgi-bin/etcsl.cgi?text=t.1.7.4",
+    "verification": "verified",
+    "verificationDetail": "Full translation opened and read 2026-11-16; segments A-E with gaps of ~32-39 lines; Ziusudra, seven days/nights, oxen and innumerable sheep, Dilmun settlement all confirmed on the page. SHARED with the EM's Great Flood event — do not duplicate.",
+    "licenseNote": "Paraphrase with credit; verify project licensing before reproducing translations at length."
+  },
+  "source-finkel-ark-before-noah": {
+    "id": "source-finkel-ark-before-noah",
+    "author": "Irving Finkel",
+    "title": "The Ark Before Noah: Decoding the Story of the Flood",
+    "publisher": "Hodder & Stoughton, 2014",
+    "year": 2014,
+    "pagesOrSection": "The Ark Tablet (60 lines; Middle Babylonian, c. 1900-1700 BCE): circular coracle, 1 ikû floor area, 1 nindan sides, 30 ribs, 3,600 stanchions",
+    "verification": "verified",
+    "verificationDetail": "Full translation + transliteration read 2026-11-16 as reproduced on erenow.org (mirror of the book text) — content is Finkel 2014, but the host is not the publisher; prefer a publisher/library copy before citing further (Balogh precedent). SHARED with the EM's Great Flood event — do not duplicate.",
+    "licenseNote": "All rights reserved; original summary and citation only."
+  },
+  "source-josephus-antiquities": {
+    "id": "source-josephus-antiquities",
+    "author": "Flavius Josephus",
+    "title": "Antiquities of the Jews",
+    "publisher": "Whiston translation (public domain); c. 93/94 CE",
+    "pagesOrSection": "Book I, ch. 3 (Ant. I.3.2-6, I.3.9)",
+    "verification": "verified",
+    "verificationDetail": "Ant. I.3.2-6, I.3.9 read 2026-11-16 via secondary hosts quoting Whiston verbatim (ldolphin.org; tasc-creationscience.org; jasoncolavito.com for I.3.6) — the Whiston text itself, not a modern translation; prefer Perseus/Gutenberg for the canonical citation before publication. Four-stories ark, raven, Apobaterion, Berossus/Nicolaus citations confirmed.",
+    "licenseNote": "Public domain; original summary and citation only."
+  },
+  "source-charles-jubilees": {
+    "id": "source-charles-jubilees",
+    "author": "R. H. Charles (trans.)",
+    "title": "The Book of Jubilees, or the Little Genesis",
+    "publisher": "SPCK, London, 1917",
+    "year": 1917,
+    "pagesOrSection": "Chapter 5",
+    "verification": "verified",
+    "verificationDetail": "Ch. 5 read in full 2026-11-16 (godrules.net / earth-history.com reproductions of Charles). 1307-1309 A.M. dates; seven flood-gates; Lubar landing confirmed.",
+    "licenseNote": "Public domain (1917); original summary and citation only."
+  },
+  "source-charles-enoch": {
+    "id": "source-charles-enoch",
+    "author": "R. H. Charles (trans.)",
+    "title": "The Book of Enoch",
+    "publisher": "Apocrypha and Pseudepigrapha of the Old Testament, vol. 2, 1913",
+    "year": 1913,
+    "pagesOrSection": "Chapter 106 (Fragment of the Book of Noah)",
+    "verification": "verified",
+    "verificationDetail": "Ch. 106 read in full 2026-11-16 (Wikisource). Radiant birth; Lamech's fear; Enoch's reassurance and naming confirmed.",
+    "licenseNote": "Public domain; original summary and citation only."
+  },
+  "source-philo-questions-genesis": {
+    "id": "source-philo-questions-genesis",
+    "author": "Philo of Alexandria",
+    "title": "Questions and Answers on Genesis",
+    "publisher": "Yonge translation",
+    "pagesOrSection": "Book II.1-4 (ark as human body; pitch as soul)",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Verbatim passages (ark as human body; pitch as soul) read only as quotations in a secondary essay (andrewkuiper.substack.com, \"Shipwrecked Exegesis\") 2026-11-16; the full QG II text was not opened. Do NOT cite in public content without full-text verification or an editorial override (Gabriel precedent). Added for the EM's Great Flood event to reuse; NOT cited by the Noah and the Ark event.",
+    "licenseNote": "Public domain (Yonge translation); original summary and citation only."
+  },
+  "source-justin-dialogue-trypho": {
+    "id": "source-justin-dialogue-trypho",
+    "author": "Justin Martyr",
+    "title": "Dialogue with Trypho",
+    "publisher": "Ante-Nicene Fathers translation, via New Advent; c. 155-160 CE",
+    "pagesOrSection": "Chapter 138",
+    "url": "https://www.newadvent.org/fathers/01289.htm",
+    "verification": "verified",
+    "verificationDetail": "Ch. 138 read in full 2026-11-16 (eight = eighth day; water, faith, wood; \"Noah was saved by wood\").",
+    "licenseNote": "Public domain (ANF); original summary and citation only."
+  },
+  "source-tertullian-baptism": {
+    "id": "source-tertullian-baptism",
+    "author": "Tertullian",
+    "title": "On Baptism",
+    "publisher": "Thelwall translation, ANF 3, via CCEL; c. 200-206 CE",
+    "pagesOrSection": "Chapter 8",
+    "url": "https://ccel.org/ccel/tertullian/baptism/anf03.vi.iii.viii.html",
+    "verification": "verified",
+    "verificationDetail": "Ch. 8 read in full 2026-11-16 (\"after the baptism, so to say, of the world\"; dove as Holy Spirit; \"the Church, the typified ark\").",
+    "licenseNote": "Public domain (ANF); original summary and citation only."
+  },
+  "source-chrysostom-homilies-genesis": {
+    "id": "source-chrysostom-homilies-genesis",
+    "author": "John Chrysostom",
+    "title": "Homilies on Genesis 18-45",
+    "publisher": "Hill translation, Fathers of the Church 82, Catholic University of America Press, 1990",
+    "year": 1990,
+    "pagesOrSection": "Homilies 25-26",
+    "verification": "verified",
+    "verificationDetail": "Hom. 25.11-12 and Hom. 26 read 2026-11-16 via the fliphtml5 reproduction of the FOTC volume (100-year reprieve; 40 days as mercy; \"shut from the outside\"; the year in the ark). Caveat: host is a flipbook reproduction, not the publisher; the ark=Church / dove=Spirit typology attributed to Chrysostom in secondary summaries (soulveritas.com; slideshare) is NOT verified from the FOTC text — cite it only as secondary-attested.",
+    "licenseNote": "All rights reserved; original summary and citation only."
+  },
+  "source-hong-ark-seaway-1993": {
+    "id": "source-hong-ark-seaway-1993",
+    "author": "S. W. Hong, S. S. Na, B. S. Hyun, S. Y. Hong, D. S. Gong, K. J. Kang, S. H. Suh, K. H. Lee, and Y. G. Je",
+    "title": "Safety investigation of Noah's Ark in a seaway",
+    "publisher": "Proceedings of the International Conference on Creation Research, Korea Association of Creation Research, Taejon, 1993, pp. 105-137",
+    "year": 1993,
+    "pagesOrSection": "Abstract + introduction (via the creation.com reprint)",
+    "url": "https://creation.com/en/articles/safety-investigation-of-noahs-ark-in-a-seaway",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Existence and details verified via the creation.com reprint 2026-11-16 (abstract + introduction read); the full conference paper was NOT read directly. Cited only for the study's existence, its model-hull method, and the weighted-total-index verdict with the per-index counter-balance. Do not cite for methodology detail beyond the abstract/introduction.",
+    "licenseNote": "All rights reserved; original summary and citation only."
   }
 }

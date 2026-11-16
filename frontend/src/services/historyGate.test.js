@@ -4,14 +4,15 @@
 // frontend layout the scripts resolve against (scripts/ + src/content/
 // history + src/data/bibleChapters.json + src/utils/historyContent.js).
 // Fixtures are copies of the real shipped content tree, with the copied
-// Creation event flipped back to "in-review" (see makeSandbox): the
-// shipped Creation event is now published, and the shipped Cain and Abel
-// event is in-review, so without that flip the sandbox would still
-// contain a non-published record — but the leak tests match against
-// Creation by id, so the flip keeps a genuinely non-published Creation
-// fixture. Check 10 applies only to published events, and
-// findNonPublishedRecords lists by status — so the gate is still tested
-// against a real draft leak, not a weakened expectation.
+// Creation event flipped back to "in-review" (see makeSandbox): all five
+// shipped events (Creation, Adam and Eve, Cain and Abel, Cain's
+// Descendants, Seth) are published, so without that flip the sandbox
+// would contain no non-published event except the shipped in-review Noah
+// event — but the leak tests match against Creation by id, so the flip
+// keeps a genuinely non-published Creation fixture. Check 10 applies only
+// to published events, and findNonPublishedRecords lists by status — so
+// the gate is still tested against a real draft leak, not a weakened
+// expectation.
 import {
     cpSync,
     existsSync,
@@ -56,7 +57,7 @@ function makeSandbox() {
     // The shipped Creation event is published, so the sandbox copy is
     // flipped back to "in-review": the leak tests match against Creation
     // by id, so the gate needs a genuinely non-published Creation fixture
-    // alongside the shipped in-review Cain and Abel event, or the leak
+    // alongside the shipped in-review Noah event, or the leak
     // checks would not exercise the Creation assertions at all. This is
     // the only mutation the sandbox makes to the shipped tree.
     const sandboxEventPath = path.join(dir, "src", "content", "history", "events", "creation.json");
@@ -183,9 +184,9 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         expect(manifest.includeUnpublished).toBe(true);
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, and Seth events are published now,
-        // so the dev opt-in includes all six events — the five above
-        // plus the in-review Humanity's Corruption event.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-seth-early-generations"]);
+        // so the dev opt-in includes all seven events — the five above
+        // plus the in-review Humanity's Corruption and Noah events.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "seth-early-generations.json"))).toBe(true);
@@ -251,9 +252,9 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         expect(result.status).toBe(0);
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, and Seth events are published now,
-        // so the dev opt-in includes all six events — the five above
-        // plus the in-review Humanity's Corruption event.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-seth-early-generations"]);
+        // so the dev opt-in includes all seven events — the five above
+        // plus the in-review Humanity's Corruption and Noah events.
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
     });
 
@@ -359,15 +360,22 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         const contentDir = path.join(sandbox, "src", "content", "history");
         // Adam and Eve, Cain and Abel, Cain's Descendants, and Seth are
         // published now, so the sandbox's non-published events are
-        // Creation (flipped to in-review by makeSandbox) and Humanity's
-        // Corruption (shipped in-review) — listed first in book order,
-        // then the sources cited only by each, in citation order:
-        // Creation's Brown, Crouch, and Shabaka, then Humanity's
-        // Corruption's eleven new sources in its sources-array order.
-        // McDowell, Met, and ORACC are cited by published events too.
+        // Creation (flipped to in-review by makeSandbox), Humanity's
+        // Corruption, and Noah (both shipped in-review) — listed first
+        // in file order (creation.json < humanitys-corruption.json
+        // < noah-ark.json), then the sources cited only by each, in
+        // citation order: Creation's Brown, Crouch, and Shabaka, then
+        // Humanity's Corruption's eleven new sources in its
+        // sources-array order, then Noah's ten (Thompson, Berossus,
+        // and Augustine are cited by Corruption too, so they appear
+        // once under Corruption). McDowell, Met, and ORACC are cited
+        // by published events too, as are the reused Noah sources
+        // (BDB, Skinner, Keil & Delitzsch, Ryle, Westermann, ETCSL
+        // Sumerian King List).
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
             { id: "event-humanitys-corruption", kind: "event", status: "in-review", title: "Humanity's Corruption" },
+            { id: "event-noah-ark", kind: "event", status: "in-review", title: "Noah and the Ark" },
             {
                 id: "source-brown-cosmic-temple",
                 kind: "source",
@@ -456,24 +464,89 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
             // kept unreferenced in the shared registry (editorial
             // corrections, 2026-11-11) so no event cites it, and the gate
             // only lists sources cited by non-published events.
+            {
+                id: "source-dalley-myths-mesopotamia",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others",
+            },
+            {
+                id: "source-etcsl-flood-story",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Flood story (ETCSL 1.7.4)",
+            },
+            {
+                id: "source-finkel-ark-before-noah",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Ark Before Noah: Decoding the Story of the Flood",
+            },
+            {
+                id: "source-charles-jubilees",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Book of Jubilees, or the Little Genesis",
+            },
+            {
+                id: "source-charles-enoch",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Book of Enoch",
+            },
+            {
+                id: "source-josephus-antiquities",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Antiquities of the Jews",
+            },
+            {
+                id: "source-justin-dialogue-trypho",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Dialogue with Trypho",
+            },
+            {
+                id: "source-tertullian-baptism",
+                kind: "source",
+                status: "unpublished-only",
+                title: "On Baptism",
+            },
+            {
+                id: "source-chrysostom-homilies-genesis",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Homilies on Genesis 18-45",
+            },
+            {
+                id: "source-hong-ark-seaway-1993",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Safety investigation of Noah's Ark in a seaway",
+            },
+            // source-philo-questions-genesis is deliberately absent: it is
+            // kept unreferenced in the shared registry (reserved for the
+            // Great Flood event; not-independently-verified) so no event
+            // cites it, and the gate only lists sources cited by
+            // non-published events.
         ]);
     });
 });
 
 describe("checkHistoryGate — claims detector", () => {
-    // A sandbox where ALL SIX events are published: the claims detector
+    // A sandbox where ALL SEVEN events are published: the claims detector
     // must fire on this all-published path, where the gate's
     // non-published early return would otherwise stand it down. The
     // fixture source still carries Adam and Eve's full 35-claim
     // register (including unverified 028 and 030b); generation strips
     // it, and these tests prove the gate catches it if it ever leaks.
-    // Cain and Abel, Cain's Descendants, Seth, and Humanity's
-    // Corruption are flipped to published here too, so the sandbox has
+    // Cain and Abel, Cain's Descendants, Seth, Humanity's Corruption,
+    // and Noah are flipped to published here too, so the sandbox has
     // no non-published records at all — otherwise their in-review
     // status would take the gate down the other path.
     function makeAllPublishedSandbox() {
         const sandbox = makeSandbox();
-        for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json", "seth-early-generations.json", "humanitys-corruption.json"]) {
+        for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json", "seth-early-generations.json", "humanitys-corruption.json", "noah-ark.json"]) {
             const eventPath = path.join(sandbox, "src", "content", "history", "events", name);
             const event = JSON.parse(readFileSync(eventPath, "utf8"));
             event.status = "published";
@@ -493,7 +566,7 @@ describe("checkHistoryGate — claims detector", () => {
     function buildPublished(sandbox) {
         const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     }
 

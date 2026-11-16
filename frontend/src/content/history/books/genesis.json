@@ -33,6 +33,11 @@
       "eventId": "event-humanitys-corruption",
       "narrativeOrder": 6,
       "bookNote": "Genesis 6:1–8 tells of the sons of God and the daughters of men, the Nephilim, the 120 years, human wickedness, divine grief and judgment, and Noah finding grace. No independently established event date is assigned."
+    },
+    {
+      "eventId": "event-noah-ark",
+      "narrativeOrder": 7,
+      "bookNote": "Genesis 6:9–22 introduces Noah as righteous, blameless, and walking with God, gives the ark's dimensions and materials, announces the covenant, and ends with Noah's obedience. No independently established event date is assigned."
     }
   ]
 }

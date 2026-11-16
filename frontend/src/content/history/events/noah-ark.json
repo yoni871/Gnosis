@@ -1,0 +1,498 @@
+{
+  "category": "event",
+  "claims": [
+    {
+      "assessment": "established",
+      "claim": "Gen 6:9 opens with the tôlĕdōt (\"generations\") formula, the third in Genesis (after 2:4 and 5:1).",
+      "evidence": "Ryle (Gen 6:9 note; Introduction counts the formula eleven times, the third being Noah, 6:9); text of 6:9 verified live via Preview API. Tier A.",
+      "id": "clm-na-001"
+    },
+    {
+      "assessment": "established",
+      "claim": "Ṣaddîq (6:9) means \"just, righteous\"; it is a forensic term — conduct unimpeachable before a judge — and this is the first occurrence of the word \"righteous\" in the Bible.",
+      "evidence": "BDB H6662 (absolute Gen 6:9+; 206 occurrences); Skinner (forensic); Ryle (\"occurs here for the first time\"; root-idea \"straightness\"). Tier A.",
+      "id": "clm-na-002"
+    },
+    {
+      "assessment": "established",
+      "claim": "Tāmîm (6:9) means \"complete, sound, blameless\"; a sacerdotal term (\"free from defect\") transferred to morals as \"integrity.\"",
+      "evidence": "BDB H8549 sense 4 (Gen 6:9; 17:1; usually of sacrificial animals); Skinner (\"free from defect, integer\"); Ryle (\"without flaw\"; moral sense = \"integrity,\" as Job 1:1). Tier A.",
+      "id": "clm-na-003"
+    },
+    {
+      "assessment": "established",
+      "claim": "\"Walked with God\" (6:9) uses the Hithpael hithallēk 'ēt 'ĕlōhîm, the same construction as Enoch (Gen 5:22, 24) and Abraham (Gen 17:1, with liphnê).",
+      "evidence": "BDB H8549 (Gen 6:9; 17:1 both hithallēk 'ēt (liphnê) 'ĕlōhîm); Ryle (see note on 5:22-24); Keil (Noah \"resembled Enoch\"). Tier A for the phrase; the H1980 Hithpael section itself was not pinpointed (Tier D).",
+      "id": "clm-na-004"
+    },
+    {
+      "assessment": "established",
+      "claim": "\"In his generations\" (bĕdōrōtāyw, 6:9) means among his contemporaries / the successive generations of his lifetime.",
+      "evidence": "Skinner (feminine plural, characteristic of P; \"the successive generations covered by his lifetime\"); Ryle (\"amongst the people of his own generation\"). Tier A.",
+      "id": "clm-na-005"
+    },
+    {
+      "assessment": "established",
+      "claim": "The text does NOT claim Noah's righteousness was only relative to his wicked age; the relativizing reading is not implied by 6:9.",
+      "evidence": "Skinner, explicit: \"That Noah's righteousness was only relative to the standard of his age is not implied.\" Tier A.",
+      "id": "clm-na-006"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Rashi records two opinions on \"righteous in his generation\": (a) praise — he would have been more righteous in a righteous generation; (b) discredit — he was righteous only relative to his generation. Ibn Ezra refutes (b).",
+      "evidence": "Three concordant secondary sources (Torah.org 2005; dor4daf.com 2019; sdjewishworld.com 2012 citing Kugel 1997, p. 115) — see dossier §12; Rashi's text not read directly. Tier B.",
+      "id": "clm-na-007"
+    },
+    {
+      "assessment": "established",
+      "claim": "The text does NOT claim Noah was sinless or absolutely perfect; tāmîm denotes integrity/fitness, not metaphysical flawlessness.",
+      "evidence": "BDB H8549, Skinner, Ryle. No verse in 6:9-22 attributes sinlessness. Tier A.",
+      "id": "clm-na-008"
+    },
+    {
+      "assessment": "established",
+      "claim": "Noah \"found grace/favour in the eyes of the LORD\" (6:8, ḥēn) is the first occurrence of the \"find grace/favour\" idiom in the Bible; the favour is presented as based on moral grounds.",
+      "evidence": "BDB H2580 (ḥēn Gen 6:8, 67t.); Ryle (\"occurs here for the first time in the Bible... based on moral grounds\"). Note: 6:8 is the hinge verse shared with Dev 1's event. Tier A.",
+      "id": "clm-na-009"
+    },
+    {
+      "assessment": "established",
+      "claim": "Tēbâ (\"ark\") occurs only of Noah's vessel (Gen 6-9) and of Moses' basket (Ex 2:3, 5); it is probably an Egyptian loan-word (\"chest, coffin\"); it is never used for the Ark of the Covenant ('ărôn).",
+      "evidence": "BDB H8392 (26x Noah; 2x Moses; Egyptian T-b-t, Erman ZDMG xlvi (1892), 123); Skinner, Keil, Ryle agree. Tier A.",
+      "id": "clm-na-010"
+    },
+    {
+      "assessment": "unknown (etymology); probable (cypress as best guess)",
+      "claim": "Gōper (\"gopher wood,\" 6:14) is a hapax legomenon whose etymology is unknown; the ancient versions guessed (LXX \"squared timber,\" Vulgate \"smoothed wood\"); \"cypress\" is the leading guess, unproven.",
+      "evidence": "BDB H1613 (\"word dubious\"); Skinner (Lagarde; kyparissos connection); Keil (\"most likely cypress\"); Ryle (\"possibly the cypress... to which word it may be akin\"). Tier A (entry); etymology Tier D.",
+      "id": "clm-na-011"
+    },
+    {
+      "assessment": "established",
+      "claim": "Kōper (\"pitch,\" 6:14) is bitumen (Assyrian kupru); the verb kāpar (\"to pitch\") is denominative from it; the word occurs only here in the Bible; Ex 2:3 uses ḥēmār instead.",
+      "evidence": "BDB H3724 II (Ass. kupru; Gen 6:14 (P)); Ryle (only here; Ass. kupru in the Babylonian account; Ex 2:3 uses ḥēmār); Keil. Tier A.",
+      "id": "clm-na-012"
+    },
+    {
+      "assessment": "established",
+      "claim": "Qinnîm (\"rooms,\" 6:14) literally means \"nests\" — cells or cabins.",
+      "evidence": "BDB H7064 §2 (\"cells, like nests, in Noah's ark Gen 6:14 (P)\"); Ryle (\"cabins, or cubicles\"; lit. \"nests\"); Keil (niduli, mansiunculae). Tier A.",
+      "id": "clm-na-013"
+    },
+    {
+      "assessment": "established",
+      "claim": "The ark's dimensions are 300 x 50 x 30 cubits (6:15); breadth is 1/6 and height 1/10 of the length; volume 450,000 cubic cubits.",
+      "evidence": "Text verified live (Preview API); Ryle (ratios); Keil (15,000 sq / 450,000 cubic cubits — arithmetic). Tier A.",
+      "id": "clm-na-014"
+    },
+    {
+      "assessment": "unknown (absolute length)",
+      "claim": "The absolute length of the cubit is uncertain; the ordinary cubit is ~6 handbreadths (~18 in.), but BDB calls the absolute length \"dubious,\" and a longer (royal) cubit existed. No modern-unit conversion may be given as fact.",
+      "evidence": "BDB H520 (\"absolute length dubious\"; Egyptian longer .525 m / shorter .450 m; Ezekiel's cubit one handbreadth longer); Skinner (ordinary cubit ~18 in., citing Kennedy DB iv.909); Ryle (assumes 1.5 ft). Tier A.",
+      "id": "clm-na-015"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Ṣōhar (6:16) is disputed: \"light\"/window/opening vs \"roof.\" The \"cubit above\" clause is unintelligible as it stands.",
+      "evidence": "BDB H6672 II (\"probably roof\" vs \"light, window\"); Keil (\"light\" established by ṣohŏrayim); Ryle (\"window... most probable\"; clause \"very difficult\"); Skinner (\"very confused and mostly obscure\"; prevalent explanation \"mere guesswork\"; \"unintelligible as it stands\"). Tier A.",
+      "id": "clm-na-016"
+    },
+    {
+      "assessment": "established",
+      "claim": "The door is set in the side of the ark (6:16), and the ark has three decks/stories (lower, second, third).",
+      "evidence": "Text verified live; BDB H6607 (\"doorway of ark Gen 6:16 (P)\"); BDB H6763 (ṣēlā' \"side\"); Keil; Ryle. Tier A.",
+      "id": "clm-na-017"
+    },
+    {
+      "assessment": "established (forms); debated (wordplay reading)",
+      "claim": "Šāḥat does double duty in the passage: Niphal \"be corrupted\" (6:11, 12) and Pi'el \"destroy\" (6:13, 17) — the earth corrupted itself, so God destroys it (lex talionis).",
+      "evidence": "BDB H7843 (Niphal nišḥătâ Gen 6:12, wattiššāḥēt Gen 6:11; Pi'el \"destroy\" kol-bāśār Gen 6:17); Keil (lex talionis); Skinner. The wordplay reading is interpretation. Tier A / C.",
+      "id": "clm-na-018"
+    },
+    {
+      "assessment": "established",
+      "claim": "Ḥāmās (6:11, 13) is violent wrongdoing — \"ruthless outrage perpetrated by the strong on the weak\"; \"impious insolence and active disregard of all law of right and wrong.\"",
+      "evidence": "BDB H2555 (44t.; Gen 6:11, 13 (P)); Skinner; Ryle (LXX adikias / Lat. iniquitate \"miss the specific thought of 'violence'\"). Tier A.",
+      "id": "clm-na-019"
+    },
+    {
+      "assessment": "established",
+      "claim": "Kol-bāśār (\"all flesh\") means \"all living beings,\" but its referent shifts by context: mankind only in 6:12; men and animals in 6:13, 17; animals only in 6:19.",
+      "evidence": "BDB H1320 §6 (a. all living beings Gen 6:17, 19...; b. animals Gen 7:15, 16; 8:17); Keil (context-determined); Ryle (6:12 = \"all the human race\"; 13 occurrences in the Flood story, characteristic of P); Skinner. Tier A.",
+      "id": "clm-na-020"
+    },
+    {
+      "assessment": "established",
+      "claim": "Mabbûl (\"flood,\" 6:17) is an archaic word coined for Noah's Flood, occurring only in Genesis and Ps 29:10, functioning almost as a proper name of the Flood.",
+      "evidence": "BDB H3999 (only Genesis and Ps 29:10; \"almost = proper name of the flood\"); Keil (\"coined expressly for the waters of Noah\"); Ryle (only of the Deluge, Gen 6-9 and Ps 29:10). Derivation dubious. Tier A (usage); derivation Tier D.",
+      "id": "clm-na-021"
+    },
+    {
+      "assessment": "established",
+      "claim": "Bĕrît (\"covenant\") first occurs in the Bible at Gen 6:18.",
+      "evidence": "Ryle, read direct (\"first mention of a covenant relation between God and man\"); corroborated second-hand by Vine's (s.v. \"Covenant\"), the NIV Biblical Theology Study Bible note on 6:18, and Rojas 2017 (snippets only — see dossier §12). Tier A (Ryle) + B.",
+      "id": "clm-na-022"
+    },
+    {
+      "assessment": "established",
+      "claim": "Hēqîm bĕrît (6:18) means \"establish (make, ratify) a covenant\"; it is distinct from karat bĕrît (\"cut a covenant\"), the technical phrase for making a covenant.",
+      "evidence": "BDB H6965 Hiphil 2.d (Gen 6:18; 9:9, 11; 17:19, 21; Ex 6:4, all P); BDB H1285 (karat bĕrît technical). Tier A.",
+      "id": "clm-na-023"
+    },
+    {
+      "assessment": "established",
+      "claim": "The covenant's parties are God and Noah, extended to his household (eight persons: Noah, his wife, three sons, three sons' wives); its content at 6:18 is prospective preservation, with full terms given at 9:8-17.",
+      "evidence": "Text of 6:18 verified live; Gill (eight persons); 1 Pet 3:20; Ryle (redundant P style); NIV Biblical Theology Study Bible (\"God here prophesies the covenant of 9:8-17\"). Tier A.",
+      "id": "clm-na-024"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Unilateral reading: in P, bĕrît is always a solemn permanent embodiment of the divine will, never a mere occasional provision; entering the ark is the condition that makes establishment possible, not a condition under the covenant.",
+      "evidence": "Skinner on 6:18 (citing Kraetzschmar, Bundesvorstg. 197 f.; Ho.). Tier C (direct text).",
+      "id": "clm-na-025"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Conditional reading: the covenant was made on Noah's making the ark and entering it; \"in that way only would he be saved.\"",
+      "evidence": "Gill (Exposition, Gen 6:18); Coffman (Commentary on Genesis, Gen 6:18). Full commentary texts not read directly — snippets only, see dossier §12. Tier C (secondary-source).",
+      "id": "clm-na-026"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Pre-existing-covenant reading: hēqîm means \"confirm,\" and \"my covenant\" points to an original establishment with Adam; Noah is viewed as already in covenant relationship.",
+      "evidence": "Murphy (Commentary on Genesis, 1863, Gen 6:18); ResearchGate study on hēqîm vs kārat. Full texts not read directly — snippets only, see dossier §12. Presupposes an Edenic covenant the text never names. Tier C (secondary-source).",
+      "id": "clm-na-027"
+    },
+    {
+      "assessment": "established",
+      "claim": "The passage gives no ark location, no construction date or duration, no building site, and no archaeological evidence; the \"100 years to build\" figure is a derived inference (500 to 600), not a textual statement.",
+      "evidence": "Negative claim, verifiable from the text of 6:9-22 as verified live. The 120 years (6:3) belongs to Dev 1's event; Midrash Tanhuma 28 is tradition, not text. Tier A.",
+      "id": "clm-na-028"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The 300 x 50 x 30 proportions must not be treated as proof of any modern engineering reconstruction; the Hong et al. 1993 study tested a model hull form and its \"superior\" verdict depends on a weighted total index (the ark ranked ~average in each individual index).",
+      "evidence": "Hong et al. 1993 via creation.com reprint (abstract + introduction); Answers in Genesis commentary on the same paper (7th seakeeping, 6th strength, 5th roll stability). Full paper not read directly. Tier B.",
+      "id": "clm-na-029"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The 6:9-22 unit is Priestly (P) material, marked by P vocabulary and formulae (bĕdōrōtāyw, kol-bāśār, the pleonastic compliance formula of 6:22, cf. Ex 40:16).",
+      "evidence": "Ryle (P portions include 6:9-22; distinctive phraseology table); Skinner (P markers). Source-critical classification, not a textual fact. Tier C.",
+      "id": "clm-na-030"
+    },
+    {
+      "assessment": "established",
+      "claim": "Gen 6:22 (\"Thus did Noah; according to all that God commanded him, so did he\") is the command-and-compliance frame closing the unit, in P's characteristic pleonastic formula.",
+      "evidence": "Skinner (\"pleonastic sentence peculiar to P (cf. Ex 40:16)\"); Ryle (same formula in Ex 7:6; 12:28, 50; 39:32, 43; 40:16, all P); Keil (cf. Heb 11:7). Tier A.",
+      "id": "clm-na-031"
+    },
+    {
+      "assessment": "established",
+      "claim": "Mîn (\"kind, species,\" 6:20, 3t.) is the same word as Gen 1:12; it is not a modern biological taxon, and the text gives no species count.",
+      "evidence": "BDB H4327 (Gen 6:20, 3t.; all P); Ryle (same word as 1:12; order follows creation order 1:20-24). Tier A.",
+      "id": "clm-na-032"
+    },
+    {
+      "assessment": "probable (order); unknown (intent)",
+      "claim": "The animal list of 6:20 (fowls, cattle, creeping things) follows the creation order of Gen 1 and omits \"the beast of the earth\" (wild beast); whether the omission is intentional is unresolved, and the LXX adds \"and of every wild beast.\"",
+      "evidence": "Ryle (order follows Gen 1:20-22, 24; \"Is this intentional? The LXX adds...\"); Skinner (classification omits wild beasts). Tier A.",
+      "id": "clm-na-033"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Mesopotamian flood stories and Genesis 6-9 share a narrative skeleton: divine decision, warning, vessel, animals, flood, landing, birds, sacrifice, divine response.",
+      "evidence": "Dalley, Atrahasis III + Gilgamesh XI (read in full); ETCSL 1.7.4 (read in full); Gen 6-9. Tier A.",
+      "id": "clm-na-034"
+    },
+    {
+      "assessment": "established",
+      "claim": "Gilgamesh XI adapts Atrahasis: the reed-wall warning speech is shared verbatim material, and Tablet XI is a later literary adaptation of the Atrahasis flood story.",
+      "evidence": "Dalley (both texts); manuscript survey (watchman33ministries). Tier A (texts); C (scholarly consensus claim).",
+      "id": "clm-na-035"
+    },
+    {
+      "assessment": "debated (relationship); established (existence/contents)",
+      "claim": "The Sumerian flood story (ETCSL 1.7.4) is a separate Sumerian telling with the hero Ziusudra; whether it is the source of the Akkadian tellings or a parallel reflex is not settled.",
+      "evidence": "ETCSL 1.7.4 full text; gaps noted in the text itself. Tier A.",
+      "id": "clm-na-036"
+    },
+    {
+      "assessment": "established (motive as stated); debated (rigmu = noise vs. conduct)",
+      "claim": "In Atrahasis the flood's cause is mankind's disturbance of the gods (noise/clamour; rigmu), not human moral wickedness.",
+      "evidence": "Dalley, Atrahasis I-II (Igigi rebellion; \"we kept hearing the noise\"); Enlil's fury. Tier A; C for the translation debate.",
+      "id": "clm-na-037"
+    },
+    {
+      "assessment": "established",
+      "claim": "In Atrahasis and Gilgamesh XI the warning reaches the hero by subterfuge: Enki/Ea, oath-bound to secrecy, speaks to a reed hut/wall rather than to the man.",
+      "evidence": "Dalley, Atrahasis III i-ii (\"Wall, listen constantly to me!\"); Gilgamesh XI (Thompson); Dalley note 40 citing Moran 1987. Tier A.",
+      "id": "clm-na-038"
+    },
+    {
+      "assessment": "established",
+      "claim": "Genesis differs from the Mesopotamian tellings in that God warns Noah directly and openly, and announces a covenant in the same speech (Gen 6:18).",
+      "evidence": "Gen 6:13-18 (textual comparison with clm-na-038). Tier A.",
+      "id": "clm-na-039"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Atrahasis OBV vessel's dimensions are not preserved (gap in Tablet III); the circular coracle dimensions (1 ikû area, 1 nindan high) belong to the separate Ark Tablet manuscript, not to OBV.",
+      "evidence": "Dalley, Atrahasis III (gap where dimensions would fall); Finkel, Ark Tablet ll. 6-12. Tier A; B (Ark Tablet via mirror).",
+      "id": "clm-na-040"
+    },
+    {
+      "assessment": "established",
+      "claim": "Gilgamesh XI's vessel is a cube: length and width equal, 120 cubits (10 nindanu/gar) each side, roofed \"like the Apsu\".",
+      "evidence": "Thompson XI (\"ten gar\"); Dalley/George via Adamthwaite table (120 cubits). Tier A.",
+      "id": "clm-na-041"
+    },
+    {
+      "assessment": "established",
+      "claim": "Genesis's vessel is rectangular, 300 x 50 x 30 cubits, three decks (Gen 6:15-16) — different in both proportion and shape from Gilgamesh's cube and the Ark Tablet's circle.",
+      "evidence": "Gen 6:15-16; clm-na-040; clm-na-041. Tier A.",
+      "id": "clm-na-042"
+    },
+    {
+      "assessment": "established",
+      "claim": "The flood lasts seven days and seven nights in Atrahasis and in the Sumerian flood story, and six days and seven nights (seventh day calm) in Gilgamesh XI.",
+      "evidence": "Dalley, Atrahasis III v; ETCSL 1.7.4 seg. D; Thompson XI. Tier A.",
+      "id": "clm-na-043"
+    },
+    {
+      "assessment": "established",
+      "claim": "A bird-release episode occurs in Genesis (raven, then dove x3) and in Gilgamesh XI (dove, swallow, raven) and in Berossus (birds x3), but is absent from Atrahasis and the Sumerian flood story as preserved.",
+      "evidence": "Gen 8:6-12; Thompson XI; Cory/Wikisource (Berossus); Dalley III; ETCSL 1.7.4 (negative). Tier A; B (Berossus).",
+      "id": "clm-na-044"
+    },
+    {
+      "assessment": "established",
+      "claim": "In all three cuneiform tellings the gods smell the post-flood sacrifice and gather \"like flies\" over it; Genesis has the same image (\"the LORD smelled a sweet savour\", Gen 8:21).",
+      "evidence": "Dalley, Atrahasis III vi (\"gathered like flies over the offering\"); Thompson XI (\"gathered like flies over the man\"); ETCSL 1.7.4 (oxen/innumerable sheep); Gen 8:20-21. Tier A.",
+      "id": "clm-na-045"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Mesopotamian tellings end without a covenant: Atrahasis ends in imposed population control (barren women, pasittu-demon, celibate priestesses); Gilgamesh and the Sumerian story end in the hero's personal immortality. Genesis ends in a covenant with all flesh and the rainbow sign (Gen 9:8-17).",
+      "evidence": "Dalley, Atrahasis III vii-viii; Thompson XI (mouth of the rivers); ETCSL 1.7.4 seg. E (Dilmun); Gen 9:8-17. Tier A.",
+      "id": "clm-na-046"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Sumerian King List divides history at the flood (8 kings, 241,200 years, \"then the flood swept over\"); the ten-king/432,000-year total is the WB-62 variant only.",
+      "evidence": "ETCSL 2.1.1 (Cain's Descendants dossier, verified). Tier A (reused).",
+      "id": "clm-na-047"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Berossus name-correspondences between the ten antediluvian kings and the Genesis patriarchs (Alôrus = Adam ... Xisûthros = Noah) have collapsed; Berossus reaches ten by demonstrable elaborations.",
+      "evidence": "Westermann pp. 349-353 (Cain's Descendants dossier, verified). Tier A (reused).",
+      "id": "clm-na-048"
+    },
+    {
+      "assessment": "established (contents/transmission); probable (dating c. 290-278 BCE)",
+      "claim": "Berossus's flood account (Xisuthros; Cronus's dream warning; writings buried at Sippara; vessel 5 x 2 stadia; birds x3; landing in Armenia; bitumen amulets) is a late Hellenistic retelling (c. 290-278 BCE), transmitted via Alexander Polyhistor to Eusebius/Syncellus.",
+      "evidence": "Cory/Wikisource fragment text; transmission history (Colavito; Catholic Encyclopedia 1913). Tier B; C (dating).",
+      "id": "clm-na-049"
+    },
+    {
+      "assessment": "established (as reception); unknown (whether remains existed)",
+      "claim": "Josephus (Ant. I.3) cites Berossus, Nicolaus of Damascus and others as pagan testimony that ark remains were shown in Armenia in his day; this is evidence for the 1st-century tradition, not archaeological evidence of remains.",
+      "evidence": "Whiston text, Ant. I.3.5-6 (read via secondary hosts). Tier B.",
+      "id": "clm-na-050"
+    },
+    {
+      "assessment": "established (as retelling); traditional (dates/Lubar)",
+      "claim": "Jubilees 5 retells the flood on a precise dated calendar (ark built 1307 A.M.; entry 1308 A.M.; landing on Lubar, a mountain of Ararat) — Jubilees' own traditions, not Genesis.",
+      "evidence": "Charles, Jubilees 5 (read in full). Tier A.",
+      "id": "clm-na-051"
+    },
+    {
+      "assessment": "established (as expansion)",
+      "claim": "1 Enoch 106 presents Noah's birth as a portent (radiant child; Lamech fears angelic paternity; Enoch reassures him the boy is truly his son and names him Noah).",
+      "evidence": "Charles, 1 Enoch 106 (read in full). Tier A.",
+      "id": "clm-na-052"
+    },
+    {
+      "assessment": "debated (the question); probable (that the debate exists as described)",
+      "claim": "The rabbis debate whether Noah was righteous absolutely or only relative to his generation (\"in his generations\", Gen 6:9); both opinions are preserved (Gen. Rab. 30:9-10).",
+      "evidence": "Secondary survey (\"Noah in rabbinic literature\"); primary text NOT opened. Tier C.",
+      "id": "clm-na-053"
+    },
+    {
+      "assessment": "established",
+      "claim": "Justin Martyr (Dial. 138) reads the eight in the ark as a symbol of the eighth day (resurrection), regenerated \"through water, and faith, and wood\".",
+      "evidence": "ANF text via New Advent (read). Tier B.",
+      "id": "clm-na-054"
+    },
+    {
+      "assessment": "established",
+      "claim": "Tertullian (Bapt. 8) reads the deluge as \"the baptism, so to say, of the world\", the dove as the Holy Spirit, and the ark as the typified Church — while limiting the figure (\"the world returned unto sin\").",
+      "evidence": "Thelwall/ANF ch. 8 via CCEL (read in full). Tier A.",
+      "id": "clm-na-055"
+    },
+    {
+      "assessment": "established",
+      "claim": "Augustine (City of God XV.26-27) reads the ark as a figure of Christ and the Church in every detail, and rejects both errors: bare history without allegory, and figure without history.",
+      "evidence": "Dods ch. 26 (read in full); ch. 27 title/thesis (search text + secondary summary). Tier A (ch. 26); B (ch. 27).",
+      "id": "clm-na-056"
+    },
+    {
+      "assessment": "established",
+      "claim": "Chrysostom (Hom. 25-26) reads Noah primarily as a moral exemplar: the 100-year warning was a reprieve, the 40 days of rain were mercy, and God shut the ark \"from the outside\" so Noah would not watch the destruction.",
+      "evidence": "Hill/FOTC text via fliphtml5; Hill's Akribeia study. Tier B. The ark=Church / dove=Spirit typology attributed to Chrysostom in secondary summaries is Tier C only and is NOT asserted here.",
+      "id": "clm-na-057"
+    },
+    {
+      "assessment": "established",
+      "claim": "Hebrews 11:7 names Noah's ark-building as faith; 1 Peter 3:20-21 names it as a figure of baptism; 2 Peter 2:5 names Noah a \"preacher of righteousness\" in a judgment context. Three distinct NT readings, not one.",
+      "evidence": "Bible text, verified live (bible-api.com, KJV) for all three passages; ranges re-verified live against the Gnosis Preview API 2026-11-16 (see review.notes). Tier A.",
+      "id": "clm-na-058"
+    },
+    {
+      "assessment": "established (tensions); debated (explanations)",
+      "claim": "Genesis 6-9 shows observable tensions (two of every sort, 6:19-20, vs. seven pairs of clean animals, 7:2-3; rain 40 days vs. waters prevailing 150 days). The documentary (J/P) explanation of these tensions is one scholarly account, challenged since the 1970s; the conservative unity reading harmonises them. Neither is the consensus.",
+      "evidence": "Gen 6:19-20; 7:2-3, 12, 17, 24 (textual observation, Tier A); documentary-hypothesis and harmonisation literatures via summaries only (Tier C).",
+      "id": "clm-na-059"
+    },
+    {
+      "assessment": "unknown (date); traditional (estimates)",
+      "claim": "Noah's Flood has no independently established historical date; traditional estimates exist (Ussher; Jubilees A.M.; MT/SP/LXX totals) but are textual/traditional, not historical.",
+      "evidence": "Standards §3.1; Seth dossier (chronology schemes). Tier A (reused).",
+      "id": "clm-na-060"
+    },
+    {
+      "assessment": "unknown",
+      "claim": "No ark location, archaeological evidence of the ark, or construction date is established by any source in this file. Claims of surviving ark remains (Josephus, Berossus) are traditions, not verified evidence.",
+      "evidence": "Negative claim from the sources consulted (see dossier §13). Tier A (negative).",
+      "id": "clm-na-061"
+    }
+  ],
+  "connections": [
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 5,
+      "endVerse": 32,
+      "id": "conn-na-001",
+      "note": "Introduces Noah: Lamech names him Noah (\"rest/comfort\" wordplay — Seth dossier, reused) and Noah fathers Shem, Ham, and Japheth at 500. The genealogy's endpoint is the flood generation; without it, 6:9's \"Noah was a just man\" has no introduction. Chronology note: the Gen 5 totals are textual traditions (MT 1656 / SP 1307 / LXX 2242), not established history — no flood date is presented. Range verified live against the Preview API 2026-11-16 (Gen 5, 32 verses; vv. 28 and 32 confirmed).",
+      "startChapter": 5,
+      "startVerse": 28,
+      "type": "background"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 9,
+      "endVerse": 29,
+      "id": "conn-na-002",
+      "note": "The flood itself and its aftermath: entry, the waters, the landing, the sacrifice, the covenant (9:8-17, the establishment of the covenant announced in 6:18), and Noah's later life. OVERLAP FLAG: this range is the EM's parallel Great Flood event's primary range (Gen 7:1-8:19). This connection shares the range rather than duplicating that event's content; the 9:8-17 covenant sub-range is the load-bearing link for this event's 6:18. Editor to confirm both stand (conn-ca-006 three-way-overlap precedent). Range verified live against the Preview API 2026-11-16 (Gen 7, 24 verses; Gen 9, 29 verses; 7:1 and 9:29 confirmed).",
+      "startChapter": 7,
+      "startVerse": 1,
+      "type": "direct-account"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 6,
+      "endVerse": 8,
+      "id": "conn-na-003",
+      "note": "The corruption that prompts the judgment in 6:9-22 (cf. 6:5, 6:11-13). OVERLAP FLAG: this range is Dev 1's parallel Humanity's Corruption event (Gen 6:1-8). This connection exists only to point the reader at the preceding event and does not duplicate its content; editor to confirm both stand (conn-ca-006 three-way-overlap precedent). Range verified live against the Preview API 2026-11-16 (Gen 6, 22 verses; 6:1 and 6:8 confirmed).",
+      "startChapter": 6,
+      "startVerse": 1,
+      "type": "background"
+    },
+    {
+      "book": "Hebrews",
+      "bookId": "hebrews",
+      "confidence": "established",
+      "endChapter": 11,
+      "endVerse": 7,
+      "id": "conn-na-004",
+      "note": "The New Testament's reading of this event as faith: \"By faith Noah, being warned of God of things not seen as yet, moved with fear, prepared an ark to the saving of his house.\" Noah's obedience in 6:22 (\"Thus did Noah; according to all that God commanded him, so did he\") is named faith. Distinct from 1 Peter (baptism) and 2 Peter (judgment). Range verified live against the Preview API 2026-11-16 (Heb 11, 40 verses; v. 7 confirmed).",
+      "startChapter": 11,
+      "startVerse": 7,
+      "type": "thematic"
+    },
+    {
+      "book": "1 Peter",
+      "bookId": "1-peter",
+      "confidence": "established",
+      "endChapter": 3,
+      "endVerse": 21,
+      "id": "conn-na-005",
+      "note": "Baptism typology, the earliest Christian reading of the ark: \"eight souls were saved by water. The like figure whereunto even baptism doth also now save us.\" This verse is the scriptural anchor for the whole patristic ark=Church/baptism tradition. Reader link uses the URL-encoded book name (/bible/1%20Peter/3). Range verified live against the Preview API 2026-11-16 (1 Pet 3, 22 verses; vv. 20-21 confirmed).",
+      "startChapter": 3,
+      "startVerse": 20,
+      "type": "thematic"
+    },
+    {
+      "book": "2 Peter",
+      "bookId": "2-peter",
+      "confidence": "established",
+      "endChapter": 2,
+      "endVerse": 5,
+      "id": "conn-na-006",
+      "note": "Judgment-and-preservation example: God \"spared not the old world, but saved Noah the eighth person, a preacher of righteousness, bringing in the flood upon the world of the ungodly.\" Distinct from Hebrews (faith) and 1 Peter (baptism): this is the judgment reading, and the only NT text calling Noah a \"preacher of righteousness\" — the source of the later tradition that Noah warned his generation. Reader link uses the URL-encoded book name (/bible/2%20Peter/2). Range verified live against the Preview API 2026-11-16 (2 Pet 2, 22 verses; v. 5 confirmed).",
+      "startChapter": 2,
+      "startVerse": 5,
+      "type": "thematic"
+    }
+  ],
+  "date": {
+    "label": "No independently established date",
+    "note": "Chronology is narrative only; the passage provides no independently datable historical coordinates. Traditional chronological estimates exist, but the Genesis event has no independently established historical date (Standards §3.1).",
+    "traditionalSystem": null,
+    "type": "unknown",
+    "yearEnd": null,
+    "yearStart": null
+  },
+  "id": "event-noah-ark",
+  "locations": [],
+  "primaryScripture": {
+    "book": "Genesis",
+    "bookId": "genesis",
+    "endChapter": 6,
+    "endVerse": 22,
+    "startChapter": 6,
+    "startVerse": 9
+  },
+  "relatedEvents": [
+    "event-seth-early-generations",
+    "event-humanitys-corruption"
+  ],
+  "review": {
+    "author": "Gnosis research draft (AI-assisted)",
+    "checklistVersion": "standards-1.1-section-14",
+    "lastReviewed": "2026-11-16",
+    "notes": "In-review draft (PR: content/biblical-history-noah-ark). Category \"Noah and the Flood\" is a dossier / review.notes / PR-description label only — the JSON category field is \"event\" (a type); there is no thematic-category field in the repo. Stage 1 research dossier 2026-11-16 (workspace: gnosis-noah-ark/dossier/noah-and-the-ark-research-dossier.md), branch point main 289f264. Claims register: 61 rows (clm-na-001-061) — the textual track's clm-na-001-033 reconciled with the ANE track's clm-na-x01-x28, renumbered clm-na-034-061 in the ANE track's order, no collisions. The 61 count is 26 over the ~35 aim with justification: two full research tracks (21 BDB entries + Skinner/Keil/Ryle read in full; Atrahasis/Gilgamesh XI/Sumerian flood story read in full; reception through Chrysostom) covering Hebrew vocabulary, dimensions/materials, covenant, flood-tradition comparison, and reception — each claim is distinct and none is asserted in prose beyond its assessment. Connections: 6/6 ranges verified live against the Preview API 2026-11-16 by the drafting track (the ANE track had not done the live check): Gen 5:28-32 (32 vv), Gen 7:1-9:29 (Gen 7: 24 vv; Gen 9: 29 vv), Gen 6:1-8 (22 vv), Heb 11:7 (40 vv), 1 Pet 3:20-21 (22 vv), 2 Pet 2:5 (22 vv). Overlaps are editor-visible: conn-na-002 overlaps the EM's Great Flood event range (Gen 7:1-8:19) and conn-na-003 overlaps Dev 1's Humanity's Corruption event range (Gen 6:1-8); each carries an overlap flag in its note (conn-ca-006 precedent) and the editor decides whether to merge, keep both, or drop one. relatedEvents lists only event-seth-early-generations (present on the base); the Corruption link is added on rebase after Dev 1's event merges, and the Great Flood link after the EM's event merges. Sources: 19 cited — 6 reused verified registry entries (BDB, Skinner, Keil & Delitzsch, Ryle, Westermann, ETCSL Sumerian King List) and 13 new entries (Dalley, ETCSL flood story, Finkel, Thompson, Berossus, Charles Jubilees, Charles Enoch, Josephus, Justin, Tertullian, Augustine, Chrysostom, Hong et al. 1993). One further new registry entry, source-philo-questions-genesis, is added but NOT cited by this event: it is not-independently-verified (verbatim passages only, tier D) and is reserved for the EM's Great Flood event to reuse; citing Philo publicly needs full-text verification or an editorial override before publication. Westermann is cited only for the Berossus-collapse excursus (pp. 349-353, verified in the Cain's Descendants dossier); Westermann's Gen 6 commentary proper was NOT read — do not cite Westermann for Gen 6:9-22 claims. No editorialOverride: check 10 applies only to published events; the not-independently-verified sources cited here (Philo is uncited; Hong is snippet/abstract-level) need verification or a Yonatan-approved override before publication. Word counts (validator's countWords): Overview 137, Ancient World 399, Why 78. Unresolved gaps carried forward (dossier §13): Westermann Gen 6 not read; NETS Gen 6:9 and SP/LXX variants for Gen 6 not checked; Lambert & Millard 1969 and George 2003 not read directly; Philo QG tier D; Rashi/Ibn Ezra and the covenant secondary sources (Vine, NIV BTSB, Rojas, Gill, Coffman, Murphy) verified via snippets only and held as dossier bibliography without registry entries; Hong et al. 1993 full paper not read; flood extent and flood geology not researched from primary sources. Publication is a separate decision and is NOT part of this PR.",
+    "reviewer": "Stage 1 dossier editorial verification 2026-11-16; independent QA not yet requested"
+  },
+  "sources": [
+    "source-skinner-genesis",
+    "source-bdb-lexicon",
+    "source-ryle-genesis",
+    "source-keil-delitzsch-genesis",
+    "source-dalley-myths-mesopotamia",
+    "source-etcsl-flood-story",
+    "source-thompson-gilgamesh",
+    "source-finkel-ark-before-noah",
+    "source-berossus-babyloniaca",
+    "source-etcsl-sumerian-king-list",
+    "source-charles-jubilees",
+    "source-charles-enoch",
+    "source-josephus-antiquities",
+    "source-justin-dialogue-trypho",
+    "source-tertullian-baptism",
+    "source-augustine-city-of-god",
+    "source-westermann-genesis",
+    "source-chrysostom-homilies-genesis",
+    "source-hong-ark-seaway-1993"
+  ],
+  "status": "in-review",
+  "title": "Noah and the Ark",
+  "topics": []
+}
