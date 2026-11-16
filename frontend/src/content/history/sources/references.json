@@ -518,5 +518,88 @@
     "verification": "not-independently-verified",
     "verificationDetail": "DJD XII pp. 31-38 NOT read directly this session (tier b): the 4QGen-b contents (Gen 1:1-27; 2:14-19; 4:2-4; 5:13) are established via Young 2003 (citing Scanlin 1993 and DJD XII, pp. 31-37) and catalogue listings. Cited only for the fragment's contents and the negative result (one word from Gen 5, the name Cainan; no genealogy numbers).",
     "licenseNote": "Paraphrase only; contents list is factual."
+  },
+  "source-hendel-genesis-text": {
+    "id": "source-hendel-genesis-text",
+    "title": "Hendel, The Text of Genesis 1–11: Textual Studies and Critical Edition",
+    "type": "monograph",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Hendel 1998, Oxford University Press: critical text of Gen 6:1–11 and 3–8, pp. 132–134 (read in full): MT yādôn attested in M and S; yādûr attested in 4QCommGenᵃ (4Q252), LXX, Targum Onkelos, Syriac, Vulgate, Jubilees 5:8; MT's reading a 'linguistic modernization, or perhaps graphic confusion' (nun/resh). Text-critical only: Hendel does not discuss the Nephilim by name and takes no position on the three 'sons of God' interpretations."
+  },
+  "source-thompson-gilgamesh": {
+    "id": "source-thompson-gilgamesh",
+    "title": "Thompson, The Epic of Gilgamish",
+    "type": "primary-source",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). R. Campbell Thompson, The Epic of Gilgamish, Clarendon Press, Oxford, 1928, Tablets I and XI (read in full): Tablet I (Gilgamesh 'two-thirds divine and one-third human', son of Ninsun and Lugalbanda; apkallu as advisers); Tablet XI (the flood decided in the 'Assemblage of Gods'; the gods terrified by the flood they unleashed; 'the gods gathered like flies' confirmed verbatim; Ea rebukes Enlil for excess; no moral cause for the flood)."
+  },
+  "source-etcsl-death-of-gilgamesh": {
+    "id": "source-etcsl-death-of-gilgamesh",
+    "title": "ETCSL — The death of Gilgamesh",
+    "type": "primary-source",
+    "url": "https://etcsl.orinst.ox.ac.uk/cgi-bin/etcsl.cgi?text=t.1.8.1.3#",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). ETCSL t.1.8.1.3 (read in full): Gilgamesh's divine parentage (son of Ninsun) stated as a fact about the hero's nature, with no marriage narrative."
+  },
+  "source-etcsl-shulgi": {
+    "id": "source-etcsl-shulgi",
+    "title": "ETCSL — Šulgi A and Šulgi C",
+    "type": "primary-source",
+    "url": "https://etcsl.orinst.ox.ac.uk/cgi-bin/etcsl.cgi?text=t.2.4.2.01#",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). ETCSL t.2.4.2.01 (Šulgi A) and t.2.4.2.03 (Šulgi C) (read in full): Šulgi's claim to be 'a child born of Ninsun', 'brother and friend' of Gilgamesh, spouse of Inanna; royal ideology, not a marriage narrative. His historical parents were Ur-Nammu and a human queen."
+  },
+  "source-etcsl-eridu-genesis": {
+    "id": "source-etcsl-eridu-genesis",
+    "title": "ETCSL — Eridu Genesis",
+    "type": "primary-source",
+    "url": "https://etcsl.orinst.ox.ac.uk/cgi-bin/etcsl.cgi?text=t.1.7.4#",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). ETCSL t.1.7.4, Segment C (read in full): the divine assembly decides the destruction of mankind ('the verdict, the word of the divine assembly, cannot be revoked'), with no moral cause stated in the preserved text."
+  },
+  "source-baal-cycle-ktu": {
+    "id": "source-baal-cycle-ktu",
+    "title": "The Baal Cycle (KTU 1.4 VI 44–46)",
+    "type": "primary-source",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Good Works Library 2026 translation (CC BY-NC-SA 4.0), KTU 1.3–1.4 (read in full), cross-checked against Wyatt 2010 and the transliteration ṣḥ šbʿm bn ʾaṯrt ('Baal called the seventy sons of Asherah', KTU 1.4 VI 44–46). Caveat: Smith & Pitard 2009 / Wyatt 2002 not opened."
+  },
+  "source-berossus-babyloniaca": {
+    "id": "source-berossus-babyloniaca",
+    "title": "Berossus, Babyloniaca (fragments)",
+    "type": "primary-source",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Berossus, Babyloniaca (c. 290 BCE), fragments as transmitted (Wikisource, read in full): Oannes teaching letters and arts; ten kings reigning 432,000 years before the flood; a flood without a moral cause; Xisuthrus saved for his piety."
+  },
+  "source-sibbing-plantholt-time-death": {
+    "id": "source-sibbing-plantholt-time-death",
+    "title": "Sibbing-Plantholt, 'Coping with time and death in the Ancient Near East'",
+    "type": "article",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Irene Sibbing-Plantholt, 'Coping with time and death in the Ancient Near East', Religion Compass 15 (2021) e12420, pp. 2–3 (read in full), quoting Klein 1990, Cohen 2013, Alster 2005: Enlil and Namzitarra sets human life at 120 years ('120 years are the years of mankind… from the day that mankind exists until today'), fixed from mankind's beginning, not newly imposed for wrongdoing; wisdom context, not judgment. Caveat: the cuneiform text itself was not opened. The parallel is proposed, not established."
+  },
+  "source-augustine-city-of-god": {
+    "id": "source-augustine-city-of-god",
+    "title": "Augustine, City of God (Book XV)",
+    "type": "primary-source",
+    "url": "https://www.newadvent.org/fathers/120115.htm",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Marcus Dods translation, NPNF First Series vol. 2 (1887), Book XV chs. 22–25 (New Advent, read in full): the Sethite reading in its fullest argued form; the 120 years as a countdown/respite; divine repentance as unchangeable judgement in human language."
+  },
+  "source-targum-onkelos": {
+    "id": "source-targum-onkelos",
+    "title": "Targum Onkelos (Genesis 6:1–8)",
+    "type": "primary-source",
+    "url": "https://www.sefaria.org/Onkelos_Genesis.6?lang=bi",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Etheridge 1862 translation (targum.info) and the Sefaria API (read in full): 'sons of the rulers' (6:2, 6:4); the 120 years as a respite (6:3); the Memra circumlocution for 6:6. The Targumic royal reading, held as a primary identification."
+  },
+  "source-rashi-genesis": {
+    "id": "source-rashi-genesis",
+    "title": "Rashi, Commentary on Genesis 6",
+    "type": "primary-source",
+    "url": "https://www.chabad.org/library/bible_cdo/aid/8171/jewish/showrashi/trueChapter-6.htm",
+    "verification": "verified",
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Rosenbaum & Silbermann 1929–1934, Gen 6:2, 6:3, 6:4, 6:6 (Chabad, read in full): the royal reading ('sons of the princes and the judges'); the 120 years as a respite; 'also after that' before the Flood, in Enosh's generation."
   }
 }
