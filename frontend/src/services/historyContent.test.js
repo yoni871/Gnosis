@@ -275,7 +275,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         expect(cains).not.toHaveProperty("review");
         expect(cains.title).toBe("Cain's Descendants");
         expect(cains.connections).toHaveLength(25);
-        expect(cains.sources).toHaveLength(11);
+        expect(cains.sources).toHaveLength(12);
         expect(cainsJson).not.toContain("clm-cd-");
         // ... while the SOURCE file still carries the full register.
         const sourceCains = JSON.parse(readFileSync(path.join(contentDir, "events", "cains-descendants.json"), "utf8"));
