@@ -116,28 +116,55 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
             const manifest = readManifest(sandbox);
             expect(manifest.includeUnpublished).toBe(false);
             // The sandbox flips Creation to in-review; the shipped Adam
-            // and Eve event is published, so published-only generation
-            // still ships it — with the 16 sources it cites — and
-            // nothing unpublished.
-            expect(manifest.events).toEqual(["event-adam-and-eve"]);
+            // and Eve, Cain and Abel, Cain's Descendants, and Seth
+            // events are published, so published-only generation still
+            // ships them — with the 42 sources they cite — and nothing
+            // unpublished.
+            expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-seth-early-generations"]);
             expect(manifest.books).toEqual(["genesis"]);
             expect(manifest.sources).toEqual([
+                "source-adamtoabraham-methuselah-flood",
+                "source-ats-seven",
+                "source-austin-gobeil-tattooed-mummy",
                 "source-balogh-tree-of-life",
                 "source-bdb-lexicon",
                 "source-benthall-two-trees",
+                "source-bloch-blood-vengeance",
+                "source-christ-over-all-genesis-4-7",
+                "source-clarke-commentary",
+                "source-djd-xii-qumran-cave-4",
+                "source-easton-seven",
+                "source-encyclopedia-crime-punishment",
                 "source-etcsl-enki-ninmah",
+                "source-etcsl-sheep-and-grain",
+                "source-etcsl-sumerian-king-list",
+                "source-gabriel-cainite-genealogy",
+                "source-gunkel-genesis",
+                "source-hammurabi-code",
                 "source-isaw-sacred-tree",
+                "source-jfb-commentary",
+                "source-jvl-kenite",
                 "source-jvl-paradise",
                 "source-keil-delitzsch-genesis",
                 "source-kramer-dilmun",
+                "source-maarten-eisegesis",
                 "source-mcdowell-human-identity",
                 "source-met-mesopotamian-creation",
+                "source-met-nahal-mishmar",
+                "source-met-uruk-first-city",
+                "source-nets-septuagint-genesis",
                 "source-oracc-marduk",
+                "source-oracc-nebuchadnezzar-011",
+                "source-oracc-saa-07-212",
                 "source-ryle-genesis",
                 "source-scriptorium-lamassu",
                 "source-skinner-genesis",
+                "source-smith-methuselah-begetting-age",
+                "source-smiths-seven",
                 "source-stordalen-eden-narrative",
                 "source-westermann-genesis",
+                "source-wikipedia-musical-instrument",
+                "source-young-septuagint-masoretic-chronology",
             ]);
             expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
             expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(false);
@@ -155,7 +182,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         const manifest = readManifest(sandbox);
         expect(manifest.includeUnpublished).toBe(true);
         // The sandbox flips Creation to in-review; the shipped Cain and
-        // Abel, Cain's Descendants, and Seth events are in-review too,
+        // Abel, Cain's Descendants, and Seth events are published now,
         // so the dev opt-in includes all five events.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-seth-early-generations"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
@@ -204,9 +231,9 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
             cwd: sandbox,
         });
         expect(result.status).toBe(0);
-        // Only the published Adam and Eve event survives the
-        // production generation; the stale Creation drafts are gone.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve"]);
+        // Only the four published events survive the production
+        // generation; the stale Creation drafts are gone.
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-seth-early-generations"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(false);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.md"))).toBe(false);
@@ -222,7 +249,7 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         });
         expect(result.status).toBe(0);
         // The sandbox flips Creation to in-review; the shipped Cain and
-        // Abel, Cain's Descendants, and Seth events are in-review too,
+        // Abel, Cain's Descendants, and Seth events are published now,
         // so the dev opt-in includes all five events.
         expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
@@ -232,9 +259,9 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         const sandbox = makeSandbox();
         const result = runNode("scripts/build-history-content-dev.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        // Published-only: the published Adam and Eve event ships; the
+        // Published-only: the four published events ship; the
         // in-review Creation fixture does not.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     });
 });
@@ -328,153 +355,15 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
     it("returns the in-review event with its title and its unpublished-only sources", () => {
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
-        // Adam and Eve is published now, so the sandbox's non-published
-        // events are the shipped in-review Cain and Abel, Cain's
-        // Descendants, and Seth events and Creation (flipped to
-        // in-review by makeSandbox) — listed first, then the sources
-        // cited only by them, in citation order per event (file order:
-        // cain-and-abel, cains-descendants, creation,
-        // seth-early-generations). McDowell, Met, and ORACC are no
-        // longer unpublished-only: the published Adam and Eve event
-        // cites them too. BDB, Keil, Ryle, Skinner, and Westermann are
-        // likewise shared with published Adam and Eve, so Cain's
-        // Descendants contributes only its seven new sources. Brown,
-        // Crouch, and Shabaka follow in Creation's citation order.
-        // Seth cites six sources no published event cites, but the
-        // Sumerian King List is already listed under Cain's
-        // Descendants (which sorts first), so Seth's group shows its
-        // other five, in citation order.
+        // Adam and Eve, Cain and Abel, Cain's Descendants, and Seth are
+        // published now, so the sandbox's only non-published event is
+        // Creation (flipped to in-review by makeSandbox) — listed
+        // first, then the sources cited only by it, in Creation's
+        // citation order: Brown, Crouch, and Shabaka. McDowell, Met,
+        // and ORACC are cited by published events too.
         expect(findNonPublishedRecords({ contentDir })).toEqual([
-            { id: "event-cain-and-abel", kind: "event", status: "in-review", title: "Cain and Abel" },
-            { id: "event-cains-descendants", kind: "event", status: "in-review", title: "Cain's Descendants" },
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
-            { id: "event-seth-early-generations", kind: "event", status: "in-review", title: "Seth and the Early Generations" },
             {
-                id: "source-etcsl-sheep-and-grain",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The debate between Grain and Sheep (ETCSL 5.3.2)",
-            },
-            {
-                id: "source-oracc-nebuchadnezzar-011",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Nebuchadnezzar II 011 (ORACC RIBO Q005482)",
-            },
-            {
-                id: "source-oracc-saa-07-212",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Aššur Temple Offerings, Day 25 (SAA 07 212; tablet ADD 1013)",
-            },
-            {
-                id: "source-gunkel-genesis",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Genesis übersetzt und erklärt (Handkommentar zum Alten Testament)",
-            },
-            {
-                id: "source-clarke-commentary",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Holy Bible… with a Commentary and Critical Notes",
-            },
-            {
-                id: "source-jfb-commentary",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Commentary Critical and Explanatory on the Whole Bible",
-            },
-            {
-                id: "source-christ-over-all-genesis-4-7",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Cross in Genesis 4.7",
-            },
-            {
-                id: "source-hammurabi-code",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Code of Hammurabi (King translation)",
-            },
-            {
-                id: "source-bloch-blood-vengeance",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Blood Vengeance in Ancient Near Eastern Context",
-            },
-            {
-                id: "source-encyclopedia-crime-punishment",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Crime and Punishment",
-            },
-            {
-                id: "source-austin-gobeil-tattooed-mummy",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Embodying the Divine: A Tattooed Female Mummy from Deir el-Medina",
-            },
-            {
-                id: "source-smiths-seven",
-                kind: "source",
-                status: "unpublished-only",
-                title: "'Seven' (Smith's Dictionary of the Bible)",
-            },
-            {
-                id: "source-ats-seven",
-                kind: "source",
-                status: "unpublished-only",
-                title: "'Seven' (American Tract Society Bible Dictionary)",
-            },
-            {
-                id: "source-easton-seven",
-                kind: "source",
-                status: "unpublished-only",
-                title: "'Seven' (Illustrated Bible Dictionary)",
-            },
-            {
-                id: "source-etcsl-sumerian-king-list",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Sumerian King List (ETCSL 2.1.1)",
-            },
-            {
-                id: "source-gabriel-cainite-genealogy",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Die Kainitengenealogie Gn 4,17–24",
-            },
-            {
-                id: "source-jvl-kenite",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Kenite (Encyclopaedia Judaica)",
-            },
-            {
-                id: "source-maarten-eisegesis",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Genesis 4:17–24: A Case-Study in Eisegesis",
-            },
-            {
-                id: "source-met-nahal-mishmar",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Nahal Mishmar Treasure",
-            },
-            {
-                id: "source-met-uruk-first-city",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Uruk: The First City",
-            },
-            {
-                id: "source-wikipedia-musical-instrument",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Musical instrument",
-            },            {
                 id: "source-brown-cosmic-temple",
                 kind: "source",
                 status: "unpublished-only",
@@ -491,36 +380,6 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 kind: "source",
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
-            },
-            {
-                id: "source-nets-septuagint-genesis",
-                kind: "source",
-                status: "unpublished-only",
-                title: "A New English Translation of the Septuagint: Genesis",
-            },
-            {
-                id: "source-young-septuagint-masoretic-chronology",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Septuagintal Versus Masoretic Chronology in Genesis 5 and 11",
-            },
-            {
-                id: "source-smith-methuselah-begetting-age",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Methuselah's Begetting Age in Genesis 5:25 and the Primeval Chronology of the Septuagint: A Closer Look at the Textual and Historical Evidence",
-            },
-            {
-                id: "source-adamtoabraham-methuselah-flood",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Did Methuselah Survive the Flood? The Septuagint's 167 vs. 187-Year Mystery — Part 1",
-            },
-            {
-                id: "source-djd-xii-qumran-cave-4",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Qumran Cave 4.VII: Genesis to Numbers (Discoveries in the Judaean Desert XII)",
             },
             // source-kantor-genesis-opening is deliberately absent: it is
             // kept unreferenced in the shared registry (editorial
@@ -717,12 +576,10 @@ describe("historyGatePlugin — the direct vite build path", () => {
             encoding: "utf8",
         });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-seth-early-generations"]);
         const text = distText(sandbox);
         expect(text).not.toContain("event-creation");
         expect(text).not.toContain("Creation");
-        expect(text).not.toContain("event-seth-early-generations");
-        expect(text).not.toContain("Seth and the Early Generations");
         expect(text).not.toContain("source-brown-cosmic-temple");
         expect(text).not.toContain("The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3");
         // The postbuild gate passes on the result as well.

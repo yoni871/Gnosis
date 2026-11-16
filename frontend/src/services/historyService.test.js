@@ -66,10 +66,10 @@ describe("listBooks", () => {
         expect(books[39].title).toBe("Matthew");
         expect(books[65].title).toBe("Revelation");
     });
-    it("marks every book except Genesis Upcoming in a production build (two published events)", () => {
+    it("marks every book except Genesis Upcoming in a production build (five published events)", () => {
         const books = listBooks();
         const genesis = books.find((book) => book.id === "genesis");
-        expect(genesis.eventCount).toBe(2);
+        expect(genesis.eventCount).toBe(5);
         expect(genesis.hasEvents).toBe(true);
         const rest = books.filter((book) => book.id !== "genesis");
         expect(rest).toHaveLength(65);
@@ -89,11 +89,17 @@ describe("book/event lookups in a production build", () => {
         expect(book).not.toBeNull();
         expect(book.id).toBe("genesis");
         const events = listEventsForBook("genesis");
-        expect(events).toHaveLength(2);
+        expect(events).toHaveLength(5);
         expect(events[0].id).toBe("event-creation");
         expect(events[0].title).toBe("Creation");
         expect(events[1].id).toBe("event-adam-and-eve");
         expect(events[1].title).toBe("Adam and Eve");
+        expect(events[2].id).toBe("event-cain-and-abel");
+        expect(events[2].title).toBe("Cain and Abel");
+        expect(events[3].id).toBe("event-cains-descendants");
+        expect(events[3].title).toBe("Cain's Descendants");
+        expect(events[4].id).toBe("event-seth-early-generations");
+        expect(events[4].title).toBe("Seth and the Early Generations");
         expect(getEvent("event-creation")).not.toBeNull();
         expect(getEvent("event-creation").title).toBe("Creation");
         expect(getEventBySlug("creation")).not.toBeNull();
@@ -102,6 +108,18 @@ describe("book/event lookups in a production build", () => {
         expect(getEvent("event-adam-and-eve").title).toBe("Adam and Eve");
         expect(getEventBySlug("adam-and-eve")).not.toBeNull();
         expect(getEventBySlug("adam-and-eve").id).toBe("event-adam-and-eve");
+        expect(getEvent("event-cain-and-abel")).not.toBeNull();
+        expect(getEvent("event-cain-and-abel").title).toBe("Cain and Abel");
+        expect(getEventBySlug("cain-and-abel")).not.toBeNull();
+        expect(getEventBySlug("cain-and-abel").id).toBe("event-cain-and-abel");
+        expect(getEvent("event-cains-descendants")).not.toBeNull();
+        expect(getEvent("event-cains-descendants").title).toBe("Cain's Descendants");
+        expect(getEventBySlug("cains-descendants")).not.toBeNull();
+        expect(getEventBySlug("cains-descendants").id).toBe("event-cains-descendants");
+        expect(getEvent("event-seth-early-generations")).not.toBeNull();
+        expect(getEvent("event-seth-early-generations").title).toBe("Seth and the Early Generations");
+        expect(getEventBySlug("seth-early-generations")).not.toBeNull();
+        expect(getEventBySlug("seth-early-generations").id).toBe("event-seth-early-generations");
         // No other book has generated content yet.
         expect(getBook("exodus")).toBeNull();
         expect(listEventsForBook("exodus")).toEqual([]);
