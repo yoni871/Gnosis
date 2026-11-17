@@ -373,10 +373,10 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         // first in file order (creation.json < great-flood.json <
         // humanitys-corruption.json < noah-ark.json), then the sources
         // cited only by them, in first-citation order: Creation's Brown,
-        // Crouch, and Shabaka, then the Flood's 22 sources in its
+        // Crouch, and Shabaka, then the Flood's 21 sources in its
         // sources-array order (Augustine appears here, under the Flood —
         // main's entry carries the Corruption title), then Humanity's
-        // Corruption's ten (Augustine already listed), then Noah's three
+        // Corruption's nine (Augustine already listed), then Noah's three
         // (Finkel, Chrysostom, Hong). McDowell, Met, and ORACC are cited
         // by published events too, as are the reused Flood sources
         // (BDB, Keil & Delitzsch, NETS, Skinner, Westermann).
@@ -414,12 +414,6 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 kind: "source",
                 status: "unpublished-only",
                 title: "Interlinear Bible — Genesis 7–8 (Hebrew with Strong's numbers)",
-            },
-            {
-                id: "source-hamilton-genesis-nicot",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Book of Genesis: Chapters 1–17",
             },
             {
                 id: "source-dalley-myths-mesopotamia",
@@ -570,12 +564,6 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 kind: "source",
                 status: "unpublished-only",
                 title: "ETCSL — Šulgi A and Šulgi C",
-            },
-            {
-                id: "source-etcsl-eridu-genesis",
-                kind: "source",
-                status: "unpublished-only",
-                title: "ETCSL — Eridu Genesis",
             },
             {
                 id: "source-baal-cycle-ktu",
