@@ -576,7 +576,7 @@
     "type": "primary-source",
     "url": "https://www.newadvent.org/fathers/120115.htm",
     "verification": "verified",
-    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Marcus Dods translation, NPNF First Series vol. 2 (1887), Book XV chs. 22–25 (New Advent, read in full): the Sethite reading in its fullest argued form; the 120 years as a countdown/respite; divine repentance as unchangeable judgement in human language. Book XV ch. 26 also read in full 2026-11-16 (Dods) for the Noah and the Ark event (Gen 6:9–22): the ark as a figure of Christ and the Church in every detail; ch. 27 title/thesis via search text + secondary summary only. Book 15.26 also read in full 2026-11-16 (Dods) for the Great Flood event (Gen 7:1–8:19) (clm-gf-053): the ark as a figure of the Church; 15.27 and 15.14 via cited secondary only — do not quote them. Book XVI chs. 1–6, 11–15 read in full 2026-11-17 (Marcus Dods translation, NPNF First Series vol. 2, 1887, via EWTN) for the Nations and Babel category (Gen 10–11): ch. 3 the generations of the three sons (Japheth 15, Ham 31, Shem 27, total 73) and Peleg as “dividing”; ch. 4 the tower, Nimrod its founder, “hunter against the Lord”, pride punished in the tongue; ch. 5 God’s “coming down” as non-local action; ch. 6 “let us” as the angels and “73, or rather, as the catalogue will show, 72 nations”; ch. 11 Hebrew as the primitive language preserved in Heber’s house and Peleg named for the time of his birth; ch. 12 Terah’s family and Iscah “supposed to be the same as Sarah”; ch. 13 Nahor’s absence and Judith 5:6–9; ch. 14 Terah’s 205 years completed in Haran; ch. 15 Abram leaving Haran at 75 in Terah’s 145th year and narrative order as retrospective. Union across categories: Book XVI chs. 1–6, 11–17, 32–41 (NS XVI.1–3; AB XVI.1–3, 12–17, 32–34; IJ XVI.33–41)."
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Marcus Dods translation, NPNF First Series vol. 2 (1887), Book XV chs. 22–25 (New Advent, read in full): the Sethite reading in its fullest argued form; the 120 years as a countdown/respite; divine repentance as unchangeable judgement in human language. Book XV ch. 26 also read in full 2026-11-16 (Dods) for the Noah and the Ark event (Gen 6:9–22): the ark as a figure of Christ and the Church in every detail; ch. 27 title/thesis via search text + secondary summary only. Book 15.26 also read in full 2026-11-16 (Dods) for the Great Flood event (Gen 7:1–8:19) (clm-gf-053): the ark as a figure of the Church; 15.27 and 15.14 via cited secondary only — do not quote them. Book XVI chs. 1–6, 11–15 read in full 2026-11-17 (Marcus Dods translation, NPNF First Series vol. 2, 1887, via EWTN) for the Nations and Babel category (Gen 10–11): ch. 3 the generations of the three sons (Japheth 15, Ham 31, Shem 27, total 73) and Peleg as “dividing”; ch. 4 the tower, Nimrod its founder, “hunter against the Lord”, pride punished in the tongue; ch. 5 God’s “coming down” as non-local action; ch. 6 “let us” as the angels and “73, or rather, as the catalogue will show, 72 nations”; ch. 11 Hebrew as the primitive language preserved in Heber’s house and Peleg named for the time of his birth; ch. 12 Terah’s family and Iscah “supposed to be the same as Sarah”; ch. 13 Nahor’s absence and Judith 5:6–9; ch. 14 Terah’s 205 years completed in Haran; ch. 15 Abram leaving Haran at 75 in Terah’s 145th year and narrative order as retrospective. Union across categories: Book XVI chs. 1–6, 11–17, 32–41 (NS XVI.1–3; AB XVI.1–3, 12–17, 32–34; IJ XVI.33–41). Book XVI chs. 1–3, 12–17, 32–34 read in full 2026-11-17 (Marcus Dods translation, NPNF First Series vol. 2, 1887, via New Advent) for the Abraham and Sarah category (Gen 12–25): chs. 1–3 the patriarchal history as prophetic foresight, not bare chronicle, and the Ham/Shem/Japheth typology; chs. 12–16 the Terah chronology (Abram leaving Haran at 75 in Terah’s 145th year) resolved by recapitulation — the call in Mesopotamia (Acts 7:2–3) preceding the dwelling in Haran — Iscah supposed to be Sarah, and Nahor’s absence explained by lapse into Chaldean superstition and later emigration “through penitence or persecution” (Judith/Achior tradition, marked as conjecture); ch. 32 temptation as probation, to make Abraham’s faith known to the world, not to God (“Now I know” = “Now I have made to be known”), Isaac carrying the wood as a type of Christ carrying his cross, the ram caught by the horns prefiguring Jesus crowned with thorns, Abraham believed Isaac would rise again (Heb 11:19), and the oath unique — God had often promised but never sworn; ch. 34 Abraham’s death at 175, Isaac 75."
   },
   "source-targum-onkelos": {
     "id": "source-targum-onkelos",
@@ -1110,5 +1110,45 @@
     "verification": "verified",
     "verificationDetail": "Read directly 2026-11-17 (Yonge translation, earlyjewishwritings.com): §§65–66 (Nimrod as the first example of \"desertion\").",
     "licenseNote": "Public domain (Yonge translation); original summary and citation only."
+  },
+  "source-philo-de-abrahamo": {
+    "id": "source-philo-de-abrahamo",
+    "author": "Philo of Alexandria",
+    "title": "De Abrahamo",
+    "publisher": "Yonge translation",
+    "pagesOrSection": "§§147–166 and §§167–188 read in full, 2026-11-17 (earlyjewishwritings.com)",
+    "verification": "verified",
+    "verificationDetail": "Read directly 2026-11-17 (Yonge translation; Colson summary for structure; earlyjewishwritings.com): §§147–166 (five cities = five senses) and §§167–188 (the Akedah as the supreme act, §§167–177; defence against critics, §§178–188) read in full.",
+    "licenseNote": "Public domain (Yonge translation); original summary and citation only."
+  },
+  "source-bible-odyssey-sodom-gomorrah": {
+    "id": "source-bible-odyssey-sodom-gomorrah",
+    "author": "Bible Odyssey (Society of Biblical Literature)",
+    "title": "Sodom and Gomorrah",
+    "publisher": "Bible Odyssey (SBL)",
+    "pagesOrSection": "Article read in full, 2026-11-17",
+    "verification": "verified",
+    "verificationDetail": "Read in full 2026-11-17 (Bible Odyssey, Society of Biblical Literature): seven-visit structure; Abraham initiates conversation with God; “Shall not the Judge of all the earth do what is just?”; hospitality vs inhospitality as the story’s point; prophet designation only after (Gen 20:7).",
+    "licenseNote": "SBL website content; short quotation only."
+  },
+  "source-bible-odyssey-sarah-abraham-pharaoh": {
+    "id": "source-bible-odyssey-sarah-abraham-pharaoh",
+    "author": "Bible Odyssey (Society of Biblical Literature)",
+    "title": "Sarah, Abraham, and Pharaoh",
+    "publisher": "Bible Odyssey (SBL)",
+    "pagesOrSection": "Article read in full, 2026-11-17",
+    "verification": "verified",
+    "verificationDetail": "Read in full 2026-11-17 (Bible Odyssey, Society of Biblical Literature): sister perceived as sexually available, so no reason to kill the brother; the patriarch rebuked in all three wife-sister episodes; household and community endangered.",
+    "licenseNote": "SBL website content; short quotation only."
+  },
+  "source-fitzmyer-sacrifice-isaac-qumran": {
+    "id": "source-fitzmyer-sacrifice-isaac-qumran",
+    "author": "Joseph A. Fitzmyer",
+    "title": "The Sacrifice of Isaac in Qumran Literature",
+    "publisher": "Biblica 83 (2002)",
+    "pagesOrSection": "Search-result excerpt only (Jub 17:16 quotation); full article not read",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Read via search-result excerpt only (Jub 17:16 quotation); full article not read. Jub 17–18 details via this excerpt and the docslib chapter summary on Jub. 17:15–18:19. Not-independently-verified; citing it as load-bearing would require verification first or omission.",
+    "licenseNote": "All rights reserved; original paraphrase and citation only; second-hand summaries only."
   }
 }

@@ -69,6 +69,12 @@
       "kind": "category",
       "narrativeOrder": 11,
       "bookNote": "Genesis 10:1-11:32 traces the nations descended from Noah's three sons, tells of the city and tower at Babel and the confusion of languages, follows Shem's line to Terah, and ends with the family's departure from Ur and settlement in Harran. No independently established date is assigned."
+    },
+    {
+      "categoryId": "category-abraham-and-sarah",
+      "kind": "category",
+      "narrativeOrder": 12,
+      "bookNote": "Genesis 12:1-25:18 follows Abram's call from Haran through the covenants, the birth of Isaac, the binding, and Abraham's death and burial in Machpelah. No independently established date is assigned."
     }
   ]
 }

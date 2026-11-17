@@ -58,9 +58,10 @@ function makeSandbox() {
     // The shipped Creation event is published, so the sandbox copy is
     // flipped back to "in-review": the leak tests match against Creation
     // by id, so the gate needs a genuinely non-published Creation fixture.
-    // The shipped Nations and Babel category is in-review too, so the
-    // sandbox holds a non-published category with or without the flip —
-    // the flip is what keeps a non-published *event* in play.
+    // The shipped Nations and Babel and Abraham and Sarah categories
+    // are in-review too, so the sandbox holds two non-published
+    // categories with or without the flip — the flip is what keeps a
+    // non-published *event* in play.
     // This is the only mutation the sandbox makes to the shipped tree.
     const sandboxEventPath = path.join(dir, "src", "content", "history", "events", "creation.json");
     const sandboxEvent = JSON.parse(readFileSync(sandboxEventPath, "utf8"));
@@ -237,11 +238,12 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // Great Flood, Noah's Sacrifice and God's Covenant, and Noah and
         // His Sons events are published now, so the dev opt-in includes
         // all ten events — the nine published above plus the in-review
-        // Creation — and the in-review Nations and Babel category, with
-        // the four sources it alone cites (95 cited sources in all).
+        // Creation — and the in-review Nations and Babel and Abraham
+        // and Sarah categories, with the eight sources they alone cite
+        // (99 cited sources in all).
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-nations-and-babel"]);
-        expect(manifest.sources).toHaveLength(95);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-nations-and-babel"]);
+        expect(manifest.sources).toHaveLength(99);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "seth-early-generations.json"))).toBe(true);
@@ -424,17 +426,21 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         const contentDir = path.join(sandbox, "src", "content", "history");
         // Nine shipped events are published now, so the sandbox's
         // non-published records are Creation (flipped to in-review
-        // by makeSandbox), the in-review Nations and Babel category,
-        // the three sources cited only by Creation (Brown, Crouch,
-        // and Shabaka), and the four sources cited only by the
-        // category (Speiser, the Enmerkar ETCSL text, the George
-        // Nebuchadnezzar stele, and Philo On the Giants). Noah's
-        // Sacrifice and God's Covenant and Noah and His Sons are
-        // published now, so their seven and six new sources are cited
-        // by published events. (McDowell, Met, and ORACC are cited by
-        // published events too, as are the reused Flood sources.)
+        // by makeSandbox), the in-review Nations and Babel and Abraham
+        // and Sarah categories, the three sources cited only by
+        // Creation (Brown, Crouch, and Shabaka), the four sources
+        // cited only by the Abraham and Sarah category (the two Bible
+        // Odyssey articles, Fitzmyer, and Philo De Abrahamo), and the
+        // four sources cited only by the Nations and Babel category
+        // (Speiser, the Enmerkar ETCSL text, the George Nebuchadnezzar
+        // stele, and Philo On the Giants). Noah's Sacrifice and God's
+        // Covenant and Noah and His Sons are published now, so their
+        // seven and six new sources are cited by published events.
+        // (McDowell, Met, and ORACC are cited by published events too,
+        // as are the reused Flood sources.)
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
+            { id: "category-abraham-and-sarah", kind: "category", status: "in-review", title: "Abraham and Sarah" },
             { id: "category-nations-and-babel", kind: "category", status: "in-review", title: "The Nations and Babel" },
             {
                 id: "source-brown-cosmic-temple",
@@ -453,6 +459,30 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 kind: "source",
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
+            },
+            {
+                id: "source-bible-odyssey-sarah-abraham-pharaoh",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Sarah, Abraham, and Pharaoh",
+            },
+            {
+                id: "source-bible-odyssey-sodom-gomorrah",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Sodom and Gomorrah",
+            },
+            {
+                id: "source-fitzmyer-sacrifice-isaac-qumran",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Sacrifice of Isaac in Qumran Literature",
+            },
+            {
+                id: "source-philo-de-abrahamo",
+                kind: "source",
+                status: "unpublished-only",
+                title: "De Abrahamo",
             },
             {
                 id: "source-etcsl-enmerkar-aratta",
@@ -483,18 +513,19 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
 });
 
 describe("checkHistoryGate — claims detector", () => {
-    // A sandbox where ALL TEN events and the Nations and Babel category
-    // are published: the claims detector must fire on this all-published
-    // path, where the gate's non-published early return would otherwise
-    // stand it down. The fixture source still carries Adam and Eve's
-    // full 35-claim register (including unverified 028 and 030b);
-    // generation strips it, and these tests prove the gate catches it
-    // if it ever leaks. Cain and Abel, Cain's Descendants, Seth,
-    // Humanity's Corruption, Noah, the Great Flood, Noah's Sacrifice
-    // and God's Covenant, and Noah and His Sons are flipped to published
-    // here too, as is the category, so the sandbox has no non-published
-    // records at all — otherwise their in-review status would take the
-    // gate down the other path.
+    // A sandbox where ALL TEN events and the Nations and Babel and
+    // Abraham and Sarah categories are published: the claims detector
+    // must fire on this all-published path, where the gate's
+    // non-published early return would otherwise stand it down. The
+    // fixture source still carries Adam and Eve's full 35-claim
+    // register (including unverified 028 and 030b); generation strips
+    // it, and these tests prove the gate catches it if it ever leaks.
+    // Cain and Abel, Cain's Descendants, Seth, Humanity's Corruption,
+    // Noah, the Great Flood, Noah's Sacrifice and God's Covenant, and
+    // Noah and His Sons are flipped to published here too, as are both
+    // categories, so the sandbox has no non-published records at all —
+    // otherwise their in-review status would take the gate down the
+    // other path.
     function makeAllPublishedSandbox() {
         const sandbox = makeSandbox();
         for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json", "seth-early-generations.json", "humanitys-corruption.json", "noah-ark.json", "great-flood.json", "noahs-sacrifice-and-covenant.json", "noah-and-his-sons.json"]) {
@@ -503,13 +534,15 @@ describe("checkHistoryGate — claims detector", () => {
             event.status = "published";
             writeFileSync(eventPath, JSON.stringify(event, null, 2));
         }
-        // The shipped Nations and Babel category is in-review; flip it
-        // to published too, or the sandbox would still hold a
-        // non-published record.
-        const categoryPath = path.join(sandbox, "src", "content", "history", "categories", "nations-and-babel.json");
-        const category = JSON.parse(readFileSync(categoryPath, "utf8"));
-        category.status = "published";
-        writeFileSync(categoryPath, JSON.stringify(category, null, 2));
+        // The shipped Nations and Babel and Abraham and Sarah
+        // categories are in-review; flip them to published too, or the
+        // sandbox would still hold non-published records.
+        for (const name of ["nations-and-babel.json", "abraham-and-sarah.json"]) {
+            const categoryPath = path.join(sandbox, "src", "content", "history", "categories", name);
+            const category = JSON.parse(readFileSync(categoryPath, "utf8"));
+            category.status = "published";
+            writeFileSync(categoryPath, JSON.stringify(category, null, 2));
+        }
         // Check 10 applies to published events: mark every source
         // verified so the fixture validates without an override.
         const registryPath = path.join(sandbox, "src", "content", "history", "sources", "references.json");
@@ -780,7 +813,7 @@ describe("checkHistoryGate — categories", () => {
             args: ["--include-unpublished"],
             cwd: sandbox,
         });
-        expect(readManifest(sandbox).categories).toEqual(["category-nations-and-babel"]);
+        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-nations-and-babel"]);
         const result = runGate(sandbox);
         expect(result.status).toBe(1);
         expect(result.stderr).toMatch(/includeUnpublished is true/);
