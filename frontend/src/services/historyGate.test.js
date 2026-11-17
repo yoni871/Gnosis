@@ -219,12 +219,13 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         expect(manifest.includeUnpublished).toBe(true);
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, Seth, Humanity's Corruption, Noah,
-        // and Great Flood events are published now, and Noah's Sacrifice
+        // and Great Flood events are published now, Noah's Sacrifice
         // and God's Covenant is in-review (content complete: 67 claims,
-        // 14 connections, 27 sources), so the dev opt-in includes all
-        // nine events — the seven published above plus the in-review
-        // Creation and the in-review Sacrifice event.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        // 14 connections, 27 sources), and Noah and His Sons is
+        // in-review (structural scaffold, no content yet), so the dev
+        // opt-in includes all ten events — the seven published above
+        // plus the in-review Creation and the two in-review events.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "seth-early-generations.json"))).toBe(true);
@@ -293,12 +294,13 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         expect(result.status).toBe(0);
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, Seth, Humanity's Corruption, Noah,
-        // and Great Flood events are published now, and Noah's Sacrifice
+        // and Great Flood events are published now, Noah's Sacrifice
         // and God's Covenant is in-review (content complete: 67 claims,
-        // 14 connections, 27 sources), so the dev opt-in includes all
-        // nine events — the seven published above plus the in-review
-        // Creation and the in-review Sacrifice event.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        // 14 connections, 27 sources), and Noah and His Sons is
+        // in-review (structural scaffold, no content yet), so the dev
+        // opt-in includes all ten events — the seven published above
+        // plus the in-review Creation and the two in-review events.
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
     });
 
@@ -406,14 +408,16 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         // non-published records are Creation (flipped to in-review
         // by makeSandbox), Noah's Sacrifice and God's Covenant
         // (in-review, citing 27 sources — 20 reused by published
-        // events, 7 new), and the ten sources cited only by
-        // non-published events — the three cited only by Creation
-        // (Brown, Crouch, and Shabaka) and the seven new sources
-        // cited only by the Sacrifice event. (McDowell, Met, and
-        // ORACC are cited by published events too, as are the reused
-        // Flood sources.)
+        // events, 7 new), Noah and His Sons (in-review structural
+        // scaffold, citing no sources), and the ten sources cited
+        // only by non-published events — the three cited only by
+        // Creation (Brown, Crouch, and Shabaka) and the seven new
+        // sources cited only by the Sacrifice event. (McDowell, Met,
+        // and ORACC are cited by published events too, as are the
+        // reused Flood sources.)
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
+            { id: "event-noah-and-his-sons", kind: "event", status: "in-review", title: "Noah and His Sons" },
             { id: "event-noahs-sacrifice-and-covenant", kind: "event", status: "in-review", title: "Noah's Sacrifice and God's Covenant" },
             {
                 id: "source-brown-cosmic-temple",
@@ -480,20 +484,20 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
 });
 
 describe("checkHistoryGate — claims detector", () => {
-    // A sandbox where ALL NINE events are published: the claims detector
+    // A sandbox where ALL TEN events are published: the claims detector
     // must fire on this all-published path, where the gate's
     // non-published early return would otherwise stand it down. The
     // fixture source still carries Adam and Eve's full 35-claim
     // register (including unverified 028 and 030b); generation strips
     // it, and these tests prove the gate catches it if it ever leaks.
     // Cain and Abel, Cain's Descendants, Seth, Humanity's Corruption,
-    // Noah, the Great Flood, and Noah's Sacrifice and God's Covenant
-    // are flipped to published here too, so the sandbox has no
-    // non-published records at all — otherwise their in-review status
-    // would take the gate down the other path.
+    // Noah, the Great Flood, Noah's Sacrifice and God's Covenant, and
+    // Noah and His Sons are flipped to published here too, so the
+    // sandbox has no non-published records at all — otherwise their
+    // in-review status would take the gate down the other path.
     function makeAllPublishedSandbox() {
         const sandbox = makeSandbox();
-        for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json", "seth-early-generations.json", "humanitys-corruption.json", "noah-ark.json", "great-flood.json", "noahs-sacrifice-and-covenant.json"]) {
+        for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json", "seth-early-generations.json", "humanitys-corruption.json", "noah-ark.json", "great-flood.json", "noahs-sacrifice-and-covenant.json", "noah-and-his-sons.json"]) {
             const eventPath = path.join(sandbox, "src", "content", "history", "events", name);
             const event = JSON.parse(readFileSync(eventPath, "utf8"));
             event.status = "published";
@@ -513,7 +517,7 @@ describe("checkHistoryGate — claims detector", () => {
     function buildPublished(sandbox) {
         const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     }
 
