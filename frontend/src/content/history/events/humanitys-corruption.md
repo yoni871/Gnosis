@@ -20,7 +20,7 @@ God's Spirit shall not always strive with man, and his days shall be one hundred
 
 ### A world of assemblies and floods
 
-At Ugarit the gods are a family — the sons of El, the phrase's closest background. In Mesopotamia the divine assembly decides the flood, with no moral cause given; in Genesis it follows a stated one, and God is grieved, not frightened. No ancient Near Eastern text describes a divine being marrying a human woman, or a race of giants called Nephilim: the closest material is royal hero parentage, like Gilgamesh, two-thirds divine.[^source-baal-cycle-ktu] [^source-etcsl-eridu-genesis] [^source-thompson-gilgamesh]
+At Ugarit the gods are a family — the sons of El, the phrase's closest background. In Mesopotamia the divine assembly decides the flood, with no moral cause given; in Genesis it follows a stated one, and God is grieved, not frightened. No ancient Near Eastern text describes a divine being marrying a human woman, or a race of giants called Nephilim: the closest material is royal hero parentage, like Gilgamesh, two-thirds divine.[^source-baal-cycle-ktu] [^source-etcsl-flood-story] [^source-thompson-gilgamesh]
 
 ## Why This Context Matters
 
