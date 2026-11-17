@@ -120,10 +120,11 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
             expect(manifest.includeUnpublished).toBe(false);
             // The sandbox flips Creation to in-review; the shipped Adam
             // and Eve, Cain and Abel, Cain's Descendants, Seth,
-            // Humanity's Corruption, Noah, and Great Flood events are
+            // Humanity's Corruption, Noah, Great Flood, Noah's Sacrifice
+            // and God's Covenant, and Noah and His Sons events are
             // published, so published-only generation still ships them
-            // — with the 75 sources they cite — and nothing unpublished.
-            expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+            // — with the 88 sources they cite — and nothing unpublished.
+            expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
             expect(manifest.books).toEqual(["genesis"]);
             expect(manifest.sources).toEqual([
                 "source-adamtoabraham-methuselah-flood",
@@ -134,21 +135,25 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-balogh-tree-of-life",
                 "source-bdb-lexicon",
                 "source-benthall-two-trees",
+                "source-bergsma-hahn-nakedness",
                 "source-berossus-babyloniaca",
                 "source-bible-gateway-kjv",
                 "source-bible-hub-interlinear",
+                "source-bible-odyssey-curse-ham",
                 "source-bloch-blood-vengeance",
                 "source-charles-enoch",
                 "source-charles-jubilees",
                 "source-christ-over-all-genesis-4-7",
                 "source-chrysostom-homilies-genesis",
                 "source-clarke-commentary",
+                "source-clines-noahs-flood-theology",
                 "source-collins-fasold-durupinar",
                 "source-cyprian-epistles",
                 "source-dalley-myths-mesopotamia",
                 "source-djd-xii-qumran-cave-4",
                 "source-easton-seven",
                 "source-encyclopedia-crime-punishment",
+                "source-enuma-elish-tablet-vi",
                 "source-etcsl-death-of-gilgamesh",
                 "source-etcsl-enki-ninmah",
                 "source-etcsl-flood-story",
@@ -156,10 +161,13 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-etcsl-shulgi",
                 "source-etcsl-sumerian-king-list",
                 "source-finkel-ark-before-noah",
+                "source-finlay-genesis-9-6-reply",
                 "source-gabriel-cainite-genealogy",
                 "source-george-epic-gilgamesh-penguin",
                 "source-gunkel-genesis",
                 "source-hammurabi-code",
+                "source-hastings-rainbow",
+                "source-haynes-noahs-curse",
                 "source-hendel-genesis-text",
                 "source-hong-ark-seaway-1993",
                 "source-isaw-sacred-tree",
@@ -171,10 +179,14 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-jvl-kenite",
                 "source-jvl-paradise",
                 "source-keil-delitzsch-genesis",
+                "source-kessler-jesus-jewish-covenants",
                 "source-kramer-dilmun",
                 "source-lambert-millard-atrahasis",
+                "source-lucas-covenant-treaty-prophecy",
                 "source-maarten-eisegesis",
+                "source-mastnjak-genesis-9-6",
                 "source-mcdowell-human-identity",
+                "source-mcgovern-iranian-wine",
                 "source-met-mesopotamian-creation",
                 "source-met-nahal-mishmar",
                 "source-met-uruk-first-city",
@@ -182,6 +194,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-oracc-marduk",
                 "source-oracc-nebuchadnezzar-011",
                 "source-oracc-saa-07-212",
+                "source-philo-de-sobrietate",
                 "source-philo-questions-genesis",
                 "source-rashi-genesis",
                 "source-roux-ancient-iraq",
@@ -192,6 +205,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-smith-methuselah-begetting-age",
                 "source-smiths-seven",
                 "source-stordalen-eden-narrative",
+                "source-talmud-sanhedrin",
                 "source-targum-onkelos",
                 "source-tertullian-baptism",
                 "source-thompson-gilgamesh",
@@ -219,12 +233,10 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         expect(manifest.includeUnpublished).toBe(true);
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, Seth, Humanity's Corruption, Noah,
-        // and Great Flood events are published now, Noah's Sacrifice
-        // and God's Covenant is in-review (content complete: 68 claims,
-        // 14 connections, 27 sources), and Noah and His Sons is
-        // in-review (content complete: 75 claims, 16 connections, 20 sources), so the dev
-        // opt-in includes all ten events — the seven published above
-        // plus the in-review Creation and the two in-review events.
+        // Great Flood, Noah's Sacrifice and God's Covenant, and Noah and
+        // His Sons events are published now, so the dev opt-in includes
+        // all ten events — the nine published above plus the in-review
+        // Creation.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
@@ -272,15 +284,19 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
             cwd: sandbox,
         });
         expect(result.status).toBe(0);
-        // Only the seven published events survive the production
+        // Only the nine published events survive the production
         // generation; the stale Creation draft is gone. The Great Flood
         // is published now, so it survives the production generation.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(false);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.md"))).toBe(false);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "great-flood.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "great-flood.md"))).toBe(true);
+        expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "noahs-sacrifice-and-covenant.json"))).toBe(true);
+        expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "noahs-sacrifice-and-covenant.md"))).toBe(true);
+        expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "noah-and-his-sons.json"))).toBe(true);
+        expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "noah-and-his-sons.md"))).toBe(true);
     });
 });
 
@@ -294,12 +310,10 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         expect(result.status).toBe(0);
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, Seth, Humanity's Corruption, Noah,
-        // and Great Flood events are published now, Noah's Sacrifice
-        // and God's Covenant is in-review (content complete: 68 claims,
-        // 14 connections, 27 sources), and Noah and His Sons is
-        // in-review (content complete: 75 claims, 16 connections, 20 sources), so the dev
-        // opt-in includes all ten events — the seven published above
-        // plus the in-review Creation and the two in-review events.
+        // Great Flood, Noah's Sacrifice and God's Covenant, and Noah and
+        // His Sons events are published now, so the dev opt-in includes
+        // all ten events — the nine published above plus the in-review
+        // Creation.
         expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
     });
@@ -308,9 +322,9 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         const sandbox = makeSandbox();
         const result = runNode("scripts/build-history-content-dev.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        // Published-only: the seven published events ship; the
+        // Published-only: the nine published events ship; the
         // in-review Creation fixture does not.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     });
 });
@@ -404,22 +418,16 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
     it("returns the in-review event with its title and its unpublished-only sources", () => {
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
-        // Seven shipped events are published now, so the sandbox's
+        // Nine shipped events are published now, so the sandbox's
         // non-published records are Creation (flipped to in-review
-        // by makeSandbox), Noah's Sacrifice and God's Covenant
-        // (in-review, citing 27 sources — 20 reused by published
-        // events, 7 new), Noah and His Sons (in-review, citing 20
-        // sources — 14 reused by published events, 6 new), and the
-        // sixteen sources cited only by non-published events — the
-        // three cited only by Creation (Brown, Crouch, and Shabaka),
-        // the seven new sources cited only by the Sacrifice event,
-        // and the six new sources cited only by the Sons event.
-        // (McDowell, Met, and ORACC are cited by published events
-        // too, as are the reused Flood sources.)
+        // by makeSandbox) and the three sources cited only by
+        // Creation (Brown, Crouch, and Shabaka). Noah's Sacrifice
+        // and God's Covenant and Noah and His Sons are published now,
+        // so their seven and six new sources are cited by published
+        // events. (McDowell, Met, and ORACC are cited by published
+        // events too, as are the reused Flood sources.)
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
-            { id: "event-noah-and-his-sons", kind: "event", status: "in-review", title: "Noah and His Sons" },
-            { id: "event-noahs-sacrifice-and-covenant", kind: "event", status: "in-review", title: "Noah's Sacrifice and God's Covenant" },
             {
                 id: "source-brown-cosmic-temple",
                 kind: "source",
@@ -437,84 +445,6 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 kind: "source",
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
-            },
-            {
-                id: "source-bergsma-hahn-nakedness",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Noah's Nakedness and the Curse on Canaan (Genesis 9:20–27)",
-            },
-            {
-                id: "source-haynes-noahs-curse",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Noah's Curse: The Biblical Justification of American Slavery",
-            },
-            {
-                id: "source-mcgovern-iranian-wine",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Iranian Wine at the “Dawn of Viniculture”",
-            },
-            {
-                id: "source-bible-odyssey-curse-ham",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Curse of Ham",
-            },
-            {
-                id: "source-philo-de-sobrietate",
-                kind: "source",
-                status: "unpublished-only",
-                title: "De Sobrietate (On the Prayers and Curses Uttered by Noah When He Became Sober)",
-            },
-            {
-                id: "source-talmud-sanhedrin",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Tractate Sanhedrin 70a and 108b",
-            },
-            {
-                id: "source-kessler-jesus-jewish-covenants",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Jesus and the Jewish covenants",
-            },
-            {
-                id: "source-mastnjak-genesis-9-6",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Death Penalty and the Consequences of the Literal Meaning of Genesis 9:6",
-            },
-            {
-                id: "source-finlay-genesis-9-6-reply",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Death Penalty and Genesis 9:6: A Reply to Mastnjak",
-            },
-            {
-                id: "source-clines-noahs-flood-theology",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Noah's Flood: The Theology of the Flood Narrative",
-            },
-            {
-                id: "source-lucas-covenant-treaty-prophecy",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Covenant, Treaty, and Prophecy",
-            },
-            {
-                id: "source-hastings-rainbow",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Rainbow",
-            },
-            {
-                id: "source-enuma-elish-tablet-vi",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Enuma Elish, Tablet VI (the Bow Star)",
             },
         ]);
     });
@@ -708,7 +638,7 @@ describe("historyGatePlugin — the direct vite build path", () => {
             encoding: "utf8",
         });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         const text = distText(sandbox);
         expect(text).not.toContain("event-creation");
         expect(text).not.toContain("Creation");
