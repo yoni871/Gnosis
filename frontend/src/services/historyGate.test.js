@@ -118,6 +118,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
             expect(result.status).toBe(0);
             const manifest = readManifest(sandbox);
             expect(manifest.includeUnpublished).toBe(false);
+            expect(manifest.categories).toEqual([]);
             // The sandbox flips Creation to in-review; the shipped Adam
             // and Eve, Cain and Abel, Cain's Descendants, Seth,
             // Humanity's Corruption, Noah, Great Flood, Noah's Sacrifice
@@ -678,5 +679,110 @@ describe("historyGatePlugin — the direct vite build path", () => {
         expect(result.status).not.toBe(0);
         expect(result.stderr).toMatch(/History gate FAILED/);
         expect(result.stderr).toMatch(/event-creation/);
+    });
+});
+
+describe("checkHistoryGate — categories", () => {
+    // The same Nations and Babel fixture as historyContent.test.js:
+    // in-review by default, Gen 10–11, primeval, representative
+    // passage Gen 11:1–9, citing verified Skinner.
+    function categoryMd({ overview = 400, ancientWorld = 1000, whyItMatters = 200 } = {}) {
+        return `## Overview\n\n${"word ".repeat(overview)}\n\n## Ancient World\n\n${"word ".repeat(ancientWorld)}\n\n## Why This Context Matters\n\n${"word ".repeat(whyItMatters)}\n`;
+    }
+
+    function addCategoryToSandbox(sandbox, { status = "in-review" } = {}) {
+        const contentDir = path.join(sandbox, "src", "content", "history");
+        const category = {
+            id: "category-nations-and-babel",
+            title: "The Nations and Babel",
+            category: "category",
+            status,
+            era: "primeval",
+            primaryScripture: { book: "Genesis", bookId: "genesis", startChapter: 11, startVerse: 1, endChapter: 11, endVerse: 9 },
+            fullRange: { book: "Genesis", bookId: "genesis", startChapter: 10, startVerse: 1, endChapter: 11, endVerse: 32 },
+            date: { type: "unknown", label: "No independently established date", yearStart: null, yearEnd: null, note: "Chronology is narrative only." },
+            locations: [],
+            topics: [],
+            relatedEvents: ["event-great-flood"],
+            connections: [{ id: "conn-nb-001", book: "Genesis", bookId: "genesis", startChapter: 11, startVerse: 1, endChapter: 11, endVerse: 9, type: "direct-account", confidence: "established", note: "The Babel account." }],
+            sources: ["source-skinner-genesis"],
+            claims: [{ id: "clm-nb-001", claim: "Gen 10–11 traces the nations from Noah's sons.", evidence: "Textual: the table of nations.", assessment: "established" }],
+            review: { author: "Test author", reviewer: "Test reviewer", lastReviewed: "2026-11-17", checklistVersion: "standards-1.1-section-14" },
+        };
+        mkdirSync(path.join(contentDir, "categories"), { recursive: true });
+        writeFileSync(path.join(contentDir, "categories", "nations-and-babel.json"), JSON.stringify(category, null, 2));
+        writeFileSync(path.join(contentDir, "categories", "nations-and-babel.md"), categoryMd());
+        const bookPath = path.join(contentDir, "books", "genesis.json");
+        const book = JSON.parse(readFileSync(bookPath, "utf8"));
+        book.entries.push({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
+        writeFileSync(bookPath, JSON.stringify(book, null, 2));
+    }
+
+    it("findNonPublishedRecords lists a non-published fixture category with its title", () => {
+        const sandbox = makeSandbox();
+        addCategoryToSandbox(sandbox);
+        const contentDir = path.join(sandbox, "src", "content", "history");
+        expect(findNonPublishedRecords({ contentDir })).toContainEqual(
+            { id: "category-nations-and-babel", kind: "category", status: "in-review", title: "The Nations and Babel" },
+        );
+    });
+
+    it("fails a manifest generated with unpublished content that lists the category", () => {
+        const sandbox = makeSandbox();
+        addCategoryToSandbox(sandbox);
+        runNode("scripts/build-history-content.js", {
+            args: ["--include-unpublished"],
+            cwd: sandbox,
+        });
+        expect(readManifest(sandbox).categories).toEqual(["category-nations-and-babel"]);
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/includeUnpublished is true/);
+        expect(result.stderr).toMatch(/manifest lists non-published id "category-nations-and-babel"/);
+    });
+
+    it("fails when dist/ contains a non-published category id", () => {
+        const sandbox = makeSandbox();
+        addCategoryToSandbox(sandbox);
+        runNode("scripts/build-history-content.js", { cwd: sandbox });
+        expect(readManifest(sandbox).categories).toEqual([]);
+        writeDistFile(sandbox, "assets/app.js", 'const id = "category-nations-and-babel";');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/category-nations-and-babel/);
+    });
+
+    it("fails when dist/ contains a non-published category title but no id", () => {
+        const sandbox = makeSandbox();
+        addCategoryToSandbox(sandbox);
+        runNode("scripts/build-history-content.js", { cwd: sandbox });
+        writeDistFile(sandbox, "assets/app.js", 'const heading = "The Nations and Babel";');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/title "The Nations and Babel"/);
+    });
+
+    it("fails when a generated category JSON carries a claims register", () => {
+        const sandbox = makeSandbox();
+        addCategoryToSandbox(sandbox, { status: "published" });
+        const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
+        expect(result.status).toBe(0);
+        expect(readManifest(sandbox).categories).toEqual(["category-nations-and-babel"]);
+        // Simulate a leak: reintroduce the claims register into the
+        // generated copy, as a pre-fix generator would have written it.
+        const generatedPath = path.join(sandbox, "src", "generated", "history", "categories", "nations-and-babel.json");
+        const generated = JSON.parse(readFileSync(generatedPath, "utf8"));
+        expect(generated).not.toHaveProperty("claims");
+        const source = JSON.parse(readFileSync(
+            path.join(sandbox, "src", "content", "history", "categories", "nations-and-babel.json"), "utf8",
+        ));
+        generated.claims = source.claims;
+        writeFileSync(generatedPath, JSON.stringify(generated, null, 2));
+        const gateResult = runGate(sandbox);
+        expect(gateResult.status).toBe(1);
+        expect(gateResult.stderr).toMatch(/History gate FAILED/);
+        expect(gateResult.stderr).toMatch(/nations-and-babel\.json/);
+        expect(gateResult.stderr).toMatch(/claims/);
+        expect(gateResult.stderr).toMatch(/category-nations-and-babel/);
     });
 });

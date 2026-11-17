@@ -6,7 +6,7 @@
 // the real Creation record. The page is ordinary page content: no
 // dialog, no backdrop, no focus trap, no sheet, no modal close.
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
@@ -15,7 +15,8 @@ import BiblicalHistoryBookRedirect from "../../pages/BiblicalHistoryBookRedirect
 import BiblicalHistoryEventPage from "../../pages/BiblicalHistoryEventPage";
 import BiblicalHistoryIndexPage from "../../pages/BiblicalHistoryIndexPage";
 import HistoryEventStudy from "./HistoryEventStudy";
-import { loadEventSections } from "../../services/historyService";
+import { getBibleChapter } from "../../services/bibleService";
+import { loadCategorySections, loadEventSections } from "../../services/historyService";
 
 // The companion fetches the passage with the reader's chapter loader;
 // the fixture verses cover the mocked range (Genesis 1:1–2:3).
@@ -33,6 +34,7 @@ vi.mock("../../services/bibleService", () => ({
 
 const FIXTURE_EVENT = {
     id: "event-creation",
+    kind: "event",
     title: "Creation",
     category: "event",
     status: "draft",
@@ -61,6 +63,57 @@ const FIXTURE_SECTIONS = {
     whyItMatters: { markdown: "Why it matters prose.", footnotes: [] },
 };
 
+// A category fixture shaped like the real record: representative
+// primaryScripture (≤3 chapters) plus a much wider fullRange that must
+// NEVER reach the Scripture companion.
+const FIXTURE_CATEGORY = {
+    id: "category-patriarchs",
+    kind: "category",
+    title: "The Patriarchs",
+    category: "category",
+    status: "in-review",
+    primaryScripture: { book: "Genesis", bookId: "genesis", startChapter: 12, startVerse: 1, endChapter: 12, endVerse: 3 },
+    fullRange: { book: "Genesis", bookId: "genesis", startChapter: 12, startVerse: 1, endChapter: 50, endVerse: 26 },
+    era: "patriarchal",
+    date: { type: "unknown", label: "No established date", yearStart: null, yearEnd: null },
+    locations: [],
+    topics: [],
+    relatedEvents: [],
+    connections: [
+        {
+            book: "Genesis", bookId: "genesis", startChapter: 12, startVerse: 1, endChapter: 12, endVerse: 3,
+            type: "direct-account", confidence: "traditional",
+            note: "The call of Abram.",
+        },
+    ],
+    sources: ["source-bdb-lexicon"],
+    bookNote: "The patriarchal era in brief.",
+};
+
+// The real getCategory returns the raw generated record: it has
+// `category: "category"` but no `kind` — kind lives only in the book
+// file's entries. The mocked service mirrors that shape, so the page
+// must copy kind from the entry onto the record it hands to the study
+// (QA F1); a mock that returned kind would hide the defect.
+const FIXTURE_CATEGORY_RECORD = { ...FIXTURE_CATEGORY };
+delete FIXTURE_CATEGORY_RECORD.kind;
+
+const FIXTURE_CATEGORY_SECTIONS = {
+    overview: { markdown: "Patriarchs overview prose.", footnotes: [] },
+    ancientWorld: { markdown: "", footnotes: [] },
+    ancientWorldSubsections: [
+        { heading: "The patriarchs in the ancient Near East", markdown: "Patriarchs subsection prose.", footnotes: [] },
+    ],
+    whyItMatters: { markdown: "Patriarchs why it matters prose.", footnotes: [] },
+};
+
+// The mixed book entries, in narrative order: the event first, then the
+// category — the unified entries list the timeline renders.
+const FIXTURE_ENTRIES = [
+    { ...FIXTURE_EVENT, narrativeOrder: 1 },
+    { ...FIXTURE_CATEGORY, narrativeOrder: 2 },
+];
+
 vi.mock("../../services/historyService", async (importOriginal) => {
     const actual = await importOriginal();
     return {
@@ -77,19 +130,30 @@ vi.mock("../../services/historyService", async (importOriginal) => {
             : null),
         listBooks: () => [{ id: "genesis", title: "Genesis", testament: "OT" }],
         getEventBySlug: (slug) => (slug === "creation" ? FIXTURE_EVENT : null),
+        getFirstPublishedEvent: () => FIXTURE_EVENT,
+        getCategoryBySlug: (slug) => (slug === "patriarchs" ? FIXTURE_CATEGORY_RECORD : null),
+        getCategory: (id) => (id === FIXTURE_CATEGORY.id ? FIXTURE_CATEGORY_RECORD : null),
+        categorySlug: (id) => String(id).replace(/^category-/, ""),
+        listBookEntries: (bookId) => (bookId === "genesis" ? FIXTURE_ENTRIES : []),
+        buildBookTimeline: (bookId) => (bookId === "genesis" ? FIXTURE_ENTRIES : []),
         listEventsForBook: () => [{ ...FIXTURE_EVENT, narrativeOrder: 1 }],
         getBooksForEvent: () => [
             { id: "genesis", title: "Genesis" },
             { id: "psalms", title: "Psalms" },
         ],
+        getBooksForCategory: () => [
+            { id: "genesis", title: "Genesis" },
+            { id: "exodus", title: "Exodus" },
+        ],
         loadEventSections: vi.fn(async () => FIXTURE_SECTIONS),
+        loadCategorySections: vi.fn(async () => FIXTURE_CATEGORY_SECTIONS),
     };
 });
 
 function renderStudy({ onBackToBooks = vi.fn() } = {}) {
     return render(
         <MemoryRouter initialEntries={["/biblical-history/genesis/creation"]}>
-            <HistoryEventStudy event={FIXTURE_EVENT} bookId="genesis" onBackToBooks={onBackToBooks} />
+            <HistoryEventStudy record={FIXTURE_EVENT} bookId="genesis" onBackToBooks={onBackToBooks} />
         </MemoryRouter>,
     );
 }
@@ -103,8 +167,10 @@ describe("HistoryEventStudy", () => {
         expect(screen.queryByTestId("history-sheet-handle")).toBeNull();
         expect(document.body.style.overflow).toBe("");
         expect(screen.getByText("Development content — not researched editorial content")).toBeInTheDocument();
-        // The date label appears twice: the study header and the timeline node.
-        expect(screen.getAllByText("No established date")).toHaveLength(2);
+        // The date label appears three times: the study header and the
+        // two timeline nodes (the mixed entries list carries the event
+        // and the category, both undated).
+        expect(screen.getAllByText("No established date")).toHaveLength(3);
         await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
         // The book note lives in the Story's Key Takeaway, which renders
         // with the sections — not in the study header.
@@ -129,7 +195,7 @@ describe("HistoryEventStudy", () => {
         render(
             <MemoryRouter initialEntries={["/biblical-history/genesis/creation"]}>
                 <HistoryEventStudy
-                    event={{ ...FIXTURE_EVENT, status: "in-review" }}
+                    record={{ ...FIXTURE_EVENT, status: "in-review" }}
                     bookId="genesis"
                     onBackToBooks={vi.fn()}
                 />
@@ -240,7 +306,7 @@ describe("HistoryEventStudy", () => {
     it("has a bottom-anchored timeline with no previous/next buttons", async () => {
         renderStudy();
         await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
-        expect(screen.getByRole("navigation", { name: "Events in this book" })).toBeInTheDocument();
+        expect(screen.getByRole("navigation", { name: "Entries in this book" })).toBeInTheDocument();
         expect(screen.queryByRole("button", { name: /previous/i })).toBeNull();
         expect(screen.queryByRole("button", { name: /next/i })).toBeNull();
     });
@@ -345,5 +411,138 @@ describe("HistoryEventStudy — mobile single column", () => {
         expect(screen.getByRole("tablist")).toHaveAttribute("aria-orientation", "horizontal");
         // The companion still renders inline on mobile, open by default.
         expect(await screen.findByRole("heading", { name: "Genesis 1:1–2:3" })).toBeInTheDocument();
+    });
+});
+
+describe("HistoryEventStudy — category record", () => {
+    function renderCategoryStudy() {
+        return render(
+            <MemoryRouter initialEntries={["/biblical-history/genesis/patriarchs"]}>
+                <HistoryEventStudy record={FIXTURE_CATEGORY} bookId="genesis" onBackToBooks={vi.fn()} />
+            </MemoryRouter>,
+        );
+    }
+
+    it("renders the category with its in-review badge and loads sections via the category loader", async () => {
+        vi.mocked(loadEventSections).mockClear();
+        vi.mocked(loadCategorySections).mockClear();
+        renderCategoryStudy();
+        expect(screen.getByRole("heading", { level: 1, name: "The Patriarchs" })).toBeInTheDocument();
+        expect(screen.getByText("In review — unpublished editorial content")).toBeInTheDocument();
+        await waitFor(() => expect(screen.getByText("Patriarchs overview prose.")).toBeInTheDocument());
+        expect(screen.getByText("Patriarchs why it matters prose.")).toBeInTheDocument();
+        expect(vi.mocked(loadCategorySections)).toHaveBeenCalledWith("category-patriarchs");
+        expect(vi.mocked(loadEventSections)).not.toHaveBeenCalled();
+        // The book note lives in the Story's Key Takeaway, as for events.
+        expect(screen.getByText("The patriarchal era in brief.")).toBeInTheDocument();
+    });
+
+    it("defaults the companion to the representative primaryScripture and never fetches the fullRange", async () => {
+        vi.mocked(getBibleChapter).mockClear();
+        renderCategoryStudy();
+        await waitFor(() => expect(screen.getByText("Patriarchs overview prose.")).toBeInTheDocument());
+        // Default open: Genesis 12:1–3 only — the representative passage.
+        expect(await screen.findByRole("heading", { name: "Genesis 12:1–3" })).toBeInTheDocument();
+        expect(vi.mocked(getBibleChapter).mock.calls.length).toBeGreaterThan(0);
+        expect(vi.mocked(getBibleChapter).mock.calls.every(([, chapter]) => chapter === 12)).toBe(true);
+        // No chapter of the 12–50 fullRange beyond its first chapter is fetched.
+        expect(vi.mocked(getBibleChapter)).not.toHaveBeenCalledWith("Genesis", 50, expect.anything());
+        expect(vi.mocked(getBibleChapter)).not.toHaveBeenCalledWith("Genesis", 13, expect.anything());
+    });
+
+    it("shows cross-book chips for the other books carrying the category, with the category slug", () => {
+        renderCategoryStudy();
+        expect(screen.getByText("Also in:")).toBeInTheDocument();
+        expect(screen.getByRole("link", { name: "Exodus" })).toHaveAttribute(
+            "href", "/biblical-history/exodus/patriarchs",
+        );
+    });
+
+    it("renders a mixed timeline: event and category nodes, category labelled, current on the category", async () => {
+        renderCategoryStudy();
+        await waitFor(() => expect(screen.getByText("Patriarchs overview prose.")).toBeInTheDocument());
+        expect(screen.getByRole("navigation", { name: "Entries in this book" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: /The Patriarchs, Category/ })).toHaveAttribute("aria-current", "true");
+        expect(screen.getByRole("button", { name: /Creation, Event/ })).not.toHaveAttribute("aria-current");
+    });
+});
+
+describe("HistoryEventStudy — category page (mocked service, routes mirror App.jsx)", () => {
+    function renderCategoryPage(path) {
+        return render(
+            <MemoryRouter initialEntries={[path]}>
+                <ThemeProvider>
+                    <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
+                        <Routes>
+                            <Route path="/biblical-history" element={<BiblicalHistoryIndexPage />} />
+                            <Route path="/biblical-history/:book" element={<BiblicalHistoryBookRedirect />} />
+                            <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryEventPage />} />
+                        </Routes>
+                    </AuthContext.Provider>
+                </ThemeProvider>
+            </MemoryRouter>,
+        );
+    }
+
+    it("renders the published category page for a direct Genesis / patriarchs link", async () => {
+        renderCategoryPage("/biblical-history/genesis/patriarchs");
+        expect(screen.queryByRole("heading", { level: 1, name: "Page not found" })).toBeNull();
+        expect(screen.getByRole("heading", { level: 1, name: "The Patriarchs" })).toBeInTheDocument();
+        expect(document.title).toBe("The Patriarchs — Genesis 12:1–3 | Biblical History | Gnosis");
+        expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
+            "https://studygnosis.com/biblical-history/genesis/patriarchs",
+        );
+        // Breadcrumb: the book crumb links to the first entry (Creation,
+        // an event), the open category is current.
+        const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
+        expect(within(breadcrumb).getByRole("link", { name: "Genesis" })).toHaveAttribute(
+            "href", "/biblical-history/genesis/creation",
+        );
+        expect(within(breadcrumb).getByText("The Patriarchs")).toHaveAttribute("aria-current", "page");
+        // Companion default is the representative primary passage.
+        expect(await screen.findByRole("heading", { name: "Genesis 12:1–3" })).toBeInTheDocument();
+        // Timeline carries the mixed entries.
+        expect(screen.getByRole("navigation", { name: "Entries in this book" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: /The Patriarchs, Category/ })).toHaveAttribute("aria-current", "true");
+        expect(screen.getByRole("button", { name: /Creation, Event/ })).toBeInTheDocument();
+    });
+
+    it("loads the category sections through the category loader — the page supplies kind from the book entry (QA F1)", async () => {
+        // The mocked getCategoryBySlug returns the kind-less record the
+        // real service returns, so this fails if the page hands the
+        // study a record without kind: the study would take the event
+        // loader and show the event sections (or the load error) instead
+        // of the category sections.
+        vi.mocked(loadEventSections).mockClear();
+        vi.mocked(loadCategorySections).mockClear();
+        renderCategoryPage("/biblical-history/genesis/patriarchs");
+        await waitFor(() => expect(screen.getByText("Patriarchs overview prose.")).toBeInTheDocument());
+        expect(screen.getByText("Patriarchs why it matters prose.")).toBeInTheDocument();
+        expect(vi.mocked(loadCategorySections)).toHaveBeenCalledWith("category-patriarchs");
+        expect(vi.mocked(loadEventSections)).not.toHaveBeenCalled();
+    });
+
+    it("navigates Creation → The Patriarchs through the timeline", async () => {
+        const user = userEvent.setup();
+        renderCategoryPage("/biblical-history/genesis/creation");
+        expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
+        await user.click(screen.getByRole("button", { name: /The Patriarchs, Category/ }));
+        await waitFor(() => expect(
+            screen.getByRole("heading", { level: 1, name: "The Patriarchs" }),
+        ).toBeInTheDocument());
+        expect(document.title).toBe("The Patriarchs — Genesis 12:1–3 | Biblical History | Gnosis");
+        expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
+            "https://studygnosis.com/biblical-history/genesis/patriarchs",
+        );
+    });
+
+    it("renders the 404 page for an unknown category slug", () => {
+        renderCategoryPage("/biblical-history/genesis/not-a-category");
+        expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
+    });
+
+    it("renders the 404 page for a category not connected to the requested book", () => {
+        renderCategoryPage("/biblical-history/exodus/patriarchs");
+        expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
     });
 });

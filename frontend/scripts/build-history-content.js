@@ -67,6 +67,7 @@ try {
     for (const warning of warnings) console.warn(`History content warning: ${warning}`);
     console.log(
         `History content: generated ${manifest.events.length} event(s), ` +
+            `${(manifest.categories ?? []).length} categor(ies), ` +
             `${manifest.topics.length} topic(s), ${manifest.books.length} book(s), ` +
             `${manifest.sources.length} source(s)` +
             (includeUnpublished ? " (including unpublished)" : " (published only)") +

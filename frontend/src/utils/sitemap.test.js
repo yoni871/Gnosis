@@ -65,8 +65,8 @@ describe("buildSitemapXml", () => {
 });
 
 describe("historySitemapPaths", () => {
-    const manifest = { books: ["genesis"], events: ["event-creation"], sources: [], topics: [] };
-    const books = [{ id: "genesis", events: [{ eventId: "event-creation", narrativeOrder: 1 }] }];
+    const manifest = { books: ["genesis"], events: ["event-creation"], categories: [], sources: [], topics: [] };
+    const books = [{ id: "genesis", entries: [{ kind: "event", eventId: "event-creation", narrativeOrder: 1 }] }];
 
     test("lists the homepage and a published book's published event URLs, never a book-page URL", () => {
         expect(historySitemapPaths(manifest, books)).toEqual([
@@ -77,8 +77,8 @@ describe("historySitemapPaths", () => {
 
     test("omits a book with no published content and an event in no generated book", () => {
         const otherBooks = [
-            { id: "genesis", events: [{ eventId: "event-creation", narrativeOrder: 1 }] },
-            { id: "exodus", events: [{ eventId: "event-exodus", narrativeOrder: 1 }] },
+            { id: "genesis", entries: [{ kind: "event", eventId: "event-creation", narrativeOrder: 1 }] },
+            { id: "exodus", entries: [{ kind: "event", eventId: "event-exodus", narrativeOrder: 1 }] },
         ];
         // Exodus is not in the published manifest, and event-exodus is
         // not in it either — neither gets a URL, even though a book
@@ -93,9 +93,9 @@ describe("historySitemapPaths", () => {
         const booksWithDraft = [
             {
                 id: "genesis",
-                events: [
-                    { eventId: "event-creation", narrativeOrder: 1 },
-                    { eventId: "event-flood", narrativeOrder: 2 },
+                entries: [
+                    { kind: "event", eventId: "event-creation", narrativeOrder: 1 },
+                    { kind: "event", eventId: "event-flood", narrativeOrder: 2 },
                 ],
             },
         ];
@@ -108,7 +108,7 @@ describe("historySitemapPaths", () => {
     });
 
     test("returns no Biblical History paths when nothing is published", () => {
-        expect(historySitemapPaths({ books: [], events: [], sources: [], topics: [] }, [])).toEqual([]);
+        expect(historySitemapPaths({ books: [], events: [], categories: [], sources: [], topics: [] }, [])).toEqual([]);
         expect(historySitemapPaths(null, null)).toEqual([]);
     });
 
@@ -116,17 +116,116 @@ describe("historySitemapPaths", () => {
         const multi = {
             books: ["psalms", "genesis"],
             events: ["event-creation", "event-psalm-23"],
+            categories: [],
             sources: [],
             topics: [],
         };
         const multiBooks = [
-            { id: "psalms", events: [{ eventId: "event-psalm-23", narrativeOrder: 1 }] },
-            { id: "genesis", events: [{ eventId: "event-creation", narrativeOrder: 1 }] },
+            { id: "psalms", entries: [{ kind: "event", eventId: "event-psalm-23", narrativeOrder: 1 }] },
+            { id: "genesis", entries: [{ kind: "event", eventId: "event-creation", narrativeOrder: 1 }] },
         ];
         expect(historySitemapPaths(multi, multiBooks)).toEqual([
             "/biblical-history",
             "/biblical-history/genesis/creation",
             "/biblical-history/psalms/psalm-23",
+        ]);
+    });
+
+    test("lists a published category URL for a published fixture category", () => {
+        const withCategory = {
+            books: ["genesis"],
+            events: ["event-creation"],
+            categories: ["category-patriarchs"],
+            sources: [],
+            topics: [],
+        };
+        const booksWithCategory = [
+            {
+                id: "genesis",
+                entries: [
+                    { kind: "event", eventId: "event-creation", narrativeOrder: 1 },
+                    { kind: "category", categoryId: "category-patriarchs", narrativeOrder: 2 },
+                ],
+            },
+        ];
+        expect(historySitemapPaths(withCategory, booksWithCategory)).toEqual([
+            "/biblical-history",
+            "/biblical-history/genesis/creation",
+            "/biblical-history/genesis/patriarchs",
+        ]);
+    });
+
+    test("omits a category id that is not in the published manifest", () => {
+        const withDraftCategory = {
+            books: ["genesis"],
+            events: ["event-creation"],
+            categories: [],
+            sources: [],
+            topics: [],
+        };
+        const booksWithDraftCategory = [
+            {
+                id: "genesis",
+                entries: [
+                    { kind: "event", eventId: "event-creation", narrativeOrder: 1 },
+                    { kind: "category", categoryId: "category-patriarchs", narrativeOrder: 2 },
+                ],
+            },
+        ];
+        // category-patriarchs is listed in the book record but is not
+        // a published category in the manifest — it must not get a URL.
+        expect(historySitemapPaths(withDraftCategory, booksWithDraftCategory)).toEqual([
+            "/biblical-history",
+            "/biblical-history/genesis/creation",
+        ]);
+    });
+
+    test("omits a category listed in the manifest but in no generated book", () => {
+        const orphanCategory = {
+            books: ["genesis"],
+            events: ["event-creation"],
+            categories: ["category-patriarchs"],
+            sources: [],
+            topics: [],
+        };
+        // The manifest lists the category, but no generated book
+        // carries an entry for it — no URL.
+        expect(historySitemapPaths(orphanCategory, books)).toEqual([
+            "/biblical-history",
+            "/biblical-history/genesis/creation",
+        ]);
+    });
+
+    test("sorts mixed event and category slugs deterministically within a book", () => {
+        const mixed = {
+            books: ["genesis"],
+            events: ["event-zebra"],
+            categories: ["category-alpha"],
+            sources: [],
+            topics: [],
+        };
+        const mixedBooks = [
+            {
+                id: "genesis",
+                entries: [
+                    { kind: "event", eventId: "event-zebra", narrativeOrder: 1 },
+                    { kind: "category", categoryId: "category-alpha", narrativeOrder: 2 },
+                ],
+            },
+        ];
+        // Alphabetical by slug, events and categories interleaved — not
+        // grouped by kind.
+        expect(historySitemapPaths(mixed, mixedBooks)).toEqual([
+            "/biblical-history",
+            "/biblical-history/genesis/alpha",
+            "/biblical-history/genesis/zebra",
+        ]);
+    });
+
+    test("emits nothing extra when manifest.categories is empty", () => {
+        expect(historySitemapPaths({ ...manifest, categories: [] }, books)).toEqual([
+            "/biblical-history",
+            "/biblical-history/genesis/creation",
         ]);
     });
 });

@@ -50,6 +50,28 @@ test("starts on the testament given by initialTestament", () => {
     expect(screen.queryByText("Genesis")).toBeNull();
 });
 
+test("shows both counts on a book's chip when it has categories, and no counts otherwise", () => {
+    const books = [
+        { id: "genesis", title: "Genesis", testament: "OT", chapterCount: 50, eventCount: 8, hasEvents: true, categoryCount: 2, hasCategories: true },
+        { id: "exodus", title: "Exodus", testament: "OT", chapterCount: 40, eventCount: 0, hasEvents: false, categoryCount: 0, hasCategories: false },
+    ];
+    mount({ books });
+    // Genesis links to its first published event and shows both counts.
+    expect(screen.getByRole("link", { name: "Genesis · 2 categories · 8 events" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+    // Exodus has no published content: still a Coming Soon chip, and
+    // the counts label never appears on it.
+    expect(document.querySelector('[data-history-book="exodus"]')).toHaveTextContent("Coming Soon");
+    expect(screen.getAllByText(/categor/)).toHaveLength(1);
+});
+
+test("uses singular count labels for one category and one event", () => {
+    const books = [
+        { id: "genesis", title: "Genesis", testament: "OT", chapterCount: 50, eventCount: 1, hasEvents: true, categoryCount: 1, hasCategories: true },
+    ];
+    mount({ books });
+    expect(screen.getByRole("link", { name: "Genesis · 1 category · 1 event" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+});
+
 test("calls onClose on Escape from inside the drawer", async () => {
     const user = userEvent.setup();
     const onClose = vi.fn();

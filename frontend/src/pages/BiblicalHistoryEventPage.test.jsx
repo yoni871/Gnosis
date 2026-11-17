@@ -141,6 +141,11 @@ describe("BiblicalHistoryEventPage", () => {
         expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
     });
 
+    it("renders the 404 page for an unknown category slug", () => {
+        renderStudy("/biblical-history/genesis/not-a-category");
+        expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
+    });
+
     it("navigates Creation → Adam and Eve → Creation through the timeline", async () => {
         const user = userEvent.setup();
         renderStudy("/biblical-history/genesis/creation");

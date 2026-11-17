@@ -3,17 +3,28 @@
 // published events ARE present: Genesis has ten events and every
 // other book is "Upcoming". Dev-mode loading is covered by the content-lib
 // tests (which generate into temp dirs) and the local dev-flag preview.
-import { describe, expect, it } from "vitest";
+import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import path from "node:path";
+import process from "node:process";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import {
+    buildBookTimeline,
+    categorySlug,
     formatHistoryDateLabel,
     formatScriptureRange,
     getBook,
     getBookTitle,
+    getBooksForCategory,
+    getCategory,
+    getCategoryBySlug,
     getEvent,
     getEventBySlug,
     getFirstPublishedEvent,
+    listBookEntries,
     listBooks,
+    listCategoriesForBook,
     listEventsForBook,
+    loadCategorySections,
     readerLinkFor,
     slugifyBookName,
 } from "./historyService";
@@ -74,6 +85,13 @@ describe("listBooks", () => {
         const rest = books.filter((book) => book.id !== "genesis");
         expect(rest).toHaveLength(65);
         expect(rest.every((book) => book.eventCount === 0 && !book.hasEvents)).toBe(true);
+    });
+    it("reports zero categories for every book while none are published", () => {
+        const books = listBooks();
+        const genesis = books.find((book) => book.id === "genesis");
+        expect(genesis.categoryCount).toBe(0);
+        expect(genesis.hasCategories).toBe(false);
+        expect(books.every((book) => book.categoryCount === 0 && !book.hasCategories)).toBe(true);
     });
 });
 
@@ -206,5 +224,211 @@ describe("formatHistoryDateLabel", () => {
     it("names the traditional system", () => {
         expect(formatHistoryDateLabel({ type: "traditional", label: "c. 4004 BCE", traditionalSystem: "Ussher chronology" }))
             .toBe("c. 4004 BCE — Traditional (Ussher chronology)");
+    });
+});
+
+describe("category lookups in a production build (no categories published yet)", () => {
+    it("strips the category- prefix for slugs, and leaves other ids alone", () => {
+        expect(categorySlug("category-patriarchs")).toBe("patriarchs");
+        expect(categorySlug("category-primeval-origins")).toBe("primeval-origins");
+        expect(categorySlug("patriarchs")).toBe("patriarchs");
+    });
+    it("returns null for unknown categories, by id and by slug", () => {
+        expect(getCategory("category-patriarchs")).toBeNull();
+        expect(getCategoryBySlug("patriarchs")).toBeNull();
+        expect(getCategory("category-primeval-origins")).toBeNull();
+    });
+    it("lists no categories for Genesis or for an unknown book", () => {
+        expect(listCategoriesForBook("genesis")).toEqual([]);
+        expect(listCategoriesForBook("exodus")).toEqual([]);
+        expect(listCategoriesForBook("not-a-book")).toEqual([]);
+    });
+    it("returns no books for an unknown category", () => {
+        expect(getBooksForCategory("category-patriarchs")).toEqual([]);
+    });
+    it("returns null sections for an unknown category", async () => {
+        await expect(loadCategorySections("category-patriarchs")).resolves.toBeNull();
+    });
+    it("listBookEntries is the event-only timeline while no categories exist", () => {
+        const entries = listBookEntries("genesis");
+        expect(entries).toHaveLength(10);
+        expect(entries.map((entry) => entry.id)).toEqual([
+            "event-creation",
+            "event-adam-and-eve",
+            "event-cain-and-abel",
+            "event-cains-descendants",
+            "event-seth-early-generations",
+            "event-humanitys-corruption",
+            "event-noah-ark",
+            "event-great-flood",
+            "event-noahs-sacrifice-and-covenant",
+            "event-noah-and-his-sons",
+        ]);
+        expect(entries.every((entry) => entry.kind === "event")).toBe(true);
+        expect(entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        expect(entries[0].bookNote).toContain("Genesis 1:1");
+        expect(listBookEntries("exodus")).toEqual([]);
+        expect(listBookEntries("not-a-book")).toEqual([]);
+    });
+    it("buildBookTimeline is the same mixed list as listBookEntries", () => {
+        expect(buildBookTimeline("genesis")).toEqual(listBookEntries("genesis"));
+        expect(buildBookTimeline("exodus")).toEqual([]);
+    });
+});
+
+// Fixture-based category tests. The generated category directory is
+// empty in this PR (no categories published), so the positive paths
+// cannot run against the real generated content. Instead this block
+// writes fixture records into the generated directory, re-imports the
+// service fresh so its eager globs pick them up, and deletes every
+// fixture file afterwards — the manifest and the real book files are
+// never touched, so no other test file can observe the fixtures except
+// through the fixture book below.
+//
+// The fixture book is Exodus, and it carries ONLY category entries —
+// never an event entry. That keeps Exodus event-less (no first
+// published event, still a Coming Soon chip, still redirecting to the
+// homepage), so the selector, index, and event-page tests are
+// unaffected even if they import the service while the fixtures exist.
+// True event+category interleaving in one book is therefore NOT covered
+// here: the sort is one comparator over the unified entries array, and
+// it is covered for events (Genesis, above) and for categories (below),
+// with the interleaved case covered by the sitemap fixture tests.
+describe("category fixtures (generated-content globs)", () => {
+    const generatedDir = path.join(process.cwd(), "src", "generated", "history");
+    const categoriesDir = path.join(generatedDir, "categories");
+    const fixtureCategoryA = {
+        id: "category-primeval-origins",
+        title: "Primeval Origins",
+        category: "category",
+        status: "published",
+        primaryScripture: { book: "Genesis", bookId: "genesis", startChapter: 1, startVerse: 1, endChapter: 2, endVerse: 3 },
+        fullRange: { book: "Genesis", bookId: "genesis", startChapter: 1, startVerse: 1, endChapter: 11, endVerse: 32 },
+        era: "primeval",
+        date: { type: "unknown", label: "No established date", yearStart: null, yearEnd: null },
+        locations: [],
+        topics: [],
+        relatedEvents: ["event-creation"],
+        connections: [],
+        sources: [],
+        review: {},
+    };
+    const fixtureCategoryB = {
+        id: "category-patriarchal-era",
+        title: "The Patriarchal Era",
+        category: "category",
+        status: "published",
+        primaryScripture: { book: "Genesis", bookId: "genesis", startChapter: 12, startVerse: 1, endChapter: 12, endVerse: 3 },
+        fullRange: { book: "Genesis", bookId: "genesis", startChapter: 12, startVerse: 1, endChapter: 50, endVerse: 26 },
+        era: "patriarchal",
+        date: { type: "unknown", label: "No established date", yearStart: null, yearEnd: null },
+        locations: [],
+        topics: [],
+        relatedEvents: [],
+        connections: [],
+        sources: [],
+        review: {},
+    };
+    const fixtureMarkdown = [
+        "## Overview",
+        "",
+        "Primeval origins overview prose. [^source-test-alpha]",
+        "",
+        "## Ancient World",
+        "",
+        "### Primeval stories and divine sovereignty",
+        "",
+        "Ancient world subsection prose. [^source-test-beta]",
+        "",
+        "## Why This Context Matters",
+        "",
+        "Why primeval origins matter prose. [^source-test-alpha]",
+        "",
+    ].join("\n");
+    const fixtureBook = {
+        id: "exodus",
+        title: "Exodus",
+        testament: "OT",
+        introduction: "Fixture book: categories only, no events.",
+        entries: [
+            // Deliberately out of narrative order in the file: the
+            // loader must sort by narrativeOrder, not file order.
+            { kind: "category", categoryId: "category-patriarchal-era", narrativeOrder: 2, bookNote: "The patriarchal era in brief." },
+            { kind: "category", categoryId: "category-primeval-origins", narrativeOrder: 1, bookNote: "The primeval era in brief." },
+        ],
+    };
+    const fixturePaths = [
+        path.join(categoriesDir, "category-primeval-origins.json"),
+        path.join(categoriesDir, "category-patriarchal-era.json"),
+        path.join(categoriesDir, "primeval-origins.md"),
+        path.join(generatedDir, "books", "exodus.json"),
+    ];
+
+    let svc;
+    beforeAll(async () => {
+        // Self-healing: a previous crashed run may have left fixtures
+        // behind; remove them before writing fresh ones.
+        for (const file of fixturePaths) rmSync(file, { force: true });
+        mkdirSync(categoriesDir, { recursive: true });
+        writeFileSync(fixturePaths[0], JSON.stringify(fixtureCategoryA, null, 2));
+        writeFileSync(fixturePaths[1], JSON.stringify(fixtureCategoryB, null, 2));
+        writeFileSync(fixturePaths[2], fixtureMarkdown);
+        writeFileSync(fixturePaths[3], JSON.stringify(fixtureBook, null, 2));
+        // Fresh module instance: the service reads the generated globs
+        // once at import time, so the fixtures must exist first. The
+        // query string forces Vite to re-transform the module — without
+        // it, the cached transform keeps the stale (pre-fixture) glob
+        // expansion even after vi.resetModules().
+        vi.resetModules();
+        svc = await import("./historyService?category-fixture");
+    });
+    afterAll(() => {
+        for (const file of fixturePaths) rmSync(file, { force: true });
+    });
+
+    it("resolves a fixture category by id and by slug", () => {
+        expect(svc.getCategory("category-primeval-origins")).toEqual(fixtureCategoryA);
+        expect(svc.getCategoryBySlug("primeval-origins")).toEqual(fixtureCategoryA);
+        expect(svc.getCategory("category-patriarchal-era")).toEqual(fixtureCategoryB);
+        expect(svc.categorySlug("category-patriarchal-era")).toBe("patriarchal-era");
+        expect(svc.getCategory("category-no-such")).toBeNull();
+    });
+    it("lists the fixture book's categories in narrative order, not file order", () => {
+        const categories = svc.listCategoriesForBook("exodus");
+        expect(categories.map((category) => category.id)).toEqual([
+            "category-primeval-origins",
+            "category-patriarchal-era",
+        ]);
+        expect(categories[0].bookNote).toBe("The primeval era in brief.");
+        expect(categories[0].narrativeOrder).toBe(1);
+        expect(categories[1].bookNote).toBe("The patriarchal era in brief.");
+        expect(categories[1].narrativeOrder).toBe(2);
+        expect(svc.listCategoriesForBook("genesis")).toEqual([]);
+    });
+    it("listBookEntries tags each entry with its kind and narrative order", () => {
+        const entries = svc.listBookEntries("exodus");
+        expect(entries).toHaveLength(2);
+        expect(entries[0]).toMatchObject({ id: "category-primeval-origins", kind: "category", narrativeOrder: 1 });
+        expect(entries[1]).toMatchObject({ id: "category-patriarchal-era", kind: "category", narrativeOrder: 2 });
+        expect(svc.buildBookTimeline("exodus")).toEqual(entries);
+    });
+    it("finds the books carrying a fixture category", () => {
+        const books = svc.getBooksForCategory("category-primeval-origins");
+        expect(books.map((book) => book.id)).toEqual(["exodus"]);
+        expect(svc.getBooksForCategory("category-no-such")).toEqual([]);
+    });
+    it("loads a fixture category's sections with continuous footnote numbering", async () => {
+        const sections = await svc.loadCategorySections("category-primeval-origins");
+        expect(sections).not.toBeNull();
+        expect(sections.overview.markdown).toContain("Primeval origins overview prose.");
+        expect(sections.overview.markdown).toContain("[1](#source-source-test-alpha)");
+        expect(sections.ancientWorldSubsections).toHaveLength(1);
+        expect(sections.ancientWorldSubsections[0].heading).toBe("Primeval stories and divine sovereignty");
+        expect(sections.ancientWorldSubsections[0].markdown).toContain("[2](#source-source-test-beta)");
+        // The same source cited again in Why It Matters keeps its first
+        // number instead of restarting at 1.
+        expect(sections.whyItMatters.markdown).toContain("[1](#source-source-test-alpha)");
+        expect(sections.whyItMatters.markdown).toContain("Why primeval origins matter prose.");
+        await expect(svc.loadCategorySections("category-no-such")).resolves.toBeNull();
     });
 });

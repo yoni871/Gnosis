@@ -8,6 +8,19 @@ const TESTAMENTS = [
     { id: "NT", label: "New Testament" },
 ];
 
+// Q11 (interim): while events and categories coexist, a book with
+// categories shows both counts on its chip ("2 categories · 8
+// events"). A book with no categories shows no counts at all —
+// exactly as before, so the existing event-only display is unchanged.
+// Counts appear only on link chips (books with a first published
+// event); a Coming Soon chip never carries them.
+function formatBookCounts(book) {
+    if (!book.hasCategories) return null;
+    const categories = book.categoryCount === 1 ? "1 category" : `${book.categoryCount} categories`;
+    const events = book.eventCount === 1 ? "1 event" : `${book.eventCount} events`;
+    return `${categories} · ${events}`;
+}
+
 export default function HistoryBookSelector({ books = listBooks(), open = false, onClose, initialTestament = "OT" }) {
     const [testament, setTestament] = useState(initialTestament);
     const tabs = useRef([]);
@@ -98,6 +111,7 @@ export default function HistoryBookSelector({ books = listBooks(), open = false,
                                 </li>
                             );
                         }
+                        const counts = formatBookCounts(book);
                         return (
                             <li key={book.id}>
                                 <Link
@@ -105,7 +119,7 @@ export default function HistoryBookSelector({ books = listBooks(), open = false,
                                     className="history-book-chip"
                                     data-history-book={book.id}
                                 >
-                                    {book.title}
+                                    {counts ? `${book.title} · ${counts}` : book.title}
                                 </Link>
                             </li>
                         );

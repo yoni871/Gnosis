@@ -6,22 +6,26 @@
 // the visitor came from — the homepage when they arrived from there,
 // since the book route redirects (replace) to the event.
 //
-// Unknown book slugs, and events that do not exist or are not
+// The URL slug resolves to EITHER an event or a category: the category
+// slug occupies the same `:event` param position, so no route change was
+// needed. Unknown book slugs, and records that do not exist or are not
 // connected to this book, render the 404 page — never a blank page,
-// never another book's event. The study remounts per event (keyed by
-// event id), so event-to-event navigation through the timeline always
-// starts the new event fresh: Story tab, companion open on the new
-// event's primary passage.
+// never another book's record. The study remounts per record (keyed by
+// record id), so record-to-record navigation through the timeline always
+// starts the new record fresh: Story tab, companion open on the new
+// record's primary passage.
 import { useCallback } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import LandingHeader from "../components/LandingHeader";
 import Seo from "../components/Seo";
 import HistoryEventStudy from "../components/History/HistoryEventStudy";
 import {
+    categorySlug,
     eventSlug,
     getBookTitle,
+    getCategoryBySlug,
     getEventBySlug,
-    listEventsForBook,
+    listBookEntries,
 } from "../services/historyService";
 import { formatScriptureRange } from "../utils/historyContent";
 import {
@@ -39,12 +43,19 @@ export default function BiblicalHistoryEventPage() {
     const navigate = useNavigate();
 
     const bookTitle = getBookTitle(bookSlug);
-    const events = bookSlug ? listEventsForBook(bookSlug) : [];
+    const entries = bookSlug ? listBookEntries(bookSlug) : [];
 
-    const openEvent = eventSlugParam ? getEventBySlug(eventSlugParam) : null;
-    const openEventEntry = openEvent
-        ? events.find((entry) => entry.id === openEvent.id)
+    // The slug is an event slug or a category slug; the record must be
+    // listed in this book's entries, in narrative order.
+    const openRecord = eventSlugParam
+        ? (getEventBySlug(eventSlugParam) ?? getCategoryBySlug(eventSlugParam))
         : null;
+    const openRecordEntry = openRecord
+        ? entries.find((entry) => entry.id === openRecord.id)
+        : null;
+
+    const recordSlug = (record) =>
+        (record.kind === "category" ? categorySlug(record.id) : eventSlug(record.id));
 
     // Back to browsing returns to the book directory on the index
     // page. It must not navigate to the book URL: that URL redirects
@@ -61,22 +72,22 @@ export default function BiblicalHistoryEventPage() {
         navigate("/biblical-history#history-books", { state: { focusBook: bookSlug } });
     }, [navigate, bookSlug]);
 
-    // An event that exists but is not connected to this book is a 404,
+    // A record that exists but is not connected to this book is a 404,
     // not a redirect: silently substituting another book's framing would
     // misstate the connection.
-    if (!bookTitle || !openEvent || !openEventEntry) {
+    if (!bookTitle || !openRecord || !openRecordEntry) {
         return <NotFoundPage />;
     }
 
-    const eventWithBookNote = { ...openEvent, bookNote: openEventEntry.bookNote };
-    const firstEvent = events[0] ?? null;
+    const recordWithBookNote = { ...openRecord, kind: openRecordEntry.kind, bookNote: openRecordEntry.bookNote };
+    const firstEntry = entries[0] ?? null;
 
     return (
         <div className="history-event-root min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)]">
             <Seo
-                title={historyEventTitle(openEvent.title, formatScriptureRange(openEvent.primaryScripture))}
-                description={historyEventDescription(openEvent.title, formatScriptureRange(openEvent.primaryScripture))}
-                canonical={pageUrl(historyPath(bookSlug, eventSlug(openEvent.id)))}
+                title={historyEventTitle(openRecord.title, formatScriptureRange(openRecord.primaryScripture))}
+                description={historyEventDescription(openRecord.title, formatScriptureRange(openRecord.primaryScripture))}
+                canonical={pageUrl(historyPath(bookSlug, recordSlug(recordWithBookNote)))}
             />
             {/*
               The study experience uses the landing navbar, not the
@@ -99,9 +110,9 @@ export default function BiblicalHistoryEventPage() {
                         All books
                     </Link>
                     {" / "}
-                    {firstEvent ? (
+                    {firstEntry ? (
                         <Link
-                            to={historyPath(bookSlug, eventSlug(firstEvent.id))}
+                            to={historyPath(bookSlug, recordSlug(firstEntry))}
                             className="text-[var(--color-brand)]"
                         >
                             {bookTitle}
@@ -110,12 +121,12 @@ export default function BiblicalHistoryEventPage() {
                         <span>{bookTitle}</span>
                     )}
                     {" / "}
-                    <span aria-current="page">{openEvent.title}</span>
+                    <span aria-current="page">{openRecord.title}</span>
                 </nav>
 
                 <HistoryEventStudy
-                    key={eventWithBookNote.id}
-                    event={eventWithBookNote}
+                    key={recordWithBookNote.id}
+                    record={recordWithBookNote}
                     bookId={bookSlug}
                     onBackToBooks={backToBooks}
                 />

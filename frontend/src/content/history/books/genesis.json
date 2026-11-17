@@ -3,54 +3,64 @@
   "title": "Genesis",
   "testament": "OT",
   "introduction": "Genesis opens with God creating and ordering the heavens and the earth. Biblical History presents the passage alongside carefully qualified ancient cultural and literary context.",
-  "events": [
+  "entries": [
     {
       "eventId": "event-creation",
+      "kind": "event",
       "narrativeOrder": 1,
       "bookNote": "Genesis 1:1–2:3 introduces the Bible’s account of creation and culminates in the seventh day. No independently established event date is assigned."
     },
     {
       "eventId": "event-adam-and-eve",
+      "kind": "event",
       "narrativeOrder": 2,
       "bookNote": "Genesis 2:4–3:24 tells a second, distinct creation account: the garden, the forming of the human, the command, the transgression, the judgments, and the expulsion. No independently established event date is assigned."
     },
     {
       "eventId": "event-cain-and-abel",
+      "kind": "event",
       "narrativeOrder": 3,
       "bookNote": "Genesis 4:1–16 tells the first births, the offerings, the warning, the murder, the curse, and the protective mark, ending with Cain's departure to Nod, east of Eden. No independently established event date is assigned."
     },
     {
       "eventId": "event-cains-descendants",
+      "kind": "event",
       "narrativeOrder": 4,
       "bookNote": "Genesis 4:17–24 traces Cain's line after exile: the first city, named for Enoch, and the crafts and song of Lamech's household. No independently established event date is assigned."
     },
     {
       "eventId": "event-seth-early-generations",
+      "kind": "event",
       "narrativeOrder": 5,
       "bookNote": "Genesis 4:25–5:32 moves from Seth's birth to a ten-generation genealogy ending with Noah. The passage records long lives and repeated deaths, with Enoch as the exception, and no independently established date is assigned."
     },
     {
       "eventId": "event-humanitys-corruption",
+      "kind": "event",
       "narrativeOrder": 6,
       "bookNote": "Genesis 6:1–8 tells of the sons of God and the daughters of men, the Nephilim, the 120 years, human wickedness, divine grief and judgment, and Noah finding grace. No independently established event date is assigned."
     },
     {
       "eventId": "event-noah-ark",
+      "kind": "event",
       "narrativeOrder": 7,
       "bookNote": "Genesis 6:9–22 introduces Noah as righteous, blameless, and walking with God, gives the ark's dimensions and materials, announces the covenant, and ends with Noah's obedience. No independently established event date is assigned."
     },
     {
       "eventId": "event-great-flood",
+      "kind": "event",
       "narrativeOrder": 8,
       "bookNote": "Genesis 7:1–8:19 tells the Flood: the entry into the ark, the forty days of rain, the waters prevailing a hundred and fifty days, the resting on the mountains of Ararat, and the exit in Noah's six hundred and first year. No independently established event date is assigned."
     },
     {
       "eventId": "event-noahs-sacrifice-and-covenant",
+      "kind": "event",
       "narrativeOrder": 9,
       "bookNote": "Genesis 8:20–9:17 tells of Noah's sacrifice after the Flood, God's resolve never again to curse the ground, the blessing and ordinances for a new order, the everlasting covenant with every living creature, and the bow in the cloud as its sign. No independently established event date is assigned."
     },
     {
       "eventId": "event-noah-and-his-sons",
+      "kind": "event",
       "narrativeOrder": 10,
       "bookNote": "Genesis 9:18–29 tells of Noah's vineyard, his drunkenness and uncovering, Ham's offence, the curse on Canaan and the blessings on Shem and Japheth, and Noah's death at nine hundred and fifty years. No independently established event date is assigned."
     }
