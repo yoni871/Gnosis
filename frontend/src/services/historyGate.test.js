@@ -222,7 +222,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // and Great Flood events are published now, Noah's Sacrifice
         // and God's Covenant is in-review (content complete: 67 claims,
         // 14 connections, 27 sources), and Noah and His Sons is
-        // in-review (structural scaffold, no content yet), so the dev
+        // in-review (content complete: 75 claims, 16 connections, 20 sources), so the dev
         // opt-in includes all ten events — the seven published above
         // plus the in-review Creation and the two in-review events.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
@@ -297,7 +297,7 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         // and Great Flood events are published now, Noah's Sacrifice
         // and God's Covenant is in-review (content complete: 67 claims,
         // 14 connections, 27 sources), and Noah and His Sons is
-        // in-review (structural scaffold, no content yet), so the dev
+        // in-review (content complete: 75 claims, 16 connections, 20 sources), so the dev
         // opt-in includes all ten events — the seven published above
         // plus the in-review Creation and the two in-review events.
         expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
@@ -408,13 +408,14 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         // non-published records are Creation (flipped to in-review
         // by makeSandbox), Noah's Sacrifice and God's Covenant
         // (in-review, citing 27 sources — 20 reused by published
-        // events, 7 new), Noah and His Sons (in-review structural
-        // scaffold, citing no sources), and the ten sources cited
-        // only by non-published events — the three cited only by
-        // Creation (Brown, Crouch, and Shabaka) and the seven new
-        // sources cited only by the Sacrifice event. (McDowell, Met,
-        // and ORACC are cited by published events too, as are the
-        // reused Flood sources.)
+        // events, 7 new), Noah and His Sons (in-review, citing 20
+        // sources — 14 reused by published events, 6 new), and the
+        // sixteen sources cited only by non-published events — the
+        // three cited only by Creation (Brown, Crouch, and Shabaka),
+        // the seven new sources cited only by the Sacrifice event,
+        // and the six new sources cited only by the Sons event.
+        // (McDowell, Met, and ORACC are cited by published events
+        // too, as are the reused Flood sources.)
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
             { id: "event-noah-and-his-sons", kind: "event", status: "in-review", title: "Noah and His Sons" },
@@ -436,6 +437,42 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 kind: "source",
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
+            },
+            {
+                id: "source-bergsma-hahn-nakedness",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Noah's Nakedness and the Curse on Canaan (Genesis 9:20–27)",
+            },
+            {
+                id: "source-haynes-noahs-curse",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Noah's Curse: The Biblical Justification of American Slavery",
+            },
+            {
+                id: "source-mcgovern-iranian-wine",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Iranian Wine at the “Dawn of Viniculture”",
+            },
+            {
+                id: "source-bible-odyssey-curse-ham",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Curse of Ham",
+            },
+            {
+                id: "source-philo-de-sobrietate",
+                kind: "source",
+                status: "unpublished-only",
+                title: "De Sobrietate (On the Prayers and Curses Uttered by Noah When He Became Sober)",
+            },
+            {
+                id: "source-talmud-sanhedrin",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Tractate Sanhedrin 70a and 108b",
             },
             {
                 id: "source-kessler-jesus-jewish-covenants",

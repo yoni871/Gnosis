@@ -127,7 +127,7 @@ describe("generateHistoryContent — the publication gate", () => {
         // Noah, and Great Flood events are published, Noah's Sacrifice
         // and God's Covenant is in-review (content complete: 67 claims,
         // 14 connections, 27 sources), and Noah and His Sons is
-        // in-review (structural scaffold, no content yet), so the dev
+        // in-review (content complete: 75 claims, 16 connections, 20 sources), so the dev
         // opt-in includes the draft plus the seven published events
         // plus the two in-review events.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
@@ -138,7 +138,7 @@ describe("generateHistoryContent — the publication gate", () => {
         // Seven shipped events are published now, so the non-published
         // records in this fixture are the draft Creation event and the
         // in-review Noah's Sacrifice and God's Covenant event and the
-        // in-review Noah and His Sons scaffold.
+        // in-review Noah and His Sons event.
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
             { id: "event-noah-and-his-sons", kind: "event", status: "in-review" },
