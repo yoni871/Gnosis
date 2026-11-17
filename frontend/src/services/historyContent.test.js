@@ -124,20 +124,22 @@ describe("generateHistoryContent — the publication gate", () => {
         // The fixture flips Creation to "draft"; the shipped Adam and Eve,
         // Cain and Abel, Cain's Descendants, and Seth events are
         // published, so the dev opt-in includes the draft plus the four
-        // published events — and the in-review Humanity's Corruption
-        // and Noah events, which the opt-in also includes.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+        // published events — and the in-review Humanity's Corruption,
+        // Noah, and Great Flood events, which the opt-in also includes.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
         // Adam and Eve, Cain and Abel, Cain's Descendants, and Seth are
         // published now, so the non-published records in this fixture
-        // are the draft Creation event and the in-review Humanity's
-        // Corruption and Noah events (file scan is alphabetical:
-        // creation.json < humanitys-corruption.json < noah-ark.json).
+        // are the draft Creation event and the in-review Great Flood,
+        // Humanity's Corruption, and Noah events (file scan is
+        // alphabetical: creation.json < great-flood.json <
+        // humanitys-corruption.json < noah-ark.json).
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
+            { id: "event-great-flood", kind: "event", status: "in-review" },
             { id: "event-humanitys-corruption", kind: "event", status: "in-review" },
             { id: "event-noah-ark", kind: "event", status: "in-review" },
         ]);
@@ -209,7 +211,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         const event = JSON.parse(readFileSync(path.join(outDir, "events", "creation.json"), "utf8"));
         expect(event).not.toHaveProperty("review");
         expect(event.title).toBe("Creation");
@@ -254,7 +256,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -294,7 +296,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         const eventJson = readFileSync(path.join(outDir, "events", "seth-early-generations.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -321,7 +323,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         const eventJson = readFileSync(path.join(outDir, "events", "noah-ark.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");

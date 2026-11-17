@@ -721,5 +721,135 @@
     "verification": "not-independently-verified",
     "verificationDetail": "Existence and details verified via the creation.com reprint 2026-11-16 (abstract + introduction read); the full conference paper was NOT read directly. Cited only for the study's existence, its model-hull method, and the weighted-total-index verdict with the per-index counter-balance. Do not cite for methodology detail beyond the abstract/introduction.",
     "licenseNote": "All rights reserved; original summary and citation only."
+  },
+  "source-bible-gateway-kjv": {
+    "id": "source-bible-gateway-kjv",
+    "author": "BibleGateway",
+    "title": "King James Version — Genesis 7–8",
+    "publisher": "BibleGateway",
+    "verification": "verified",
+    "verificationDetail": "Genesis 7 and Genesis 8 KJV wording read directly via BibleGateway 2026-11-16; all verse citations in the Flood event verified against this text. Added by the Flood event: the dossier's §13.1 listed this ID as reused, but no such entry existed in the registry.",
+    "licenseNote": "Public domain text (King James Version)."
+  },
+  "source-bible-hub-interlinear": {
+    "id": "source-bible-hub-interlinear",
+    "author": "BibleHub",
+    "title": "Interlinear Bible — Genesis 7–8 (Hebrew with Strong's numbers)",
+    "publisher": "BibleHub",
+    "verification": "verified",
+    "verificationDetail": "Genesis 7 and Genesis 8 interlinears read in full 2026-11-16; Strong's numbers verified against BDB pages. Used to verify the absence of nepeš ḥayyâ and ṭāmēʾ from the passage, ḥārab at 8:13, and ḥallôn versus ṣōhar. Added by the Flood event: the dossier's §13.1 listed this ID as reused, but no such entry existed in the registry.",
+    "licenseNote": "Public-domain lexical material (Strong's, BDB) as presented by BibleHub."
+  },
+  "source-hamilton-genesis-nicot": {
+    "id": "source-hamilton-genesis-nicot",
+    "author": "Victor P. Hamilton",
+    "title": "The Book of Genesis: Chapters 1–17",
+    "publisher": "William B. Eerdmans Publishing Company (NICOT), 1990",
+    "year": 1990,
+    "pagesOrSection": "1:298 (40-in-150 resolution, via cited secondary)",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Full text NOT read directly this session. Contents verified via Biblia.com preview (\"G. The Great Flood (6:5–9:29)\"). One point cited via a named secondary: the 40 days of rain falling within the 150 days of prevailing waters (1:298). No other Hamilton position on Gen 7–8 is cited. EM decision 1 (2026-11-16): added as not-independently-verified; the Flood researchers disagreed (propose via secondary vs. hold until read directly) and the disagreement is recorded here.",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
+  },
+  "source-lambert-millard-atrahasis": {
+    "id": "source-lambert-millard-atrahasis",
+    "author": "W. G. Lambert and A. R. Millard",
+    "title": "Atra-ḫasīs: The Babylonian Story of the Flood",
+    "publisher": "Clarendon Press, Oxford, 1969 (Eisenbrauns reissue 1999)",
+    "year": 1969,
+    "verification": "not-independently-verified",
+    "verificationDetail": "The 1969 volume was NOT read directly this session. The Atrahasis translation was read via Dalley 2000, whose translation states its text as Lambert & Millard 1969 / Moran 1987. Cited second-hand only, via Dalley.",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
+  },
+  "source-george-epic-gilgamesh-penguin": {
+    "id": "source-george-epic-gilgamesh-penguin",
+    "author": "Andrew R. George (trans.)",
+    "title": "The Epic of Gilgamesh",
+    "publisher": "Penguin Classics, 1999 (reprinted with corrections 2003)",
+    "year": 1999,
+    "pagesOrSection": "Tablet XI (Flood Story, pp. 88–99 in the Penguin 2000 printing)",
+    "verification": "verified",
+    "verificationDetail": "Read directly in part: ETANA-hosted George translation (Penguin 2000, pp. 88–99); theosislibrary.com Tablet XI, George (eBL edition), lines 1–47; lines 145–162 (birds, sacrifice, \"like flies\") via two independent verbatim quotations in secondaries, cross-checked. The Penguin book itself was not read cover-to-cover. NOTE: Dev 2's Ark event cites a different Gilgamesh translation (Thompson, source-thompson-epic-gilgamesh) — the EM reconciles before the PR opens.",
+    "licenseNote": "All rights reserved; original paraphrase and short quotation only."
+  },
+  "source-jacobsen-harps": {
+    "id": "source-jacobsen-harps",
+    "author": "Thorkild Jacobsen",
+    "title": "The Harps That Once…: Sumerian Poetry in Translation",
+    "publisher": "Yale University Press, 1987",
+    "year": 1987,
+    "pagesOrSection": "pp. 147–148",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Not read directly. Cited via cited secondary (a summary citing Jacobsen 1987, pp. 147–148, for the Ziusudra sacrifice and Dilmun ending). Do not quote Jacobsen's wording.",
+    "licenseNote": "All rights reserved; citation only."
+  },
+  "source-jacobsen-eridu-genesis": {
+    "id": "source-jacobsen-eridu-genesis",
+    "author": "Thorkild Jacobsen",
+    "title": "\"The Eridu Genesis\"",
+    "publisher": "Journal of Biblical Literature 100 (1981)",
+    "year": 1981,
+    "pagesOrSection": "pp. 513–529",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Not read directly. Cited via cited secondary (a scholarly survey citing Jacobsen 1981 for the \"Eridu Genesis\" name and the c. 1600 BCE copy date).",
+    "licenseNote": "All rights reserved; citation only."
+  },
+  "source-walton-lost-world-flood": {
+    "id": "source-walton-lost-world-flood",
+    "author": "John H. Walton",
+    "title": "The Lost World of the Flood",
+    "publisher": "IVP Academic, 2018",
+    "year": 2018,
+    "verification": "not-independently-verified",
+    "verificationDetail": "Not read directly. Cited via cited secondary (a secondary paper citing Walton for the horizon/hyperbole argument for a regional reading).",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
+  },
+  "source-whitcomb-morris-genesis-flood": {
+    "id": "source-whitcomb-morris-genesis-flood",
+    "author": "John C. Whitcomb and Henry M. Morris",
+    "title": "The Genesis Flood",
+    "year": 1961,
+    "verification": "not-independently-verified",
+    "verificationDetail": "Not read directly. Cited via cited secondary (secondary summaries of the universal-reading / flood-geology position).",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
+  },
+  "source-roux-ancient-iraq": {
+    "id": "source-roux-ancient-iraq",
+    "author": "Georges Roux",
+    "title": "Ancient Iraq",
+    "verification": "verified",
+    "verificationDetail": "Read directly in part via a secondary route (the Erenow-hosted text): the flood-deposit discussion read; the asynchrony conclusion (Ur Ubaid / Kish c. 2800–2600 BCE / Shuruppak c. 2900 BCE / Eridu no layer) read via that route.",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
+  },
+  "source-collins-fasold-durupinar": {
+    "id": "source-collins-fasold-durupinar",
+    "author": "Lorence Collins and David Fasold",
+    "title": "\"Bogus 'Noah's Ark' from Turkey Exposed as a Common Geologic Structure\"",
+    "publisher": "Journal of Geoscience Education, 1996",
+    "year": 1996,
+    "verification": "not-independently-verified",
+    "verificationDetail": "Paper NOT read directly. Cited via cited secondary (multiple secondaries reporting the 1996 paper). Volume, issue, and pages unverified — verify before citing by page.",
+    "licenseNote": "All rights reserved; citation only."
+  },
+  "source-cyprian-epistles": {
+    "id": "source-cyprian-epistles",
+    "author": "Cyprian of Carthage; Firmilian of Caesarea",
+    "title": "Epistles 74 and 75 (Ante-Nicene Fathers)",
+    "publisher": "Ante-Nicene Fathers translation (public domain)",
+    "pagesOrSection": "Epistle 75 (Cyprian to Magnus), §2; Epistle 74 (Firmilian), §15",
+    "verification": "verified",
+    "verificationDetail": "Epistle 75.2 and Epistle 74.15 read directly via CCEL/ANF text. ANF Epistle 75 = Oxford edition Epistle lxix (A.D. 255); the two numberings are the same letter.",
+    "licenseNote": "Public domain (ANF); original summary and citation only."
+  },
+  "source-wenham-coherence-flood": {
+    "id": "source-wenham-coherence-flood",
+    "author": "Gordon J. Wenham",
+    "title": "\"The Coherence of the Flood Narrative\"",
+    "publisher": "Vetus Testamentum 28, no. 3 (1978)",
+    "year": 1978,
+    "pagesOrSection": "pp. 336–348",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Article NOT read directly. Cited via cited secondary — two independent secondaries converge (From Dust to Glory; Constable's Expository Notes, quoting pp. 337, 339–40). The 31-step palistrophe centred on Gen 8:1 is a scholarly reading, not textually certain; Emerton's critique is noted. Wenham's commentary Genesis 1–15 (WBC 1, 1987) was not read directly.",
+    "licenseNote": "All rights reserved; original paraphrase and citation only."
   }
 }
