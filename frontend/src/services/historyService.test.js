@@ -1,6 +1,6 @@
 // Service tests. These run against the production-mode generated
 // directory (npm test generates published-only content first), so the
-// published events ARE present: Genesis has eight events and every
+// published events ARE present: Genesis has ten events and every
 // other book is "Upcoming". Dev-mode loading is covered by the content-lib
 // tests (which generate into temp dirs) and the local dev-flag preview.
 import { describe, expect, it } from "vitest";
@@ -66,10 +66,10 @@ describe("listBooks", () => {
         expect(books[39].title).toBe("Matthew");
         expect(books[65].title).toBe("Revelation");
     });
-    it("marks every book except Genesis Upcoming in a production build (eight published events)", () => {
+    it("marks every book except Genesis Upcoming in a production build (ten published events)", () => {
         const books = listBooks();
         const genesis = books.find((book) => book.id === "genesis");
-        expect(genesis.eventCount).toBe(8);
+        expect(genesis.eventCount).toBe(10);
         expect(genesis.hasEvents).toBe(true);
         const rest = books.filter((book) => book.id !== "genesis");
         expect(rest).toHaveLength(65);
@@ -89,7 +89,7 @@ describe("book/event lookups in a production build", () => {
         expect(book).not.toBeNull();
         expect(book.id).toBe("genesis");
         const events = listEventsForBook("genesis");
-        expect(events).toHaveLength(8);
+        expect(events).toHaveLength(10);
         expect(events[0].id).toBe("event-creation");
         expect(events[0].title).toBe("Creation");
         expect(events[1].id).toBe("event-adam-and-eve");
@@ -106,6 +106,10 @@ describe("book/event lookups in a production build", () => {
         expect(events[6].title).toBe("Noah and the Ark");
         expect(events[7].id).toBe("event-great-flood");
         expect(events[7].title).toBe("The Great Flood");
+        expect(events[8].id).toBe("event-noahs-sacrifice-and-covenant");
+        expect(events[8].title).toBe("Noah's Sacrifice and God's Covenant");
+        expect(events[9].id).toBe("event-noah-and-his-sons");
+        expect(events[9].title).toBe("Noah and His Sons");
         expect(getEvent("event-creation")).not.toBeNull();
         expect(getEvent("event-creation").title).toBe("Creation");
         expect(getEventBySlug("creation")).not.toBeNull();
@@ -138,6 +142,14 @@ describe("book/event lookups in a production build", () => {
         expect(getEvent("event-great-flood").title).toBe("The Great Flood");
         expect(getEventBySlug("great-flood")).not.toBeNull();
         expect(getEventBySlug("great-flood").id).toBe("event-great-flood");
+        expect(getEvent("event-noahs-sacrifice-and-covenant")).not.toBeNull();
+        expect(getEvent("event-noahs-sacrifice-and-covenant").title).toBe("Noah's Sacrifice and God's Covenant");
+        expect(getEventBySlug("noahs-sacrifice-and-covenant")).not.toBeNull();
+        expect(getEventBySlug("noahs-sacrifice-and-covenant").id).toBe("event-noahs-sacrifice-and-covenant");
+        expect(getEvent("event-noah-and-his-sons")).not.toBeNull();
+        expect(getEvent("event-noah-and-his-sons").title).toBe("Noah and His Sons");
+        expect(getEventBySlug("noah-and-his-sons")).not.toBeNull();
+        expect(getEventBySlug("noah-and-his-sons").id).toBe("event-noah-and-his-sons");
         // No other book has generated content yet.
         expect(getBook("exodus")).toBeNull();
         expect(listEventsForBook("exodus")).toEqual([]);
