@@ -90,6 +90,14 @@ const FIXTURE_CATEGORY = {
     bookNote: "The patriarchal era in brief.",
 };
 
+// The real getCategory returns the raw generated record: it has
+// `category: "category"` but no `kind` — kind lives only in the book
+// file's entries. The mocked service mirrors that shape, so the page
+// must copy kind from the entry onto the record it hands to the study
+// (QA F1); a mock that returned kind would hide the defect.
+const FIXTURE_CATEGORY_RECORD = { ...FIXTURE_CATEGORY };
+delete FIXTURE_CATEGORY_RECORD.kind;
+
 const FIXTURE_CATEGORY_SECTIONS = {
     overview: { markdown: "Patriarchs overview prose.", footnotes: [] },
     ancientWorld: { markdown: "", footnotes: [] },
@@ -123,8 +131,8 @@ vi.mock("../../services/historyService", async (importOriginal) => {
         listBooks: () => [{ id: "genesis", title: "Genesis", testament: "OT" }],
         getEventBySlug: (slug) => (slug === "creation" ? FIXTURE_EVENT : null),
         getFirstPublishedEvent: () => FIXTURE_EVENT,
-        getCategoryBySlug: (slug) => (slug === "patriarchs" ? FIXTURE_CATEGORY : null),
-        getCategory: (id) => (id === FIXTURE_CATEGORY.id ? FIXTURE_CATEGORY : null),
+        getCategoryBySlug: (slug) => (slug === "patriarchs" ? FIXTURE_CATEGORY_RECORD : null),
+        getCategory: (id) => (id === FIXTURE_CATEGORY.id ? FIXTURE_CATEGORY_RECORD : null),
         categorySlug: (id) => String(id).replace(/^category-/, ""),
         listBookEntries: (bookId) => (bookId === "genesis" ? FIXTURE_ENTRIES : []),
         buildBookTimeline: (bookId) => (bookId === "genesis" ? FIXTURE_ENTRIES : []),
@@ -497,6 +505,21 @@ describe("HistoryEventStudy — category page (mocked service, routes mirror App
         expect(screen.getByRole("navigation", { name: "Entries in this book" })).toBeInTheDocument();
         expect(screen.getByRole("button", { name: /The Patriarchs, Category/ })).toHaveAttribute("aria-current", "true");
         expect(screen.getByRole("button", { name: /Creation, Event/ })).toBeInTheDocument();
+    });
+
+    it("loads the category sections through the category loader — the page supplies kind from the book entry (QA F1)", async () => {
+        // The mocked getCategoryBySlug returns the kind-less record the
+        // real service returns, so this fails if the page hands the
+        // study a record without kind: the study would take the event
+        // loader and show the event sections (or the load error) instead
+        // of the category sections.
+        vi.mocked(loadEventSections).mockClear();
+        vi.mocked(loadCategorySections).mockClear();
+        renderCategoryPage("/biblical-history/genesis/patriarchs");
+        await waitFor(() => expect(screen.getByText("Patriarchs overview prose.")).toBeInTheDocument());
+        expect(screen.getByText("Patriarchs why it matters prose.")).toBeInTheDocument();
+        expect(vi.mocked(loadCategorySections)).toHaveBeenCalledWith("category-patriarchs");
+        expect(vi.mocked(loadEventSections)).not.toHaveBeenCalled();
     });
 
     it("navigates Creation → The Patriarchs through the timeline", async () => {

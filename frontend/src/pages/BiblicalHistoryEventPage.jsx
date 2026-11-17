@@ -79,7 +79,7 @@ export default function BiblicalHistoryEventPage() {
         return <NotFoundPage />;
     }
 
-    const recordWithBookNote = { ...openRecord, bookNote: openRecordEntry.bookNote };
+    const recordWithBookNote = { ...openRecord, kind: openRecordEntry.kind, bookNote: openRecordEntry.bookNote };
     const firstEntry = entries[0] ?? null;
 
     return (
@@ -87,7 +87,7 @@ export default function BiblicalHistoryEventPage() {
             <Seo
                 title={historyEventTitle(openRecord.title, formatScriptureRange(openRecord.primaryScripture))}
                 description={historyEventDescription(openRecord.title, formatScriptureRange(openRecord.primaryScripture))}
-                canonical={pageUrl(historyPath(bookSlug, recordSlug(openRecord)))}
+                canonical={pageUrl(historyPath(bookSlug, recordSlug(recordWithBookNote)))}
             />
             {/*
               The study experience uses the landing navbar, not the

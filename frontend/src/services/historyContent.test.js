@@ -592,6 +592,14 @@ describe("validateHistoryContent — categories", () => {
         expectErrorMatching(contentDir, /constituentEvents is not part of the standalone category shape/);
     });
 
+    it("rejects a relatedCategories key", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => {
+            category.relatedCategories = ["category-creation-and-first-generations"];
+        } });
+        expectErrorMatching(contentDir, /relatedCategories is not part of the category shape/);
+    });
+
     it("rejects a bad era", () => {
         const { contentDir } = makeTempTree();
         addCategory(contentDir, { mutate: (category) => { category.era = "ancient"; } });
