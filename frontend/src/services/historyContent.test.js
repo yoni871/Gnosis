@@ -125,7 +125,7 @@ describe("generateHistoryContent — the publication gate", () => {
         // The fixture flips Creation to "draft"; the shipped Adam and Eve,
         // Cain and Abel, Cain's Descendants, Seth, Humanity's Corruption,
         // Noah, and Great Flood events are published, Noah's Sacrifice
-        // and God's Covenant is in-review (content complete: 67 claims,
+        // and God's Covenant is in-review (content complete: 68 claims,
         // 14 connections, 27 sources), and Noah and His Sons is
         // in-review (content complete: 75 claims, 16 connections, 20 sources), so the dev
         // opt-in includes the draft plus the seven published events

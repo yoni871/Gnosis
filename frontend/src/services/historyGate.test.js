@@ -220,7 +220,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, Seth, Humanity's Corruption, Noah,
         // and Great Flood events are published now, Noah's Sacrifice
-        // and God's Covenant is in-review (content complete: 67 claims,
+        // and God's Covenant is in-review (content complete: 68 claims,
         // 14 connections, 27 sources), and Noah and His Sons is
         // in-review (content complete: 75 claims, 16 connections, 20 sources), so the dev
         // opt-in includes all ten events — the seven published above
@@ -295,7 +295,7 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, Seth, Humanity's Corruption, Noah,
         // and Great Flood events are published now, Noah's Sacrifice
-        // and God's Covenant is in-review (content complete: 67 claims,
+        // and God's Covenant is in-review (content complete: 68 claims,
         // 14 connections, 27 sources), and Noah and His Sons is
         // in-review (content complete: 75 claims, 16 connections, 20 sources), so the dev
         // opt-in includes all ten events — the seven published above
