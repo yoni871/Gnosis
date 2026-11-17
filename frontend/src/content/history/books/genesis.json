@@ -63,6 +63,12 @@
       "kind": "event",
       "narrativeOrder": 10,
       "bookNote": "Genesis 9:18–29 tells of Noah's vineyard, his drunkenness and uncovering, Ham's offence, the curse on Canaan and the blessings on Shem and Japheth, and Noah's death at nine hundred and fifty years. No independently established event date is assigned."
+    },
+    {
+      "categoryId": "category-nations-and-babel",
+      "kind": "category",
+      "narrativeOrder": 11,
+      "bookNote": "Genesis 10:1-11:32 traces the nations descended from Noah's three sons, tells of the city and tower at Babel and the confusion of languages, follows Shem's line to Terah, and ends with the family's departure from Ur and settlement in Harran. No independently established date is assigned."
     }
   ]
 }
