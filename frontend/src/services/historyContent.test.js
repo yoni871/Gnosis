@@ -130,17 +130,20 @@ describe("generateHistoryContent — the publication gate", () => {
         // and God's Covenant is published (content complete: 68 claims,
         // 14 connections, 27 sources), and Noah and His Sons is
         // published (content complete: 75 claims, 16 connections, 20 sources), so the dev
-        // opt-in includes the draft plus the ten published events.
+        // opt-in includes the draft plus the ten published events — and
+        // the in-review Nations and Babel category.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(manifest.categories).toEqual(["category-nations-and-babel"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
-        // All ten shipped events are published now, so the only
-        // non-published record in this fixture is the draft Creation
-        // event.
+        // All ten shipped events are published now, so the
+        // non-published records in this fixture are the draft Creation
+        // event and the in-review Nations and Babel category.
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
+            { id: "category-nations-and-babel", kind: "category", status: "in-review" },
         ]);
     });
 });
@@ -529,7 +532,14 @@ describe("validateHistoryContent — categories", () => {
         writeFileSync(path.join(contentDir, "categories", "nations-and-babel.json"), JSON.stringify(category, null, 2));
         writeFileSync(path.join(contentDir, "categories", "nations-and-babel.md"), md);
         mutateJson(contentDir, "books/genesis.json", (book) => {
-            book.entries.push({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
+            // The shipped tree already lists the real in-review
+            // category at narrativeOrder 11; the fixture replaces
+            // that entry instead of pushing a second one (a duplicate
+            // narrativeOrder fails validation).
+            const fixtureEntry = { categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." };
+            const existing = book.entries.findIndex((entry) => entry.kind === "category" && entry.categoryId === "category-nations-and-babel");
+            if (existing >= 0) book.entries[existing] = fixtureEntry;
+            else book.entries.push(fixtureEntry);
         });
         return category;
     }
@@ -669,17 +679,18 @@ describe("validateHistoryContent — the unified entries array", () => {
         expect(errors.some((error) => pattern.test(error))).toBe(true);
     };
 
-    it("keeps all 10 Genesis events in entries, kind event, narrativeOrder 1–10", () => {
+    it("keeps the 10 Genesis events and the Nations and Babel category in entries, narrativeOrder 1–11", () => {
         const book = JSON.parse(readFileSync(path.join(repoContentDir, "books", "genesis.json"), "utf8"));
         expect(book).not.toHaveProperty("events");
-        expect(book.entries).toHaveLength(10);
-        expect(book.entries.map((entry) => entry.eventId)).toEqual([
+        expect(book.entries).toHaveLength(11);
+        expect(book.entries.map((entry) => entry.eventId ?? entry.categoryId)).toEqual([
             "event-creation", "event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants",
             "event-seth-early-generations", "event-humanitys-corruption", "event-noah-ark",
             "event-great-flood", "event-noahs-sacrifice-and-covenant", "event-noah-and-his-sons",
+            "category-nations-and-babel",
         ]);
-        expect(book.entries.map((entry) => entry.kind)).toEqual(Array(10).fill("event"));
-        expect(book.entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        expect(book.entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category"]);
+        expect(book.entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
         for (const entry of book.entries) {
             expect(typeof entry.bookNote).toBe("string");
             expect(entry.bookNote.trim()).not.toBe("");
@@ -748,7 +759,14 @@ describe("generateHistoryContent — categories", () => {
         writeFileSync(path.join(contentDir, "categories", "nations-and-babel.json"), JSON.stringify(category, null, 2));
         writeFileSync(path.join(contentDir, "categories", "nations-and-babel.md"), md);
         mutateJson(contentDir, "books/genesis.json", (book) => {
-            book.entries.push({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
+            // The shipped tree already lists the real in-review
+            // category at narrativeOrder 11; the fixture replaces
+            // that entry instead of pushing a second one (a duplicate
+            // narrativeOrder fails validation).
+            const fixtureEntry = { categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." };
+            const existing = book.entries.findIndex((entry) => entry.kind === "category" && entry.categoryId === "category-nations-and-babel");
+            if (existing >= 0) book.entries[existing] = fixtureEntry;
+            else book.entries.push(fixtureEntry);
         });
         return category;
     }

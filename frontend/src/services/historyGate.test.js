@@ -57,10 +57,10 @@ function makeSandbox() {
     );
     // The shipped Creation event is published, so the sandbox copy is
     // flipped back to "in-review": the leak tests match against Creation
-    // by id, so the gate needs a genuinely non-published Creation fixture
-    // — the three Category 2 events are published now, so without the
-    // flip the sandbox would contain no non-published event at all, and
-    // the leak checks would not exercise the Creation assertions at all.
+    // by id, so the gate needs a genuinely non-published Creation fixture.
+    // The shipped Nations and Babel category is in-review too, so the
+    // sandbox holds a non-published category with or without the flip —
+    // the flip is what keeps a non-published *event* in play.
     // This is the only mutation the sandbox makes to the shipped tree.
     const sandboxEventPath = path.join(dir, "src", "content", "history", "events", "creation.json");
     const sandboxEvent = JSON.parse(readFileSync(sandboxEventPath, "utf8"));
@@ -237,8 +237,11 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // Great Flood, Noah's Sacrifice and God's Covenant, and Noah and
         // His Sons events are published now, so the dev opt-in includes
         // all ten events — the nine published above plus the in-review
-        // Creation.
+        // Creation — and the in-review Nations and Babel category, with
+        // the four sources it alone cites (95 cited sources in all).
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(manifest.categories).toEqual(["category-nations-and-babel"]);
+        expect(manifest.sources).toHaveLength(95);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "seth-early-generations.json"))).toBe(true);
@@ -421,14 +424,18 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         const contentDir = path.join(sandbox, "src", "content", "history");
         // Nine shipped events are published now, so the sandbox's
         // non-published records are Creation (flipped to in-review
-        // by makeSandbox) and the three sources cited only by
-        // Creation (Brown, Crouch, and Shabaka). Noah's Sacrifice
-        // and God's Covenant and Noah and His Sons are published now,
-        // so their seven and six new sources are cited by published
-        // events. (McDowell, Met, and ORACC are cited by published
-        // events too, as are the reused Flood sources.)
+        // by makeSandbox), the in-review Nations and Babel category,
+        // the three sources cited only by Creation (Brown, Crouch,
+        // and Shabaka), and the four sources cited only by the
+        // category (Speiser, the Enmerkar ETCSL text, the George
+        // Nebuchadnezzar stele, and Philo On the Giants). Noah's
+        // Sacrifice and God's Covenant and Noah and His Sons are
+        // published now, so their seven and six new sources are cited
+        // by published events. (McDowell, Met, and ORACC are cited by
+        // published events too, as are the reused Flood sources.)
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
+            { id: "category-nations-and-babel", kind: "category", status: "in-review", title: "The Nations and Babel" },
             {
                 id: "source-brown-cosmic-temple",
                 kind: "source",
@@ -447,22 +454,47 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
             },
+            {
+                id: "source-etcsl-enmerkar-aratta",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Enmerkar and the Lord of Aratta (ETCSL 1.8.2.3)",
+            },
+            {
+                id: "source-george-nebuchadnezzar-stele-cusas17",
+                kind: "source",
+                status: "unpublished-only",
+                title: "\"A Stele of Nebuchadnezzar II\"",
+            },
+            {
+                id: "source-philo-on-the-giants",
+                kind: "source",
+                status: "unpublished-only",
+                title: "On the Giants (De gigantibus)",
+            },
+            {
+                id: "source-speiser-genesis-anchor-bible",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Genesis (Anchor Bible 1)",
+            },
         ]);
     });
 });
 
 describe("checkHistoryGate — claims detector", () => {
-    // A sandbox where ALL TEN events are published: the claims detector
-    // must fire on this all-published path, where the gate's
-    // non-published early return would otherwise stand it down. The
-    // fixture source still carries Adam and Eve's full 35-claim
-    // register (including unverified 028 and 030b); generation strips
-    // it, and these tests prove the gate catches it if it ever leaks.
-    // Cain and Abel, Cain's Descendants, Seth, Humanity's Corruption,
-    // Noah, the Great Flood, Noah's Sacrifice and God's Covenant, and
-    // Noah and His Sons are flipped to published here too, so the
-    // sandbox has no non-published records at all — otherwise their
-    // in-review status would take the gate down the other path.
+    // A sandbox where ALL TEN events and the Nations and Babel category
+    // are published: the claims detector must fire on this all-published
+    // path, where the gate's non-published early return would otherwise
+    // stand it down. The fixture source still carries Adam and Eve's
+    // full 35-claim register (including unverified 028 and 030b);
+    // generation strips it, and these tests prove the gate catches it
+    // if it ever leaks. Cain and Abel, Cain's Descendants, Seth,
+    // Humanity's Corruption, Noah, the Great Flood, Noah's Sacrifice
+    // and God's Covenant, and Noah and His Sons are flipped to published
+    // here too, as is the category, so the sandbox has no non-published
+    // records at all — otherwise their in-review status would take the
+    // gate down the other path.
     function makeAllPublishedSandbox() {
         const sandbox = makeSandbox();
         for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json", "seth-early-generations.json", "humanitys-corruption.json", "noah-ark.json", "great-flood.json", "noahs-sacrifice-and-covenant.json", "noah-and-his-sons.json"]) {
@@ -471,6 +503,13 @@ describe("checkHistoryGate — claims detector", () => {
             event.status = "published";
             writeFileSync(eventPath, JSON.stringify(event, null, 2));
         }
+        // The shipped Nations and Babel category is in-review; flip it
+        // to published too, or the sandbox would still hold a
+        // non-published record.
+        const categoryPath = path.join(sandbox, "src", "content", "history", "categories", "nations-and-babel.json");
+        const category = JSON.parse(readFileSync(categoryPath, "utf8"));
+        category.status = "published";
+        writeFileSync(categoryPath, JSON.stringify(category, null, 2));
         // Check 10 applies to published events: mark every source
         // verified so the fixture validates without an override.
         const registryPath = path.join(sandbox, "src", "content", "history", "sources", "references.json");
@@ -714,7 +753,14 @@ describe("checkHistoryGate — categories", () => {
         writeFileSync(path.join(contentDir, "categories", "nations-and-babel.md"), categoryMd());
         const bookPath = path.join(contentDir, "books", "genesis.json");
         const book = JSON.parse(readFileSync(bookPath, "utf8"));
-        book.entries.push({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
+        // The shipped tree already lists the real in-review category
+        // at narrativeOrder 11; the fixture replaces that entry
+        // instead of pushing a second one (a duplicate narrativeOrder
+        // fails validation).
+        const fixtureEntry = { categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." };
+        const existing = book.entries.findIndex((entry) => entry.kind === "category" && entry.categoryId === "category-nations-and-babel");
+        if (existing >= 0) book.entries[existing] = fixtureEntry;
+        else book.entries.push(fixtureEntry);
         writeFileSync(bookPath, JSON.stringify(book, null, 2));
     }
 

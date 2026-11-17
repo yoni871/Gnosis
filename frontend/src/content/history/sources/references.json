@@ -576,7 +576,7 @@
     "type": "primary-source",
     "url": "https://www.newadvent.org/fathers/120115.htm",
     "verification": "verified",
-    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Marcus Dods translation, NPNF First Series vol. 2 (1887), Book XV chs. 22–25 (New Advent, read in full): the Sethite reading in its fullest argued form; the 120 years as a countdown/respite; divine repentance as unchangeable judgement in human language. Book XV ch. 26 also read in full 2026-11-16 (Dods) for the Noah and the Ark event (Gen 6:9–22): the ark as a figure of Christ and the Church in every detail; ch. 27 title/thesis via search text + secondary summary only. Book 15.26 also read in full 2026-11-16 (Dods) for the Great Flood event (Gen 7:1–8:19) (clm-gf-053): the ark as a figure of the Church; 15.27 and 15.14 via cited secondary only — do not quote them."
+    "verificationDetail": "Consulted for Humanity's Corruption (Gen 6:1–8). Marcus Dods translation, NPNF First Series vol. 2 (1887), Book XV chs. 22–25 (New Advent, read in full): the Sethite reading in its fullest argued form; the 120 years as a countdown/respite; divine repentance as unchangeable judgement in human language. Book XV ch. 26 also read in full 2026-11-16 (Dods) for the Noah and the Ark event (Gen 6:9–22): the ark as a figure of Christ and the Church in every detail; ch. 27 title/thesis via search text + secondary summary only. Book 15.26 also read in full 2026-11-16 (Dods) for the Great Flood event (Gen 7:1–8:19) (clm-gf-053): the ark as a figure of the Church; 15.27 and 15.14 via cited secondary only — do not quote them. Book XVI chs. 1–6, 11–15 read in full 2026-11-17 (Marcus Dods translation, NPNF First Series vol. 2, 1887, via EWTN) for the Nations and Babel category (Gen 10–11): ch. 3 the generations of the three sons (Japheth 15, Ham 31, Shem 27, total 73) and Peleg as “dividing”; ch. 4 the tower, Nimrod its founder, “hunter against the Lord”, pride punished in the tongue; ch. 5 God’s “coming down” as non-local action; ch. 6 “let us” as the angels and “73, or rather, as the catalogue will show, 72 nations”; ch. 11 Hebrew as the primitive language preserved in Heber’s house and Peleg named for the time of his birth; ch. 12 Terah’s family and Iscah “supposed to be the same as Sarah”; ch. 13 Nahor’s absence and Judith 5:6–9; ch. 14 Terah’s 205 years completed in Haran; ch. 15 Abram leaving Haran at 75 in Terah’s 145th year and narrative order as retrospective. Union across categories: Book XVI chs. 1–6, 11–17, 32–41 (NS XVI.1–3; AB XVI.1–3, 12–17, 32–34; IJ XVI.33–41)."
   },
   "source-targum-onkelos": {
     "id": "source-targum-onkelos",
@@ -645,7 +645,7 @@
     "year": 1917,
     "pagesOrSection": "Chapter 5",
     "verification": "verified",
-    "verificationDetail": "Ch. 5 read in full 2026-11-16 (godrules.net / earth-history.com reproductions of Charles). 1307-1309 A.M. dates; seven flood-gates; Lubar landing confirmed. Jub 5:1–32, 6:1–38, 7:20–25 also read directly 2026-11-16 for the Great Flood event (Gen 7:1–8:19) (archive.org Charles text); the Jub 6:17–22 citation (clm-gf-046) rests on this read, outside the Ark entry's ch. 5 scope.",
+    "verificationDetail": "Ch. 5 read in full 2026-11-16 (godrules.net / earth-history.com reproductions of Charles). 1307-1309 A.M. dates; seven flood-gates; Lubar landing confirmed. Jub 5:1–32, 6:1–38, 7:20–25 also read directly 2026-11-16 for the Great Flood event (Gen 7:1–8:19) (archive.org Charles text); the Jub 6:17–22 citation (clm-gf-046) rests on this read, outside the Ark entry's ch. 5 scope. Chs. 8–10 read in full 2026-11-17 (Charles translation, via enocharchive; ch. 10 also via godrules.net) for the Nations and Babel category (Gen 10–11) (claims 038, 061–064): ch. 8 the lot-division — Kainam and the Watchers’ writing, Peleg born 1567 A.M., the division in the 33rd jubilee (1569 A.M.), Shem’s lot the middle of the earth, Ham’s the south, Japheth’s the north, with the climate theory (8:30); ch. 9 the oath not to violate boundaries and settlement deferred until the migration to Shinar (9:18); ch. 10 “let us go up in it into heaven” (10:18), the tower 5,433 cubits and 2 palms high, 43 years building (1645–1688 A.M.), a mighty wind overthrowing it between Asshur and Babylon (10:26), the dispersion in 1688 A.M., and Canaan’s seizure of Lebanon-to-Egypt (10:27–34).",
     "licenseNote": "Public domain (1917); original summary and citation only."
   },
   "source-charles-enoch": {
@@ -1068,5 +1068,47 @@
     "verification": "not-independently-verified",
     "verificationDetail": "Original publication NOT read and not identified in the dossier. Secondary copy only — via Marín García, Scribd copy of 'Covenant and circumcision in Gen. 17' (SC dossier §13.2). Not proposed as a load-bearing event citation — citing it would require an editorialOverride at publication (SC D6).",
     "licenseNote": "All rights reserved; full text not examined."
+  },
+  "source-speiser-genesis-anchor-bible": {
+    "id": "source-speiser-genesis-anchor-bible",
+    "author": "E. A. Speiser",
+    "title": "Genesis (Anchor Bible 1)",
+    "publisher": "Doubleday, Anchor Bible 1",
+    "year": 1964,
+    "pagesOrSection": "Sections 11-13, pp. 64-81: Table of Nations (pp. 64-73), Tower of Babel (pp. 74-76), Genealogies from Shem to Abraham (pp. 77-81)",
+    "verification": "verified",
+    "verificationDetail": "Read directly 2026-11-17 (archive.org PDF, 455 pp.): sections 11 (Table of Nations, pp. 64-73), 12 (Tower of Babel, pp. 74-76), 13 (Genealogies from Shem to Abraham, pp. 77-81) - translation, Notes, and Comment in full.",
+    "licenseNote": "All rights reserved; original paraphrase and short quotation only."
+  },
+  "source-etcsl-enmerkar-aratta": {
+    "id": "source-etcsl-enmerkar-aratta",
+    "author": "Electronic Text Corpus of Sumerian Literature (ETCSL)",
+    "title": "Enmerkar and the Lord of Aratta (ETCSL 1.8.2.3)",
+    "publisher": "University of Oxford",
+    "pagesOrSection": "ETCSL c.1.8.2.3, lines 134-155 (the Spell of Nudimmud)",
+    "verification": "verified",
+    "verificationDetail": "Read directly 2026-11-17: the Spell of Nudimmud, lines 134-155 (ETCSL translation).",
+    "licenseNote": "Paraphrase with credit; verify project licensing before reproducing translations at length."
+  },
+  "source-george-nebuchadnezzar-stele-cusas17": {
+    "id": "source-george-nebuchadnezzar-stele-cusas17",
+    "author": "A. R. George",
+    "title": "\"A Stele of Nebuchadnezzar II\"",
+    "publisher": "Cuneiform Royal Inscriptions and Related Texts in the Schoyen Collection, CUSAS 17 (CDL Press, 2011)",
+    "year": 2011,
+    "pagesOrSection": "Ch. VII, pp. 153-169",
+    "verification": "verified",
+    "verificationDetail": "Read directly 2026-11-17 (SOAS repository PDF): the stele (MS 2063), the E-sangil Tablet's dimensions, the mobilisation passage (appendix translation of Nbk no. 17), the provenance argument.",
+    "licenseNote": "All rights reserved; original paraphrase and short quotation only."
+  },
+  "source-philo-on-the-giants": {
+    "id": "source-philo-on-the-giants",
+    "author": "Philo of Alexandria",
+    "title": "On the Giants (De gigantibus)",
+    "publisher": "Yonge translation",
+    "pagesOrSection": "§§65–66 (Nimrod as the first example of \"desertion\")",
+    "verification": "verified",
+    "verificationDetail": "Read directly 2026-11-17 (Yonge translation, earlyjewishwritings.com): §§65–66 (Nimrod as the first example of \"desertion\").",
+    "licenseNote": "Public domain (Yonge translation); original summary and citation only."
   }
 }
