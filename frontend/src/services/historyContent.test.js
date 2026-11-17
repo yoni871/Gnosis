@@ -125,8 +125,8 @@ describe("generateHistoryContent — the publication gate", () => {
         // Cain and Abel, Cain's Descendants, and Seth events are
         // published, so the dev opt-in includes the draft plus the four
         // published events — and the in-review Humanity's Corruption
-        // event, which the opt-in also includes.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-seth-early-generations"]);
+        // and Noah events, which the opt-in also includes.
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
@@ -134,10 +134,12 @@ describe("generateHistoryContent — the publication gate", () => {
         // Adam and Eve, Cain and Abel, Cain's Descendants, and Seth are
         // published now, so the non-published records in this fixture
         // are the draft Creation event and the in-review Humanity's
-        // Corruption event.
+        // Corruption and Noah events (file scan is alphabetical:
+        // creation.json < humanitys-corruption.json < noah-ark.json).
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
             { id: "event-humanitys-corruption", kind: "event", status: "in-review" },
+            { id: "event-noah-ark", kind: "event", status: "in-review" },
         ]);
     });
 });
@@ -207,7 +209,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         const event = JSON.parse(readFileSync(path.join(outDir, "events", "creation.json"), "utf8"));
         expect(event).not.toHaveProperty("review");
         expect(event.title).toBe("Creation");
@@ -252,7 +254,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -292,7 +294,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
         const eventJson = readFileSync(path.join(outDir, "events", "seth-early-generations.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -312,6 +314,28 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
             .toBe("UNRESOLVED — do not state as fact");
         expect(sourceEvent.claims.find((claim) => claim.id === "clm-se-001").assessment)
             .toBe("VERIFIED (secondary)");
+    });
+
+    it("strips claims from dev-flag generation of the in-review Noah event too", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
+        const { manifest } = generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
+        });
+        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-humanitys-corruption", "event-noah-ark", "event-seth-early-generations"]);
+        const eventJson = readFileSync(path.join(outDir, "events", "noah-ark.json"), "utf8");
+        const event = JSON.parse(eventJson);
+        expect(event).not.toHaveProperty("claims");
+        expect(event).not.toHaveProperty("review");
+        expect(event.title).toBe("Noah and the Ark");
+        expect(event.connections).toHaveLength(6);
+        expect(event.sources).toHaveLength(19);
+        expect(eventJson).not.toContain("clm-na-001");
+        expect(eventJson).not.toContain("clm-na-061");
+        // ... while the SOURCE file still carries the full register.
+        const sourceEvent = JSON.parse(readFileSync(path.join(contentDir, "events", "noah-ark.json"), "utf8"));
+        expect(sourceEvent.claims).toHaveLength(61);
+        expect(sourceEvent.claims.map((claim) => claim.id)).toContain("clm-na-034");
+        expect(sourceEvent.claims.find((claim) => claim.id === "clm-na-007").assessment).toBe("debated");
     });
 
     it("keeps the claims register in the source files (preservation)", () => {
