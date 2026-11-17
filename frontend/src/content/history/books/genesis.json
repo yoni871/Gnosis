@@ -43,6 +43,11 @@
       "eventId": "event-great-flood",
       "narrativeOrder": 8,
       "bookNote": "Genesis 7:1–8:19 tells the Flood: the entry into the ark, the forty days of rain, the waters prevailing a hundred and fifty days, the resting on the mountains of Ararat, and the exit in Noah's six hundred and first year. No independently established event date is assigned."
+    },
+    {
+      "eventId": "event-noahs-sacrifice-and-covenant",
+      "narrativeOrder": 9,
+      "bookNote": "Genesis 8:20–9:17 tells of Noah's sacrifice after the Flood, God's resolve never again to curse the ground, the blessing and ordinances for a new order, the everlasting covenant with every living creature, and the bow in the cloud as its sign. No independently established event date is assigned."
     }
   ]
 }
