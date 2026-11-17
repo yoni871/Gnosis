@@ -36,5 +36,104 @@
     ],
     "expires": "2026-11-23",
     "reason": "Existing operator-tool dependency chain; coordinate migration/tooling upgrade with Muse 1. No runtime glob-input endpoint identified. No high/critical exception."
+  },
+  {
+    "scope": "backend",
+    "package": "picomatch",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Temporary owner-authorized exception for GHSA-fc5q-39xc-vjpf (CVE-2026-112366, high, picomatch ReDoS via single-branch repeated extglobs). Authorized by Yonatan 2026-11-17 as a narrow policy decision for this advisory only; owner: Yonatan. No patched picomatch version exists in any line (2.3.2 / 3.0.2 / 4.0.7 are the latest; the advisory lists no first patched version; no fix merged upstream as of 2026-11-17), so no version bump can resolve it. Scope: this package in this scope only, this advisory only. Justification: picomatch reaches the backend solely through nodemon's file watcher (nodemon -> chokidar -> anymatch/readdirp -> picomatch); it is not in the production dependency closure (verified from the lockfile) and is not imported by runtime source, and no attacker-controlled input reaches a glob pattern, so the ReDoS is not reachable in Gnosis's deployment. The gate still reports this advisory (accepted exceptions are logged in CI output) and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure (see scripts/security/audit.cjs and TEMPORARY-EXCEPTION-GHSA-fc5q.md). Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "backend",
+    "package": "anymatch",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Flagged only via its picomatch dependency (anymatch -> picomatch). Same GHSA-fc5q-39xc-vjpf justification as backend/picomatch: no patched picomatch version exists; dev/build-time only; no attacker-controlled glob input in Gnosis. The gate still reports this advisory and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure. Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "backend",
+    "package": "readdirp",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Flagged only via its picomatch dependency (readdirp -> picomatch). Same GHSA-fc5q-39xc-vjpf justification as backend/picomatch: no patched picomatch version exists; dev/build-time only; no attacker-controlled glob input in Gnosis. The gate still reports this advisory and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure. Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "backend",
+    "package": "chokidar",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Flagged only via anymatch and readdirp, both of which depend on picomatch (chokidar -> anymatch/readdirp -> picomatch). Same GHSA-fc5q-39xc-vjpf justification as backend/picomatch: no patched picomatch version exists; dev/build-time only; no attacker-controlled glob input in Gnosis. The gate still reports this advisory and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure. Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "backend",
+    "package": "nodemon",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Flagged only via chokidar (nodemon -> chokidar -> anymatch/readdirp -> picomatch); nodemon is a devDependency used only by the `dev` script. Same GHSA-fc5q-39xc-vjpf justification as backend/picomatch: no patched picomatch version exists; dev/build-time only; no attacker-controlled glob input in Gnosis. The gate still reports this advisory and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure. Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "frontend",
+    "package": "picomatch",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Temporary owner-authorized exception for GHSA-fc5q-39xc-vjpf (CVE-2026-112366, high, picomatch ReDoS via single-branch repeated extglobs). Authorized by Yonatan 2026-11-17 as a narrow policy decision for this advisory only; owner: Yonatan. No patched picomatch version exists in any line (2.3.2 / 3.0.2 / 4.0.7 are the latest; the advisory lists no first patched version; no fix merged upstream as of 2026-11-17), so no version bump can resolve it. Scope: this package in this scope only, this advisory only. Justification: picomatch reaches the frontend solely through vite/vitest (build and dev server); it is not in the production dependency closure (verified from the lockfile) and is not imported by runtime source, and the only globs in the repo are static import.meta.glob literals in frontend/src/services/historyService.js, so no attacker-controlled input reaches a glob pattern and the ReDoS is not reachable in Gnosis's deployment. The gate still reports this advisory (accepted exceptions are logged in CI output) and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure (see scripts/security/audit.cjs and TEMPORARY-EXCEPTION-GHSA-fc5q.md). Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "frontend",
+    "package": "fdir",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Flagged only via its picomatch dependency (fdir -> picomatch). Same GHSA-fc5q-39xc-vjpf justification as frontend/picomatch: no patched picomatch version exists; dev/build-time only; no attacker-controlled glob input in Gnosis. The gate still reports this advisory and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure. Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "frontend",
+    "package": "tinyglobby",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Flagged only via fdir and picomatch (tinyglobby -> fdir/picomatch). Same GHSA-fc5q-39xc-vjpf justification as frontend/picomatch: no patched picomatch version exists; dev/build-time only; no attacker-controlled glob input in Gnosis. The gate still reports this advisory and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure. Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "frontend",
+    "package": "vite",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Flagged only via picomatch and tinyglobby (vite -> picomatch/tinyglobby); vite 8.3.7 itself has no advisory affecting it; vite is a devDependency (build and dev server only). Same GHSA-fc5q-39xc-vjpf justification as frontend/picomatch: no patched picomatch version exists; dev/build-time only; no attacker-controlled glob input in Gnosis. The gate still reports this advisory and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure. Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "frontend",
+    "package": "vitest",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Flagged only via picomatch, tinyglobby, and vite (vitest -> picomatch/tinyglobby/vite); vitest 5.1.0 itself has no advisory affecting it; vitest is a devDependency (test runner only). Same GHSA-fc5q-39xc-vjpf justification as frontend/picomatch: no patched picomatch version exists; dev/build-time only; no attacker-controlled glob input in Gnosis. The gate still reports this advisory and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure. Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
+  },
+  {
+    "scope": "frontend",
+    "package": "@vitejs/plugin-react",
+    "advisories": [
+      "https://github.com/advisories/GHSA-fc5q-39xc-vjpf"
+    ],
+    "expires": "2026-12-15",
+    "reason": "Flagged only via its vite peer dependency (@vitejs/plugin-react -> vite -> picomatch/tinyglobby). Same GHSA-fc5q-39xc-vjpf justification as frontend/picomatch: no patched picomatch version exists; dev/build-time only; no attacker-controlled glob input in Gnosis. The gate still reports this advisory and fails closed on expiry, on a changed dependency path, on any additional advisory, and on production exposure. Removal: delete this entry and the hardcoded GHSA-fc5q allowance in scripts/security/audit.cjs when a patched picomatch version lands (see the picomatch patch watch); do NOT extend past 2026-12-15 without Yonatan's new decision."
   }
 ]
