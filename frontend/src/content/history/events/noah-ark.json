@@ -388,7 +388,7 @@
       "endChapter": 9,
       "endVerse": 29,
       "id": "conn-na-002",
-      "note": "The flood itself and its aftermath: entry, the waters, the landing, the sacrifice, the covenant (9:8-17, the establishment of the covenant announced in 6:18), and Noah's later life. OVERLAP FLAG: this range is the EM's Great Flood event's primary range (Gen 7:1-8:19). This connection shares the range rather than duplicating that event's content; the 9:8-17 covenant sub-range is the load-bearing link for this event's 6:18. Editor to confirm both stand (conn-ca-006 three-way-overlap precedent). Range verified live against the Preview API 2026-11-16 (Gen 7, 24 verses; Gen 9, 29 verses; 7:1 and 9:29 confirmed).",
+      "note": "The flood itself and its aftermath: entry, the waters, the landing, the sacrifice, the covenant (9:8-17, the establishment of the covenant announced in 6:18), and Noah's later life. OVERLAP FLAG: this range is the EM's Great Flood event's primary range (Gen 7:1-8:19). This connection shares the range rather than duplicating that event's content; the 9:8-17 covenant sub-range is the load-bearing link for this event's 6:18. Range verified live against the Preview API 2026-11-16 (Gen 7, 24 verses; Gen 9, 29 verses; 7:1 and 9:29 confirmed).",
       "startChapter": 7,
       "startVerse": 1,
       "type": "direct-account"
@@ -400,7 +400,7 @@
       "endChapter": 6,
       "endVerse": 8,
       "id": "conn-na-003",
-      "note": "The corruption that prompts the judgment in 6:9-22 (cf. 6:5, 6:11-13). OVERLAP FLAG: this range is Dev 1's Humanity's Corruption event (Gen 6:1-8). This connection exists only to point the reader at the preceding event and does not duplicate its content; editor to confirm both stand (conn-ca-006 three-way-overlap precedent). Range verified live against the Preview API 2026-11-16 (Gen 6, 22 verses; 6:1 and 6:8 confirmed).",
+      "note": "The corruption that prompts the judgment in 6:9-22 (cf. 6:5, 6:11-13). OVERLAP FLAG: this range is Dev 1's Humanity's Corruption event (Gen 6:1-8). This connection exists only to point the reader at the preceding event and does not duplicate its content. Range verified live against the Preview API 2026-11-16 (Gen 6, 22 verses; 6:1 and 6:8 confirmed).",
       "startChapter": 6,
       "startVerse": 1,
       "type": "background"
@@ -492,7 +492,7 @@
     "source-chrysostom-homilies-genesis",
     "source-hong-ark-seaway-1993"
   ],
-  "status": "in-review",
+  "status": "published",
   "title": "Noah and the Ark",
   "topics": []
 }
