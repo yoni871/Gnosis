@@ -48,29 +48,51 @@ export function chapterUrls(siteUrl, chapterCounts) {
 
 // Biblical History sitemap paths, derived from the PUBLISHED-ONLY
 // generated manifest — never from the source tree, so an unpublished
-// event cannot appear by construction. `manifest` is the generated
-// manifest.json ({ books: [bookId], events: [eventId], ... }); `books`
-// is the generated book records ({ id, events: [{ eventId }] }).
+// event or category cannot appear by construction. `manifest` is the
+// generated manifest.json ({ books: [bookId], events: [eventId],
+// categories: [categoryId], ... }); `books` is the generated book
+// records ({ id, entries: [{ kind, eventId | categoryId }] }).
 // Returns ["/biblical-history",
-// "/biblical-history/<book>/<event-slug>", ...]: the index first, then
-// each published book's published events, all sorted
-// deterministically. Book-page URLs are deliberately NOT returned: a
-// book URL redirects to the book's first published event, so it is
-// not a canonical page. Returns [] when nothing is published — a book
-// with no published content gets no URL, and an event listed in no
-// generated book (or not in the manifest) gets none either.
+// "/biblical-history/<book>/<event-slug>",
+// "/biblical-history/<book>/<category-slug>", ...]: the index first,
+// then each published book's published events and published categories,
+// all sorted deterministically (books in manifest order, slugs
+// alphabetically within a book, events and categories interleaved by
+// slug). A category URL is "/biblical-history/<book>/<category-slug>"
+// where the slug is the category id minus the "category-" prefix, and a
+// category is listed only when its id is in manifest.categories AND its
+// book carries an entry for it — exactly like events. Book-page URLs
+// are deliberately NOT returned: a book URL redirects to the book's
+// first published event, so it is not a canonical page. Returns []
+// when nothing is published — a book with no published content gets no
+// URL, and an event or category listed in no generated book (or not in
+// the manifest) gets none either. With no categories in the manifest
+// the output is exactly the event-only output.
 export function historySitemapPaths(manifest, books) {
     const publishedBooks = [...(manifest?.books ?? [])].sort();
     if (publishedBooks.length === 0) return [];
     const publishedEvents = new Set(manifest?.events ?? []);
+    const publishedCategories = new Set(manifest?.categories ?? []);
     const byId = new Map((books ?? []).map((book) => [book.id, book]));
     const paths = ["/biblical-history"];
     for (const bookId of publishedBooks) {
-        const slugs = (byId.get(bookId)?.events ?? [])
-            .map((entry) => entry.eventId)
-            .filter((id) => typeof id === "string" && publishedEvents.has(id))
-            .map((id) => id.replace(/^event-/, ""))
-            .sort();
+        const slugs = [...new Set(
+            (byId.get(bookId)?.entries ?? [])
+                .map((entry) => {
+                    if (entry.kind === "event"
+                        && typeof entry.eventId === "string"
+                        && publishedEvents.has(entry.eventId)) {
+                        return entry.eventId.replace(/^event-/, "");
+                    }
+                    if (entry.kind === "category"
+                        && typeof entry.categoryId === "string"
+                        && publishedCategories.has(entry.categoryId)) {
+                        return entry.categoryId.replace(/^category-/, "");
+                    }
+                    return null;
+                })
+                .filter(Boolean),
+        )].sort();
         for (const slug of slugs) {
             paths.push(`/biblical-history/${encodeURIComponent(bookId)}/${encodeURIComponent(slug)}`);
         }

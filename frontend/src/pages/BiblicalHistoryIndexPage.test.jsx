@@ -42,6 +42,17 @@ describe("BiblicalHistoryIndexPage", () => {
         expect(screen.getByRole("button", { name: /Browse Books/ })).toHaveFocus();
     });
 
+    it("shows no counts on book chips while no categories are published", async () => {
+        const user = userEvent.setup();
+        renderIndex();
+        await user.click(screen.getByRole("button", { name: /Browse Books/ }));
+        // The directory is rendered by HistoryBookSelector: with no
+        // categories, no chip carries a counts label and the Genesis
+        // link name is just the book title.
+        expect(within(screen.getByRole("tabpanel")).queryByText(/categor/)).toBeNull();
+        expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+    });
+
     it("links its actions to the recommendation and Creation event", async () => {
         const user = userEvent.setup();
         renderIndex();

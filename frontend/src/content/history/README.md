@@ -12,14 +12,88 @@ full schemas; this file is the short contributor version.
 ```
 books/     one <book-slug>.json per book that has content (genesis.json, …)
 events/    one <event-slug>.json + <event-slug>.md per event
+categories/ one <category-slug>.json + <category-slug>.md per category
 topics/    civilizations/ people/ places/ cultures/ periods/ — one <id>.json + .md each
 sources/   references.json — the single source registry
 ```
 
 IDs are stable and never renamed once published: events `event-<slug>`
-(file `events/<slug>.json`), topics `<category>-<slug>`, sources
+(file `events/<slug>.json`), categories `category-<slug>` (file
+`categories/<slug>.json`), topics `<category>-<slug>`, sources
 `source-<slug>`. Book slugs are the lowercase, hyphenated display name
 (`2-kings`, `song-of-solomon`).
+
+## Book files — the unified `entries` array
+
+A book file lists its timeline entries in one `entries` array, in
+narrative order, each with a `kind` discriminator:
+
+```json
+{ "eventId": "event-creation", "kind": "event", "narrativeOrder": 1, "bookNote": "…" }
+{ "categoryId": "category-nations-and-babel", "kind": "category", "narrativeOrder": 11, "bookNote": "…" }
+```
+
+`narrativeOrder` is unique across the whole array (events and
+categories share one sequence). A stale `events` key in a book file
+fails validation — it would be silently ignored. During the interim
+the Genesis timeline is mixed: 10 event entries (orders 1–10) plus
+category entries numbered 11–14 as the new categories land.
+
+## Categories
+
+A category is a standalone synthesis record covering a wide span of a
+book (e.g. the Nations and Babel, Gen 10–11) — a new record type
+alongside events, not a bigger event. It lives in `categories/`
+(the directory is kept in git by an empty `.gitkeep` until the first
+category lands) as `<slug>.json` + `<slug>.md`, with id
+`category-<slug>` and `"category": "category"`.
+
+A category record carries:
+
+- `era`: `"primeval"` (Gen 1–11) or `"patriarchal"` (Gen 12–50).
+  The boundary is Gen 11/12 — an editorial classification, not
+  something derived from the chapter numbers.
+- `primaryScripture`: a **representative** passage, not the whole
+  span — at most 3 chapters (`endChapter − startChapter ≤ 2`), so
+  the Scripture companion stays a single readable passage.
+- `fullRange`: the category's whole span, in the same four-field
+  shape. `primaryScripture` must lie within `fullRange` in the same
+  book (chapter- and, where the chapters coincide, verse-level
+  containment).
+- `date`: the same date rules as events. The content PRs use
+  `type: "unknown"`.
+- `claims`: OPTIONAL — a category may carry no `claims` key at all
+  (as Creation proves for events). When present, each claim needs
+  `id` / `claim` / `evidence` / `assessment`, and its ids must be
+  unique across the whole tree.
+- `connections`: a non-empty array, validated exactly like event
+  connections (Scripture ref, type, confidence, note).
+- `sources`: registry ids; the published rule applies exactly as for
+  events — a published category citing a
+  `not-independently-verified` source needs
+  `review.editorialOverride`.
+- `relatedEvents`: event ids that resolve to events. Categories link
+  to events, not to other categories — there is no
+  `relatedCategories` field.
+- `review`: the same shape as events (`author`, `reviewer`,
+  `lastReviewed`, `checklistVersion`).
+- `locations`, `topics`: optional arrays (default `[]`), resolved
+  against the topics map like events.
+
+**`constituentEvents` is rejected.** A category does not list the
+events it subsumes — it is a synthesis record, and the event files
+stay the canonical research records. A category record containing a
+`constituentEvents` key fails validation.
+
+Category prose uses the same three `##` sections as events
+(`Overview`, `Ancient World` with `###` subsections, `Why This
+Context Matters`) but the standalone-synthesis caps (migration plan
+§4.6 option (ii)): Overview 300–600 words, Ancient World 800–1,500
+words, Why This Context Matters 150–300 words (same ±10% warning
+band as events). The same Markdown rules apply (no raw HTML, links
+http(s) / site-internal / anchor only, footnotes `[^source-id]` in
+the registry). Every category must be listed by at least one book,
+and every category `.md` needs its `.json` and vice versa.
 
 ## The split-file rule
 
@@ -30,7 +104,8 @@ IDs are stable and never renamed once published: events `event-<slug>`
   the event structure: `## Overview` (80–150 words), `## Ancient World`
   (200–400 words, in `###` subsections), `## Why This Context Matters`
   (50–100 words). There is no `## Scripture` heading — the Scripture tab
-  is assembled from the JSON connections.
+  is assembled from the JSON connections. Category prose uses the same
+  three sections with wider caps — see "Categories" above.
 - No YAML frontmatter. No raw HTML in Markdown (the build rejects it).
 - Citations are footnotes into the registry: `[^source-id]`. The key must
   exist in `sources/references.json`. Never paste a bare URL or a
@@ -121,10 +196,26 @@ gate fails the build if any non-published record reaches `dist/`.
 1. Add `events/<slug>.json` + `events/<slug>.md` (see `creation.*` for the
    shape — it is researched content, now `published` after editorial
    approval; a new event starts at `draft` or `in-review`).
-2. Add the event to its book file(s) in `books/` with a `narrativeOrder`
-   and a short `bookNote` (≤ ~60 words) per book.
+2. Add the event to its book file(s) in `books/` as an `entries`
+   entry with `kind: "event"`, a `narrativeOrder`, and a short
+   `bookNote` (≤ ~60 words) per book.
 3. Add any new sources to `sources/references.json` and cite them as
    `[^source-id]` footnotes.
 4. Run `npm run build` (or `node scripts/build-history-content.js`): the
    validator fails the build on a broken reference, date, coordinate,
    footnote, word count, or HTML tag. Fix it; do not work around it.
+
+## Adding a category
+
+1. Add `categories/<slug>.json` + `categories/<slug>.md` (see the
+   "Categories" section above for the shape — a new category starts
+   at `draft` or `in-review`).
+2. Add the category to its book file(s) in `books/` as an `entries`
+   entry with `kind: "category"`, the next `narrativeOrder`, and a
+   short `bookNote` (≤ ~60 words) per book.
+3. Add any new sources to `sources/references.json` and cite them as
+   `[^source-id]` footnotes.
+4. Run `npm run build` (or `node scripts/build-history-content.js`):
+   the validator fails the build on a broken reference, date, era,
+   range, footnote, word count, or HTML tag. Fix it; do not work
+   around it.

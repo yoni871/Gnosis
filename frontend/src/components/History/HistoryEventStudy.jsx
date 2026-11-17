@@ -26,10 +26,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BookOpen, X } from "lucide-react";
 import {
+    buildBookTimeline,
     formatScriptureRange,
+    getBooksForCategory,
     getBooksForEvent,
     getBookTitle,
-    listEventsForBook,
+    loadCategorySections,
     loadEventSections,
 } from "../../services/historyService";
 import HistoryAncientWorld from "./HistoryAncientWorld";
@@ -45,47 +47,58 @@ import { useHistoryIsMobile } from "./useHistoryIsMobile";
 import { HISTORY_SECTIONS } from "../../utils/historyContent";
 import "./History.css";
 
-export default function HistoryEventStudy({ event, bookId, onBackToBooks }) {
+export default function HistoryEventStudy({ record, bookId, onBackToBooks }) {
+    const isCategory = record.kind === "category";
     const [activeTab, setActiveTab] = useState("overview");
     const [sections, setSections] = useState(null);
     const [sectionsError, setSectionsError] = useState("");
-    // The companion opens by default with the event's primary passage
+    // The companion opens by default with the record's primary passage
     // (Creation: Genesis 1:1–2:3), so the reader meets the Scripture
     // beside the Story without a click — and only that passage, never
-    // a whole chapter. companionAutoOpened tracks whether the current
-    // open is that initial default: the companion must not steal focus
-    // from the page on mount, but a companion the user opens (or
-    // reopens) focuses its close control as before.
-    const [companionPassage, setCompanionPassage] = useState(event.primaryScripture ?? null);
-    const [companionAutoOpened, setCompanionAutoOpened] = useState(Boolean(event.primaryScripture));
+    // a whole chapter. A category's fullRange is NEVER the companion
+    // passage: it can span dozens of chapters, and the companion fetches
+    // every chapter in the passage it receives. The companion default is
+    // always primaryScripture (≤3 chapters); switching happens through
+    // openCompanion (the Connections tab), as before. The schema defines
+    // no per-subsection passage for standalone categories (there are no
+    // constituent events), so there is no sub-section passage for the
+    // companion to follow.
+    const [companionPassage, setCompanionPassage] = useState(record.primaryScripture ?? null);
+    const [companionAutoOpened, setCompanionAutoOpened] = useState(Boolean(record.primaryScripture));
     const isMobile = useHistoryIsMobile();
 
     const scriptureButtonRef = useRef(null);
     const companionPassageRef = useRef(null);
     const pendingFootnoteRef = useRef(null);
 
-    const timelineEvents = listEventsForBook(bookId);
-    const otherBooks = getBooksForEvent(event.id);
+    const timelineEntries = buildBookTimeline(bookId);
+    const otherBooks = isCategory ? getBooksForCategory(record.id) : getBooksForEvent(record.id);
     const bookTitle = getBookTitle(bookId) ?? bookId;
 
     useEffect(() => {
         let cancelled = false;
         // Sections load asynchronously; the initial state (null sections,
         // "overview" tab) is already correct for a fresh mount — the
-        // parent keys this study by event id, so a new event remounts it.
-        loadEventSections(event.id)
+        // parent keys this study by record id, so a new record remounts
+        // it. Events load their prose with loadEventSections, categories
+        // with loadCategorySections.
+        const loadSections = isCategory ? loadCategorySections : loadEventSections;
+        const loadError = isCategory
+            ? "The category text could not be loaded."
+            : "The event text could not be loaded.";
+        loadSections(record.id)
             .then((loaded) => {
                 if (cancelled) return;
-                if (!loaded) setSectionsError("The event text could not be loaded.");
+                if (!loaded) setSectionsError(loadError);
                 else setSections(loaded);
             })
             .catch(() => {
-                if (!cancelled) setSectionsError("The event text could not be loaded.");
+                if (!cancelled) setSectionsError(loadError);
             });
         return () => {
             cancelled = true;
         };
-    }, [event.id]);
+    }, [record.id, isCategory]);
 
     useEffect(() => {
         companionPassageRef.current = companionPassage;
@@ -150,17 +163,17 @@ export default function HistoryEventStudy({ event, bookId, onBackToBooks }) {
                     <p className="history-study-eyebrow">
                         {bookTitle} · Biblical History
                     </p>
-                    <h1 id="history-study-title" className="history-study-title">{event.title}</h1>
+                    <h1 id="history-study-title" className="history-study-title">{record.title}</h1>
                     <p className="history-study-meta">
-                        {formatScriptureRange(event.primaryScripture)}
+                        {formatScriptureRange(record.primaryScripture)}
                         {" · "}
-                        <HistoryDateLabel date={event.date} />
+                        <HistoryDateLabel date={record.date} />
                     </p>
-                    {event.status !== "published" && (
+                    {record.status !== "published" && (
                         <p className="history-dev-badge" role="note">
-                            {event.status === "draft"
+                            {record.status === "draft"
                                 ? "Development content — not researched editorial content"
-                                : event.status === "in-review"
+                                : record.status === "in-review"
                                     ? "In review — unpublished editorial content"
                                     : "Verified — unpublished editorial content"}
                         </p>
@@ -174,10 +187,10 @@ export default function HistoryEventStudy({ event, bookId, onBackToBooks }) {
                         className="history-scripture-button"
                         aria-expanded={Boolean(companionPassage)}
                         aria-controls="history-scripture-companion"
-                        disabled={!event.primaryScripture}
+                        disabled={!record.primaryScripture}
                         onClick={() => {
                             if (companionPassage) closeCompanion();
-                            else openCompanion(event.primaryScripture);
+                            else openCompanion(record.primaryScripture);
                         }}
                     >
                         <BookOpen size={15} aria-hidden="true" />
@@ -195,7 +208,7 @@ export default function HistoryEventStudy({ event, bookId, onBackToBooks }) {
                 </div>
             </header>
 
-            <HistoryConnectionChips event={event} books={otherBooks} currentBookId={bookId} />
+            <HistoryConnectionChips event={record} books={otherBooks} currentBookId={bookId} />
 
             <div className="history-study-body">
                 <HistoryEventNav activeId={activeTab} onSelect={setActiveTab} />
@@ -213,16 +226,16 @@ export default function HistoryEventStudy({ event, bookId, onBackToBooks }) {
                             aria-labelledby={`history-tab-${activeSection.id}`}
                         >
                             {activeTab === "overview" && (
-                                <HistoryOverview sections={sections} event={event} />
+                                <HistoryOverview sections={sections} event={record} />
                             )}
                             {activeTab === "ancient-world" && (
                                 <HistoryAncientWorld subsections={sections.ancientWorldSubsections} />
                             )}
                             {activeTab === "scripture" && (
-                                <HistoryScriptureTab event={event} onOpenPassage={openCompanion} />
+                                <HistoryScriptureTab event={record} onOpenPassage={openCompanion} />
                             )}
                             {activeTab === "sources" && (
-                                <HistorySourcesList sourceIds={event.sources ?? []} />
+                                <HistorySourcesList sourceIds={record.sources ?? []} />
                             )}
                         </div>
                     )}
@@ -246,8 +259,8 @@ export default function HistoryEventStudy({ event, bookId, onBackToBooks }) {
             </div>
 
             <HistoryTimeline
-                events={timelineEvents}
-                currentEventId={event.id}
+                entries={timelineEntries}
+                currentEntryId={record.id}
                 bookId={bookId}
             />
         </section>

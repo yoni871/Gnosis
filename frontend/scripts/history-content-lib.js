@@ -31,14 +31,17 @@ import {
     HISTORY_CLAIM_CONFIDENCES as CLAIM_CONFIDENCES,
     HISTORY_CONNECTION_TYPES as CONNECTION_TYPES,
     HISTORY_WORD_RANGES as WORD_RANGES,
+    HISTORY_CATEGORY_ERAS as CATEGORY_ERAS,
+    HISTORY_CATEGORY_WORD_RANGES as CATEGORY_WORD_RANGES,
     slugifyBookName,
     countWords,
+    formatScriptureRange,
     parseHistoryMarkdown,
     findFootnoteKeys,
 } from "../src/utils/historyContent.js";
 
-export { STATUSES, DATE_TYPES, CLAIM_CONFIDENCES, CONNECTION_TYPES, WORD_RANGES };
-export { slugifyBookName, countWords, parseHistoryMarkdown, findFootnoteKeys };
+export { STATUSES, DATE_TYPES, CLAIM_CONFIDENCES, CONNECTION_TYPES, WORD_RANGES, CATEGORY_ERAS, CATEGORY_WORD_RANGES };
+export { slugifyBookName, countWords, formatScriptureRange, parseHistoryMarkdown, findFootnoteKeys };
 
 export const TOPIC_CATEGORIES = ["civilization", "person", "place", "culture", "period"];
 export const TOPIC_CATEGORY_DIRS = {
@@ -108,6 +111,202 @@ function checkScriptureRef(ref, where, bibleChapters, errors) {
     }
 }
 
+// Shared per-record checks, used by both the event and the category
+// validators so the rules cannot drift apart (migration plan §5.2
+// option (b)). Each takes the record's `where` label so error messages
+// stay identical to the pre-refactor event wording.
+function validateDateObject(date, where, errors) {
+    if (!isRecord(date)) {
+        errors.push(`${where}: missing date object.`);
+        return;
+    }
+    if (!DATE_TYPES.includes(date.type)) {
+        errors.push(`${where}: date.type "${date.type}" is not one of ${DATE_TYPES.join(", ")}.`);
+    }
+    if (typeof date.label !== "string" || date.label.trim() === "") {
+        errors.push(`${where}: date.label is required.`);
+    }
+    if (date.type === "traditional" && (typeof date.traditionalSystem !== "string" || !date.traditionalSystem.trim())) {
+        errors.push(`${where}: date.type "traditional" requires traditionalSystem.`);
+    }
+    if (date.type !== "traditional" && date.traditionalSystem != null) {
+        errors.push(`${where}: traditionalSystem must be present only when date.type is "traditional".`);
+    }
+    const yearsNull = date.yearStart == null && date.yearEnd == null;
+    if (date.type === "unknown" && !yearsNull) {
+        errors.push(`${where}: date.type "unknown" requires yearStart and yearEnd null.`);
+    }
+    if (date.type !== "unknown" && yearsNull) {
+        errors.push(`${where}: date.type "${date.type}" requires yearStart and yearEnd.`);
+    }
+    if (date.yearStart != null && date.yearEnd != null && date.yearStart > date.yearEnd) {
+        errors.push(`${where}: yearStart ${date.yearStart} is after yearEnd ${date.yearEnd}.`);
+    }
+}
+
+function validateConnectionsList(connections, where, bibleChapters, errors) {
+    if (!Array.isArray(connections) || connections.length < 1) {
+        errors.push(`${where}: connections must be a non-empty array (at least one passage).`);
+        return;
+    }
+    connections.forEach((conn, i) => {
+        const cwhere = `${where}: connections[${i}]`;
+        if (!isRecord(conn)) {
+            errors.push(`${cwhere}: must be an object.`);
+            return;
+        }
+        checkScriptureRef(conn, cwhere, bibleChapters, errors);
+        if (!CONNECTION_TYPES.includes(conn.type)) {
+            errors.push(`${cwhere}: type "${conn.type}" is not one of ${CONNECTION_TYPES.join(", ")}.`);
+        }
+        if (!CLAIM_CONFIDENCES.includes(conn.confidence)) {
+            errors.push(`${cwhere}: confidence "${conn.confidence}" is not one of ${CLAIM_CONFIDENCES.join(", ")}.`);
+        }
+        if (typeof conn.note !== "string" || conn.note.trim() === "") {
+            errors.push(`${cwhere}: note is required.`);
+        }
+    });
+}
+
+// `kindLabel` is "event" or "category" — it only appears in the
+// published-rule message, which names the record kind.
+function validateSourcesList(sourcesList, where, sources, data, errors, kindLabel) {
+    if (!Array.isArray(sourcesList)) {
+        errors.push(`${where}: sources must be an array.`);
+        return;
+    }
+    for (const key of sourcesList) {
+        if (!(key in sources)) errors.push(`${where}: source "${key}" is not in the registry.`);
+    }
+    if (data.status === "published") {
+        for (const key of sourcesList) {
+            const source = sources[key];
+            if (source && source.verification === "not-independently-verified"
+                && !(isRecord(data.review) && data.review.editorialOverride === true)) {
+                errors.push(`${where}: published ${kindLabel} cites not-independently-verified source "${key}" without a review.editorialOverride.`);
+            }
+        }
+    }
+}
+
+function validateReviewObject(review, where, errors) {
+    if (!isRecord(review) || typeof review.author !== "string"
+        || typeof review.reviewer !== "string" || typeof review.lastReviewed !== "string"
+        || typeof review.checklistVersion !== "string") {
+        errors.push(`${where}: review needs author, reviewer, lastReviewed, checklistVersion.`);
+    }
+}
+
+// Optional claims register (a category may carry no `claims` key at all,
+// as Creation proves for events). When present it must be an array of
+// { id, claim, evidence, assessment } rows, and each claim id joins the
+// same global seen-ids map as the record ids.
+function validateClaimsArray(claims, where, errors, claimId) {
+    if (claims === undefined) return;
+    if (!Array.isArray(claims)) {
+        errors.push(`${where}: claims must be an array.`);
+        return;
+    }
+    claims.forEach((claim, i) => {
+        const cwhere = `${where}: claims[${i}]`;
+        if (!isRecord(claim)) {
+            errors.push(`${cwhere}: must be an object.`);
+            return;
+        }
+        if (typeof claim.id !== "string" || claim.id.trim() === "") {
+            errors.push(`${cwhere}: id is required.`);
+        } else {
+            claimId(claim.id, cwhere);
+        }
+        for (const field of ["claim", "evidence", "assessment"]) {
+            if (typeof claim[field] !== "string" || claim[field].trim() === "") {
+                errors.push(`${cwhere}: ${field} is required.`);
+            }
+        }
+    });
+}
+
+// The Markdown contract shared by events and categories: no raw HTML,
+// links only to http(s) / site-internal / anchor targets, every footnote
+// key in the registry, the three required ## sections, and per-section
+// word counts against the given ranges (±10% warning band, outside it
+// an error). `label` is the file label used in messages
+// (e.g. "events/creation.md"); `wordRanges` is HISTORY_WORD_RANGES for
+// events and HISTORY_CATEGORY_WORD_RANGES for categories.
+function validateMarkdownContent(mdText, label, sources, errors, warnings, wordRanges) {
+    if (/<[A-Za-z][^>]*>/.test(mdText) || /<\/[A-Za-z]+>/.test(mdText)) {
+        errors.push(`${label}: raw HTML tags are not allowed in History Markdown.`);
+    }
+    for (const m of mdText.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
+        const url = m[1].trim();
+        if (!/^(https?:\/\/|\/|#)/.test(url)) {
+            errors.push(`${label}: link target "${url}" must be http(s), site-internal, or an anchor.`);
+        }
+    }
+    for (const key of findFootnoteKeys(mdText)) {
+        if (!(key in sources)) {
+            errors.push(`${label}: footnote [^${key}] is not in the source registry.`);
+        }
+    }
+    const parsed = parseHistoryMarkdown(mdText);
+    const requiredHeadings = ["Overview", "Ancient World", "Why This Context Matters"];
+    for (const heading of requiredHeadings) {
+        if (!parsed.headings.includes(heading)) {
+            errors.push(`${label}: missing required "## ${heading}" section.`);
+        }
+    }
+    const counts = {
+        overview: countWords(parsed.overview),
+        ancientWorld: countWords(parsed.ancientWorld),
+        whyItMatters: countWords(parsed.whyItMatters),
+    };
+    for (const [key, [min, max]] of Object.entries(wordRanges)) {
+        const n = counts[key];
+        if (n === 0) continue; // Missing section already reported above.
+        if (n < min || n > max) {
+            const low = Math.floor(min * 0.9);
+            const high = Math.ceil(max * 1.1);
+            if (n >= low && n <= high) {
+                warnings.push(`${label}: ${key} is ${n} words (target ${min}–${max}) — outside the target, inside the ±10% warning band.`);
+            } else {
+                errors.push(`${label}: ${key} is ${n} words (required ${min}–${max}).`);
+            }
+        }
+    }
+}
+
+// A category's representative primaryScripture must lie within its
+// fullRange, in the same book. Returns an error string, or null when the
+// containment holds. Verse-level containment applies when the chapters
+// coincide (a missing startVerse means the chapter's first verse, a
+// missing endVerse the chapter's last).
+function checkRangeContainment(primary, full, where) {
+    if (!isRecord(primary) || !isRecord(full)) return null; // checkScriptureRef reports the shape.
+    if (primary.book !== full.book || primary.bookId !== full.bookId) {
+        return `${where}: primaryScripture book "${primary.book}" does not match fullRange book "${full.book}".`;
+    }
+    if (!Number.isInteger(primary.startChapter) || !Number.isInteger(primary.endChapter)
+        || !Number.isInteger(full.startChapter) || !Number.isInteger(full.endChapter)) {
+        return null; // checkScriptureRef reports the bad chapters.
+    }
+    if (primary.startChapter < full.startChapter || primary.endChapter > full.endChapter) {
+        return `${where}: primaryScripture (${formatScriptureRange(primary)}) lies outside fullRange (${formatScriptureRange(full)}).`;
+    }
+    if (primary.startChapter === full.startChapter && full.startVerse != null) {
+        const primaryStartVerse = primary.startVerse ?? 1;
+        if (primaryStartVerse < full.startVerse) {
+            return `${where}: primaryScripture (${formatScriptureRange(primary)}) lies outside fullRange (${formatScriptureRange(full)}).`;
+        }
+    }
+    if (primary.endChapter === full.endChapter && full.endVerse != null) {
+        const primaryEndVerse = primary.endVerse ?? Number.MAX_SAFE_INTEGER;
+        if (primaryEndVerse > full.endVerse) {
+            return `${where}: primaryScripture (${formatScriptureRange(primary)}) lies outside fullRange (${formatScriptureRange(full)}).`;
+        }
+    }
+    return null;
+}
+
 // Validate the whole source content tree. Returns { errors, warnings }.
 // Fails closed: any error blocks generation (and therefore the build).
 export function validateHistoryContent({ contentDir, bibleChapters }) {
@@ -115,6 +314,7 @@ export function validateHistoryContent({ contentDir, bibleChapters }) {
     const warnings = [];
     const booksDir = path.join(contentDir, "books");
     const eventsDir = path.join(contentDir, "events");
+    const categoriesDir = path.join(contentDir, "categories");
     const topicsDir = path.join(contentDir, "topics");
     const sourcesFile = path.join(contentDir, "sources", "references.json");
 
@@ -191,25 +391,34 @@ export function validateHistoryContent({ contentDir, bibleChapters }) {
         if (typeof data.introduction !== "string" || data.introduction.trim() === "") {
             errors.push(`${where}: missing introduction.`);
         }
-        if (!Array.isArray(data.events)) {
-            errors.push(`${where}: events must be an array.`);
+        if ("events" in data) {
+            errors.push(`${where}: stale "events" key — book files use the unified "entries" array with a kind discriminator.`);
+        }
+        if (!Array.isArray(data.entries)) {
+            errors.push(`${where}: entries must be an array.`);
             continue;
         }
         const orders = new Set();
-        for (const entry of data.events) {
-            if (!isRecord(entry) || typeof entry.eventId !== "string") {
-                errors.push(`${where}: each events entry needs an eventId.`);
+        for (const entry of data.entries) {
+            if (!isRecord(entry) || !["event", "category"].includes(entry.kind)) {
+                errors.push(`${where}: each entries entry needs a kind ("event" or "category").`);
+                continue;
+            }
+            const refId = entry.kind === "event" ? entry.eventId : entry.categoryId;
+            const refField = entry.kind === "event" ? "eventId" : "categoryId";
+            if (typeof refId !== "string") {
+                errors.push(`${where}: each entries entry needs a ${refField}.`);
                 continue;
             }
             if (!Number.isInteger(entry.narrativeOrder)) {
-                errors.push(`${where}: event "${entry.eventId}" needs an integer narrativeOrder.`);
+                errors.push(`${where}: ${entry.kind} "${refId}" needs an integer narrativeOrder.`);
             } else if (orders.has(entry.narrativeOrder)) {
                 errors.push(`${where}: narrativeOrder ${entry.narrativeOrder} is used twice.`);
             } else {
                 orders.add(entry.narrativeOrder);
             }
             if (typeof entry.bookNote !== "string" || entry.bookNote.trim() === "") {
-                errors.push(`${where}: event "${entry.eventId}" needs a bookNote.`);
+                errors.push(`${where}: ${entry.kind} "${refId}" needs a bookNote.`);
             }
         }
         books.set(data.id, { data, file });
@@ -330,33 +539,7 @@ export function validateHistoryContent({ contentDir, bibleChapters }) {
         }
         checkScriptureRef(data.primaryScripture, `${where}: primaryScripture`, bibleChapters, errors);
         // Date rules (date axis is its own enum — never the claim axis).
-        const date = data.date;
-        if (!isRecord(date)) {
-            errors.push(`${where}: missing date object.`);
-        } else {
-            if (!DATE_TYPES.includes(date.type)) {
-                errors.push(`${where}: date.type "${date.type}" is not one of ${DATE_TYPES.join(", ")}.`);
-            }
-            if (typeof date.label !== "string" || date.label.trim() === "") {
-                errors.push(`${where}: date.label is required.`);
-            }
-            if (date.type === "traditional" && (typeof date.traditionalSystem !== "string" || !date.traditionalSystem.trim())) {
-                errors.push(`${where}: date.type "traditional" requires traditionalSystem.`);
-            }
-            if (date.type !== "traditional" && date.traditionalSystem != null) {
-                errors.push(`${where}: traditionalSystem must be present only when date.type is "traditional".`);
-            }
-            const yearsNull = date.yearStart == null && date.yearEnd == null;
-            if (date.type === "unknown" && !yearsNull) {
-                errors.push(`${where}: date.type "unknown" requires yearStart and yearEnd null.`);
-            }
-            if (date.type !== "unknown" && yearsNull) {
-                errors.push(`${where}: date.type "${date.type}" requires yearStart and yearEnd.`);
-            }
-            if (date.yearStart != null && date.yearEnd != null && date.yearStart > date.yearEnd) {
-                errors.push(`${where}: yearStart ${date.yearStart} is after yearEnd ${date.yearEnd}.`);
-            }
-        }
+        validateDateObject(data.date, where, errors);
         // Reference resolution for locations/topics/relatedEvents is
         // checked after all events are collected (see below), so the
         // checks here only verify the fields are arrays.
@@ -365,96 +548,106 @@ export function validateHistoryContent({ contentDir, bibleChapters }) {
                 errors.push(`${where}: ${field} must be an array.`);
             }
         }
-        if (!Array.isArray(data.connections) || data.connections.length < 1) {
-            errors.push(`${where}: connections must be a non-empty array (at least one passage).`);
-        } else {
-            data.connections.forEach((conn, i) => {
-                const cwhere = `${where}: connections[${i}]`;
-                if (!isRecord(conn)) {
-                    errors.push(`${cwhere}: must be an object.`);
-                    return;
-                }
-                checkScriptureRef(conn, cwhere, bibleChapters, errors);
-                if (!CONNECTION_TYPES.includes(conn.type)) {
-                    errors.push(`${cwhere}: type "${conn.type}" is not one of ${CONNECTION_TYPES.join(", ")}.`);
-                }
-                if (!CLAIM_CONFIDENCES.includes(conn.confidence)) {
-                    errors.push(`${cwhere}: confidence "${conn.confidence}" is not one of ${CLAIM_CONFIDENCES.join(", ")}.`);
-                }
-                if (typeof conn.note !== "string" || conn.note.trim() === "") {
-                    errors.push(`${cwhere}: note is required.`);
-                }
-            });
-        }
-        if (!Array.isArray(data.sources)) {
-            errors.push(`${where}: sources must be an array.`);
-        } else {
-            for (const key of data.sources) {
-                if (!(key in sources)) errors.push(`${where}: source "${key}" is not in the registry.`);
-            }
-            if (data.status === "published") {
-                for (const key of data.sources) {
-                    const source = sources[key];
-                    if (source && source.verification === "not-independently-verified"
-                        && !(isRecord(data.review) && data.review.editorialOverride === true)) {
-                        errors.push(`${where}: published event cites not-independently-verified source "${key}" without a review.editorialOverride.`);
-                    }
-                }
-            }
-        }
-        if (!isRecord(data.review) || typeof data.review.author !== "string"
-            || typeof data.review.reviewer !== "string" || typeof data.review.lastReviewed !== "string"
-            || typeof data.review.checklistVersion !== "string") {
-            errors.push(`${where}: review needs author, reviewer, lastReviewed, checklistVersion.`);
-        }
+        validateConnectionsList(data.connections, where, bibleChapters, errors);
+        validateSourcesList(data.sources, where, sources, data, errors, "event");
+        validateReviewObject(data.review, where, errors);
         const mdFile = file.replace(/\.json$/, ".md");
         if (!existsSync(mdFile)) {
             errors.push(`${where}: missing matching Markdown file ${path.basename(mdFile)}.`);
         } else {
-            const mdText = readFileSync(mdFile, "utf8");
-            // No raw HTML in Markdown (the renderer runs without rehype-raw too).
-            if (/<[A-Za-z][^>]*>/.test(mdText) || /<\/[A-Za-z]+>/.test(mdText)) {
-                errors.push(`events/${slug}.md: raw HTML tags are not allowed in History Markdown.`);
-            }
-            // Markdown links may only point at http(s), site-internal, or anchor targets.
-            for (const m of mdText.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
-                const url = m[1].trim();
-                if (!/^(https?:\/\/|\/|#)/.test(url)) {
-                    errors.push(`events/${slug}.md: link target "${url}" must be http(s), site-internal, or an anchor.`);
-                }
-            }
-            for (const key of findFootnoteKeys(mdText)) {
-                if (!(key in sources)) {
-                    errors.push(`events/${slug}.md: footnote [^${key}] is not in the source registry.`);
-                }
-            }
-            const parsed = parseHistoryMarkdown(mdText);
-            const requiredHeadings = ["Overview", "Ancient World", "Why This Context Matters"];
-            for (const heading of requiredHeadings) {
-                if (!parsed.headings.includes(heading)) {
-                    errors.push(`events/${slug}.md: missing required "## ${heading}" section.`);
-                }
-            }
-            const counts = {
-                overview: countWords(parsed.overview),
-                ancientWorld: countWords(parsed.ancientWorld),
-                whyItMatters: countWords(parsed.whyItMatters),
-            };
-            for (const [key, [min, max]] of Object.entries(WORD_RANGES)) {
-                const n = counts[key];
-                if (n === 0) continue; // Missing section already reported above.
-                if (n < min || n > max) {
-                    const low = Math.floor(min * 0.9);
-                    const high = Math.ceil(max * 1.1);
-                    if (n >= low && n <= high) {
-                        warnings.push(`events/${slug}.md: ${key} is ${n} words (target ${min}–${max}) — outside the target, inside the ±10% warning band.`);
-                    } else {
-                        errors.push(`events/${slug}.md: ${key} is ${n} words (required ${min}–${max}).`);
-                    }
-                }
-            }
+            validateMarkdownContent(readFileSync(mdFile, "utf8"), `events/${slug}.md`, sources, errors, warnings, WORD_RANGES);
         }
         events.set(data.id, { data, file, mdFile });
+    }
+
+    // --- Categories ---
+    // A category is a new record type alongside events (migration plan
+    // §5.2 option (b)): a parallel scan with its own rules, sharing the
+    // Scripture-ref / footnote / source-existence checks via the helpers
+    // above. It is a standalone synthesis record — NOT a view over
+    // constituent events — so `constituentEvents` is rejected outright.
+    const categories = new Map(); // categoryId -> { data, file, mdFile }
+    for (const file of listFilesRecursive(categoriesDir)) {
+        if (!file.endsWith(".json")) continue;
+        const rel = path.relative(categoriesDir, file);
+        let data;
+        try {
+            data = readJson(file);
+        } catch {
+            errors.push(`categories/${rel}: invalid JSON.`);
+            continue;
+        }
+        if (!isRecord(data)) {
+            errors.push(`categories/${rel}: must be a JSON object.`);
+            continue;
+        }
+        const where = `categories/${rel}`;
+        if (typeof data.id !== "string" || data.id === "") {
+            errors.push(`${where}: missing id.`);
+            continue;
+        }
+        if (!data.id.startsWith("category-")) {
+            errors.push(`${where}: category id "${data.id}" must start with "category-".`);
+        }
+        const slug = data.id.replace(/^category-/, "");
+        if (`${slug}.json` !== path.basename(file)) {
+            errors.push(`${where}: filename must be "${slug}.json".`);
+        }
+        claimId(data.id, where);
+        if (typeof data.title !== "string" || data.title.trim() === "") {
+            errors.push(`${where}: missing title.`);
+        }
+        if (data.category !== "category") {
+            errors.push(`${where}: category must be "category".`);
+        }
+        if (!STATUSES.includes(data.status)) {
+            errors.push(`${where}: status "${data.status}" is not one of ${STATUSES.join(", ")}.`);
+        }
+        if (!CATEGORY_ERAS.includes(data.era)) {
+            errors.push(`${where}: era "${data.era}" is not one of ${CATEGORY_ERAS.join(", ")}.`);
+        }
+        if ("constituentEvents" in data) {
+            errors.push(`${where}: constituentEvents is not part of the standalone category shape — a category is a synthesis record, not a view over events.`);
+        }
+        // Representative passage: narrow (at most 3 chapters), so the
+        // Scripture companion stays a single readable passage.
+        checkScriptureRef(data.primaryScripture, `${where}: primaryScripture`, bibleChapters, errors);
+        if (isRecord(data.primaryScripture)
+            && Number.isInteger(data.primaryScripture.startChapter)
+            && Number.isInteger(data.primaryScripture.endChapter)
+            && data.primaryScripture.endChapter - data.primaryScripture.startChapter > 2) {
+            errors.push(`${where}: primaryScripture spans more than 3 chapters (a category's representative passage must be narrow).`);
+        }
+        checkScriptureRef(data.fullRange, `${where}: fullRange`, bibleChapters, errors);
+        const containmentError = checkRangeContainment(data.primaryScripture, data.fullRange, where);
+        if (containmentError) errors.push(containmentError);
+        validateDateObject(data.date, where, errors);
+        // locations/topics are optional on categories (default []).
+        for (const field of ["locations", "topics"]) {
+            if (data[field] !== undefined && !Array.isArray(data[field])) {
+                errors.push(`${where}: ${field} must be an array.`);
+            }
+        }
+        if (!Array.isArray(data.relatedEvents)) {
+            errors.push(`${where}: relatedEvents must be an array.`);
+        }
+        if ("relatedCategories" in data) {
+            errors.push(`${where}: relatedCategories is not part of the category shape — link to events via relatedEvents.`);
+        }
+        // Optional claims register: same shape as event claims, same
+        // global id map (a category with no `claims` key is valid, as
+        // Creation proves for events).
+        validateClaimsArray(data.claims, where, errors, claimId);
+        validateConnectionsList(data.connections, where, bibleChapters, errors);
+        validateSourcesList(data.sources, where, sources, data, errors, "category");
+        validateReviewObject(data.review, where, errors);
+        const mdFile = file.replace(/\.json$/, ".md");
+        if (!existsSync(mdFile)) {
+            errors.push(`${where}: missing matching Markdown file ${path.basename(mdFile)}.`);
+        } else {
+            validateMarkdownContent(readFileSync(mdFile, "utf8"), `categories/${slug}.md`, sources, errors, warnings, CATEGORY_WORD_RANGES);
+        }
+        categories.set(data.id, { data, file, mdFile });
     }
 
     // Cross-checks that need the full event set.
@@ -470,22 +663,49 @@ export function validateHistoryContent({ contentDir, bibleChapters }) {
             }
         }
     }
+    // Cross-checks that need the full category set: relatedEvents must
+    // resolve to events (categories link to events, not to categories),
+    // and locations/topics resolve against the topics map like events.
+    for (const [id, { data }] of categories) {
+        for (const related of data.relatedEvents ?? []) {
+            if (!events.has(related)) {
+                errors.push(`categories/${id.replace(/^category-/, "")}.json: relatedEvents id "${related}" does not resolve to an event.`);
+            }
+        }
+        for (const topicId of [...(data.topics ?? []), ...(data.locations ?? [])]) {
+            if (!topics.has(topicId)) {
+                errors.push(`categories/${id.replace(/^category-/, "")}.json: topic/location id "${topicId}" does not resolve to a topic.`);
+            }
+        }
+    }
     for (const [bookId, { data }] of books) {
-        for (const entry of data.events ?? []) {
-            if (!events.has(entry.eventId)) {
+        for (const entry of data.entries ?? []) {
+            if (entry.kind === "event" && !events.has(entry.eventId)) {
                 errors.push(`books/${bookId}.json: eventId "${entry.eventId}" does not resolve to an event.`);
+            }
+            if (entry.kind === "category" && !categories.has(entry.categoryId)) {
+                errors.push(`books/${bookId}.json: categoryId "${entry.categoryId}" does not resolve to a category.`);
             }
         }
     }
     // Every event must be listed by at least one book, unless explicitly
     // marked orphan (an event with no book home cannot be reached).
     const listed = new Set();
+    const listedCategories = new Set();
     for (const { data } of books.values()) {
-        for (const entry of data.events ?? []) listed.add(entry.eventId);
+        for (const entry of data.entries ?? []) {
+            if (entry.kind === "event") listed.add(entry.eventId);
+            if (entry.kind === "category") listedCategories.add(entry.categoryId);
+        }
     }
     for (const [id, { data }] of events) {
         if (!listed.has(id) && data.orphan !== true) {
             errors.push(`events/${id.replace(/^event-/, "")}.json: event is not listed in any book file (mark orphan: true to allow).`);
+        }
+    }
+    for (const [id, { data }] of categories) {
+        if (!listedCategories.has(id) && data.orphan !== true) {
+            errors.push(`categories/${id.replace(/^category-/, "")}.json: category is not listed in any book file (mark orphan: true to allow).`);
         }
     }
     // Every Markdown file needs its JSON record (and vice versa is checked above).
@@ -494,6 +714,20 @@ export function validateHistoryContent({ contentDir, bibleChapters }) {
             const jsonFile = file.replace(/\.md$/, ".json");
             if (!existsSync(jsonFile)) {
                 errors.push(`events/${path.basename(file)}: no matching JSON record.`);
+            }
+        }
+    }
+    for (const file of listFilesRecursive(categoriesDir)) {
+        if (file.endsWith(".md")) {
+            const jsonFile = file.replace(/\.md$/, ".json");
+            if (!existsSync(jsonFile)) {
+                errors.push(`categories/${path.basename(file)}: no matching JSON record.`);
+            }
+        }
+        if (file.endsWith(".json")) {
+            const mdFile = file.replace(/\.json$/, ".md");
+            if (!existsSync(mdFile)) {
+                errors.push(`categories/${path.basename(file)}: missing matching Markdown file.`);
             }
         }
     }
@@ -512,11 +746,11 @@ export function validateHistoryContent({ contentDir, bibleChapters }) {
         }
     }
 
-    return { errors, warnings, counts: { books: books.size, events: events.size, topics: topics.size, sources: Object.keys(sources).length } };
+    return { errors, warnings, counts: { books: books.size, events: events.size, categories: categories.size, topics: topics.size, sources: Object.keys(sources).length } };
 }
 
-// Collect every non-published record (for the CI gate check): events and
-// topics whose status is not "published", plus source-registry entries
+// Collect every non-published record (for the CI gate check): events,
+// topics, and categories whose status is not "published", plus source-registry entries
 // cited only by non-published records. The registry has no status field;
 // "cited only by drafts" is what makes a source non-published for the
 // gate — such a source can reach a bundle only through a draft record.
@@ -552,6 +786,7 @@ export function findNonPublishedRecords({ contentDir }) {
     };
     scan(path.join(contentDir, "events"), "event");
     scan(path.join(contentDir, "topics"), "topic");
+    scan(path.join(contentDir, "categories"), "category");
     let registry = {};
     try {
         registry = readJson(path.join(contentDir, "sources", "references.json"));
@@ -631,7 +866,7 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
     // design. Match the literal serialized key '"claims":', not the bare
     // word "claims": public prose contains it (conn-ae-018's note,
     // "…this note claims it for the Genesis 2–3 reversal…").
-    for (const dir of [path.join(generatedDir, "events"), path.join(generatedDir, "topics")]) {
+    for (const dir of [path.join(generatedDir, "events"), path.join(generatedDir, "topics"), path.join(generatedDir, "categories")]) {
         for (const file of listFilesRecursive(dir)) {
             if (!file.endsWith(".json")) continue;
             let parsed = null;
@@ -695,11 +930,14 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
             }
             const listedEvents = new Set(manifest.events ?? []);
             const listedTopics = new Set(manifest.topics ?? []);
+            const listedCategories = new Set(manifest.categories ?? []);
             const listedSources = new Set(manifest.sources ?? []);
             for (const record of nonPublished) {
                 if (record.kind === "event" && listedEvents.has(record.id)) {
                     failures.push(`manifest lists non-published id "${record.id}" (status ${record.status}).`);
                 } else if (record.kind === "topic" && listedTopics.has(record.id)) {
+                    failures.push(`manifest lists non-published id "${record.id}" (status ${record.status}).`);
+                } else if (record.kind === "category" && listedCategories.has(record.id)) {
                     failures.push(`manifest lists non-published id "${record.id}" (status ${record.status}).`);
                 } else if (record.kind === "source" && listedSources.has(record.id)) {
                     failures.push(`manifest lists non-published source "${record.id}" (cited only by unpublished records).`);
@@ -765,12 +1003,14 @@ export function generateHistoryContent({ contentDir, outputDir, includeUnpublish
     rmSync(outputDir, { recursive: true, force: true });
     mkdirSync(path.join(outputDir, "books"), { recursive: true });
     mkdirSync(path.join(outputDir, "events"), { recursive: true });
+    mkdirSync(path.join(outputDir, "categories"), { recursive: true });
     mkdirSync(path.join(outputDir, "topics"), { recursive: true });
 
     const manifest = {
         generatedAt: new Date().toISOString(),
         includeUnpublished: Boolean(includeUnpublished),
         events: [],
+        categories: [],
         topics: [],
         books: [],
         sources: [],
@@ -797,6 +1037,17 @@ export function generateHistoryContent({ contentDir, outputDir, includeUnpublish
             manifest.events.push(data.id);
         }
     }
+    // Categories (JSON + Markdown), generated exactly like events: the
+    // JSON is re-serialized without the internal review record and
+    // claims register (see stripInternalMetadata).
+    for (const file of listFilesRecursive(path.join(contentDir, "categories"))) {
+        if (!file.endsWith(".json")) continue;
+        const data = readJson(file);
+        if (include(data.status)) {
+            copyPair(file, path.join(outputDir, "categories"));
+            manifest.categories.push(data.id);
+        }
+    }
     for (const file of listFilesRecursive(path.join(contentDir, "topics"))) {
         if (!file.endsWith(".json")) continue;
         const data = readJson(file);
@@ -808,27 +1059,35 @@ export function generateHistoryContent({ contentDir, outputDir, includeUnpublish
         }
     }
 
-    // Books: only books with at least one included event, with their event
-    // lists filtered to the included events. A book with no included event
-    // renders as "Upcoming" from bibleChapters.json alone.
+    // Books: only books with at least one included entry, with their
+    // unified entries list filtered to the included events/categories.
+    // A book with no included entry renders as "Upcoming" from
+    // bibleChapters.json alone.
     const includedEvents = new Set(manifest.events);
+    const includedCategories = new Set(manifest.categories);
     for (const file of listFilesRecursive(path.join(contentDir, "books"))) {
         if (!file.endsWith(".json")) continue;
         const data = readJson(file);
-        const kept = (data.events ?? []).filter((e) => includedEvents.has(e.eventId));
+        const kept = (data.entries ?? []).filter((e) =>
+            (e.kind === "event" && includedEvents.has(e.eventId))
+            || (e.kind === "category" && includedCategories.has(e.categoryId)));
         if (kept.length === 0) continue;
         writeFileSync(
             path.join(outputDir, "books", path.basename(file)),
-            JSON.stringify({ ...data, events: kept }, null, 2),
+            JSON.stringify({ ...data, entries: kept }, null, 2),
         );
         manifest.books.push(data.id);
     }
 
-    // Sources registry: only sources cited by an included event or topic.
-    // Verification fields are internal editorial records — they stay in
-    // the source registry and never reach the generated copy.
+    // Sources registry: only sources cited by an included event, category,
+    // or topic. Verification fields are internal editorial records — they
+    // stay in the source registry and never reach the generated copy.
     const cited = new Set();
     for (const file of listFilesRecursive(path.join(outputDir, "events"))) {
+        if (!file.endsWith(".json")) continue;
+        for (const key of readJson(file).sources ?? []) cited.add(key);
+    }
+    for (const file of listFilesRecursive(path.join(outputDir, "categories"))) {
         if (!file.endsWith(".json")) continue;
         for (const key of readJson(file).sources ?? []) cited.add(key);
     }
@@ -847,6 +1106,7 @@ export function generateHistoryContent({ contentDir, outputDir, includeUnpublish
     writeFileSync(path.join(outputDir, "sources.json"), JSON.stringify(filtered, null, 2));
 
     manifest.events.sort();
+    manifest.categories.sort();
     manifest.topics.sort();
     manifest.books.sort();
     manifest.sources.sort();

@@ -25,6 +25,20 @@ export const HISTORY_WORD_RANGES = {
     whyItMatters: [50, 100],
 };
 
+// Word-count ranges for category prose (category migration plan §4.6
+// option (ii): a standalone category synthesis, not five stacked event
+// pages). Same ±10% warning band as events; outside it is a failure.
+export const HISTORY_CATEGORY_WORD_RANGES = {
+    overview: [300, 600],
+    ancientWorld: [800, 1500],
+    whyItMatters: [150, 300],
+};
+
+// Era values for category records (migration plan §6.4, option (i): a
+// field, not a range-derived grouping). The boundary is Gen 11/12:
+// Primeval is Gen 1–11, Patriarchal is Gen 12–50.
+export const HISTORY_CATEGORY_ERAS = ["primeval", "patriarchal"];
+
 // The event study's sections, in order (plan §2.2, redesigned 2026-11-12):
 // Story is the Overview prose, Context the Ancient World prose,
 // Connections the Scripture connections, Sources the sources list. The

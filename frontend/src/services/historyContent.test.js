@@ -2,7 +2,7 @@
 // generation (the publication gate). Fixtures are copies of the real
 // shipped content tree, mutated per case, so the shipped Creation content
 // is itself under test.
-import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -97,6 +97,7 @@ describe("generateHistoryContent — the publication gate", () => {
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(manifest.categories).toEqual([]);
         expect(manifest.books).toEqual(["genesis"]);
         expect(existsSync(path.join(outDir, "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.json"))).toBe(true);
@@ -432,7 +433,7 @@ describe("validateHistoryContent — fail closed", () => {
     it("rejects an event not listed in any book", () => {
         const { contentDir } = makeTempTree();
         mutateJson(contentDir, "books/genesis.json", (book) => {
-            book.events = [];
+            book.entries = [];
         });
         expectErrorMatching(contentDir, /not listed in any book/);
     });
@@ -490,5 +491,305 @@ describe("shared content helpers", () => {
             { key: "source-a", number: 1, known: true },
             { key: "source-b", number: 2, known: true },
         ]);
+    });
+});
+
+describe("validateHistoryContent — categories", () => {
+    const expectErrorMatching = (contentDir, pattern) => {
+        const { errors } = validateHistoryContent({ contentDir, bibleChapters });
+        expect(errors.some((error) => pattern.test(error))).toBe(true);
+    };
+
+    // A valid in-review fixture category: the Nations and Babel,
+    // Gen 10–11, primeval, representative passage Gen 11:1–9.
+    function categoryMd({ overview = 400, ancientWorld = 1000, whyItMatters = 200 } = {}) {
+        return `## Overview\n\n${"word ".repeat(overview)}\n\n## Ancient World\n\n${"word ".repeat(ancientWorld)}\n\n## Why This Context Matters\n\n${"word ".repeat(whyItMatters)}\n`;
+    }
+
+    function addCategory(contentDir, { mutate, md = categoryMd() } = {}) {
+        const category = {
+            id: "category-nations-and-babel",
+            title: "The Nations and Babel",
+            category: "category",
+            status: "in-review",
+            era: "primeval",
+            primaryScripture: { book: "Genesis", bookId: "genesis", startChapter: 11, startVerse: 1, endChapter: 11, endVerse: 9 },
+            fullRange: { book: "Genesis", bookId: "genesis", startChapter: 10, startVerse: 1, endChapter: 11, endVerse: 32 },
+            date: { type: "unknown", label: "No independently established date", yearStart: null, yearEnd: null, note: "Chronology is narrative only." },
+            locations: [],
+            topics: [],
+            relatedEvents: ["event-great-flood"],
+            connections: [{ id: "conn-nb-001", book: "Genesis", bookId: "genesis", startChapter: 11, startVerse: 1, endChapter: 11, endVerse: 9, type: "direct-account", confidence: "established", note: "The Babel account." }],
+            sources: ["source-skinner-genesis"],
+            claims: [{ id: "clm-nb-001", claim: "Gen 10–11 traces the nations from Noah's sons.", evidence: "Textual: the table of nations.", assessment: "established" }],
+            review: { author: "Test author", reviewer: "Test reviewer", lastReviewed: "2026-11-17", checklistVersion: "standards-1.1-section-14" },
+        };
+        if (mutate) mutate(category);
+        mkdirSync(path.join(contentDir, "categories"), { recursive: true });
+        writeFileSync(path.join(contentDir, "categories", "nations-and-babel.json"), JSON.stringify(category, null, 2));
+        writeFileSync(path.join(contentDir, "categories", "nations-and-babel.md"), md);
+        mutateJson(contentDir, "books/genesis.json", (book) => {
+            book.entries.push({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
+        });
+        return category;
+    }
+
+    it("passes a valid in-review category with claims", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir);
+        expect(validateHistoryContent({ contentDir, bibleChapters }).errors).toEqual([]);
+    });
+
+    it("passes a valid category with no claims key (Creation proves the shape)", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => { delete category.claims; } });
+        expect(validateHistoryContent({ contentDir, bibleChapters }).errors).toEqual([]);
+    });
+
+    it("rejects a category claim with a missing assessment", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => { delete category.claims[0].assessment; } });
+        expectErrorMatching(contentDir, /claims\[0\]: assessment is required/);
+    });
+
+    it("rejects a primaryScripture spanning more than 3 chapters", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => {
+            category.primaryScripture.startChapter = 10;
+            category.primaryScripture.endChapter = 14;
+        } });
+        expectErrorMatching(contentDir, /primaryScripture spans more than 3 chapters/);
+    });
+
+    it("rejects a primaryScripture outside fullRange (chapter level)", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => {
+            category.primaryScripture.startChapter = 12;
+            category.primaryScripture.startVerse = 1;
+            category.primaryScripture.endChapter = 12;
+            category.primaryScripture.endVerse = 3;
+        } });
+        expectErrorMatching(contentDir, /primaryScripture .* lies outside fullRange/);
+    });
+
+    it("rejects a primaryScripture outside fullRange (verse level)", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => {
+            category.fullRange.startVerse = 5;
+            category.primaryScripture.startChapter = 10;
+            category.primaryScripture.startVerse = 1;
+            category.primaryScripture.endChapter = 10;
+            category.primaryScripture.endVerse = 4;
+        } });
+        expectErrorMatching(contentDir, /primaryScripture .* lies outside fullRange/);
+    });
+
+    it("rejects a constituentEvents key", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => {
+            category.constituentEvents = ["event-great-flood"];
+        } });
+        expectErrorMatching(contentDir, /constituentEvents is not part of the standalone category shape/);
+    });
+
+    it("rejects a bad era", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => { category.era = "ancient"; } });
+        expectErrorMatching(contentDir, /era "ancient" is not one of primeval, patriarchal/);
+    });
+
+    it("rejects category prose outside the option-(ii) caps", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { md: categoryMd({ overview: 100 }) });
+        expectErrorMatching(contentDir, /overview is 100 words \(required 300–600\)/);
+    });
+
+    it("rejects a category id/filename mismatch", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => { category.id = "category-wrong-slug"; } });
+        expectErrorMatching(contentDir, /filename must be "wrong-slug\.json"/);
+    });
+
+    it("rejects a published category citing a not-independently-verified source without an override", () => {
+        const { contentDir } = makeTempTree({ eventStatus: "published", markSourcesVerified: false });
+        addCategory(contentDir, { mutate: (category) => {
+            category.status = "published";
+            category.sources = ["source-brown-cosmic-temple"];
+        } });
+        expectErrorMatching(contentDir, /published category cites not-independently-verified source "source-brown-cosmic-temple" without a review\.editorialOverride/);
+    });
+
+    it("passes a published category with an editorial override for its NIV source", () => {
+        const { contentDir } = makeTempTree({ eventStatus: "published", markSourcesVerified: false });
+        addCategory(contentDir, { mutate: (category) => {
+            category.status = "published";
+            category.sources = ["source-brown-cosmic-temple"];
+            category.review.editorialOverride = true;
+        } });
+        expect(validateHistoryContent({ contentDir, bibleChapters }).errors).toEqual([]);
+    });
+
+    it("rejects relatedEvents pointing at a nonexistent event", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir, { mutate: (category) => { category.relatedEvents = ["event-nope"]; } });
+        expectErrorMatching(contentDir, /relatedEvents id "event-nope" does not resolve to an event/);
+    });
+
+    it("rejects a category not listed in any book", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir);
+        mutateJson(contentDir, "books/genesis.json", (book) => {
+            book.entries = book.entries.filter((entry) => entry.kind !== "category");
+        });
+        expectErrorMatching(contentDir, /category is not listed in any book/);
+    });
+
+    it("finds a non-published category id for the gate check", () => {
+        const { contentDir } = makeTempTree();
+        addCategory(contentDir);
+        // All ten shipped events are published now, so the only
+        // non-published record is the fixture category.
+        expect(findNonPublishedIds({ contentDir })).toEqual([
+            { id: "category-nations-and-babel", kind: "category", status: "in-review" },
+        ]);
+    });
+});
+
+describe("validateHistoryContent — the unified entries array", () => {
+    const expectErrorMatching = (contentDir, pattern) => {
+        const { errors } = validateHistoryContent({ contentDir, bibleChapters });
+        expect(errors.some((error) => pattern.test(error))).toBe(true);
+    };
+
+    it("keeps all 10 Genesis events in entries, kind event, narrativeOrder 1–10", () => {
+        const book = JSON.parse(readFileSync(path.join(repoContentDir, "books", "genesis.json"), "utf8"));
+        expect(book).not.toHaveProperty("events");
+        expect(book.entries).toHaveLength(10);
+        expect(book.entries.map((entry) => entry.eventId)).toEqual([
+            "event-creation", "event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants",
+            "event-seth-early-generations", "event-humanitys-corruption", "event-noah-ark",
+            "event-great-flood", "event-noahs-sacrifice-and-covenant", "event-noah-and-his-sons",
+        ]);
+        expect(book.entries.map((entry) => entry.kind)).toEqual(Array(10).fill("event"));
+        expect(book.entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        for (const entry of book.entries) {
+            expect(typeof entry.bookNote).toBe("string");
+            expect(entry.bookNote.trim()).not.toBe("");
+        }
+        expect(validateHistoryContent({ contentDir: repoContentDir, bibleChapters }).errors).toEqual([]);
+    });
+
+    it("rejects a stale events key in a book file", () => {
+        const { contentDir } = makeTempTree();
+        mutateJson(contentDir, "books/genesis.json", (book) => {
+            book.events = book.entries;
+        });
+        expectErrorMatching(contentDir, /stale "events" key/);
+    });
+
+    it("rejects an entries entry with a bad kind", () => {
+        const { contentDir } = makeTempTree();
+        mutateJson(contentDir, "books/genesis.json", (book) => {
+            book.entries[0].kind = "chapter";
+        });
+        expectErrorMatching(contentDir, /needs a kind \("event" or "category"\)/);
+    });
+
+    it("rejects a duplicate narrativeOrder across kinds", () => {
+        const { contentDir } = makeTempTree();
+        mutateJson(contentDir, "books/genesis.json", (book) => {
+            book.entries.push({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 1, bookNote: "Duplicate order." });
+        });
+        expectErrorMatching(contentDir, /narrativeOrder 1 is used twice/);
+    });
+
+    it("rejects a category entry that does not resolve to a category", () => {
+        const { contentDir } = makeTempTree();
+        mutateJson(contentDir, "books/genesis.json", (book) => {
+            book.entries.push({ categoryId: "category-nope", kind: "category", narrativeOrder: 11, bookNote: "No such category." });
+        });
+        expectErrorMatching(contentDir, /categoryId "category-nope" does not resolve to a category/);
+    });
+});
+
+describe("generateHistoryContent — categories", () => {
+    function categoryMd({ overview = 400, ancientWorld = 1000, whyItMatters = 200 } = {}) {
+        return `## Overview\n\n${"word ".repeat(overview)}\n\n## Ancient World\n\n${"word ".repeat(ancientWorld)}\n\n## Why This Context Matters\n\n${"word ".repeat(whyItMatters)}\n`;
+    }
+
+    function addCategory(contentDir, { mutate, md = categoryMd() } = {}) {
+        const category = {
+            id: "category-nations-and-babel",
+            title: "The Nations and Babel",
+            category: "category",
+            status: "in-review",
+            era: "primeval",
+            primaryScripture: { book: "Genesis", bookId: "genesis", startChapter: 11, startVerse: 1, endChapter: 11, endVerse: 9 },
+            fullRange: { book: "Genesis", bookId: "genesis", startChapter: 10, startVerse: 1, endChapter: 11, endVerse: 32 },
+            date: { type: "unknown", label: "No independently established date", yearStart: null, yearEnd: null, note: "Chronology is narrative only." },
+            locations: [],
+            topics: [],
+            relatedEvents: ["event-great-flood"],
+            connections: [{ id: "conn-nb-001", book: "Genesis", bookId: "genesis", startChapter: 11, startVerse: 1, endChapter: 11, endVerse: 9, type: "direct-account", confidence: "established", note: "The Babel account." }],
+            sources: ["source-skinner-genesis"],
+            claims: [{ id: "clm-nb-001", claim: "Gen 10–11 traces the nations from Noah's sons.", evidence: "Textual: the table of nations.", assessment: "established" }],
+            review: { author: "Test author", reviewer: "Test reviewer", lastReviewed: "2026-11-17", checklistVersion: "standards-1.1-section-14" },
+        };
+        if (mutate) mutate(category);
+        mkdirSync(path.join(contentDir, "categories"), { recursive: true });
+        writeFileSync(path.join(contentDir, "categories", "nations-and-babel.json"), JSON.stringify(category, null, 2));
+        writeFileSync(path.join(contentDir, "categories", "nations-and-babel.md"), md);
+        mutateJson(contentDir, "books/genesis.json", (book) => {
+            book.entries.push({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
+        });
+        return category;
+    }
+
+    it("generates a published fixture category with claims/review stripped", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "published" });
+        addCategory(contentDir, { mutate: (category) => { category.status = "published"; } });
+        const { manifest } = generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
+        });
+        expect(manifest.categories).toEqual(["category-nations-and-babel"]);
+        expect(manifest.events).toHaveLength(10);
+        expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(true);
+        expect(existsSync(path.join(outDir, "categories", "nations-and-babel.md"))).toBe(true);
+        const generated = JSON.parse(readFileSync(path.join(outDir, "categories", "nations-and-babel.json"), "utf8"));
+        expect(generated).not.toHaveProperty("claims");
+        expect(generated).not.toHaveProperty("review");
+        expect(generated.title).toBe("The Nations and Babel");
+        expect(generated.era).toBe("primeval");
+        expect(generated.connections).toHaveLength(1);
+        expect(generated.sources).toEqual(["source-skinner-genesis"]);
+        // The generated book keeps the unified entries array, filtered
+        // to included records: 10 published events + the category.
+        const book = JSON.parse(readFileSync(path.join(outDir, "books", "genesis.json"), "utf8"));
+        expect(book).not.toHaveProperty("events");
+        expect(book.entries).toHaveLength(11);
+        expect(book.entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category"]);
+        expect(book.entries[10]).toEqual({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
+        // The category cites only Skinner, already cited by published
+        // events, so the source count is unchanged at 91.
+        expect(manifest.sources).toHaveLength(91);
+        expect(manifest.sources).toContain("source-skinner-genesis");
+    });
+
+    it("excludes an in-review fixture category from production generation, includes it with the dev opt-in", () => {
+        const { contentDir, outDir } = makeTempTree({ eventStatus: "published" });
+        addCategory(contentDir);
+        const { manifest } = generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
+        });
+        expect(manifest.categories).toEqual([]);
+        expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(false);
+        const dev = generateHistoryContent({
+            contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
+        });
+        expect(dev.manifest.categories).toEqual(["category-nations-and-babel"]);
+        expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(true);
+        const generated = JSON.parse(readFileSync(path.join(outDir, "categories", "nations-and-babel.json"), "utf8"));
+        expect(generated).not.toHaveProperty("claims");
+        expect(generated).not.toHaveProperty("review");
     });
 });
