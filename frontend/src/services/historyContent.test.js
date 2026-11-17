@@ -125,9 +125,9 @@ describe("generateHistoryContent — the publication gate", () => {
         // The fixture flips Creation to "draft"; the shipped Adam and Eve,
         // Cain and Abel, Cain's Descendants, Seth, Humanity's Corruption,
         // Noah, and Great Flood events are published, and Noah's Sacrifice
-        // and God's Covenant is in-review (structural scaffold, no content
-        // yet), so the dev opt-in includes the draft plus the seven
-        // published events plus the in-review scaffold.
+        // and God's Covenant is in-review (content complete: 67 claims,
+        // 14 connections, 27 sources), so the dev opt-in includes the
+        // draft plus the seven published events plus the in-review event.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
@@ -135,7 +135,7 @@ describe("generateHistoryContent — the publication gate", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
         // Seven shipped events are published now, so the non-published
         // records in this fixture are the draft Creation event and the
-        // in-review Noah's Sacrifice and God's Covenant scaffold.
+        // in-review Noah's Sacrifice and God's Covenant event.
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
             { id: "event-noahs-sacrifice-and-covenant", kind: "event", status: "in-review" },

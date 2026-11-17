@@ -220,10 +220,10 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, Seth, Humanity's Corruption, Noah,
         // and Great Flood events are published now, and Noah's Sacrifice
-        // and God's Covenant is in-review (structural scaffold, no
-        // content yet), so the dev opt-in includes all nine events —
-        // the seven published above plus the in-review Creation and
-        // the in-review Sacrifice scaffold.
+        // and God's Covenant is in-review (content complete: 67 claims,
+        // 14 connections, 27 sources), so the dev opt-in includes all
+        // nine events — the seven published above plus the in-review
+        // Creation and the in-review Sacrifice event.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
@@ -294,10 +294,10 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         // The sandbox flips Creation to in-review; the shipped Cain and
         // Abel, Cain's Descendants, Seth, Humanity's Corruption, Noah,
         // and Great Flood events are published now, and Noah's Sacrifice
-        // and God's Covenant is in-review (structural scaffold, no
-        // content yet), so the dev opt-in includes all nine events —
-        // the seven published above plus the in-review Creation and
-        // the in-review Sacrifice scaffold.
+        // and God's Covenant is in-review (content complete: 67 claims,
+        // 14 connections, 27 sources), so the dev opt-in includes all
+        // nine events — the seven published above plus the in-review
+        // Creation and the in-review Sacrifice event.
         expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
     });
@@ -405,10 +405,13 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         // Seven shipped events are published now, so the sandbox's
         // non-published records are Creation (flipped to in-review
         // by makeSandbox), Noah's Sacrifice and God's Covenant
-        // (in-review structural scaffold, citing no sources), and
-        // the three sources cited only by Creation — Brown, Crouch,
-        // and Shabaka. (McDowell, Met, and ORACC are cited by
-        // published events too, as are the reused Flood sources.)
+        // (in-review, citing 27 sources — 20 reused by published
+        // events, 7 new), and the ten sources cited only by
+        // non-published events — the three cited only by Creation
+        // (Brown, Crouch, and Shabaka) and the seven new sources
+        // cited only by the Sacrifice event. (McDowell, Met, and
+        // ORACC are cited by published events too, as are the reused
+        // Flood sources.)
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
             { id: "event-noahs-sacrifice-and-covenant", kind: "event", status: "in-review", title: "Noah's Sacrifice and God's Covenant" },
@@ -429,6 +432,48 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 kind: "source",
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
+            },
+            {
+                id: "source-kessler-jesus-jewish-covenants",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Jesus and the Jewish covenants",
+            },
+            {
+                id: "source-mastnjak-genesis-9-6",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Death Penalty and the Consequences of the Literal Meaning of Genesis 9:6",
+            },
+            {
+                id: "source-finlay-genesis-9-6-reply",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Death Penalty and Genesis 9:6: A Reply to Mastnjak",
+            },
+            {
+                id: "source-clines-noahs-flood-theology",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Noah's Flood: The Theology of the Flood Narrative",
+            },
+            {
+                id: "source-lucas-covenant-treaty-prophecy",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Covenant, Treaty, and Prophecy",
+            },
+            {
+                id: "source-hastings-rainbow",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Rainbow",
+            },
+            {
+                id: "source-enuma-elish-tablet-vi",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Enuma Elish, Tablet VI (the Bow Star)",
             },
         ]);
     });
