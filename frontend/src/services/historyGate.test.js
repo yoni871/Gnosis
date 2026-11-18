@@ -648,10 +648,10 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "Moses (Bible Odyssey)",
             },
             {
-                id: "source-rekhmire-tomb",
+                id: "source-hoffmeier-out-of-egypt",
                 kind: "source",
                 status: "unpublished-only",
-                title: "Rekhmire tomb (TT71)",
+                title: "Out of Egypt: The Archaeological Context of the Exodus",
             },
             {
                 id: "source-bible-odyssey-passover",
