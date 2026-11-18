@@ -502,7 +502,7 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 id: "source-bible-odyssey-jacob",
                 kind: "source",
                 status: "unpublished-only",
-                title: "Jacob",
+                title: "Jacob (Bible Odyssey)",
             },
             {
                 id: "source-chrysostom-homilies-acts",
