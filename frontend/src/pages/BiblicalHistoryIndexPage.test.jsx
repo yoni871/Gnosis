@@ -42,15 +42,15 @@ describe("BiblicalHistoryIndexPage", () => {
         expect(screen.getByRole("button", { name: /Browse Books/ })).toHaveFocus();
     });
 
-    it("shows no counts on book chips while no categories are published", async () => {
+    it("shows the category and event counts on the Genesis book chip", async () => {
         const user = userEvent.setup();
         renderIndex();
         await user.click(screen.getByRole("button", { name: /Browse Books/ }));
-        // The directory is rendered by HistoryBookSelector: with no
-        // categories, no chip carries a counts label and the Genesis
-        // link name is just the book title.
-        expect(within(screen.getByRole("tabpanel")).queryByText(/categor/)).toBeNull();
-        expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+        // The directory is rendered by HistoryBookSelector: Genesis
+        // has four published categories and ten published events, so
+        // its chip carries both counts in its link name.
+        expect(within(screen.getByRole("tabpanel")).getByText(/4 categories · 10 events/)).toBeInTheDocument();
+        expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
     });
 
     it("links its actions to the recommendation and Creation event", async () => {
@@ -62,7 +62,7 @@ describe("BiblicalHistoryIndexPage", () => {
         await user.click(screen.getByRole("button", { name: /Browse Books/ }));
         // Genesis opens its first published event directly; the book
         // URL would redirect there anyway.
-        expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+        expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
     });
 
     it("sets indexable metadata for the index page", () => {

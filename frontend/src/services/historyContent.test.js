@@ -97,7 +97,7 @@ describe("generateHistoryContent — the publication gate", () => {
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual([]);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
         expect(manifest.books).toEqual(["genesis"]);
         expect(existsSync(path.join(outDir, "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.json"))).toBe(true);
@@ -131,7 +131,7 @@ describe("generateHistoryContent — the publication gate", () => {
         // 14 connections, 27 sources), and Noah and His Sons is
         // published (content complete: 75 claims, 16 connections, 20 sources), so the dev
         // opt-in includes the draft plus the ten published events — and
-        // the in-review Nations and Babel, Abraham and Sarah,
+        // the published Nations and Babel, Abraham and Sarah,
         // Isaac, Jacob, and Esau, and Joseph and Israel in Egypt
         // categories.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
@@ -140,17 +140,11 @@ describe("generateHistoryContent — the publication gate", () => {
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
-        // All ten shipped events are published now, so the
-        // non-published records in this fixture are the draft Creation
-        // event and the in-review Abraham and Sarah, Isaac, Jacob,
-        // and Esau, Joseph and Israel in Egypt, and Nations and
-        // Babel categories.
+        // All ten shipped events are published now, and so are the
+        // four categories, so the only non-published record in this
+        // fixture is the draft Creation event.
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
-            { id: "category-abraham-and-sarah", kind: "category", status: "in-review" },
-            { id: "category-isaac-jacob-and-esau", kind: "category", status: "in-review" },
-            { id: "category-joseph-and-israel-in-egypt", kind: "category", status: "in-review" },
-            { id: "category-nations-and-babel", kind: "category", status: "in-review" },
         ]);
     });
 });
@@ -187,7 +181,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         expect(eventJson).not.toContain("editorialOverride");
         expect(eventJson).not.toContain("not-independently-verified");
         const sources = JSON.parse(sourcesJson);
-        expect(Object.keys(sources)).toHaveLength(91);
+        expect(Object.keys(sources)).toHaveLength(117);
         const fixtureRegistry = JSON.parse(readFileSync(path.join(contentDir, "sources", "references.json"), "utf8"));
         for (const [id, source] of Object.entries(sources)) {
             expect(source).not.toHaveProperty("verification");
@@ -539,7 +533,7 @@ describe("validateHistoryContent — categories", () => {
         writeFileSync(path.join(contentDir, "categories", "nations-and-babel.json"), JSON.stringify(category, null, 2));
         writeFileSync(path.join(contentDir, "categories", "nations-and-babel.md"), md);
         mutateJson(contentDir, "books/genesis.json", (book) => {
-            // The shipped tree already lists the real in-review
+            // The shipped tree already lists the real published
             // category at narrativeOrder 11; the fixture replaces
             // that entry instead of pushing a second one (a duplicate
             // narrativeOrder fails validation).
@@ -672,14 +666,12 @@ describe("validateHistoryContent — categories", () => {
     it("finds a non-published category id for the gate check", () => {
         const { contentDir } = makeTempTree();
         addCategory(contentDir);
-        // All ten shipped events are published now, so the
-        // non-published records are the fixture category and the
-        // in-review Abraham and Sarah, Isaac, Jacob, and Esau, and
-        // Joseph and Israel in Egypt categories from the shipped tree.
+        // All ten shipped events are published now, and so are the
+        // shipped Abraham and Sarah, Isaac, Jacob, and Esau, and
+        // Joseph and Israel in Egypt categories, so the only
+        // non-published record is the in-review fixture category
+        // (which replaces the shipped, published Nations and Babel).
         expect(findNonPublishedIds({ contentDir })).toEqual([
-            { id: "category-abraham-and-sarah", kind: "category", status: "in-review" },
-            { id: "category-isaac-jacob-and-esau", kind: "category", status: "in-review" },
-            { id: "category-joseph-and-israel-in-egypt", kind: "category", status: "in-review" },
             { id: "category-nations-and-babel", kind: "category", status: "in-review" },
         ]);
     });
@@ -772,7 +764,7 @@ describe("generateHistoryContent — categories", () => {
         writeFileSync(path.join(contentDir, "categories", "nations-and-babel.json"), JSON.stringify(category, null, 2));
         writeFileSync(path.join(contentDir, "categories", "nations-and-babel.md"), md);
         mutateJson(contentDir, "books/genesis.json", (book) => {
-            // The shipped tree already lists the real in-review
+            // The shipped tree already lists the real published
             // category at narrativeOrder 11; the fixture replaces
             // that entry instead of pushing a second one (a duplicate
             // narrativeOrder fails validation).
@@ -790,7 +782,7 @@ describe("generateHistoryContent — categories", () => {
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.categories).toEqual(["category-nations-and-babel"]);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
         expect(manifest.events).toHaveLength(10);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.md"))).toBe(true);
@@ -802,15 +794,18 @@ describe("generateHistoryContent — categories", () => {
         expect(generated.connections).toHaveLength(1);
         expect(generated.sources).toEqual(["source-skinner-genesis"]);
         // The generated book keeps the unified entries array, filtered
-        // to included records: 10 published events + the category.
+        // to included records: 10 published events + the four published
+        // categories (the fixture replaces the shipped Nations and Babel
+        // at narrativeOrder 11).
         const book = JSON.parse(readFileSync(path.join(outDir, "books", "genesis.json"), "utf8"));
         expect(book).not.toHaveProperty("events");
-        expect(book.entries).toHaveLength(11);
-        expect(book.entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category"]);
+        expect(book.entries).toHaveLength(14);
+        expect(book.entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category", "category", "category", "category"]);
         expect(book.entries[10]).toEqual({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
-        // The category cites only Skinner, already cited by published
-        // events, so the source count is unchanged at 91.
-        expect(manifest.sources).toHaveLength(91);
+        // The fixture category cites only Skinner, already cited by
+        // published events, so the four sources cited only by the
+        // shipped Nations and Babel drop out (117 − 4 = 113).
+        expect(manifest.sources).toHaveLength(113);
         expect(manifest.sources).toContain("source-skinner-genesis");
     });
 
@@ -820,7 +815,10 @@ describe("generateHistoryContent — categories", () => {
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.categories).toEqual([]);
+        // The fixture replaces the shipped, published Nations and
+        // Babel with an in-review one; the other three shipped
+        // categories are published, so they still ship.
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt"]);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(false);
         const dev = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
