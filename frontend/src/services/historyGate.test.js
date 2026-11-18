@@ -269,10 +269,12 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // Creation — and the published Nations and Babel, Abraham
         // and Sarah, Isaac, Jacob, and Esau, and Joseph and Israel
         // in Egypt categories, with the twenty-six sources they
-        // alone cite (117 cited sources in all).
+        // alone cite, plus the in-review Tabernacle and Israel's
+        // Rebellion category's eight sources (125 cited sources
+        // in all).
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
-        expect(manifest.sources).toHaveLength(117);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-tabernacle-and-israels-rebellion"]);
+        expect(manifest.sources).toHaveLength(125);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "seth-early-generations.json"))).toBe(true);
@@ -454,15 +456,18 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
         // Nine shipped events are published now, and so are the four
-        // categories, so the sandbox's non-published records are only
-        // Creation (flipped to in-review by makeSandbox) and the three
-        // sources cited only by Creation (Brown, Crouch, and Shabaka).
+        // Genesis categories, so the sandbox's non-published records are
+        // Creation (flipped to in-review by makeSandbox), the in-review
+        // Tabernacle and Israel's Rebellion category, the three sources
+        // cited only by Creation (Brown, Crouch, and Shabaka), and the
+        // eight sources cited only by the Tabernacle category.
         // The ten registry sources cited by nothing published (among
         // them Fitzmyer, held out of the Abraham and Sarah category)
         // are cited by no record at all, so the gate does not list
         // them as unpublished-only.
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
+            { id: "category-tabernacle-and-israels-rebellion", kind: "category", status: "in-review", title: "The Tabernacle and Israel's Rebellion" },
             {
                 id: "source-brown-cosmic-temple",
                 kind: "source",
@@ -481,15 +486,63 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
             },
+            {
+                id: "source-bible-odyssey-golden-calf",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Worship of the Golden Calf",
+            },
+            {
+                id: "source-biblicaltraining-exodus",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Exodus (overview article)",
+            },
+            {
+                id: "source-calvin-harmony-of-the-law",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Calvin, Harmony of the Law",
+            },
+            {
+                id: "source-keil-delitzsch-exodus",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Keil and Delitzsch, Commentary on the Old Testament: Exodus",
+            },
+            {
+                id: "source-merneptah-stele",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Merneptah Stele (Israel Stele)",
+            },
+            {
+                id: "source-nets-septuagint-exodus",
+                kind: "source",
+                status: "unpublished-only",
+                title: "A New English Translation of the Septuagint: Exodus",
+            },
+            {
+                id: "source-philo-life-of-moses",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Philo, De vita Mosis (On the Life of Moses)",
+            },
+            {
+                id: "source-torah-atlas-sinai",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Torah Atlas, \"Mount Sinai\" (location survey)",
+            },
         ]);
     });
 });
 
 describe("checkHistoryGate — claims detector", () => {
     // A sandbox where ALL TEN events and the Nations and Babel,
-    // Abraham and Sarah, Isaac, Jacob, and Esau, and Joseph and
-    // Israel in Egypt categories are
-    // published (the categories ship published now; the flip below
+    // Abraham and Sarah, Isaac, Jacob, and Esau, Joseph and Israel
+    // in Egypt, and Tabernacle and Israel's Rebellion categories are
+    // published (the Genesis categories ship published now; the flip below
     // is a no-op kept so the fixture stays explicit): the claims detector
     // must fire on this all-published path, where the gate's
     // non-published early return would otherwise stand it down. The
@@ -499,7 +552,7 @@ describe("checkHistoryGate — claims detector", () => {
     // Cain and Abel, Cain's Descendants, Seth, Humanity's Corruption,
     // Noah, the Great Flood, Noah's Sacrifice and God's Covenant, and
     // Noah and His Sons are flipped to published here too, as are all
-    // four categories, so the sandbox has no non-published records at all —
+    // five categories, so the sandbox has no non-published records at all —
     // otherwise their in-review status would take the gate down the
     // other path.
     function makeAllPublishedSandbox() {
@@ -511,11 +564,12 @@ describe("checkHistoryGate — claims detector", () => {
             writeFileSync(eventPath, JSON.stringify(event, null, 2));
         }
         // The shipped Nations and Babel, Abraham and Sarah,
-        // Isaac, Jacob, and Esau, and Joseph and Israel in Egypt
-        // categories are published now; flip them
-        // to published too (a no-op) so the sandbox holds no
-        // non-published records either way.
-        for (const name of ["nations-and-babel.json", "abraham-and-sarah.json", "isaac-jacob-and-esau.json", "joseph-and-israel-in-egypt.json"]) {
+        // Isaac, Jacob, and Esau, Joseph and Israel in Egypt, and
+        // Tabernacle and Israel's Rebellion categories are published
+        // now; flip them to published too (a no-op for the Genesis
+        // categories) so the sandbox holds no non-published records
+        // either way.
+        for (const name of ["nations-and-babel.json", "abraham-and-sarah.json", "isaac-jacob-and-esau.json", "joseph-and-israel-in-egypt.json", "tabernacle-and-israels-rebellion.json"]) {
             const categoryPath = path.join(sandbox, "src", "content", "history", "categories", name);
             const category = JSON.parse(readFileSync(categoryPath, "utf8"));
             category.status = "published";
@@ -791,7 +845,7 @@ describe("checkHistoryGate — categories", () => {
             args: ["--include-unpublished"],
             cwd: sandbox,
         });
-        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
+        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-tabernacle-and-israels-rebellion"]);
         const result = runGate(sandbox);
         expect(result.status).toBe(1);
         expect(result.stderr).toMatch(/includeUnpublished is true/);
