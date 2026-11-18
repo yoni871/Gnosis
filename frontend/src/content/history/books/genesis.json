@@ -75,6 +75,12 @@
       "kind": "category",
       "narrativeOrder": 12,
       "bookNote": "Genesis 12:1-25:18 follows Abram's call from Haran through the covenants, the birth of Isaac, the binding, and Abraham's death and burial in Machpelah. No independently established date is assigned."
+    },
+    {
+      "categoryId": "category-isaac-jacob-and-esau",
+      "kind": "category",
+      "narrativeOrder": 13,
+      "bookNote": "Genesis 25:19-36:43 follows Isaac, Jacob, and Esau from the twins' birth and the oracle through the birthright and the stolen blessing, the ladder at Bethel, twenty years with Laban, the wrestling at Peniel, the meeting with Esau, Dinah and Shechem, and Esau's genealogy in Edom. No independently established date is assigned."
     }
   ]
 }
