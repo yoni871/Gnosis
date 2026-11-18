@@ -86,12 +86,13 @@ describe("listBooks", () => {
         expect(rest).toHaveLength(65);
         expect(rest.every((book) => book.eventCount === 0 && !book.hasEvents)).toBe(true);
     });
-    it("reports zero categories for every book while none are published", () => {
+    it("reports four categories for Genesis and zero for every other book", () => {
         const books = listBooks();
         const genesis = books.find((book) => book.id === "genesis");
-        expect(genesis.categoryCount).toBe(0);
-        expect(genesis.hasCategories).toBe(false);
-        expect(books.every((book) => book.categoryCount === 0 && !book.hasCategories)).toBe(true);
+        expect(genesis.categoryCount).toBe(4);
+        expect(genesis.hasCategories).toBe(true);
+        const rest = books.filter((book) => book.id !== "genesis");
+        expect(rest.every((book) => book.categoryCount === 0 && !book.hasCategories)).toBe(true);
     });
 });
 
@@ -227,7 +228,7 @@ describe("formatHistoryDateLabel", () => {
     });
 });
 
-describe("category lookups in a production build (no categories published yet)", () => {
+describe("category lookups in a production build (four categories published)", () => {
     it("strips the category- prefix for slugs, and leaves other ids alone", () => {
         expect(categorySlug("category-patriarchs")).toBe("patriarchs");
         expect(categorySlug("category-primeval-origins")).toBe("primeval-origins");
@@ -238,8 +239,15 @@ describe("category lookups in a production build (no categories published yet)",
         expect(getCategoryBySlug("patriarchs")).toBeNull();
         expect(getCategory("category-primeval-origins")).toBeNull();
     });
-    it("lists no categories for Genesis or for an unknown book", () => {
-        expect(listCategoriesForBook("genesis")).toEqual([]);
+    it("lists the four published categories for Genesis, none for other books", () => {
+        const categories = listCategoriesForBook("genesis");
+        expect(categories.map((category) => category.id)).toEqual([
+            "category-nations-and-babel",
+            "category-abraham-and-sarah",
+            "category-isaac-jacob-and-esau",
+            "category-joseph-and-israel-in-egypt",
+        ]);
+        expect(categories.map((category) => category.narrativeOrder)).toEqual([11, 12, 13, 14]);
         expect(listCategoriesForBook("exodus")).toEqual([]);
         expect(listCategoriesForBook("not-a-book")).toEqual([]);
     });
@@ -249,9 +257,9 @@ describe("category lookups in a production build (no categories published yet)",
     it("returns null sections for an unknown category", async () => {
         await expect(loadCategorySections("category-patriarchs")).resolves.toBeNull();
     });
-    it("listBookEntries is the event-only timeline while no categories exist", () => {
+    it("listBookEntries is the mixed event-and-category timeline", () => {
         const entries = listBookEntries("genesis");
-        expect(entries).toHaveLength(10);
+        expect(entries).toHaveLength(14);
         expect(entries.map((entry) => entry.id)).toEqual([
             "event-creation",
             "event-adam-and-eve",
@@ -263,9 +271,13 @@ describe("category lookups in a production build (no categories published yet)",
             "event-great-flood",
             "event-noahs-sacrifice-and-covenant",
             "event-noah-and-his-sons",
+            "category-nations-and-babel",
+            "category-abraham-and-sarah",
+            "category-isaac-jacob-and-esau",
+            "category-joseph-and-israel-in-egypt",
         ]);
-        expect(entries.every((entry) => entry.kind === "event")).toBe(true);
-        expect(entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        expect(entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category", "category", "category", "category"]);
+        expect(entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
         expect(entries[0].bookNote).toContain("Genesis 1:1");
         expect(listBookEntries("exodus")).toEqual([]);
         expect(listBookEntries("not-a-book")).toEqual([]);
@@ -276,9 +288,10 @@ describe("category lookups in a production build (no categories published yet)",
     });
 });
 
-// Fixture-based category tests. The generated category directory is
-// empty in this PR (no categories published), so the positive paths
-// cannot run against the real generated content. Instead this block
+// Fixture-based category tests. The generated category directory now
+// holds the four published Genesis categories, but the positive paths
+// for a category-only book still cannot run against the real generated
+// content. Instead this block
 // writes fixture records into the generated directory, re-imports the
 // service fresh so its eager globs pick them up, and deletes every
 // fixture file afterwards — the manifest and the real book files are
@@ -403,7 +416,14 @@ describe("category fixtures (generated-content globs)", () => {
         expect(categories[0].narrativeOrder).toBe(1);
         expect(categories[1].bookNote).toBe("The patriarchal era in brief.");
         expect(categories[1].narrativeOrder).toBe(2);
-        expect(svc.listCategoriesForBook("genesis")).toEqual([]);
+        // The fresh module instance still sees the real generated
+        // content: Genesis carries its four published categories.
+        expect(svc.listCategoriesForBook("genesis").map((category) => category.id)).toEqual([
+            "category-nations-and-babel",
+            "category-abraham-and-sarah",
+            "category-isaac-jacob-and-esau",
+            "category-joseph-and-israel-in-egypt",
+        ]);
     });
     it("listBookEntries tags each entry with its kind and narrative order", () => {
         const entries = svc.listBookEntries("exodus");

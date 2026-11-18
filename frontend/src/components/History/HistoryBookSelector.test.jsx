@@ -20,14 +20,14 @@ test("shows one canonical testament at a time, book names only, with a scroll hi
     // Only Genesis has published events, so it is the only link; the
     // other 38 Old Testament books are Coming Soon chips, not links.
     expect(screen.getAllByRole("link")).toHaveLength(1);
-    expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+    expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
     expect(screen.getAllByText("Coming Soon")).toHaveLength(38);
     expect(screen.queryByRole("link", { name: "Exodus" })).toBeNull();
     const exodusChip = document.querySelector('[data-history-book="exodus"]');
     expect(exodusChip).not.toBeNull();
     expect(exodusChip).toHaveTextContent("Coming Soon");
     expect(screen.queryByText("Upcoming")).toBeNull();
-    expect(screen.queryByText(/event/)).toBeNull();
+    expect(screen.getByText(/4 categories · 10 events/)).toBeInTheDocument();
     expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
     expect(screen.queryByText("Matthew")).toBeNull();
     await user.click(screen.getByRole("tab", { name: /New Testament/ }));
