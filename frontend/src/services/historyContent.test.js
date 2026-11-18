@@ -133,24 +133,26 @@ describe("generateHistoryContent — the publication gate", () => {
         // opt-in includes the draft plus the ten published events — and
         // the published Nations and Babel, Abraham and Sarah,
         // Isaac, Jacob, and Esau, and Joseph and Israel in Egypt
-        // categories, plus the in-review Covenant and God's Law,
-        // Israel in the Wilderness, Israel's Oppression and Moses'
-        // Early Life, Passover and the Exodus, and Tabernacle and
-        // Israel's Rebellion categories.
+        // categories, plus the in-review Building the Tabernacle,
+        // Covenant and God's Law, Israel in the Wilderness,
+        // Israel's Oppression and Moses' Early Life, Passover and
+        // the Exodus, and Tabernacle and Israel's Rebellion categories.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-tabernacle-and-israels-rebellion"]);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-tabernacle-and-israels-rebellion"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
         // All ten shipped events are published now, and so are the
-        // four Genesis categories, so the non-published records in this
-        // fixture are the draft Creation event and the in-review
-        // Covenant and God's Law, Israel in the Wilderness, Israel's
-        // Oppression and Moses' Early Life, Passover and the Exodus,
+        // four Genesis categories, so the non-published records in
+        // this fixture are the draft Creation event and the in-review
+        // Building the Tabernacle, Covenant and God's Law, Israel in
+        // the Wilderness, Israel's Oppression and Moses' Early Life,
+        // Passover and the Exodus,
         // and Tabernacle and Israel's Rebellion categories.
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
+            { id: "category-building-the-tabernacle", kind: "category", status: "in-review" },
             { id: "category-covenant-and-gods-law", kind: "category", status: "in-review" },
             { id: "category-israel-in-the-wilderness", kind: "category", status: "in-review" },
             { id: "category-oppression-and-moses-early-life", kind: "category", status: "in-review" },
@@ -682,11 +684,12 @@ describe("validateHistoryContent — categories", () => {
         // Joseph and Israel in Egypt categories, so the
         // non-published records are the in-review fixture category
         // (which replaces the shipped, published Nations and Babel)
-        // and the in-review Covenant and God's Law, Israel in the
-        // Wilderness, Israel's Oppression and Moses' Early Life,
-        // Passover and the Exodus, and Tabernacle and Israel's
-        // Rebellion categories (listed in id order).
+        // and the shipped in-review Building the Tabernacle, Covenant
+        // and God's Law, Israel in the Wilderness, Israel's
+        // Oppression and Moses' Early Life, Passover and the Exodus,
+        // and Tabernacle and Israel's Rebellion categories (listed in id order).
         expect(findNonPublishedIds({ contentDir })).toEqual([
+            { id: "category-building-the-tabernacle", kind: "category", status: "in-review" },
             { id: "category-covenant-and-gods-law", kind: "category", status: "in-review" },
             { id: "category-israel-in-the-wilderness", kind: "category", status: "in-review" },
             { id: "category-nations-and-babel", kind: "category", status: "in-review" },
@@ -844,11 +847,11 @@ describe("generateHistoryContent — categories", () => {
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
         // The dev opt-in includes the in-review fixture category —
-        // and the shipped, in-review Covenant and God's Law, Israel
-        // in the Wilderness, Israel's Oppression and Moses' Early
-        // Life, Passover and the Exodus, and Tabernacle and Israel's
-        // Rebellion categories as well.
-        expect(dev.manifest.categories).toEqual(["category-abraham-and-sarah", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-tabernacle-and-israels-rebellion"]);
+        // and the shipped, in-review Building the Tabernacle,
+        // Covenant and God's Law, Israel in the Wilderness, Israel's
+        // Oppression and Moses' Early Life, Passover and the Exodus,
+        // and Tabernacle and Israel's Rebellion categories as well.
+        expect(dev.manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-tabernacle-and-israels-rebellion"]);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(true);
         const generated = JSON.parse(readFileSync(path.join(outDir, "categories", "nations-and-babel.json"), "utf8"));
         expect(generated).not.toHaveProperty("claims");
