@@ -136,9 +136,10 @@ describe("generateHistoryContent — the publication gate", () => {
         // categories, plus the in-review Building the Tabernacle,
         // Covenant and God's Law, Israel in the Wilderness,
         // Israel's Oppression and Moses' Early Life, Passover and
-        // the Exodus, and Tabernacle and Israel's Rebellion categories.
+        // the Exodus, Pharaoh and the Ten Plagues, and Tabernacle
+        // and Israel's Rebellion categories.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-tabernacle-and-israels-rebellion"]);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
@@ -148,7 +149,7 @@ describe("generateHistoryContent — the publication gate", () => {
         // this fixture are the draft Creation event and the in-review
         // Building the Tabernacle, Covenant and God's Law, Israel in
         // the Wilderness, Israel's Oppression and Moses' Early Life,
-        // Passover and the Exodus,
+        // Passover and the Exodus, Pharaoh and the Ten Plagues,
         // and Tabernacle and Israel's Rebellion categories.
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
@@ -157,6 +158,7 @@ describe("generateHistoryContent — the publication gate", () => {
             { id: "category-israel-in-the-wilderness", kind: "category", status: "in-review" },
             { id: "category-oppression-and-moses-early-life", kind: "category", status: "in-review" },
             { id: "category-passover-and-the-exodus", kind: "category", status: "in-review" },
+            { id: "category-pharaoh-and-the-ten-plagues", kind: "category", status: "in-review" },
             { id: "category-tabernacle-and-israels-rebellion", kind: "category", status: "in-review" },
         ]);
     });
@@ -687,7 +689,8 @@ describe("validateHistoryContent — categories", () => {
         // and the shipped in-review Building the Tabernacle, Covenant
         // and God's Law, Israel in the Wilderness, Israel's
         // Oppression and Moses' Early Life, Passover and the Exodus,
-        // and Tabernacle and Israel's Rebellion categories (listed in id order).
+        // Pharaoh and the Ten Plagues, and Tabernacle and Israel's
+        // Rebellion categories (listed in id order).
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "category-building-the-tabernacle", kind: "category", status: "in-review" },
             { id: "category-covenant-and-gods-law", kind: "category", status: "in-review" },
@@ -695,6 +698,7 @@ describe("validateHistoryContent — categories", () => {
             { id: "category-nations-and-babel", kind: "category", status: "in-review" },
             { id: "category-oppression-and-moses-early-life", kind: "category", status: "in-review" },
             { id: "category-passover-and-the-exodus", kind: "category", status: "in-review" },
+            { id: "category-pharaoh-and-the-ten-plagues", kind: "category", status: "in-review" },
             { id: "category-tabernacle-and-israels-rebellion", kind: "category", status: "in-review" },
         ]);
     });
@@ -850,8 +854,9 @@ describe("generateHistoryContent — categories", () => {
         // and the shipped, in-review Building the Tabernacle,
         // Covenant and God's Law, Israel in the Wilderness, Israel's
         // Oppression and Moses' Early Life, Passover and the Exodus,
-        // and Tabernacle and Israel's Rebellion categories as well.
-        expect(dev.manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-tabernacle-and-israels-rebellion"]);
+        // Pharaoh and the Ten Plagues, and Tabernacle and Israel's
+        // Rebellion categories as well.
+        expect(dev.manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(true);
         const generated = JSON.parse(readFileSync(path.join(outDir, "categories", "nations-and-babel.json"), "utf8"));
         expect(generated).not.toHaveProperty("claims");

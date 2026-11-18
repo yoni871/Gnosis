@@ -279,10 +279,12 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // sources, the in-review Israel's Oppression and Moses'
         // Early Life category's two additional sources, and the
         // in-review Passover and the Exodus category's four
-        // additional sources (142 cited sources in all).
+        // additional sources, and the in-review Pharaoh and the
+        // Ten Plagues category's three additional sources (145
+        // cited sources in all).
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-tabernacle-and-israels-rebellion"]);
-        expect(manifest.sources).toHaveLength(142);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
+        expect(manifest.sources).toHaveLength(145);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "seth-early-generations.json"))).toBe(true);
@@ -468,8 +470,9 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         // are Creation (flipped to in-review by makeSandbox), the
         // in-review Building the Tabernacle, Covenant and God's Law,
         // Israel in the Wilderness, Israel's Oppression and Moses'
-        // Early Life, Passover and the Exodus, and Tabernacle and
-        // Israel's Rebellion categories, the three sources cited only
+        // Early Life, Passover and the Exodus, Pharaoh and the Ten
+        // Plagues, and Tabernacle and Israel's Rebellion categories,
+        // the three sources cited only
         // by Creation (Brown, Crouch, and Shabaka), the eight sources
         // cited only by the Building category, the six sources the
         // Covenant category adds beyond the Building category's, the
@@ -477,7 +480,8 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         // and Covenant categories' (Sarna is cited by the Building
         // category too), the two sources cited only by the Oppression
         // category, the four sources the Passover category adds beyond
-        // the Covenant category's, and the three sources cited only by
+        // the Covenant category's, the three sources cited only by
+        // the Plagues category, and the three sources cited only by
         // the Tabernacle category (five of its eight sources are also
         // cited by the Covenant or Oppression categories). The ten
         // registry sources cited by nothing published (among them
@@ -511,6 +515,12 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "Israel's Oppression and Moses' Early Life",
             },
             { id: "category-passover-and-the-exodus", kind: "category", status: "in-review", title: "Passover and the Exodus" },
+            {
+                id: "category-pharaoh-and-the-ten-plagues",
+                kind: "category",
+                status: "in-review",
+                title: "Pharaoh and the Ten Plagues",
+            },
             {
                 id: "category-tabernacle-and-israels-rebellion",
                 kind: "category",
@@ -668,6 +678,24 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "Philo, Questions and Answers on Exodus",
             },
             {
+                id: "source-bible-odyssey-plagues",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Plagues of Egypt",
+            },
+            {
+                id: "source-calvin-romans",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Calvin, Commentary on Romans",
+            },
+            {
+                id: "source-ipuwer-papyrus",
+                kind: "source",
+                status: "unpublished-only",
+                title: "The Admonitions of Ipuwer",
+            },
+            {
                 id: "source-bible-odyssey-golden-calf",
                 kind: "source",
                 status: "unpublished-only",
@@ -697,7 +725,8 @@ describe("checkHistoryGate — claims detector", () => {
     // is a no-op kept so the fixture stays explicit), and the
     // Covenant and God's Law, Israel in the Wilderness,
     // Israel's Oppression and Moses' Early Life, Passover and
-    // the Exodus, and Building the Tabernacle categories are
+    // the Exodus, Pharaoh and the Ten Plagues, and Building
+    // the Tabernacle categories are
     // flipped to published too: the claims detector
     // must fire on this all-published path, where the gate's
     // non-published early return would otherwise stand it down. The
@@ -707,7 +736,7 @@ describe("checkHistoryGate — claims detector", () => {
     // Cain and Abel, Cain's Descendants, Seth, Humanity's Corruption,
     // Noah, the Great Flood, Noah's Sacrifice and God's Covenant, and
     // Noah and His Sons are flipped to published here too, as are all
-    // ten categories, so the sandbox has no non-published records at all —
+    // eleven categories, so the sandbox has no non-published records at all —
     // otherwise their in-review status would take the gate down the
     // other path.
     function makeAllPublishedSandbox() {
@@ -725,11 +754,12 @@ describe("checkHistoryGate — claims detector", () => {
         // categories) so the sandbox holds no non-published records
         // either way. The Covenant and God's Law, Israel in the
         // Wilderness, Israel's Oppression and Moses' Early Life,
-        // Passover and the Exodus, and Building the Tabernacle
-        // categories ship in-review on this branch, so they are
-        // flipped to published here for the same reason: this fixture
-        // must hold no non-published records at all.
-        for (const name of ["nations-and-babel.json", "abraham-and-sarah.json", "isaac-jacob-and-esau.json", "joseph-and-israel-in-egypt.json", "tabernacle-and-israels-rebellion.json", "covenant-and-gods-law.json", "israel-in-the-wilderness.json", "oppression-and-moses-early-life.json", "passover-and-the-exodus.json", "building-the-tabernacle.json"]) {
+        // Passover and the Exodus, Pharaoh and the Ten Plagues,
+        // and Building the Tabernacle categories ship in-review
+        // on this branch, so they are
+        // flipped to published here for the same reason: this
+        // fixture must hold no non-published records at all.
+        for (const name of ["nations-and-babel.json", "abraham-and-sarah.json", "isaac-jacob-and-esau.json", "joseph-and-israel-in-egypt.json", "tabernacle-and-israels-rebellion.json", "covenant-and-gods-law.json", "israel-in-the-wilderness.json", "oppression-and-moses-early-life.json", "passover-and-the-exodus.json", "pharaoh-and-the-ten-plagues.json", "building-the-tabernacle.json"]) {
             const categoryPath = path.join(sandbox, "src", "content", "history", "categories", name);
             const category = JSON.parse(readFileSync(categoryPath, "utf8"));
             category.status = "published";
@@ -1005,7 +1035,7 @@ describe("checkHistoryGate — categories", () => {
             args: ["--include-unpublished"],
             cwd: sandbox,
         });
-        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-tabernacle-and-israels-rebellion"]);
+        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
         const result = runGate(sandbox);
         expect(result.status).toBe(1);
         expect(result.stderr).toMatch(/includeUnpublished is true/);
