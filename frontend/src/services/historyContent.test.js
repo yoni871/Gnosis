@@ -131,10 +131,11 @@ describe("generateHistoryContent — the publication gate", () => {
         // 14 connections, 27 sources), and Noah and His Sons is
         // published (content complete: 75 claims, 16 connections, 20 sources), so the dev
         // opt-in includes the draft plus the ten published events — and
-        // the in-review Nations and Babel, Abraham and Sarah, and
-        // Isaac, Jacob, and Esau categories.
+        // the in-review Nations and Babel, Abraham and Sarah,
+        // Isaac, Jacob, and Esau, and Joseph and Israel in Egypt
+        // categories.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-nations-and-babel"]);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
@@ -142,11 +143,13 @@ describe("generateHistoryContent — the publication gate", () => {
         // All ten shipped events are published now, so the
         // non-published records in this fixture are the draft Creation
         // event and the in-review Abraham and Sarah, Isaac, Jacob,
-        // and Esau, and Nations and Babel categories.
+        // and Esau, Joseph and Israel in Egypt, and Nations and
+        // Babel categories.
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
             { id: "category-abraham-and-sarah", kind: "category", status: "in-review" },
             { id: "category-isaac-jacob-and-esau", kind: "category", status: "in-review" },
+            { id: "category-joseph-and-israel-in-egypt", kind: "category", status: "in-review" },
             { id: "category-nations-and-babel", kind: "category", status: "in-review" },
         ]);
     });
@@ -671,11 +674,12 @@ describe("validateHistoryContent — categories", () => {
         addCategory(contentDir);
         // All ten shipped events are published now, so the
         // non-published records are the fixture category and the
-        // in-review Abraham and Sarah and Isaac, Jacob, and Esau
-        // categories from the shipped tree.
+        // in-review Abraham and Sarah, Isaac, Jacob, and Esau, and
+        // Joseph and Israel in Egypt categories from the shipped tree.
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "category-abraham-and-sarah", kind: "category", status: "in-review" },
             { id: "category-isaac-jacob-and-esau", kind: "category", status: "in-review" },
+            { id: "category-joseph-and-israel-in-egypt", kind: "category", status: "in-review" },
             { id: "category-nations-and-babel", kind: "category", status: "in-review" },
         ]);
     });
@@ -687,18 +691,19 @@ describe("validateHistoryContent — the unified entries array", () => {
         expect(errors.some((error) => pattern.test(error))).toBe(true);
     };
 
-    it("keeps the 10 Genesis events and the Nations and Babel, Abraham and Sarah, and Isaac, Jacob, and Esau categories in entries, narrativeOrder 1–13", () => {
+    it("keeps the 10 Genesis events and the Nations and Babel, Abraham and Sarah, Isaac, Jacob, and Esau, and Joseph and Israel in Egypt categories in entries, narrativeOrder 1–14", () => {
         const book = JSON.parse(readFileSync(path.join(repoContentDir, "books", "genesis.json"), "utf8"));
         expect(book).not.toHaveProperty("events");
-        expect(book.entries).toHaveLength(13);
+        expect(book.entries).toHaveLength(14);
         expect(book.entries.map((entry) => entry.eventId ?? entry.categoryId)).toEqual([
             "event-creation", "event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants",
             "event-seth-early-generations", "event-humanitys-corruption", "event-noah-ark",
             "event-great-flood", "event-noahs-sacrifice-and-covenant", "event-noah-and-his-sons",
             "category-nations-and-babel", "category-abraham-and-sarah", "category-isaac-jacob-and-esau",
+            "category-joseph-and-israel-in-egypt",
         ]);
-        expect(book.entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category", "category", "category"]);
-        expect(book.entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
+        expect(book.entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category", "category", "category", "category"]);
+        expect(book.entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
         for (const entry of book.entries) {
             expect(typeof entry.bookNote).toBe("string");
             expect(entry.bookNote.trim()).not.toBe("");
@@ -820,7 +825,7 @@ describe("generateHistoryContent — categories", () => {
         const dev = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(dev.manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-nations-and-babel"]);
+        expect(dev.manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(true);
         const generated = JSON.parse(readFileSync(path.join(outDir, "categories", "nations-and-babel.json"), "utf8"));
         expect(generated).not.toHaveProperty("claims");
