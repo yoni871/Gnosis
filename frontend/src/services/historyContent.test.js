@@ -14,6 +14,35 @@ import {
     validateHistoryContent,
 } from "../../scripts/history-content-lib";
 import { formatScriptureRange, parseHistoryMarkdown, resolveHistoryFootnotes } from "../utils/historyContent";
+import {
+    allIds,
+    allRecords,
+    bookById,
+    citedSourceIds,
+    nonPublishedIds,
+    publishedIds,
+    publishedRecords,
+    readTreeInventory,
+} from "./historyTestHelpers";
+
+// Approved inventory — edit only when Yonatan approves a new
+// book/category. Independent of the tree-derived expectations below:
+// this fails loudly if an approved category ever disappears from the
+// published manifest, even though the derived lists would follow the
+// tree.
+const APPROVED_CATEGORIES = [
+    "category-abraham-and-sarah",
+    "category-building-the-tabernacle",
+    "category-covenant-and-gods-law",
+    "category-isaac-jacob-and-esau",
+    "category-israel-in-the-wilderness",
+    "category-joseph-and-israel-in-egypt",
+    "category-nations-and-babel",
+    "category-oppression-and-moses-early-life",
+    "category-passover-and-the-exodus",
+    "category-pharaoh-and-the-ten-plagues",
+    "category-tabernacle-and-israels-rebellion",
+];
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repoContentDir = path.resolve(here, "../content/history");
@@ -93,18 +122,21 @@ describe("validateHistoryContent on the shipped tree", () => {
 describe("generateHistoryContent — the publication gate", () => {
     it("generates a published event in production mode", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "published" });
+        const tree = readTreeInventory(contentDir);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
-        expect(manifest.books).toEqual(["exodus", "genesis"]);
+        expect(manifest.events).toEqual(publishedIds(tree.events));
+        expect(manifest.categories).toEqual(publishedIds(tree.categories));
+        expect(manifest.categories).toEqual(expect.arrayContaining(APPROVED_CATEGORIES));
+        expect(manifest.books).toEqual(publishedIds(tree.books));
         expect(existsSync(path.join(outDir, "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.md"))).toBe(true);
     });
     it("excludes a draft event from production generation", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "draft" });
+        const tree = readTreeInventory(contentDir);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
@@ -114,13 +146,14 @@ describe("generateHistoryContent — the publication gate", () => {
         // Covenant, and Noah and His Sons events are published, so
         // production generation still includes them — only the draft is
         // excluded.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.books).toEqual(["exodus", "genesis"]);
+        expect(manifest.events).toEqual(publishedIds(tree.events));
+        expect(manifest.books).toEqual(publishedIds(tree.books));
         expect(existsSync(path.join(outDir, "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.json"))).toBe(false);
     });
     it("includes the draft only with the local-dev opt-in", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "draft" });
+        const tree = readTreeInventory(contentDir);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
@@ -138,18 +171,18 @@ describe("generateHistoryContent — the publication gate", () => {
         // Israel's Oppression and Moses' Early Life, Passover and
         // the Exodus, Pharaoh and the Ten Plagues, and Tabernacle
         // and Israel's Rebellion categories.
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
+        expect(manifest.events).toEqual(allIds(tree.events));
+        expect(manifest.categories).toEqual(allIds(tree.categories));
+        expect(manifest.categories).toEqual(expect.arrayContaining(APPROVED_CATEGORIES));
         expect(manifest.includeUnpublished).toBe(true);
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
+        const tree = readTreeInventory(contentDir);
         // All ten shipped events are published now, and so are all
         // eleven categories, so the only non-published record in this
         // fixture is the draft Creation event.
-        expect(findNonPublishedIds({ contentDir })).toEqual([
-            { id: "event-creation", kind: "event", status: "draft" },
-        ]);
+        expect(findNonPublishedIds({ contentDir })).toEqual(nonPublishedIds(tree));
     });
 });
 
@@ -168,13 +201,14 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
 
     it("strips review and verification from published generation, keeps the sources intact", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "published", markSourcesVerified: false });
+        const tree = readTreeInventory(contentDir);
         // The validator still passes with the override in the SOURCE
         // (check 10 positive case): the strip must not break validation.
         expect(validateHistoryContent({ contentDir, bibleChapters }).errors).toEqual([]);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(publishedIds(tree.events));
         const { eventJson, sourcesJson } = generatedText(outDir);
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("review");
@@ -185,7 +219,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         expect(eventJson).not.toContain("editorialOverride");
         expect(eventJson).not.toContain("not-independently-verified");
         const sources = JSON.parse(sourcesJson);
-        expect(Object.keys(sources)).toHaveLength(142);
+        expect(Object.keys(sources)).toEqual(citedSourceIds(publishedRecords(tree)));
         const fixtureRegistry = JSON.parse(readFileSync(path.join(contentDir, "sources", "references.json"), "utf8"));
         for (const [id, source] of Object.entries(sources)) {
             expect(source).not.toHaveProperty("verification");
@@ -224,10 +258,11 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
 
     it("strips review from dev-flag generation too", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
+        const tree = readTreeInventory(contentDir);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(allIds(tree.events));
         const event = JSON.parse(readFileSync(path.join(outDir, "events", "creation.json"), "utf8"));
         expect(event).not.toHaveProperty("review");
         expect(event.title).toBe("Creation");
@@ -235,6 +270,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
 
     it("strips claims from a published event carrying them, including unverified claims 028 and 030b", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "published" });
+        const tree = readTreeInventory(contentDir);
         // Flip Adam and Eve to published in the fixture (sources are
         // marked verified by default, so check 10 does not block it):
         // this is the shape publication would take, and the generated
@@ -246,8 +282,8 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.books).toEqual(["exodus", "genesis"]);
+        expect(manifest.events).toEqual(publishedIds(tree.events));
+        expect(manifest.books).toEqual(publishedIds(tree.books));
         const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -269,10 +305,11 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
 
     it("strips claims from dev-flag generation of the published Cain's Descendants event too", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
+        const tree = readTreeInventory(contentDir);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(allIds(tree.events));
         const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -309,10 +346,11 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
 
     it("strips claims from dev-flag generation of the published Seth event too", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
+        const tree = readTreeInventory(contentDir);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(allIds(tree.events));
         const eventJson = readFileSync(path.join(outDir, "events", "seth-early-generations.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -336,10 +374,11 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
 
     it("strips claims from dev-flag generation of the published Noah event too", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "draft", markSourcesVerified: false });
+        const tree = readTreeInventory(contentDir);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(manifest.events).toEqual(allIds(tree.events));
         const eventJson = readFileSync(path.join(outDir, "events", "noah-ark.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -670,13 +709,12 @@ describe("validateHistoryContent — categories", () => {
     it("finds a non-published category id for the gate check", () => {
         const { contentDir } = makeTempTree();
         addCategory(contentDir);
+        const tree = readTreeInventory(contentDir);
         // All ten shipped events are published now, and so are all
         // eleven shipped categories, so the only non-published record
         // is the in-review fixture category (which replaces the
         // shipped, published Nations and Babel).
-        expect(findNonPublishedIds({ contentDir })).toEqual([
-            { id: "category-nations-and-babel", kind: "category", status: "in-review" },
-        ]);
+        expect(findNonPublishedIds({ contentDir })).toEqual(nonPublishedIds(tree));
     });
 });
 
@@ -686,19 +724,25 @@ describe("validateHistoryContent — the unified entries array", () => {
         expect(errors.some((error) => pattern.test(error))).toBe(true);
     };
 
-    it("keeps the 10 Genesis events and the Nations and Babel, Abraham and Sarah, Isaac, Jacob, and Esau, and Joseph and Israel in Egypt categories in entries, narrativeOrder 1–14", () => {
+    it("keeps the Genesis book's entries in narrative order with contiguous orders", () => {
         const book = JSON.parse(readFileSync(path.join(repoContentDir, "books", "genesis.json"), "utf8"));
+        const tree = readTreeInventory(repoContentDir);
+        const genesisBook = bookById(tree, "genesis");
         expect(book).not.toHaveProperty("events");
-        expect(book.entries).toHaveLength(14);
-        expect(book.entries.map((entry) => entry.eventId ?? entry.categoryId)).toEqual([
-            "event-creation", "event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants",
-            "event-seth-early-generations", "event-humanitys-corruption", "event-noah-ark",
-            "event-great-flood", "event-noahs-sacrifice-and-covenant", "event-noah-and-his-sons",
-            "category-nations-and-babel", "category-abraham-and-sarah", "category-isaac-jacob-and-esau",
-            "category-joseph-and-israel-in-egypt",
-        ]);
-        expect(book.entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category", "category", "category", "category"]);
-        expect(book.entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+        // The expected ids/kinds/orders come from the book file itself;
+        // the independent check is the contiguity assertion below.
+        expect(book.entries.map((entry) => entry.eventId ?? entry.categoryId)).toEqual(
+            genesisBook.entries.map((entry) => entry.eventId ?? entry.categoryId),
+        );
+        expect(book.entries.map((entry) => entry.kind)).toEqual(genesisBook.entries.map((entry) => entry.kind));
+        expect(book.entries.map((entry) => entry.narrativeOrder)).toEqual(genesisBook.entries.map((entry) => entry.narrativeOrder));
+        // Independent of the helper: narrativeOrder is exactly 1..N
+        // contiguous across all books — a gap or a duplicate fails here
+        // even though the derived lists above would follow the file.
+        const allOrders = tree.books
+            .flatMap((b) => b.entries.map((entry) => entry.narrativeOrder))
+            .sort((a, b) => a - b);
+        expect(allOrders).toEqual(allOrders.map((_, i) => i + 1));
         for (const entry of book.entries) {
             expect(typeof entry.bookNote).toBe("string");
             expect(entry.bookNote.trim()).not.toBe("");
@@ -782,11 +826,13 @@ describe("generateHistoryContent — categories", () => {
     it("generates a published fixture category with claims/review stripped", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "published" });
         addCategory(contentDir, { mutate: (category) => { category.status = "published"; } });
+        const tree = readTreeInventory(contentDir);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
-        expect(manifest.events).toHaveLength(10);
+        expect(manifest.categories).toEqual(publishedIds(tree.categories));
+        expect(manifest.categories).toEqual(expect.arrayContaining(APPROVED_CATEGORIES));
+        expect(manifest.events).toEqual(publishedIds(tree.events));
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.md"))).toBe(true);
         const generated = JSON.parse(readFileSync(path.join(outDir, "categories", "nations-and-babel.json"), "utf8"));
@@ -802,26 +848,27 @@ describe("generateHistoryContent — categories", () => {
         // at narrativeOrder 11).
         const book = JSON.parse(readFileSync(path.join(outDir, "books", "genesis.json"), "utf8"));
         expect(book).not.toHaveProperty("events");
-        expect(book.entries).toHaveLength(14);
-        expect(book.entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category", "category", "category", "category"]);
+        expect(book.entries).toHaveLength(bookById(tree, "genesis").entries.length);
+        expect(book.entries.map((entry) => entry.kind)).toEqual(bookById(tree, "genesis").entries.map((entry) => entry.kind));
         expect(book.entries[10]).toEqual({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
         // The fixture category cites only Skinner, already cited by
         // published events, so the four sources cited only by the
         // shipped Nations and Babel drop out (142 − 4 = 138).
-        expect(manifest.sources).toHaveLength(138);
+        expect(manifest.sources).toEqual(citedSourceIds(publishedRecords(tree)));
         expect(manifest.sources).toContain("source-skinner-genesis");
     });
 
     it("excludes an in-review fixture category from production generation, includes it with the dev opt-in", () => {
         const { contentDir, outDir } = makeTempTree({ eventStatus: "published" });
         addCategory(contentDir);
+        const tree = readTreeInventory(contentDir);
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
         // The fixture replaces the shipped, published Nations and
         // Babel with an in-review one; the other three shipped
         // categories are published, so they still ship.
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
+        expect(manifest.categories).toEqual(publishedIds(tree.categories));
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(false);
         const dev = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
@@ -832,7 +879,7 @@ describe("generateHistoryContent — categories", () => {
         // Oppression and Moses' Early Life, Passover and the Exodus,
         // Pharaoh and the Ten Plagues, and Tabernacle and Israel's
         // Rebellion categories as well.
-        expect(dev.manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
+        expect(dev.manifest.categories).toEqual(allIds(tree.categories));
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(true);
         const generated = JSON.parse(readFileSync(path.join(outDir, "categories", "nations-and-babel.json"), "utf8"));
         expect(generated).not.toHaveProperty("claims");

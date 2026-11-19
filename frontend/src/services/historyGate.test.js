@@ -31,6 +31,34 @@ import { spawnSync } from "node:child_process";
 import process from "node:process";
 import { afterEach, describe, expect, it } from "vitest";
 import { findNonPublishedRecords } from "../../scripts/history-content-lib";
+import {
+    allIds,
+    allRecords,
+    citedSourceIds,
+    nonPublishedRecords,
+    publishedIds,
+    publishedRecords,
+    readTreeInventory,
+} from "./historyTestHelpers";
+
+// Approved inventory — edit only when Yonatan approves a new
+// book/category. Independent of the tree-derived expectations below:
+// this fails loudly if an approved category ever disappears from the
+// published manifest, even though the derived lists would follow the
+// tree.
+const APPROVED_CATEGORIES = [
+    "category-abraham-and-sarah",
+    "category-building-the-tabernacle",
+    "category-covenant-and-gods-law",
+    "category-isaac-jacob-and-esau",
+    "category-israel-in-the-wilderness",
+    "category-joseph-and-israel-in-egypt",
+    "category-nations-and-babel",
+    "category-oppression-and-moses-early-life",
+    "category-passover-and-the-exodus",
+    "category-pharaoh-and-the-ten-plagues",
+    "category-tabernacle-and-israels-rebellion",
+];
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const frontendDir = path.resolve(here, "../..");
@@ -116,161 +144,23 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         "HISTORY_INCLUDE_UNPUBLISHED=%s generates published-only content",
         (flag) => {
             const sandbox = makeSandbox();
+            const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
             const env = flag === undefined ? {} : { HISTORY_INCLUDE_UNPUBLISHED: flag };
             const result = runNode("scripts/build-history-content.js", { env, cwd: sandbox });
             expect(result.status).toBe(0);
             const manifest = readManifest(sandbox);
             expect(manifest.includeUnpublished).toBe(false);
-            expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
+            expect(manifest.categories).toEqual(publishedIds(tree.categories));
+            expect(manifest.categories).toEqual(expect.arrayContaining(APPROVED_CATEGORIES));
             // The sandbox flips Creation to in-review; the shipped Adam
             // and Eve, Cain and Abel, Cain's Descendants, Seth,
             // Humanity's Corruption, Noah, Great Flood, Noah's Sacrifice
             // and God's Covenant, and Noah and His Sons events are
             // published, so published-only generation still ships them
             // — with the 139 sources they cite — and nothing unpublished.
-            expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-            expect(manifest.books).toEqual(["exodus", "genesis"]);
-            expect(manifest.sources).toEqual([
-                "source-adamtoabraham-methuselah-flood",
-                "source-ats-seven",
-                "source-augustine-city-of-god",
-                "source-austin-gobeil-tattooed-mummy",
-                "source-baal-cycle-ktu",
-                "source-balogh-tree-of-life",
-                "source-bdb-lexicon",
-                "source-benthall-two-trees",
-                "source-bergsma-hahn-nakedness",
-                "source-berossus-babyloniaca",
-                "source-bible-gateway-kjv",
-                "source-bible-hub-interlinear",
-                "source-bible-odyssey-covenant",
-                "source-bible-odyssey-curse-ham",
-                "source-bible-odyssey-dinah",
-                "source-bible-odyssey-golden-calf",
-                "source-bible-odyssey-jacob",
-                "source-bible-odyssey-joseph-clothing",
-                "source-bible-odyssey-moses",
-                "source-bible-odyssey-passover",
-                "source-bible-odyssey-plagues",
-                "source-bible-odyssey-sarah-abraham-pharaoh",
-                "source-bible-odyssey-sibling-rivalries",
-                "source-bible-odyssey-sodom-gomorrah",
-                "source-biblicaltraining-exodus",
-                "source-biblicaltraining-joseph",
-                "source-biblicaltraining-mount-sinai",
-                "source-biblicaltraining-numbers",
-                "source-bloch-blood-vengeance",
-                "source-calvin-genesis",
-                "source-calvin-harmony-of-the-law",
-                "source-calvin-romans",
-                "source-charles-enoch",
-                "source-charles-jubilees",
-                "source-christ-over-all-genesis-4-7",
-                "source-chrysostom-homilies-acts",
-                "source-chrysostom-homilies-genesis",
-                "source-clarke-commentary",
-                "source-clines-noahs-flood-theology",
-                "source-collins-fasold-durupinar",
-                "source-cyprian-epistles",
-                "source-dalley-myths-mesopotamia",
-                "source-defoliart-insects-as-food-ch21",
-                "source-djd-xii-qumran-cave-4",
-                "source-easton-seven",
-                "source-encyclopedia-crime-punishment",
-                "source-enuma-elish-tablet-vi",
-                "source-etcsl-death-of-gilgamesh",
-                "source-etcsl-enki-ninmah",
-                "source-etcsl-enmerkar-aratta",
-                "source-etcsl-flood-story",
-                "source-etcsl-sheep-and-grain",
-                "source-etcsl-shulgi",
-                "source-etcsl-sumerian-king-list",
-                "source-finkel-ark-before-noah",
-                "source-finlay-genesis-9-6-reply",
-                "source-gabriel-cainite-genealogy",
-                "source-george-epic-gilgamesh-penguin",
-                "source-george-nebuchadnezzar-stele-cusas17",
-                "source-gunkel-genesis",
-                "source-hammurabi-code",
-                "source-hastings-rainbow",
-                "source-haynes-noahs-curse",
-                "source-hendel-genesis-text",
-                "source-hoffmeier-out-of-egypt",
-                "source-hong-ark-seaway-1993",
-                "source-houtman-jacob-bethel",
-                "source-ipuwer-papyrus",
-                "source-isaw-sacred-tree",
-                "source-jacobsen-eridu-genesis",
-                "source-jacobsen-harps",
-                "source-jfb-commentary",
-                "source-josephus-antiquities",
-                "source-justin-dialogue-trypho",
-                "source-jvl-kenite",
-                "source-jvl-paradise",
-                "source-keil-delitzsch-exodus",
-                "source-keil-delitzsch-genesis",
-                "source-kessler-jesus-jewish-covenants",
-                "source-kramer-dilmun",
-                "source-lambert-millard-atrahasis",
-                "source-lucas-covenant-treaty-prophecy",
-                "source-lucas-themelios-covenant-treaty",
-                "source-maarten-eisegesis",
-                "source-mastnjak-genesis-9-6",
-                "source-mcdowell-human-identity",
-                "source-mcgovern-iranian-wine",
-                "source-merneptah-stele",
-                "source-met-mesopotamian-creation",
-                "source-met-nahal-mishmar",
-                "source-met-uruk-first-city",
-                "source-moldenke-tale-two-brothers",
-                "source-nets-septuagint-exodus",
-                "source-nets-septuagint-genesis",
-                "source-noegel-hidden-waters",
-                "source-oracc-marduk",
-                "source-oracc-nebuchadnezzar-011",
-                "source-oracc-saa-07-212",
-                "source-overstreet-red-sea-crossing",
-                "source-philo-allegorical-interpretation",
-                "source-philo-de-abrahamo",
-                "source-philo-de-josepho",
-                "source-philo-de-sobrietate",
-                "source-philo-decalogue",
-                "source-philo-dreams",
-                "source-philo-life-of-moses",
-                "source-philo-on-the-giants",
-                "source-philo-questions-exodus",
-                "source-philo-questions-genesis",
-                "source-rashi-genesis",
-                "source-roux-ancient-iraq",
-                "source-ryle-genesis",
-                "source-sarna-exodus",
-                "source-scriptorium-lamassu",
-                "source-selman-social-environment-patriarchs",
-                "source-sibbing-plantholt-time-death",
-                "source-sinuhe-gardiner",
-                "source-skinner-genesis",
-                "source-smith-methuselah-begetting-age",
-                "source-smiths-seven",
-                "source-speiser-genesis-anchor-bible",
-                "source-stordalen-eden-narrative",
-                "source-talmud-sanhedrin",
-                "source-talmud-shabbat",
-                "source-targum-onkelos",
-                "source-tertullian-baptism",
-                "source-thompson-gilgamesh",
-                "source-timna-tent-shrine",
-                "source-walton-lost-world-flood",
-                "source-wenham-coherence-flood",
-                "source-westermann-genesis",
-                "source-whitcomb-morris-genesis-flood",
-                "source-wikipedia-bethel",
-                "source-wikipedia-edom",
-                "source-wikipedia-harran",
-                "source-wikipedia-khirbat-en-nahas",
-                "source-wikipedia-musical-instrument",
-                "source-wikipedia-shechem",
-                "source-young-septuagint-masoretic-chronology",
-            ]);
+            expect(manifest.events).toEqual(publishedIds(tree.events));
+            expect(manifest.books).toEqual(publishedIds(tree.books));
+            expect(manifest.sources).toEqual(citedSourceIds(publishedRecords(tree)));
             expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
             expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(false);
             expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.md"))).toBe(false);
@@ -279,6 +169,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
 
     it("--include-unpublished still generates the unpublished event (the dev opt-in)", () => {
         const sandbox = makeSandbox();
+        const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
         const result = runNode("scripts/build-history-content.js", {
             args: ["--include-unpublished"],
             cwd: sandbox,
@@ -302,9 +193,10 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // Wilderness's three, Israel's Oppression and Moses' Early
         // Life's two, Passover and the Exodus's four, and Pharaoh
         // and the Ten Plagues' three (142 cited sources in all).
-        expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
-        expect(manifest.sources).toHaveLength(142);
+        expect(manifest.events).toEqual(allIds(tree.events));
+        expect(manifest.categories).toEqual(allIds(tree.categories));
+        expect(manifest.categories).toEqual(expect.arrayContaining(APPROVED_CATEGORIES));
+        expect(manifest.sources).toEqual(citedSourceIds(allRecords(tree)));
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "seth-early-generations.json"))).toBe(true);
@@ -338,6 +230,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
 
     it("a production generation overwrites a stale unpublished generated directory", () => {
         const sandbox = makeSandbox();
+        const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
         // Stale output from a dev-flag run.
         runNode("scripts/build-history-content.js", {
             args: ["--include-unpublished"],
@@ -354,7 +247,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // Only the nine published events survive the production
         // generation; the stale Creation draft is gone. The Great Flood
         // is published now, so it survives the production generation.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(publishedIds(tree.events));
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(false);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.md"))).toBe(false);
@@ -370,6 +263,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
 describe("build-history-content-dev.js — the dev-only flag reader", () => {
     it("includes unpublished content only when HISTORY_INCLUDE_UNPUBLISHED is '1'", () => {
         const sandbox = makeSandbox();
+        const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
         const result = runNode("scripts/build-history-content-dev.js", {
             env: { HISTORY_INCLUDE_UNPUBLISHED: "1" },
             cwd: sandbox,
@@ -381,17 +275,18 @@ describe("build-history-content-dev.js — the dev-only flag reader", () => {
         // His Sons events are published now, so the dev opt-in includes
         // all ten events — the nine published above plus the in-review
         // Creation.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(allIds(tree.events));
         expect(readManifest(sandbox).includeUnpublished).toBe(true);
     });
 
     it("builds published-only without the flag", () => {
         const sandbox = makeSandbox();
+        const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
         const result = runNode("scripts/build-history-content-dev.js", { cwd: sandbox });
         expect(result.status).toBe(0);
         // Published-only: the nine published events ship; the
         // in-review Creation fixture does not.
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(publishedIds(tree.events));
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     });
 });
@@ -485,31 +380,12 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
     it("returns the in-review event with its title and its unpublished-only sources", () => {
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
+        const tree = readTreeInventory(contentDir);
         // Nine shipped events are published now, and so are all eleven
         // categories, so the sandbox's only non-published records are
         // Creation (flipped to in-review by makeSandbox) and the three
         // sources cited only by Creation (Brown, Crouch, and Shabaka).
-        expect(findNonPublishedRecords({ contentDir })).toEqual([
-            { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
-            {
-                id: "source-brown-cosmic-temple",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Cosmic Temple: Cosmogony According to Genesis 1:1–2:3",
-            },
-            {
-                id: "source-crouch-image-of-god",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Made in the Image of God: The Creation of אדם, the Commissioning of the King and the Chaoskampf of YHWH",
-            },
-            {
-                id: "source-british-museum-shabaka",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
-            },
-        ]);
+        expect(findNonPublishedRecords({ contentDir })).toEqual(nonPublishedRecords(tree));
     });
 });
 
@@ -560,9 +436,10 @@ describe("checkHistoryGate — claims detector", () => {
     }
 
     function buildPublished(sandbox) {
+        const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
         const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(publishedIds(tree.events));
         expect(readManifest(sandbox).includeUnpublished).toBe(false);
     }
 
@@ -706,6 +583,7 @@ describe("historyGatePlugin — the direct vite build path", () => {
 
     it("direct vite build with a stale draft generated directory ships no drafts", () => {
         const sandbox = makeViteSandbox();
+        const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         // Run the vite binary with the sandbox as the working directory
         // (vite takes the project root from cwd); the flag is set in the
@@ -716,7 +594,7 @@ describe("historyGatePlugin — the direct vite build path", () => {
             encoding: "utf8",
         });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
+        expect(readManifest(sandbox).events).toEqual(publishedIds(tree.events));
         const text = distText(sandbox);
         expect(text).not.toContain("event-creation");
         expect(text).not.toContain("Creation");
@@ -814,11 +692,12 @@ describe("checkHistoryGate — categories", () => {
     it("fails a manifest generated with unpublished content that lists the category", () => {
         const sandbox = makeSandbox();
         addCategoryToSandbox(sandbox);
+        const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
         runNode("scripts/build-history-content.js", {
             args: ["--include-unpublished"],
             cwd: sandbox,
         });
-        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
+        expect(readManifest(sandbox).categories).toEqual(allIds(tree.categories));
         const result = runGate(sandbox);
         expect(result.status).toBe(1);
         expect(result.stderr).toMatch(/includeUnpublished is true/);
@@ -828,11 +707,12 @@ describe("checkHistoryGate — categories", () => {
     it("fails when dist/ contains a non-published category id", () => {
         const sandbox = makeSandbox();
         addCategoryToSandbox(sandbox);
+        const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
         runNode("scripts/build-history-content.js", { cwd: sandbox });
         // The fixture replaces the shipped, published Nations and Babel
         // with an in-review one; the other ten shipped categories
         // are published, so they still ship.
-        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
+        expect(readManifest(sandbox).categories).toEqual(publishedIds(tree.categories));
         writeDistFile(sandbox, "assets/app.js", 'const id = "category-nations-and-babel";');
         const result = runGate(sandbox);
         expect(result.status).toBe(1);
@@ -852,9 +732,10 @@ describe("checkHistoryGate — categories", () => {
     it("fails when a generated category JSON carries a claims register", () => {
         const sandbox = makeSandbox();
         addCategoryToSandbox(sandbox, { status: "published" });
+        const tree = readTreeInventory(path.join(sandbox, "src", "content", "history"));
         const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
+        expect(readManifest(sandbox).categories).toEqual(publishedIds(tree.categories));
         // Simulate a leak: reintroduce the claims register into the
         // generated copy, as a pre-fix generator would have written it.
         const generatedPath = path.join(sandbox, "src", "generated", "history", "categories", "nations-and-babel.json");
