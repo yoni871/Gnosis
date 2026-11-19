@@ -6,7 +6,9 @@
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { fileURLToPath } from "node:url";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
+import { bookById, readTreeInventory } from "./historyTestHelpers";
 import {
     buildBookTimeline,
     categorySlug,
@@ -28,6 +30,9 @@ import {
     readerLinkFor,
     slugifyBookName,
 } from "./historyService";
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const repoContentDir = path.resolve(here, "../content/history");
 
 describe("formatScriptureRange", () => {
     it("renders a multi-chapter range with verses", () => {
@@ -459,40 +464,27 @@ describe("category lookups in a production build (eleven categories published)",
         await expect(loadCategorySections("category-patriarchs")).resolves.toBeNull();
     });
     it("listBookEntries is the mixed event-and-category timeline", () => {
+        // Expected entries come from the source tree's book files; the
+        // service reads the generated (published-only) content, so in a
+        // production build every entry is included and the two agree.
+        const tree = readTreeInventory(repoContentDir);
+        const genesisBook = bookById(tree, "genesis");
+        const exodusBook = bookById(tree, "exodus");
         const entries = listBookEntries("genesis");
-        expect(entries).toHaveLength(14);
-        expect(entries.map((entry) => entry.id)).toEqual([
-            "event-creation",
-            "event-adam-and-eve",
-            "event-cain-and-abel",
-            "event-cains-descendants",
-            "event-seth-early-generations",
-            "event-humanitys-corruption",
-            "event-noah-ark",
-            "event-great-flood",
-            "event-noahs-sacrifice-and-covenant",
-            "event-noah-and-his-sons",
-            "category-nations-and-babel",
-            "category-abraham-and-sarah",
-            "category-isaac-jacob-and-esau",
-            "category-joseph-and-israel-in-egypt",
-        ]);
-        expect(entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category", "category", "category", "category"]);
-        expect(entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+        expect(entries).toHaveLength(genesisBook.entries.length);
+        expect(entries.map((entry) => entry.id)).toEqual(
+            genesisBook.entries.map((entry) => entry.eventId ?? entry.categoryId),
+        );
+        expect(entries.map((entry) => entry.kind)).toEqual(genesisBook.entries.map((entry) => entry.kind));
+        expect(entries.map((entry) => entry.narrativeOrder)).toEqual(genesisBook.entries.map((entry) => entry.narrativeOrder));
         expect(entries[0].bookNote).toContain("Genesis 1:1");
         const exodusEntries = listBookEntries("exodus");
-        expect(exodusEntries).toHaveLength(7);
-        expect(exodusEntries.map((entry) => entry.id)).toEqual([
-            "category-oppression-and-moses-early-life",
-            "category-pharaoh-and-the-ten-plagues",
-            "category-passover-and-the-exodus",
-            "category-israel-in-the-wilderness",
-            "category-covenant-and-gods-law",
-            "category-tabernacle-and-israels-rebellion",
-            "category-building-the-tabernacle",
-        ]);
-        expect(exodusEntries.map((entry) => entry.kind)).toEqual(["category", "category", "category", "category", "category", "category", "category"]);
-        expect(exodusEntries.map((entry) => entry.narrativeOrder)).toEqual([15, 16, 17, 18, 19, 20, 21]);
+        expect(exodusEntries).toHaveLength(exodusBook.entries.length);
+        expect(exodusEntries.map((entry) => entry.id)).toEqual(
+            exodusBook.entries.map((entry) => entry.eventId ?? entry.categoryId),
+        );
+        expect(exodusEntries.map((entry) => entry.kind)).toEqual(exodusBook.entries.map((entry) => entry.kind));
+        expect(exodusEntries.map((entry) => entry.narrativeOrder)).toEqual(exodusBook.entries.map((entry) => entry.narrativeOrder));
         expect(exodusEntries.every((entry) => entry.status === "published")).toBe(true);
         expect(listBookEntries("not-a-book")).toEqual([]);
     });
