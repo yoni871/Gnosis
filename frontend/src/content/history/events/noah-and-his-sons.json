@@ -1,0 +1,703 @@
+{
+  "category": "event",
+  "claims": [
+    {
+      "assessment": "established",
+      "claim": "Gen 9:18–19 names the three sons (Shem, Ham, Japheth) and states \"from these the whole earth was peopled\"; the verses close J's Flood narrative and introduce Gen 10.",
+      "evidence": "KJV 9:18–19 read in full. Skinner pp. 182–183 (18–19 close of J's flood narrative + intro to ch. 10). Westermann pp. 481–482, 486 (vv. 18–19 belong to conclusion of J's flood narrative; rhythmic form 2:2:3 / 3:3). Gunkel pp. 78–79 (vv. 18–19 clearly the close of J's flood narrative and introduction to the family tree in Gen 10). All read in full this session.",
+      "id": "clm-ns-001"
+    },
+    {
+      "assessment": "established",
+      "claim": "nāp̄əṣâ (9:19) is Niphal of pûṣ, \"to scatter/be scattered\"; the same verb recurs at 11:8–9 and 10:18 as a leitmotif of dispersion.",
+      "evidence": "K&D 9:18 (Niphal from pûṣ \"to scatter\", Gen 11:4). Westermann p. 486 (nāp̄əṣâ Ni. of pûṣ, \"to be shattered, to be scattered\" in KBL; in Gen 9:19 \"populate\"; found at conclusion 11:8–9 and 10:18 as leitmotif). Gunkel p. 79 (expression has its Sitz in the Tower story, cf. 11:9).",
+      "id": "clm-ns-002"
+    },
+    {
+      "assessment": "established",
+      "claim": "ʾîš hāʾădāmâ (9:20) is literally \"man of the soil/ground\"; the verse presents Noah as the first vine-grower, not merely as resuming farming.",
+      "evidence": "K&D 9:20 (ʾîš hāʾădāmâ in apposition to Noah; \"began to plant\"); Westermann p. 486 (ḥālal used adverbially \"as first\"; advance from agriculture to viticulture); Ryle 9:20 (\"was the first to do so\"); Gunkel p. 79 (narrator means Noah was the first farmer; \"plants also first... vineyards\"). Dissent recorded: Clarke reads it as resuming farming after 600 years.",
+      "id": "clm-ns-003"
+    },
+    {
+      "assessment": "established",
+      "claim": "wayyāḥel (9:20) is from ḥālal, \"to begin\"; in the primeval history it marks a first (cf. 4:26; 6:1; 10:8; 11:6).",
+      "evidence": "Westermann p. 486; K&D 9:20 (wayyāḥel and wayyiṭṭaʿ = \"began to plant\", Ges. §142, 3).",
+      "id": "clm-ns-004"
+    },
+    {
+      "assessment": "established",
+      "claim": "yayin (H3196, \"wine\", 141×) first occurs in the canon at Gen 9:21; BDB lists Gen 9:21, 24 under the intoxicating sense, alongside Gen 19:32–35.",
+      "evidence": "BDB H3196 read directly via BibleHub (BDB sections only).",
+      "id": "clm-ns-005"
+    },
+    {
+      "assessment": "established",
+      "claim": "šākar (H7937) Qal \"become drunken\" is cited for Gen 9:21 (J); the same verb describes social drinking at Gen 43:34 and figurative drunkenness in the prophets.",
+      "evidence": "BDB H7937 read directly via BibleHub.",
+      "id": "clm-ns-006"
+    },
+    {
+      "assessment": "established",
+      "claim": "kerem (H3754, \"vineyard\", 92×) is cited for Gen 9:20 (J); the governing verb is nāṭaʿ \"plant\".",
+      "evidence": "BDB H3754 read directly via BibleHub.",
+      "id": "clm-ns-007"
+    },
+    {
+      "assessment": "established",
+      "claim": "ʿerwâ (H6172): BDB lists rāʾâ ʿerwâ \"implying shameful exposure\" for Gen 9:22, 23 (J), while noting the phrase is \"chiefly euphemism for cohabitation\" with gillâ ʿerwâ (Lev 18:6+), and that rāʾâ ʿerwâ carries \"the same meaning\" in Lev 20:17 (H). The lexicon records BOTH senses and does not settle the passage.",
+      "evidence": "BDB H6172 read directly via BibleHub. The interpretation of Gen 9:22 is debated — see clm-ns-034–039.",
+      "id": "clm-ns-008"
+    },
+    {
+      "assessment": "established",
+      "claim": "gālāh (H1540): Gen 9:21 uses the Hithpa'el wayyitgall (\"was uncovered\"); the euphemistic \"uncover nakedness\" construction is the Pi'el gillâ ʿerwâ (Lev 18:6–19; 20:11–21). Gen 9:21 uses a different stem from the Levitical euphemism.",
+      "evidence": "BDB H1540 read directly via BibleHub.",
+      "id": "clm-ns-009"
+    },
+    {
+      "assessment": "established",
+      "claim": "ʾārar (H779): Qal passive participle ʾārûr \"cursed\" is listed for Gen 9:25 among the exclamatory uses (with Gen 3:14, 17; 4:11; 27:29; 49:7; Num 22:12; 24:9; Deut 27:15–26).",
+      "evidence": "BDB H779 read directly via BibleHub.",
+      "id": "clm-ns-010"
+    },
+    {
+      "assessment": "established",
+      "claim": "bārak (H1288): Qal passive participle bārûk \"blessed be YHWH\" is cited for Gen 9:26 (J); the form is doxological (blessing YHWH), not a direct blessing of Shem.",
+      "evidence": "BDB H1288 read directly via BibleHub. Skinner p. 186 (\"to bless Yahweh is to praise Him; only obliquely a blessing on Shem\"); K&D 9:26; Ryle 9:26. Dissent: JFB renders it as a direct blessing of Shem.",
+      "id": "clm-ns-011"
+    },
+    {
+      "assessment": "established",
+      "claim": "ʿeḇeḏ ʿăḇāḏîm (H5650) \"servant of servants\" is glossed by BDB as \"humblest servant\" (superlative); the \"shall be his servant\" construction is cited for Gen 9:26, 27.",
+      "evidence": "BDB H5650 read directly via BibleHub. Skinner p. 186 (\"the meanest slave\", G-K §133 2); K&D (\"the lowest of slaves\", Ewald 313); Gunkel p. 80 (\"niedrigster Knecht\").",
+      "id": "clm-ns-012"
+    },
+    {
+      "assessment": "established",
+      "claim": "śimlâ (H8071, \"wrapper, mantle\") is cited for Gen 9:23 (J) \"as covering in sleep\" (cf. Ex 22:26); the large upper garment also used as a night covering.",
+      "evidence": "BDB H8071 read directly via BibleHub. Ryle 9:23 (simlah, LXX himation, Lat. pallium; Ex 22:26; Deut 24:13); Westermann p. 489.",
+      "id": "clm-ns-013"
+    },
+    {
+      "assessment": "established",
+      "claim": "qāṭān (H6996): sense 1a \"younger, of two children (often opposed to gādōl)\" is cited for Gen 9:24 (J); the form is haqqāṭān (with article). BDB also lists \"youngest son (of several)\" (1 Sam 16:11; 17:14). The lexicon supports the phrase in isolation — which is exactly the puzzle.",
+      "evidence": "BDB H6996 read directly via BibleHub. The referent is debated — see clm-ns-040–043.",
+      "id": "clm-ns-014"
+    },
+    {
+      "assessment": "established",
+      "claim": "pātāh (H6601): Hiph'il \"may God make wide for Japhet (give him an extensive inheritance)\" is cited for Gen 9:27 — the ONLY occurrence of this Hiph'il sense; the wordplay yapht le-yephet rests on the \"be spacious\" root.",
+      "evidence": "BDB H6601 read directly via BibleHub. K&D 9:27 (yapht from pātāh \"to be wide\", Prov 20:19); Skinner p. 186; Gunkel p. 81 (\"geistreiches Wortspiel\").",
+      "id": "clm-ns-015"
+    },
+    {
+      "assessment": "established",
+      "claim": "šākan (H7931): sense 2c records \"bĕʾohŏlê šēm Gen 9:27 (J, see BrMP 82; al. Japheth subject)\" — BDB itself records the ambiguity of the subject of \"dwell in the tents of Shem\".",
+      "evidence": "BDB H7931 read directly via BibleHub. The subject is debated — see clm-ns-049.",
+      "id": "clm-ns-016"
+    },
+    {
+      "assessment": "established",
+      "claim": "ḥām (H2526) is glossed \"Ham, 2nd son of Noah\" (Gen 5:32; 6:10; 7:13; 9:18); BDB refers etymology to Dillmann's Genesis and does NOT derive the name from \"hot/dark\" as established.",
+      "evidence": "BDB H2526 read directly via BibleHub. (The \"hot (from the tropical habitat)\" gloss is Strong's, not BDB.)",
+      "id": "clm-ns-017"
+    },
+    {
+      "assessment": "established",
+      "claim": "kĕnaʿan (H3667): proper name, son of Ham (Gen 9:18, 22, 25, 27, all J; Gen 10:15 as ancestor of Canaanites and Phoenicians); \"Etymology dubious\"; sense 2: the land west of Jordan; noun II \"merchant\".",
+      "evidence": "BDB H3667 read directly via BibleHub.",
+      "id": "clm-ns-018"
+    },
+    {
+      "assessment": "established",
+      "claim": "yep̄et (H3315): \"third son of Noah\" (Gen 9:27 J; 7:13; 10:2 P; 9:23; 10:21 J \"brother of Japheth the elder\"); BDB's order is Shem first, Ham second, Japheth third.",
+      "evidence": "BDB H3315 read directly via BibleHub.",
+      "id": "clm-ns-019"
+    },
+    {
+      "assessment": "established",
+      "claim": "šēm (H8034): the common noun \"name\" (root unknown); sense 2b \"reputation\", 2c \"especially as giving a man kind of posthumous life, especially in his sons\". BDB has no separate proper-name entry; the personal name Shem is the same word.",
+      "evidence": "BDB H8034 read directly via BibleHub. (Wordplay on Shem's name in 9:26 is a possible reading, not a BDB datum.)",
+      "id": "clm-ns-020"
+    },
+    {
+      "assessment": "probable",
+      "claim": "vv. 20–27 \"cannot, without violating all probability, be harmonised with the Flood-narrative at all\" (Skinner): the Flood's sons are married men who took wives into the ark; here the sons are minors living in their father's tent.",
+      "evidence": "Skinner pp. 182–183, read in full. Gunkel pp. 78–79 (sons here still so young they live with their father in his tent; Noah \"a quite different figure from the righteous and pious Noah of the Flood story\"). Ryle 9:20 (\"seems to be taken from a distinct tradition... in which Noah appears as the founder of agriculture and of vine cultivation\"). Westermann pp. 482–484 (9:20–27 \"originally nothing to do with vv. 18–19\"; \"a unity within J\").",
+      "id": "clm-ns-021"
+    },
+    {
+      "assessment": "probable",
+      "claim": "vv. 18b and 22 (\"Ham, the father of Canaan\") have the appearance of glosses added by a redactor to cover the transition / harmonise the traditions.",
+      "evidence": "Skinner p. 183 (18b and 22 are glosses; RJ combined two Yahwistic documents). Gunkel p. 79 (RJ inserted \"Ham\" in 18 and 22; Wellhausen Composition³ 13). Ryle 9:18 and 9:22 (\"in all probability been inserted by the compiler\"). Westermann p. 486 (v. 18 addition \"to balance the name Canaan in v. 25\"; v. 22 addition \"by way of explanation\"). Westermann himself rejects eliminating the words: \"We must leave the contradiction as it is.\"",
+      "id": "clm-ns-022"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The older critical reconstruction holds the original tale named Shem, Japheth and Canaan as the three brothers, with Ham substituted by the redactor.",
+      "evidence": "Gunkel p. 79 (original three brothers Sem Japheth Kanaan; RJ substitution). Ryle 9:22/9:25 (\"difficult to resist the conclusion that Canaan here stands on a level with Shem and Japheth\"). Westermann pp. 482–484 (literary-critical school: Wellhausen, Budde, Holzinger, Procksch, Gunkel, von Rad, Rost — but Westermann rejects the elimination).",
+      "id": "clm-ns-023"
+    },
+    {
+      "assessment": "established",
+      "claim": "vv. 28–29 (350 years after the Flood; died at 950) belong to P and conclude both P's flood narrative and the Gen 5 genealogy; for P the Flood is \"the great line of demarcation of the eras\".",
+      "evidence": "Westermann pp. 473–474 (B. Jacob; Cassuto: \"He dies like all other humans\"). Ryle 9:28 (conclusion of P's account of the Deluge; belong to the Sethite genealogy in ch. 5). K&D 9:28–29.",
+      "id": "clm-ns-024"
+    },
+    {
+      "assessment": "established",
+      "claim": "Noah's 950-year lifespan makes him the oldest patriarch on record except Methuselah and Jared (per Clarke's reckoning); the 350 post-Flood years are stated without further narrative.",
+      "evidence": "KJV 9:28–29 read in full. Clarke 9:29 (\"The oldest patriarch on record, except Methuselah and Jared... according to the common reckoning, was A. M. 2006, but according to Dr. Hales, 3505\").",
+      "id": "clm-ns-025"
+    },
+    {
+      "assessment": "established",
+      "claim": "The earliest chemically confirmed wine in the Near East comes from Hajji Firuz Tepe, Iran, ca. 5400–5000 BCE (resinated wine in ~9-litre jars in a kitchen); Godin Tepe, ca. 3500–3000 BCE, provided the earliest chemical evidence at the time of its discovery.",
+      "evidence": "McGovern, \"Iranian Wine at the 'Dawn of Viniculture'\", pp. 13–16, read in full: Hajji Firuz jars (McGovern et al. 1996); Godin Tepe jar (Michel et al. 1993); tartaric acid as the marker compound; tree resin as antioxidant/preservative.",
+      "id": "clm-ns-026"
+    },
+    {
+      "assessment": "established",
+      "claim": "By the mid-third millennium BCE, wine was a prestige drink in Mesopotamia: the beverage in the goblets of the Royal Standard of Ur (ca. 2600–2500 BCE) was wine, while cylinder seals of the same period depict barley-beer drinking through straws.",
+      "evidence": "McGovern pp. 14–15, read in full (Badler et al. 1996).",
+      "id": "clm-ns-027"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The vine came under cultivation by the mid-fifth millennium BCE, with domesticated forms appearing somewhat later; the oldest chemically confirmed grape winemaking (Georgia, ca. 6000 BCE) predates the earlier Iranian finds.",
+      "evidence": "\"Sweeter than wine?\", Antiquity 82 (2008): 937–946 — not read directly (via ResearchGate abstract). Georgia 2017 PNAS study — not read directly (via Grape Collective summary of McGovern's work). Both second-hand; the Iranian dates in clm-ns-026 are verified, this claim's later dates are not. (Reviewer correction 2026-11-17: \"postdates\" → \"predates\" — Georgia ca. 6000 BCE is older than Hajji Firuz ca. 5400–5000 BCE on the dossier's own dates.)",
+      "id": "clm-ns-028"
+    },
+    {
+      "assessment": "probable",
+      "claim": "In the ancient Near East, wine was associated with celebration, festivity and the relief of toil; Gen 5:29 already connects Noah's name with relief from the toil of the cursed ground, and the vineyard is presented as an advance on agriculture.",
+      "evidence": "Westermann pp. 486–487 (5:29 \"this one will create relief for us from our work and from the toil of our hands from the ground which God has cursed\"; viticulture \"an advance on agriculture\"; Mic 4:4). Skinner p. 183 (wine as relief from the curse, Lamech 5:29; moderate use not condemned in the OT).",
+      "id": "clm-ns-029"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The passage presents Noah as the discoverer of vine culture and its first victim of immoderate indulgence; the narrative does not blame Noah for the drunkenness itself (ignorance of wine's potency is the traditional excuse).",
+      "evidence": "Skinner pp. 182–183 (discoverer of vine culture; first victim of immoderate indulgence). Clarke 9:21 (first time wine cultivated; Noah \"might have drunk it at this time without the least blame\"). Chrysostom Hom. 29 §6 (first discovery; ignorance and inexperience). K&D 9:20 (\"In ignorance of the fiery nature of wine\"). Dissent: Gunkel holds no excuse should be sought — see clm-ns-031.",
+      "id": "clm-ns-030"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Whether the narrative blames Noah for drunkenness is debated: the older commentaries excuse him by ignorance; Gunkel holds no excuse should be sought; Westermann holds drunkenness was not regarded as reprehensible in antiquity.",
+      "evidence": "Clarke 9:21; Chrysostom Hom. 29 §§6, 17; K&D 9:20 (excuse by ignorance) vs Gunkel p. 79 vs Westermann p. 487 (\"Drunkenness as such was not regarded as reprehensible in antiquity... When F. Delitzsch comments: 'Scripture narrates the sins of even the greatest saints,' he misunderstands the meaning of the text\"). All read in full.",
+      "id": "clm-ns-031"
+    },
+    {
+      "assessment": "established",
+      "claim": "The benefits of civilisation in this passage are traced to a person, not to the gods (Osiris, Dionysus); the suggestion that Noah was originally a Canaanite wine god is not correct.",
+      "evidence": "Westermann p. 487, read in full (Westermann's position, stated as such).",
+      "id": "clm-ns-032"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The Ugaritic Aqhat myth describes the dutiful son as one who \"takes him by the hand when he is drunk, carries him when he is sated with wine\" (ANET p. 150) — a parallel to the filial duty in Gen 9:22–23.",
+      "evidence": "Westermann pp. 487–488, citing ANET 150, ll. 32–33 — ANET not read directly; second-hand via Westermann.",
+      "id": "clm-ns-033"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The voyeurism/shame reading: Ham's offence was seeing his father's nakedness and telling his brothers — a breach of filial respect toward an incapacitated father, not a sexual act.",
+      "evidence": "Westermann pp. 487–489 (\"the outrage consists in not covering his father... the sentence 'when Ham saw his father's nakedness' can only be meant literally\"). Skinner p. 184 (\"no reason to think... that Canaan was guilty of any worse sin than the Schadenfreude implied in the words\"). Bergsma & Hahn pp. 26–27 (strength: conservatism; weakness: \"a nonexplanation\"; requires an unattested taboo — Wold, Out of Order, 67). All read in full.",
+      "id": "clm-ns-034"
+    },
+    {
+      "assessment": "traditional",
+      "claim": "The castration reading: b. Sanhedrin 70a records Rab's view that Ham castrated Noah (reasoning: Noah cursed him by his fourth son because Ham injured him with respect to a fourth son); the redactor harmonises Rab and Samuel (sexual abuse) as \"both indignities were perpetrated\".",
+      "evidence": "b. Sanh. 70a read directly (Soncino translation). Rashi 9:22 (\"Some say that he castrated him and some say that he sodomized him (Sanhedrin 70a)\"). Bergsma & Hahn pp. 27–28 (Baumgarten: rabbis developed the theory as an explanation, not transmitting an ancient tradition; \"any lexical hint in the text... that would suggest castration\" is lacking).",
+      "id": "clm-ns-035"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The paternal-incest reading: \"to see the nakedness of the father\" is an idiom for sexual intercourse (Lev 20:17 equates \"see nakedness\" and \"uncover nakedness\"; Lev 18:6); Ham's act was sexual violation of Noah himself. Proponents include Gagnon, Phillips, Steinmetz, Nissinen, Wold, Kunin and Robertson; earliest reference Theophilus of Antioch, Ad Autolycum 3.19.",
+      "evidence": "Bergsma & Hahn pp. 28–33, read in full (Gunkel via Westermann p. 488: v. 24 \"presumes that Canaan had done something to him\"; Gagnon pp. 66–67 on usurpation; Gagnon's answer to the v. 23 objection). The underlying works (Gagnon, Phillips, Steinmetz, etc.) were not read directly — characterised via Bergsma & Hahn (second-hand).",
+      "id": "clm-ns-036"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The maternal-incest reading: \"the nakedness of your father\" is defined in Lev 18:7–8 as \"the nakedness of your mother\"; outside Gen 9 the phrase always refers to the father's wife (Lev 18:14, 16; 20:11, 20, 21; Deut 23:1; 27:20; Ezek 22:10); the homosexual-relations verses (Lev 18:22; 20:13) use šāḵab, never rāʾâ ʿerwâ / gillâ ʿerwâ. Ham's act was intercourse with Noah's wife (his mother); Canaan is the fruit of that union — which explains why Canaan, not Ham, is cursed, and why Ham is repeatedly called \"the father of Canaan\". First proposed in 1971 and argued at length by Bergsma & Hahn (JBL 124/1, 2005).",
+      "evidence": "Bergsma & Hahn pp. 34–40, read in full. The 1971 proposal was not read directly (characterised via Bergsma & Hahn, including the direct quotation at p. 37 n. 50) — second-hand as to the 1971 article; the argument as presented here rests on Bergsma & Hahn. The Leviticus/Deuteronomy texts are cited as Bergsma & Hahn cite them; the dossier's own BDB work (clm-ns-008, 009) corroborates the lexical distinction.",
+      "id": "clm-ns-037"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The maternal-incest reading faces two objections, which its proponents answer: (a) v. 23's literal covering — the brothers' action \"plays on the broader meaning of the phrase\" (Gagnon); (b) the curse pronounced immediately, before Canaan could be born — the narrative is compressed/elided (cf. Gen 5:32).",
+      "evidence": "Bergsma & Hahn pp. 33, 38–39, read in full.",
+      "id": "clm-ns-038"
+    },
+    {
+      "assessment": "established",
+      "claim": "No position on what Ham did can be presented as the text's plain meaning: the narrative is tersely compressed, and the four readings (voyeurism, castration, paternal incest, maternal incest) remain live in scholarship.",
+      "evidence": "Bergsma & Hahn p. 25 (\"an exegetical puzzle since antiquity\"); Westermann p. 488 vs Bergsma & Hahn; Skinner p. 184. This is a claim about the state of scholarship, not about the event.",
+      "id": "clm-ns-039"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Hebrew haqqāṭān (9:24) can mean \"the younger\" (comparative) or \"the youngest\" (superlative); grammar and usage do not decide it.",
+      "evidence": "BDB H6996 read directly. K&D 9:24 (\"Neither grammar nor the usage of the language will enable us to decide\"; 1 Sam 17:14; Gen 1:16; 1 Sam 16:11). Westermann p. 482 (Ges-K §133g superlative — renders \"youngest\"). Ryle 9:24 (comparative rendering \"not permissible... means 'the youngest'\").",
+      "id": "clm-ns-040"
+    },
+    {
+      "assessment": "debated",
+      "claim": "If haqqāṭān is superlative (\"youngest\"), Ham cannot be the referent, since Ham is second of three (Gen 5:32; 6:10; 7:13; 9:18) — hence the scholarly reconstructions (Canaan as third/youngest son in the original tale; Canaan as Ham's youngest son per Origen; Ham's \"youngest\" as moral immaturity).",
+      "evidence": "Skinner p. 185 (\"the conclusion is not to be evaded that the writer follows a peculiar genealogical scheme in which Canaan is the youngest son of Noah\"; rejects Rashi's \"contemptible son\" and Ibn Ezra's \"Ham's youngest\"). Ryle 9:24 (Origen's theory — \"an ingenious gloss; it is not in the text\"). Gunkel p. 79. Philo De Sobrietate §6; Chrysostom Hom. 29 §19.",
+      "id": "clm-ns-041"
+    },
+    {
+      "assessment": "debated",
+      "claim": "K&D's comparative reading (\"the younger son\" = Ham) requires reading ha-gādôl in Gen 10:21 as comparative too (\"Shem, Japheth's elder brother\"), which creates the discrepancy that Ham is then older than Japheth while 9:24 makes him the younger — K&D resolve it by taking both as comparative and holding the name order indicates relative ages.",
+      "evidence": "K&D 9:24 read in full (K&D's position, including the tension they themselves flag).",
+      "id": "clm-ns-042"
+    },
+    {
+      "assessment": "established",
+      "claim": "Jubilees 7:10, 13 calls Canaan Noah's \"younger son\" and treats Canaan as the offender, while Josephus (Ant. 1.6.3) calls the actor Noah's \"youngest son\" — both ancient witnesses to the Canaan-as-youngest reading.",
+      "evidence": "Jubilees ch. 7 read in full (Charles). Josephus Ant. 1.6.3 read directly (Whiston, Perseus). (About the reception, not about the Hebrew.)",
+      "id": "clm-ns-043"
+    },
+    {
+      "assessment": "established",
+      "claim": "The text curses Canaan, not Ham: \"Cursed be Canaan; a servant of servants shall he be unto his brethren\" (9:25), repeated as a refrain in 9:26–27 (\"Canaan shall be his servant\").",
+      "evidence": "KJV 9:25–27 read in full. Bible Odyssey (SBL, read in full): \"Noah strangely does not curse Ham, but his son, Canaan.\"",
+      "id": "clm-ns-044"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Why Canaan and not Ham is explained differently by different readers: (a) Ham sinned and is punished in his son (K&D); (b) Noah would not curse one God had already blessed, Gen 9:1 (Chrysostom Hom. 29 §20); (c) Josephus: Ham was not cursed \"by reason of his nearness in blood, but cursed his prosperity\", which fell on Canaan's children; (d) the rabbinic fourth-son logic (b. Sanh. 70a; Rashi 9:24–25); (e) the maternal-incest reading: Canaan is the fruit of the taboo union (Bergsma & Hahn).",
+      "evidence": "(a) K&D 9:25; (b) Chrysostom Hom. 29 §20; (c) Josephus Ant. 1.6.3; (d) b. Sanh. 70a + Rashi 9:24–25 (Gen. Rab. 36:7); (e) Bergsma & Hahn pp. 35–36. All read in full this session.",
+      "id": "clm-ns-045"
+    },
+    {
+      "assessment": "established",
+      "claim": "\"A servant of servants\" is a Hebrew superlative meaning \"the meanest/lowest slave\"; \"to his brethren\" means to Shem and Japheth, not to other Hamites.",
+      "evidence": "BDB H5650 read directly. Skinner p. 186 (G-K §133 2; \"to his brethren\" = Shem and Japheth); K&D (\"the lowest of slaves\", Ewald 313); Gunkel p. 80.",
+      "id": "clm-ns-046"
+    },
+    {
+      "assessment": "established",
+      "claim": "The blessing of Shem (9:26) is doxological in form — \"Blessed be YHWH, the God of Shem\" — praising God rather than directly blessing Shem; the blessing on Shem is only oblique.",
+      "evidence": "BDB H1288 read directly. Skinner p. 186; K&D 9:26 (\"Instead of wishing good to Shem, Noah praises the God of Shem\"); Ryle 9:26; Gunkel pp. 80–81. Dissent: JFB renders it as a direct blessing of Shem.",
+      "id": "clm-ns-047"
+    },
+    {
+      "assessment": "established",
+      "claim": "The blessing of Japheth (9:27) turns on the wordplay yapht le-yephet (\"May God enlarge Japheth\"); the Hiph'il of pātāh (\"be spacious\") occurs only here.",
+      "evidence": "BDB H6601 read directly. K&D 9:27; Skinner p. 186; Gunkel p. 81.",
+      "id": "clm-ns-048"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The subject of \"let him dwell in the tents of Shem\" (9:27) is disputed: Japheth (most moderns) or God (Jubilees 7:12 \"God shall dwell in the dwelling of Shem\"; Targum Onkelos \"His Shechina will dwell in the tents of Shem\"; Rashi \"may He make His Divine Presence dwell in Israel\"; Philo holds both open).",
+      "evidence": "BDB H7931 (records the ambiguity, citing BrMP 82). K&D 9:27 (three arguments for Japheth). Ryle 9:27 (\"The 'he' in this clause is not God, but Japheth\"). Gunkel p. 81 (must mean dispossession). Skinner p. 186 (subject most naturally Japheth). Westermann p. 493. Jubilees 7:12, Onkelos 9:27, Rashi 9:27, Philo De Sobrietate §§62–68 — all read in full.",
+      "id": "clm-ns-049"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The three pronouncements are not all of the same age: Westermann argues only v. 25 belongs originally to the narrative; vv. 26–27 were added in accord with the sequence of three brothers (v. 26 a secondary doxology + adapted curse; v. 27 an originally independent blessing).",
+      "evidence": "Westermann pp. 490–493, read in full (Westermann's literary-critical judgment). Gunkel p. 79 disagrees (sayings and tale belong together \"as guilt and punishment inseparably together\", against Eerdmans 77f.).",
+      "id": "clm-ns-050"
+    },
+    {
+      "assessment": "unknown",
+      "claim": "The historical situation the oracles presuppose cannot be fixed: proposals range from the mid-second millennium (Gunkel's Canaan-wave theory, c. 2250 BCE; Skinner's 14th-century Habiru) through the Davidic-Solomonic era (most scholars) to after Alexander (Bertholet). Gunkel's verdict: the attempt to tie the sayings to historical conditions in Israel \"must be considered a failure\".",
+      "evidence": "Westermann excursus pp. 490–491 (survey; \"There is no methodological basis for further conjectures\"). Gunkel pp. 81–83 (survey + verdict). Ryle 9:25–27 special note (five options; \"leave our judgement in suspense\").",
+      "id": "clm-ns-051"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The oracles function as an etiology: the passage explains present peoples' relations (Canaanite subjugation) by a primeval word.",
+      "evidence": "Gunkel p. 80 (\"Die Sage erklärt gegenwärtige Völkerverhältnisse... indem man sie von solchen, in der Urzeit einmal gesprochenen Worten ableitet\"). Westermann p. 490 (etiological reading; von Rad). Bible Odyssey (\"Scholars have long recognized this passage as an etiology\"). Skinner p. 186.",
+      "id": "clm-ns-052"
+    },
+    {
+      "assessment": "traditional",
+      "claim": "The curse's fulfilment is traced by the older commentaries to the Israelite subjugation of the Canaanites (Josh 9; 1 Kgs 9:20–21) and, by extension, to Phoenicians/Carthaginians/Egyptians under Persians, Macedonians and Romans (K&D) — the extension to Egyptians is factually wrong on Gen 10's own terms (Egypt/Mizraim is Ham's son, not Canaan's).",
+      "evidence": "K&D 9:25 read in full. Clarke 9:22 (curse fell on the Canaanites, citing Lev 18; 20; Deut 9:4; 12:31). Bible Odyssey (Josh 9:21, 23; 1 Kgs 9:20–21 — the article prints 9:16, a slip corrected here to 9:20–21). The factual correction (Gen 10:6) is from the biblical text as read. \"Traditional\" because the fulfilment reading is a received interpretation; the K&D extension is a 19th-century position, flagged as inaccurate.",
+      "id": "clm-ns-053"
+    },
+    {
+      "assessment": "established",
+      "claim": "The biblical text contains no reference to skin colour and does not curse Ham: the curse falls on Canaan (9:25), and Ham's name is not derived from \"hot\" or \"dark\" in BDB.",
+      "evidence": "KJV 9:25 read in full. BDB H2526 read directly. Bible Odyssey (read in full): \"Genesis does not support this interpretation.\"",
+      "id": "clm-ns-054"
+    },
+    {
+      "assessment": "traditional",
+      "claim": "The earliest rabbinic link between Ham and dark skin is b. Sanhedrin 108b: Ham violated the ark-intercourse prohibition and \"was afflicted in that his skin turned black\" (alongside the dog bound and the raven spitting); Gen. Rab. 36: \"Ham came forth dusky\".",
+      "evidence": "b. Sanh. 108b read directly (Sefaria API). Gen. Rab. 36 via Haynes ch. 2, pp. 24–25 — second-hand (Gen. Rab. not read directly). \"Traditional\" because this is a rabbinic tradition, not the biblical text.",
+      "id": "clm-ns-055"
+    },
+    {
+      "assessment": "traditional",
+      "claim": "The patristic period already links the curse to dark-skinned peoples: Origen (ca. 185–254) wrote that Ham's \"discolored posterity imitate the ignobility of the race\"; Ambrose held Noah's malediction applied to the darker descendants of Ham; Ephrem paraphrased \"accursed be Canaan, and may God make his face black\".",
+      "evidence": "Haynes ch. 1, p. 7, read in full — Origen/Ambrose/Ephrem not read directly; second-hand via Haynes. \"Traditional\" because these are patristic readings, not the text.",
+      "id": "clm-ns-056"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The explicit conjunction of blackness and slavery with the curse was first made in seventh-century Arabia and reached the Christian West in the fifteenth century; Muslim exegetes of the ninth and tenth centuries first consciously combined race and slavery in readings of Gen 9 (Haynes). The two datings differ and are both reported as their authors state them.",
+      "evidence": "Haynes p. 7, read in full (Muslim exegetes 9th–10th c.). The seventh-century Arabia dating is second-hand via published summaries of a work not read directly in this session. \"Probable\" because the thesis rests on that work as reported by two independent summaries that agree in substance.",
+      "id": "clm-ns-057"
+    },
+    {
+      "assessment": "established",
+      "claim": "In western Europe, the curse was invoked to explain slavery, black skin, and the exile of Hamites, but these were not integrated into an explicit justification for racial slavery until the fifteenth century, when dark-skinned peoples were enslaved by the Spanish and Portuguese and the European slave stereotype stabilised.",
+      "evidence": "Haynes ch. 1, p. 7, read in full.",
+      "id": "clm-ns-058"
+    },
+    {
+      "assessment": "established",
+      "claim": "In America, the racialised curse was in use by the 1670s as a sanction for black enslavement; in 1700 Samuel Sewall and John Saffin debated it (Saffin's tract is \"the earliest printed defense of slavery in Colonial America\", though Saffin himself was reluctant to identify Africans with Ham/Canaan); by the 1830s Noah's curse was a stock weapon of proslavery theory; Theodore Weld called it \"the vade mecum of slaveholders\".",
+      "evidence": "Haynes ch. 1, pp. 7–8, 11–12, read in full.",
+      "id": "clm-ns-059"
+    },
+    {
+      "assessment": "established",
+      "claim": "The proslavery reading rests on two substitutions — Ham for Canaan, then all black persons for Ham — and ignores that Noah (not God) pronounced the curse, that Gen 10 makes Ham's descendants primarily Semitic (Cush's Nimrod settled Mesopotamia, not Africa; Canaanites were Semites by language, culture and religion), and that there are no Canaanites left to whom the curse could apply.",
+      "evidence": "Bible Odyssey, read in full (substitution; Noah not God; Gen 10; no Canaanites left). Haynes pp. 11–12 (Genovese's challenge: \"neither the Bible nor science demonstrated that the blacks descended from Ham\").",
+      "id": "clm-ns-060"
+    },
+    {
+      "assessment": "established",
+      "claim": "The 19th-century commentaries Keil & Delitzsch and Jamieson-Fausset-Brown extended the curse's fulfilment in Gen 9:25 to the enslavement of African peoples, and Hales (quoted by Clarke) derived the name Ham from \"burnt or black\". These are period positions, not the text's claim.",
+      "evidence": "K&D 9:25, JFB 9:25, Clarke 9:29 (Hales quotation) — all read in full this session. RESTATEMENT: the dossier §8.6 records the verbatim 19th-century wording so it can be recognised; the public event restates it without reproducing that racial language, per the EM direction (see review.notes). \"Established\" as a record of what those works say; the content is flagged as a period position.",
+      "id": "clm-ns-061"
+    },
+    {
+      "assessment": "established",
+      "claim": "Chrysostom does NOT connect Ham's ark incontinence to Canaan's servitude: Homily 28 §11 gives the ark incontinence as the reason Scripture names Canaan early, while the curse itself is \"for the disrespect towards the father of the family\" (Homily 29 §20 gives the Gen 9:1-blessing reason).",
+      "evidence": "Chrysostom Hom. 28 §11 and Hom. 29 §20 read directly (Hill, FOTC 82, archive.org djvu text). The claim cites Chrysostom directly; the substance of the correction is verified from Chrysostom himself.",
+      "id": "clm-ns-062"
+    },
+    {
+      "assessment": "established",
+      "claim": "Noah lived 350 years after the Flood and died at 950 (9:28–29); the verses close Noah's history in the customary form of Gen 5.",
+      "evidence": "KJV 9:28–29 read in full. K&D 9:28–29; Westermann pp. 473–474; Ryle 9:28.",
+      "id": "clm-ns-063"
+    },
+    {
+      "assessment": "established",
+      "claim": "The 350 years and the 950-year total are stated without narrative elaboration; no event of Noah's post-Flood life beyond vv. 20–27 is recorded.",
+      "evidence": "KJV 9:18–29 read in full (textual observation).",
+      "id": "clm-ns-064"
+    },
+    {
+      "assessment": "established",
+      "claim": "Jubilees 7 expands the vineyard episode: vines planted on Mount Lubar, fruit in the fourth year (1320 A.M.), wine kept until the fifth year, a feast with burnt sacrifice on the first day of the first month; Noah drank with his children, slept uncovered; Ham told his brothers; Shem and Japheth covered him; Noah cursed Canaan and blessed Shem and Japheth, reading \"God shall dwell in the dwelling of Shem\".",
+      "evidence": "Jubilees ch. 7 read in full (Charles translation, godrules.net). (About Jubilees, not about the biblical text.)",
+      "id": "clm-ns-065"
+    },
+    {
+      "assessment": "established",
+      "claim": "Philo (De Sobrietate) reads \"younger son\" as moral immaturity (\"inclined to innovation\"), holds that Ham is punished in Canaan because punishment attaches to the act not the disposition (\"Ham being moved to commit sin does himself become Canaan\"), and holds BOTH readings of \"dwell in the tents of Shem\" open (God's abode in a purified soul; or Japheth dwelling with Shem).",
+      "evidence": "Philo, De Sobrietate §§6, 31–33, 62–68, read in full (Yonge translation). (About Philo.)",
+      "id": "clm-ns-066"
+    },
+    {
+      "assessment": "established",
+      "claim": "Josephus (Ant. 1.6.3) makes the actor Noah's \"youngest son\", who \"came laughing, and showed him to his brethren\"; Noah \"did not curse [Ham], by reason of his nearness in blood, but cursed his prosperity\", which God inflicted on Canaan's children.",
+      "evidence": "Josephus, Ant. 1.6.3, read directly (Whiston, Perseus). (About Josephus.)",
+      "id": "clm-ns-067"
+    },
+    {
+      "assessment": "established",
+      "claim": "Augustine (City of God 16.1–3) reads the whole episode typologically: Noah's drunkenness and nakedness signify Christ's passion; Ham (middle son, \"hot\") signifies heretics; Shem and Japheth signify Jews and Gentiles covering Christ's passion with the sacrament; Japheth dwelling in Shem's houses = the nations dwelling in the churches.",
+      "evidence": "Augustine, City of God 16.1–3, read directly (Dods, NPNF First Series vol. 2, newadvent). (About Augustine.)",
+      "id": "clm-ns-068"
+    },
+    {
+      "assessment": "established",
+      "claim": "Chrysostom (Hom. 29) excuses Noah's drunkenness by ignorance and inexperience (\"the first discovery of wine drinking\"), treats vinedressing and wine as good in themselves and only intemperance as evil, and explains the curse of Canaan (not Ham) by Noah's unwillingness to curse one God had blessed (Gen 9:1); he also holds that Ham's punishment fell on him through his children.",
+      "evidence": "Chrysostom, Homilies on Genesis 29 §§6, 10, 17, 20–21, read directly (Hill, FOTC 82, archive.org djvu text). (About Chrysostom.)",
+      "id": "clm-ns-069"
+    },
+    {
+      "assessment": "established",
+      "claim": "Rashi records both the castration and sodomy traditions (b. Sanh. 70a), the view that Canaan saw and told his father (Gen. Rab. 36:7), and the fourth-son logic (Ham prevented Noah from begetting a fourth son to serve him); on 9:27 he takes the God-as-subject reading (Shechinah dwelling in Israel).",
+      "evidence": "Rashi on Gen 9:20–27, read directly (Sefaria API, Rosenbaum & Silbermann).",
+      "id": "clm-ns-070"
+    },
+    {
+      "assessment": "established",
+      "claim": "Targum Onkelos renders 9:22 with Ham telling his brothers \"in the marketplace\" (publicly) and 9:27 with the God-as-subject reading (\"His Shechina will dwell in the tents of Shem\").",
+      "evidence": "Targum Onkelos Gen 9:18–29, read directly (Sefaria API, Metsudah 2009 / Etheridge 1862).",
+      "id": "clm-ns-071"
+    },
+    {
+      "assessment": "established",
+      "claim": "The New Testament contains no allusion to Gen 9:20–27 (Haynes); Luke 3:36 names Noah (and Shem) in Jesus' genealogy, but does not mention Ham, Japheth or the incident.",
+      "evidence": "Haynes ch. 2, p. 27, read in full (\"Although the New Testament contains no allusions to Genesis 9:20–27\"). Luke 3 verified live against the Preview API (24 chapters; ch. 3 has 38 verses; v. 36 within range).",
+      "id": "clm-ns-072"
+    },
+    {
+      "assessment": "probable",
+      "claim": "Westermann's reading of the passage's purpose: the episode belongs with the crime-and-punishment narratives of Gen 2–11 and speaks of culpability in the three basic communities of human relationships — man and woman (Gen 2–3), brother and brother (Gen 4), parents and children (Gen 9:20–27); its thrust is respect for elders in their weakness as the precondition of tradition and progress.",
+      "evidence": "Westermann pp. 493–494, read in full (Westermann's interpretation, stated as such).",
+      "id": "clm-ns-073"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The passage announces for the first time that a brother is to be a slave of his brothers — slavery enters the family structure as a foreign social structure; Chrysostom likewise traces the origin of servitude to sin (\"When sin entered the scene... it impaired freedom... and introduced servitude\").",
+      "evidence": "Westermann p. 494, read in full. Chrysostom Hom. 29 §22, read directly.",
+      "id": "clm-ns-074"
+    },
+    {
+      "assessment": "unknown",
+      "claim": "The event has no independently established historical date (Standards §3.1); it is placed by narrative order (narrativeOrder 10) after the Flood and before the Table of Nations, not by invented chronology.",
+      "evidence": "Standards v1.1 §3.1. The passage's own structure (9:18–19 bridge to Gen 10); the oracles' referent is unknown — see clm-ns-051. \"Unknown\" is the assessment, not a gap: the date type is unknown by design.",
+      "id": "clm-ns-075"
+    }
+  ],
+  "connections": [
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 10,
+      "endVerse": 32,
+      "id": "conn-ns-001",
+      "note": "The Table of Nations — the direct continuation. 9:19 \"from these the whole earth was peopled\" points forward; 9:18 names the three sons whose descendants Gen 10 lists. Strong.",
+      "startChapter": 10,
+      "startVerse": 1,
+      "type": "direct-account"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 5,
+      "endVerse": 32,
+      "id": "conn-ns-002",
+      "note": "The sons introduced: \"Noah was five hundred years old, and Noah became the father of Shem, Ham, and Japheth.\"",
+      "startChapter": 5,
+      "startVerse": 32,
+      "type": "direct-account"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 6,
+      "endVerse": 10,
+      "id": "conn-ns-003",
+      "note": "The sons named again in the Flood narrative's introduction (\"And Noah begat three sons, Shem, Ham, and Japheth\").",
+      "startChapter": 6,
+      "startVerse": 10,
+      "type": "direct-account"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 7,
+      "endVerse": 13,
+      "id": "conn-ns-004",
+      "note": "The sons enter the ark (\"In the selfsame day entered Noah, and Shem, and Ham, and Japheth, the sons of Noah\").",
+      "startChapter": 7,
+      "startVerse": 13,
+      "type": "direct-account"
+    },
+    {
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "confidence": "probable",
+      "endChapter": 18,
+      "endVerse": 8,
+      "id": "conn-ns-005",
+      "note": "The nakedness idiom: \"the nakedness of your father\" is defined as \"the nakedness of your mother\". Background for the \"what Ham did\" debate — NOT proof of what happened.",
+      "startChapter": 18,
+      "startVerse": 7,
+      "type": "thematic"
+    },
+    {
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "confidence": "probable",
+      "endChapter": 20,
+      "endVerse": 17,
+      "id": "conn-ns-006",
+      "note": "\"See nakedness\" equated with \"uncover nakedness\". Background for the idiom debate — NOT proof.",
+      "startChapter": 20,
+      "startVerse": 17,
+      "type": "thematic"
+    },
+    {
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "confidence": "probable",
+      "endChapter": 23,
+      "endVerse": 1,
+      "id": "conn-ns-007",
+      "note": "\"A man shall not take his father's wife, and shall not uncover his father's skirt.\" Background for the idiom debate.",
+      "startChapter": 23,
+      "startVerse": 1,
+      "type": "thematic"
+    },
+    {
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "confidence": "probable",
+      "endChapter": 27,
+      "endVerse": 20,
+      "id": "conn-ns-008",
+      "note": "\"Cursed be he that lieth with his father's wife; because he uncovereth his father's skirt.\" Background; also a curse-form parallel.",
+      "startChapter": 27,
+      "startVerse": 20,
+      "type": "thematic"
+    },
+    {
+      "book": "Joshua",
+      "bookId": "joshua",
+      "confidence": "probable",
+      "endChapter": 9,
+      "endVerse": 23,
+      "id": "conn-ns-009",
+      "note": "The Gibeonites (Canaanites) made woodcutters and water carriers (vv. 21 and 23) — the curse's later resonance as servitude. Label as reception/interpretation, not as the passage's own fulfilment.",
+      "startChapter": 9,
+      "startVerse": 21,
+      "type": "historical-setting"
+    },
+    {
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "confidence": "probable",
+      "endChapter": 9,
+      "endVerse": 21,
+      "id": "conn-ns-010",
+      "note": "Solomon enslaved the remaining Canaanites. Later resonance; label as reception/interpretation.",
+      "startChapter": 9,
+      "startVerse": 20,
+      "type": "historical-setting"
+    },
+    {
+      "book": "Luke",
+      "bookId": "luke",
+      "confidence": "established",
+      "endChapter": 3,
+      "endVerse": 36,
+      "id": "conn-ns-011",
+      "note": "The genealogy reaches Noah (and Shem): \"the son of Noah, the son of Lamech\". No mention of Ham, Japheth or the incident. Genealogical link only.",
+      "startChapter": 3,
+      "startVerse": 36,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "probable",
+      "endChapter": 19,
+      "endVerse": 38,
+      "id": "conn-ns-012",
+      "note": "Lot and his daughters: drunken patriarch, parent–child intercourse, origin of Israel's enemies (Moab, Ammon). The closest narrative parallel (Niditch; Steinmetz; Carmichael; Bergsma & Hahn). Background, not proof.",
+      "startChapter": 19,
+      "startVerse": 30,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "probable",
+      "endChapter": 6,
+      "endVerse": 4,
+      "id": "conn-ns-013",
+      "note": "Sons of God / daughters of men. Chiasm partner of 9:20–27 in the narrative-critical literature (Kikawada & Quinn; Wold; Forrest). Background.",
+      "startChapter": 6,
+      "startVerse": 1,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "probable",
+      "endChapter": 11,
+      "endVerse": 9,
+      "id": "conn-ns-014",
+      "note": "The dispersion leitmotif: nāp̄əṣâ (9:19) recurs at 11:8–9. The Tower story is where the verb \"has its Sitz\" (Gunkel). Background.",
+      "startChapter": 11,
+      "startVerse": 1,
+      "type": "thematic"
+    },
+    {
+      "book": "Psalms",
+      "bookId": "psalms",
+      "confidence": "probable",
+      "endChapter": 106,
+      "endVerse": 22,
+      "id": "conn-ns-015",
+      "note": "\"The land of Ham\" = Egypt (Ps 78:51; 105:23, 27; 106:22). Shows Ham's name attached to Egypt in later tradition (BDB H2526, sense 2). Background. (The connection object spans Ps 78:51–106:22; the exact verses are those listed here.)",
+      "startChapter": 78,
+      "startVerse": 51,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "probable",
+      "endChapter": 5,
+      "endVerse": 29,
+      "id": "conn-ns-016",
+      "note": "Lamech's naming of Noah: \"this one will bring us relief from our work and from the toil of our hands from the ground which the LORD has cursed.\" The vineyard as relief from the curse of the ground (Westermann; Skinner). Background.",
+      "startChapter": 5,
+      "startVerse": 29,
+      "type": "thematic"
+    }
+  ],
+  "date": {
+    "label": "No independently established date",
+    "note": "Chronology is narrative only; the passage provides no independently datable historical coordinates.",
+    "traditionalSystem": null,
+    "type": "unknown",
+    "yearEnd": null,
+    "yearStart": null
+  },
+  "id": "event-noah-and-his-sons",
+  "locations": [],
+  "primaryScripture": {
+    "book": "Genesis",
+    "bookId": "genesis",
+    "endChapter": 9,
+    "endVerse": 29,
+    "startChapter": 9,
+    "startVerse": 18
+  },
+  "relatedEvents": [
+    "event-great-flood",
+    "event-noahs-sacrifice-and-covenant"
+  ],
+  "review": {
+    "author": "Gnosis research draft (AI-assisted)",
+    "checklistVersion": "standards-1.1-section-14",
+    "lastReviewed": "2026-11-17",
+    "notes": "Content phase (branch: content/noah-and-his-sons, stacked on content/noah-sacrifice-covenant 250ee03; base main b3b89ac). Stage 1 research dossier 2026-11-17 (workspace: gnosis-noah-sons/dossier/noah-and-his-sons-research-dossier.md). Claims register: all 75 of the dossier's claims (clm-ns-001–075, no gaps); assessments established 48, probable 10, debated 11, traditional 4, unknown 2. Connections: 16 accepted (conn-ns-001–016); the 5 rejected connections (R1 Gen 9:1–17 sibling scope; R2 any NT passage as a direct citation of Gen 9:18–29 — none exists; R3 Gen 10:21 as proof of birth order; R4 Num 24:24 as a Japheth prophecy; R5 Deut 28:68 / Dan 11:30 as Japheth fulfilments) are not added. The scaffold placeholder conn-ns-01 is replaced by the real conn-ns-001–016. Sources: 20 cited (14 reused registry entries, all verified on main, plus 6 new verified entries: Bergsma & Hahn, Haynes, McGovern, Bible Odyssey, Philo De Sobrietate, Talmud Sanhedrin). Representation note: conn-ns-015 spans Ps 78:51–106:22 in the connection object because the shape holds a single range; the exact verses (Ps 78:51; 105:23, 27; 106:22) are listed in its note. NS 1 CONFIRMED FINAL under the autonomous Genesis completion assignment (Part 5): the curse-of-Ham wording — the event states plainly, in its own voice, that the text curses Canaan not Ham and contains no skin-colour connection, with a short reception note, and no 19th-century racial language is reproduced anywhere in the public text. The dossier's DQ-10 settles this: the contrary reading is documented misuse, not a live position. NS 2 CONFIRMED FINAL under the autonomous Genesis completion assignment (Part 5): the four positions on what Ham did are presented side by side in the order voyeurism / castration / paternal incest / maternal incest, each with its best argument and its cost; the maternal-incest case is stated fully but labelled as a modern proposal; no position is presented as the text's plain meaning. This presents multiple interpretations accurately without privileging an unsupported conclusion, per Part 5. NS 3: Bassett and Goldenberg are NOT cited anywhere in the event (not in sources, claims, evidence, or prose footnotes) — both are not-independently-verified; Bergsma & Hahn and Haynes/Bible Odyssey are cited instead, per dossier §12.5. Consequent restatements (recorded here): clm-ns-037 drops the Bassett name (\"first proposed in 1971\") and its evidence labels the 1971 proposal second-hand via Bergsma & Hahn; clm-ns-054 drops the Goldenberg finding from its evidence; clm-ns-057 reports the seventh-century Arabia dating as second-hand via published summaries without naming the uncited work; clm-ns-062 drops the Goldenberg/Whitford framing and cites Chrysostom directly. clm-ns-061 RESTATEMENT (required by the EM): the dossier's claim text quotes 19th-century racial language from K&D/JFB verbatim; the event restates it WITHOUT the verbatim quotes — recording that Keil & Delitzsch and Jamieson-Fausset-Brown extended the curse's fulfilment to the enslavement of African peoples, and that Hales (quoted by Clarke) derived Ham from \"burnt or black\", as period positions, not the text's claim — with evidence pointing to dossier §8.6 rather than quoting. Assessment stays \"established\" (as a record of what those works say). NS 4: relatedEvents is one-way to the Flood event and the sibling Sacrifice/Covenant event (neither event's own relatedEvents is changed here); flag for Yonatan's confirmation at publication. NS 5: McGovern volume citation CONFIRMED by the registry worker 2026-11-17 (see source-mcgovern-iranian-wine in references.json): \"Wine Culture in Iran and Beyond\", eds. Bert G. Fragner, Ralph Kauz and Florian Schwarz (Verlag der Österreichischen Akademie der Wissenschaften, Vienna, 2014), ISBN 978-3-7001-7554-4; the chapter runs pp. 11–21 (pp. 11–16 read directly). The §12.1 scope appends for the 14 reused registry entries ride in a SEPARATE follow-up PR, not this one; no existing registry entry was edited here. Boundary 9:17/9:18: the sibling event owns 9:1–17, this event owns 9:18–29; 9:1 is cited only through Bergsma & Hahn (clm-ns-037) and Chrysostom Hom. 29 §20 (clm-ns-045, 062, 069); no 9:1–17 material is duplicated. Corrections carried in: 8 Haynes page fixes (applied in the dossier's §8.6/§9 evidence); Goldenberg datings re-attributed (seventh-century Arabia dating reported second-hand, Haynes's ninth–tenth-century dating from Haynes directly); Gunkel \"dwell in the tents\" = forcible dispossession, not friendly intercourse (clm-ns-049, prose); Bible Odyssey \"1 Kgs 9:16\" slip → 9:20–21 (clm-ns-053 evidence, conn-ns-010); Goldenberg bibliography 2005 vs 2003 first edition (the registry proposal uses Princeton 2003; the work is not cited in the event). No NT passage alludes to Gen 9:20–27 (Haynes); Luke 3:36 is genealogical only (clm-ns-072, conn-ns-011). DQ-10 settled: no whole race doomed to slavery; the contrary reading is documented misuse, not a live position (clm-ns-060, prose). Second-hand labels kept in evidence where the dossier marks them (clm-ns-028, 033, 056, 057 and the second-hand parts of 036, 037). No editorialOverride. Status published (publication PR content/category2-publish-sacrifice-sons, autonomous Genesis completion Part 1).",
+    "reviewer": "Stage 1 dossier editorial verification 2026-11-17; independent QA not yet requested (in-review draft)"
+  },
+  "sources": [
+    "source-bdb-lexicon",
+    "source-skinner-genesis",
+    "source-keil-delitzsch-genesis",
+    "source-westermann-genesis",
+    "source-gunkel-genesis",
+    "source-ryle-genesis",
+    "source-jfb-commentary",
+    "source-clarke-commentary",
+    "source-charles-jubilees",
+    "source-josephus-antiquities",
+    "source-augustine-city-of-god",
+    "source-chrysostom-homilies-genesis",
+    "source-rashi-genesis",
+    "source-targum-onkelos",
+    "source-bergsma-hahn-nakedness",
+    "source-haynes-noahs-curse",
+    "source-mcgovern-iranian-wine",
+    "source-bible-odyssey-curse-ham",
+    "source-philo-de-sobrietate",
+    "source-talmud-sanhedrin"
+  ],
+  "status": "published",
+  "title": "Noah and His Sons",
+  "topics": []
+}

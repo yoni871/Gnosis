@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { Editor } from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import { afterEach, beforeAll, describe, expect, test } from "vitest";
@@ -103,5 +105,33 @@ describe("note spacing extension", () => {
     test("ignores invalid saved spacing attributes", () => {
         createEditor('<p data-line-height="9" data-paragraph-spacing="huge">Plain</p>');
         expect(editor.getHTML()).toBe("<p>Plain</p>");
+    });
+
+    test("selecting 1.5 Normal writes the 1.5 attribute and reports 1.5", () => {
+        createEditor("<p>Normal</p>");
+        editor.commands.setTextSelection(2);
+        expect(editor.commands.setLineHeight("1.5")).toBe(true);
+        expect(editor.getHTML()).toBe('<p data-line-height="1.5">Normal</p>');
+        expect(readActiveSpacing(editor.state)).toEqual({ lineHeight: "1.5", paragraphSpacing: "medium" });
+    });
+});
+
+describe("note spacing stylesheet", () => {
+    test("untouched paragraphs render at exactly 1.5, matching the toolbar's 1.5 Normal", () => {
+        const css = readFileSync(join(import.meta.dirname, "Notes.css"), "utf8");
+        const ruleBlock = (selector) => {
+            const start = css.indexOf(selector);
+            expect(start).toBeGreaterThanOrEqual(0);
+            const open = css.indexOf("{", start);
+            const close = css.indexOf("}", open);
+            return css.slice(open + 1, close);
+        };
+        // The base rule is what an untouched paragraph renders at; it
+        // must be the value the toolbar reports for unset spacing, or
+        // the dropdown lies about the rendered text.
+        expect(ruleBlock(".notes-tiptap-editor")).toContain("line-height: 1.5");
+        expect(ruleBlock(".notes-tiptap-editor")).not.toContain("line-height: 1.65");
+        // And explicitly selecting 1.5 produces exactly 1.5.
+        expect(ruleBlock('.notes-tiptap-editor p[data-line-height="1.5"]')).toContain("line-height: 1.5");
     });
 });

@@ -50,8 +50,22 @@ for (const { value } of eagerValues(
 )) {
     if (value && typeof value.id === "string") generatedEvents.set(value.id, value);
 }
-// Event prose is code-split per event and fetched only when its panel opens.
+// Event prose is code-split per event and fetched only when its study page opens.
 const eventMarkdownLoaders = import.meta.glob("../generated/history/events/*.md", {
+    query: "?raw",
+    import: "default",
+});
+// Generated categories, read once at module load like the events above.
+// The generated book records carry a unified `entries` array (kind
+// "event" | "category"); a category entry's categoryId resolves here.
+const generatedCategories = new Map();
+for (const { value } of eagerValues(
+    import.meta.glob("../generated/history/categories/*.json", { eager: true }),
+)) {
+    if (value && typeof value.id === "string") generatedCategories.set(value.id, value);
+}
+// Category prose is code-split per category, like event prose.
+const categoryMarkdownLoaders = import.meta.glob("../generated/history/categories/*.md", {
     query: "?raw",
     import: "default",
 });
@@ -72,13 +86,20 @@ export function listBooks() {
     return BOOK_NAMES.map((title, index) => {
         const id = slugifyBookName(title);
         const generated = generatedBooks.get(id);
+        // The generated book record carries a unified `entries` array
+        // (kind "event" | "category"); both counts come from it.
+        const entries = generated?.entries ?? [];
+        const eventCount = entries.filter((entry) => entry.kind === "event").length;
+        const categoryCount = entries.filter((entry) => entry.kind === "category").length;
         return {
             id,
             title,
             testament: index < OLD_TESTAMENT_COUNT ? "OT" : "NT",
             chapterCount: bibleChapters[title],
-            eventCount: generated ? generated.events.length : 0,
-            hasEvents: Boolean(generated && generated.events.length > 0),
+            eventCount,
+            hasEvents: eventCount > 0,
+            categoryCount,
+            hasCategories: categoryCount > 0,
         };
     });
 }
@@ -95,11 +116,13 @@ export function getBookTitle(bookId) {
 }
 
 // Events for one book, in narrative order (the book file's narrativeOrder
-// drives the timeline — never a date).
+// drives the timeline — never a date). Reads the unified `entries` array,
+// kind === "event".
 export function listEventsForBook(bookId) {
     const book = generatedBooks.get(bookId);
     if (!book) return [];
-    return [...book.events]
+    return [...(book.entries ?? [])]
+        .filter((entry) => entry.kind === "event")
         .sort((a, b) => a.narrativeOrder - b.narrativeOrder)
         .map((entry) => {
             const event = generatedEvents.get(entry.eventId);
@@ -109,18 +132,56 @@ export function listEventsForBook(bookId) {
         .filter(Boolean);
 }
 
+// Categories for one book, in narrative order — the mirror of
+// listEventsForBook over kind === "category" entries.
+export function listCategoriesForBook(bookId) {
+    const book = generatedBooks.get(bookId);
+    if (!book) return [];
+    return [...(book.entries ?? [])]
+        .filter((entry) => entry.kind === "category")
+        .sort((a, b) => a.narrativeOrder - b.narrativeOrder)
+        .map((entry) => {
+            const category = generatedCategories.get(entry.categoryId);
+            if (!category) return null;
+            return { ...category, bookNote: entry.bookNote, narrativeOrder: entry.narrativeOrder };
+        })
+        .filter(Boolean);
+}
+
+// The book's mixed timeline: every entry in narrative order, each
+// resolved to its event or category record and tagged with its kind.
+// Unresolvable entries are skipped, as listEventsForBook does.
+export function listBookEntries(bookId) {
+    const book = generatedBooks.get(bookId);
+    if (!book) return [];
+    return [...(book.entries ?? [])]
+        .sort((a, b) => a.narrativeOrder - b.narrativeOrder)
+        .map((entry) => {
+            const record = entry.kind === "category"
+                ? generatedCategories.get(entry.categoryId)
+                : entry.kind === "event"
+                    ? generatedEvents.get(entry.eventId)
+                    : undefined;
+            if (!record) return null;
+            return { ...record, kind: entry.kind, bookNote: entry.bookNote, narrativeOrder: entry.narrativeOrder };
+        })
+        .filter(Boolean);
+}
+
 // First published event for a book, in narrative order — the book's
 // landing event now that the book URL redirects to it (see
 // BiblicalHistoryBookRedirect). Null when the book has no published
-// events: such books keep their Upcoming page instead of redirecting
-// to an event that does not exist.
+// events: such books redirect to the homepage, where they are marked
+// Coming Soon, instead of redirecting to an event that does not exist.
 export function getFirstPublishedEvent(bookId) {
     const events = listEventsForBook(bookId);
     return events.length > 0 ? events[0] : null;
 }
 
 export function buildBookTimeline(bookId) {
-    return listEventsForBook(bookId);
+    // Category-aware mixed timeline: events and categories interleaved
+    // in narrative order.
+    return listBookEntries(bookId);
 }
 
 export function getEvent(eventId) {
@@ -133,6 +194,18 @@ export function getEventBySlug(eventSlug) {
 
 export function eventSlug(eventId) {
     return String(eventId).replace(/^event-/, "");
+}
+
+export function getCategory(categoryId) {
+    return generatedCategories.get(categoryId) ?? null;
+}
+
+export function getCategoryBySlug(slug) {
+    return getCategory(`category-${slug}`);
+}
+
+export function categorySlug(categoryId) {
+    return String(categoryId).replace(/^category-/, "");
 }
 
 export function getTopic(topicId) {
@@ -151,7 +224,17 @@ export function listSources() {
 export function getBooksForEvent(eventId) {
     const books = [];
     for (const book of generatedBooks.values()) {
-        if (book.events.some((entry) => entry.eventId === eventId)) books.push(book);
+        if ((book.entries ?? []).some((entry) => entry.kind === "event" && entry.eventId === eventId)) books.push(book);
+    }
+    return books;
+}
+
+// Every book that carries this category — the mirror of getBooksForEvent
+// over kind === "category" entries.
+export function getBooksForCategory(categoryId) {
+    const books = [];
+    for (const book of generatedBooks.values()) {
+        if ((book.entries ?? []).some((entry) => entry.kind === "category" && entry.categoryId === categoryId)) books.push(book);
     }
     return books;
 }
@@ -167,6 +250,34 @@ export async function loadEventSections(eventId) {
     const known = Object.keys(generatedSources);
     // One shared footnote list threads through every section so footnote
     // numbers run continuously through the event instead of restarting
+    // at 1 in each section (editorial fix, 2026-11-11).
+    const footnotes = [];
+    return {
+        overview: resolveHistoryFootnotes(parsed.overview, known, footnotes),
+        ancientWorld: resolveHistoryFootnotes(parsed.ancientWorld, known, footnotes),
+        ancientWorldSubsections: parsed.ancientWorldSubsections.map((sub) => ({
+            heading: sub.heading,
+            ...resolveHistoryFootnotes(sub.body, known, footnotes),
+        })),
+        whyItMatters: resolveHistoryFootnotes(parsed.whyItMatters, known, footnotes),
+    };
+}
+
+// Load one category's prose and split it into its contract sections —
+// the mirror of loadEventSections over the category Markdown loaders,
+// with the same three sections and the same shared continuous footnote
+// numbering. A category's fullRange is never used here (and never passed
+// to the companion): the companion passage is always primaryScripture,
+// chosen by the study page.
+export async function loadCategorySections(categoryId) {
+    const slug = categorySlug(categoryId);
+    const loader = categoryMarkdownLoaders[`../generated/history/categories/${slug}.md`];
+    if (!loader) return null;
+    const mdText = await loader();
+    const parsed = parseHistoryMarkdown(mdText);
+    const known = Object.keys(generatedSources);
+    // One shared footnote list threads through every section so footnote
+    // numbers run continuously through the category instead of restarting
     // at 1 in each section (editorial fix, 2026-11-11).
     const footnotes = [];
     return {

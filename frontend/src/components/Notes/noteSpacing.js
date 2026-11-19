@@ -8,10 +8,12 @@
 // extension (NoteSpacingExtension) parses and renders these attributes;
 // Notes.css maps each value to its line-height / margin.
 //
-// Unset means "default": the editor's base styles apply (line-height 1.65,
-// paragraph margin .4em 0). The toolbar reports the unset state as the
-// closest named defaults — Normal (1.5) / Medium — so the dropdowns always
-// show a current value.
+// Unset means "default": the editor's base styles apply, and the base
+// line-height IS the reported default (1.5), so the toolbar's "1.5 Normal"
+// is the actual rendered spacing for untouched paragraphs, not an
+// approximation. (Paragraph spacing is different: the base margin
+// (.4em 0) is not the "Medium" mapping (0 top / .5em bottom) — that
+// mismatch is unchanged here; this fix is line spacing only.)
 
 export const LINE_HEIGHT_OPTIONS = [
     { value: "1", label: "1.0 Single" },

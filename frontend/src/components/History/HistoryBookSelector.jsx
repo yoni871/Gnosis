@@ -8,6 +8,19 @@ const TESTAMENTS = [
     { id: "NT", label: "New Testament" },
 ];
 
+// Q11 (interim): while events and categories coexist, a book with
+// categories shows both counts on its chip ("2 categories · 8
+// events"). A book with no categories shows no counts at all —
+// exactly as before, so the existing event-only display is unchanged.
+// Counts appear only on link chips (books with a first published
+// event); a Coming Soon chip never carries them.
+function formatBookCounts(book) {
+    if (!book.hasCategories) return null;
+    const categories = book.categoryCount === 1 ? "1 category" : `${book.categoryCount} categories`;
+    const events = book.eventCount === 1 ? "1 event" : `${book.eventCount} events`;
+    return `${categories} · ${events}`;
+}
+
 export default function HistoryBookSelector({ books = listBooks(), open = false, onClose, initialTestament = "OT" }) {
     const [testament, setTestament] = useState(initialTestament);
     const tabs = useRef([]);
@@ -77,16 +90,36 @@ export default function HistoryBookSelector({ books = listBooks(), open = false,
                     {visibleBooks.map((book) => {
                         // A book with published events opens its first
                         // event directly — the book URL redirects there
-                        // anyway. A book with none keeps its Upcoming
-                        // page at the book URL.
+                        // anyway. A book with none is not a link: it
+                        // shows a Coming Soon chip here on the homepage,
+                        // and its book URL redirects back to this
+                        // directory. The chip carries tabIndex -1 (never
+                        // a tab stop — it is not interactive) so the
+                        // panel-close focus return can still land on it.
                         const firstEvent = book.hasEvents ? getFirstPublishedEvent(book.id) : null;
-                        const to = firstEvent
-                            ? historyPath(book.id, eventSlug(firstEvent.id))
-                            : historyPath(book.id);
+                        if (!firstEvent) {
+                            return (
+                                <li key={book.id}>
+                                    <span
+                                        className="history-book-chip history-book-chip--upcoming"
+                                        data-history-book={book.id}
+                                        tabIndex={-1}
+                                    >
+                                        <span>{book.title}</span>
+                                        <span className="history-book-chip-soon">Coming Soon</span>
+                                    </span>
+                                </li>
+                            );
+                        }
+                        const counts = formatBookCounts(book);
                         return (
                             <li key={book.id}>
-                                <Link to={to} data-history-book={book.id}>
-                                    {book.title}
+                                <Link
+                                    to={historyPath(book.id, eventSlug(firstEvent.id))}
+                                    className="history-book-chip"
+                                    data-history-book={book.id}
+                                >
+                                    {counts ? `${book.title} · ${counts}` : book.title}
                                 </Link>
                             </li>
                         );

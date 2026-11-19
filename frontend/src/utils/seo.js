@@ -83,9 +83,9 @@ export function pageUrl(path, siteUrl = getSiteUrl()) {
 // Biblical History helpers. Routes use book/event slugs
 // (/biblical-history/genesis/creation); the book-only path
 // (/biblical-history/genesis) is the redirect source — it sends books
-// with published events to their first event and serves the Upcoming
-// page for books without any. Reader links still go through
-// chapterPath (display names).
+// with published events to their first event and books without any to
+// the homepage, where they are marked Coming Soon. Reader links still
+// go through chapterPath (display names).
 export function historyPath(bookSlug, eventSlug) {
     if (eventSlug) return `/biblical-history/${bookSlug}/${eventSlug}`;
     if (bookSlug) return `/biblical-history/${bookSlug}`;
@@ -100,21 +100,6 @@ export function historyIndexDescription() {
     return (
         "Explore the ancient world behind the biblical story, book by book, " +
         "on Gnosis — historical context for the events of Scripture."
-    );
-}
-
-export function historyBookTitle(bookTitle) {
-    return `Biblical History — ${bookTitle} | Gnosis`;
-}
-
-export function historyBookDescription(bookTitle, eventCount) {
-    const events =
-        eventCount === 1
-            ? "1 historical event"
-            : `${eventCount} historical events`;
-    return (
-        `Historical context for the book of ${bookTitle} on Gnosis: ` +
-        `${events} explored with the ancient world behind the text.`
     );
 }
 

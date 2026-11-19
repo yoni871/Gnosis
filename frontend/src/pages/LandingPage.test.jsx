@@ -392,11 +392,8 @@ describe("LandingPage", () => {
             url: "https://studygnosis.com/",
             description: LANDING_DESCRIPTION,
         });
-        // Raster favicon for Google Search (SVG is not a supported
-        // search favicon format); the SVG stays for browsers.
-        expect(html).toContain(
-            '<link rel="icon" type="image/svg+xml" sizes="any" href="/gnosis.svg" />',
-        );
+        // A single raster icon avoids conflicting browser and search artwork.
+        expect(html.match(/<link\s+rel="icon"(?:\s|\/|>)/g)).toHaveLength(1);
         expect(html).toContain(
             '<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />',
         );

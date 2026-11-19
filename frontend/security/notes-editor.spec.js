@@ -116,7 +116,7 @@ for (const [device, viewport] of [['desktop', { width: 1440, height: 900 }], ['m
                 headingLineHeight: parseFloat(style('h2').lineHeight) / parseFloat(style('h2').fontSize),
             };
         });
-        expect(spacing.lineHeight).toBeCloseTo(1.65, 1);
+        expect(spacing.lineHeight).toBeCloseTo(1.5, 1);
         expect(spacing.paragraphMargin).toBeGreaterThan(0);
         expect(spacing.paragraphMargin).toBeLessThan(10);
         expect(spacing.listParagraphMargin).toBe(0);
@@ -177,7 +177,7 @@ for (const [device, viewport] of [['desktop', { width: 1440, height: 900 }], ['m
             };
         });
         expect(metrics.firstLineHeight).toBeCloseTo(2, 1);
-        expect(metrics.secondLineHeight).toBeCloseTo(1.65, 1);
+        expect(metrics.secondLineHeight).toBeCloseTo(1.5, 1);
         expect(metrics.firstMarginBottom).toBeCloseTo(1, 1);
         expect(metrics.secondMarginBottom).toBeCloseTo(0.4, 1);
         await panel.getByRole('button', { name: 'Undo' }).click();

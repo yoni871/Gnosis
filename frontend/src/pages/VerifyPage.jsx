@@ -35,7 +35,7 @@ export default function VerifyPage() {
         try {
             await verifyEmail(token);
             setStatus("success");
-        } catch (error) {
+        } catch {
             setStatus("invalid");
         }
     };
@@ -46,7 +46,7 @@ export default function VerifyPage() {
         try {
             await resendVerification(resendEmail);
             setResendStatus("sent");
-        } catch (error) {
+        } catch {
             setResendStatus("error");
         }
     };

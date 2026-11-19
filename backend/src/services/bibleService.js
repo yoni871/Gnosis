@@ -72,6 +72,36 @@ const getTranslationByAbbreviation = async (abbreviation) => {
     return result.rows.length === 0 ? null : result.rows[0];
 }
 
+// Resolve a :book URL segment to its canonical bible_books row.
+//
+// Book names are matched case-insensitively (and ignoring surrounding
+// whitespace) against the canonical names in bible_books, so
+// /api/bible/genesis/1/KJV, /GENESIS/ and /GeNeSiS/ all resolve to
+// "Genesis". The 66 canonical names are distinct under case-folding,
+// so the match is unambiguous and can never map one book onto
+// another. Abbreviations ("Gen") are NOT resolved — only full
+// canonical names — so no new mappings are introduced. Returns null
+// for an unknown or empty name; callers answer that with the same
+// 404 they gave before.
+//
+// Normalization belongs here, at the API entry point, rather than in
+// each query: the chapter endpoint's downstream consumers all key on
+// the canonical name — the stored-text query, the licensed cache
+// lookup, the provider fetches (ESV's single-chapter set and
+// API.Bible's book-code map are keyed by canonical name), and the
+// `book` field echoed in the response — so resolving once, before
+// any of them run, fixes every path with one lookup.
+const resolveBookName = async (book) => {
+    if (typeof book !== "string") return null;
+    const name = book.trim();
+    if (!name) return null;
+    const result = await pool.query(
+        "SELECT id, name FROM bible_books WHERE LOWER(name) = LOWER($1)",
+        [name]
+    );
+    return result.rows.length === 0 ? null : result.rows[0];
+}
+
 const getAllCommentaries = () => {
     return commentaryPool.query(
         `
@@ -253,6 +283,7 @@ module.exports = {
     getVersesByChapter,
     getAllTranslations,
     getTranslationByAbbreviation,
+    resolveBookName,
     getAllCommentaries,
     getCommentariesByBook,
     getAllSources,

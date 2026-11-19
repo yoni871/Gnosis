@@ -117,6 +117,15 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
             SELECT id,1 FROM bible_books WHERE name='Synthetic harness book' RETURNING id)
             INSERT INTO bible_verses(chapter_id,verse_number,text)
             SELECT chapter.id,g,'Synthetic fixture verse' FROM chapter CROSS JOIN generate_series(1,3) g`);
+        // The chapter endpoint's stored-translation path needs a stored
+        // translation to join the fixture verses to: the licensed five
+        // are seeded by their migration, the stored four are not. KJV
+        // stands in for them, so the chapter endpoint can serve the
+        // fixture book over HTTP in the application suite.
+        const kjv = await provisioning.query(
+            "INSERT INTO bible_translations(name, abbreviation, source, enabled) VALUES ('King James Version', 'KJV', 'database', TRUE) RETURNING id"
+        );
+        await provisioning.query("UPDATE bible_verses SET translation_id=$1 WHERE translation_id IS NULL", [kjv.rows[0].id]);
         await provisioning.end();
         provisioning = undefined;
         await callback(context);

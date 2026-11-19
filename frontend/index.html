@@ -26,7 +26,6 @@
         document.head.appendChild(heroPreload);
       }
     </script>
-    <link rel="icon" type="image/svg+xml" sizes="any" href="/gnosis.svg" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,11 +43,9 @@
       for every route, so a static canonical would point every chapter
       URL at the wrong address. Each route sets its own canonical at
       runtime, and the homepage's canonical is its own URL by default.
-      The PNG favicon is the Google Search favicon: Google's supported
-      formats do not include SVG, so the SVG alone showed a generic
-      globe in search results. The PNG is rasterized from the same
-      /gnosis.svg logo mark at 192x192; the SVG link stays for
-      browsers, and the PNG doubles as the Apple touch icon.
+      The single PNG favicon is supported by Google Search and browsers;
+      it also serves as the Apple touch icon. The website logo remains
+      separate from this small-size icon.
     -->
     <meta
       name="description"

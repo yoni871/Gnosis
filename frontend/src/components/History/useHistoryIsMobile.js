@@ -1,4 +1,4 @@
-// Mobile detection for the History panel/nav layouts (≤768px, the same
+// Mobile detection for the History study page/nav layouts (≤768px, the same
 // breakpoint the Original Language bottom sheet uses). Safe in jsdom:
 // matchMedia is undefined there, so tests default to the desktop layout
 // unless they stub window.matchMedia.
