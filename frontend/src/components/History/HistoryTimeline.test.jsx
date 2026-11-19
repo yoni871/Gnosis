@@ -72,7 +72,7 @@ function renderTimeline({ currentEntryId = "event-creation", entries = EVENTS } 
 }
 
 describe("HistoryTimeline", () => {
-    it("centers the active marker inside the strip without scrolling the page", () => {
+    it("keeps an already visible marker in place without scrolling the page", () => {
         const scrollTo = vi.fn();
         const scrollIntoView = vi.fn();
         const originalScrollTo = HTMLElement.prototype.scrollTo;
@@ -81,7 +81,7 @@ describe("HistoryTimeline", () => {
         HTMLElement.prototype.scrollIntoView = scrollIntoView;
         try {
             renderTimeline();
-            expect(scrollTo).toHaveBeenCalledWith(expect.objectContaining({ behavior: expect.any(String), left: expect.any(Number) }));
+            expect(scrollTo).not.toHaveBeenCalled();
             expect(scrollIntoView).not.toHaveBeenCalled();
         } finally {
             HTMLElement.prototype.scrollTo = originalScrollTo;
@@ -149,12 +149,12 @@ describe("HistoryTimeline", () => {
 });
 
 describe("HistoryTimeline — mixed events and categories", () => {
-    it("renders category nodes with a visible Category label and a kind in the accessible name", () => {
+    it("keeps category semantics in the accessible name without a visible kind label", () => {
         renderTimeline({ entries: MIXED_ENTRIES, currentEntryId: "category-patriarchs" });
         expect(screen.getByRole("navigation", { name: "Entries in this book" })).toBeInTheDocument();
         const categoryNode = screen.getByRole("button", { name: /The Patriarchs, Category/ });
         expect(categoryNode).toHaveAttribute("aria-current", "true");
-        expect(categoryNode).toHaveTextContent("Category");
+        expect(categoryNode).not.toHaveTextContent("Category");
         expect(categoryNode).toHaveClass("history-timeline-node--category");
         // Event nodes state their kind too, and carry no visible Category label.
         const creationNode = screen.getByRole("button", { name: /Creation, Event/ });

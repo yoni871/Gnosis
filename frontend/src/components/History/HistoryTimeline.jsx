@@ -7,20 +7,23 @@
 //
 // An entry is an event or a category: the book file's unified `entries`
 // list drives the strip (via buildBookTimeline), so events and
-// categories interleave in narrative order. Category nodes are visually
-// distinguished with a "Category" eyebrow and state their kind in the
-// node's accessible label, so the two kinds are never confused.
+// categories interleave in narrative order. Their accessible labels retain
+// the kind without adding the word "Category" to the visible timeline.
 //
 // Navigation is click/tap on a node, or keyboard only: Left/Right arrows
 // move between entries, Home/End jump to the first/last, with roving
 // tabindex and a visible focus indicator. There are NO previous/next
 // buttons in the visual UI (correction 2), so the strip carries an
-// accessible label and visible keyboard instructions, and the book page's
-// event list is its full text alternative.
-import { useEffect, useRef } from "react";
+// accessible label and keyboard instructions.
+import { useLayoutEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { categorySlug, eventSlug, formatHistoryDateLabel } from "../../services/historyService";
 import { historyPath } from "../../utils/seo";
+
+// The study is keyed by record, so its timeline remounts on navigation.
+// Preserve the strip position across those remounts to avoid replaying a
+// long smooth scroll from the first item on every selection.
+const stripPositions = new Map();
 
 export default function HistoryTimeline({ entries = [], currentEntryId, bookId }) {
     const navigate = useNavigate();
@@ -30,19 +33,31 @@ export default function HistoryTimeline({ entries = [], currentEntryId, bookId }
     // is open, otherwise the first node.
     const focusIndex = currentIndex >= 0 ? currentIndex : 0;
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (currentIndex < 0) return;
         const node = nodeRefs.current[currentIndex];
         if (!node) return;
         const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-        // Center within the strip only. scrollIntoView also moves the page
-        // vertically, which made the fixed mobile timeline jump on navigation.
         const strip = node.closest(".history-timeline-strip");
         const item = node.parentElement;
-        if (strip?.scrollTo && item) {
-            strip.scrollTo({ left: item.offsetLeft + item.offsetWidth / 2 - strip.clientWidth / 2, behavior: reduced ? "auto" : "smooth" });
+        if (!strip || !item) return;
+        const prior = stripPositions.get(bookId);
+        if (prior !== undefined) strip.scrollLeft = prior;
+        const center = item.offsetLeft + item.offsetWidth / 2;
+        const visibleCenter = center - strip.scrollLeft;
+        const shouldMove = visibleCenter < strip.clientWidth * .25 || visibleCenter > strip.clientWidth * .75;
+        if (shouldMove && strip.scrollTo) {
+            const target = Math.max(0, center - strip.clientWidth / 2);
+            const distance = Math.abs(target - strip.scrollLeft);
+            strip.scrollTo({ left: target, behavior: reduced || prior === undefined || distance > strip.clientWidth ? "auto" : "smooth" });
         }
-    }, [currentIndex]);
+        const savePosition = () => stripPositions.set(bookId, strip.scrollLeft);
+        strip.addEventListener("scroll", savePosition, { passive: true });
+        return () => {
+            strip.removeEventListener("scroll", savePosition);
+            savePosition();
+        };
+    }, [bookId, currentIndex]);
 
     if (entries.length === 0) return null;
 
@@ -96,16 +111,13 @@ export default function HistoryTimeline({ entries = [], currentEntryId, bookId }
                                 }}
                                 type="button"
                                 className={`history-timeline-node${isCurrent ? " history-timeline-node--current" : ""}${isCategory ? " history-timeline-node--category" : ""}`}
-                                title={`${entry.title} · ${isCategory ? "Category" : "Event"}${dateLabel ? ` · ${dateLabel}` : ""}`}
+                                title={`${entry.title}${dateLabel ? ` · ${dateLabel}` : ""}`}
                                 aria-current={isCurrent ? "true" : undefined}
                                 aria-label={`${entry.title}, ${isCategory ? "Category" : "Event"}${dateLabel ? `, ${dateLabel}` : ""}`}
                                 tabIndex={index === focusIndex ? 0 : -1}
                                 onClick={() => goTo(index)}
                             >
                                 <span className="history-timeline-node-dot" aria-hidden="true" />
-                                {isCategory && (
-                                    <span className="history-timeline-node-kind">Category</span>
-                                )}
                                 <span className="history-timeline-node-title">{entry.title}</span>
                                 <span className="history-timeline-node-date">
                                     {dateLabel}

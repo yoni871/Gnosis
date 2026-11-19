@@ -23,7 +23,7 @@
 // never resets the active section. Sources is its own section: a
 // footnote link in the prose switches to it and scrolls to the cited
 // source.
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { BookOpen, X } from "lucide-react";
 import {
     buildBookTimeline,
@@ -69,12 +69,33 @@ export default function HistoryEventStudy({ record, bookId, onBackToBooks }) {
     const [timelineCollapsed, setTimelineCollapsed] = useState(false);
 
     const scriptureButtonRef = useRef(null);
+    const studyRef = useRef(null);
+    const studyHeaderRef = useRef(null);
     const companionPassageRef = useRef(null);
     const pendingFootnoteRef = useRef(null);
 
     const timelineEntries = buildBookTimeline(bookId);
     const otherBooks = isCategory ? getBooksForCategory(record.id) : getBooksForEvent(record.id);
     const bookTitle = getBookTitle(bookId) ?? bookId;
+
+    useLayoutEffect(() => {
+        if (!isMobile || !studyRef.current || !studyHeaderRef.current) return;
+        const publicHeader = studyRef.current.closest(".history-event-root")?.querySelector(":scope > .public-page");
+        const updateTabsTop = () => {
+            const publicHeight = publicHeader?.getBoundingClientRect().height || 64;
+            const studyHeight = studyHeaderRef.current?.getBoundingClientRect().height || 0;
+            studyRef.current?.style.setProperty("--history-tabs-top", `${publicHeight + studyHeight}px`);
+        };
+        updateTabsTop();
+        const observer = typeof ResizeObserver !== "undefined" ? new ResizeObserver(updateTabsTop) : null;
+        if (publicHeader) observer?.observe(publicHeader);
+        observer?.observe(studyHeaderRef.current);
+        window.addEventListener("resize", updateTabsTop);
+        return () => {
+            observer?.disconnect();
+            window.removeEventListener("resize", updateTabsTop);
+        };
+    }, [isMobile]);
 
     useEffect(() => {
         let cancelled = false;
@@ -158,8 +179,8 @@ export default function HistoryEventStudy({ record, bookId, onBackToBooks }) {
     const activeSection = HISTORY_SECTIONS.find((section) => section.id === activeTab) ?? HISTORY_SECTIONS[0];
 
     return (
-        <section className={`history-study${companionPassage ? " history-study--scripture-open" : ""}`} aria-labelledby="history-study-title">
-            <header className="history-study-header">
+        <section ref={studyRef} className={`history-study${companionPassage ? " history-study--scripture-open" : ""}`} aria-labelledby="history-study-title">
+            <header ref={studyHeaderRef} className="history-study-header">
                 <div className="history-study-heading">
                     <p className="history-study-eyebrow">
                         {bookTitle} · Biblical History
