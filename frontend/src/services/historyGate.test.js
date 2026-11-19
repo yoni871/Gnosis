@@ -597,7 +597,7 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 id: "source-lucas-themelios-covenant-treaty",
                 kind: "source",
                 status: "unpublished-only",
-                title: "Covenant, Treaty, and Prophecy",
+                title: "Covenant, Treaty, and Prophecy (Themelios 8.1)",
             },
             {
                 id: "source-philo-decalogue",
