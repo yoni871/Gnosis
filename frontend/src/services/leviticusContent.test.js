@@ -14,7 +14,7 @@ const sources = read('sources/references.json');
 const ids = manifest.entries.map((entry) => entry.categoryId);
 const records = ids.map((id) => read(`categories/${id.slice('category-'.length)}.json`));
 const categories = ['leviticus-sacrificial-system', 'leviticus-priesthood-consecration', 'leviticus-purity-restoration', 'leviticus-day-of-atonement', 'leviticus-holiness-code', 'leviticus-festivals-worship', 'leviticus-jubilee-covenant'];
-describe('Leviticus in-review category package', () => {
+describe('Leviticus published category package', () => {
   it('contains exactly seven ordered thematic categories', () => {
     expect(ids).toEqual(categories.map((s) => `category-${s}`));
     expect(manifest.entries.map((entry) => entry.narrativeOrder)).toEqual([22, 23, 24, 25, 26, 27, 28]);
@@ -24,7 +24,7 @@ describe('Leviticus in-review category package', () => {
     expect(HISTORY_CATEGORY_ERAS).toEqual(expect.arrayContaining(['primeval','patriarchal','exodus','leviticus']));
     for (const record of records) {
       expect(record.category).toBe('category');
-      expect(record.status).toBe('in-review');
+      expect(record.status).toBe('published');
       expect(record.era).toBe('leviticus');
       expect(record.date.type).toBe('unknown');
       expect(record.date.yearStart).toBeNull();
@@ -37,15 +37,16 @@ describe('Leviticus in-review category package', () => {
       expect(record.primaryScripture.endChapter).toBeLessThanOrEqual(record.fullRange.endChapter);
     }
   });
-  it('excludes all Leviticus in-review content from the published-only generator', () => {
+  it('includes all Leviticus published content in the published-only generator', () => {
     const outputDir = mkdtempSync(path.join(tmpdir(), 'gnosis-lev-gate-'));
     try {
       const bibleChapters = JSON.parse(readFileSync(path.resolve(root, '../../data/bibleChapters.json'), 'utf8'));
       const { manifest } = generateHistoryContent({ contentDir: root, outputDir, bibleChapters, includeUnpublished: false });
       expect(manifest.includeUnpublished).toBe(false);
-      expect(manifest.categories.some((id) => ids.includes(id))).toBe(false);
-      expect(manifest.books).not.toContain('leviticus');
-      for (const category of categories) expect(existsSync(path.join(outputDir, 'categories', `${category}.json`))).toBe(false);
+      expect(manifest.categories).toEqual(expect.arrayContaining(ids));
+      expect(manifest.books).toContain('leviticus');
+      for (const category of categories) expect(existsSync(path.join(outputDir, 'categories', `${category}.json`))).toBe(true);
+      expect(existsSync(path.join(outputDir, 'books', 'leviticus.json'))).toBe(true);
     } finally { rmSync(outputDir, { recursive: true, force: true }); }
   });
   it('has unique claim and connection IDs and resolves source references and Markdown citations', () => {
@@ -76,16 +77,16 @@ describe('Leviticus in-review category package', () => {
     expect(records.flatMap((r) => r.connections ?? [])).toHaveLength(56);
     for (const r of records) {
       expect(r.review.editorialOverride).toBeUndefined();
-      expect(r.status).toBe('in-review');
+      expect(r.status).toBe('published');
     }
   });
   it('requires source clearance without treating source clearance as permission to publish', () => {
     for (const r of records) {
       const unverified = r.sources.filter((sourceId) => sources[sourceId]?.verification !== 'verified');
-      expect(unverified).toEqual([]); // Only the strict source check; independent review still required.
+      expect(unverified).toEqual([]); // Only the strict source check; publication was a separate editorial decision.
       expect(r.sources).not.toContain('source-sefaria-leviticus');
       expect(r.sources).toContain('source-kjv-leviticus-biblehub');
-      expect(r.status).toBe('in-review');
+      expect(r.status).toBe('published');
       expect(r.review.editorialOverride).toBeUndefined();
     }
   });
