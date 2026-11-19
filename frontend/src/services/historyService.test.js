@@ -86,12 +86,16 @@ describe("listBooks", () => {
         expect(rest).toHaveLength(65);
         expect(rest.every((book) => book.eventCount === 0 && !book.hasEvents)).toBe(true);
     });
-    it("reports four categories for Genesis and zero for every other book", () => {
+    it("reports four categories for Genesis, seven for Exodus, and zero for every other book", () => {
         const books = listBooks();
         const genesis = books.find((book) => book.id === "genesis");
         expect(genesis.categoryCount).toBe(4);
         expect(genesis.hasCategories).toBe(true);
-        const rest = books.filter((book) => book.id !== "genesis");
+        const exodus = books.find((book) => book.id === "exodus");
+        expect(exodus.categoryCount).toBe(7);
+        expect(exodus.hasCategories).toBe(true);
+        const rest = books.filter((book) => book.id !== "genesis" && book.id !== "exodus");
+        expect(rest).toHaveLength(64);
         expect(rest.every((book) => book.categoryCount === 0 && !book.hasCategories)).toBe(true);
     });
 });
@@ -169,8 +173,57 @@ describe("book/event lookups in a production build", () => {
         expect(getEvent("event-noah-and-his-sons").title).toBe("Noah and His Sons");
         expect(getEventBySlug("noah-and-his-sons")).not.toBeNull();
         expect(getEventBySlug("noah-and-his-sons").id).toBe("event-noah-and-his-sons");
-        // No other book has generated content yet.
-        expect(getBook("exodus")).toBeNull();
+        // Exodus has generated content now (seven published categories, no events yet).
+        expect(getBook("exodus")).toEqual({
+            "entries": [
+                {
+                    "bookNote": "Exodus 1:1–4:31 tells of Israel's oppression in Egypt, the birth and early life of Moses, his flight to Midian, and God's call from the burning bush. No independently established date is assigned.",
+                    "categoryId": "category-oppression-and-moses-early-life",
+                    "kind": "category",
+                    "narrativeOrder": 15
+                },
+                {
+                    "bookNote": "Exodus 5:1–11:10 tells of Moses and Aaron before Pharaoh, the ten plagues, and Pharaoh's hardened refusal to let Israel go. No independently established date is assigned.",
+                    "categoryId": "category-pharaoh-and-the-ten-plagues",
+                    "kind": "category",
+                    "narrativeOrder": 16
+                },
+                {
+                    "bookNote": "Exodus 12:1–15:21 tells of the Passover, the exodus from Egypt, the crossing of the sea, and the song of Moses and Miriam. No independently established date is assigned.",
+                    "categoryId": "category-passover-and-the-exodus",
+                    "kind": "category",
+                    "narrativeOrder": 17
+                },
+                {
+                    "bookNote": "Exodus 15:22–18:27 tells of Israel's journey in the wilderness: the bitter water at Marah, manna and quail, water from the rock, the battle with Amalek, and Jethro's counsel. No independently established date is assigned.",
+                    "categoryId": "category-israel-in-the-wilderness",
+                    "kind": "category",
+                    "narrativeOrder": 18
+                },
+                {
+                    "bookNote": "Exodus 19:1–24:18 tells of Israel's arrival at Sinai, the covenant, the Ten Words, the Book of the Covenant, and the ratification of the covenant. No independently established date is assigned.",
+                    "categoryId": "category-covenant-and-gods-law",
+                    "kind": "category",
+                    "narrativeOrder": 19
+                },
+                {
+                    "bookNote": "Exodus 25:1–34:35 tells of the instructions for the tabernacle, the golden calf, the breaking and renewal of the covenant, and the second tablets. No independently established date is assigned.",
+                    "categoryId": "category-tabernacle-and-israels-rebellion",
+                    "kind": "category",
+                    "narrativeOrder": 20
+                },
+                {
+                    "bookNote": "Exodus 35:1–40:38 tells of the building of the tabernacle, its furnishing, and the glory of the LORD filling it. No independently established date is assigned.",
+                    "categoryId": "category-building-the-tabernacle",
+                    "kind": "category",
+                    "narrativeOrder": 21
+                }
+            ],
+            "id": "exodus",
+            "introduction": "Exodus tells of Israel's deliverance from Egypt, the covenant at Sinai, and the dwelling of God among his people. Biblical History presents the passage alongside carefully qualified ancient cultural and literary context.",
+            "testament": "OT",
+            "title": "Exodus"
+        });
         expect(listEventsForBook("exodus")).toEqual([]);
     });
 });
@@ -228,7 +281,7 @@ describe("formatHistoryDateLabel", () => {
     });
 });
 
-describe("category lookups in a production build (four categories published)", () => {
+describe("category lookups in a production build (eleven categories published)", () => {
     it("strips the category- prefix for slugs, and leaves other ids alone", () => {
         expect(categorySlug("category-patriarchs")).toBe("patriarchs");
         expect(categorySlug("category-primeval-origins")).toBe("primeval-origins");
@@ -239,7 +292,7 @@ describe("category lookups in a production build (four categories published)", (
         expect(getCategoryBySlug("patriarchs")).toBeNull();
         expect(getCategory("category-primeval-origins")).toBeNull();
     });
-    it("lists the four published categories for Genesis, none for other books", () => {
+    it("lists the four published categories for Genesis and the seven for Exodus, none for other books", () => {
         const categories = listCategoriesForBook("genesis");
         expect(categories.map((category) => category.id)).toEqual([
             "category-nations-and-babel",
@@ -248,7 +301,155 @@ describe("category lookups in a production build (four categories published)", (
             "category-joseph-and-israel-in-egypt",
         ]);
         expect(categories.map((category) => category.narrativeOrder)).toEqual([11, 12, 13, 14]);
-        expect(listCategoriesForBook("exodus")).toEqual([]);
+        const exodusCategories = listCategoriesForBook("exodus");
+        expect(exodusCategories.map((category) => category.id)).toEqual([
+            "category-oppression-and-moses-early-life",
+            "category-pharaoh-and-the-ten-plagues",
+            "category-passover-and-the-exodus",
+            "category-israel-in-the-wilderness",
+            "category-covenant-and-gods-law",
+            "category-tabernacle-and-israels-rebellion",
+            "category-building-the-tabernacle",
+        ]);
+        expect(exodusCategories.map((category) => category.narrativeOrder)).toEqual([15, 16, 17, 18, 19, 20, 21]);
+        expect(exodusCategories.every((category) => category.status === "published")).toBe(true);
+        expect(exodusCategories.every((category) => !("claims" in category) && !("review" in category))).toBe(true);
+        expect(exodusCategories[0].sources).toEqual([
+            "source-augustine-city-of-god",
+            "source-bdb-lexicon",
+            "source-bible-gateway-kjv",
+            "source-bible-hub-interlinear",
+            "source-bible-odyssey-moses",
+            "source-calvin-harmony-of-the-law",
+            "source-charles-jubilees",
+            "source-clarke-commentary",
+            "source-hoffmeier-out-of-egypt",
+            "source-jfb-commentary",
+            "source-josephus-antiquities",
+            "source-jvl-kenite",
+            "source-keil-delitzsch-exodus",
+            "source-merneptah-stele",
+            "source-nets-septuagint-exodus",
+            "source-philo-life-of-moses",
+            "source-sinuhe-gardiner",
+        ]);
+        expect(exodusCategories[1].sources).toEqual([
+            "source-augustine-city-of-god",
+            "source-bdb-lexicon",
+            "source-bible-gateway-kjv",
+            "source-bible-hub-interlinear",
+            "source-bible-odyssey-plagues",
+            "source-calvin-harmony-of-the-law",
+            "source-calvin-romans",
+            "source-charles-jubilees",
+            "source-clarke-commentary",
+            "source-ipuwer-papyrus",
+            "source-jfb-commentary",
+            "source-josephus-antiquities",
+            "source-keil-delitzsch-exodus",
+            "source-merneptah-stele",
+            "source-nets-septuagint-exodus",
+            "source-philo-life-of-moses",
+        ]);
+        expect(exodusCategories[2].sources).toEqual([
+            "source-augustine-city-of-god",
+            "source-bdb-lexicon",
+            "source-bible-gateway-kjv",
+            "source-bible-odyssey-passover",
+            "source-biblicaltraining-exodus",
+            "source-calvin-harmony-of-the-law",
+            "source-charles-jubilees",
+            "source-clarke-commentary",
+            "source-hoffmeier-out-of-egypt",
+            "source-jfb-commentary",
+            "source-josephus-antiquities",
+            "source-keil-delitzsch-exodus",
+            "source-merneptah-stele",
+            "source-nets-septuagint-exodus",
+            "source-noegel-hidden-waters",
+            "source-overstreet-red-sea-crossing",
+            "source-philo-life-of-moses",
+            "source-philo-questions-exodus",
+        ]);
+        expect(exodusCategories[3].sources).toEqual([
+            "source-augustine-city-of-god",
+            "source-bdb-lexicon",
+            "source-bible-gateway-kjv",
+            "source-bible-hub-interlinear",
+            "source-biblicaltraining-exodus",
+            "source-biblicaltraining-numbers",
+            "source-calvin-harmony-of-the-law",
+            "source-charles-jubilees",
+            "source-clarke-commentary",
+            "source-defoliart-insects-as-food-ch21",
+            "source-jfb-commentary",
+            "source-josephus-antiquities",
+            "source-keil-delitzsch-exodus",
+            "source-merneptah-stele",
+            "source-nets-septuagint-exodus",
+            "source-philo-life-of-moses",
+            "source-sarna-exodus",
+        ]);
+        expect(exodusCategories[4].sources).toEqual([
+            "source-augustine-city-of-god",
+            "source-bdb-lexicon",
+            "source-bible-gateway-kjv",
+            "source-bible-hub-interlinear",
+            "source-bible-odyssey-covenant",
+            "source-calvin-harmony-of-the-law",
+            "source-charles-jubilees",
+            "source-clarke-commentary",
+            "source-hammurabi-code",
+            "source-jfb-commentary",
+            "source-josephus-antiquities",
+            "source-keil-delitzsch-exodus",
+            "source-lucas-themelios-covenant-treaty",
+            "source-merneptah-stele",
+            "source-nets-septuagint-exodus",
+            "source-philo-decalogue",
+            "source-philo-life-of-moses",
+            "source-talmud-shabbat",
+        ]);
+        expect(exodusCategories[5].sources).toEqual([
+            "source-augustine-city-of-god",
+            "source-bdb-lexicon",
+            "source-bible-gateway-kjv",
+            "source-bible-odyssey-golden-calf",
+            "source-biblicaltraining-exodus",
+            "source-biblicaltraining-mount-sinai",
+            "source-calvin-harmony-of-the-law",
+            "source-charles-jubilees",
+            "source-clarke-commentary",
+            "source-jfb-commentary",
+            "source-josephus-antiquities",
+            "source-keil-delitzsch-exodus",
+            "source-merneptah-stele",
+            "source-nets-septuagint-exodus",
+            "source-philo-life-of-moses",
+        ]);
+        expect(exodusCategories[6].sources).toEqual([
+            "source-augustine-city-of-god",
+            "source-bdb-lexicon",
+            "source-bible-gateway-kjv",
+            "source-calvin-harmony-of-the-law",
+            "source-charles-jubilees",
+            "source-clarke-commentary",
+            "source-jfb-commentary",
+            "source-josephus-antiquities",
+            "source-keil-delitzsch-exodus",
+            "source-merneptah-stele",
+            "source-nets-septuagint-exodus",
+            "source-philo-life-of-moses",
+            "source-sarna-exodus",
+            "source-timna-tent-shrine",
+        ]);
+        expect(exodusCategories[0].bookNote).toBe("Exodus 1:1–4:31 tells of Israel's oppression in Egypt, the birth and early life of Moses, his flight to Midian, and God's call from the burning bush. No independently established date is assigned.");
+        expect(exodusCategories[1].bookNote).toBe("Exodus 5:1–11:10 tells of Moses and Aaron before Pharaoh, the ten plagues, and Pharaoh's hardened refusal to let Israel go. No independently established date is assigned.");
+        expect(exodusCategories[2].bookNote).toBe("Exodus 12:1–15:21 tells of the Passover, the exodus from Egypt, the crossing of the sea, and the song of Moses and Miriam. No independently established date is assigned.");
+        expect(exodusCategories[3].bookNote).toBe("Exodus 15:22–18:27 tells of Israel's journey in the wilderness: the bitter water at Marah, manna and quail, water from the rock, the battle with Amalek, and Jethro's counsel. No independently established date is assigned.");
+        expect(exodusCategories[4].bookNote).toBe("Exodus 19:1–24:18 tells of Israel's arrival at Sinai, the covenant, the Ten Words, the Book of the Covenant, and the ratification of the covenant. No independently established date is assigned.");
+        expect(exodusCategories[5].bookNote).toBe("Exodus 25:1–34:35 tells of the instructions for the tabernacle, the golden calf, the breaking and renewal of the covenant, and the second tablets. No independently established date is assigned.");
+        expect(exodusCategories[6].bookNote).toBe("Exodus 35:1–40:38 tells of the building of the tabernacle, its furnishing, and the glory of the LORD filling it. No independently established date is assigned.");
         expect(listCategoriesForBook("not-a-book")).toEqual([]);
     });
     it("returns no books for an unknown category", () => {
@@ -279,30 +480,48 @@ describe("category lookups in a production build (four categories published)", (
         expect(entries.map((entry) => entry.kind)).toEqual([...Array(10).fill("event"), "category", "category", "category", "category"]);
         expect(entries.map((entry) => entry.narrativeOrder)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
         expect(entries[0].bookNote).toContain("Genesis 1:1");
-        expect(listBookEntries("exodus")).toEqual([]);
+        const exodusEntries = listBookEntries("exodus");
+        expect(exodusEntries).toHaveLength(7);
+        expect(exodusEntries.map((entry) => entry.id)).toEqual([
+            "category-oppression-and-moses-early-life",
+            "category-pharaoh-and-the-ten-plagues",
+            "category-passover-and-the-exodus",
+            "category-israel-in-the-wilderness",
+            "category-covenant-and-gods-law",
+            "category-tabernacle-and-israels-rebellion",
+            "category-building-the-tabernacle",
+        ]);
+        expect(exodusEntries.map((entry) => entry.kind)).toEqual(["category", "category", "category", "category", "category", "category", "category"]);
+        expect(exodusEntries.map((entry) => entry.narrativeOrder)).toEqual([15, 16, 17, 18, 19, 20, 21]);
+        expect(exodusEntries.every((entry) => entry.status === "published")).toBe(true);
         expect(listBookEntries("not-a-book")).toEqual([]);
     });
     it("buildBookTimeline is the same mixed list as listBookEntries", () => {
         expect(buildBookTimeline("genesis")).toEqual(listBookEntries("genesis"));
-        expect(buildBookTimeline("exodus")).toEqual([]);
+        expect(buildBookTimeline("exodus")).toEqual(listBookEntries("exodus"));
     });
 });
 
 // Fixture-based category tests. The generated category directory now
-// holds the four published Genesis categories, but the positive paths
-// for a category-only book still cannot run against the real generated
-// content. Instead this block
+// holds the eleven published categories (four Genesis, seven Exodus),
+// and Exodus itself is a real category-only book — but the positive
+// paths below still run against fixture records, so the loader's sort
+// and the service's lookups are exercised on records the test controls.
+// This block
 // writes fixture records into the generated directory, re-imports the
 // service fresh so its eager globs pick them up, and deletes every
 // fixture file afterwards — the manifest and the real book files are
 // never touched, so no other test file can observe the fixtures except
 // through the fixture book below.
 //
-// The fixture book is Exodus, and it carries ONLY category entries —
-// never an event entry. That keeps Exodus event-less (no first
+// The fixture book is Leviticus, and it carries ONLY category entries —
+// never an event entry. That keeps Leviticus event-less (no first
 // published event, still a Coming Soon chip, still redirecting to the
 // homepage), so the selector, index, and event-page tests are
 // unaffected even if they import the service while the fixtures exist.
+// Leviticus is used (not Exodus) because the fixture's beforeAll deletes
+// the book file and afterAll never restores it — after the Exodus
+// publication the real books/exodus.json exists and must not be deleted.
 // True event+category interleaving in one book is therefore NOT covered
 // here: the sort is one comparator over the unified entries array, and
 // it is covered for events (Genesis, above) and for categories (below),
@@ -359,8 +578,8 @@ describe("category fixtures (generated-content globs)", () => {
         "",
     ].join("\n");
     const fixtureBook = {
-        id: "exodus",
-        title: "Exodus",
+        id: "leviticus",
+        title: "Leviticus",
         testament: "OT",
         introduction: "Fixture book: categories only, no events.",
         entries: [
@@ -374,7 +593,7 @@ describe("category fixtures (generated-content globs)", () => {
         path.join(categoriesDir, "category-primeval-origins.json"),
         path.join(categoriesDir, "category-patriarchal-era.json"),
         path.join(categoriesDir, "primeval-origins.md"),
-        path.join(generatedDir, "books", "exodus.json"),
+        path.join(generatedDir, "books", "leviticus.json"),
     ];
 
     let svc;
@@ -407,7 +626,7 @@ describe("category fixtures (generated-content globs)", () => {
         expect(svc.getCategory("category-no-such")).toBeNull();
     });
     it("lists the fixture book's categories in narrative order, not file order", () => {
-        const categories = svc.listCategoriesForBook("exodus");
+        const categories = svc.listCategoriesForBook("leviticus");
         expect(categories.map((category) => category.id)).toEqual([
             "category-primeval-origins",
             "category-patriarchal-era",
@@ -426,15 +645,15 @@ describe("category fixtures (generated-content globs)", () => {
         ]);
     });
     it("listBookEntries tags each entry with its kind and narrative order", () => {
-        const entries = svc.listBookEntries("exodus");
+        const entries = svc.listBookEntries("leviticus");
         expect(entries).toHaveLength(2);
         expect(entries[0]).toMatchObject({ id: "category-primeval-origins", kind: "category", narrativeOrder: 1 });
         expect(entries[1]).toMatchObject({ id: "category-patriarchal-era", kind: "category", narrativeOrder: 2 });
-        expect(svc.buildBookTimeline("exodus")).toEqual(entries);
+        expect(svc.buildBookTimeline("leviticus")).toEqual(entries);
     });
     it("finds the books carrying a fixture category", () => {
         const books = svc.getBooksForCategory("category-primeval-origins");
-        expect(books.map((book) => book.id)).toEqual(["exodus"]);
+        expect(books.map((book) => book.id)).toEqual(["leviticus"]);
         expect(svc.getBooksForCategory("category-no-such")).toEqual([]);
     });
     it("loads a fixture category's sections with continuous footnote numbering", async () => {

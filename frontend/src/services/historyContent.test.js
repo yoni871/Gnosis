@@ -97,8 +97,8 @@ describe("generateHistoryContent — the publication gate", () => {
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
-        expect(manifest.books).toEqual(["genesis"]);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
+        expect(manifest.books).toEqual(["exodus", "genesis"]);
         expect(existsSync(path.join(outDir, "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.md"))).toBe(true);
@@ -115,7 +115,7 @@ describe("generateHistoryContent — the publication gate", () => {
         // production generation still includes them — only the draft is
         // excluded.
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.books).toEqual(["genesis"]);
+        expect(manifest.books).toEqual(["exodus", "genesis"]);
         expect(existsSync(path.join(outDir, "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "events", "creation.json"))).toBe(false);
     });
@@ -144,22 +144,11 @@ describe("generateHistoryContent — the publication gate", () => {
     });
     it("finds non-published ids for the gate check", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
-        // All ten shipped events are published now, and so are the
-        // four Genesis categories, so the non-published records in
-        // this fixture are the draft Creation event and the in-review
-        // Building the Tabernacle, Covenant and God's Law, Israel in
-        // the Wilderness, Israel's Oppression and Moses' Early Life,
-        // Passover and the Exodus, Pharaoh and the Ten Plagues,
-        // and Tabernacle and Israel's Rebellion categories.
+        // All ten shipped events are published now, and so are all
+        // eleven categories, so the only non-published record in this
+        // fixture is the draft Creation event.
         expect(findNonPublishedIds({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "draft" },
-            { id: "category-building-the-tabernacle", kind: "category", status: "in-review" },
-            { id: "category-covenant-and-gods-law", kind: "category", status: "in-review" },
-            { id: "category-israel-in-the-wilderness", kind: "category", status: "in-review" },
-            { id: "category-oppression-and-moses-early-life", kind: "category", status: "in-review" },
-            { id: "category-passover-and-the-exodus", kind: "category", status: "in-review" },
-            { id: "category-pharaoh-and-the-ten-plagues", kind: "category", status: "in-review" },
-            { id: "category-tabernacle-and-israels-rebellion", kind: "category", status: "in-review" },
         ]);
     });
 });
@@ -196,7 +185,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
         expect(eventJson).not.toContain("editorialOverride");
         expect(eventJson).not.toContain("not-independently-verified");
         const sources = JSON.parse(sourcesJson);
-        expect(Object.keys(sources)).toHaveLength(117);
+        expect(Object.keys(sources)).toHaveLength(142);
         const fixtureRegistry = JSON.parse(readFileSync(path.join(contentDir, "sources", "references.json"), "utf8"));
         for (const [id, source] of Object.entries(sources)) {
             expect(source).not.toHaveProperty("verification");
@@ -258,7 +247,7 @@ describe("generateHistoryContent — internal editorial metadata never ships", (
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-        expect(manifest.books).toEqual(["genesis"]);
+        expect(manifest.books).toEqual(["exodus", "genesis"]);
         const eventJson = readFileSync(path.join(outDir, "events", "adam-and-eve.json"), "utf8");
         const event = JSON.parse(eventJson);
         expect(event).not.toHaveProperty("claims");
@@ -681,25 +670,12 @@ describe("validateHistoryContent — categories", () => {
     it("finds a non-published category id for the gate check", () => {
         const { contentDir } = makeTempTree();
         addCategory(contentDir);
-        // All ten shipped events are published now, and so are the
-        // shipped Abraham and Sarah, Isaac, Jacob, and Esau, and
-        // Joseph and Israel in Egypt categories, so the
-        // non-published records are the in-review fixture category
-        // (which replaces the shipped, published Nations and Babel)
-        // and the shipped in-review Building the Tabernacle, Covenant
-        // and God's Law, Israel in the Wilderness, Israel's
-        // Oppression and Moses' Early Life, Passover and the Exodus,
-        // Pharaoh and the Ten Plagues, and Tabernacle and Israel's
-        // Rebellion categories (listed in id order).
+        // All ten shipped events are published now, and so are all
+        // eleven shipped categories, so the only non-published record
+        // is the in-review fixture category (which replaces the
+        // shipped, published Nations and Babel).
         expect(findNonPublishedIds({ contentDir })).toEqual([
-            { id: "category-building-the-tabernacle", kind: "category", status: "in-review" },
-            { id: "category-covenant-and-gods-law", kind: "category", status: "in-review" },
-            { id: "category-israel-in-the-wilderness", kind: "category", status: "in-review" },
             { id: "category-nations-and-babel", kind: "category", status: "in-review" },
-            { id: "category-oppression-and-moses-early-life", kind: "category", status: "in-review" },
-            { id: "category-passover-and-the-exodus", kind: "category", status: "in-review" },
-            { id: "category-pharaoh-and-the-ten-plagues", kind: "category", status: "in-review" },
-            { id: "category-tabernacle-and-israels-rebellion", kind: "category", status: "in-review" },
         ]);
     });
 });
@@ -809,7 +785,7 @@ describe("generateHistoryContent — categories", () => {
         const { manifest } = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: false, bibleChapters,
         });
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
         expect(manifest.events).toHaveLength(10);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(true);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.md"))).toBe(true);
@@ -831,8 +807,8 @@ describe("generateHistoryContent — categories", () => {
         expect(book.entries[10]).toEqual({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
         // The fixture category cites only Skinner, already cited by
         // published events, so the four sources cited only by the
-        // shipped Nations and Babel drop out (117 − 4 = 113).
-        expect(manifest.sources).toHaveLength(113);
+        // shipped Nations and Babel drop out (142 − 4 = 138).
+        expect(manifest.sources).toHaveLength(138);
         expect(manifest.sources).toContain("source-skinner-genesis");
     });
 
@@ -845,13 +821,13 @@ describe("generateHistoryContent — categories", () => {
         // The fixture replaces the shipped, published Nations and
         // Babel with an in-review one; the other three shipped
         // categories are published, so they still ship.
-        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt"]);
+        expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
         expect(existsSync(path.join(outDir, "categories", "nations-and-babel.json"))).toBe(false);
         const dev = generateHistoryContent({
             contentDir, outputDir: outDir, includeUnpublished: true, bibleChapters,
         });
         // The dev opt-in includes the in-review fixture category —
-        // and the shipped, in-review Building the Tabernacle,
+        // and the shipped, now-published Building the Tabernacle,
         // Covenant and God's Law, Israel in the Wilderness, Israel's
         // Oppression and Moses' Early Life, Passover and the Exodus,
         // Pharaoh and the Ten Plagues, and Tabernacle and Israel's
