@@ -118,7 +118,7 @@ vi.mock("../../services/historyService", async (importOriginal) => {
     const actual = await importOriginal();
     return {
         ...actual,
-        getBookTitle: (bookId) => (bookId === "genesis" ? "Genesis" : bookId),
+        getBookTitle: (bookId) => (bookId === "genesis" ? "Genesis" : null),
         getBook: (bookId) => (bookId === "genesis"
             ? {
                 id: "genesis",
@@ -131,6 +131,9 @@ vi.mock("../../services/historyService", async (importOriginal) => {
         listBooks: () => [{ id: "genesis", title: "Genesis", testament: "OT" }],
         getEventBySlug: (slug) => (slug === "creation" ? FIXTURE_EVENT : null),
         getFirstPublishedEvent: () => FIXTURE_EVENT,
+        getPublishedHistoryRoute: (slug) => slug === "creation"
+            ? { bookId: "genesis", entry: FIXTURE_ENTRIES[0] }
+            : slug === "patriarchs" ? { bookId: "genesis", entry: FIXTURE_ENTRIES[1] } : null,
         getCategoryBySlug: (slug) => (slug === "patriarchs" ? FIXTURE_CATEGORY_RECORD : null),
         getCategory: (id) => (id === FIXTURE_CATEGORY.id ? FIXTURE_CATEGORY_RECORD : null),
         categorySlug: (id) => String(id).replace(/^category-/, ""),
@@ -152,7 +155,7 @@ vi.mock("../../services/historyService", async (importOriginal) => {
 
 function renderStudy({ onBackToBooks = vi.fn() } = {}) {
     return render(
-        <MemoryRouter initialEntries={["/biblical-history/genesis/creation"]}>
+        <MemoryRouter initialEntries={["/biblical-history/creation"]}>
             <HistoryEventStudy record={FIXTURE_EVENT} bookId="genesis" onBackToBooks={onBackToBooks} />
         </MemoryRouter>,
     );
@@ -193,7 +196,7 @@ describe("HistoryEventStudy", () => {
 
     it("renders the in-review badge for researched unpublished content", async () => {
         render(
-            <MemoryRouter initialEntries={["/biblical-history/genesis/creation"]}>
+            <MemoryRouter initialEntries={["/biblical-history/creation"]}>
                 <HistoryEventStudy
                     record={{ ...FIXTURE_EVENT, status: "in-review" }}
                     bookId="genesis"
@@ -209,7 +212,7 @@ describe("HistoryEventStudy", () => {
         renderStudy();
         expect(screen.getByText("Also in:")).toBeInTheDocument();
         expect(screen.getByRole("link", { name: "Psalms" })).toHaveAttribute(
-            "href", "/biblical-history/psalms/creation",
+            "href", "/biblical-history/creation",
         );
     });
 
@@ -322,8 +325,8 @@ describe("HistoryEventStudy — close returns to the index book entry", () => {
                     <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
                         <Routes>
                             <Route path="/biblical-history" element={<BiblicalHistoryIndexPage />} />
-                            <Route path="/biblical-history/:book" element={<BiblicalHistoryBookRedirect />} />
-                            <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryEventPage />} />
+                            <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryBookRedirect />} />
+                            <Route path="/biblical-history/:slug" element={<BiblicalHistoryEventPage />} />
                         </Routes>
                     </AuthContext.Provider>
                 </ThemeProvider>
@@ -333,19 +336,19 @@ describe("HistoryEventStudy — close returns to the index book entry", () => {
 
     it("the book URL renders its published landing page and canonical", () => {
         renderStudyPage("/biblical-history/genesis");
-        expect(screen.getByRole("heading", { level: 1, name: "Genesis" })).toBeInTheDocument();
-        expect(screen.getByRole("link", { name: /Creation/ })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+        expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
+        expect(screen.queryByRole("heading", { level: 1, name: "Genesis" })).toBeNull();
         expect(screen.queryByRole("dialog")).toBeNull();
         expect(document.querySelector(".history-panel-backdrop")).toBeNull();
-        expect(document.title).toBe("Genesis | Biblical History | Gnosis");
+        expect(document.title).toContain("Creation");
         expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
-            "https://studygnosis.com/biblical-history/genesis",
+            "https://studygnosis.com/biblical-history/creation",
         );
     });
 
     it("returns to the index after close-button close — focus lands on the Genesis entry", async () => {
         const user = userEvent.setup();
-        renderStudyPage("/biblical-history/genesis/creation");
+        renderStudyPage("/biblical-history/creation");
         expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
         await user.click(screen.getByTestId("history-study-close"));
         await waitFor(() => expect(
@@ -362,7 +365,7 @@ describe("HistoryEventStudy — close returns to the index book entry", () => {
 
     it("Escape does not leave the study page — only the close button does", async () => {
         const user = userEvent.setup();
-        renderStudyPage("/biblical-history/genesis/creation");
+        renderStudyPage("/biblical-history/creation");
         await waitFor(() => expect(screen.getByText("Overview prose here.")).toBeInTheDocument());
         // The companion opens by default, so the first Escape closes it
         // and the second is a no-op — the study stays put either way.
@@ -409,7 +412,7 @@ describe("HistoryEventStudy — mobile single column", () => {
 describe("HistoryEventStudy — category record", () => {
     function renderCategoryStudy() {
         return render(
-            <MemoryRouter initialEntries={["/biblical-history/genesis/patriarchs"]}>
+            <MemoryRouter initialEntries={["/biblical-history/patriarchs"]}>
                 <HistoryEventStudy record={FIXTURE_CATEGORY} bookId="genesis" onBackToBooks={vi.fn()} />
             </MemoryRouter>,
         );
@@ -446,7 +449,7 @@ describe("HistoryEventStudy — category record", () => {
         renderCategoryStudy();
         expect(screen.getByText("Also in:")).toBeInTheDocument();
         expect(screen.getByRole("link", { name: "Exodus" })).toHaveAttribute(
-            "href", "/biblical-history/exodus/patriarchs",
+            "href", "/biblical-history/patriarchs",
         );
     });
 
@@ -467,8 +470,8 @@ describe("HistoryEventStudy — category page (mocked service, routes mirror App
                     <AuthContext.Provider value={{ user: null, isAuthLoading: false, logout: vi.fn() }}>
                         <Routes>
                             <Route path="/biblical-history" element={<BiblicalHistoryIndexPage />} />
-                            <Route path="/biblical-history/:book" element={<BiblicalHistoryBookRedirect />} />
-                            <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryEventPage />} />
+                            <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryBookRedirect />} />
+                            <Route path="/biblical-history/:slug" element={<BiblicalHistoryEventPage />} />
                         </Routes>
                     </AuthContext.Provider>
                 </ThemeProvider>
@@ -477,12 +480,12 @@ describe("HistoryEventStudy — category page (mocked service, routes mirror App
     }
 
     it("renders the published category page for a direct Genesis / patriarchs link", async () => {
-        renderCategoryPage("/biblical-history/genesis/patriarchs");
+        renderCategoryPage("/biblical-history/patriarchs");
         expect(screen.queryByRole("heading", { level: 1, name: "Page not found" })).toBeNull();
         expect(screen.getByRole("heading", { level: 1, name: "The Patriarchs" })).toBeInTheDocument();
         expect(document.title).toBe("The Patriarchs — Genesis 12:1–3 | Biblical History | Gnosis");
         expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
-            "https://studygnosis.com/biblical-history/genesis/patriarchs",
+            "https://studygnosis.com/biblical-history/patriarchs",
         );
         expect(screen.queryByRole("navigation", { name: "Breadcrumb" })).toBeNull();
         // Companion default is the representative primary passage.
@@ -501,7 +504,7 @@ describe("HistoryEventStudy — category page (mocked service, routes mirror App
         // of the category sections.
         vi.mocked(loadEventSections).mockClear();
         vi.mocked(loadCategorySections).mockClear();
-        renderCategoryPage("/biblical-history/genesis/patriarchs");
+        renderCategoryPage("/biblical-history/patriarchs");
         await waitFor(() => expect(screen.getByText("Patriarchs overview prose.")).toBeInTheDocument());
         expect(screen.getByText("Patriarchs why it matters prose.")).toBeInTheDocument();
         expect(vi.mocked(loadCategorySections)).toHaveBeenCalledWith("category-patriarchs");
@@ -510,7 +513,7 @@ describe("HistoryEventStudy — category page (mocked service, routes mirror App
 
     it("navigates Creation → The Patriarchs through the timeline", async () => {
         const user = userEvent.setup();
-        renderCategoryPage("/biblical-history/genesis/creation");
+        renderCategoryPage("/biblical-history/creation");
         expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
         await user.click(screen.getByRole("button", { name: /The Patriarchs, Category/ }));
         await waitFor(() => expect(
@@ -518,12 +521,12 @@ describe("HistoryEventStudy — category page (mocked service, routes mirror App
         ).toBeInTheDocument());
         expect(document.title).toBe("The Patriarchs — Genesis 12:1–3 | Biblical History | Gnosis");
         expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
-            "https://studygnosis.com/biblical-history/genesis/patriarchs",
+            "https://studygnosis.com/biblical-history/patriarchs",
         );
     });
 
     it("renders the 404 page for an unknown category slug", () => {
-        renderCategoryPage("/biblical-history/genesis/not-a-category");
+        renderCategoryPage("/biblical-history/not-a-category");
         expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
     });
 

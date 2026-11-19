@@ -110,11 +110,8 @@ function App() {
             />
 
             {/*
-              Biblical History: the index lists all 66 books, the book
-              route redirects to the book's first published event (or
-              its Upcoming state when it has none), and the event route
-              is the study page — the book's timeline with one event's
-              panel open.
+              Biblical History has an index and flat published study URLs.
+              Legacy nested URLs redirect to the corresponding study.
             */}
             <Route
               path='/biblical-history'
@@ -127,12 +124,12 @@ function App() {
             />
 
             <Route
-              path='/biblical-history/:book'
+              path='/biblical-history/:book/:event'
               element={<BiblicalHistoryBookRedirect />}
             />
 
             <Route
-              path='/biblical-history/:book/:event'
+              path='/biblical-history/:slug'
               element={<BiblicalHistoryEventPage />}
             />
 

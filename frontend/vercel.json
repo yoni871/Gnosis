@@ -79,6 +79,161 @@
       "source": "/biblical-history/books",
       "destination": "/biblical-history#history-books",
       "permanent": true
+    },
+    {
+      "source": "/biblical-history/exodus/oppression-and-moses-early-life",
+      "destination": "/biblical-history/oppression-and-moses-early-life",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/exodus/pharaoh-and-the-ten-plagues",
+      "destination": "/biblical-history/pharaoh-and-the-ten-plagues",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/exodus/passover-and-the-exodus",
+      "destination": "/biblical-history/passover-and-the-exodus",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/exodus/israel-in-the-wilderness",
+      "destination": "/biblical-history/israel-in-the-wilderness",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/exodus/covenant-and-gods-law",
+      "destination": "/biblical-history/covenant-and-gods-law",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/exodus/tabernacle-and-israels-rebellion",
+      "destination": "/biblical-history/tabernacle-and-israels-rebellion",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/exodus/building-the-tabernacle",
+      "destination": "/biblical-history/building-the-tabernacle",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/exodus",
+      "destination": "/biblical-history/oppression-and-moses-early-life",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/creation",
+      "destination": "/biblical-history/creation",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/adam-and-eve",
+      "destination": "/biblical-history/adam-and-eve",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/cain-and-abel",
+      "destination": "/biblical-history/cain-and-abel",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/cains-descendants",
+      "destination": "/biblical-history/cains-descendants",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/seth-early-generations",
+      "destination": "/biblical-history/seth-early-generations",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/humanitys-corruption",
+      "destination": "/biblical-history/humanitys-corruption",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/noah-ark",
+      "destination": "/biblical-history/noah-ark",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/great-flood",
+      "destination": "/biblical-history/great-flood",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/noahs-sacrifice-and-covenant",
+      "destination": "/biblical-history/noahs-sacrifice-and-covenant",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/noah-and-his-sons",
+      "destination": "/biblical-history/noah-and-his-sons",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/nations-and-babel",
+      "destination": "/biblical-history/nations-and-babel",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/abraham-and-sarah",
+      "destination": "/biblical-history/abraham-and-sarah",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/isaac-jacob-and-esau",
+      "destination": "/biblical-history/isaac-jacob-and-esau",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis/joseph-and-israel-in-egypt",
+      "destination": "/biblical-history/joseph-and-israel-in-egypt",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/genesis",
+      "destination": "/biblical-history/creation",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/leviticus/leviticus-sacrificial-system",
+      "destination": "/biblical-history/leviticus-sacrificial-system",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/leviticus/leviticus-priesthood-consecration",
+      "destination": "/biblical-history/leviticus-priesthood-consecration",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/leviticus/leviticus-purity-restoration",
+      "destination": "/biblical-history/leviticus-purity-restoration",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/leviticus/leviticus-day-of-atonement",
+      "destination": "/biblical-history/leviticus-day-of-atonement",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/leviticus/leviticus-holiness-code",
+      "destination": "/biblical-history/leviticus-holiness-code",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/leviticus/leviticus-festivals-worship",
+      "destination": "/biblical-history/leviticus-festivals-worship",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/leviticus/leviticus-jubilee-covenant",
+      "destination": "/biblical-history/leviticus-jubilee-covenant",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/leviticus",
+      "destination": "/biblical-history/leviticus-sacrificial-system",
+      "permanent": true
     }
   ],
   "rewrites": [

@@ -206,6 +206,23 @@ export function categorySlug(categoryId) {
     return String(categoryId).replace(/^category-/, "");
 }
 
+// Resolve a flat URL against published book entries only. Fail loudly if a
+// future publication reuses a slug for a different record or a book name.
+export function getPublishedHistoryRoute(slug) {
+    let match = null;
+    for (const book of listBooks()) {
+        for (const entry of listBookEntries(book.id)) {
+            const entrySlug = entry.kind === "category" ? categorySlug(entry.id) : eventSlug(entry.id);
+            if (entrySlug !== slug) continue;
+            if (match && (match.entry.id !== entry.id || match.entry.kind !== entry.kind)) {
+                throw new Error(`Biblical History slug collision: ${slug}`);
+            }
+            match ??= { bookId: book.id, entry };
+        }
+    }
+    return match;
+}
+
 export function getTopic(topicId) {
     return generatedTopics.get(topicId) ?? null;
 }

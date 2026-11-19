@@ -9,7 +9,7 @@ for (const width of [320, 390]) {
     test(`History reader stays anchored with sticky headers at ${width}px`, async ({ page }) => {
         await page.setViewportSize({ width, height: 800 });
         await page.emulateMedia({ reducedMotion: 'reduce' });
-        await page.goto(`${fixture.origin}/biblical-history/genesis/creation`);
+        await page.goto(`${fixture.origin}/biblical-history/creation`);
         const dock = page.locator('.history-timeline-dock');
         await expect(dock).toBeVisible();
         await page.evaluate(() => window.scrollTo(0, 350));
@@ -34,7 +34,7 @@ for (const width of [320, 390]) {
         expect(await page.locator('.history-timeline-node').first().evaluate(node => getComputedStyle(node).transitionDuration)).toBe('0s');
 
         await page.locator('.history-timeline-node').nth(1).click();
-        await expect(page).toHaveURL(/\/biblical-history\/genesis\/adam-and-eve$/);
+        await expect(page).toHaveURL(/\/biblical-history\/adam-and-eve$/);
         // The URL changes before the keyed study finishes remounting. Wait
         // for the destination's dock, not a detached outgoing DOM node.
         await expect(page.getByRole('heading', { level: 1, name: 'Adam and Eve' })).toBeVisible();
@@ -64,7 +64,7 @@ for (const width of [320, 390]) {
 
 test('desktop History keeps article and Scripture in independent reading columns', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
-    await page.goto(`${fixture.origin}/biblical-history/genesis/creation`);
+    await page.goto(`${fixture.origin}/biblical-history/creation`);
     const article = page.locator('.history-study-content');
     const scripture = page.locator('.history-study-body > .history-scripture-companion');
     await expect(scripture).toBeVisible();
@@ -85,13 +85,27 @@ test('desktop History keeps article and Scripture in independent reading columns
     await expect(scripture).toBeVisible();
 });
 
-test('category-only books open ordered, published landing pages', async ({ page }) => {
-    for (const book of ['exodus', 'leviticus']) {
-        await page.goto(`${fixture.origin}/biblical-history/${book}`);
-        await expect(page.getByRole('heading', { level: 1, name: book === 'exodus' ? 'Exodus' : 'Leviticus' })).toBeVisible();
-        const entries = page.locator('.history-book-entry-list a');
-        await expect(entries).toHaveCount(7);
-        await expect(page.getByText('Coming Soon')).toHaveCount(0);
-        expect((await entries.first().getAttribute('href'))?.startsWith(`/biblical-history/${book}/`)).toBe(true);
+test('book buttons open first published studies and old links keep their destination', async ({ page }) => {
+    for (const [book, slug, title] of [
+        ['genesis', 'creation', 'Creation'],
+        ['exodus', 'oppression-and-moses-early-life', "Israel's Oppression and Moses' Early Life"],
+        ['leviticus', 'leviticus-sacrificial-system', 'The Sacrificial System'],
+    ]) {
+        await page.goto(`${fixture.origin}/biblical-history#history-books`);
+        await expect(page.locator('.landing-header').getByRole('link', { name: /Start Exploring/ })).toHaveCount(0);
+        const browse = page.locator('.history-browse-books');
+        await browse.click();
+        await expect(browse).toHaveAttribute('aria-expanded', 'true');
+        const link = page.locator(`[data-history-book="${book}"]`);
+        await expect(link).toHaveText(book[0].toUpperCase() + book.slice(1));
+        await link.click();
+        await expect(page).toHaveURL(new RegExp(`/biblical-history/${slug}$`));
+        await expect(page.getByRole('heading', { level: 1, name: title })).toBeVisible();
+        await page.goBack();
+        await expect(page).toHaveURL(/\/biblical-history#history-books$/);
+        await page.goForward();
+        await expect(page).toHaveURL(new RegExp(`/biblical-history/${slug}$`));
+        await page.goto(`${fixture.origin}/biblical-history/${book}/${slug}?from=old#context`);
+        await expect(page).toHaveURL(new RegExp(`/biblical-history/${slug}\\?from=old#context$`));
     }
 });
