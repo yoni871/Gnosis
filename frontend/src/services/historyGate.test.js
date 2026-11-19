@@ -270,21 +270,21 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // and Sarah, Isaac, Jacob, and Esau, and Joseph and Israel
         // in Egypt categories, with the twenty-six sources they
         // alone cite, plus the in-review Building the Tabernacle
-        // category's two additional sources (Childs and the Timna
-        // tent-shrine — Sarna is already cited by the Wilderness
-        // category), the in-review Tabernacle and Israel's Rebellion
+        // category's one additional source (the Timna tent-shrine
+        // — Sarna is already cited by the Wilderness category),
+        // the in-review Tabernacle and Israel's Rebellion
         // category's eight sources and the in-review Covenant and
-        // God's Law category's six additional sources, the in-review
+        // God's Law category's four additional sources, the in-review
         // Israel in the Wilderness category's three additional
         // sources, the in-review Israel's Oppression and Moses'
         // Early Life category's two additional sources, and the
         // in-review Passover and the Exodus category's four
         // additional sources, and the in-review Pharaoh and the
-        // Ten Plagues category's three additional sources (145
+        // Ten Plagues category's three additional sources (142
         // cited sources in all).
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
-        expect(manifest.sources).toHaveLength(145);
+        expect(manifest.sources).toHaveLength(142);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "creation.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "adam-and-eve.json"))).toBe(true);
         expect(existsSync(path.join(sandbox, "src", "generated", "history", "events", "seth-early-generations.json"))).toBe(true);
@@ -473,15 +473,15 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         // Early Life, Passover and the Exodus, Pharaoh and the Ten
         // Plagues, and Tabernacle and Israel's Rebellion categories,
         // the three sources cited only
-        // by Creation (Brown, Crouch, and Shabaka), the eight sources
-        // cited only by the Building category, the six sources the
+        // by Creation (Brown, Crouch, and Shabaka), the seven sources
+        // cited only by the Building category, the four sources the
         // Covenant category adds beyond the Building category's, the
-        // two sources the Wilderness category adds beyond the Building
+        // three sources the Wilderness category adds beyond the Building
         // and Covenant categories' (Sarna is cited by the Building
         // category too), the two sources cited only by the Oppression
         // category, the four sources the Passover category adds beyond
         // the Covenant category's, the three sources cited only by
-        // the Plagues category, and the three sources cited only by
+        // the Plagues category, and the two sources cited only by
         // the Tabernacle category (five of its eight sources are also
         // cited by the Covenant or Oppression categories). The ten
         // registry sources cited by nothing published (among them
@@ -552,12 +552,6 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "Calvin, Harmony of the Law",
             },
             {
-                id: "source-childs-exodus",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Childs, The Book of Exodus",
-            },
-            {
                 id: "source-keil-delitzsch-exodus",
                 kind: "source",
                 status: "unpublished-only",
@@ -600,22 +594,10 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "Covenant in the Hebrew Bible; Tablets and Treaties in the Ancient Near East",
             },
             {
-                id: "source-hittite-treaties",
+                id: "source-lucas-themelios-covenant-treaty",
                 kind: "source",
                 status: "unpublished-only",
-                title: "Hittite suzerainty treaties (Mendenhall's six-element covenant form)",
-            },
-            {
-                id: "source-hoffmeier-ancient-israel-in-sinai",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Hoffmeier, Ancient Israel in Sinai",
-            },
-            {
-                id: "source-kitchen-reliability-ot",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Kitchen, On the Reliability of the Old Testament",
+                title: "Covenant, Treaty, and Prophecy",
             },
             {
                 id: "source-philo-decalogue",
@@ -630,16 +612,22 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "Babylonian Talmud, Shabbat 88a",
             },
             {
-                id: "source-bodenheimer-manna-of-sinai",
+                id: "source-biblicaltraining-exodus",
                 kind: "source",
                 status: "unpublished-only",
-                title: "Bodenheimer, \"The Manna of Sinai\"",
+                title: "Exodus (overview article)",
             },
             {
-                id: "source-wikipedia-stations-of-the-exodus",
+                id: "source-biblicaltraining-numbers",
                 kind: "source",
                 status: "unpublished-only",
-                title: "Wikipedia, \"Stations of the Exodus\"",
+                title: "Book of Numbers",
+            },
+            {
+                id: "source-defoliart-insects-as-food-ch21",
+                kind: "source",
+                status: "unpublished-only",
+                title: "Southwest Asia (Chapter 21)",
             },
             {
                 id: "source-bible-odyssey-moses",
@@ -660,10 +648,10 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "Passover",
             },
             {
-                id: "source-cross-freedman-song-of-the-sea",
+                id: "source-noegel-hidden-waters",
                 kind: "source",
                 status: "unpublished-only",
-                title: "Cross & Freedman, \"The Song of Miriam\"",
+                title: "Hidden Waters: The Sounds of Sinking in the Song of the Sea",
             },
             {
                 id: "source-overstreet-red-sea-crossing",
@@ -702,16 +690,10 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 title: "The Worship of the Golden Calf",
             },
             {
-                id: "source-biblicaltraining-exodus",
+                id: "source-biblicaltraining-mount-sinai",
                 kind: "source",
                 status: "unpublished-only",
-                title: "Exodus (overview article)",
-            },
-            {
-                id: "source-torah-atlas-sinai",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Torah Atlas, \"Mount Sinai\" (location survey)",
+                title: "Mount Sinai",
             },
         ]);
     });
