@@ -55,10 +55,10 @@ function LocationProbe() {
 
 function renderTimeline({ currentEntryId = "event-creation", entries = EVENTS } = {}) {
     return render(
-        <MemoryRouter initialEntries={["/biblical-history/genesis/creation"]}>
+        <MemoryRouter initialEntries={["/biblical-history/creation"]}>
             <Routes>
                 <Route
-                    path="/biblical-history/genesis/:event?"
+                    path="/biblical-history/:event?"
                     element={
                         <>
                             <LocationProbe />
@@ -111,15 +111,15 @@ describe("HistoryTimeline", () => {
         const creation = screen.getByRole("button", { name: /Creation/ });
         creation.focus();
         await user.keyboard("{ArrowRight}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/flood");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/flood");
         await user.keyboard("{ArrowRight}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/abraham");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/abraham");
         await user.keyboard("{ArrowLeft}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/flood");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/flood");
         await user.keyboard("{End}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/abraham");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/abraham");
         await user.keyboard("{Home}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/creation");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/creation");
     });
 
     it("navigates on click and keeps exactly one tab stop (roving tabindex)", async () => {
@@ -130,7 +130,7 @@ describe("HistoryTimeline", () => {
         expect(buttons[1]).toHaveAttribute("tabindex", "-1");
         expect(buttons[2]).toHaveAttribute("tabindex", "-1");
         await user.click(screen.getByRole("button", { name: /The Flood/ }));
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/flood");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/flood");
     });
 
     it("contains only published entries and keeps keyboard navigation on real nodes", async () => {
@@ -138,13 +138,13 @@ describe("HistoryTimeline", () => {
         renderTimeline();
         expect(screen.queryByText("Upcoming")).toBeNull();
         expect(screen.getAllByRole("button")).toHaveLength(EVENTS.length);
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/creation");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/creation");
         const creation = screen.getByRole("button", { name: /Creation/ });
         creation.focus();
         await user.keyboard("{End}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/abraham");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/abraham");
         await user.keyboard("{ArrowRight}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/creation");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/creation");
     });
 });
 
@@ -169,16 +169,16 @@ describe("HistoryTimeline — mixed events and categories", () => {
         const creation = screen.getByRole("button", { name: /Creation, Event/ });
         creation.focus();
         await user.keyboard("{ArrowRight}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/patriarchs");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/patriarchs");
         await user.keyboard("{ArrowRight}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/flood");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/flood");
         await user.keyboard("{ArrowLeft}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/patriarchs");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/patriarchs");
         await user.keyboard("{Home}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/creation");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/creation");
         await user.keyboard("{End}");
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/flood");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/flood");
         await user.click(screen.getByRole("button", { name: /The Patriarchs, Category/ }));
-        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/patriarchs");
+        expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/patriarchs");
     });
 });

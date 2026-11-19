@@ -1,22 +1,12 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { listBooks } from "../../services/historyService";
+import { categorySlug, eventSlug, listBookEntries, listBooks } from "../../services/historyService";
 import { historyPath } from "../../utils/seo";
 
 const TESTAMENTS = [
     { id: "OT", label: "Old Testament" },
     { id: "NT", label: "New Testament" },
 ];
-
-// Published categories make a book available even before it has events.
-// Show only nonzero counts so a category-only book remains easy to scan.
-function formatBookCounts(book) {
-    if (!book.hasCategories) return null;
-    const categories = book.categoryCount === 1 ? "1 category" : `${book.categoryCount} categories`;
-    if (!book.hasEvents) return categories;
-    const events = book.eventCount === 1 ? "1 event" : `${book.eventCount} events`;
-    return `${categories} · ${events}`;
-}
 
 export default function HistoryBookSelector({ books = listBooks(), open = false, onClose, initialTestament = "OT" }) {
     const [testament, setTestament] = useState(initialTestament);
@@ -102,15 +92,17 @@ export default function HistoryBookSelector({ books = listBooks(), open = false,
                                 </li>
                             );
                         }
-                        const counts = formatBookCounts(book);
+                        const first = listBookEntries(book.id)[0];
+                        if (!first) return null;
+                        const slug = first.kind === "category" ? categorySlug(first.id) : eventSlug(first.id);
                         return (
                             <li key={book.id}>
                                 <Link
-                                    to={historyPath(book.id)}
+                                    to={historyPath(book.id, slug)}
                                     className="history-book-chip"
                                     data-history-book={book.id}
                                 >
-                                    {counts ? `${book.title} · ${counts}` : book.title}
+                                    {book.title}
                                 </Link>
                             </li>
                         );

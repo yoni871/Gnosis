@@ -71,9 +71,9 @@ export function historySitemapPaths(manifest, books) {
     const publishedCategories = new Set(manifest?.categories ?? []);
     const byId = new Map((books ?? []).map((book) => [book.id, book]));
     const paths = ["/biblical-history"];
+    const owners = new Map();
     for (const bookId of publishedBooks) {
-        const slugs = [...new Set(
-            (byId.get(bookId)?.entries ?? [])
+        const slugs = (byId.get(bookId)?.entries ?? [])
                 .map((entry) => {
                     if (entry.kind === "event"
                         && typeof entry.eventId === "string"
@@ -87,11 +87,13 @@ export function historySitemapPaths(manifest, books) {
                     }
                     return null;
                 })
-                .filter(Boolean),
-        )].sort();
-        if (slugs.length > 0) paths.push(`/biblical-history/${encodeURIComponent(bookId)}`);
+                .filter(Boolean).sort();
         for (const slug of slugs) {
-            paths.push(`/biblical-history/${encodeURIComponent(bookId)}/${encodeURIComponent(slug)}`);
+            if (publishedBooks.includes(slug)) throw new Error(`Biblical History slug collides with book: ${slug}`);
+            const previous = owners.get(slug);
+            if (previous) throw new Error(`Biblical History slug collision: ${slug}`);
+            owners.set(slug, bookId);
+            paths.push(`/biblical-history/${encodeURIComponent(slug)}`);
         }
     }
     return paths;

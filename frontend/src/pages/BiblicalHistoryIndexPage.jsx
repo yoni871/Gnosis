@@ -16,16 +16,6 @@ const EXPLORATION_STEPS = [
     ["04", "Explore", "Move through biblical events and historical periods."],
 ];
 
-function scrollToStart(event) {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
-    const target = document.getElementById("history-start");
-    if (!target?.scrollIntoView) return;
-    event.preventDefault();
-    if (window.location.hash !== "#history-start") window.history.pushState(null, "", "#history-start");
-    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    target.scrollIntoView({ behavior: reduce ? "instant" : "smooth", block: "start" });
-}
-
 export default function BiblicalHistoryIndexPage() {
     const pageRef = useRef(null);
     const browseButtonRef = useRef(null);
@@ -75,7 +65,7 @@ export default function BiblicalHistoryIndexPage() {
             <link rel="preload" href="/fonts/hero/cormorant-garamond-latin-600.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
             <link rel="preload" href="/fonts/hero/inter-latin-variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
             <Seo title={historyIndexTitle()} description={historyIndexDescription()} canonical={pageUrl("/biblical-history")} />
-            <LandingHeader hero />
+            <LandingHeader hero hideExploreAction />
             <main id="landing-main" tabIndex={-1}>
                 <section className="history-hero" aria-labelledby="history-hero-heading">
                     <div className="history-hero-grain" aria-hidden="true" />
@@ -84,7 +74,6 @@ export default function BiblicalHistoryIndexPage() {
                             <p className="history-home-eyebrow">Biblical History · Gnosis</p>
                             <h1 id="history-hero-heading"><span>Discover the History</span>{" "}<span>Behind Scripture.</span></h1>
                             <p className="history-hero-lede">Explore the people, events, cultures, and historical settings of the Bible—and see how they connect across Scripture.</p>
-                            <a className="history-home-action" href="#history-start" onClick={scrollToStart}>Start Exploring <span aria-hidden="true">↓</span></a>
                         </div>
                         <div className="history-hero-archive" aria-hidden="true">
                             <div className="history-archive-orbit history-archive-orbit--outer" />

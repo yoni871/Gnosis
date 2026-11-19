@@ -1,21 +1,7 @@
-// The event study page: a standalone page, not a panel over the book
-// page. The study workspace (Story / Context / Connections, Sources,
-// Scripture companion, timeline) renders inline in the page flow under
-// the landing navbar; there is no book-page shell behind it, no
-// backdrop, and no modal behaviour. Browser Back returns to wherever
-// the visitor came from — the homepage when they arrived from there,
-// since the book route redirects (replace) to the event.
-//
-// The URL slug resolves to EITHER an event or a category: the category
-// slug occupies the same `:event` param position, so no route change was
-// needed. Unknown book slugs, and records that do not exist or are not
-// connected to this book, render the 404 page — never a blank page,
-// never another book's record. The study remounts per record (keyed by
-// record id), so record-to-record navigation through the timeline always
-// starts the new record fresh: Story tab, companion open on the new
-// record's primary passage.
-import { useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+// A flat published study URL resolves to an event or category and its book.
+// The study remounts per record so timeline navigation starts each entry at
+// Story with its own primary Scripture passage.
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import LandingHeader from "../components/LandingHeader";
 import Seo from "../components/Seo";
 import HistoryEventStudy from "../components/History/HistoryEventStudy";
@@ -23,8 +9,7 @@ import {
     categorySlug,
     eventSlug,
     getBookTitle,
-    getCategoryBySlug,
-    getEventBySlug,
+    getPublishedHistoryRoute,
     listBookEntries,
 } from "../services/historyService";
 import { formatScriptureRange } from "../utils/historyContent";
@@ -39,20 +24,13 @@ import "./LandingPage.css";
 import "../components/History/History.css";
 
 export default function BiblicalHistoryEventPage() {
-    const { book: bookSlug, event: eventSlugParam } = useParams();
+    const { slug } = useParams();
     const navigate = useNavigate();
-
-    const bookTitle = getBookTitle(bookSlug);
-    const entries = bookSlug ? listBookEntries(bookSlug) : [];
-
-    // The slug is an event slug or a category slug; the record must be
-    // listed in this book's entries, in narrative order.
-    const openRecord = eventSlugParam
-        ? (getEventBySlug(eventSlugParam) ?? getCategoryBySlug(eventSlugParam))
-        : null;
-    const openRecordEntry = openRecord
-        ? entries.find((entry) => entry.id === openRecord.id)
-        : null;
+    const location = useLocation();
+    const route = slug ? getPublishedHistoryRoute(slug) : null;
+    const bookSlug = route?.bookId;
+    const openRecordEntry = route?.entry;
+    const openRecord = openRecordEntry;
 
     const recordSlug = (record) =>
         (record.kind === "category" ? categorySlug(record.id) : eventSlug(record.id));
@@ -68,14 +46,19 @@ export default function BiblicalHistoryEventPage() {
     // the book's entry there — the #161 focus return, restored at the
     // index level now that the book page is retired. Without the state
     // the index focuses nothing and focus would fall to BODY.
-    const backToBooks = useCallback(() => {
+    const backToBooks = () => {
         navigate("/biblical-history#history-books", { state: { focusBook: bookSlug } });
-    }, [navigate, bookSlug]);
+    };
 
-    // A record that exists but is not connected to this book is a 404,
-    // not a redirect: silently substituting another book's framing would
-    // misstate the connection.
-    if (!bookTitle || !openRecord || !openRecordEntry) {
+    // Old book URLs go straight to their first published entry. Unknown
+    // flat slugs stay 404 instead of selecting an unrelated entry.
+    if (!route && getBookTitle(slug)) {
+        const first = listBookEntries(slug)[0];
+        if (!first) return <Navigate to="/biblical-history#history-books" replace state={{ focusBook: slug }} />;
+        const firstSlug = recordSlug(first);
+        return <Navigate to={`${historyPath(slug, firstSlug)}${location.search}${location.hash}`} replace />;
+    }
+    if (!route) {
         return <NotFoundPage />;
     }
 

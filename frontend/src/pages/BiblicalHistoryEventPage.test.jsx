@@ -19,8 +19,8 @@ function renderStudy(path, authValue = { user: null, isAuthLoading: false, logou
                 <AuthContext.Provider value={authValue}>
                     <Routes>
                         <Route path="/biblical-history" element={<BiblicalHistoryIndexPage />} />
-                        <Route path="/biblical-history/:book" element={<BiblicalHistoryBookRedirect />} />
-                        <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryEventPage />} />
+                        <Route path="/biblical-history/:book/:event" element={<BiblicalHistoryBookRedirect />} />
+                        <Route path="/biblical-history/:slug" element={<BiblicalHistoryEventPage />} />
                     </Routes>
                 </AuthContext.Provider>
             </ThemeProvider>
@@ -35,7 +35,7 @@ function canonicalHref() {
 describe("BiblicalHistoryEventPage header", () => {
     it("shows the landing navbar signed out: maroon logo, Explore, Sign In / Start Exploring, no reader controls", async () => {
         const user = userEvent.setup();
-        renderStudy("/biblical-history/genesis/creation");
+        renderStudy("/biblical-history/creation");
         expect(screen.getByRole("link", { name: "Gnosis home" })).toHaveAttribute("href", "/");
         expect(screen.getByRole("link", { name: "Sign In" })).toHaveAttribute("href", "/login");
         expect(screen.getByRole("link", { name: /Start Exploring/ })).toHaveAttribute("href", "/bible/Genesis/1");
@@ -53,7 +53,7 @@ describe("BiblicalHistoryEventPage header", () => {
     });
 
     it("shows the signed-in profile and name in the landing navbar", () => {
-        renderStudy("/biblical-history/genesis/creation", {
+        renderStudy("/biblical-history/creation", {
             user: { id: 1, first_name: "Test", last_name: "Reader" },
             isAuthLoading: false,
             logout: vi.fn(),
@@ -66,37 +66,26 @@ describe("BiblicalHistoryEventPage header", () => {
 });
 
 describe("BiblicalHistoryEventPage", () => {
-    it("lists published category-only Exodus studies in narrative order", () => {
-        renderStudy("/biblical-history/exodus");
-        expect(screen.getByRole("heading", { level: 1, name: "Exodus" })).toBeInTheDocument();
-        const links = [...document.querySelectorAll(".history-book-entry-list a")];
-        expect(links).toHaveLength(7);
-        expect(links[0]).toHaveAttribute("href", "/biblical-history/exodus/oppression-and-moses-early-life");
-        expect(links.at(-1)).toHaveAttribute("href", "/biblical-history/exodus/building-the-tabernacle");
-    });
-
-    it("uses the same landing page for published Leviticus categories", () => {
-        renderStudy("/biblical-history/leviticus");
-        expect(screen.getByRole("heading", { level: 1, name: "Leviticus" })).toBeInTheDocument();
-        expect(document.querySelectorAll(".history-book-entry-list a")).toHaveLength(7);
-    });
-
-    it("shows the Genesis book landing page with published entries in order", () => {
-        renderStudy("/biblical-history/genesis");
-        expect(screen.getByRole("heading", { level: 1, name: "Genesis" })).toBeInTheDocument();
-        expect(screen.getByRole("link", { name: /Creation/ })).toHaveAttribute("href", "/biblical-history/genesis/creation");
-        expect(screen.queryByRole("dialog")).toBeNull();
-        expect(document.querySelector(".history-panel-backdrop")).toBeNull();
-        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis");
+    it("redirects each published book to its first entry", () => {
+        for (const [book, title, slug] of [
+            ["genesis", "Creation", "creation"],
+            ["exodus", "Israel's Oppression and Moses' Early Life", "oppression-and-moses-early-life"],
+            ["leviticus", "The Sacrificial System", "leviticus-sacrificial-system"],
+        ]) {
+            const view = renderStudy(`/biblical-history/${book}`);
+            expect(screen.getByRole("heading", { level: 1, name: title })).toBeInTheDocument();
+            expect(canonicalHref()).toBe(`https://studygnosis.com/biblical-history/${slug}`);
+            view.unmount();
+        }
     });
 
     it("renders the published event page for a direct Genesis / Adam and Eve link", () => {
-        renderStudy("/biblical-history/genesis/adam-and-eve");
+        renderStudy("/biblical-history/adam-and-eve");
         expect(screen.queryByRole("heading", { level: 1, name: "Page not found" })).toBeNull();
         expect(screen.getByRole("heading", { level: 1, name: "Adam and Eve" })).toBeInTheDocument();
         expect(screen.queryByRole("dialog")).toBeNull();
         expect(document.title).toBe("Adam and Eve — Genesis 2:4–3:24 | Biblical History | Gnosis");
-        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis/adam-and-eve");
+        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/adam-and-eve");
         expect(screen.queryByRole("navigation", { name: "Breadcrumb" })).toBeNull();
     });
 
@@ -131,30 +120,30 @@ describe("BiblicalHistoryEventPage", () => {
     });
 
     it("renders the 404 page for an unknown category slug", () => {
-        renderStudy("/biblical-history/genesis/not-a-category");
+        renderStudy("/biblical-history/not-a-category");
         expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
     });
 
     it("navigates Creation → Adam and Eve → Creation through the timeline", async () => {
         const user = userEvent.setup();
-        renderStudy("/biblical-history/genesis/creation");
+        renderStudy("/biblical-history/creation");
         expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
         await user.click(screen.getByRole("button", { name: /Adam and Eve/ }));
         await waitFor(() => expect(
             screen.getByRole("heading", { level: 1, name: "Adam and Eve" }),
         ).toBeInTheDocument());
         expect(document.title).toBe("Adam and Eve — Genesis 2:4–3:24 | Biblical History | Gnosis");
-        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis/adam-and-eve");
+        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/adam-and-eve");
         await user.click(screen.getByRole("button", { name: /^Creation/ }));
         await waitFor(() => expect(
             screen.getByRole("heading", { level: 1, name: "Creation" }),
         ).toBeInTheDocument());
-        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis/creation");
+        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/creation");
     });
 
     it("returns to the index after closing the Adam and Eve page — focus lands on the Genesis entry", async () => {
         const user = userEvent.setup();
-        renderStudy("/biblical-history/genesis/adam-and-eve");
+        renderStudy("/biblical-history/adam-and-eve");
         expect(screen.getByRole("heading", { level: 1, name: "Adam and Eve" })).toBeInTheDocument();
         await user.click(screen.getByTestId("history-study-close"));
         await waitFor(() => expect(

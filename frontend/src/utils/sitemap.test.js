@@ -23,7 +23,27 @@ function publishedHistoryPaths() {
     return historySitemapPaths(manifest, books);
 }
 
-const BH_PATHS = ["/biblical-history", "/biblical-history/exodus", "/biblical-history/exodus/building-the-tabernacle", "/biblical-history/exodus/covenant-and-gods-law", "/biblical-history/exodus/israel-in-the-wilderness", "/biblical-history/exodus/oppression-and-moses-early-life", "/biblical-history/exodus/passover-and-the-exodus", "/biblical-history/exodus/pharaoh-and-the-ten-plagues", "/biblical-history/exodus/tabernacle-and-israels-rebellion", "/biblical-history/genesis", "/biblical-history/genesis/abraham-and-sarah", "/biblical-history/genesis/adam-and-eve", "/biblical-history/genesis/cain-and-abel", "/biblical-history/genesis/cains-descendants", "/biblical-history/genesis/creation", "/biblical-history/genesis/great-flood", "/biblical-history/genesis/humanitys-corruption", "/biblical-history/genesis/isaac-jacob-and-esau", "/biblical-history/genesis/joseph-and-israel-in-egypt", "/biblical-history/genesis/nations-and-babel", "/biblical-history/genesis/noah-and-his-sons", "/biblical-history/genesis/noah-ark", "/biblical-history/genesis/noahs-sacrifice-and-covenant", "/biblical-history/genesis/seth-early-generations", "/biblical-history/leviticus", "/biblical-history/leviticus/leviticus-day-of-atonement", "/biblical-history/leviticus/leviticus-festivals-worship", "/biblical-history/leviticus/leviticus-holiness-code", "/biblical-history/leviticus/leviticus-jubilee-covenant", "/biblical-history/leviticus/leviticus-priesthood-consecration", "/biblical-history/leviticus/leviticus-purity-restoration", "/biblical-history/leviticus/leviticus-sacrificial-system"];
+const BH_PATHS = ["/biblical-history", "/biblical-history/building-the-tabernacle", "/biblical-history/covenant-and-gods-law", "/biblical-history/israel-in-the-wilderness", "/biblical-history/oppression-and-moses-early-life", "/biblical-history/passover-and-the-exodus", "/biblical-history/pharaoh-and-the-ten-plagues", "/biblical-history/tabernacle-and-israels-rebellion", "/biblical-history/abraham-and-sarah", "/biblical-history/adam-and-eve", "/biblical-history/cain-and-abel", "/biblical-history/cains-descendants", "/biblical-history/creation", "/biblical-history/great-flood", "/biblical-history/humanitys-corruption", "/biblical-history/isaac-jacob-and-esau", "/biblical-history/joseph-and-israel-in-egypt", "/biblical-history/nations-and-babel", "/biblical-history/noah-and-his-sons", "/biblical-history/noah-ark", "/biblical-history/noahs-sacrifice-and-covenant", "/biblical-history/seth-early-generations", "/biblical-history/leviticus-day-of-atonement", "/biblical-history/leviticus-festivals-worship", "/biblical-history/leviticus-holiness-code", "/biblical-history/leviticus-jubilee-covenant", "/biblical-history/leviticus-priesthood-consecration", "/biblical-history/leviticus-purity-restoration", "/biblical-history/leviticus-sacrificial-system"];
+
+test("every published legacy History URL has one permanent, loop-free redirect", () => {
+    const generatedDir = path.join(process.cwd(), "src", "generated", "history");
+    const config = JSON.parse(readFileSync(path.join(process.cwd(), "vercel.json"), "utf8"));
+    const redirects = new Map(config.redirects.map((redirect) => [redirect.source, redirect]));
+    expect(redirects.size).toBe(config.redirects.length);
+    for (const file of readdirSync(path.join(generatedDir, "books")).filter((name) => name.endsWith(".json"))) {
+        const book = JSON.parse(readFileSync(path.join(generatedDir, "books", file), "utf8"));
+        const entries = [...book.entries].sort((a, b) => a.narrativeOrder - b.narrativeOrder);
+        if (entries.length === 0) continue;
+        const firstSlug = (entries[0].eventId ?? entries[0].categoryId).replace(/^(event|category)-/, "");
+        expect(redirects.get(`/biblical-history/${book.id}`)).toMatchObject({ destination: `/biblical-history/${firstSlug}`, permanent: true });
+        for (const entry of entries) {
+            const slug = (entry.eventId ?? entry.categoryId).replace(/^(event|category)-/, "");
+            const redirect = redirects.get(`/biblical-history/${book.id}/${slug}`);
+            expect(redirect).toMatchObject({ destination: `/biblical-history/${slug}`, permanent: true });
+            expect(redirects.has(redirect.destination)).toBe(false);
+        }
+    }
+});
 
 describe("chapterUrls", () => {
     test("lists every chapter in book order, ascending", () => {
@@ -68,11 +88,20 @@ describe("historySitemapPaths", () => {
     const manifest = { books: ["genesis"], events: ["event-creation"], categories: [], sources: [], topics: [] };
     const books = [{ id: "genesis", entries: [{ kind: "event", eventId: "event-creation", narrativeOrder: 1 }] }];
 
+    test("rejects a published event and category with the same flat slug", () => {
+        expect(() => historySitemapPaths(
+            { books: ["genesis"], events: ["event-creation"], categories: ["category-creation"] },
+            [{ id: "genesis", entries: [
+                { kind: "event", eventId: "event-creation" },
+                { kind: "category", categoryId: "category-creation" },
+            ] }],
+        )).toThrow(/slug collision: creation/);
+    });
+
     test("lists the homepage and a published book's published event and book landing URLs", () => {
         expect(historySitemapPaths(manifest, books)).toEqual([
             "/biblical-history",
-            "/biblical-history/genesis",
-            "/biblical-history/genesis/creation",
+            "/biblical-history/creation",
         ]);
     });
 
@@ -86,8 +115,7 @@ describe("historySitemapPaths", () => {
         // record for it exists.
         expect(historySitemapPaths(manifest, otherBooks)).toEqual([
             "/biblical-history",
-            "/biblical-history/genesis",
-            "/biblical-history/genesis/creation",
+            "/biblical-history/creation",
         ]);
     });
 
@@ -105,8 +133,7 @@ describe("historySitemapPaths", () => {
         // published event in the manifest — it must not get a URL.
         expect(historySitemapPaths(manifest, booksWithDraft)).toEqual([
             "/biblical-history",
-            "/biblical-history/genesis",
-            "/biblical-history/genesis/creation",
+            "/biblical-history/creation",
         ]);
     });
 
@@ -129,10 +156,8 @@ describe("historySitemapPaths", () => {
         ];
         expect(historySitemapPaths(multi, multiBooks)).toEqual([
             "/biblical-history",
-            "/biblical-history/genesis",
-            "/biblical-history/genesis/creation",
-            "/biblical-history/psalms",
-            "/biblical-history/psalms/psalm-23",
+            "/biblical-history/creation",
+            "/biblical-history/psalm-23",
         ]);
     });
 
@@ -155,9 +180,8 @@ describe("historySitemapPaths", () => {
         ];
         expect(historySitemapPaths(withCategory, booksWithCategory)).toEqual([
             "/biblical-history",
-            "/biblical-history/genesis",
-            "/biblical-history/genesis/creation",
-            "/biblical-history/genesis/patriarchs",
+            "/biblical-history/creation",
+            "/biblical-history/patriarchs",
         ]);
     });
 
@@ -182,8 +206,7 @@ describe("historySitemapPaths", () => {
         // a published category in the manifest — it must not get a URL.
         expect(historySitemapPaths(withDraftCategory, booksWithDraftCategory)).toEqual([
             "/biblical-history",
-            "/biblical-history/genesis",
-            "/biblical-history/genesis/creation",
+            "/biblical-history/creation",
         ]);
     });
 
@@ -199,8 +222,7 @@ describe("historySitemapPaths", () => {
         // carries an entry for it — no URL.
         expect(historySitemapPaths(orphanCategory, books)).toEqual([
             "/biblical-history",
-            "/biblical-history/genesis",
-            "/biblical-history/genesis/creation",
+            "/biblical-history/creation",
         ]);
     });
 
@@ -225,17 +247,15 @@ describe("historySitemapPaths", () => {
         // grouped by kind.
         expect(historySitemapPaths(mixed, mixedBooks)).toEqual([
             "/biblical-history",
-            "/biblical-history/genesis",
-            "/biblical-history/genesis/alpha",
-            "/biblical-history/genesis/zebra",
+            "/biblical-history/alpha",
+            "/biblical-history/zebra",
         ]);
     });
 
     test("emits nothing extra when manifest.categories is empty", () => {
         expect(historySitemapPaths({ ...manifest, categories: [] }, books)).toEqual([
             "/biblical-history",
-            "/biblical-history/genesis",
-            "/biblical-history/genesis/creation",
+            "/biblical-history/creation",
         ]);
     });
 });

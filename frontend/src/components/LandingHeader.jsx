@@ -21,7 +21,7 @@ function initials(user) {
 }
 
 // Desktop and mobile disclosures must own separate refs and state.
-function AuthLinks({ closeAll, hero = false }) {
+function AuthLinks({ closeAll, hero = false, hideExploreAction = false }) {
     const { user, logout } = useContext(AuthContext);
     const { theme, setTheme } = useContext(ThemeContext);
     const [accountOpen, setAccountOpen] = useState(false);
@@ -36,13 +36,13 @@ function AuthLinks({ closeAll, hero = false }) {
 
     return user ? (
         <>
-            <Link
+            {!hideExploreAction && <Link
                 to="/bible/Genesis/1"
                 className="landing-btn landing-btn-primary"
                 onClick={closeAll}
             >
                 {hero ? "Start Exploring →" : "Start Studying"}
-            </Link>
+            </Link>}
             <div ref={accountRef} className="landing-account"
                 onBlur={(event) => {
                     if (shouldCloseDisclosureOnBlur(event)) setAccountOpen(false);
@@ -108,19 +108,19 @@ function AuthLinks({ closeAll, hero = false }) {
             <Link to="/login" className="landing-link" onClick={closeAll}>
                 {hero ? "Sign In" : "Sign in"}
             </Link>
-            <Link
+            {!hideExploreAction && <Link
                 to={hero ? "/bible/Genesis/1" : "/register"}
                 className="landing-btn landing-btn-primary"
                 onClick={closeAll}
             >
                 {hero ? "Start Exploring →" : "Create account"}
-            </Link>
+            </Link>}
         </>
     );
 
 }
 
-export default function LandingHeader({ hero = false, solid = false }) {
+export default function LandingHeader({ hero = false, solid = false, hideExploreAction = false }) {
     const { user, isAuthLoading } = useContext(AuthContext);
     const { theme, setTheme } = useContext(ThemeContext);
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -167,7 +167,7 @@ export default function LandingHeader({ hero = false, solid = false }) {
                 </nav>
                 {hero && (
                     <nav className="landing-nav-desktop landing-nav-actions" aria-label="Account">
-                        {!isAuthLoading && <AuthLinks closeAll={closeAll} hero />}
+                        {!isAuthLoading && <AuthLinks closeAll={closeAll} hero hideExploreAction={hideExploreAction} />}
                     </nav>
                 )}
 
@@ -194,7 +194,7 @@ export default function LandingHeader({ hero = false, solid = false }) {
                     <Link to="/about" onClick={closeAll}>
                         {hero ? "About" : "About Us"}
                     </Link>
-                    {!isAuthLoading && <AuthLinks closeAll={closeAll} hero={hero} />}
+                    {!isAuthLoading && <AuthLinks closeAll={closeAll} hero={hero} hideExploreAction={hideExploreAction} />}
                     {/* Logged-out visitors have no account menu, so the
                         theme control lives here on mobile; logged-in
                         visitors get it inside the account dropdown

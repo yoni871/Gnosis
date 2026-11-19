@@ -49,20 +49,20 @@ describe("BiblicalHistoryIndexPage", () => {
         // The directory is rendered by HistoryBookSelector: Genesis
         // has four published categories and ten published events, so
         // its chip carries both counts in its link name.
-        expect(within(screen.getByRole("tabpanel")).getByText(/4 categories · 10 events/)).toBeInTheDocument();
-        expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis");
-        expect(screen.getByRole("link", { name: "Exodus · 7 categories" })).toHaveAttribute("href", "/biblical-history/exodus");
-        expect(screen.getByRole("link", { name: "Leviticus · 7 categories" })).toHaveAttribute("href", "/biblical-history/leviticus");
+        expect(within(screen.getByRole("tabpanel")).queryByText(/4 categories · 10 events/)).toBeNull();
+        expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/creation");
+        expect(screen.getByRole("link", { name: "Exodus" })).toHaveAttribute("href", "/biblical-history/oppression-and-moses-early-life");
+        expect(screen.getByRole("link", { name: "Leviticus" })).toHaveAttribute("href", "/biblical-history/leviticus-sacrificial-system");
     });
 
     it("links its actions to the recommendation and Creation event", async () => {
         const user = userEvent.setup();
         renderIndex();
-        expect(screen.getByRole("link", { name: "Start Exploring" })).toHaveAttribute("href", "#history-start");
-        expect(screen.getByRole("link", { name: "Explore Creation" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+        expect(screen.queryByRole("link", { name: "Start Exploring" })).toBeNull();
+        expect(screen.getByRole("link", { name: "Explore Creation" })).toHaveAttribute("href", "/biblical-history/creation");
         expect(screen.getByRole("heading", { name: "Explore by Scripture" })).toBeInTheDocument();
         await user.click(screen.getByRole("button", { name: /Browse Books/ }));
-        expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis");
+        expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/creation");
     });
 
     it("sets indexable metadata for the index page", () => {
@@ -75,7 +75,7 @@ describe("BiblicalHistoryIndexPage", () => {
         renderIndex([{ pathname: "/biblical-history", hash: "#history-books", state: { focusBook: "exodus" } }]);
         expect(screen.getByRole("button", { name: /Close Books/ })).toHaveAttribute("aria-expanded", "true");
         expect(document.querySelector('[data-history-book="exodus"]')).toHaveFocus();
-        expect(document.querySelector('[data-history-book="exodus"]')).toHaveAttribute("href", "/biblical-history/exodus");
+        expect(document.querySelector('[data-history-book="exodus"]')).toHaveAttribute("href", "/biblical-history/oppression-and-moses-early-life");
         expect(document.activeElement).not.toBe(document.body);
     });
 

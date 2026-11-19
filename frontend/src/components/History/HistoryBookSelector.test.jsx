@@ -18,14 +18,14 @@ test("shows one canonical testament at a time, book names only, with a scroll hi
     const user = userEvent.setup();
     mount();
     expect(screen.getAllByRole("link")).toHaveLength(3);
-    expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis");
+    expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/creation");
     expect(screen.getAllByText("Coming Soon")).toHaveLength(36);
     const exodusChip = document.querySelector('[data-history-book="exodus"]');
     expect(exodusChip).not.toBeNull();
-    expect(exodusChip).toHaveAttribute("href", "/biblical-history/exodus");
-    expect(document.querySelector('[data-history-book="leviticus"]')).toHaveAttribute("href", "/biblical-history/leviticus");
+    expect(exodusChip).toHaveAttribute("href", "/biblical-history/oppression-and-moses-early-life");
+    expect(document.querySelector('[data-history-book="leviticus"]')).toHaveAttribute("href", "/biblical-history/leviticus-sacrificial-system");
     expect(screen.queryByText("Upcoming")).toBeNull();
-    expect(screen.getByText(/4 categories · 10 events/)).toBeInTheDocument();
+    expect(screen.queryByText(/4 categories · 10 events/)).toBeNull();
     expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
     expect(screen.queryByText("Matthew")).toBeNull();
     await user.click(screen.getByRole("tab", { name: /New Testament/ }));
@@ -55,11 +55,11 @@ test("shows both counts on a book's chip when it has categories, and no counts o
     ];
     mount({ books });
     // Genesis links to its first published event and shows both counts.
-    expect(screen.getByRole("link", { name: "Genesis · 2 categories · 8 events" })).toHaveAttribute("href", "/biblical-history/genesis");
+    expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/creation");
     // Exodus has no published content: still a Coming Soon chip, and
     // the counts label never appears on it.
     expect(document.querySelector('[data-history-book="exodus"]')).toHaveTextContent("Coming Soon");
-    expect(screen.getAllByText(/categor/)).toHaveLength(1);
+    expect(screen.queryByText(/categor/)).toBeNull();
 });
 
 test("uses singular count labels for one category and one event", () => {
@@ -67,12 +67,12 @@ test("uses singular count labels for one category and one event", () => {
         { id: "genesis", title: "Genesis", testament: "OT", chapterCount: 50, eventCount: 1, hasEvents: true, categoryCount: 1, hasCategories: true },
     ];
     mount({ books });
-    expect(screen.getByRole("link", { name: "Genesis · 1 category · 1 event" })).toHaveAttribute("href", "/biblical-history/genesis");
+    expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/creation");
 });
 
 test("a category-only book is a navigable landing-page link", () => {
     mount({ books: [{ id: "exodus", title: "Exodus", testament: "OT", eventCount: 0, hasEvents: false, categoryCount: 7, hasCategories: true }] });
-    expect(screen.getByRole("link", { name: "Exodus · 7 categories" })).toHaveAttribute("href", "/biblical-history/exodus");
+    expect(screen.getByRole("link", { name: "Exodus" })).toHaveAttribute("href", "/biblical-history/oppression-and-moses-early-life");
     expect(screen.queryByText("Coming Soon")).toBeNull();
 });
 
