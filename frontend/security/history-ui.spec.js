@@ -35,8 +35,19 @@ for (const width of [320, 390]) {
 
         await page.locator('.history-timeline-node').nth(1).click();
         await expect(page).toHaveURL(/\/biblical-history\/genesis\/adam-and-eve$/);
+        // The URL changes before the keyed study finishes remounting. Wait
+        // for the destination's dock, not a detached outgoing DOM node.
+        await expect(page.getByRole('heading', { level: 1, name: 'Adam and Eve' })).toBeVisible();
+        await expect(dock.locator('.history-timeline-node--current')).toContainText('Adam and Eve');
+        await expect(dock).toBeVisible();
         const bottomAfterNavigation = await dock.evaluate(node => node.getBoundingClientRect().bottom);
         expect(Math.abs(bottomAfterNavigation - 800)).toBeLessThanOrEqual(1);
+        const headerTops = await page.evaluate(() => ({
+            main: document.querySelector('.history-event-root > .public-page').getBoundingClientRect().top,
+            sub: document.querySelector('.history-study-header').getBoundingClientRect().top,
+        }));
+        expect(headerTops.main).toBeGreaterThanOrEqual(-1);
+        expect(headerTops.sub).toBeGreaterThanOrEqual(62);
 
         await page.locator('.history-scripture-button').click();
         const sheet = page.locator('.history-study-body > .history-scripture-companion');
@@ -44,6 +55,10 @@ for (const width of [320, 390]) {
         expect(Math.abs((await sheet.boundingBox()).height - 400)).toBeLessThanOrEqual(1);
         await expect(dock).toBeHidden();
         expect(await sheet.locator('.history-scripture-companion-body').evaluate(node => getComputedStyle(node).overflowY)).toBe('auto');
+        await sheet.getByRole('button', { name: 'Close Scripture companion' }).click();
+        await expect(sheet).toBeHidden();
+        await expect(dock).toBeVisible();
+        expect(Math.abs((await dock.evaluate(node => node.getBoundingClientRect().bottom)) - 800)).toBeLessThanOrEqual(1);
     });
 }
 
