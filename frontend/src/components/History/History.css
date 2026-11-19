@@ -157,7 +157,11 @@
    companion sit beside the reading column in normal flow. */
 .history-study-body {
     display: flex;
+    min-height: 0;
 }
+
+.history-timeline-dock { flex: none; background: var(--bg-surface); border-top: 1px solid var(--border); }
+.history-timeline-toggle { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 5px 16px; color: var(--text-muted); background: transparent; border: 0; font-family: inherit; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
 
 .history-study-content {
     flex: 1;
@@ -293,7 +297,7 @@
 
 /* Desktop: a side panel beside the reading column, with its own scroll. */
 .history-study-body > .history-scripture-companion {
-    width: 340px;
+    width: clamp(320px, 42%, 500px);
     border-left: 1px solid var(--border);
 }
 
@@ -462,13 +466,19 @@
 /* ---------- Timeline (anchored at the study bottom) ---------- */
 
 .history-timeline {
-    padding: 12px 16px 14px;
+    padding: 3px 12px 6px;
     background: var(--bg-surface);
     border-top: 1px solid var(--border);
 }
 
 .history-timeline-hint {
-    margin: 0 0 8px;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    margin: 0;
     font-size: 12px;
     color: var(--text-muted);
 }
@@ -482,6 +492,9 @@
     overflow-x: auto;
     list-style: none;
     scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+    touch-action: pan-x;
 }
 
 /* The line connecting the dots, running behind them. */
@@ -499,6 +512,7 @@
 .history-timeline-node-item {
     position: relative;
     flex: none;
+    scroll-snap-align: center;
 }
 
 .history-timeline-node {
@@ -509,18 +523,20 @@
     min-width: 120px;
     max-width: 180px;
     min-height: 44px;
-    padding: 8px 10px;
+    padding: 6px 10px;
     font-family: inherit;
     color: var(--text-muted);
     background: transparent;
     border: 1px solid transparent;
     border-radius: 8px;
     cursor: pointer;
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
 }
 
 .history-timeline-node:hover {
     color: var(--text-primary);
     background: var(--bg-panel);
+    transform: translateY(-2px);
 }
 
 .history-timeline-node--current {
@@ -1079,7 +1095,45 @@
 @media (prefers-reduced-motion: reduce) {
     .history-home *, .history-home *::before, .history-home *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
     .history-event-nav-tab,
-    .history-scripture-button {
+    .history-scripture-button,
+    .history-timeline-node {
         transition: none;
     }
+    .history-timeline-strip { scroll-behavior: auto; }
+}
+
+@media (max-width: 768px) {
+    .history-event-breadcrumb { display: none; }
+    .history-event-page { padding: 0; width: 100%; }
+    .history-study { min-height: calc(100dvh - 64px); }
+    .history-study-header { padding: 12px 16px 10px; align-items: center; }
+    .history-study-eyebrow { margin-bottom: 3px; }
+    .history-study-title { font-size: clamp(18px, 5.4vw, 23px); }
+    .history-study-meta { margin-top: 3px; font-size: 12px; }
+    .history-study-meta .history-date-label { display: none; }
+    .history-connection-chips { max-height: 40px; overflow-x: auto; overflow-y: hidden; white-space: nowrap; }
+    .history-event-nav--mobile { overflow-x: auto; }
+    .history-event-nav--mobile .history-event-nav-tab { min-height: 42px; }
+    .history-study-content { padding: 18px 18px 30px; }
+    .history-study-body > .history-scripture-companion {
+        position: fixed;
+        inset: auto 0 0;
+        z-index: 50;
+        width: 100%;
+        height: 50dvh;
+        min-height: 0;
+        border-top: 1px solid var(--border);
+        border-radius: 14px 14px 0 0;
+        box-shadow: 0 -10px 30px rgb(0 0 0 / 18%);
+    }
+    .history-study-body > .history-scripture-companion .history-scripture-companion-body {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+    .history-study--scripture-open .history-timeline-dock { display: none; }
+    .history-timeline-dock { position: sticky; bottom: 0; z-index: 2; }
+    .history-timeline { padding: 0 8px 4px; }
+    .history-timeline-node { min-width: 100px; max-width: 130px; padding: 4px 6px; }
+    .history-timeline-node-date { display: none; }
+    .history-timeline-node-title { font-size: 11px; }
 }

@@ -36,7 +36,7 @@ export default function HistoryTimeline({ entries = [], currentEntryId, bookId }
         if (!node) return;
         const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
         // jsdom (tests) has no scrollIntoView; guard the call.
-        node.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: reduced ? "auto" : "smooth" });
+        node.scrollIntoView?.({ block: "nearest", inline: "center", behavior: reduced ? "auto" : "smooth" });
     }, [currentIndex]);
 
     if (entries.length === 0) return null;
@@ -91,6 +91,7 @@ export default function HistoryTimeline({ entries = [], currentEntryId, bookId }
                                 }}
                                 type="button"
                                 className={`history-timeline-node${isCurrent ? " history-timeline-node--current" : ""}${isCategory ? " history-timeline-node--category" : ""}`}
+                                title={`${entry.title} · ${isCategory ? "Category" : "Event"}${dateLabel ? ` · ${dateLabel}` : ""}`}
                                 aria-current={isCurrent ? "true" : undefined}
                                 aria-label={`${entry.title}, ${isCategory ? "Category" : "Event"}${dateLabel ? `, ${dateLabel}` : ""}`}
                                 tabIndex={index === focusIndex ? 0 : -1}

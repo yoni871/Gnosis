@@ -63,9 +63,10 @@ export default function HistoryEventStudy({ record, bookId, onBackToBooks }) {
     // no per-subsection passage for standalone categories (there are no
     // constituent events), so there is no sub-section passage for the
     // companion to follow.
-    const [companionPassage, setCompanionPassage] = useState(record.primaryScripture ?? null);
-    const [companionAutoOpened, setCompanionAutoOpened] = useState(Boolean(record.primaryScripture));
     const isMobile = useHistoryIsMobile();
+    const [companionPassage, setCompanionPassage] = useState(isMobile ? null : record.primaryScripture ?? null);
+    const [companionAutoOpened, setCompanionAutoOpened] = useState(!isMobile && Boolean(record.primaryScripture));
+    const [timelineCollapsed, setTimelineCollapsed] = useState(false);
 
     const scriptureButtonRef = useRef(null);
     const companionPassageRef = useRef(null);
@@ -157,7 +158,7 @@ export default function HistoryEventStudy({ record, bookId, onBackToBooks }) {
     const activeSection = HISTORY_SECTIONS.find((section) => section.id === activeTab) ?? HISTORY_SECTIONS[0];
 
     return (
-        <section className="history-study" aria-labelledby="history-study-title">
+        <section className={`history-study${companionPassage ? " history-study--scripture-open" : ""}`} aria-labelledby="history-study-title">
             <header className="history-study-header">
                 <div className="history-study-heading">
                     <p className="history-study-eyebrow">
@@ -239,16 +240,8 @@ export default function HistoryEventStudy({ record, bookId, onBackToBooks }) {
                             )}
                         </div>
                     )}
-                    {isMobile && companionPassage && (
-                        <HistoryScriptureCompanion
-                            key={formatScriptureRange(companionPassage)}
-                            passage={companionPassage}
-                            onClose={closeCompanion}
-                            focusCloseOnOpen={!companionAutoOpened}
-                        />
-                    )}
                 </div>
-                {!isMobile && companionPassage && (
+                {companionPassage && (
                     <HistoryScriptureCompanion
                         key={formatScriptureRange(companionPassage)}
                         passage={companionPassage}
@@ -258,11 +251,13 @@ export default function HistoryEventStudy({ record, bookId, onBackToBooks }) {
                 )}
             </div>
 
-            <HistoryTimeline
-                entries={timelineEntries}
-                currentEntryId={record.id}
-                bookId={bookId}
-            />
+            <div className="history-timeline-dock">
+                <button type="button" className="history-timeline-toggle" aria-expanded={!timelineCollapsed}
+                    onClick={() => setTimelineCollapsed((value) => !value)}>
+                    <span>Timeline</span><span aria-hidden="true">{timelineCollapsed ? "⌃" : "⌄"}</span>
+                </button>
+                {!timelineCollapsed && <HistoryTimeline entries={timelineEntries} currentEntryId={record.id} bookId={bookId} />}
+            </div>
         </section>
     );
 }

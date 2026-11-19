@@ -395,7 +395,7 @@ describe("HistoryEventStudy — mobile single column", () => {
         window.matchMedia = originalMatchMedia;
     });
 
-    it("renders without a sheet handle or collapsed state on mobile", async () => {
+    it("opens Scripture in a separate mobile sheet and hides the timeline", async () => {
         window.matchMedia = vi.fn((query) => ({
             matches: query === "(max-width: 768px)",
             media: query,
@@ -409,8 +409,12 @@ describe("HistoryEventStudy — mobile single column", () => {
         expect(screen.queryByTestId("history-sheet-handle")).toBeNull();
         expect(document.querySelector(".history-panel-dialog--collapsed")).toBeNull();
         expect(screen.getByRole("tablist")).toHaveAttribute("aria-orientation", "horizontal");
-        // The companion still renders inline on mobile, open by default.
+        expect(screen.queryByRole("heading", { name: "Genesis 1:1–2:3" })).toBeNull();
+        await userEvent.click(screen.getByTestId("history-scripture-button"));
         expect(await screen.findByRole("heading", { name: "Genesis 1:1–2:3" })).toBeInTheDocument();
+        expect(document.querySelector(".history-study")).toHaveClass("history-study--scripture-open");
+        await userEvent.click(screen.getByTestId("history-companion-close"));
+        expect(document.querySelector(".history-study")).not.toHaveClass("history-study--scripture-open");
     });
 });
 
