@@ -39,7 +39,7 @@
     {
       "id": "clm-num-04-002",
       "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
-      "evidence": "Numbers research Phases 1–3; limitation of extant archaeology and specific historical identification.",
+      "evidence": "Phase 1 Dossier 4 and Phase 2 Dossier 4: Hebron is identifiable but the Valley of Eshcol cannot be located with comparable confidence, no external archaeology independently identifies a historical Anakim population, and 'fortified cities' is generic imagery that cannot date the episode; QA Phase 4 section 5.4 found no site reports for Kadesh/Eshcol/Hormah candidates and no independent archaeology cited.",
       "assessment": "unknown"
     },
     {
@@ -120,7 +120,7 @@
       "endVerse": 35,
       "type": "thematic",
       "confidence": "probable",
-      "note": "The sin-offering law that frames the unintentional-sin offerings prescribed in Numbers 15:22-31."
+      "note": "The sin-offering law that frames the unintentional-sin offerings prescribed in Numbers 15:22-31; by contrast, the deliberate high-handed sin of Numbers 15:30 falls outside this law."
     },
     {
       "id": "conn-num-04-007",
@@ -133,6 +133,30 @@
       "type": "thematic",
       "confidence": "established",
       "note": "The tassels command paralleling Numbers 15:37-41: fringes on the four quarters of the garment."
+    },
+    {
+      "id": "conn-num-04-008",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 16,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The grain-offering law behind the flour-and-oil offerings prescribed in Numbers 15:1-21."
+    },
+    {
+      "id": "conn-num-04-009",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 31,
+      "startVerse": 14,
+      "endChapter": 31,
+      "endVerse": 15,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "The Sabbath law prescribing death for profaning the Sabbath or doing work on it, paralleling the judgment on the Sabbath-breaker in Numbers 15:32-36."
     }
   ],
   "relatedEvents": [],
