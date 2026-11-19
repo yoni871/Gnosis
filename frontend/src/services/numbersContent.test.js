@@ -105,9 +105,9 @@ describe('Numbers in-review category package', () => {
       }
     }
   });
-  it('preserves all 27 claims and 35 connections without editorial overrides', () => {
-    expect(records.flatMap((r) => r.claims ?? [])).toHaveLength(27);
-    expect(records.flatMap((r) => r.connections ?? [])).toHaveLength(35);
+  it('preserves all 28 claims and 74 connections without editorial overrides', () => {
+    expect(records.flatMap((r) => r.claims ?? [])).toHaveLength(28);
+    expect(records.flatMap((r) => r.connections ?? [])).toHaveLength(74);
     for (const r of records) {
       expect(r.review.editorialOverride).toBeUndefined();
       expect(r.status).toBe('in-review');
