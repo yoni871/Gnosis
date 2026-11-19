@@ -121,15 +121,15 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
             expect(result.status).toBe(0);
             const manifest = readManifest(sandbox);
             expect(manifest.includeUnpublished).toBe(false);
-            expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
+            expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
             // The sandbox flips Creation to in-review; the shipped Adam
             // and Eve, Cain and Abel, Cain's Descendants, Seth,
             // Humanity's Corruption, Noah, Great Flood, Noah's Sacrifice
             // and God's Covenant, and Noah and His Sons events are
             // published, so published-only generation still ships them
-            // — with the 114 sources they cite — and nothing unpublished.
+            // — with the 139 sources they cite — and nothing unpublished.
             expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
-            expect(manifest.books).toEqual(["genesis"]);
+            expect(manifest.books).toEqual(["exodus", "genesis"]);
             expect(manifest.sources).toEqual([
                 "source-adamtoabraham-methuselah-flood",
                 "source-ats-seven",
@@ -143,16 +143,26 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-berossus-babyloniaca",
                 "source-bible-gateway-kjv",
                 "source-bible-hub-interlinear",
+                "source-bible-odyssey-covenant",
                 "source-bible-odyssey-curse-ham",
                 "source-bible-odyssey-dinah",
+                "source-bible-odyssey-golden-calf",
                 "source-bible-odyssey-jacob",
                 "source-bible-odyssey-joseph-clothing",
+                "source-bible-odyssey-moses",
+                "source-bible-odyssey-passover",
+                "source-bible-odyssey-plagues",
                 "source-bible-odyssey-sarah-abraham-pharaoh",
                 "source-bible-odyssey-sibling-rivalries",
                 "source-bible-odyssey-sodom-gomorrah",
+                "source-biblicaltraining-exodus",
                 "source-biblicaltraining-joseph",
+                "source-biblicaltraining-mount-sinai",
+                "source-biblicaltraining-numbers",
                 "source-bloch-blood-vengeance",
                 "source-calvin-genesis",
+                "source-calvin-harmony-of-the-law",
+                "source-calvin-romans",
                 "source-charles-enoch",
                 "source-charles-jubilees",
                 "source-christ-over-all-genesis-4-7",
@@ -163,6 +173,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-collins-fasold-durupinar",
                 "source-cyprian-epistles",
                 "source-dalley-myths-mesopotamia",
+                "source-defoliart-insects-as-food-ch21",
                 "source-djd-xii-qumran-cave-4",
                 "source-easton-seven",
                 "source-encyclopedia-crime-punishment",
@@ -184,8 +195,10 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-hastings-rainbow",
                 "source-haynes-noahs-curse",
                 "source-hendel-genesis-text",
+                "source-hoffmeier-out-of-egypt",
                 "source-hong-ark-seaway-1993",
                 "source-houtman-jacob-bethel",
+                "source-ipuwer-papyrus",
                 "source-isaw-sacred-tree",
                 "source-jacobsen-eridu-genesis",
                 "source-jacobsen-harps",
@@ -194,33 +207,43 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-justin-dialogue-trypho",
                 "source-jvl-kenite",
                 "source-jvl-paradise",
+                "source-keil-delitzsch-exodus",
                 "source-keil-delitzsch-genesis",
                 "source-kessler-jesus-jewish-covenants",
                 "source-kramer-dilmun",
                 "source-lambert-millard-atrahasis",
                 "source-lucas-covenant-treaty-prophecy",
+                "source-lucas-themelios-covenant-treaty",
                 "source-maarten-eisegesis",
                 "source-mastnjak-genesis-9-6",
                 "source-mcdowell-human-identity",
                 "source-mcgovern-iranian-wine",
+                "source-merneptah-stele",
                 "source-met-mesopotamian-creation",
                 "source-met-nahal-mishmar",
                 "source-met-uruk-first-city",
                 "source-moldenke-tale-two-brothers",
+                "source-nets-septuagint-exodus",
                 "source-nets-septuagint-genesis",
+                "source-noegel-hidden-waters",
                 "source-oracc-marduk",
                 "source-oracc-nebuchadnezzar-011",
                 "source-oracc-saa-07-212",
+                "source-overstreet-red-sea-crossing",
                 "source-philo-allegorical-interpretation",
                 "source-philo-de-abrahamo",
                 "source-philo-de-josepho",
                 "source-philo-de-sobrietate",
+                "source-philo-decalogue",
                 "source-philo-dreams",
+                "source-philo-life-of-moses",
                 "source-philo-on-the-giants",
+                "source-philo-questions-exodus",
                 "source-philo-questions-genesis",
                 "source-rashi-genesis",
                 "source-roux-ancient-iraq",
                 "source-ryle-genesis",
+                "source-sarna-exodus",
                 "source-scriptorium-lamassu",
                 "source-selman-social-environment-patriarchs",
                 "source-sibbing-plantholt-time-death",
@@ -231,9 +254,11 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
                 "source-speiser-genesis-anchor-bible",
                 "source-stordalen-eden-narrative",
                 "source-talmud-sanhedrin",
+                "source-talmud-shabbat",
                 "source-targum-onkelos",
                 "source-tertullian-baptism",
                 "source-thompson-gilgamesh",
+                "source-timna-tent-shrine",
                 "source-walton-lost-world-flood",
                 "source-wenham-coherence-flood",
                 "source-westermann-genesis",
@@ -266,22 +291,17 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // Great Flood, Noah's Sacrifice and God's Covenant, and Noah and
         // His Sons events are published now, so the dev opt-in includes
         // all ten events — the nine published above plus the in-review
-        // Creation — and the published Nations and Babel, Abraham
-        // and Sarah, Isaac, Jacob, and Esau, and Joseph and Israel
-        // in Egypt categories, with the twenty-six sources they
-        // alone cite, plus the in-review Building the Tabernacle
-        // category's one additional source (the Timna tent-shrine
-        // — Sarna is already cited by the Wilderness category),
-        // the in-review Tabernacle and Israel's Rebellion
-        // category's eight sources and the in-review Covenant and
-        // God's Law category's four additional sources, the in-review
-        // Israel in the Wilderness category's three additional
-        // sources, the in-review Israel's Oppression and Moses'
-        // Early Life category's two additional sources, and the
-        // in-review Passover and the Exodus category's four
-        // additional sources, and the in-review Pharaoh and the
-        // Ten Plagues category's three additional sources (142
-        // cited sources in all).
+        // Creation — and all eleven published categories, with the
+        // Genesis categories (Nations and Babel, Abraham and Sarah,
+        // Isaac, Jacob, and Esau, and Joseph and Israel in Egypt)
+        // citing twenty-six sources they alone cite, plus the Exodus
+        // categories' additional sources: Building the Tabernacle's
+        // one (the Timna tent-shrine — Sarna is already cited by the
+        // Wilderness category), Tabernacle and Israel's Rebellion's
+        // eight, Covenant and God's Law's four, Israel in the
+        // Wilderness's three, Israel's Oppression and Moses' Early
+        // Life's two, Passover and the Exodus's four, and Pharaoh
+        // and the Ten Plagues' three (142 cited sources in all).
         expect(manifest.events).toEqual(["event-adam-and-eve", "event-cain-and-abel", "event-cains-descendants", "event-creation", "event-great-flood", "event-humanitys-corruption", "event-noah-and-his-sons", "event-noah-ark", "event-noahs-sacrifice-and-covenant", "event-seth-early-generations"]);
         expect(manifest.categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
         expect(manifest.sources).toHaveLength(142);
@@ -465,68 +485,12 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
     it("returns the in-review event with its title and its unpublished-only sources", () => {
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
-        // Nine shipped events are published now, and so are the four
-        // Genesis categories, so the sandbox's non-published records
-        // are Creation (flipped to in-review by makeSandbox), the
-        // in-review Building the Tabernacle, Covenant and God's Law,
-        // Israel in the Wilderness, Israel's Oppression and Moses'
-        // Early Life, Passover and the Exodus, Pharaoh and the Ten
-        // Plagues, and Tabernacle and Israel's Rebellion categories,
-        // the three sources cited only
-        // by Creation (Brown, Crouch, and Shabaka), the seven sources
-        // cited only by the Building category, the four sources the
-        // Covenant category adds beyond the Building category's, the
-        // three sources the Wilderness category adds beyond the Building
-        // and Covenant categories' (Sarna is cited by the Building
-        // category too), the two sources cited only by the Oppression
-        // category, the four sources the Passover category adds beyond
-        // the Covenant category's, the three sources cited only by
-        // the Plagues category, and the two sources cited only by
-        // the Tabernacle category (five of its eight sources are also
-        // cited by the Covenant or Oppression categories). The ten
-        // registry sources cited by nothing published (among them
-        // Fitzmyer, held out of the Abraham and Sarah category)
-        // are cited by no record at all, so the gate does not list
-        // them as unpublished-only.
+        // Nine shipped events are published now, and so are all eleven
+        // categories, so the sandbox's only non-published records are
+        // Creation (flipped to in-review by makeSandbox) and the three
+        // sources cited only by Creation (Brown, Crouch, and Shabaka).
         expect(findNonPublishedRecords({ contentDir })).toEqual([
             { id: "event-creation", kind: "event", status: "in-review", title: "Creation" },
-            {
-                id: "category-building-the-tabernacle",
-                kind: "category",
-                status: "in-review",
-                title: "Building the Tabernacle",
-            },
-            {
-                id: "category-covenant-and-gods-law",
-                kind: "category",
-                status: "in-review",
-                title: "The Covenant and God's Law",
-            },
-            {
-                id: "category-israel-in-the-wilderness",
-                kind: "category",
-                status: "in-review",
-                title: "Israel in the Wilderness",
-            },
-            {
-                id: "category-oppression-and-moses-early-life",
-                kind: "category",
-                status: "in-review",
-                title: "Israel's Oppression and Moses' Early Life",
-            },
-            { id: "category-passover-and-the-exodus", kind: "category", status: "in-review", title: "Passover and the Exodus" },
-            {
-                id: "category-pharaoh-and-the-ten-plagues",
-                kind: "category",
-                status: "in-review",
-                title: "Pharaoh and the Ten Plagues",
-            },
-            {
-                id: "category-tabernacle-and-israels-rebellion",
-                kind: "category",
-                status: "in-review",
-                title: "The Tabernacle and Israel's Rebellion",
-            },
             {
                 id: "source-brown-cosmic-temple",
                 kind: "source",
@@ -545,171 +509,15 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
                 status: "unpublished-only",
                 title: "Shabaka Stone transcript and Hieroglyphs exhibition guide (EA498)",
             },
-            {
-                id: "source-calvin-harmony-of-the-law",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Calvin, Harmony of the Law",
-            },
-            {
-                id: "source-keil-delitzsch-exodus",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Keil and Delitzsch, Commentary on the Old Testament: Exodus",
-            },
-            {
-                id: "source-merneptah-stele",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Merneptah Stele (Israel Stele)",
-            },
-            {
-                id: "source-nets-septuagint-exodus",
-                kind: "source",
-                status: "unpublished-only",
-                title: "A New English Translation of the Septuagint: Exodus",
-            },
-            {
-                id: "source-philo-life-of-moses",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Philo, De vita Mosis (On the Life of Moses)",
-            },
-            {
-                id: "source-sarna-exodus",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Sarna, Exodus",
-            },
-            {
-                id: "source-timna-tent-shrine",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Timna tent-shrine (secondary accounts)",
-            },
-            {
-                id: "source-bible-odyssey-covenant",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Covenant in the Hebrew Bible; Tablets and Treaties in the Ancient Near East",
-            },
-            {
-                id: "source-lucas-themelios-covenant-treaty",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Covenant, Treaty, and Prophecy (Themelios 8.1)",
-            },
-            {
-                id: "source-philo-decalogue",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Philo, De Decalogo (On the Decalogue)",
-            },
-            {
-                id: "source-talmud-shabbat",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Babylonian Talmud, Shabbat 88a",
-            },
-            {
-                id: "source-biblicaltraining-exodus",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Exodus (overview article)",
-            },
-            {
-                id: "source-biblicaltraining-numbers",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Book of Numbers",
-            },
-            {
-                id: "source-defoliart-insects-as-food-ch21",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Southwest Asia (Chapter 21)",
-            },
-            {
-                id: "source-bible-odyssey-moses",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Moses (Bible Odyssey)",
-            },
-            {
-                id: "source-hoffmeier-out-of-egypt",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Out of Egypt: The Archaeological Context of the Exodus",
-            },
-            {
-                id: "source-bible-odyssey-passover",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Passover",
-            },
-            {
-                id: "source-noegel-hidden-waters",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Hidden Waters: The Sounds of Sinking in the Song of the Sea",
-            },
-            {
-                id: "source-overstreet-red-sea-crossing",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Overstreet, \"Exegetical and Contextual Facets of Israel's Red Sea Crossing\"",
-            },
-            {
-                id: "source-philo-questions-exodus",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Philo, Questions and Answers on Exodus",
-            },
-            {
-                id: "source-bible-odyssey-plagues",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Plagues of Egypt",
-            },
-            {
-                id: "source-calvin-romans",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Calvin, Commentary on Romans",
-            },
-            {
-                id: "source-ipuwer-papyrus",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Admonitions of Ipuwer",
-            },
-            {
-                id: "source-bible-odyssey-golden-calf",
-                kind: "source",
-                status: "unpublished-only",
-                title: "The Worship of the Golden Calf",
-            },
-            {
-                id: "source-biblicaltraining-mount-sinai",
-                kind: "source",
-                status: "unpublished-only",
-                title: "Mount Sinai",
-            },
         ]);
     });
 });
 
 describe("checkHistoryGate — claims detector", () => {
-    // A sandbox where ALL TEN events and the Nations and Babel,
-    // Abraham and Sarah, Isaac, Jacob, and Esau, Joseph and Israel
-    // in Egypt, and Tabernacle and Israel's Rebellion categories are
-    // published (the Genesis categories ship published now; the flip below
-    // is a no-op kept so the fixture stays explicit), and the
-    // Covenant and God's Law, Israel in the Wilderness,
-    // Israel's Oppression and Moses' Early Life, Passover and
-    // the Exodus, Pharaoh and the Ten Plagues, and Building
-    // the Tabernacle categories are
-    // flipped to published too: the claims detector
+    // A sandbox where ALL TEN events and all eleven categories are
+    // published (the Genesis and Exodus categories ship published
+    // now; the flip below is a no-op kept so the fixture stays
+    // explicit): the claims detector
     // must fire on this all-published path, where the gate's
     // non-published early return would otherwise stand it down. The
     // fixture source still carries Adam and Eve's full 35-claim
@@ -729,18 +537,11 @@ describe("checkHistoryGate — claims detector", () => {
             event.status = "published";
             writeFileSync(eventPath, JSON.stringify(event, null, 2));
         }
-        // The shipped Nations and Babel, Abraham and Sarah,
-        // Isaac, Jacob, and Esau, Joseph and Israel in Egypt, and
-        // Tabernacle and Israel's Rebellion categories are published
-        // now; flip them to published too (a no-op for the Genesis
-        // categories) so the sandbox holds no non-published records
-        // either way. The Covenant and God's Law, Israel in the
-        // Wilderness, Israel's Oppression and Moses' Early Life,
-        // Passover and the Exodus, Pharaoh and the Ten Plagues,
-        // and Building the Tabernacle categories ship in-review
-        // on this branch, so they are
-        // flipped to published here for the same reason: this
-        // fixture must hold no non-published records at all.
+        // All eleven shipped categories are published now; flip
+        // them to published too (a no-op kept so the fixture stays
+        // explicit) so the sandbox holds no non-published records
+        // either way: this fixture must hold no non-published
+        // records at all.
         for (const name of ["nations-and-babel.json", "abraham-and-sarah.json", "isaac-jacob-and-esau.json", "joseph-and-israel-in-egypt.json", "tabernacle-and-israels-rebellion.json", "covenant-and-gods-law.json", "israel-in-the-wilderness.json", "oppression-and-moses-early-life.json", "passover-and-the-exodus.json", "pharaoh-and-the-ten-plagues.json", "building-the-tabernacle.json"]) {
             const categoryPath = path.join(sandbox, "src", "content", "history", "categories", name);
             const category = JSON.parse(readFileSync(categoryPath, "utf8"));
@@ -1029,9 +830,9 @@ describe("checkHistoryGate — categories", () => {
         addCategoryToSandbox(sandbox);
         runNode("scripts/build-history-content.js", { cwd: sandbox });
         // The fixture replaces the shipped, published Nations and Babel
-        // with an in-review one; the other three shipped categories
+        // with an in-review one; the other ten shipped categories
         // are published, so they still ship.
-        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt"]);
+        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
         writeDistFile(sandbox, "assets/app.js", 'const id = "category-nations-and-babel";');
         const result = runGate(sandbox);
         expect(result.status).toBe(1);
@@ -1053,7 +854,7 @@ describe("checkHistoryGate — categories", () => {
         addCategoryToSandbox(sandbox, { status: "published" });
         const result = runNode("scripts/build-history-content.js", { cwd: sandbox });
         expect(result.status).toBe(0);
-        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-isaac-jacob-and-esau", "category-joseph-and-israel-in-egypt", "category-nations-and-babel"]);
+        expect(readManifest(sandbox).categories).toEqual(["category-abraham-and-sarah", "category-building-the-tabernacle", "category-covenant-and-gods-law", "category-isaac-jacob-and-esau", "category-israel-in-the-wilderness", "category-joseph-and-israel-in-egypt", "category-nations-and-babel", "category-oppression-and-moses-early-life", "category-passover-and-the-exodus", "category-pharaoh-and-the-ten-plagues", "category-tabernacle-and-israels-rebellion"]);
         // Simulate a leak: reintroduce the claims register into the
         // generated copy, as a pre-fix generator would have written it.
         const generatedPath = path.join(sandbox, "src", "generated", "history", "categories", "nations-and-babel.json");
