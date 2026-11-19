@@ -1,0 +1,102 @@
+{
+  "id": "category-numbers-holiness-and-preparation",
+  "title": "Holiness and Preparation for the Journey",
+  "category": "category",
+  "era": "numbers",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 5,
+    "startVerse": 1,
+    "endChapter": 7,
+    "endVerse": 89
+  },
+  "fullRange": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 5,
+    "startVerse": 1,
+    "endChapter": 10,
+    "endVerse": 10
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated biblical wilderness narrative and legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-num-02-001",
+      "claim": "The received Numbers narrative contains the holiness and preparation for the journey material across Numbers 5–10.",
+      "evidence": "Numbers 5–10; biblical-text description, not independent evidence for an event date.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-num-02-002",
+      "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
+      "evidence": "Numbers research Phases 1–3; limitation of extant archaeology and specific historical identification.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-num-02-003",
+      "claim": "Comparisons with related biblical laws and retellings need to preserve differences in wording, chronology, or institutional setting.",
+      "evidence": "Internal textual comparisons documented in CONNECTION-AUDIT.md; interpretation of literary relationship, not an archaeological observation.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-num-02-001",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 5,
+      "startVerse": 14,
+      "endChapter": 6,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "established",
+      "note": "Restitution and guilt-offering material provides a legal counterpart."
+    },
+    {
+      "id": "conn-num-02-002",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 13,
+      "startVerse": 2,
+      "endChapter": 13,
+      "endVerse": 7,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Related Nazirite consecration tradition with important differences."
+    },
+    {
+      "id": "conn-num-02-003",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 12,
+      "startVerse": 1,
+      "endChapter": 12,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "established",
+      "note": "Primary Passover legislation, supplemented in Numbers 9."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-numbers-kjv-biblehub",
+    "source-ketef-hinnom-barkay"
+  ],
+  "review": {
+    "author": "Gnosis Numbers research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-19",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished Numbers category; source access remains limited and audit restrictions apply. Phase 4 readiness and independent QA are distinct. No editorialOverride."
+  }
+}
