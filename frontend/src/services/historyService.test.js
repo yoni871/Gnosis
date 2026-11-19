@@ -91,7 +91,7 @@ describe("listBooks", () => {
         expect(rest).toHaveLength(65);
         expect(rest.every((book) => book.eventCount === 0 && !book.hasEvents)).toBe(true);
     });
-    it("reports four categories for Genesis, seven for Exodus, and zero for every other book", () => {
+    it("reports four categories for Genesis, seven for Exodus, seven for Leviticus, and zero for every other book", () => {
         const books = listBooks();
         const genesis = books.find((book) => book.id === "genesis");
         expect(genesis.categoryCount).toBe(4);
@@ -99,8 +99,11 @@ describe("listBooks", () => {
         const exodus = books.find((book) => book.id === "exodus");
         expect(exodus.categoryCount).toBe(7);
         expect(exodus.hasCategories).toBe(true);
-        const rest = books.filter((book) => book.id !== "genesis" && book.id !== "exodus");
-        expect(rest).toHaveLength(64);
+        const leviticus = books.find((book) => book.id === "leviticus");
+        expect(leviticus.categoryCount).toBe(7);
+        expect(leviticus.hasCategories).toBe(true);
+        const rest = books.filter((book) => book.id !== "genesis" && book.id !== "exodus" && book.id !== "leviticus");
+        expect(rest).toHaveLength(63);
         expect(rest.every((book) => book.categoryCount === 0 && !book.hasCategories)).toBe(true);
     });
 });
@@ -286,7 +289,7 @@ describe("formatHistoryDateLabel", () => {
     });
 });
 
-describe("category lookups in a production build (eleven categories published)", () => {
+describe("category lookups in a production build (eighteen categories published)", () => {
     it("strips the category- prefix for slugs, and leaves other ids alone", () => {
         expect(categorySlug("category-patriarchs")).toBe("patriarchs");
         expect(categorySlug("category-primeval-origins")).toBe("primeval-origins");
@@ -495,7 +498,7 @@ describe("category lookups in a production build (eleven categories published)",
 });
 
 // Fixture-based category tests. The generated category directory now
-// holds the eleven published categories (four Genesis, seven Exodus),
+// holds the eighteen published categories (four Genesis, seven Exodus, seven Leviticus),
 // and Exodus itself is a real category-only book — but the positive
 // paths below still run against fixture records, so the loader's sort
 // and the service's lookups are exercised on records the test controls.
@@ -506,14 +509,14 @@ describe("category lookups in a production build (eleven categories published)",
 // never touched, so no other test file can observe the fixtures except
 // through the fixture book below.
 //
-// The fixture book is Leviticus, and it carries ONLY category entries —
-// never an event entry. That keeps Leviticus event-less (no first
+// The fixture book is Numbers, and it carries ONLY category entries —
+// never an event entry. That keeps Numbers event-less (no first
 // published event, still a Coming Soon chip, still redirecting to the
 // homepage), so the selector, index, and event-page tests are
 // unaffected even if they import the service while the fixtures exist.
-// Leviticus is used (not Exodus) because the fixture's beforeAll deletes
-// the book file and afterAll never restores it — after the Exodus
-// publication the real books/exodus.json exists and must not be deleted.
+// Numbers is used (not Leviticus) because the fixture's beforeAll deletes
+// the book file and afterAll never restores it — after the Leviticus
+// publication the real books/leviticus.json exists and must not be deleted.
 // True event+category interleaving in one book is therefore NOT covered
 // here: the sort is one comparator over the unified entries array, and
 // it is covered for events (Genesis, above) and for categories (below),
@@ -570,8 +573,8 @@ describe("category fixtures (generated-content globs)", () => {
         "",
     ].join("\n");
     const fixtureBook = {
-        id: "leviticus",
-        title: "Leviticus",
+        id: "numbers",
+        title: "Numbers",
         testament: "OT",
         introduction: "Fixture book: categories only, no events.",
         entries: [
@@ -585,7 +588,7 @@ describe("category fixtures (generated-content globs)", () => {
         path.join(categoriesDir, "category-primeval-origins.json"),
         path.join(categoriesDir, "category-patriarchal-era.json"),
         path.join(categoriesDir, "primeval-origins.md"),
-        path.join(generatedDir, "books", "leviticus.json"),
+        path.join(generatedDir, "books", "numbers.json"),
     ];
 
     let svc;
@@ -618,7 +621,7 @@ describe("category fixtures (generated-content globs)", () => {
         expect(svc.getCategory("category-no-such")).toBeNull();
     });
     it("lists the fixture book's categories in narrative order, not file order", () => {
-        const categories = svc.listCategoriesForBook("leviticus");
+        const categories = svc.listCategoriesForBook("numbers");
         expect(categories.map((category) => category.id)).toEqual([
             "category-primeval-origins",
             "category-patriarchal-era",
@@ -637,15 +640,15 @@ describe("category fixtures (generated-content globs)", () => {
         ]);
     });
     it("listBookEntries tags each entry with its kind and narrative order", () => {
-        const entries = svc.listBookEntries("leviticus");
+        const entries = svc.listBookEntries("numbers");
         expect(entries).toHaveLength(2);
         expect(entries[0]).toMatchObject({ id: "category-primeval-origins", kind: "category", narrativeOrder: 1 });
         expect(entries[1]).toMatchObject({ id: "category-patriarchal-era", kind: "category", narrativeOrder: 2 });
-        expect(svc.buildBookTimeline("leviticus")).toEqual(entries);
+        expect(svc.buildBookTimeline("numbers")).toEqual(entries);
     });
     it("finds the books carrying a fixture category", () => {
         const books = svc.getBooksForCategory("category-primeval-origins");
-        expect(books.map((book) => book.id)).toEqual(["leviticus"]);
+        expect(books.map((book) => book.id)).toEqual(["numbers"]);
         expect(svc.getBooksForCategory("category-no-such")).toEqual([]);
     });
     it("loads a fixture category's sections with continuous footnote numbering", async () => {

@@ -180,7 +180,7 @@ describe("generateHistoryContent — the publication gate", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
         const tree = readTreeInventory(contentDir);
         // All ten shipped events are published now, and so are all
-        // eleven categories, so the only non-published record in this
+        // eighteen categories, so the only non-published record in this
         // fixture is the draft Creation event.
         expect(findNonPublishedIds({ contentDir })).toEqual(nonPublishedIds(tree));
     });
@@ -711,7 +711,7 @@ describe("validateHistoryContent — categories", () => {
         addCategory(contentDir);
         const tree = readTreeInventory(contentDir);
         // All ten shipped events are published now, and so are all
-        // eleven shipped categories, so the only non-published record
+        // eighteen shipped categories, so the only non-published record
         // is the in-review fixture category (which replaces the
         // shipped, published Nations and Babel).
         expect(findNonPublishedIds({ contentDir })).toEqual(nonPublishedIds(tree));
@@ -853,7 +853,7 @@ describe("generateHistoryContent — categories", () => {
         expect(book.entries[10]).toEqual({ categoryId: "category-nations-and-babel", kind: "category", narrativeOrder: 11, bookNote: "Genesis 10–11 traces the nations from Noah's sons and tells of Babel. No independently established date is assigned." });
         // The fixture category cites only Skinner, already cited by
         // published events, so the four sources cited only by the
-        // shipped Nations and Babel drop out (142 − 4 = 138).
+        // shipped Nations and Babel drop out (156 − 4 = 152).
         expect(manifest.sources).toEqual(citedSourceIds(publishedRecords(tree)));
         expect(manifest.sources).toContain("source-skinner-genesis");
     });
