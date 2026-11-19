@@ -39,7 +39,7 @@
     {
       "id": "clm-num-08-002",
       "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
-      "evidence": "Numbers research Phases 1–3; limitation of extant archaeology and specific historical identification.",
+      "evidence": "Phase 2 Dossier Eight: no external census documentation verifies either census total; Phase 2 geographical report: no independently established absolute dates for the forty-year wilderness chronology; QA Phase 4 §5.8 confirms census historicity is kept as textual fact only.",
       "assessment": "unknown"
     },
     {
@@ -97,6 +97,30 @@
       "type": "direct-account",
       "confidence": "established",
       "note": "Related Joshua succession tradition."
+    },
+    {
+      "id": "conn-num-08-004",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 54,
+      "type": "background",
+      "confidence": "established",
+      "note": "First census at Sinai; the counterpart against which the second census is measured."
+    },
+    {
+      "id": "conn-num-08-005",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 18,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Joshua takes up leadership after Moses' death; narrative continuation of the Numbers 27 commissioning."
     }
   ],
   "relatedEvents": [],
