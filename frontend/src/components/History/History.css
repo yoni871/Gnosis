@@ -25,9 +25,9 @@
    desktop the study fills the viewport below the header and each reading
    column scrolls independently. */
 .history-event-page {
-    width: min(1180px, 100%);
+    width: min(1440px, 100%);
     margin: 0 auto;
-    padding: 0 28px 48px;
+    padding: 0 clamp(16px, 2vw, 28px) 48px;
 }
 
 
@@ -288,7 +288,7 @@
 
 /* Desktop: a side panel beside the reading column, with its own scroll. */
 .history-study-body > .history-scripture-companion {
-    width: clamp(320px, 38%, 500px);
+    width: clamp(320px, calc(42% - 42px), 600px);
     border-left: 1px solid var(--border);
 }
 
@@ -483,8 +483,7 @@
     overflow-x: auto;
     list-style: none;
     scrollbar-width: thin;
-    scroll-behavior: smooth;
-    scroll-snap-type: x proximity;
+    scroll-behavior: auto;
     touch-action: pan-x;
 }
 
@@ -503,7 +502,6 @@
 .history-timeline-node-item {
     position: relative;
     flex: none;
-    scroll-snap-align: center;
 }
 
 .history-timeline-node {
@@ -1080,10 +1078,16 @@
     .history-study-meta { margin-top: 3px; font-size: 12px; }
     .history-study-meta .history-date-label { display: none; }
     .history-connection-chips { max-height: 40px; overflow-x: auto; overflow-y: hidden; white-space: nowrap; }
-    .history-event-nav--mobile { overflow-x: auto; }
+    .history-event-nav--mobile {
+        position: sticky;
+        top: var(--history-tabs-top, 160px);
+        z-index: 3;
+        overflow-x: auto;
+        background: var(--bg-panel);
+    }
     .history-event-nav--mobile .history-event-nav-tab { min-height: 42px; }
     .history-study-content { padding: 18px 18px 100px; scroll-margin-top: 180px; }
-    .history-study [id] { scroll-margin-top: 180px; }
+    .history-study [id] { scroll-margin-top: calc(var(--history-tabs-top, 160px) + 56px); }
     .history-study-body > .history-scripture-companion {
         position: fixed;
         inset: auto 0 0;
