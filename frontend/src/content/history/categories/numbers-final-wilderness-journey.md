@@ -12,7 +12,7 @@ The deaths of Miriam and Aaron also mark the passing of familiar leaders, while 
 
 ### Kadesh and water narratives
 
-Kadesh is central to several biblical wilderness accounts, yet its precise location has been debated. The water-from-the-rock episode in Numbers 20 also resembles an account in Exodus 17, while differing in setting and details. The shared motif should not automatically be converted into one reconstructed event. The name Meribah relates to dispute, and the text itself uses that meaning to interpret the episode. A map may show competing proposals for Kadesh but should not locate Moses’ action at an exact modern coordinate absent reliable evidence. The distinct judgments involving Moses and Aaron are narrative claims within Numbers rather than independently datable biographies.
+Kadesh is central to several biblical wilderness accounts, yet its precise location has been debated. The water-from-the-rock episode in Numbers 20 also resembles an account in Exodus 17, while differing in setting and details. The shared motif should not automatically be converted into one reconstructed event. The name Meribah relates to dispute, and the text itself uses that meaning to interpret the episode. A map may show competing proposals for Kadesh but should not locate Moses’ action at an exact modern coordinate absent reliable evidence. The distinct judgments involving Moses and Aaron are narrative claims within Numbers rather than independently datable biographies. Deuteronomy 32:48–52 recalls the same trespass at the waters of Meribah-Kadesh when Moses is told he will die on Mount Nebo without entering the land.
 
 ### Edom, Moab, and competing routes
 
