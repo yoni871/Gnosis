@@ -1,0 +1,149 @@
+{
+  "id": "category-numbers-twelve-spies-and-rebellion",
+  "title": "The Twelve Spies and Israel’s Rebellion",
+  "category": "category",
+  "era": "numbers",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 13,
+    "startVerse": 1,
+    "endChapter": 15,
+    "endVerse": 41
+  },
+  "fullRange": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 13,
+    "startVerse": 1,
+    "endChapter": 15,
+    "endVerse": 41
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated biblical wilderness narrative and legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-num-04-001",
+      "claim": "The received Numbers narrative contains the twelve spies and Israel’s Rebellion material across Numbers 13–15.",
+      "evidence": "Numbers 13–15; biblical-text description, not independent evidence for an event date.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-num-04-002",
+      "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
+      "evidence": "Numbers research Phases 1–3; limitation of extant archaeology and specific historical identification.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-num-04-003",
+      "claim": "Comparisons with related biblical laws and retellings need to preserve differences in wording, chronology, or institutional setting.",
+      "evidence": "Internal textual comparisons documented in CONNECTION-AUDIT.md; interpretation of literary relationship, not an archaeological observation.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-num-04-001",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 1,
+      "startVerse": 19,
+      "endChapter": 1,
+      "endVerse": 46,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Distinct retelling with different proposal for the mission."
+    },
+    {
+      "id": "conn-num-04-002",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 95,
+      "startVerse": 8,
+      "endChapter": 95,
+      "endVerse": 11,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Later rebuke reflecting wilderness hardness and denied rest."
+    },
+    {
+      "id": "conn-num-04-003",
+      "book": "Hebrews",
+      "bookId": "hebrews",
+      "startChapter": 3,
+      "startVerse": 7,
+      "endChapter": 4,
+      "endVerse": 11,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Christian interpretation of wilderness unbelief and rest."
+    },
+    {
+      "id": "conn-num-04-004",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 106,
+      "startVerse": 24,
+      "endChapter": 106,
+      "endVerse": 27,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Later psalm recalling the spies’ rebellion: the people despised the pleasant land, disbelieved God’s word, and murmured in their tents."
+    },
+    {
+      "id": "conn-num-04-005",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 14,
+      "startVerse": 6,
+      "endChapter": 14,
+      "endVerse": 9,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Caleb recalls being sent from Kadesh-barnea to spy out the land and bringing back word as it was in his heart."
+    },
+    {
+      "id": "conn-num-04-006",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 4,
+      "startVerse": 1,
+      "endChapter": 4,
+      "endVerse": 35,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The sin-offering law that frames the unintentional-sin offerings prescribed in Numbers 15:22-31."
+    },
+    {
+      "id": "conn-num-04-007",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 22,
+      "startVerse": 12,
+      "endChapter": 22,
+      "endVerse": 12,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "The tassels command paralleling Numbers 15:37-41: fringes on the four quarters of the garment."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-numbers-kjv-biblehub"
+  ],
+  "review": {
+    "author": "Gnosis Numbers research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-19",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished Numbers category; source access remains limited and audit restrictions apply. Phase 4 readiness and independent QA are distinct. No editorialOverride."
+  }
+}

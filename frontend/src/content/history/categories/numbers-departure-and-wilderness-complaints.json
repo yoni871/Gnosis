@@ -1,0 +1,101 @@
+{
+  "id": "category-numbers-departure-and-wilderness-complaints",
+  "title": "Departure from Sinai and Wilderness Complaints",
+  "category": "category",
+  "era": "numbers",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 10,
+    "startVerse": 11,
+    "endChapter": 12,
+    "endVerse": 16
+  },
+  "fullRange": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 10,
+    "startVerse": 11,
+    "endChapter": 12,
+    "endVerse": 16
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Narrative date: 20th day, 2nd month, 2nd year (Num 10:11)",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Numbers 10:11 dates the departure from Sinai within the biblical narrative to the 20th day of the 2nd month of the 2nd year. That narrative date is not independently established as an absolute BCE date; no absolute year is inferred."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-num-03-001",
+      "claim": "The received Numbers narrative contains the departure from Sinai and wilderness complaints material across Numbers 10–12.",
+      "evidence": "Numbers 10:11–12:16; biblical-text description, not independent evidence for an event date.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-num-03-002",
+      "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
+      "evidence": "Numbers research Phases 1–3; limitation of extant archaeology and specific historical identification.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-num-03-003",
+      "claim": "Comparisons with related biblical laws and retellings need to preserve differences in wording, chronology, or institutional setting.",
+      "evidence": "Internal textual comparisons documented in CONNECTION-AUDIT.md; interpretation of literary relationship, not an archaeological observation.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-num-03-001",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 24,
+      "startVerse": 9,
+      "endChapter": 24,
+      "endVerse": 9,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Explicit recollection of Miriam’s experience."
+    },
+    {
+      "id": "conn-num-03-002",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 78,
+      "startVerse": 17,
+      "endChapter": 78,
+      "endVerse": 31,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Poetic remembrance of wilderness complaints and food."
+    },
+    {
+      "id": "conn-num-03-003",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 18,
+      "startVerse": 13,
+      "endChapter": 18,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Related but different delegation-of-leadership tradition."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-numbers-kjv-biblehub"
+  ],
+  "review": {
+    "author": "Gnosis Numbers research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-19",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished Numbers category; source access remains limited and audit restrictions apply. Phase 4 readiness and independent QA are distinct. No editorialOverride."
+  }
+}

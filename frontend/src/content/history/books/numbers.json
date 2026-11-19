@@ -1,0 +1,62 @@
+{
+  "id": "numbers",
+  "title": "Numbers",
+  "testament": "OT",
+  "introduction": "Numbers traces Israel in the wilderness from Sinai toward the plains of Moab through a sequence of census, cultic law, leadership crises, journeys, and land preparation. These nine studies follow literary divisions; they do not claim nine independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "entries": [
+    {
+      "categoryId": "category-numbers-israel-organized-at-sinai",
+      "kind": "category",
+      "narrativeOrder": 29,
+      "bookNote": "Numbers 1–4 examines Israel Organized at Sinai as a biblical literary and historical-context study, without assigning an independently verified wilderness date."
+    },
+    {
+      "categoryId": "category-numbers-holiness-and-preparation",
+      "kind": "category",
+      "narrativeOrder": 30,
+      "bookNote": "Numbers 5–10 examines Holiness and Preparation for the Journey as a biblical literary and historical-context study, without assigning an independently verified wilderness date."
+    },
+    {
+      "categoryId": "category-numbers-departure-and-wilderness-complaints",
+      "kind": "category",
+      "narrativeOrder": 31,
+      "bookNote": "Numbers 10–12 examines Departure from Sinai and Wilderness Complaints as a biblical literary and historical-context study, without assigning an independently verified wilderness date."
+    },
+    {
+      "categoryId": "category-numbers-twelve-spies-and-rebellion",
+      "kind": "category",
+      "narrativeOrder": 32,
+      "bookNote": "Numbers 13–15 examines The Twelve Spies and Israel’s Rebellion as a biblical literary and historical-context study, without assigning an independently verified wilderness date."
+    },
+    {
+      "categoryId": "category-numbers-korah-and-priesthood",
+      "kind": "category",
+      "narrativeOrder": 33,
+      "bookNote": "Numbers 16–19 examines Korah’s Rebellion and the Priesthood as a biblical literary and historical-context study, without assigning an independently verified wilderness date."
+    },
+    {
+      "categoryId": "category-numbers-final-wilderness-journey",
+      "kind": "category",
+      "narrativeOrder": 34,
+      "bookNote": "Numbers 20–21 examines The Final Wilderness Journey as a biblical literary and historical-context study, without assigning an independently verified wilderness date."
+    },
+    {
+      "categoryId": "category-numbers-balaam-and-moab",
+      "kind": "category",
+      "narrativeOrder": 35,
+      "bookNote": "Numbers 22–25 examines Balaam and the Plains of Moab as a biblical literary and historical-context study, without assigning an independently verified wilderness date."
+    },
+    {
+      "categoryId": "category-numbers-new-generation-and-joshua",
+      "kind": "category",
+      "narrativeOrder": 36,
+      "bookNote": "Numbers 26–27 examines The New Generation and Joshua’s Appointment as a biblical literary and historical-context study, without assigning an independently verified wilderness date."
+    },
+    {
+      "categoryId": "category-numbers-preparing-to-inherit",
+      "kind": "category",
+      "narrativeOrder": 37,
+      "bookNote": "Numbers 32–36 examines Preparing to Inherit the Promised Land as a biblical literary and historical-context study, without assigning an independently verified wilderness date."
+    }
+  ]
+}
