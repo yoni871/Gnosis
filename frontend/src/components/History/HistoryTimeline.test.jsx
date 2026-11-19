@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
@@ -72,6 +72,22 @@ function renderTimeline({ currentEntryId = "event-creation", entries = EVENTS } 
 }
 
 describe("HistoryTimeline", () => {
+    it("centers the active marker inside the strip without scrolling the page", () => {
+        const scrollTo = vi.fn();
+        const scrollIntoView = vi.fn();
+        const originalScrollTo = HTMLElement.prototype.scrollTo;
+        const originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
+        HTMLElement.prototype.scrollTo = scrollTo;
+        HTMLElement.prototype.scrollIntoView = scrollIntoView;
+        try {
+            renderTimeline();
+            expect(scrollTo).toHaveBeenCalledWith(expect.objectContaining({ behavior: expect.any(String), left: expect.any(Number) }));
+            expect(scrollIntoView).not.toHaveBeenCalled();
+        } finally {
+            HTMLElement.prototype.scrollTo = originalScrollTo;
+            HTMLElement.prototype.scrollIntoView = originalScrollIntoView;
+        }
+    });
     it("renders one node per entry with date labels and aria-current on the open entry", () => {
         renderTimeline();
         expect(screen.getByRole("navigation", { name: "Entries in this book" })).toBeInTheDocument();
@@ -117,17 +133,12 @@ describe("HistoryTimeline", () => {
         expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/flood");
     });
 
-    it("ends with one generic Upcoming slot that is not a link or button and never navigates", async () => {
+    it("contains only published entries and keeps keyboard navigation on real nodes", async () => {
         const user = userEvent.setup();
         renderTimeline();
-        const upcoming = screen.getByText("Upcoming");
-        expect(upcoming.closest("button")).toBeNull();
-        expect(upcoming.closest("a")).toBeNull();
-        expect(upcoming.closest("[aria-disabled='true']")).not.toBeNull();
-        // Clicking it navigates nowhere.
-        await user.click(upcoming);
+        expect(screen.queryByText("Upcoming")).toBeNull();
+        expect(screen.getAllByRole("button")).toHaveLength(EVENTS.length);
         expect(screen.getByTestId("location")).toHaveTextContent("/biblical-history/genesis/creation");
-        // Keyboard navigation skips it: End lands on the last real event.
         const creation = screen.getByRole("button", { name: /Creation/ });
         creation.focus();
         await user.keyboard("{End}");

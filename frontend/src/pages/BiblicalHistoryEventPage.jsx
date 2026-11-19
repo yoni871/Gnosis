@@ -15,7 +15,7 @@
 // starts the new record fresh: Story tab, companion open on the new
 // record's primary passage.
 import { useCallback } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LandingHeader from "../components/LandingHeader";
 import Seo from "../components/Seo";
 import HistoryEventStudy from "../components/History/HistoryEventStudy";
@@ -80,7 +80,6 @@ export default function BiblicalHistoryEventPage() {
     }
 
     const recordWithBookNote = { ...openRecord, kind: openRecordEntry.kind, bookNote: openRecordEntry.bookNote };
-    const firstEntry = entries[0] ?? null;
 
     return (
         <div className="history-event-root min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)]">
@@ -105,25 +104,6 @@ export default function BiblicalHistoryEventPage() {
                 <LandingHeader hero solid />
             </div>
             <main id="landing-main" tabIndex={-1} className="history-event-page">
-                <nav aria-label="Breadcrumb" className="history-event-breadcrumb">
-                    <Link to="/biblical-history#history-books" className="text-[var(--color-brand)]">
-                        All books
-                    </Link>
-                    {" / "}
-                    {firstEntry ? (
-                        <Link
-                            to={historyPath(bookSlug, recordSlug(firstEntry))}
-                            className="text-[var(--color-brand)]"
-                        >
-                            {bookTitle}
-                        </Link>
-                    ) : (
-                        <span>{bookTitle}</span>
-                    )}
-                    {" / "}
-                    <span aria-current="page">{openRecord.title}</span>
-                </nav>
-
                 <HistoryEventStudy
                     key={recordWithBookNote.id}
                     record={recordWithBookNote}

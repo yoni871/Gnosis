@@ -17,15 +17,13 @@ test("renders nothing while closed", () => {
 test("shows one canonical testament at a time, book names only, with a scroll hint", async () => {
     const user = userEvent.setup();
     mount();
-    // Only Genesis has published events, so it is the only link; the
-    // other 38 Old Testament books are Coming Soon chips, not links.
-    expect(screen.getAllByRole("link")).toHaveLength(1);
-    expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
-    expect(screen.getAllByText("Coming Soon")).toHaveLength(38);
-    expect(screen.queryByRole("link", { name: "Exodus" })).toBeNull();
+    expect(screen.getAllByRole("link")).toHaveLength(3);
+    expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis");
+    expect(screen.getAllByText("Coming Soon")).toHaveLength(36);
     const exodusChip = document.querySelector('[data-history-book="exodus"]');
     expect(exodusChip).not.toBeNull();
-    expect(exodusChip).toHaveTextContent("Coming Soon");
+    expect(exodusChip).toHaveAttribute("href", "/biblical-history/exodus");
+    expect(document.querySelector('[data-history-book="leviticus"]')).toHaveAttribute("href", "/biblical-history/leviticus");
     expect(screen.queryByText("Upcoming")).toBeNull();
     expect(screen.getByText(/4 categories · 10 events/)).toBeInTheDocument();
     expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
@@ -57,7 +55,7 @@ test("shows both counts on a book's chip when it has categories, and no counts o
     ];
     mount({ books });
     // Genesis links to its first published event and shows both counts.
-    expect(screen.getByRole("link", { name: "Genesis · 2 categories · 8 events" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+    expect(screen.getByRole("link", { name: "Genesis · 2 categories · 8 events" })).toHaveAttribute("href", "/biblical-history/genesis");
     // Exodus has no published content: still a Coming Soon chip, and
     // the counts label never appears on it.
     expect(document.querySelector('[data-history-book="exodus"]')).toHaveTextContent("Coming Soon");
@@ -69,7 +67,13 @@ test("uses singular count labels for one category and one event", () => {
         { id: "genesis", title: "Genesis", testament: "OT", chapterCount: 50, eventCount: 1, hasEvents: true, categoryCount: 1, hasCategories: true },
     ];
     mount({ books });
-    expect(screen.getByRole("link", { name: "Genesis · 1 category · 1 event" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+    expect(screen.getByRole("link", { name: "Genesis · 1 category · 1 event" })).toHaveAttribute("href", "/biblical-history/genesis");
+});
+
+test("a category-only book is a navigable landing-page link", () => {
+    mount({ books: [{ id: "exodus", title: "Exodus", testament: "OT", eventCount: 0, hasEvents: false, categoryCount: 7, hasCategories: true }] });
+    expect(screen.getByRole("link", { name: "Exodus · 7 categories" })).toHaveAttribute("href", "/biblical-history/exodus");
+    expect(screen.queryByText("Coming Soon")).toBeNull();
 });
 
 test("calls onClose on Escape from inside the drawer", async () => {

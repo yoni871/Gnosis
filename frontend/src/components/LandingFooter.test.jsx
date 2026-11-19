@@ -5,6 +5,12 @@ import { expect, test, vi } from 'vitest';
 import { ThemeProvider } from '../context/ThemeContext';
 import LandingFooter from './LandingFooter';
 
+test('footer links to the published study sections', () => {
+    render(<MemoryRouter><ThemeProvider><LandingFooter /></ThemeProvider></MemoryRouter>);
+    expect(screen.getByRole('link', { name: 'Biblical History' })).toHaveAttribute('href', '/biblical-history');
+    expect(screen.getByRole('link', { name: 'Trace the Doctrine' })).toHaveAttribute('href', '/trace-the-doctrine');
+});
+
 test.each([false, true])('footer logo scrolls to top (reduced motion: %s)', async (reducedMotion) => {
     const scrollTo = vi.fn();
     vi.stubGlobal('scrollTo', scrollTo);

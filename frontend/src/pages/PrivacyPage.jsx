@@ -20,7 +20,7 @@ export default function PrivacyPage() {
             <LandingHeader hero solid />
             <main id="landing-main" tabIndex={-1} className="privacy-layout">
                 <h1>Privacy Policy</h1>
-                <p className="privacy-updated">Last updated: November 9, 2026.</p>
+                <p className="privacy-updated">Last updated: November 19, 2026.</p>
                 <p>
                     Gnosis is a Bible study application. This policy explains what data Gnosis
                     collects, why, how long it is kept, and how you can delete it.
@@ -40,12 +40,24 @@ export default function PrivacyPage() {
                         </li>
                         <li>
                             <strong>Sessions.</strong> When you sign in, Gnosis keeps a session
-                            record so you stay signed in for up to 7 days.
+                            record and a secure, HttpOnly refresh cookie so you can stay signed in
+                            for up to 7 days. The short-lived access token stays in application memory.
                         </li>
                         <li>
-                            <strong>Security records.</strong> Sign-in rate limiting is recorded
-                            as one-way hashes, never your raw IP address or email address, and
-                            kept for at most 60 minutes.
+                            <strong>Account security.</strong> If you enable two-factor authentication,
+                            Gnosis stores an encrypted authenticator secret and hashed recovery codes.
+                            We also store security event types and times linked to an account, and a
+                            one-way device key derived from sign-in network and browser information
+                            to identify new-device sign-ins.
+                        </li>
+                        <li>
+                            <strong>Rate limiting.</strong> Authentication attempts are recorded
+                            using keyed hashes derived from network or account identifiers, rather
+                            than storing the raw IP address or email address in that table.
+                        </li>
+                        <li>
+                            <strong>Browser preferences.</strong> Your browser stores your theme and
+                            adjustable study-panel width locally.
                         </li>
                         <li>
                             <strong>Licensed content cache.</strong> When you open a chapter in a
@@ -60,8 +72,10 @@ export default function PrivacyPage() {
                 <section aria-labelledby="privacy-not-collect-heading">
                     <h2 id="privacy-not-collect-heading">What we do not collect</h2>
                     <p>
-                        Gnosis runs no analytics, no advertising, and no third-party trackers.
-                        We do not sell or share your personal data.
+                        The application code does not include an analytics or advertising SDK.
+                        We do not use your study data for advertising. Hosting and other service
+                        providers may process technical request data needed to deliver the service;
+                        their operational logs and retention are not controlled by this codebase.
                     </p>
                 </section>
 
@@ -71,8 +85,14 @@ export default function PrivacyPage() {
                         <li><strong>Hosting:</strong> Vercel serves the site and the API.</li>
                         <li><strong>Database:</strong> Neon stores the data listed above.</li>
                         <li>
-                            <strong>Email:</strong> Resend sends verification and password-reset
-                            emails, and nothing else.
+                            <strong>Email:</strong> Resend sends verification, password-reset,
+                            and account-security notification emails, including new-device alerts.
+                        </li>
+                        <li>
+                            <strong>Password screening:</strong> on registration and password reset,
+                            the server sends the first five characters of a SHA-1 password digest
+                            to Have I Been Pwned&apos;s range API. The full password and full digest
+                            are not sent to that service.
                         </li>
                         <li>
                             <strong>Licensed Bible content:</strong> chapter requests go to the
@@ -85,9 +105,10 @@ export default function PrivacyPage() {
                 <section aria-labelledby="privacy-retention-heading">
                     <h2 id="privacy-retention-heading">How long we keep data</h2>
                     <ul>
-                        <li>Sessions: 7 days. Email-verification tokens: 24 hours. Password-reset tokens: 1 hour. Expired tokens and sessions are purged regularly.</li>
+                        <li>Sessions expire after 7 days. Email-verification links expire after 24 hours, password-reset links after 1 hour, and MFA login challenges after 10 minutes. Expiry does not by itself establish when their database rows are removed.</li>
                         <li>Your notes, bookmarks, highlights, and reading position are kept until you delete them or delete your account.</li>
-                        <li>Rate-limit records: at most 60 minutes. Licensed chapter cache: at most 30 days.</li>
+                        <li>Rate-limit attempts are counted within windows of up to 60 minutes and are subject to a database sweep. Licensed chapter cache entries are refreshed or cleared after up to 30 days.</li>
+                        <li>The repository does not verify the retention periods for security events, device records, provider logs, or backups.</li>
                     </ul>
                 </section>
 
@@ -96,12 +117,19 @@ export default function PrivacyPage() {
                     <p>
                         In <Link to="/settings">Settings</Link>, under Delete account, you can
                         delete your account yourself. It asks for your current password, then
-                        permanently and immediately deletes your account, your study data, and
-                        your sessions. This cannot be undone.
+                        deletes your account and its linked study data and sessions from the
+                        application database. This cannot be undone through the app.
                     </p>
                     <p>
-                        Deleted data may remain in the hosting provider&apos;s point-in-time
-                        backups for up to 6 hours, after which it is gone.
+                        Copies may remain temporarily in provider backups or operational logs.
+                        Their exact retention and deletion timing cannot be verified from the
+                        application code.
+                    </p>
+                    <p>
+                        The account-deletion transaction does not delete the separate security
+                        event and known-device tables. Those records may retain a historical
+                        account identifier or one-way device key after account deletion; the
+                        repository does not establish a retention period for them.
                     </p>
                 </section>
 

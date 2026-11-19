@@ -20,25 +20,28 @@
     --history-on-forest: #1d2b20;
 }
 
-/* The study page: a centered page column under the landing navbar. On
-   mobile the workspace fills it in normal document flow — the page
-   scrolls as a page, with the rail, reading column, companion, and
-   timeline laid out in order. On desktop (min-width: 769px, see the
-   block below) the study shares 100dvh with the header and timeline,
-   and the reading column and companion scroll inside their own panels.
-   No backdrop, no fixed dialog, no sheet. */
+/* On mobile the article scrolls below sticky headers; the Scripture
+   companion opens as a fixed half-screen sheet above the timeline. On
+   desktop the study fills the viewport below the header and each reading
+   column scrolls independently. */
 .history-event-page {
     width: min(1180px, 100%);
     margin: 0 auto;
     padding: 0 28px 48px;
 }
 
-.history-event-breadcrumb {
-    margin: 0 0 8px;
-    padding-top: 24px;
-    font-size: 14px;
-    color: var(--text-muted);
-}
+.history-book-landing { width: min(900px, 100%); margin: 0 auto; padding: 44px var(--public-gutter) 90px; }
+.history-book-back { display: inline-block; margin-bottom: 28px; color: var(--color-brand); }
+.history-book-landing h1 { margin: 0 0 14px; font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 1.05; }
+.history-book-introduction { max-width: 68ch; margin: 0 0 42px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; }
+.history-book-landing h2 { margin: 0 0 16px; font-size: 1.35rem; }
+.history-book-entry-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.history-book-entry-list a { display: flex; flex-direction: column; gap: 5px; padding: 18px 20px; color: var(--text-primary); background: var(--bg-panel); border: 1px solid var(--border); border-radius: 9px; text-decoration: none; transition: border-color 160ms ease, transform 160ms ease; }
+.history-book-entry-list a:hover { border-color: var(--color-brand); transform: translateY(-2px); }
+.history-book-entry-kind { color: var(--color-brand); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.history-book-entry-list strong { font-size: 1.3rem; }
+.history-book-entry-list .history-date-label,
+.history-book-entry-note { color: var(--text-muted); font-size: .9rem; line-height: 1.5; }
 
 .history-study-header {
     display: flex;
@@ -46,7 +49,7 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    padding: 8px 0 16px;
+    padding: 6px 0 9px;
     border-bottom: 1px solid var(--border);
 }
 
@@ -297,7 +300,7 @@
 
 /* Desktop: a side panel beside the reading column, with its own scroll. */
 .history-study-body > .history-scripture-companion {
-    width: clamp(320px, 42%, 500px);
+    width: clamp(320px, 38%, 500px);
     border-left: 1px solid var(--border);
 }
 
@@ -556,26 +559,6 @@
 .history-timeline-node--current .history-timeline-node-dot {
     background: var(--history-forest);
     border-color: var(--history-forest);
-}
-
-.history-timeline-node--upcoming {
-    cursor: default;
-    opacity: 0.65;
-}
-
-.history-timeline-node--upcoming:hover {
-    background: transparent;
-}
-
-.history-timeline-node--upcoming .history-timeline-node-dot {
-    border-color: var(--text-muted);
-    border-style: dashed;
-    background: var(--bg-surface);
-}
-
-.history-timeline-node--upcoming .history-timeline-node-title {
-    font-style: italic;
-    font-weight: 400;
 }
 
 .history-timeline-node-title {
@@ -988,9 +971,6 @@
         flex-direction: column;
         padding-bottom: 0;
     }
-    .history-event-breadcrumb {
-        flex: none;
-    }
     .history-study {
         flex: 1 1 auto;
         min-height: 0;
@@ -1100,13 +1080,14 @@
         transition: none;
     }
     .history-timeline-strip { scroll-behavior: auto; }
+    .history-book-entry-list a { transition: none; }
 }
 
 @media (max-width: 768px) {
-    .history-event-breadcrumb { display: none; }
+    .history-event-root > .public-page { position: sticky; top: 0; z-index: 45; }
     .history-event-page { padding: 0; width: 100%; }
     .history-study { min-height: calc(100dvh - 64px); }
-    .history-study-header { padding: 12px 16px 10px; align-items: center; }
+    .history-study-header { position: sticky; top: 64px; z-index: 4; padding: 8px 16px; align-items: center; background: var(--bg-page); }
     .history-study-eyebrow { margin-bottom: 3px; }
     .history-study-title { font-size: clamp(18px, 5.4vw, 23px); }
     .history-study-meta { margin-top: 3px; font-size: 12px; }
@@ -1114,7 +1095,8 @@
     .history-connection-chips { max-height: 40px; overflow-x: auto; overflow-y: hidden; white-space: nowrap; }
     .history-event-nav--mobile { overflow-x: auto; }
     .history-event-nav--mobile .history-event-nav-tab { min-height: 42px; }
-    .history-study-content { padding: 18px 18px 30px; }
+    .history-study-content { padding: 18px 18px 100px; scroll-margin-top: 180px; }
+    .history-study [id] { scroll-margin-top: 180px; }
     .history-study-body > .history-scripture-companion {
         position: fixed;
         inset: auto 0 0;
@@ -1131,7 +1113,7 @@
         overscroll-behavior: contain;
     }
     .history-study--scripture-open .history-timeline-dock { display: none; }
-    .history-timeline-dock { position: sticky; bottom: 0; z-index: 2; }
+    .history-timeline-dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 2; }
     .history-timeline { padding: 0 8px 4px; }
     .history-timeline-node { min-width: 100px; max-width: 130px; padding: 4px 6px; }
     .history-timeline-node-date { display: none; }

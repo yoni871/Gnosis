@@ -168,11 +168,9 @@ export function listBookEntries(bookId) {
         .filter(Boolean);
 }
 
-// First published event for a book, in narrative order — the book's
-// landing event now that the book URL redirects to it (see
-// BiblicalHistoryBookRedirect). Null when the book has no published
-// events: such books redirect to the homepage, where they are marked
-// Coming Soon, instead of redirecting to an event that does not exist.
+// First published event for a book, in narrative order. Kept for
+// recommendations that point directly to a study. Category-only books
+// have no event and use their published book landing page instead.
 export function getFirstPublishedEvent(bookId) {
     const events = listEventsForBook(bookId);
     return events.length > 0 ? events[0] : null;

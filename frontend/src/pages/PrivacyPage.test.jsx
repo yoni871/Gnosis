@@ -32,9 +32,11 @@ test("privacy policy states what is stored, retention, and deletion", () => {
         expect(screen.getByRole("heading", { level: 2, name })).toBeInTheDocument();
     }
     expect(screen.getByText(/one-way hash of your password/)).toBeInTheDocument();
-    expect(screen.getByText(/no analytics, no advertising, and no third-party trackers/)).toBeInTheDocument();
-    expect(screen.getByText(/up to 6 hours/)).toBeInTheDocument();
-    expect(screen.getByText(/cannot be undone/)).toBeInTheDocument();
+    expect(screen.getByText(/does not include an analytics or advertising SDK/)).toBeInTheDocument();
+    expect(screen.getByText(/exact retention and deletion timing cannot be verified/)).toBeInTheDocument();
+    expect(screen.getByText(/This cannot be undone through the app/)).toBeInTheDocument();
+    expect(screen.getByText(/Have I Been Pwned/)).toBeInTheDocument();
+    expect(screen.getByText(/encrypted authenticator secret/)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Settings" })).toHaveAttribute("href", "/settings");
     expect(screen.getByRole("link", { name: "github.com/yoni871/Gnosis" })).toHaveAttribute(
         "href",

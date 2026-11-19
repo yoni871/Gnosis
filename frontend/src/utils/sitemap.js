@@ -12,13 +12,10 @@
 //    must never be indexed, so they are never passed here)
 //  - Biblical History pages with published content, derived from the
 //    published-only generated manifest (see historySitemapPaths):
-//    the index and published event URLs. Book-page URLs are NOT
-//    listed — a book URL redirects to the book's first published
-//    event (or to the homepage, where the book is marked Coming Soon),
-//    so it is not a canonical page of its own. Unpublished events
-//    never appear — the manifest is published-only by construction,
-//    and the helper additionally requires each event id to be listed
-//    in it.
+//    the index, landing pages for books with published entries, and
+//    published event and category URLs. Unpublished entries never
+//    appear — the manifest is published-only by construction, and
+//    the helper also checks each entry against it.
 //
 // lastmod, changefreq, and priority are deliberately omitted: no
 // per-chapter modification date exists, and Google ignores changefreq
@@ -53,17 +50,16 @@ export function chapterUrls(siteUrl, chapterCounts) {
 // categories: [categoryId], ... }); `books` is the generated book
 // records ({ id, entries: [{ kind, eventId | categoryId }] }).
 // Returns ["/biblical-history",
+// "/biblical-history/<book>",
 // "/biblical-history/<book>/<event-slug>",
 // "/biblical-history/<book>/<category-slug>", ...]: the index first,
-// then each published book's published events and published categories,
+// then each published book's landing page, events, and categories,
 // all sorted deterministically (books in manifest order, slugs
 // alphabetically within a book, events and categories interleaved by
 // slug). A category URL is "/biblical-history/<book>/<category-slug>"
 // where the slug is the category id minus the "category-" prefix, and a
 // category is listed only when its id is in manifest.categories AND its
-// book carries an entry for it — exactly like events. Book-page URLs
-// are deliberately NOT returned: a book URL redirects to the book's
-// first published event, so it is not a canonical page. Returns []
+// book carries an entry for it — exactly like events. Returns []
 // when nothing is published — a book with no published content gets no
 // URL, and an event or category listed in no generated book (or not in
 // the manifest) gets none either. With no categories in the manifest
@@ -93,6 +89,7 @@ export function historySitemapPaths(manifest, books) {
                 })
                 .filter(Boolean),
         )].sort();
+        if (slugs.length > 0) paths.push(`/biblical-history/${encodeURIComponent(bookId)}`);
         for (const slug of slugs) {
             paths.push(`/biblical-history/${encodeURIComponent(bookId)}/${encodeURIComponent(slug)}`);
         }

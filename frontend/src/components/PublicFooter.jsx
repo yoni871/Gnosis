@@ -13,6 +13,8 @@ export default function PublicFooter() {
                         <h2>Explore</h2>
                         <Link to="/about">About Us</Link>
                         <Link to="/bible/Genesis/1">Start Studying</Link>
+                        <Link to="/biblical-history">Biblical History</Link>
+                        <Link to="/trace-the-doctrine">Trace the Doctrine</Link>
                     </div>
                     <div className="landing-footer-group">
                         <h2>Your study</h2>

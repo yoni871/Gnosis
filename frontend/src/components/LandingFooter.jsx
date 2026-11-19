@@ -6,7 +6,7 @@ import ThemeContext from "../context/ThemeContext";
 import "./LandingFooter.css";
 
 const GROUPS = [
-    { title: "Explore", links: [{ label: "Bible & Commentary", to: "/bible/Genesis/1" }] },
+    { title: "Explore", links: [{ label: "Bible & Commentary", to: "/bible/Genesis/1" }, { label: "Biblical History", to: "/biblical-history" }, { label: "Trace the Doctrine", to: "/trace-the-doctrine" }] },
     { title: "Gnosis", links: [{ label: "About", to: "/about" }, { label: "Privacy", to: "/privacy" }, { label: "Sign In", to: "/login" }, { label: "Create Account", to: "/register" }] },
 ];
 
