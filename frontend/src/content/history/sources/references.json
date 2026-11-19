@@ -1594,6 +1594,17 @@
     "verificationDetail": "James K. Hoffmeier, Ancient Israel in Sinai: The Evidence for the Authenticity of the Wilderness Tradition (Oxford, 2005). Not read directly (CO, 2026-11-18); pp. 111–148 quoted via search results only (a Patheos article quoting both Hoffmeier and Kitchen). Claim resting on it (clm-co-023, with JFB read directly alongside) is Debated.",
     "licenseNote": "In copyright; cite only, short quotations under fair dealing."
   },
+  "source-hoffmeier-out-of-egypt": {
+    "id": "source-hoffmeier-out-of-egypt",
+    "author": "James K. Hoffmeier",
+    "title": "Out of Egypt: The Archaeological Context of the Exodus",
+    "publisher": "Biblical Archaeology Society",
+    "year": 2012,
+    "pagesOrSection": "BAS eBook Ancient Israel in Egypt and the Exodus (2012)",
+    "verification": "verified",
+    "verificationDetail": "James K. Hoffmeier, \"Out of Egypt: The Archaeological Context of the Exodus,\" BAS eBook Ancient Israel in Egypt and the Exodus (Biblical Archaeology Society, 2012). Read in full (Dev 1, 2026-11-18); states each of the four re-grounded claims (clm-op-010, clm-op-011, clm-op-012, clm-op-014) essentially verbatim.",
+    "licenseNote": "In copyright; cite only, short quotations under fair dealing."
+  },
   "source-talmud-shabbat": {
     "id": "source-talmud-shabbat",
     "author": "Babylonian Talmud",
