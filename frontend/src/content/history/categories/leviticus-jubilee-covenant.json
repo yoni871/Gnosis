@@ -1,0 +1,195 @@
+{
+  "id": "category-leviticus-jubilee-covenant",
+  "title": "Sabbath Years, Jubilee, and Covenant Blessings",
+  "category": "category",
+  "era": "leviticus",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 25,
+    "endChapter": 27,
+    "startVerse": 1,
+    "endVerse": 34
+  },
+  "fullRange": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 25,
+    "endChapter": 27,
+    "startVerse": 1,
+    "endVerse": 34
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated thematic Leviticus legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "This is a literary and thematic grouping in the Sinai narrative, not an independent datable event. No absolute year is inferred."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-lev-jc-001",
+      "claim": "Leviticus 25 commands a seventh-year land rest and a Jubilee following seven seven-year cycles.",
+      "evidence": "Lev 25:1–13; legislation, not historical attestation of performance.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-jc-002",
+      "claim": "The land ultimately belongs to YHWH in the legislation, grounding restrictions on permanent alienation.",
+      "evidence": "Lev 25:23–28; a theological rationale in the text.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-jc-003",
+      "claim": "Leviticus 25 differentiates kin redemption, Israelite poverty-related servitude, and rules applying to foreign slaves.",
+      "evidence": "Lev 25:23–55; do not equate with modern abolition law.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-jc-004",
+      "claim": "The evidence reviewed does not establish regular nationwide practice of the Jubilee prescriptions in Leviticus 25; absence of such confirmation does not prove the prescriptions were never observed.",
+      "evidence": "Kaplan 2019 full CBQ 81(2) 183–203, esp. 183–185 and 202–203, carefully distinguishes historical plausibility from documented national performance; Bergsma 2003 complete Biblica 84(2) 225–246 criticizes a specific postexilic land-reclamation hypothesis; neither establishes nationwide observance.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-lev-jc-005",
+      "claim": "Ancient Mesopotamian royal remissions and release declarations provide meaningful comparison for Jubilee release language, but the known examples differ in agents and intervals and do not demonstrate direct borrowing.",
+      "evidence": "Posen Library, entire Ancient Near Eastern Background of Biblical Law guide directly inspected (comparative paragraph on Lev 25); Kaplan 2019 pp. 194–195, full article reviewed, explicitly distinguishing release decrees from Leviticus 25.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-lev-jc-006",
+      "claim": "Leviticus 26 links covenant obedience to blessing, disobedience to escalating consequences, and later confession to covenant remembrance.",
+      "evidence": "Lev 26:1–46; text’s rhetorical structure.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-jc-007",
+      "claim": "Leviticus 27 functions as a distinct set of valuation, dedication, and tithe rules following the covenant sanctions.",
+      "evidence": "Lev 27:1–34; literary observation.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-lev-jc-008",
+      "claim": "The date, composition, and social setting of Leviticus 25 are debated; Bergsma challenges a particular exilic or postexilic land-reclamation theory, whereas Kaplan considers the institution’s social plausibility without claiming that it was actually implemented.",
+      "evidence": "Bergsma 2003 full publisher-hosted paginated Biblica 84(2) pp. 225–246 inspected incl. 239; argues against a PARTICULAR postexilic land-recovery redaction theory. Kaplan 2019 CBQ 81(2) 183–203 full consulted: questions plausibility, not proof of regular performance. Distinct literary theories remain debated.",
+      "assessment": "debated"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-lev-jc-001",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 23,
+      "endChapter": 23,
+      "startVerse": 10,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "established",
+      "note": "The seventh-year field-rest law supplies a close predecessor."
+    },
+    {
+      "id": "conn-lev-jc-002",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 15,
+      "endChapter": 15,
+      "startVerse": 1,
+      "endVerse": 18,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Debt release and servant law provide related but distinct legal structures."
+    },
+    {
+      "id": "conn-lev-jc-003",
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "startChapter": 61,
+      "endChapter": 61,
+      "startVerse": 1,
+      "endVerse": 3,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Isaiah’s proclamation of release shares resonant language with Jubilee."
+    },
+    {
+      "id": "conn-lev-jc-004",
+      "book": "Luke",
+      "bookId": "luke",
+      "startChapter": 4,
+      "endChapter": 4,
+      "startVerse": 16,
+      "endVerse": 21,
+      "type": "thematic",
+      "confidence": "traditional",
+      "note": "Luke quotes Isaiah 61 and is often read in Christian Jubilee reception; it is not a direct quotation from Leviticus 25."
+    },
+    {
+      "id": "conn-lev-jc-005",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 28,
+      "endChapter": 28,
+      "startVerse": 1,
+      "endVerse": 68,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Covenant blessing and curse formulations invite comparison, not automatic source dependency."
+    },
+    {
+      "id": "conn-lev-jc-006",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 36,
+      "endChapter": 36,
+      "startVerse": 20,
+      "endVerse": 23,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "The Chronicler links exile and the land enjoying its sabbaths."
+    },
+    {
+      "id": "conn-lev-jc-007",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 34,
+      "endChapter": 34,
+      "startVerse": 8,
+      "endVerse": 22,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Release of Hebrew servants is a related but historically distinct covenant dispute."
+    },
+    {
+      "id": "conn-lev-jc-008",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 18,
+      "endChapter": 18,
+      "startVerse": 20,
+      "endVerse": 32,
+      "type": "background",
+      "confidence": "established",
+      "note": "Priestly and Levitical dues provide a context for tithe regulations."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-bergsma-jubilee",
+    "source-gane-sacrifice-old-testament",
+    "source-kaplan-jubilee",
+    "source-kjv-leviticus-biblehub",
+    "source-posen-ane-law"
+  ],
+  "review": {
+    "author": "Gnosis Phase 2 content development (AI-assisted)",
+    "reviewer": "Phase 2.5 desk audit, 2026-11-18; independent editorial QA still pending",
+    "lastReviewed": "2026-11-18",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Phase 2.5 evidence audit: 53 baseline claims and 56 baseline Scripture connections reviewed across seven categories; claims revised only where evidence wording or original access status needed correction. Bibliography/status changes recorded in SOURCE-VERIFICATION-MATRIX.md. Unverified sources retained honestly; No editorialOverride; no publication approval. Phase 2.6: primary KJV Leviticus 1–27 inspected; disputed scholars replaced by scoped full-text sources where warranted; all sources used by this category are verified to the stated relevant claim scope. Review is still pending independent Muse/QA; no editorial override; no published status."
+  }
+}

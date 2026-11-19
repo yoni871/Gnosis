@@ -402,9 +402,9 @@ describe("checkHistoryGate — claims detector", () => {
     // Cain and Abel, Cain's Descendants, Seth, Humanity's Corruption,
     // Noah, the Great Flood, Noah's Sacrifice and God's Covenant, and
     // Noah and His Sons are flipped to published here too, as are all
-    // eleven categories, so the sandbox has no non-published records at all —
-    // otherwise their in-review status would take the gate down the
-    // other path.
+    // categories in the tree, so the sandbox has no non-published
+    // records at all — otherwise their in-review status would take
+    // the gate down the other path.
     function makeAllPublishedSandbox() {
         const sandbox = makeSandbox();
         for (const name of ["creation.json", "adam-and-eve.json", "cain-and-abel.json", "cains-descendants.json", "seth-early-generations.json", "humanitys-corruption.json", "noah-ark.json", "great-flood.json", "noahs-sacrifice-and-covenant.json", "noah-and-his-sons.json"]) {
@@ -413,13 +413,13 @@ describe("checkHistoryGate — claims detector", () => {
             event.status = "published";
             writeFileSync(eventPath, JSON.stringify(event, null, 2));
         }
-        // All eleven shipped categories are published now; flip
-        // them to published too (a no-op kept so the fixture stays
-        // explicit) so the sandbox holds no non-published records
-        // either way: this fixture must hold no non-published
+        // Flip every category in the tree to published, derived from
+        // the directory (so new in-review categories are included
+        // automatically): this fixture must hold no non-published
         // records at all.
-        for (const name of ["nations-and-babel.json", "abraham-and-sarah.json", "isaac-jacob-and-esau.json", "joseph-and-israel-in-egypt.json", "tabernacle-and-israels-rebellion.json", "covenant-and-gods-law.json", "israel-in-the-wilderness.json", "oppression-and-moses-early-life.json", "passover-and-the-exodus.json", "pharaoh-and-the-ten-plagues.json", "building-the-tabernacle.json"]) {
-            const categoryPath = path.join(sandbox, "src", "content", "history", "categories", name);
+        const categoriesDir = path.join(sandbox, "src", "content", "history", "categories");
+        for (const name of readdirSync(categoriesDir).filter((f) => f.endsWith(".json")).sort()) {
+            const categoryPath = path.join(categoriesDir, name);
             const category = JSON.parse(readFileSync(categoryPath, "utf8"));
             category.status = "published";
             writeFileSync(categoryPath, JSON.stringify(category, null, 2));

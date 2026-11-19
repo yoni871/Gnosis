@@ -1,0 +1,194 @@
+{
+  "id": "category-leviticus-purity-restoration",
+  "title": "Cleanliness, Purity, and Restoration",
+  "category": "category",
+  "era": "leviticus",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 13,
+    "endChapter": 15,
+    "startVerse": 1,
+    "endVerse": 33
+  },
+  "fullRange": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 11,
+    "endChapter": 15,
+    "startVerse": 1,
+    "endVerse": 33
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated thematic Leviticus legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "This is a literary and thematic grouping in the Sinai narrative, not an independent datable event. No absolute year is inferred."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-lev-pr-001",
+      "claim": "Leviticus 11 distinguishes edible animals from prohibited animals and addresses impurity from carcasses.",
+      "evidence": "Lev 11:1–47; textual prescriptions.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-pr-002",
+      "claim": "Leviticus 12 specifies a period and concluding offering following childbirth.",
+      "evidence": "Lev 12:1–8; childbirth does not imply a moral fault in the mother.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-pr-003",
+      "claim": "Leviticus 13–14 assigns priests responsibility to inspect and pronounce the ritual status of affected people and materials.",
+      "evidence": "Lev 13:1–14:57; description of priestly role.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-pr-004",
+      "claim": "Leviticus 15 differentiates ordinary emissions and menstruation from other discharges and prescribes purification measures.",
+      "evidence": "Lev 15:1–33; direct textual observation.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-pr-005",
+      "claim": "The affliction called ṣāraʿat should not be identified without qualification with modern Hansen’s disease; Leviticus uses the term for conditions affecting skin, textiles, and houses.",
+      "evidence": "Lev 13–14 (KJV, inspected); Baden and Moss, JBL 130(4) 2011 pp. 643–662 full scholarly article inspected; the term covers people and also clothes/houses, so do not equate it unqualifiedly with a modern bacterial diagnosis.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-lev-pr-006",
+      "claim": "Ritual impurity is not automatically equivalent to moral sin in this legislation.",
+      "evidence": "Lev 12 and 15 (KJV, inspected), including childbirth and normal emissions; Baden and Moss 2011 full pp. 643–662 distinguish Priestly ṣāraʿat legislation from some punitive biblical narratives. Do not infer all impure persons were culpable.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-lev-pr-007",
+      "claim": "Explanations of food classifications as hygiene, symbol, identity, or ecology are competing modern reconstructions.",
+      "evidence": "Lev 11 (KJV); Hawley, CBQ 77(2) 2015 pp. 231–249, author-hosted full article read; surveys differing animal-taxonomy explanations and offers one Priestly literary/theological model, not a universal explanation or ancient health department.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-lev-pr-008",
+      "claim": "Purity rules are related to ordered access to sacred space and the divine dwelling.",
+      "evidence": "Lev 15:31 (KJV chapter directly inspected) associates impurity practices with the tabernacle among the people; this is scriptural textual evidence only.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-lev-pr-001",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 14,
+      "endChapter": 14,
+      "startVerse": 3,
+      "endVerse": 21,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "A related dietary inventory permits direct comparison between the legal corpora."
+    },
+    {
+      "id": "conn-lev-pr-002",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 5,
+      "endChapter": 5,
+      "startVerse": 1,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "established",
+      "note": "Camp exclusion applies to specified impurity conditions."
+    },
+    {
+      "id": "conn-lev-pr-003",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 12,
+      "endChapter": 12,
+      "startVerse": 1,
+      "endVerse": 16,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Miriam’s skin condition is narrated separately; its cause must not be universalized to Leviticus."
+    },
+    {
+      "id": "conn-lev-pr-004",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 5,
+      "endChapter": 5,
+      "startVerse": 1,
+      "endVerse": 27,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Naaman’s account portrays a distinct narrative treatment of a skin condition."
+    },
+    {
+      "id": "conn-lev-pr-005",
+      "book": "Luke",
+      "bookId": "luke",
+      "startChapter": 2,
+      "endChapter": 2,
+      "startVerse": 22,
+      "endVerse": 24,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Luke explicitly refers to purification and a prescribed offering after Jesus’s birth."
+    },
+    {
+      "id": "conn-lev-pr-006",
+      "book": "Mark",
+      "bookId": "mark",
+      "startChapter": 7,
+      "endChapter": 7,
+      "startVerse": 1,
+      "endVerse": 23,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Jesus and the Pharisees dispute handwashing and defilement in a later setting."
+    },
+    {
+      "id": "conn-lev-pr-007",
+      "book": "Acts",
+      "bookId": "acts",
+      "startChapter": 10,
+      "endChapter": 10,
+      "startVerse": 9,
+      "endVerse": 16,
+      "type": "thematic",
+      "confidence": "traditional",
+      "note": "Peter’s vision later draws on clean/unclean imagery without being a simple historical exposition of Leviticus."
+    },
+    {
+      "id": "conn-lev-pr-008",
+      "book": "Hebrews",
+      "bookId": "hebrews",
+      "startChapter": 9,
+      "endChapter": 9,
+      "startVerse": 9,
+      "endVerse": 14,
+      "type": "thematic",
+      "confidence": "traditional",
+      "note": "Hebrews repurposes ritual purification language in Christian theological interpretation."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-baden-moss-tsaraat",
+    "source-hawley-priestly-taxonomy",
+    "source-himbaza-text-leviticus",
+    "source-kjv-leviticus-biblehub"
+  ],
+  "review": {
+    "author": "Gnosis Phase 2 content development (AI-assisted)",
+    "reviewer": "Phase 2.5 desk audit, 2026-11-18; independent editorial QA still pending",
+    "lastReviewed": "2026-11-18",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Phase 2.5 evidence audit: 53 baseline claims and 56 baseline Scripture connections reviewed across seven categories; claims revised only where evidence wording or original access status needed correction. Bibliography/status changes recorded in SOURCE-VERIFICATION-MATRIX.md. Unverified sources retained honestly; No editorialOverride; no publication approval. Phase 2.6: primary KJV Leviticus 1–27 inspected; disputed scholars replaced by scoped full-text sources where warranted; all sources used by this category are verified to the stated relevant claim scope. Review is still pending independent Muse/QA; no editorial override; no published status."
+  }
+}
