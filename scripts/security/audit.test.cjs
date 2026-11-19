@@ -3,30 +3,12 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { evaluate, productionExposure, runtimeImports, TEMPORARY_HIGH_SEVERITY_ADVISORY } = require('./audit.cjs');
-const FC5Q = 'https://github.com/advisories/GHSA-fc5q-39xc-vjpf';
+const { evaluate, productionExposure, runtimeImports } = require('./audit.cjs');
 function report({ severity = 'moderate', url = 'https://github.com/advisories/GHSA-g3hv-75wg-m249', name = 'minimatch' } = {}) {
     return { metadata: { vulnerabilities: {} }, vulnerabilities: {
         [name]: { severity, via: [{ severity, url }] },
     } };
 }
-// The real audit chains for GHSA-fc5q (see the CI gate output): each package
-// resolves through its `via` chain to the single picomatch advisory.
-const BACKEND_CHAIN = {
-    picomatch: { severity: 'high', via: [{ severity: 'high', url: FC5Q }] },
-    anymatch: { severity: 'high', via: ['picomatch'] },
-    readdirp: { severity: 'high', via: ['picomatch'] },
-    chokidar: { severity: 'high', via: ['anymatch', 'readdirp'] },
-    nodemon: { severity: 'high', via: ['chokidar'] },
-};
-const FRONTEND_CHAIN = {
-    picomatch: { severity: 'high', via: [{ severity: 'high', url: FC5Q }] },
-    fdir: { severity: 'high', via: ['picomatch'] },
-    tinyglobby: { severity: 'high', via: ['fdir', 'picomatch'] },
-    vite: { severity: 'high', via: ['picomatch', 'tinyglobby'] },
-    vitest: { severity: 'high', via: ['picomatch', 'tinyglobby', 'vite'] },
-    '@vitejs/plugin-react': { severity: 'high', via: ['vite'] },
-};
 function chainReport(chain) {
     return { metadata: { vulnerabilities: {} }, vulnerabilities: chain };
 }
@@ -49,37 +31,6 @@ test('propagated parent records resolve through their actual advisories', () => 
     scan.vulnerabilities.minimatch.via[0].url = 'https://example.invalid/new';
     assert.deepEqual(evaluate(scan, 'backend', '2026-11-09').failures, ['minimatch', 'nodemon']);
 });
-test('temporary GHSA-fc5q exception accepts all 11 packages in both scopes', () => {
-    assert.equal(TEMPORARY_HIGH_SEVERITY_ADVISORY, FC5Q);
-    const backend = evaluate(chainReport(BACKEND_CHAIN), 'backend', '2026-11-17');
-    assert.deepEqual(backend.accepted.sort(), ['anymatch', 'chokidar', 'nodemon', 'picomatch', 'readdirp']);
-    assert.deepEqual(backend.failures, []);
-    const frontend = evaluate(chainReport(FRONTEND_CHAIN), 'frontend', '2026-11-17');
-    assert.deepEqual(frontend.accepted.sort(), ['@vitejs/plugin-react', 'fdir', 'picomatch', 'tinyglobby', 'vite', 'vitest']);
-    assert.deepEqual(frontend.failures, []);
-    // The accepted advisory stays visible: every accepted package is logged
-    // with its advisory URL and expiry.
-    for (const detail of [...backend.acceptedDetails, ...frontend.acceptedDetails]) {
-        assert.deepEqual(detail.advisories, [FC5Q]);
-        assert.equal(detail.expires, '2026-12-15');
-    }
-    assert.equal(backend.acceptedDetails.length + frontend.acceptedDetails.length, 11);
-    // The expiry date itself is still accepted (the check is inclusive).
-    assert.deepEqual(evaluate(chainReport(BACKEND_CHAIN), 'backend', '2026-12-15').failures, []);
-});
-test('temporary GHSA-fc5q exception fails closed after expiry', () => {
-    assert.deepEqual(evaluate(chainReport(BACKEND_CHAIN), 'backend', '2026-12-16').accepted, []);
-    assert.deepEqual(evaluate(chainReport(BACKEND_CHAIN), 'backend', '2026-12-16').failures.sort(),
-        ['anymatch', 'chokidar', 'nodemon', 'picomatch', 'readdirp']);
-    assert.deepEqual(evaluate(chainReport(FRONTEND_CHAIN), 'frontend', '2026-12-16').failures.sort(),
-        ['@vitejs/plugin-react', 'fdir', 'picomatch', 'tinyglobby', 'vite', 'vitest']);
-});
-test('temporary GHSA-fc5q exception fails closed on a changed dependency path', () => {
-    const chain = { ...BACKEND_CHAIN, 'some-new-package': { severity: 'high', via: ['picomatch'] } };
-    const result = evaluate(chainReport(chain), 'backend', '2026-11-17');
-    assert.deepEqual(result.failures, ['some-new-package']);
-    assert.deepEqual(result.accepted.sort(), ['anymatch', 'chokidar', 'nodemon', 'picomatch', 'readdirp']);
-});
 test('a different high-severity advisory is still refused even with a matching exception entry', () => {
     const other = 'https://github.com/advisories/GHSA-ffff-ffff-ffff';
     const exceptionsList = [
@@ -93,14 +44,26 @@ test('a different high-severity advisory is still refused even with a matching e
     assert.deepEqual(evaluate(moderate, 'backend', '2026-11-17', exceptionsList).accepted, ['minimatch']);
 });
 test('a second advisory on the same package is rejected', () => {
-    const other = 'https://github.com/advisories/GHSA-aaaa-aaaa-aaaa';
+    // Both advisories are moderate, so severity alone does not refuse the
+    // package: only the uncovered second advisory does (every advisory on a
+    // package must be covered by a matching exception entry).
+    const covered = 'https://github.com/advisories/GHSA-aaaa-aaaa-aaaa';
+    const uncovered = 'https://github.com/advisories/GHSA-bbbb-bbbb-bbbb';
+    const exceptionsList = [
+        { scope: 'backend', package: 'picomatch', advisories: [covered], expires: '2026-12-15', reason: 'test fixture' },
+    ];
     const scan = chainReport({
-        picomatch: { severity: 'high', via: [
-            { severity: 'high', url: FC5Q },
-            { severity: 'moderate', url: other },
+        picomatch: { severity: 'moderate', via: [
+            { severity: 'moderate', url: covered },
+            { severity: 'moderate', url: uncovered },
         ] },
     });
-    assert.deepEqual(evaluate(scan, 'backend', '2026-11-17').failures, ['picomatch']);
+    assert.deepEqual(evaluate(scan, 'backend', '2026-11-17', exceptionsList).failures, ['picomatch']);
+    // Control: with only the covered advisory, the package is accepted.
+    const single = chainReport({
+        picomatch: { severity: 'moderate', via: [{ severity: 'moderate', url: covered }] },
+    });
+    assert.deepEqual(evaluate(single, 'backend', '2026-11-17', exceptionsList).accepted, ['picomatch']);
 });
 test('production-exposure check flags a prod-reachable package and passes a dev-only tree', () => {
     const devOnly = { packages: {
