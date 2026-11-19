@@ -1858,5 +1858,77 @@
     "verification": "verified",
     "verificationDetail": "Author-institution Harding University confirms publication (Catholic Biblical Quarterly 77(2), 2015, pp. 231–249) and links the original article proof; the proof PDF returned HTTP 403 in the verification session (2026-11-18) and no accessible full-text transcription was found. The article's thesis was verified via the IxTheo abstract plus extensive secondary quotations (2026-11-18). Hawley describes debated approaches to Priestly classification, emphasizes a theological scheme relating clean/unclean taxonomy to sacrifice/creation; no claim that one account is consensus or that these regulations were primarily modern hygiene. Re-verify the full text before publication.",
     "licenseNote": "Journal article not public domain; original paraphrase with attribution only; no reproduction."
+  },
+  "source-numbers-kjv-biblehub": {
+    "id": "source-numbers-kjv-biblehub",
+    "author": "King James Version (1611; revised 1769)",
+    "title": "Numbers 1–36, King James Bible",
+    "publisher": "BibleHub (public-domain English Bible presentation)",
+    "year": 1769,
+    "pagesOrSection": "Numbers chapters 1–36; direct biblical text; complete chapter-by-chapter KJV check outstanding",
+    "url": "https://biblehub.com/kjv/numbers/1.htm",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Numbers 1 source page opened 2026-11-19; full Numbers 1–36 verse-by-verse check and Gnosis stored-text comparison NOT RUN. Source is only provisional for complete 36-chapter scope.",
+    "licenseNote": "KJV public domain in United States; UK Crown rights and local usage questions may apply."
+  },
+  "source-adair-numbers-census": {
+    "id": "source-adair-numbers-census",
+    "author": "Aaron Adair",
+    "title": "Counting on the Census Numbers: Mathematical Approaches to the elep in Numbers",
+    "publisher": "HIPHIL Novum",
+    "year": 2025,
+    "pagesOrSection": "10(1), pp. 2–21; journal abstract and earlier report identifies PDF pp. 2–6 as examined",
+    "url": "https://doi.org/10.7146/hn.v10i1.152021",
+    "verification": "verified",
+    "verificationDetail": "Article used only for scope directly assessed in previous Numbers Phase 3: mathematical critique of proposed reinterpretations of elep and literary-number hypothesis; journal abstract independently re-opened 2026-11-19. No other claims inferred.",
+    "licenseNote": "Paraphrase only; check journal license prior to reproducing text."
+  },
+  "source-macdonald-east-jordan": {
+    "id": "source-macdonald-east-jordan",
+    "author": "Burton MacDonald",
+    "title": "East of the Jordan: Territories and Sites of the Hebrew Scriptures",
+    "publisher": "American Schools of Oriental Research",
+    "year": 2000,
+    "pagesOrSection": "ASOR Books 6; chapter 5, pp. 63–100, especially pp. 66–67 examined in prior Numbers Phase 3",
+    "url": "https://www.bu.edu/asor/pubs/books-monographs/macdonald.pdf",
+    "verification": "verified",
+    "verificationDetail": "Original PDF accessed 2026-11-19; relevant comparative itineraries discussed in previously verified pp. 66–67; used only for the existence and character of competing biblical route descriptions.",
+    "licenseNote": "All rights reserved; cite and paraphrase."
+  },
+  "source-frevel-numbers-27-36": {
+    "id": "source-frevel-numbers-27-36",
+    "author": "Christian Frevel",
+    "title": "A Test Case in Exegesis by Supplementing the Torah: Numbers 27 and 36",
+    "publisher": "Academic chapter (institutional open manuscript)",
+    "year": null,
+    "pagesOrSection": "Open institutional manuscript discussing Numbers 27 and 36; original publication metadata to be reconfirmed",
+    "url": "https://ub01.uni-tuebingen.de/xmlui/bitstream/handle/10900/144789/Frevel_172.pdf?isAllowed=y&sequence=1",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Previous Phase 3 reported direct inspection; precise chapter publication metadata and comparison to current downloaded full text NOT independently reconfirmed in present handoff. Use only cautiously and do not cite as verified until QA confirms.",
+    "licenseNote": "Paraphrase and cite; original rights review required."
+  },
+  "source-deir-alla-livius": {
+    "id": "source-deir-alla-livius",
+    "author": "Jona Lendering (Livius); translation principally Baruch A. Levine with selected Hoftijzer and van der Kooij readings",
+    "title": "Deir ʿAlla Inscription: translation and introduction",
+    "publisher": "Livius.org",
+    "year": null,
+    "pagesOrSection": "Introduction and combinations 1–2, with explicitly attributed 1976 and 2003 translation provenance",
+    "url": "https://www.livius.org/sources/content/deir-alla-inscription/",
+    "verification": "verified",
+    "verificationDetail": "Original website introduction and opening of translation directly accessed 2026-11-19; supports independent attestation of Balaam son of Beor and broad visionary context, not exact reconstruction of damaged lines or historical authentication of Numbers 22–24.",
+    "licenseNote": "Third-party translation rights; paraphrase only, no extended quotation."
+  },
+  "source-ketef-hinnom-barkay": {
+    "id": "source-ketef-hinnom-barkay",
+    "author": "Gabriel Barkay, Marilyn J. Lundberg, Andrew G. Vaughn and Bruce Zuckerman",
+    "title": "The Amulets from Ketef Hinnom: A New Edition and Evaluation",
+    "publisher": "Bulletin of the American Schools of Oriental Research",
+    "year": 2004,
+    "pagesOrSection": "334:41–71; abstract and scholarly summaries only in handoff",
+    "url": "https://doi.org/10.2307/4150106",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Bibliographic record and abstract corroborated in Phase 2; complete article not inspected in this preparation. Do not credit reconstructed readings as independently checked.",
+    "licenseNote": "All rights reserved; paraphrase only."
   }
 }
