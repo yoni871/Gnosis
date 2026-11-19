@@ -39,7 +39,7 @@
     {
       "id": "clm-num-05-002",
       "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
-      "evidence": "Numbers research Phases 1–3; limitation of extant archaeology and specific historical identification.",
+      "evidence": "Numbers research Phases 1–2 + QA Phase 4 §5.5: Phase 1 prohibits 'archaeology proves' for the Korah rebellion as unjustified by the available evidence; Phase 2 keeps any archaeological verification of the wilderness migration and any settled Persian-period setting for Korah in the excluded/blocked pool, and requires a separate specialist audit for red-heifer comparanda; QA Phase 4 confirms no identifiable Num 16–19 location and no specialist comparanda source.",
       "assessment": "unknown"
     },
     {
@@ -85,6 +85,54 @@
       "type": "thematic",
       "confidence": "established",
       "note": "Heifer ashes expressly used in later Christian contrast."
+    },
+    {
+      "id": "conn-num-05-004",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 106,
+      "startVerse": 16,
+      "endChapter": 106,
+      "endVerse": 18,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Earth swallows Dathan and fire burns the company; direct retelling of Num 16."
+    },
+    {
+      "id": "conn-num-05-005",
+      "book": "Hebrews",
+      "bookId": "hebrews",
+      "startChapter": 9,
+      "startVerse": 4,
+      "endChapter": 9,
+      "endVerse": 4,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Aaron's rod that budded named among the ark's contents."
+    },
+    {
+      "id": "conn-num-05-006",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Priestly-Levitical support in a different legal configuration from the Num 18 dues."
+    },
+    {
+      "id": "conn-num-05-007",
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "startChapter": 44,
+      "startVerse": 10,
+      "endChapter": 44,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Zadokite priests distinguished from Levites; later legal-theological comparison, not a retelling."
     }
   ],
   "relatedEvents": [],
