@@ -1898,13 +1898,13 @@
   "source-frevel-numbers-27-36": {
     "id": "source-frevel-numbers-27-36",
     "author": "Christian Frevel",
-    "title": "A Test Case in Exegesis by Supplementing the Torah: Numbers 27 and 36",
-    "publisher": "Academic chapter (institutional open manuscript)",
-    "year": null,
-    "pagesOrSection": "Open institutional manuscript discussing Numbers 27 and 36; original publication metadata to be reconfirmed",
+    "title": "The Book of Numbers – Formation, Composition, and Interpretation of a Late Part of the Torah",
+    "publisher": "In Torah and the Book of Numbers, eds. Pola, Frevel, Schart (Mohr Siebeck, 2013)",
+    "year": 2013,
+    "pagesOrSection": "Introductory chapter, pp. 1–36; §2.7 (printed pp. 24–30), \"A Test Case in Exegesis by Supplementing the Torah: Numbers 27 and 36\"",
     "url": "https://ub01.uni-tuebingen.de/xmlui/bitstream/handle/10900/144789/Frevel_172.pdf?isAllowed=y&sequence=1",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Previous Phase 3 reported direct inspection; precise chapter publication metadata and comparison to current downloaded full text NOT independently reconfirmed in present handoff. Use only cautiously and do not cite as verified until QA confirms.",
+    "verification": "verified",
+    "verificationDetail": "Corrected 2026-11-19 (Numbers integration, QA §4.6): not a standalone chapter by the old title. The entry is §2.7 (printed pp. 24–30) inside Frevel’s introductory chapter “The Book of Numbers – Formation, Composition, and Interpretation of a Late Part of the Torah,” in Torah and the Book of Numbers (eds. Pola, Frevel, Schart; Mohr Siebeck, 2013), pp. 1–36. Tübingen PDF read directly by the D8 researcher (QA Phase 4): §2.7 confirms Num 27:1–11 + 36:1–12 as “specification of a given law and the supplementation of the Torah”; Num 36 amends without fresh oracular procedure; “rightly counted among the latest parts of the Pentateuch” (p. 27); records the counterargument (preexilic dating from daughters’ names as Samarian place names, Ben-Barak 2006/1980; Seebass’s dissent) and explicitly rejects Kislev’s “almost valueless” reading (n.106).",
     "licenseNote": "Paraphrase and cite; original rights review required."
   },
   "source-deir-alla-livius": {
