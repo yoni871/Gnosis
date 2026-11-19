@@ -6,7 +6,7 @@
 // the real Creation record. The page is ordinary page content: no
 // dialog, no backdrop, no focus trap, no sheet, no modal close.
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
@@ -313,10 +313,8 @@ describe("HistoryEventStudy", () => {
 });
 
 describe("HistoryEventStudy — close returns to the index book entry", () => {
-    // The routes mirror App.jsx: the book route is the redirect, the
-    // event route is the study page, and the index is the real page —
-    // these tests pin the close destination AND the focus return to
-    // the book's entry in the index directory.
+    // The routes mirror App.jsx; close returns focus to the book's
+    // entry in the index directory.
     function renderStudyPage(path) {
         return render(
             <MemoryRouter initialEntries={[path]}>
@@ -333,26 +331,16 @@ describe("HistoryEventStudy — close returns to the index book entry", () => {
         );
     }
 
-    it("the book URL redirects to the study page: no book shell, no dialog, event canonical", () => {
+    it("the book URL renders its published landing page and canonical", () => {
         renderStudyPage("/biblical-history/genesis");
-        // The redirect lands on the first published event by
-        // narrativeOrder, as a standalone page.
-        expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
+        expect(screen.getByRole("heading", { level: 1, name: "Genesis" })).toBeInTheDocument();
+        expect(screen.getByRole("link", { name: /Creation/ })).toHaveAttribute("href", "/biblical-history/genesis/creation");
         expect(screen.queryByRole("dialog")).toBeNull();
         expect(document.querySelector(".history-panel-backdrop")).toBeNull();
-        // No book shell behind the study: no book heading, no event
-        // list, no event count.
-        expect(screen.queryByRole("heading", { level: 1, name: "Genesis" })).toBeNull();
-        expect(screen.queryByText(/historical events/)).toBeNull();
-        expect(screen.queryByText(/Events in Genesis/)).toBeNull();
-        expect(document.title).toBe("Creation — Genesis 1:1–2:3 | Biblical History | Gnosis");
+        expect(document.title).toBe("Genesis | Biblical History | Gnosis");
         expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
-            "https://studygnosis.com/biblical-history/genesis/creation",
+            "https://studygnosis.com/biblical-history/genesis",
         );
-        // Breadcrumb: the book crumb links to the first event (never
-        // the obsolete book-page URL), the open event is current.
-        const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
-        expect(breadcrumb).toBeInTheDocument();
     });
 
     it("returns to the index after close-button close — focus lands on the Genesis entry", async () => {
@@ -496,13 +484,7 @@ describe("HistoryEventStudy — category page (mocked service, routes mirror App
         expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
             "https://studygnosis.com/biblical-history/genesis/patriarchs",
         );
-        // Breadcrumb: the book crumb links to the first entry (Creation,
-        // an event), the open category is current.
-        const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
-        expect(within(breadcrumb).getByRole("link", { name: "Genesis" })).toHaveAttribute(
-            "href", "/biblical-history/genesis/creation",
-        );
-        expect(within(breadcrumb).getByText("The Patriarchs")).toHaveAttribute("aria-current", "page");
+        expect(screen.queryByRole("navigation", { name: "Breadcrumb" })).toBeNull();
         // Companion default is the representative primary passage.
         expect(await screen.findByRole("heading", { name: "Genesis 12:1–3" })).toBeInTheDocument();
         // Timeline carries the mixed entries.

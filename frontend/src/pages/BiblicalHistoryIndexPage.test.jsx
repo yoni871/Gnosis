@@ -33,8 +33,8 @@ describe("BiblicalHistoryIndexPage", () => {
         await user.click(screen.getByRole("button", { name: /Browse Books/ }));
         expect(screen.getByRole("button", { name: /Close Books/ })).toHaveAttribute("aria-expanded", "true");
         expect(within(screen.getByRole("tabpanel")).getAllByRole("listitem")).toHaveLength(39);
-        // Genesis is the only link; the other 38 books are Coming Soon.
-        expect(screen.getAllByText("Coming Soon")).toHaveLength(38);
+        // Genesis, Exodus, and Leviticus have published entries.
+        expect(screen.getAllByText("Coming Soon")).toHaveLength(36);
         expect(screen.queryByText("Upcoming")).toBeNull();
         expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
         await user.keyboard("{Escape}");
@@ -50,7 +50,9 @@ describe("BiblicalHistoryIndexPage", () => {
         // has four published categories and ten published events, so
         // its chip carries both counts in its link name.
         expect(within(screen.getByRole("tabpanel")).getByText(/4 categories · 10 events/)).toBeInTheDocument();
-        expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+        expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis");
+        expect(screen.getByRole("link", { name: "Exodus · 7 categories" })).toHaveAttribute("href", "/biblical-history/exodus");
+        expect(screen.getByRole("link", { name: "Leviticus · 7 categories" })).toHaveAttribute("href", "/biblical-history/leviticus");
     });
 
     it("links its actions to the recommendation and Creation event", async () => {
@@ -60,9 +62,7 @@ describe("BiblicalHistoryIndexPage", () => {
         expect(screen.getByRole("link", { name: "Explore Creation" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
         expect(screen.getByRole("heading", { name: "Explore by Scripture" })).toBeInTheDocument();
         await user.click(screen.getByRole("button", { name: /Browse Books/ }));
-        // Genesis opens its first published event directly; the book
-        // URL would redirect there anyway.
-        expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis/creation");
+        expect(screen.getByRole("link", { name: "Genesis · 4 categories · 10 events" })).toHaveAttribute("href", "/biblical-history/genesis");
     });
 
     it("sets indexable metadata for the index page", () => {
@@ -71,15 +71,11 @@ describe("BiblicalHistoryIndexPage", () => {
     });
 
     it("opens the directory at the book named in panel-close state and focuses its entry", () => {
-        // The target is the book that was open, not a hardcoded
-        // Genesis: Exodus has no published events, so only the
-        // location-state mechanism can land focus on its entry.
+        // The target is the book that was open, not a hardcoded Genesis.
         renderIndex([{ pathname: "/biblical-history", hash: "#history-books", state: { focusBook: "exodus" } }]);
         expect(screen.getByRole("button", { name: /Close Books/ })).toHaveAttribute("aria-expanded", "true");
         expect(document.querySelector('[data-history-book="exodus"]')).toHaveFocus();
-        // Exodus has no published events, so its entry is a Coming Soon
-        // chip — focusable (tabIndex -1) for the return, never a link.
-        expect(document.querySelector('[data-history-book="exodus"]')).toHaveTextContent("Coming Soon");
+        expect(document.querySelector('[data-history-book="exodus"]')).toHaveAttribute("href", "/biblical-history/exodus");
         expect(document.activeElement).not.toBe(document.body);
     });
 

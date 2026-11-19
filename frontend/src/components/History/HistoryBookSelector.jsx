@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { eventSlug, getFirstPublishedEvent, listBooks } from "../../services/historyService";
+import { listBooks } from "../../services/historyService";
 import { historyPath } from "../../utils/seo";
 
 const TESTAMENTS = [
@@ -8,15 +8,12 @@ const TESTAMENTS = [
     { id: "NT", label: "New Testament" },
 ];
 
-// Q11 (interim): while events and categories coexist, a book with
-// categories shows both counts on its chip ("2 categories · 8
-// events"). A book with no categories shows no counts at all —
-// exactly as before, so the existing event-only display is unchanged.
-// Counts appear only on link chips (books with a first published
-// event); a Coming Soon chip never carries them.
+// Published categories make a book available even before it has events.
+// Show only nonzero counts so a category-only book remains easy to scan.
 function formatBookCounts(book) {
     if (!book.hasCategories) return null;
     const categories = book.categoryCount === 1 ? "1 category" : `${book.categoryCount} categories`;
+    if (!book.hasEvents) return categories;
     const events = book.eventCount === 1 ? "1 event" : `${book.eventCount} events`;
     return `${categories} · ${events}`;
 }
@@ -88,16 +85,10 @@ export default function HistoryBookSelector({ books = listBooks(), open = false,
             >
                 <ul className="history-book-chips">
                     {visibleBooks.map((book) => {
-                        // A book with published events opens its first
-                        // event directly — the book URL redirects there
-                        // anyway. A book with none is not a link: it
-                        // shows a Coming Soon chip here on the homepage,
-                        // and its book URL redirects back to this
-                        // directory. The chip carries tabIndex -1 (never
-                        // a tab stop — it is not interactive) so the
-                        // panel-close focus return can still land on it.
-                        const firstEvent = book.hasEvents ? getFirstPublishedEvent(book.id) : null;
-                        if (!firstEvent) {
+                        // Books with published entries link to their landing
+                        // pages. Empty books retain a focusable, inert chip
+                        // for focus return from the reader.
+                        if (!book.hasEvents && !book.hasCategories) {
                             return (
                                 <li key={book.id}>
                                     <span
@@ -115,7 +106,7 @@ export default function HistoryBookSelector({ books = listBooks(), open = false,
                         return (
                             <li key={book.id}>
                                 <Link
-                                    to={historyPath(book.id, eventSlug(firstEvent.id))}
+                                    to={historyPath(book.id)}
                                     className="history-book-chip"
                                     data-history-book={book.id}
                                 >

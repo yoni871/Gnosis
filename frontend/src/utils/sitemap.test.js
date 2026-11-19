@@ -23,7 +23,7 @@ function publishedHistoryPaths() {
     return historySitemapPaths(manifest, books);
 }
 
-const BH_PATHS = ["/biblical-history", "/biblical-history/exodus/building-the-tabernacle", "/biblical-history/exodus/covenant-and-gods-law", "/biblical-history/exodus/israel-in-the-wilderness", "/biblical-history/exodus/oppression-and-moses-early-life", "/biblical-history/exodus/passover-and-the-exodus", "/biblical-history/exodus/pharaoh-and-the-ten-plagues", "/biblical-history/exodus/tabernacle-and-israels-rebellion", "/biblical-history/genesis/abraham-and-sarah", "/biblical-history/genesis/adam-and-eve", "/biblical-history/genesis/cain-and-abel", "/biblical-history/genesis/cains-descendants", "/biblical-history/genesis/creation", "/biblical-history/genesis/great-flood", "/biblical-history/genesis/humanitys-corruption", "/biblical-history/genesis/isaac-jacob-and-esau", "/biblical-history/genesis/joseph-and-israel-in-egypt", "/biblical-history/genesis/nations-and-babel", "/biblical-history/genesis/noah-and-his-sons", "/biblical-history/genesis/noah-ark", "/biblical-history/genesis/noahs-sacrifice-and-covenant", "/biblical-history/genesis/seth-early-generations", "/biblical-history/leviticus/leviticus-day-of-atonement", "/biblical-history/leviticus/leviticus-festivals-worship", "/biblical-history/leviticus/leviticus-holiness-code", "/biblical-history/leviticus/leviticus-jubilee-covenant", "/biblical-history/leviticus/leviticus-priesthood-consecration", "/biblical-history/leviticus/leviticus-purity-restoration", "/biblical-history/leviticus/leviticus-sacrificial-system"];
+const BH_PATHS = ["/biblical-history", "/biblical-history/exodus", "/biblical-history/exodus/building-the-tabernacle", "/biblical-history/exodus/covenant-and-gods-law", "/biblical-history/exodus/israel-in-the-wilderness", "/biblical-history/exodus/oppression-and-moses-early-life", "/biblical-history/exodus/passover-and-the-exodus", "/biblical-history/exodus/pharaoh-and-the-ten-plagues", "/biblical-history/exodus/tabernacle-and-israels-rebellion", "/biblical-history/genesis", "/biblical-history/genesis/abraham-and-sarah", "/biblical-history/genesis/adam-and-eve", "/biblical-history/genesis/cain-and-abel", "/biblical-history/genesis/cains-descendants", "/biblical-history/genesis/creation", "/biblical-history/genesis/great-flood", "/biblical-history/genesis/humanitys-corruption", "/biblical-history/genesis/isaac-jacob-and-esau", "/biblical-history/genesis/joseph-and-israel-in-egypt", "/biblical-history/genesis/nations-and-babel", "/biblical-history/genesis/noah-and-his-sons", "/biblical-history/genesis/noah-ark", "/biblical-history/genesis/noahs-sacrifice-and-covenant", "/biblical-history/genesis/seth-early-generations", "/biblical-history/leviticus", "/biblical-history/leviticus/leviticus-day-of-atonement", "/biblical-history/leviticus/leviticus-festivals-worship", "/biblical-history/leviticus/leviticus-holiness-code", "/biblical-history/leviticus/leviticus-jubilee-covenant", "/biblical-history/leviticus/leviticus-priesthood-consecration", "/biblical-history/leviticus/leviticus-purity-restoration", "/biblical-history/leviticus/leviticus-sacrificial-system"];
 
 describe("chapterUrls", () => {
     test("lists every chapter in book order, ascending", () => {
@@ -68,9 +68,10 @@ describe("historySitemapPaths", () => {
     const manifest = { books: ["genesis"], events: ["event-creation"], categories: [], sources: [], topics: [] };
     const books = [{ id: "genesis", entries: [{ kind: "event", eventId: "event-creation", narrativeOrder: 1 }] }];
 
-    test("lists the homepage and a published book's published event URLs, never a book-page URL", () => {
+    test("lists the homepage and a published book's published event and book landing URLs", () => {
         expect(historySitemapPaths(manifest, books)).toEqual([
             "/biblical-history",
+            "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
         ]);
     });
@@ -85,6 +86,7 @@ describe("historySitemapPaths", () => {
         // record for it exists.
         expect(historySitemapPaths(manifest, otherBooks)).toEqual([
             "/biblical-history",
+            "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
         ]);
     });
@@ -103,6 +105,7 @@ describe("historySitemapPaths", () => {
         // published event in the manifest — it must not get a URL.
         expect(historySitemapPaths(manifest, booksWithDraft)).toEqual([
             "/biblical-history",
+            "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
         ]);
     });
@@ -126,7 +129,9 @@ describe("historySitemapPaths", () => {
         ];
         expect(historySitemapPaths(multi, multiBooks)).toEqual([
             "/biblical-history",
+            "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
+            "/biblical-history/psalms",
             "/biblical-history/psalms/psalm-23",
         ]);
     });
@@ -150,6 +155,7 @@ describe("historySitemapPaths", () => {
         ];
         expect(historySitemapPaths(withCategory, booksWithCategory)).toEqual([
             "/biblical-history",
+            "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
             "/biblical-history/genesis/patriarchs",
         ]);
@@ -176,6 +182,7 @@ describe("historySitemapPaths", () => {
         // a published category in the manifest — it must not get a URL.
         expect(historySitemapPaths(withDraftCategory, booksWithDraftCategory)).toEqual([
             "/biblical-history",
+            "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
         ]);
     });
@@ -192,6 +199,7 @@ describe("historySitemapPaths", () => {
         // carries an entry for it — no URL.
         expect(historySitemapPaths(orphanCategory, books)).toEqual([
             "/biblical-history",
+            "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
         ]);
     });
@@ -217,6 +225,7 @@ describe("historySitemapPaths", () => {
         // grouped by kind.
         expect(historySitemapPaths(mixed, mixedBooks)).toEqual([
             "/biblical-history",
+            "/biblical-history/genesis",
             "/biblical-history/genesis/alpha",
             "/biblical-history/genesis/zebra",
         ]);
@@ -225,6 +234,7 @@ describe("historySitemapPaths", () => {
     test("emits nothing extra when manifest.categories is empty", () => {
         expect(historySitemapPaths({ ...manifest, categories: [] }, books)).toEqual([
             "/biblical-history",
+            "/biblical-history/genesis",
             "/biblical-history/genesis/creation",
         ]);
     });
@@ -251,74 +261,18 @@ describe("verified chapter manifest", () => {
 });
 
 describe("production sitemap output", () => {
-    test("contains exactly the 1,189 canonical chapter URLs plus the homepage, About page, Privacy page, Trace the Doctrine page, and the 29 public Biblical History URLs, nothing else", () => {
+    test("contains only canonical chapter, public, and published History URLs", () => {
         const historyPaths = publishedHistoryPaths();
         expect(historyPaths).toEqual(BH_PATHS);
         const xml = buildSitemapXml(SITE_URL, chapterCounts, ["/", "/about", "/privacy", "/trace-the-doctrine", ...historyPaths]);
-        const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(
-            ([, url]) => url,
-        );
-
-        expect(urls).toHaveLength(1222);
-        expect(new Set(urls).size).toBe(1222);
+        const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => url);
+        expect(urls).toHaveLength(1189 + 4 + BH_PATHS.length);
+        expect(new Set(urls).size).toBe(urls.length);
         expect(urls[0]).toBe("https://studygnosis.com/bible/Genesis/1");
-        expect(urls[urls.length - 34]).toBe(
-            "https://studygnosis.com/bible/Revelation/22",
-        );
-        expect(urls[urls.length - 33]).toBe("https://studygnosis.com/");
-        expect(urls[urls.length - 32]).toBe("https://studygnosis.com/about");
-        expect(urls[urls.length - 31]).toBe("https://studygnosis.com/privacy");
-        expect(urls[urls.length - 30]).toBe("https://studygnosis.com/trace-the-doctrine");
-        expect(urls[urls.length - 29]).toBe("https://studygnosis.com/biblical-history");
-        expect(urls[urls.length - 28]).toBe("https://studygnosis.com/biblical-history/exodus/building-the-tabernacle");
-        expect(urls[urls.length - 27]).toBe("https://studygnosis.com/biblical-history/exodus/covenant-and-gods-law");
-        expect(urls[urls.length - 26]).toBe("https://studygnosis.com/biblical-history/exodus/israel-in-the-wilderness");
-        expect(urls[urls.length - 25]).toBe("https://studygnosis.com/biblical-history/exodus/oppression-and-moses-early-life");
-        expect(urls[urls.length - 24]).toBe("https://studygnosis.com/biblical-history/exodus/passover-and-the-exodus");
-        expect(urls[urls.length - 23]).toBe("https://studygnosis.com/biblical-history/exodus/pharaoh-and-the-ten-plagues");
-        expect(urls[urls.length - 22]).toBe("https://studygnosis.com/biblical-history/exodus/tabernacle-and-israels-rebellion");
-        expect(urls[urls.length - 21]).toBe("https://studygnosis.com/biblical-history/genesis/abraham-and-sarah");
-        expect(urls[urls.length - 20]).toBe("https://studygnosis.com/biblical-history/genesis/adam-and-eve");
-        expect(urls[urls.length - 19]).toBe("https://studygnosis.com/biblical-history/genesis/cain-and-abel");
-        expect(urls[urls.length - 18]).toBe("https://studygnosis.com/biblical-history/genesis/cains-descendants");
-        expect(urls[urls.length - 17]).toBe("https://studygnosis.com/biblical-history/genesis/creation");
-        expect(urls[urls.length - 16]).toBe("https://studygnosis.com/biblical-history/genesis/great-flood");
-        expect(urls[urls.length - 15]).toBe("https://studygnosis.com/biblical-history/genesis/humanitys-corruption");
-        expect(urls[urls.length - 14]).toBe("https://studygnosis.com/biblical-history/genesis/isaac-jacob-and-esau");
-        expect(urls[urls.length - 13]).toBe("https://studygnosis.com/biblical-history/genesis/joseph-and-israel-in-egypt");
-        expect(urls[urls.length - 12]).toBe("https://studygnosis.com/biblical-history/genesis/nations-and-babel");
-        expect(urls[urls.length - 11]).toBe("https://studygnosis.com/biblical-history/genesis/noah-and-his-sons");
-        expect(urls[urls.length - 10]).toBe("https://studygnosis.com/biblical-history/genesis/noah-ark");
-        expect(urls[urls.length - 9]).toBe("https://studygnosis.com/biblical-history/genesis/noahs-sacrifice-and-covenant");
-        expect(urls[urls.length - 8]).toBe("https://studygnosis.com/biblical-history/genesis/seth-early-generations");
-        expect(urls[urls.length - 7]).toBe("https://studygnosis.com/biblical-history/leviticus/leviticus-day-of-atonement");
-        expect(urls[urls.length - 6]).toBe("https://studygnosis.com/biblical-history/leviticus/leviticus-festivals-worship");
-        expect(urls[urls.length - 5]).toBe("https://studygnosis.com/biblical-history/leviticus/leviticus-holiness-code");
-        expect(urls[urls.length - 4]).toBe("https://studygnosis.com/biblical-history/leviticus/leviticus-jubilee-covenant");
-        expect(urls[urls.length - 3]).toBe("https://studygnosis.com/biblical-history/leviticus/leviticus-priesthood-consecration");
-        expect(urls[urls.length - 2]).toBe("https://studygnosis.com/biblical-history/leviticus/leviticus-purity-restoration");
-        expect(urls[urls.length - 1]).toBe("https://studygnosis.com/biblical-history/leviticus/leviticus-sacrificial-system");
-        expect(urls.filter(url => url === "https://studygnosis.com/about")).toHaveLength(1);
-        expect(urls.filter(url => url === "https://studygnosis.com/privacy")).toHaveLength(1);
-        expect(urls).toContain("https://studygnosis.com/bible/1%20Samuel/1");
-        expect(urls).toContain("https://studygnosis.com/bible/Psalms/150");
-        expect(urls.some((url) => url.includes(" "))).toBe(false);
-        expect(urls.some((url) => url.includes("?"))).toBe(false);
-        expect(
-            urls.some(
-                (url) =>
-                    url.includes("/login") ||
-                    url.includes("/register") ||
-                    url.includes("/search"),
-            ),
-        ).toBe(false);
-        // Only the published Biblical History pages appear: no other
-        // book (the other 63 are Upcoming) and no unpublished event.
-        const bhUrls = urls.filter((url) => url.includes("/biblical-history"));
-        expect(bhUrls).toHaveLength(29);
-        expect(urls).not.toContain("https://studygnosis.com/biblical-history/books");
-        expect(urls.some((url) => url.includes("/biblical-history/exodus"))).toBe(true);
-        expect(urls.some((url) => url.includes("/biblical-history/leviticus"))).toBe(true);
+        expect(urls[1188]).toBe("https://studygnosis.com/bible/Revelation/22");
+        expect(urls.slice(1189)).toEqual(["/", "/about", "/privacy", "/trace-the-doctrine", ...BH_PATHS].map(path => `${SITE_URL}${path}`));
+        expect(urls).not.toContain(`${SITE_URL}/biblical-history/books`);
+        expect(urls.some(url => url.includes("/biblical-history/1-samuel"))).toBe(false);
     });
 
     test("the committed public/sitemap.xml matches the generator output", () => {

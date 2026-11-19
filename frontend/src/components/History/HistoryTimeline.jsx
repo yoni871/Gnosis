@@ -35,8 +35,13 @@ export default function HistoryTimeline({ entries = [], currentEntryId, bookId }
         const node = nodeRefs.current[currentIndex];
         if (!node) return;
         const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-        // jsdom (tests) has no scrollIntoView; guard the call.
-        node.scrollIntoView?.({ block: "nearest", inline: "center", behavior: reduced ? "auto" : "smooth" });
+        // Center within the strip only. scrollIntoView also moves the page
+        // vertically, which made the fixed mobile timeline jump on navigation.
+        const strip = node.closest(".history-timeline-strip");
+        const item = node.parentElement;
+        if (strip?.scrollTo && item) {
+            strip.scrollTo({ left: item.offsetLeft + item.offsetWidth / 2 - strip.clientWidth / 2, behavior: reduced ? "auto" : "smooth" });
+        }
     }, [currentIndex]);
 
     if (entries.length === 0) return null;
@@ -46,7 +51,7 @@ export default function HistoryTimeline({ entries = [], currentEntryId, bookId }
         if (!entry) return;
         const slug = entry.kind === "category" ? categorySlug(entry.id) : eventSlug(entry.id);
         navigate(historyPath(bookId, slug));
-        nodeRefs.current[index]?.focus();
+        nodeRefs.current[index]?.focus({ preventScroll: true });
     };
 
     const onKeyDown = (event) => {
@@ -109,24 +114,6 @@ export default function HistoryTimeline({ entries = [], currentEntryId, bookId }
                         </li>
                     );
                 })}
-                {/* One trailing, non-interactive "Upcoming" slot. The
-                    generated bundle holds published entries only, so an
-                    unpublished entry has no record — and no title — to
-                    render here; this is the same generic marker the
-                    homepage uses for books without published events
-                    (Coming Soon chips), not a placeholder entry. It is
-                    a plain span (never a link or button), so it takes
-                    no tab stop and arrow-key navigation skips it. */}
-                <li className="history-timeline-node-item">
-                    <span
-                        className="history-timeline-node history-timeline-node--upcoming"
-                        aria-disabled="true"
-                    >
-                        <span className="history-timeline-node-dot" aria-hidden="true" />
-                        <span className="history-timeline-node-title">Upcoming</span>
-                        <span className="history-timeline-node-date">More to come</span>
-                    </span>
-                </li>
             </ul>
         </nav>
     );

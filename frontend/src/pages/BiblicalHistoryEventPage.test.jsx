@@ -66,35 +66,28 @@ describe("BiblicalHistoryEventPage header", () => {
 });
 
 describe("BiblicalHistoryEventPage", () => {
-    it("redirects /biblical-history/genesis to the Creation study page in a production build", () => {
+    it("lists published category-only Exodus studies in narrative order", () => {
+        renderStudy("/biblical-history/exodus");
+        expect(screen.getByRole("heading", { level: 1, name: "Exodus" })).toBeInTheDocument();
+        const links = [...document.querySelectorAll(".history-book-entry-list a")];
+        expect(links).toHaveLength(7);
+        expect(links[0]).toHaveAttribute("href", "/biblical-history/exodus/oppression-and-moses-early-life");
+        expect(links.at(-1)).toHaveAttribute("href", "/biblical-history/exodus/building-the-tabernacle");
+    });
+
+    it("uses the same landing page for published Leviticus categories", () => {
+        renderStudy("/biblical-history/leviticus");
+        expect(screen.getByRole("heading", { level: 1, name: "Leviticus" })).toBeInTheDocument();
+        expect(document.querySelectorAll(".history-book-entry-list a")).toHaveLength(7);
+    });
+
+    it("shows the Genesis book landing page with published entries in order", () => {
         renderStudy("/biblical-history/genesis");
-        // The redirect lands on the first published event by
-        // narrativeOrder, as a standalone page — no book shell behind
-        // it, no dialog, no backdrop.
-        expect(screen.getByRole("heading", { level: 1, name: "Creation" })).toBeInTheDocument();
+        expect(screen.getByRole("heading", { level: 1, name: "Genesis" })).toBeInTheDocument();
+        expect(screen.getByRole("link", { name: /Creation/ })).toHaveAttribute("href", "/biblical-history/genesis/creation");
         expect(screen.queryByRole("dialog")).toBeNull();
         expect(document.querySelector(".history-panel-backdrop")).toBeNull();
-        // The page root carries the hook the desktop one-screen layout
-        // hangs off: at desktop widths the study shares 100dvh with the
-        // header, breadcrumb, and timeline, and the two panels scroll
-        // independently.
-        expect(document.querySelector(".history-event-root")).toBeInTheDocument();
-        expect(screen.queryByRole("heading", { level: 1, name: "Genesis" })).toBeNull();
-        expect(screen.queryByText(/historical events/)).toBeNull();
-        expect(screen.queryByText(/Events in Genesis/)).toBeNull();
-        expect(screen.queryByText(/No historical events published yet/)).toBeNull();
-        expect(document.title).toBe("Creation — Genesis 1:1–2:3 | Biblical History | Gnosis");
-        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis/creation");
-        // Breadcrumb: the book crumb links to the first event (never
-        // the obsolete book-page URL), the open event is current.
-        const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
-        expect(within(breadcrumb).getByRole("link", { name: "All books" })).toHaveAttribute(
-            "href", "/biblical-history#history-books",
-        );
-        expect(within(breadcrumb).getByRole("link", { name: "Genesis" })).toHaveAttribute(
-            "href", "/biblical-history/genesis/creation",
-        );
-        expect(within(breadcrumb).getByText("Creation")).toHaveAttribute("aria-current", "page");
+        expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis");
     });
 
     it("renders the published event page for a direct Genesis / Adam and Eve link", () => {
@@ -104,11 +97,7 @@ describe("BiblicalHistoryEventPage", () => {
         expect(screen.queryByRole("dialog")).toBeNull();
         expect(document.title).toBe("Adam and Eve — Genesis 2:4–3:24 | Biblical History | Gnosis");
         expect(canonicalHref()).toBe("https://studygnosis.com/biblical-history/genesis/adam-and-eve");
-        const breadcrumb = screen.getByRole("navigation", { name: "Breadcrumb" });
-        expect(within(breadcrumb).getByRole("link", { name: "Genesis" })).toHaveAttribute(
-            "href", "/biblical-history/genesis/creation",
-        );
-        expect(within(breadcrumb).getByText("Adam and Eve")).toHaveAttribute("aria-current", "page");
+        expect(screen.queryByRole("navigation", { name: "Breadcrumb" })).toBeNull();
     });
 
     it("redirects a book with no published events to the homepage, where it is marked Coming Soon", async () => {
