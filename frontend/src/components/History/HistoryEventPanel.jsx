@@ -19,7 +19,8 @@
 // switches to it and scrolls to the cited source.
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { BookOpen, X } from "lucide-react";
+import { BookOpen, Menu, UserRound, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
     eventSlug,
     formatScriptureRange,
@@ -56,13 +57,15 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
     // open is that initial default: the companion must not steal focus
     // from the panel's own close button on mount, but a companion the
     // user opens (or reopens) focuses its close control as before.
-    const [companionPassage, setCompanionPassage] = useState(event.primaryScripture ?? null);
-    const [companionAutoOpened, setCompanionAutoOpened] = useState(Boolean(event.primaryScripture));
+    const isMobile = useHistoryIsMobile();
+    const [companionPassage, setCompanionPassage] = useState(isMobile ? null : event.primaryScripture ?? null);
+    const [companionAutoOpened, setCompanionAutoOpened] = useState(!isMobile && Boolean(event.primaryScripture));
+    const [timelineCollapsed, setTimelineCollapsed] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isSheetExpanded, setIsSheetExpanded] = useState(false);
     const [sheetDragOffset, setSheetDragOffset] = useState(0);
     const sheetDragStartYRef = useRef(null);
     const sheetDidDragRef = useRef(false);
-    const isMobile = useHistoryIsMobile();
     // The collapsed mobile sheet (45dvh) cannot fit the full header, so
     // the book note, cross-book chips, and timeline hint are hidden until
     // the sheet expands — otherwise the bottom-anchored timeline covers
@@ -255,12 +258,28 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                 role="dialog"
                 aria-modal="true"
                 aria-label={event.title}
-                className={`history-panel-dialog history-study${isSheetCollapsed ? " history-panel-dialog--collapsed" : ""}`}
+                className={`history-panel-dialog history-study${isSheetCollapsed ? " history-panel-dialog--collapsed" : ""}${companionPassage ? " history-study--scripture-open" : ""}`}
                 style={{
                     "--history-sheet-height": isSheetExpanded ? "85dvh" : "45dvh",
                     transform: sheetDragOffset !== 0 ? `translateY(${sheetDragOffset}px)` : undefined,
                 }}
             >
+                <div className="history-mobile-site-header">
+                    <Link to="/" className="history-mobile-brand" aria-label="Gnosis home">
+                        <img src="/gnosis.svg" alt="" width="28" height="28" /> Gnosis
+                    </Link>
+                    <div className="history-mobile-site-actions">
+                        <Link to="/settings" aria-label="Account settings"><UserRound size={19} /></Link>
+                        <button type="button" aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                            aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen((open) => !open)}>
+                            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        </button>
+                    </div>
+                    {mobileMenuOpen && <nav className="history-mobile-menu" aria-label="Primary">
+                        <Link to="/">Home</Link><Link to="/biblical-history">Biblical History</Link>
+                        <Link to="/bible/Genesis/1">Bible</Link><Link to="/about">About</Link>
+                    </nav>}
+                </div>
                 <button
                     type="button"
                     className="history-sheet-handle"
@@ -356,16 +375,8 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                                 )}
                             </div>
                         )}
-                        {isMobile && companionPassage && (
-                            <HistoryScriptureCompanion
-                                key={formatScriptureRange(companionPassage)}
-                                passage={companionPassage}
-                                onClose={closeCompanion}
-                                focusCloseOnOpen={!companionAutoOpened}
-                            />
-                        )}
                     </div>
-                    {!isMobile && companionPassage && (
+                    {companionPassage && (
                         <HistoryScriptureCompanion
                             key={formatScriptureRange(companionPassage)}
                             passage={companionPassage}
@@ -375,11 +386,13 @@ export default function HistoryEventPanel({ event, bookId, onClose }) {
                     )}
                 </div>
 
-                <HistoryTimeline
-                    events={timelineEvents}
-                    currentEventId={event.id}
-                    bookId={bookId}
-                />
+                <div className={`history-timeline-dock${timelineCollapsed ? " history-timeline-dock--collapsed" : ""}`}>
+                    <button type="button" className="history-timeline-toggle" aria-expanded={!timelineCollapsed}
+                        onClick={() => setTimelineCollapsed((value) => !value)}>
+                        <span>Timeline</span><span aria-hidden="true">{timelineCollapsed ? "⌃" : "⌄"}</span>
+                    </button>
+                    {!timelineCollapsed && <HistoryTimeline events={timelineEvents} currentEventId={event.id} bookId={bookId} />}
+                </div>
             </div>
         </div>,
         document.body,
