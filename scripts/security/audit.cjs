@@ -4,20 +4,12 @@ const path = require('node:path');
 const exceptions = require('./exceptions.json');
 const rank = { info: 0, low: 1, moderate: 2, high: 3, critical: 4 };
 
-// Temporary, owner-authorized allowance for ONE advisory only (see
-// TEMPORARY-EXCEPTION-GHSA-fc5q.md). GHSA-fc5q-39xc-vjpf (CVE-2026-112366,
-// picomatch ReDoS, high) has no patched release; the exception expires
-// 2026-12-15 and is restricted to the verified dev-only picomatch paths.
-// Every other high/critical advisory is still refused, even with an
-// exception entry. Do not generalize this constant.
-const TEMPORARY_HIGH_SEVERITY_ADVISORY = 'https://github.com/advisories/GHSA-fc5q-39xc-vjpf';
-
-// Packages covered by the temporary GHSA-fc5q exception, per scope. The
-// production-exposure check below asserts none of these is reachable from a
-// production dependency or imported by runtime source; if one ever is, the
-// exception is void and the gate fails closed. The check stays in place even
-// after the exception expires or is removed: it costs nothing and guards the
-// same invariant permanently.
+// Packages formerly covered by the temporary GHSA-fc5q exception (advisory
+// withdrawn 2026-11-18; exception removed 2026-11-19). The production-exposure
+// check below asserts none of these is reachable from a production dependency
+// or imported by runtime source; if one ever is, the gate fails closed. The
+// check stays in place permanently: it costs nothing and guards the same
+// invariant.
 const TEMPORARY_EXCEPTION_PACKAGES = {
     backend: ['anymatch', 'chokidar', 'nodemon', 'picomatch', 'readdirp'],
     frontend: ['@vitejs/plugin-react', 'fdir', 'picomatch', 'tinyglobby', 'vite', 'vitest'],
@@ -46,10 +38,8 @@ function evaluate(report, scope, today = new Date().toISOString().slice(0, 10), 
         const advisories = resolve(name);
         if (!advisories.length) throw new Error('Incomplete advisory dependency chain.');
         const allowed = advisories.every(advisory => {
-            // High/critical advisories are refused unless the advisory is
-            // exactly the temporary, owner-authorized one above.
-            const severityAllowed = rank[advisory.severity] <= rank.moderate ||
-                advisory.url === TEMPORARY_HIGH_SEVERITY_ADVISORY;
+            // High/critical advisories are never exceptable.
+            const severityAllowed = rank[advisory.severity] <= rank.moderate;
             return severityAllowed &&
                 matchingExceptions(exceptionsList, scope, name, advisory.url, today).length > 0;
         });
@@ -150,21 +140,21 @@ function runtimeImports(srcDirs, packagesToCheck) {
 
 function checkProductionExposure() {
     // Fail-closed production-exposure check (offline, runs before the advisory
-    // scan): the temporary GHSA-fc5q exception is valid only while every
-    // excepted package stays out of the production dependency closure and out
-    // of runtime source. Returns true when a violation was found.
+    // scan): none of the listed dev-only packages may be reachable from a
+    // production dependency or imported by runtime source. Returns true when
+    // a violation was found.
     let violated = false;
     for (const scope of ['backend', 'frontend']) {
         const packagesToCheck = TEMPORARY_EXCEPTION_PACKAGES[scope];
         try {
             const lockfile = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../..', scope, 'package-lock.json'), 'utf8'));
             for (const hit of productionExposure(lockfile, packagesToCheck)) {
-                console.error(`Production exposure: ${scope}/${hit.package} is reachable from production dependencies (${hit.path} via ${hit.via}); the temporary GHSA-fc5q exception is void.`);
+                console.error(`Production exposure: ${scope}/${hit.package} is reachable from production dependencies (${hit.path} via ${hit.via}); the gate fails closed.`);
                 violated = true;
             }
             const srcDir = path.resolve(__dirname, '../..', scope, 'src');
             for (const hit of runtimeImports([srcDir], packagesToCheck)) {
-                console.error(`Production exposure: ${scope} runtime source imports ${hit.package} in ${hit.file}; the temporary GHSA-fc5q exception is void.`);
+                console.error(`Production exposure: ${scope} runtime source imports ${hit.package} in ${hit.file}; the gate fails closed.`);
                 violated = true;
             }
         } catch (err) {
@@ -199,4 +189,4 @@ function main() {
     process.exitCode = failed ? 1 : 0;
 }
 if (require.main === module) main();
-module.exports = { evaluate, productionExposure, runtimeImports, TEMPORARY_HIGH_SEVERITY_ADVISORY, TEMPORARY_EXCEPTION_PACKAGES };
+module.exports = { evaluate, productionExposure, runtimeImports, TEMPORARY_EXCEPTION_PACKAGES };
