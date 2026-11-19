@@ -24,7 +24,7 @@ Moab is independently attested as an Iron Age polity, but its known political ci
 
 ### The star oracle and later readings
 
-Numbers 24:17’s star and scepter imagery has been read politically, royalistically, and messianically across different periods of reception. The original oracle and later applications need not have precisely the same referent. Matthew 2 recounts a star and eastern visitors but does not quote Numbers 24:17 as a direct fulfillment citation. The connection is therefore possible thematic or theological reception, not a verified quotation. Revelation 2:14 names Balaam and Balak in a later moral warning; that is a much stronger explicit intertext, although it also cannot independently confirm the original episode.
+Numbers 24:17’s star and scepter imagery has been read politically, royalistically, and messianically across different periods of reception. The original oracle and later applications need not have precisely the same referent. Matthew 2 recounts a star and eastern visitors but does not quote Numbers 24:17 as a direct fulfillment citation. The connection is therefore possible thematic or theological reception, not a verified quotation. Revelation 2:14 names Balaam and Balak in a later moral warning; that is a much stronger explicit intertext, although it also cannot independently confirm the original episode. The primary passage for this study is the Balaam oracles (Numbers 22–24). Numbers 25 (Peor) is covered by five direct-account connections, and extending the primary passage to 25:18 would exceed the three-chapter limit for a primary passage.
 
 ### Baal Peor and the numbered deaths
 
