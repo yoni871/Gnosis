@@ -30,7 +30,7 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import process from "node:process";
 import { afterEach, describe, expect, it } from "vitest";
-import { findNonPublishedRecords } from "../../scripts/history-content-lib";
+import { findNonPublishedRecords, isLeakTitleMatch } from "../../scripts/history-content-lib";
 import {
     allIds,
     allRecords,
@@ -327,11 +327,18 @@ describe("check-history-gate.js — never skips, checks ids, titles, sources", (
 
     it("fails when dist/ contains a non-published title but no id", () => {
         const sandbox = makeSandbox();
+        // "Creation" alone is too generic to check by substring (it
+        // appears in published prose), so the fixture event carries a
+        // distinctive title here — the title check still fires on it.
+        const eventPath = path.join(sandbox, "src", "content", "history", "events", "creation.json");
+        const event = JSON.parse(readFileSync(eventPath, "utf8"));
+        event.title = "Creation in the Ancient Near East";
+        writeFileSync(eventPath, JSON.stringify(event, null, 2));
         runNode("scripts/build-history-content.js", { cwd: sandbox });
-        writeDistFile(sandbox, "assets/app.js", 'const heading = "Creation in the ancient Near East";');
+        writeDistFile(sandbox, "assets/app.js", 'const heading = "Creation in the Ancient Near East";');
         const result = runGate(sandbox);
         expect(result.status).toBe(1);
-        expect(result.stderr).toMatch(/title "Creation"/);
+        expect(result.stderr).toMatch(/title "Creation in the Ancient Near East"/);
     });
 
     it("fails when dist/ contains a non-published source id", () => {
@@ -358,6 +365,45 @@ describe("check-history-gate.js — never skips, checks ids, titles, sources", (
         expect(result.stderr).toMatch(/Zebra Quokka Field Notes/);
     });
 
+    it("passes when dist/ prose mentions a generic single-word non-published title (Moses)", () => {
+        const sandbox = makeSandbox();
+        // The non-published source "source-brown-cosmic-temple" is cited
+        // only by the in-review Creation fixture; give it the generic
+        // single-word title "Moses" (the #217 false-positive class).
+        // Published prose mentions Moses throughout, so the title check
+        // must not fire on the bare word — the id check still guards it.
+        const registryPath = path.join(sandbox, "src", "content", "history", "sources", "references.json");
+        const registry = JSON.parse(readFileSync(registryPath, "utf8"));
+        registry["source-brown-cosmic-temple"].title = "Moses";
+        writeFileSync(registryPath, JSON.stringify(registry, null, 2));
+        runNode("scripts/build-history-content.js", { cwd: sandbox });
+        writeDistFile(sandbox, "assets/app.js", 'const prose = "Moses led Israel out of Egypt.";');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(0);
+        expect(result.stdout).toMatch(/History gate warning: non-published source title "Moses" \(id "source-brown-cosmic-temple"\) is too generic/);
+    });
+
+    it("passes when a non-published source shares its title exactly with an included source (Lucas)", () => {
+        const sandbox = makeSandbox();
+        // Reconstruct the pre-#224 Lucas collision: two registry entries
+        // with the identical title, one cited by published records
+        // (Skinner, cited by the published Genesis categories) and one
+        // cited only by the in-review Creation fixture (Brown). The
+        // published entry's title legitimately appears in dist/, so the
+        // title check must not fire — the id check still guards the
+        // non-published entry.
+        const registryPath = path.join(sandbox, "src", "content", "history", "sources", "references.json");
+        const registry = JSON.parse(readFileSync(registryPath, "utf8"));
+        const skinnerTitle = registry["source-skinner-genesis"].title;
+        registry["source-brown-cosmic-temple"].title = skinnerTitle;
+        writeFileSync(registryPath, JSON.stringify(registry, null, 2));
+        runNode("scripts/build-history-content.js", { cwd: sandbox });
+        writeDistFile(sandbox, "assets/app.js", `const title = ${JSON.stringify(skinnerTitle)};`);
+        const result = runGate(sandbox);
+        expect(result.status).toBe(0);
+        expect(result.stdout).toMatch(/also the title of an included record/);
+    });
+
     it("passes a clean published-only build", () => {
         const sandbox = makeSandbox();
         runNode("scripts/build-history-content.js", { cwd: sandbox });
@@ -373,6 +419,29 @@ describe("check-history-gate.js — never skips, checks ids, titles, sources", (
         const result = runGate(sandbox);
         expect(result.status).toBe(0);
         expect(result.stdout).toMatch(/dist\/ not present/);
+    });
+});
+
+describe("isLeakTitleMatch — whole-phrase title matching", () => {
+    it("matches a distinctive title as a whole phrase", () => {
+        expect(isLeakTitleMatch('const t = "The Tabernacle and Israel\'s Rebellion";', "The Tabernacle and Israel's Rebellion")).toBe(true);
+    });
+
+    it("does not match a title inside a longer word", () => {
+        expect(isLeakTitleMatch("Treaties and covenants", "Treaty")).toBe(false);
+        expect(isLeakTitleMatch("Mosesaic law", "Moses")).toBe(false);
+    });
+
+    it("matches a title ending in punctuation", () => {
+        expect(isLeakTitleMatch('title: "Moses (Bible Odyssey)"', "Moses (Bible Odyssey)")).toBe(true);
+    });
+
+    it("matches a title that is only a phrase inside a longer title (fail closed)", () => {
+        // "The Tabernacle" inside "The Tabernacle and Israel's Rebellion"
+        // is a word-boundary match, so the gate still fails it: the match
+        // could be the leaked record's own title field, and only an exact
+        // title collision with an included record is exempted.
+        expect(isLeakTitleMatch("The Tabernacle and Israel's Rebellion", "The Tabernacle")).toBe(true);
     });
 });
 
@@ -727,6 +796,27 @@ describe("checkHistoryGate — categories", () => {
         const result = runGate(sandbox);
         expect(result.status).toBe(1);
         expect(result.stderr).toMatch(/title "The Nations and Babel"/);
+    });
+
+    it("fails when dist/ contains a non-published category title but no id (Tabernacle)", () => {
+        const sandbox = makeSandbox();
+        addCategoryToSandbox(sandbox);
+        // Retitle the fixture category to the proposal's named case: a
+        // distinctive multi-word title must still fail the gate.
+        // The retitled title collides with the real published
+        // Tabernacle category on main, and that is intentional: the
+        // exact-title exemption is scoped to sources only, so a
+        // colliding category title still fails (fail closed — the
+        // author retitles, per the #224 F2 precedent).
+        const categoryPath = path.join(sandbox, "src", "content", "history", "categories", "nations-and-babel.json");
+        const category = JSON.parse(readFileSync(categoryPath, "utf8"));
+        category.title = "The Tabernacle and Israel's Rebellion";
+        writeFileSync(categoryPath, JSON.stringify(category, null, 2));
+        runNode("scripts/build-history-content.js", { cwd: sandbox });
+        writeDistFile(sandbox, "assets/app.js", 'const heading = "The Tabernacle and Israel\'s Rebellion";');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/title "The Tabernacle and Israel's Rebellion"/);
     });
 
     it("fails when a generated category JSON carries a claims register", () => {

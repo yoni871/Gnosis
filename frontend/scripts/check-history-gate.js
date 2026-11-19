@@ -29,7 +29,7 @@ const contentDir = path.join(root, "src", "content", "history");
 const generatedDir = path.join(root, "src", "generated", "history");
 const distDir = path.join(root, "dist");
 
-const { failures, nonPublished } = checkHistoryGate({ contentDir, generatedDir, distDir });
+const { failures, warnings, nonPublished } = checkHistoryGate({ contentDir, generatedDir, distDir });
 
 if (!existsSync(distDir)) {
     console.log("History gate: dist/ not present — skipping the bundle scan (manifest check only).");
@@ -41,6 +41,13 @@ if (!existsSync(distDir)) {
 if (failures.length > 0) {
     console.error(`History gate FAILED:\n${failures.map((f) => `  - ${f}`).join("\n")}`);
     process.exit(1);
+}
+
+// Skipped title checks are visible, not silent: a warning names the
+// record and the reason (too generic, or the title of an included
+// record). The id check still guards every skipped title.
+for (const warning of warnings) {
+    console.log(`History gate warning: ${warning}`);
 }
 
 if (nonPublished.length === 0) {

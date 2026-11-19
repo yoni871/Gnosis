@@ -840,6 +840,66 @@ export function findNonPublishedIds({ contentDir }) {
 const UNQUOTED_CLAIMS_KEY = /(?:^|[{,])\s*claims\s*:/;
 const CLAIM_ID = /clm-[a-z]+-\d+[a-z]?/;
 
+// A non-published title is a leak signal only as a whole phrase on word
+// boundaries: a bare substring also matches inside longer words ("Treaty"
+// in "Treaties") and inside other titles. Lookarounds are used instead
+// of \b because a title may start or end in punctuation (e.g. "Moses
+// (Bible Odyssey)"), where \b does not fire. The title is regex-escaped
+// before matching.
+export function isLeakTitleMatch(text, title) {
+    const escaped = title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(?<!\\w)${escaped}(?!\\w)`, "u").test(text);
+}
+
+// Titles of records legitimately included in the published build:
+// published events/topics/categories, plus registry sources cited by at
+// least one published record. A non-published SOURCE whose title exactly
+// equals one of these cannot be detected by title substring — the
+// string's presence in dist/ is explained by the included record (the
+// #224 Lucas case: two registry entries shared one title, and sources
+// share titles legitimately — same work, different edition or scope).
+// The exemption is sources-only: for events/categories/topics the title
+// is the only identifier in a leaked Markdown file (no id in prose), so
+// a colliding title there still fails and the author retitles, as in
+// #224's F2 fix. The id check still guards every exempted source.
+// Exact equality only: a title that is merely a phrase inside a longer
+// included title still fails (fail closed — the match could be the leaked
+// record's own title field).
+function findPublishedTitles({ contentDir }) {
+    const titles = new Set();
+    const citedByPublished = new Set();
+    const scan = (dir) => {
+        for (const file of listFilesRecursive(dir)) {
+            if (!file.endsWith(".json")) continue;
+            try {
+                const data = readJson(file);
+                if (!isRecord(data) || typeof data.id !== "string") continue;
+                if (data.status !== "published") continue;
+                if (typeof data.title === "string") titles.add(data.title);
+                for (const key of data.sources ?? []) {
+                    if (typeof key === "string") citedByPublished.add(key);
+                }
+            } catch {
+                // Invalid JSON is the validator's job, not the gate's.
+            }
+        }
+    };
+    scan(path.join(contentDir, "events"));
+    scan(path.join(contentDir, "topics"));
+    scan(path.join(contentDir, "categories"));
+    let registry = {};
+    try {
+        registry = readJson(path.join(contentDir, "sources", "references.json"));
+    } catch {
+        // Invalid JSON is the validator's job, not the gate's.
+    }
+    for (const key of citedByPublished) {
+        const source = registry[key];
+        if (isRecord(source) && typeof source.title === "string") titles.add(source.title);
+    }
+    return titles;
+}
+
 // The publication gate, shared by the postbuild CLI (check-history-gate.js)
 // and the Vite build plugin (history-gate-plugin.js). Checks the generated
 // manifest AND dist/ for any non-published record — its id, its title, or
@@ -849,7 +909,7 @@ const CLAIM_ID = /clm-[a-z]+-\d+[a-z]?/;
 // carries the internal research claims register and that no built asset
 // contains the register in serialized ("claims":), compiled (unquoted
 // claims: key), or fragmentary (bare claim id) form. Returns
-// { failures, nonPublished }.
+// { failures, warnings, nonPublished }.
 //
 // This NEVER skips: a manifest generated with unpublished content is
 // itself a failure, not a reason to stand down — a dev-flag build is not
@@ -857,6 +917,7 @@ const CLAIM_ID = /clm-[a-z]+-\d+[a-z]?/;
 // artifact is clean.
 export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
     const failures = [];
+    const warnings = [];
     const nonPublished = findNonPublishedRecords({ contentDir });
 
     // Claims detector — runs before the non-published early return, so it
@@ -908,7 +969,7 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
     }
 
     if (nonPublished.length === 0) {
-        return { failures, nonPublished };
+        return { failures, warnings, nonPublished };
     }
 
     const manifestPath = path.join(generatedDir, "manifest.json");
@@ -947,20 +1008,48 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
     }
 
     // No non-published id, title, or source entry may appear in any built asset.
+    // The id check is a plain substring match and is untouched: an id appears
+    // only as structured data, so any occurrence is a leak. The title check
+    // is narrower: a bare short word ("Moses") matches published prose that
+    // merely mentions it, so titles too generic to check by substring are
+    // skipped with a warning, and a title that exactly equals an included
+    // record's title is skipped the same way — its presence in dist/ is
+    // explained by the included record. A skipped title is still guarded
+    // by its id check.
     if (existsSync(distDir)) {
+        const publishedTitles = findPublishedTitles({ contentDir });
+        const titleChecks = [];
+        for (const record of nonPublished) {
+            if (!record.title) continue;
+            if (record.title.length < 10 || !/[\s\-:;,.]/.test(record.title)) {
+                warnings.push(
+                    `non-published ${record.kind} title "${record.title}" (id "${record.id}") is too generic to check by substring — the id check still applies.`,
+                );
+                continue;
+            }
+            if (publishedTitles.has(record.title) && record.kind === "source") {
+                warnings.push(
+                    `non-published ${record.kind} title "${record.title}" (id "${record.id}") is also the title of an included record — the id check still applies.`,
+                );
+                continue;
+            }
+            titleChecks.push(record);
+        }
         for (const file of textFiles(distDir)) {
             const text = readFileSync(file, "utf8");
             for (const record of nonPublished) {
                 if (text.includes(record.id)) {
                     failures.push(`dist/${path.relative(distDir, file)} contains non-published ${record.kind} id "${record.id}" (status ${record.status}).`);
                 }
-                if (record.title && text.includes(record.title)) {
+            }
+            for (const record of titleChecks) {
+                if (isLeakTitleMatch(text, record.title)) {
                     failures.push(`dist/${path.relative(distDir, file)} contains non-published ${record.kind} title "${record.title}" (id "${record.id}").`);
                 }
             }
         }
     }
-    return { failures, nonPublished };
+    return { failures, warnings, nonPublished };
 }
 
 // Validate, then write only the included records into the generated
