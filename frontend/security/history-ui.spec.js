@@ -5,6 +5,27 @@ let fixture;
 test.beforeAll(async () => { fixture = await startFixture(); });
 test.afterAll(async () => { await fixture?.close({ endPool: false }); });
 
+test('History pages omit the header action across books, layouts, and themes', async ({ page }) => {
+    for (const width of [390, 1440]) {
+        await page.setViewportSize({ width, height: 800 });
+        for (const theme of ['light', 'dark']) {
+            await page.goto(`${fixture.origin}/biblical-history`);
+            await page.evaluate((value) => localStorage.setItem('gnosis-theme', value), theme);
+            for (const [slug, title] of [
+                ['', 'Discover the History'],
+                ['/creation', 'Creation'],
+                ['/oppression-and-moses-early-life', "Israel's Oppression and Moses' Early Life"],
+                ['/leviticus-sacrificial-system', 'The Sacrificial System'],
+            ]) {
+                await page.goto(`${fixture.origin}/biblical-history${slug}`);
+                await expect(page.getByRole('heading', { level: 1, name: new RegExp(title) })).toBeVisible();
+                await expect(page.locator('.landing-header').getByRole('link', { name: /Start Exploring/ })).toHaveCount(0);
+                await expect(page.getByRole('link', { name: 'Gnosis home' })).toBeVisible();
+            }
+        }
+    }
+});
+
 for (const width of [320, 390]) {
     test(`History reader stays anchored with sticky headers at ${width}px`, async ({ page }) => {
         await page.setViewportSize({ width, height: 800 });

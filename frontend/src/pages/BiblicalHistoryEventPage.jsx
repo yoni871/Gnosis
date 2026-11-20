@@ -84,7 +84,7 @@ export default function BiblicalHistoryEventPage() {
               without restyling the study interface below it.
             */}
             <div className="public-page">
-                <LandingHeader hero solid />
+                <LandingHeader hero solid hideExploreAction />
             </div>
             <main id="landing-main" tabIndex={-1} className="history-event-page">
                 <HistoryEventStudy
