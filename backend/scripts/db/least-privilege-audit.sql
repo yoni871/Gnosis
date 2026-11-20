@@ -109,5 +109,6 @@ SELECT c.relname AS table_name, pg_get_userbyid(c.relowner) AS table_owner,
 FROM pg_class c
 JOIN pg_namespace n ON n.oid = c.relnamespace
 WHERE n.nspname = 'public'
-  AND c.relname IN ('notes', 'bookmarks', 'highlights', 'user_reading_state')
+  AND c.relname IN ('notes', 'bookmarks', 'highlights', 'user_reading_state',
+    'user_mfa', 'mfa_recovery_codes', 'known_login_devices')
 ORDER BY c.relname;
