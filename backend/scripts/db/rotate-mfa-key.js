@@ -3,27 +3,43 @@
 //
 // Operator-run, one-off, NOT an HTTP endpoint and NOT a migration:
 // it reads key material from the operator's machine and must never
-// run inside the app runtime. Run as the database OWNER (the app role
-// holds no grant to re-encrypt secrets and must not read operator
-// secrets).
+// run inside the app runtime. Run as the database OWNER where
+// possible; the app role also works (see the FORCE note below).
+// Either way the keys are the real gate: both the current and the
+// previous key must come from the operator, and the script never
+// prints a key, a secret, a ciphertext, or a connection string.
 //
 // FORCE ROW LEVEL SECURITY (PR #95) constrains the owner too, so
 // without treatment this script would read zero user_mfa rows and
-// falsely report nothing to rotate. It therefore temporarily runs
-// ALTER TABLE user_mfa NO FORCE ROW LEVEL SECURITY, rotates, then
-// re-enables FORCE in a finally and verifies relforcerowsecurity — a
-// failure mid-run never leaves FORCE off. If the connection cannot
-// ALTER user_mfa (wrong role — not the owner), the script refuses to
-// run at all rather than report a false zero. The NO FORCE window only
-// affects owner-context access; the app role stays constrained by RLS
-// with or without FORCE.
+// falsely report nothing to rotate. An owner connection therefore
+// temporarily runs ALTER TABLE user_mfa NO FORCE ROW LEVEL SECURITY,
+// rotates, then re-enables FORCE in a finally and verifies
+// relforcerowsecurity — a failure mid-run never leaves FORCE off.
+// The NO FORCE window only affects owner-context access; the app
+// role stays constrained by RLS with or without FORCE.
+//
+// A connection that cannot ALTER user_mfa (the app role) takes the
+// per-user path instead (rotateAsAppRole): enrolled users are
+// discovered from `users` — which carries no RLS policy and which
+// the app role can SELECT — and each user's row is read and updated
+// inside its own transaction with app.user_id set to that user, so
+// the row is visible under its own policy. No FORCE dance is needed
+// on that path and nothing is left to restore. The app role's
+// column grants already permit the UPDATEs (secret_encrypted,
+// key_version, updated_at), so the per-user path grants nothing new;
+// it only makes the script usable with the credentials the
+// application tests (and a least-privilege operator run) already
+// have. A connection that can neither ALTER nor read the tables
+// fails loudly (42501) instead of reporting a false zero.
 //
 // Usage (operator machine; keys come from the secret manager, never
 // from a file, chat, or the repo):
 //   MFA_ENCRYPTION_KEY=<new key K2, 64 hex or 44 base64> \
 //   MFA_ENCRYPTION_KEY_PREVIOUS=<old key K1> \
 //   MFA_KEY_VERSION=2 \
-//   ROTATE_MFA_DATABASE_URL=<direct owner URL, sslmode=verify-full> \
+//   ROTATE_MFA_DATABASE_URL=<direct owner URL, sslmode=verify-full —
+//   or an app-role URL, which rotates under each user's own RLS
+//   context instead (see rotateAsAppRole)> \
 //   node backend/scripts/db/rotate-mfa-key.js
 //
 // What it does: for every enrolled user whose user_mfa.key_version is
@@ -75,8 +91,10 @@ async function rlsTableStates(client) {
 
 // Temporarily lift FORCE on user_mfa so the rotation below sees real
 // rows. Unlike verify-restore.js this script has no read-only mode —
-// it must run as the owner — so a FORCE'd table this connection cannot
-// ALTER is a hard refusal, not a skip: running on would read zero
+// but a connection that cannot ALTER takes the per-user path
+// (rotateAsAppRole) instead of reaching this function, so a FORCE'd
+// table this connection cannot ALTER is still a hard refusal here
+// rather than a silent false zero: running on would read zero
 // enrolled users and falsely report nothing to rotate. Each lifted
 // table is recorded on `lift` only after its ALTER succeeds, so a
 // failure halfway still leaves an exact list to restore.
@@ -130,6 +148,86 @@ async function restoreForce(client, lifted, label) {
             `${label}: FAILED to restore FORCE ROW LEVEL SECURITY — ${errors.join('; ')}. ` +
             'Re-enable it manually before relying on this database.');
     }
+}
+
+// Rotate as a connection that cannot lift FORCE (the app role).
+// Discovery: a context-free read of user_mfa returns zero rows, so
+// enrolled users are discovered from `users` instead — it carries
+// no RLS policy and the app role holds SELECT on it — then each
+// user's row is read and updated inside its own transaction with
+// app.user_id set to that user, so the row is visible under its own
+// SELECT/UPDATE policy. One transaction per user; a user with no
+// row, an unenrolled row, or a row already past the previous version
+// commits immediately. The counts mirror the owner path exactly
+// (enrolled = all enrolled rows seen, remaining = enrolled rows
+// still not at the target version, counted in a second per-user
+// scan). A connection that cannot even read `users` fails loudly
+// (42501) instead of reporting a false zero. No FORCE dance happens
+// on this path, so there is nothing to restore.
+async function rotateAsAppRole(client, currentKey, previousKey, target) {
+    const previous = target - 1;
+    const users = await client.query('SELECT id FROM users ORDER BY id');
+    let enrolled = 0;
+    let rotated = 0;
+    let failed = 0;
+    for (const { id: userId } of users.rows) {
+        await client.query('BEGIN');
+        try {
+            await client.query("SELECT set_config('app.user_id', $1, true)", [String(userId)]);
+            const row = await client.query(
+                'SELECT enrolled, secret_encrypted, key_version FROM user_mfa WHERE user_id = $1', [userId]);
+            if (row.rows.length === 0 || !row.rows[0].enrolled) {
+                await client.query('COMMIT');
+                continue;
+            }
+            enrolled += 1;
+            const mfa = row.rows[0];
+            if (mfa.key_version !== previous) {
+                await client.query('COMMIT');
+                continue;
+            }
+            let secret;
+            try {
+                secret = decryptTotpSecret(mfa.secret_encrypted, previousKey);
+            } catch {
+                // Undecryptable under the previous key: corrupt or
+                // encrypted under an unknown key. Log the user id
+                // only and skip; the key-loss path (§4) handles it.
+                // Each user is visited once, so no exclusion list
+                // is needed to keep the loop terminating.
+                console.error(`rotate-mfa-key: user ${userId} failed to decrypt; skipped`);
+                failed += 1;
+                await client.query('COMMIT');
+                continue;
+            }
+            const encrypted = encryptTotpSecret(secret, currentKey);
+            await client.query(
+                `UPDATE user_mfa SET secret_encrypted = $1, key_version = $2,
+                 updated_at = now() WHERE user_id = $3 AND key_version = $4`,
+                [encrypted, target, userId, previous]);
+            await client.query('COMMIT');
+            rotated += 1;
+        } catch (error) {
+            await client.query('ROLLBACK').catch(() => {});
+            throw error;
+        }
+    }
+    let remaining = 0;
+    for (const { id: userId } of users.rows) {
+        await client.query('BEGIN');
+        try {
+            await client.query("SELECT set_config('app.user_id', $1, true)", [String(userId)]);
+            const row = await client.query(
+                'SELECT count(*)::int AS n FROM user_mfa WHERE user_id = $1 AND enrolled = TRUE AND key_version <> $2',
+                [userId, target]);
+            remaining += row.rows[0].n;
+            await client.query('COMMIT');
+        } catch (error) {
+            await client.query('ROLLBACK').catch(() => {});
+            throw error;
+        }
+    }
+    return { enrolled, rotated, skipped: 0, failed, remaining };
 }
 
 function parseMfaKey(value, label) {
@@ -203,6 +301,22 @@ async function main() {
         // Neon Free computes scale to zero; warm once so the run does
         // not time out on first use.
         await client.query('SELECT 1');
+        // FORCE RLS (PR #95): an owner connection lifts FORCE for the
+        // run (liftForce / restoreForce below); a connection that
+        // cannot ALTER — the app role — rotates under each user's
+        // own RLS context instead (rotateAsAppRole). A pre-RLS
+        // database needs neither. Routing on can_alter keeps the
+        // script from ever reporting a false zero.
+        const states = await rlsTableStates(client);
+        const forced = states.filter((row) => row.forced);
+        if (forced.length > 0 && forced.some((row) => !row.can_alter)) {
+            const summary = await rotateAsAppRole(client, currentKey, previousKey, target);
+            console.log(JSON.stringify({ ...summary, targetVersion: target }));
+            if (summary.failed > 0 || summary.remaining > 0) {
+                process.exitCode = 1;
+            }
+            return;
+        }
         // Lift FORCE on user_mfa for the duration of the rotation (see
         // liftForce); re-enabled in the finally below, verified.
         const lift = { connected: false, lifted: [] };

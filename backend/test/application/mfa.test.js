@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const bcrypt = require('bcrypt');
 const crypto = require('node:crypto');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
+const { withUser } = require('../../src/db/userContext');
 const { startBackend } = require('../helpers/backend-instance');
 const { generateTotpCode, generateTotpCodeForStep } = require('../../src/utils/mfaTotp');
 const { decryptTotpSecret } = require('../../src/utils/mfaCrypto');
@@ -90,7 +91,10 @@ async function enrollAndConfirm(email, userId) {
     const secret = started.data.secret;
     assert.match(started.data.otpauthUrl, /^otpauth:\/\/totp\/Gnosis:/);
     // The secret is stored encrypted, never plaintext.
-    const stored = await database.pool.query('SELECT secret_encrypted, enrolled FROM user_mfa WHERE user_id = $1', [userId]);
+    // RLS: user_mfa is FORCE'd, so the read runs under the owning
+    // user's context — a context-free read returns zero rows.
+    const stored = await withUser(database.pool, userId, client =>
+        client.query('SELECT secret_encrypted, enrolled FROM user_mfa WHERE user_id = $1', [userId]));
     assert.equal(stored.rows[0].enrolled, false);
     assert.ok(!stored.rows[0].secret_encrypted.includes(secret));
     assert.equal(decryptTotpSecret(stored.rows[0].secret_encrypted, Buffer.from(MFA_KEY, 'hex')), secret);
@@ -252,7 +256,9 @@ test('disabling MFA revokes other sessions but keeps the current one', async () 
     assert.equal(await profile(otherToken), 403);
     // Enrollment is cleared; exactly one session (the current one)
     // is alive and every other session for the user is revoked.
-    const mfa = await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]);
+    // RLS: the user_mfa read runs under the owning user's context.
+    const mfa = await withUser(database.pool, userId, client =>
+        client.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]));
     assert.equal(mfa.rows[0].enrolled, false);
     const currentSid = JSON.parse(Buffer.from(currentToken.split('.')[1], 'base64url').toString('utf8')).sid;
     const sessions = await database.pool.query('SELECT id, revoked_at FROM auth_sessions WHERE user_id = $1', [userId]);
@@ -457,7 +463,9 @@ test('mixed key versions: a version-1 row decrypts via the previous key, a versi
     delete process.env.MFA_KEY_VERSION;
     const a = await freshUser();
     const secretA = await enrollViaService(a.email, a.userId);
-    const rowA = await database.pool.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [a.userId]);
+    // RLS: the key_version reads run under each owning user's context.
+    const rowA = await withUser(database.pool, a.userId, client =>
+        client.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [a.userId]));
     assert.equal(rowA.rows[0].key_version, 1);
     // Rotation: K2 becomes current (version 2), K1 becomes previous.
     // User B enrolls under K2 (version 2).
@@ -466,7 +474,8 @@ test('mixed key versions: a version-1 row decrypts via the previous key, a versi
     process.env.MFA_KEY_VERSION = '2';
     const b = await freshUser();
     const secretB = await enrollViaService(b.email, b.userId);
-    const rowB = await database.pool.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [b.userId]);
+    const rowB = await withUser(database.pool, b.userId, client =>
+        client.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [b.userId]));
     assert.equal(rowB.rows[0].key_version, 2);
     // Both users verify: A's version-1 secret decrypts via the
     // previous key, B's version-2 secret via the current key.
@@ -506,7 +515,9 @@ test('F1: challenge issuance refuses a stale verified password hash', async () =
     assert.equal(stale, null);
     // The live challenge still works (the stale attempt superseded
     // nothing — it never issued).
-    const { secret } = await database.pool.query('SELECT secret_encrypted FROM user_mfa WHERE user_id = $1', [userId])
+    // RLS: the user_mfa read runs under the owning user's context.
+    const { secret } = await withUser(database.pool, userId, client =>
+        client.query('SELECT secret_encrypted FROM user_mfa WHERE user_id = $1', [userId]))
         .then((r) => ({ secret: decryptTotpSecret(r.rows[0].secret_encrypted, Buffer.from(MFA_KEY, 'hex')) }));
     const result = await mfaService.verifyMfaChallenge(database.pool, live, await generateTotpCode(secret));
     assert.equal(result.ok, true, JSON.stringify(result));
@@ -524,10 +535,13 @@ test('F2: concurrent enrollment starts never reset an enrolled factor', async ()
     ]);
     assert.deepEqual(first, { ok: false, reason: 'already-enrolled' });
     assert.deepEqual(second, { ok: false, reason: 'already-enrolled' });
-    const row = await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]);
+    // RLS: the user_mfa reads run under the owning user's context.
+    const row = await withUser(database.pool, userId, client =>
+        client.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]));
     assert.equal(row.rows[0].enrolled, true);
     // The route surfaces the same refusal as a 409.
-    const secretRow = await database.pool.query('SELECT secret_encrypted FROM user_mfa WHERE user_id = $1', [userId]);
+    const secretRow = await withUser(database.pool, userId, client =>
+        client.query('SELECT secret_encrypted FROM user_mfa WHERE user_id = $1', [userId]));
     const secret = decryptTotpSecret(secretRow.rows[0].secret_encrypted, Buffer.from(MFA_KEY, 'hex'));
     const token = await loginWithTotp(email, secret);
     assert.equal((await request('mfa/enroll', { token, body: {} })).status, 409);
@@ -602,15 +616,22 @@ test('F3: an admin cannot disable MFA, and a session without MFA is refused', as
     const disabled = await request('mfa/disable', { token, body: { password, code: await generateTotpCode(secret) } });
     assert.equal(disabled.status, 403, JSON.stringify(disabled.data));
     assert.equal(disabled.data.code, 'MFA_REQUIRED');
-    const row = await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]);
+    // RLS: the user_mfa read and updates run under the owning user's
+    // context — a context-free UPDATE affects zero rows, so the
+    // generation/enrolled change below would silently not happen.
+    const row = await withUser(database.pool, userId, client =>
+        client.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]));
     assert.equal(row.rows[0].enrolled, true);
-    await database.pool.query('UPDATE user_mfa SET mfa_generation = gen_random_uuid() WHERE user_id = $1', [userId]);
+    await withUser(database.pool, userId, client =>
+        client.query('UPDATE user_mfa SET mfa_generation = gen_random_uuid() WHERE user_id = $1', [userId]));
     assert.equal(await profile(token), 403, 'an old MFA session must not survive factor replacement');
     assert.equal((await request('refresh', { cookie: assured.cookie })).status, 401);
     // If the factor is removed by any other path, the existing
     // session is refused: admin MFA is enforced throughout
     // authenticated session use, not only at login.
-    await database.pool.query("UPDATE user_mfa SET enrolled = FALSE WHERE user_id = $1", [userId]);
+    // RLS: the UPDATE runs under the owning user's context.
+    await withUser(database.pool, userId, client =>
+        client.query("UPDATE user_mfa SET enrolled = FALSE WHERE user_id = $1", [userId]));
     assert.equal(await profile(token), 403);
 });
 
@@ -655,7 +676,9 @@ test('F5: two concurrent disables with one recovery code — only one succeeds',
     ]);
     const statuses = [first.status, second.status].sort();
     assert.deepEqual(statuses, [200, 401], JSON.stringify([first.data, second.data]));
-    const row = await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]);
+    // RLS: the user_mfa read runs under the owning user's context.
+    const row = await withUser(database.pool, userId, client =>
+        client.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]));
     assert.equal(row.rows[0].enrolled, false);
 });
 
@@ -689,7 +712,9 @@ test('F5: a replaced authenticator cannot authorize a paused disable', async () 
         assert.equal((await mfaService.confirmEnrollment(database.pool, userId, await generateTotpCodeForStep(replacement.secret, -1))).ok, true);
     } finally { gate.release(); }
     assert.deepEqual(await stale, { ok: false, reason: 'code' });
-    assert.equal((await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId])).rows[0].enrolled, true);
+    // RLS: the user_mfa read runs under the owning user's context.
+    assert.equal((await withUser(database.pool, userId, client =>
+        client.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]))).rows[0].enrolled, true);
 });
 
 test('F4: concurrent distributed account reservations are bounded independently of IP', async () => {
@@ -775,7 +800,11 @@ test('F7: enrollment authorization is rechecked after a concurrent password rese
     try { await database.pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [await hashPassword('synthetic-new-password'), userId]); }
     finally { gate.release(); }
     assert.equal((await pending).ok, false);
-    assert.equal((await database.pool.query('SELECT 1 FROM user_mfa WHERE user_id = $1', [userId])).rowCount, 0);
+    // RLS: the read runs under the owning user's context, so a zero
+    // row count genuinely proves no factor row was created — a
+    // context-free read would return zero rows regardless.
+    assert.equal((await withUser(database.pool, userId, client =>
+        client.query('SELECT 1 FROM user_mfa WHERE user_id = $1', [userId]))).rowCount, 0);
 });
 
 test('F7: confirmation and expired enrollment authorization are rejected after reset', async () => {
@@ -788,7 +817,9 @@ test('F7: confirmation and expired enrollment authorization are rejected after r
     try { await database.pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [await hashPassword('synthetic-new-password'), userId]); }
     finally { gate.release(); }
     assert.equal((await pending).ok, false);
-    assert.equal((await database.pool.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId])).rows[0].enrolled, false);
+    // RLS: the user_mfa read runs under the owning user's context.
+    assert.equal((await withUser(database.pool, userId, client =>
+        client.query('SELECT enrolled FROM user_mfa WHERE user_id = $1', [userId]))).rows[0].enrolled, false);
     assert.equal((await mfaService.startEnrollment(database.pool, userId, email, { ...auth, expiresAt: 1 })).ok, false);
 });
 

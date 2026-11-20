@@ -68,7 +68,13 @@ test.beforeEach(reset);
 
 test('main migration history upgrades with the reviewed late MFA migrations', async () => {
     const dir = await fs.mkdtemp(path.join(scratch, 'main-history-'));
-    const missing = new Set(['20261109150000_add-totp-mfa.sql', '20261112180000_add-mfa-key-version.sql', '20261113000000_mfa-session-assurance.sql']);
+    // The TOTP migration is NOT late: the RLS migration
+    // (20261109220000) references user_mfa / mfa_recovery_codes,
+    // which only it creates, so no reachable history has RLS without
+    // TOTP. The genuinely late MFA migrations — the ones a database
+    // with the rest of history can still gain — are the key-version
+    // and session-assurance migrations.
+    const missing = new Set(['20261112180000_add-mfa-key-version.sql', '20261113000000_mfa-session-assurance.sql']);
     for (const name of await fs.readdir(projectDir('app'))) {
         if (name.endsWith('.sql') && !missing.has(name)) await fs.copyFile(path.join(projectDir('app'), name), path.join(dir, name));
     }

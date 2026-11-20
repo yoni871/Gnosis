@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { contextFromEnvironment, createTestPool, withClient,
     withTransaction, installApplicationPool } = require('../helpers/application-database');
+const { withUser } = require('../../src/db/userContext');
 const { startBackend } = require('../helpers/backend-instance');
 
 const context = contextFromEnvironment(); // Fail before any connection if run directly.
@@ -179,22 +180,28 @@ test('issue #9 and #10 column grants allow exactly the approved column updates',
     assert.equal(resetRow.rows[0].consumed_reason, 'used');
     // TOTP MFA positive control: enrollment columns and challenge /
     // recovery-code consumption use the same approved columns.
-    await pool.query("INSERT INTO user_mfa(user_id,secret_encrypted) VALUES ($1,'synthetic-encrypted')",
-        [user.rows[0].id]);
-    await pool.query("UPDATE user_mfa SET enrolled=TRUE,enrolled_at=now(),secret_encrypted='synthetic-encrypted-2',updated_at=now() WHERE user_id=$1",
-        [user.rows[0].id]);
-    const challenge = await pool.query(
-        "INSERT INTO mfa_challenges(user_id,token_hash,password_hash,expires_at) VALUES ($1,'\\x03','synthetic-hash-3',now() + interval '10 minutes') RETURNING id",
-        [user.rows[0].id]);
-    await pool.query("UPDATE mfa_challenges SET used_at=now(),consumed_reason='used' WHERE id=$1",
-        [challenge.rows[0].id]);
-    const code = await pool.query(
-        "INSERT INTO mfa_recovery_codes(user_id,code_hash,code_salt) VALUES ($1,'synthetic-hash','synthetic-salt') RETURNING id",
-        [user.rows[0].id]);
-    await pool.query("UPDATE mfa_recovery_codes SET used_at=now() WHERE id=$1", [code.rows[0].id]);
-    const mfaRow = await pool.query(
-        'SELECT enrolled, c.used_at AS challenge_used_at, c.consumed_reason, r.used_at AS code_used_at FROM user_mfa m JOIN mfa_challenges c ON c.user_id=m.user_id JOIN mfa_recovery_codes r ON r.user_id=m.user_id WHERE m.user_id=$1',
-        [user.rows[0].id]);
+    // RLS: the MFA/device tables are FORCE'd, so the insert/update/
+    // read run under the owning user's context — a context-free
+    // insert as the app role is rejected 42501. The pinned grant
+    // expectations above are unchanged.
+    const mfaRow = await withUser(database.pool, user.rows[0].id, async client => {
+        await client.query("INSERT INTO user_mfa(user_id,secret_encrypted) VALUES ($1,'synthetic-encrypted')",
+            [user.rows[0].id]);
+        await client.query("UPDATE user_mfa SET enrolled=TRUE,enrolled_at=now(),secret_encrypted='synthetic-encrypted-2',updated_at=now() WHERE user_id=$1",
+            [user.rows[0].id]);
+        const challenge = await client.query(
+            "INSERT INTO mfa_challenges(user_id,token_hash,password_hash,expires_at) VALUES ($1,'\\x03','synthetic-hash-3',now() + interval '10 minutes') RETURNING id",
+            [user.rows[0].id]);
+        await client.query("UPDATE mfa_challenges SET used_at=now(),consumed_reason='used' WHERE id=$1",
+            [challenge.rows[0].id]);
+        const code = await client.query(
+            "INSERT INTO mfa_recovery_codes(user_id,code_hash,code_salt) VALUES ($1,'synthetic-hash','synthetic-salt') RETURNING id",
+            [user.rows[0].id]);
+        await client.query("UPDATE mfa_recovery_codes SET used_at=now() WHERE id=$1", [code.rows[0].id]);
+        return client.query(
+            'SELECT enrolled, c.used_at AS challenge_used_at, c.consumed_reason, r.used_at AS code_used_at FROM user_mfa m JOIN mfa_challenges c ON c.user_id=m.user_id JOIN mfa_recovery_codes r ON r.user_id=m.user_id WHERE m.user_id=$1',
+            [user.rows[0].id]);
+    });
     assert.equal(mfaRow.rows[0].enrolled, true);
     assert.equal(mfaRow.rows[0].consumed_reason, 'used');
     assert.ok(mfaRow.rows[0].challenge_used_at);

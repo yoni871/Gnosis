@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const { spawnSync } = require('node:child_process');
 const path = require('node:path');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
+const { withUser } = require('../../src/db/userContext');
 const { startBackend } = require('../helpers/backend-instance');
 const { findRecentReuseAlerts, findRecentNewDeviceAlerts } = require('../../src/utils/securityAlerts');
 
@@ -61,9 +62,12 @@ async function newDeviceEvents(userId) {
     return result.rows;
 }
 async function deviceRows(userId) {
-    const result = await database.pool.query(
+    // RLS: known_login_devices is FORCE'd, so the read runs under
+    // the owning user's context — a context-free read returns zero
+    // rows. (security_events reads stay context-free: no policy.)
+    const result = await withUser(database.pool, userId, client => client.query(
         'SELECT user_id, device_key, first_seen_at, last_seen_at FROM known_login_devices WHERE user_id = $1 ORDER BY id',
-        [userId]);
+        [userId]));
     return result.rows;
 }
 function runAlertScript(args) {
