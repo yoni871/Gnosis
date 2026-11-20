@@ -141,11 +141,14 @@ test("security section: enrollment shows the secret once, then the recovery code
 
     expect(screen.getByRole("heading", { name: "Security" })).toBeInTheDocument();
     await screen.findByText("Two-factor authentication is off");
-    await user.click(screen.getByRole("button", { name: /set up two-factor authentication/i }));
+    await user.click(screen.getByRole("button", { name: /enable two-factor authentication/i }));
 
     await screen.findByText("Add Gnosis to your authenticator app");
+    expect(await screen.findByRole("img", { name: /QR code for adding Gnosis/ })).toHaveAttribute("src", expect.stringMatching(/^data:image\/png;base64,/));
+    expect(screen.queryByText("JBSWY3DPEHPK3PXP")).not.toBeInTheDocument();
+    expect(screen.queryByText(/otpauth:\/\//)).not.toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: /can't scan/i }));
     expect(screen.getByText("JBSWY3DPEHPK3PXP")).toBeInTheDocument();
-    expect(screen.getByText(/No QR code is shown yet/)).toBeInTheDocument();
 
     await user.type(screen.getByLabelText("Code from your authenticator app"), "123456");
     await user.click(screen.getByRole("button", { name: /confirm and turn on/i }));
@@ -172,6 +175,19 @@ test("security section: enrolled state offers regenerate and disable", async () 
 
     await screen.findByText(/New recovery codes issued/);
     expect(screen.getByText("NEW-ABCD-EFGH-IJKL")).toBeInTheDocument();
+});
+
+test("cancelled enrollment clears its key without enabling MFA", async () => {
+    renderSettings(signedInWithMfa(), mfaFetchMock({ enrolled: false }));
+    const user = userEvent.setup();
+    await screen.findByText("Two-factor authentication is off");
+    await user.click(screen.getByRole("button", { name: /enable two-factor authentication/i }));
+    await screen.findByRole("button", { name: /can't scan/i });
+    await user.click(screen.getByRole("button", { name: /can't scan/i }));
+    expect(screen.getByText("JBSWY3DPEHPK3PXP")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Cancel setup" }));
+    expect(screen.getByText("Two-factor authentication is off")).toBeInTheDocument();
+    expect(screen.queryByText("JBSWY3DPEHPK3PXP")).not.toBeInTheDocument();
 });
 
 test("signed-out visitors see no two-factor controls", () => {

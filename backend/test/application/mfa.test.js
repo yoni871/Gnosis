@@ -108,8 +108,26 @@ async function enrollAndConfirm(email, userId) {
     for (const recoveryCode of confirmed.data.recoveryCodes) {
         assert.match(recoveryCode, /^[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}$/);
     }
-    return { secret, recoveryCodes: confirmed.data.recoveryCodes };
+    return { secret, recoveryCodes: confirmed.data.recoveryCodes, token };
 }
+
+test('enrollment keeps the confirming session and revokes older password-only sessions', async () => {
+    const { userId, email } = await freshUser();
+    const first = await login(email);
+    const second = await login(email);
+    const started = await request('mfa/enroll', { token: second.data.token });
+    assert.equal(started.status, 200);
+    const confirmed = await request('mfa/enroll/confirm', {
+        token: second.data.token,
+        body: { code: await generateTotpCode(started.data.secret) },
+    });
+    assert.equal(confirmed.status, 200);
+    assert.equal(await profile(second.data.token), 200);
+    assert.notEqual(await profile(first.data.token), 200);
+    const rows = await database.pool.query('SELECT mfa_verified, revoked_at FROM auth_sessions WHERE user_id = $1', [userId]);
+    assert.equal(rows.rows.filter(row => row.revoked_at === null).length, 1);
+    assert.equal(rows.rows.find(row => row.revoked_at === null).mfa_verified, true);
+});
 async function loginWithTotp(email, secret) {
     // TOTP step burning (F6) makes a code's 30-second step single-use
     // per account, so two logins back-to-back cannot share a code.
