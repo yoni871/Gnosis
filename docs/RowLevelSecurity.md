@@ -183,7 +183,28 @@ active:
    (exit 1) if they differ — but it does NOT re-enable FORCE itself.
    Remediation is the runbook's step 6; the script verifies, it does not
    fix.
-6. after restoring into a database, re-enable FORCE ROW LEVEL SECURITY on the restored database and verify it before relying on the restored database. A dump or copy taken while FORCE was off restores without FORCE, and a restored database without FORCE silently leaves owner-context access unprotected. Run, as the table owner, on the restored database: ALTER TABLE … FORCE ROW LEVEL SECURITY for all seven RLS tables (notes, bookmarks, highlights, user_reading_state, user_mfa, mfa_recovery_codes, known_login_devices). Then verify with: SELECT relname, relforcerowsecurity FROM pg_class WHERE relname IN ('notes','bookmarks','highlights','user_reading_state','user_mfa','mfa_recovery_codes','known_login_devices') AND relnamespace = 'public'::regnamespace; — all seven rows must show relforcerowsecurity = true. Note that `backend/scripts/db/verify-restore.js` also checks this: it compares the as-found FORCE flags between source and restored target and fails with `forceMismatch` if they differ, so re-run it after re-enabling FORCE to confirm. Do not rely on a restored database that fails this check.
+6. After restoring into a database, re-enable FORCE ROW LEVEL SECURITY on the restored database and verify it before relying on the restored database. A dump or copy taken while FORCE was off restores without FORCE, and a restored database without FORCE silently leaves owner-context access unprotected. Run, as the table owner, on the restored database:
+
+   ```sql
+   ALTER TABLE notes FORCE ROW LEVEL SECURITY;
+   ALTER TABLE bookmarks FORCE ROW LEVEL SECURITY;
+   ALTER TABLE highlights FORCE ROW LEVEL SECURITY;
+   ALTER TABLE user_reading_state FORCE ROW LEVEL SECURITY;
+   ALTER TABLE user_mfa FORCE ROW LEVEL SECURITY;
+   ALTER TABLE mfa_recovery_codes FORCE ROW LEVEL SECURITY;
+   ALTER TABLE known_login_devices FORCE ROW LEVEL SECURITY;
+   ```
+
+   Then verify with:
+
+   ```sql
+   SELECT relname, relforcerowsecurity FROM pg_class
+   WHERE relname IN ('notes','bookmarks','highlights','user_reading_state',
+     'user_mfa','mfa_recovery_codes','known_login_devices')
+   AND relnamespace = 'public'::regnamespace;
+   ```
+
+   All seven rows must show `relforcerowsecurity = true`. Note that `backend/scripts/db/verify-restore.js` also checks this: it compares the as-found FORCE flags between source and restored target and fails with `forceMismatch` if they differ, so re-run it after re-enabling FORCE to confirm. Do not rely on a restored database that fails this check.
 
 Do not run the toggles and extraction inside one long transaction: PostgreSQL
 holds `ALTER TABLE` locks until commit. There is therefore a brief owner-bypass
