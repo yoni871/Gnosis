@@ -840,6 +840,29 @@ export function findNonPublishedIds({ contentDir }) {
 const UNQUOTED_CLAIMS_KEY = /(?:^|[{,])\s*claims\s*:/;
 const CLAIM_ID = /clm-[a-z]+-\d+[a-z]?/;
 
+// Source titles known to collide with published prose: the title is a
+// phrase that legitimately appears in published content, so a title
+// substring match cannot distinguish the non-published source from the
+// published prose. The exemption is by source ID and sources-only, and
+// the id check still guards every exempted source — the title check is
+// skipped for these ids, nothing else is.
+// - "Mount Nebo" (source-biblicaltraining-mount-nebo) appears in
+//   published Numbers prose (The Final Wilderness Journey, Num 20–21:
+//   "Moses is told he will die on Mount Nebo without entering the
+//   land"). The title is exactly 10 characters, so it escapes the
+//   generic-title exemption (length < 10) below.
+// - "The Samaritan Pentateuch"
+//   (source-anderson-giles-samaritan-pentateuch) appears in published
+//   Genesis prose (the Seth event: the genealogy "survives in three
+//   textual traditions", the Samaritan Pentateuch among them).
+// Add an id here only when the collision with published prose is
+// verified by direct inspection of the published content — never for a
+// title that merely looks generic.
+const TITLE_COLLISION_ALLOWLIST = new Set([
+    "source-biblicaltraining-mount-nebo",
+    "source-anderson-giles-samaritan-pentateuch",
+]);
+
 // A non-published title is a leak signal only as a whole phrase on word
 // boundaries: a bare substring also matches inside longer words ("Treaty"
 // in "Treaties") and inside other titles. Lookarounds are used instead
@@ -1030,6 +1053,12 @@ export function checkHistoryGate({ contentDir, generatedDir, distDir }) {
             if (publishedTitles.has(record.title) && record.kind === "source") {
                 warnings.push(
                     `non-published ${record.kind} title "${record.title}" (id "${record.id}") is also the title of an included record — the id check still applies.`,
+                );
+                continue;
+            }
+            if (record.kind === "source" && TITLE_COLLISION_ALLOWLIST.has(record.id)) {
+                warnings.push(
+                    `non-published ${record.kind} title "${record.title}" (id "${record.id}") is a known collision with published prose — the id check still applies.`,
                 );
                 continue;
             }

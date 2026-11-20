@@ -404,6 +404,47 @@ describe("check-history-gate.js — never skips, checks ids, titles, sources", (
         expect(result.stdout).toMatch(/also the title of an included record/);
     });
 
+    it("passes when dist/ prose mentions an allowlisted non-published source title (Mount Nebo)", () => {
+        const sandbox = makeSandbox();
+        // The real registry entry "Mount Nebo" is cited by no shipped
+        // record, so the gate would not list it at all — cite it from
+        // the in-review Creation fixture so it becomes unpublished-only
+        // in the sandbox, the way the Deuteronomy categories cite it
+        // in-review. Published Numbers prose mentions Mount Nebo (The
+        // Final Wilderness Journey, Num 20–21), so the title check must
+        // not fire on the phrase — the id check still guards the source.
+        const eventPath = path.join(sandbox, "src", "content", "history", "events", "creation.json");
+        const event = JSON.parse(readFileSync(eventPath, "utf8"));
+        event.sources = [...(event.sources ?? []), "source-biblicaltraining-mount-nebo"];
+        writeFileSync(eventPath, JSON.stringify(event, null, 2));
+        runNode("scripts/build-history-content.js", { cwd: sandbox });
+        writeDistFile(
+            sandbox,
+            "assets/app.js",
+            'const prose = "Moses is told he will die on Mount Nebo without entering the land.";',
+        );
+        const result = runGate(sandbox);
+        expect(result.status).toBe(0);
+        expect(result.stdout).toMatch(/known collision with published prose/);
+    });
+
+    it("still fails when dist/ contains an allowlisted non-published source id", () => {
+        const sandbox = makeSandbox();
+        // Same fixture as the allowlist title test: the Mount Nebo
+        // source is unpublished-only in the sandbox. Its title is
+        // exempt from the substring check, but its id is not — an id
+        // in dist/ is still a leak.
+        const eventPath = path.join(sandbox, "src", "content", "history", "events", "creation.json");
+        const event = JSON.parse(readFileSync(eventPath, "utf8"));
+        event.sources = [...(event.sources ?? []), "source-biblicaltraining-mount-nebo"];
+        writeFileSync(eventPath, JSON.stringify(event, null, 2));
+        runNode("scripts/build-history-content.js", { cwd: sandbox });
+        writeDistFile(sandbox, "assets/app.js", 'const key = "source-biblicaltraining-mount-nebo";');
+        const result = runGate(sandbox);
+        expect(result.status).toBe(1);
+        expect(result.stderr).toMatch(/source-biblicaltraining-mount-nebo/);
+    });
+
     it("passes a clean published-only build", () => {
         const sandbox = makeSandbox();
         runNode("scripts/build-history-content.js", { cwd: sandbox });
