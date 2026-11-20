@@ -39,7 +39,7 @@
     {
       "id": "clm-num-01-002",
       "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
-      "evidence": "Phase 2 Dossier 1 (numbers-phase2.md): the Masoretic totals (603,550 at Num 1:46; 601,730 at Num 26:51) are Established as text, but their demographic historicity is Unknown/Debated; Adair 2025, read in full (QA Phase 4 §5.1), finds the figures more plausibly artificial literary numbers, and no primary ANE census document was inspected (source-adair-numbers-census; source-numbers-kjv-biblehub).",
+      "evidence": "Phase 2 Dossier 1 (numbers-phase2.md): the Masoretic totals (603,550 at Num 1:46; 601,730 at Num 26:51) are Established as text, but their demographic historicity is Unknown/Debated; Adair 2025, read in full (QA Phase 4 §5.1), finds the figures more plausibly artificial literary numbers, and no primary ANE census document was inspected (source-adair-numbers-census).",
       "assessment": "unknown"
     },
     {
@@ -137,7 +137,6 @@
   ],
   "relatedEvents": [],
   "sources": [
-    "source-numbers-kjv-biblehub",
     "source-adair-numbers-census"
   ],
   "review": {

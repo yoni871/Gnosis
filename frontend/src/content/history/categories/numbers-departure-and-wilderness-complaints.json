@@ -148,9 +148,7 @@
     }
   ],
   "relatedEvents": [],
-  "sources": [
-    "source-numbers-kjv-biblehub"
-  ],
+  "sources": [],
   "review": {
     "author": "Gnosis Numbers research handoff (AI-assisted)",
     "reviewer": "Author-side preflight only; independent Muse QA pending",

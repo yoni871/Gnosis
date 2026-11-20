@@ -39,7 +39,7 @@
     {
       "id": "clm-num-02-002",
       "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
-      "evidence": "Phase 1/2: no independent archaeological or external historical identification of the Num 5-10 wilderness setting; Phase 2 records the literary relationship of Num 5-10 to priestly Torah formation as Debated (Frevel) and limits Ketef Hinnom to late-preexilic circulation of related blessing language, not the date of Numbers as a book. QA Phase 4 §5.2: Barkay 2004 full article unread (abstract/metadata only); KJV chs. 6-10 still not independently verified.",
+      "evidence": "Phase 1/2: no independent archaeological or external historical identification of the Num 5-10 wilderness setting; Phase 2 records the literary relationship of Num 5-10 to priestly Torah formation as Debated (Frevel) and limits Ketef Hinnom to late-preexilic circulation of related blessing language, not the date of Numbers as a book. QA Phase 4 §5.2: Ketef Hinnom now supported by Waaler 2002 (verified, read in full); Barkay 2004 full article unread (abstract/metadata only); KJV chs. 6-10 still not independently verified.",
       "assessment": "unknown"
     },
     {
@@ -197,8 +197,7 @@
   ],
   "relatedEvents": [],
   "sources": [
-    "source-numbers-kjv-biblehub",
-    "source-ketef-hinnom-barkay"
+    "source-ketef-hinnom-waaler"
   ],
   "review": {
     "author": "Gnosis Numbers research handoff (AI-assisted)",

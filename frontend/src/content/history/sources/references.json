@@ -1865,10 +1865,10 @@
     "title": "Numbers 1–36, King James Bible",
     "publisher": "BibleHub (public-domain English Bible presentation)",
     "year": 1769,
-    "pagesOrSection": "Numbers chapters 1–36; direct biblical text; complete chapter-by-chapter KJV check outstanding",
+    "pagesOrSection": "Numbers chapters 1–36; direct biblical text; full 1–36 verse-by-verse check completed 2026-11-19",
     "url": "https://biblehub.com/kjv/numbers/1.htm",
     "verification": "not-independently-verified",
-    "verificationDetail": "Numbers 1 source page opened 2026-11-19; full Numbers 1–36 verse-by-verse check and Gnosis stored-text comparison NOT RUN. Source is only provisional for complete 36-chapter scope.",
+    "verificationDetail": "Full Numbers 1–36 verse-by-verse check completed 2026-11-19 (live Preview API vs BibleHub KJV): 1,271/1,288 verses exactly identical; 2 substantive discrepancies in the Gnosis stored text — Num 14:17 stored \"my LORD\" vs KJV \"my Lord\" (Adonai) and Num 31:28 stored \"the Lord\" vs KJV \"the LORD\" (YHWH); 15 accepted variants (4 archaic-vs-modern spellings, 1 comma, 10 possessive-casing). Source stays not-independently-verified; Yonatan decided Leave-as-is (2026-11-19) — the two verses will not be fixed.",
     "licenseNote": "KJV public domain in United States; UK Crown rights and local usage questions may apply."
   },
   "source-adair-numbers-census": {
@@ -1929,6 +1929,18 @@
     "url": "https://doi.org/10.2307/4150106",
     "verification": "not-independently-verified",
     "verificationDetail": "Bibliographic record and abstract corroborated in Phase 2; complete article not inspected in this preparation. Do not credit reconstructed readings as independently checked.",
+    "licenseNote": "All rights reserved; paraphrase only."
+  },
+  "source-ketef-hinnom-waaler": {
+    "id": "source-ketef-hinnom-waaler",
+    "author": "Erik Waaler",
+    "title": "A Revised Date for Pentateuchal Texts? Evidence from Ketef Hinnom",
+    "publisher": "Tyndale Bulletin",
+    "year": 2002,
+    "pagesOrSection": "53.1:29–55",
+    "url": "https://b5d7ac.staticwbm.com/20131022051812/http://www.tyndalehouse.com/tynbul/library/TynBull_2002_53_1_02_Waaler_KetefHinnomText.pdf",
+    "verification": "verified",
+    "verificationDetail": "Full article read directly (27 pp.); supports the two amulets, the late seventh / early sixth century BCE dating (scholarly consensus as reported, p. 33), the Priestly Blessing wording (Num 6:24–26), and the damaged/reconstructed letters; does not use the term 'apotropaic' (prose reworded to 'worn as amulets').",
     "licenseNote": "All rights reserved; paraphrase only."
   }
 }
