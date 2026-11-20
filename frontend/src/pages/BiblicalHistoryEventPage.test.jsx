@@ -33,12 +33,12 @@ function canonicalHref() {
 }
 
 describe("BiblicalHistoryEventPage header", () => {
-    it("shows the landing navbar signed out: maroon logo, Explore, Sign In / Start Exploring, no reader controls", async () => {
+    it("shows the landing navbar signed out: maroon logo, Explore, Sign In, no reader controls", async () => {
         const user = userEvent.setup();
         renderStudy("/biblical-history/creation");
         expect(screen.getByRole("link", { name: "Gnosis home" })).toHaveAttribute("href", "/");
         expect(screen.getByRole("link", { name: "Sign In" })).toHaveAttribute("href", "/login");
-        expect(screen.getByRole("link", { name: /Start Exploring/ })).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(screen.queryByRole("link", { name: /Start Exploring/ })).toBeNull();
         expect(screen.queryByRole("button", { name: /Account menu/ })).toBeNull();
         // The Explore dropdown carries its existing options.
         await user.click(screen.getByRole("button", { name: "Explore" }));
@@ -58,7 +58,7 @@ describe("BiblicalHistoryEventPage header", () => {
             isAuthLoading: false,
             logout: vi.fn(),
         });
-        expect(screen.getByRole("link", { name: /Start Exploring/ })).toHaveAttribute("href", "/bible/Genesis/1");
+        expect(screen.queryByRole("link", { name: /Start Exploring/ })).toBeNull();
         const trigger = screen.getByRole("button", { name: "Account menu for Test Reader" });
         expect(within(trigger).getByText("Test Reader")).toBeInTheDocument();
         expect(screen.queryByRole("link", { name: "Sign In" })).toBeNull();
