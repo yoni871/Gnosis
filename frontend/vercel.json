@@ -339,6 +339,71 @@
       "source": "/biblical-history/deuteronomy",
       "destination": "/biblical-history/deuteronomy-wilderness-journey",
       "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-commission-and-rahab",
+      "destination": "/biblical-history/joshua-commission-and-rahab",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-crossing-the-jordan",
+      "destination": "/biblical-history/joshua-crossing-the-jordan",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-fall-of-jericho",
+      "destination": "/biblical-history/joshua-fall-of-jericho",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-achan-ai-and-covenant-renewal",
+      "destination": "/biblical-history/joshua-achan-ai-and-covenant-renewal",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-gibeonite-deception",
+      "destination": "/biblical-history/joshua-gibeonite-deception",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-southern-campaign",
+      "destination": "/biblical-history/joshua-southern-campaign",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-northern-campaign-and-defeated-kings",
+      "destination": "/biblical-history/joshua-northern-campaign-and-defeated-kings",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-dividing-the-promised-land",
+      "destination": "/biblical-history/joshua-dividing-the-promised-land",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-remaining-tribal-allotments",
+      "destination": "/biblical-history/joshua-remaining-tribal-allotments",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-cities-of-refuge-and-levitical-cities",
+      "destination": "/biblical-history/joshua-cities-of-refuge-and-levitical-cities",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-eastern-tribes-and-the-altar",
+      "destination": "/biblical-history/joshua-eastern-tribes-and-the-altar",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua/joshua-farewell-and-covenant-at-shechem",
+      "destination": "/biblical-history/joshua-farewell-and-covenant-at-shechem",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/joshua",
+      "destination": "/biblical-history/joshua-commission-and-rahab",
+      "permanent": true
     }
   ],
   "rewrites": [

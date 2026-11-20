@@ -1,0 +1,80 @@
+{
+  "id": "joshua",
+  "title": "Joshua",
+  "testament": "OT",
+  "introduction": "Joshua records Israel's crossing of the Jordan, the conquest and division of the promised land, and Joshua's farewell covenant at Shechem. These twelve studies follow literary divisions; they do not claim twelve independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "entries": [
+    {
+      "categoryId": "category-joshua-commission-and-rahab",
+      "kind": "category",
+      "narrativeOrder": 49,
+      "bookNote": "Joshua 1–2 examines Joshua's Commission and Rahab's Faith as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-crossing-the-jordan",
+      "kind": "category",
+      "narrativeOrder": 50,
+      "bookNote": "Joshua 3–5 examines Crossing the Jordan and Covenant Renewal as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-fall-of-jericho",
+      "kind": "category",
+      "narrativeOrder": 51,
+      "bookNote": "Joshua 6 examines The Fall of Jericho as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-achan-ai-and-covenant-renewal",
+      "kind": "category",
+      "narrativeOrder": 52,
+      "bookNote": "Joshua 7–8 examines Achan's Sin, Ai, and Covenant Renewal as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-gibeonite-deception",
+      "kind": "category",
+      "narrativeOrder": 53,
+      "bookNote": "Joshua 9 examines The Gibeonite Deception as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-southern-campaign",
+      "kind": "category",
+      "narrativeOrder": 54,
+      "bookNote": "Joshua 10 examines The Southern Campaign as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-northern-campaign-and-defeated-kings",
+      "kind": "category",
+      "narrativeOrder": 55,
+      "bookNote": "Joshua 11–12 examines The Northern Campaign and Defeated Kings as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-dividing-the-promised-land",
+      "kind": "category",
+      "narrativeOrder": 56,
+      "bookNote": "Joshua 13–17 examines Dividing the Promised Land as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-remaining-tribal-allotments",
+      "kind": "category",
+      "narrativeOrder": 57,
+      "bookNote": "Joshua 18–19 examines The Remaining Tribal Allotments as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-cities-of-refuge-and-levitical-cities",
+      "kind": "category",
+      "narrativeOrder": 58,
+      "bookNote": "Joshua 20–21 examines Cities of Refuge and Levitical Cities as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-eastern-tribes-and-the-altar",
+      "kind": "category",
+      "narrativeOrder": 59,
+      "bookNote": "Joshua 22 examines The Eastern Tribes and the Altar as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-joshua-farewell-and-covenant-at-shechem",
+      "kind": "category",
+      "narrativeOrder": 60,
+      "bookNote": "Joshua 23–24 examines Joshua's Farewell and Covenant at Shechem as a biblical literary and historical-context study, without assigning an independently verified date."
+    }
+  ]
+}
