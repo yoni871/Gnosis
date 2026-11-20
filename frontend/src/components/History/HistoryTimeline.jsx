@@ -16,7 +16,7 @@
 // buttons in the visual UI (correction 2), so the strip carries an
 // accessible label and keyboard instructions.
 import { useLayoutEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { categorySlug, eventSlug, formatHistoryDateLabel } from "../../services/historyService";
 import { historyPath } from "../../utils/seo";
 
@@ -27,6 +27,7 @@ const stripPositions = new Map();
 
 export default function HistoryTimeline({ entries = [], currentEntryId, bookId }) {
     const navigate = useNavigate();
+    const location = useLocation();
     const nodeRefs = useRef([]);
     const currentIndex = entries.findIndex((entry) => entry.id === currentEntryId);
     // Roving tabindex needs exactly one tab stop: the open entry when one
@@ -65,7 +66,7 @@ export default function HistoryTimeline({ entries = [], currentEntryId, bookId }
         const entry = entries[index];
         if (!entry) return;
         const slug = entry.kind === "category" ? categorySlug(entry.id) : eventSlug(entry.id);
-        navigate(historyPath(bookId, slug));
+        navigate({ pathname: historyPath(bookId, slug), search: location.search, hash: location.hash }, { replace: true });
         nodeRefs.current[index]?.focus({ preventScroll: true });
     };
 

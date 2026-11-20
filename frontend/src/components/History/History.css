@@ -30,6 +30,11 @@
     padding: 0 clamp(16px, 2vw, 28px) 48px;
 }
 
+.history-event-root .landing-header-inner {
+    width: min(1440px, 100%);
+    padding-inline: clamp(16px, 2vw, 28px);
+}
+
 
 .history-study-header {
     display: flex;
@@ -493,9 +498,10 @@
     top: 14px;
     right: 24px;
     left: 24px;
-    height: 1px;
+    height: 4px;
     content: "";
-    background: var(--border);
+    border-bottom: 1px solid var(--border);
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
     pointer-events: none;
 }
 

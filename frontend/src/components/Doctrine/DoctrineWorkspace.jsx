@@ -14,6 +14,7 @@
 // change. Selecting a timeline node updates the interpretation panel
 // WITHOUT changing Scripture.
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
     DEMONSTRATION_NOTICE,
     getFigure,
@@ -32,8 +33,10 @@ import DoctrineTimeline from "./DoctrineTimeline";
 const DOCTRINE_DEFAULT_TRANSLATION = "KJV";
 
 export default function DoctrineWorkspace() {
-    const [passageIndex, setPassageIndex] = useState(0);
-    const [selectedInterpretationId, setSelectedInterpretationId] = useState(null);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const requestedPassageIndex = passages.findIndex((item) => item.id === searchParams.get("passage"));
+    const passageIndex = requestedPassageIndex >= 0 ? requestedPassageIndex : 0;
+    const selectedInterpretationId = searchParams.get("interpretation");
     const [translation, setTranslation] = useState(DOCTRINE_DEFAULT_TRANSLATION);
     const [translations, setTranslations] = useState([]);
 
@@ -78,8 +81,17 @@ export default function DoctrineWorkspace() {
 
     const goToPassage = (index) => {
         if (index < 0 || index >= passages.length) return;
-        setPassageIndex(index);
-        setSelectedInterpretationId(null);
+        const next = new URLSearchParams(searchParams);
+        next.set("passage", passages[index].id);
+        next.delete("interpretation");
+        setSearchParams(next, { replace: true });
+    };
+
+    const selectInterpretation = (id) => {
+        const next = new URLSearchParams(searchParams);
+        next.set("passage", passage.id);
+        next.set("interpretation", id);
+        setSearchParams(next, { replace: true });
     };
 
     return (
@@ -123,7 +135,7 @@ export default function DoctrineWorkspace() {
                 entries={timelineEntries}
                 selectedId={selectedInterpretation?.id ?? null}
                 passage={passage}
-                onSelect={setSelectedInterpretationId}
+                onSelect={selectInterpretation}
             />
         </div>
     );
