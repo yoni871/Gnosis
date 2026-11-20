@@ -7,6 +7,17 @@
 // holds no grant to re-encrypt secrets and must not read operator
 // secrets).
 //
+// FORCE ROW LEVEL SECURITY (PR #95) constrains the owner too, so
+// without treatment this script would read zero user_mfa rows and
+// falsely report nothing to rotate. It therefore temporarily runs
+// ALTER TABLE user_mfa NO FORCE ROW LEVEL SECURITY, rotates, then
+// re-enables FORCE in a finally and verifies relforcerowsecurity — a
+// failure mid-run never leaves FORCE off. If the connection cannot
+// ALTER user_mfa (wrong role — not the owner), the script refuses to
+// run at all rather than report a false zero. The NO FORCE window only
+// affects owner-context access; the app role stays constrained by RLS
+// with or without FORCE.
+//
 // Usage (operator machine; keys come from the secret manager, never
 // from a file, chat, or the repo):
 //   MFA_ENCRYPTION_KEY=<new key K2, 64 hex or 44 base64> \
@@ -36,6 +47,90 @@ const { Client } = require('pg');
 const { encryptTotpSecret, decryptTotpSecret } = require('../../src/utils/mfaCrypto');
 
 const BATCH_SIZE = 50;
+
+// Tables this script reads/writes that are under FORCE RLS: user_mfa
+// only. (The full RLS set is seven tables — notes, bookmarks,
+// highlights, user_reading_state, user_mfa, mfa_recovery_codes,
+// known_login_devices; see verify-restore.js. This script touches just
+// user_mfa, so only that table gets the NO FORCE treatment below.)
+// Detection is dynamic, so a pre-RLS database — where user_mfa has no
+// FORCE — needs no dance at all.
+const RLS_TABLES = ['user_mfa'];
+
+// FORCE RLS state for the RLS tables on this connection: whether FORCE
+// is on, and whether the connected user can ALTER the table — the table
+// owner, a member of the owning role, or a superuser (local test
+// clusters). Same shape as verify-restore.js.
+async function rlsTableStates(client) {
+    const result = await client.query(
+        `SELECT c.relname AS table_name, c.relforcerowsecurity AS forced,
+                (pg_has_role(current_user, c.relowner, 'MEMBER')
+                 OR (SELECT rolsuper FROM pg_roles WHERE rolname = current_user)) AS can_alter
+         FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
+         WHERE n.nspname = 'public' AND c.relkind = 'r' AND c.relname = ANY($1)
+         ORDER BY c.relname`,
+        [RLS_TABLES]);
+    return result.rows;
+}
+
+// Temporarily lift FORCE on user_mfa so the rotation below sees real
+// rows. Unlike verify-restore.js this script has no read-only mode —
+// it must run as the owner — so a FORCE'd table this connection cannot
+// ALTER is a hard refusal, not a skip: running on would read zero
+// enrolled users and falsely report nothing to rotate. Each lifted
+// table is recorded on `lift` only after its ALTER succeeds, so a
+// failure halfway still leaves an exact list to restore.
+async function liftForce(client, lift) {
+    lift.connected = true;
+    const states = await rlsTableStates(client);
+    const forced = states.filter((row) => row.forced);
+    for (const row of forced) {
+        if (!row.can_alter) {
+            throw new Error(
+                `${row.table_name} has FORCE ROW LEVEL SECURITY but this connection is not the table owner, ` +
+                'so it cannot lift FORCE and would read zero enrolled users. ' +
+                'Re-run with the database OWNER URL (ROTATE_MFA_DATABASE_URL must be an owner URL). ' +
+                'Refusing to run rather than falsely reporting nothing to rotate.');
+        }
+    }
+    for (const row of forced) {
+        await client.query(`ALTER TABLE "${row.table_name}" NO FORCE ROW LEVEL SECURITY`);
+        lift.lifted.push(row.table_name);
+    }
+    return lift;
+}
+
+// Re-enable FORCE on every table liftForce lifted, then verify the
+// flags in pg_class. Throws (loudly) if any flag is not back on — the
+// caller runs this in a finally, so a failure here must never be
+// swallowed: leaving FORCE off is worse than a failed rotation. Each
+// table is attempted even if another fails, so one bad ALTER cannot
+// strand the rest.
+async function restoreForce(client, lifted, label) {
+    const errors = [];
+    for (const table of lifted) {
+        try {
+            await client.query(`ALTER TABLE "${table}" FORCE ROW LEVEL SECURITY`);
+        } catch (error) {
+            errors.push(`${table}: ${error.message}`);
+        }
+    }
+    try {
+        const states = await rlsTableStates(client);
+        const byName = new Map(states.map((row) => [row.table_name, row.forced]));
+        const stillOff = lifted.filter((table) => byName.get(table) !== true);
+        if (stillOff.length) {
+            errors.push(`FORCE ROW LEVEL SECURITY still off on: ${stillOff.join(', ')}`);
+        }
+    } catch (error) {
+        errors.push(`could not verify FORCE flags after re-enabling: ${error.message}`);
+    }
+    if (errors.length) {
+        throw new Error(
+            `${label}: FAILED to restore FORCE ROW LEVEL SECURITY — ${errors.join('; ')}. ` +
+            'Re-enable it manually before relying on this database.');
+    }
+}
 
 function parseMfaKey(value, label) {
     if (typeof value !== 'string' || value === '') {
@@ -108,71 +203,84 @@ async function main() {
         // Neon Free computes scale to zero; warm once so the run does
         // not time out on first use.
         await client.query('SELECT 1');
-        const totalResult = await client.query(
-            'SELECT count(*)::int AS n FROM user_mfa WHERE enrolled = TRUE');
-        const total = totalResult.rows[0].n;
-        let rotated = 0;
-        let skipped = 0;
-        let failed = 0;
-        // User ids whose secret failed to decrypt under the previous
-        // key. They are EXCLUDED from later batches: a failed row's
-        // key_version never changes (it is skipped, not updated), so
-        // without this exclusion the same rows would be fetched again
-        // on every iteration and the loop would never terminate.
-        // They are reported at the end (failed > 0 → exit 1) and
-        // need the key-loss path (§4), not a retry.
-        const failedIds = [];
-        for (;;) {
-            const batch = await client.query(
-                `SELECT user_id, secret_encrypted FROM user_mfa
-                 WHERE enrolled = TRUE AND key_version = $1
-                 AND NOT (user_id = ANY($3))
-                 ORDER BY user_id LIMIT $2`,
-                [previous, BATCH_SIZE, failedIds]);
-            if (batch.rows.length === 0) {
-                break;
-            }
-            for (const row of batch.rows) {
-                let secret;
-                try {
-                    secret = decryptTotpSecret(row.secret_encrypted, previousKey);
-                } catch {
-                    // Undecryptable under the previous key: corrupt or
-                    // encrypted under an unknown key. Log the user id
-                    // only and skip; the key-loss path (§4) handles it.
-                    // The id is recorded so the row is excluded from
-                    // later batches (see failedIds above) — otherwise
-                    // it would be fetched and skipped forever.
-                    console.error(`rotate-mfa-key: user ${row.user_id} failed to decrypt; skipped`);
-                    failed += 1;
-                    failedIds.push(row.user_id);
-                    continue;
+        // Lift FORCE on user_mfa for the duration of the rotation (see
+        // liftForce); re-enabled in the finally below, verified.
+        const lift = { connected: false, lifted: [] };
+        try {
+            await liftForce(client, lift);
+            const totalResult = await client.query(
+                'SELECT count(*)::int AS n FROM user_mfa WHERE enrolled = TRUE');
+            const total = totalResult.rows[0].n;
+            let rotated = 0;
+            let skipped = 0;
+            let failed = 0;
+            // User ids whose secret failed to decrypt under the previous
+            // key. They are EXCLUDED from later batches: a failed row's
+            // key_version never changes (it is skipped, not updated), so
+            // without this exclusion the same rows would be fetched again
+            // on every iteration and the loop would never terminate.
+            // They are reported at the end (failed > 0 → exit 1) and
+            // need the key-loss path (§4), not a retry.
+            const failedIds = [];
+            for (;;) {
+                const batch = await client.query(
+                    `SELECT user_id, secret_encrypted FROM user_mfa
+                     WHERE enrolled = TRUE AND key_version = $1
+                     AND NOT (user_id = ANY($3))
+                     ORDER BY user_id LIMIT $2`,
+                    [previous, BATCH_SIZE, failedIds]);
+                if (batch.rows.length === 0) {
+                    break;
                 }
-                const encrypted = encryptTotpSecret(secret, currentKey);
-                await client.query('BEGIN');
-                try {
-                    await client.query(
-                        `UPDATE user_mfa SET secret_encrypted = $1, key_version = $2,
-                         updated_at = now() WHERE user_id = $3 AND key_version = $4`,
-                        [encrypted, target, row.user_id, previous]);
-                    await client.query('COMMIT');
-                    rotated += 1;
-                } catch (error) {
-                    await client.query('ROLLBACK').catch(() => {});
-                    throw error;
+                for (const row of batch.rows) {
+                    let secret;
+                    try {
+                        secret = decryptTotpSecret(row.secret_encrypted, previousKey);
+                    } catch {
+                        // Undecryptable under the previous key: corrupt or
+                        // encrypted under an unknown key. Log the user id
+                        // only and skip; the key-loss path (§4) handles it.
+                        // The id is recorded so the row is excluded from
+                        // later batches (see failedIds above) — otherwise
+                        // it would be fetched and skipped forever.
+                        console.error(`rotate-mfa-key: user ${row.user_id} failed to decrypt; skipped`);
+                        failed += 1;
+                        failedIds.push(row.user_id);
+                        continue;
+                    }
+                    const encrypted = encryptTotpSecret(secret, currentKey);
+                    await client.query('BEGIN');
+                    try {
+                        await client.query(
+                            `UPDATE user_mfa SET secret_encrypted = $1, key_version = $2,
+                             updated_at = now() WHERE user_id = $3 AND key_version = $4`,
+                            [encrypted, target, row.user_id, previous]);
+                        await client.query('COMMIT');
+                        rotated += 1;
+                    } catch (error) {
+                        await client.query('ROLLBACK').catch(() => {});
+                        throw error;
+                    }
                 }
             }
-        }
-        const remainingResult = await client.query(
-            'SELECT count(*)::int AS n FROM user_mfa WHERE enrolled = TRUE AND key_version <> $1',
-            [target]);
-        const remaining = remainingResult.rows[0].n;
-        console.log(JSON.stringify({
-            enrolled: total, rotated, skipped, failed, remaining,
-            targetVersion: target,
-        }));
-        if (failed > 0 || remaining > 0) {
-            process.exitCode = 1;
+            const remainingResult = await client.query(
+                'SELECT count(*)::int AS n FROM user_mfa WHERE enrolled = TRUE AND key_version <> $1',
+                [target]);
+            const remaining = remainingResult.rows[0].n;
+            console.log(JSON.stringify({
+                enrolled: total, rotated, skipped, failed, remaining,
+                targetVersion: target,
+            }));
+            if (failed > 0 || remaining > 0) {
+                process.exitCode = 1;
+            }
+        } finally {
+            // Re-enable FORCE even if rotation failed halfway — never
+            // leave it off. A restore failure throws loudly (the outer
+            // catch reports it and exits 1) instead of being swallowed.
+            if (lift.connected && lift.lifted.length) {
+                await restoreForce(client, lift.lifted, 'rotate-mfa-key');
+            }
         }
     } finally {
         await client.end().catch(() => {});
