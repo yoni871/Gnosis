@@ -599,7 +599,8 @@ router.post("/logout-all", authenticateToken, async (req, res) => {
 // user row — so a failure leaves the account exactly as it was.
 // The user-owned rows (notes, bookmarks, highlights, reading state,
 // verification/reset tokens, MFA rows (user_mfa, mfa_recovery_codes,
-// mfa_challenges), sessions, and refresh tokens via their session)
+// mfa_challenges), device rows (known_login_devices), sessions, and
+// refresh tokens via their session)
 // are removed by the schema's ON DELETE CASCADE rules, not
 // by explicit DELETEs here: the runtime role deliberately holds no
 // DELETE grant on those tables, and the cascade is the schema's own
@@ -702,7 +703,7 @@ router.delete("/account", authenticateToken, validateDelete, async (req, res) =>
         // The user-row delete removes every user-owned row through
         // the schema's ON DELETE CASCADE rules (notes, bookmarks,
         // highlights, user_reading_state, user_mfa, mfa_recovery_codes,
-        // mfa_challenges, email_verification_tokens,
+        // mfa_challenges, known_login_devices, email_verification_tokens,
         // password_reset_tokens, auth_sessions, and auth_refresh_tokens
         // via auth_sessions). No explicit child DELETEs: the runtime
         // role holds no DELETE grant on those tables, by design.
