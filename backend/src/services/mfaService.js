@@ -205,6 +205,16 @@ async function confirmEnrollment(db, userId, code, auth) {
         await client.query(
             "UPDATE user_mfa SET enrolled = TRUE, enrolled_at = now(), updated_at = now() WHERE user_id = $1",
             [userId]);
+        // Enrollment proves the factor for this session. Older sessions
+        // never completed MFA, so revoke them before enrollment commits.
+        await client.query(
+            "UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1 AND id IS DISTINCT FROM $2 AND revoked_at IS NULL",
+            [userId, auth?.sid ?? null]);
+        if (auth?.sid) {
+            await client.query(
+                "UPDATE auth_sessions SET mfa_verified = TRUE, mfa_generation = (SELECT mfa_generation FROM user_mfa WHERE user_id = $1) WHERE id = $2 AND user_id = $1",
+                [userId, auth.sid]);
+        }
         await client.query(
             "UPDATE mfa_recovery_codes SET used_at = now() WHERE user_id = $1 AND used_at IS NULL",
             [userId]);

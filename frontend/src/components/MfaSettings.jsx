@@ -17,6 +17,7 @@
 // normally with the new authenticator.
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import QRCode from "qrcode";
 import AuthContext from "../context/AuthContext";
 import PasswordInput from "./PasswordInput";
 import {
@@ -81,9 +82,11 @@ export default function MfaSettings({ enrollToken = null }) {
     // Enrollment-token mode: an admin enrolling before first sign-in.
     const enrollmentOnly = enrollToken !== null;
 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(!enrollmentOnly);
     const [enrolled, setEnrolled] = useState(false);
     const [enroll, setEnroll] = useState(null);
+    const [qrImage, setQrImage] = useState(null);
+    const [showManualKey, setShowManualKey] = useState(false);
     const [confirmCode, setConfirmCode] = useState("");
     const [recoveryCodes, setRecoveryCodes] = useState(null);
     const [regenPassword, setRegenPassword] = useState("");
@@ -96,17 +99,23 @@ export default function MfaSettings({ enrollToken = null }) {
     const [notice, setNotice] = useState("");
 
     useEffect(() => {
+        let active = true;
+        if (!enroll?.otpauthUrl) return;
+        QRCode.toDataURL(enroll.otpauthUrl, { margin: 2, width: 220, errorCorrectionLevel: "M" })
+            .then((url) => { if (active) setQrImage(url); })
+            .catch(() => { if (active) setShowManualKey(true); });
+        return () => { active = false; };
+    }, [enroll]);
+
+    useEffect(() => {
         if (enrollmentOnly) {
             // No session and no status to load: enrollment is required
             // and not yet done. The token authorizes only /enroll and
             // /enroll/confirm.
-            setEnrolled(false);
-            setLoading(false);
             return;
         }
         if (isAuthLoading) return;
         if (!isAuthenticated) {
-            setLoading(false);
             return;
         }
         let active = true;
@@ -137,6 +146,8 @@ export default function MfaSettings({ enrollToken = null }) {
         setBusy(true);
         try {
             setEnroll(await startMfaEnrollment(token()));
+            setQrImage(null);
+            setShowManualKey(false);
         } catch (err) {
             setError(err.message);
         } finally {
@@ -153,6 +164,7 @@ export default function MfaSettings({ enrollToken = null }) {
             const result = await confirmMfaEnrollment(token(), confirmCode);
             setEnrolled(true);
             setEnroll(null);
+            setQrImage(null);
             setConfirmCode("");
             setRecoveryCodes(result.recoveryCodes);
             setNotice(enrollmentOnly
@@ -210,7 +222,7 @@ export default function MfaSettings({ enrollToken = null }) {
         }
     }
 
-    if (isAuthLoading || loading) {
+    if (isAuthLoading || (isAuthenticated && loading)) {
         return <p role="status" className="mt-2 text-[14px] text-[var(--text-muted)]">Loading…</p>;
     }
 
@@ -276,7 +288,7 @@ export default function MfaSettings({ enrollToken = null }) {
                     </p>
                     <form onSubmit={handleStart} className="mt-5">
                         <button type="submit" disabled={busy} className={buttonClass}>
-                            <span>{busy ? "Starting…" : "Set up two-factor authentication"}</span>
+                            <span>{busy ? "Starting…" : "Enable Two-Factor Authentication"}</span>
                             <span aria-hidden="true" className="text-[18px] font-normal">→</span>
                         </button>
                     </form>
@@ -289,8 +301,7 @@ export default function MfaSettings({ enrollToken = null }) {
                         Add Gnosis to your authenticator app
                     </h2>
                     <p className="mt-2 text-[13px] leading-6 text-[var(--text-muted)]">
-                        Open your authenticator app and add this account manually with the secret
-                        below. No QR code is shown yet — type the secret in exactly as written.
+                        Open your authenticator app, choose to add an account, and scan this QR code.
                     </p>
                     <p className="mt-4 text-[13px] leading-6 text-[var(--text-muted)]">
                         {user ? (
@@ -299,21 +310,17 @@ export default function MfaSettings({ enrollToken = null }) {
                             <>This setup is for the account that just signed in. The token expires in 10 minutes — start again from the sign-in page if it runs out.</>
                         )}
                     </p>
-                    <div className="mt-3 flex items-center gap-3 rounded-lg border border-[var(--border-control)] px-4 py-3">
-                        <code className="flex-1 break-all font-mono text-[14px] tracking-wider text-[var(--text-primary)]">
-                            {enroll.secret}
-                        </code>
-                        <button
-                            type="button"
-                            onClick={handleCopySecret}
-                            className="shrink-0 font-semibold text-[12px] text-[var(--color-brand)] underline underline-offset-4"
-                        >
+                    {qrImage && <img src={qrImage} width="220" height="220" alt="QR code for adding Gnosis to your authenticator app" className="mt-4 rounded-lg bg-white p-2" />}
+                    <button type="button" aria-expanded={showManualKey} onClick={() => setShowManualKey((value) => !value)}
+                        className="mt-4 block font-semibold text-[12px] text-[var(--color-brand)] underline underline-offset-4">
+                        Can&apos;t scan? Enter setup key manually
+                    </button>
+                    {showManualKey && <div className="mt-3 flex items-center gap-3 rounded-lg border border-[var(--border-control)] px-4 py-3">
+                        <code className="flex-1 break-all font-mono text-[14px] tracking-wider text-[var(--text-primary)]">{enroll.secret}</code>
+                        <button type="button" onClick={handleCopySecret} className="shrink-0 font-semibold text-[12px] text-[var(--color-brand)] underline underline-offset-4">
                             {copied ? "Copied" : "Copy"}
                         </button>
-                    </div>
-                    <p className="mt-3 break-all text-[11px] leading-5 text-[var(--text-muted)]">
-                        Setup link: {enroll.otpauthUrl}
-                    </p>
+                    </div>}
                     <form onSubmit={handleConfirm} className="mt-6 space-y-5">
                         <div>
                             <label htmlFor="mfa-confirm-code" className={labelClass}>
@@ -323,6 +330,8 @@ export default function MfaSettings({ enrollToken = null }) {
                                 id="mfa-confirm-code"
                                 type="text"
                                 inputMode="numeric"
+                                pattern="[0-9]{6}"
+                                maxLength={6}
                                 value={confirmCode}
                                 onChange={(event) => setConfirmCode(event.target.value)}
                                 autoComplete="one-time-code"
@@ -336,6 +345,8 @@ export default function MfaSettings({ enrollToken = null }) {
                             <span aria-hidden="true" className="text-[18px] font-normal">→</span>
                         </button>
                     </form>
+                    <button type="button" onClick={() => { setEnroll(null); setQrImage(null); setConfirmCode(""); setShowManualKey(false); setError(""); }}
+                        className="mt-4 font-semibold text-[12px] text-[var(--color-brand)] underline underline-offset-4">Cancel setup</button>
                     <p className="mt-4 text-[12px] leading-5 text-[var(--text-muted)]">
                         Nothing is turned on until the code checks out — an abandoned setup leaves
                         your account exactly as it was.
