@@ -1,6 +1,14 @@
 {
   "added": [
     {
+      "kind": "constraint",
+      "name": "known_login_devices.known_login_devices_user_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
       "kind": "policy",
       "name": "bookmarks.user_isolation",
       "definition": {
@@ -22,11 +30,101 @@
     },
     {
       "kind": "policy",
+      "name": "known_login_devices.user_isolation_insert",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": null,
+        "command": "a",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "known_login_devices.user_isolation_select",
+      "definition": {
+        "check": null,
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "r",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "known_login_devices.user_isolation_update",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "w",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "mfa_recovery_codes.user_isolation_insert",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": null,
+        "command": "a",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "mfa_recovery_codes.user_isolation_select",
+      "definition": {
+        "check": null,
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "r",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "mfa_recovery_codes.user_isolation_update",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "w",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
       "name": "notes.user_isolation",
       "definition": {
         "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
         "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
         "command": "*",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "user_mfa.user_isolation_insert",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": null,
+        "command": "a",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "user_mfa.user_isolation_select",
+      "definition": {
+        "check": null,
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "r",
+        "permissive": true
+      }
+    },
+    {
+      "kind": "policy",
+      "name": "user_mfa.user_isolation_update",
+      "definition": {
+        "check": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "using": "(user_id = (NULLIF(current_setting('app.user_id'::text, true), ''::text))::integer)",
+        "command": "w",
         "permissive": true
       }
     },
@@ -86,7 +184,43 @@
     },
     {
       "kind": "relation",
+      "name": "known_login_devices",
+      "definition": {
+        "rls": true,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": true,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "mfa_recovery_codes",
+      "definition": {
+        "rls": true,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": true,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
       "name": "notes",
+      "definition": {
+        "rls": true,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": true,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "user_mfa",
       "definition": {
         "rls": true,
         "kind": "r",

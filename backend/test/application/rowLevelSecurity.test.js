@@ -29,12 +29,16 @@ test.before(async () => {
 
 test.after(async () => { if (database) await database.close(); });
 
-const RLS_TABLES = ['notes', 'bookmarks', 'highlights', 'user_reading_state'];
+const RLS_TABLES = ['notes', 'bookmarks', 'highlights', 'user_reading_state',
+    'user_mfa', 'mfa_recovery_codes', 'known_login_devices'];
 const UNPROTECTED = ['users', 'email_verification_tokens', 'password_reset_tokens',
     'auth_sessions', 'auth_refresh_tokens', 'rate_limit_attempts', 'rate_limit_sweep_state',
-    'licensed_chapter_cache', 'licensed_api_usage', 'licensed_ip_limits'];
+    'licensed_chapter_cache', 'licensed_api_usage', 'licensed_ip_limits',
+    // mfa_challenges is deliberately unprotected: its lookup is
+    // token-derived before the user is known (docs/RowLevelSecurity.md).
+    'mfa_challenges'];
 
-test('the app role cannot bypass RLS; exactly the four user tables are forced', async () => {
+test('the app role cannot bypass RLS; exactly the seven user tables are forced', async () => {
     const { pool } = database;
     const identity = await pool.query(
         'SELECT rolbypassrls FROM pg_roles WHERE rolname = current_user');
@@ -57,14 +61,24 @@ test('the app role cannot bypass RLS; exactly the four user tables are forced', 
         "SELECT tablename, policyname FROM pg_policies WHERE schemaname = 'public' ORDER BY tablename, policyname");
     assert.deepEqual(
         policies.rows.map(row => `${row.tablename}.${row.policyname}`),
-        ['bookmarks.user_isolation', 'highlights.user_isolation', 'notes.user_isolation',
+        ['bookmarks.user_isolation', 'highlights.user_isolation',
+            'known_login_devices.user_isolation_insert', 'known_login_devices.user_isolation_select',
+            'known_login_devices.user_isolation_update',
+            'mfa_recovery_codes.user_isolation_insert', 'mfa_recovery_codes.user_isolation_select',
+            'mfa_recovery_codes.user_isolation_update',
+            'notes.user_isolation',
+            'user_mfa.user_isolation_insert', 'user_mfa.user_isolation_select',
+            'user_mfa.user_isolation_update',
             'user_reading_state.user_isolation_insert', 'user_reading_state.user_isolation_select',
             'user_reading_state.user_isolation_update']);
-    // The policies mirror the grants: reading state has no DELETE grant,
-    // so it must have no DELETE policy either.
-    assert.equal((await pool.query(
-        "SELECT has_table_privilege(current_user, 'public.user_reading_state', 'DELETE') AS allowed"
-    )).rows[0].allowed, false);
+    // The policies mirror the grants: reading state, MFA and device
+    // tables have no DELETE grant, so they must have no DELETE policy
+    // either.
+    for (const table of ['user_reading_state', 'user_mfa', 'mfa_recovery_codes', 'known_login_devices']) {
+        assert.equal((await pool.query(
+            `SELECT has_table_privilege(current_user, 'public.${table}', 'DELETE') AS allowed`
+        )).rows[0].allowed, false, `${table} must have no DELETE grant`);
+    }
 });
 
 async function seedNote(ownerId) {
@@ -141,6 +155,60 @@ test('bookmarks, highlights and reading state isolate the same way', async () =>
         { code: '42501' });
     assert.equal((await withUser(pool, userA, client =>
         client.query('SELECT * FROM user_reading_state WHERE user_id = $1', [userA]))).rows.length, 1);
+});
+
+test('MFA and device tables isolate the same way', async () => {
+    const { pool } = database;
+    // user_mfa: enrolled defaults false, key_version/mfa_generation have
+    // defaults, so user_id + secret_encrypted is a complete row.
+    await withUser(pool, userA, client => client.query(
+        "INSERT INTO user_mfa(user_id, secret_encrypted) VALUES ($1, 'synthetic-secret')", [userA]));
+    await withUser(pool, userA, client => client.query(
+        "INSERT INTO mfa_recovery_codes(user_id, code_hash, code_salt) VALUES ($1, 'synthetic-hash', 'synthetic-salt')", [userA]));
+    await withUser(pool, userA, client => client.query(
+        "INSERT INTO known_login_devices(user_id, device_key) VALUES ($1, $2)", [userA, Buffer.from([1])]));
+    // Each table's per-user UPDATE column, for the cross-user UPDATE check.
+    const updateColumn = {
+        user_mfa: 'enrolled = true',
+        mfa_recovery_codes: 'used_at = now()',
+        known_login_devices: 'last_seen_at = now()',
+    };
+    for (const table of ['user_mfa', 'mfa_recovery_codes', 'known_login_devices']) {
+        // Owner reads their own row; the other user reads zero rows.
+        assert.equal((await withUser(pool, userA, client =>
+            client.query(`SELECT * FROM ${table} WHERE user_id = $1`, [userA]))).rows.length, 1, table);
+        assert.equal((await withUser(pool, userB, client =>
+            client.query(`SELECT * FROM ${table} WHERE user_id = $1`, [userA]))).rows.length, 0, table);
+        assert.equal((await pool.query(`SELECT * FROM ${table} WHERE user_id = $1`, [userA])).rows.length, 0, table);
+        // Cross-user UPDATE affects zero rows and changes nothing.
+        assert.equal((await withUser(pool, userB, client =>
+            client.query(`UPDATE ${table} SET ${updateColumn[table]} WHERE user_id = $1 RETURNING *`, [userA]))).rows.length, 0, table);
+        assert.equal((await pool.query(`UPDATE ${table} SET ${updateColumn[table]} WHERE user_id = $1`, [userA])).rowCount, 0, table);
+        // The owner can still update their own row.
+        assert.equal((await withUser(pool, userA, client =>
+            client.query(`UPDATE ${table} SET ${updateColumn[table]} WHERE user_id = $1 RETURNING *`, [userA]))).rows.length, 1, table);
+        // These tables have no DELETE policy and no DELETE grant: the
+        // grant check runs before RLS is consulted, so even the owner
+        // gets 42501 (not zero rows) — and the row survives.
+        await assert.rejects(withUser(pool, userA, client =>
+            client.query(`DELETE FROM ${table} WHERE user_id = $1 RETURNING *`, [userA])),
+            { code: '42501' });
+        assert.equal((await withUser(pool, userA, client =>
+            client.query(`SELECT * FROM ${table} WHERE user_id = $1`, [userA]))).rows.length, 1, table);
+    }
+    // Writes without a context, and writes for another user, fail.
+    await assert.rejects(pool.query(
+        "INSERT INTO user_mfa(user_id, secret_encrypted) VALUES ($1, 'no context')", [userA]), { code: '42501' });
+    await assert.rejects(withUser(pool, userB, client => client.query(
+        "INSERT INTO user_mfa(user_id, secret_encrypted) VALUES ($1, 'wrong user')", [userA])), { code: '42501' });
+    await assert.rejects(pool.query(
+        "INSERT INTO mfa_recovery_codes(user_id, code_hash, code_salt) VALUES ($1, 'no context', 'salt')", [userA]), { code: '42501' });
+    await assert.rejects(withUser(pool, userB, client => client.query(
+        "INSERT INTO mfa_recovery_codes(user_id, code_hash, code_salt) VALUES ($1, 'wrong user', 'salt')", [userA])), { code: '42501' });
+    await assert.rejects(pool.query(
+        "INSERT INTO known_login_devices(user_id, device_key) VALUES ($1, $2)", [userA, Buffer.from([2])]), { code: '42501' });
+    await assert.rejects(withUser(pool, userB, client => client.query(
+        "INSERT INTO known_login_devices(user_id, device_key) VALUES ($1, $2)", [userA, Buffer.from([2])])), { code: '42501' });
 });
 
 test('withUser clears the context on commit and on rollback, and rejects bad ids', async () => {
