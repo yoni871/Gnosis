@@ -58,6 +58,11 @@ const POLICIES = {
     refresh_token: { windowMs: 60 * 1000, limit: 10 },
     login_ip_email: { windowMs: 15 * 60 * 1000, limit: 5 },
     login_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
+    // PR #95: DELETE /account verifies the current password, so it is
+    // a password-guessing endpoint like login — per-IP+user 5/15 min
+    // plus a per-IP aggregate 30/15 min, mirroring login's shape.
+    delete_account_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    delete_account_ip: { windowMs: 15 * 60 * 1000, limit: 30 },
     register_ip: { windowMs: 60 * 60 * 1000, limit: 5 },
     // Issue #9: resend and verify limits. Resend counts every
     // structurally valid request (unknown, verified, and unverified

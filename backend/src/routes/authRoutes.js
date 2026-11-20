@@ -159,6 +159,17 @@ const refreshRateLimit = createRateLimitMiddleware([
     { policy: "refresh_token", fields: req => [req.refreshCookie] },
 ], "refresh");
 
+// PR #95: DELETE /account verifies the current password, so it is a
+// password-guessing endpoint like login and needs the same shape of
+// throttle (per-IP+user 5/15 min, per-IP 30/15 min). The limiter runs
+// after authenticateToken — it keys on the authenticated user — and
+// after validateDelete, so invalid input never counts. This closes the
+// CodeQL missing-rate-limiting finding on the handler.
+const deleteAccountRateLimit = createRateLimitMiddleware([
+    { policy: "delete_account_ip_user", fields: (req, ip) => [ip, String(req.user.userId)] },
+    { policy: "delete_account_ip", fields: (req, ip) => [ip] },
+], "delete-account");
+
 // Guarantees a reservation is always settled. Handlers finalize
 // explicitly on every path; this wrapper covers the rest: an unexpected
 // throw is an internal error and releases, while a handler that somehow
@@ -619,7 +630,7 @@ router.post("/logout-all", authenticateToken, async (req, res) => {
 // name in docs/SecurityEvents.md. A "requested" event before the
 // transaction was considered and left out: this handler emits the
 // completion only.
-router.delete("/account", authenticateToken, validateDelete, async (req, res) => {
+router.delete("/account", authenticateToken, validateDelete, deleteAccountRateLimit, withRateLimitFinalize(async (req, res) => {
     const userId = req.user.userId;
 
     // The password check runs before the transaction and before any
@@ -726,7 +737,7 @@ router.delete("/account", authenticateToken, validateDelete, async (req, res) =>
     // so audit() would throw on it.
     await audit(pool, "account_deletion.completed", userId);
     return res.json({ deleted: true });
-});
+}));
 
 //to verify an email address with a link token
 // Lock order for every verify, resend, forgot, and reset transaction:
