@@ -15,6 +15,9 @@ client (mobile app, public API, direct database access) exists.
 | `bookmarks` | `user_isolation` (FOR ALL) | SELECT / INSERT / UPDATE / DELETE |
 | `highlights` | `user_isolation` (FOR ALL) | SELECT / INSERT / UPDATE / DELETE |
 | `user_reading_state` | `user_isolation_select` / `_insert` / `_update` | No DELETE policy — the app role has no DELETE grant on this table, and the policies mirror the grants exactly |
+| `user_mfa` | `user_isolation_select` / `_insert` / `_update` | No DELETE policy — the app role has no DELETE grant; UPDATE is column-scoped (enrolled, enrolled_at, secret_encrypted, key_version, last_totp_step, mfa_generation, updated_at) |
+| `mfa_recovery_codes` | `user_isolation_select` / `_insert` / `_update` | No DELETE policy — the app role has no DELETE grant; UPDATE is column-scoped (used_at) |
+| `known_login_devices` | `user_isolation_select` / `_insert` / `_update` | No DELETE policy — the app role has no DELETE grant; UPDATE is column-scoped (last_seen_at). The migration also adds the missing FK to `users`, so deleting a user cascades their device rows |
 
 Every policy scopes rows to `user_id =
 NULLIF(current_setting('app.user_id', true), '')::integer`. The
@@ -30,28 +33,61 @@ in `backend/test/application/rowLevelSecurity.test.js`, which asserts a
 context-free read on the same pooled client returns zero rows after
 both commit and rollback).
 
-All four tables have `FORCE ROW LEVEL SECURITY`: the policies apply to
+All seven tables have `FORCE ROW LEVEL SECURITY`: the policies apply to
 the table owner as well as the app role. Without FORCE, any owner-context
 tooling (migrations, the Neon console, `pg_dump`) would silently bypass
 them.
 
+Foreign-key cascades bypass RLS: a `DELETE FROM users` with no context
+deletes the parent and cascades the child rows (verified by execution on
+PostgreSQL 18.7), so cascades cannot be relied on to prevent
+cascade-driven deletion. The `setUserContext` call in DELETE
+`/account` is retained as defence-in-depth, not as a cascade
+requirement — the cascade happens with or without it.
+
 ## What is deliberately NOT covered, and why
 
-- **`users`.** Registration, verification, and password reset run
+Twelve App tables carry a `user_id` column; seven are covered above and
+the other five are deliberately NOT covered:
+
+- **`users`.** No `user_id` column — its own `id` is the user key.
+  Registration, verification, and password reset run
   unauthenticated or token-derived — there is no user to put in the
   context before the token lookup, and wiring one through those flows
   would add failure modes to the most security-critical paths for
-  little gain: `users` rows hold no per-user private content beyond
-  email and `password_hash`, and the app role's column-level grants
+  little gain: `users` rows hold email, `password_hash`, and
+  `first_name`/`last_name`, and the app role's column-level grants
   (`UPDATE` only on `email_verified_at` and `password_hash`) are the
   control there. (Migration `20261104021959` already ran and never
   re-runs, so it is not a reason for the exclusion — the
   unauthenticated-flow argument carries it on its own.)
-- **Tokens and sessions** (`email_verification_tokens`,
-  `password_reset_tokens`, `auth_sessions`, `auth_refresh_tokens`).
-  Protected by hash + single-use + the application's own checks; RLS
-  there adds failure modes (e.g. a reset flow that must update a token
-  row before it knows the user).
+- **`email_verification_tokens`, `password_reset_tokens`.** Looked up
+  by token hash before the user is known. Protected by hash +
+  single-use + the application's own checks; RLS there adds failure
+  modes (e.g. a reset flow that must update a token row before it
+  knows the user).
+- **`auth_sessions`.** Looked up by session id; the login flow that
+  creates sessions runs before any user context exists.
+- **`mfa_challenges`.** Looked up by token hash before the user is
+  known, so no context exists to scope by —
+  `backend/src/routes/mfaRoutes.js:137` and
+  `backend/src/services/mfaService.js:315` resolve the owner from the
+  token (`SELECT user_id FROM mfa_challenges WHERE token_hash = $1`).
+  The table also holds a copy of `users.password_hash` alongside the
+  token hash, so this is a deliberate, documented trade-off, not an
+  oversight: the challenge must be resolvable before authentication,
+  and the application's own checks (hash + single-use + expiry) are
+  the control there.
+- **`security_events`** (audit log). `user_id` is populated for
+  authenticated events but NULL for unauthenticated ones (failed
+  logins, token replays) — audit rows must be writable with no user
+  context, so a user-scoped policy would break the logger.
+
+The remaining App tables carry no `user_id` column at all, so there is
+nothing per-user to scope:
+
+- **`auth_refresh_tokens`.** Keyed by `session_id` (→ `auth_sessions`,
+  which cascades on user delete); no `user_id` column.
 - **Rate-limit tables** (`rate_limit_attempts`,
   `rate_limit_sweep_state`). Keyed by HMAC hash, not by user; the
   limiter runs before authentication.
@@ -59,10 +95,12 @@ them.
   `licensed_ip_limits`). The cache writer runs for anonymous visitors
   under IP-based limits — there is no `user_id` to set, and a user
   policy there would break licensed fetches.
-- **`security_events`** (audit log). The logger fires for
-  unauthenticated events (failed logins, token replays) with no user.
 - **Bible / Commentary tables.** No per-user rows; the app roles there
   are SELECT-only.
+
+The scope above matches the migration header
+(`database/migrations/app/20261109220000_add-row-level-security.sql`);
+the migration is the authority if the two ever disagree.
 
 ## The `withUser` contract
 
@@ -118,26 +156,40 @@ row counts, so assert them.
 
 Verified on disposable PostgreSQL 18.6 (2026-11-09):
 
-- `pg_dump` run as a **non-superuser owner** (the Neon case:
-  `neondb_owner`) **fails loudly** (exit 1, `ERROR: query would be
-  affected by row-level security policy`) and leaves an incomplete
-  dump — the COPY header with no data rows. `pg_dump` issues `SET
-  row_security = off`, but with FORCE RLS that does **not** help the
-  owner: a plain SELECT in that state errors outright. A COPY-based
-  extract as owner with no context, by contrast, silently yields zero
-  rows with a successful exit code — that is the silent-data-loss
-  shape, and the one a manual copy script must guard against.
-- `SET row_security = off` is **not** superuser-only (any role may set
-  it), but it is **not** the remedy for the owner under FORCE RLS.
-- The remedy is to drop FORCE around the copy, as the table owner:
-  `ALTER TABLE <table> NO FORCE ROW LEVEL SECURITY` on the four tables
-  before the copy/dump, then re-enable it afterwards. Verified: the
-  owner then sees all rows, and re-enabling restores enforcement.
-  A superuser session would also bypass RLS, but Neon offers no
-  superuser access, so the runbook must use NO FORCE.
-- The Phase 4 production copy procedure and any restore test must
-  include this step if RLS is live on the source tables. The
-  launch-readiness checklist records the same gotcha.
+For a planned owner-run backup or copy of a database where this migration is
+active:
+
+1. Put the application in maintenance mode and stop all writes.
+2. As the table owner, run `ALTER TABLE ... NO FORCE ROW LEVEL SECURITY` on
+   each of those seven tables. Keep `ENABLE ROW LEVEL SECURITY` and all policies
+   in place; the restricted App role remains subject to them. Check
+   `pg_class.relforcerowsecurity = false` for all seven before extracting.
+   Now record expected row counts for `notes`, `bookmarks`, `highlights`,
+   `user_reading_state`, `user_mfa`, `mfa_recovery_codes`, and
+   `known_login_devices` through that owner connection.
+3. Run the owner-context dump or copy. Check its exit status and compare
+   extracted row counts with the recorded counts. Abort on any mismatch.
+4. In a guaranteed cleanup step, run `ALTER TABLE ... FORCE ROW LEVEL SECURITY`
+   on all seven tables, including when the dump fails. Verify all seven flags
+   are true before releasing maintenance mode. Alert an operator if cleanup
+   or verification fails; leave writes stopped.
+5. Test the restore into a **disposable** database with the same migration
+   history and compare row counts and representative rows before relying on
+   the backup — run `backend/scripts/db/verify-restore.js` for the
+   comparison. A restore into a schema already using FORCE may require the
+   same temporary owner bypass on the destination. The script detects a
+   restored database that lost FORCE: it compares the as-found FORCE flags
+   between source and restored target and fails with `forceMismatch`
+   (exit 1) if they differ — but it does NOT re-enable FORCE itself.
+   Remediation is the runbook's step 6; the script verifies, it does not
+   fix.
+6. after restoring into a database, re-enable FORCE ROW LEVEL SECURITY on the restored database and verify it before relying on the restored database. A dump or copy taken while FORCE was off restores without FORCE, and a restored database without FORCE silently leaves owner-context access unprotected. Run, as the table owner, on the restored database: ALTER TABLE … FORCE ROW LEVEL SECURITY for all seven RLS tables (notes, bookmarks, highlights, user_reading_state, user_mfa, mfa_recovery_codes, known_login_devices). Then verify with: SELECT relname, relforcerowsecurity FROM pg_class WHERE relname IN ('notes','bookmarks','highlights','user_reading_state','user_mfa','mfa_recovery_codes','known_login_devices') AND relnamespace = 'public'::regnamespace; — all seven rows must show relforcerowsecurity = true. Note that `backend/scripts/db/verify-restore.js` also checks this: it compares the as-found FORCE flags between source and restored target and fails with `forceMismatch` if they differ, so re-run it after re-enabling FORCE to confirm. Do not rely on a restored database that fails this check.
+
+Do not run the toggles and extraction inside one long transaction: PostgreSQL
+holds `ALTER TABLE` locks until commit. There is therefore a brief owner-bypass
+window; restrict owner credentials and the maintenance window accordingly.
+The test harness checks application-role isolation; it cannot certify a hosted
+backup. The operator must verify the backup and restore separately.
 
 ## Testing
 
@@ -151,8 +203,9 @@ bypasses RLS.
 - `backend/test/application/rowLevelSecurity.test.js` (DB-backed
   suite): as the app role, proves per-table isolation for both users,
   context-free reads returning zero rows, context-free and cross-user
-  writes failing or affecting zero rows, the missing DELETE policy on
-  `user_reading_state`, and that `withUser` clears the context on
+  writes failing or affecting zero rows, the missing DELETE policies on
+  `user_reading_state`, `user_mfa`, `mfa_recovery_codes`, and
+  `known_login_devices`, and that `withUser` clears the context on
   commit and on rollback (verified on a one-connection pool, so the
   follow-up query reuses the exact client).
 - `backend/test/migrations/integration.test.js`: the full migration
@@ -162,13 +215,18 @@ bypasses RLS.
 - The registration flow (INSERT into `users` + verification token) is
   covered by the DB-backed `emailVerification` suite, which runs
   against the RLS-enabled schema; the licensed-cache write path is
-  covered by the catalog assertion (no policies, no RLS flag) plus a
-  standalone app-role check with the full grant set.
+  covered by the catalog assertion in the RLS test (the three licensed
+  tables are pinned in the `UNPROTECTED` list: no RLS, no FORCE).
+  There is no standalone app-role database check of the licensed write
+  path — the licensed service's orchestration is proven against an
+  in-memory fake pool in
+  `backend/test/translations/licensedService.test.js`, not against a
+  database.
 
 ## For the reviewer (Muse 1)
 
-Policy draft for review: the four tables, the policy set, and the
-`users`/tokens/sessions/licensed exclusions above, against the audited
+Policy draft for review: the seven tables, the policy set, and the
+`users`/tokens/sessions/`mfa_challenges`/licensed exclusions above, against the audited
 grant set. Open questions: none on the role model — the swap renames
 the clean replacement into the same role name with identical grants,
 so nothing here depends on the swap landing first. If the grant set

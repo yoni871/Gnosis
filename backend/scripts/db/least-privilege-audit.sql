@@ -47,10 +47,13 @@ GROUP BY 1, 2, 3
 ORDER BY 1, 2, 3;
 
 -- Q4 — Column-level UPDATE grants. These are the sensitive ones: the App
--- runtime role must hold exactly six UPDATE column pairs (users
--- email_verified_at + password_hash; email_verification_tokens and
--- password_reset_tokens used_at + consumed_reason) and must NOT hold
--- UPDATE on token_hash, expires_at, or users.email.
+-- runtime role must hold exactly seventeen UPDATE column pairs (users
+-- email_verified_at + password_hash; email_verification_tokens,
+-- password_reset_tokens and mfa_challenges used_at + consumed_reason;
+-- user_mfa enrolled, enrolled_at, secret_encrypted, key_version,
+-- last_totp_step, mfa_generation, updated_at; mfa_recovery_codes used_at;
+-- known_login_devices last_seen_at) and must NOT hold UPDATE on
+-- token_hash, expires_at, or users.email.
 
 SELECT grantee, table_schema, table_name, column_name
 FROM information_schema.role_column_grants
@@ -87,7 +90,8 @@ FROM pg_default_acl
 ORDER BY 1, 2, 3;
 
 -- Q8 — Public table count (sanity: 0 on the empty Bible/Commentary
--- production branches; 15 on Gnosis production at the 1853b92 baseline).
+-- production branches; 19 on Gnosis with the current App migrations
+-- applied — 15 at the 1853b92 baseline).
 
 SELECT count(*) AS public_table_count
 FROM information_schema.tables
