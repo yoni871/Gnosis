@@ -6,7 +6,7 @@ Numbers 25 then recounts Israelite participation in worship associated with Baal
 
 An Iron Age plaster inscription from Tell Deir ʿAlla in Jordan independently mentions Balaam son of Beor as a visionary figure. This is unusually significant external evidence for a tradition connected to a biblical name. Yet the inscription does not document Balak, the donkey episode, or the specific wilderness oracles, and its date, language, and relation to the literary Balaam account are matters of scholarly debate.
 
-The inscriptional evidence also creates an opportunity to clarify what “corroboration” means. A shared name with patronymic and visionary association is a significant external parallel, particularly for a figure not otherwise widely documented. Yet Balaam’s identity in the biblical narrative is shaped by the needs of the Balak story, while the plaster text has a different religious and literary setting. A historical study gains rather than loses credibility by presenting that contrast. The later Peor episode adds its own interpretive problem because the relations among the Balak narrative, the Midianite elements, and Numbers 31 have been variously explained by scholars.[^source-numbers-kjv-biblehub]
+The inscriptional evidence also creates an opportunity to clarify what “corroboration” means. A shared name with patronymic and visionary association is a significant external parallel, particularly for a figure not otherwise widely documented. Yet Balaam’s identity in the biblical narrative is shaped by the needs of the Balak story, while the plaster text has a different religious and literary setting. A historical study gains rather than loses credibility by presenting that contrast. The later Peor episode adds its own interpretive problem because the relations among the Balak narrative, the Midianite elements, and Numbers 31 have been variously explained by scholars.
 
 ## Ancient World
 
@@ -24,7 +24,7 @@ Moab is independently attested as an Iron Age polity, but its known political ci
 
 ### The star oracle and later readings
 
-Numbers 24:17’s star and scepter imagery has been read politically, royalistically, and messianically across different periods of reception. The original oracle and later applications need not have precisely the same referent. Matthew 2 recounts a star and eastern visitors but does not quote Numbers 24:17 as a direct fulfillment citation. The connection is therefore possible thematic or theological reception, not a verified quotation. Revelation 2:14 names Balaam and Balak in a later moral warning; that is a much stronger explicit intertext, although it also cannot independently confirm the original episode.
+Numbers 24:17’s star and scepter imagery has been read politically, royalistically, and messianically across different periods of reception. The original oracle and later applications need not have precisely the same referent. Matthew 2 recounts a star and eastern visitors but does not quote Numbers 24:17 as a direct fulfillment citation. The connection is therefore possible thematic or theological reception, not a verified quotation. Revelation 2:14 names Balaam and Balak in a later moral warning; that is a much stronger explicit intertext, although it also cannot independently confirm the original episode. The primary passage for this study is the Balaam oracles (Numbers 22–24). Numbers 25 (Peor) is covered by five direct-account connections, and extending the primary passage to 25:18 would exceed the three-chapter limit for a primary passage.
 
 ### Baal Peor and the numbered deaths
 

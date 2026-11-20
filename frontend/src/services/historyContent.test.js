@@ -180,7 +180,7 @@ describe("generateHistoryContent — the publication gate", () => {
         const { contentDir } = makeTempTree({ eventStatus: "draft" });
         const tree = readTreeInventory(contentDir);
         // All ten shipped events are published now, and so are all
-        // eighteen categories, so the only non-published record in this
+        // twenty-seven categories, so the only non-published record in this
         // fixture is the draft Creation event.
         expect(findNonPublishedIds({ contentDir })).toEqual(nonPublishedIds(tree));
     });
@@ -711,7 +711,7 @@ describe("validateHistoryContent — categories", () => {
         addCategory(contentDir);
         const tree = readTreeInventory(contentDir);
         // All ten shipped events are published now, and so are all
-        // eighteen shipped categories, so the only non-published record
+        // twenty-seven shipped categories, so the only non-published record
         // is the in-review fixture category (which replaces the
         // shipped, published Nations and Babel).
         expect(findNonPublishedIds({ contentDir })).toEqual(nonPublishedIds(tree));

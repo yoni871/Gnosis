@@ -182,7 +182,7 @@ describe("build-history-content.js — the flag cannot leak into a build", () =>
         // Great Flood, Noah's Sacrifice and God's Covenant, and Noah and
         // His Sons events are published now, so the dev opt-in includes
         // all ten events — the nine published above plus the in-review
-        // Creation — and all eighteen published categories, with the
+        // Creation — and all twenty-seven published categories, with the
         // Genesis categories (Nations and Babel, Abraham and Sarah,
         // Isaac, Jacob, and Esau, and Joseph and Israel in Egypt)
         // citing twenty-six sources they alone cite, plus the Exodus
@@ -450,7 +450,7 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
         const sandbox = makeSandbox();
         const contentDir = path.join(sandbox, "src", "content", "history");
         const tree = readTreeInventory(contentDir);
-        // Nine shipped events are published now, and so are all eighteen
+        // Nine shipped events are published now, and so are all twenty-seven
         // categories, so the sandbox's only non-published records are
         // Creation (flipped to in-review by makeSandbox) and the three
         // sources cited only by Creation (Brown, Crouch, and Shabaka).
@@ -459,8 +459,8 @@ describe("findNonPublishedRecords — titles and unpublished-only sources", () =
 });
 
 describe("checkHistoryGate — claims detector", () => {
-    // A sandbox where ALL TEN events and all eighteen categories are
-    // published (the Genesis, Exodus, and Leviticus categories ship published
+    // A sandbox where ALL TEN events and all twenty-seven categories are
+    // published (the Genesis, Exodus, Leviticus, and Numbers categories ship published
     // now; the flip below is a no-op kept so the fixture stays
     // explicit): the claims detector
     // must fire on this all-published path, where the gate's

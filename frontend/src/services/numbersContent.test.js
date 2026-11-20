@@ -1,6 +1,5 @@
-// Numbers in-review category package (integration, not publication).
-// Requires the source-registry delta to be safely merged and the one-line
-// era patch applied. Dossier 9 (Worship, Vows, and War with Midian) is
+// Numbers published category package (publication).
+// Dossier 9 (Worship, Vows, and War with Midian) is
 // EXCLUDED by QA's Phase 4 FAIL verdict — this package has nine categories,
 // narrativeOrder 29–37, and no D9 record anywhere.
 import { describe, expect, it } from 'vitest';
@@ -17,7 +16,7 @@ const sources = read('sources/references.json');
 const ids = manifest.entries.map((entry) => entry.categoryId);
 const records = ids.map((id) => read(`categories/${id.slice('category-'.length)}.json`));
 const categories = ['numbers-israel-organized-at-sinai', 'numbers-holiness-and-preparation', 'numbers-departure-and-wilderness-complaints', 'numbers-twelve-spies-and-rebellion', 'numbers-korah-and-priesthood', 'numbers-final-wilderness-journey', 'numbers-balaam-and-moab', 'numbers-new-generation-and-joshua', 'numbers-preparing-to-inherit'];
-describe('Numbers in-review category package', () => {
+describe('Numbers published category package', () => {
   it('contains exactly nine ordered thematic categories (Dossier 9 excluded)', () => {
     expect(ids).toEqual(categories.map((s) => `category-${s}`));
     expect(manifest.entries.map((entry) => entry.narrativeOrder)).toEqual([29, 30, 31, 32, 33, 34, 35, 36, 37]);
@@ -28,7 +27,7 @@ describe('Numbers in-review category package', () => {
     expect(HISTORY_CATEGORY_ERAS).toEqual(expect.arrayContaining(['primeval','patriarchal','exodus','leviticus','numbers']));
     for (const record of records) {
       expect(record.category).toBe('category');
-      expect(record.status).toBe('in-review');
+      expect(record.status).toBe('published');
       expect(record.era).toBe('numbers');
       // D3 carries the narrative date in its label + note (Num 10:11 — 20th
       // day, 2nd month, 2nd year; absolute BCE date unknown). There is NO
@@ -58,16 +57,16 @@ describe('Numbers in-review category package', () => {
       expect(record.primaryScripture.endChapter).toBeLessThanOrEqual(record.fullRange.endChapter);
     }
   });
-  it('excludes all nine Numbers categories from the published-only generator', () => {
+  it('includes all nine Numbers categories in the published-only generator', () => {
     const outputDir = mkdtempSync(path.join(tmpdir(), 'gnosis-num-gate-'));
     try {
       const bibleChapters = JSON.parse(readFileSync(path.resolve(root, '../../data/bibleChapters.json'), 'utf8'));
       const { manifest: generated } = generateHistoryContent({ contentDir: root, outputDir, bibleChapters, includeUnpublished: false });
       expect(generated.includeUnpublished).toBe(false);
-      for (const id of ids) expect(generated.categories).not.toContain(id);
-      expect(generated.books).not.toContain('numbers');
-      for (const category of categories) expect(existsSync(path.join(outputDir, 'categories', `${category}.json`))).toBe(false);
-      expect(existsSync(path.join(outputDir, 'books', 'numbers.json'))).toBe(false);
+      expect(generated.categories).toEqual(expect.arrayContaining(ids));
+      expect(generated.books).toContain('numbers');
+      for (const category of categories) expect(existsSync(path.join(outputDir, 'categories', `${category}.json`))).toBe(true);
+      expect(existsSync(path.join(outputDir, 'books', 'numbers.json'))).toBe(true);
     } finally { rmSync(outputDir, { recursive: true, force: true }); }
   });
   it('includes all nine Numbers categories in the dev-opt-in generator', () => {
@@ -105,12 +104,12 @@ describe('Numbers in-review category package', () => {
       }
     }
   });
-  it('preserves all 27 claims and 35 connections without editorial overrides', () => {
-    expect(records.flatMap((r) => r.claims ?? [])).toHaveLength(27);
-    expect(records.flatMap((r) => r.connections ?? [])).toHaveLength(35);
+  it('preserves all 28 claims and 75 connections without editorial overrides', () => {
+    expect(records.flatMap((r) => r.claims ?? [])).toHaveLength(28);
+    expect(records.flatMap((r) => r.connections ?? [])).toHaveLength(75);
     for (const r of records) {
       expect(r.review.editorialOverride).toBeUndefined();
-      expect(r.status).toBe('in-review');
+      expect(r.status).toBe('published');
     }
   });
   it('records the Numbers 10 boundary explicitly (10:10/10:11 split, not a shared chapter)', () => {

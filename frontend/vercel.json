@@ -234,6 +234,56 @@
       "source": "/biblical-history/leviticus",
       "destination": "/biblical-history/leviticus-sacrificial-system",
       "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers/numbers-israel-organized-at-sinai",
+      "destination": "/biblical-history/numbers-israel-organized-at-sinai",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers/numbers-holiness-and-preparation",
+      "destination": "/biblical-history/numbers-holiness-and-preparation",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers/numbers-departure-and-wilderness-complaints",
+      "destination": "/biblical-history/numbers-departure-and-wilderness-complaints",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers/numbers-twelve-spies-and-rebellion",
+      "destination": "/biblical-history/numbers-twelve-spies-and-rebellion",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers/numbers-korah-and-priesthood",
+      "destination": "/biblical-history/numbers-korah-and-priesthood",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers/numbers-final-wilderness-journey",
+      "destination": "/biblical-history/numbers-final-wilderness-journey",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers/numbers-balaam-and-moab",
+      "destination": "/biblical-history/numbers-balaam-and-moab",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers/numbers-new-generation-and-joshua",
+      "destination": "/biblical-history/numbers-new-generation-and-joshua",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers/numbers-preparing-to-inherit",
+      "destination": "/biblical-history/numbers-preparing-to-inherit",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/numbers",
+      "destination": "/biblical-history/numbers-israel-organized-at-sinai",
+      "permanent": true
     }
   ],
   "rewrites": [

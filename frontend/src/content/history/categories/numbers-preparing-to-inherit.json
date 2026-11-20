@@ -3,7 +3,7 @@
   "title": "Preparing to Inherit the Promised Land",
   "category": "category",
   "era": "numbers",
-  "status": "in-review",
+  "status": "published",
   "primaryScripture": {
     "book": "Numbers",
     "bookId": "numbers",
@@ -39,7 +39,7 @@
     {
       "id": "clm-num-10-002",
       "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
-      "evidence": "Numbers research Phases 1–3; limitation of extant archaeology and specific historical identification.",
+      "evidence": "Phase 1 Dossier Ten and Phase 2 N10-04: MacDonald (East of the Jordan, ch. 5, pp. 66–67, read directly; confirmed by QA Phase 4 §5.10) finds the Numbers, Deuteronomy and Judges itineraries irreconcilable, with many Num 33 stations unidentified or disputed; QA Phase 4 §5.10 records no site identification and no verified ANE equivalent for the Num 35 refuge system.",
       "assessment": "unknown"
     },
     {
@@ -72,7 +72,7 @@
       "endVerse": 13,
       "type": "background",
       "confidence": "established",
-      "note": "Refuge law parallel with important differences."
+      "note": "Refuge-law parallel; the laws differ concretely: cities — altar asylum in Exodus 21:12–14, three cities plus three more conditionally in Deuteronomy 19:2, 8–9, six in Numbers 35:6 (three of them set apart in Deuteronomy 4:41–43); procedure — the congregation judges in Numbers 35:24–25, the elders of the slayer’s own city fetch him in Deuteronomy 19:12, the elders of the refuge city hear his cause in Joshua 20:4; rationale — only Numbers states the land-pollution theology (35:33–34); terminus — release at the high priest’s death in Numbers 35:25, 28 (and Joshua 20:6), with no such terminus in Deuteronomy 19 or Exodus 21."
     },
     {
       "id": "conn-num-10-003",
@@ -97,11 +97,58 @@
       "type": "direct-account",
       "confidence": "established",
       "note": "Continuation of Zelophehad daughters’ inheritance."
+    },
+    {
+      "id": "conn-num-10-005",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 11,
+      "startVerse": 14,
+      "endChapter": 11,
+      "endVerse": 22,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Jephthah’s message to the Ammonite king retells the Transjordan passage — Israel’s refusal of passage, the defeat of Sihon, and possession from Arnon to Jabbok (11:22). MacDonald treats Judges 11 as an itinerary parallel that cannot be harmonized with Numbers 33."
+    },
+    {
+      "id": "conn-num-10-006",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 13,
+      "startVerse": 1,
+      "endChapter": 19,
+      "endVerse": 51,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Later implementation of the Numbers 34 allotment: the tribal inheritances divided by lot at Shiloh (19:51), using overlapping geographic language with different detail — compare, do not force onto one map."
+    },
+    {
+      "id": "conn-num-10-007",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 21,
+      "startVerse": 12,
+      "endChapter": 21,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "established",
+      "note": "Altar-asylum parallel: the unintentional killer flees to an appointed place (21:13), but the presumptuous killer is taken from the altar (21:14) — no cities, no congregation trial, no high-priest terminus."
+    },
+    {
+      "id": "conn-num-10-008",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 27,
+      "startVerse": 1,
+      "endChapter": 27,
+      "endVerse": 11,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Original Zelophehad ruling — the daughters’ plea generalized into an inheritance statute (27:11) — which Numbers 36 then qualifies with the endogamy restriction."
     }
   ],
   "relatedEvents": [],
   "sources": [
-    "source-numbers-kjv-biblehub",
     "source-macdonald-east-jordan"
   ],
   "review": {

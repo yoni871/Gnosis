@@ -91,7 +91,7 @@ describe("listBooks", () => {
         expect(rest).toHaveLength(65);
         expect(rest.every((book) => book.eventCount === 0 && !book.hasEvents)).toBe(true);
     });
-    it("reports four categories for Genesis, seven for Exodus, seven for Leviticus, and zero for every other book", () => {
+    it("reports four categories for Genesis, seven for Exodus, seven for Leviticus, nine for Numbers, and zero for every other book", () => {
         const books = listBooks();
         const genesis = books.find((book) => book.id === "genesis");
         expect(genesis.categoryCount).toBe(4);
@@ -102,8 +102,11 @@ describe("listBooks", () => {
         const leviticus = books.find((book) => book.id === "leviticus");
         expect(leviticus.categoryCount).toBe(7);
         expect(leviticus.hasCategories).toBe(true);
-        const rest = books.filter((book) => book.id !== "genesis" && book.id !== "exodus" && book.id !== "leviticus");
-        expect(rest).toHaveLength(63);
+        const numbers = books.find((book) => book.id === "numbers");
+        expect(numbers.categoryCount).toBe(9);
+        expect(numbers.hasCategories).toBe(true);
+        const rest = books.filter((book) => book.id !== "genesis" && book.id !== "exodus" && book.id !== "leviticus" && book.id !== "numbers");
+        expect(rest).toHaveLength(62);
         expect(rest.every((book) => book.categoryCount === 0 && !book.hasCategories)).toBe(true);
     });
 });
@@ -289,7 +292,7 @@ describe("formatHistoryDateLabel", () => {
     });
 });
 
-describe("category lookups in a production build (eighteen categories published)", () => {
+describe("category lookups in a production build (twenty-seven categories published)", () => {
     it("strips the category- prefix for slugs, and leaves other ids alone", () => {
         expect(categorySlug("category-patriarchs")).toBe("patriarchs");
         expect(categorySlug("category-primeval-origins")).toBe("primeval-origins");
@@ -498,7 +501,7 @@ describe("category lookups in a production build (eighteen categories published)
 });
 
 // Fixture-based category tests. The generated category directory now
-// holds the eighteen published categories (four Genesis, seven Exodus, seven Leviticus),
+// holds the twenty-seven published categories (four Genesis, seven Exodus, seven Leviticus, nine Numbers),
 // and Exodus itself is a real category-only book — but the positive
 // paths below still run against fixture records, so the loader's sort
 // and the service's lookups are exercised on records the test controls.

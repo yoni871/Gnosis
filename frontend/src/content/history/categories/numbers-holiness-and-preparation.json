@@ -3,7 +3,7 @@
   "title": "Holiness and Preparation for the Journey",
   "category": "category",
   "era": "numbers",
-  "status": "in-review",
+  "status": "published",
   "primaryScripture": {
     "book": "Numbers",
     "bookId": "numbers",
@@ -39,7 +39,7 @@
     {
       "id": "clm-num-02-002",
       "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
-      "evidence": "Numbers research Phases 1–3; limitation of extant archaeology and specific historical identification.",
+      "evidence": "Phase 1/2: no independent archaeological or external historical identification of the Num 5-10 wilderness setting; Phase 2 records the literary relationship of Num 5-10 to priestly Torah formation as Debated (Frevel) and limits Ketef Hinnom to late-preexilic circulation of related blessing language, not the date of Numbers as a book. QA Phase 4 §5.2: Ketef Hinnom now supported by Waaler 2002 (verified, read in full); Barkay 2004 full article unread (abstract/metadata only); KJV chs. 6-10 still not independently verified.",
       "assessment": "unknown"
     },
     {
@@ -55,12 +55,12 @@
       "book": "Leviticus",
       "bookId": "leviticus",
       "startChapter": 5,
-      "startVerse": 14,
+      "startVerse": 5,
       "endChapter": 6,
       "endVerse": 7,
       "type": "background",
       "confidence": "established",
-      "note": "Restitution and guilt-offering material provides a legal counterpart."
+      "note": "Restitution half (Lev 5:5-13: confession and repayment with a fifth part) plus guilt-offering material (Lev 5:14-6:7) provides the legal counterpart to Numbers 5:5-10."
     },
     {
       "id": "conn-num-02-002",
@@ -85,12 +85,119 @@
       "type": "background",
       "confidence": "established",
       "note": "Primary Passover legislation, supplemented in Numbers 9."
+    },
+    {
+      "id": "conn-num-02-004",
+      "book": "Amos",
+      "bookId": "amos",
+      "startChapter": 2,
+      "startVerse": 11,
+      "endChapter": 2,
+      "endVerse": 12,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Only other explicit Old Testament Nazirite mention: Amos says YHWH raised up Nazarites and Israel gave them wine; prophetic indictment, not a restatement of the Numbers 6 vow law."
+    },
+    {
+      "id": "conn-num-02-005",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 67,
+      "startVerse": 1,
+      "endChapter": 67,
+      "endVerse": 2,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Blessing echo of Numbers 6:24-26 ('cause his face to shine upon us'); liturgical parallel, not a quotation."
+    },
+    {
+      "id": "conn-num-02-006",
+      "book": "Acts",
+      "bookId": "acts",
+      "startChapter": 21,
+      "startVerse": 23,
+      "endChapter": 21,
+      "endVerse": 26,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Later vow practice: Paul joins four men under a vow, purifies himself with them and pays for their head-shaving; continuity of vow custom, not a retelling of Numbers 6."
+    },
+    {
+      "id": "conn-num-02-007",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 40,
+      "startVerse": 1,
+      "endChapter": 40,
+      "endVerse": 38,
+      "type": "background",
+      "confidence": "established",
+      "note": "Tabernacle erected and dedicated (the setting for the offerings of Numbers 7) and the cloud covering the tent with the glory filling the tabernacle (Exod 40:34-38), the guidance that opens Numbers 9:15-23."
+    },
+    {
+      "id": "conn-num-02-008",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 30,
+      "startVerse": 1,
+      "endChapter": 30,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hezekiah's Passover kept in the second month for those unclean or absent: the later analogue of the postponed Passover provision in Numbers 9:1-14."
+    },
+    {
+      "id": "conn-num-02-009",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 3,
+      "startVerse": 1,
+      "endChapter": 4,
+      "endVerse": 49,
+      "type": "background",
+      "confidence": "established",
+      "note": "Levite census, clans and duties grounding the consecration of the Levites in Numbers 8; also the context for the age discrepancy (service from age 30 here, age 25 in Numbers 8:24-26)."
+    },
+    {
+      "id": "conn-num-02-010",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 25,
+      "startVerse": 31,
+      "endChapter": 25,
+      "endVerse": 40,
+      "type": "background",
+      "confidence": "established",
+      "note": "Pattern for the gold lampstand, made 'after the pattern' shown on the mountain; the lampstand Numbers 8:1-4 lights."
+    },
+    {
+      "id": "conn-num-02-011",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 68,
+      "startVerse": 1,
+      "endChapter": 68,
+      "endVerse": 2,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "'Let God arise, let his enemies be scattered' echoes the ark saying of Numbers 10:35 ('Rise up, LORD'); later liturgical reception, not a narrative parallel."
+    },
+    {
+      "id": "conn-num-02-012",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 22,
+      "startVerse": 13,
+      "endChapter": 22,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Marital and sexual-accusation law (including a husband's charge against his wife) offering the closest legal parallel to the suspected-adultery ordeal of Numbers 5:11-31, with a different procedure: judicial penalties, no ordeal."
     }
   ],
   "relatedEvents": [],
   "sources": [
-    "source-numbers-kjv-biblehub",
-    "source-ketef-hinnom-barkay"
+    "source-ketef-hinnom-waaler"
   ],
   "review": {
     "author": "Gnosis Numbers research handoff (AI-assisted)",
