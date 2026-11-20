@@ -103,6 +103,9 @@ const POLICIES = {
     mfa_enroll_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
     mfa_code_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
     mfa_code_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    // Password re-authentication for passkey enrollment/removal is
+    // bounded per account even when attempts arrive from many IPs.
+    passkey_password_user: { windowMs: 15 * 60 * 1000, limit: 5 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since

@@ -1,6 +1,6 @@
 # Passkeys
 
-Passkeys are an optional sign-in method. Password sign-in and the existing MFA recovery-code flow remain available. Registration and removal require a valid session and the current password; the password verifier accepts both existing bcrypt hashes and current Argon2id hashes.
+Passkeys are an optional sign-in method. Password sign-in and the existing MFA recovery-code flow remain available. Registration and removal require a valid session and the current password; the password verifier accepts both existing bcrypt hashes and current Argon2id hashes. Password confirmation is limited to five attempts per account in 15 minutes, including attempts from different IPs.
 
 A login assertion must verify the relying-party ID, exact frontend origin, challenge, signature, and authenticator user verification (PIN, biometric, or equivalent). Registration requires a discoverable credential; login options carry no credential IDs and use the same response shape for known and unknown accounts. Unknown accounts receive an unpersisted challenge. Challenges expire after ten minutes and are consumed once, before assertion verification. A signed assertion without user verification cannot satisfy MFA. A successful assertion writes its credential counter and session in one transaction. Counter regression flags the credential and denies login.
 

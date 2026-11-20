@@ -124,6 +124,10 @@ const loginVerifyRateLimit = createRateLimitMiddleware([
     { policy: "login_ip", fields: (req, ip) => [ip] },
 ], "passkey-login");
 
+const passwordConfirmRateLimit = createRateLimitMiddleware([
+    { policy: "passkey_password_user", fields: req => [String(req.user.userId)] },
+], "passkey");
+
 async function loadAuthenticatedUser(req, res) {
     let result;
     try {
@@ -190,7 +194,8 @@ function challengeFromResponse(response) {
 // Register a passkey: authenticated, and the current password must
 // be confirmed on the start step (the same re-auth discipline as an
 // authenticated password change).
-router.post("/register/options", authenticateToken, validatePasswordBody, async (req, res) => {
+router.post("/register/options", authenticateToken, validatePasswordBody, passwordConfirmRateLimit,
+    withRateLimitFinalize(async (req, res) => {
     const user = await loadAuthenticatedUser(req, res);
     if (!user) return;
     if (!(await verifyPasswordOrFail(req, res, user))) return;
@@ -248,7 +253,7 @@ router.post("/register/options", authenticateToken, validatePasswordBody, async 
     }
     res.set("Cache-Control", "no-store");
     return res.json(options);
-});
+}));
 
 router.post("/register/verify", authenticateToken, validateCeremonyBody, async (req, res) => {
     const user = await loadAuthenticatedUser(req, res);
@@ -257,7 +262,7 @@ router.post("/register/verify", authenticateToken, validateCeremonyBody, async (
     const labelInput = req.body.label;
     let label;
     if (labelInput === undefined || labelInput === null || labelInput === "") {
-        label = null; // defaulted below, after the credential verifies
+        label = "Passkey";
     } else {
         const validated = validatePasskeyLabel(labelInput);
         if (validated.error) return invalidBody(res, validated.error);
@@ -295,15 +300,6 @@ router.post("/register/verify", authenticateToken, validateCeremonyBody, async (
     }
 
     const { credential, credentialBackedUp } = verification.registrationInfo;
-    if (label === null) {
-        try {
-            const count = await passkeys.countPasskeys(user.id);
-            label = `Passkey ${count + 1}`;
-        } catch (error) {
-            logAuthFailure(ROUTE_REGISTER_VERIFY, "database", error);
-            return res.status(500).json(internalErrorBody("passkey"));
-        }
-    }
     let stored;
     try {
         stored = await passkeys.insertPasskey(user.id, {
@@ -357,7 +353,8 @@ router.patch("/:id", authenticateToken, async (req, res) => {
     return res.json(publicPasskey(stored));
 });
 
-router.delete("/:id", authenticateToken, validatePasswordBody, async (req, res) => {
+router.delete("/:id", authenticateToken, validatePasswordBody, passwordConfirmRateLimit,
+    withRateLimitFinalize(async (req, res) => {
     const user = await loadAuthenticatedUser(req, res);
     if (!user) return;
     if (!(await verifyPasswordOrFail(req, res, user))) return;
@@ -375,7 +372,7 @@ router.delete("/:id", authenticateToken, validatePasswordBody, async (req, res) 
     await audit(pool, "passkey.removed", user.id);
     res.set("Cache-Control", "no-store");
     return res.sendStatus(204);
-});
+}));
 
 // Sign in with a passkey. Every structurally valid email gets the
 // same discoverable-credential options shape without account IDs.

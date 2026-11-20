@@ -199,6 +199,18 @@ test("registration requires auth and the current password, then stores a passkey
     assert.equal(listed.data.passkeys[0].flaggedAt, null);
 });
 
+test("passkey password confirmation is limited per account", async () => {
+    const account = await createUser("password-budget");
+    const session = await login(account.email);
+    assert.equal(session.status, 200);
+    for (let attempt = 0; attempt < 5; attempt++) {
+        assert.equal((await post("passkeys/register/options", session.data.token,
+            { password: "wrong-password" })).status, 401);
+    }
+    assert.equal((await post("passkeys/register/options", session.data.token,
+        { password: "wrong-password" })).status, 429);
+});
+
 test("passkey login issues a working session with no extra step", async () => {
     const account = await createUser("login");
     const credential = newCredential();

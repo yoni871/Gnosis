@@ -33,9 +33,17 @@ const token = jwt.sign({ userId: user.id, sid: "00000000-0000-0000-0000-00000000
 // the test did not plan for fails loudly instead of silently passing.
 let behavior = () => { throw new Error("Unexpected database query in passkey unit test"); };
 const queryMock = test.mock.method(pool, "query", async (...args) => behavior(...args));
-const connectMock = test.mock.method(pool, "connect", async () => {
-    throw Object.assign(new Error("Synthetic database failure"), { code: "ECONNREFUSED" });
-});
+const connectMock = test.mock.method(pool, "connect", async () => ({
+    query: async (sql) => {
+        if (/^(BEGIN|COMMIT|ROLLBACK)$/.test(sql)) return { rows: [] };
+        if (/pg_try_advisory_xact_lock/.test(sql)) return { rows: [{ locked: true }] };
+        if (/INSERT INTO rate_limit_attempts/.test(sql)) return { rows: [{ id: 1 }] };
+        if (/SELECT COUNT\(\*\)::int AS count/.test(sql)) return { rows: [{ count: 1, oldest: new Date() }] };
+        if (/FROM rate_limit_sweep_state/.test(sql)) return { rows: [] };
+        throw new Error(`Unexpected rate-limit query: ${sql}`);
+    },
+    release() {},
+}));
 
 let server;
 let baseUrl;
