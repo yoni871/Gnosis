@@ -515,14 +515,14 @@ describe("category lookups in a production build (twenty-seven categories publis
 // never touched, so no other test file can observe the fixtures except
 // through the fixture book below.
 //
-// The fixture book is Joshua, and it carries ONLY category entries —
-// never an event entry. That keeps Joshua event-less (no first
+// The fixture book is Judges, and it carries ONLY category entries —
+// never an event entry. That keeps Judges event-less (no first
 // published event, still a Coming Soon chip, still redirecting to the
 // homepage), so the selector, index, and event-page tests are
 // unaffected even if they import the service while the fixtures exist.
-// Joshua is used (not Deuteronomy) because the fixture's beforeAll deletes
-// the book file and afterAll never restores it — after the Deuteronomy
-// publication the real books/deuteronomy.json exists and must not be deleted.
+// Judges is used (not Joshua) because the fixture's beforeAll deletes
+// the book file and afterAll never restores it — now that the real
+// books/joshua.json exists it must not be deleted.
 // True event+category interleaving in one book is therefore NOT covered
 // here: the sort is one comparator over the unified entries array, and
 // it is covered for events (Genesis, above) and for categories (below),
@@ -579,8 +579,8 @@ describe("category fixtures (generated-content globs)", () => {
         "",
     ].join("\n");
     const fixtureBook = {
-        id: "joshua",
-        title: "Joshua",
+        id: "judges",
+        title: "Judges",
         testament: "OT",
         introduction: "Fixture book: categories only, no events.",
         entries: [
@@ -594,7 +594,7 @@ describe("category fixtures (generated-content globs)", () => {
         path.join(categoriesDir, "category-primeval-origins.json"),
         path.join(categoriesDir, "category-patriarchal-era.json"),
         path.join(categoriesDir, "primeval-origins.md"),
-        path.join(generatedDir, "books", "joshua.json"),
+        path.join(generatedDir, "books", "judges.json"),
     ];
 
     let svc;
@@ -627,7 +627,7 @@ describe("category fixtures (generated-content globs)", () => {
         expect(svc.getCategory("category-no-such")).toBeNull();
     });
     it("lists the fixture book's categories in narrative order, not file order", () => {
-        const categories = svc.listCategoriesForBook("joshua");
+        const categories = svc.listCategoriesForBook("judges");
         expect(categories.map((category) => category.id)).toEqual([
             "category-primeval-origins",
             "category-patriarchal-era",
@@ -646,15 +646,15 @@ describe("category fixtures (generated-content globs)", () => {
         ]);
     });
     it("listBookEntries tags each entry with its kind and narrative order", () => {
-        const entries = svc.listBookEntries("joshua");
+        const entries = svc.listBookEntries("judges");
         expect(entries).toHaveLength(2);
         expect(entries[0]).toMatchObject({ id: "category-primeval-origins", kind: "category", narrativeOrder: 1 });
         expect(entries[1]).toMatchObject({ id: "category-patriarchal-era", kind: "category", narrativeOrder: 2 });
-        expect(svc.buildBookTimeline("joshua")).toEqual(entries);
+        expect(svc.buildBookTimeline("judges")).toEqual(entries);
     });
     it("finds the books carrying a fixture category", () => {
         const books = svc.getBooksForCategory("category-primeval-origins");
-        expect(books.map((book) => book.id)).toEqual(["joshua"]);
+        expect(books.map((book) => book.id)).toEqual(["judges"]);
         expect(svc.getBooksForCategory("category-no-such")).toEqual([]);
     });
     it("loads a fixture category's sections with continuous footnote numbering", async () => {
