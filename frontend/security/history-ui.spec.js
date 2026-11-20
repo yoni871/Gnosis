@@ -137,8 +137,7 @@ test('timeline uses direct repositioning for distant and rapid selections', asyn
     });
     const pageY = await page.evaluate(() => scrollY);
     for (const [key, slug] of [['End', 'joseph-and-israel-in-egypt'], ['Home', 'creation'], ['End', 'joseph-and-israel-in-egypt']]) {
-        await page.locator('.history-timeline-node--current').focus();
-        await page.keyboard.press(key);
+        await page.locator('.history-timeline-node--current').press(key);
         await expect(page).toHaveURL(new RegExp(`/biblical-history/${slug}$`));
         await expect(page.locator('.history-timeline-node--current')).toBeVisible();
         expect(Math.abs((await page.evaluate(() => scrollY)) - pageY)).toBeLessThanOrEqual(1);
