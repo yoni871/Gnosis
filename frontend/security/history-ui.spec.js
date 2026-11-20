@@ -163,11 +163,16 @@ test('timeline moves a nearby offscreen item smoothly with ordinary motion', asy
             return original.call(this, options);
         };
     });
-    for (let index = 0; index < 3; index += 1) {
+    for (const [slug, title] of [
+        ['adam-and-eve', 'Adam and Eve'],
+        ['cain-and-abel', 'Cain and Abel'],
+        ['cains-descendants', "Cain's Descendants"],
+    ]) {
         await page.locator('.history-timeline-node--current').focus();
         await page.keyboard.press('ArrowRight');
+        await expect(page).toHaveURL(new RegExp(`/biblical-history/${slug}$`));
+        await expect(page.getByRole('heading', { level: 1, name: title })).toBeVisible();
     }
-    await expect(page).toHaveURL(/\/biblical-history\/cains-descendants$/);
     expect((await page.evaluate(() => window.__historyTimelineScrolls)).some((options) => options.behavior === 'smooth')).toBe(true);
 });
 
