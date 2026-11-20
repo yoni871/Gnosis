@@ -1,6 +1,6 @@
 const express = require("express");
 const pool = require("../db/db");
-const { setUserContext } = require("../db/userContext");
+const { setUserContext, withUser } = require("../db/userContext");
 const passwordHash = require("../utils/passwordHash");
 const router = express.Router();
 const sessions = require("../services/sessionService");
@@ -391,8 +391,11 @@ router.post("/login", (req, res, next) => {
     // toward the login buckets, and no access token is issued here.
     let mfaEnrolled;
     try {
-        const mfaRow = await pool.query(
-            "SELECT enrolled FROM user_mfa WHERE user_id = $1", [user.id]);
+        // RLS: read under the user's context. Without it, a policy on
+        // user_mfa returns no row and every enrolled user would read
+        // as not-enrolled and bypass MFA at login.
+        const mfaRow = await withUser(pool, user.id, (client) => client.query(
+            "SELECT enrolled FROM user_mfa WHERE user_id = $1", [user.id]));
         mfaEnrolled = mfaRow.rows[0] ? mfaRow.rows[0].enrolled === true : false;
     } catch (error) {
         logAuthFailure("POST /api/auth/login", "database", error);
@@ -595,8 +598,9 @@ router.post("/logout-all", authenticateToken, async (req, res) => {
 // runs in one transaction — revoke every session, then delete the
 // user row — so a failure leaves the account exactly as it was.
 // The user-owned rows (notes, bookmarks, highlights, reading state,
-// verification/reset tokens, sessions, and refresh tokens via their
-// session) are removed by the schema's ON DELETE CASCADE rules, not
+// verification/reset tokens, MFA rows (user_mfa, mfa_recovery_codes,
+// mfa_challenges), sessions, and refresh tokens via their session)
+// are removed by the schema's ON DELETE CASCADE rules, not
 // by explicit DELETEs here: the runtime role deliberately holds no
 // DELETE grant on those tables, and the cascade is the schema's own
 // stated deletion mechanism (see the baseline migration). The one
@@ -656,9 +660,18 @@ router.delete("/account", authenticateToken, validateDelete, async (req, res) =>
         logAuthFailure("DELETE /api/auth/account", "database", error);
         return res.status(500).json(internalErrorBody("delete"));
     }
+    // The transaction owns its client, following withUser /
+    // withUserBudget / saveHighlights: if the ROLLBACK below fails,
+    // the client is destroyed on release instead of returning to the
+    // pool with a live transaction and a live app.user_id.
+    let broken = false;
     try {
         await client.query("BEGIN");
-        // Cascading deletes of saved rows must see this user under FORCE RLS.
+        // FK cascades bypass RLS (verified by execution on PG 18.7),
+        // so this context is NOT necessary for the cascade below —
+        // the user-row delete removes the child rows regardless. It
+        // is retained as defence-in-depth (harmless), keeping this
+        // transaction consistent with the other RLS-context owners.
         await setUserContext(client, userId);
         const userResult = await client.query(
             "SELECT password_hash FROM users WHERE id = $1 FOR UPDATE",
@@ -688,18 +701,19 @@ router.delete("/account", authenticateToken, validateDelete, async (req, res) =>
         );
         // The user-row delete removes every user-owned row through
         // the schema's ON DELETE CASCADE rules (notes, bookmarks,
-        // highlights, user_reading_state, email_verification_tokens,
+        // highlights, user_reading_state, user_mfa, mfa_recovery_codes,
+        // mfa_challenges, email_verification_tokens,
         // password_reset_tokens, auth_sessions, and auth_refresh_tokens
         // via auth_sessions). No explicit child DELETEs: the runtime
         // role holds no DELETE grant on those tables, by design.
         await client.query("DELETE FROM users WHERE id = $1", [userId]);
         await client.query("COMMIT");
     } catch (error) {
-        await client.query("ROLLBACK").catch(() => {});
+        await client.query("ROLLBACK").catch(() => { broken = true; });
         logAuthFailure("DELETE /api/auth/account", "database", error);
         return res.status(500).json(internalErrorBody("delete"));
     } finally {
-        client.release();
+        client.release(broken);
     }
     sessions.clearCookie(res);
     res.set("Cache-Control", "no-store");
