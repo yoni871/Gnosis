@@ -5,6 +5,59 @@ let fixture;
 test.beforeAll(async () => { fixture = await startFixture(); });
 test.afterAll(async () => { await fixture?.close({ endPool: false }); });
 
+test('History navigation aligns with its content at desktop and mobile widths', async ({ page }) => {
+    for (const width of [320, 390, 1440]) {
+        await page.setViewportSize({ width, height: 800 });
+        for (const slug of ['', '/creation']) {
+            await page.goto(`${fixture.origin}/biblical-history${slug}`);
+            await expect(page.getByRole('link', { name: 'Gnosis home' })).toBeVisible();
+            const layout = await page.evaluate(() => {
+                const logo = document.querySelector('.landing-logo').getBoundingClientRect();
+                const target = document.querySelector('.history-study-header') && window.innerWidth <= 768
+                    ? document.querySelector('.history-study-header')
+                    : document.querySelector('.history-event-page') ?? document.querySelector('.history-hero-inner');
+                const rect = target.getBoundingClientRect();
+                const padding = parseFloat(getComputedStyle(target).paddingLeft);
+                const action = document.querySelector('.landing-nav-actions');
+                return { logoLeft: logo.left, contentLeft: rect.left + padding, actionRight: action?.getBoundingClientRect().right, contentRight: rect.right - padding };
+            });
+            expect(Math.abs(layout.logoLeft - layout.contentLeft)).toBeLessThanOrEqual(1);
+            if (width >= 1100) expect(Math.abs(layout.actionRight - layout.contentRight)).toBeLessThanOrEqual(1);
+        }
+    }
+});
+
+test('History timeline replaces its route and keeps direct-link parameters', async ({ page }) => {
+    for (const width of [320, 390, 1440]) {
+        await page.setViewportSize({ width, height: 800 });
+        await page.goto(`${fixture.origin}/about`);
+        await page.goto(`${fixture.origin}/biblical-history/creation?source=qa#context`);
+        await page.locator('.history-timeline-node').nth(1).click();
+        await expect(page).toHaveURL(/\/biblical-history\/adam-and-eve\?source=qa#context$/);
+        await page.reload();
+        await expect(page.getByRole('heading', { level: 1, name: 'Adam and Eve' })).toBeVisible();
+        await page.goBack();
+        await expect(page).toHaveURL(/\/about$/);
+        await page.goForward();
+        await expect(page).toHaveURL(/\/biblical-history\/adam-and-eve\?source=qa#context$/);
+    }
+});
+
+test('Trace the Doctrine timeline replaces its URL and restores selection on refresh', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 800 });
+    await page.goto(`${fixture.origin}/trace-the-doctrine`);
+    await page.goto(`${fixture.origin}/trace-the-doctrine/trinity?source=qa`);
+    await page.locator('.doctrine-timeline-node').nth(1).click();
+    await expect(page).toHaveURL(/\/trace-the-doctrine\/trinity\?source=qa&passage=gen-1-26&interpretation=/);
+    await expect(page.locator('.doctrine-timeline-node').nth(1)).toHaveAttribute('aria-current', 'true');
+    await page.reload();
+    await expect(page.locator('.doctrine-timeline-node').nth(1)).toHaveAttribute('aria-current', 'true');
+    await page.goBack();
+    await expect(page).toHaveURL(/\/trace-the-doctrine$/);
+    await page.goForward();
+    await expect(page.locator('.doctrine-timeline-node').nth(1)).toHaveAttribute('aria-current', 'true');
+});
+
 test('History pages omit the header action across books, layouts, and themes', async ({ page }) => {
     for (const width of [390, 1440]) {
         await page.setViewportSize({ width, height: 800 });
