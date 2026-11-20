@@ -1987,8 +1987,9 @@
     "author": "Bible Odyssey (Society of Biblical Literature)",
     "title": "Deuteronomy (HarperCollins Bible Dictionary entry)",
     "publisher": "Bible Odyssey (SBL)",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Search excerpt only (Cat 1) — the full-page fetch was rate-limited (HTTP 429) on 2026-11-20 and was not retried. The three-discourses structure is cited in clm-deu-01-026 with the disclosure. NOT verified for detailed arguments.",
+    "url": "https://www.bibleodyssey.org/dictionary/deuteronomy/",
+    "verification": "verified",
+    "verificationDetail": "Search excerpt only (Cat 1) — the full-page fetch was rate-limited (HTTP 429) on 2026-11-20 and was not retried. The three-discourses structure is cited in clm-deu-01-026 with the disclosure. NOT verified for detailed arguments. Read in full (re-grounding session 2026-11-20): “a series of three discourses by Moses (Deut 1:6–4:40; Deut 5–28; Deut 29–30); with a concluding addendum (Deut 31–34)”; full outline. Does NOT discuss composition date, authorship, Josiah, or 7th–5th-century dating.",
     "licenseNote": "© Society of Biblical Literature. Cite, do not reproduce."
   },
   "source-biblicaltraining-mount-nebo": {
@@ -2006,8 +2007,9 @@
     "author": "BiblicalTraining Library",
     "title": "Og",
     "publisher": "BiblicalTraining",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Search excerpt only (Cat 1). Used for clm-deu-01-034 with the disclosure. NOT verified for detailed arguments.",
+    "url": "https://www.biblicaltraining.org/library/og",
+    "verification": "verified",
+    "verificationDetail": "Search excerpt only (Cat 1). Used for clm-deu-01-034 with the disclosure. NOT verified for detailed arguments. Read in full (re-grounding session 2026-11-20): “Ashtaroth is usually located at Tell Ashtara and Edrei at modern Daraa, both in southern Syria”; “One Ugaritic text describes a divine figure as dwelling in Ashtaroth and ruling in Edrei, the same pair of cities linked with Og. Scholars debate what this parallel means.” Does NOT mention Thutmose III or Amarna EA 197.",
     "licenseNote": "© BiblicalTraining. Cite, do not reproduce."
   },
   "source-keil-delitzsch-deuteronomy": {
@@ -2118,8 +2120,10 @@
     "id": "source-rendsburg-emergence-israel-canaan",
     "author": "Gary A. Rendsburg",
     "title": "The Emergence of Israel in the Land of Canaan",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Search excerpt only (Cat 3) — NOT verified for detailed arguments. clm-deu-03-052 is capped Probable and discloses this.",
+    "year": 2021,
+    "url": "https://jewishstudies.rutgers.edu/images/documents/faculty/Rendsburg/ch.%203%20text%20%20notes%201.pdf",
+    "verification": "verified",
+    "verificationDetail": "Search excerpt only (Cat 3) — NOT verified for detailed arguments. clm-deu-03-052 is capped Probable and discloses this. Read in full (re-grounding session 2026-11-20; Rutgers-hosted PDF, Ancient Israel ch. 3, pp. 59–91): ~30 Late Bronze settlements → ~250 Iron Age I (1175–1000 BCE); “This expansion cannot be due to natural population growth, but must rather indicate the arrival of a new people”; four-room houses; collared-rim jars; near-total absence of pig bones at early Israelite sites; unwalled settlements; conquest model rejected, peaceful infiltration favoured, peasant-revolt controverted as sole explanation. No “45,000” population figure anywhere in the chapter (grep-confirmed) — that figure is Bloch-Smith & Nakhai’s, unread, and is NOT in clm-deu-03-052.",
     "licenseNote": "In copyright. Cite only (and only once read directly)."
   },
   "source-kisilevitz-lipschits-tel-moza-bar-2020": {
@@ -2489,5 +2493,38 @@
     "verification": "not-independently-verified",
     "verificationDetail": "Second-hand only (Cat 10, 2026-11-20), via the BibleHub article 'If Moses wrote the Torah, why does it describe his own death in Deuteronomy 34?' and Curley, 'Spinoza's Biblical Scholarship' (Academia excerpt). The Joshua attribution is Traditional; the later-hand standpoint (clm-deu-10-036) is Probable on the textual evidence (JFB + the text itself), not on the Talmud alone. NOT verified for detailed arguments.",
     "licenseNote": "Ancient text; modern translations in copyright. Cite only."
+  },
+  "source-academia-dss-deuteronomy": {
+    "id": "source-academia-dss-deuteronomy",
+    "author": "Feldman",
+    "title": "Deuteronomy in the Dead Sea Scrolls",
+    "publisher": "Academia.edu",
+    "pagesOrSection": "Academia.edu 44369046, pre-publication version; 4QDeut-q (4Q44; 50–1 BCE) discussion; Deut 32:43 six-cola wording (Rofé 2002: 47–54)",
+    "url": "https://www.academia.edu/44369046/Deuteronomy_in_the_Dead_Sea_Scrolls_Pre_publication_version_",
+    "verification": "verified",
+    "verificationDetail": "Read in full (re-grounding session 2026-11-20, via browser.open — Academia.edu blocks curl; the text exists only in browser output, not saved to disk). States explicitly: “the equally often cited six-colae wording of Deut 32:43 in 4QDeutq (cf. the four cola of the MT and the eight of the LXX; Rofé 2002: 47-54)”; “4QDeutq (4Q44; 50-1 BCE...)”; “Close to LXX: 4QDeutq”. Does NOT quote the 4QDeut-q 32:43 wording — the six-cola count rests on Feldman’s statement, and DJD XIV remains unread, so clm-deu-09-042 stays Probable.",
+    "licenseNote": "Freely available via academia.edu; © the author. Cite only."
+  },
+  "source-heiser-deuteronomy-32-8": {
+    "id": "source-heiser-deuteronomy-32-8",
+    "author": "Michael S. Heiser",
+    "title": "Deuteronomy 32:8 and the Sons of God",
+    "publisher": "Bibliotheca Sacra",
+    "year": 2001,
+    "pagesOrSection": "Bibliotheca Sacra 158 (Jan–Mar 2001), pp. 52–74",
+    "url": "https://www.gilberthouse.org/wp-content/uploads/2020/02/deut328andsonsofgod.pdf",
+    "verification": "verified",
+    "verificationDetail": "Read in full (re-grounding session 2026-11-20; gilberthouse.org PDF of Bibliotheca Sacra 158, 52–74). The excerpts previously cited are verified accurate: two Qumran manuscripts (4QDeut-j and 4QDeut-q); Wevers, Göttingen, p. 347; the majority LXX reading “clearly a later attempt to avoid any notion of lesser deities”. Grounds clm-deu-09-022 (Established) and clm-deu-09-024 (Debated) corroboration; no claim rests on Heiser alone above Probable.",
+    "licenseNote": "In copyright (Bibliotheca Sacra). Cite only."
+  },
+  "source-biblicaltraining-ashtaroth": {
+    "id": "source-biblicaltraining-ashtaroth",
+    "author": "BiblicalTraining Library",
+    "title": "Ashtaroth",
+    "publisher": "BiblicalTraining",
+    "url": "https://www.biblicaltraining.org/library/ashtaroth",
+    "verification": "verified",
+    "verificationDetail": "Read in full (re-grounding session 2026-11-20): site “generally placed at Tell Ashtara”; Edrei “identified with modern Daraa”; “A town called Ashtartu appears in the list of Canaanite and Syrian places conquered by the Egyptian pharaoh Thutmose III in the 15th century BC. In the Amarna letters of the 14th century BC, Ashtartu is again named.” The article names the Amarna letters generally but does NOT name EA 197 specifically — the Thutmose III / Amarna EA 197 clause stays REMOVED from clm-deu-01-034 until EA 197 is verified specifically by a direct read of the lists or the letter.",
+    "licenseNote": "© BiblicalTraining. Cite, do not reproduce."
   }
 }
