@@ -406,13 +406,18 @@ describe("check-history-gate.js — never skips, checks ids, titles, sources", (
 
     it("passes when dist/ prose mentions an allowlisted non-published source title (Mount Nebo)", () => {
         const sandbox = makeSandbox();
-        // The real registry entry "Mount Nebo" is cited by no shipped
-        // record, so the gate would not list it at all — cite it from
-        // the in-review Creation fixture so it becomes unpublished-only
-        // in the sandbox, the way the Deuteronomy categories cite it
-        // in-review. Published Numbers prose mentions Mount Nebo (The
-        // Final Wilderness Journey, Num 20–21), so the title check must
-        // not fire on the phrase — the id check still guards the source.
+        // Mount Nebo is cited by the published Blessing and Death of
+        // Moses category now, so flip that category back to in-review
+        // in the sandbox (the same technique makeSandbox uses for the
+        // Creation event) so the source becomes unpublished-only here.
+        // Then cite it from the in-review Creation fixture as well.
+        // Published Numbers prose mentions Mount Nebo (The Final
+        // Wilderness Journey, Num 20–21), so the title check must not
+        // fire on the phrase — the id check still guards the source.
+        const catPath = path.join(sandbox, "src", "content", "history", "categories", "deuteronomy-blessing-death-moses.json");
+        const cat = JSON.parse(readFileSync(catPath, "utf8"));
+        cat.status = "in-review";
+        writeFileSync(catPath, JSON.stringify(cat, null, 2));
         const eventPath = path.join(sandbox, "src", "content", "history", "events", "creation.json");
         const event = JSON.parse(readFileSync(eventPath, "utf8"));
         event.sources = [...(event.sources ?? []), "source-biblicaltraining-mount-nebo"];
@@ -430,10 +435,15 @@ describe("check-history-gate.js — never skips, checks ids, titles, sources", (
 
     it("still fails when dist/ contains an allowlisted non-published source id", () => {
         const sandbox = makeSandbox();
-        // Same fixture as the allowlist title test: the Mount Nebo
-        // source is unpublished-only in the sandbox. Its title is
+        // Same fixture as the allowlist title test: flip the Blessing
+        // and Death of Moses category back to in-review so the Mount
+        // Nebo source is unpublished-only in the sandbox. Its title is
         // exempt from the substring check, but its id is not — an id
         // in dist/ is still a leak.
+        const catPath = path.join(sandbox, "src", "content", "history", "categories", "deuteronomy-blessing-death-moses.json");
+        const cat = JSON.parse(readFileSync(catPath, "utf8"));
+        cat.status = "in-review";
+        writeFileSync(catPath, JSON.stringify(cat, null, 2));
         const eventPath = path.join(sandbox, "src", "content", "history", "events", "creation.json");
         const event = JSON.parse(readFileSync(eventPath, "utf8"));
         event.sources = [...(event.sources ?? []), "source-biblicaltraining-mount-nebo"];
