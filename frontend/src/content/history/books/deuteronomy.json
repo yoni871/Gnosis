@@ -1,0 +1,68 @@
+{
+  "id": "deuteronomy",
+  "title": "Deuteronomy",
+  "testament": "OT",
+  "introduction": "Deuteronomy records Moses' final addresses to Israel on the plains of Moab, restating the covenant, the law, and the choice between blessing and curse before the crossing of the Jordan. These ten studies follow literary divisions; they do not claim ten independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "entries": [
+    {
+      "categoryId": "category-deuteronomy-wilderness-journey",
+      "kind": "category",
+      "narrativeOrder": 39,
+      "bookNote": "Deuteronomy 1–3 examines Moses Reviews Israel's Wilderness Journey as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-deuteronomy-covenant-greatest-commandment",
+      "kind": "category",
+      "narrativeOrder": 40,
+      "bookNote": "Deuteronomy 4–6 examines The Covenant and the Greatest Commandment as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-deuteronomy-remembering-god-promised-land",
+      "kind": "category",
+      "narrativeOrder": 41,
+      "bookNote": "Deuteronomy 7–11 examines Remembering God in the Promised Land as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-deuteronomy-worship-life-land",
+      "kind": "category",
+      "narrativeOrder": 42,
+      "bookNote": "Deuteronomy 12–16 examines Worship and Life in the Land as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-deuteronomy-justice-kingship-leadership",
+      "kind": "category",
+      "narrativeOrder": 43,
+      "bookNote": "Deuteronomy 16–20 examines Justice, Kingship, and Leadership as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-deuteronomy-laws-israelite-society",
+      "kind": "category",
+      "narrativeOrder": 44,
+      "bookNote": "Deuteronomy 21–25 examines Laws for Israelite Society as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-deuteronomy-blessings-curses-covenant",
+      "kind": "category",
+      "narrativeOrder": 45,
+      "bookNote": "Deuteronomy 26–28 examines Blessings, Curses, and Covenant as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-deuteronomy-renewal-covenant",
+      "kind": "category",
+      "narrativeOrder": 46,
+      "bookNote": "Deuteronomy 29–30 examines Renewal of the Covenant as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-deuteronomy-joshua-song-moses",
+      "kind": "category",
+      "narrativeOrder": 47,
+      "bookNote": "Deuteronomy 31–32 examines Joshua's Commission and the Song of Moses as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-deuteronomy-blessing-death-moses",
+      "kind": "category",
+      "narrativeOrder": 48,
+      "bookNote": "Deuteronomy 33–34 examines Blessing and Death of Moses as a biblical literary and historical-context study, without assigning an independently verified date."
+    }
+  ]
+}

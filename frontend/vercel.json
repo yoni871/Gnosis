@@ -284,6 +284,61 @@
       "source": "/biblical-history/numbers",
       "destination": "/biblical-history/numbers-israel-organized-at-sinai",
       "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-wilderness-journey",
+      "destination": "/biblical-history/deuteronomy-wilderness-journey",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-covenant-greatest-commandment",
+      "destination": "/biblical-history/deuteronomy-covenant-greatest-commandment",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-remembering-god-promised-land",
+      "destination": "/biblical-history/deuteronomy-remembering-god-promised-land",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-worship-life-land",
+      "destination": "/biblical-history/deuteronomy-worship-life-land",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-justice-kingship-leadership",
+      "destination": "/biblical-history/deuteronomy-justice-kingship-leadership",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-laws-israelite-society",
+      "destination": "/biblical-history/deuteronomy-laws-israelite-society",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-blessings-curses-covenant",
+      "destination": "/biblical-history/deuteronomy-blessings-curses-covenant",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-renewal-covenant",
+      "destination": "/biblical-history/deuteronomy-renewal-covenant",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-joshua-song-moses",
+      "destination": "/biblical-history/deuteronomy-joshua-song-moses",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy/deuteronomy-blessing-death-moses",
+      "destination": "/biblical-history/deuteronomy-blessing-death-moses",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/deuteronomy",
+      "destination": "/biblical-history/deuteronomy-wilderness-journey",
+      "permanent": true
     }
   ],
   "rewrites": [

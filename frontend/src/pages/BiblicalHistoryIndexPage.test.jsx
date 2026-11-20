@@ -33,8 +33,8 @@ describe("BiblicalHistoryIndexPage", () => {
         await user.click(screen.getByRole("button", { name: /Browse Books/ }));
         expect(screen.getByRole("button", { name: /Close Books/ })).toHaveAttribute("aria-expanded", "true");
         expect(within(screen.getByRole("tabpanel")).getAllByRole("listitem")).toHaveLength(39);
-        // Genesis, Exodus, Leviticus, and Numbers have published entries.
-        expect(screen.getAllByText("Coming Soon")).toHaveLength(35);
+        // Genesis, Exodus, Leviticus, Numbers, and Deuteronomy have published entries.
+        expect(screen.getAllByText("Coming Soon")).toHaveLength(34);
         expect(screen.queryByText("Upcoming")).toBeNull();
         expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
         await user.keyboard("{Escape}");
