@@ -1,4 +1,5 @@
 const { Pool } = require("pg");
+const { logPoolError } = require("../utils/authErrors");
 require("../config/env").loadEnvironment();
 
 if (process.env.GNOSIS_LOCAL_DEV === '1') {
@@ -34,6 +35,31 @@ function assertSplitConfiguration(env) {
     }
 }
 
+const LOOPBACK_HOSTS = new Set(["127.0.0.1", "::1", "localhost"]);
+
+// Remote databases must use verified TLS, whatever the connection string
+// says. The pool previously relied on the URL carrying sslmode=require,
+// which encrypts but never verifies the server certificate — and a URL
+// with no sslmode falls back to pg's `prefer`. The OL importer already
+// enforces verified TLS for non-loopback hosts
+// (tools/bible-import/src/cli.js); the app pools now do the same.
+// Loopback stays plain: local development and tests use a
+// certificate-less local database. sslmode=disable fails the boot.
+function tlsOptionsFor(url) {
+    let parsed;
+    try {
+        parsed = new URL(url);
+    } catch {
+        throw new Error("Invalid database connection URL.");
+    }
+    const host = parsed.hostname.replace(/^\[|\]$/g, "");
+    if (LOOPBACK_HOSTS.has(host)) return {};
+    if (parsed.searchParams.get("sslmode") === "disable") {
+        throw new Error("Refusing a database connection with sslmode=disable.");
+    }
+    return { ssl: { rejectUnauthorized: true } };
+}
+
 function createPools(env = process.env) {
     assertSplitConfiguration(env);
     const appUrl = env.GNOSIS_APP_DATABASE_URL || env.DATABASE_URL || null;
@@ -56,13 +82,24 @@ function createPools(env = process.env) {
             // Each backend instance maintains a small pool of reusable connections.
             const created = new Pool({
                 ...config,
+                ...(url ? tlsOptionsFor(url) : {}),
                 max: 5,
                 idleTimeoutMillis: 10000,
-                connectionTimeoutMillis: 10000
+                connectionTimeoutMillis: 10000,
+                // F04 budgets: no application query may run longer than
+                // 10 s, or wait on a lock longer than 5 s. Every
+                // application query is a small indexed lookup; anything
+                // slower is a runaway, not a legitimate workload.
+                // Migrations and imports use their own clients, not
+                // these pools, so they are unaffected.
+                statement_timeout: 10000,
+                lock_timeout: 5000
             });
             // Handle errors from connections that are sitting idle.
+            // Only the subsystem and the safe code are logged (audit
+            // F02) — never the connection string or the message.
             created.on("error", (error) => {
-                console.error("Unexpected database connection error:", error.message);
+                logPoolError(error);
             });
             byKey.set(key, created);
         }

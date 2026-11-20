@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { getProfile, loginUser, registerUser, resendVerification, verifyEmail, forgotPassword, resetPassword, refreshSession, logoutSession } from '../services/authService';
+import { getProfile, loginUser, registerUser, resendVerification, verifyEmail, forgotPassword, resetPassword, refreshSession, logoutSession, deleteAccount } from '../services/authService';
 
 function response(body, status = 200) {
     return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -124,4 +124,26 @@ test('auth requests use the frontend own /api path, not the deployed API origin'
     const url = fetchMock.mock.calls[0][0];
     expect(url).toBe('/api/auth/refresh');
     expect(url).not.toContain('api.example.invalid');
+});
+
+test('deleteAccount sends a DELETE with the password and returns the response', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(response({ deleted: true }));
+    vi.stubGlobal('fetch', fetchMock);
+    const data = await deleteAccount('test-token', 'synthetic-password');
+    expect(data).toEqual({ deleted: true });
+    expect(fetchMock.mock.calls[0][0]).toMatch(/\/auth\/account$/);
+    expect(fetchMock.mock.calls[0][1].method).toBe('DELETE');
+    expect(fetchMock.mock.calls[0][1].headers.Authorization).toBe('Bearer test-token');
+    expect(fetchMock.mock.calls[0][1].credentials).toBe('include');
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ password: 'synthetic-password' });
+});
+
+test('deleteAccount preserves the backend error code', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response(
+        { error: 'Invalid email or password.', code: 'INVALID_CREDENTIALS' }, 401,
+    )));
+    const error = await deleteAccount('test-token', 'wrong').catch(e => e);
+    expect(error).toBeInstanceOf(Error);
+    expect(error.message).toBe('Invalid email or password.');
+    expect(error.code).toBe('INVALID_CREDENTIALS');
 });

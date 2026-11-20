@@ -1,5 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const http = require("node:http");
 const jwt = require("jsonwebtoken");
 
 // Explicit isolation also protects direct node --test invocations.
@@ -27,11 +28,21 @@ const connectMock = test.mock.method(pool, "connect", async () => {
 
 let server;
 let baseUrl;
+let hibpStub;
 
 test.before(async () => {
     server = app.listen(0, "127.0.0.1");
     await new Promise((resolve) => server.once("listening", resolve));
     baseUrl = `http://127.0.0.1:${server.address().port}`;
+    // Loopback HIBP stub (honored only under test isolation): the
+    // register path screens passwords against HIBP, and no test may
+    // call the real api.pwnedpasswords.com. Empty range body = not breached.
+    hibpStub = http.createServer((req, res) => {
+        res.writeHead(200, { "Content-Type": "text/plain" });
+        res.end("");
+    });
+    await new Promise((resolve) => hibpStub.listen(0, "127.0.0.1", resolve));
+    process.env.HIBP_API_BASE_URL = `http://127.0.0.1:${hibpStub.address().port}`;
 });
 
 test.after(async () => {
@@ -39,6 +50,8 @@ test.after(async () => {
         server.closeAllConnections();
     }
     await new Promise((resolve) => server.close(resolve));
+    if (hibpStub) await new Promise((resolve) => hibpStub.close(resolve));
+    delete process.env.HIBP_API_BASE_URL;
     queryMock.mock.restore();
     connectMock.mock.restore();
     await pool.end();

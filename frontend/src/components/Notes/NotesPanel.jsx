@@ -1,43 +1,49 @@
+import { useRef, useState } from "react";
 import NotesHeader from "./NotesHeader";
-import NoteComposer from "./NoteComposer";
-import NotesList from "./NotesList";
+import NotesEditorArea from "./NotesEditorArea";
+import NotesLibrary from "./NotesLibrary";
 import NotesLoggedOut from "./NotesLoggedOut";
+import ScripturePreviewSheet from "./ScripturePreviewSheet";
 
+// Notes 2.0 — UI Foundation (Phase 1).
+//
+// Layout: a compact header (Library + New Note), the editor area, and a
+// library drawer that slides in from the left edge of this panel and
+// overlays the editor. The drawer is clipped to the panel, so it never
+// covers or resizes Scripture. The editor stays mounted while the drawer
+// opens and closes, preserving editor state and focus.
+//
+// The panel owns only layout and drawer state. All note data and CRUD live
+// in useNotes (unchanged); the editor surface is the <NotesEditor /> slot,
+// which Codex's rich-text editor will replace without touching this file.
+// Formatting behavior is Codex's: the toolbar reports actions through
+// onFormat and this panel forwards them (currently a no-op).
 
 export default function NotesPanel({
     book,
     chapter,
     selectedVerse,
     books,
-    notesState
+    notesState,
+    navigateToPassage,
+    mobile = false,
+    translation,
+    // Optional: Codex's rich-text editor calls this with the chosen
+    // formatting action (e.g. "bold"). Until the editor lands, the
+    // toolbar is presentational and this is a no-op.
+    onFormat,
 }) {
+    const [libraryOpen, setLibraryOpen] = useState(false);
+    const [previewReference, setPreviewReference] = useState(null);
+    const editorRef = useRef(null);
+    const libraryButtonRef = useRef(null);
+
     const {
         isAuthenticated,
         isAuthLoading,
-
         notes,
-        isLoadingNotes,
-        notesError,
-
-        noteContent,
-        setNoteContent,
-        isSavingNote,
-
-        editingNoteId,
-        editContent,
-        setEditContent,
-        isUpdatingNote,
-
-        deletingNoteId,
-
-        handleSaveNote,
         handleStartEdit,
-        handleCancelEdit,
-        handleUpdateNote,
-        handleDeleteNote,
-        draftPassage
     } = notesState;
-
 
     // Wait until AuthContext finishes restoring the user.
     if (isAuthLoading) {
@@ -81,8 +87,13 @@ export default function NotesPanel({
         );
     }
 
+    // Notes are currently stored only for authenticated users.
+    if (!isAuthenticated) {
+        return <NotesLoggedOut />;
+    }
+
     // Prefer the captured draft target over the reader's current focus.
-    const target = draftPassage || (
+    const target = notesState.draftPassage || (
         selectedVerse
             ? {
                 bookId: books.find((item) => item.name === book)?.id,
@@ -113,83 +124,91 @@ export default function NotesPanel({
         }
     }
 
-    // Notes are currently stored only for authenticated users.
-    if (!isAuthenticated) {
-        return <NotesLoggedOut />;
-    }
+    const openLibrary = () => setLibraryOpen(true);
 
+    const closeLibrary = () => {
+        setLibraryOpen(false);
+        libraryButtonRef.current?.focus();
+    };
+
+    // Load a note from the library into the editor, then close the drawer
+    // and put focus in the editor.
+    const handleSelectNote = (note) => {
+        handleStartEdit(note);
+        setLibraryOpen(false);
+        // The editor stays mounted; focus it after the edit state applies.
+        requestAnimationFrame(() => editorRef.current?.focus());
+    };
+
+    // Start a fresh note: leave any note being edited, close the library,
+    // and focus the composer.
+    const handleNewNote = async () => {
+        const passage = target ? {
+            bookId: target.bookId, startChapter: target.startChapter, startVerse: target.startVerse,
+            endChapter: target.endChapter, endVerse: target.endVerse,
+        } : null;
+        await notesState.handleCreateDocument(passage);
+        setLibraryOpen(false);
+        requestAnimationFrame(() => editorRef.current?.focus());
+    };
+
+    const openReference = (reference) => {
+        if (mobile) setPreviewReference(reference);
+        else navigateToPassage?.(reference);
+    };
 
     return (
         <section
             className="
+                relative
+                flex
                 h-full
-                overflow-y-auto
+                min-h-0
+                flex-col
+                overflow-hidden
                 bg-[var(--bg-panel)]
             "
         >
-            <div
-                className="
-                    mx-auto
-                    w-full
-                    max-w-3xl
-                    px-5
-                    pb-16
-                    pt-8
-                    sm:px-8
-                "
-            >
-                <NotesHeader
-                    notesCount={notes.length}
-                />
+            <NotesHeader
+                libraryButtonRef={libraryButtonRef}
+                libraryOpen={libraryOpen}
+                onToggleLibrary={() =>
+                    libraryOpen ? closeLibrary() : openLibrary()
+                }
+                onNewNote={handleNewNote}
+                notesCount={notes.length}
+            />
 
-                <NoteComposer
-                    passageLabel={passageLabel}
-                    noteContent={noteContent}
-                    setNoteContent={setNoteContent}
-                    isSavingNote={isSavingNote}
-                    onSave={handleSaveNote}
-                />
-
-                {notesError && (
-                    <div
-                        className="
-                            mb-7
-                            rounded-xl
-                            border
-                            border-[var(--color-brand)]
-                            bg-[var(--bg-surface)]
-                            px-5
-                            py-4
-                        "
-                    >
-                        <p
-                            className="
-                                text-xs
-                                leading-5
-                                text-[var(--color-brand)]
-                            "
-                        >
-                            {notesError}
-                        </p>
-                    </div>
-                )}
-
-                <NotesList
-                    notes={notes}
+            <div className="relative min-h-0 flex-1">
+                <NotesEditorArea
+                    notesState={notesState}
                     books={books}
-                    isLoadingNotes={isLoadingNotes}
-                    notesError={notesError}
-                    editingNoteId={editingNoteId}
-                    editContent={editContent}
-                    setEditContent={setEditContent}
-                    isUpdatingNote={isUpdatingNote}
-                    deletingNoteId={deletingNoteId}
-                    onStartEdit={handleStartEdit}
-                    onCancelEdit={handleCancelEdit}
-                    onUpdate={handleUpdateNote}
-                    onDelete={handleDeleteNote}
+                    passageLabel={passageLabel}
+                    editorRef={editorRef}
+                    onFormat={onFormat}
+                    onReferenceClick={openReference}
+                />
+
+                <NotesLibrary
+                    open={libraryOpen}
+                    onClose={closeLibrary}
+                    onSelectNote={handleSelectNote}
+                    selectedNoteId={notesState.editingNoteId}
+                    notes={notes}
+                    documents={notesState.documents}
+                    books={books}
+                    isLoadingNotes={notesState.isLoadingNotes}
+                    notesError={notesState.notesError}
+                    nextCursor={notesState.nextCursor}
+                    isLoadingMore={notesState.isLoadingMore}
+                    loadMore={notesState.loadMore}
                 />
             </div>
+            <ScripturePreviewSheet key={previewReference?.text || "closed"} reference={previewReference} translation={translation}
+                onClose={() => setPreviewReference(null)} onOpen={(reference) => {
+                    setPreviewReference(null);
+                    navigateToPassage?.(reference);
+                }} />
         </section>
     );
 }

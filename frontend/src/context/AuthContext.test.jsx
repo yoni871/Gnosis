@@ -73,6 +73,22 @@ test('guest startup finishes without requesting a profile', async () => {
     expect(getProfile).not.toHaveBeenCalled();
 });
 
+test('a canceled sign-out reports cancellation and preserves the session', async () => {
+    refreshSession.mockResolvedValue({ token: 'old-token' });
+    getProfile.mockResolvedValue(oldUser);
+    await mount();
+    const cancel = event => event.preventDefault();
+    window.addEventListener('gnosis:before-sign-out', cancel);
+    logoutSession.mockClear();
+    try {
+        let result;
+        act(() => { result = auth.logout(); });
+        expect(result).toBe(false);
+        session(oldUser, 'old-token');
+        expect(logoutSession).not.toHaveBeenCalled();
+    } finally { window.removeEventListener('gnosis:before-sign-out', cancel); }
+});
+
 test('restores the cookie session and profile without persistent access storage', async () => {
     const restore = deferred();
     refreshSession.mockResolvedValue({ token: 'old-token' });
@@ -289,6 +305,24 @@ test('publishes a read-only session version for restore, login and logout, and r
     expect(auth.sessionVersion).toBe(loginVersion);
     act(() => auth.logout());
     expect(auth.sessionVersion).toBeGreaterThan(loginVersion);
+});
+
+test('session version is published when the restore starts, not when it settles', async () => {
+    // Regression test for the react-hooks/set-state-in-effect fix: the
+    // version used to be copied into state with a synchronous
+    // setSessionVersion(ticket) inside the restore effect. It now
+    // mirrors the guard epoch through useSyncExternalStore, so it is
+    // already > 0 as soon as the restore begins — even while the
+    // refresh request is still in flight. A fix that deferred
+    // publication until the restore settles would fail this test.
+    const restore = deferred();
+    refreshSession.mockReturnValue(restore.promise);
+    getProfile.mockResolvedValue(newUser);
+    await mount();
+    expect(auth.sessionVersion).toBeGreaterThan(0);
+    expect(auth.isAuthLoading).toBe(true);
+    await settle(restore, { token: 'late-token' });
+    session(newUser, 'late-token');
 });
 
 function sessionToken(exp, sid = 'session-one') {

@@ -1,0 +1,175 @@
+{
+  "id": "category-leviticus-priesthood-consecration",
+  "title": "The Consecration of the Priesthood",
+  "category": "category",
+  "era": "leviticus",
+  "status": "published",
+  "primaryScripture": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 8,
+    "endChapter": 10,
+    "startVerse": 1,
+    "endVerse": 20
+  },
+  "fullRange": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 8,
+    "endChapter": 10,
+    "startVerse": 1,
+    "endVerse": 20
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated thematic Leviticus legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "This is a literary and thematic grouping in the Sinai narrative, not an independent datable event. No absolute year is inferred."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-lev-pc-001",
+      "claim": "Leviticus 8 depicts washing, priestly clothing, anointing, sacrifice, and seven days of ordination.",
+      "evidence": "Lev 8:1–36; biblical narrative only.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-pc-002",
+      "claim": "Leviticus 9 narrates inaugural offerings and the appearance of divine fire consuming the altar offering.",
+      "evidence": "Lev 9:1–24; narrated event, not independently dated.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-pc-003",
+      "claim": "Leviticus 10 identifies Nadab and Abihu’s act as presenting fire not commanded by YHWH.",
+      "evidence": "Lev 10:1–2; the biblical text does not state that they were drunk.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-pc-004",
+      "claim": "Competing reconstructions of Nadab and Abihu’s precise offense include intoxication, improper incense or fire, timing, and unauthorized approach, but Leviticus 10:1–2 does not specify any such explanation.",
+      "evidence": "Lev 10:1–11 (KJV); Pittman 2024 Themelios 49(3) 579–588, publisher full article sections 1–4 contrasts Bibb’s gaps reading and Pittman’s proposed unauthorized priestly activity; exact cause and intoxication NOT established. The intoxication hypothesis is surveyed in Pittman n. 1 (Wolak 2013) and the Lev 10:8–11 sequence — sequence only, not a stated cause.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-lev-pc-005",
+      "claim": "Priests are charged to distinguish holy and common, unclean and clean, and teach Israel.",
+      "evidence": "Lev 10:10–11; explicit instruction.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-pc-006",
+      "claim": "The contrasting divine fire of Leviticus 9:24 and 10:2 forms a literary juxtaposition about regulated access.",
+      "evidence": "Lev 9:24; 10:2; literary interpretation.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-lev-pc-007",
+      "claim": "The wilderness narrative of Aaronide priestly installation does not independently establish when Leviticus 8–10 reached its final written form.",
+      "evidence": "Leviticus 8–10 narrates an installation in the wilderness setting; Exodus 28–29 provides corresponding instructions. Neither biblical passage provides external authentication for the final historical date of its own literary composition; no particular modern dating scheme is asserted. Gane 2022 §3.1 leaves the dating of priestly texts open; narrative setting is not composition evidence.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-lev-pc-001",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 28,
+      "endChapter": 29,
+      "startVerse": 1,
+      "endVerse": 37,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Commands for vestments and consecration correspond to their enactment in Leviticus 8."
+    },
+    {
+      "id": "conn-lev-pc-002",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 40,
+      "endChapter": 40,
+      "startVerse": 34,
+      "endVerse": 38,
+      "type": "background",
+      "confidence": "established",
+      "note": "The glory fills the completed tabernacle before the priestly inauguration."
+    },
+    {
+      "id": "conn-lev-pc-003",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 1,
+      "endChapter": 7,
+      "startVerse": 1,
+      "endVerse": 38,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "The offerings used at inauguration were described earlier."
+    },
+    {
+      "id": "conn-lev-pc-004",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 16,
+      "endChapter": 16,
+      "startVerse": 1,
+      "endVerse": 50,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "A later narrative concerns disputed priestly authority."
+    },
+    {
+      "id": "conn-lev-pc-005",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 18,
+      "endChapter": 18,
+      "startVerse": 1,
+      "endVerse": 32,
+      "type": "background",
+      "confidence": "established",
+      "note": "Priestly and Levitical duties are differentiated."
+    },
+    {
+      "id": "conn-lev-pc-006",
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "startChapter": 44,
+      "endChapter": 44,
+      "startVerse": 15,
+      "endVerse": 31,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Ezekiel’s priestly vision echoes holiness and teaching responsibilities."
+    },
+    {
+      "id": "conn-lev-pc-007",
+      "book": "Hebrews",
+      "bookId": "hebrews",
+      "startChapter": 5,
+      "endChapter": 7,
+      "startVerse": 1,
+      "endVerse": 28,
+      "type": "thematic",
+      "confidence": "traditional",
+      "note": "Christian epistle contrasts Aaronic priesthood with its portrayal of Jesus’s priesthood."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-gane-sacrifice-old-testament",
+    "source-kjv-leviticus-biblehub",
+    "source-pittman-nadab-abihu-2024"
+  ],
+  "review": {
+    "author": "Gnosis Phase 2 content development (AI-assisted)",
+    "reviewer": "Phase 2.5 desk audit, 2026-11-18; independent editorial QA still pending",
+    "lastReviewed": "2026-11-18",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Phase 2.5 evidence audit: 53 baseline claims and 56 baseline Scripture connections reviewed across seven categories; claims revised only where evidence wording or original access status needed correction. Bibliography/status changes recorded in SOURCE-VERIFICATION-MATRIX.md. Unverified sources retained honestly; No editorialOverride; no publication approval. Phase 2.6: primary KJV Leviticus 1–27 inspected; disputed scholars replaced by scoped full-text sources where warranted; all sources used by this category are verified to the stated relevant claim scope. Review is still pending independent Muse/QA; no editorial override; no published status."
+  }
+}

@@ -83,6 +83,8 @@ test("searches commentator names and titles, keeps selection, and resets after c
     const trigger = screen.getByRole("button", { name: /Matthew Henry/ });
     await user.click(trigger);
     const search = screen.getByRole("searchbox", { name: "Search commentaries" });
+    expect(search).not.toHaveFocus();
+    await user.click(search);
     expect(search).toHaveFocus();
     expect(within(screen.getByTestId("commentator-list")).getByRole("button", { pressed: true })).toHaveTextContent("Matthew Henry");
     await user.type(search, "BARNES");

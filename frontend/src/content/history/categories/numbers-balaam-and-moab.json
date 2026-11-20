@@ -1,0 +1,191 @@
+{
+  "id": "category-numbers-balaam-and-moab",
+  "title": "Balaam and the Plains of Moab",
+  "category": "category",
+  "era": "numbers",
+  "status": "published",
+  "primaryScripture": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 22,
+    "startVerse": 1,
+    "endChapter": 24,
+    "endVerse": 25
+  },
+  "fullRange": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 22,
+    "startVerse": 1,
+    "endChapter": 25,
+    "endVerse": 18
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated biblical wilderness narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-num-07-001",
+      "claim": "The received Numbers narrative contains the Balaam and the Plains of Moab material across Numbers 22–25.",
+      "evidence": "Numbers 22–25; biblical-text description, not independent evidence for an event date.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-num-07-002",
+      "claim": "An Iron Age plaster inscription from Tell Deir \u02bfAlla independently attests Balaam son of Beor as a divine seer.",
+      "evidence": "source-deir-alla-livius (Livius, Lendering; Levine 2003 translation): Tell Deir \u02bfAlla, 8 km east of the Jordan and 1 km north of the Jabbok; discovered 1967; first edition Hoftijzer and van der Kooij 1976; Combination I i.1, \"The misfortunes of the Book of Balaam, son of Beor. A divine seer was he.\" Attests the name and visionary role only.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-num-07-003",
+      "claim": "Comparisons with related biblical laws and retellings need to preserve differences in wording, chronology, or institutional setting.",
+      "evidence": "Internal textual comparisons documented in CONNECTION-AUDIT.md; interpretation of literary relationship, not an archaeological observation.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-num-07-004",
+      "claim": "The Deir \u02bfAlla inscription does not authenticate Balak, the donkey episode, the wilderness oracles, or a historical Balaam identical with the biblical figure.",
+      "evidence": "source-deir-alla-livius: the surviving inscriptional text concerns a nocturnal vision and a divine council; Balak, the donkey, and the Numbers oracles appear nowhere in it, and identity with the biblical figure is not established by the inscription.",
+      "assessment": "unknown"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-num-07-001",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 23,
+      "startVerse": 4,
+      "endChapter": 23,
+      "endVerse": 5,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Explicit Balaam reminiscence."
+    },
+    {
+      "id": "conn-num-07-002",
+      "book": "Micah",
+      "bookId": "micah",
+      "startChapter": 6,
+      "startVerse": 5,
+      "endChapter": 6,
+      "endVerse": 5,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Names Balak and Balaam."
+    },
+    {
+      "id": "conn-num-07-003",
+      "book": "Revelation",
+      "bookId": "revelation",
+      "startChapter": 2,
+      "startVerse": 14,
+      "endChapter": 2,
+      "endVerse": 14,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Later explicit moral reception."
+    },
+    {
+      "id": "conn-num-07-004",
+      "book": "1 Corinthians",
+      "bookId": "1-corinthians",
+      "startChapter": 10,
+      "startVerse": 8,
+      "endChapter": 10,
+      "endVerse": 8,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Related Peor narrative but reports 23,000 in one day versus 24,000 in Numbers 25:9."
+    },
+    {
+      "id": "conn-num-07-005",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 106,
+      "startVerse": 28,
+      "endChapter": 106,
+      "endVerse": 31,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Direct retrospective of Baal-peor and Phinehas; the plague was stayed."
+    },
+    {
+      "id": "conn-num-07-006",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 24,
+      "startVerse": 9,
+      "endChapter": 24,
+      "endVerse": 10,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Fullest retrospective of Balak summoning Balaam; he blessed Israel still."
+    },
+    {
+      "id": "conn-num-07-007",
+      "book": "Nehemiah",
+      "bookId": "nehemiah",
+      "startChapter": 13,
+      "startVerse": 2,
+      "endChapter": 13,
+      "endVerse": 2,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Retells the hiring of Balaam to curse Israel and God turning the curse into a blessing."
+    },
+    {
+      "id": "conn-num-07-008",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 22,
+      "startVerse": 17,
+      "endChapter": 22,
+      "endVerse": 17,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Retrospective reference to the iniquity of Peor and the plague."
+    },
+    {
+      "id": "conn-num-07-009",
+      "book": "Hosea",
+      "bookId": "hosea",
+      "startChapter": 9,
+      "startVerse": 10,
+      "endChapter": 9,
+      "endVerse": 10,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Remembers Israel going to Baal-peor."
+    },
+    {
+      "id": "conn-num-07-010",
+      "book": "Matthew",
+      "bookId": "matthew",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 2,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Matthew 2:1-2 recounts wise men following a star, a possible allusion to the star of Numbers 24:17. Matthew does not quote Numbers 24:17; the star reference is an allusion, not a quotation or a verified fulfillment citation."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-deir-alla-livius"
+  ],
+  "review": {
+    "author": "Gnosis Numbers research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-19",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished Numbers category; source access remains limited and audit restrictions apply. Phase 4 readiness and independent QA are distinct. No editorialOverride."
+  }
+}

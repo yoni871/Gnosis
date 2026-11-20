@@ -1,0 +1,161 @@
+{
+  "id": "category-numbers-final-wilderness-journey",
+  "title": "The Final Wilderness Journey",
+  "category": "category",
+  "era": "numbers",
+  "status": "published",
+  "primaryScripture": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 20,
+    "startVerse": 1,
+    "endChapter": 21,
+    "endVerse": 35
+  },
+  "fullRange": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 20,
+    "startVerse": 1,
+    "endChapter": 21,
+    "endVerse": 35
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated biblical wilderness narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-num-06-001",
+      "claim": "The received Numbers narrative contains the final wilderness journey material across Numbers 20–21.",
+      "evidence": "Numbers 20–21; biblical-text description, not independent evidence for an event date.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-num-06-002",
+      "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
+      "evidence": "Phase 1 Dossier 6 and Phase 2 N6-01 (MacDonald, East of the Jordan, directly inspected): Numbers 20-21, Numbers 33, Deuteronomy 2 and Judges 11 preserve inconsistent Transjordan itineraries, so exact route reconstruction is Debated/Unknown. QA Phase 4 section 5.6: MacDonald ch. 5 read directly (pp. 63-100); no primary archaeological report cited for Tell Hisban, Kadesh or Arnon; Levine Numbers 21-36 (4B) unread.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-num-06-003",
+      "claim": "Comparisons with related biblical laws and retellings need to preserve differences in wording, chronology, or institutional setting.",
+      "evidence": "Internal textual comparisons documented in CONNECTION-AUDIT.md; interpretation of literary relationship, not an archaeological observation.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-num-06-001",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 18,
+      "startVerse": 4,
+      "endChapter": 18,
+      "endVerse": 4,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Explicit biblical identification of Nehushtan."
+    },
+    {
+      "id": "conn-num-06-002",
+      "book": "John",
+      "bookId": "john",
+      "startChapter": 3,
+      "startVerse": 14,
+      "endChapter": 3,
+      "endVerse": 15,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Direct later Christological application."
+    },
+    {
+      "id": "conn-num-06-003",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 8,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Related but differently arranged account of the wilderness journey around Edom."
+    },
+    {
+      "id": "conn-num-06-003b",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 2,
+      "startVerse": 24,
+      "endChapter": 3,
+      "endVerse": 11,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Related but differently arranged account of the encounters with Sihon and Og."
+    },
+    {
+      "id": "conn-num-06-004",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 11,
+      "startVerse": 19,
+      "endChapter": 11,
+      "endVerse": 22,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Jephthah's message retells Israel's passage past Sihon of Heshbon, the battle at Jahaz, and possession from Arnon to Jabbok."
+    },
+    {
+      "id": "conn-num-06-005",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 32,
+      "startVerse": 48,
+      "endChapter": 32,
+      "endVerse": 52,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Direct reference to the Num 20 exclusion: Moses must die on Nebo because of the trespass at the waters of Meribah-Kadesh, as Aaron died on Mount Hor."
+    },
+    {
+      "id": "conn-num-06-006",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 106,
+      "startVerse": 32,
+      "endChapter": 106,
+      "endVerse": 33,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Poetic retrospective: the people angered God at the waters of strife, and it went ill with Moses for their sakes."
+    },
+    {
+      "id": "conn-num-06-007",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 17,
+      "startVerse": 1,
+      "endChapter": 17,
+      "endVerse": 7,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Parallel water-from-the-rock account at Rephidim (Massah and Meribah); differs from Num 20 in setting and details, so it is a parallel, not the same event."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-macdonald-east-jordan"
+  ],
+  "review": {
+    "author": "Gnosis Numbers research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-19",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished Numbers category; source access remains limited and audit restrictions apply. Phase 4 readiness and independent QA are distinct. No editorialOverride."
+  }
+}

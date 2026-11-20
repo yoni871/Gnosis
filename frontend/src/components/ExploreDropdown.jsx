@@ -10,6 +10,16 @@ const DEFAULT_ITEMS = [
         description: "Read Scripture alongside trusted biblical commentary.",
         to: "/bible/Genesis/1",
     },
+    {
+        title: "Biblical History",
+        description: "Explore the ancient world behind the biblical story, book by book.",
+        to: "/biblical-history",
+    },
+    {
+        title: "Trace the Doctrine",
+        description: "Follow Christian doctrines from Scripture through centuries of thought.",
+        to: "/trace-the-doctrine",
+    },
 ];
 
 // A disclosure containing normal navigation links, rather than an ARIA menu.

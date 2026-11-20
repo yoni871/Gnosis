@@ -93,3 +93,69 @@ test("GNOSIS_SPLIT_REQUIRED=1 with no split URLs at all fails fast", () => {
         DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis",
     }), /GNOSIS_APP_DATABASE_URL.*GNOSIS_BIBLE_DATABASE_URL.*GNOSIS_COMMENTARY_DATABASE_URL/);
 });
+
+test("a remote URL forces verified TLS regardless of its sslmode", () => {
+    const result = pools({
+        DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb?sslmode=require",
+    });
+    assert.deepEqual(result.app.options.ssl, { rejectUnauthorized: true });
+});
+
+test("a remote URL without sslmode still forces verified TLS", () => {
+    const result = pools({
+        DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb",
+    });
+    assert.deepEqual(result.app.options.ssl, { rejectUnauthorized: true });
+});
+
+test("a loopback URL leaves TLS unset (local development has no certificates)", () => {
+    const result = pools({ DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis" });
+    assert.equal(result.app.options.ssl, undefined);
+});
+
+test("sslmode=disable fails fast instead of connecting in plaintext", () => {
+    assert.throws(() => pools({
+        DATABASE_URL: "postgresql://role@ep-test-12345678.us-east-1.aws.neon.tech:5432/neondb?sslmode=disable",
+    }), /sslmode=disable/);
+});
+
+test("pools set statement and lock timeouts (F04 budgets)", () => {
+    const result = pools({
+        DATABASE_URL: "postgresql://role@127.0.0.1:5432/gnosis",
+    });
+    for (const createdPool of [result.app, result.bible, result.commentary]) {
+        assert.equal(createdPool.options.statement_timeout, 10000);
+        assert.equal(createdPool.options.lock_timeout, 5000);
+    }
+});
+
+test("an idle pool error logs only the subsystem and safe code", () => {
+    const seen = [];
+    const original = console.error;
+    console.error = (...args) => {
+        seen.push(args.join(" "));
+    };
+    try {
+        const result = pools({
+            DB_USER: "operator",
+            DB_HOST: "127.0.0.1",
+            DB_NAME: "gnosis",
+            DB_PORT: "5432",
+        });
+        const fakeUrl = ["postgres", "://", "dbuser", ":", "dbpass",
+            "@", "db.example.invalid", ":5432/gnosis"].join("");
+        const error = new Error(
+            "connect ECONNREFUSED 10.0.0.1:5432 " + fakeUrl
+        );
+        error.code = "ECONNREFUSED";
+        result.app.emit("error", error);
+    } finally {
+        console.error = original;
+    }
+    const text = seen.join("\n");
+    assert.equal(seen.length, 1);
+    assert.ok(text.includes("[db] pool error code=ECONNREFUSED"), text);
+    assert.ok(!text.includes("db.example.invalid"), text);
+    assert.ok(!text.includes("dbpass"), text);
+    assert.ok(!text.includes("10.0.0.1"), text);
+});

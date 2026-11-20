@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import PasswordInput from "../components/PasswordInput";
@@ -11,13 +11,12 @@ import {
     removePasskey,
 } from "../services/passkeyService";
 
-// Passkeys live alongside passwords: a passkey signs the user in
-// without typing a password, and the password always still works —
-// losing a passkey can never lock an account out. This page is a
-// standalone account page for now; it moves into Settings when the
-// Settings page lands (PR #89).
-export default function PasskeysPage() {
-    const { user, getAccessToken, isAuthLoading } = useContext(AuthContext);
+// Passkey management is embedded in Settings. The standalone route
+// remains only for existing bookmarks and redirects to Settings.
+export default function PasskeysPage({ embedded = false }) {
+    const { user, getAccessToken, token, isAuthLoading } = useContext(AuthContext);
+    const accessToken = useCallback(() => getAccessToken ? getAccessToken() : token,
+        [getAccessToken, token]);
     const [passkeys, setPasskeys] = useState(null);
     const [loadError, setLoadError] = useState("");
     const [password, setPassword] = useState("");
@@ -33,11 +32,11 @@ export default function PasskeysPage() {
     useEffect(() => {
         if (!user) return;
         let active = true;
-        listPasskeys(getAccessToken())
+        listPasskeys(accessToken())
             .then((items) => { if (active) setPasskeys(items); })
             .catch(() => { if (active) setLoadError("Could not load your passkeys. Try again."); });
         return () => { active = false; };
-    }, [user, getAccessToken]);
+    }, [user, accessToken]);
 
     if (isAuthLoading) {
         return <main role="status" aria-live="polite" className="flex min-h-screen items-center justify-center text-[14px] text-[var(--text-muted)]">Loading…</main>;
@@ -47,7 +46,7 @@ export default function PasskeysPage() {
     }
 
     async function refresh() {
-        setPasskeys(await listPasskeys(getAccessToken()));
+        setPasskeys(await listPasskeys(accessToken()));
     }
 
     async function handleRegister(event) {
@@ -55,7 +54,7 @@ export default function PasskeysPage() {
         setFormError("");
         setFormStatus("registering");
         try {
-            await registerPasskey(getAccessToken(), password, label.trim() || undefined);
+            await registerPasskey(accessToken(), password, label.trim() || undefined);
             setPassword("");
             setLabel("");
             await refresh();
@@ -73,7 +72,7 @@ export default function PasskeysPage() {
     async function handleRename(passkey) {
         setFormError("");
         try {
-            await renamePasskey(getAccessToken(), passkey.id, editingLabel.trim());
+            await renamePasskey(accessToken(), passkey.id, editingLabel.trim());
             setEditingId(null);
             await refresh();
         } catch (error) {
@@ -84,7 +83,7 @@ export default function PasskeysPage() {
     async function handleRemove(passkey) {
         setRemoveError("");
         try {
-            await removePasskey(getAccessToken(), passkey.id, removePassword);
+            await removePasskey(accessToken(), passkey.id, removePassword);
             setRemovingId(null);
             setRemovePassword("");
             await refresh();
@@ -95,20 +94,20 @@ export default function PasskeysPage() {
 
     return (
         <>
-        <Seo
+        {!embedded && <Seo
             title="Passkeys | Gnosis"
             description="Add or remove passkeys to sign in to Gnosis without typing your password."
             canonical={pageUrl("/passkeys")}
             robots="noindex, nofollow"
-        />
-        <main className="flex min-h-screen items-center justify-center bg-[var(--bg-selected)] px-6 py-12">
+        />}
+        <section aria-label="Passkeys" className={embedded ? "mt-8" : "flex min-h-screen items-center justify-center bg-[var(--bg-selected)] px-6 py-12"}>
             <div className="w-full max-w-[520px]">
                 <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2rem] text-[var(--color-brand)]">
                     Sign-in security
                 </p>
-                <h1 className="font-serif text-[36px] font-semibold leading-tight tracking-[-0.02em] text-[var(--text-primary)]">
+                {embedded ? <h3>Passkeys</h3> : <h1 className="font-serif text-[36px] font-semibold leading-tight tracking-[-0.02em] text-[var(--text-primary)]">
                     Passkeys
-                </h1>
+                </h1>}
                 <p className="mt-3 max-w-[440px] text-[13px] leading-6 text-[var(--text-muted)]">
                     A passkey lets you sign in with your device — face, fingerprint, or PIN — instead of typing
                     your password. It cannot be phished, and your password always still works, so losing a
@@ -264,13 +263,13 @@ export default function PasskeysPage() {
                     </form>
                 </section>
 
-                <p className="mt-7 text-[12px] text-[var(--text-muted)]">
+                {!embedded && <p className="mt-7 text-[12px] text-[var(--text-muted)]">
                     <Link to="/bible/Genesis/1" className="font-semibold text-[var(--color-brand)] underline decoration-[var(--border-control)] underline-offset-4 transition hover:decoration-[var(--color-brand)]">
                         Back to reading
                     </Link>
-                </p>
+                </p>}
             </div>
-        </main>
+        </section>
         </>
     );
 }

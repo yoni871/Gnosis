@@ -1,5 +1,6 @@
 const pool = require("../db/db");
 const { biblePool, commentaryPool } = require("../db/db");
+const { logControllerError } = require("../utils/authErrors");
 
 const isPositiveInteger = (value) => {
     return Number.isInteger(value) && value > 0;
@@ -38,7 +39,7 @@ const getReadingState = async (req, res) => {
             book: book.rows[0].name
         });
     } catch (error) {
-        console.error(error);
+        logControllerError("reading-state.get", "database", error);
 
         return res.status(500).json({
             error: "Failed to retrieve reading position."
@@ -156,7 +157,7 @@ const saveReadingState = async (req, res) => {
             book: book.rows[0].name
         });
     } catch (error) {
-        console.error(error);
+        logControllerError("reading-state.save", "database", error);
 
         return res.status(500).json({
             error: "Failed to save reading position."

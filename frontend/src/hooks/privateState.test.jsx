@@ -59,7 +59,7 @@ test('notes discard drafts, passage, editing state and feedback on every session
     act(() => hook.result.current.handleStartNote(passage));
     expect(hook.result.current.notesError).not.toBe('');
     await hook.change({ ...B, isAuthLoading: true });
-    expect(hook.result.current).toMatchObject({ notes: [], noteContent: '', draftPassage: null, editingNoteId: null, editContent: '', notesError: '', isSavingNote: false, isUpdatingNote: false, deletingNoteId: null, isLoadingNotes: false });
+    expect(hook.result.current).toMatchObject({ notes: [], noteContent: '', draftPassage: null, editingNoteId: null, notesError: '', isSavingNote: false, deletingNoteId: null, isLoadingNotes: false });
     await hook.change(B);
     expect(hook.result.current.notes).toHaveLength(1);
     await hook.change(guest);
@@ -103,8 +103,7 @@ for (const feature of features) {
 }
 
 const mutations = [
-    { name: 'note create', hook: useJournal, mock: notes.createNote, prepare: h => h.setNoteContent('draft'), run: h => h.handleSaveNote(), result: record, busy: 'isSavingNote', data: 'notes' },
-    { name: 'note update', hook: useJournal, mock: notes.updateNote, prepare: h => h.handleStartEdit(record), run: h => h.handleUpdateNote(7), result: record, busy: 'isUpdatingNote', data: 'notes' },
+    { name: 'note create', hook: useJournal, mock: notes.createNote, prepare: () => {}, run: h => h.handleCreateDocument(), result: record, busy: 'isSavingNote', data: 'notes' },
     { name: 'note delete', hook: useJournal, mock: notes.deleteNote, prepare: () => {}, run: h => h.handleDeleteNote(7), busy: 'deletingNoteId', data: 'notes' },
     { name: 'bookmark create', hook: useBookmarks, mock: bookmarks.createBookmark, prepare: () => {}, run: h => h.handleAddBookmarks({ ...passage, startVerse: 2 }), result: record, busy: 'isSaving', data: 'bookmarks' },
     { name: 'bookmark delete', hook: useBookmarks, mock: bookmarks.deleteBookmark, prepare: () => {}, run: h => h.handleDeleteBookmark(7), busy: 'deletingId', data: 'bookmarks' },
@@ -191,18 +190,74 @@ test.each([false, true])('preview snapshots ignore stale completion (%s), retain
 
 test('current failures retain the draft for retry; old failures cannot replace B feedback or editing state', async () => {
     const old = deferred();
-    notes.createNote.mockReturnValueOnce(old.promise).mockRejectedValueOnce(new Error('B failure'));
+    notes.updateNote.mockReturnValueOnce(old.promise).mockRejectedValueOnce(new Error('B failure'));
     const hook = await mount(useJournal);
-    act(() => hook.result.current.setNoteContent('A draft'));
+    act(() => { hook.result.current.handleStartEdit(record); hook.result.current.changeDocument(7, { content: 'A draft' }); });
     let operation;
-    act(() => { operation = hook.result.current.handleSaveNote(); });
+    act(() => { operation = hook.result.current.saveDocument(7); });
     await hook.change(B);
-    act(() => { hook.result.current.setNoteContent('B draft'); hook.result.current.handleStartEdit({ ...record, content: 'B edit' }); });
-    await act(async () => { await hook.result.current.handleSaveNote(); });
-    expect(hook.result.current.notesError).toBe('B failure');
+    act(() => { hook.result.current.handleStartEdit(record); hook.result.current.changeDocument(7, { content: 'B edit' }); });
+    await act(async () => { await hook.result.current.saveDocument(7); });
+    expect(hook.result.current.documents[7].error).toBe('B failure');
     await settle(old, null, true);
     expect(await operation).toBe(false);
-    expect(hook.result.current).toMatchObject({ noteContent: 'B draft', editContent: 'B edit', editingNoteId: 7, notesError: 'B failure', isSavingNote: false });
+    expect(hook.result.current).toMatchObject({ editingNoteId: 7, documents: { 7: { content: 'B edit', error: 'B failure' } } });
+});
+
+test('overlapping saves remain bound to their note across rapid switches', async () => {
+    const first = deferred(), second = deferred();
+    const noteA = { ...record, id: 701, title: 'A', content: 'body A' };
+    const noteB = { ...record, id: 702, title: 'B', content: 'body B' };
+    notes.getNotes.mockResolvedValue([noteA, noteB]);
+    notes.updateNote.mockReturnValueOnce(first.promise).mockReturnValueOnce(second.promise);
+    const hook = await mount(useJournal);
+    act(() => hook.result.current.handleStartEdit(noteA));
+    act(() => hook.result.current.changeDocument(701, { title: 'A edit', content: 'A draft' }));
+    act(() => { void hook.result.current.saveDocument(701); });
+    act(() => hook.result.current.handleStartEdit(noteB));
+    act(() => hook.result.current.changeDocument(702, { title: 'B edit', content: 'B draft' }));
+    act(() => { void hook.result.current.saveDocument(702); });
+    act(() => hook.result.current.changeDocument(701, { content: 'late callback' }));
+    await settle(second, { ...noteB, title: 'B edit', content: 'B draft' });
+    await settle(first, { ...noteA, title: 'A edit', content: 'A draft' });
+    expect(hook.result.current.editingNoteId).toBe(702);
+    expect(hook.result.current.documents[701]).toMatchObject({ title: 'A edit', content: 'A draft', saving: false });
+    expect(hook.result.current.documents[702]).toMatchObject({ title: 'B edit', content: 'B draft', saving: false });
+    expect(notes.updateNote).toHaveBeenNthCalledWith(1, 'synthetic-A', 701, { title: 'A edit', content: 'A draft' });
+    expect(notes.updateNote).toHaveBeenNthCalledWith(2, 'synthetic-A', 702, { title: 'B edit', content: 'B draft' });
+});
+
+test('a failed save keeps the draft; cancel restores the last confirmed version', async () => {
+    const note = { ...record, id: 703, title: 'Original', content: 'Original body' };
+    notes.getNotes.mockResolvedValue([note]);
+    notes.updateNote.mockRejectedValueOnce(new Error('Offline'));
+    notes.updateNote.mockResolvedValueOnce(note);
+    const hook = await mount(useJournal);
+    act(() => hook.result.current.handleStartEdit(note));
+    act(() => hook.result.current.changeDocument(note.id, { title: 'Draft', content: 'Draft body' }));
+    await act(async () => { await hook.result.current.saveDocument(note.id); });
+    expect(hook.result.current.documents[note.id]).toMatchObject({ title: 'Draft', content: 'Draft body', error: 'Offline' });
+    await act(async () => { await hook.result.current.cancelDocument(note.id); });
+    expect(hook.result.current.documents[note.id]).toMatchObject({ title: 'Original', content: 'Original body', error: '' });
+    expect(notes.updateNote).toHaveBeenCalledTimes(2);
+    expect(notes.updateNote).toHaveBeenLastCalledWith('synthetic-A', note.id, { title: 'Original', content: 'Original body' });
+});
+
+test('an in-flight save can finish after unmount and the same session restores its draft', async () => {
+    const note = { ...record, id: 704, title: 'Before', content: 'Before body' };
+    notes.getNotes.mockResolvedValue([note]);
+    const request = deferred();
+    notes.updateNote.mockReturnValueOnce(request.promise);
+    const first = await mount(useJournal);
+    act(() => first.result.current.handleStartEdit(note));
+    act(() => first.result.current.changeDocument(note.id, { title: 'After', content: 'After body' }));
+    act(() => { void first.result.current.saveDocument(note.id); });
+    first.unmount();
+    const next = await mount(useJournal);
+    act(() => next.result.current.handleStartEdit(note));
+    expect(next.result.current.documents[note.id]).toMatchObject({ title: 'After', content: 'After body', saving: true });
+    await settle(request, { ...note, title: 'After', content: 'After body' });
+    expect(next.result.current.documents[note.id]).toMatchObject({ title: 'After', content: 'After body', saving: false });
 });
 
 test('same-user reauthentication clears drafts even when user ID and token are reused', async () => {
@@ -214,8 +269,7 @@ test('same-user reauthentication clears drafts even when user ID and token are r
 
 test('a token without confirmed user ID cannot load or mutate private records', async () => {
     const hook = await mount(useJournal, { ...A, user: { email: 'synthetic@example.invalid' } });
-    act(() => hook.result.current.setNoteContent('draft'));
-    await act(async () => { await hook.result.current.handleSaveNote(); });
+    await act(async () => { await hook.result.current.handleCreateDocument(); });
     expect(notes.getNotes).not.toHaveBeenCalled();
     expect(notes.createNote).not.toHaveBeenCalled();
 });

@@ -157,7 +157,7 @@ export default function ResetPasswordPage() {
                                             border-[var(--border-control)]
                                             bg-transparent
                                             px-0
-                                            text-[14px]
+                                            text-[16px]
                                             text-[var(--text-primary)]
                                             outline-none
                                             transition-colors
@@ -202,7 +202,7 @@ export default function ResetPasswordPage() {
                                             border-[var(--border-control)]
                                             bg-transparent
                                             px-0
-                                            text-[14px]
+                                            text-[16px]
                                             text-[var(--text-primary)]
                                             outline-none
                                             transition-colors

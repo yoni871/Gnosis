@@ -6,7 +6,7 @@ const { validateContext } = require('./application-database');
 // NODE_OPTIONS, execArgv, dotenv paths, or database defaults to an application worker.
 function workerEnvironment() {
     const env = { GNOSIS_TEST_ISOLATION: '1', NODE_ENV: 'test',
-        JWT_SECRET: 'synthetic-application-test-jwt',
+        JWT_SECRET: 'synthetic-application-test-jwt-synthetic-test-secret',
         RATE_LIMIT_KEY_SECRET: 'synthetic-application-test-rate-limit', TZ: 'UTC',
         // Issue #9: workers import app.js, which validates email
         // configuration at import time. These synthetic, non-routable
@@ -22,6 +22,19 @@ function workerEnvironment() {
     // stub. The override is honored only under test isolation (workers
     // always run isolated), and production ignores it entirely.
     if (process.env.RESEND_API_BASE_URL) env.RESEND_API_BASE_URL = process.env.RESEND_API_BASE_URL;
+    // PR3 (N07): same loopback pattern as Resend — register/reset screen
+    // passwords against HIBP, and no test may call the real
+    // api.pwnedpasswords.com.
+    if (process.env.HIBP_API_BASE_URL) env.HIBP_API_BASE_URL = process.env.HIBP_API_BASE_URL;
+    // TOTP MFA: a test file may point workers at a synthetic encryption
+    // key, so MFA flows can run against the disposable database. The
+    // override is honored only under test isolation, mirroring the
+    // delivery-stub override above.
+    if (process.env.MFA_ENCRYPTION_KEY) env.MFA_ENCRYPTION_KEY = process.env.MFA_ENCRYPTION_KEY;
+    // Admin-mandatory MFA (design §9): a test file may name admin
+    // emails for the worker, so the login gate can be exercised
+    // against the disposable database. Same isolation-only pattern.
+    if (process.env.ADMIN_EMAILS) env.ADMIN_EMAILS = process.env.ADMIN_EMAILS;
     return env;
 }
 

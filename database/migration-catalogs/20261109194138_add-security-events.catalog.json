@@ -1,0 +1,127 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "security_events.created_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "security_events.id",
+      "definition": {
+        "type": "bigint",
+        "default": null,
+        "notNull": true,
+        "identity": "a",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "security_events.kind",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "security_events.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "security_events.security_events_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "security_events_kind_created_at_idx",
+      "definition": {
+        "sql": "CREATE INDEX security_events_kind_created_at_idx ON public.security_events USING btree (kind, created_at)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "security_events_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX security_events_pkey ON public.security_events USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "security_events_user_id_created_at_idx",
+      "definition": {
+        "sql": "CREATE INDEX security_events_user_id_created_at_idx ON public.security_events USING btree (user_id, created_at)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "security_events",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "security_events_id_seq",
+      "definition": {
+        "rls": false,
+        "kind": "S",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "sequence",
+      "name": "security_events_id_seq",
+      "definition": {
+        "max": 9223372036854776000,
+        "min": 1,
+        "type": "bigint",
+        "cache": 1,
+        "cycle": false,
+        "start": 1,
+        "increment": 1,
+        "ownerTable": "security_events",
+        "ownerColumn": "id"
+      }
+    }
+  ],
+  "removed": []
+}

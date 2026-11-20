@@ -131,6 +131,44 @@ async function flagPasskey(credentialId) {
     );
 }
 
+async function completeVerifiedLogin(stored, newCounter, createSession) {
+    const client = await pool.connect();
+    try {
+        await client.query('BEGIN');
+        const current = await client.query(
+            'SELECT user_id, counter, flagged_at FROM user_passkeys WHERE credential_id = $1 FOR UPDATE',
+            [stored.credentialId]);
+        const row = current.rows[0];
+        if (!row || row.user_id !== stored.userId || row.flagged_at) {
+            await client.query('ROLLBACK');
+            return null;
+        }
+        const outcome = counterOutcome(Number(row.counter), newCounter);
+        if (outcome === 'regression') {
+            await client.query('UPDATE user_passkeys SET flagged_at = now() WHERE credential_id = $1',
+                [stored.credentialId]);
+            await client.query('COMMIT');
+            return null;
+        }
+        const session = await createSession(client, stored.userId);
+        if (!session) {
+            await client.query('ROLLBACK');
+            return null;
+        }
+        await client.query(outcome === 'ok'
+            ? 'UPDATE user_passkeys SET counter = $2, last_used_at = now() WHERE credential_id = $1'
+            : 'UPDATE user_passkeys SET last_used_at = now() WHERE credential_id = $1',
+        outcome === 'ok' ? [stored.credentialId, newCounter] : [stored.credentialId]);
+        await client.query('COMMIT');
+        return session;
+    } catch (error) {
+        await client.query('ROLLBACK').catch(() => {});
+        throw error;
+    } finally {
+        client.release();
+    }
+}
+
 async function renamePasskey(userId, id, label) {
     const result = await pool.query(
         `UPDATE user_passkeys SET label = $3 WHERE id = $1 AND user_id = $2
@@ -159,6 +197,7 @@ module.exports = {
     updateCounterAndLastUsed,
     updateLastUsed,
     flagPasskey,
+    completeVerifiedLogin,
     renamePasskey,
     removePasskey,
 };

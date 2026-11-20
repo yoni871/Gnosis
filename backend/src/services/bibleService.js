@@ -3,7 +3,28 @@ const { get } = require("../routes/searchRoutes");
 const { isProviderConfigured } = require("./licensed/licensedTranslations");
 
 const getAllBooks = () => {
-    return pool.query("SELECT * FROM bible_books");
+    // Chapter and verse counts come from the stored Bible data itself, so
+    // callers (e.g. the Scripture-mention parser) validate references against
+    // what the reader can actually render. chapter_count is the HIGHEST
+    // chapter number (0 when the book has no chapters) — not a row count, so
+    // a partially seeded book still validates its highest chapter; for
+    // complete data the highest number equals the count. verse_counts is null
+    // for a book with no verses at all, and omits chapters that have no
+    // verses. Verse counts are per chapter across all stored translations
+    // (COUNT DISTINCT verse_number), since the stored translations share one
+    // versification.
+    return pool.query(`
+        SELECT b.*,
+            (SELECT COALESCE(MAX(chapter_number), 0)::int FROM bible_chapters c WHERE c.book_id = b.id) AS chapter_count,
+            (SELECT jsonb_object_agg(c.chapter_number::text, vc.verse_count)
+               FROM bible_chapters c
+               JOIN (SELECT chapter_id, COUNT(DISTINCT verse_number)::int AS verse_count
+                       FROM bible_verses GROUP BY chapter_id) vc
+                 ON vc.chapter_id = c.id
+              WHERE c.book_id = b.id) AS verse_counts
+          FROM bible_books b
+         ORDER BY b.book_order
+    `);
 };
 
 const getAllChapters = (bookId) => {
@@ -47,6 +68,36 @@ const getTranslationByAbbreviation = async (abbreviation) => {
     const result = await pool.query(
         "SELECT * FROM bible_translations WHERE abbreviation = $1",
         [abbreviation]
+    );
+    return result.rows.length === 0 ? null : result.rows[0];
+}
+
+// Resolve a :book URL segment to its canonical bible_books row.
+//
+// Book names are matched case-insensitively (and ignoring surrounding
+// whitespace) against the canonical names in bible_books, so
+// /api/bible/genesis/1/KJV, /GENESIS/ and /GeNeSiS/ all resolve to
+// "Genesis". The 66 canonical names are distinct under case-folding,
+// so the match is unambiguous and can never map one book onto
+// another. Abbreviations ("Gen") are NOT resolved — only full
+// canonical names — so no new mappings are introduced. Returns null
+// for an unknown or empty name; callers answer that with the same
+// 404 they gave before.
+//
+// Normalization belongs here, at the API entry point, rather than in
+// each query: the chapter endpoint's downstream consumers all key on
+// the canonical name — the stored-text query, the licensed cache
+// lookup, the provider fetches (ESV's single-chapter set and
+// API.Bible's book-code map are keyed by canonical name), and the
+// `book` field echoed in the response — so resolving once, before
+// any of them run, fixes every path with one lookup.
+const resolveBookName = async (book) => {
+    if (typeof book !== "string") return null;
+    const name = book.trim();
+    if (!name) return null;
+    const result = await pool.query(
+        "SELECT id, name FROM bible_books WHERE LOWER(name) = LOWER($1)",
+        [name]
     );
     return result.rows.length === 0 ? null : result.rows[0];
 }
@@ -232,6 +283,7 @@ module.exports = {
     getVersesByChapter,
     getAllTranslations,
     getTranslationByAbbreviation,
+    resolveBookName,
     getAllCommentaries,
     getCommentariesByBook,
     getAllSources,

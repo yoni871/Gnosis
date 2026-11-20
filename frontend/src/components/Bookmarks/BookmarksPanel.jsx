@@ -209,6 +209,11 @@ export default function BookmarksPanel({ bookmarksState, books=[], translation, 
                     </ul>
                 )}
             </div>
+            {bookmarksState.nextCursor && <button type="button"
+                onClick={bookmarksState.loadMore} disabled={bookmarksState.isLoadingMore || bookmarksState.isSaving}
+                className="shrink-0 rounded border border-[var(--border)] px-4 py-2 text-sm text-[var(--text-primary)] disabled:opacity-50">
+                {bookmarksState.isLoadingMore ? "Loading…" : "Load more bookmarks"}
+            </button>}
         </aside>
     );
 }

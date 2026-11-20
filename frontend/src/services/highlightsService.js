@@ -1,8 +1,9 @@
+import { privatePageUrl } from "../utils/privatePages";
 import API_URL from "../api/api";
 
 // Fetch the authenticated user's saved highlights.
-export async function getHighlights(token) {
-    const response = await fetch(`${API_URL}/highlights`, {
+export async function getHighlights(token, cursor = null, filters = {}) {
+    const response = await fetch(privatePageUrl(API_URL, "highlights", cursor, filters), {
         headers: {
             Authorization: `Bearer ${token}`
         }

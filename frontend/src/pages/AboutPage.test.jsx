@@ -4,11 +4,12 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import AboutPage from "./AboutPage";
 import App from "../App";
 
 function renderAbout(auth = { user: null, isAuthLoading: false, logout: vi.fn() }) {
-    return render(<MemoryRouter initialEntries={["/about"]}><AuthContext.Provider value={auth}><AboutPage /></AuthContext.Provider></MemoryRouter>);
+    return render(<MemoryRouter initialEntries={["/about"]}><ThemeProvider><AuthContext.Provider value={auth}><AboutPage /></AuthContext.Provider></ThemeProvider></MemoryRouter>);
 }
 
 describe("About Gnosis", () => {
@@ -105,7 +106,7 @@ describe("About Gnosis", () => {
         expect(window.location.pathname).toBe("/about");
         expect(await screen.findByRole("heading", { level: 1 })).toHaveTextContent("About Gnosis");
         const config = JSON.parse(readFileSync("vercel.json", "utf8"));
-        expect(config.rewrites).toContainEqual({ source: "/(.*)", destination: "/index.html" });
+        expect(config.rewrites).toContainEqual({ source: "/((?!api/).*)", destination: "/index.html" });
     });
 });
 

@@ -1,6 +1,9 @@
 const crypto = require('node:crypto');
 const jwt = require('jsonwebtoken');
 const pool = require('../db/db');
+const { audit } = require('../utils/auditLog');
+const { computeKeyHash, getRateLimitSecret, POLICIES } = require('../utils/rateLimit');
+const { isAdminEmail } = require('../utils/adminAuth');
 const ACCESS_SECONDS = 15 * 60;
 const SESSION_MS = 7 * 24 * 60 * 60 * 1000;
 const COOKIE = 'gnosisRefresh';
@@ -23,65 +26,105 @@ async function transaction(work) {
         throw error;
     } finally { client.release(); }
 }
-async function createSession(userId, verifiedPasswordHash) {
+async function createSessionInTransaction(client, userId, verifiedPasswordHash, mfaVerified = false) {
     const session = { id: crypto.randomUUID(), user_id: userId };
     const token = accessToken(session);
     const refresh = fresh();
-    const created = await transaction(async client => {
-        // Reset locks this same user row before changing the password and
-        // revoking sessions. Recheck the credential that login verified after
-        // acquiring the lock; never issue from a stale password snapshot.
-        const result = await client.query(
-            'SELECT password_hash FROM users WHERE id = $1 FOR UPDATE', [userId]);
-        if (typeof verifiedPasswordHash !== 'string'
-            || result.rows[0]?.password_hash !== verifiedPasswordHash) return false;
-        await client.query('INSERT INTO auth_sessions(id, user_id, expires_at) VALUES ($1, $2, $3)',
-            [session.id, userId, new Date(Date.now() + SESSION_MS)]);
-        await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refresh), session.id]);
-        return true;
-    });
-    return created ? { token, refresh } : null;
+    // Reset locks this same user row before changing the password and
+    // revoking sessions. Recheck the credential that login verified after
+    // acquiring the lock; never issue from a stale password snapshot.
+    const result = await client.query(
+        'SELECT password_hash, email FROM users WHERE id = $1 FOR UPDATE', [userId]);
+    if (typeof verifiedPasswordHash !== 'string'
+        || result.rows[0]?.password_hash !== verifiedPasswordHash) return null;
+    const mfa = await client.query('SELECT enrolled, mfa_generation FROM user_mfa WHERE user_id = $1', [userId]);
+    if (!mfaVerified && (mfa.rows[0]?.enrolled || isAdminEmail(result.rows[0].email))) return null;
+    if (mfaVerified && (!mfa.rows[0]?.enrolled || !mfa.rows[0].mfa_generation)) return null;
+    await client.query('INSERT INTO auth_sessions(id, user_id, expires_at, mfa_verified, mfa_generation) VALUES ($1, $2, $3, $4, $5)',
+        [session.id, userId, new Date(Date.now() + SESSION_MS), mfaVerified, mfaVerified ? mfa.rows[0].mfa_generation : null]);
+    await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refresh), session.id]);
+    return { token, refresh };
 }
-async function createSessionForVerifiedUser(userId) {
-    // Passkey login: the caller has just verified a WebAuthn assertion
-    // in this request, so no password recheck applies — the assertion
-    // itself is the fresh credential verification. The user row is
-    // still locked and the email gate still enforced, exactly like
-    // password login, so a deleted or unverified account gets no
-    // session from a stale credential.
+async function createSession(userId, verifiedPasswordHash) {
+    const created = await transaction(async client =>
+        createSessionInTransaction(client, userId, verifiedPasswordHash));
+    return created;
+}
+async function createPasskeySessionInTransaction(client, userId) {
+    // A verified assertion with user verification is the fresh credential.
+    // Lock the account before reading its current MFA generation so a
+    // concurrent reset or MFA change cannot issue a stale session.
     const session = { id: crypto.randomUUID(), user_id: userId };
     const token = accessToken(session);
     const refresh = fresh();
-    const created = await transaction(async client => {
-        const result = await client.query(
-            'SELECT email_verified_at FROM users WHERE id = $1 FOR UPDATE', [userId]);
-        if (!result.rows[0] || !result.rows[0].email_verified_at) return false;
-        await client.query('INSERT INTO auth_sessions(id, user_id, expires_at) VALUES ($1, $2, $3)',
-            [session.id, userId, new Date(Date.now() + SESSION_MS)]);
-        await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refresh), session.id]);
-        return true;
-    });
-    return created ? { token, refresh } : null;
+    const result = await client.query('SELECT email, email_verified_at FROM users WHERE id = $1 FOR UPDATE', [userId]);
+    const account = result.rows[0];
+    if (!account?.email_verified_at) return null;
+    const mfa = await client.query('SELECT enrolled, mfa_generation FROM user_mfa WHERE user_id = $1', [userId]);
+    const enrolled = mfa.rows[0]?.enrolled === true;
+    if (isAdminEmail(account.email) && !enrolled) return null;
+    if (enrolled && !mfa.rows[0].mfa_generation) return null;
+    await client.query('INSERT INTO auth_sessions(id, user_id, expires_at, mfa_verified, mfa_generation) VALUES ($1, $2, $3, $4, $5)',
+        [session.id, userId, new Date(Date.now() + SESSION_MS), enrolled, enrolled ? mfa.rows[0].mfa_generation : null]);
+    await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refresh), session.id]);
+    return { token, refresh };
 }
 async function rotateSession(refresh) {
     if (!valid(refresh)) return null;
-    return transaction(async client => {
+    const outcome = await transaction(async client => {
         // Lock the family first. A concurrent rotation rechecks used_at after waiting.
         const result = await client.query(`SELECT s.* FROM auth_sessions s
             JOIN auth_refresh_tokens t ON t.session_id = s.id WHERE t.token_hash = $1 FOR UPDATE OF s`, [hash(refresh)]);
         const session = result.rows[0];
         if (!session || session.revoked_at || new Date(session.expires_at) <= new Date()) return null;
+        const account = await client.query(`SELECT u.email, m.enrolled, m.mfa_generation FROM users u
+            LEFT JOIN user_mfa m ON m.user_id = u.id WHERE u.id = $1`, [session.user_id]);
+        if (!account.rows[0] || (isAdminEmail(account.rows[0].email)
+            && (!account.rows[0].enrolled || !session.mfa_verified || !session.mfa_generation
+                || session.mfa_generation !== account.rows[0].mfa_generation))) return null;
         const current = await client.query('SELECT used_at FROM auth_refresh_tokens WHERE token_hash = $1', [hash(refresh)]);
         if (!current.rows[0] || current.rows[0].used_at) {
             await client.query('UPDATE auth_sessions SET revoked_at = now() WHERE id = $1', [session.id]);
-            return null;
+            // Reuse is reported to the caller instead of audited here:
+            // the audit row must land after this revocation commits, and
+            // only rotateSession can tell reuse apart from an expired or
+            // revoked session (both also return null).
+            return { reused: true, userId: session.user_id };
+        }
+        // The family row is already locked: count and issue in this SAME
+        // transaction so rotation/IP changes cannot evade a stable family budget.
+        const key = computeKeyHash('refresh_family', [session.id], getRateLimitSecret());
+        const reserved = await client.query("INSERT INTO rate_limit_attempts(key_hash,policy) VALUES ($1,'refresh_family') RETURNING id", [key]);
+        const counted = await client.query(`SELECT COUNT(*)::int AS count, MIN(attempted_at) AS oldest FROM rate_limit_attempts
+            WHERE key_hash=$1 AND policy='refresh_family' AND attempted_at > now()-($2 * INTERVAL '1 millisecond')`,
+            [key, POLICIES.refresh_family.windowMs]);
+        const budget = counted.rows[0];
+        if (!Number.isInteger(budget?.count)) throw new Error('Invalid refresh budget state.');
+        if (budget.count > POLICIES.refresh_family.limit) {
+            await client.query('DELETE FROM rate_limit_attempts WHERE id=$1', [reserved.rows[0].id]);
+            return { limited: true, retryAfter: Math.max(1, Math.ceil((new Date(budget.oldest).getTime()
+                + POLICIES.refresh_family.windowMs - Date.now()) / 1000)) };
         }
         const token = accessToken(session);
         const replacement = fresh();
         await client.query('UPDATE auth_refresh_tokens SET used_at = now() WHERE token_hash = $1', [hash(refresh)]);
         await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(replacement), session.id]);
-        return { token, refresh: replacement, expiresAt: session.expires_at };
+        return { rotated: { token, refresh: replacement, expiresAt: session.expires_at } };
     });
+    if (outcome && outcome.reused) {
+        // Best-effort, after the revocation committed. audit() never
+        // throws, so a failed insert cannot change the 401 response.
+        await audit(pool, 'refresh_token.reused', outcome.userId);
+        return null;
+    }
+    // PR #90: a family-budget exceedance is returned as-is (not unwrapped
+    // via outcome.rotated) so the route can answer 429 with Retry-After.
+    // Without this the rebase's outcome wrapper swallowed the limit and
+    // the route saw undefined (a 401) instead of the 429.
+    if (outcome && outcome.limited) {
+        return outcome;
+    }
+    return outcome ? outcome.rotated : null;
 }
 async function revokeRefresh(refresh) {
     if (valid(refresh)) await pool.query(`UPDATE auth_sessions SET revoked_at = now()
@@ -120,5 +163,5 @@ function browserSessionRequest(req, res, next) {
     }
     next();
 }
-module.exports = { ACCESS_SECONDS, SESSION_MS, createSession, createSessionForVerifiedUser, rotateSession, revokeRefresh,
+module.exports = { ACCESS_SECONDS, SESSION_MS, createSession, createSessionInTransaction, createPasskeySessionInTransaction, rotateSession, revokeRefresh,
     revokeAccess, readCookie, setCookie, clearCookie, browserSessionRequest, hash };

@@ -27,6 +27,7 @@
   "description": "",
   "dependencies": {
     "@simplewebauthn/server": "14.1.0",
+    "argon2": "^0.45.2",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
@@ -37,5 +38,9 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
+  },
+  "overrides": {
+    "glob": "^14.0.2",
+    "minimatch": "^11.0.5"
   }
 }

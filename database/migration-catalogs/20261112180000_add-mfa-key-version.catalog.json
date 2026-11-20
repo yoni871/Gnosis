@@ -1,0 +1,17 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "user_mfa.key_version",
+      "definition": {
+        "type": "integer",
+        "default": "1",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    }
+  ],
+  "removed": []
+}

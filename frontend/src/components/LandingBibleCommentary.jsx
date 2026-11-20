@@ -5,7 +5,7 @@ import LandingDeviceShowcase from "./LandingDeviceShowcase";
 
 const FEATURES = [
     { title: "Read with Understanding", text: "Explore Scripture alongside trusted commentary, gaining insight into the meaning and context of each passage.", Icon: BookOpen },
-    { title: "Explore Different Perspectives", text: "Engage with the writings of Matthew Henry and Jamieson, Fausset & Brown.", Icon: Layers },
+    { title: "Explore Different Perspectives", text: "Compare trusted perspectives on a passage's meaning, context, and enduring significance.", Icon: Layers },
     { title: "Stay Focused on Scripture", text: "Move between the biblical text and commentary without losing your place.", Icon: BookMarked },
 ];
 

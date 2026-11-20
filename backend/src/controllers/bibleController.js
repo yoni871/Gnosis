@@ -2,6 +2,7 @@
 //talks to the database and sends the response
 const bibleService = require("../services/bibleService");
 const licensedTranslations = require("../services/licensed/licensedTranslations");
+const { logControllerError } = require("../utils/authErrors");
 
 // Licensed translations are temporarily unavailable as a whole, never
 // per-verse: the reader answers this by falling back to BSB.
@@ -15,7 +16,7 @@ const getBooks = async (req, res) => {
         const result = await bibleService.getAllBooks();
         res.json(result.rows);
     } catch (error) {
-        console.error(error);
+        logControllerError("bible.books", "database", error);
 
         res.status(500).json({
             error: "Failed to retrieve books"
@@ -28,7 +29,7 @@ const getChapters = async (req, res) => {
         const result = await bibleService.getAllChapters(req.params.bookId);
         res.json(result.rows);
     } catch(error) {
-        console.error(error);
+        logControllerError("bible.chapters", "database", error);
         res.status(500).json({
             error: "Failed to retrieve chapters."
         });
@@ -40,7 +41,7 @@ const getVerses = async (req, res) => {
         const result = await bibleService.getVersesByChapter(req.params.chapterId, req.query.translationId);
         res.json(result.rows);
     } catch(error) {
-        console.error(error);
+        logControllerError("bible.verses", "database", error);
         res.status(500).json({
             error: "Failed to retrieve verses."
         });
@@ -52,7 +53,7 @@ const getTranslations = async (req, res) => {
         const result = await bibleService.getAllTranslations();
         res.json(result.rows);
     } catch(error) {
-        console.error(error);
+        logControllerError("bible.translations", "database", error);
         res.status(500).json({
             error: "Failed to retrieve translations."
         });
@@ -64,7 +65,7 @@ const getCommentaries = async (req, res) => {
         const result = await bibleService.getAllCommentaries();
         res.json(result.rows);
     } catch(error) {
-        console.error(error);
+        logControllerError("bible.commentaries", "database", error);
         res.status(500).json({
             error: "Failed to retrieve commentaries."
         });
@@ -76,7 +77,7 @@ const getBookCommentaries = async (req, res) => {
         const result = await bibleService.getCommentariesByBook(req.params.bookId);
         res.json(result.rows);
     } catch(error) {
-        console.error(error);
+        logControllerError("bible.book-commentaries", "database", error);
         res.status(500).json({
             error: "Failed to retrieve book commentaries."
         });
@@ -88,7 +89,7 @@ const getSources = async (req, res) => {
         const result = await bibleService.getAllSources();
         res.json(result.rows);
     } catch(error) {
-        console.error(error);
+        logControllerError("bible.sources", "database", error);
         res.status(500).json({
             error: "Failed to retrieve sources."
         });
@@ -110,7 +111,7 @@ const getChapterCommentaries = async (req, res) => {
         res.json(result.rows);
 
     } catch (error) {
-        console.error(error);
+        logControllerError("bible.chapter-commentaries", "database", error);
         res.status(500).json({ error: "Failed to retrieve chapter commentaries." });
     }
 }
@@ -120,7 +121,7 @@ const getVerseCommentaries = async (req, res) => {
         const result = await bibleService.getCommentariesByChapter(req.params.bookId, req.params.chapterNumber, req.params.verseNumber);
         res.json(result.rows);
     } catch(error) {
-        console.error(error);
+        logControllerError("bible.verse-commentaries", "database", error);
         res.status(500).json({
             error: "Failed to retrieve chapter verse commentaries."
         });
@@ -136,6 +137,17 @@ const getBibleChapter = async (req, res) => {
                 error:  "Chapter not found."
             })
         }
+        // Resolve the :book segment to its canonical name first, so
+        // lowercase / uppercase / mixed-case spellings all work and
+        // every downstream consumer sees the canonical name. An
+        // unknown book 404s exactly as before.
+        const canonicalBook = await bibleService.resolveBookName(book);
+        if (!canonicalBook) {
+            return res.status(404).json({
+                error:  "Chapter not found."
+            })
+        }
+        const canonicalName = canonicalBook.name;
         // Licensed translations come from the publisher's API (with a
         // bounded 30-day cache), never from bible_verses. The response
         // rows match the stored-translation shape exactly, so the reader
@@ -154,7 +166,7 @@ const getBibleChapter = async (req, res) => {
             try {
                 const { verses } = await licensedTranslations.getLicensedChapter(
                     translationRow,
-                    book,
+                    canonicalName,
                     chapterNumber,
                     req.ip
                 );
@@ -162,16 +174,17 @@ const getBibleChapter = async (req, res) => {
                     verse_number: verse.verse_number,
                     text: verse.text,
                     chapter_number: chapterNumber,
-                    book,
+                    book: canonicalName,
                 })));
             } catch (error) {
-                // Provider detail stays in the server log; the reader only
-                // learns the translation is unavailable right now.
-                console.error(error);
+                // Only the route, kind, and safe code reach the server
+                // log (audit F02); the reader only learns the
+                // translation is unavailable right now.
+                logControllerError("bible.chapter", "licensed-provider", error);
                 return res.status(503).json(LICENSED_UNAVAILABLE_BODY);
             }
         }
-        const result = await bibleService.getChapterByBook(book, chapter, translation);
+        const result = await bibleService.getChapterByBook(canonicalName, chapter, translation);
         if(result.rows.length === 0) {
             return res.status(404).json({
                 error:  "Chapter not found."
@@ -179,7 +192,7 @@ const getBibleChapter = async (req, res) => {
         }
         res.json(result.rows);
     } catch(error) {
-        console.error(error);
+        logControllerError("bible.chapter", "database", error);
         res.status(500).json({
             error: "Failed to retrieve chapter."
         });
@@ -190,7 +203,16 @@ const getStudy = async (req, res) => {
     const { book, chapter } = req.params;
     const commentaryId = req.query.commentaryId;
     try {
-        const result = await bibleService.getStudyByChapter(book, chapter, commentaryId);
+        // Same canonical resolution as the chapter endpoint: the
+        // study lookup keys on the book name too.
+        const canonicalBook = await bibleService.resolveBookName(book);
+        if (!canonicalBook) {
+            return res.status(404).json({
+                error: "Chapter not found."
+            });
+        }
+        const canonicalName = canonicalBook.name;
+        const result = await bibleService.getStudyByChapter(canonicalName, chapter, commentaryId);
         const verses = result.verses.rows;
         const commentaries = result.commentaries.rows;
 
@@ -200,13 +222,13 @@ const getStudy = async (req, res) => {
             });
 }
         res.json({
-            book,
+            book: canonicalName,
             chapter,
             verses,
             commentaries
         });
     } catch(error) {
-        console.error(error);
+        logControllerError("bible.study", "database", error);
         res.status(500).json({
             error: "Failed to retrieve chapter."
         });

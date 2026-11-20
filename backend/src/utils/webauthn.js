@@ -10,9 +10,9 @@
 //
 // Challenges are single-use, 10-minute nonces stored in PostgreSQL
 // (never in process memory, so every backend instance shares them).
-// One live challenge exists per user and ceremony type: starting a
-// new ceremony supersedes the previous one, the same supersede
-// pattern as the verification and reset token flows. A challenge
+// Starting a new ceremony removes prior live challenges for that user
+// and type. Concurrent starts can each leave a live challenge; each
+// remains individually single-use and expires at the same TTL. A challenge
 // value is a random nonce, not a secret: it is only useful inside
 // its one ceremony, inside its TTL, and only once.
 
@@ -50,7 +50,7 @@ function userHandleMatches(handle, userId) {
 
 async function createChallenge(userId, type) {
     const challenge = crypto.randomBytes(32).toString("base64url");
-    // Supersede any live challenge for this user and ceremony, then
+    // Supersede prior live challenges for this user and ceremony, then
     // drop expired rows for the account (bounded, so a flood of
     // abandoned ceremonies cannot grow this table without bound).
     await pool.query(

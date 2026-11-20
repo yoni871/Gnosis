@@ -173,6 +173,55 @@ test('a 403 without the EMAIL_NOT_VERIFIED code shows no resend panel', async ()
     expect(screen.queryByRole('button', { name: /resend verification email/i })).not.toBeInTheDocument();
 });
 
+test('MFA_REQUIRED login shows the code step, and a valid code completes login', async () => {
+    const login = deferred(), verify = deferred(), requestProfile = deferred(), readingState = deferred();
+    const fetchMock = vi.fn()
+        .mockReturnValueOnce(login.promise)
+        .mockReturnValueOnce(verify.promise)
+        .mockReturnValueOnce(requestProfile.promise)
+        .mockReturnValueOnce(readingState.promise);
+    vi.stubGlobal('fetch', fetchMock);
+    mount();
+    const user = await submit();
+    await settle(login, response({ error: 'Multi-factor authentication is required.', code: 'MFA_REQUIRED', challenge: 'mfa-challenge-token' }, 401));
+    expect(screen.getByLabelText('Verification code')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /^sign in$/i })).not.toBeInTheDocument();
+    expect(screen.getByTestId('location')).toHaveTextContent('/login');
+    await user.type(screen.getByLabelText('Verification code'), '123456');
+    await user.click(screen.getByRole('button', { name: /verify and sign in/i }));
+    await settle(verify, response({ token: 'access-token' }));
+    await settle(requestProfile, response(profile));
+    await settle(readingState, response({
+        user_id: 7,
+        book_id: 19,
+        book: 'Psalms',
+        chapter_number: 119,
+        translation: 'ESV',
+        commentary_id: 3,
+        verse_number: 90,
+        updated_at: '2026-11-06T20:00:00.000Z',
+    }));
+    state(profile, 'access-token', false);
+    expect(screen.getByTestId('location')).toHaveTextContent('/bible/Psalms/119');
+    expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toEqual({ challenge: 'mfa-challenge-token', code: '123456' });
+});
+
+test('a wrong MFA code shows an error and keeps the code step open', async () => {
+    const login = deferred(), verify = deferred();
+    const fetchMock = vi.fn().mockReturnValueOnce(login.promise).mockReturnValueOnce(verify.promise);
+    vi.stubGlobal('fetch', fetchMock);
+    mount();
+    const user = await submit();
+    await settle(login, response({ error: 'Multi-factor authentication is required.', code: 'MFA_REQUIRED', challenge: 'mfa-challenge-token' }, 401));
+    await user.type(screen.getByLabelText('Verification code'), '000000');
+    await user.click(screen.getByRole('button', { name: /verify and sign in/i }));
+    await settle(verify, response({ error: 'Invalid verification code.', code: 'INVALID_MFA_CODE' }, 401));
+    expect(screen.getByRole('alert')).toHaveTextContent('Invalid verification code.');
+    expect(screen.getByLabelText('Verification code')).toBeInTheDocument();
+    expect(screen.getByTestId('location')).toHaveTextContent('/login');
+    state(null, null, false);
+});
+
 test('the login page links to the forgot-password page', async () => {
     vi.stubGlobal('fetch', vi.fn());
     mount();

@@ -1,0 +1,137 @@
+{
+  "id": "category-numbers-new-generation-and-joshua",
+  "title": "The New Generation and Joshua’s Appointment",
+  "category": "category",
+  "era": "numbers",
+  "status": "published",
+  "primaryScripture": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 26,
+    "startVerse": 1,
+    "endChapter": 27,
+    "endVerse": 23
+  },
+  "fullRange": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 26,
+    "startVerse": 1,
+    "endChapter": 27,
+    "endVerse": 23
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated biblical wilderness narrative and legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-num-08-001",
+      "claim": "The received Numbers narrative contains the new generation and Joshua’s appointment material across Numbers 26–27.",
+      "evidence": "Numbers 26–27; biblical-text description, not independent evidence for an event date.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-num-08-002",
+      "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
+      "evidence": "Phase 2 Dossier Eight: no external census documentation verifies either census total; Phase 2 geographical report: no independently established absolute dates for the forty-year wilderness chronology; QA Phase 4 §5.8 confirms census historicity is kept as textual fact only.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-num-08-003",
+      "claim": "Comparisons with related biblical laws and retellings need to preserve differences in wording, chronology, or institutional setting.",
+      "evidence": "Internal textual comparisons documented in CONNECTION-AUDIT.md; interpretation of literary relationship, not an archaeological observation.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-num-08-001",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 36,
+      "startVerse": 1,
+      "endChapter": 36,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "established",
+      "note": "Later legal qualification preserves tribal inheritance."
+    },
+    {
+      "id": "conn-num-08-002",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 17,
+      "startVerse": 3,
+      "endChapter": 17,
+      "endVerse": 6,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Narrative continuation of daughters’ claim."
+    },
+    {
+      "id": "conn-num-08-003",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 31,
+      "startVerse": 1,
+      "endChapter": 31,
+      "endVerse": 8,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Related Joshua succession tradition."
+    },
+    {
+      "id": "conn-num-08-003b",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 31,
+      "startVerse": 14,
+      "endChapter": 31,
+      "endVerse": 23,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Related Joshua succession tradition."
+    },
+    {
+      "id": "conn-num-08-004",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 54,
+      "type": "background",
+      "confidence": "established",
+      "note": "First census at Sinai; the counterpart against which the second census is measured."
+    },
+    {
+      "id": "conn-num-08-005",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 18,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Joshua takes up leadership after Moses' death; narrative continuation of the Numbers 27 commissioning."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-frevel-numbers-27-36"
+  ],
+  "review": {
+    "author": "Gnosis Numbers research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-19",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished Numbers category; source access remains limited and audit restrictions apply. Phase 4 readiness and independent QA are distinct. No editorialOverride."
+  }
+}

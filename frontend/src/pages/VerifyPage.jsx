@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { verifyEmail, resendVerification } from "../services/authService";
+import Seo from "../components/Seo";
+import { pageUrl } from "../utils/seo";
 
 // Issue #9: the verification page.
 //
@@ -33,7 +35,7 @@ export default function VerifyPage() {
         try {
             await verifyEmail(token);
             setStatus("success");
-        } catch (error) {
+        } catch {
             setStatus("invalid");
         }
     };
@@ -44,12 +46,21 @@ export default function VerifyPage() {
         try {
             await resendVerification(resendEmail);
             setResendStatus("sent");
-        } catch (error) {
+        } catch {
             setResendStatus("error");
         }
     };
 
     return (
+        <>
+        {/* Authentication pages are never indexed. Without this the page
+            kept the previous route's title and metadata. */}
+        <Seo
+            title="Verify your email | Gnosis"
+            description="Verify your Gnosis email address to finish creating your account."
+            canonical={pageUrl("/verify-email")}
+            robots="noindex, nofollow"
+        />
         <main className="
             flex
             min-h-screen
@@ -266,7 +277,7 @@ export default function VerifyPage() {
                                                 border-[var(--border-control)]
                                                 bg-transparent
                                                 px-0
-                                                text-[14px]
+                                                text-[16px]
                                                 text-[var(--text-primary)]
                                                 outline-none
                                                 transition-colors
@@ -335,5 +346,6 @@ export default function VerifyPage() {
                 </div>
             </div>
         </main>
+        </>
     );
 }

@@ -82,6 +82,14 @@ test.before(async () => {
     stubEmails = [];
     stubMode = "ok";
     stubServer = http.createServer((req, res) => {
+        // HIBP k-anonymity range lookup: a GET for a 5-hex prefix gets
+        // an empty body (not breached) and is NOT recorded as an email.
+        // No test ever calls the real HIBP API.
+        if (req.method === "GET" && /^\/[0-9A-F]{5}$/.test(req.url)) {
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            res.end("");
+            return;
+        }
         let body = "";
         req.on("data", (chunk) => { body += chunk; });
         req.on("end", () => {
@@ -97,6 +105,10 @@ test.before(async () => {
     });
     await new Promise((resolve) => stubServer.listen(0, "127.0.0.1", resolve));
     process.env.RESEND_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
+    // Same loopback stub answers HIBP range requests (200 "{}" carries
+    // no matching suffix, so passwords test as not breached); no test
+    // ever calls the real api.pwnedpasswords.com.
+    process.env.HIBP_API_BASE_URL = `http://127.0.0.1:${stubServer.address().port}`;
 });
 
 test.after(async () => {
@@ -104,6 +116,7 @@ test.after(async () => {
     await new Promise((resolve) => server.close(resolve));
     if (stubServer) await new Promise((resolve) => stubServer.close(resolve));
     delete process.env.RESEND_API_BASE_URL;
+    delete process.env.HIBP_API_BASE_URL;
     queryMock.mock.restore();
     connectMock.mock.restore();
     await pool.end();

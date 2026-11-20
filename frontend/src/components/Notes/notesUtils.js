@@ -5,6 +5,9 @@
 // Romans 8:28-30
 // Romans 8:28–9:2
 export function getNoteReference(note, books) {
+    if (!note.book_id) {
+        return "Independent note";
+    }
     const noteBook = books.find(
         (item) => item.id === note.book_id
     );

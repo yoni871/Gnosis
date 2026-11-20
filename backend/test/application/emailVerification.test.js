@@ -30,6 +30,13 @@ test.before(async () => {
     database = await createTestPool(context);
     stub = http.createServer((req, res) => {
         res.on('error', () => {});
+        // HIBP k-anonymity range lookup: empty body = not breached. No
+        // test ever calls the real api.pwnedpasswords.com.
+        if (req.method === 'GET' && /^\/[0-9A-F]{5}$/.test(req.url)) {
+            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.end('');
+            return;
+        }
         if (req.method !== 'POST' || req.url !== '/emails') {
             res.writeHead(404, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'not found' }));
@@ -56,6 +63,7 @@ test.before(async () => {
     await new Promise(resolve => stub.listen(0, '127.0.0.1', resolve));
     stubUrl = `http://127.0.0.1:${stub.address().port}`;
     process.env.RESEND_API_BASE_URL = stubUrl;
+    process.env.HIBP_API_BASE_URL = stubUrl;
     worker = await startBackend(context);
     workerB = await startBackend(context);
 });
@@ -65,6 +73,7 @@ test.after(async () => {
     if (database) await database.close();
     if (stub) await new Promise(resolve => stub.close(resolve));
     delete process.env.RESEND_API_BASE_URL;
+    delete process.env.HIBP_API_BASE_URL;
 });
 
 async function post(url, path, body, headers = {}) {

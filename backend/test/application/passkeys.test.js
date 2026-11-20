@@ -93,11 +93,11 @@ function makeRegistrationResponse(credential, challenge) {
         },
     };
 }
-function makeAssertionResponse(credential, challenge, counter, userId) {
+function makeAssertionResponse(credential, challenge, counter, userId, userVerified = true) {
     const rpIdHash = crypto.createHash("sha256").update(rpId).digest();
     const signCount = Buffer.alloc(4);
     signCount.writeUInt32BE(counter, 0);
-    const authData = Buffer.concat([rpIdHash, Buffer.from([0x05]), signCount]);
+    const authData = Buffer.concat([rpIdHash, Buffer.from([userVerified ? 0x05 : 0x01]), signCount]);
     const clientData = clientDataJSON("webauthn.get", challenge);
     const signed = Buffer.concat([authData, crypto.createHash("sha256").update(clientData).digest()]);
     const signature = crypto.sign("SHA256", signed, credential.privateKey);
@@ -214,14 +214,58 @@ test("passkey login issues a working session with no extra step", async () => {
     assert.equal(await profile(loggedIn.data.token), 200);
 });
 
+test("a verified passkey session records the current MFA generation", async () => {
+    const account = await createUser("mfa-assurance");
+    const credential = newCredential();
+    await registerCredential(account, "MFA device", credential);
+    const enrolled = await database.pool.query(`INSERT INTO user_mfa(user_id,secret_encrypted,enrolled,enrolled_at)
+        VALUES ($1,'synthetic-encrypted-secret',TRUE,now()) RETURNING mfa_generation`, [account.id]);
+    const loggedIn = await loginWithPasskey(account, credential, 1);
+    assert.equal(loggedIn.status, 200, JSON.stringify(loggedIn.data));
+    const sessions = await database.pool.query(`SELECT mfa_verified,mfa_generation FROM auth_sessions
+        WHERE user_id=$1 ORDER BY created_at DESC LIMIT 1`, [account.id]);
+    assert.equal(sessions.rows[0].mfa_verified, true);
+    assert.equal(sessions.rows[0].mfa_generation, enrolled.rows[0].mfa_generation);
+});
+
+test("a signed assertion without user verification cannot issue a session", async () => {
+    const account = await createUser("no-uv");
+    const credential = newCredential();
+    await registerCredential(account, "Security key", credential);
+    const options = await post("passkeys/login/options", null, { email: account.email });
+    assert.equal(options.status, 200);
+    assert.equal(options.data.userVerification, "required");
+    const response = makeAssertionResponse(credential, options.data.challenge, 1, account.id, false);
+    const rejected = await post("passkeys/login/verify", null, { response });
+    assert.equal(rejected.status, 401);
+});
+
+test("another user's passkey cannot satisfy a challenge or appear in management", async () => {
+    const first = await createUser("owner-first");
+    const second = await createUser("owner-second");
+    const firstCredential = newCredential();
+    const secondCredential = newCredential();
+    await registerCredential(first, "First device", firstCredential);
+    await registerCredential(second, "Second device", secondCredential);
+    const options = await post("passkeys/login/options", null, { email: first.email });
+    assert.equal(options.status, 200);
+    const crossed = makeAssertionResponse(secondCredential, options.data.challenge, 1, second.id);
+    assert.equal((await post("passkeys/login/verify", null, { response: crossed })).status, 401);
+    const secondSession = await login(second.email);
+    assert.equal(secondSession.status, 200);
+    const listed = await get("passkeys", secondSession.data.token);
+    assert.equal(listed.status, 200);
+    assert.deepEqual(listed.data.passkeys.map(item => item.label), ["Second device"]);
+});
+
 test("login options are indistinguishable for unknown emails and accounts without passkeys", async () => {
     const unknown = await post("passkeys/login/options", null, { email: "nobody@example.invalid" });
-    assert.equal(unknown.status, 401);
-    assert.deepEqual(unknown.data, { error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
+    assert.equal(unknown.status, 200);
+    assert.deepEqual(unknown.data.allowCredentials, []);
     const bare = await createUser("bare");
     const none = await post("passkeys/login/options", null, { email: bare.email });
-    assert.equal(none.status, 401);
-    assert.deepEqual(none.data, unknown.data);
+    assert.equal(none.status, 200);
+    assert.deepEqual({ ...none.data, challenge: null }, { ...unknown.data, challenge: null });
 });
 
 test("a regressed counter flags the credential and the password still works", async () => {
@@ -282,6 +326,8 @@ test("rename and remove work, and removal ends passkey login but not password lo
         signal: AbortSignal.timeout(10000),
     });
     assert.equal(removed.status, 204);
-    assert.equal((await post("passkeys/login/options", null, { email: account.email })).status, 401);
+    const noCredentials = await post("passkeys/login/options", null, { email: account.email });
+    assert.equal(noCredentials.status, 200);
+    assert.deepEqual(noCredentials.data.allowCredentials, []);
     assert.equal((await login(account.email)).status, 200);
 });

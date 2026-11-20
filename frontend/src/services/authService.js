@@ -13,6 +13,17 @@ function throwServiceError(data, fallback) {
     if (data.code) {
         error.code = data.code;
     }
+    // TOTP MFA: the login challenge token travels on the MFA_REQUIRED
+    // error so the login page can complete the second step with it.
+    // Admin-mandatory MFA: the enrollment token travels on the
+    // MFA_ENROLLMENT_REQUIRED error the same way, so the login page
+    // can route the admin to enrollment with it.
+    if (data.challenge) {
+        error.challenge = data.challenge;
+    }
+    if (data.enrollToken) {
+        error.enrollToken = data.enrollToken;
+    }
     throw error;
 }
 
@@ -82,6 +93,28 @@ export async function forgotPassword(email) {
 
 export async function resetPassword(token, password) {
     return postJson("/auth/reset-password", { token, password }, "Unable to reset your password.");
+}
+
+// Account deletion: DELETE with the current password as confirmation.
+// The Authorization header makes this a credentialed request (not a
+// cookie endpoint), and credentials are included so the server can
+// clear the refresh cookie with the response.
+export async function deleteAccount(token, password) {
+    const response = await fetch(`${AUTH_API_URL}/auth/account`, {
+        method: "DELETE",
+        signal: AbortSignal.timeout(15000),
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ password }),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+        throwServiceError(data, "Unable to delete your account.");
+    }
+    return data;
 }
 
 // Serialize cookie mutations, including a logout queued behind a pending login.

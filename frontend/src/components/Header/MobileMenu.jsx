@@ -25,8 +25,11 @@ export default function MobileMenu({ showSearch, variant, translation }) {
         setIsMobileProfileOpen(false);
     });
 
-    const handleLogout = () => {
-        logout();
+    const handleLogout = (event) => {
+        if (logout() === false) {
+            event.preventDefault();
+            return;
+        }
         setIsMobileProfileOpen(false);
         setIsMenuOpen(false);
     };
@@ -172,7 +175,13 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                                 </button>
 
 
-                                <button className="
+                                <Link
+                                    to="/settings"
+                                    onClick={() => {
+                                        setIsMobileProfileOpen(false);
+                                        setIsMenuOpen(false);
+                                    }}
+                                    className="
                                     flex w-full
                                     rounded-md
                                     px-2 py-2
@@ -182,22 +191,6 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                                     hover:bg-[var(--hover-bg)]
                                 ">
                                     Settings
-                                </button>
-
-                                <Link
-                                    to="/passkeys"
-                                    onClick={() => { setIsMobileProfileOpen(false); setIsMenuOpen(false); }}
-                                    className="
-                                        flex w-full
-                                        rounded-md
-                                        px-2 py-2
-                                        text-left
-                                        text-sm
-                                        text-[var(--text-primary)]
-                                        hover:bg-[var(--hover-bg)]
-                                    "
-                                >
-                                    Passkeys
                                 </Link>
 
                                 <Link 

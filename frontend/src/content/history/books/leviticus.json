@@ -1,0 +1,50 @@
+{
+  "id": "leviticus",
+  "title": "Leviticus",
+  "testament": "OT",
+  "introduction": "Leviticus sets Israel’s worship, priesthood, purity, communal holiness, sacred times, land responsibilities and covenant obligations around the dwelling of God. These seven studies follow the book’s literary organization; they do not represent seven independently dated historical episodes. Historical reconstructions and later interpretations are identified as such.",
+  "entries": [
+    {
+      "categoryId": "category-leviticus-sacrificial-system",
+      "kind": "category",
+      "narrativeOrder": 22,
+      "bookNote": "Leviticus 1–7 sets out burnt, grain, well-being, purification, and reparation offerings and then priestly rules for their handling; the order is thematic, not an independently dated series."
+    },
+    {
+      "categoryId": "category-leviticus-priesthood-consecration",
+      "kind": "category",
+      "narrativeOrder": 23,
+      "bookNote": "Leviticus 8–10 narrates the installation of Aaron and his sons, the first public priestly service, and the deaths of Nadab and Abihu; the exact cause of their unauthorized fire remains unspecified."
+    },
+    {
+      "categoryId": "category-leviticus-purity-restoration",
+      "kind": "category",
+      "narrativeOrder": 24,
+      "bookNote": "Leviticus 11–15 prescribes animal classification, childbirth-related impurity, inspection and restoration for ṣāraʿat, and rules for bodily discharges. These are ritual categories, not automatic judgments of moral guilt."
+    },
+    {
+      "categoryId": "category-leviticus-day-of-atonement",
+      "kind": "category",
+      "narrativeOrder": 25,
+      "bookNote": "Leviticus 16 details an annual sanctuary and communal atonement rite involving priestly entry, blood purification, and two goats with distinct functions, one sent alive into the wilderness."
+    },
+    {
+      "categoryId": "category-leviticus-holiness-code",
+      "kind": "category",
+      "narrativeOrder": 26,
+      "bookNote": "Leviticus 17–22 joins restrictions on blood and sacrifice to laws of sexuality, justice, community care, priestly conduct, and acceptable offerings. Holiness integrates worship and daily conduct."
+    },
+    {
+      "categoryId": "category-leviticus-festivals-worship",
+      "kind": "category",
+      "narrativeOrder": 27,
+      "bookNote": "Leviticus 23–24 gathers weekly and annual sacred times, lamp and bread duties, and a legal narrative involving blasphemy, violence, and equal law."
+    },
+    {
+      "categoryId": "category-leviticus-jubilee-covenant",
+      "kind": "category",
+      "narrativeOrder": 28,
+      "bookNote": "Leviticus 25–27 concerns land Sabbath, Jubilee, redemption and servitude, covenant blessings and consequences, and a final set of vows and dedications; Jubilee practice is not independently established."
+    }
+  ]
+}

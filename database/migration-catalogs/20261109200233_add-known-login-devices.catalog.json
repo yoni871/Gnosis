@@ -1,0 +1,147 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "known_login_devices.device_key",
+      "definition": {
+        "type": "bytea",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "known_login_devices.first_seen_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "known_login_devices.id",
+      "definition": {
+        "type": "bigint",
+        "default": null,
+        "notNull": true,
+        "identity": "a",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "known_login_devices.last_seen_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "known_login_devices.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "known_login_devices.known_login_devices_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "known_login_devices.known_login_devices_user_id_device_key_key",
+      "definition": {
+        "sql": "UNIQUE (user_id, device_key)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "known_login_devices_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX known_login_devices_pkey ON public.known_login_devices USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "known_login_devices_user_id_device_key_key",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX known_login_devices_user_id_device_key_key ON public.known_login_devices USING btree (user_id, device_key)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "known_login_devices_user_id_idx",
+      "definition": {
+        "sql": "CREATE INDEX known_login_devices_user_id_idx ON public.known_login_devices USING btree (user_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "known_login_devices",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "known_login_devices_id_seq",
+      "definition": {
+        "rls": false,
+        "kind": "S",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "sequence",
+      "name": "known_login_devices_id_seq",
+      "definition": {
+        "max": 9223372036854776000,
+        "min": 1,
+        "type": "bigint",
+        "cache": 1,
+        "cycle": false,
+        "start": 1,
+        "increment": 1,
+        "ownerTable": "known_login_devices",
+        "ownerColumn": "id"
+      }
+    }
+  ],
+  "removed": []
+}

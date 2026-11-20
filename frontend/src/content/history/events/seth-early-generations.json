@@ -1,0 +1,351 @@
+{
+  "category": "event",
+  "claims": [
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "SP Genesis 5 table: Adam 130/800/930; Seth 105/807/912; Enosh 90/815/905; Kenan 70/840/910; Mahalalel 65/830/895; Jared 62/785/847; Enoch 65/300/365; Methuselah 67/653/720; Lamech 53/600/653; Noah 500.",
+      "evidence": "Four independent secondary tables agree identically (Young 2003, p. 420; Apologetics Press; bible.ca; merebible.com citing Smith 2018) + Skinner ICC pp. 134-135 printed table (full text read 2026-11-14). Von Gall text not directly consulted.",
+      "id": "clm-se-001"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "SP Lamech: 53 at Noah's birth; 600 after; total 653 (MT 182/595/777).",
+      "evidence": "Same convergence as clm-se-001; Skinner table line for Lamech (53, 600 | 653; MT 182/595/777).",
+      "id": "clm-se-002"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "SP differs from MT in only three places: Jared (62/785/847), Methuselah (67/653/720), Lamech (53/600/653).",
+      "evidence": "Same convergence as clm-se-001; all other figures identical across the tables.",
+      "id": "clm-se-003"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "SP creation-to-Flood total 1307; Jared, Methuselah, and Lamech each die AM 1307, the Flood year.",
+      "evidence": "Arithmetic from clm-se-001 + Young 2003 + Skinner table (death years 1307/1307/1307; Flood 1307).",
+      "id": "clm-se-004"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "Göttingen LXX prints Methuselah 167/802/969 (Gen 5:25-27).",
+      "evidence": "NETS Gen 5:25-27 read in full (based on Wevers 1974) + Young 2003 + Skinner table (167*/802*/969). Göttingen edition itself not directly consulted.",
+      "id": "clm-se-005"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "LXX (Göttingen) full table + creation-to-Flood total 2242.",
+      "evidence": "NETS Gen 5 read in full + Young 2003 table + Skinner table (Flood 2242).",
+      "id": "clm-se-006"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "On the 167 reading, Methuselah dies AM 2256 — 14 years after the LXX Flood (AM 2242).",
+      "evidence": "Arithmetic from clm-se-006 (birth AM 1287 + 969 = 2256; Flood 1642 + 600 = 2242); confirmed by Young 2003, Skinner table (death 2256), and adamtoabraham.com.",
+      "id": "clm-se-007"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "The 187/782 variant is attested in: Codex Alexandrinus corrector (Ac); Codex Cottonianus (D, via Grabe); Codex Coislinianus (M, 7th c.); Josephus Ant. 1.80-88; Demetrius the Chronographer; Eusebius Chronicon.",
+      "evidence": "Young 2003 + adamtoabraham.com apparatus summary (Wevers 1974, p. 106 image). Josephus/Demetrius/Eusebius via second-hand citation (Young/Smith; Wikiversity for Eusebius) — not directly consulted.",
+      "id": "clm-se-008"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Whether 167 or 187 is the original LXX reading is debated.",
+      "evidence": "Wevers: 167 original; Smith 2017: 187 original; Young 2003: premature to decide; Hendel 1998: 167-to-187 plausibly prehexaplaric.",
+      "id": "clm-se-009"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "Papyrus 911 does NOT securely attest 187; Smith's 2017 claim was retracted in 2026; the reconstruction favours 167/802.",
+      "evidence": "adamtoabraham.com 2026-09-05 (updated 2026-09-28), endnote 12 (retraction) + line-length analysis; Schmidt & Sanders 1927, p. 279 (reconstruction 167, key digits conjectural).",
+      "id": "clm-se-010"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "4QGen-b (4Q2) contains Gen 5:13 or 14 only — a single word, the name Cainan (qynn); text proto-MT.",
+      "evidence": "Young 2003 (citing Scanlin 1993, pp. 54, 141; DJD XII, pp. 31-37) + catalogue listings (Wikipedia Qumran Cave 4 list; khazarzar inventory). DJD XII pp. 31-38 not read directly.",
+      "id": "clm-se-011"
+    },
+    {
+      "assessment": "VERIFIED (secondary)",
+      "claim": "4QGen-b attests no genealogy numbers and no other Gen 4:25-5:32 verses.",
+      "evidence": "Negative result from clm-se-011's contents list (Gen 1:1-27; 2:14-19; 4:2-4; 5:13).",
+      "id": "clm-se-012"
+    },
+    {
+      "assessment": "VERIFIED (direct)",
+      "claim": "Seth = 'appointed/substituted' — the text's own wordplay from shith (to put, appoint) (Gen 4:25).",
+      "evidence": "BDB H8352 read in full (BibleHub, 2026-11-14).",
+      "id": "clm-se-013"
+    },
+    {
+      "assessment": "probable",
+      "claim": "Enosh = 'man,' with frail-mortal resonance.",
+      "evidence": "BDB H582/H583 (no gloss on the name itself; 'enosh 'man, mankind... especially opposed to God'); Cain's Descendants dossier via Keil ('weak, faint, frail').",
+      "id": "clm-se-014"
+    },
+    {
+      "assessment": "unknown / debated",
+      "claim": "Cainan/Kenan meaning: unknown; 'fixed' is Strong's only; 'smith/artificer' is Skinner's possibility via the Cain parallel.",
+      "evidence": "BDB H7018 silent on meaning; Skinner p. 131 ('possibly... 'smith' or 'artificer'... we have no means of judging').",
+      "id": "clm-se-015"
+    },
+    {
+      "assessment": "VERIFIED (direct)",
+      "claim": "Mahalaleel = 'praise of God.'",
+      "evidence": "BDB H4111 ('praise of God'); Skinner p. 131 (versions read participle 'Praising God').",
+      "id": "clm-se-016"
+    },
+    {
+      "assessment": "unknown / debated",
+      "claim": "Jared meaning: unknown; 'descent' is Strong's only; the angel-descent legend is 1 Enoch/Jubilees tradition, not lexical.",
+      "evidence": "BDB H3382 silent; Skinner p. 131 ('would signify in Heb. 'Descent'; hence the Jewish legend... Jub. iv. 15; En. vi. 6, cvi. 13').",
+      "id": "clm-se-017"
+    },
+    {
+      "assessment": "debated / uncertain",
+      "claim": "Enoch meaning: uncertain; 'dedicated/initiated' is Strong's only.",
+      "evidence": "BDB H2585 silent on meaning (lists four bearers, incl. both Enochs).",
+      "id": "clm-se-018"
+    },
+    {
+      "assessment": "unknown / debated",
+      "claim": "Methuselah meaning: unknown; 'man of the dart' carries BDB's own '?'; 'when he dies, judgment' is folk etymology, absent from BDB.",
+      "evidence": "BDB H4968 ('*? man of the dart:* more probably Babylonian'); Skinner pp. 132-133 (Budde rejects; divine-proper-name view 'more probable').",
+      "id": "clm-se-019"
+    },
+    {
+      "assessment": "unknown",
+      "claim": "Lamech meaning: unknown.",
+      "evidence": "BDB H3929 (no meaning; 'conjecture as to meaning BuUrgesch. 102, 129'); Strong's 'unused root of uncertain meaning'; Cain's Descendants dossier ('inexplicable from Heb. or even Arabic,' Skinner).",
+      "id": "clm-se-020"
+    },
+    {
+      "assessment": "traditional",
+      "claim": "Noah = 'rest/comfort' — the text's wordplay in 5:29, labelled 'traditional etymology' by BDB.",
+      "evidence": "BDB H5146 ('Gen 5:29 (where traditional etymology)'); Skinner p. 133 ('Whether [Noah] be really connected with [nuach] 'rest' is very uncertain').",
+      "id": "clm-se-021"
+    },
+    {
+      "assessment": "VERIFIED (direct)",
+      "claim": "MT Gen 5 figures (all 32 verses) re-verified live this session.",
+      "evidence": "Preview API /api/bible/genesis/5/KJV, all 32 verses returned 2026-11-14, matching the Cain's Descendants dossier.",
+      "id": "clm-se-022"
+    },
+    {
+      "assessment": "established (reused)",
+      "claim": "No dates for Gen 5; MT 1656 / SP 1307 / LXX 2242 are secondary constructions, none original.",
+      "evidence": "Westermann p. 353; Skinner pp. 134-136 (Cain's Descendants dossier §7).",
+      "id": "clm-se-023"
+    },
+    {
+      "assessment": "established (reused)",
+      "claim": "Berossus ten-kings/ten-patriarchs correspondence collapsed; do not present the table as a live parallel.",
+      "evidence": "Westermann excursus pp. 349-353 (Cain's Descendants dossier §5.3).",
+      "id": "clm-se-024"
+    },
+    {
+      "assessment": "established (reused)",
+      "claim": "Two Enochs, two Lamechs: distinct figures.",
+      "evidence": "clm-cd-007, clm-cd-009 (Cain's Descendants dossier).",
+      "id": "clm-se-025"
+    },
+    {
+      "assessment": "interpretation (analogy only)",
+      "claim": "Enoch's 365 years echo the solar year; Enmeduranki (Berossus 7th king) is the closest ancient parallel — analogy only, no dependence, no translation in the Babylonian material.",
+      "evidence": "Skinner pp. 131-132 (full text read 2026-11-14); Westermann excursus supersedes the wider table (Cain's Descendants dossier §5.3).",
+      "id": "clm-se-026"
+    },
+    {
+      "assessment": "UNRESOLVED — do not state as fact",
+      "claim": "Jerome's SP manuscripts read Methuselah 187/782/969 (MT-like) — historical SP variation.",
+      "evidence": "Second-hand only: Smith 2018 as seen in an academia.edu snippet; full text not read. Omitted from public prose.",
+      "id": "clm-se-027"
+    },
+    {
+      "assessment": "interpretation",
+      "claim": "Lamech's 5:29 oracle points forward to vine-culture (9:20), not to the Flood.",
+      "evidence": "Skinner p. 132 (full text read 2026-11-14).",
+      "id": "clm-se-028"
+    },
+    {
+      "assessment": "debated — Skinner: 'not probable'",
+      "claim": "Budde's degeneration theory (first five generations righteous, last five wicked; Jared = 'descent').",
+      "evidence": "Skinner pp. 129-130 (full text read 2026-11-14); Budde Urgeschichte 93-103 (not read directly).",
+      "id": "clm-se-029"
+    },
+    {
+      "assessment": "established",
+      "claim": "Gen 5 (P) gives no explanation of the introduction of evil into the world.",
+      "evidence": "Skinner p. 130 (full text read 2026-11-14).",
+      "id": "clm-se-030"
+    }
+  ],
+  "connections": [
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 4,
+      "endVerse": 26,
+      "id": "conn-se-001",
+      "note": "The event's opening: Seth's birth, Eve's 'appointed' wordplay, Enosh, and the first calling on the LORD's name — the Sethite line's founding moment. Overlaps conn-cd-003 (Gen 4:25-26) and conn-ca-006 (Gen 4:25-5:3): this connection gives the founding moment as the event's own opening, distinct from the Cain's Descendants contrast reading and the Cain and Abel background link.",
+      "startChapter": 4,
+      "startVerse": 25,
+      "type": "direct-account"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 5,
+      "endVerse": 32,
+      "id": "conn-se-002",
+      "note": "The event's core text: the ten-generation genealogy itself, with all three textual traditions' numbers. Overlaps conn-cd-004 (Gen 5:1-32) and conn-ae-005: this connection gives the genealogy as the event's core passage, distinct from the Cain's Descendants contrast reading.",
+      "startChapter": 5,
+      "startVerse": 1,
+      "type": "direct-account"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 4,
+      "endVerse": 16,
+      "id": "conn-se-003",
+      "note": "The Cain/Abel narrative that precedes and motivates Seth's birth ('another seed instead of Abel, whom Cain slew,' 4:25).",
+      "startChapter": 4,
+      "startVerse": 1,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 4,
+      "endVerse": 24,
+      "id": "conn-se-004",
+      "note": "The Cainite genealogy as the contrast list: same names (Enoch, Lamech), different figures, different trajectory — the two-lines structure.",
+      "startChapter": 4,
+      "startVerse": 17,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "debated",
+      "endChapter": 3,
+      "endVerse": 15,
+      "id": "conn-se-005",
+      "note": "The 'seed' promise as the theological frame for 'another seed' (4:25). Interpretive connection, not an explicit textual link: present as a reading, not as a stated link.",
+      "startChapter": 3,
+      "startVerse": 15,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 6,
+      "endVerse": 9,
+      "id": "conn-se-006",
+      "note": "Noah's favour and righteousness — the genealogy's endpoint and the bridge to the Flood narrative.",
+      "startChapter": 6,
+      "startVerse": 8,
+      "type": "thematic"
+    },
+    {
+      "book": "Hebrews",
+      "bookId": "hebrews",
+      "confidence": "established",
+      "endChapter": 11,
+      "endVerse": 5,
+      "id": "conn-se-007",
+      "note": "New Testament reception of Enoch: 'translated that he should not see death.' Keep distinct from the Genesis text's own statement ('God took him,' 5:24).",
+      "startChapter": 11,
+      "startVerse": 5,
+      "type": "background"
+    },
+    {
+      "book": "Jude",
+      "bookId": "jude",
+      "confidence": "established",
+      "endChapter": 1,
+      "endVerse": 15,
+      "id": "conn-se-008",
+      "note": "Enoch 'the seventh from Adam' — counts the Sethite line, confirming which Enoch is meant.",
+      "startChapter": 1,
+      "startVerse": 14,
+      "type": "thematic"
+    },
+    {
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "confidence": "established",
+      "endChapter": 1,
+      "endVerse": 4,
+      "id": "conn-se-009",
+      "note": "The Chronicler's recap of the Gen 5 genealogy (Adam, Seth, Enosh, Kenan, Mahalaleel, Jared, Enoch, Methuselah, Lamech, Noah). Verse-existence verified live 2026-11-14 via the Preview API (correct book slug is the URL-encoded name, '1%20Chronicles'; the '1-chronicles' slug returns 404).",
+      "startChapter": 1,
+      "startVerse": 1,
+      "type": "background"
+    },
+    {
+      "book": "Luke",
+      "bookId": "luke",
+      "confidence": "established",
+      "endChapter": 3,
+      "endVerse": 38,
+      "id": "conn-se-010",
+      "note": "Luke's genealogy of Jesus traced back through Noah, Lamech, Methuselah, Enoch, Jared, Mahalaleel, Cainan, Enosh, Seth, Adam. Verse-existence verified live 2026-11-14 via the Preview API (Luke 3, 38 verses; vv. 36-38 as stated).",
+      "startChapter": 3,
+      "startVerse": 36,
+      "type": "background"
+    }
+  ],
+  "date": {
+    "label": "No independently established date",
+    "note": "Chronology is narrative only; the passage provides no independently datable historical coordinates.",
+    "traditionalSystem": null,
+    "type": "unknown",
+    "yearEnd": null,
+    "yearStart": null
+  },
+  "id": "event-seth-early-generations",
+  "locations": [],
+  "primaryScripture": {
+    "book": "Genesis",
+    "bookId": "genesis",
+    "endChapter": 5,
+    "endVerse": 32,
+    "startChapter": 4,
+    "startVerse": 25
+  },
+  "relatedEvents": [
+    "event-adam-and-eve",
+    "event-creation"
+  ],
+  "review": {
+    "author": "Gnosis research draft (AI-assisted)",
+    "checklistVersion": "standards-1.1-section-14",
+    "editorialOverride": true,
+    "lastReviewed": "2026-11-14",
+    "notes": "In-review draft (PR: content/biblical-history-seth-early-generations). Stage 1 research dossier 2026-11-14 (workspace: gnosis-seth/dossier/seth-early-generations-research-dossier.md), branch point main 6ca26b7. Claims register: 30 rows (clm-se-001-030). Reused ground (not re-derived): the Cain's Descendants dossier §3.6 Sethite contrast (Gen 5 all 32 verses verified live), the MT/SP/LXX chronology schemes as secondary constructions, two Enochs / two Lamechs distinct (clm-cd-007, clm-cd-009), Jude 1:14 counts the Sethite line, topic-genealogy-seth carried forward as a document-only proposal (dossier §10, per Yonatan's decision), not implemented (topics: []). Newly verified this event: SP Gen 5 table (tier b — von Gall not directly consulted), Göttingen LXX Gen 5 (tier b — Wevers 1974 not directly consulted; prints Methuselah 167/802/969, Lamech 188/565/753, total 2242; 167-vs-187 debated; P911 does NOT securely attest 187, Smith retracted 2026), 4QGen-b (4Q2) negative result (one word, Cainan, Gen 5:13/14; no numbers), nine name etymologies against BDB + Skinner (established: Seth, Mahalaleel; probable: Enosh; traditional: Noah; unknown/debated: Cainan, Jared, Enoch, Methuselah, Lamech — the 'when he dies, judgment' Methuselah reading is folk etymology, omitted). G8 RESOLVED by the drafting worker: conn-se-009 (1 Chronicles 1:1-4) and conn-se-010 (Luke 3:36-38) both verified live 2026-11-14 via the Preview API — the correct book slug for 1 Chronicles is the URL-encoded name ('1%20Chronicles'); '1-chronicles' returns 404. Connections: 10/10 ranges verified live against stored KJV via the Preview API 2026-11-14 (Gen 4, 26 verses; Gen 5, 32 verses; Heb 11, 40 verses; Jude, 25 verses; 1 Chron 1, 54 verses; Luke 3, 38 verses). Overlaps are editor-visible: conn-se-001 overlaps conn-cd-003 and conn-ca-006; conn-se-002 overlaps conn-cd-004 and conn-ae-005 — each carries a distinct reason recorded in its note; the editor decides whether to merge, keep both, or drop one. relatedEvents lists only Creation and Adam and Eve; adding event-cain-and-abel and event-cains-descendants is outstanding (both now exist on main) and is an editor decision, not part of this Phase 2 PR. editorialOverride: true (Yonatan-approved for publication 2026-11-16): the event cites a not-independently-verified source (DJD XII, pp. 31-38 not read directly), which check 10 requires an override for; the override does not make the source independently verified. Sources: 9 cited — 3 reused verified registry entries (BDB, Skinner, Westermann) and 6 new entries (NETS Genesis, Young 2003, Smith 2017, adamtoabraham.com 2026, DJD XII, ETCSL Sumerian King List). The ETCSL Sumerian King List entry is copied verbatim from PR #176's registry addition (same key, same record); the rebase keeps one copy. DJD XII is marked not-independently-verified (pp. 31-38 not read directly); Keil and Ryle are NOT cited for Gen 5-specific claims (Gen 5 not separately verified). Unresolved gaps carried forward (dossier §14): G1 Göttingen apparatus not read directly; G2 von Gall / Tal SP editions not consulted; G3 DJD XII pp. 31-38 not read directly; G4 HALOT/DCH + major modern commentaries inaccessible; G5 Hendel/Klein/Rahlfs/Brooke-McLean cited second-hand via Young; G6 Young 2003 page range unconfirmed; G7 Keil/Ryle Gen 5 unverified; G9 Jerome SP claim unresolved (clm-se-027, omitted from prose); G10 Eusebius quote second-hand with apparent '22 years' error; G11 no archaeology for any Gen 5 figure; G12 Westermann pp. 343-347, 354 unread. Phase 2 (2026-11-14): corrected the Overview and 'Names' subsection — the Gen 5 formula now covers the first nine names only, with Noah's 5:32 entry stated as breaking the pattern (age 500 and three sons; no years-after, no total, no 'and he died'; Gen 5:32 re-verified live against the Preview API); word counts now Overview 147, Ancient World 398, Why 99 (validator's countWords); topic-genealogy-seth clarified as a document-only proposal, not implemented. Publication is a separate decision and is NOT part of this PR.",
+    "reviewer": "Stage 1 dossier editorial verification 2026-11-14; independent QA received 2026-11-14 (PR #178 PASS as an in-review draft); Phase 2 publication-readiness corrections 2026-11-14"
+  },
+  "sources": [
+    "source-bdb-lexicon",
+    "source-skinner-genesis",
+    "source-westermann-genesis",
+    "source-nets-septuagint-genesis",
+    "source-young-septuagint-masoretic-chronology",
+    "source-smith-methuselah-begetting-age",
+    "source-adamtoabraham-methuselah-flood",
+    "source-djd-xii-qumran-cave-4",
+    "source-etcsl-sumerian-king-list"
+  ],
+  "status": "published",
+  "title": "Seth and the Early Generations",
+  "topics": []
+}

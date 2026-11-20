@@ -89,18 +89,46 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
             GRANT SELECT ON ol_sources,ol_lexical_entries,ol_word_occurrences,ol_morphology_codes TO "${role}";
             GRANT SELECT,INSERT ON users TO "${role}";
             GRANT SELECT,INSERT,UPDATE,DELETE ON notes,bookmarks,highlights TO "${role}";
-            GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq TO "${role}";
+            GRANT SELECT,INSERT,UPDATE ON user_reading_state TO "${role}";
+            GRANT DELETE ON users TO "${role}";
+            GRANT USAGE ON SEQUENCE users_id_seq,notes_id_seq,bookmarks_id_seq,highlights_id_seq,mfa_recovery_codes_id_seq TO "${role}";
             GRANT SELECT,INSERT,DELETE ON rate_limit_attempts TO "${role}";
             GRANT SELECT,UPDATE ON rate_limit_sweep_state TO "${role}";
             GRANT SELECT,INSERT,UPDATE ON auth_sessions,auth_refresh_tokens TO "${role}";
-            GRANT SELECT,INSERT,UPDATE,DELETE ON user_passkeys,webauthn_challenges TO "${role}";
+            GRANT SELECT,INSERT ON security_events TO "${role}";
+            GRANT USAGE ON SEQUENCE security_events_id_seq TO "${role}";
+            GRANT SELECT,INSERT ON known_login_devices TO "${role}";
+            GRANT UPDATE (last_seen_at) ON known_login_devices TO "${role}";
+            GRANT USAGE ON SEQUENCE known_login_devices_id_seq TO "${role}";
             GRANT SELECT,INSERT ON email_verification_tokens TO "${role}";
             GRANT UPDATE (used_at, consumed_reason) ON email_verification_tokens TO "${role}";
             GRANT SELECT,INSERT ON password_reset_tokens TO "${role}";
             GRANT UPDATE (email_verified_at, password_hash) ON users TO "${role}";
-            GRANT UPDATE (used_at, consumed_reason) ON password_reset_tokens TO "${role}"`);
+            GRANT UPDATE (used_at, consumed_reason) ON password_reset_tokens TO "${role}";
+            GRANT SELECT,INSERT ON user_mfa,mfa_challenges,mfa_recovery_codes TO "${role}";
+            GRANT DELETE ON mfa_challenges TO "${role}";
+            GRANT UPDATE (enrolled,enrolled_at,secret_encrypted,key_version,last_totp_step,mfa_generation,updated_at) ON user_mfa TO "${role}";
+            GRANT UPDATE (used_at, consumed_reason) ON mfa_challenges TO "${role}";
+            GRANT UPDATE (used_at) ON mfa_recovery_codes TO "${role}";
+            GRANT SELECT,INSERT,DELETE ON user_passkeys,webauthn_challenges TO "${role}";
+            GRANT UPDATE (counter,last_used_at,flagged_at,label) ON user_passkeys TO "${role}";
+            GRANT UPDATE (used_at) ON webauthn_challenges TO "${role}"`);
         // Small reference fixture; no imports, application data or test-owned schema.
         await provisioning.query("INSERT INTO bible_books(name) VALUES ('Synthetic harness book')");
+        await provisioning.query(`WITH chapter AS (
+            INSERT INTO bible_chapters(book_id,chapter_number)
+            SELECT id,1 FROM bible_books WHERE name='Synthetic harness book' RETURNING id)
+            INSERT INTO bible_verses(chapter_id,verse_number,text)
+            SELECT chapter.id,g,'Synthetic fixture verse' FROM chapter CROSS JOIN generate_series(1,3) g`);
+        // The chapter endpoint's stored-translation path needs a stored
+        // translation to join the fixture verses to: the licensed five
+        // are seeded by their migration, the stored four are not. KJV
+        // stands in for them, so the chapter endpoint can serve the
+        // fixture book over HTTP in the application suite.
+        const kjv = await provisioning.query(
+            "INSERT INTO bible_translations(name, abbreviation, source, enabled) VALUES ('King James Version', 'KJV', 'database', TRUE) RETURNING id"
+        );
+        await provisioning.query("UPDATE bible_verses SET translation_id=$1 WHERE translation_id IS NULL", [kjv.rows[0].id]);
         await provisioning.end();
         provisioning = undefined;
         await callback(context);

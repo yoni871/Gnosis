@@ -79,3 +79,69 @@ export function chapterDescription(book, chapter) {
 export function pageUrl(path, siteUrl = getSiteUrl()) {
     return `${siteUrl}${path}`;
 }
+
+// Published studies have a single flat canonical URL. The first argument
+// remains for callers that know the book, while the record slug is canonical.
+export function historyPath(bookSlug, eventSlug) {
+    if (eventSlug) return `/biblical-history/${encodeURIComponent(eventSlug)}`;
+    if (bookSlug) return `/biblical-history/${encodeURIComponent(bookSlug)}`;
+    return "/biblical-history";
+}
+
+export function historyIndexTitle() {
+    return "Biblical History | Gnosis";
+}
+
+export function historyIndexDescription() {
+    return (
+        "Explore the ancient world behind the biblical story, book by book, " +
+        "on Gnosis — historical context for the events of Scripture."
+    );
+}
+
+export function historyEventTitle(eventTitle, rangeLabel) {
+    return rangeLabel
+        ? `${eventTitle} — ${rangeLabel} | Biblical History | Gnosis`
+        : `${eventTitle} | Biblical History | Gnosis`;
+}
+
+export function historyEventDescription(eventTitle, rangeLabel) {
+    // Descriptions must not assert a date the date-axis does not support:
+    // an unknown-dated event's description carries no year.
+    return rangeLabel
+        ? `Historical context for ${eventTitle} (${rangeLabel}) on Gnosis.`
+        : `Historical context for ${eventTitle} on Gnosis.`;
+}
+
+// Trace the Doctrine helpers. The homepage introduces planned doctrine
+// categories only — no study workspace or published study exists yet —
+// so the description says exactly that and promises no content.
+export function doctrineIndexTitle() {
+    return "Trace the Doctrine | Gnosis";
+}
+
+export function doctrineIndexDescription() {
+    return (
+        "Explore how Christian doctrines have been understood, explained, " +
+        "and debated throughout church history — beginning with the " +
+        "biblical text. Planned studies on Gnosis, starting with the Trinity."
+    );
+}
+
+// Trace the Doctrine study-workspace helpers. A workspace page is a
+// preview study, never an indexed publication: the page itself renders
+// <Seo> with robots="noindex, nofollow" and the route is never listed
+// in the sitemap. The description says the study is a preview and that
+// its historical entries are demonstration data pending research —
+// nothing here claims verified research.
+export function doctrineStudyTitle(doctrineTitle) {
+    return `${doctrineTitle} — Trace the Doctrine | Gnosis`;
+}
+
+export function doctrineStudyDescription(doctrineTitle) {
+    return (
+        `A preview study tracing ${doctrineTitle} from Scripture through ` +
+        `Christian history on Gnosis. The historical interpretation ` +
+        `entries are demonstration data pending research.`
+    );
+}

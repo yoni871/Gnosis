@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "synthetic-test-jwt-secret";
+process.env.JWT_SECRET = "synthetic-test-jwt-secret-synthetic-test-secret";
 process.env.RATE_LIMIT_KEY_SECRET = "synthetic-test-rate-limit-secret";
 // Issue #9: app.js validates email configuration at import time.
 process.env.RESEND_API_KEY = "re_synthetic_test_key";
@@ -23,6 +23,12 @@ let bookExists = true;
 let inserted = null;
 
 const queryMock = test.mock.method(pool, "query", async (sql, params) => {
+    // The per-user budget lock is a non-blocking try-lock (PR #91, bounded
+    // per PR #114): the mock grants it immediately, as the real function
+    // does when the lock is free.
+    if (sql.includes('pg_try_advisory_xact_lock')) return { rows: [{ locked: true }] };
+    if (sql === 'BEGIN' || sql === 'COMMIT' || sql === 'ROLLBACK' || sql.includes('pg_advisory_xact_lock')) return { rows: [] };
+    if (sql.includes('COUNT(*)')) return { rows: [{ count: 0, bytes: 0 }] };
     if (typeof sql === "string" && sql.includes("FROM auth_sessions")) {
         return { rows: [{ id: '00000000-0000-4000-8000-000000000001' }] };
     }
@@ -48,6 +54,8 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
     }
     throw new Error(`Unexpected query in cross-project validation test: ${sql}`);
 });
+
+test.mock.method(pool, "connect", async () => ({ query: (...args) => pool.query(...args), release() {} }));
 
 let server;
 let baseUrl;
@@ -115,6 +123,29 @@ test("POST /api/notes writes when the book exists", async () => {
     assert.equal(response.status, 201);
     assert.equal(json.book_id, 2);
     assert.equal(inserted.book_id, 2);
+});
+
+test("POST /api/notes creates an independent note without a book lookup", async () => {
+    bookExists = false;
+    const { response, json } = await request("/api/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token()}` },
+        body: JSON.stringify({ content: "Compare John 3:16 with Genesis 1:1–3." }),
+    });
+    assert.equal(response.status, 201);
+    assert.equal(json.book_id, null);
+    assert.equal(inserted.content, "Compare John 3:16 with Genesis 1:1–3.");
+});
+
+test("POST /api/notes rejects partial legacy passage coordinates", async () => {
+    const { response, json } = await request("/api/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token()}` },
+        body: JSON.stringify({ content: "Incomplete", bookId: 2 }),
+    });
+    assert.equal(response.status, 400);
+    assert.match(json.error, /every passage field/i);
+    assert.equal(inserted, null);
 });
 
 test("PATCH /api/notes/:id rejects an unknown book", async () => {

@@ -6,6 +6,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import App from "../App";
 import AuthContext from "../context/AuthContext";
+import { ThemeProvider } from "../context/ThemeContext";
 import LandingPage from "./LandingPage";
 import {
     LANDING_TITLE,
@@ -21,9 +22,11 @@ const LOGGED_OUT = {
 function renderLanding(authValue) {
     return render(
         <MemoryRouter>
-            <AuthContext.Provider value={authValue}>
-                <LandingPage />
-            </AuthContext.Provider>
+            <ThemeProvider>
+                <AuthContext.Provider value={authValue}>
+                    <LandingPage />
+                </AuthContext.Provider>
+            </ThemeProvider>
         </MemoryRouter>,
     );
 }
@@ -52,6 +55,8 @@ describe("LandingPage", () => {
         expect(within(section).getByRole("img", { name: /actual Gnosis reader/ })).toHaveAttribute("loading", "lazy");
         expect(within(section).getAllByRole("listitem")).toHaveLength(3);
         expect(within(section).getByRole("img", { name: "Gnosis mobile Scripture view showing John 1 in the KJV" })).toHaveAttribute("src", "/images/landing/bible-commentary/mobile-scripture-856.jpg");
+        expect(within(section).getByText("Compare trusted perspectives on a passage's meaning, context, and enduring significance.")).toBeInTheDocument();
+        expect(within(section).queryByText(/Matthew Henry|Jamieson|Fausset|Brown/i)).toBeNull();
         const devices = within(section).getByRole("figure", { name: "Gnosis on one laptop and one smartphone" });
         expect(within(devices).getAllByRole("img")).toHaveLength(2);
         for (const badge of ["KJV Bible", "Trusted Commentaries", "Smooth Study Experience"]) expect(within(section).queryByText(badge)).toBeNull();
@@ -281,8 +286,11 @@ describe("LandingPage", () => {
                 name: "Account menu for Sample Reader",
             }),
         );
-        expect(within(header).getByRole("button", { name: "Profile" })).toBeVisible();
-        expect(within(header).getByRole("button", { name: "Settings" })).toBeVisible();
+        // No Profile item: it had no handler and no /profile route, so it
+        // was removed (UI audit P1-2). The menu is Settings -> Sign out.
+        expect(within(header).queryByRole("button", { name: "Profile" })).toBeNull();
+        expect(within(header).getByRole("link", { name: "Settings" })).toBeVisible();
+        expect(within(header).getByRole("link", { name: "Settings" })).toHaveAttribute("href", "/settings");
         expect(within(header).queryByText("Continue studying")).toBeNull();
         await user.click(
             within(header).getByRole("button", { name: "Sign out" }),
@@ -312,6 +320,11 @@ describe("LandingPage", () => {
         await user.click(toggle);
         const nav = screen.getByRole("navigation", { name: "Mobile" });
         within(nav).getByRole("link", { name: "Start Exploring →" }).focus();
+        await user.tab();
+        // The theme row follows the auth links, so one Tab lands on it and
+        // the menu stays open; a second Tab leaves the header and closes it.
+        expect(within(nav).getByRole("button", { name: "Switch to dark theme" })).toHaveFocus();
+        expect(screen.getByRole("navigation", { name: "Mobile" })).toBeInTheDocument();
         await user.tab();
         expect(screen.queryByRole("navigation", { name: "Mobile" })).toBeNull();
         await user.click(toggle);
@@ -379,11 +392,8 @@ describe("LandingPage", () => {
             url: "https://studygnosis.com/",
             description: LANDING_DESCRIPTION,
         });
-        // Raster favicon for Google Search (SVG is not a supported
-        // search favicon format); the SVG stays for browsers.
-        expect(html).toContain(
-            '<link rel="icon" type="image/svg+xml" sizes="any" href="/gnosis.svg" />',
-        );
+        // A single raster icon avoids conflicting browser and search artwork.
+        expect(html.match(/<link\s+rel="icon"(?:\s|\/|>)/g)).toHaveLength(1);
         expect(html).toContain(
             '<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />',
         );
@@ -484,13 +494,13 @@ describe("LandingPage", () => {
         expect(document.getElementById("how-it-works")).toHaveClass("landing-bible");
     });
 
-    test("footer links only to routes that exist: no Privacy or Terms", () => {
+    test("footer links only to routes that exist: Privacy yes, Terms no", () => {
         renderLanding(LOGGED_OUT);
 
         const footer = screen.getByRole("contentinfo");
         expect(
-            within(footer).queryByText("Privacy"),
-        ).toBeNull();
+            within(footer).getByRole("link", { name: "Privacy" }),
+        ).toHaveAttribute("href", "/privacy");
         expect(within(footer).queryByText("Terms")).toBeNull();
         const logo = within(footer).getByRole("link", { name: "Gnosis home" });
         expect(logo).toHaveAttribute("href", "/");

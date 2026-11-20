@@ -101,6 +101,27 @@ test("register -> login coordination: an external logout still invalidates the s
     assert.equal(await loginStage, "ignored");
 });
 
+test("subscribe/getSnapshot publish the epoch for useSyncExternalStore", () => {
+    const guard = createAuthSessionGuard();
+
+    assert.equal(guard.getSnapshot(), 0);
+    const seen = [];
+    const unsubscribe = guard.subscribe(() => seen.push(guard.getSnapshot()));
+
+    const first = guard.begin();
+    assert.equal(first, 1);
+    assert.deepEqual(seen, [1]);
+
+    guard.invalidate();
+    assert.equal(guard.getSnapshot(), 2);
+    assert.deepEqual(seen, [1, 2]);
+
+    unsubscribe();
+    guard.begin();
+    assert.equal(guard.getSnapshot(), 3);
+    assert.deepEqual(seen, [1, 2]);
+});
+
 test("scenario: a restore resolving after logout cannot resurrect the session", async () => {
     const guard = createAuthSessionGuard();
     const state = { user: null }; // stand-in for AuthContext state

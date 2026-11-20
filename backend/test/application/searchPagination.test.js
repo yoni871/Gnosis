@@ -3,8 +3,8 @@ const assert = require("node:assert/strict");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "test-jwt-secret";
-process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret";
+process.env.JWT_SECRET = "test-jwt-secret-synthetic-test-secret";
+process.env.RATE_LIMIT_KEY_SECRET = "test-rate-limit-secret-synthetic-test-secret";
 // Issue #9: app.js validates email configuration at import time.
 process.env.RESEND_API_KEY = "test-resend-key";
 process.env.EMAIL_FROM = 'Gnosis Test <test@example.invalid>';
@@ -126,6 +126,14 @@ test("Bible search clamps limit to 100 and defaults invalid pages to the first p
         assert.equal(first.results.length, 100);
         assert.deepEqual(first.results.map(verseKey), ALL_VERSES.slice(0, 100).map(verseKey));
     }
+});
+
+test("Bible search clamps page at 100, bounding the OFFSET", async () => {
+    const capped = await searchBible("?q=lord&page=99999");
+    assert.equal(capped.page, 100);
+    assert.equal(capped.limit, 100);
+    assert.equal(lastBibleParams[2], 100);
+    assert.equal(lastBibleParams[3], 9900);
 });
 
 test("Bible search orders by rank with a deterministic tiebreak", async () => {

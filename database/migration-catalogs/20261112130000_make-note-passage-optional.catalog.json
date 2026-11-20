@@ -1,0 +1,30 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "notes.book_id",
+      "definition": { "type": "integer", "default": null, "notNull": false, "identity": "", "collation": null, "generated": "" }
+    },
+    {
+      "kind": "column",
+      "name": "notes.end_chapter",
+      "definition": { "type": "integer", "default": null, "notNull": false, "identity": "", "collation": null, "generated": "" }
+    },
+    {
+      "kind": "column",
+      "name": "notes.end_verse",
+      "definition": { "type": "integer", "default": null, "notNull": false, "identity": "", "collation": null, "generated": "" }
+    },
+    {
+      "kind": "column",
+      "name": "notes.start_chapter",
+      "definition": { "type": "integer", "default": null, "notNull": false, "identity": "", "collation": null, "generated": "" }
+    },
+    {
+      "kind": "column",
+      "name": "notes.start_verse",
+      "definition": { "type": "integer", "default": null, "notNull": false, "identity": "", "collation": null, "generated": "" }
+    }
+  ],
+  "removed": []
+}

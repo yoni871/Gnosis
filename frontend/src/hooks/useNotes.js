@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { appendCollection, privatePage } from "../utils/privatePages";
+import { useEffect, useRef } from "react";
 import usePrivateSession from "./usePrivateSession";
 import {
     createNote,
@@ -7,7 +8,38 @@ import {
     updateNote
 } from "../services/notesService";
 
+// Drafts survive an in-app route unmount, but never cross an auth session.
+const documentDrafts = new Map();
+const draftListeners = new Map();
+let unloadGuardInstalled = false;
+function hasUnsaved(documents) {
+    return Object.values(documents || {}).some(doc => doc.saving || doc.uncertain || doc.title !== doc.saved.title || doc.content !== doc.saved.content);
+}
+function hasUnsavedDocuments() {
+    return [...documentDrafts.values()].some(hasUnsaved);
+}
+function ensureUnloadGuard() {
+    if (unloadGuardInstalled || typeof window === "undefined") return;
+    window.addEventListener("beforeunload", event => {
+        if (hasUnsavedDocuments()) { event.preventDefault(); event.returnValue = ""; }
+    });
+    window.addEventListener("gnosis:before-sign-out", event => {
+        if (!hasUnsavedDocuments()) return;
+        if (event.detail?.forced) {
+            window.alert("Your session has expired. Unsaved note drafts could not be saved.");
+        } else if (!window.confirm("You have unsaved note drafts. Sign out and discard them?")) {
+            event.preventDefault();
+            return;
+        }
+        documentDrafts.clear();
+    });
+    unloadGuardInstalled = true;
+}
+
 const DEFAULTS = {
+    nextCursor: null,
+    isLoadingMore: false,
+    isContextLoading: false,
     notes: [],
     isLoadingNotes: false,
     notesError: "",
@@ -15,18 +47,29 @@ const DEFAULTS = {
     isSavingNote: false,
     draftPassage: null,
     editingNoteId: null,
-    editContent: "",
-    isUpdatingNote: false,
+    documents: {},
     deletingNoteId: null
 };
 
-export default function useNotes({
-    book,
-    chapter,
-    selectedVerse,
-    books
-}) {
-    const { token, isAuthenticated, isAuthLoading, owner, state, field, capture, isCurrent } = usePrivateSession(DEFAULTS);
+export default function useNotes() {
+    const { token, isAuthenticated, isAuthLoading, owner, state, field, capture, isCurrent, setCurrent } = usePrivateSession(DEFAULTS);
+
+    const setNextCursor = field("nextCursor");
+    const setIsLoadingMore = field("isLoadingMore");
+    async function loadMore() {
+        if (!token || !state.nextCursor || state.isLoadingMore) return;
+        const ticket = capture();
+        if (!ticket) return;
+        field("notesError")("");
+        setIsLoadingMore(true);
+        try {
+            const page = privatePage(await getNotes(token, state.nextCursor));
+            if (!isCurrent(ticket)) return;
+            field("notes")(current => appendCollection(current, page.items));
+            setNextCursor(page.nextCursor);
+        } catch (error) { if (isCurrent(ticket)) field("notesError")(error.message); }
+        finally { if (isCurrent(ticket)) setIsLoadingMore(false); }
+    }
 
     // -------------------------
     // NOTES STATE
@@ -58,10 +101,6 @@ export default function useNotes({
 
     const editingNoteId = state.editingNoteId;
     const setEditingNoteId = field("editingNoteId");
-    const editContent = state.editContent;
-    const setEditContent = field("editContent");
-    const isUpdatingNote = state.isUpdatingNote;
-    const setIsUpdatingNote = field("isUpdatingNote");
 
     // -------------------------
     // DELETE NOTE STATE
@@ -69,10 +108,10 @@ export default function useNotes({
 
     const deletingNoteId = state.deletingNoteId;
     const setDeletingNoteId = field("deletingNoteId");
-
-    const currentBook = books.find(
-        (item) => item.name === book
-    );
+    const activeNoteId = useRef(editingNoteId);
+    const ownerRef = useRef(owner);
+    const draftRef = useRef(null);
+    if (!draftRef.current) draftRef.current = documentDrafts.get(owner) || {};
 
     // -------------------------
     // LOAD NOTES
@@ -85,8 +124,11 @@ export default function useNotes({
         async function load() {
             setIsLoadingNotes(true);
             try {
-                const data = await getNotes(token);
-                if (active && isCurrent(ticket)) setNotes(data);
+                const data = privatePage(await getNotes(token));
+                if (active && isCurrent(ticket)) {
+                    setNotes(current => appendCollection(current, data.items));
+                    setNextCursor(data.nextCursor);
+                }
             } catch (error) {
                 if (active && isCurrent(ticket)) setNotesError(error.message);
             } finally {
@@ -95,7 +137,7 @@ export default function useNotes({
         }
         load();
         return () => { active = false; };
-    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoadingNotes, setNotes, setNotesError]);
+    }, [owner, token, isAuthenticated, isAuthLoading, capture, isCurrent, setIsLoadingNotes, setNotes, setNotesError, setNextCursor]);
 
     // -------------------------
     // CREATE NOTE
@@ -123,130 +165,16 @@ export default function useNotes({
         return true;
     }
 
-    // Save the captured draft passage, or the currently focused verse.
-    async function handleSaveNote() {
-        const ticket = capture();
-        if (!ticket) return false;
-        // Prevent empty notes, unauthenticated requests, and repeated saves.
-        if (!token || isSavingNote || !noteContent.trim()) {
-            return;
-        }
-
-        // Prefer the passage explicitly attached when the draft was started.
-        const passage = draftPassage || (
-            currentBook && selectedVerse
-                ? {
-                    bookId: currentBook.id,
-                    startChapter: chapter,
-                    startVerse: selectedVerse,
-                    endChapter: chapter,
-                    endVerse: selectedVerse
-                }
-                : null
-        );
-
-        if (!passage) {
-            setNotesError("Select a passage before saving your note.");
-            return;
-        }
-
-        // Capture the content and target submitted by this save.
-        const content = noteContent.trim();
-
-        setNotesError("");
-        setIsSavingNote(true);
-
-        try {
-            const newNote = await createNote(token, {
-                // Copy the passage coordinates into the request body.
-                ...passage,
-                content
-            });
-
-            if (!isCurrent(ticket)) return false;
-            setNotes((currentNotes) => [
-                newNote,
-                ...currentNotes
-            ]);
-
-            // Reset the completed draft after the backend confirms success.
-            setNoteContent("");
-            setDraftPassage(null);
-            return true;
-        } catch (error) {
-            if (!isCurrent(ticket)) return false;
-            // Preserve the content and passage so the user can retry.
-            setNotesError(error.message);
-        } finally {
-            if (isCurrent(ticket)) setIsSavingNote(false);
-        }
-    }
-
     // -------------------------
     // START EDITING
     // -------------------------
 
     function handleStartEdit(note) {
         if (!capture()) return false;
-        setEditingNoteId(note.id);
-        setEditContent(note.content);
-        setNotesError("");
-    }
-
-    // -------------------------
-    // CANCEL EDITING
-    // -------------------------
-
-    function handleCancelEdit() {
-        if (!capture()) return false;
-        setEditingNoteId(null);
-        setEditContent("");
-    }
-
-    // -------------------------
-    // UPDATE NOTE
-    // -------------------------
-
-    async function handleUpdateNote(noteId) {
-        const ticket = capture();
-        if (!ticket) return false;
-        if (
-            !token ||
-            !editContent.trim()
-        ) {
-            return;
-        }
-
-        setNotesError("");
-        setIsUpdatingNote(true);
-
-        try {
-            const updatedNote = await updateNote(
-                token,
-                noteId,
-                {
-                    content: editContent.trim()
-                }
-            );
-
-            if (!isCurrent(ticket)) return false;
-            setNotes((currentNotes) =>
-                currentNotes.map((note) =>
-                    note.id === noteId
-                        ? updatedNote
-                        : note
-                )
-            );
-
-            setEditingNoteId(null);
-            setEditContent("");
-            return true;
-        } catch (error) {
-            if (!isCurrent(ticket)) return false;
-            setNotesError(error.message);
-        } finally {
-            if (isCurrent(ticket)) setIsUpdatingNote(false);
-        }
+        activeNoteId.current = note.id;
+        const doc = draftRef.current[note.id] || makeDocument(note);
+        publishDocuments({ ...draftRef.current, [note.id]: doc });
+        setCurrent(current => ({ ...current, editingNoteId: note.id, notesError: "" }));
     }
 
     // -------------------------
@@ -256,7 +184,7 @@ export default function useNotes({
     async function handleDeleteNote(noteId) {
         const ticket = capture();
         if (!ticket) return false;
-        if (!token) {
+        if (!token || draftRef.current[noteId]?.saving) {
             return;
         }
 
@@ -273,10 +201,13 @@ export default function useNotes({
                 )
             );
 
-            if (editingNoteId === noteId) {
+            if (activeNoteId.current === noteId) {
+                activeNoteId.current = null;
                 setEditingNoteId(null);
-                setEditContent("");
             }
+            const next = { ...draftRef.current };
+            delete next[noteId];
+            publishDocuments(next);
             return true;
         } catch (error) {
             if (!isCurrent(ticket)) return false;
@@ -286,7 +217,117 @@ export default function useNotes({
         }
     }
 
+    async function handleCreateDocument(passage = null) {
+        const ticket = capture();
+        if (!ticket || !token || isSavingNote) return null;
+        const selectedAtStart = activeNoteId.current;
+        setIsSavingNote(true);
+        setNotesError("");
+        try {
+            const note = await createNote(token, { ...(passage || {}), title: "", content: "<p></p>" });
+            if (!isCurrent(ticket)) return null;
+            setNotes((current) => [note, ...current]);
+            if (activeNoteId.current === selectedAtStart) handleStartEdit(note);
+            return note;
+        } catch (error) {
+            if (isCurrent(ticket)) setNotesError(error.message);
+            return null;
+        } finally {
+            if (isCurrent(ticket)) setIsSavingNote(false);
+        }
+    }
+
+    function makeDocument(note) {
+        const saved = { title: note.title || "", content: note.content || "" };
+        return { ...saved, saved, saving: false, error: "", uncertain: false };
+    }
+
+    function publishDocuments(documents) {
+        ensureUnloadGuard();
+        draftRef.current = documents;
+        documentDrafts.set(owner, documents);
+        for (const listener of draftListeners.get(owner) || []) listener(documents);
+    }
+
+    function changeDocument(noteId, change) {
+        if (!capture() || activeNoteId.current !== noteId) return;
+        const doc = draftRef.current[noteId];
+        if (!doc || doc.saving || deletingNoteId === noteId) return;
+        const next = { ...doc, ...change, error: "" };
+        publishDocuments({ ...draftRef.current, [noteId]: next });
+    }
+
+    async function saveDocument(noteId) {
+        const ticket = capture();
+        const doc = draftRef.current[noteId];
+        if (!ticket || !token || !doc || doc.saving || deletingNoteId === noteId) return false;
+        const submitted = { title: doc.title, content: doc.content };
+        publishDocuments({ ...draftRef.current, [noteId]: { ...doc, saving: true, error: "" } });
+        try {
+            const updated = await updateNote(token, noteId, submitted);
+            const cached = documentDrafts.get(owner);
+            const current = cached?.[noteId];
+            if (!current) return false;
+            const saved = { title: updated.title || "", content: updated.content || "" };
+            publishDocuments({ ...cached, [noteId]: { ...current, ...saved, saved, saving: false, error: "", uncertain: false } });
+            if (isCurrent(ticket)) setNotes(items => items.map(item => item.id === noteId ? updated : item));
+            return true;
+        } catch (error) {
+            const cached = documentDrafts.get(owner);
+            if (cached?.[noteId]) {
+                publishDocuments({ ...cached, [noteId]: { ...cached[noteId], saving: false, error: error.message, uncertain: true } });
+            }
+            return false;
+        }
+    }
+
+    async function cancelDocument(noteId) {
+        const doc = draftRef.current[noteId];
+        const ticket = capture();
+        if (!ticket || !doc || doc.saving || deletingNoteId === noteId) return;
+        // A failed request may have committed before its response was lost. Restore
+        // the confirmed snapshot on the server before declaring cancellation complete.
+        if (doc.uncertain) {
+            publishDocuments({ ...draftRef.current, [noteId]: { ...doc, saving: true, error: "" } });
+            try {
+                const updated = await updateNote(token, noteId, doc.saved);
+                const cached = documentDrafts.get(owner);
+                if (!cached?.[noteId]) return;
+                const saved = { title: updated.title || "", content: updated.content || "" };
+                publishDocuments({ ...cached, [noteId]: { ...cached[noteId], ...saved, saved, saving: false, error: "", uncertain: false } });
+                if (isCurrent(ticket)) setNotes(items => items.map(item => item.id === noteId ? updated : item));
+            } catch (error) {
+                const cached = documentDrafts.get(owner);
+                if (cached?.[noteId]) publishDocuments({ ...cached, [noteId]: { ...cached[noteId], saving: false, error: error.message, uncertain: true } });
+            }
+            return;
+        }
+        publishDocuments({ ...draftRef.current, [noteId]: { ...doc, ...doc.saved, error: "" } });
+    }
+
+    useEffect(() => {
+        if (ownerRef.current !== owner) {
+            if (hasUnsaved(documentDrafts.get(ownerRef.current))) {
+                window.alert("Your sign-in changed. Unsaved note drafts from the previous session could not be saved.");
+            }
+            documentDrafts.delete(ownerRef.current);
+            ownerRef.current = owner;
+            draftRef.current = documentDrafts.get(owner) || {};
+            activeNoteId.current = null;
+        }
+    }, [owner]);
+
+    useEffect(() => {
+        const listeners = draftListeners.get(owner) || new Set();
+        const listener = documents => { draftRef.current = documents; field("documents")(documents); };
+        listeners.add(listener);
+        draftListeners.set(owner, listeners);
+        if (Object.keys(draftRef.current).length) listener(draftRef.current);
+        return () => { listeners.delete(listener); if (!listeners.size) draftListeners.delete(owner); };
+    }, [owner, field]);
+
     return {
+        nextCursor: state.nextCursor, isLoadingMore: state.isLoadingMore, loadMore,
         isAuthenticated,
         isAuthLoading,
 
@@ -299,17 +340,16 @@ export default function useNotes({
         isSavingNote,
 
         editingNoteId,
-        editContent,
-        setEditContent,
-        isUpdatingNote,
+        documents: state.documents,
 
         deletingNoteId,
 
-        handleSaveNote,
         handleStartEdit,
-        handleCancelEdit,
-        handleUpdateNote,
         handleDeleteNote,
+        handleCreateDocument,
+        changeDocument,
+        saveDocument,
+        cancelDocument,
         draftPassage,
         handleStartNote
     };

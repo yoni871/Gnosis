@@ -1,5 +1,7 @@
-import { useCallback, useEffect, useMemo, useRef, useState, createContext } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, createContext } from "react";
 import { getProfile, loginUser, registerUser, refreshSession, logoutSession } from "../services/authService";
+import { loginWithPasskey } from "../services/passkeyService";
+import { verifyMfaChallenge } from "../services/mfaService";
 import { createAuthSessionGuard } from "./authSession";
 
 const AuthContext = createContext(null);
@@ -7,16 +9,26 @@ const AuthContext = createContext(null);
 export default AuthContext;
 
 export function AuthProvider({ children }) {
-    // Read-only ownership snapshot for consumers; only this provider advances it.
-    const [sessionVersion, setSessionVersion] = useState(0);
-    const [user, setUser] = useState(null);
-    const [isAuthLoading, setIsAuthLoading] = useState(true);
-
     // Epoch guard for issue #6: every auth operation and every logout
     // advances the epoch. An async operation may only mutate state
     // while its captured ticket is still current, so a
     // delayed response can never overwrite a newer session or a logout.
     const [authGuard] = useState(() => createAuthSessionGuard());
+
+    // Read-only ownership snapshot for consumers; only this provider advances it.
+    // The version IS the guard's epoch, read through useSyncExternalStore.
+    // It used to be a useState mirror updated with a synchronous
+    // setSessionVersion(ticket) inside the restore effect, which
+    // react-hooks/set-state-in-effect forbids (cascading render: the
+    // effect's job is to sync with the external guard, not to setState
+    // synchronously). The guard now notifies subscribers on every
+    // begin()/invalidate(), so the published version follows the epoch
+    // with identical timing — at operation start, including while a
+    // restore is still in flight — and can never drift from it.
+    const sessionVersion = useSyncExternalStore(authGuard.subscribe, authGuard.getSnapshot);
+
+    const [user, setUser] = useState(null);
+    const [isAuthLoading, setIsAuthLoading] = useState(true);
 
     // Access credentials live only in this provider. The HttpOnly cookie
     // restores a session after reload; discard legacy persistent credentials.
@@ -29,8 +41,10 @@ export function AuthProvider({ children }) {
     const getAccessToken = useCallback(() => tokenRef.current, []);
 
     useEffect(() => {
+        // begin() advances the epoch and notifies the sessionVersion
+        // subscription, so the published version already reflects this
+        // restore before its async work settles. No setState here.
         const ticket = authGuard.begin();
-        setSessionVersion(ticket);
 
         //restore the user's login after a page refresh
         const restoreAuth = async () => {
@@ -49,7 +63,16 @@ export function AuthProvider({ children }) {
                 if (!authGuard.isCurrent(ticket)) {
                     return;
                 }
-                if (error.code !== "SESSION_INVALID") console.error(error);
+                // SESSION_INVALID (expired session, 401) and
+                // SESSION_REQUEST_INVALID (no refresh cookie at all, 403)
+                // are both the routine "nobody is signed in" case, not
+                // errors worth logging on every logged-out page load.
+                if (
+                    error.code !== "SESSION_INVALID" &&
+                    error.code !== "SESSION_REQUEST_INVALID"
+                ) {
+                    console.error(error);
+                }
                 updateToken(null);
                 setUser(null);
             } finally {
@@ -112,25 +135,32 @@ export function AuthProvider({ children }) {
 
     const login = useCallback(async (credentials) => {
         const ticket = authGuard.begin();
-        setSessionVersion(ticket);
         return loginWithTicket(credentials, ticket);
     }, [authGuard, loginWithTicket]);
 
-    // A passkey login already holds the access token: establish the
-    // session from it, with the same epoch guard as a password login.
-    // A passkey is a phishing-resistant factor, so this path issues a
-    // full session with no second step.
-    const loginWithToken = useCallback(async (newToken) => {
-        const ticket = authGuard.begin();
-        setSessionVersion(ticket);
+    // Second step of a login for an MFA-enrolled account: the login
+    // call already verified the password and returned an MFA challenge
+    // instead of a session. Completing the challenge issues the session
+    // exactly like login does, under the same epoch guard.
+    const loginMfaWithTicket = useCallback(async (challenge, code, ticket) => {
+        if (!authGuard.isCurrent(ticket)) {
+            return null;
+        }
         setIsAuthLoading(true);
+
         try {
+            const { token: newToken } = await verifyMfaChallenge(challenge, code);
+            if (!authGuard.isCurrent(ticket)) {
+                return null;
+            }
             updateToken(newToken);
+
             const profile = await getProfile(newToken);
             if (!authGuard.isCurrent(ticket)) {
                 return null;
             }
             setUser(profile);
+
             return profile;
         } catch (error) {
             if (!authGuard.isCurrent(ticket)) {
@@ -138,11 +168,38 @@ export function AuthProvider({ children }) {
             }
             updateToken(null);
             setUser(null);
+
             throw error;
         } finally {
             if (authGuard.isCurrent(ticket)) {
                 setIsAuthLoading(false);
             }
+        }
+    }, [authGuard, updateToken]);
+
+    const loginMfa = useCallback(async (challenge, code) => {
+        const ticket = authGuard.begin();
+        return loginMfaWithTicket(challenge, code, ticket);
+    }, [authGuard, loginMfaWithTicket]);
+
+    const loginPasskey = useCallback(async (email) => {
+        const ticket = authGuard.begin();
+        setIsAuthLoading(true);
+        try {
+            const { token: newToken } = await loginWithPasskey(email);
+            if (!authGuard.isCurrent(ticket)) return null;
+            const profile = await getProfile(newToken);
+            if (!authGuard.isCurrent(ticket)) return null;
+            updateToken(newToken);
+            setUser(profile);
+            return profile;
+        } catch (error) {
+            if (!authGuard.isCurrent(ticket)) return null;
+            updateToken(null);
+            setUser(null);
+            throw error;
+        } finally {
+            if (authGuard.isCurrent(ticket)) setIsAuthLoading(false);
         }
     }, [authGuard, updateToken]);
 
@@ -157,16 +214,20 @@ export function AuthProvider({ children }) {
         return { email: data.email };
     }, []);
 
-    const logout = useCallback((all = false) => {
+    const logout = useCallback((all = false, forced = false) => {
+        const event = new CustomEvent("gnosis:before-sign-out", { cancelable: true, detail: { forced } });
+        if (!window.dispatchEvent(event) && !forced) return false;
         const revocation = logoutSession(token, all === true);
         revocation.catch(error => console.error(error.message));
         // Invalidate first: any restore/login/register already in
         // flight becomes stale and must not write state or storage
-        // when it eventually finishes.
-        setSessionVersion(authGuard.invalidate());
+        // when it eventually finishes. invalidate() also notifies the
+        // sessionVersion subscription.
+        authGuard.invalidate();
         updateToken(null);
         setUser(null);
         setIsAuthLoading(false);
+        return true;
     }, [authGuard, token, updateToken]);
 
     useEffect(() => {
@@ -187,14 +248,17 @@ export function AuthProvider({ children }) {
                 if (claimsOf(token).sid !== claimsOf(renewed.token).sid) {
                     const profile = await getProfile(renewed.token);
                     if (!active || !authGuard.isCurrent(ticket)) return;
-                    setSessionVersion(authGuard.begin());
+                    // A different tab signed in to a different session:
+                    // start a new epoch (notifies the sessionVersion
+                    // subscription) so private state re-keys to it.
+                    authGuard.begin();
                     setUser(profile);
                 }
                 updateToken(renewed.token);
             } catch (error) {
                 if (!active || !authGuard.isCurrent(ticket)) return;
                 if (['SESSION_INVALID', 'TOKEN_INVALID', 'TOKEN_REQUIRED'].includes(error.code)) {
-                    logout();
+                    logout(false, true);
                 } else {
                     // Temporary transport/server failures must not erase private drafts.
                     // Protected requests still fail closed if the access token expires.
@@ -230,7 +294,8 @@ export function AuthProvider({ children }) {
         isAuthenticated,
         isAuthLoading,
         login,
-        loginWithToken,
+        loginMfa,
+        loginPasskey,
         register,
         logout
     }), [
@@ -241,7 +306,8 @@ export function AuthProvider({ children }) {
         isAuthenticated,
         isAuthLoading,
         login,
-        loginWithToken,
+        loginMfa,
+        loginPasskey,
         register,
         logout
     ]);

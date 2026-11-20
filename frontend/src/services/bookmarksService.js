@@ -1,7 +1,8 @@
+import { privatePageUrl } from "../utils/privatePages";
 import API_URL from "../api/api";
 
-export async function getBookmarks(token) {
-    const response = await fetch(`${API_URL}/bookmarks`, {
+export async function getBookmarks(token, cursor = null, filters = {}) {
+    const response = await fetch(privatePageUrl(API_URL, "bookmarks", cursor, filters), {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`

@@ -1,13 +1,12 @@
 const express = require("express");
 const pool = require("../db/db");
-const bcrypt = require("bcrypt");
+const passwordHash = require("../utils/passwordHash");
 const router = express.Router();
-// Public dummy bcrypt value, never an account credential (cost matches signup).
-const UNKNOWN_PASSWORD_HASH = '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy';
 const sessions = require("../services/sessionService");
+const mfaService = require("../services/mfaService");
 const authenticateToken = require("../middleware/authMiddleware");
 const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
-const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, VALIDATION_CODE } = require("../utils/authValidation");
+const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, validateDeleteAccountInput, VALIDATION_CODE } = require("../utils/authValidation");
 const { createRateLimitMiddleware } = require("../utils/rateLimit");
 const {
     VERIFICATION_TTL_MS,
@@ -21,10 +20,15 @@ const {
     hashPasswordResetToken,
 } = require("../utils/passwordReset");
 const { createResendClient } = require("../utils/resendClient");
+const { isBreachedPassword } = require("../utils/breachedPasswords");
+const { audit } = require("../utils/auditLog");
+const { recordLoginDevice } = require("../services/loginDevices");
+const { isAdminEmail } = require("../utils/adminAuth");
+const { createMfaEnrollToken } = require("../utils/mfaEnrollToken");
 
 // Issue #3: validation runs as middleware, before the limiter and before
 // any hashing or database access. Only the validated (trimmed) values
-// below ever reach bcrypt or the query. Validation failures are not
+// below ever reach password hashing or the query. Validation failures are not
 // logged: they are ordinary client errors, and logging them could record
 // submitted values. Because validation runs first, invalid input never
 // creates a rate-limit reservation and never counts.
@@ -74,6 +78,15 @@ function validateVerify(req, res, next) {
 // same structural rule as registration; reset-password takes a token
 // and a new password. Both run before the limiter, so invalid input
 // never counts.
+function validateDelete(req, res, next) {
+    const validation = validateDeleteAccountInput(req.body);
+    if (validation.error) {
+        return res.status(400).json({ error: validation.error, code: VALIDATION_CODE });
+    }
+    req.validated = validation.value;
+    return next();
+}
+
 function validateForgot(req, res, next) {
     const validation = validateForgotPasswordInput(req.body);
     if (validation.error) {
@@ -133,6 +146,18 @@ const resetRateLimit = createRateLimitMiddleware([
     { policy: "reset_ip", fields: (req, ip) => [ip] },
 ], "reset");
 
+// PR4 (F04): refresh was the one auth endpoint with no throttle. The
+// browser-session gate runs first, like validation on the other auth
+// endpoints, so only genuine browser session requests consume quota.
+// PR #90: both successful and failed rotations count (see the /refresh
+// handler), and the budgets are refresh_ip (aggregate flood bound) plus
+// refresh_token (10/min per token) — a stolen token must not rotate
+// without bound. The per-family budget lives in the rotation transaction.
+const refreshRateLimit = createRateLimitMiddleware([
+    { policy: "refresh_ip", fields: (req, ip) => [ip] },
+    { policy: "refresh_token", fields: req => [req.refreshCookie] },
+], "refresh");
+
 // Guarantees a reservation is always settled. Handlers finalize
 // explicitly on every path; this wrapper covers the rest: an unexpected
 // throw is an internal error and releases, while a handler that somehow
@@ -187,12 +212,32 @@ const RESET_INVALID_BODY = {
 router.post("/register", validateRegister, registerRateLimit, withRateLimitFinalize(async (req, res) => {
     const { firstName, lastName, email, password } = req.validated;
 
+// Breached-password screening (roadmap T1.7): this handler runs only
+    // after the rate limiter has reserved, and the check runs before any
+    // hashing, so a breached password never reaches password hashing
+    // and the check cannot be used as a pre-rate-limit oracle. It also runs before any
+    // database access, so an existing and a new address get the same
+    // response and no account state leaks. The rejection is logged with
+    // the allowlisted logger only (route + kind, never the password);
+    // the audit-logging track records breached-password rejections under
+    // the dotted kind name breached_password.rejected (its allowlist does
+    // not accept the hyphenated log label used here).
+    if (await isBreachedPassword(password)) {
+        logAuthFailure("POST /api/auth/register", "breached-password", null);
+        return res.status(400).json({
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: VALIDATION_CODE,
+        });
+    }
+
     // Hashing failures are internal errors for issue #5. Missing or
     // malformed input is rejected above by issue #3 validation and never
-    // reaches this point.
+    // reaches this point. New hashes are Argon2id (passwordHash module);
+    // existing bcrypt hashes still verify on login and transparently
+    // migrate to Argon2id on next login (see the login handler).
     let hashedPassword;
     try {
-        hashedPassword = await bcrypt.hash(password, 10);
+        hashedPassword = await passwordHash.hashPassword(password);
     } catch (error) {
         logAuthFailure("POST /api/auth/register", "password", error);
         await req.rateLimit.finalize("release");
@@ -306,7 +351,7 @@ router.post("/login", (req, res, next) => {
     // run inside this handler's own try/catch and become controlled 500s.
     let passwordMatch;
     try {
-        passwordMatch = await bcrypt.compare(password, user ? user.password_hash : UNKNOWN_PASSWORD_HASH);
+        passwordMatch = await passwordHash.verifyPassword(password, user ? user.password_hash : passwordHash.UNKNOWN_PASSWORD_HASH);
     } catch (error) {
         logAuthFailure("POST /api/auth/login", "password", error);
         await req.rateLimit.finalize("release");
@@ -315,6 +360,9 @@ router.post("/login", (req, res, next) => {
 
     if(!user || !passwordMatch) {
         await req.rateLimit.finalize("count");
+        // Best-effort, after the credential verdict. Unknown emails
+        // record a null user; the response is unchanged either way.
+        await audit(pool, "login.failure", user ? user.id : null);
         return res.status(401).json({
             error: "Invalid email or password.",
             code: "INVALID_CREDENTIALS"
@@ -335,6 +383,112 @@ router.post("/login", (req, res, next) => {
         });
     }
 
+    // TOTP MFA (roadmap T2.3): an enrolled account receives no session
+    // from the password alone. Issue a single-use 10-minute challenge
+    // and return MFA_REQUIRED; the frontend completes login at POST
+    // /api/auth/mfa/verify. A correct password still does not count
+    // toward the login buckets, and no access token is issued here.
+    let mfaEnrolled;
+    try {
+        const mfaRow = await pool.query(
+            "SELECT enrolled FROM user_mfa WHERE user_id = $1", [user.id]);
+        mfaEnrolled = mfaRow.rows[0] ? mfaRow.rows[0].enrolled === true : false;
+    } catch (error) {
+        logAuthFailure("POST /api/auth/login", "database", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("login"));
+    }
+    if (mfaEnrolled) {
+        // Transparent Argon2id migration for MFA logins (PR #96 gap):
+        // the plaintext password is available here, at login, and
+        // only here — the later /mfa/verify step has just the
+        // challenge token and a code, so it cannot re-hash. Migrate
+        // BEFORE issuing the challenge, and track the verified hash:
+        // it is the hash login actually verified, post-migration.
+        // issueMfaChallenge is given that hash and atomically
+        // confirms it still matches the current credential under the
+        // user lock, so a password reset that lands between
+        // verification and issuance issues no challenge.
+        let verifiedHash = user.password_hash;
+        if (passwordHash.isBcryptHash(user.password_hash)) {
+            try {
+                const migratedHash = await passwordHash.hashPassword(password);
+                const migrated = await pool.query(
+                    "UPDATE users SET password_hash = $1 WHERE id = $2 AND password_hash = $3",
+                    [migratedHash, user.id, user.password_hash]
+                );
+                if (migrated.rowCount === 1) {
+                    // Migration won: the verified credential is now
+                    // the Argon2id hash.
+                    verifiedHash = migratedHash;
+                } else {
+                    // A concurrent password change/reset won the
+                    // compare-and-swap: the password login just
+                    // verified is no longer current. Fail as a wrong
+                    // password (same as createSession's null), and
+                    // issue no challenge.
+                    await req.rateLimit.finalize("count");
+                    await audit(pool, "login.failure", user.id);
+                    return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
+                }
+            } catch (error) {
+                logAuthFailure("POST /api/auth/login", "rehash", error);
+                // Best-effort: a failed write leaves the bcrypt hash;
+                // verifiedHash stays the hash login verified, and
+                // issueMfaChallenge's atomic confirm is the safety
+                // net if the credential changed anyway.
+            }
+        }
+        let challenge;
+        try {
+            challenge = await mfaService.issueMfaChallenge(pool, user.id, verifiedHash);
+        } catch (error) {
+            logAuthFailure("POST /api/auth/login", "session", error);
+            await req.rateLimit.finalize("release");
+            return res.status(500).json(internalErrorBody("login"));
+        }
+        if (!challenge) {
+            // The password was reset/changed between login's
+            // verification and challenge issuance. No challenge was
+            // issued; fail as a wrong password.
+            await req.rateLimit.finalize("count");
+            await audit(pool, "login.failure", user.id);
+            return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
+        }
+        await req.rateLimit.finalize("release");
+        return res.status(401).json({
+            error: "Multi-factor authentication is required.",
+            code: "MFA_REQUIRED",
+            challenge,
+        });
+    }
+
+    // Admin-mandatory MFA (design §9): an admin account without
+    // enrolled MFA gets no session. Return 403 with a short-lived
+    // enrollment-scoped token instead; the frontend routes the admin
+    // to enrollment with it. A correct password still does not count
+    // toward the login buckets. Regular users are unaffected.
+    if (!mfaEnrolled && isAdminEmail(user.email)) {
+        let enrollToken;
+        try {
+            // The token is bound to the credential login verified
+            // (the password hash): a reset after this login
+            // invalidates it (F7).
+            enrollToken = createMfaEnrollToken(user.id, user.password_hash);
+        } catch (error) {
+            logAuthFailure("POST /api/auth/login", "token", error);
+            await req.rateLimit.finalize("release");
+            return res.status(500).json(internalErrorBody("login"));
+        }
+        await req.rateLimit.finalize("release");
+        await audit(pool, "mfa.enrollment_required", user.id);
+        return res.status(403).json({
+            error: "Multi-factor authentication is required for this account. Set up an authenticator to continue.",
+            code: "MFA_ENROLLMENT_REQUIRED",
+            enrollToken,
+        });
+    }
+
     let session;
     try {
         session = await sessions.createSession(user.id, user.password_hash);
@@ -345,13 +499,46 @@ router.post("/login", (req, res, next) => {
     }
     if (!session) {
         await req.rateLimit.finalize("count");
+        // The password changed after login verified it: the same
+        // credential failure as a wrong password.
+        await audit(pool, "login.failure", user.id);
         return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
     }
+
+    // Transparent Argon2id migration: a bcrypt hash that just verified is
+    // re-hashed after the session is issued, so session issuance still
+    // binds to the hash login verified (createSession rechecks it above).
+    // Migrating after issuance also keeps concurrent logins working:
+    // both issue from the same bcrypt hash, and the first migration wins.
+    // The update is compare-and-swap on the hash that was verified, so
+    // a password reset that lands between verification and this write
+    // wins instead: the update matches zero rows and the new password is
+    // never clobbered by a hash of the old one. A migration failure is
+    // best-effort and never fails the login; the bcrypt hash stays in
+    // place for the next login.
+    if (passwordHash.isBcryptHash(user.password_hash)) {
+        try {
+            const migratedHash = await passwordHash.hashPassword(password);
+            await pool.query(
+                "UPDATE users SET password_hash = $1 WHERE id = $2 AND password_hash = $3",
+                [migratedHash, user.id, user.password_hash]
+            );
+        } catch (error) {
+            logAuthFailure("POST /api/auth/login", "rehash", error);
+        }
+    }
+
     sessions.setCookie(res, session.refresh);
     res.set("Cache-Control", "no-store");
 
     // Login successes do not count and do not reset prior failures.
     await req.rateLimit.finalize("release");
+    // Best-effort, after the session committed. audit() never throws,
+    // so a failed insert cannot change the 200 response.
+    await audit(pool, "login.success", user.id);
+    // T2.6: best-effort new-device detection; never changes the 200
+    // response and never blocks the login (step-up MFA is deferred).
+    await recordLoginDevice(pool, user.id, req.ip, req.get("user-agent"));
     res.json({
         token: session.token, expiresIn: sessions.ACCESS_SECONDS
     });
@@ -359,16 +546,35 @@ router.post("/login", (req, res, next) => {
 
 
 // Cookie endpoints require an explicit browser session request and a trusted origin.
-router.post("/refresh", sessions.browserSessionRequest, async (req, res) => {
-    res.set("Cache-Control", "no-store");
-    const session = await sessions.rotateSession(sessions.readCookie(req));
+// PR #90: validate the refresh cookie before touching the store (absent or
+// malformed -> 401), and count BOTH successful and failed rotations against
+// the refresh budgets (a stolen token must not rotate without bound).
+function validateRefresh(req, res, next) {
+    const refresh = sessions.readCookie(req);
+    if (typeof refresh !== "string" || !/^[a-f0-9]{64}$/.test(refresh)) {
+        sessions.clearCookie(res);
+        return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
+    }
+    req.refreshCookie = refresh;
+    next();
+}
+router.post("/refresh", (req, res, next) => { res.set("Cache-Control", "no-store"); next(); },
+    sessions.browserSessionRequest, validateRefresh, refreshRateLimit, withRateLimitFinalize(async (req, res) => {
+    const session = await sessions.rotateSession(req.refreshCookie);
+    // Successful and invalid credential attempts both consume reservations.
+    // An internal throw is released by withRateLimitFinalize and fails closed.
+    await req.rateLimit.finalize("count");
+    if (session?.limited) {
+        return res.status(429).set("Retry-After", String(session.retryAfter))
+            .json({ error: "Too many attempts. Please try again later.", code: "RATE_LIMITED" });
+    }
     if (!session) {
         sessions.clearCookie(res);
         return res.status(401).json({ error: "Session expired. Please sign in again.", code: "SESSION_INVALID" });
     }
     sessions.setCookie(res, session.refresh, session.expiresAt);
     res.json({ token: session.token, expiresIn: sessions.ACCESS_SECONDS });
-});
+}));
 router.post("/logout", sessions.browserSessionRequest, async (req, res) => {
     await sessions.revokeRefresh(sessions.readCookie(req));
     await sessions.revokeAccess(req.headers.authorization);
@@ -377,8 +583,131 @@ router.post("/logout", sessions.browserSessionRequest, async (req, res) => {
 });
 router.post("/logout-all", authenticateToken, async (req, res) => {
     await pool.query("UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1", [req.user.userId]);
+    await audit(pool, "logout.all", req.user.userId);
     sessions.clearCookie(res);
     res.set("Cache-Control", "no-store").sendStatus(204);
+});
+
+// Self-serve account deletion. The current password is the
+// confirmation: deletion is irreversible, so a stolen access token
+// alone must not be enough to erase an account. The whole deletion
+// runs in one transaction — revoke every session, then delete the
+// user row — so a failure leaves the account exactly as it was.
+// The user-owned rows (notes, bookmarks, highlights, reading state,
+// verification/reset tokens, sessions, and refresh tokens via their
+// session) are removed by the schema's ON DELETE CASCADE rules, not
+// by explicit DELETEs here: the runtime role deliberately holds no
+// DELETE grant on those tables, and the cascade is the schema's own
+// stated deletion mechanism (see the baseline migration). The one
+// grant this endpoint needs is DELETE ON users, applied by the
+// operator at deploy time (see docs/AccountDeletion.md); without it
+// the delete fails closed with a 500 and nothing is removed. The
+// refresh cookie is cleared with the success response, and the
+// deleted access token stops working immediately because its session
+// row is gone.
+//
+// Audit note: the deletion is audit-logged through audit() (issue
+// #137), after the transaction commits, with the user id captured
+// BEFORE the user row is deleted (userId is bound at the top of this
+// handler). The kind is account_deletion.completed, the allowlisted
+// name in docs/SecurityEvents.md. A "requested" event before the
+// transaction was considered and left out: this handler emits the
+// completion only.
+router.delete("/account", authenticateToken, validateDelete, async (req, res) => {
+    const userId = req.user.userId;
+
+    // The password check runs before the transaction and before any
+    // lock: no lock is ever held across password hashing, following the
+    // reset flow. A wrong password is an ordinary client error and is not
+    // logged; the response is the same invalid-credentials body as
+    // login, so it reveals nothing about account state.
+    let storedHash;
+    try {
+        const result = await pool.query(
+            "SELECT password_hash FROM users WHERE id = $1",
+            [userId]
+        );
+        storedHash = result.rows[0] ? result.rows[0].password_hash : null;
+    } catch (error) {
+        logAuthFailure("DELETE /api/auth/account", "database", error);
+        return res.status(500).json(internalErrorBody("delete"));
+    }
+    let passwordMatch = false;
+    if (storedHash) {
+        try {
+            passwordMatch = await passwordHash.verifyPassword(req.validated.password, storedHash);
+        } catch (error) {
+            logAuthFailure("DELETE /api/auth/account", "password", error);
+            return res.status(500).json(internalErrorBody("delete"));
+        }
+    }
+    if (!storedHash || !passwordMatch) {
+        return res.status(401).json({
+            error: "Invalid email or password.",
+            code: "INVALID_CREDENTIALS",
+        });
+    }
+
+    let client;
+    try {
+        client = await pool.connect();
+    } catch (error) {
+        logAuthFailure("DELETE /api/auth/account", "database", error);
+        return res.status(500).json(internalErrorBody("delete"));
+    }
+    try {
+        await client.query("BEGIN");
+        const userResult = await client.query(
+            "SELECT password_hash FROM users WHERE id = $1 FOR UPDATE",
+            [userId]
+        );
+        const user = userResult.rows[0];
+        // Recheck the credential login verified after acquiring the
+        // lock, following the session-creation pattern: a password
+        // change (or a concurrent deletion) between the check above
+        // and this lock must not delete the account on a stale
+        // snapshot.
+        if (!user || user.password_hash !== storedHash) {
+            await client.query("ROLLBACK");
+            return res.status(401).json({
+                error: "Invalid email or password.",
+                code: "INVALID_CREDENTIALS",
+            });
+        }
+        // Sessions are revoked in the same transaction as the
+        // deletion, then removed with the user row by the foreign-key
+        // cascade (auth_refresh_tokens cascades from auth_sessions).
+        // The explicit revoke makes the intent visible here instead
+        // of relying on the cascade alone.
+        await client.query(
+            "UPDATE auth_sessions SET revoked_at = now() WHERE user_id = $1 AND revoked_at IS NULL",
+            [userId]
+        );
+        // The user-row delete removes every user-owned row through
+        // the schema's ON DELETE CASCADE rules (notes, bookmarks,
+        // highlights, user_reading_state, email_verification_tokens,
+        // password_reset_tokens, auth_sessions, and auth_refresh_tokens
+        // via auth_sessions). No explicit child DELETEs: the runtime
+        // role holds no DELETE grant on those tables, by design.
+        await client.query("DELETE FROM users WHERE id = $1", [userId]);
+        await client.query("COMMIT");
+    } catch (error) {
+        await client.query("ROLLBACK").catch(() => {});
+        logAuthFailure("DELETE /api/auth/account", "database", error);
+        return res.status(500).json(internalErrorBody("delete"));
+    } finally {
+        client.release();
+    }
+    sessions.clearCookie(res);
+    res.set("Cache-Control", "no-store");
+    // Best-effort, after the deletion committed. audit() never throws,
+    // so a logging failure cannot turn a completed deletion into a 500.
+    // The kind is account_deletion.completed: the allowlisted,
+    // documented name for this event (docs/SecurityEvents.md). The old
+    // stopgap string "account-deleted" is not in the audit allowlist,
+    // so audit() would throw on it.
+    await audit(pool, "account_deletion.completed", userId);
+    return res.json({ deleted: true });
 });
 
 //to verify an email address with a link token
@@ -717,12 +1046,25 @@ router.post("/reset-password", validateReset, resetRateLimit, withRateLimitFinal
         return res.status(400).json(RESET_INVALID_BODY);
     }
 
+    // Breached-password screening (roadmap T1.7): same ordering as
+    // registration — after the rate limiter and after the token is known
+    // valid, before hashing. An unknown token already returned the
+    // generic body above without ever calling the breach service.
+    if (await isBreachedPassword(req.validated.password)) {
+        logAuthFailure("POST /api/auth/reset-password", "breached-password", null);
+        return res.status(400).json({
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: VALIDATION_CODE,
+        });
+    }
+
     // Hashing runs before the transaction and before any lock: a hash
     // failure is an internal error, and no lock is ever held across
-    // bcrypt. Only a known token reaches this point.
+    // password hashing. Only a known token reaches this point. New
+    // hashes are Argon2id (passwordHash module).
     let hashedPassword;
     try {
-        hashedPassword = await bcrypt.hash(req.validated.password, 10);
+        hashedPassword = await passwordHash.hashPassword(req.validated.password);
     } catch (error) {
         logAuthFailure("POST /api/auth/reset-password", "password", error);
         await req.rateLimit.finalize("release");
@@ -793,6 +1135,10 @@ router.post("/reset-password", validateReset, resetRateLimit, withRateLimitFinal
             [user.id, current.id]
         );
         await client.query("COMMIT");
+        // Best-effort, after the password change, session revocation,
+        // and token consumption committed. audit() never throws, so a
+        // failed insert cannot change the 200 response.
+        await audit(pool, "password_reset.completed", user.id);
         await req.rateLimit.finalize("count");
         return res.status(200).json({ reset: true });
     } catch (error) {

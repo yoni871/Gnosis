@@ -121,7 +121,7 @@ test('reset wins the account lock: a login with the old password snapshot cannot
         resetting = reset(token);
         await waitingFor('SELECT id FROM users WHERE id = $1 FOR UPDATE');
         loggingIn = login();
-        await waitingFor('SELECT password_hash FROM users WHERE id = $1 FOR UPDATE');
+        await waitingFor('SELECT password_hash, email FROM users WHERE id = $1 FOR UPDATE');
         await blocker.query('COMMIT');
         assert.equal((await resetting).status, 200);
         const result = await loggingIn;

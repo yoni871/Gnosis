@@ -66,6 +66,7 @@ export default function BookSelector({
                     mt-1
                     grid
                     grid-cols-2
+                    items-start
                     gap-3
                     max-h-[300px]
                     w-[calc(100vw-24px)]

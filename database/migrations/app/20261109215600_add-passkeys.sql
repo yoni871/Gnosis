@@ -1,9 +1,8 @@
 -- Up Migration
 -- Passkeys (WebAuthn) live alongside passwords: a user may register
 -- several credentials, and any one of them can start a session. The
--- challenge table holds one live ceremony challenge per user and type;
--- starting a new ceremony supersedes the previous one, exactly like
--- the verification and reset token flows.
+-- challenge table holds expiring, single-use ceremony challenges;
+-- a sequential new ceremony supersedes previous live challenges.
 CREATE TABLE user_passkeys (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,

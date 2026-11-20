@@ -2,7 +2,6 @@ import { useContext, useState } from "react"
 import {
     User,
     Settings,
-    KeyRound,
     LogOut,
     ChevronDown,
     ChevronUp
@@ -19,8 +18,11 @@ export default function ProfileMenu() {
         setIsProfileOpen(false)
     });
 
-    const handleLogout = () => {
-        logout();
+    const handleLogout = (event) => {
+        if (logout() === false) {
+            event.preventDefault();
+            return;
+        }
         setIsProfileOpen(false);
     };
 
@@ -134,7 +136,10 @@ export default function ProfileMenu() {
             </button>
 
 
-            <button className="
+            <Link
+                to="/settings"
+                onClick={() => setIsProfileOpen(false)}
+                className="
                 flex w-full
                 items-center
                 gap-2.5
@@ -151,29 +156,6 @@ export default function ProfileMenu() {
                     className="text-[var(--text-muted)]"
                 />
                 <span>Settings</span>
-            </button>
-
-            <Link
-                to="/passkeys"
-                onClick={() => setIsProfileOpen(false)}
-                className="
-                    flex w-full
-                    items-center
-                    gap-2.5
-                    rounded-md
-                    px-3 py-2.5
-                    text-left
-                    text-[11px]
-                    text-[var(--text-primary)]
-                    hover:bg-[var(--bg-control-hover)]
-                "
-            >
-                <KeyRound
-                    size={15}
-                    strokeWidth={1.8}
-                    className="text-[var(--text-muted)]"
-                />
-                <span>Passkeys</span>
             </Link>
 
             <Link

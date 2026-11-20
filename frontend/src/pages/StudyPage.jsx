@@ -143,9 +143,9 @@ export default function StudyPage() {
         verse: selectedVerse,
     });
     //bookmark state for desktop and mobile to share
-    const bookmarksState = useBookmarks();
+    const bookmarksState = useBookmarks({ bookId: currentBook?.id, chapter });
     // Own highlights here so desktop and mobile share the same data and actions.
-    const highlightsState = useHighlights();
+    const highlightsState = useHighlights({ bookId: currentBook?.id, chapter });
     // Share the exact selected verses across desktop and mobile readers.
     const verseSelection = useVerseSelection();
     // Read stable selection actions for the navigation effects.
@@ -161,8 +161,18 @@ export default function StudyPage() {
     // effect then restores the selection at the target verse.
     const navigateToPassage = useCallback((target) => {
         if (!target) return;
-        if (target.book === book && target.chapter === chapter) {
-            setSelectedVerse(target.verse);
+        const targetChapter = target.startChapter ?? target.chapter;
+        const targetVerse = target.startVerse ?? target.verse;
+        const targetEndChapter = target.endChapter ?? targetChapter;
+        const targetEndVerse = target.endVerse ?? targetVerse;
+        if (!target.book || !targetChapter || !targetVerse) return;
+        if (target.book === book && targetChapter === chapter && targetEndChapter === chapter) {
+            replaceSelectionSet(
+                target.bookId ?? currentBook?.id,
+                chapter,
+                Array.from({ length: targetEndVerse - targetVerse + 1 }, (_, index) => targetVerse + index)
+            );
+            setSelectedVerse(targetEndVerse);
             return;
         }
         const params = new URLSearchParams();
@@ -170,9 +180,12 @@ export default function StudyPage() {
         if (commentaryState.selectedCommentator != null) {
             params.set("commentary", String(commentaryState.selectedCommentator));
         }
-        params.set("verse", String(target.verse));
-        navigate(`/bible/${target.book}/${target.chapter}?${params.toString()}`);
-    }, [book, chapter, translation, commentaryState.selectedCommentator, navigate]);
+        const verses = targetEndChapter === targetChapter
+            ? Array.from({ length: targetEndVerse - targetVerse + 1 }, (_, index) => targetVerse + index)
+            : [targetVerse];
+        params.set("verse", verses.join(","));
+        navigate(`/bible/${target.book}/${targetChapter}?${params.toString()}`);
+    }, [book, chapter, currentBook?.id, translation, commentaryState.selectedCommentator, navigate, replaceSelectionSet]);
 
     // React Router gives each history entry a navigation key.
     const location = useLocation();

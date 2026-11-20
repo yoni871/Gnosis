@@ -25,3 +25,8 @@
 @media (width < 900px) {
     .landing-device-showcase { margin-top: 0; }
 }
+
+/* Dark mode: the device screens' backdrop goes dark so it blends with the
+   section. The captures inside are static product images and stay as-is. */
+[data-theme="dark"] .landing-device-laptop-screen { background: #29221d; }
+[data-theme="dark"] .landing-device-phone-screen { background: #2a231e; }

@@ -1,0 +1,539 @@
+{
+  "category": "event",
+  "claims": [
+    {
+      "assessment": "established",
+      "claim": "Gen 4:17–24 is a genealogy in two parts: a direct line (vv. 17–18) and a collateral line (vv. 19–24).",
+      "evidence": "Westermann, Genesis 1–11, pp. 323–324.",
+      "id": "clm-cd-001"
+    },
+    {
+      "assessment": "established",
+      "claim": "Seven generations from Adam to Lamech in the Cainite line; seven denotes a totality, the generations of the primeval period.",
+      "evidence": "Westermann, Genesis 1–11, p. 323.",
+      "id": "clm-cd-002"
+    },
+    {
+      "assessment": "traditional",
+      "claim": "Cain's wife was a daughter of Adam (his sister).",
+      "evidence": "Keil & Delitzsch on Gen 4:16–17; inference from Gen 5:4 (\"he begat sons and daughters\"); the text does not name her.",
+      "id": "clm-cd-003"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The city-builder in Gen 4:17 is Cain (MT as it stands); Enoch-as-builder is an emendation or re-reading.",
+      "evidence": "Skinner, p. 117 (Bu.'s emendation \"plausible\" but the present text is a serious objection); Keil (Cain built the city); Westermann's translation \"Enoch, who became the builder of a city\"; Cassuto (second-hand, via Doulostheou) believes the city-builder was Enoch.",
+      "id": "clm-cd-004"
+    },
+    {
+      "assessment": "established",
+      "claim": "ʿîr (H5892) means \"city, town, abode of men\" — an enclosed, fortified space, not necessarily a large town.",
+      "evidence": "BDB, s.v. ʿîr (Gen 4:17 cited; 1,092 occurrences); Keil on Gen 4:17.",
+      "id": "clm-cd-005"
+    },
+    {
+      "assessment": "established",
+      "claim": "Cain's city cannot be identified; its site is not indicated.",
+      "evidence": "Skinner, p. 117 (\"cannot be identified\"); Keil; Ryle on Gen 4:17 (\"The site of the city is not indicated\").",
+      "id": "clm-cd-006"
+    },
+    {
+      "assessment": "established",
+      "claim": "Cain's Enoch (Gen 4:17) and Seth's Enoch (Gen 5:21–24) are distinct figures.",
+      "evidence": "Keil on Gen 4:18 (different places in the lines; \"more precise descriptions… thoroughly establish the difference of character\"); Westermann, pp. 355–358; Gen 5:24 (\"Enoch walked with God: and he was not; for God took him\").",
+      "id": "clm-cd-007"
+    },
+    {
+      "assessment": "established",
+      "claim": "The name resemblances between the Cainite and Sethite lists do not prove the two lists are one tradition.",
+      "evidence": "Keil (similar in sound, \"very different in meaning\"); Westermann (P combined two series of names into one); Ryle (\"either two variants of the same tradition; or two distinct traditions, in which the same stock of primitive legendary names is found very closely repeated\").",
+      "id": "clm-cd-008"
+    },
+    {
+      "assessment": "established",
+      "claim": "Lamech is seventh from Adam in the Cainite line; the Sethite Lamech (Gen 5:28–31) is a different person who lived 777 years and named his son Noah.",
+      "evidence": "Text, Gen 4:18 and Gen 5:28–31 (verified live); Keil on Gen 4:18.",
+      "id": "clm-cd-009"
+    },
+    {
+      "assessment": "established",
+      "claim": "Lamech's two wives are the first recorded polygamy; the text passes no judgment on it.",
+      "evidence": "Skinner, p. 118 (\"No judgment is passed… and probably none was intended\"); Ryle on Gen 4:19; Westermann, pp. 326–330 (wives subdivide the children; Plautz, ZAW 75 [1963] 7: \"It is only with Deuteronomy that polygamy is criticized and circumscribed\").",
+      "id": "clm-cd-010"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Adah means \"ornament/adornment\" or \"dawn\"; Zillah means \"shade/shadow\".",
+      "evidence": "Skinner, p. 118 (Adah = \"Dawn\" [Ewald]; Zillah = \"Shadow\"); Ryle on Gen 4:19; Westermann, p. 328 (\"cannot be explained with certainty… Both are unlikely\"); Cassuto's ṣilṣûl \"cymbal\" conjecture, second-hand via Westermann (\"attractive\").",
+      "id": "clm-cd-011"
+    },
+    {
+      "assessment": "established",
+      "claim": "Jabal is the \"father\" (originator) of tent-dwellers and livestock-keepers — nomadic shepherds.",
+      "evidence": "Text, Gen 4:20; Skinner, p. 119; Keil; Ryle; Westermann, p. 330.",
+      "id": "clm-cd-012"
+    },
+    {
+      "assessment": "established",
+      "claim": "miqneh (H4735) covers all livestock, wider than ṣōʾn (flock).",
+      "evidence": "Skinner, p. 119 (includes camels and asses; cf. Ex 9:3); interlinear for Gen 4:20.",
+      "id": "clm-cd-013"
+    },
+    {
+      "assessment": "established",
+      "claim": "Jubal is the father of all who play the kinnôr and the ʿûgāb.",
+      "evidence": "Text, Gen 4:21.",
+      "id": "clm-cd-014"
+    },
+    {
+      "assessment": "established",
+      "claim": "kinnôr (H3658) is a lyre, a plucked stringed instrument; ʿûgāb (H5748) is a wind instrument, probably a reed-pipe or flute.",
+      "evidence": "BDB, s.vv. kinnôr, ʿûgāb; Skinner, pp. 119–120; Westermann, p. 331.",
+      "id": "clm-cd-015"
+    },
+    {
+      "assessment": "established",
+      "claim": "ʿûgāb occurs only four times in the OT (Gen 4:21; Job 21:12; 30:31; Ps 150:4).",
+      "evidence": "BDB, s.v. ʿûgāb.",
+      "id": "clm-cd-016"
+    },
+    {
+      "assessment": "established",
+      "claim": "Tubal-cain is the forger (lōṭēš, H3913) of every implement (ḥōrēš, H2794) of bronze and iron.",
+      "evidence": "Text, Gen 4:22; BDB, s.vv. lāṭaš, ḥārāš.",
+      "id": "clm-cd-017"
+    },
+    {
+      "assessment": "established",
+      "claim": "nĕḥōšet (H5178) means copper, and by extension bronze (copper hardened with alloy, probably tin).",
+      "evidence": "BDB, s.v. nĕḥōšet (Gen 4:22 cited; 137 occurrences); Ryle on Gen 4:22 (\"The metal, like the Gr. chalkos, was probably our 'bronze'\").",
+      "id": "clm-cd-018"
+    },
+    {
+      "assessment": "established",
+      "claim": "barzel (H1270) means iron; the word is a loanword (Akk. parzillu; Hittite barzillu) with no Semitic etymology.",
+      "evidence": "BDB, s.v. barzel (Gen 4:22 cited; 74 occurrences); Skinner, p. 120; Westermann, p. 332.",
+      "id": "clm-cd-019"
+    },
+    {
+      "assessment": "debated",
+      "claim": "The mention of iron in Gen 4:22 is an anachronism.",
+      "evidence": "Speiser (second-hand, via Westermann, p. 332) says an anachronism; Westermann: \"one cannot really speak of an anachronism\" — the passage telescopes two stages of metallurgy together; Winnett, IDB II, 366: \"telescoping of two different traditions\".",
+      "id": "clm-cd-020"
+    },
+    {
+      "assessment": "established (text fact) + traditional (later traditions)",
+      "claim": "Naamah (\"pleasant\") is named as Tubal-cain's sister; later traditions (wife of Noah, demon, patroness of music) are post-biblical, not what Genesis states.",
+      "evidence": "Text, Gen 4:22; Skinner, p. 120 (goddess worshipped by Phoenicians; in Jewish tradition wife of Noah [Ber. R.], a demon, \"a sort of St. Cecilia\"); Ryle on Gen 4:22 (mother of Rehoboam is a different Naamah, 1 Kings 14:31). Westermann does not discuss Naamah beyond the text line (dossier §9 gap).",
+      "id": "clm-cd-022"
+    },
+    {
+      "assessment": "established",
+      "claim": "Lamech's song (Gen 4:23–24) is an independent poem, in three distichs, fitted into the genealogy as its conclusion.",
+      "evidence": "Skinner, pp. 120–121; Westermann, pp. 333–336.",
+      "id": "clm-cd-023"
+    },
+    {
+      "assessment": "debated",
+      "claim": "hāragtî (Gen 4:23) is a perfect of experience / confident assurance, not a report of a single completed killing.",
+      "evidence": "Skinner, p. 121 (\"perf. of experience\"); Keil (\"expressive not of a deed accomplished, but of confident assurance\"); Westermann, p. 335 (perfect = accomplished fact [Gunkel, Cassuto — second-hand, via Westermann] vs. present = no particular occasion [Wellhausen] — decidable only in the context of the song's meaning as a whole).",
+      "id": "clm-cd-025"
+    },
+    {
+      "assessment": "probable",
+      "claim": "\"Seventy-sevenfold\" (Gen 4:24) intensifies Cain's \"sevenfold\" (Gen 4:15) without limit; the number expresses completion, the ultimate.",
+      "evidence": "Ryle on Gen 4:24 (\"a vengeance tenfold greater\"); Westermann, p. 336 / Sauer: \"Completion is expressed… the ultimate has been achieved\"; Skinner, p. 121 (Lamech's vengeance \"knows no limit (70 and 7 times)\").",
+      "id": "clm-cd-026"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Sumerian King List's pre-flood section lists eight kings ruling 241,200 years; the ten-king, 432,000-year total is the WB-62 variant.",
+      "evidence": "ETCSL t.2.1.1, read directly 2026-11-14; Westermann, pp. 349–353.",
+      "id": "clm-cd-027"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Lyres of Ur (Royal Cemetery, c. 2600–2500 BCE) are among the earliest surviving stringed instruments.",
+      "evidence": "Wikipedia, \"Musical instrument\" (full page read 2026-11-14); Woolley excavations, 1920s; nine lyres, two harps, silver double flute. (Met \"Ur: The Royal Graves\" essay itself not opened — dossier §12.)",
+      "id": "clm-cd-031"
+    },
+    {
+      "assessment": "established",
+      "claim": "The Nahal Mishmar hoard (442 objects, 429 copper; Chalcolithic c. 4000–3300 BCE; lost-wax casting) shows advanced copper working in the Levant.",
+      "evidence": "Met Heilbrunn, \"The Nahal Mishmar Treasure,\" Oct 2004 (full text via mirror; Met page URL not returned by search — dossier §12).",
+      "id": "clm-cd-032"
+    },
+    {
+      "assessment": "established",
+      "claim": "Uruk was, by c. 3200 BCE, the largest settlement in southern Mesopotamia, \"the first city in world history\" (250 ha), with lost-wax metal casting.",
+      "evidence": "Met Heilbrunn, \"Uruk: The First City,\" Oct 2003 (page read directly) and \"The Origins of Writing,\" Oct 2004.",
+      "id": "clm-cd-033"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The Assyrian King List A mentions 17 \"kings who lived in tents.\"",
+      "evidence": "Westermann, p. 330, citing W. Röllig (1969), p. 266 (Röllig not read directly — dossier §12).",
+      "id": "clm-cd-034"
+    },
+    {
+      "assessment": "probable",
+      "claim": "The Phoenician history preserved by Philo Byblius (Sanchuniathon) resembles the Cainite genealogy in form.",
+      "evidence": "Skinner, p. 122 (\"striking family likeness\"); analogy of form, not evidence of dependence.",
+      "id": "clm-cd-035"
+    },
+    {
+      "assessment": "debated",
+      "claim": "Genesis 4:17–24, in itself, passes no moral judgment on the facts it records (city, polygamy, inventions, song).",
+      "evidence": "Skinner, p. 116 (no moral judgment in itself; pessimistic estimate \"probably true of the compiler\"); Westermann, pp. 326–331 (no judgment passed or implied on the nomad life); Keil (arts invented \"in an ungodly spirit\"; polygamy turns marriage into lust) and Gabriel (implicit condemnation — second-hand, via Maarten's survey, pp. 157–159) on the other side; Maarten, pp. 159–161 (the manner of telling indicates a correlation between rejecting God and introducing technology). Do not present either side as consensus.",
+      "id": "clm-cd-036"
+    }
+  ],
+  "connections": [
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 4,
+      "endVerse": 24,
+      "id": "conn-cd-001",
+      "note": "The primary account: the Cainite genealogy and Lamech's song — the city named for Enoch, the three ways of life traced to Lamech's sons, and the boast of seventy-sevenfold vengeance.",
+      "startChapter": 4,
+      "startVerse": 17,
+      "type": "direct-account"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 4,
+      "endVerse": 16,
+      "id": "conn-cd-002",
+      "note": "The immediate narrative context: Cain's murder of Abel, the sevenfold protection promised in 4:15 that 4:24 escalates, and the exile to Nod, east of Eden (4:16). Adam and Eve already connects this range (conn-ae-004) for the first generation after exile; this note connects it for the sevenfold protection and the exile that the genealogy presupposes.",
+      "startChapter": 4,
+      "startVerse": 1,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 4,
+      "endVerse": 26,
+      "id": "conn-cd-003",
+      "note": "The Sethite counter-line begins: Seth, Enosh, and \"then began men to call upon the name of the LORD\" — the contrast that frames the Cainite genealogy. Adam and Eve connects the overlapping range 4:25–5:3 (conn-ae-005) for the genealogy sequel; this note connects 4:25–26 for the calling on the LORD as the counterpoint to Cain's line.",
+      "startChapter": 4,
+      "startVerse": 25,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 5,
+      "endVerse": 32,
+      "id": "conn-cd-004",
+      "note": "The Sethite genealogy in full: the shared names, the two Enochs and the two Lamechs, Enoch's 365 years and being taken by God, Lamech's 777 years and the naming of Noah. Adam and Eve connects the overlapping range 4:25–5:3 (conn-ae-005) for Adam's likeness in Seth; this note connects the whole genealogy for the name doublets and the contrasting line.",
+      "startChapter": 5,
+      "startVerse": 1,
+      "type": "background"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 2,
+      "endVerse": 24,
+      "id": "conn-cd-005",
+      "note": "\"They shall be one flesh\" — the monogamy ideal against which Lamech's two wives are the first recorded departure. The text itself passes no judgment on the polygamy; the ideal is stated here, the departure there.",
+      "startChapter": 2,
+      "startVerse": 24,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 3,
+      "endVerse": 24,
+      "id": "conn-cd-006",
+      "note": "The expulsion and the eastward movement: tilling the ground, driven out, cherubim at the east of Eden — the ground from which Cain's exile (4:16) extends.",
+      "startChapter": 3,
+      "startVerse": 23,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 6,
+      "endVerse": 13,
+      "id": "conn-cd-007",
+      "note": "\"The earth was filled with violence\" — the trajectory from Lamech's song of unbounded vengeance to the Flood judgment.",
+      "startChapter": 6,
+      "startVerse": 11,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 10,
+      "endVerse": 2,
+      "id": "conn-cd-008",
+      "note": "Tubal, son of Japheth: a reuse of the name, not the same figure as Tubal-cain — Westermann rejects the identification, as does Cassuto (second-hand, via Westermann).",
+      "startChapter": 10,
+      "startVerse": 2,
+      "type": "background"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 10,
+      "endVerse": 12,
+      "id": "conn-cd-009",
+      "note": "Nimrod and the post-Flood resumption of city-building (Babel, Erech, Nineveh) — the city motif continued after the Flood.",
+      "startChapter": 10,
+      "startVerse": 8,
+      "type": "thematic"
+    },
+    {
+      "book": "Genesis",
+      "bookId": "genesis",
+      "confidence": "established",
+      "endChapter": 15,
+      "endVerse": 19,
+      "id": "conn-cd-010",
+      "note": "The Kenites first in the list of the peoples of the land — their earliest biblical mention. No genealogical link from Cain to the Kenites is claimed: Scripture never connects them with Cain, and never describes the Kenites as metalworkers.",
+      "startChapter": 15,
+      "startVerse": 19,
+      "type": "background"
+    },
+    {
+      "book": "Numbers",
+      "bookId": "numbers",
+      "confidence": "established",
+      "endChapter": 24,
+      "endVerse": 22,
+      "id": "conn-cd-011",
+      "note": "Balaam's oracle on the Kenites: \"Strong is thy dwellingplace, and thou puttest thy nest in a rock\" — yet \"the Kenite shall be wasted, until Asshur shall carry thee away captive.\" A Kenite passage only; it says nothing of descent from Cain.",
+      "startChapter": 24,
+      "startVerse": 21,
+      "type": "background"
+    },
+    {
+      "book": "Judges",
+      "bookId": "judges",
+      "confidence": "established",
+      "endChapter": 1,
+      "endVerse": 16,
+      "id": "conn-cd-012",
+      "note": "The children of the Kenite, Moses' father-in-law, go up with Judah into the wilderness — the Kenites dwelling among Israel, with no claim of descent from Cain.",
+      "startChapter": 1,
+      "startVerse": 16,
+      "type": "background"
+    },
+    {
+      "book": "Judges",
+      "bookId": "judges",
+      "confidence": "established",
+      "endChapter": 4,
+      "endVerse": 11,
+      "id": "conn-cd-013",
+      "note": "Heber the Kenite pitches his tent at the plain of Zaanaim — a Kenite tent-dweller, echoing Jabal's way of life, not evidence of a Cainite genealogy.",
+      "startChapter": 4,
+      "startVerse": 11,
+      "type": "background"
+    },
+    {
+      "book": "Judges",
+      "bookId": "judges",
+      "confidence": "established",
+      "endChapter": 5,
+      "endVerse": 26,
+      "id": "conn-cd-014",
+      "note": "Jael, wife of Heber the Kenite, and the workman's hammer — the Kenite association with craft and the tent. The Bible never describes the Kenites as metalworkers; the craft link is an inference from the root, not a biblical statement.",
+      "startChapter": 5,
+      "startVerse": 24,
+      "type": "background"
+    },
+    {
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "confidence": "established",
+      "endChapter": 2,
+      "endVerse": 55,
+      "id": "conn-cd-015",
+      "note": "The Kenites of Hemath, the father of the house of Rechab — the Kenite–Rechabite link, with no claim of descent from Cain.",
+      "startChapter": 2,
+      "startVerse": 55,
+      "type": "background"
+    },
+    {
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "confidence": "established",
+      "endChapter": 4,
+      "endVerse": 14,
+      "id": "conn-cd-016",
+      "note": "Ir-Nahash and the valley of Charashim — \"for they were craftsmen\" (Ge-Harashim, \"valley of craftsmen\"). Craftsmen, not metalworkers specifically, and no link to Cain is stated.",
+      "startChapter": 4,
+      "startVerse": 12,
+      "type": "background"
+    },
+    {
+      "book": "Exodus",
+      "bookId": "exodus",
+      "confidence": "established",
+      "endChapter": 21,
+      "endVerse": 25,
+      "id": "conn-cd-017",
+      "note": "The lex talionis — \"life for life, eye for eye\" — proportionate justice set against Lamech's unbounded escalation.",
+      "startChapter": 21,
+      "startVerse": 23,
+      "type": "thematic"
+    },
+    {
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "confidence": "established",
+      "endChapter": 13,
+      "endVerse": 22,
+      "id": "conn-cd-018",
+      "note": "The Philistine smith monopoly: \"there was no smith found throughout all the land of Israel\" — the verb for sharpen (lāṭaš) in action, and the strategic weight of the smith's craft.",
+      "startChapter": 13,
+      "startVerse": 19,
+      "type": "background"
+    },
+    {
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "confidence": "established",
+      "endChapter": 27,
+      "endVerse": 13,
+      "id": "conn-cd-019",
+      "note": "Javan, Tubal, and Meshech trading \"vessels of brass\" at Tyre — the Tubal name in the world of bronze trade, not the same figure as Tubal-cain.",
+      "startChapter": 27,
+      "startVerse": 13,
+      "type": "background"
+    },
+    {
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "confidence": "established",
+      "endChapter": 6,
+      "endVerse": 12,
+      "id": "conn-cd-020",
+      "note": "\"Great and goodly cities, which thou buildedst not… Then beware lest thou forget the LORD\" — Westermann's argument that cities are not intrinsically negative, with the rejoinder that the context warns against forgetting God.",
+      "startChapter": 6,
+      "startVerse": 10,
+      "type": "thematic"
+    },
+    {
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "confidence": "established",
+      "endChapter": 2,
+      "endVerse": 4,
+      "id": "conn-cd-021",
+      "note": "\"They shall beat their swords into plowshares, and their spears into pruninghooks\" — the eschatological reversal of the forge. (Micah 4:3 is the parallel text; one range is given here.)",
+      "startChapter": 2,
+      "startVerse": 4,
+      "type": "thematic"
+    },
+    {
+      "book": "Job",
+      "bookId": "job",
+      "confidence": "established",
+      "endChapter": 30,
+      "endVerse": 31,
+      "id": "conn-cd-022",
+      "note": "\"My harp also is turned to mourning, and my organ into the voice of them that weep\" — the two instruments of Genesis 4:21 together again, turned to mourning.",
+      "startChapter": 30,
+      "startVerse": 31,
+      "type": "background"
+    },
+    {
+      "book": "Psalms",
+      "bookId": "psalms",
+      "confidence": "established",
+      "endChapter": 150,
+      "endVerse": 4,
+      "id": "conn-cd-023",
+      "note": "\"Praise him with the timbrel and dance: praise him with stringed instruments and organs\" — the instruments of Genesis 4:21 consecrated to worship.",
+      "startChapter": 150,
+      "startVerse": 4,
+      "type": "background"
+    },
+    {
+      "book": "Matthew",
+      "bookId": "matthew",
+      "confidence": "established",
+      "endChapter": 18,
+      "endVerse": 22,
+      "id": "conn-cd-024",
+      "note": "\"Seventy times seven\": Jesus' answer to Peter reverses Lamech's seventy-sevenfold — forgiveness without limit against vengeance without limit. This is later reception, not narration: the Greek is ambiguous between seventy-seven and seventy times seven. Included as an editorial decision point (see review notes).",
+      "startChapter": 18,
+      "startVerse": 21,
+      "type": "thematic"
+    },
+    {
+      "book": "Jude",
+      "bookId": "jude",
+      "confidence": "established",
+      "endChapter": 1,
+      "endVerse": 11,
+      "id": "conn-cd-025",
+      "note": "\"They have gone in the way of Cain\" — the moral lineage of Cain as later Scripture received it. Reception, not narration. (Jude 1:14, \"Enoch, the seventh from Adam,\" is the Sethite Enoch — prose material, not a connection.)",
+      "startChapter": 1,
+      "startVerse": 11,
+      "type": "thematic"
+    }
+  ],
+  "date": {
+    "label": "No independently established date",
+    "note": "Chronology is narrative only; the passage provides no independently datable historical coordinates.",
+    "traditionalSystem": null,
+    "type": "unknown",
+    "yearEnd": null,
+    "yearStart": null
+  },
+  "id": "event-cains-descendants",
+  "locations": [],
+  "primaryScripture": {
+    "book": "Genesis",
+    "bookId": "genesis",
+    "endChapter": 4,
+    "endVerse": 24,
+    "startChapter": 4,
+    "startVerse": 17
+  },
+  "relatedEvents": [
+    "event-adam-and-eve"
+  ],
+  "review": {
+    "author": "Gnosis research draft (AI-assisted)",
+    "checklistVersion": "standards-1.1-section-14",
+    "editorialOverride": true,
+    "lastReviewed": "2026-11-14",
+    "notes": "In-review draft (PR: content/biblical-history-cains-descendants). Stage 1 research dossier 2026-11-14 (workspace: gnosis-cains-descendants/dossier/cains-descendants-research-dossier.md), branch point main 120674b. Claims register: 31 rows (clm-cd-001–020, 022–023, 025–027, 031–036). The dossier's five debated-verdict-no claims are NOT carried into this register and are NOT asserted in the prose: clm-cd-021 (Tubal-cain as inventor of weapons), clm-cd-024 (Lamech's song as a sword song), clm-cd-028 (Berossus name correspondences established), clm-cd-029 (Kenites as descendants of Cain), clm-cd-030 (the Bible describes the Kenites as metalworkers). The prose states the corrections instead: the Berossus correspondences have collapsed (Westermann), and the Kenite hard limit is stated in conn-cd-010/014/016 and in the article (no genealogical link from Cain is claimed; the Bible never describes the Kenites as metalworkers). Connections: 25/25, ranges verified live against stored KJV via the Preview API 2026-11-14 (Stage 1). Overlaps with Adam and Eve are editor-visible: conn-cd-002 overlaps conn-ae-004 and conn-cd-003/004 overlap conn-ae-005, each with a distinct reason recorded in its note. editorialOverride: true (Yonatan-approved for publication 2026-11-16): the event cites a not-independently-verified source (Gabriel 1959, second-hand via Maarten), which check 10 requires an override for; the override does not make the source independently verified. Sources: 12 cited — 5 reused verified registry entries (BDB, Keil & Delitzsch, Ryle, Skinner, Westermann), 6 new verified entries (Maarten 1996, ETCSL Sumerian King List, Met Uruk, Met Nahal Mishmar, JVL Kenite, Wikipedia Musical instrument), and 1 new not-independently-verified entry (Gabriel 1959, second-hand via Maarten). Verification caveats recorded in the registry: Nahal Mishmar full text read via a mirror of the Met page (Met page URL not returned by search); Lyres of Ur facts from the full Wikipedia page (the Met 'Ur: The Royal Graves' essay itself was not opened); the Assyrian King List A tent-kings claim (clm-cd-034) rests on Westermann's citation of Röllig 1969, not read directly. Cassuto, Speiser, and Gabriel are cited only second-hand — Cassuto via Doulostheou and via Westermann, Speiser via Westermann, Gabriel via Maarten's survey of his 1959 Biblica article — and none is presented as verified from full text; Gabriel now has an honest not-independently-verified registry entry (source-gabriel-cainite-genealogy). Wenham and von Rad full texts were not consulted (controlled digital lending) and neither is cited; Hamilton, Sarna, Waltke, Brueggemann, and Ellul likewise not consulted and not cited. Open editorial decision points for Yonatan: (1) conn-cd-024 (Matt 18:21–22) — included as thematic reception with the Greek-ambiguity note, flagged here; (2) Kenite framing — connections included with the hard limit stated; (3) Naamah — brief in the article (named only as Tubal-cain's sister; later traditions noted as post-biblical); (4) Gabriel vs. Westermann (clm-cd-036) — both sides presented, neither as consensus. Phase 2 (2026-11-14): attribution wording corrected — Cassuto, Speiser, and Gabriel marked second-hand in clm-cd-011/020/025/036 and conn-cd-008, Gabriel added to the sources array with a not-independently-verified registry entry and named in the prose as second-hand via Maarten; clm-cd-034 downgraded from established to probable (Röllig second-hand via Westermann); Overview 'six generations later' clarified as five generations on from Cain. Publication is a separate decision and is NOT part of this PR.",
+    "reviewer": "Stage 1 dossier editorial verification 2026-11-14; independent QA received 2026-11-14 (PR #176 PASS as an in-review draft); Phase 2 publication-readiness corrections 2026-11-14"
+  },
+  "sources": [
+    "source-bdb-lexicon",
+    "source-etcsl-sumerian-king-list",
+    "source-gabriel-cainite-genealogy",
+    "source-jvl-kenite",
+    "source-keil-delitzsch-genesis",
+    "source-maarten-eisegesis",
+    "source-met-nahal-mishmar",
+    "source-met-uruk-first-city",
+    "source-ryle-genesis",
+    "source-skinner-genesis",
+    "source-westermann-genesis",
+    "source-wikipedia-musical-instrument"
+  ],
+  "status": "published",
+  "title": "Cain's Descendants",
+  "topics": []
+}

@@ -1,10 +1,12 @@
 // Email verification configuration for issue #9.
 //
-// All domain-specific values live outside source code: the Resend API key
-// comes only from RESEND_API_KEY, the sender address only from
-// EMAIL_FROM, and verification links are built only from FRONTEND_URL.
-// Nothing here hardcodes a sender, a domain, or a frontend origin, so a
-// future custom domain requires only dashboard changes and a redeploy.
+// The Resend API key comes only from RESEND_API_KEY, and verification
+// links are built only from FRONTEND_URL. The sender address comes from
+// EMAIL_FROM when set, and otherwise falls back to the product identity
+// (DEFAULT_EMAIL_FROM, defined once in utils/emailTemplate.js, issue
+// #118) — so the sender is a product constant with a per-deployment
+// override, not a value each deployment must remember to set. A
+// provided-but-invalid EMAIL_FROM still fails validation below.
 //
 // Validation is centralized here and imported through app.js, because
 // Vercel does not run server.js: any serverless wrapper must import the
@@ -15,6 +17,7 @@
 // carry a value.
 
 const { validateEmailAddress } = require("../utils/authValidation");
+const { DEFAULT_EMAIL_FROM } = require("../utils/emailTemplate");
 
 const RESEND_API_BASE_URL_DEFAULT = "https://api.resend.com";
 
@@ -60,7 +63,13 @@ function validateEmailConfig(env = process.env) {
     if (!disabled && resendApiKey.length === 0) {
         errors.push({ field: "RESEND_API_KEY", message: "RESEND_API_KEY is required." });
     }
-    const emailFromRaw = typeof env.EMAIL_FROM === "string" ? env.EMAIL_FROM : "";
+    // The sender is the product identity by default (issue #118);
+    // EMAIL_FROM overrides it per deployment. An unset or blank
+    // EMAIL_FROM falls back to the default; a provided-but-invalid
+    // address still fails validation.
+    const emailFromRaw = typeof env.EMAIL_FROM === "string" && env.EMAIL_FROM.trim() !== ""
+        ? env.EMAIL_FROM
+        : DEFAULT_EMAIL_FROM;
     const emailFromAddress = extractEmailAddress(emailFromRaw);
     if (!disabled && (!emailFromAddress || validateEmailAddress(emailFromAddress).error)) {
         errors.push({ field: "EMAIL_FROM", message: "EMAIL_FROM must be a structurally valid email address." });

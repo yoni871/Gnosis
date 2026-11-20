@@ -1,33 +1,15 @@
-// Passkeys (WebAuthn), offered alongside passwords — never
-// passkey-only. Password login (plus TOTP, once PR #93 lands) always
-// remains available, so losing a passkey can never lock a user out.
-//
-// A passkey login issues a full session through the existing session
-// machinery: the assertion is a phishing-resistant factor (NIST
-// AAL2), so it satisfies the second factor on its own. Do NOT stack
-// a TOTP step on top of a passkey login when this rebases onto PR #93
-// (security/totp-mfa) — the passkey login path must skip the
-// MFA_REQUIRED branch.
-//
-// Audit wiring is pending the rebase onto Main Muse's audit-logging
-// PR #78 (security/audit-logging): each event point below carries an
-// AUDIT comment naming the event for the audit() call. Until then,
-// failures log through the existing allowlisted logger (route + kind
-// + safe code only). No credential ID, public key, challenge, or
-// ceremony payload is ever logged or returned to the client beyond
-// what the WebAuthn ceremonies themselves require.
-//
-// WebAuthn helpers are called through the module namespace object
-// (never destructured) so unit tests can substitute the verify
-// functions on the shared module object.
+// WebAuthn helpers are called through the module namespace object so
+// tests can substitute verification functions without private key data.
 
 const express = require("express");
+const crypto = require("node:crypto");
 const pool = require("../db/db");
-const bcrypt = require("bcrypt");
+const { verifyPassword } = require("../utils/passwordHash");
 const router = express.Router();
 const sessions = require("../services/sessionService");
 const authenticateToken = require("../middleware/authMiddleware");
 const { internalErrorBody, logAuthFailure } = require("../utils/authErrors");
+const { audit } = require("../utils/auditLog");
 const {
     validateEmailAddress,
     validateLoginPassword,
@@ -47,9 +29,7 @@ const ROUTE_REMOVE = "DELETE /api/auth/passkeys/:id";
 const ROUTE_LOGIN_OPTIONS = "POST /api/auth/passkeys/login/options";
 const ROUTE_LOGIN_VERIFY = "POST /api/auth/passkeys/login/verify";
 
-// The same generic body as a failed password login: an unknown email,
-// an account with no passkeys, a wrong password, or a failed
-// assertion all look identical, so no response can leak account state.
+// The same generic body is used for a wrong password or assertion.
 const INVALID_CREDENTIALS_BODY = {
     error: "Invalid email or password.",
     code: "INVALID_CREDENTIALS",
@@ -99,12 +79,7 @@ function withRateLimitFinalize(handler) {
 
 // The login ceremonies set the refresh cookie, so they carry the
 // same exact-Origin check as password login.
-function requireSessionOrigin(req, res, next) {
-    if (req.headers.origin && req.headers.origin !== new URL(process.env.FRONTEND_URL).origin) {
-        return res.status(403).json({ error: "Invalid session request.", code: "SESSION_REQUEST_INVALID" });
-    }
-    next();
-}
+const requireSessionOrigin = sessions.browserSessionRequest;
 
 function validateEmailBody(req, res, next) {
     const email = validateEmailAddress(req.body && req.body.email);
@@ -137,8 +112,9 @@ function validateCeremonyBody(req, res, next) {
 
 // Login ceremonies share the password-login buckets: options are
 // limited per (IP + submitted email) and per IP, verify per IP.
-// Unknown-email and no-passkey failures count exactly like
-// wrong-password failures; successes do not count.
+// Every options request counts, regardless of account state, so the
+// rate-limit response cannot reveal whether a passkey is registered.
+// Successful finish requests release their reservation.
 const loginOptionsRateLimit = createRateLimitMiddleware([
     { policy: "login_ip_email", fields: (req, ip) => [ip, req.validated.email] },
     { policy: "login_ip", fields: (req, ip) => [ip] },
@@ -172,7 +148,7 @@ async function loadAuthenticatedUser(req, res) {
 async function verifyPasswordOrFail(req, res, user) {
     let match;
     try {
-        match = await bcrypt.compare(req.validated.password, user.password_hash);
+        match = await verifyPassword(req.validated.password, user.password_hash);
     } catch (error) {
         logAuthFailure("passkey", "password", error);
         res.status(500).json(internalErrorBody("passkey"));
@@ -263,7 +239,7 @@ router.post("/register/options", authenticateToken, validatePasswordBody, async 
             excludeCredentials: existing.map((stored) => ({ id: stored.credentialId })),
             // Registration is a sensitive action: the authenticator
             // must verify the user (biometric/PIN), not just presence.
-            authenticatorSelection: { userVerification: "required" },
+            authenticatorSelection: { userVerification: "required", residentKey: "required" },
             timeout: 60000,
         });
     } catch (error) {
@@ -348,7 +324,7 @@ router.post("/register/verify", authenticateToken, validateCeremonyBody, async (
         }
         return res.status(500).json(internalErrorBody("passkey"));
     }
-    // AUDIT (PR #78 rebase): audit('passkey.registered', { userId: user.id, passkeyId: stored.id }).
+    await audit(pool, "passkey.registered", user.id);
     res.set("Cache-Control", "no-store");
     return res.status(201).json(publicPasskey(stored));
 });
@@ -396,15 +372,13 @@ router.delete("/:id", authenticateToken, validatePasswordBody, async (req, res) 
         return res.status(500).json(internalErrorBody("passkey"));
     }
     if (!removed) return res.status(404).json(PASSKEY_NOT_FOUND_BODY);
-    // AUDIT (PR #78 rebase): audit('passkey.removed', { userId: user.id, passkeyId: req.params.id }).
+    await audit(pool, "passkey.removed", user.id);
     res.set("Cache-Control", "no-store");
     return res.sendStatus(204);
 });
 
-// Sign in with a passkey. The options step is deliberately
-// indistinguishable for unknown emails and accounts with no
-// passkeys: both get the failed-login body, so the endpoint cannot
-// be used to enumerate accounts.
+// Sign in with a passkey. Every structurally valid email gets the
+// same discoverable-credential options shape without account IDs.
 router.post("/login/options", requireSessionOrigin, validateEmailBody, loginOptionsRateLimit,
     withRateLimitFinalize(async (req, res) => {
         let userRow;
@@ -429,14 +403,15 @@ router.post("/login/options", requireSessionOrigin, validateEmailBody, loginOpti
                 return res.status(500).json(internalErrorBody("passkey"));
             }
         }
-        if (!userId || existing.length === 0) {
-            await req.rateLimit.finalize("count");
-            return res.status(401).json(INVALID_CREDENTIALS_BODY);
-        }
         const { rpId } = webAuthn.relyingParty();
         let challenge;
         try {
-            challenge = await webAuthn.createChallenge(userId, "authentication");
+            // Unknown accounts get a fresh but unpersisted challenge.
+            // Every valid email receives the same options shape; only
+            // a known account with a passkey can finish the ceremony.
+            challenge = userId && existing.length
+                ? await webAuthn.createChallenge(userId, "authentication")
+                : crypto.randomBytes(32).toString("base64url");
         } catch (error) {
             logAuthFailure(ROUTE_LOGIN_OPTIONS, "database", error);
             await req.rateLimit.finalize("release");
@@ -446,18 +421,13 @@ router.post("/login/options", requireSessionOrigin, validateEmailBody, loginOpti
         try {
             options = await webAuthn.authenticationOptions({
                 rpID: rpId,
-                allowCredentials: existing.map((stored) => ({
-                    id: stored.credentialId,
-                    transports: stored.transports,
-                })),
+                // Discoverable credentials avoid exposing registered
+                // credential IDs or account state in public options.
+                allowCredentials: [],
                 // Bytes, not the base64url string: see the
                 // registration-options note above.
                 challenge: Buffer.from(challenge, "base64url"),
-                // 'preferred': the passkey itself is the
-                // phishing-resistant factor; requiring UV here would
-                // lock out security-key users without a PIN. The
-                // verification step still records whether UV happened.
-                userVerification: "preferred",
+                userVerification: "required",
                 timeout: 60000,
             });
         } catch (error) {
@@ -465,7 +435,7 @@ router.post("/login/options", requireSessionOrigin, validateEmailBody, loginOpti
             await req.rateLimit.finalize("release");
             return res.status(500).json(internalErrorBody("passkey"));
         }
-        await req.rateLimit.finalize("release");
+        await req.rateLimit.finalize("count");
         res.set("Cache-Control", "no-store");
         return res.json(options);
     }));
@@ -547,7 +517,7 @@ router.post("/login/verify", requireSessionOrigin, validateCeremonyBody, loginVe
                     counter: 0,
                     transports: stored.transports,
                 },
-                requireUserVerification: false,
+                requireUserVerification: true,
             });
         } catch (error) {
             logAuthFailure(ROUTE_LOGIN_VERIFY, "verification", error);
@@ -558,42 +528,10 @@ router.post("/login/verify", requireSessionOrigin, validateCeremonyBody, loginVe
             return fail(401, INVALID_CREDENTIALS_BODY);
         }
 
-        const outcome = passkeys.counterOutcome(stored.counter, verification.authenticationInfo.newCounter);
-        if (outcome === "regression") {
-            // Possible credential clone: the signature verified, so
-            // this is a genuine assertion with a regressed counter.
-            // Flag the credential, reject the login, and never let
-            // this credential log in again.
-            try {
-                await passkeys.flagPasskey(stored.credentialId);
-            } catch (error) {
-                logAuthFailure(ROUTE_LOGIN_VERIFY, "database", error);
-                await req.rateLimit.finalize("release");
-                return res.status(500).json(internalErrorBody("passkey"));
-            }
-            logAuthFailure(ROUTE_LOGIN_VERIFY, "counter-regression", null);
-            return fail(401, INVALID_CREDENTIALS_BODY);
-        }
-        try {
-            if (outcome === "ok") {
-                await passkeys.updateCounterAndLastUsed(
-                    stored.credentialId, verification.authenticationInfo.newCounter);
-            } else {
-                await passkeys.updateLastUsed(stored.credentialId);
-            }
-        } catch (error) {
-            logAuthFailure(ROUTE_LOGIN_VERIFY, "database", error);
-            await req.rateLimit.finalize("release");
-            return res.status(500).json(internalErrorBody("passkey"));
-        }
-
-        // A passkey login issues a full session: the assertion is a
-        // phishing-resistant factor, so it satisfies the second factor
-        // on its own. No TOTP step is stacked on top (see the module
-        // header note for the PR #93 rebase rule).
         let session;
         try {
-            session = await sessions.createSessionForVerifiedUser(userId);
+            session = await passkeys.completeVerifiedLogin(stored, verification.authenticationInfo.newCounter,
+                sessions.createPasskeySessionInTransaction);
         } catch (error) {
             logAuthFailure(ROUTE_LOGIN_VERIFY, "session", error);
             await req.rateLimit.finalize("release");
@@ -604,7 +542,7 @@ router.post("/login/verify", requireSessionOrigin, validateCeremonyBody, loginVe
         }
         sessions.setCookie(res, session.refresh);
         res.set("Cache-Control", "no-store");
-        // AUDIT (PR #78 rebase): audit('passkey.login', { userId, passkeyId: stored.id }).
+        await audit(pool, "passkey.login", userId);
         await req.rateLimit.finalize("release");
         return res.json({ token: session.token, expiresIn: sessions.ACCESS_SECONDS });
     }));

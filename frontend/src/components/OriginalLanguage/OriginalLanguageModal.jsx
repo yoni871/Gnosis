@@ -76,6 +76,14 @@ export default function OriginalLanguageModal({
     const [occurrencesError, setOccurrencesError] = useState("");
     const [occurrencesMatch, setOccurrencesMatch] = useState("lemma");
 
+    // Mobile bottom sheet: whether the sheet (the detail panel on
+    // ≤768px) is expanded, and the live drag offset while the handle
+    // is being dragged.
+    const [isSheetExpanded, setIsSheetExpanded] = useState(false);
+    const [sheetDragOffset, setSheetDragOffset] = useState(0);
+    const sheetDragStartYRef = useRef(null);
+    const sheetDidDragRef = useRef(false);
+
     const dialogRef = useRef(null);
     const previouslyFocusedRef = useRef(null);
 
@@ -183,6 +191,58 @@ export default function OriginalLanguageModal({
         setSelectedWord(word);
         setOccurrences(null);
         setOccurrencesError("");
+        // A newly selected word opens the mobile sheet collapsed.
+        setIsSheetExpanded(false);
+        setSheetDragOffset(0);
+    }, []);
+
+    // Mobile bottom sheet: the handle drags to expand/collapse/dismiss,
+    // and a tap on it toggles expand/collapse. The click handler is the
+    // tap path; the pointerup handler is the drag path — a drag sets
+    // sheetDidDragRef so the click that follows it is ignored instead
+    // of toggling a second time.
+    const handleSheetPointerDown = useCallback((event) => {
+        event.currentTarget.setPointerCapture?.(event.pointerId);
+        sheetDragStartYRef.current = event.clientY;
+        sheetDidDragRef.current = false;
+    }, []);
+
+    const handleSheetPointerMove = useCallback((event) => {
+        if (sheetDragStartYRef.current === null) return;
+        const delta = event.clientY - sheetDragStartYRef.current;
+        setSheetDragOffset(Math.max(-160, Math.min(320, delta)));
+    }, []);
+
+    const handleSheetPointerUp = useCallback((event) => {
+        if (sheetDragStartYRef.current === null) return;
+        const delta = event.clientY - sheetDragStartYRef.current;
+        sheetDragStartYRef.current = null;
+        setSheetDragOffset(0);
+        // A tap (no real movement) is the click handler's job.
+        if (Math.abs(delta) < 10) return;
+        sheetDidDragRef.current = true;
+        if (delta < -60) {
+            setIsSheetExpanded(true);
+        } else if (delta > 60) {
+            // Downward swipe: collapse an expanded sheet, dismiss a collapsed one.
+            if (isSheetExpanded) setIsSheetExpanded(false);
+            else handleSelectWord(null);
+        }
+    }, [isSheetExpanded, handleSelectWord]);
+
+    const handleSheetPointerCancel = useCallback(() => {
+        sheetDragStartYRef.current = null;
+        setSheetDragOffset(0);
+    }, []);
+
+    const handleSheetClick = useCallback(() => {
+        // The click that follows a drag is not a tap — the drag already
+        // snapped the sheet.
+        if (sheetDidDragRef.current) {
+            sheetDidDragRef.current = false;
+            return;
+        }
+        setIsSheetExpanded((expanded) => !expanded);
     }, []);
 
     const handleSelectOccurrence = useCallback((occurrence) => {
@@ -213,7 +273,8 @@ export default function OriginalLanguageModal({
                 role="dialog"
                 aria-modal="true"
                 aria-label="Original Language Analysis"
-                className="gnosis-ol-dialog"
+                className={`gnosis-ol-dialog${selectedWord ? " gnosis-ol-dialog--has-selection" : ""}`}
+                style={{ "--gnosis-ol-sheet-height": isSheetExpanded ? "85dvh" : "45dvh" }}
             >
                 <header className="gnosis-ol-header">
                     <div>
@@ -290,7 +351,27 @@ export default function OriginalLanguageModal({
                         )}
                     </div>
 
-                    <aside className="gnosis-ol-detail" aria-label="Selected word">
+                    <aside
+                        className="gnosis-ol-detail"
+                        aria-label="Selected word"
+                        style={sheetDragOffset !== 0 ? { transform: `translateY(${sheetDragOffset}px)` } : undefined}
+                    >
+                        {selectedWord && (
+                            <button
+                                type="button"
+                                className="gnosis-ol-sheet-handle"
+                                data-testid="ol-sheet-handle"
+                                aria-expanded={isSheetExpanded}
+                                aria-label={isSheetExpanded ? "Collapse word details" : "Expand word details"}
+                                onClick={handleSheetClick}
+                                onPointerDown={handleSheetPointerDown}
+                                onPointerMove={handleSheetPointerMove}
+                                onPointerUp={handleSheetPointerUp}
+                                onPointerCancel={handleSheetPointerCancel}
+                            >
+                                <span className="gnosis-ol-sheet-handle-pill" aria-hidden="true" />
+                            </button>
+                        )}
                         {selectedWord ? (
                             <OriginalLanguageWordDetails
                                 word={selectedWord}

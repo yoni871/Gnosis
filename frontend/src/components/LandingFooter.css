@@ -16,7 +16,11 @@
 .landing-closing-footer-group a { display: flex; align-items: center; min-height: 44px; font-size: .84rem; line-height: 1.6; text-decoration: none; text-underline-offset: 5px; }
 .landing-closing-footer a:hover { color: #e4c990; text-decoration: underline; }
 .landing-closing-footer a:focus-visible { outline: 2px solid #e4c990; outline-offset: 4px; box-shadow: none; }
-.landing-closing-copyright { margin: 40px 0 0; padding-top: 24px; border-top: 1px solid #a18a5866; color: #ebe3d3; font-size: .76rem; line-height: 1.8; }
+.landing-closing-copyright-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 40px 0 0; padding-top: 24px; border-top: 1px solid #a18a5866; }
+.landing-closing-copyright { margin: 0; color: #ebe3d3; font-size: .76rem; line-height: 1.8; }
+.landing-footer-theme { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 4px; border: 0; background: transparent; color: #ebe3d3; font: inherit; font-size: .76rem; line-height: 1.8; cursor: pointer; }
+.landing-footer-theme:hover { color: #e4c990; }
+.landing-footer-theme:focus-visible { outline: 2px solid #e4c990; outline-offset: 4px; }
 @media (width < 768px) {
     .landing-closing-footer-main { grid-template-columns: 1fr; gap: 36px; }
     .landing-closing-footer nav { width: 100%; }

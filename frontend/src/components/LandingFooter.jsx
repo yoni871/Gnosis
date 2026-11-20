@@ -1,12 +1,17 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Moon, Sun } from "lucide-react";
+
+import ThemeContext from "../context/ThemeContext";
 import "./LandingFooter.css";
 
 const GROUPS = [
-    { title: "Explore", links: [{ label: "Bible & Commentary", to: "/bible/Genesis/1" }] },
-    { title: "Gnosis", links: [{ label: "About", to: "/about" }, { label: "Sign In", to: "/login" }, { label: "Create Account", to: "/register" }] },
+    { title: "Explore", links: [{ label: "Bible & Commentary", to: "/bible/Genesis/1" }, { label: "Biblical History", to: "/biblical-history" }, { label: "Trace the Doctrine", to: "/trace-the-doctrine" }] },
+    { title: "Gnosis", links: [{ label: "About", to: "/about" }, { label: "Privacy", to: "/privacy" }, { label: "Sign In", to: "/login" }, { label: "Create Account", to: "/register" }] },
 ];
 
 export default function LandingFooter() {
+    const { theme, setTheme } = useContext(ThemeContext);
     return (
         <footer className="landing-closing-footer">
             <div className="landing-closing-footer-inner">
@@ -30,7 +35,21 @@ export default function LandingFooter() {
                         ))}
                     </nav>
                 </div>
-                <p className="landing-closing-copyright">© 2026 Gnosis. All rights reserved.</p>
+                <div className="landing-closing-copyright-row">
+                    <p className="landing-closing-copyright">© 2026 Gnosis. All rights reserved.</p>
+                    {/* The footer is the theme control for logged-out
+                        visitors on desktop: they have no account menu, and
+                        the header toggle was removed for crowding the nav. */}
+                    <button
+                        type="button"
+                        className="landing-footer-theme"
+                        aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
+                        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                    >
+                        {theme === "light" ? <Moon size={15} aria-hidden="true" /> : <Sun size={15} aria-hidden="true" />}
+                        {theme === "light" ? "Dark mode" : "Light mode"}
+                    </button>
+                </div>
             </div>
         </footer>
     );

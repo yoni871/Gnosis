@@ -13,15 +13,16 @@ it('keeps account actions, removes saved-reader links, and supports keyboard dis
         first_name: 'Test', last_name: 'Reader', email: 'reader@example.invalid'
     }, logout }}><ProfileMenu /></AuthContext.Provider></MemoryRouter>);
     const trigger = screen.getByRole('button', { name: /Test Reader/ });
-    expect(screen.queryByRole('button', { name: 'Settings' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Settings' })).not.toBeInTheDocument();
     await user.click(trigger);
     expect(trigger).toHaveAttribute('aria-expanded', 'true');
     expect(screen.getByRole('button', { name: 'Profile' })).toBeVisible();
-    expect(screen.getByRole('button', { name: 'Settings' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Settings' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Settings' })).toHaveAttribute('href', '/settings');
     expect(screen.queryByText('Notes')).not.toBeInTheDocument();
     expect(screen.queryByText('Bookmarks')).not.toBeInTheDocument();
     expect(screen.queryByText('Highlights')).not.toBeInTheDocument();
-    screen.getByRole('button', { name: 'Settings' }).focus();
+    screen.getByRole('link', { name: 'Settings' }).focus();
     await user.keyboard('{Escape}');
     expect(trigger).toHaveFocus();
     await user.click(trigger);
@@ -38,11 +39,12 @@ it('keeps the mobile profile compact and returns keyboard focus on Escape', asyn
     await user.click(trigger);
     await user.click(screen.getByRole('button', { name: /Test Reader/ }));
     expect(screen.getByRole('button', { name: 'Profile' })).toBeVisible();
-    expect(screen.getByRole('button', { name: 'Settings' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Settings' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Settings' })).toHaveAttribute('href', '/settings');
     expect(screen.queryByText('Notes')).not.toBeInTheDocument();
     expect(screen.queryByText('Bookmarks')).not.toBeInTheDocument();
     expect(screen.queryByText('Highlights')).not.toBeInTheDocument();
-    screen.getByRole('button', { name: 'Settings' }).focus();
+    screen.getByRole('link', { name: 'Settings' }).focus();
     await user.keyboard('{Escape}');
     expect(trigger).toHaveFocus();
     expect(trigger).toHaveAttribute('aria-expanded', 'false');

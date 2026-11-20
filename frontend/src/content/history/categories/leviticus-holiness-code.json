@@ -1,0 +1,207 @@
+{
+  "id": "category-leviticus-holiness-code",
+  "title": "The Holiness Code",
+  "category": "category",
+  "era": "leviticus",
+  "status": "published",
+  "primaryScripture": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 19,
+    "endChapter": 20,
+    "startVerse": 1,
+    "endVerse": 27
+  },
+  "fullRange": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 17,
+    "endChapter": 22,
+    "startVerse": 1,
+    "endVerse": 33
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated thematic Leviticus legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "This is a literary and thematic grouping in the Sinai narrative, not an independent datable event. No absolute year is inferred."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-lev-hc-001",
+      "claim": "Leviticus 17 restricts blood consumption and relates blood to life and altar atonement.",
+      "evidence": "Lev 17:10–14; biblical theology stated by the text.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-hc-002",
+      "claim": "Leviticus 18 and 20 enumerate sexual prohibitions — alongside the Molech prohibition (18:21; 20:2–5), whose precise referent is disputed — and explain them in relation to communal and land holiness.",
+      "evidence": "Lev 18:1–30; 20:1–27; not mapped automatically to modern identity constructs.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-hc-003",
+      "claim": "Leviticus 19 commands care for neighbors, laborers, the poor and resident aliens alongside worship-related duties.",
+      "evidence": "Lev 19:1–37; the text’s juxtaposition.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-hc-004",
+      "claim": "Leviticus 21–22 impose additional qualifications and regulations on priests, holy food, and offerings.",
+      "evidence": "Lev 21:1–22:33; biblical legal material.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-hc-005",
+      "claim": "The term Holiness Code commonly refers to Leviticus 17–26, even though this page covers only 17–22.",
+      "evidence": "Lev 17–26 designation in Rhyder 2019, full JBL article on the Holiness legislation; Leviticus 17–22 direct text; Gnosis editorial segmentation is independent of common academic labeling.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-lev-hc-006",
+      "claim": "Priestly and Holiness compositional layers, their sequence, and their dates remain scholarly reconstructions.",
+      "evidence": "Rhyder 2019 full article on H and sanctuary/Sabbath legislation; Ueoka 2018 full article on Holiness editorial festival theory (comparative context); these represent particular compositional proposals, not historically established dates.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-lev-hc-007",
+      "claim": "Historical-critical scholars disagree over aspects of the ancient scope and social rationale of Leviticus 18:22 and 20:13; that scholarly diversity is distinct from the received prohibition wording and from modern ethical conclusions.",
+      "evidence": "Stone 2022, Currents in Biblical Research 20(3) pp. 207–237; publisher metadata and author-hosted preprint directly inspected. Different scholarly proposals are reported, not treated as equally persuasive.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-lev-hc-008",
+      "claim": "Holiness extends across sacred space, household, and civic life rather than dividing neatly into modern categories of religion and ethics.",
+      "evidence": "Lev 17–22; modern literary synthesis, not direct ancient sociology.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-lev-hc-001",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 12,
+      "endChapter": 12,
+      "startVerse": 15,
+      "endVerse": 28,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "A distinct legal account addresses slaughter and blood handling."
+    },
+    {
+      "id": "conn-lev-hc-002",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 24,
+      "endChapter": 24,
+      "startVerse": 14,
+      "endVerse": 22,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Social protections and wages recall care for vulnerable members in Leviticus 19."
+    },
+    {
+      "id": "conn-lev-hc-003",
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "startChapter": 18,
+      "endChapter": 18,
+      "startVerse": 1,
+      "endVerse": 32,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Ezekiel 18:5–9 and 20 share legal concerns about individual responsibility and moral accountability."
+    },
+    {
+      "id": "conn-lev-hc-004",
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "startChapter": 44,
+      "endChapter": 44,
+      "startVerse": 15,
+      "endVerse": 31,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "A later priestly framework also concerns holiness, purity, and service."
+    },
+    {
+      "id": "conn-lev-hc-005",
+      "book": "Matthew",
+      "bookId": "matthew",
+      "startChapter": 22,
+      "endChapter": 22,
+      "startVerse": 34,
+      "endVerse": 40,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Jesus directly cites Leviticus 19:18 as the command to love one’s neighbor."
+    },
+    {
+      "id": "conn-lev-hc-006",
+      "book": "Mark",
+      "bookId": "mark",
+      "startChapter": 12,
+      "endChapter": 12,
+      "startVerse": 28,
+      "endVerse": 34,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "The neighbor-love command is quoted in a Gospel dialogue."
+    },
+    {
+      "id": "conn-lev-hc-007",
+      "book": "Romans",
+      "bookId": "romans",
+      "startChapter": 13,
+      "endChapter": 13,
+      "startVerse": 8,
+      "endVerse": 10,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Paul quotes Leviticus 19:18 in a summary of neighbor-oriented law."
+    },
+    {
+      "id": "conn-lev-hc-008",
+      "book": "James",
+      "bookId": "james",
+      "startChapter": 2,
+      "endChapter": 2,
+      "startVerse": 8,
+      "endVerse": 9,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "James identifies the love-of-neighbor command as royal law."
+    },
+    {
+      "id": "conn-lev-hc-009",
+      "book": "1 Corinthians",
+      "bookId": "1-corinthians",
+      "startChapter": 6,
+      "endChapter": 6,
+      "startVerse": 9,
+      "endVerse": 20,
+      "type": "thematic",
+      "confidence": "traditional",
+      "note": "Later Christian discussions of sexual morality require contextual interpretation, not identity of ancient and modern social categories."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-gane-sacrifice-old-testament",
+    "source-kjv-leviticus-biblehub",
+    "source-rhyder-sabbath-cult",
+    "source-stone-leviticus-18-20",
+    "source-ueoka-leviticus-festivals"
+  ],
+  "review": {
+    "author": "Gnosis Phase 2 content development (AI-assisted)",
+    "reviewer": "Phase 2.5 desk audit, 2026-11-18; independent editorial QA still pending",
+    "lastReviewed": "2026-11-18",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Phase 2.5 evidence audit: 53 baseline claims and 56 baseline Scripture connections reviewed across seven categories; claims revised only where evidence wording or original access status needed correction. Bibliography/status changes recorded in SOURCE-VERIFICATION-MATRIX.md. Unverified sources retained honestly; No editorialOverride; no publication approval. Phase 2.6: primary KJV Leviticus 1–27 inspected; disputed scholars replaced by scoped full-text sources where warranted; all sources used by this category are verified to the stated relevant claim scope. Review is still pending independent Muse/QA; no editorial override; no published status."
+  }
+}

@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeAll, beforeEach, describe, expect, test, vi } from "vitest";
 
@@ -625,5 +625,99 @@ describe("OriginalLanguageModal", () => {
         const detail = screen.getByLabelText("Selected word");
         expect(within(detail).getByText("Biblical Aramaic")).toBeInTheDocument();
         expect(within(detail).queryByText("Biblical Hebrew")).not.toBeInTheDocument();
+    });
+
+    test("selecting a word opens the mobile bottom sheet with its handle", async () => {
+        mount();
+        await userEvent.click(await screen.findByRole("button", { name: /be\.re\.Shit/ }));
+        // The dialog marks the selection so the mobile stylesheet can
+        // dock the detail panel as a bottom sheet.
+        expect(document.querySelector(".gnosis-ol-dialog")).toHaveClass("gnosis-ol-dialog--has-selection");
+        const handle = screen.getByTestId("ol-sheet-handle");
+        expect(handle).toHaveAttribute("aria-expanded", "false");
+        // The sheet reuses the same detail panel: the Hebrew word is
+        // still right-to-left inside it.
+        const detail = screen.getByLabelText("Selected word");
+        const detailWord = detail.querySelector(".gnosis-ol-detail-word");
+        expect(detailWord).toHaveTextContent("בְּרֵאשִׁית");
+        expect(detailWord).toHaveAttribute("dir", "rtl");
+    });
+
+    test("tapping the sheet handle toggles expand and collapse", async () => {
+        mount();
+        await userEvent.click(await screen.findByRole("button", { name: /be\.re\.Shit/ }));
+        const handle = screen.getByTestId("ol-sheet-handle");
+        await userEvent.click(handle);
+        expect(handle).toHaveAttribute("aria-expanded", "true");
+        await userEvent.click(handle);
+        expect(handle).toHaveAttribute("aria-expanded", "false");
+    });
+
+    test("the sheet close button dismisses the detail", async () => {
+        mount();
+        await userEvent.click(await screen.findByRole("button", { name: /be\.re\.Shit/ }));
+        await userEvent.click(screen.getByLabelText("Close word details"));
+        expect(screen.getByText("Select a word to see its lemma, meaning, and grammar.")).toBeInTheDocument();
+        expect(document.querySelector(".gnosis-ol-dialog")).not.toHaveClass("gnosis-ol-dialog--has-selection");
+        expect(screen.queryByTestId("ol-sheet-handle")).not.toBeInTheDocument();
+    });
+
+    test("a Greek word renders left-to-right in the sheet", async () => {
+        const fetchMock = vi.fn(async (url) => {
+            if (String(url).includes("/occurrences")) return { ok: true, json: async () => OCCURRENCES };
+            return { ok: true, json: async () => PHILIPPIANS_PASSAGE };
+        });
+        vi.stubGlobal("fetch", fetchMock);
+        render(
+            <OriginalLanguageModal
+                book="Philippians" chapter={3} startVerse={8} endVerse={8}
+                englishVerses={[{ verse_number: 8, text: "I count all things as loss." }]}
+                translation="ESV" onClose={() => {}} onNavigateToVerse={() => {}}
+            />
+        );
+        await userEvent.click(await screen.findByRole("button", { name: /gnōseōs/ }));
+        expect(screen.getByTestId("ol-sheet-handle")).toBeInTheDocument();
+        const detail = screen.getByLabelText("Selected word");
+        const detailWord = detail.querySelector(".gnosis-ol-detail-word");
+        expect(detailWord).toHaveTextContent("γνώσεως");
+        expect(detailWord).toHaveAttribute("dir", "ltr");
+    });
+
+    test("dragging the sheet handle down dismisses it; dragging up expands it", async () => {
+        mount();
+        await userEvent.click(await screen.findByRole("button", { name: /be\.re\.Shit/ }));
+        const handle = screen.getByTestId("ol-sheet-handle");
+        // Downward swipe on a collapsed sheet dismisses it.
+        fireEvent.pointerDown(handle, { clientY: 100, pointerId: 1 });
+        fireEvent.pointerMove(handle, { clientY: 200, pointerId: 1 });
+        fireEvent.pointerUp(handle, { clientY: 200, pointerId: 1 });
+        expect(screen.getByText("Select a word to see its lemma, meaning, and grammar.")).toBeInTheDocument();
+
+        // Select again and drag up: the sheet expands.
+        await userEvent.click(await screen.findByRole("button", { name: /be\.re\.Shit/ }));
+        const handleAgain = screen.getByTestId("ol-sheet-handle");
+        fireEvent.pointerDown(handleAgain, { clientY: 200, pointerId: 1 });
+        fireEvent.pointerMove(handleAgain, { clientY: 100, pointerId: 1 });
+        fireEvent.pointerUp(handleAgain, { clientY: 100, pointerId: 1 });
+        expect(handleAgain).toHaveAttribute("aria-expanded", "true");
+
+        // A downward swipe on the expanded sheet collapses it instead
+        // of dismissing it.
+        fireEvent.pointerDown(handleAgain, { clientY: 100, pointerId: 1 });
+        fireEvent.pointerMove(handleAgain, { clientY: 200, pointerId: 1 });
+        fireEvent.pointerUp(handleAgain, { clientY: 200, pointerId: 1 });
+        expect(handleAgain).toHaveAttribute("aria-expanded", "false");
+        expect(screen.queryByText("Select a word to see its lemma, meaning, and grammar.")).not.toBeInTheDocument();
+    });
+
+    test("a small drag on the handle does not expand or dismiss the sheet", async () => {
+        mount();
+        await userEvent.click(await screen.findByRole("button", { name: /be\.re\.Shit/ }));
+        const handle = screen.getByTestId("ol-sheet-handle");
+        fireEvent.pointerDown(handle, { clientY: 100, pointerId: 1 });
+        fireEvent.pointerMove(handle, { clientY: 105, pointerId: 1 });
+        fireEvent.pointerUp(handle, { clientY: 105, pointerId: 1 });
+        expect(handle).toHaveAttribute("aria-expanded", "false");
+        expect(screen.queryByText("Select a word to see its lemma, meaning, and grammar.")).not.toBeInTheDocument();
     });
 });

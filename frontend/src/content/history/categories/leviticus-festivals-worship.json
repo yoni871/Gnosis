@@ -1,0 +1,199 @@
+{
+  "id": "category-leviticus-festivals-worship",
+  "title": "Sacred Festivals and Worship",
+  "category": "category",
+  "era": "leviticus",
+  "status": "published",
+  "primaryScripture": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 23,
+    "endChapter": 24,
+    "startVerse": 1,
+    "endVerse": 23
+  },
+  "fullRange": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 23,
+    "endChapter": 24,
+    "startVerse": 1,
+    "endVerse": 23
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated thematic Leviticus legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "This is a literary and thematic grouping in the Sinai narrative, not an independent datable event. No absolute year is inferred."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-lev-fw-001",
+      "claim": "Leviticus 23 begins with weekly Sabbath and proceeds through annual appointed occasions.",
+      "evidence": "Lev 23:1–44; the list is explicit.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-fw-002",
+      "claim": "The calendar includes Passover, Unleavened Bread, early harvest offerings, Weeks, seventh-month memorial, the Day of Atonement, and Booths.",
+      "evidence": "Lev 23:4–43; prescribed festival sequence.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-fw-003",
+      "claim": "Festival law integrates agricultural produce, sacred assemblies, rest, and offerings in varying combinations.",
+      "evidence": "Lev 23:9–22, 33–43; textual observation.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-fw-004",
+      "claim": "Leviticus 24 regulates the sanctuary lamps and regular bread before narrating a blasphemer case and related laws.",
+      "evidence": "Lev 24:1–23; literary sequence.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-fw-005",
+      "claim": "Leviticus 23 should be compared to the related but not identical festivals in Exodus, Numbers, and Deuteronomy.",
+      "evidence": "Ex 23:14–19; 34:18–24; Num 28–29; Deut 16; Lev 23, comparing prescribed calendars as texts; Ueoka 2018 full pp. 35–56 on differences and literary organization. Cross-book textual connection, not proof of composition sequence.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-lev-fw-006",
+      "claim": "Scholars propose different accounts of how Priestly and Holiness festival materials relate within Leviticus 23; no single reconstruction is adopted as a demonstrated composition history.",
+      "evidence": "Ueoka 2018 full scholarly article pp. 35–56, read directly, proposes Holiness editorial coordination; Rhyder 2019 full article examines Holiness Sabbath/sanctuary practice. Redactional reconstruction remains debated.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-lev-fw-007",
+      "claim": "Parallels between Leviticus 23 and other biblical festival calendars invite comparison but do not, by themselves, demonstrate direct borrowing or establish a literary date.",
+      "evidence": "Ex 23, Ex 34, Lev 23, Num 28–29 and Deut 16 are directly comparable biblical legal texts; Ueoka 2018 full pp. 35–56 examines a disputed editorial proposal. No specific ancient Near Eastern borrowing claim is asserted.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-lev-fw-001",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 12,
+      "endChapter": 13,
+      "startVerse": 1,
+      "endVerse": 16,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "The founding Passover narrative and Unleavened Bread regulations are earlier in the Pentateuch."
+    },
+    {
+      "id": "conn-lev-fw-002",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 23,
+      "endChapter": 23,
+      "startVerse": 14,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "established",
+      "note": "An earlier pilgrimage-festival calendar names agricultural occasions."
+    },
+    {
+      "id": "conn-lev-fw-003",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 34,
+      "endChapter": 34,
+      "startVerse": 18,
+      "endVerse": 24,
+      "type": "background",
+      "confidence": "established",
+      "note": "A second festival legislation provides a comparison."
+    },
+    {
+      "id": "conn-lev-fw-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 16,
+      "endChapter": 16,
+      "startVerse": 1,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "established",
+      "note": "Festival descriptions overlap and differ in emphasis."
+    },
+    {
+      "id": "conn-lev-fw-005",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 28,
+      "endChapter": 29,
+      "startVerse": 1,
+      "endVerse": 40,
+      "type": "background",
+      "confidence": "established",
+      "note": "Numbers elaborates the sacrificial calendar."
+    },
+    {
+      "id": "conn-lev-fw-006",
+      "book": "Nehemiah",
+      "bookId": "nehemiah",
+      "startChapter": 8,
+      "endChapter": 8,
+      "startVerse": 13,
+      "endVerse": 18,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "A postexilic narrative describes renewed observance of Booths."
+    },
+    {
+      "id": "conn-lev-fw-007",
+      "book": "John",
+      "bookId": "john",
+      "startChapter": 7,
+      "endChapter": 7,
+      "startVerse": 1,
+      "endVerse": 53,
+      "type": "historical-setting",
+      "confidence": "established",
+      "note": "The Gospel locates major scenes within the Feast of Booths."
+    },
+    {
+      "id": "conn-lev-fw-008",
+      "book": "Acts",
+      "bookId": "acts",
+      "startChapter": 2,
+      "endChapter": 2,
+      "startVerse": 1,
+      "endVerse": 21,
+      "type": "historical-setting",
+      "confidence": "established",
+      "note": "Pentecost reflects the later Jewish festival of Weeks."
+    },
+    {
+      "id": "conn-lev-fw-009",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 21,
+      "endChapter": 21,
+      "startVerse": 23,
+      "endVerse": 25,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Talionic formulations provide legal parallels to Leviticus 24:17–22."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-kjv-leviticus-biblehub",
+    "source-rhyder-sabbath-cult",
+    "source-ueoka-leviticus-festivals"
+  ],
+  "review": {
+    "author": "Gnosis Phase 2 content development (AI-assisted)",
+    "reviewer": "Phase 2.5 desk audit, 2026-11-18; independent editorial QA still pending",
+    "lastReviewed": "2026-11-18",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Phase 2.5 evidence audit: 53 baseline claims and 56 baseline Scripture connections reviewed across seven categories; claims revised only where evidence wording or original access status needed correction. Bibliography/status changes recorded in SOURCE-VERIFICATION-MATRIX.md. Unverified sources retained honestly; No editorialOverride; no publication approval. Phase 2.6: primary KJV Leviticus 1–27 inspected; disputed scholars replaced by scoped full-text sources where warranted; all sources used by this category are verified to the stated relevant claim scope. Review is still pending independent Muse/QA; no editorial override; no published status."
+  }
+}

@@ -25,7 +25,8 @@
     font-family: var(--public-font-ui);
     line-height: var(--public-body-leading);
 }
-[data-theme="dark"] .public-page { --public-brand-ink: var(--text-primary, #f0e7d9); }
+[data-theme="dark"] .public-page { --public-brand-ink: var(--text-primary, #f0e7d9); --public-hover: #b95a64; }
+[data-theme="dark"] .landing-skip:focus { background: #29221d; color: #f0e7d9; }
 .public-page h1, .public-page h2, .public-page h3 {
     font-family: var(--public-font-ui);
     color: inherit;

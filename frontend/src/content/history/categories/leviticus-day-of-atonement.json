@@ -1,0 +1,176 @@
+{
+  "id": "category-leviticus-day-of-atonement",
+  "title": "The Day of Atonement (Leviticus 16)",
+  "category": "category",
+  "era": "leviticus",
+  "status": "published",
+  "primaryScripture": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 16,
+    "endChapter": 16,
+    "startVerse": 1,
+    "endVerse": 34
+  },
+  "fullRange": {
+    "book": "Leviticus",
+    "bookId": "leviticus",
+    "startChapter": 16,
+    "endChapter": 16,
+    "startVerse": 1,
+    "endVerse": 34
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated thematic Leviticus legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "This is a literary and thematic grouping in the Sinai narrative, not an independent datable event. No absolute year is inferred."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-lev-da-001",
+      "claim": "The chapter restricts entry into the inner sanctuary and prescribes linen clothing, incense and specific offerings.",
+      "evidence": "Lev 16:1–14; the account is a prescription, not independent observation.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-da-002",
+      "claim": "The bull and the slaughtered goat furnish blood for purification of the sacred spaces and altar.",
+      "evidence": "Lev 16:11–19; Adu-Gyamfi 2023, sections on priestly and sanctuary rites.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-da-003",
+      "claim": "The living goat is assigned a different role: confessed wrongs are placed upon it before it is sent into the wilderness.",
+      "evidence": "Lev 16:20–22; Gane 2022; the goat is not slaughtered at the altar.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-da-004",
+      "claim": "Azazel has no securely established single referent; proposed readings include a wilderness being, place, or removal concept.",
+      "evidence": "Lev 16:8, 10, 26; Adu-Gyamfi 2023 disputes; neither an entity nor etymology is proven.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-lev-da-005",
+      "claim": "Leviticus 16 regulates an annual day of self-denial and cessation from work.",
+      "evidence": "Lev 16:29–34; festival title given in Lev 23:27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-lev-da-006",
+      "claim": "The ritual forms a literary culmination to the purity laws in Leviticus 11–15.",
+      "evidence": "Lev 11–16; Gane 2022; literary synthesis.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-lev-da-007",
+      "claim": "The exact altar intended in Leviticus 16:18–19 is contested among scholarly interpreters.",
+      "evidence": "Adu-Gyamfi 2023 discussion of outer versus incense altar; no falsely settled identification.",
+      "assessment": "debated"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-lev-da-001",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 30,
+      "endChapter": 30,
+      "startVerse": 10,
+      "endVerse": 10,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Exodus describes an annual atonement rite related to the altar."
+    },
+    {
+      "id": "conn-lev-da-002",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 11,
+      "endChapter": 15,
+      "startVerse": 1,
+      "endVerse": 33,
+      "type": "background",
+      "confidence": "established",
+      "note": "The preceding purity legislation explains categories that the annual rite addresses."
+    },
+    {
+      "id": "conn-lev-da-003",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 23,
+      "endChapter": 23,
+      "startVerse": 26,
+      "endVerse": 32,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "The festival calendar names and dates the Day of Atonement."
+    },
+    {
+      "id": "conn-lev-da-004",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 29,
+      "endChapter": 29,
+      "startVerse": 7,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "established",
+      "note": "Numbers provides supplementary sacrifices for the day."
+    },
+    {
+      "id": "conn-lev-da-005",
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "startChapter": 53,
+      "endChapter": 53,
+      "startVerse": 4,
+      "endVerse": 12,
+      "type": "thematic",
+      "confidence": "traditional",
+      "note": "A later Christian typological comparison may invoke bearing of wrongdoing, not a demonstrable direct quotation of Lev 16."
+    },
+    {
+      "id": "conn-lev-da-006",
+      "book": "Hebrews",
+      "bookId": "hebrews",
+      "startChapter": 9,
+      "endChapter": 9,
+      "startVerse": 1,
+      "endVerse": 28,
+      "type": "thematic",
+      "confidence": "traditional",
+      "note": "Hebrews explicitly reinterprets high-priestly entry and atoning sacrifice within Christian theology."
+    },
+    {
+      "id": "conn-lev-da-007",
+      "book": "Hebrews",
+      "bookId": "hebrews",
+      "startChapter": 13,
+      "endChapter": 13,
+      "startVerse": 11,
+      "endVerse": 13,
+      "type": "thematic",
+      "confidence": "traditional",
+      "note": "The epistle compares bodies burned outside the camp to Jesus’s suffering."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-adu-gyamfi-leviticus16",
+    "source-gane-sacrifice-old-testament",
+    "source-himbaza-text-leviticus",
+    "source-kjv-leviticus-biblehub"
+  ],
+  "review": {
+    "author": "Gnosis Phase 2 content development (AI-assisted)",
+    "reviewer": "Phase 2.5 desk audit, 2026-11-18; independent editorial QA still pending",
+    "lastReviewed": "2026-11-18",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Phase 2.5 evidence audit: 53 baseline claims and 56 baseline Scripture connections reviewed across seven categories; claims revised only where evidence wording or original access status needed correction. Bibliography/status changes recorded in SOURCE-VERIFICATION-MATRIX.md. Unverified sources retained honestly; No editorialOverride; no publication approval. Phase 2.6: primary KJV Leviticus 1–27 inspected; disputed scholars replaced by scoped full-text sources where warranted; all sources used by this category are verified to the stated relevant claim scope. Review is still pending independent Muse/QA; no editorial override; no published status."
+  }
+}

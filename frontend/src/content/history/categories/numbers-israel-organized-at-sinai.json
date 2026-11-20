@@ -1,0 +1,149 @@
+{
+  "id": "category-numbers-israel-organized-at-sinai",
+  "title": "Israel Organized at Sinai",
+  "category": "category",
+  "era": "numbers",
+  "status": "published",
+  "primaryScripture": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 3,
+    "endVerse": 51
+  },
+  "fullRange": {
+    "book": "Numbers",
+    "bookId": "numbers",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 4,
+    "endVerse": 49
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated biblical wilderness narrative and legislation",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-num-01-001",
+      "claim": "The received Numbers narrative contains the Israel Organized at Sinai material across Numbers 1–4.",
+      "evidence": "Numbers 1–4; biblical-text description, not independent evidence for an event date.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-num-01-002",
+      "claim": "The exact archaeological or external historical setting of this entire passage has not been independently established.",
+      "evidence": "Phase 2 Dossier 1 (numbers-phase2.md): the Masoretic totals (603,550 at Num 1:46; 601,730 at Num 26:51) are Established as text, but their demographic historicity is Unknown/Debated; Adair 2025, read in full (QA Phase 4 §5.1), finds the figures more plausibly artificial literary numbers, and no primary ANE census document was inspected (source-adair-numbers-census).",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-num-01-003",
+      "claim": "Comparisons with related biblical laws and retellings need to preserve differences in wording, chronology, or institutional setting.",
+      "evidence": "Internal textual comparisons documented in CONNECTION-AUDIT.md; interpretation of literary relationship, not an archaeological observation.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-num-01-001",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 26,
+      "startVerse": 1,
+      "endChapter": 26,
+      "endVerse": 51,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Second census contrasts the wilderness generations; its final aggregate differs."
+    },
+    {
+      "id": "conn-num-01-002",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 13,
+      "startVerse": 1,
+      "endChapter": 13,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "established",
+      "note": "Firstborn consecration provides a legal and theological backdrop."
+    },
+    {
+      "id": "conn-num-01-003",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 8,
+      "startVerse": 24,
+      "endChapter": 8,
+      "endVerse": 26,
+      "type": "background",
+      "confidence": "established",
+      "note": "Service age differs from the transport muster in Numbers 4."
+    },
+    {
+      "id": "conn-num-01-004",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 30,
+      "startVerse": 11,
+      "endChapter": 30,
+      "endVerse": 16,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "Census ransom law: every man numbered from twenty years old gives half a shekel; a legal parallel, not the same census scene."
+    },
+    {
+      "id": "conn-num-01-005",
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "startChapter": 48,
+      "startVerse": 1,
+      "endChapter": 48,
+      "endVerse": 35,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Tribal portions arranged around the sacred allotment, with city gates named for the tribes; a thematic parallel to the camp arrangement, not a retelling of Numbers 2."
+    },
+    {
+      "id": "conn-num-01-006",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 8,
+      "startVerse": 5,
+      "endChapter": 8,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "established",
+      "note": "Levite cleansing and consecration as substitutes for the firstborn; develops the substitution of Numbers 3."
+    },
+    {
+      "id": "conn-num-01-007",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 23,
+      "startVerse": 24,
+      "endChapter": 23,
+      "endVerse": 32,
+      "type": "background",
+      "confidence": "established",
+      "note": "Third age datum: Levites numbered from twenty years old and above under David; differs from the thirty-to-fifty transport muster in Numbers 4."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-adair-numbers-census"
+  ],
+  "review": {
+    "author": "Gnosis Numbers research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-19",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished Numbers category; source access remains limited and audit restrictions apply. Phase 4 readiness and independent QA are distinct. No editorialOverride."
+  }
+}

@@ -20,7 +20,7 @@ export default defineConfig([
   },
   // Serverless functions in api/ run on Node, not in the browser.
   {
-    files: ['api/**/*.js'],
+    files: ['api/**/*.js', 'security/**/*.js', 'playwright.config.js'],
     languageOptions: {
       globals: globals.node,
     },
