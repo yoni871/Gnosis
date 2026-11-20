@@ -2526,5 +2526,163 @@
     "verification": "verified",
     "verificationDetail": "Read in full (re-grounding session 2026-11-20): site “generally placed at Tell Ashtara”; Edrei “identified with modern Daraa”; “A town called Ashtartu appears in the list of Canaanite and Syrian places conquered by the Egyptian pharaoh Thutmose III in the 15th century BC. In the Amarna letters of the 14th century BC, Ashtartu is again named.” The article names the Amarna letters generally but does NOT name EA 197 specifically — the Thutmose III / Amarna EA 197 clause stays REMOVED from clm-deu-01-034 until EA 197 is verified specifically by a direct read of the lists or the letter.",
     "licenseNote": "© BiblicalTraining. Cite, do not reproduce."
+  },
+  "source-bruins-van-der-plicht-jericho-radiocarbon-1995": {
+    "author": "Hendrik J. Bruins and Johannes van der Plicht",
+    "id": "source-bruins-van-der-plicht-jericho-radiocarbon-1995",
+    "pagesOrSection": "37(2): 213–220",
+    "publisher": "Radiocarbon",
+    "title": "Tell Es-Sultan (Jericho): Radiocarbon Results of Short-Lived Cereal and Multiyear Charcoal Samples from the End of the Middle Bronze Age",
+    "url": "https://doi.org/10.1017/S0033822200030666",
+    "verification": "verified",
+    "verificationDetail": "Joshua package (2026-11-20; editorial IDs JER14 / JERICHO-BRUINS-1995): direct relevant full article (PDF), pp. 213–220, accessed via Cambridge open PDF. Both mapping rows agree on the full-article read. Independent full-PDF read (2026-11-20, Dev 1): Full PDF read directly via Cambridge open PDF, pp. 213–220 incl. Table 1, Figs. 1–4, calibration discussion and conclusion. Weighted averages 3306 ± 7 BP (grains) / 3370 ± 6 BP (charcoal); final MBA destruction late 17th/16th c. BC; explicitly does not support a ca. 1400 BC destruction.",
+    "year": 1995
+  },
+  "source-detroyer-battle-ai-textual-history-joshua-2015": {
+    "author": "Kristin de Troyer",
+    "id": "source-detroyer-battle-ai-textual-history-joshua-2015",
+    "pagesOrSection": "48: 39–53",
+    "publisher": "Journal of Septuagint and Cognate Studies",
+    "title": "The Battle against Ai and the Textual History of the Book of Joshua",
+    "url": "https://septuaginta.uni-goettingen.de/static/ioscs/pdf/volumes/jscs48.pdf",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full 15-page essay pp. 39–53 read (JSCS 48 volume PDF, septuaginta.uni-goettingen.de). Cited in cat 4 for the Josh 8:30–35 witness difference.",
+    "year": 2015
+  },
+  "source-fire-at-the-gate-of-hazor-2023": {
+    "author": "Marko Runjajić, Yosef Garfinkel, Michael G. Hasel, Assaf Yasur-Landau, David E. Friesem",
+    "id": "source-fire-at-the-gate-of-hazor-2023",
+    "pagesOrSection": "49, article 103914",
+    "publisher": "Journal of Archaeological Science: Reports",
+    "title": "Fire at the gate of Hazor: A micro-geoarchaeological study of the depositional history of a Bronze Age city gate",
+    "url": "https://doi.org/10.1016/j.jasrep.2023.103914",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full published 18-page article read (Southern Adventist-hosted PDF: http://beta.southern.edu/administration/archaeology/lachish/docs/articles/Runjajic_Marko_Yosef_Garfinkel_Michael_G.pdf) — JAS: Reports 49 (2023) 103914. Documents a fire destruction at Hazor's gate (not a whole-city destruction); names no destroyer and gives no radiometric date. Confirmed firsthand by Dev 1 (2026-11-20).",
+    "year": 2023
+  },
+  "source-haughwout-ebal-curse-tablet-refutation-2024": {
+    "author": "Mark S. Haughwout",
+    "id": "source-haughwout-ebal-curse-tablet-refutation-2024",
+    "pagesOrSection": "12, article 70",
+    "publisher": "Heritage Science",
+    "title": "Mt. Ebal curse tablet? A refutation of the claims regarding the so called Mt. Ebal curse tablet",
+    "url": "https://doi.org/10.1186/s40494-023-01130-z",
+    "verification": "verified",
+    "verificationDetail": "Joshua package (2026-11-20; editorial IDs NEW-EBAL-03 / EBAL-REFUTATION-2024): Full text read directly 2026-11-20 (Nature open access, Heritage Science 12, art. 70, 12 pp., COMMENT, published 2026-02-26): wet-sifting/dump-pile provenance, defixio genre, metallurgical (Lavrion) analysis, letter-by-letter refutation of Galil's 48-letter reading (plene spelling, letter paths/orientation, 'YHW' occurrences), conclusion that the only substantiated claim is a small folded lead object found by wet-sifting. No independent CT image analysis was done; the entry verifies the refutation article as read, not a re-decipherment of the scans.",
+    "year": 2024
+  },
+  "source-johnson-allotment-of-canaan-joshua-numbers-2022": {
+    "author": "Dylan R. Johnson",
+    "id": "source-johnson-allotment-of-canaan-joshua-numbers-2022",
+    "pagesOrSection": "141.3: 427–447",
+    "publisher": "Journal of Biblical Literature",
+    "title": "The Allotment of Canaan in Joshua and Numbers",
+    "url": "https://doi.org/10.15699/jbl.1413.2022.2",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full article pp. 427–447 read (all 1,869 lines) at the author's Academia.edu posting. Supports all four cat-8/9 prose assertions.",
+    "year": 2022
+  },
+  "source-kennedy-jericho-religions-2023": {
+    "author": "Titus Kennedy",
+    "id": "source-kennedy-jericho-religions-2023",
+    "pagesOrSection": "14(6), article 796",
+    "publisher": "Religions",
+    "title": "The Bronze Age Destruction of Jericho, Archaeology, and the Book of Joshua",
+    "url": "https://doi.org/10.3390/rel14060796",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full article read (MDPI open access, §§1–6, 18 pp.: https://www.mdpi.com/2077-1444/14/6/796). Supports clm-jos-03-004's Kennedy half and cat-3 prose; Kennedy's minority c. 1400 BC advocacy confirms (does not change) the claim's Debated assessment. Confirmed firsthand by Dev 1 (2026-11-20).",
+    "year": 2023
+  },
+  "source-law-in-biblical-israel-cambridge-companion": {
+    "author": "Chaya Halberstam",
+    "id": "source-law-in-biblical-israel-cambridge-companion",
+    "pagesOrSection": "Chapter 1, pp. 19–47",
+    "publisher": "Cambridge University Press (The Cambridge Companion to Judaism and Law)",
+    "title": "Law in Biblical Israel",
+    "url": "https://doi.org/10.1017/9781139565974.002",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full chapter pp. 19–47 (all 29 pages) read — open Cambridge Core PDF, DOI 10.1017/9781139565974.002. Supports all three cat-10 footnotes; pp. 25–26 quote Barmash on cities of refuge as a check on the blood avenger (Num 35:12; Deut 19:5; Josh 20:5). The chapter never discusses Levitical cities/Joshua 21.",
+    "year": 2017
+  },
+  "source-makipelto-tekniemi-tucker-large-scale-transposition-2017": {
+    "author": "Mäkipelto, Tekoniemi and Tucker",
+    "id": "source-makipelto-tekniemi-tucker-large-scale-transposition-2017",
+    "publisher": "Journal of Biblical Textual Criticism (jbtc.org)",
+    "title": "Large-Scale Transposition as an Editorial Technique in the Textual History of the Hebrew Bible",
+    "url": "https://jbtc.org/v22/TC-2017-Makipelto-Tekoniemi-Tucker.pdf",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full 16-page article read (rosetta.reltech.org TC PDF). Supports clm-jos-04-004 with all its fragmentary caveats; does not verify Segal.",
+    "year": 2017
+  },
+  "source-met-amarna-letters": {
+    "author": "Elizabeth Knott",
+    "id": "source-met-amarna-letters",
+    "publisher": "The Metropolitan Museum of Art",
+    "title": "The Amarna Letters",
+    "url": "https://www.metmuseum.org/essays/the-amarna-letters",
+    "verification": "verified",
+    "verificationDetail": "Joshua package (2026-11-20; editorial ID AMARNA-MET): direct relevant public article/HTML examined in full (Met Heilbrunn essay, 'The Amarna Letters').",
+    "year": 2016
+  },
+  "source-naaman-biblical-gilgal-tel-aviv-2024": {
+    "author": "Nadav Na'aman",
+    "id": "source-naaman-biblical-gilgal-tel-aviv-2024",
+    "pagesOrSection": "51(1): 59–72",
+    "publisher": "Tel Aviv",
+    "title": "Biblical Gilgal: A Common Place Name or a Cult Site near Jericho?",
+    "url": "https://www.tandfonline.com/doi/full/10.1080/03344355.2024.2327800",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full article pp. 59–72 read (all 1,267 lines) at the author's Academia.edu posting; the article is itself Open Access (CC BY-NC-ND). Supports cat-2 prose (single cult site east of Jericho; all excavated identifications failed; exact location unknown).",
+    "year": 2024
+  },
+  "source-penn-museum-el-jib-object-records": {
+    "author": "University of Pennsylvania Museum",
+    "id": "source-penn-museum-el-jib-object-records",
+    "pagesOrSection": "Penn Museum digital collections search (el-Jib jar handles)",
+    "publisher": "University of Pennsylvania Museum",
+    "title": "Penn Museum Collections, excavated jar handles from el-Jib (object records)",
+    "url": "https://www.penn.museum/collections/search.php",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): collections site openly browsable; two object pages read in full — 60-13-99 (lmlk zp, 750–630 BCE, on display) and 60-13-129 (inscribed lnhm hslyhw, 730–600 BCE) — plus four search records. No object page transcribes a gb'n handle; that limb rests on Pritchard 1959. Object 95506 not verified."
+  },
+  "source-sil-tips-joshua-22-34-translation-commentary": {
+    "author": "Translation Insights & Perspectives (SIL)",
+    "id": "source-sil-tips-joshua-22-34-translation-commentary",
+    "publisher": "Translation Insights & Perspectives (SIL)",
+    "title": "Translation commentary on Joshua 22:34",
+    "url": "https://tips.translation.bible/story/translation-commentary-on-josh-2234/",
+    "verification": "verified",
+    "verificationDetail": "Joshua package (2026-11-20; editorial IDs NEW-JOSH22-01 / JOSH22-TIPS): Full TIPs page read directly 2026-11-20: complete translation note on Josh 22:34 ('a witness between us'; MT name missing; RSV/GNT/NEB 'Witness'; HOTTP prefers MT). Quoted with permission from Bratcher & Newman, A Handbook on Joshua (UBS Helps for Translators, 1983)."
+  },
+  "source-stripling-ebal-curse-inscription-2023": {
+    "author": "Stripling et al.",
+    "id": "source-stripling-ebal-curse-inscription-2023",
+    "pagesOrSection": "11, article 105",
+    "publisher": "Heritage Science",
+    "title": "You Are Cursed by the God YHW: An Early Hebrew Inscription from Mt. Ebal",
+    "url": "https://doi.org/10.1186/s40494-023-00920-9",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full article read in full (nature.com open access, HTML lines 0–1191 of 1220). Supports both cat-4 prose assertions; the article concedes some letters are faint/bracketed, matching the hedged prose.",
+    "year": 2023
+  },
+  "source-wood-search-for-joshuas-ai": {
+    "author": "Bryant G. Wood",
+    "id": "source-wood-search-for-joshuas-ai",
+    "pagesOrSection": "In Critical Issues in Early Israelite History, pp. 205–240",
+    "title": "The Search for Joshua's Ai",
+    "url": "https://doi.org/10.5325/j.ctv18r6rmb.17",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full chapter pp. 205–240 read end to end (ABR PDF, posted with permission: https://biblearchaeology.org/wp-content/uploads/2009/04/The-Search-for-Joshuas-Ai.pdf). Supports the cat-4 Ai-identification prose; Wood's minority ~1400 BCE date is not repeated in the prose.",
+    "year": 2008
+  },
+  "source-pritchard-hebrew-inscriptions-gibeon-1959": {
+    "id": "source-pritchard-hebrew-inscriptions-gibeon-1959",
+    "title": "Hebrew Inscriptions and Stamps from Gibeon (1959)",
+    "author": "James B. Pritchard",
+    "publisher": "University of Pennsylvania",
+    "year": 1959,
+    "url": "https://penn.museum/documents/publications/pdfs/Hebrew_Inscriptions_and_Stamps_from_Gibeon.pdf",
+    "verification": "verified",
+    "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full monograph read (free Penn-hosted PDF, all 32 text pages + plates) — 'the discovery of the name of the ancient city of Gibeon on 27 jar handles'; 'The name is the biblical Gibeon'; 'a remarkably strong case for the Gibeon = el-Jib equation.' Inscribed handles dated chiefly early 7th c. to early 6th c. BCE (royal stamps late 8th–7th c.). Confirmed firsthand by Dev 1 (2026-11-20). The 1962 companion volume (Gibeon: Where the Sun Stood Still) was not read and is not added."
   }
 }
