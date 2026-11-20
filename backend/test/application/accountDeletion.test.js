@@ -57,10 +57,39 @@ async function seedUserData(id) {
              VALUES ($1, $2, now() + interval '1 hour')`,
             [id, crypto.createHash('sha256').update(`synthetic-reset-token-${id}`).digest()]
         );
+        // MFA and device rows: the deletion must cascade these too
+        // (review item: known_login_devices had no FK and no deletion
+        // path; user_mfa / mfa_recovery_codes / mfa_challenges were
+        // never seeded or counted by this test). The device key is a
+        // synthetic value distinct from the key login computes, so the
+        // seeded row is distinguishable from the login-created row.
+        await client.query(
+            `INSERT INTO known_login_devices(user_id, device_key)
+             VALUES ($1, $2)`,
+            [id, Buffer.from(`synthetic-device-${id}`)]
+        );
+        await client.query(
+            `INSERT INTO user_mfa(user_id, secret_encrypted)
+             VALUES ($1, 'synthetic-secret')`,
+            [id]
+        );
+        await client.query(
+            `INSERT INTO mfa_recovery_codes(user_id, code_hash, code_salt)
+             VALUES ($1, 'synthetic-hash', 'synthetic-salt')`,
+            [id]
+        );
+        await client.query(
+            `INSERT INTO mfa_challenges(user_id, token_hash, password_hash, expires_at)
+             VALUES ($1, $2, 'synthetic-hash', now() + interval '1 hour')`,
+            [id, crypto.createHash('sha256').update(`synthetic-challenge-token-${id}`).digest()]
+        );
     });
 }
 async function count(table, id) {
-    const protectedTables = new Set(["notes", "bookmarks", "highlights", "user_reading_state"]);
+    // mfa_challenges is deliberately unprotected (token-derived lookup),
+    // so it reads context-free; the other RLS tables need the context.
+    const protectedTables = new Set(["notes", "bookmarks", "highlights", "user_reading_state",
+        "user_mfa", "mfa_recovery_codes", "known_login_devices"]);
     const query = client => client.query(
         `SELECT count(*)::int AS n FROM ${table} WHERE user_id = $1`, [id]
     );
@@ -95,6 +124,10 @@ async function allUserRows(id) {
         verificationTokens: await count('email_verification_tokens', id),
         resetTokens: await count('password_reset_tokens', id),
         sessions: await count('auth_sessions', id),
+        devices: await count('known_login_devices', id),
+        mfa: await count('user_mfa', id),
+        recoveryCodes: await count('mfa_recovery_codes', id),
+        challenges: await count('mfa_challenges', id),
     };
 }
 
@@ -167,9 +200,12 @@ test('deletion without a password is a 400 and deletes nothing', async () => {
     const result = await deleteAccount(session.data.token, {});
     assert.equal(result.status, 400);
     assert.equal(result.data.code, 'VALIDATION_FAILED');
+    // devices is 2, not 1: the seeded row plus the row this test's
+    // login recorded (same device key on every login, so one row).
     assert.deepEqual(await allUserRows(userId), {
         notes: 1, bookmarks: 1, highlights: 1, readingState: 1,
         verificationTokens: 1, resetTokens: 1, sessions: 1,
+        devices: 2, mfa: 1, recoveryCodes: 1, challenges: 1,
     });
 });
 
@@ -183,6 +219,7 @@ test('a wrong password is a 401 and deletes nothing', async () => {
     assert.deepEqual(await allUserRows(userId), {
         notes: 1, bookmarks: 1, highlights: 1, readingState: 1,
         verificationTokens: 1, resetTokens: 1, sessions: 2,
+        devices: 2, mfa: 1, recoveryCodes: 1, challenges: 1,
     });
     assert.equal(await profile(session.data.token), 200);
     // A refused deletion writes no completion audit row.
@@ -205,6 +242,7 @@ test('the correct password deletes the account, its data, and its sessions', asy
     assert.deepEqual(await allUserRows(userId), {
         notes: 0, bookmarks: 0, highlights: 0, readingState: 0,
         verificationTokens: 0, resetTokens: 0, sessions: 0,
+        devices: 0, mfa: 0, recoveryCodes: 0, challenges: 0,
     });
     assert.equal((await database.pool.query(
         'SELECT count(*)::int AS n FROM auth_refresh_tokens'
@@ -229,6 +267,7 @@ test('the correct password deletes the account, its data, and its sessions', asy
     assert.deepEqual(await allUserRows(otherId), {
         notes: 1, bookmarks: 1, highlights: 1, readingState: 1,
         verificationTokens: 1, resetTokens: 1, sessions: 1,
+        devices: 2, mfa: 1, recoveryCodes: 1, challenges: 1,
     });
     assert.equal(await profile(other.data.token), 200);
 });

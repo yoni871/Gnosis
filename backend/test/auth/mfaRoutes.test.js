@@ -27,13 +27,22 @@ const queryMock = test.mock.method(pool, "query", async (...args) => queryBehavi
 // The /enroll rate limiter (and the cleanup sweep) use pool.connect, so
 // the fake client answers the limiter's own queries: BEGIN/COMMIT,
 // the advisory lock, the reservation INSERT, and the count. The
-// sweep finds no sweep-state row and skips. Any other query throws,
+// sweep finds no sweep-state row and skips. getMfaStatus wraps the
+// user_mfa read in withUser, so the client also answers set_config
+// and delegates the user_mfa SELECT to the pool query mock (the same
+// queryBehavior the route's own SELECTs use). Any other query throws,
 // so a route reaching the database unexpectedly is still caught.
 const connectMock = test.mock.method(pool, "connect", async () => {
     return {
-        query: async (sql) => {
+        query: async (sql, params) => {
             if (typeof sql === "string" && (sql === "BEGIN" || sql === "COMMIT" || sql === "ROLLBACK")) {
                 return { rows: [] };
+            }
+            if (typeof sql === "string" && sql.includes("set_config")) {
+                return { rows: [{ set_config: String(params?.[0] ?? "") }] };
+            }
+            if (typeof sql === "string" && sql.includes("FROM user_mfa")) {
+                return queryBehavior(sql, params);
             }
             if (typeof sql === "string" && sql.includes("pg_try_advisory_xact_lock")) {
                 return { rows: [{ locked: true }] };
