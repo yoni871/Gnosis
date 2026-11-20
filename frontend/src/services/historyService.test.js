@@ -91,7 +91,7 @@ describe("listBooks", () => {
         expect(rest).toHaveLength(65);
         expect(rest.every((book) => book.eventCount === 0 && !book.hasEvents)).toBe(true);
     });
-    it("reports four categories for Genesis, seven for Exodus, seven for Leviticus, nine for Numbers, ten for Deuteronomy, and zero for every other book", () => {
+    it("reports four categories for Genesis, seven for Exodus, seven for Leviticus, nine for Numbers, ten for Deuteronomy, twelve for Joshua, and zero for every other book", () => {
         const books = listBooks();
         const genesis = books.find((book) => book.id === "genesis");
         expect(genesis.categoryCount).toBe(4);
@@ -108,8 +108,11 @@ describe("listBooks", () => {
         const deuteronomy = books.find((book) => book.id === "deuteronomy");
         expect(deuteronomy.categoryCount).toBe(10);
         expect(deuteronomy.hasCategories).toBe(true);
-        const rest = books.filter((book) => book.id !== "genesis" && book.id !== "exodus" && book.id !== "leviticus" && book.id !== "numbers" && book.id !== "deuteronomy");
-        expect(rest).toHaveLength(61);
+        const joshua = books.find((book) => book.id === "joshua");
+        expect(joshua.categoryCount).toBe(12);
+        expect(joshua.hasCategories).toBe(true);
+        const rest = books.filter((book) => book.id !== "genesis" && book.id !== "exodus" && book.id !== "leviticus" && book.id !== "numbers" && book.id !== "deuteronomy" && book.id !== "joshua");
+        expect(rest).toHaveLength(60);
         expect(rest.every((book) => book.categoryCount === 0 && !book.hasCategories)).toBe(true);
     });
 });
