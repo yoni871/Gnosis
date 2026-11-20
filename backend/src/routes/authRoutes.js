@@ -1,5 +1,6 @@
 const express = require("express");
 const pool = require("../db/db");
+const { setUserContext } = require("../db/userContext");
 const passwordHash = require("../utils/passwordHash");
 const router = express.Router();
 const sessions = require("../services/sessionService");
@@ -657,6 +658,8 @@ router.delete("/account", authenticateToken, validateDelete, async (req, res) =>
     }
     try {
         await client.query("BEGIN");
+        // Cascading deletes of saved rows must see this user under FORCE RLS.
+        await setUserContext(client, userId);
         const userResult = await client.query(
             "SELECT password_hash FROM users WHERE id = $1 FOR UPDATE",
             [userId]

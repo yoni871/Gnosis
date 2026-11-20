@@ -62,6 +62,7 @@ async function saveHighlights(userId, bookId, verses, color) {
 
     //borrow one connection for all operations in this transaction
     const client = await pool.connect();
+    let broken = false;
     try {
         //start group of database operations that succeed or fail
         await client.query("BEGIN");
@@ -115,12 +116,13 @@ async function saveHighlights(userId, bookId, verses, color) {
         } catch (rollbackError) {
             // Record cleanup failure without replacing the original error.
             // Only route, kind, and safe code are logged (audit F02).
+            broken = true;
             logControllerError("highlights.save", "rollback-failed", rollbackError);
         }
 
         throw error;
     } finally {
-        client.release();
+        client.release(broken);
     }
 }
 

@@ -4,6 +4,7 @@ const crypto = require('node:crypto');
 const bcrypt = require('bcrypt');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
 const { startBackend } = require('../helpers/backend-instance');
+const { withUser } = require('../../src/db/userContext');
 
 const context = contextFromEnvironment(); // Fail before any connection if run directly.
 const PASSWORD = 'synthetic-delete-password';
@@ -25,42 +26,47 @@ async function createUser(email) {
 }
 
 async function seedUserData(id) {
-    await database.pool.query(
-        `INSERT INTO notes(user_id, book_id, start_chapter, start_verse, end_chapter, end_verse, content)
-         VALUES ($1, 1, 1, 1, 1, 1, 'synthetic note')`,
-        [id]
-    );
-    await database.pool.query(
-        `INSERT INTO bookmarks(user_id, book_id, start_chapter, start_verse, end_chapter, end_verse)
-         VALUES ($1, 1, 1, 1, 1, 1)`,
-        [id]
-    );
-    await database.pool.query(
-        `INSERT INTO highlights(user_id, book_id, chapter, verse, color)
-         VALUES ($1, 1, 1, 1, '#FFD54F')`,
-        [id]
-    );
-    await database.pool.query(
-        `INSERT INTO user_reading_state(user_id, book_id, chapter_number, translation)
-         VALUES ($1, 1, 1, 'KJV')`,
-        [id]
-    );
-    await database.pool.query(
-        `INSERT INTO email_verification_tokens(user_id, token_hash, expires_at)
-         VALUES ($1, $2, now() + interval '1 hour')`,
-        [id, crypto.createHash('sha256').update(`synthetic-verify-token-${id}`).digest()]
-    );
-    await database.pool.query(
-        `INSERT INTO password_reset_tokens(user_id, token_hash, expires_at)
-         VALUES ($1, $2, now() + interval '1 hour')`,
-        [id, crypto.createHash('sha256').update(`synthetic-reset-token-${id}`).digest()]
-    );
+    await withUser(database.pool, id, async client => {
+        await client.query(
+            `INSERT INTO notes(user_id, book_id, start_chapter, start_verse, end_chapter, end_verse, content)
+             VALUES ($1, 1, 1, 1, 1, 1, 'synthetic note')`,
+            [id]
+        );
+        await client.query(
+            `INSERT INTO bookmarks(user_id, book_id, start_chapter, start_verse, end_chapter, end_verse)
+             VALUES ($1, 1, 1, 1, 1, 1)`,
+            [id]
+        );
+        await client.query(
+            `INSERT INTO highlights(user_id, book_id, chapter, verse, color)
+             VALUES ($1, 1, 1, 1, '#FFD54F')`,
+            [id]
+        );
+        await client.query(
+            `INSERT INTO user_reading_state(user_id, book_id, chapter_number, translation)
+             VALUES ($1, 1, 1, 'KJV')`,
+            [id]
+        );
+        await client.query(
+            `INSERT INTO email_verification_tokens(user_id, token_hash, expires_at)
+             VALUES ($1, $2, now() + interval '1 hour')`,
+            [id, crypto.createHash('sha256').update(`synthetic-verify-token-${id}`).digest()]
+        );
+        await client.query(
+            `INSERT INTO password_reset_tokens(user_id, token_hash, expires_at)
+             VALUES ($1, $2, now() + interval '1 hour')`,
+            [id, crypto.createHash('sha256').update(`synthetic-reset-token-${id}`).digest()]
+        );
+    });
 }
-
 async function count(table, id) {
-    const result = await database.pool.query(
+    const protectedTables = new Set(["notes", "bookmarks", "highlights", "user_reading_state"]);
+    const query = client => client.query(
         `SELECT count(*)::int AS n FROM ${table} WHERE user_id = $1`, [id]
     );
+    const result = protectedTables.has(table)
+        ? await withUser(database.pool, id, query)
+        : await query(database.pool);
     return result.rows[0].n;
 }
 

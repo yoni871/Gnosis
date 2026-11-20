@@ -19,7 +19,7 @@
 -- owner (neondb_owner) legitimately holds CREATEROLE/CREATEDB/REPLICATION.
 
 SELECT rolname, rolsuper, rolinherit, rolcreatedb, rolcreaterole, rolcanlogin,
-       rolreplication
+       rolreplication, rolbypassrls
 FROM pg_roles
 ORDER BY rolname;
 
@@ -92,3 +92,18 @@ ORDER BY 1, 2, 3;
 SELECT count(*) AS public_table_count
 FROM information_schema.tables
 WHERE table_schema = 'public';
+
+-- Q9 — App RLS deployment gate. Run on the App database before deploying
+-- RLS and after the migration. For the current runtime role, verify
+-- rolsuper=false and rolbypassrls=false above, no superuser membership in
+-- Q2, and that it differs from every table owner below. Migration/backup
+-- role must own the tables (or be a member of the owning role) to toggle
+-- FORCE for owner-context copies; the runtime role must not.
+
+SELECT c.relname AS table_name, pg_get_userbyid(c.relowner) AS table_owner,
+       c.relrowsecurity AS rls_enabled, c.relforcerowsecurity AS rls_forced
+FROM pg_class c
+JOIN pg_namespace n ON n.oid = c.relnamespace
+WHERE n.nspname = 'public'
+  AND c.relname IN ('notes', 'bookmarks', 'highlights', 'user_reading_state')
+ORDER BY c.relname;
