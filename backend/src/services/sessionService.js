@@ -66,6 +66,8 @@ async function createPasskeySessionInTransaction(client, userId) {
     const result = await client.query('SELECT email, email_verified_at FROM users WHERE id = $1 FOR UPDATE', [userId]);
     const account = result.rows[0];
     if (!account?.email_verified_at) return null;
+    // RLS: set the context before the user_mfa read below.
+    await setUserContext(client, userId);
     const mfa = await client.query('SELECT enrolled, mfa_generation FROM user_mfa WHERE user_id = $1', [userId]);
     const enrolled = mfa.rows[0]?.enrolled === true;
     if (isAdminEmail(account.email) && !enrolled) return null;

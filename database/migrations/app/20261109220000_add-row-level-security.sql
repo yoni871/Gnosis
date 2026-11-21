@@ -30,8 +30,8 @@
 -- FORCE RLS it needs the same NO FORCE / re-FORCE dance on user_mfa.
 --
 -- Scope is the seven user-data tables whose rows are only ever read or
--- written for the authenticated user. Twelve App tables carry a user_id
--- column; the other five are deliberately NOT covered:
+-- written for the authenticated user. Fourteen App tables carry a user_id
+-- column; the other seven are deliberately NOT covered:
 -- `users` (no user_id column — its own id; registration / verification /
 -- reset run unauthenticated or token-derived; it holds email,
 -- password_hash and first_name / last_name);
@@ -42,6 +42,10 @@
 -- mfa_challenges (looked up by token hash before the user is known, so
 -- no context exists to scope by — backend/src/routes/mfaRoutes.js and
 -- backend/src/services/mfaService.js resolve the owner from the token);
+-- user_passkeys (looked up by credential_id before the user is known;
+-- the login flow reads/updates the row before any context exists);
+-- webauthn_challenges (looked up by challenge before the user is known;
+-- backend/src/utils/webauthn.js:96 resolves the owner from the challenge);
 -- security_events (Main's audit table; user_id is populated for
 -- authenticated events but NULL for unauthenticated ones, and audit rows
 -- must be writable with no user context).

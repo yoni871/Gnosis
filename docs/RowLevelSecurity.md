@@ -47,8 +47,8 @@ requirement — the cascade happens with or without it.
 
 ## What is deliberately NOT covered, and why
 
-Twelve App tables carry a `user_id` column; seven are covered above and
-the other five are deliberately NOT covered:
+Fourteen App tables carry a `user_id` column; seven are covered above and
+the other seven are deliberately NOT covered:
 
 - **`users`.** No `user_id` column — its own `id` is the user key.
   Registration, verification, and password reset run
@@ -78,6 +78,17 @@ the other five are deliberately NOT covered:
   oversight: the challenge must be resolvable before authentication,
   and the application's own checks (hash + single-use + expiry) are
   the control there.
+- **`user_passkeys`.** Looked up by `credential_id` before the user is
+  known — `getPasskeyByCredentialId` in
+  `backend/src/services/passkeyService.js` resolves the owner from the
+  credential, and the login flow reads and updates the row in
+  `completeVerifiedLogin` before any context exists. RLS there would
+  return zero rows and break passkey login.
+- **`webauthn_challenges`.** Looked up by challenge before the user is
+  known — `backend/src/utils/webauthn.js:96` resolves the owner with
+  `SELECT user_id FROM webauthn_challenges WHERE challenge = $1`.
+  Same rationale as `mfa_challenges`: the lookup is what discovers
+  the user.
 - **`security_events`** (audit log). `user_id` is populated for
   authenticated events but NULL for unauthenticated ones (failed
   logins, token replays) — audit rows must be writable with no user

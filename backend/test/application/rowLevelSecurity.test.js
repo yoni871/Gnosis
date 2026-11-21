@@ -51,7 +51,10 @@ const UNPROTECTED = ['users', 'email_verification_tokens', 'password_reset_token
     'licensed_chapter_cache', 'licensed_api_usage', 'licensed_ip_limits',
     // mfa_challenges is deliberately unprotected: its lookup is
     // token-derived before the user is known (docs/RowLevelSecurity.md).
-    'mfa_challenges'];
+    // user_passkeys and webauthn_challenges are the same: their lookups
+    // (by credential_id, by challenge) discover the user before any
+    // context exists, so RLS there would break login.
+    'mfa_challenges', 'user_passkeys', 'webauthn_challenges'];
 
 test('the app role cannot bypass RLS; exactly the seven user tables are forced', async () => {
     const { pool } = database;

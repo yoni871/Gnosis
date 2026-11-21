@@ -224,8 +224,8 @@ test('failed migration rolls back schema and history and can safely retry', asyn
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261112210000_add-note-titles']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261112180000_add-mfa-key-version']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261112130000_make-note-passage-optional']);
-    assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109215600_add-passkeys']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109220000_add-row-level-security']);
+    assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109215600_add-passkeys']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109200233_add-known-login-devices']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109194138_add-security-events']);
     assert.deepEqual((await run('app', 'down', { dir })).migrations, ['20261109150000_add-totp-mfa']);
