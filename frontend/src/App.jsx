@@ -73,6 +73,7 @@ function App() {
             <Route path='/privacy' element={<PrivacyPage />} />
 
             <Route path='/settings' element={<SettingsPage />} />
+            <Route path='/passkeys' element={<Navigate to='/settings' replace />} />
 
             <Route 
               path='/bible/:book/:chapter'

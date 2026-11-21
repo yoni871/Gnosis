@@ -35,6 +35,7 @@ if (require.main === module) {
         'test/auth/mfaCrypto.test.js', 'test/auth/mfaRecoveryCodes.test.js',
         'test/auth/mfaChallenge.test.js', 'test/auth/mfaTotp.test.js',
         'test/auth/mfaRoutes.test.js',
+        'test/auth/passkeys.test.js',
         'test/auth/serverConfig.test.js', 'test/auth/secretStrength.test.js',
         'test/auth/breachedPasswords.test.js', 'test/auth/passwordHash.test.js',
         'test/auth/loginMigration.test.js', 'test/config/environment.test.js',

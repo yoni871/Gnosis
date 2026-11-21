@@ -50,6 +50,25 @@ async function createSession(userId, verifiedPasswordHash) {
         createSessionInTransaction(client, userId, verifiedPasswordHash));
     return created;
 }
+async function createPasskeySessionInTransaction(client, userId) {
+    // A verified assertion with user verification is the fresh credential.
+    // Lock the account before reading its current MFA generation so a
+    // concurrent reset or MFA change cannot issue a stale session.
+    const session = { id: crypto.randomUUID(), user_id: userId };
+    const token = accessToken(session);
+    const refresh = fresh();
+    const result = await client.query('SELECT email, email_verified_at FROM users WHERE id = $1 FOR UPDATE', [userId]);
+    const account = result.rows[0];
+    if (!account?.email_verified_at) return null;
+    const mfa = await client.query('SELECT enrolled, mfa_generation FROM user_mfa WHERE user_id = $1', [userId]);
+    const enrolled = mfa.rows[0]?.enrolled === true;
+    if (isAdminEmail(account.email) && !enrolled) return null;
+    if (enrolled && !mfa.rows[0].mfa_generation) return null;
+    await client.query('INSERT INTO auth_sessions(id, user_id, expires_at, mfa_verified, mfa_generation) VALUES ($1, $2, $3, $4, $5)',
+        [session.id, userId, new Date(Date.now() + SESSION_MS), enrolled, enrolled ? mfa.rows[0].mfa_generation : null]);
+    await client.query('INSERT INTO auth_refresh_tokens(token_hash, session_id) VALUES ($1, $2)', [hash(refresh), session.id]);
+    return { token, refresh };
+}
 async function rotateSession(refresh) {
     if (!valid(refresh)) return null;
     const outcome = await transaction(async client => {
@@ -144,5 +163,5 @@ function browserSessionRequest(req, res, next) {
     }
     next();
 }
-module.exports = { ACCESS_SECONDS, SESSION_MS, createSession, createSessionInTransaction, rotateSession, revokeRefresh,
+module.exports = { ACCESS_SECONDS, SESSION_MS, createSession, createSessionInTransaction, createPasskeySessionInTransaction, rotateSession, revokeRefresh,
     revokeAccess, readCookie, setCookie, clearCookie, browserSessionRequest, hash };

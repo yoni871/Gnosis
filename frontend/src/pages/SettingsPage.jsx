@@ -7,6 +7,7 @@ import LandingFooter from "../components/LandingFooter";
 import PasswordInput from "../components/PasswordInput";
 import { deleteAccount } from "../services/authService";
 import MfaSettings from "../components/MfaSettings";
+import PasskeysPage from "./PasskeysPage";
 import { pageUrl } from "../utils/seo";
 import "./LandingPage.css";
 import "./SettingsPage.css";
@@ -90,6 +91,7 @@ export default function SettingsPage() {
                                 off by default.
                             </p>
                             <MfaSettings />
+                            <PasskeysPage embedded />
                         </section>
 
                         <section aria-labelledby="settings-delete-heading" className="settings-danger">

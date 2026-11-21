@@ -1,0 +1,364 @@
+{
+  "added": [
+    {
+      "kind": "column",
+      "name": "user_passkeys.backed_up",
+      "definition": {
+        "type": "boolean",
+        "default": "false",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.counter",
+      "definition": {
+        "type": "bigint",
+        "default": "0",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.created_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.credential_id",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.flagged_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.id",
+      "definition": {
+        "type": "uuid",
+        "default": "gen_random_uuid()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.label",
+      "definition": {
+        "type": "text",
+        "default": "''::text",
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.last_used_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.public_key",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.transports",
+      "definition": {
+        "type": "text[]",
+        "default": "'{}'::text[]",
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "user_passkeys.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "webauthn_challenges.challenge",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "webauthn_challenges.created_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": "now()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "webauthn_challenges.expires_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "webauthn_challenges.id",
+      "definition": {
+        "type": "uuid",
+        "default": "gen_random_uuid()",
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "webauthn_challenges.type",
+      "definition": {
+        "type": "text",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": "default",
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "webauthn_challenges.used_at",
+      "definition": {
+        "type": "timestamp with time zone",
+        "default": null,
+        "notNull": false,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "column",
+      "name": "webauthn_challenges.user_id",
+      "definition": {
+        "type": "integer",
+        "default": null,
+        "notNull": true,
+        "identity": "",
+        "collation": null,
+        "generated": ""
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "user_passkeys.user_passkeys_credential_id_key",
+      "definition": {
+        "sql": "UNIQUE (credential_id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "user_passkeys.user_passkeys_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "user_passkeys.user_passkeys_user_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "webauthn_challenges.webauthn_challenges_challenge_key",
+      "definition": {
+        "sql": "UNIQUE (challenge)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "webauthn_challenges.webauthn_challenges_pkey",
+      "definition": {
+        "sql": "PRIMARY KEY (id)",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "webauthn_challenges.webauthn_challenges_type_check",
+      "definition": {
+        "sql": "CHECK ((type = ANY (ARRAY['registration'::text, 'authentication'::text])))",
+        "validated": true
+      }
+    },
+    {
+      "kind": "constraint",
+      "name": "webauthn_challenges.webauthn_challenges_user_id_fkey",
+      "definition": {
+        "sql": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE",
+        "validated": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "user_passkeys_credential_id_key",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX user_passkeys_credential_id_key ON public.user_passkeys USING btree (credential_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "user_passkeys_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX user_passkeys_pkey ON public.user_passkeys USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "user_passkeys_user_id_idx",
+      "definition": {
+        "sql": "CREATE INDEX user_passkeys_user_id_idx ON public.user_passkeys USING btree (user_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "webauthn_challenges_challenge_key",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX webauthn_challenges_challenge_key ON public.webauthn_challenges USING btree (challenge)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "webauthn_challenges_expires_at_idx",
+      "definition": {
+        "sql": "CREATE INDEX webauthn_challenges_expires_at_idx ON public.webauthn_challenges USING btree (expires_at)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "webauthn_challenges_pkey",
+      "definition": {
+        "sql": "CREATE UNIQUE INDEX webauthn_challenges_pkey ON public.webauthn_challenges USING btree (id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "index",
+      "name": "webauthn_challenges_user_id_idx",
+      "definition": {
+        "sql": "CREATE INDEX webauthn_challenges_user_id_idx ON public.webauthn_challenges USING btree (user_id)",
+        "ready": true,
+        "valid": true
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "user_passkeys",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    },
+    {
+      "kind": "relation",
+      "name": "webauthn_challenges",
+      "definition": {
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "options": null,
+        "forceRls": false,
+        "persistence": "p"
+      }
+    }
+  ],
+  "removed": []
+}

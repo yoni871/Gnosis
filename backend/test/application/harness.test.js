@@ -66,6 +66,9 @@ test('migrated application schema permits only the approved runtime grants', asy
         for (const privilege of ['SELECT', 'INSERT']) expected.push(`${table}:${privilege}`);
     }
     expected.push('mfa_challenges:DELETE');
+    for (const table of ['user_passkeys', 'webauthn_challenges']) {
+        for (const privilege of ['SELECT', 'INSERT', 'DELETE']) expected.push(`${table}:${privilege}`);
+    }
     assert.deepEqual(grants.rows.map(row => `${row.table_name}:${row.privilege_type}`).sort(), expected.sort());
     assert.ok(grants.rows.every(row => row.is_grantable === 'NO'));
     const sequences = await pool.query(`SELECT c.relname,has_sequence_privilege(current_user,c.oid,'USAGE') AS usage,
@@ -117,7 +120,7 @@ test('issue #9 and #10 column grants allow exactly the approved column updates',
     const { pool } = database;
     const columns = await pool.query(`SELECT table_name,column_name,privilege_type FROM information_schema.role_column_grants
         WHERE grantee=current_user AND table_schema='public' AND privilege_type='UPDATE'
-        AND table_name IN ('users','email_verification_tokens','password_reset_tokens','user_mfa','mfa_challenges','mfa_recovery_codes') ORDER BY table_name,column_name`);
+        AND table_name IN ('users','email_verification_tokens','password_reset_tokens','user_mfa','mfa_challenges','mfa_recovery_codes','user_passkeys','webauthn_challenges') ORDER BY table_name,column_name`);
     assert.deepEqual(
         columns.rows.map(row => `${row.table_name}.${row.column_name}:${row.privilege_type}`),
         ['email_verification_tokens.consumed_reason:UPDATE', 'email_verification_tokens.used_at:UPDATE',
@@ -127,7 +130,10 @@ test('issue #9 and #10 column grants allow exactly the approved column updates',
             'user_mfa.enrolled:UPDATE', 'user_mfa.enrolled_at:UPDATE',
             'user_mfa.key_version:UPDATE', 'user_mfa.last_totp_step:UPDATE', 'user_mfa.mfa_generation:UPDATE',
             'user_mfa.secret_encrypted:UPDATE', 'user_mfa.updated_at:UPDATE',
-            'users.email_verified_at:UPDATE', 'users.password_hash:UPDATE']);
+            'user_passkeys.counter:UPDATE', 'user_passkeys.flagged_at:UPDATE',
+            'user_passkeys.label:UPDATE', 'user_passkeys.last_used_at:UPDATE',
+            'users.email_verified_at:UPDATE', 'users.password_hash:UPDATE',
+            'webauthn_challenges.used_at:UPDATE']);
     for (const [table, column] of [['users', 'id'], ['users', 'email'],
         ['users', 'first_name'], ['users', 'last_name'],
         ['email_verification_tokens', 'token_hash'], ['email_verification_tokens', 'user_id'],
@@ -138,7 +144,10 @@ test('issue #9 and #10 column grants allow exactly the approved column updates',
         ['mfa_challenges', 'token_hash'], ['mfa_challenges', 'user_id'],
         ['mfa_challenges', 'expires_at'], ['mfa_challenges', 'created_at'],
         ['mfa_recovery_codes', 'code_hash'], ['mfa_recovery_codes', 'code_salt'],
-        ['mfa_recovery_codes', 'user_id'], ['mfa_recovery_codes', 'created_at']]) {
+        ['mfa_recovery_codes', 'user_id'], ['mfa_recovery_codes', 'created_at'],
+        ['user_passkeys', 'user_id'], ['user_passkeys', 'credential_id'], ['user_passkeys', 'public_key'],
+        ['webauthn_challenges', 'user_id'], ['webauthn_challenges', 'challenge'],
+        ['webauthn_challenges', 'expires_at']]) {
         const check = await pool.query('SELECT has_column_privilege(current_user,$1,$2,$3) AS allowed',
             [`public.${table}`, column, 'UPDATE']);
         assert.equal(check.rows[0].allowed, false, `${table}.${column} must not be updatable`);

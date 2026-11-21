@@ -131,6 +131,20 @@ function validateLoginPassword(value) {
     return { value };
 }
 
+// Passkey labels are user-supplied display names (1-100 characters,
+// same bound as names). They are trimmed; an empty label is the
+// caller's problem to default, not a validation failure here.
+function validatePasskeyLabel(value) {
+    const trimmed = trimmedString(value);
+    if (trimmed === null || trimmed.length === 0) {
+        return { error: "Passkey name is required." };
+    }
+    if (charCount(trimmed) > MAX_NAME_CHARS) {
+        return { error: `Passkey name must be at most ${MAX_NAME_CHARS} characters.` };
+    }
+    return { value: trimmed };
+}
+
 function validateRegisterInput(body) {
     if (!isObjectBody(body)) {
         return { error: "Request body must be an object." };
@@ -226,6 +240,8 @@ function validateDeleteAccountInput(body) {
 }
 
 module.exports = {
+    validatePasskeyLabel,
+    validateLoginPassword,
     validateRegisterInput,
     validateLoginInput,
     validateForgotPasswordInput,

@@ -41,6 +41,7 @@ function applicationSuite(context, intentionalFailure = false, rotationOnly = fa
         'test/application/passwordReset.test.js', 'test/application/passwordMigration.test.js', 'test/application/auditLog.test.js',
         'test/application/securityAlerts.test.js', 'test/application/accountNotifications.test.js', 'test/application/accountDeletion.test.js',
         'test/application/mfa.test.js', 'test/application/bibleChapter.test.js',
+        'test/application/passkeys.test.js',
     ];
     return new Promise((resolve, reject) => {
         const child = spawn(process.execPath, ['--test', '--test-concurrency=1', ...files], {
@@ -53,8 +54,8 @@ function applicationSuite(context, intentionalFailure = false, rotationOnly = fa
             child.stdout.on('data', chunk => { output = (output + chunk).slice(-65536); });
             child.stderr.on('data', () => {});
         }
-        const timer = setTimeout(() => stopApplicationProcess(child, 'SIGTERM'), 90000);
-        const killTimer = setTimeout(() => stopApplicationProcess(child, 'SIGKILL'), 95000);
+        const timer = setTimeout(() => stopApplicationProcess(child, 'SIGTERM'), 180000);
+        const killTimer = setTimeout(() => stopApplicationProcess(child, 'SIGKILL'), 185000);
         child.once('error', () => {
             clearTimeout(timer); clearTimeout(killTimer);
             activeChild = undefined;

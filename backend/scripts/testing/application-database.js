@@ -109,7 +109,10 @@ async function withApplicationDatabase(admin, operator, migrationDatabase, callb
             GRANT DELETE ON mfa_challenges TO "${role}";
             GRANT UPDATE (enrolled,enrolled_at,secret_encrypted,key_version,last_totp_step,mfa_generation,updated_at) ON user_mfa TO "${role}";
             GRANT UPDATE (used_at, consumed_reason) ON mfa_challenges TO "${role}";
-            GRANT UPDATE (used_at) ON mfa_recovery_codes TO "${role}"`);
+            GRANT UPDATE (used_at) ON mfa_recovery_codes TO "${role}";
+            GRANT SELECT,INSERT,DELETE ON user_passkeys,webauthn_challenges TO "${role}";
+            GRANT UPDATE (counter,last_used_at,flagged_at,label) ON user_passkeys TO "${role}";
+            GRANT UPDATE (used_at) ON webauthn_challenges TO "${role}"`);
         // Small reference fixture; no imports, application data or test-owned schema.
         await provisioning.query("INSERT INTO bible_books(name) VALUES ('Synthetic harness book')");
         await provisioning.query(`WITH chapter AS (

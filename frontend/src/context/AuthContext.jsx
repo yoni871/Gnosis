@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, createContext } from "react";
 import { getProfile, loginUser, registerUser, refreshSession, logoutSession } from "../services/authService";
+import { loginWithPasskey } from "../services/passkeyService";
 import { verifyMfaChallenge } from "../services/mfaService";
 import { createAuthSessionGuard } from "./authSession";
 
@@ -181,6 +182,27 @@ export function AuthProvider({ children }) {
         return loginMfaWithTicket(challenge, code, ticket);
     }, [authGuard, loginMfaWithTicket]);
 
+    const loginPasskey = useCallback(async (email) => {
+        const ticket = authGuard.begin();
+        setIsAuthLoading(true);
+        try {
+            const { token: newToken } = await loginWithPasskey(email);
+            if (!authGuard.isCurrent(ticket)) return null;
+            const profile = await getProfile(newToken);
+            if (!authGuard.isCurrent(ticket)) return null;
+            updateToken(newToken);
+            setUser(profile);
+            return profile;
+        } catch (error) {
+            if (!authGuard.isCurrent(ticket)) return null;
+            updateToken(null);
+            setUser(null);
+            throw error;
+        } finally {
+            if (authGuard.isCurrent(ticket)) setIsAuthLoading(false);
+        }
+    }, [authGuard, updateToken]);
+
     const register = useCallback(async (userData) => {
         // Issue #9: registration creates an unverified account and does
         // NOT log in. It touches no session state at all: no ticket, no
@@ -273,6 +295,7 @@ export function AuthProvider({ children }) {
         isAuthLoading,
         login,
         loginMfa,
+        loginPasskey,
         register,
         logout
     }), [
@@ -284,6 +307,7 @@ export function AuthProvider({ children }) {
         isAuthLoading,
         login,
         loginMfa,
+        loginPasskey,
         register,
         logout
     ]);

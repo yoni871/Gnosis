@@ -155,3 +155,23 @@ test('family budget rejection leaves the current credential usable and does not 
     assert.ok(!queries.some(([sql]) => sql.includes('SET used_at') || sql.includes('INSERT INTO auth_refresh_tokens') || sql.includes('SET revoked_at')));
     assert.equal(queries.at(-1)[0], 'COMMIT');
 });
+
+test('passkey session refuses an admin without enrolled MFA', async () => {
+    const prior = process.env.ADMIN_EMAILS;
+    process.env.ADMIN_EMAILS = 'admin@example.invalid';
+    try {
+        behavior = async sql => {
+            if (sql.includes('SELECT email, email_verified_at FROM users')) {
+                return { rows: [{ email: 'admin@example.invalid', email_verified_at: new Date() }] };
+            }
+            if (sql.includes('SELECT enrolled, mfa_generation FROM user_mfa')) return { rows: [] };
+            throw new Error(`Unexpected query: ${sql}`);
+        };
+        const client = { query: async (sql, args) => { queries.push([sql, args]); return behavior(sql, args); } };
+        assert.equal(await sessions.createPasskeySessionInTransaction(client, 7), null);
+        assert.equal(queries.some(([sql]) => sql.includes('INSERT INTO auth_sessions')), false);
+    } finally {
+        if (prior === undefined) delete process.env.ADMIN_EMAILS;
+        else process.env.ADMIN_EMAILS = prior;
+    }
+});

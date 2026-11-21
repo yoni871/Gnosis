@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.20",
+    "@simplewebauthn/browser": "14.0.0",
     "@tailwindcss/vite": "^4.3.3",
     "@tiptap/core": "^3.33.1",
     "@tiptap/pm": "^3.33.1",

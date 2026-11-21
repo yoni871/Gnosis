@@ -6,6 +6,13 @@ import AuthContext from "../context/AuthContext";
 import { ThemeProvider } from "../context/ThemeContext";
 import SettingsPage from "./SettingsPage";
 
+vi.mock("../services/passkeyService", () => ({
+    listPasskeys: vi.fn().mockResolvedValue([]),
+    registerPasskey: vi.fn(),
+    renamePasskey: vi.fn(),
+    removePasskey: vi.fn(),
+}));
+
 const user = { id: 7, first_name: "Test", last_name: "Reader", email: "reader@example.invalid" };
 
 function response(body, status = 200) {

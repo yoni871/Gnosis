@@ -641,4 +641,5 @@ test("the exported policy table matches the approved limits", () => {
     assert.deepEqual(POLICIES.login_ip_email, { windowMs: 15 * 60 * 1000, limit: 5 });
     assert.deepEqual(POLICIES.login_ip, { windowMs: 15 * 60 * 1000, limit: 30 });
     assert.deepEqual(POLICIES.register_ip, { windowMs: 60 * 60 * 1000, limit: 5 });
+    assert.deepEqual(POLICIES.passkey_password_user, { windowMs: 15 * 60 * 1000, limit: 5 });
 });
