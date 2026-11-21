@@ -1,6 +1,7 @@
 const { withUserBudget, ensureCapacity } = require("../utils/storageBudget");
 const { readPage, pageRows, sendPage, knownResourceError } = require("../utils/privatePages");
 const pool = require("../db/db");
+const { withUser } = require("../db/userContext");
 const { bookExists } = require("../utils/bookValidation");
 const { logControllerError } = require("../utils/authErrors");
 
@@ -112,14 +113,14 @@ const getNotes = async (req, res) => {
     // utils/privatePages.js).
     try {
         const page = readPage(req, "notes");
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             SELECT * FROM notes
             WHERE user_id = $1 AND ($2::integer IS NULL OR id < $2)
             ORDER BY id DESC LIMIT $3
             `,
             [userId, page.cursor, page.limit + 1]
-        );
+        ));
 
         return sendPage(res, pageRows(result.rows, page.limit), page);
     } catch (error) {
@@ -137,14 +138,14 @@ const getNoteById = async (req, res) => {
     const noteId = req.params.id;
 
     try {
-        const result = await pool.query(
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             SELECT * FROM notes
             WHERE id = $1
             AND user_id = $2
             `,
             [noteId, userId]
-        );
+        ));
 
         if(result.rows.length === 0) {
             return res.status(404).json({
@@ -259,7 +260,7 @@ const deleteNote = async (req, res) => {
     const noteId = req.params.id;
 
     try {
-        const result = await pool.query (
+        const result = await withUser(pool, userId, (client) => client.query(
             `
             DELETE FROM notes
             WHERE id = $1
@@ -267,7 +268,7 @@ const deleteNote = async (req, res) => {
             RETURNING *
             `,
             [noteId, userId]
-        );
+        ));
 
         if (result.rows.length === 0) {
             return res.status(404).json({

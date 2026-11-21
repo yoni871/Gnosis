@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 const bcrypt = require("bcrypt");
 const crypto = require("node:crypto");
 const { contextFromEnvironment, createTestPool } = require("../helpers/application-database");
+const { withUser } = require("../../src/db/userContext");
 const { startBackend } = require("../helpers/backend-instance");
 const context = contextFromEnvironment();
 let database, worker;
@@ -230,8 +231,8 @@ test("a verified passkey session records the current MFA generation", async () =
     const account = await createUser("mfa-assurance");
     const credential = newCredential();
     await registerCredential(account, "MFA device", credential);
-    const enrolled = await database.pool.query(`INSERT INTO user_mfa(user_id,secret_encrypted,enrolled,enrolled_at)
-        VALUES ($1,'synthetic-encrypted-secret',TRUE,now()) RETURNING mfa_generation`, [account.id]);
+    const enrolled = await withUser(database.pool, account.id, (client) => client.query(`INSERT INTO user_mfa(user_id,secret_encrypted,enrolled,enrolled_at)
+        VALUES ($1,'synthetic-encrypted-secret',TRUE,now()) RETURNING mfa_generation`, [account.id]));
     const loggedIn = await loginWithPasskey(account, credential, 1);
     assert.equal(loggedIn.status, 200, JSON.stringify(loggedIn.data));
     const sessions = await database.pool.query(`SELECT mfa_verified,mfa_generation FROM auth_sessions

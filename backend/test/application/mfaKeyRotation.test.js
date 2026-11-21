@@ -5,6 +5,7 @@ const crypto = require('node:crypto');
 const { spawn } = require('node:child_process');
 const path = require('node:path');
 const { contextFromEnvironment, createTestPool } = require('../helpers/application-database');
+const { withUser } = require('../../src/db/userContext');
 const { startBackend } = require('../helpers/backend-instance');
 const { generateTotpCode } = require('../../src/utils/mfaTotp');
 const mfaService = require('../../src/services/mfaService');
@@ -68,11 +69,13 @@ test('rotation terminates on an undecryptable row, rotates the rest, and exits n
     assert.equal(confirmed.ok, true);
     // A corrupt enrolled row: valid base64 shape but not a ciphertext
     // K1 can decrypt (garbage bytes). It must be skipped, not looped.
+    // RLS: the seed runs under the owning user's context — a
+    // context-free insert as the app role is rejected 42501.
     const bad = await freshUser();
-    await database.pool.query(
+    await withUser(database.pool, bad.userId, client => client.query(
         `INSERT INTO user_mfa(user_id, secret_encrypted, key_version, enrolled, enrolled_at, updated_at)
          VALUES ($1, $2, 1, TRUE, now(), now())`,
-        [bad.userId, Buffer.from(crypto.randomBytes(48)).toString('base64')]);
+        [bad.userId, Buffer.from(crypto.randomBytes(48)).toString('base64')]));
     const url = `postgresql://${encodeURIComponent(context.user)}:${encodeURIComponent(context.password)}@127.0.0.1:${context.port}/${context.database}`;
     const result = await runRotation({
         MFA_ENCRYPTION_KEY: K2,
@@ -90,8 +93,12 @@ test('rotation terminates on an undecryptable row, rotates the rest, and exits n
     assert.equal(summary.failed, 1, 'the corrupt row must be reported as failed');
     assert.equal(summary.remaining, 1, 'the corrupt row is still un-rotated');
     // The valid row is now at version 2; the corrupt row is untouched.
-    const goodRow = await database.pool.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [good.userId]);
+    // RLS: these reads run under each owning user's context — a
+    // context-free read as the app role sees zero rows.
+    const goodRow = await withUser(database.pool, good.userId, client =>
+        client.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [good.userId]));
     assert.equal(goodRow.rows[0].key_version, 2);
-    const badRow = await database.pool.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [bad.userId]);
+    const badRow = await withUser(database.pool, bad.userId, client =>
+        client.query('SELECT key_version FROM user_mfa WHERE user_id = $1', [bad.userId]));
     assert.equal(badRow.rows[0].key_version, 1);
 });

@@ -10,24 +10,38 @@ test.after(() => { delete process.env.RATE_LIMIT_KEY_SECRET; });
 
 // Minimal fake database: records every query and answers the device
 // insert/update from an in-memory set of (user_id, device_key) pairs.
+// recordLoginDevice wraps the device queries in withUser, so the fake
+// also answers pool.connect: the client handles BEGIN/COMMIT/ROLLBACK
+// and set_config itself and delegates every other query to the same
+// fake query function (same pattern as the connectMock in
+// test/application/crossProjectValidation.test.js).
 function fakeDb() {
     const devices = new Set();
     const calls = [];
+    const query = async (sql, params) => {
+        calls.push([sql, params]);
+        if (/INSERT INTO known_login_devices/.test(sql)) {
+            const key = `${params[0]}:${params[1].toString('hex')}`;
+            if (devices.has(key)) return { rows: [] };
+            devices.add(key);
+            return { rows: [{ id: devices.size }] };
+        }
+        if (/UPDATE known_login_devices SET last_seen_at/.test(sql)) return { rowCount: 1 };
+        if (/INSERT INTO security_events/.test(sql)) return { rowCount: 1 };
+        throw new Error(`unexpected query: ${sql}`);
+    };
     return {
         calls,
         devices,
-        query: async (sql, params) => {
-            calls.push([sql, params]);
-            if (/INSERT INTO known_login_devices/.test(sql)) {
-                const key = `${params[0]}:${params[1].toString('hex')}`;
-                if (devices.has(key)) return { rows: [] };
-                devices.add(key);
-                return { rows: [{ id: devices.size }] };
-            }
-            if (/UPDATE known_login_devices SET last_seen_at/.test(sql)) return { rowCount: 1 };
-            if (/INSERT INTO security_events/.test(sql)) return { rowCount: 1 };
-            throw new Error(`unexpected query: ${sql}`);
-        },
+        query,
+        connect: async () => ({
+            query: async (sql, params) => {
+                if (typeof sql === "string" && /^\s*(BEGIN|COMMIT|ROLLBACK)\s*;?\s*$/i.test(sql)) return { rows: [] };
+                if (typeof sql === "string" && sql.includes("set_config")) return { rows: [{ set_config: String(params?.[0] ?? "") }] };
+                return query(sql, params);
+            },
+            release: () => {},
+        }),
     };
 }
 
@@ -127,7 +141,11 @@ test('a throwing notifier never flips isNew and logs one safe line', async () =>
 });
 
 test('detection failure never throws and never reports a new device', async () => {
-    const failing = { query: async () => { throw Object.assign(new Error('synthetic failure naming a secret value'), { code: '08006' }); } };
+    // recordLoginDevice wraps the device queries in withUser, so the
+    // failure must surface through pool.connect, not pool.query: the
+    // client throws on BEGIN, and again on the ROLLBACK that follows.
+    const failingQuery = async () => { throw Object.assign(new Error('synthetic failure naming a secret value'), { code: '08006' }); };
+    const failing = { query: failingQuery, connect: async () => ({ query: failingQuery, release: () => {} }) };
     const lines = [];
     const original = console.error;
     console.error = (...args) => { lines.push(args.join(' ')); };

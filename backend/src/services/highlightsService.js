@@ -2,6 +2,7 @@ const { lockBudget, ensureCapacity } = require("../utils/storageBudget");
 const { pageRows } = require("../utils/privatePages");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
+const { withUser, setUserContext } = require("../db/userContext");
 const { logControllerError } = require("../utils/authErrors");
 
 // Remove duplicate coordinates before validating and saving the selection.
@@ -61,9 +62,11 @@ async function saveHighlights(userId, bookId, verses, color) {
 
     //borrow one connection for all operations in this transaction
     const client = await pool.connect();
+    let broken = false;
     try {
         //start group of database operations that succeed or fail
         await client.query("BEGIN");
+        await setUserContext(client, userId);
         await lockBudget(client, userId);
         const existing = await client.query(`SELECT COUNT(*)::int AS count FROM highlights h
             JOIN jsonb_to_recordset($2::jsonb) AS p(chapter integer, verse integer)
@@ -108,12 +111,13 @@ async function saveHighlights(userId, bookId, verses, color) {
         } catch (rollbackError) {
             // Record cleanup failure without replacing the original error.
             // Only route, kind, and safe code are logged (audit F02).
+            broken = true;
             logControllerError("highlights.save", "rollback-failed", rollbackError);
         }
 
         throw error;
     } finally {
-        client.release();
+        client.release(broken);
     }
 }
 
@@ -126,7 +130,7 @@ async function saveHighlights(userId, bookId, verses, color) {
 // for the legacy bare-array return).
 async function getHighlights(userId, page = null) {
     const config = page || { limit: 100, cursor: null, bookId: null, chapter: null };
-    const result = await pool.query(
+    const result = await withUser(pool, userId, (client) => client.query(
         `
         SELECT h.*
         FROM highlights h
@@ -135,7 +139,7 @@ async function getHighlights(userId, page = null) {
         ORDER BY h.id DESC LIMIT $3
         `,
         [userId, config.cursor, config.limit + 1, config.bookId, config.chapter]
-    );
+    ));
 
     // Return an empty array when the user has no highlights.
     const resultPage = pageRows(result.rows, config.limit);
@@ -154,7 +158,7 @@ async function getHighlights(userId, page = null) {
 
 // Delete a highlight only when it belongs to the authenticated user.
 async function deleteHighlight(userId, highlightId) {
-    const result = await pool.query(
+    const result = await withUser(pool, userId, (client) => client.query(
         `
         DELETE FROM highlights
         WHERE id = $1
@@ -162,7 +166,7 @@ async function deleteHighlight(userId, highlightId) {
         RETURNING *
         `,
         [highlightId, userId]
-    );
+    ));
 
     // Return the removed record, or null if no owned record matched.
     return result.rows[0] || null;
@@ -172,7 +176,7 @@ async function deleteHighlight(userId, highlightId) {
 async function deleteHighlightsInPassage(userId, bookId, verses) {
     const selected = uniqueVerses(verses);
 
-    const result = await pool.query(
+    const result = await withUser(pool, userId, (client) => client.query(
         `
         DELETE FROM highlights h
         USING jsonb_to_recordset($3::jsonb)
@@ -184,7 +188,7 @@ async function deleteHighlightsInPassage(userId, bookId, verses) {
         RETURNING h.*
         `,
         [userId, bookId, JSON.stringify(selected)]
-    );
+    ));
 
     return result.rows;
 }

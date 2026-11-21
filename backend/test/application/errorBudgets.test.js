@@ -33,7 +33,7 @@ const queryMock = test.mock.method(pool, "query", async (sql, params) => {
     if (typeof sql === "string" && sql.includes("pg_try_advisory_xact_lock")) {
         return { rows: [{ locked: true }] };
     }
-    if (sql === "BEGIN" || sql === "COMMIT" || sql === "ROLLBACK") {
+    if ((typeof sql === "string" && sql.includes("set_config('app.user_id'")) || sql === "BEGIN" || sql === "COMMIT" || sql === "ROLLBACK") {
         return { rows: [] };
     }
     if (typeof sql === "string" && sql.includes("COUNT(*)")) {

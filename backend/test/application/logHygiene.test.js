@@ -107,10 +107,14 @@ test("logPoolError logs only the subsystem and safe code", async () => {
 });
 
 test("a notes-list database failure logs only allowlisted fields", async () => {
-    const originalQuery = pool.query;
-    pool.query = async () => {
-        throw nastyDbError();
-    };
+    const originalConnect = pool.connect;
+    pool.connect = async () => ({
+        query: async sql => {
+            if (sql === "BEGIN" || sql === "COMMIT" || sql === "ROLLBACK" || sql.includes("set_config")) return { rows: [] };
+            throw nastyDbError();
+        },
+        release() {},
+    });
     const res = fakeRes();
     try {
         const seen = await captureConsoleError(async () => {
@@ -130,7 +134,7 @@ test("a notes-list database failure logs only allowlisted fields", async () => {
         assert.ok(!text.includes("duplicate key"), text);
         assert.ok(!text.includes("/secret/path"), text);
     } finally {
-        pool.query = originalQuery;
+        pool.connect = originalConnect;
     }
 });
 

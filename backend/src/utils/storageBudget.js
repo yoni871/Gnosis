@@ -1,4 +1,5 @@
 const pool = require('../db/db');
+const { setUserContext } = require('../db/userContext');
 const { publicError } = require('./privatePages');
 const LIMITS = Object.freeze({ notes: 1000, bookmarks: 2000, highlights: 10000 });
 const NOTE_BYTES = 2 * 1024 * 1024;
@@ -40,7 +41,9 @@ async function withUserBudget(userId, work) {
     const client = await pool.connect();
     let broken = false;
     try {
-        await client.query('BEGIN'); await lockBudget(client, userId);
+        await client.query('BEGIN');
+        await setUserContext(client, userId);
+        await lockBudget(client, userId);
         const result = await work(client);
         await client.query('COMMIT'); return result;
     } catch (error) {
