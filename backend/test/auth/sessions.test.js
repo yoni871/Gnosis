@@ -165,6 +165,7 @@ test('passkey session refuses an admin without enrolled MFA', async () => {
                 return { rows: [{ email: 'admin@example.invalid', email_verified_at: new Date() }] };
             }
             if (sql.includes('SELECT enrolled, mfa_generation FROM user_mfa')) return { rows: [] };
+            if (typeof sql === 'string' && sql.includes("set_config('app.user_id'")) return { rows: [] };
             throw new Error(`Unexpected query: ${sql}`);
         };
         const client = { query: async (sql, args) => { queries.push([sql, args]); return behavior(sql, args); } };
