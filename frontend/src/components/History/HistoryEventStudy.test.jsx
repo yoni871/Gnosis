@@ -432,6 +432,27 @@ describe("HistoryEventStudy — category record", () => {
         expect(screen.getByText("The patriarchal era in brief.")).toBeInTheDocument();
     });
 
+    it("renders the top-level Ancient World prose in the Context tab when a category has no ### subsections (Joshua)", async () => {
+        // Regression: eight Joshua categories (e.g. Achan) carry their
+        // Ancient World prose entirely at the top level, with no ###
+        // subheadings. The Context tab used to render empty for them —
+        // HistoryAncientWorld returned null with zero subsections and
+        // the top-level prose was never passed through.
+        const user = userEvent.setup();
+        vi.mocked(loadCategorySections).mockResolvedValueOnce({
+            ...FIXTURE_CATEGORY_SECTIONS,
+            ancientWorld: { markdown: "Achan Ancient World prose with no subsections.", footnotes: [] },
+            ancientWorldSubsections: [],
+        });
+        renderCategoryStudy();
+        await waitFor(() => expect(screen.getByText("Patriarchs overview prose.")).toBeInTheDocument());
+        await user.click(screen.getByRole("tab", { name: "Context" }));
+        expect(screen.getByRole("heading", { name: "Ancient World" })).toBeInTheDocument();
+        expect(screen.getByText("Achan Ancient World prose with no subsections.")).toBeInTheDocument();
+        // No accordion: there are no subsections to expand.
+        expect(screen.queryByRole("button", { name: /The patriarchs in the ancient Near East/ })).toBeNull();
+    });
+
     it("defaults the companion to the representative primaryScripture and never fetches the fullRange", async () => {
         vi.mocked(getBibleChapter).mockClear();
         renderCategoryStudy();

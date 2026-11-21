@@ -251,7 +251,10 @@ export default function HistoryEventStudy({ record, bookId, onBackToBooks }) {
                                 <HistoryOverview sections={sections} event={record} />
                             )}
                             {activeTab === "ancient-world" && (
-                                <HistoryAncientWorld subsections={sections.ancientWorldSubsections} />
+                                <HistoryAncientWorld
+                                    ancientWorld={sections.ancientWorld}
+                                    subsections={sections.ancientWorldSubsections}
+                                />
                             )}
                             {activeTab === "scripture" && (
                                 <HistoryScriptureTab event={record} onOpenPassage={openCompanion} />
