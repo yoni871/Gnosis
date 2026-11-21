@@ -902,7 +902,7 @@
     "pagesOrSection": "8.1 (September 1982): 19–23",
     "url": "https://mail.biblicalstudies.org.uk/article_covenant_lucas.html",
     "verification": "verified",
-    "verificationDetail": "Read directly in full 2026-11-17 (Themelios 8.1, September 1982: 19–23; biblicalstudies.org.uk full text). Six-element suzerainty-treaty form confirmed verbatim: (1) Preamble, (2) Historical prologue, (3) Stipulations (basic, detailed), (4) Document clause (deposition and periodic reading), (5) Witnesses (a long list of gods), (6) Curses and blessings; “Mendenhall's thesis has never been without its critics, but opposition to it seems to be becoming increasingly fashionable.” Mendenhall's and Korošec's monographs were not opened.",
+    "verificationDetail": "Read directly in full 2026-11-17 (Themelios 8.1, September 1982: 19–23; biblicalstudies.org.uk full text). Six-element suzerainty-treaty form confirmed verbatim: (1) Preamble, (2) Historical prologue, (3) Stipulations (basic, detailed), (4) Document clause (deposition and periodic reading), (5) Witnesses (a long list of gods), (6) Curses and blessings; “Mendenhall's thesis has never been without its critics, but opposition to it seems to be becoming increasingly fashionable.” Mendenhall's and Korošec's monographs were not opened. Lucas maps the form to Exodus 20 only \"partially\", marking the witnesses element \"Not appropriate\".",
     "licenseNote": "Short quotation only."
   },
   "source-hastings-rainbow": {
@@ -1634,18 +1634,6 @@
     "verification": "not-independently-verified",
     "verificationDetail": "Rekhmire tomb (TT71), 18th Dynasty. Described via Hoffmeier BAR 2012 / Kitchen secondary summaries (OP, 2026-11-18); the painting itself not directly inspected. Claim resting on it (clm-op-014) is Probable and second-hand.",
     "licenseNote": "Ancient artifact, public domain; modern descriptions — paraphrase only."
-  },
-  "source-lucas-themelios-covenant-treaty": {
-    "id": "source-lucas-themelios-covenant-treaty",
-    "author": "E. C. Lucas",
-    "title": "Covenant, Treaty, and Prophecy (Themelios 8.1)",
-    "publisher": "Themelios 8.1 (September 1982), pp. 19–23",
-    "year": 1982,
-    "pagesOrSection": "Themelios 8.1 (September 1982), pp. 19–23",
-    "url": "https://mail.biblicalstudies.org.uk/article_covenant_lucas.html",
-    "verification": "verified",
-    "verificationDetail": "E. C. Lucas, \"Covenant, Treaty, and Prophecy\", Themelios 8.1 (September 1982), pp. 19–23. Read in full (Dev 1, 2026-11-18). States Mendenhall's six-element Hittite suzerainty-treaty form verbatim (preamble, historical prologue, stipulations, document clause, witnesses, blessings and curses) and maps it to Exodus 20 only \"partially\", with the witnesses element marked \"Not appropriate\". Cited by clm-co-081.",
-    "licenseNote": "Website content; cite with attribution, do not reproduce."
   },
   "source-biblicaltraining-mount-sinai": {
     "id": "source-biblicaltraining-mount-sinai",
