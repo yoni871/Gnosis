@@ -2931,8 +2931,8 @@
     "publisher": "Masoretic textual tradition",
     "pagesOrSection": "Judges 1–21",
     "url": "https://www.sefaria.org/Judges",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Partially examined (Steps 1–3, 2026-11-21): Judges 1 vv. 1–36 read in full in Hebrew and JPS English via Mechon Mamre; the listed Sefaria URL is JS-rendered and returned only UI chrome with no verse text, and Judges 2–21 were not read in this pass. The Step 3 KJV check verified the KJV text (618 verses), not S001's Masoretic/Sefaria text, so it does not upgrade this source."
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-21): Judges 1–21 read in full in Hebrew (+ JPS English) via Mechon Mamre. Judges 1 vv. 1–36 read in full in Steps 1–3; Judges 2–21 read in full in the Phase 2 S001 pass (chapters 2–21, all verses, Mechon Mamre pt0702–pt0721). Per-chapter records: verification/s001-read-ch02-06.md, s001-read-ch07-11.md, s001-read-ch12-16.md, s001-read-ch17-21.md; consolidated note: verification/S001-VERIFICATION-NOTE.md. The listed Sefaria URL is JS-rendered and returns only UI chrome; the text was read at Mechon Mamre instead. The Step 3 KJV check verified the KJV text (618 verses), not this Masoretic text, and is not the basis for this rating. Biblical narrative, not independent verification of the events narrated."
   },
   "source-nets-judges-greek-texts": {
     "id": "source-nets-judges-greek-texts",
