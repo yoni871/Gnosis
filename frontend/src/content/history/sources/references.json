@@ -2923,5 +2923,153 @@
     "title": "Note on Judges 19:22–25",
     "verification": "verified",
     "verificationDetail": "Note on Judges 19:22–25 (verified in Step 5, 2026-11-21). Observes that this part of the story closely parallels the assault on Lot's angelic visitors in Genesis 19:4–8. Draft footnote key: USCCB."
+  },
+  "source-hebrew-bible-judges-masoretic-text": {
+    "id": "source-hebrew-bible-judges-masoretic-text",
+    "author": "Hebrew Bible",
+    "title": "Judges 1–21",
+    "publisher": "Masoretic textual tradition",
+    "pagesOrSection": "Judges 1–21",
+    "url": "https://www.sefaria.org/Judges",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Partially examined (Steps 1–3, 2026-11-21): Judges 1 vv. 1–36 read in full in Hebrew and JPS English via Mechon Mamre; the listed Sefaria URL is JS-rendered and returned only UI chrome with no verse text, and Judges 2–21 were not read in this pass. The Step 3 KJV check verified the KJV text (618 verses), not S001's Masoretic/Sefaria text, so it does not upgrade this source."
+  },
+  "source-nets-judges-greek-texts": {
+    "id": "source-nets-judges-greek-texts",
+    "author": "New English Translation of the Septuagint",
+    "title": "Judges (A and B Greek texts)",
+    "publisher": "NETS; Oxford University Press, 2007/2009 edition",
+    "pagesOrSection": "Judges 1; introductory discussion",
+    "url": "https://ccat.sas.upenn.edu/nets/edition/07-judges-nets.pdf",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Partially examined (Steps 1–3, 2026-11-21): 'To the Reader' introduction pp. 195–198, Judges 1 A+B vv. 1–36 and Judges 2 opening, Judges 18:27–31 A+B, and Judges 19:1–30 A+B read in full, directly verifying the 1:18 divergence (negative in both recensions) and the 18:30 Moyses/Manasses split; Judges 3–17 and 20–21 were not read, so the work as a whole is not verified."
+  },
+  "source-ilan-dan-iv-iron-age-i-settlement": {
+    "id": "source-ilan-dan-iv-iron-age-i-settlement",
+    "author": "David Ilan et al.",
+    "title": "DAN IV: The Iron Age I Settlement",
+    "publisher": "Annual of ASOR 69; ASOR, 2019",
+    "year": 2019,
+    "pagesOrSection": "Iron I Tel Dan",
+    "url": "https://www.jstor.org/stable/j.ctvw04drv",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Abstract-only (Steps 1–3, 2026-11-21): no chapter content read; the JSTOR stable page was blocked (client challenge) and the ISD distributor page returned a generic storefront listing with no DAN IV product content. No stratigraphic chapter was read, so nothing here verifies Tel Dan stratigraphy."
+  },
+  "source-feldman-ancient-dna-philistines-science-advances-2019": {
+    "id": "source-feldman-ancient-dna-philistines-science-advances-2019",
+    "author": "Michal Feldman et al.",
+    "title": "Ancient DNA sheds light on the genetic origins of early Iron Age Philistines",
+    "publisher": "Science Advances 5(7), eaax0061 (2019)",
+    "year": 2019,
+    "pagesOrSection": "Ashkelon Late Bronze–Iron I populations",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6609216",
+    "verification": "verified",
+    "verificationDetail": "Full main text read via PMC (Steps 1–3, 2026-11-21): Abstract, Introduction, Results, Discussion, Materials and Methods and Acknowledgments (1,059 extracted lines). Supports JCL-09-003's narrowed wording only — transient European-related admixture amid predominantly Levantine ancestry in early Iron Age Ashkelon — and nothing about Samson episodes or a Dagon temple; supplementary data files were not re-analyzed."
+  },
+  "source-frolov-how-old-is-the-song-of-deborah-jsot-2011": {
+    "id": "source-frolov-how-old-is-the-song-of-deborah-jsot-2011",
+    "author": "Serge Frolov",
+    "title": "How Old Is the Song of Deborah?",
+    "publisher": "Journal for the Study of the Old Testament 36(2) (2011), 163–184",
+    "year": 2011,
+    "pagesOrSection": "Judges 5 dating",
+    "url": "https://journals.sagepub.com/doi/10.1177/0309089211423720",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Abstract-only (Steps 1–3, 2026-11-21): abstract read in full plus all 59 footnotes (SAGE page, 362 lines), documenting the scholarly split over the Song's date; the article body (pp. 163–184) is paywalled and was not read, so no positive dating statement is grounded by this source."
+  },
+  "source-mayfield-accounts-of-deborah-cbr-2009": {
+    "id": "source-mayfield-accounts-of-deborah-cbr-2009",
+    "author": "Tyler Mayfield",
+    "title": "The Accounts of Deborah (Judges 4–5) in Recent Research",
+    "publisher": "Currents in Biblical Research 7(3) (2009)",
+    "year": 2009,
+    "pagesOrSection": "Judges 4–5",
+    "url": "https://journals.sagepub.com/doi/10.1177/1476993X09104456",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Abstract-only (Steps 1–3, 2026-11-21): abstract read in full plus the full reference list (SAGE page, 294 lines); the article body is paywalled and was not read. See candidate_upgrades: Step 4a grounding read the Judges 5 section (pp. 321–329) in full, which the EM may use to upgrade this entry — the Steps 1–3 value above is retained here."
+  },
+  "source-koci-whose-story-which-sacrifice-jephthahs-daughter": {
+    "id": "source-koci-whose-story-which-sacrifice-jephthahs-daughter",
+    "author": "Katerina Kočí",
+    "title": "Whose Story? Which Sacrifice? On the Story of Jephthah's Daughter",
+    "publisher": "Open Theology 7 (2021), 331–344",
+    "year": 2021,
+    "pagesOrSection": "Judges 11:29–40",
+    "url": "https://www.degruyterbrill.com/document/doi/10.1515/opth-2020-0167/html",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Abstract-only (Steps 1–3, 2026-11-21): DOAJ abstract read in full (Girardian framework; shared responsibility for the daughter's death); the De Gruyter full text returned HTTP 405 on both the listed URL and the DOI, so the full text was not read. Phase 2's E25 full-text claim could not be reproduced."
+  },
+  "source-reiss-sacrifice-of-jephthahs-daughter-louvain-studies-2012": {
+    "id": "source-reiss-sacrifice-of-jephthahs-daughter-louvain-studies-2012",
+    "author": "Moshe Reiss",
+    "title": "The Sacrifice of Jephthah's Daughter: Jewish and Christian Perspectives",
+    "publisher": "Louvain Studies 36(4) (2012), 231–336",
+    "year": 2012,
+    "pagesOrSection": "History of interpretation Judges 11",
+    "url": "https://poj.peeters-leuven.be/content.php?id=3019239&journal_code=LS&url=article.php",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Abstract-only (Steps 1–3, 2026-11-21): abstract and full bibliographic details read (Peeters page, 22 lines) — early Jewish/Christian commentators interpreted the text literally; the 106-page article body was not read (behind 'Download article', paywalled/registration). Supports the literal-sacrifice side of JCL-08-002's narrowed wording at abstract level only."
+  },
+  "source-finkelstein-mazar-quest-for-the-historical-israel-2007": {
+    "id": "source-finkelstein-mazar-quest-for-the-historical-israel-2007",
+    "author": "Israel Finkelstein and Amihai Mazar",
+    "title": "The Quest for the Historical Israel",
+    "publisher": "Society of Biblical Literature, 2007",
+    "year": 2007,
+    "pagesOrSection": "Late Bronze–Iron Age settlement",
+    "url": "https://www.sbl-site.org/wp-content/uploads/2024/12/FinkelsteinMazar.pdf",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Partially examined (Steps 1–3, 2026-11-21): front matter, Contents, Preface, Introduction (pp. 1–4) and Part 1 summary (pp. 5–6) read in full, plus Finkelstein pp. 73–78 (Israelite emergence; Judg 1 northern-tribes failure; ~250 Iron I highland settlements) and Mazar pp. 92–96 (Iron I hill-country society; Shiloh, Mizpah, Dan; Judg 1:27–29 corroborated by Canaanite continuity). The whole 230-page book was not read cover-to-cover."
+  },
+  "source-abr-abimelech-at-shechem": {
+    "id": "source-abr-abimelech-at-shechem",
+    "author": "Associates for Biblical Research",
+    "title": "Abimelech at Shechem",
+    "publisher": "Online archaeology essay",
+    "pagesOrSection": "Judges 9 and Tell Balata",
+    "url": "https://biblearchaeology.org/research-articles/abimelech-at-shechem/",
+    "verification": "verified",
+    "verificationDetail": "Full essay read (Steps 1–3, 2026-11-21): entire 91-line page including bibliography. Caveat: a confessional secondary source that asserts the Abimelech attribution (Iron I violent destruction ca. 1125–1100 BCE, fortress-temple identified with the Judges 9 temple) its own bibliography does not prove; it supports the narrowed JCL-06-002 wording only insofar as that wording already says the association is interpretive, and does not independently prove the event link."
+  },
+  "source-tyson-archaeology-ammon-ammonites-oxford-bibliographies": {
+    "id": "source-tyson-archaeology-ammon-ammonites-oxford-bibliographies",
+    "author": "Craig W. Tyson",
+    "title": "Archaeology and Material Culture of Ammon and the Ammonites",
+    "publisher": "Oxford Bibliographies (published 24 September 2020)",
+    "year": 2020,
+    "pagesOrSection": "Iron Age Ammon",
+    "url": "https://doi.org/10.1093/obo/9780195393361-0279",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Partially examined (Steps 1–3, 2026-11-21): OUP Introduction extract read in full (137 lines) — earliest evidence naming the Ammonites is 9th c. BCE; Iron I–IIA site uptick; Ammonite polity Iron IIB–IIC. The full annotated bibliography is behind an access wall and was not read, so this is not a full verification of the bibliography."
+  },
+  "source-biblical-texts-canonical-cross-references": {
+    "id": "source-biblical-texts-canonical-cross-references",
+    "author": "Jewish / Christian biblical texts",
+    "title": "Joshua, Deuteronomy, Numbers, Samuel, Kings, Psalms, Hebrews",
+    "publisher": "Canonical cross-references (MT and Greek textual witnesses vary)",
+    "pagesOrSection": "Verses identified per individual connections",
+    "url": "https://www.sefaria.org/texts/Tanakh",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Partially examined (Steps 1–3, 2026-11-21): cross-referenced verses were read only where covered by the S001/S009 reads in this pass (Judges 1 via Mechon Mamre; NETS Judges 1–2 and 18–19). No systematic read of the cited cross-reference passages (Gen 19; Num 6; Deut; Josh; 1 Sam; 1 Kgs; Ps; Heb) was done, and the listed Sefaria landing page was not fetched (same JS-rendering limitation as S001/S010)."
+  },
+  "source-shechem-tell-balata-archaeological-overview": {
+    "id": "source-shechem-tell-balata-archaeological-overview",
+    "author": "Shechem archaeological overview",
+    "title": "Shechem (Tell Balata)",
+    "publisher": "Biblical Archaeology website",
+    "pagesOrSection": "Shechem temple and gate",
+    "url": "https://biblical-archaeology.org/en/locations/shechem/",
+    "verification": "verified",
+    "verificationDetail": "Full page read (Steps 1–3, 2026-11-21): entire 59-line overview (updated 2026-11-07) — MB 'Cyclopean' wall, gates and fortress temple; Iron I city 'destroyed in the 12th or 11th century BCE'; 'Some identify it with the house of El-berith in the Abimelech story.' Site synopsis only; final excavation publications are still needed for any positive event claim, and it supports the narrowed JCL-06-002 wording (temple real; identification interpretive)."
+  },
+  "source-gibeah-tell-el-ful-archaeological-overview": {
+    "id": "source-gibeah-tell-el-ful-archaeological-overview",
+    "author": "Gibeah archaeological overview",
+    "title": "Gibeah of Saul / Tell el-Ful",
+    "publisher": "Biblical Archaeology website",
+    "pagesOrSection": "Gibeah geography",
+    "url": "https://biblical-archaeology.org/en/locations/gibeah-tell-el-ful/",
+    "verification": "verified",
+    "verificationDetail": "Full page read (Steps 1–3, 2026-11-21): entire 92-line overview (updated 2026-11-20) — 'usually identified with Tell el-Ful'; Albright identification and Josephus 30 stadia; Robinson/Jaba' alternative; Finkelstein 2011 rejection; excavation history; 'The identification remains debated.' Synopsis only and cannot prove the crime narrative; directly supports the narrowed JCL-11-002 wording (identification contested) and the JCL-12-004 exclusion (no casualty archaeology)."
   }
 }
