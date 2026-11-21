@@ -10,11 +10,15 @@ The dispute in Joshua 22 develops through reported action, alarm, delegation and
 
 ## Ancient World
 
+### Return, witness, and the law
+
 Joshua 22:1–9 narrates the return of the east-bank tribes after fulfilling their obligation alongside the other tribes. The Jordan then becomes a perceived boundary of identity in 22:24–25. These textual dynamics explain the altar dispute; they do not establish an independently dated boundary monument.
 
 In Joshua 22, the eastern tribes explain that their great altar is a witness rather than a rival place of sacrifice (22:26–29). This stated purpose is the decisive distinction in the dialogue. The text does not identify an excavated altar or determine its actual function through material evidence.
 
 Deuteronomy 12 provides the central literary background for concerns over sacrificial worship. The chapter's prescriptions about a chosen place of worship help explain why western leaders would find a large altar alarming, although the history and date of the centralization language are subjects of scholarly discussion. A comparative article must not assume that every modern reconstruction of the cult's development can be read directly into a single story. Rather, it can describe how the final canonical narrative interprets the act through its own legal and theological framework. [^source-bible-gateway-kjv]
+
+### Precedents, parallels, and the name
 
 The western delegation recalls Peor (Numbers 25) and Achan (Joshua 7) as examples of transgression with communal consequences (Joshua 22:17–20). The connections are explicit in the narrative. No additional independent historical reconstruction is necessary to establish their literary role.
 
@@ -22,11 +26,15 @@ The memorial role attributed to the altar in Joshua 22 can be compared at the te
 
 Joshua 22:34 has a recognized textual issue: the name 'Witness' is supplied by certain Hebrew manuscripts and the Syriac, while the usual Hebrew wording does not straightforwardly contain it as the altar's name. The translation commentary records this distinction. Editors must confirm the wording in their selected Bible version and avoid silently treating 'Witness' as an undisputed original name. [^source-sil-tips-joshua-22-34-translation-commentary]
 
+### Unity, suspicion, and precedent
+
 Unlike stories of walls and burned cities, this chapter's key historical question is not whether a named destruction deposit can be identified. It concerns how geographically separated groups sustain common institutions and manage suspicion. Even without independently recovering the monument, the account can be read as a vivid exploration of political unity, sacred space, evidentiary claims, and negotiated peace. Its dialogue supplies the argument; archaeological parallels, where used, remain supplementary. [^source-sil-tips-joshua-22-34-translation-commentary]
 
 The geographical position of the altar matters because the Jordan separates communities that nevertheless claim a shared covenant. Joshua 22:10’s location language has textual and translation difficulties, so its exact bank or side cannot be asserted merely from an English rendering. The delegation’s reference to Peor and Achan (22:17–20) demonstrates that earlier breaches of loyalty function as precedents in the argument. The name or testimony associated with the altar in verse 34 is textually awkward and should be explained with reference to textual witnesses, not treated as a securely excavated inscription. [^source-bible-gateway-kjv]
 
 The chapter draws deliberate precedents from Peor and Achan (22:17–20). Those references explain why the delegation fears corporate consequences: earlier wrongdoing within the community affected more people than those immediately involved. This literary logic matters more than an unsupported reconstruction of the altar's exact design or original location.
+
+### Meaning, fear, and 'Witness'
 
 Joshua 22 makes the location of a structure less important to the plot than its meaning. News of the altar prompts alarm because the western assembly assumes a competing cultic center, while the eastern delegates insist they have built a witness for future generations. The narrative consequently turns on different interpretations of the same visible object. Calling the altar a memorial in the article is justified by the speakers' explanation (22:26–29), but the editors should not claim to know the actual stone type, scale, precise riverbank, or stratigraphic age of an excavated counterpart.
 

@@ -10,11 +10,15 @@ Joshua 3–5 contains a sequence of public acts with different purposes: crossin
 
 ## Ancient World
 
+### The river, Gilgal, and the stones
+
 Joshua 3 describes the Jordan as overflowing its banks during harvest (3:15), while the priests carry the ark and remain in the riverbed until the people pass. This observation is part of the story; it supplies neither a year nor a geological explanation. No modern proposal for the exact crossing site is securely established by this wording alone.
 
 Gilgal functions as a place of encampment, ritual transition, and subsequent memory. Joshua 4:19 situates the camp east of Jericho, but identifying an excavated site as the actual camp is disputed. Archaeological proposals use distributions of ruins, topographic clues, and interpretations of the name. No proposal makes the place-name alone sufficient proof of a Joshua-period encampment. Place names can in principle be reused or refer to more than one location, and later traditions may attach narratives to prominent landscapes; but for Gilgal itself Na'aman argues the opposite — that every biblical reference to Gilgal denotes the one cult site east of Jericho, and that apparent references to other sites result from scribal error or misinterpretation. The uncertainty should remain visible on any future map, including the difference between a text-based approximate locality and a proven archaeological point. [^source-naaman-biblical-gilgal-tel-aviv-2024]
 
 The stones are twice used as acts of remembrance in Joshua 4, with the account emphasizing that children may ask what they mean (4:6–7, 21–24). The narrative is thus also about transmitting a story through a physical reminder. It does not follow that a particular modern stone circle has been excavated and identified as Joshua's memorial.
+
+### Rites, the commander, and the ceremony
 
 Joshua 5:2–12 connects circumcision and Passover to earlier covenant legislation (Genesis 17; Exodus 12) and marks the end of the manna (Joshua 5:12). These are the literary sequence and ritual meanings supplied by Scripture. The chapter does not provide archaeological evidence identifying the location of the rite or the physical form of its celebration.
 
@@ -22,9 +26,13 @@ The figure with a drawn sword in Joshua 5:13–15 does not simply endorse Joshua
 
 The placement of a covenant ceremony is also a live textual issue. Deuteronomy 27 commands rites associated with the crossing and mountains, while the Masoretic form of Joshua places the Ebal episode after Ai. Evidence from 4Q47 and Greek Joshua has generated scholarship about differences of literary arrangement. It would be misleading to suggest that every witness has precisely the same sequence. Because the manuscripts are fragmentary and analyses differ, an article should identify the specific witness and the reconstruction under discussion instead of making a sweeping claim about a single original order. [^source-makipelto-tekniemi-tucker-large-scale-transposition-2017]
 
+### The Jordan and its three settings
+
 The Jordan River changes with season, flow and channel conditions, making it difficult to turn the literary account into a fixed hydrographic map. Joshua 3:15 specifies harvest-time flooding and Joshua 3:16 names Adam as a location upstream; the narrative’s own geography is more precise than a generic reference to a river crossing. Identifying the precise crossing point or the Gilgal encampment requires more evidence than the survival of later place names. Gilgal has been interpreted as a locality, a descriptive term and a cultic place-name in different biblical contexts; one proposed site should not be imposed on every occurrence. [^source-bible-gateway-kjv]
 
 The text itself gives three different settings to keep distinct: the Jordan riverbed, the west-bank camp at Gilgal, and Joshua's encounter near Jericho. Archaeologists' proposed sites for Gilgal are not interchangeable with locations on a modern map simply because they lie in the valley. The narrative uses Gilgal as a camp associated with circumcision and Passover, but it does not supply coordinates or a continuously occupied archaeological layer proving every ceremony (Joshua 4:19–5:12).
+
+### The crossing remembered
 
 The priests' participation is narrated with a deliberately extended sequence of commands and fulfillment. Joshua 3:6–8 instructs the carriers of the ark to enter the river; verses 14–17 then report their feet reaching the water and their standing while the people cross. Chapter 4 returns repeatedly to the same moment from the perspectives of the tribes, the memorial stones, and the priests' eventual emergence. The repetition is part of the compositional texture: it makes the crossing an event remembered publicly rather than a feat reported in one sentence. The writer's detail does not amount to a surveyed channel width, a known river discharge figure, or a fixed calendar year.
 

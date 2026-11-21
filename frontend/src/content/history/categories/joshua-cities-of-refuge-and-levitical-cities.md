@@ -12,11 +12,15 @@ The refuge list is followed by a much longer Levitical settlement list. This ord
 
 ## Ancient World
 
+### The refuge law and its background
+
 Joshua 20 differentiates unintentional killing from murder and specifies a hearing before elders, in continuity with Numbers 35 and Deuteronomy 19. This is a legal-textual distinction. A Cambridge discussion of law in biblical Israel analyzes refuge institutions; it is not proof that every named city functioned exactly as the literary law prescribes at one historical moment. [^source-law-in-biblical-israel-cambridge-companion]
 
 The six cities in Joshua 20:7–8 are Kedesh, Shechem, Hebron, Bezer, Ramoth and Golan, distributed on both sides of the Jordan. The list is clear, but the precision of proposed modern identifications varies. Narrative geography does not independently verify the historical operation of all six institutions.
 
 The legal background in Numbers 35 includes descriptions of murder, accidental killing, the avenger of blood, and refuge until a specified condition is met. Deuteronomy 19 adds considerations of access and the distinction between intentional and unintentional homicide. Deuteronomy 4 separately names three eastern cities. A strong article should link each relevant legislative text to the claim it actually supports, avoiding citations to Deuteronomy 19 as though it lists all six towns named in Joshua. The differences are important for understanding the development and presentation of biblical law. [^source-bible-gateway-kjv]
+
+### The Levitical towns and the closing declaration
 
 Joshua 21 assigns Levites towns and pasturelands across the tribal allotments rather than a single large contiguous territory. This describes the book's institutional ideal. It does not establish that every one of the forty-eight listed localities was occupied by Levites in the same archaeological period.
 
@@ -24,11 +28,15 @@ Joshua 21 and 1 Chronicles 6 preserve overlapping lists of Levitical towns, with
 
 Joshua 21:43–45 makes a sweeping theological declaration that the LORD fulfilled the promises of land and rest. Other Joshua passages still describe inhabitants remaining. The reader must distinguish the concluding covenant formula from a claim that every parcel was completely occupied and archaeologically documented.
 
+### Law, procedure, and the evidence
+
 Historically responsible analysis of institutions is possible without a recovered city-of-refuge charter. Law collections reveal how a community imagines responsibility, violence, judgment, sanctuary, and distribution of public roles. Archaeology can add information about ancient town occupation, but it rarely identifies a building's complete legal function from stones alone. The strongest introductory treatment therefore explains what the legal narrative says and what broader social concerns it addresses, while recording which claims remain unverified as institutional history. [^source-bible-gateway-kjv]
 
 Numbers 35 and Deuteronomy 19 clarify the difference between intentional killing and inadvertent manslaughter that stands behind Joshua 20. The appointed cities create a spatially distributed legal procedure: the accused may seek protection while the circumstances of the death are judged. The account is not evidence that archaeologists have uncovered judicial buildings bearing this designation. In chapter 21, the Levites’ towns illustrate how a group can lack a contiguous tribal territory while still holding places to inhabit. The book treats these as complementary arrangements, not as contradictory land grants. [^source-bible-gateway-kjv]
 
 The Cambridge discussion of law in biblical Israel treats the legal process around cities of refuge, including consideration of intent and oversight. This source provides an illuminating account of the biblical legal model but does not establish that a known excavated building in each of the six named cities served as a refuge court. The archaeological claim and the literary prescription must not be conflated. [^source-law-in-biblical-israel-cambridge-companion]
+
+### The gate, the cities, and the list's close
 
 The refugee must present the case at the gate in Joshua 20:4 and speak to the city's elders. That description makes the city not simply a hiding place, but part of a judicial process. The distinction between intentional and unintentional killing is important because the law seeks to restrain cycles of revenge while allowing inquiry into responsibility. Numbers 35 adds detailed provisions, while Deuteronomy 19 frames protection against an avenger when no prior enmity exists. Differences among the legal presentations are meaningful for interpretation; they should not be forced into one invented procedural code with all details present in Joshua 20.
 

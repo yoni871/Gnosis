@@ -10,11 +10,15 @@ Joshua 6:20–25 differentiates the fate of the city and the rescue of Rahab. Th
 
 ## Ancient World
 
+### Tell es-Sultan and its excavators
+
 Tell es-Sultan has documented multiple occupation and destruction phases. The study by Bruins and van der Plicht presents radiocarbon results from Kenyon-excavated samples related to the end of the Middle Bronze Age; its methods and results appear on pp. 213–220. These data constrain one destruction horizon but do not identify Joshua, Rahab, or an attacking army. [^source-bruins-van-der-plicht-jericho-radiocarbon-1995]
 
 The high-precision radiocarbon work of Hendrik Bruins and Johannes van der Plicht examined short-lived cereal and charcoal samples related to the end of the Middle Bronze Age. Their published study is relevant to the timing of a major destruction, but its evidential claim concerns samples and archaeological contexts, not a seven-day military operation. For the editorial article, the strongest statement is that a Middle Bronze destruction is archaeologically documented and that proposals tying it to Joshua remain contested. Ceramic typologies and stratigraphic arguments also matter, and disagreement should not be presented as a simple contest between faith and disbelief. [^source-bruins-van-der-plicht-jericho-radiocarbon-1995]
 
 Modern excavators have worked at Jericho across many campaigns with different recording methods and interpretive frameworks. Researchers studying earlier excavations must contend with changing archaeological terminology, older trench records, and incomplete publication of contexts. The archaeological history of a tell cannot be compressed into a claim that archaeologists universally agreed on every phase. Where later proposals dispute chronology, they should be attributed to their authors and measured against stratigraphy, pottery, and radiocarbon evidence, rather than receiving automatic priority because they fit a desired biblical date. A contemporary alternative treatment by Titus Kennedy should be identified as a contested reconstruction, not evidence that the debate has disappeared. [^source-kennedy-jericho-religions-2023]
+
+### Procession, ban, and rescue
 
 The ark, priests, horns and repeated circuits shape Joshua 6 as a sacred procession within the account, not a documented Late Bronze military manual (6:3–16). Its seven-day sequence can be analyzed as narrative form; archaeology cannot recover the number of circuits or the words shouted.
 
@@ -22,9 +26,13 @@ Joshua 6:17–19 distinguishes persons and property placed under the *herem* ban
 
 Rahab's rescue is the story's major internal qualification to the sweeping language of destruction. The narrator presents an oath carried through even amid the city's fall, linking an outsider's allegiance to Israel's preservation of a promise. Hebrews 11:30 and 1 Kings 16:34 show subsequent interpretations of Jericho and of Joshua's curse. Those sources matter for reception and narrative continuity. They do not provide independent material evidence for the siege's chronology, so they belong in the Scripture Connections ledger rather than an archaeological evidence column. [^source-bible-gateway-kjv]
 
+### Walls, ash, and the 1995 study
+
 Excavated fortification walls, ash layers and grain deposits belong to distinct periods in Tell es-Sultan’s occupational sequence. In particular, Bruins and van der Plicht’s radiocarbon study concerns materials associated with the end of Middle Bronze Jericho, whereas popular readings frequently ask about the later biblical conquest. The difference in archaeological periods must be stated before evaluating alternative reconstructions. The 1995 published dates support a discussion of the Middle Bronze destruction context; they do not independently verify a seven-day procession or identify an attacking group. [^source-bruins-van-der-plicht-jericho-radiocarbon-1995]
 
 Bruins and van der Plicht's original 1995 paper reports eighteen radiocarbon measurements from sixteen samples associated stratigraphically with the end of Middle Bronze Jericho (pp. 213–214). Its discussion explicitly differentiates their preliminary calibrated ranges from proposals for a much later destruction. The concluding pages urge caution concerning calibration; they do not connect an excavated assemblage to Joshua by name. These are precise limits on what this often-cited work can establish. [^source-bruins-van-der-plicht-jericho-radiocarbon-1995]
+
+### The narrative sequence and the mound's chronology
 
 In describing the city as shut up, Joshua 6:1 sets the scene for a story that will not unfold like a conventional confrontation at a gate. The instructions in verses 2–5 are announced before the procession begins, allowing the reader to distinguish what is commanded from what is later reported. Verse 20 reports the fall of the wall, while verses 22–25 return to Rahab. The sequence culminates in Joshua's prohibition concerning rebuilding (6:26). If these components are compressed into a general claim that 'Jericho was conquered,' the theological function of the ark, the obligation of an oath, and the ethical difficulty of *herem* disappear from view.
 
