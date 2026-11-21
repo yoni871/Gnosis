@@ -106,6 +106,19 @@ const POLICIES = {
     // Password re-authentication for passkey enrollment/removal is
     // bounded per account even when attempts arrive from many IPs.
     passkey_password_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    // Passkey management (PR #97): the three authenticated routes
+    // CodeQL flagged as un-rate-limited. All are per-user buckets —
+    // the account is known, so per-user is the precise key, and a
+    // per-IP bucket would not bound distributed attempts (see the
+    // MFA verify note above). Registration verify is bounded by the
+    // rate-limited /register/options endpoint (5/15 min per user)
+    // plus the single-use challenge, so 5/15 min can never block a
+    // legitimate enrollment. List is read-only at 30/15 min; rename
+    // is 10/15 min so a full re-label of every passkey
+    // (MAX_PASSKEYS_PER_USER is 10) fits in one window.
+    passkey_register_verify_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    passkey_list_user: { windowMs: 15 * 60 * 1000, limit: 30 },
+    passkey_rename_user: { windowMs: 15 * 60 * 1000, limit: 10 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since

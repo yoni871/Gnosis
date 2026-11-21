@@ -128,6 +128,24 @@ const passwordConfirmRateLimit = createRateLimitMiddleware([
     { policy: "passkey_password_user", fields: req => [String(req.user.userId)] },
 ], "passkey");
 
+// The three authenticated management routes CodeQL flagged (PR #97):
+// registration verify, list, and rename. All are keyed per user —
+// the account is known, so per-user is the precise bound. Like
+// /register/options above, every request counts (the wrapper settles
+// the reservation); the budgets are set so legitimate use can never
+// trip them (see the policy comments in rateLimit.js).
+const registerVerifyRateLimit = createRateLimitMiddleware([
+    { policy: "passkey_register_verify_user", fields: req => [String(req.user.userId)] },
+], "passkey");
+
+const listRateLimit = createRateLimitMiddleware([
+    { policy: "passkey_list_user", fields: req => [String(req.user.userId)] },
+], "passkey");
+
+const renameRateLimit = createRateLimitMiddleware([
+    { policy: "passkey_rename_user", fields: req => [String(req.user.userId)] },
+], "passkey");
+
 async function loadAuthenticatedUser(req, res) {
     let result;
     try {
@@ -255,7 +273,8 @@ router.post("/register/options", authenticateToken, validatePasswordBody, passwo
     return res.json(options);
 }));
 
-router.post("/register/verify", authenticateToken, validateCeremonyBody, async (req, res) => {
+router.post("/register/verify", authenticateToken, validateCeremonyBody, registerVerifyRateLimit,
+    withRateLimitFinalize(async (req, res) => {
     const user = await loadAuthenticatedUser(req, res);
     if (!user) return;
 
@@ -323,9 +342,9 @@ router.post("/register/verify", authenticateToken, validateCeremonyBody, async (
     await audit(pool, "passkey.registered", user.id);
     res.set("Cache-Control", "no-store");
     return res.status(201).json(publicPasskey(stored));
-});
+}));
 
-router.get("/", authenticateToken, async (req, res) => {
+router.get("/", authenticateToken, listRateLimit, withRateLimitFinalize(async (req, res) => {
     let stored;
     try {
         stored = await passkeys.listPasskeys(req.user.userId);
@@ -335,9 +354,9 @@ router.get("/", authenticateToken, async (req, res) => {
     }
     res.set("Cache-Control", "no-store");
     return res.json({ passkeys: stored.map(publicPasskey) });
-});
+}));
 
-router.patch("/:id", authenticateToken, async (req, res) => {
+router.patch("/:id", authenticateToken, renameRateLimit, withRateLimitFinalize(async (req, res) => {
     if (!isObjectBody(req.body)) return invalidBody(res, "Request body must be an object.");
     const validated = validatePasskeyLabel(req.body.label);
     if (validated.error) return invalidBody(res, validated.error);
@@ -351,7 +370,7 @@ router.patch("/:id", authenticateToken, async (req, res) => {
     if (!stored) return res.status(404).json(PASSKEY_NOT_FOUND_BODY);
     res.set("Cache-Control", "no-store");
     return res.json(publicPasskey(stored));
-});
+}));
 
 router.delete("/:id", authenticateToken, validatePasswordBody, passwordConfirmRateLimit,
     withRateLimitFinalize(async (req, res) => {
