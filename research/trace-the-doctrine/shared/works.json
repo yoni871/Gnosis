@@ -1,1 +1,1023 @@
-[{"authorIds":[],"dateWritten":null,"disputedAuthorship":null,"edition":"ESV Text Edition: 2025","editor":null,"id":"bible-esv-2025","locator":{"printCitation":"The Holy Bible, English Standard Version. ESV Text Edition: 2025. Copyright © 2001 by Crossway Bibles, a publishing ministry of Good News Publishers. Wheaton, Illinois.","url":null},"notes":"Checked via BibleGateway ESV text, accessed 2026-11-20, for all 60 passages in the Trinity inventory (Phase 2). Short excerpts only (one verse or less per verification record); ESV text is in copyright — no long reproduction. Note: the edition shown on the BibleGateway pages actually checked was ESV Text Edition: 2025, not the 2016 text edition named in the Phase 2 brief; the 2025 edition is recorded here as actually checked. Work-id convention note: the id 'bible-esv-2025' does not follow the author-slug + work-slug convention in schemas/README.md because the Bible has no single author; flagged to EM as a minor standards question, no schema change made.","originalLanguage":"Hebrew, Aramaic, Greek","publicDomainStatus":"in-copyright","publicationInfo":"Crossway, Wheaton, Illinois; copyright © 2001 by Crossway, a publishing ministry of Good News Publishers; ESV Text Edition: 2025","shortTitle":"ESV","status":"verification-pending","title":"Holy Bible, English Standard Version","translator":null,"verificationRecordIds":[]},{"authorIds":[],"dateWritten":null,"disputedAuthorship":null,"edition":"King James Version (Authorized Version); BibleGateway text matches the 1987 printing","editor":null,"id":"bible-kjv","locator":{"printCitation":"The Holy Bible, King James Version (Authorized Version), first published 1611.","url":"https://www.biblegateway.com/versions/King-James-Version-KJV-Bible/"},"notes":"Checked via BibleGateway KJV text, accessed 2026-11-20, for the 1 John 5:7-8 Johannine Comma comparison only (KJV includes the Comma; ESV omits it). Public domain in the United States (BibleGateway version information). Note: the KJV is perpetually copyrighted in the United Kingdom; this entry records the United States status. Work-id convention note: see bible-esv-2025.","originalLanguage":"Hebrew, Aramaic, Greek","publicDomainStatus":"public-domain","publicationInfo":"First published 1611","shortTitle":"KJV","status":"verification-pending","title":"Holy Bible, King James Version","translator":null,"verificationRecordIds":[]}]
+[
+  {
+    "authorIds": [],
+    "dateWritten": null,
+    "disputedAuthorship": null,
+    "edition": "ESV Text Edition: 2025",
+    "editor": null,
+    "id": "bible-esv-2025",
+    "locator": {
+      "printCitation": "The Holy Bible, English Standard Version. ESV Text Edition: 2025. Copyright © 2001 by Crossway Bibles, a publishing ministry of Good News Publishers. Wheaton, Illinois.",
+      "url": null
+    },
+    "notes": "Checked via BibleGateway ESV text, accessed 2026-11-20, for all 60 passages in the Trinity inventory (Phase 2). Short excerpts only (one verse or less per verification record); ESV text is in copyright — no long reproduction. Note: the edition shown on the BibleGateway pages actually checked was ESV Text Edition: 2025, not the 2016 text edition named in the Phase 2 brief; the 2025 edition is recorded here as actually checked. Work-id convention note: the id 'bible-esv-2025' does not follow the author-slug + work-slug convention in schemas/README.md because the Bible has no single author; flagged to EM as a minor standards question, no schema change made.",
+    "originalLanguage": "Hebrew, Aramaic, Greek",
+    "publicDomainStatus": "in-copyright",
+    "publicationInfo": "Crossway, Wheaton, Illinois; copyright © 2001 by Crossway, a publishing ministry of Good News Publishers; ESV Text Edition: 2025",
+    "shortTitle": "ESV",
+    "status": "verification-pending",
+    "title": "Holy Bible, English Standard Version",
+    "translator": null,
+    "verificationRecordIds": []
+  },
+  {
+    "authorIds": [],
+    "dateWritten": null,
+    "disputedAuthorship": null,
+    "edition": "King James Version (Authorized Version); BibleGateway text matches the 1987 printing",
+    "editor": null,
+    "id": "bible-kjv",
+    "locator": {
+      "printCitation": "The Holy Bible, King James Version (Authorized Version), first published 1611.",
+      "url": "https://www.biblegateway.com/versions/King-James-Version-KJV-Bible/"
+    },
+    "notes": "Checked via BibleGateway KJV text, accessed 2026-11-20, for the 1 John 5:7-8 Johannine Comma comparison only (KJV includes the Comma; ESV omits it). Public domain in the United States (BibleGateway version information). Note: the KJV is perpetually copyrighted in the United Kingdom; this entry records the United States status. Work-id convention note: see bible-esv-2025.",
+    "originalLanguage": "Hebrew, Aramaic, Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "First published 1611",
+    "shortTitle": "KJV",
+    "status": "verification-pending",
+    "title": "Holy Bible, King James Version",
+    "translator": null,
+    "verificationRecordIds": []
+  },
+  {
+    "authorIds": [
+      "anselm-of-canterbury"
+    ],
+    "dateWritten": {
+      "certainty": "range",
+      "earliest": 1075,
+      "latest": 1076,
+      "note": "Written at the abbey of Bec, Normandy; completed 1076 (Stanford Encyclopedia of Philosophy, 'Saint Anselm')."
+    },
+    "disputedAuthorship": false,
+    "edition": "English translation by Sidney Norton Deane (Chicago: Open Court, 1903), as reproduced at Logos Virtual Library",
+    "editor": null,
+    "id": "anselm-of-canterbury-monologion",
+    "locator": {
+      "printCitation": "Saint Anselm, Proslogium; Monologium; An Appendix in Behalf of the Fool by Gaunilon; and Cur Deus Homo, trans. Sidney Norton Deane (Chicago: Open Court Publishing Co., 1903).",
+      "url": "https://logoslibrary.org/anselm/monologion/33.html"
+    },
+    "notes": "Deane's 1903 translation is public domain. The quotation in this era was checked against the Logos Virtual Library page for Monologion ch. 33, accessed 2026-11-20. The Hopkins/Richardson translation (Banning Press, 1986-2000) is in copyright and was not used.",
+    "originalLanguage": "Latin",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Trans. Sidney Norton Deane (Chicago: Open Court Publishing Co., 1903).",
+    "shortTitle": "Monologion",
+    "status": "verification-pending",
+    "title": "Monologion",
+    "translator": "Sidney Norton Deane",
+    "verificationRecordIds": [
+      "ver-p3-e4-anselm-of-canterbury-monologion-date-001"
+    ]
+  },
+  {
+    "id": "arius-thalia",
+    "title": "Thalia",
+    "shortTitle": "Thalia",
+    "authorIds": [
+      "arius"
+    ],
+    "edition": "Fragments as quoted in Athanasius, Four Discourses Against the Arians, Discourse I, ch. 2, §§5-6 (NPNF2, vol. 4, trans. Newman and Robertson)",
+    "editor": "Philip Schaff and Henry Wace",
+    "translator": "John Henry Newman and Archibald Robertson (translators of the Athanasius text that preserves the fragments)",
+    "originalLanguage": "Greek",
+    "publicationInfo": "Buffalo: Christian Literature Publishing Co., 1892 (the Athanasius volume preserving the fragments)",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/28161.htm",
+      "printCitation": "Athanasius, Four Discourses Against the Arians, Discourse I, ch. 2, §§5-6, in Nicene and Post-Nicene Fathers, Second Series, vol. 4 (Buffalo: Christian Literature Publishing Co., 1892), quoting Arius, Thalia."
+    },
+    "dateWritten": {
+      "earliest": 318,
+      "latest": 321,
+      "certainty": "range",
+      "note": "Composed before the Council of Nicaea (325); commonly placed c. 318-321. Survives only in fragments quoted by opponents, principally Athanasius. See verification record ver-p3-e2-arius-thalia-date-001."
+    },
+    "disputedAuthorship": false,
+    "publicDomainStatus": "public-domain",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e2-arius-thalia-date-001"
+    ],
+    "notes": "The Thalia does not survive as an independent work. Every quotation attributed to it here is mediated through Athanasius, a hostile witness who quotes it to refute it; the attribution record for arius-john-1-1-001 is therefore partially-verified, not verified."
+  },
+  {
+    "id": "athanasius-against-the-arians",
+    "title": "Four Discourses Against the Arians",
+    "shortTitle": "Against the Arians",
+    "authorIds": [
+      "athanasius"
+    ],
+    "edition": "Nicene and Post-Nicene Fathers, Second Series, vol. 4, ed. Philip Schaff and Henry Wace",
+    "editor": "Philip Schaff and Henry Wace",
+    "translator": "John Henry Newman and Archibald Robertson",
+    "originalLanguage": "Greek",
+    "publicationInfo": "Buffalo: Christian Literature Publishing Co., 1892",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/28161.htm",
+      "printCitation": "Nicene and Post-Nicene Fathers, Second Series, vol. 4 (Buffalo: Christian Literature Publishing Co., 1892), Athanasius, Four Discourses Against the Arians, Discourses I, II, IV."
+    },
+    "dateWritten": {
+      "earliest": 356,
+      "latest": 360,
+      "certainty": "range",
+      "note": "Discourses I-III commonly dated to Athanasius's third exile, c. 356-360; the dating of Discourse IV is less certain and it is sometimes placed later. See verification record ver-p3-e2-athanasius-against-the-arians-date-001."
+    },
+    "disputedAuthorship": null,
+    "publicDomainStatus": "public-domain",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e2-athanasius-against-the-arians-date-001"
+    ],
+    "notes": "disputedAuthorship is null (not false): the authorship of Discourse IV in particular has been questioned in some scholarship, and the dating of Discourse IV is less certain than that of Discourses I-III; neither point is resolved here. Discourse I: https://www.newadvent.org/fathers/28161.htm; Discourse II: https://www.newadvent.org/fathers/28162.htm; Discourse IV: https://www.newadvent.org/fathers/28164.htm."
+  },
+  {
+    "id": "athenagoras-plea-for-the-christians",
+    "status": "verification-pending",
+    "title": "A Plea for the Christians",
+    "shortTitle": "Plea for the Christians",
+    "authorIds": [
+      "athenagoras"
+    ],
+    "dateWritten": {
+      "certainty": "range",
+      "earliest": 176,
+      "latest": 177,
+      "note": "Addressed to Marcus Aurelius and Commodus; commonly dated 176 or 177."
+    },
+    "disputedAuthorship": false,
+    "edition": "Ante-Nicene Fathers, vol. 2, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)",
+    "editor": "Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "translator": "B. P. Pratten",
+    "locator": {
+      "url": "https://www.logoslibrary.org/athenagoras/plea/10.html",
+      "printCitation": "Ante-Nicene Fathers, vol. 2, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)"
+    },
+    "originalLanguage": "Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
+    "notes": "Chapter 10 checked on the Logos Virtual Library (Pratten translation, ANF vol. 2) in this pass; other chapters not checked.",
+    "verificationRecordIds": [
+      "ver-p3-e1-athenagoras-plea-for-the-christians-date-001",
+      "ver-p3-e1-athenagoras-john-10-30-001-quotation-001"
+    ]
+  },
+  {
+    "id": "augustine-contra-maximinum",
+    "status": "verification-pending",
+    "title": "Answer to Maximinus the Arian (Contra Maximinum)",
+    "shortTitle": "Contra Maximinum",
+    "authorIds": [
+      "augustine"
+    ],
+    "edition": "English translation as reproduced in 'Augustin on 1John' (clerus.org); Latin text in Migne, Patrologia Latina 42",
+    "editor": null,
+    "translator": "W. Smith (as cited in a secondary listing: vol. 11, 1883, pp. 1231-1233; not named on the source page itself)",
+    "dateWritten": {
+      "earliest": 427,
+      "latest": 428,
+      "certainty": "range",
+      "note": "Georgetown chronological table of Augustine's works (O'Donnell, based on the Confessions commentary, Oxford 1992): 'c. Max. contra Maximinum arrianum (427/8)'. Written shortly after the public debate with Maximinus at Hippo in 427/428."
+    },
+    "originalLanguage": "Latin",
+    "publicDomainStatus": "unknown",
+    "publicationInfo": "Latin text: Migne, Patrologia Latina 42.794 (for II.22.3). Modern English translation: Roland J. Teske, The Works of Saint Augustine, Part I, Vol. 18 (New City Press, 1995) - in copyright, not used here.",
+    "locator": {
+      "url": "https://www.clerus.org/bibliaclerusonline/en%20/cma.htm",
+      "printCitation": "Augustine, Contra Maximinum, Book II, ch. 22, section 3; Latin text in Migne, Patrologia Latina 42.794."
+    },
+    "disputedAuthorship": false,
+    "notes": "Translator/edition of the English text quoted here is not named on the source page; a secondary listing attributes the translation to W. Smith, vol. 11 (1883). The verifier must confirm the edition before any publication. Quotation therefore recorded with reproducibilityStatus fair-use, not public-domain.",
+    "verificationRecordIds": [
+      "ver-p3-e3-augustine-contra-maximinum-date-001"
+    ]
+  },
+  {
+    "id": "augustine-de-trinitate",
+    "status": "verification-pending",
+    "title": "On the Holy Trinity (De Trinitate)",
+    "shortTitle": "De Trinitate",
+    "authorIds": [
+      "augustine"
+    ],
+    "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)",
+    "editor": "Philip Schaff",
+    "translator": "Arthur West Haddan",
+    "dateWritten": {
+      "earliest": 399,
+      "latest": 422,
+      "certainty": "range",
+      "note": "Books 1-12 composed 399-412 and the whole revised and published c. 420 (CatholicCulture provenance note for NPNF Series I, Vol. 3); O'Donnell's chronological table of Augustine's works gives De Trinitate as 399-422/6. Range 399-422 covers both checked sources."
+    },
+    "originalLanguage": "Latin",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Christian Literature Publishing Co., Buffalo, NY, 1887; NPNF Series I, Vol. 3",
+    "locator": {
+      "url": "https://www.ccel.org/ccel/schaff/npnf103.html",
+      "printCitation": "Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887). Individual books at New Advent: Book I https://www.newadvent.org/fathers/130101.htm through Book XV https://www.newadvent.org/fathers/130115.htm."
+    },
+    "disputedAuthorship": false,
+    "notes": null,
+    "verificationRecordIds": [
+      "ver-p3-e3-augustine-de-trinitate-date-001"
+    ]
+  },
+  {
+    "id": "basil-on-the-holy-spirit",
+    "title": "On the Holy Spirit (De Spiritu Sancto)",
+    "shortTitle": "On the Holy Spirit",
+    "authorIds": [
+      "basil-of-caesarea"
+    ],
+    "edition": "Nicene and Post-Nicene Fathers, Second Series, vol. 8, ed. Philip Schaff and Henry Wace",
+    "editor": "Philip Schaff and Henry Wace",
+    "translator": "Blomfield Jackson",
+    "originalLanguage": "Greek",
+    "publicationInfo": "Christian Literature Publishing Co.",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/3203.htm",
+      "printCitation": "Nicene and Post-Nicene Fathers, Second Series, vol. 8, ed. Philip Schaff and Henry Wace, Basil, On the Holy Spirit, ch. 16, §§37-38; ch. 25, §59."
+    },
+    "dateWritten": {
+      "earliest": 375,
+      "latest": null,
+      "certainty": "approximate",
+      "note": "Written 375, addressed to Amphilochius of Iconium. See verification record ver-p3-e2-basil-on-the-holy-spirit-date-001."
+    },
+    "disputedAuthorship": false,
+    "publicDomainStatus": "public-domain",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e2-basil-on-the-holy-spirit-date-001"
+    ],
+    "notes": "Basil argues the Spirit is inseparable from Father and Son in every operation, but he does not call the Spirit homoousios in this treatise; that restraint is reported, not smoothed over."
+  },
+  {
+    "id": "church-of-smyrna-martyrdom-of-polycarp",
+    "status": "verification-pending",
+    "title": "The Martyrdom of Polycarp",
+    "shortTitle": "Martyrdom of Polycarp",
+    "authorIds": [
+      "church-of-smyrna"
+    ],
+    "dateWritten": {
+      "certainty": "range",
+      "earliest": 155,
+      "latest": 160,
+      "note": "Written shortly after Polycarp's martyrdom, usually dated 155 or 156; the letter itself dates the martyrdom to the proconsulship of Statius Quadratus (ch. 21)."
+    },
+    "disputedAuthorship": false,
+    "edition": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)",
+    "editor": "Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "translator": "Alexander Roberts and James Donaldson",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/0102.htm",
+      "printCitation": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)"
+    },
+    "originalLanguage": "Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
+    "notes": "Corporate authorship: the letter is written by the church of Smyrna, not by Polycarp; Polycarp's prayer in ch. 14 is reported speech. Chapter 14 checked on New Advent in this pass.",
+    "verificationRecordIds": [
+      "ver-p3-e1-church-of-smyrna-martyrdom-of-polycarp-date-001",
+      "ver-p3-e1-church-of-smyrna-2cor-13-14-001-quotation-001"
+    ]
+  },
+  {
+    "id": "clement-of-rome-first-epistle-to-the-corinthians",
+    "status": "verification-pending",
+    "title": "The First Epistle of Clement to the Corinthians",
+    "shortTitle": "1 Clement",
+    "authorIds": [
+      "clement-of-rome"
+    ],
+    "dateWritten": {
+      "certainty": "range",
+      "earliest": 90,
+      "latest": 100,
+      "note": "Loeb introduction (Kirsopp Lake): safest between 75 and 110, with general agreement on the last decade of the first century; range 90-100 used here."
+    },
+    "disputedAuthorship": true,
+    "edition": "The Apostolic Fathers, trans. J. B. Lightfoot (repr. Grand Rapids, MI: Baker Book House, 1956)",
+    "editor": null,
+    "translator": "J. B. Lightfoot",
+    "locator": {
+      "url": "https://www.ccel.org/ccel/l/lightfoot/fathers/cache/fathers.txt",
+      "printCitation": "The Apostolic Fathers, trans. J. B. Lightfoot (repr. Grand Rapids, MI: Baker Book House, 1956)"
+    },
+    "originalLanguage": "Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Grand Rapids, MI: Baker Book House, 1956 (reprint of Lightfoot's edition)",
+    "notes": "The letter itself names no author; it is written in the name of the church of Rome and is traditionally ascribed to Clement of Rome. Authorship is therefore flagged as disputed/uncertain rather than asserted as fact. Chapter 46 checked in the Lightfoot text on CCEL in this pass.",
+    "verificationRecordIds": [
+      "ver-p3-e1-clement-of-rome-first-epistle-to-the-corinthians-date-001",
+      "ver-p3-e1-clement-of-rome-eph-4-4-001-quotation-001"
+    ]
+  },
+  {
+    "id": "cyprian-on-the-unity-of-the-church",
+    "title": "On the Unity of the Church",
+    "shortTitle": "On the Unity of the Church",
+    "authorIds": [
+      "cyprian"
+    ],
+    "edition": "Ante-Nicene Fathers, vol. 5, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "editor": "Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "translator": "Ernest Wallis",
+    "originalLanguage": "Latin",
+    "publicationInfo": "Buffalo: Christian Literature Publishing Co., 1886",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/050701.htm",
+      "printCitation": "Ante-Nicene Fathers, vol. 5 (Buffalo: Christian Literature Publishing Co., 1886), Cyprian, On the Unity of the Church, §§4, 6."
+    },
+    "dateWritten": {
+      "earliest": 251,
+      "latest": null,
+      "certainty": "approximate",
+      "note": "Written on the occasion of the schism of Novatian, 251. See verification record ver-p3-e2-cyprian-on-the-unity-of-the-church-date-001."
+    },
+    "disputedAuthorship": false,
+    "publicDomainStatus": "public-domain",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e2-cyprian-on-the-unity-of-the-church-date-001"
+    ],
+    "notes": "§6 quotes 'And these three are one' with the citation '1 John 5:7'. The Comma wording is NOT asserted here as original to 1 John; see cyprian-1john-5-7-001 and its verification records."
+  },
+  {
+    "id": "cyril-alexandria-commentary-on-john",
+    "status": "verification-pending",
+    "title": "Commentary on the Gospel according to John",
+    "shortTitle": "Commentary on John",
+    "authorIds": [
+      "cyril-alexandria"
+    ],
+    "edition": "P. E. Pusey edition/translation (Oxford, 19th century), as reproduced at elpenor.org",
+    "editor": "P. E. Pusey",
+    "translator": "P. E. Pusey",
+    "dateWritten": {
+      "earliest": 425,
+      "latest": 428,
+      "certainty": "range",
+      "note": "Scholarly consensus 425-428, before the outbreak of the Nestorian controversy (Micallef, 'Anti-Judaism and Typological Exegesis in Cyril of Alexandria's Commentary on the Gospel of John', Religions 17 (2026), 666, citing Jouassard 1945, 1962)."
+    },
+    "originalLanguage": "Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "P. E. Pusey (ed. and trans.), Sancti patris nostri Cyrilli archiepiscopi Alexandrini in D. Joannis evangelium, 3 vols. (Oxford: Clarendon Press, 1872)",
+    "locator": {
+      "url": "https://www.elpenor.org/cyril-alexandria/john-commentary.asp?pg=10",
+      "printCitation": "Cyril of Alexandria, Commentary on the Gospel according to John, trans. P. E. Pusey, 3 vols. (Oxford: Clarendon Press, 1872)."
+    },
+    "disputedAuthorship": false,
+    "notes": "Books VII and VIII (John 10:18-21:48) survive only in fragments.",
+    "verificationRecordIds": [
+      "ver-p3-e3-cyril-alexandria-commentary-on-john-date-001"
+    ]
+  },
+  {
+    "id": "gregory-nazianzus-fifth-theological-oration",
+    "title": "The Fifth Theological Oration. On the Holy Spirit. (Oration 31)",
+    "shortTitle": "Fifth Theological Oration",
+    "authorIds": [
+      "gregory-of-nazianzus"
+    ],
+    "edition": "Nicene and Post-Nicene Fathers, Second Series, vol. 7, ed. Philip Schaff and Henry Wace",
+    "editor": "Philip Schaff and Henry Wace",
+    "translator": "Charles Gordon Browne and James Edward Swallow",
+    "originalLanguage": "Greek",
+    "publicationInfo": "New York: The Christian Literature Company, 1894",
+    "locator": {
+      "url": "https://BibleHub.com/library/cyril/lectures_of_s_cyril_of_jerusalem/the_fifth_theological_oration.htm",
+      "printCitation": "Nicene and Post-Nicene Fathers, Second Series, vol. 7, ed. Philip Schaff and Henry Wace (New York: The Christian Literature Company, 1894), Gregory of Nazianzus, Select Orations, Oration 31 (Fifth Theological Oration), §§3, 8, 26, pp. 318-328."
+    },
+    "dateWritten": {
+      "earliest": 380,
+      "latest": null,
+      "certainty": "approximate",
+      "note": "Delivered at Constantinople, commonly dated 380. See verification record ver-p3-e2-gregory-nazianzus-fifth-theological-oration-date-001."
+    },
+    "disputedAuthorship": false,
+    "publicDomainStatus": "public-domain",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e2-gregory-nazianzus-fifth-theological-oration-date-001"
+    ],
+    "notes": "Text checked at the BibleHub page above, which reproduces the NPNF2 vol. 7 Browne-Swallow text (the same text served by CCEL as npnf207)."
+  },
+  {
+    "id": "hilary-on-the-trinity",
+    "title": "On the Trinity (De Trinitate)",
+    "shortTitle": "On the Trinity",
+    "authorIds": [
+      "hilary-of-poitiers"
+    ],
+    "edition": "Nicene and Post-Nicene Fathers, Second Series, vol. 9, ed. Philip Schaff and Henry Wace",
+    "editor": "Philip Schaff and Henry Wace",
+    "translator": "E. W. Watson",
+    "originalLanguage": "Latin",
+    "publicationInfo": "New York: The Christian Literature Company, 1899",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/330201.htm",
+      "printCitation": "Nicene and Post-Nicene Fathers, Second Series, vol. 9 (New York: The Christian Literature Company, 1899), Hilary of Poitiers, On the Trinity, Book I, §§11, 13."
+    },
+    "dateWritten": {
+      "earliest": 356,
+      "latest": 359,
+      "certainty": "range",
+      "note": "Written during Hilary's exile following the Council of Milan (355); commonly dated c. 356-359. See verification record ver-p3-e2-hilary-on-the-trinity-date-001."
+    },
+    "disputedAuthorship": false,
+    "publicDomainStatus": "public-domain",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e2-hilary-on-the-trinity-date-001"
+    ],
+    "notes": null
+  },
+  {
+    "id": "ignatius-of-antioch-epistle-to-the-ephesians",
+    "status": "verification-pending",
+    "title": "The Epistle of Ignatius to the Ephesians",
+    "shortTitle": "Epistle to the Ephesians",
+    "authorIds": [
+      "ignatius-of-antioch"
+    ],
+    "dateWritten": {
+      "certainty": "range",
+      "earliest": 105,
+      "latest": 115,
+      "note": "Written while Ignatius travelled under guard to Rome; commonly dated c. 107-110."
+    },
+    "disputedAuthorship": false,
+    "edition": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)",
+    "editor": "Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "translator": "Alexander Roberts and James Donaldson",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/0104.htm",
+      "printCitation": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)"
+    },
+    "originalLanguage": "Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
+    "notes": "Shorter Greek recension as printed in ANF vol. 1, which is the text generally accepted as genuine; the longer recension is interpolated and was not used. Chapters 7 and 9 checked on New Advent in this pass.",
+    "verificationRecordIds": [
+      "ver-p3-e1-ignatius-of-antioch-epistle-to-the-ephesians-date-001",
+      "ver-p3-e1-ignatius-of-antioch-phil-2-5-001-quotation-001",
+      "ver-p3-e1-ignatius-of-antioch-eph-2-18-001-quotation-001"
+    ]
+  },
+  {
+    "id": "irenaeus-against-heresies",
+    "status": "verification-pending",
+    "title": "Against Heresies (The Detection and Refutation of False Knowledge)",
+    "shortTitle": "Against Heresies",
+    "authorIds": [
+      "irenaeus"
+    ],
+    "dateWritten": {
+      "certainty": "range",
+      "earliest": 175,
+      "latest": 185,
+      "note": "Commonly dated c. 180."
+    },
+    "disputedAuthorship": false,
+    "edition": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)",
+    "editor": "Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "translator": "Alexander Roberts and William Rambaut",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/0103306.htm",
+      "printCitation": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)"
+    },
+    "originalLanguage": "Greek (surviving chiefly in Latin translation)",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
+    "notes": "Book III chs. 6, 11, 17 and Book IV ch. 20 checked in this pass: New Advent https://www.newadvent.org/fathers/0103306.htm, https://www.newadvent.org/fathers/0103311.htm, https://www.newadvent.org/fathers/0103420.htm, and CCEL https://ccel.org/ccel/irenaeus/against_heresies_iii/anf01.ix.iv.xviii.html. Other chapters not checked.",
+    "verificationRecordIds": [
+      "ver-p3-e1-irenaeus-against-heresies-date-001",
+      "ver-p3-e1-irenaeus-ps-110-1-001-quotation-001",
+      "ver-p3-e1-irenaeus-gen-19-24-001-quotation-001",
+      "ver-p3-e1-irenaeus-ps-45-6-001-quotation-001",
+      "ver-p3-e1-irenaeus-1cor-8-6-001-quotation-001",
+      "ver-p3-e1-irenaeus-john-1-1-001-quotation-001",
+      "ver-p3-e1-irenaeus-matt-28-19-001-quotation-001",
+      "ver-p3-e1-irenaeus-gen-1-26-001-quotation-001"
+    ]
+  },
+  {
+    "id": "john-calvin-commentary-catholic-epistles",
+    "title": "Commentaries on the Catholic Epistles",
+    "shortTitle": "Commentary on the Catholic Epistles",
+    "authorIds": [
+      "john-calvin"
+    ],
+    "edition": "Calvin's Commentaries, Vol. 45: Catholic Epistles; tr. John King, 1847-50 (Calvin Translation Society)",
+    "translator": "John King",
+    "editor": null,
+    "dateWritten": {
+      "earliest": 1551,
+      "latest": null,
+      "certainty": "exact",
+      "note": "Latin commentary on James, 1 and 2 Peter, 1 John, and Jude published 1551, Geneva."
+    },
+    "originalLanguage": "Latin",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Edinburgh: Calvin Translation Society, 1847-50",
+    "locator": {
+      "url": "https://truthaccordingtoscripture.com/commentaries/cal/1-john-5.php",
+      "printCitation": "John Calvin, Commentaries on the Catholic Epistles, in Calvin's Commentaries, vol. 45, tr. John King (Edinburgh: Calvin Translation Society, 1847-50), 1 John 5."
+    },
+    "disputedAuthorship": false,
+    "notes": "The checked copy was the truthaccordingtoscripture.com reproduction of the Calvin Translation Society edition (John King translation); its page does not restate the edition imprint, so the edition attribution rests on the text's match with the CTS edition. Editor's footnotes marked 'Ed.' in that edition are editorial, not Calvin's words.",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-john-calvin-commentary-catholic-epistles-date-001"
+    ]
+  },
+  {
+    "id": "john-calvin-commentary-john",
+    "title": "Commentary on the Gospel According to John",
+    "shortTitle": "Commentary on John",
+    "authorIds": [
+      "john-calvin"
+    ],
+    "edition": "Calvin's Commentaries, Vols. 34-35: John, Parts I and II; tr. John King, 1847-50 (Calvin Translation Society)",
+    "translator": "John King",
+    "editor": null,
+    "dateWritten": {
+      "earliest": 1553,
+      "latest": null,
+      "certainty": "exact",
+      "note": "Latin commentary published 1 January 1553, Geneva; based on lectures in the Congregation from 1550."
+    },
+    "originalLanguage": "Latin",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Edinburgh: Calvin Translation Society, 1847-50",
+    "locator": {
+      "url": "https://archive.sacred-texts.com/chr/calvin/cc34/cc34006.htm",
+      "printCitation": "John Calvin, Commentary on the Gospel According to John, in Calvin's Commentaries, vols. 34-35, tr. John King (Edinburgh: Calvin Translation Society, 1847-50)."
+    },
+    "disputedAuthorship": false,
+    "notes": "The locator URL is Vol. 34, chapter 1; chapter 10 and Vol. 35 chapter 14 were checked at https://sacred-texts.com/book/calvin-s-commentaries-part-34-john-part-i/chapter-10 and https://archive.sacred-texts.com/chr/calvin/cc35/cc35003.htm.",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-john-calvin-commentary-john-date-001"
+    ]
+  },
+  {
+    "id": "john-calvin-institutes",
+    "title": "Institutes of the Christian Religion",
+    "shortTitle": "Institutes",
+    "authorIds": [
+      "john-calvin"
+    ],
+    "edition": "1559 edition; Henry Beveridge translation, 1845 (Calvin Translation Society)",
+    "translator": "Henry Beveridge",
+    "editor": null,
+    "dateWritten": {
+      "earliest": 1559,
+      "latest": null,
+      "certainty": "exact",
+      "note": "Final (fifth) Latin edition published 1 August 1559, Geneva; first edition 1536, Basel."
+    },
+    "originalLanguage": "Latin",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Edinburgh: Calvin Translation Society, 1845",
+    "locator": {
+      "url": "https://www.calvinstitutes.org/book-1/1-13",
+      "printCitation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13."
+    },
+    "disputedAuthorship": false,
+    "notes": "",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-john-calvin-institutes-date-001"
+    ]
+  },
+  {
+    "id": "john-of-damascus-exposition-of-the-orthodox-faith",
+    "status": "verification-pending",
+    "title": "An Exact Exposition of the Orthodox Faith",
+    "shortTitle": "Exposition of the Orthodox Faith",
+    "authorIds": [
+      "john-of-damascus"
+    ],
+    "edition": "Nicene and Post-Nicene Fathers, Series II, Vol. 9, ed. Philip Schaff and Henry Wace (1898)",
+    "editor": "Philip Schaff and Henry Wace",
+    "translator": "S. D. F. Salmond",
+    "dateWritten": {
+      "earliest": 730,
+      "latest": 743,
+      "certainty": "range",
+      "note": "No exact composition date verified. The Fountain of Knowledge, of which the Exposition is the third part, was revised c. 743 (Encyclopaedia Britannica); John's iconoclastic treatises date c. 730 (Encyclopaedia Britannica, 1911). Range 730-743 is bounded by those two checked dates and is an approximation, not an established composition date."
+    },
+    "originalLanguage": "Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "NPNF Series II, Vol. 9 (Christian Literature Publishing Co., 1898)",
+    "locator": {
+      "url": "https://en.wikisource.org/wiki/Nicene_and_Post-Nicene_Fathers:_Series_II/Volume_IX/John_of_Damascus/An_Exact_Exposition_of_the_Orthodox_Faith/Book_I/Chapter_8",
+      "printCitation": "John of Damascus, An Exact Exposition of the Orthodox Faith, Book I, ch. 8, in Nicene and Post-Nicene Fathers, Series II, Vol. 9, trans. S. D. F. Salmond (Buffalo, NY: Christian Literature Publishing Co., 1898)."
+    },
+    "disputedAuthorship": false,
+    "notes": "Exact composition date not established; see dateWritten note.",
+    "verificationRecordIds": [
+      "ver-p3-e3-john-of-damascus-exposition-of-the-orthodox-faith-date-001"
+    ]
+  },
+  {
+    "id": "jonathan-edwards-discourse-trinity",
+    "title": "An Unpublished Essay on the Trinity [Discourse on the Trinity]",
+    "shortTitle": "Discourse on the Trinity",
+    "authorIds": [
+      "jonathan-edwards"
+    ],
+    "edition": "Text as in George P. Fisher (ed.), 'An Unpublished Essay on the Trinity' (1903), reproduced by CCEL; Yale edition title: 'Discourse on the Trinity', in The Works of Jonathan Edwards",
+    "translator": null,
+    "editor": null,
+    "dateWritten": {
+      "earliest": 1730,
+      "latest": 1739,
+      "certainty": "range",
+      "note": "Begun early 1730 (first eight folio pages); additions in the mid- or late 1730s; further discrete entries early to mid 1740s; unpublished in Edwards's lifetime; first published 1903 by George P. Fisher. The passages cited here belong to the main body of the Discourse; the 1740s entries are not cited."
+    },
+    "originalLanguage": "English",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "First published 1903 (Fisher); CCEL electronic edition",
+    "locator": {
+      "url": "https://www.CCEL.ORG/ccel/e/edwards/trinity/cache/trinity.pdf",
+      "printCitation": "Jonathan Edwards, 'An Unpublished Essay on the Trinity', ed. George P. Fisher (1903); CCEL electronic edition."
+    },
+    "disputedAuthorship": false,
+    "notes": "Edwards's text is public domain; the CCEL PDF file carries a CCEL copyright notice covering its electronic edition, permitting noncommercial copying. The essay was unpublished in Edwards's lifetime; it is a private theological exercise, not a published doctrinal statement, and is recorded as such.",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-jonathan-edwards-discourse-trinity-date-001"
+    ]
+  },
+  {
+    "id": "justin-martyr-dialogue-with-trypho",
+    "status": "verification-pending",
+    "title": "Dialogue of Justin, Philosopher and Martyr, with Trypho, a Jew",
+    "shortTitle": "Dialogue with Trypho",
+    "authorIds": [
+      "justin-martyr"
+    ],
+    "dateWritten": {
+      "certainty": "range",
+      "earliest": 155,
+      "latest": 160,
+      "note": "Commonly dated c. 155-160."
+    },
+    "disputedAuthorship": false,
+    "edition": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)",
+    "editor": "Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "translator": "Alexander Roberts and James Donaldson",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/01285.htm",
+      "printCitation": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)"
+    },
+    "originalLanguage": "Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
+    "notes": "Chapters 55-68 checked on New Advent in this pass; other chapters not checked.",
+    "verificationRecordIds": [
+      "ver-p3-e1-justin-martyr-dialogue-with-trypho-date-001",
+      "ver-p3-e1-justin-martyr-gen-1-26-001-quotation-001",
+      "ver-p3-e1-justin-martyr-gen-18-1-001-quotation-001",
+      "ver-p3-e1-justin-martyr-gen-19-24-001-quotation-001"
+    ]
+  },
+  {
+    "id": "justin-martyr-first-apology",
+    "status": "verification-pending",
+    "title": "The First Apology of Justin, the Martyr",
+    "shortTitle": "First Apology",
+    "authorIds": [
+      "justin-martyr"
+    ],
+    "dateWritten": {
+      "certainty": "range",
+      "earliest": 150,
+      "latest": 155,
+      "note": "Addressed to Emperor Antoninus Pius (reigned 138-161); commonly dated c. 150-155."
+    },
+    "disputedAuthorship": false,
+    "edition": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)",
+    "editor": "Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "translator": "Alexander Roberts and James Donaldson",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/0126.htm",
+      "printCitation": "Ante-Nicene Fathers, vol. 1, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)"
+    },
+    "originalLanguage": "Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
+    "notes": "Chapters 6 and 61 checked on New Advent in this pass; other chapters not checked.",
+    "verificationRecordIds": [
+      "ver-p3-e1-justin-martyr-first-apology-date-001",
+      "ver-p3-e1-justin-martyr-matt-28-19-001-quotation-001",
+      "ver-p3-e1-justin-martyr-2cor-13-14-001-quotation-001"
+    ]
+  },
+  {
+    "id": "leo-i-letter-15",
+    "status": "verification-pending",
+    "title": "Letter 15: To Turribius, Bishop of Asturia, Upon the Errors of the Priscillianists",
+    "shortTitle": "Letter 15",
+    "authorIds": [
+      "leo-i"
+    ],
+    "edition": "Nicene and Post-Nicene Fathers, Series II, Vol. 12, ed. Philip Schaff and Henry Wace, trans. Charles Lett Feltoe (1895)",
+    "editor": "Philip Schaff and Henry Wace",
+    "translator": "Charles Lett Feltoe",
+    "dateWritten": {
+      "earliest": 447,
+      "latest": null,
+      "certainty": "exact",
+      "note": "Dated in the letter itself: 'Dated July 21, in the consulship of the illustrious Calipius and Ardaburis (447).' (New Advent, Letter 15.)"
+    },
+    "originalLanguage": "Latin",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "NPNF Series II, Vol. 12 (Christian Literature Publishing Co., 1895)",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/3604015.htm",
+      "printCitation": "Leo the Great, Letter 15, in Nicene and Post-Nicene Fathers, Series II, Vol. 12, trans. Charles Lett Feltoe (Buffalo, NY: Christian Literature Publishing Co., 1895). Latin text: Patrologia Latina 54.678ff."
+    },
+    "disputedAuthorship": false,
+    "notes": null,
+    "verificationRecordIds": [
+      "ver-p3-e3-leo-i-letter-15-date-001"
+    ]
+  },
+  {
+    "id": "martin-luther-commentary-galatians",
+    "title": "A Commentary on St. Paul's Epistle to the Galatians",
+    "shortTitle": "Commentary on Galatians",
+    "authorIds": [
+      "martin-luther"
+    ],
+    "edition": "Translated by Theodore Graebner (Grand Rapids, Michigan: Zondervan Publishing House, 1949); a condensation of the 1535 Latin commentary",
+    "translator": "Theodore Graebner",
+    "editor": null,
+    "dateWritten": {
+      "earliest": 1535,
+      "latest": null,
+      "certainty": "exact",
+      "note": "Latin commentary published 1535; the lectures on which it is based were delivered in 1531 (CCEL catalogue entry)."
+    },
+    "originalLanguage": "Latin",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Grand Rapids, MI: Zondervan Publishing House, 1949",
+    "locator": {
+      "url": "https://www.projectwittenberg.org/pub/resources/text/wittenberg/luther/gal/gal4-01.txt",
+      "printCitation": "Martin Luther, A Commentary on St. Paul's Epistle to the Galatians, trans. Theodore Graebner (Grand Rapids: Zondervan, 1949), ch. 4, pp. 150-172."
+    },
+    "disputedAuthorship": false,
+    "notes": "CCEL records that Zondervan stated the copyright was not renewed and the book is in the public domain; the Graebner translation is a condensation of Luther's 1535 commentary.",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-martin-luther-commentary-galatians-date-001"
+    ]
+  },
+  {
+    "id": "novatian-on-the-trinity",
+    "title": "Treatise Concerning the Trinity",
+    "shortTitle": "On the Trinity",
+    "authorIds": [
+      "novatian"
+    ],
+    "edition": "Ante-Nicene Fathers, vol. 5, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "editor": "Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "translator": "Robert Ernest Wallis",
+    "originalLanguage": "Latin",
+    "publicationInfo": "Buffalo: Christian Literature Publishing Co., 1886",
+    "locator": {
+      "url": "https://ccel.org/ccel/novatian/treatise/anf05.vi.iii.xiv.html",
+      "printCitation": "Ante-Nicene Fathers, vol. 5 (Buffalo: Christian Literature Publishing Co., 1886), Novatian, Treatise Concerning the Trinity, ch. 13."
+    },
+    "dateWritten": {
+      "earliest": 250,
+      "latest": null,
+      "certainty": "approximate",
+      "note": "Commonly dated c. 250; some sources give 257. See verification record ver-p3-e2-novatian-on-the-trinity-date-001."
+    },
+    "disputedAuthorship": false,
+    "publicDomainStatus": "public-domain",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e2-novatian-on-the-trinity-date-001"
+    ],
+    "notes": "The oldest extant Christian treatise devoted specifically to the Trinity. Novatian's Son is divine yet derived from the Father; his subordinationist language (the Son owes his origin to the Father) is reported, not smoothed over."
+  },
+  {
+    "id": "origen-de-principiis",
+    "title": "De Principiis (On First Principles)",
+    "shortTitle": "De Principiis",
+    "authorIds": [
+      "origen"
+    ],
+    "edition": "Ante-Nicene Fathers, vol. 4, ed. Alexander Roberts and James Donaldson",
+    "editor": "Alexander Roberts and James Donaldson",
+    "translator": "Frederick Crombie",
+    "originalLanguage": "Greek",
+    "publicationInfo": "Buffalo: Christian Literature Publishing Co., 1885",
+    "locator": {
+      "url": "https://en.wikisource.org/wiki/Ante-Nicene_Fathers/Volume_IV/Origen/Origen_De_Principiis/I/Chapter_2",
+      "printCitation": "Ante-Nicene Fathers, vol. 4 (Buffalo: Christian Literature Publishing Co., 1885), Origen, De Principiis, Book I, ch. 2."
+    },
+    "dateWritten": {
+      "earliest": 220,
+      "latest": 230,
+      "certainty": "range",
+      "note": "Commonly dated c. 220-230. The work survives principally in Rufinus's Latin translation; the Crombie English translation used here is from that tradition. See verification record ver-p3-e2-origen-de-principiis-date-001."
+    },
+    "disputedAuthorship": false,
+    "publicDomainStatus": "public-domain",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e2-origen-de-principiis-date-001"
+    ],
+    "notes": "Origen's language about the Son's derivation from the Father is subordinationist in places and is reported as such; he also insists the Son's generation is without beginning. Checked via the Wikisource reproduction of ANF vol. 4 (same Crombie translation as CCEL's Origen volume)."
+  },
+  {
+    "id": "philip-melanchthon-augsburg-confession",
+    "title": "The Augsburg Confession",
+    "shortTitle": "Augsburg Confession",
+    "authorIds": [
+      "philip-melanchthon"
+    ],
+    "edition": "Triglot Concordia: The Symbolical Books of the Ev. Lutheran Church, trans. F. Bente and W. H. T. Dau (St. Louis: Concordia, 1921), pp. 37-95",
+    "translator": "F. Bente and W. H. T. Dau",
+    "editor": null,
+    "dateWritten": {
+      "earliest": 1530,
+      "latest": null,
+      "certainty": "exact",
+      "note": "Presented to Emperor Charles V at the Diet of Augsburg in 1530."
+    },
+    "originalLanguage": "Latin and German",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "St. Louis: Concordia Publishing House, 1921",
+    "locator": {
+      "url": "https://christian.net/pub/resources/text/wittenberg/concord/web/augs-001.html",
+      "printCitation": "Philip Melanchthon, The Augsburg Confession, in Triglot Concordia, trans. F. Bente and W. H. T. Dau (St. Louis: Concordia Publishing House, 1921), Article I."
+    },
+    "disputedAuthorship": false,
+    "notes": "",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-philip-melanchthon-augsburg-confession-date-001"
+    ]
+  },
+  {
+    "id": "racovian-catechism",
+    "title": "The Racovian Catechism",
+    "shortTitle": "Racovian Catechism",
+    "authorIds": [
+      "faustus-socrinus"
+    ],
+    "edition": "The Racovian Catechism: With Notes and Illustrations, Translated from the Latin, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818); translated from the revised Latin edition of 1680",
+    "translator": "Thomas Rees",
+    "editor": null,
+    "dateWritten": {
+      "earliest": 1605,
+      "latest": null,
+      "certainty": "exact",
+      "note": "First published in Polish at Rakow, 1605; Latin version 1609. Rees's English translation (1818) is from the revised Latin edition of 1680."
+    },
+    "originalLanguage": "Polish (first edition); Latin",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "London: Longman, Hurst, Rees, Orme, and Brown, 1818",
+    "locator": {
+      "url": "https://archive.org/stream/racoviancatechi00reesgoog/racoviancatechi00reesgoog_djvu.txt",
+      "printCitation": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818)."
+    },
+    "disputedAuthorship": true,
+    "notes": "Collective work of the Polish Brethren. Rees's Historical Introduction states that the undertaking was transferred to Valentinus Smalcius and Hieronim Moskorzowski (with Johannes Volkel also associated) after Faustus Socinus's death in 1604, and that some text may have been prepared by Socinus. Socinus is therefore recorded as the associated author, not the sole author; see the attribution verification record ver-p3-e5-racovian-catechism-attribution-001.",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-racovian-catechism-date-001",
+      "ver-p3-e5-racovian-catechism-attribution-001"
+    ]
+  },
+  {
+    "id": "tertullian-against-praxeas",
+    "title": "Against Praxeas",
+    "shortTitle": "Against Praxeas",
+    "authorIds": [
+      "tertullian"
+    ],
+    "edition": "Ante-Nicene Fathers, vol. 3, ed. Alexander Roberts and James Donaldson",
+    "editor": "Alexander Roberts and James Donaldson",
+    "translator": "Peter Holmes",
+    "originalLanguage": "Latin",
+    "publicationInfo": "Buffalo: Christian Literature Publishing Co., 1885",
+    "locator": {
+      "url": "https://ccel.org/ccel/tertullian/against_praxeas/anf03.v.ix.ii.html",
+      "printCitation": "Ante-Nicene Fathers, vol. 3, ed. Alexander Roberts and James Donaldson (Buffalo: Christian Literature Publishing Co., 1885), Against Praxeas, chs. 2, 12."
+    },
+    "dateWritten": {
+      "earliest": 207,
+      "latest": 213,
+      "certainty": "range",
+      "note": "Commonly dated to Tertullian's Montanist period, after c. 207; some scholars date it as late as c. 213. See verification record ver-p3-e2-tertullian-against-praxeas-date-001."
+    },
+    "disputedAuthorship": false,
+    "publicDomainStatus": "public-domain",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e2-tertullian-against-praxeas-date-001"
+    ],
+    "notes": "Tertullian coined the Latin terms trinitas and persona in this treatise, but did not teach the later Nicene formulation (homoousios); see the interpretations' relationshipToDoctrine fields. CCEL ch. 2 URL is the locator; ch. 12 checked at https://ccel.org/ccel/tertullian/against_praxeas/anf03.v.ix.xii.html."
+  },
+  {
+    "id": "theophilus-of-antioch-to-autolycus",
+    "status": "verification-pending",
+    "title": "To Autolycus",
+    "shortTitle": "To Autolycus",
+    "authorIds": [
+      "theophilus-of-antioch"
+    ],
+    "dateWritten": {
+      "certainty": "approximate",
+      "earliest": 180,
+      "latest": null,
+      "note": "Written during Theophilus's episcopate at Antioch (c. 171-183); commonly dated c. 180."
+    },
+    "disputedAuthorship": false,
+    "edition": "Ante-Nicene Fathers, vol. 2, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)",
+    "editor": "Alexander Roberts, James Donaldson, and A. Cleveland Coxe",
+    "translator": "Marcus Dods",
+    "locator": {
+      "url": "https://www.newadvent.org/fathers/02042.htm",
+      "printCitation": "Ante-Nicene Fathers, vol. 2, ed. Alexander Roberts, James Donaldson, and A. Cleveland Coxe (Buffalo, NY: Christian Literature Publishing Co., 1885)"
+    },
+    "originalLanguage": "Greek",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
+    "notes": "Book II checked on New Advent in this pass (chs. 15, 18, 22); Books I and III not checked.",
+    "verificationRecordIds": [
+      "ver-p3-e1-theophilus-of-antioch-to-autolycus-date-001",
+      "ver-p3-e1-theophilus-of-antioch-gen-1-1-001-quotation-001",
+      "ver-p3-e1-theophilus-of-antioch-gen-1-26-001-quotation-001",
+      "ver-p3-e1-theophilus-of-antioch-john-1-1-001-quotation-001"
+    ]
+  },
+  {
+    "authorIds": [
+      "thomas-aquinas"
+    ],
+    "dateWritten": {
+      "certainty": "range",
+      "earliest": 1265,
+      "latest": 1274,
+      "note": "Composed 1265-1274; Prima Pars (including the Trinity treatise, qq. 27-43) written 1265-1268; Tertia Pars (q. 66) written 1272-1273. Left unfinished at Aquinas's death in 1274."
+    },
+    "disputedAuthorship": false,
+    "edition": "English translation by the Fathers of the English Dominican Province (1920), as reproduced at New Advent",
+    "editor": null,
+    "id": "thomas-aquinas-summa-theologiae",
+    "locator": {
+      "printCitation": "Thomas Aquinas, Summa Theologiae, trans. Fathers of the English Dominican Province (London: Burns Oates & Washbourne, 1920; repr. New York: Benziger Bros., 1947-48).",
+      "url": "https://www.newadvent.org/summa/"
+    },
+    "notes": "The New Advent text is the public-domain Dominican translation. Quotations in this era were checked against the New Advent pages for the individual questions cited (I, qq. 27, 30, 32-34, 36, 39, 43; III, q. 66), accessed 2026-11-20.",
+    "originalLanguage": "Latin",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "Trans. Fathers of the English Dominican Province (London: Burns Oates & Washbourne, 1920; repr. New York: Benziger Bros., 1947-48).",
+    "shortTitle": "Summa Theologiae",
+    "status": "verification-pending",
+    "title": "Summa Theologiae",
+    "translator": "Fathers of the English Dominican Province",
+    "verificationRecordIds": [
+      "ver-p3-e4-thomas-aquinas-summa-date-001"
+    ]
+  },
+  {
+    "id": "westminster-assembly-westminster-confession",
+    "title": "The Westminster Confession of Faith",
+    "shortTitle": "Westminster Confession",
+    "authorIds": [],
+    "edition": "Text as in The Westminster Confession of Faith (CCEL, Creeds of Christendom); first printed December 1646",
+    "translator": null,
+    "editor": null,
+    "dateWritten": {
+      "earliest": 1646,
+      "latest": null,
+      "certainty": "exact",
+      "note": "Completed and presented to both Houses of Parliament 4 December 1646 (Schaff, Creeds of Christendom, vol. 1, section 94)."
+    },
+    "originalLanguage": "English",
+    "publicDomainStatus": "public-domain",
+    "publicationInfo": "London: printed December 1646 (editio princeps, without Scripture proofs)",
+    "locator": {
+      "url": "http://www.ccel.org/creeds/westminster.htm",
+      "printCitation": "The Westminster Confession of Faith (1646), ch. 2."
+    },
+    "disputedAuthorship": false,
+    "notes": "Corporate authorship: the Westminster Assembly. No single author is recorded, so authorIds is empty.",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-westminster-assembly-westminster-confession-date-001"
+    ]
+  }
+]
