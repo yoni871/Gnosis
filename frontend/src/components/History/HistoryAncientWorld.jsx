@@ -2,12 +2,30 @@
 // subsections. The first subsection starts open; every subsection is a
 // real button, so the content is reachable by keyboard, touch, and
 // screen reader alike.
+//
+// Some records have no ### subheadings at all — their Ancient World
+// prose is all top-level (eight of the twelve Joshua categories). That
+// prose used to be dropped entirely: this component returned null when
+// there were no subsections, so the Context tab rendered empty. When
+// there are no subsections, render the top-level prose directly
+// instead. When subsections exist, the accordion is unchanged — and
+// no record with subsections has leading prose before its first ###
+// (verified across every category), so nothing is lost there.
 import { useState } from "react";
 import HistoryMarkdown from "./HistoryMarkdown";
 
-export default function HistoryAncientWorld({ subsections = [] }) {
+export default function HistoryAncientWorld({ ancientWorld, subsections = [] }) {
     const [open, setOpen] = useState(() => (subsections.length > 0 ? new Set([0]) : new Set()));
-    if (subsections.length === 0) return null;
+    if (subsections.length === 0) {
+        const prose = ancientWorld?.markdown?.trim() ?? "";
+        if (!prose) return null;
+        return (
+            <div className="history-ancient-world">
+                <h2 id="history-section-ancient-world-heading">Ancient World</h2>
+                <HistoryMarkdown markdown={ancientWorld.markdown} />
+            </div>
+        );
+    }
     const toggle = (index) => {
         setOpen((current) => {
             const next = new Set(current);
