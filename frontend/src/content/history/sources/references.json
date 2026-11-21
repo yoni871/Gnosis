@@ -2672,5 +2672,256 @@
     "url": "https://penn.museum/documents/publications/pdfs/Hebrew_Inscriptions_and_Stamps_from_Gibeon.pdf",
     "verification": "verified",
     "verificationDetail": "Joshua session (2026-11-20, Dev 1 close-out): full monograph read (free Penn-hosted PDF, all 32 text pages + plates) — 'the discovery of the name of the ancient city of Gibeon on 27 jar handles'; 'The name is the biblical Gibeon'; 'a remarkably strong case for the Gibeon = el-Jib equation.' Inscribed handles dated chiefly early 7th c. to early 6th c. BCE (royal stamps late 8th–7th c.). Confirmed firsthand by Dev 1 (2026-11-20). The 1962 companion volume (Gibeon: Where the Sun Stood Still) was not read and is not added."
+  },
+  "source-moody-stuart-lapping-of-the-water-peq-1895": {
+    "id": "source-moody-stuart-lapping-of-the-water-peq-1895",
+    "author": "A. Moody Stuart",
+    "title": "Lapping of the Water",
+    "publisher": "Palestine Exploration Quarterly 27:4 (1895)",
+    "year": 1895,
+    "pagesOrSection": "p. 345",
+    "url": "https://doi.org/10.1179/peq.1895.27.4.345",
+    "verification": "verified",
+    "verificationDetail": "Full text read (single-page note, Zenodo PDF of the PEQ article, Step 4a 2026-11-21). Records the usual reading of the lapping (drinking from the palm of the hand) and an alternative manner the author reports observing in Madeira. 1895 note; used as a record of the discussion, not as modern scholarship. Supports the lapping-manner qualification in JCL-05-004 only."
+  },
+  "source-clarke-commentary-judges-15-1831": {
+    "id": "source-clarke-commentary-judges-15-1831",
+    "author": "Adam Clarke",
+    "title": "Commentary on the Bible — Judges 15",
+    "publisher": "Commentary on the Bible (1831)",
+    "year": 1831,
+    "url": "https://sacred-texts.com/bib/cmt/clarke/jdg015.htm",
+    "verification": "verified",
+    "verificationDetail": "Read in full at sacred-texts.com (Judges 15 commentary, Step 4a 2026-11-21). On 15:4: foxes vs jackals (shualim), concludes 'I see no improbability in the common version'; on 15:17 Ramath-lehi, 'The lifting up or casting away of the jaw-bone'; on 15:19 En-hakkore, 'The well of the implorer.' Older commentary (secondary), not a peer-reviewed journal article. Supports the fox/jackal translation qualification and place-name notes in JCL-09-005 only."
+  },
+  "source-cambridge-bible-judges-15": {
+    "id": "source-cambridge-bible-judges-15",
+    "title": "Cambridge Bible for Schools and Colleges — Judges 15",
+    "publisher": "Cambridge Bible for Schools and Colleges (Judges 15)",
+    "url": "https://biblehub.com/commentaries/cambridge/judges/15.htm",
+    "verification": "verified",
+    "verificationDetail": "Read in full via BibleHub (Step 4a 2026-11-21; URL returns 200). On 15:4: 'the word can mean this' (jackals, which roam in packs) while keeping 'foxes'; on 15:9: 'The situation of Lehi is unknown'; on 15:15: the thousand 'belong to the extraordinary character of the story'; on 15:17: Ramath-lehi as popular etymology. Older secondary commentary, not a peer-reviewed journal article. Its speculative Sun-god/Cerealia parallels for 15:4 were NOT used. Supports the jackal-possibility, Lehi-unknown, and narrative-number qualifications in JCL-09-005 only."
+  },
+  "source-biblicaltraining-temples-of-dagon": {
+    "id": "source-biblicaltraining-temples-of-dagon",
+    "title": "Temples of Dagon",
+    "publisher": "BiblicalTraining Library",
+    "url": "https://www.biblicaltraining.org/library/temples-of-dagon",
+    "verification": "verified",
+    "verificationDetail": "Read in full (Step 4a 2026-11-21). Gaza section: the building's structure 'is not described beyond its pillars and its roof'; Tell Qasile, 12th–11th c. BC phase, 'the roof of its main hall rested on two wooden pillars set on stone bases along the center of the room'; 'That temple was not Dagon's… but it shows that a Philistine sanctuary of the period could depend on a pair of central supports.' 'No temple of Dagon has been found in the Philistine heartland'; Ashdod excavations 1962–72, 'No sanctuary of Dagon was identified'; 'no building in the Philistine cities has been securely identified as his.' Scholarly synthesis, not a peer-reviewed journal article and not an excavation report. Supports the Dagon-temple context limbs in JCL-09-006 only (two negatives + Tell Qasile parallel)."
+  },
+  "source-dever-archaeology-folk-religion-religions-2019": {
+    "id": "source-dever-archaeology-folk-religion-religions-2019",
+    "author": "William G. Dever",
+    "title": "Archaeology and Folk or Family Religion in Ancient Israel",
+    "publisher": "Religions 10(12) (2019)",
+    "year": 2019,
+    "pagesOrSection": "667, §§2, 4.4",
+    "url": "https://doi.org/10.3390/rel10120667",
+    "verification": "verified",
+    "verificationDetail": "Peer-reviewed, open access; read in full (§§1–4.7, Step 4a 2026-11-21). §2: 'folk religion' usually termed 'family' or 'household' religion, 'the actual, widespread practice of religion at the household level.' §4.4 'Household Shrines': 'we now have a number of Israelite household shrines' — Megiddo 'Cult Corner 2081' (10th c.), Jerusalem Ophel domestic shrine (7th c.), Tel Halif Room G 8005, Beersheba houses. §4.2 (Dan regional sanctuary, 10th–8th c.) read and expressly NOT equated with Micah's shrine. Supports the household-shrine context limb in JCL-10-004 only."
+  },
+  "source-de-vos-caleb-achsah-episode": {
+    "id": "source-de-vos-caleb-achsah-episode",
+    "author": "J. Cornelis de Vos",
+    "title": "The Caleb-Achsah Episode: Judges 1:10–15",
+    "publisher": "Tübingen publication",
+    "url": "https://publikationen.uni-tuebingen.de/xmlui/bitstream/handle/10900/170989/de_Vos_026.pdf",
+    "verification": "verified",
+    "verificationDetail": "Peer-reviewed confirmation that Joshua 15:13–19 and its parallel Judges 1:10–15 are remarkable, and that verses 11–15 in Judges 1 are almost identical to Joshua 15:15–19. Read in full. Draft footnote key: deVos."
+  },
+  "source-baal-astarte-vocabulary": {
+    "id": "source-baal-astarte-vocabulary",
+    "title": "Canaanite Religion in the Ancient Levant; Canaanite Religion in the Bible; The Religion of Baal",
+    "publisher": "Brewminate; wilrens.org (citing Steiner 2016); NCCG (Warren, 1982)",
+    "verification": "verified",
+    "verificationDetail": "Ba'al as god of rain, thunder, and fertility and Astarte as goddess of love and fertility: 'Canaanite Religion in the Ancient Levant' (Brewminate); Astarte 'associated with fertility, sexuality, and war' and Baal as god of storm and rain: 'Canaanite Religion in the Bible' (wilrens.org, citing Steiner 2016); 'many Baals and Astarths, as numerous as the cities of the land itself': NCCG essay on the religion of Baal (Warren, 1982). Scholarly reference works, read in full; they support the vocabulary and associations only, not any reconstruction of worship in Judges 2. Draft footnote key: Baal. GATE NOTE: 'Baal' appears in published prose, so this entry MUST use the source-* ID; the bare key would fail the gate."
+  },
+  "source-moore-judges-icc-introduction-section-1": {
+    "id": "source-moore-judges-icc-introduction-section-1",
+    "author": "G. F. Moore",
+    "title": "A Critical and Exegetical Commentary on Judges — Introduction §1",
+    "publisher": "International Critical Commentary; T&T Clark, 1895 (2nd ed. 1910)",
+    "year": 1895,
+    "pagesOrSection": "Introduction §1",
+    "url": "https://en.wikisource.org/wiki/A_Critical_and_Exegetical_Commentary_on_Judges/Introduction",
+    "verification": "verified",
+    "verificationDetail": "Read in full text (Wikisource, Step 4a 2026-11-21). The Hebrew verb shåphaţ is 'not only judicare, but vindicare… defend, deliver'; the participle shōpheţ is 'not only judex, but vindex, and is not infrequently synonymous with deliverer'; the noun is 'sometimes equivalent to ruler.' Supports the 'judge' terminology in J02-AW-01 only. Draft footnote key: Moore."
+  },
+  "source-moore-judges-icc-introduction-section-3": {
+    "id": "source-moore-judges-icc-introduction-section-3",
+    "author": "G. F. Moore",
+    "title": "A Critical and Exegetical Commentary on Judges — Introduction §3",
+    "publisher": "International Critical Commentary; T&T Clark, 1895 (2nd ed. 1910)",
+    "year": 1895,
+    "pagesOrSection": "Introduction §3",
+    "url": "https://en.wikisource.org/wiki/A_Critical_and_Exegetical_Commentary_on_Judges/Introduction",
+    "verification": "verified",
+    "verificationDetail": "Read in full text (Wikisource, Step 4a 2026-11-21). Judg 2:6–3:6 as the author's introduction giving 'a comprehensive survey of the history of the entire period… the religious interpretation and judgement of the whole period as a recurring cycle of defection from Yahweh, subjugation, and deliverance'; the author belongs to 'the Deuteronomic school'; the work 'can… hardly have been written before the beginning of the 6th century.' See also Bible Odyssey (Society of Biblical Literature), 'Deuteronomistic History' (https://www.bibleodyssey.org/articles/deuteronomistic-history/) — Noth's 1943 single-author/compiler theory and its subsequent complication (Cross, Smend, Römer). Educational summary, not a peer-reviewed article. Supports the literary-transition reading and composition caution in J02-AW-02 only. Draft footnote key: Moore3."
+  },
+  "source-ox-goad-ellicott-smiths": {
+    "id": "source-ox-goad-ellicott-smiths",
+    "title": "Ox-goad (Judges 3:31) — Ellicott; Smith's Bible Dictionary",
+    "publisher": "Ellicott's Commentary; Smith's Bible Dictionary",
+    "verification": "verified",
+    "verificationDetail": "The Hebrew malmād habbāqār (Judg 3:31), 'a thing to teach oxen': Ellicott on Judges 3:31 — 'There can be little doubt that an ox-goad is meant. In the East they are sometimes formidable implements, eight feet long, pointed with a strong sharp iron head.' Smith's Bible Dictionary, 'Goad': 'a rod about eight feet long, brought to a sharp point, and sometimes cased with iron at the head.' Older reference works, not peer-reviewed studies; cited only for the implement's ordinary agricultural character, not for any exact object or combat method. Draft footnote key: Goad."
+  },
+  "source-mesha-stele-2-kings-3-4": {
+    "id": "source-mesha-stele-2-kings-3-4",
+    "title": "The Mesha Stele (c. 840 BCE, Dibon) with 2 Kings 3:4–5",
+    "publisher": "Torat Har Etzion, 'Melakhim II, Chapter 3 | The Mesha Stele'",
+    "url": "https://etzion.org.il/en/tanakh/neviim/sefer-melakhim-bet/3-matzevet-meisha",
+    "verification": "verified",
+    "verificationDetail": "Read in full (Step 4a 2026-11-21), including the stele translation. 2 Kgs 3:4: Mesha, king of Moab, 'would pay tribute to the king of Israel with one hundred thousand lambs and the wool of one hundred thousand rams'; the stele records Omri's oppression of Moab ('Omri, king of Israel, oppressed Moav for many years') and Mesha's liberation. The tribute figure is from 2 Kings, not from the stele inscription itself. Supports the general practice of tribute only; it does not support any standardized Moabite tax system in Eglon's time, which J03-AW-02 expressly refuses to reconstruct. Draft footnote key: Mesha. GATE NOTE: 'Mesha' appears in published prose, so this entry MUST use the source-* ID; the bare key would fail the gate."
+  },
+  "source-moab-encyclopaedia-judaica": {
+    "id": "source-moab-encyclopaedia-judaica",
+    "author": "Michael Avi-Yonah",
+    "title": "MOAB",
+    "publisher": "Encyclopaedia Judaica",
+    "verification": "verified",
+    "verificationDetail": "'MOAB (Heb. מוֹאָב), a land E. of the Jordan and the Dead Sea, one of Israel's neighbors in biblical times. The highland of Moab extends southward to the Zered River…, eastward to the desert, and westward to the Dead Sea… Moab was bounded on the west by the Dead Sea and the southernmost part of the Jordan up to the Nimrin Valley.' Also: 'Great importance was attached to the King's Highway, the international route…' Scholarly encyclopedia entry, read in full; supports the geography only. Draft footnote key: Moab. GATE NOTE: 'Moab' appears in published prose, so this entry MUST use the source-* ID; the bare key would fail the gate."
+  },
+  "source-biblicaltraining-plain-of-esdraelon": {
+    "id": "source-biblicaltraining-plain-of-esdraelon",
+    "title": "Plain of Esdraelon",
+    "publisher": "BiblicalTraining Library",
+    "verification": "verified",
+    "verificationDetail": "Read in full. Supports the Jezreel Valley geography (routes, fortified cities including Jokneam, Megiddo, and Taanach, Kishon drainage, Thutmose III's battle at Megiddo) only; an educational library entry, not a peer-reviewed publication. Draft footnote key: Esdraelon."
+  },
+  "source-frolov-song-of-deborah-bible-odyssey": {
+    "id": "source-frolov-song-of-deborah-bible-odyssey",
+    "author": "Serge Frolov",
+    "title": "How Old Is the Song of Deborah?",
+    "publisher": "Bible Odyssey (Society of Biblical Literature)",
+    "verification": "verified",
+    "verificationDetail": "Full text read (the author's own popular-scholarly summary of his JSOT 2011 argument, not the article body; published 2014-09-25, updated 2024-01-16). Supports the she- / romah distribution argument, the monarchic-vocabulary argument, and the Deuteronomistic-ideology argument as summarised there. Draft footnote key: FrolovBO."
+  },
+  "source-wright-war-memory-national-identity-2020": {
+    "id": "source-wright-war-memory-national-identity-2020",
+    "author": "Jacob L. Wright",
+    "title": "War, Memory, and National Identity in the Hebrew Bible",
+    "publisher": "Cambridge University Press, 2020",
+    "year": 2020,
+    "pagesOrSection": "ch. 11, 'A Poetic War Monument,' pp. 182–193",
+    "verification": "verified",
+    "verificationDetail": "Full text read (Cambridge Core open-access PDF, Step 4a 2026-11-21). Supports the prose/poem discrepancies, the two-strand hymn model, the removable tribal catalogue, and the abandoned amphictyony reading. Draft footnote key: Wright2020."
+  },
+  "source-ephod-form-debate-judges-8-27": {
+    "id": "source-ephod-form-debate-judges-8-27",
+    "title": "The ephod's form (Judges 8:27) — commentary debate",
+    "publisher": "Cambridge Bible; Adam Clarke; Jamieson-Fausset-Brown; Keil & Delitzsch (on Judges 8:27)",
+    "url": "https://www.biblia.work/bible-commentary/exegetical-and-hermeneutical-commentary-of-judges-827/",
+    "verification": "verified",
+    "verificationDetail": "Read in full (Step 4a 2026-11-21). The ephod's form is debated among the commentators on Judges 8:27, and no single form is established. Cambridge Bible (quoting Moore, ICC): 'what the ephod was itself is not so clear. It may have been a rich vestment or embroidered loin-cloth… hence many suppose that it must have been an image, but it is very doubtful'; the high-priestly ephod is described in Exod 28:6–12. Adam Clarke: the gold (1,700 shekels) could not all have gone into one wearable garment. Jamieson-Fausset-Brown: an ephod for Gideon's use 'only as a civil magistrate or ruler,' with 'a magnificent pectoral or breastplate also.' Keil & Delitzsch: 'the shoulder-dress of the high priest, no doubt including the choshen belonging to it, with the Urim and Thummim' (cf. Exod 28:6–30). Older commentaries, not peer-reviewed studies; cited only to record the disagreement. Draft footnote key: Ephod."
+  },
+  "source-niesiolowski-spano-gideon-ophra-biblica-2005": {
+    "id": "source-niesiolowski-spano-gideon-ophra-biblica-2005",
+    "author": "Łukasz Niesiolowski-Spanò",
+    "title": "Where Should One Look for Gideon's Ophra?",
+    "publisher": "Biblica 86 (2005), 478–493",
+    "year": 2005,
+    "pagesOrSection": "pp. 478–479 read in full; pp. 488, 490, 493 in BSW page extracts",
+    "verification": "verified",
+    "verificationDetail": "Peer-reviewed article. pp. 478–479 read in full, pp. 488, 490, 493 read in the BSW page extracts (Step 4a 2026-11-21). Supports the unlocated status of Gideon's Ophrah, the two-Ophrahs consensus, the ʿAffuleh and Na'aman proposals, and the author's own Ramat Rahel/Ephrata hypothesis (recorded as a hypothesis, not a finding). Draft footnote key: Niesiolowski."
+  },
+  "source-biblicaltraining-ophrah": {
+    "id": "source-biblicaltraining-ophrah",
+    "title": "Ophrah",
+    "publisher": "BiblicalTraining Library",
+    "verification": "verified",
+    "verificationDetail": "Read in full. Supports the candidate list (et-Taiyibeh northwest of Beth Shan, Ferata, Tell el-Farʿah North, Silet ed-Dahr), the Samaria-ostraca link for the Abiezer clan, and the conclusion that 'for now the site remains uncertain.' A study-resource synthesis, not peer-reviewed scholarship; usable for the 'no consensus' point, not as the sole authority for any positive identification. Draft footnote key: OphrahBT."
+  },
+  "source-bloch-smith-shechem-temple-2023": {
+    "id": "source-bloch-smith-shechem-temple-2023",
+    "author": "Elizabeth Bloch-Smith",
+    "title": "Breaking Ground: Archaeology's Contribution to the Redaction of the Shechem Temple Narrative (Judges 9:46–49)",
+    "publisher": "In A Sage in New Haven: Essays on the Prophets, the Writings, and the Ancient World in Honor of Robert R. Wilson, eds. Alison Acker Gruseke & Carolyn J. Sharp (Ägypten und Altes Testament 117; Münster: Zaphon, 2023)",
+    "year": 2023,
+    "pagesOrSection": "pp. 77–83",
+    "verification": "verified",
+    "verificationDetail": "Full text read (essay body, footnotes 1–43, bibliography entries for the cited reports, Step 4a 2026-11-21). A peer-reviewed synthesis of the primary excavation reports (Sellin; Wright; Campbell, Shechem III; Toombs), not a primary report itself; no primary Shechem report was readable from this VM. Supports the temple measurements, the Wright/Stager reconstructions, Finkelstein's Stratum XI dating, the conflagration limits, the migdāl / ṣerîaḥ notes, and the spatial-narrative argument. Draft footnote key: BlochSmith."
+  },
+  "source-josephus-antiquities-5-8-10": {
+    "id": "source-josephus-antiquities-5-8-10",
+    "author": "Flavius Josephus",
+    "title": "Jewish Antiquities 5.8.10",
+    "verification": "verified",
+    "verificationDetail": "Public text examined in Step 1 (Perseus). Cited only for the antiquity of the literal reading of Jephthah's vow, not as independent verification of the event. Draft footnote key: Josephus. GATE NOTE: 'Josephus' appears in published prose, so this entry MUST use the source-* ID; the bare key would fail the gate."
+  },
+  "source-bar-origins-of-the-philistines": {
+    "id": "source-bar-origins-of-the-philistines",
+    "title": "The Origins of the Philistines?",
+    "publisher": "Biblical Archaeology Review (synthesis)",
+    "verification": "verified",
+    "verificationDetail": "Read in full in Step 1. Used only for the pottery and diet limbs (Mycenaean IIIC-style pottery made of local clay, later bichrome pottery, increased consumption of pork and dog), not for the events narrated in Judges 13–16. Draft footnote key: BARPhilistine."
+  },
+  "source-bar-timnath": {
+    "id": "source-bar-timnath",
+    "title": "Timnath",
+    "publisher": "Biblical Archaeology Review (synthesis)",
+    "verification": "verified",
+    "verificationDetail": "Read in full in Step 1. Used only for the site's discovery (1871, Charles Clermont-Ganneau), its identification as Timnah, and its excavation (1977–1989, Amihai Mazar and George Kelm), not as proof of the wedding episode. Draft footnote key: BARTimnah."
+  },
+  "source-emanuel-digging-for-dagon-janer-2016": {
+    "id": "source-emanuel-digging-for-dagon-janer-2016",
+    "author": "Jeffrey P. Emanuel",
+    "title": "\"Dagon Our God\": Iron I Philistine Cult in Text and Archaeology",
+    "publisher": "Journal of Ancient Near Eastern Religions 16 (2016)",
+    "year": 2016,
+    "pagesOrSection": "pp. 22–56",
+    "verification": "verified",
+    "verificationDetail": "Read in full in Step 4a (2026-11-21), main text pp. 22–56. Used only for the Ashdod finding — no indisputable evidence for a temple of any kind in Iron I — not as support for a Dagon temple. (The package V05/E24 record was abstract-only; the full text was read in Step 4a Part 2 grounding.) Draft footnote key: Emanuel."
+  },
+  "source-kaniewski-tel-dan-science-advances-2017": {
+    "id": "source-kaniewski-tel-dan-science-advances-2017",
+    "author": "David Kaniewski, Nick Marriner, David Ilan, Christophe Morhange, Yifat Thareani, Elise Van Campo",
+    "title": "Climate change and water management in the biblical city of Dan",
+    "publisher": "Science Advances 3, e1700954 (22 Nov 2017)",
+    "year": 2017,
+    "pagesOrSection": "Supplementary Materials, Table S2",
+    "verification": "verified",
+    "verificationDetail": "Peer-reviewed; Supplementary Materials read in full (704 extracted lines, Step 4a 2026-11-21), including full Table S2. Reports the Tel Dan Iron I sequence (Strata VI–IVA) with dates, character, and ranked demises; the table states the site's absolute chronology is equivocal. DAN IV's own stratigraphic chapters were NOT read. Draft footnote key: Kaniewski."
+  },
+  "source-master-dan-iv-review-aja-2021": {
+    "id": "source-master-dan-iv-review-aja-2021",
+    "author": "Daniel M. Master",
+    "title": "Review of DAN IV: The Iron Age I Settlement",
+    "publisher": "American Journal of Archaeology (2021)",
+    "year": 2021,
+    "verification": "verified",
+    "verificationDetail": "Peer-reviewed review, read (Step 4a 2026-11-21). Records that the excavator Avraham Biran's methods were problematic and that ethnic or political identity cannot be inferred from material culture without clear contemporary texts. Draft footnote key: Master2021."
+  },
+  "source-bas-city-of-dan": {
+    "id": "source-bas-city-of-dan",
+    "title": "City of Dan",
+    "publisher": "Biblical Archaeology Society (Biblical Archaeology website)",
+    "verification": "verified",
+    "verificationDetail": "Public secondary archaeology overview; supports the identification of biblical Dan at Tel Dan. (The identification is treated as certain in the site literature, on the parallel between the Arabic name Tell el-Qadi, 'the judge,' and the name Dan, 'judge,' on Eusebius placing Dan near Paneas, and on a Greek-Aramaic inscription found on the mound reading 'to the god who is in Dan.') Draft footnote key: BARDan."
+  },
+  "source-edenburg-dismembering-the-whole-2016": {
+    "id": "source-edenburg-dismembering-the-whole-2016",
+    "author": "Cynthia Edenburg",
+    "title": "Dismembering the Whole: Composition and Purpose of Judges 19–21",
+    "publisher": "2016",
+    "year": 2016,
+    "verification": "verified",
+    "verificationDetail": "Peer-reviewed monograph on Judges 19–21; its argument is reported as Edenburg's, not as a consensus. §1.5, §3.4, ch. 2, ch. 5 read (Step 4a 2026-11-21); her intertextual chapter (ch. 4, pp. 161–320) was NOT read in full. The Mazar and Finkelstein points in the Gibeah challenge paragraph are reported via Edenburg, as neither was read in full. Draft footnote key: Edenburg."
+  },
+  "source-albright-tell-el-ful-1924": {
+    "id": "source-albright-tell-el-ful-1924",
+    "author": "William F. Albright",
+    "title": "Excavation report on Tell el-Ful (1924)",
+    "publisher": "1924",
+    "year": 1924,
+    "verification": "verified",
+    "verificationDetail": "Topographical case for the identification of Tell el-Ful with Gibeah of Benjamin and Saul, including the Josephus and Jerome evidence and the Iron I dating. Chs. IV–V read in substance (Step 4a 2026-11-21); full text (9,905 lines) available. Gibeah both sides now read in substance (Albright + Edenburg §2.2). Draft footnote key: Albright1924."
+  },
+  "source-usccb-judges-19-note": {
+    "id": "source-usccb-judges-19-note",
+    "author": "United States Conference of Catholic Bishops",
+    "title": "Note on Judges 19:22–25",
+    "verification": "verified",
+    "verificationDetail": "Note on Judges 19:22–25 (verified in Step 5, 2026-11-21). Observes that this part of the story closely parallels the assault on Lot's angelic visitors in Genesis 19:4–8. Draft footnote key: USCCB."
   }
 }
