@@ -78,7 +78,8 @@ const historyPaths = historySitemapPaths(manifest, generatedBooks);
 // The public landing, About, and Privacy pages follow the chapter URLs,
 // then the Biblical History pages, then the Trace the Doctrine homepage
 // (a public landing page like About/Privacy — it lists planned
-// categories only, and no study-workspace URL exists to list).
+// categories only; the Trinity preview workspace at
+// /trace-the-doctrine/trinity is noindex and is deliberately not listed).
 const xml = buildSitemapXml(siteUrl, chapterCounts, ["/", "/about", "/privacy", "/trace-the-doctrine", ...historyPaths]);
 const outputPath = path.join(root, "public/sitemap.xml");
 

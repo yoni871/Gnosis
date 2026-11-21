@@ -143,7 +143,7 @@ export default function TraceTheDoctrinePage() {
                                     <span className="doctrine-traced-numeral" aria-hidden="true">iii</span>
                                     <div>
                                         <strong>Historical Timeline</strong>
-                                        <p>From the early Church through the councils — coming with the study.</p>
+                                        <p>From the early Church through the councils — available in the Trinity preview workspace.</p>
                                     </div>
                                 </li>
                             </ul>

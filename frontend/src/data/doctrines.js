@@ -1,8 +1,10 @@
 // Planned doctrine categories for the Trace the Doctrine homepage.
 //
-// These are PLANNED categories, not published studies: no doctrine
-// study workspace exists yet and no theological research content has
-// been written. Descriptions are brief, neutral category summaries —
+// These are PLANNED categories, not published studies: the Trinity
+// study workspace exists only as a preview (route
+// /trace-the-doctrine/trinity), and no theological research content
+// has been written — its historical entries are demonstration data
+// pending research. Descriptions are brief, neutral category summaries —
 // they make no research claims and name no sources. Keep them that
 // way until a study is actually published.
 
