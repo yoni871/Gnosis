@@ -420,7 +420,7 @@ describe("category lookups in a production build (twenty-seven categories publis
             "source-jfb-commentary",
             "source-josephus-antiquities",
             "source-keil-delitzsch-exodus",
-            "source-lucas-themelios-covenant-treaty",
+            "source-lucas-covenant-treaty-prophecy",
             "source-merneptah-stele",
             "source-nets-septuagint-exodus",
             "source-philo-decalogue",
