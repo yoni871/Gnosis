@@ -2,8 +2,8 @@ const { lockBudget, ensureCapacity } = require("../utils/storageBudget");
 const { pageRows } = require("../utils/privatePages");
 const pool = require("../db/db");
 const { biblePool } = require("../db/db");
-const { logControllerError } = require("../utils/authErrors");
 const { withUser, setUserContext } = require("../db/userContext");
+const { logControllerError } = require("../utils/authErrors");
 
 // Remove duplicate coordinates before validating and saving the selection.
 function uniqueVerses(verses) {
@@ -66,6 +66,7 @@ async function saveHighlights(userId, bookId, verses, color) {
     try {
         //start group of database operations that succeed or fail
         await client.query("BEGIN");
+        await setUserContext(client, userId);
         await lockBudget(client, userId);
         const existing = await client.query(`SELECT COUNT(*)::int AS count FROM highlights h
             JOIN jsonb_to_recordset($2::jsonb) AS p(chapter integer, verse integer)
@@ -74,12 +75,6 @@ async function saveHighlights(userId, bookId, verses, color) {
         const matched = Number(existing.rows[0]?.count);
         if (!Number.isSafeInteger(matched) || matched < 0 || matched > selected.length) throw new Error('Invalid highlight budget state.');
         await ensureCapacity(client, userId, 'highlights', { add: selected.length - matched });
-
-        // Row-level security context for this transaction. This
-        // function owns its transaction (with rollback logging below),
-        // so it sets the context directly instead of via withUser; the
-        // value is transaction-local and clears on COMMIT/ROLLBACK.
-        await setUserContext(client, userId);
 
         // Insert or recolor only the exact coordinates the user selected.
         const result = await client.query(

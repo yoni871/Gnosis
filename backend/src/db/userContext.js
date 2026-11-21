@@ -9,11 +9,10 @@
 // and a session-level `SET` on a pooled client could leak one user's id
 // into another user's request.
 //
-// `withUser` is the only way user-data code sets the context: it borrows
-// one client, opens a transaction, sets the context with set_config(...,
-// true) — the `true` makes it transaction-local, so COMMIT or ROLLBACK
-// clears it before the client returns to the pool. There is no reset-on-
-// release to forget, and no code path sets `app.user_id` any other way.
+// `withUser` borrows one client and owns the transaction. Code that already
+// owns a transaction (withUserBudget and saveHighlights) calls
+// setUserContext on that same client immediately after BEGIN. The setting is
+// transaction-local, so COMMIT or ROLLBACK clears it before release.
 
 function assertUserId(userId) {
     if (!Number.isInteger(userId) || userId <= 0) {
@@ -39,6 +38,7 @@ async function withUser(pool, userId, callback) {
     // touching the pool.
     assertUserId(userId);
     const client = await pool.connect();
+    let broken = false;
     try {
         await client.query('BEGIN');
         await setUserContext(client, userId);
@@ -49,12 +49,12 @@ async function withUser(pool, userId, callback) {
         try {
             await client.query('ROLLBACK');
         } catch {
-            // The client is released below; a failed rollback must not
-            // replace the original error.
+            // Discard a connection with an uncertain transaction state.
+            broken = true;
         }
         throw error;
     } finally {
-        client.release();
+        client.release(broken);
     }
 }
 

@@ -58,6 +58,8 @@ test('the app role cannot bypass RLS; exactly the seven user tables are forced',
     const identity = await pool.query(
         'SELECT rolbypassrls FROM pg_roles WHERE rolname = current_user');
     assert.equal(identity.rows[0].rolbypassrls, false);
+    const ownership = await pool.query("SELECT DISTINCT pg_get_userbyid(relowner) AS owner FROM pg_class WHERE relname = ANY($1)", [RLS_TABLES]);
+    assert.ok(ownership.rows.every(row => row.owner !== context.user), "app role must not own RLS tables");
     const states = await pool.query(
         `SELECT relname, relrowsecurity AS rls, relforcerowsecurity AS forced
          FROM pg_class JOIN pg_namespace ON pg_namespace.oid = pg_class.relnamespace

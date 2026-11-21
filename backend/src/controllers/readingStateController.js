@@ -1,7 +1,7 @@
 const pool = require("../db/db");
 const { biblePool, commentaryPool } = require("../db/db");
-const { logControllerError } = require("../utils/authErrors");
 const { withUser } = require("../db/userContext");
+const { logControllerError } = require("../utils/authErrors");
 
 const isPositiveInteger = (value) => {
     return Number.isInteger(value) && value > 0;

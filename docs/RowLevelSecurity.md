@@ -104,8 +104,8 @@ the migration is the authority if the two ever disagree.
 
 ## The `withUser` contract
 
-`backend/src/db/userContext.js` is the only way user-data code sets the
-context:
+`backend/src/db/userContext.js` supplies the context helper for user-data
+queries:
 
 ```js
 const { withUser } = require('../db/userContext');
@@ -125,10 +125,15 @@ await withUser(pool, userId, (client) => client.query('SELECT * FROM notes WHERE
   pools, the context must be set on both transactions (none does today:
   user-data validation reads happen on the Bible pool before the App
   write).
-- One exception: `saveHighlights` in
+- `withUserBudget` owns the quota lock and transaction for note and bookmark
+  writes. It sets `app.user_id` immediately after `BEGIN`, before quota
+  reads, then retains the same client through the write and commit. Never
+  wrap it in `withUser`: nested transactions on a pooled client would not
+  share the quota lock or RLS context.
+- Another exception: `saveHighlights` in
   `backend/src/services/highlightsService.js` already owns its
   transaction (with rollback logging), so it calls `setUserContext`
-  directly after `BEGIN` instead of going through `withUser`. Same
+  directly after `BEGIN`, before budget reads, instead of going through `withUser`. Same
   primitive, same transaction-local semantics.
 - Never set `app.user_id` with a session-level `SET` on a pooled
   client, and never run a user-data query on the App pool outside
@@ -141,20 +146,22 @@ await withUser(pool, userId, (client) => client.query('SELECT * FROM notes WHERE
 
 ## Migrations and FORCE RLS
 
-Audit of all App migrations at the time RLS landed (migration
-`20261109220000_add-row-level-security`, the 10th): no migration
-performs DML on an RLS table. The only user-table DML anywhere is the
+Audit of App migrations through current main: no migration after
+`20261109220000_add-row-level-security` performs DML on an RLS table. The only user-table DML anywhere is the
 `users` backfill in `20261104021959_add-email-verification`, and `users`
-is excluded (above). The RLS migration itself is DDL-only and sorts
-last, so every earlier migration runs before RLS exists. Any future
+is excluded (above). The RLS migration is DDL-only; later migrations change note and MFA schemas without user-row DML. Any future
 migration that writes to an RLS table must either run before the RLS
 migration in file order or set the context first — and the migration
 test suite will catch a silent zero-row write only if the test asserts
 row counts, so assert them.
 
-## Owner-context copies and dumps (read this before Phase 4)
+## Owner-context backups, copies, and restores
 
-Verified on disposable PostgreSQL 18.6 (2026-11-09):
+`FORCE ROW LEVEL SECURITY` applies to the non-superuser table owner. An owner-run
+`pg_dump` fails with `row_security=off`; a plain `COPY` or SELECT may instead
+return zero rows. **Do not treat a successful COPY as proof of a complete backup.**
+`SET row_security=off` does not bypass FORCE. The separate App role must remain
+`NOBYPASSRLS` and must not own these tables.
 
 For a planned owner-run backup or copy of a database where this migration is
 active:
@@ -217,9 +224,8 @@ backup. The operator must verify the backup and restore separately.
 Tests run only as a test role built from the clean grant set
 (`NOBYPASSRLS`, same grants as the production app role — see
 `backend/scripts/testing/application-database.js`), never as the owner
-and never against Neon. The live preview role's `rolbypassrls` was
-never audited, so testing against it would give false passes if it
-bypasses RLS.
+and never against Neon. Do not infer hosted-role properties from the disposable role; audit the
+actual hosted App role and table ownership before deployment.
 
 - `backend/test/application/rowLevelSecurity.test.js` (DB-backed
   suite): as the app role, proves per-table isolation for both users,
