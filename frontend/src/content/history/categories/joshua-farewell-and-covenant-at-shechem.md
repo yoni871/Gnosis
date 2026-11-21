@@ -10,11 +10,15 @@ Joshua 23 consists of instructions framed by the passage of time and Joshua's ap
 
 ## Ancient World
 
+### Shechem, treaties, and the retrospect
+
 Joshua 24 places the assembly at Shechem, a central-highland setting between Mount Ebal (north) and Mount Gerizim (south). This geographical relationship is secure. Identification of particular architectural remains with Joshua's covenant ceremony is not established by the text or archaeology.
 
 Joshua 24 combines historical rehearsal, collective decision, obligation, and warning. Ancient Near Eastern treaties and covenant texts may provide formal comparisons, including introductory historical material and stipulations. Yet similarities of form are not a decisive proof of direct borrowing from one particular Hittite treaty or a secure date for the composition of Joshua. Different genres and periods can share features, and a nuanced comparison examines both resemblance and difference. The earlier Phase 2 exclusion of a precise dependence claim must be respected. [^source-lucas-covenant-treaty-prophecy]
 
 Joshua 24:2–13 begins with a retrospect from the ancestors beyond the River, through Abraham, the exodus and land inheritance. This is the narrative's own condensed history. Its sequence should be described as the covenant speech rather than treated as an independently verified historical record for each episode.
+
+### Allegiance, the stone, and the two speeches
 
 Joshua 24:14–24 makes rejection of other gods a condition of allegiance to the LORD and records a public response. The ethical and theological stakes are clear from the dialogue. It would be misleading to infer from this speech that archaeologists can establish the precise practices of every household present.
 
@@ -22,11 +26,15 @@ Joshua 24:25–27 records Joshua writing covenant words and setting a stone bene
 
 Joshua 23 addresses fidelity after Joshua's retirement from leadership, while chapter 24 stages a covenant commitment at Shechem. They belong together yet have different speech settings and emphases. Treaty comparisons are useful as comparisons of literary features, not proof of direct borrowing from a named ancient diplomatic tablet.
 
+### Burials, Shechem, and the treaty question
+
 The death and burial notices, including Joseph's bones and Eleazar's burial, link the book's conclusion to earlier ancestral and exodus traditions. Exodus 13:19 supplies a text that recounts carrying Joseph's bones from Egypt; Hebrews 11:22 later interprets Joseph's instruction as an expression of faith. These are linked biblical traditions and later reception, not archaeological proof of the precise burial site. The ending deliberately looks backward to promise and forward to life after Joshua, making its grave notices significant beyond their geographical details. [^source-bible-gateway-kjv]
 
 Shechem sits in the central hill country between Mount Gerizim to the south and Mount Ebal to the north. Its later religious and political importance makes it a meaningful setting in biblical tradition, but no archaeological object independently records the complete conversation of Joshua 24. Ancient Near Eastern treaty forms supply possible analogies for a historical prologue, stipulations and witnesses; structural similarity alone does not prove that Joshua directly copied any particular surviving treaty. The stone set up in Joshua 24:26–27 is best described as a narrative witness, not as an excavated monument identified by inscription. [^source-bible-gateway-kjv]
 
 Shechem's setting between Ebal and Gerizim makes it a meaningful geographical anchor within the narrative. The association with a covenant stone under an oak (24:26–27) remains a textual claim; no particular standing stone may be assigned to Joshua without independent evidence. Ancient treaty comparisons can clarify formal elements of oaths, witnesses and obligations, but cannot prove direct borrowing from an extant treaty document merely because some features resemble one another.
+
+### The farewell and the close
 
 Joshua 23 opens with the people experiencing a period of rest and Joshua nearing the end of his life. The speech presents divine assistance retrospectively and warns that continued possession must not become an excuse for religious accommodation. The vocabulary of loyalty, remaining nations and covenant obligations belongs to its theological argument. Read as a whole, the speech's conditional rhetoric resists being reduced to a single triumphal sentence, and no such sentence certifies total occupation.
 

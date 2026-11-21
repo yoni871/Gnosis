@@ -12,11 +12,15 @@ The opening chapter gives Joshua distinct audiences: God addresses the leader, o
 
 ## Ancient World
 
+### Jericho and Rahab
+
 Jericho sits in the Jordan Valley near an important spring and approaches from the Transjordan. Its location explains why a scouting mission to a fortified settlement would matter to an army preparing to enter the land. Tell es-Sultan, the archaeological mound associated with ancient Jericho, preserves a long occupation history rather than a single unchanged city. Walls, destruction deposits, and pottery belong to distinct phases. The historical question is not whether a settlement ever stood there, but which excavated layers could relate to a particular narrative and what dates can legitimately be assigned to them. The published Jericho radiocarbon study concerns destruction near the end of the Middle Bronze Age; its measurements cannot identify Rahab or date her household. [^source-bruins-van-der-plicht-jericho-radiocarbon-1995]
 
 The report that Rahab lived at the city wall (Joshua 2:15) is a spatial detail within the narrative. It explains why the spies can descend by rope and escape toward the hills, but cannot identify an excavated wall, building, or person. The Tell es-Sultan occupational sequence is independently studied; identifying a particular household with Rahab is not an archaeological finding.
 
 Rahab's appeal in Joshua 2:9–13 joins her report of fear, her acknowledgment of Israel's God, and her request that the spies preserve her family. The Hebrew designation *zonah* is part of the story's description; the narrative gives no basis for a detailed biography or a reconstruction of her household economy. The oath and its stipulated conditions, not an inferred social history, carry the account forward.
+
+### Other witnesses and the date
 
 Numbers 13 is an earlier, distinct reconnaissance narrative; Hebrews 11:31 and James 2:25 are later interpretations of Rahab's action. Their relation to Joshua is literary and theological. They cannot serve as independent corroboration of the scouts' itinerary or of her words. The three passages should be labeled separately in the Scripture Connections registry.
 
@@ -24,9 +28,13 @@ Joshua 1:12–18 recalls the east-bank tribes' obligation to assist the western 
 
 The date of Joshua's campaign is not independently fixed by these chapters. The Merneptah Stele, conventionally placed around 1208/1207 BCE, attests a group named Israel in Canaan by the late thirteenth century; it neither mentions Joshua nor dates the mission to Jericho. That difference protects the reader from using a regional inscription to fill the gaps in an individual episode. Broad regional context is valuable, but a single named people in an Egyptian royal inscription does not validate every event later narrated about that people. [^source-merneptah-stele]
 
+### The valley and the wider world
+
 The story sets Jericho in the Jordan Valley and contrasts a fortified city with Israel’s encampment east of the river. Readers should picture a river corridor adjoining a steep rise into the central hill country, rather than an undifferentiated “Canaan.” A central editorial limit is that pottery and radiocarbon from Tell es-Sultan speak to particular occupation phases; they cannot identify Rahab’s house, the spies’ route or the timing of the conversation recorded in Joshua 2. Radiocarbon studies of the Middle Bronze destruction are relevant to the site’s longer chronology, not a direct test of every episode in Joshua 1–2. [^source-bruins-van-der-plicht-jericho-radiocarbon-1995]
 
 The Amarna letters, preserved from the Egyptian court, give a window onto a different Late Bronze setting in which rulers of Canaanite cities described their concerns to a more powerful ruler. The Metropolitan Museum's essay includes correspondence from Abi-milku of Tyre. This evidence helps explain why the language of kings, towns and allegiances belongs to a complex inhabited landscape; it cannot identify Jericho's king, Joshua's agents or a particular date for the scouting mission. [^source-met-amarna-letters]
+
+### The land, the household, and the oath
 
 Joshua 1:3–4 describes the land in expansive terms, from wilderness and Lebanon to the Euphrates and the western sea. That horizon belongs to the divine promise in the speech. It should not be converted into an archaeological finding that Joshua's government administratively controlled every point within those limits. Within the same chapter, the east-bank warriors are told that their own households have already been allowed to remain in territory assigned by Moses. This contrast between promised extent, partial inheritance, and forthcoming military cooperation is important to the book's understanding of land. A careful article may describe what the boundaries communicate within Scripture without attaching the narrative's claim to a single independently verified map of the Late Bronze Age.
 

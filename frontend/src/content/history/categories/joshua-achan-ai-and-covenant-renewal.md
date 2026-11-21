@@ -10,21 +10,31 @@ Achan's violation in Joshua 7 concerns goods placed under the ban in chapter 6. 
 
 ## Ancient World
 
+### Ai and its identification
+
 Ai is one of the hardest geographical problems in studies of Joshua. The common proposal identifying it with et-Tell faces difficulties because the excavated settlement history does not provide a straightforward Late Bronze city for the battle as traditionally reconstructed. Alternative locations have been proposed, but the existence of competing hypotheses is not proof that any candidate has met the necessary geographical, stratigraphic, and chronological tests. A reader should be told openly that the site identification remains unresolved, not that a consensus location has solved the problem. Book-chapter previews may document that the debate exists but cannot substitute for the full evidence of a report. [^source-wood-search-for-joshuas-ai]
 
 The account of Ai in Joshua 8:1–29 includes an ambush, a feigned withdrawal, a signal involving Joshua's weapon, and the burning of the settlement. These are the military maneuvers described by the narrator. They do not independently identify et-Tell or confirm a particular archaeological destruction layer.
+
+### Mount Ebal and the disputed inscription
 
 Mount Ebal lies north of the Shechem/Nablus valley and Mount Gerizim lies to its south. Joshua 8:30–35 places an altar and covenant-law ceremony on Ebal in the Masoretic narrative. Ancient witnesses complicate the placement and sequencing, including the fragmentary 4Q47/4QJoshuaᵃ. A proposed lead inscription from Ebal cannot establish Joshua's date or the scriptural ceremony. [^source-makipelto-tekniemi-tucker-large-scale-transposition-2017] [^source-haughwout-ebal-curse-tablet-refutation-2024]
 
 Adam Zertal excavated an Iron Age I structure on Mount Ebal and proposed a cultic interpretation. Its function and attribution are debated, and there is no independent basis for labeling it definitively Joshua's altar. A folded lead object recovered during later examination of excavated material prompted a 2023 publication proposing an early Hebrew curse text. A proposed reading should not be conflated with the uncontroversial existence of the object: a subsequent scholarly critique disputes whether meaningful writing is visible and contests the proposed dating and interpretation. The article must report this as disagreement, not as proof of the event. [^source-stripling-ebal-curse-inscription-2023] [^source-haughwout-ebal-curse-tablet-refutation-2024]
 
+### The ceremony's placement and its biblical parallels
+
 The textual sequence of the covenant-law ceremony also demands care. The Masoretic form locates it after Ai, while the fragmentary 4Q47 and Greek traditions have figured in arguments for different arrangements near the Jordan crossing. The scroll evidence is complicated and reconstruction-dependent; stating simply that the Dead Sea Scrolls contain only spelling variations would be misleading. A useful introductory explanation can note that ancient witnesses sometimes preserve different arrangements of large textual units and that scholars debate how the Joshua tradition developed. Claims about the exact original sequence require examination of the relevant edition and argument. [^source-makipelto-tekniemi-tucker-large-scale-transposition-2017]
 
 Deuteronomy 27 provides a key biblical comparison, but it is not independent archaeological proof that the ceremony occurred at one exact location. Some textual traditions associated with Deuteronomy raise the Ebal/Gerizim issue as well, and the distinction among witnesses should not be collapsed. Later Hosea 2:15 turns the Valley of Achor into a figurative 'door of hope': the later usage illustrates reception and transformation of an earlier place-name, not an archaeological map of Joshua 7. The text's blend of judgment, renewed action, and law reading is thus illuminated by both internal literary connections and the uncertainties of ancient textual transmission. [^source-bible-gateway-kjv]
 
+### The lead object and the 4QJoshuaᵃ witness
+
 The lead object recovered from material associated with the Mount Ebal excavation is physically real, but the interpretation of marks as a Late Bronze Hebrew curse remains contested. Stripling and colleagues published a proposed reading in 2023; critical responses challenge the identification and arrangement of letters. This disagreement should be reported without announcing either a solved inscription or a definitive non-inscription based on an abstract alone. The archaeological structure excavated by Adam Zertal is likewise interpreted differently, and even an altar identification would not independently date or prove Joshua 8:30–35. [^source-stripling-ebal-curse-inscription-2023] [^source-haughwout-ebal-curse-tablet-refutation-2024]
 
 Joshua 8:30–35 places an altar and public reading in the Shechem highlands in the Masoretic sequence, but its relationship to the Jordan crossing is complicated by textual witnesses. Mäkipelto, Tekoniemi and Tucker's 2017 study of large-scale transposition (TC 22, pp. 3–5) details the partly reconstructed juxtaposition: in 4QJoshuaᵃ the reading of the law (Joshua 8:34–35) stands early, just after the Jordan crossing and before the circumcision scene in Joshua 5:2–7. The fragment is incomplete, and the suggested literary explanation must be attributed to the scholars rather than stated as the only possible transmission history. [^source-makipelto-tekniemi-tucker-large-scale-transposition-2017]
+
+### Achan, Ai, and the assembly
 
 Achan's offense is presented as communal in effect even before he is identified by name. The Israelites initially expect success at Ai, send a limited force, and then suffer a defeat that changes the tone of the camp (Joshua 7:2–5). Joshua responds with lament and questions about the community's standing (7:6–9). The narrative turns on the declaration that the ban has been violated, then narrows from the people as a whole through tribal and household groupings to Achan himself. The process dramatizes accountability; it should not be cited as a directly observed forensic procedure from an archaeological archive.
 
