@@ -1,0 +1,80 @@
+{
+  "id": "judges",
+  "title": "Judges",
+  "testament": "OT",
+  "introduction": "Judges records Israel's cycles of disobedience, oppression, deliverance, and relapse in the period before kingship, from the incomplete conquest through the civil war that nearly destroys Benjamin. These twelve studies follow literary divisions; they do not claim twelve independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "entries": [
+    {
+      "categoryId": "category-judges-israels-incomplete-conquest",
+      "kind": "category",
+      "narrativeOrder": 61,
+      "bookNote": "Judges 1 examines Israel's Incomplete Conquest as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-israels-disobedience-and-the-cycle-of-judges",
+      "kind": "category",
+      "narrativeOrder": 62,
+      "bookNote": "Judges 2–3 examines Israel's Disobedience and the Cycle of Judges as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-othniel-ehud-and-shamgar",
+      "kind": "category",
+      "narrativeOrder": 63,
+      "bookNote": "Judges 3 examines Othniel, Ehud, and Shamgar as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-deborah-barak-and-jael",
+      "kind": "category",
+      "narrativeOrder": 64,
+      "bookNote": "Judges 4–5 examines Deborah, Barak, and Jael as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-gideon-and-the-midianites",
+      "kind": "category",
+      "narrativeOrder": 65,
+      "bookNote": "Judges 6–8 examines Gideon and the Midianites as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-abimelech-s-violent-rule",
+      "kind": "category",
+      "narrativeOrder": 66,
+      "bookNote": "Judges 9 examines Abimelech's Violent Rule as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-tola-jair-and-israel-s-renewed-oppression",
+      "kind": "category",
+      "narrativeOrder": 67,
+      "bookNote": "Judges 10 examines Tola, Jair, and Israel's Renewed Oppression as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-jephthah-and-the-ammonites",
+      "kind": "category",
+      "narrativeOrder": 68,
+      "bookNote": "Judges 11–12 examines Jephthah and the Ammonites as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-samson-and-the-philistines",
+      "kind": "category",
+      "narrativeOrder": 69,
+      "bookNote": "Judges 13–16 examines Samson and the Philistines as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-micah-s-idolatry-and-the-migration-of-dan",
+      "kind": "category",
+      "narrativeOrder": 70,
+      "bookNote": "Judges 17–18 examines Micah's Idolatry and the Migration of Dan as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-the-levite-and-the-crime-at-gibeah",
+      "kind": "category",
+      "narrativeOrder": 71,
+      "bookNote": "Judges 19 examines The Levite and the Crime at Gibeah as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-judges-civil-war-and-the-near-destruction-of-benjamin",
+      "kind": "category",
+      "narrativeOrder": 72,
+      "bookNote": "Judges 20–21 examines Civil War and the Near Destruction of Benjamin as a biblical literary and historical-context study, without assigning an independently verified date."
+    }
+  ]
+}
