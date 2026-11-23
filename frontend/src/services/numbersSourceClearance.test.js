@@ -29,7 +29,7 @@ describe('Numbers published sources satisfy the publication source check', () =>
     const sources = read('sources/references.json');
     const book = read('books/numbers.json');
     expect(book.entries).toHaveLength(9);
-    expect(Object.keys(sources)).toHaveLength(296);
+    expect(Object.keys(sources)).toHaveLength(331);
     for (const {categoryId} of book.entries) {
       expect(categoryId).not.toBe('category-numbers-worship-vows-midian');
       const record = read(`categories/${categoryId.slice('category-'.length)}.json`);
