@@ -1,0 +1,531 @@
+{
+  "id": "category-ruth-the-threshing-floor-and-the-gate",
+  "title": "The Threshing Floor and the Gate",
+  "category": "category",
+  "orphan": true,
+  "era": "ruth",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "Ruth",
+    "bookId": "ruth",
+    "startChapter": 3,
+    "startVerse": 1,
+    "endChapter": 4,
+    "endVerse": 17
+  },
+  "fullRange": {
+    "book": "Ruth",
+    "bookId": "ruth",
+    "startChapter": 3,
+    "startVerse": 1,
+    "endChapter": 4,
+    "endVerse": 17
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated Ruth narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-rut-03-001",
+      "claim": "Ruth 3:1–4:17 is one continuous resolution arc: a single night at the threshing floor (ch. 3) fulfilled \"this day\" at the gate (4:1–12), with marriage and birth following without a time or scene break (4:13–17).",
+      "evidence": "Read record (ruth-read-ch03-04.md, boundary table); Mechon Mamre Ruth 3 (18 vv.) and Ruth 4 (22 vv.) opened live; K&D introduction to Ruth 3 and Ruth 4.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-rut-03-002",
+      "claim": "*Manoach* (\"rest\") in 3:1 means a peaceful, well-secured condition — a settled life under a husband's guardian care — the same word as *menuchah* in 1:9.",
+      "evidence": "K&D on Ruth 3:1–5, citing Rosenmüller.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-rut-03-003",
+      "claim": "Boaz winnowed barley at night on an open-air threshing floor — a hard, level, often circular surface outside the town, worked in the evening breeze — and slept there at the end of the grain heap to guard the crop.",
+      "evidence": "K&D on Ruth 3:1–5 (Robinson's floor description; evening wind) and 3:6–7; BiblicalTraining \"Threshing Floor\" (location, construction, winnowing, night guarding).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-004",
+      "claim": "Winnowing used the evening wind to separate grain from chaff, tossed with fork and shovel; barley was the spring crop, wheat following weeks later.",
+      "evidence": "BiblicalTraining \"Threshing Floor\" (winnowing and storing; harvest timetable); Borowski's April/May calendar via NET Bible notes (second-hand).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-005",
+      "claim": "\"Spread thy skirt over thine handmaid\" (*kanaf*, literally \"wing\") is a claim to marriage, not merely a request for shelter: the figure is the corner of the covering a man spreads over his wife, as in Ezek 16:8.",
+      "evidence": "K&D on Ruth 3:9 (Deut 22:30 Heb. 23:1; Ezek 16:8); answered by 2:12 (\"under whose wings\").",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-006",
+      "claim": "Ruth is called *eshet chayil* (\"a virtuous woman,\" literally a woman of strength/valor); the phrase occurs only three times in the Old Testament (Ruth 3:11; Prov 12:4; Prov 31:10).",
+      "evidence": "K&D on Ruth 3:10–14 (\"virtuous woman,\" known to \"the whole gate of my people\"); three-occurrence count from a secondary summary only (not checked against a concordance directly).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-007",
+      "claim": "Boaz measured six measures of barley into Ruth's shawl (*mitpachat*); the unit of measure is not stated in the text, and the Targum's \"six seahs = two ephahs\" is incorrect, since Ruth could not have carried that much.",
+      "evidence": "K&D on Ruth 3:15 (Targum/Rabbins rejected; measure not given).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-008",
+      "claim": "The gate — the open space before the city gate — was the forum where the city's public affairs were discussed; Boaz's \"going up\" to it is the place of justice as an ideal eminence, not a topographical climb.",
+      "evidence": "K&D on Ruth 4:1 (cf. Deut 17:8).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-009",
+      "claim": "Boaz took ten men of the elders of the city as witnesses.",
+      "evidence": "Mechon Mamre Ruth 4:2 (live).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-rut-03-009b",
+      "claim": "The text states the number but gives no reason for it, and no source in this dossier explains why ten.",
+      "evidence": "Ruth 4:2 gives the number with no reason stated; no explanation found in K&D or elsewhere consulted.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-rut-03-010",
+      "claim": "The nearer kinsman is unnamed — Hebrew *peloni almoni*, \"such a one,\" a person whose name is unknown or not thought worth mentioning.",
+      "evidence": "K&D on Ruth 4:1 (cf. 1 Sam 21:3; 2 Kgs 6:8).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-rut-03-011",
+      "claim": "Naomi had sold Elimelech's field from want; the sale was of yearly produce until the Jubilee, not of the land itself; the widow remained in possession during her life, and the field would pass to the nearest relations.",
+      "evidence": "K&D on Ruth 4:2–5 (Lev 25:10, 13–16, 24–28; Num 27:8–11); Lev 25 framework in clm-lev-jc-001–003.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-012",
+      "claim": "The nearer kinsman refused because redeeming plus marrying Ruth would mar his own inheritance: the redeemed field would pass to the son born through Ruth, so his outlay would benefit another line.",
+      "evidence": "K&D on Ruth 4:6–13 (economic reading of \"lest I mar mine own inheritance\").",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-013",
+      "claim": "In the former custom, the man surrendering a right drew off his own shoe and gave it to his neighbour; in Ruth 4:8 the refusing kinsman gives his shoe to Boaz, as a token transferring a possession or right of ownership (grounded in taking possession by treading the soil).",
+      "evidence": "Mechon Mamre Ruth 4:7–8 (live); K&D on Ruth 4:7–8 (shoe as transfer symbol; cf. Deut 25:9 discussion).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-014",
+      "claim": "The sandal exchange is a conveyancing gesture for redemption and exchange, NOT the *halitzah* rite of Deut 25:7–10: the man acts himself, no widow acts, there is no spitting, and the act confirms a transfer rather than shaming a refusal.",
+      "evidence": "K&D on Ruth 4:7–8; narrator's gloss \"concerning redeeming and concerning changing\"; published clm-deu-06-069 (probable).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-015",
+      "claim": "*Ga'al* (H1350) means \"redeem, act as kinsman\": (a) taking a kinsman's widow (Ruth 3:13); (b) redeeming from bondage (Lev 25:48–49); (c) redeeming a field (Lev 25:26, 33; Ruth 4:4, 6); (d) *go'el hadam*, avenger of blood (Num 35:19; Deut 19:6); and (e) with God as subject, redeeming Israel from bondage and exile.",
+      "evidence": "BDB H1350 entry read directly (bibliaparalela mirror of BDB).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-rut-03-016",
+      "claim": "Ruth 4 is redemption by a *go'el* under a traditional custom that attached a widow-marriage obligation to the redemption of the land; it is NOT a levirate marriage contracted under Deut 25:5–10, which bound only a brother.",
+      "evidence": "K&D introduction to Ruth 3 (\"these two institutions are not connected together in the Mosaic law\" but custom joined them); published clm-deu-06-069 and clm-deu-06-076 (probable).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-017",
+      "claim": "The gate blessing wishes Ruth like Rachel and Leah, \"which two did build the house of Israel,\" and Boaz to \"do worthily in Ephrath\" — *'aseh chayil* meaning to get power by begetting and training worthy sons and daughters, not to get wealth — and to be famous in Bethlehem.",
+      "evidence": "K&D on Ruth 4:11 (Gen 16:2; 30:3; Ps 60:14; Prov 31:29).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-018",
+      "claim": "The blessing \"let thy house be like the house of Perez, whom Tamar bore unto Judah\" invokes Gen 38; Perez is the ancestor from whom Boaz's line descends (Ruth 4:18; 1 Chr 2:5).",
+      "evidence": "K&D on Ruth 4:12; Mechon Mamre Gen 38 (30 vv., opened live).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-rut-03-019",
+      "claim": "Boaz took Ruth, the LORD gave her conception, and she bore a son; the women call the child Naomi's *go'el* and say he will restore her life and nourish her old age; Naomi takes him to her bosom and becomes his nurse; the neighbour women name him Obed, \"a son is born to Naomi,\" and he is the father of Jesse, the father of David.",
+      "evidence": "Mechon Mamre Ruth 4:13–17 (live); K&D on Ruth 4:13–17 (Obed = \"the serving one,\" not \"servant of Jehovah\").",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-rut-03-020",
+      "claim": "A real tension exists between the Deut 23:3 exclusion of Ammonites and Moabites from the assembly of the LORD \"for ever\" and Ruth the Moabitess being taken as wife and bearing a son in Israel. No character in Ruth raises the exclusion, and the narrator offers no gloss resolving it.",
+      "evidence": "Mechon Mamre Deut 23 (Heb. v. 4 = Eng. v. 3, opened live); Mechon Mamre Ruth 4:5, 10, 13 (live); published conn-deu-06-023 (\"noted, not resolved\").",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-rut-03-020b",
+      "claim": "Any resolution of the tension between the Deut 23:3 exclusion and Ruth the Moabitess being taken as wife and bearing a son in Israel — the four candidate readings set out in §8.4.",
+      "evidence": "No resolution is adopted in this dossier; the four candidate readings are set out in §8.4 (see RCL-03-021, RCL-03-022); published conn-deu-06-023 (\"noted, not resolved\").",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-rut-03-021",
+      "claim": "Candidate reading (a): the exclusion applies to male Ammonites/Moabites only, so a Moabite woman could marry into Israel — the rabbinic reading (Mishnah *Yebamot* 8:3; b. *Yebamot* 77a), argued from the stated reason (bread and water; hiring Balaam) as men's acts.",
+      "evidence": "Levin (Torah.org) on Ketubot 7a / Yebamot 77b and the reason-based argument; Wright (TheTorah.com) on Mishnah Yebamot 8:3. Talmud not read directly.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-rut-03-022",
+      "claim": "Candidate reading (c): the narrative itself resolves the exclusion — Ruth's oath, refuge, public character, the elders' blessing, and the LORD giving her conception amount to a narrative verdict of acceptance; Braulik's form: Ruth as intra-biblical critique/homily on Deut 23–25.",
+      "evidence": "Braulik, abstract + excerpts (full article not read directly); Wright on the community's welcome (Ruth 4:11) and the label dropping at 4:13.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-rut-03-023",
+      "claim": "ANE parallels for the sandal conveyance (Alalakh AT 456; Nuzi HSS 19, 67; Hittite/Middle Assyrian footwear material) are asserted in web summaries but were NOT independently verified in this dossier; no claim about them is made.",
+      "evidence": "No primary edition or scholarly publication opened; no registry source. See §5.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-rut-03-024",
+      "claim": "Identifying a threshing floor archaeologically is difficult: an Iron Age layered feature at Tel Megiddo previously assumed to be a threshing floor was re-identified as a single-household trash heap, and similar identifications should be re-evaluated.",
+      "evidence": "Shahack-Gross, Gafri & Finkelstein, Journal of Field Archaeology 34(2), 171–184 (2009), read in full via the freely accessible ResearchGate publication page, 2026-11-23 (abstract, introduction, methods, results, discussion, conclusion, references).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-03-025",
+      "claim": "\"Ephrath\" in the blessing (\"do thou worthily in Ephrath\") is not settled as identical with Bethlehem: the Ephrath gloss is debated, and \"that is Bethlehem\" may be a later gloss.",
+      "evidence": "Published clm-ij-063 (debated; Skinner); K&D on Ruth 4:11 treats Ephrath/Bethlehem as the blessing's own pairing without deciding identity.",
+      "assessment": "debated"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-rut-03-001",
+      "book": "Ruth",
+      "bookId": "ruth",
+      "startChapter": 2,
+      "startVerse": 12,
+      "endChapter": 2,
+      "endVerse": 12,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Boaz's blessing speaks of refuge under the LORD's wings; the threshing-floor scene answers it when Ruth asks Boaz to spread his own wing over her."
+    },
+    {
+      "id": "conn-rut-03-002",
+      "book": "Ruth",
+      "bookId": "ruth",
+      "startChapter": 2,
+      "startVerse": 20,
+      "endChapter": 2,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "established",
+      "note": "Naomi first names Boaz as a near kinsman with the right of redemption, the thread the threshing-floor night and the gate scene carry to its end."
+    },
+    {
+      "id": "conn-rut-03-003",
+      "book": "Ruth",
+      "bookId": "ruth",
+      "startChapter": 1,
+      "startVerse": 9,
+      "endChapter": 1,
+      "endVerse": 9,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Naomi's farewell prayer that her daughters-in-law find rest in a husband's house is the wish the threshing-floor plan sets out to fulfil."
+    },
+    {
+      "id": "conn-rut-03-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 25,
+      "startVerse": 5,
+      "endChapter": 25,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The levirate statute and its refusal rite stand behind the gate procedure, but the marriage in Ruth is redemption by a kinsman, not a marriage under this statute."
+    },
+    {
+      "id": "conn-rut-03-005",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 25,
+      "startVerse": 23,
+      "endChapter": 25,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "established",
+      "note": "The land belongs to the LORD and a kinsman redeems what poverty forced a relative to sell; this is the law behind the field of Elimelech at the gate."
+    },
+    {
+      "id": "conn-rut-03-006",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 25,
+      "startVerse": 47,
+      "endChapter": 25,
+      "endVerse": 49,
+      "type": "background",
+      "confidence": "established",
+      "note": "The same kinsman-redeemer law covers redeeming a relative from bondage, showing the breadth of the redeemer's duty beyond land alone."
+    },
+    {
+      "id": "conn-rut-03-007",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 23,
+      "startVerse": 3,
+      "endChapter": 23,
+      "endVerse": 6,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The law barring Ammonites and Moabites from the assembly, with its stated reasons, stands in open tension with Ruth the Moabitess being taken as wife; the tension is carried here, not settled."
+    },
+    {
+      "id": "conn-rut-03-008",
+      "book": "Nehemiah",
+      "bookId": "nehemiah",
+      "startChapter": 13,
+      "startVerse": 1,
+      "endChapter": 13,
+      "endVerse": 3,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "After the exile the same law is read aloud and applied to separate from all foreign descent — the strict reading against which Ruth's welcome stands out, which sharpens the tension without resolving it."
+    },
+    {
+      "id": "conn-rut-03-009",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 38,
+      "startVerse": 1,
+      "endChapter": 38,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "established",
+      "note": "Judah and Tamar give the pre-Mosaic instance of raising up a name for the dead, and the gate blessing itself names Perez, whom Tamar bore to Judah."
+    },
+    {
+      "id": "conn-rut-03-010",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 19,
+      "startVerse": 30,
+      "endChapter": 19,
+      "endVerse": 38,
+      "type": "background",
+      "confidence": "established",
+      "note": "Lot's daughters bear Moab and Ben-ammi, the origin of the people Ruth comes from; the exclusion's stated reason is not this origin but inhospitality and Balaam."
+    },
+    {
+      "id": "conn-rut-03-011",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 22,
+      "startVerse": 1,
+      "endChapter": 22,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "established",
+      "note": "Balak of Moab sends for Balaam to curse Israel, the hiring the exclusion in Deuteronomy gives as its second reason."
+    },
+    {
+      "id": "conn-rut-03-012",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 2,
+      "endChapter": 17,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Wrongdoing is judged at the gates with witnesses, the same public gate setting where Boaz settles the redemption."
+    },
+    {
+      "id": "conn-rut-03-013",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 21,
+      "startVerse": 18,
+      "endChapter": 21,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "established",
+      "note": "A case is brought to the elders at the gate, the established pattern for the elders Boaz gathers as witnesses."
+    },
+    {
+      "id": "conn-rut-03-014",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 22,
+      "startVerse": 13,
+      "endChapter": 22,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "established",
+      "note": "A dispute is heard before the elders at the gate, another instance of the gate as the town's court."
+    },
+    {
+      "id": "conn-rut-03-015",
+      "book": "Ezekiel",
+      "bookId": "ezekiel",
+      "startChapter": 16,
+      "startVerse": 8,
+      "endChapter": 16,
+      "endVerse": 8,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The LORD spreads his skirt over Jerusalem and takes her as wife, the closest parallel to Ruth's request for Boaz to spread his skirt over her."
+    },
+    {
+      "id": "conn-rut-03-016",
+      "book": "Proverbs",
+      "bookId": "proverbs",
+      "startChapter": 12,
+      "startVerse": 4,
+      "endChapter": 12,
+      "endVerse": 4,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "A woman of strength is her husband's crown, the same phrase Boaz uses of Ruth before the whole town."
+    },
+    {
+      "id": "conn-rut-03-017",
+      "book": "Proverbs",
+      "bookId": "proverbs",
+      "startChapter": 31,
+      "startVerse": 10,
+      "endChapter": 31,
+      "endVerse": 31,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The poem of the woman of strength gives the fullest portrait of the phrase Boaz applies to Ruth."
+    },
+    {
+      "id": "conn-rut-03-018",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 6,
+      "startVerse": 11,
+      "endChapter": 6,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Gideon threshes wheat hidden in a winepress for fear of Midian, the contrast case showing threshing normally happened on the open floor."
+    },
+    {
+      "id": "conn-rut-03-019",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 24,
+      "startVerse": 16,
+      "endChapter": 24,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "established",
+      "note": "David buys Araunah's threshing floor and builds an altar there, the best-known threshing floor in the Bible and a sign of how such open places could change use."
+    },
+    {
+      "id": "conn-rut-03-020",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 35,
+      "startVerse": 16,
+      "endChapter": 35,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "debated",
+      "note": "Rachel dies on the way to Ephrath, the place-name behind the blessing's mention of Ephrath; whether Ephrath is Bethlehem is debated."
+    },
+    {
+      "id": "conn-rut-03-021",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 50,
+      "startVerse": 10,
+      "endChapter": 50,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The threshing floor of Atad serves as a gathering and mourning place, showing floors were large open spaces used for more than threshing."
+    },
+    {
+      "id": "conn-rut-03-022",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 27,
+      "startVerse": 8,
+      "endChapter": 27,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "established",
+      "note": "The order of inheritance when a man dies without sons is the law behind who held Elimelech's field and who could redeem it."
+    },
+    {
+      "id": "conn-rut-03-023",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 1,
+      "startVerse": 3,
+      "endChapter": 1,
+      "endVerse": 3,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Every place the sole of the foot treads is given as possession, the image behind the shoe as a token of transferred land-right."
+    },
+    {
+      "id": "conn-rut-03-024",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 2,
+      "startVerse": 5,
+      "endChapter": 2,
+      "endVerse": 5,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The barren woman bears seven sons, the picture of full blessing behind the women's words that Ruth is better to Naomi than seven sons."
+    },
+    {
+      "id": "conn-rut-03-025",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 2,
+      "startVerse": 5,
+      "endChapter": 2,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "established",
+      "note": "Perez's line is listed there, the genealogy the gate blessing and the book's ending both point toward."
+    },
+    {
+      "id": "conn-rut-03-026",
+      "book": "Ruth",
+      "bookId": "ruth",
+      "startChapter": 4,
+      "startVerse": 18,
+      "endChapter": 4,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "established",
+      "note": "The genealogy of Perez closes the book from Perez to David; it is its own unit, carried by the next category, and is linked here only as the story's forward edge."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-bdb-lexicon",
+    "source-bergsma-jubilee",
+    "source-biblicaltraining-threshing-floor",
+    "source-kaplan-jubilee",
+    "source-keil-delitzsch-deuteronomy",
+    "source-keil-delitzsch-ruth",
+    "source-levin-moabite-shall-not-enter",
+    "source-mechon-mamre-ruth-masoretic-text",
+    "source-shahack-gross-gafri-finkelstein-threshing-floors-megiddo",
+    "source-skinner-genesis"
+  ],
+  "review": {
+    "author": "Gnosis Ruth research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-23",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished Ruth category; independent QA pending. Split limbs carried as separate claims: RCL-03-020/020b (tension exists established; any resolution debated — Phase 4 SR-R03-3) and RCL-03-009/009b (ten elders established; reason unknown — worker B split). R03's needs-checking sources (R03-S05 Borowski, R03-S07 Wright, R03-S08 Braulik, R03-S09 CBE, R03-S10 NET notes, R03-S11 Clarke) are excluded from sources[]; no claim rests on any of them alone (RCL-03-004 cites verified R03-S03 alongside S05/S10; RCL-03-006 cites verified R03-S01 alongside S09; RCL-03-021 cites verified R03-S04 alongside S07; RCL-03-022 cites verified R03-S02 first alongside S07/S08). R03-S07 appears footnote-only in the MD prose (J10/S012 precedent). Deut 23 tension noted, not resolved, per Yonatan's decided line."
+  }
+}
