@@ -404,6 +404,71 @@
       "source": "/biblical-history/joshua",
       "destination": "/biblical-history/joshua-commission-and-rahab",
       "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-israels-incomplete-conquest",
+      "destination": "/biblical-history/judges-israels-incomplete-conquest",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-israels-disobedience-and-the-cycle-of-judges",
+      "destination": "/biblical-history/judges-israels-disobedience-and-the-cycle-of-judges",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-othniel-ehud-and-shamgar",
+      "destination": "/biblical-history/judges-othniel-ehud-and-shamgar",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-deborah-barak-and-jael",
+      "destination": "/biblical-history/judges-deborah-barak-and-jael",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-gideon-and-the-midianites",
+      "destination": "/biblical-history/judges-gideon-and-the-midianites",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-abimelech-s-violent-rule",
+      "destination": "/biblical-history/judges-abimelech-s-violent-rule",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-tola-jair-and-israel-s-renewed-oppression",
+      "destination": "/biblical-history/judges-tola-jair-and-israel-s-renewed-oppression",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-jephthah-and-the-ammonites",
+      "destination": "/biblical-history/judges-jephthah-and-the-ammonites",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-samson-and-the-philistines",
+      "destination": "/biblical-history/judges-samson-and-the-philistines",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-micah-s-idolatry-and-the-migration-of-dan",
+      "destination": "/biblical-history/judges-micah-s-idolatry-and-the-migration-of-dan",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-the-levite-and-the-crime-at-gibeah",
+      "destination": "/biblical-history/judges-the-levite-and-the-crime-at-gibeah",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges/judges-civil-war-and-the-near-destruction-of-benjamin",
+      "destination": "/biblical-history/judges-civil-war-and-the-near-destruction-of-benjamin",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/judges",
+      "destination": "/biblical-history/judges-israels-incomplete-conquest",
+      "permanent": true
     }
   ],
   "rewrites": [
