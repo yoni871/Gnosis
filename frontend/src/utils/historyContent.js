@@ -37,7 +37,7 @@ export const HISTORY_CATEGORY_WORD_RANGES = {
 // Era values for category records (migration plan §6.4, option (i): a
 // field, not a range-derived grouping). The boundary is Gen 11/12:
 // Primeval is Gen 1–11, Patriarchal is Gen 12–50.
-export const HISTORY_CATEGORY_ERAS = ["primeval", "patriarchal", "exodus", "leviticus", "numbers", "deuteronomy", "joshua", "judges"];
+export const HISTORY_CATEGORY_ERAS = ["primeval", "patriarchal", "exodus", "leviticus", "numbers", "deuteronomy", "joshua", "judges", "ruth"];
 
 // The event study's sections, in order (plan §2.2, redesigned 2026-11-12):
 // Story is the Overview prose, Context the Ancient World prose,
