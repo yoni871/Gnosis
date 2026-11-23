@@ -17,9 +17,9 @@ test("renders nothing while closed", () => {
 test("shows one canonical testament at a time, book names only, with a scroll hint", async () => {
     const user = userEvent.setup();
     mount();
-    expect(screen.getAllByRole("link")).toHaveLength(6);
+    expect(screen.getAllByRole("link")).toHaveLength(7);
     expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/creation");
-    expect(screen.getAllByText("Coming Soon")).toHaveLength(33);
+    expect(screen.getAllByText("Coming Soon")).toHaveLength(32);
     const exodusChip = document.querySelector('[data-history-book="exodus"]');
     expect(exodusChip).not.toBeNull();
     expect(exodusChip).toHaveAttribute("href", "/biblical-history/oppression-and-moses-early-life");
@@ -27,6 +27,7 @@ test("shows one canonical testament at a time, book names only, with a scroll hi
     expect(document.querySelector('[data-history-book="numbers"]')).toHaveAttribute("href", "/biblical-history/numbers-israel-organized-at-sinai");
     expect(document.querySelector('[data-history-book="deuteronomy"]')).toHaveAttribute("href", "/biblical-history/deuteronomy-wilderness-journey");
     expect(document.querySelector('[data-history-book="joshua"]')).toHaveAttribute("href", "/biblical-history/joshua-commission-and-rahab");
+    expect(document.querySelector('[data-history-book="judges"]')).toHaveAttribute("href", "/biblical-history/judges-israels-incomplete-conquest");
     expect(screen.queryByText("Upcoming")).toBeNull();
     expect(screen.queryByText(/4 categories · 10 events/)).toBeNull();
     expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
