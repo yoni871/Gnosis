@@ -114,8 +114,9 @@ export function historyEventDescription(eventTitle, rangeLabel) {
 }
 
 // Trace the Doctrine helpers. The homepage introduces planned doctrine
-// categories only — no study workspace or published study exists yet —
-// so the description says exactly that and promises no content.
+// categories only — the Trinity study workspace exists only as a
+// preview, and no study is published yet — so the description says
+// exactly that and promises no published content.
 export function doctrineIndexTitle() {
     return "Trace the Doctrine | Gnosis";
 }
