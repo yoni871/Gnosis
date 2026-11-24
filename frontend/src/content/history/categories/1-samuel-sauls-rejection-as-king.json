@@ -1,0 +1,304 @@
+{
+  "id": "category-1-samuel-sauls-rejection-as-king",
+  "title": "Saul's Rejection as King",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 13,
+    "startVerse": 1,
+    "endChapter": 15,
+    "endVerse": 35
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 13,
+    "startVerse": 1,
+    "endChapter": 15,
+    "endVerse": 35
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-05-001",
+      "claim": "The Hebrew lacks the accession-age numeral (JPS prints \"---- years old\") and the reign is given as two years, which is difficult against the narrative span. No number is supplied and no resolution is attempted. The NIV's 30/42 (from the Greek manuscripts and Acts 13:21) is a translation's reconstruction, not a resolution, and is not adopted.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Saul\" (13:1 numbers incomplete; NIV reconstruction noted).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-002",
+      "claim": "Saul chooses 3,000 men: 2,000 with him at Michmash and in the mount of Beth-el, 1,000 with Jonathan at Gibeah of Benjamin; the rest he sends home. Jonathan smites the Philistine garrison at Geba, and Saul blows the trumpet through the land.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-003",
+      "claim": "The Philistines gather 30,000 chariots in the Hebrew (3,000 in the Greek text and some translations), 6,000 horsemen, and people as the sand of the sea, and encamp at Michmash. The men of Israel hide in caves, thickets, rocks, holds, and pits, and some cross the Jordan to Gad and Gilead.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Micmash\" (3,000 NIV vs 30,000 MT).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-004",
+      "claim": "Saul waits seven days according to the set time Samuel appointed, then offers the burnt-offering himself. Samuel says he has done foolishly and has not kept the commandment of the LORD; the kingdom shall not continue, and the LORD has sought a man after His own heart. The text places the emphasis on the broken command (10:8), not simply on a king taking priestly duty.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Saul\" (interpretations; the text's emphasis on the broken command).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-005",
+      "claim": "Samuel goes up from Gilgal to Gibeah; Saul numbers about 600 men with him. Three Philistine raiding companies go out: to Ophrah, to Beth-horon, and to the Valley of Zeboim.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-006",
+      "claim": "\"There was no smith found throughout all the land of Israel,\" and all Israel went down to the Philistines to sharpen their tools, at a price of a *pim* (about two-thirds of a shekel, confirmed by inscribed stone weights). On the day of battle no sword or spear is found with any of the people except Saul and Jonathan. The text presents this as the Philistines' deliberate policy.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Saul\" (*pim* confirmed by inscribed weights).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-007",
+      "claim": "The archaeological picture of Philistine ironworking does not support a Philistine iron monopoly: there is no special evidence for metallurgical or iron technological innovations at Philistia, and some scholars' links between iron metallurgy and the Philistines rest on 1 Samuel 13:19–20 itself. The embargo is therefore kept as the text's own explanation, not as an archaeologically established fact.",
+      "evidence": "Ben-Shlomo 2025, *Religions* 16(11):1384, §3.1.1, read in part (Iron Age I section).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-05-008",
+      "claim": "Jonathan crosses to the Philistine garrison with only his armour-bearer, without telling his father, and proposes a sign: if they say \"come up,\" the LORD has delivered them into Israel's hand. He climbs the crag on hands and feet; he and his armour-bearer kill about twenty men; a trembling comes upon the camp and the earth quakes.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Micmash\" (crags, twenty men, panic).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-009",
+      "claim": "Saul's watchmen see the multitude melting away; Saul says to Ahiah, \"Bring hither the ark of God.\" The Hebrew as read says \"ark of God\" while the ark is at Kiriath-jearim (7:1–2); the Septuagint is reported to read \"ephod.\" The question is flagged, not resolved. The Hebrews with the Philistines turn to Israel, the hidden men come out, and the LORD saves Israel that day.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-010",
+      "claim": "Saul adjures the people: no food until evening. Jonathan, who has not heard the oath, eats honey in the forest, and says, \"My father hath troubled the land.\" The oath costs the army its strength and lessens the slaughter.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-011",
+      "claim": "The people smite the Philistines from Michmash to Aijalon, then fly upon the spoil and eat with the blood. Saul has a great stone rolled to him and the people slay there, and that night he builds an altar to the LORD — the first altar he builds.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-012",
+      "claim": "The lot is cast to find the sin: Israel on one side, Saul and Jonathan on the other; the lot falls on Jonathan. Saul swears Jonathan shall die, but the people rescue him: \"there shall not one hair of his head fall to the ground; for he hath wrought with God this day.\" The wording at 14:41 (\"Declare the right\") is a textual question, flagged, not resolved; the Urim mechanism stays unknown (`clm-ta-026`, `clm-deu-10-011`).",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-013",
+      "claim": "Saul takes the kingdom over Israel and fights all his enemies round about — Moab, Ammon, Edom, the kings of Zobah, the Philistines — and delivers Israel from the spoilers. The summary names his sons, daughters, and his captain Abner; it names no capital, palace, or administration.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Saul\" (no capital/palace/officials attested).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-014",
+      "claim": "Samuel gives the commission: go and smite Amalek and utterly destroy all that they have, sparing none, because of what Amalek did to Israel on the way up from Egypt (Ex 17:8–16; Deut 25:17–19). The Amalek command and war oracle are already decided (`clm-deu-06-073/074`, established).",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-015",
+      "claim": "Saul musters 200,000 footmen and 10,000 men of Judah at Telaim, warns the Kenites to depart, and smites the Amalekites from Havilah to Shur. He takes Agag alive and spares him and the best of the sheep, oxen, fatlings, and lambs, destroying only what is vile and refuse.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-016",
+      "claim": "The LORD says it repents Him that He made Saul king; Samuel confronts him and hears the bleating of the sheep. Samuel says, \"to obey is better than sacrifice, and to hearken than the fat of rams. For rebellion is as the sin of witchcraft, and stubbornness is as iniquity and idolatry. Because thou hast rejected the word of the LORD, He hath also rejected thee from being king.\"",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Samuel\" (both rejections; 15:22).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-017",
+      "claim": "Saul confesses he sinned because he feared the people; Samuel refuses to return with him. As Samuel turns to go, Saul lays hold on his robe and it rends; Samuel says the LORD has rent the kingdom from Saul and given it to a neighbour better than he.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-018",
+      "claim": "Samuel has Agag brought to him; Agag comes \"in chains\" — the Hebrew word is uncertain and JPS's rendering is one possibility; the wording is flagged, not resolved. Samuel hews Agag in pieces before the LORD in Gilgal.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-05-019",
+      "claim": "The chapter says both that the LORD \"repented\" that He made Saul king (15:11, 35) and that the Glory of Israel \"will not lie nor repent\" (15:29). The tension is commonly read as affirming both that God responds truly to human actions and that His purposes and word are fixed. Noted as a textual/theological observation; not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Samuel\" (the common reading).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-05-020",
+      "claim": "Samuel goes to Ramah and Saul to Gibeah; Samuel comes no more to see Saul until the day of his death, and mourns for him.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-05-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 10,
+      "startVerse": 8,
+      "endChapter": 10,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "established",
+      "note": "Samuel tells Saul to go down to Gilgal and wait seven days for him to come and offer burnt-offerings and tell him what to do. The appointment Saul breaks at Gilgal is given here, before he has done a single deed as king."
+    },
+    {
+      "id": "conn-1sa-05-002",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 17,
+      "startVerse": 8,
+      "endChapter": 17,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "established",
+      "note": "Amalek came and fought with Israel at Rephidim, and Moses built an altar and called it \"The LORD is my banner,\" and the Lord swore war with Amalek from generation to generation. The commission against Amalek reaches back to this battle."
+    },
+    {
+      "id": "conn-1sa-05-003",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 25,
+      "startVerse": 17,
+      "endChapter": 25,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "established",
+      "note": "\"Remember what Amalek did unto thee by the way, when ye were come forth out of Egypt.\" The command to blot out the remembrance of Amalek is the standing order Samuel gives Saul to carry out."
+    },
+    {
+      "id": "conn-1sa-05-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 20,
+      "startVerse": 16,
+      "endChapter": 20,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "established",
+      "note": "Of the cities of the peoples the Lord gives as an inheritance, \"thou shalt save alive nothing that breatheth,\" and utterly destroy them. The herem against Amalek is the same devoted destruction commanded in the conquest law."
+    },
+    {
+      "id": "conn-1sa-05-005",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 30,
+      "startVerse": 1,
+      "endChapter": 30,
+      "endVerse": 18,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "After Saul's death the Amalekites raid Ziklag and carry off David's wives and children, and David pursues and recovers all. The Amalekites are still present after Saul, because his execution of the commission was incomplete."
+    },
+    {
+      "id": "conn-1sa-05-006",
+      "book": "Hosea",
+      "bookId": "hosea",
+      "startChapter": 6,
+      "startVerse": 6,
+      "endChapter": 6,
+      "endVerse": 6,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"I desired mercy, and not sacrifice; and the knowledge of God more than burnt-offerings.\" The prophet states the same theology Samuel states at Gilgal: sacrifice without obedience is worthless."
+    },
+    {
+      "id": "conn-1sa-05-007",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 51,
+      "startVerse": 16,
+      "endChapter": 51,
+      "endVerse": 17,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"Thou desirest not sacrifice; else would I give it: thou delightest not in burnt-offering. The sacrifices of God are a broken spirit.\" The psalm gives the same answer to the same question Samuel asks: what does God want instead of sacrifice?"
+    },
+    {
+      "id": "conn-1sa-05-008",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 28,
+      "startVerse": 18,
+      "endChapter": 28,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "At Endor, Samuel's spirit tells Saul that the Lord has done to him as He spoke, because he obeyed not the voice of the Lord against Amalek. The sentence given at Gilgal is repeated at the end of Saul's life as its cause."
+    },
+    {
+      "id": "conn-1sa-05-009",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 5,
+      "startVerse": 8,
+      "endChapter": 5,
+      "endVerse": 8,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"Was there a shield or spear seen among forty thousand in Israel?\" Deborah's song describes an Israel disarmed in the days of the judges, the same picture as the men of Saul's army with no sword or spear in their hands."
+    },
+    {
+      "id": "conn-1sa-05-010",
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "startChapter": 10,
+      "startVerse": 28,
+      "endChapter": 10,
+      "endVerse": 32,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Assyrian advance on Jerusalem passes through Michmash, and the army crosses the pass. The gorge Jonathan climbed remained the route an army took from the north to Jerusalem centuries later."
+    },
+    {
+      "id": "conn-1sa-05-011",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 16,
+      "startVerse": 1,
+      "endChapter": 16,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After the rejection, the Lord sends Samuel to Bethlehem to anoint a son of Jesse. The neighbour to whom the kingdom is given is anointed in the next movement of the story, though the torn robe does not name him."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S05 sources (S05-S01–S05-S05) are all verified and are the 5 sources[] entries. S05-S03 (BiblicalTraining \"Samuel\") is cited in §9 claims 016/019 but NOT footnoted in the appendix prose; it enters sources[] via the claims (S01 precedent: claim citations count). source-bdb-lexicon stays OUT (only in the §12 already-registered table; cited by no claim and no prose footnote — S02/S03/S04 precedent). No source in this dossier is cited only in §2/§4/§5/§6/§8 internal prose, so no §-location ambiguity arose (S04 lesson applied and checked by script). Reuse references in CLAIM TEXT (S02 precedent, internal-only, stripped at generation — the generator strips claims/review from the generated JSON, so these never reach dist; S02 QA confirmed \"no gate leak\" for the same pattern): SCL-05-012's claim text cites clm-ta-026 / clm-deu-10-011 (Urim mechanism unknown); SCL-05-014's claim text cites clm-deu-06-073/074 (Amalek command already decided); no source is added for any of them. SCL-05-007 is debated (no Philistine iron monopoly); SCL-05-019 is probable (15:11/35 vs 15:29 noted, not resolved). primaryScripture = fullRange = 13:1–15:35 (exactly 3 chapters), as proposed in the dossier header (\"3 chapters — full range used as primaryScripture\"); no narrowing needed. No multi-range connection targets in this dossier (all 11 §11 targets are single ranges), so no encompassing-range encoding was needed. \"Psalm\" → \"Psalms\" (S01/S02/S03 precedent): SCO-05-007's target Psalm 51:16–17 has book \"Psalms\", bookId \"psalms\". §10 shared-opportunity lines (Michmash place, herem topic, \"to obey is better than sacrifice\" topic, Gilgal place) do not enter the built files: the built JSON carries topics: [] (S01–S04 pattern), so they are moot for the built output. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-biblicaltraining-saul",
+    "source-biblicaltraining-samuel",
+    "source-biblicaltraining-micmash",
+    "source-ben-shlomo-industry-cult-philistia"
+  ]
+}
