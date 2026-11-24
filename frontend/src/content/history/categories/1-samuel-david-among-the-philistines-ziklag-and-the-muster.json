@@ -1,0 +1,244 @@
+{
+  "id": "category-1-samuel-david-among-the-philistines-ziklag-and-the-muster",
+  "title": "David Among the Philistines: Ziklag and the Muster",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 27,
+    "startVerse": 1,
+    "endChapter": 28,
+    "endVerse": 2
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 27,
+    "startVerse": 1,
+    "endChapter": 28,
+    "endVerse": 2
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-08-001",
+      "claim": "David's decision to leave Israel — \"I shall now perish one day by the hand of Saul\" — follows the second sparing at Hachilah, which ends, like the first, with Saul returning home and David going his way (26:25); the motive stated at Hachilah is exile from the LORD's inheritance, \"Go, serve other gods\" (26:19).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (S08-S01); read record ch. 26.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-08-002",
+      "claim": "David passes over to Achish son of Maoch, king of Gath, with his six hundred men, each with his household, and his two wives Ahinoam the Jezreelitess and Abigail the Carmelitess.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-08-003",
+      "claim": "Saul hears David has fled to Gath and seeks him no more.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-08-004",
+      "claim": "At David's request Achish gives him Ziklag that day, \"wherefore Ziklag pertaineth unto the kings of Judah unto this day.\" The \"unto this day\" is a textual observation only; no dating claim is built on it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-08-005",
+      "claim": "David dwells in the country of the Philistines \"a full year and four months\"; the raids of 27:8–12 are the standing pattern of that period, not a single expedition. The Hebrew behind \"a year\" is *yamim*, a collective term for a term of days amounting to a full year (Keil via Ellicott).",
+      "evidence": "Hebrew + JPS 1917 read in full; Ellicott 27:7 note read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-08-006",
+      "claim": "Gath was one of the five principal cities of the Philistines, an inland city on the Philistine–Judah border; most scholars identify it with Tell es-Safi, one of the largest Iron Age cities in the region, Philistine from the early Iron Age.",
+      "evidence": "BiblicalTraining, \"Gath,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-08-007",
+      "claim": "Whether the Achish of chapter 27 is the same king David met on his first visit to Gath (21:11) and the Achish son of Maachah of 1 Kings 2:39 is debated: Ellicott holds they are the same man (a fifty-year reign); other writers hold he was a different king.",
+      "evidence": "Ellicott 27:2 note read in full; Coke's contrary view as reported in the BiblePortal compilation (second-hand).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-08-008",
+      "claim": "The exact location of Ziklag has not been identified with any certainty; at least fourteen sites have been proposed.",
+      "evidence": "Wikipedia, \"Ziklag,\" read in full (tertiary survey; candidate list corroborated by the cited literature).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-08-009",
+      "claim": "The leading recent candidates for Ziklag are Tel Halif / Tell el-Khuweilfeh (Alt), Tel Sera / Tell esh-Sharia, Tell el-Far'ah (South), and Khirbet a-Ra'i (Garfinkel and Ganor 2019, contested by Maeir and Finkelstein on biblical geography and name continuity, supported by Keimer 2023). None is established.",
+      "evidence": "Wikipedia, \"Ziklag,\" read in full; Garfinkel & Ganor 2019 as cited there (not read directly — see dossier notes).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-08-010",
+      "claim": "David raids the Geshurites, the Girzites, and the Amalekites — ancient inhabitants of the land toward Shur and Egypt — leaving neither man nor woman alive and taking sheep, oxen, asses, camels, and apparel. The Geshurites and Girzites are not securely identified.",
+      "evidence": "Hebrew + JPS 1917 read in full; Ellicott 27:8 note read in full (identification difficulty).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-08-011",
+      "claim": "The Amalek command is attempted in 1 Sam 15, and Amalekites still appear afterwards (1 Sam 27:8; 30:1–18), so a completed blotting-out is not attested.",
+      "evidence": "Reuse: `clm-deu-06-076` (probable), re-verified on live main `60e2845`.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-08-012",
+      "claim": "David tells Achish he raided the South of Judah, of the Jerahmeelites, and of the Kenites — Judah's own southern neighbours — and leaves no survivor to bring word to Gath; Achish believes him and concludes David has made Israel abhor him and \"shall be my servant for ever.\" David stands to Achish as a vassal prince holding a country town in return for service (Ellicott).",
+      "evidence": "Hebrew + JPS 1917 read in full; Ellicott 27:10 note read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-08-013",
+      "claim": "The Philistines gather their hosts to fight Israel; Achish orders David to go out with him in the host, thou and thy men; David answers ambiguously, \"Therefore thou shalt know what thy servant will do\"; Achish makes him keeper of his head for ever — the command of the bodyguard (Ewald via Ellicott).",
+      "evidence": "Hebrew + JPS 1917 read in full; Ellicott 28:1–2 notes read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-08-014",
+      "claim": "No proposed Ziklag site shows evidence of destruction during the era of David, and no archaeology connects any site with David's stay there.",
+      "evidence": "Wikipedia, \"Ziklag,\" read in full, citing Fritz 1993 (second-hand).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-08-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 26,
+      "startVerse": 1,
+      "endChapter": 26,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The second sparing at Hachilah ends with Saul returning home and David going his way, the reconciliation only verbal. David's decision to leave Israel follows directly on that unresolved parting."
+    },
+    {
+      "id": "conn-1sa-08-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 21,
+      "startVerse": 11,
+      "endChapter": 21,
+      "endVerse": 15,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David's first visit to Gath: alone, recognised by the servants from the victory song, afraid, feigning madness, and sent away. The second reception, at the head of six hundred men, is its deliberate contrast."
+    },
+    {
+      "id": "conn-1sa-08-003",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 30,
+      "startVerse": 1,
+      "endChapter": 30,
+      "endVerse": 31,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "While David is away with the Philistine army, Amalekites raid Ziklag, burn it, and carry off its people; David pursues, recovers all, and makes the spoil-sharing statute. The Amalekites are still present after Saul, as the older command anticipated they would be."
+    },
+    {
+      "id": "conn-1sa-08-004",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 29,
+      "startVerse": 1,
+      "endChapter": 29,
+      "endVerse": 11,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "The muster ordered here is resolved there: the Philistine lords refuse to let David march with them, quote the victory song against him, and Achish sends him back to Ziklag."
+    },
+    {
+      "id": "conn-1sa-08-005",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 15,
+      "startVerse": 31,
+      "endChapter": 19,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Joshua 15:31 and 19:5. Ziklag appears in the town lists, for Judah and for Simeon. It was a town of the southern tribal allotments before the Philistines held it and Achish gave it to David."
+    },
+    {
+      "id": "conn-1sa-08-006",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 15,
+      "startVerse": 1,
+      "endChapter": 15,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 1 Samuel 15:1–3 and Deuteronomy 25:17–19. The command to blot out Amalek, attempted under Saul and left incomplete, stands behind the Amalekite raids in this chapter: the people David raids are the same people the command named."
+    },
+    {
+      "id": "conn-1sa-08-007",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After the death of Saul, David returns to Ziklag and abides there two days — the town remains his base at the turn from Saul's reign to his own."
+    },
+    {
+      "id": "conn-1sa-08-008",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 17,
+      "startVerse": 52,
+      "endChapter": 17,
+      "endVerse": 52,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After Goliath falls, the Philistines flee toward Gath and Ekron along the road from the Valley of Elah — Gath already stands as the Philistine city nearest the battlefield."
+    },
+    {
+      "id": "conn-1sa-08-009",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 31,
+      "startVerse": 1,
+      "endChapter": 31,
+      "endVerse": 13,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "The battle the muster prepares: Israel is defeated on Mount Gilboa, Saul and his sons fall, and David — dismissed from the host — is absent from it entirely."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S08 sources (S08-S01–S08-S05) are the 5 sources[] entries; all are verified. Three not-independently-verified sources stay OUT of sources[] (S06-S06 precedent: the NIV rule overrides the claim-citation route): S08-S03b (Thomas Coke, Commentary on the Holy Bible, 1 Sam 27:2 — source-coke-commentary-1-samuel-27-2, not-independently-verified), named by name in SCL-08-007's evidence ('Coke's contrary view as reported in the BiblePortal compilation (second-hand)') and used solely for that claim's debated status; S08-S05b (Garfinkel & Ganor 2019, 'Was Khirbet al-Ra'i Ancient Ziklag?' — source-garfinkel-ganor-khirbet-al-rai-ziklag, not-independently-verified), named by name in SCL-08-009's claim text and evidence, not read directly, cited via the Ziklag survey; S08-S05c (Keimer 2023, 'Biblical Ziklag: the Case for Khirbet er-Ra'i' — source-keimer-biblical-ziklag-khirbet-er-rai, not-independently-verified), named by name in SCL-08-009's claim text, not read directly, cited via the Ziklag survey. All three are in the registry as not-independently-verified; none is footnoted in the Appendix prose (verified by script — the Appendix footnotes only S08-S01–S08-S05); none appears in sources[] or in the MD. The affected claims are capped: SCL-08-007 and SCL-08-009 are both debated. No editorialOverride is needed (in-review). Blenkinsopp (S09-S03b) belongs to S09, not S08. Appendix Ellicott reconstructions — two sentences that presented Ellicott's readings as narrative fact now attribute them explicitly ('Ellicott reads…', second-reader build note): in 'A vassal in a foreign court', the motive sentence becomes 'Ellicott reads the request for a country town as David's wish to conduct his affairs apart from the supervision of his Philistine friends, with Achish trusting that through David's help military demonstrations could be made in the southern districts of Saul's kingdom'; in 'The muster', the gathering sentence becomes 'Ellicott, following Josephus, reads the gathering of the Philistine hosts as a great national effort, not an ordinary border raid: …'. The already-attributed 'in Ellicott's words, perfectly natural' sentence is unchanged. The Overview's 'commander of his bodyguard' gloss is unchanged: it is the Ewald-via-Ellicott gloss, footnoted to Ellicott 28, and the claim SCL-08-013 carries it as probable, attributed to Ewald via Ellicott. Two multi-range connection targets, encoded per the S01/S02/S06/S07 precedent (encompassing range, exact sub-ranges carried in the note; QA accepted encompassing ranges as shipped; splitting before publication remains the publication-time decision): SCO-08-005 targets Joshua 15:31 and 19:5 (the Ziklag town lists), encoded as the encompassing range Josh 15:31–19:5 with 'Targets Joshua 15:31 and 19:5.' in the note (4-chapter span); SCO-08-006 targets 1 Samuel 15:1–3 and Deuteronomy 25:17–19 (the Amalek command and its attempted execution), a CROSS-BOOK target — the first cross-book multi-range target in the 1 Samuel series (S02's conn-1sa-02-003 only mentions 1 Samuel 4 in passing in its note; it is a single target). Encoded with the first-listed target as the structured range (1 Samuel 15:1–3) and both exact targets in the note ('Targets 1 Samuel 15:1–3 and Deuteronomy 25:17–19.'); the publication-time alternative is splitting SCO-08-006 into two connections (one per book). All other 7 §11 targets are single ranges. Reuse claim (S01 precedent, internal-only, stripped at generation): SCL-08-011's evidence carries clm-deu-06-076 (probable, re-verified on live main 60e2845); its Source IDs column names source-keil-delitzsch-deuteronomy and source-jfb-commentary, but those are the reused Deuteronomy claim's sources, reached only through the clm- reference — they stay OUT of sources[] (S01/S03/S04/S07 precedent). No clm- reference appears in any claim text. The other §2 reuse items (clm-jud-09-002/005, clm-nb-012, clm-rut-04-002/012) are cited by no §9 claim and no appendix footnote; no source is added for any. S08-S06 (1 Samuel KJV verification, Worker B — internal workspace file) has no registry entry (registry-build exclusion) and is cited by no §9 claim and no appendix footnote; it stays OUT of sources[] and out of the MD. The four Philistine registry sources reused in §2/§5 internal prose (source-bar-origins-of-the-philistines, source-feldman-ancient-dna-philistines-science-advances-2019, source-emanuel-digging-for-dagon-janer-2016, source-biblicaltraining-temples-of-dagon) are cited by no §9 claim and no appendix footnote; they stay OUT (S04 §-location rule). BDB stays OUT (only the §12 already-registered table row). SCL-08-013's evidence records that David's answer is ambiguous and the text does not resolve whether David would have fought Israel; the dossier does not resolve it either. The Ekron inscription's 'Ikausu = Achish' is noted in §4 as secondary literature, not independently verified; no claim rests on it. Ellicott's 27:6 composition inference (after Jeroboam's revolt, before the exile) is recorded in §3 as his reading and is not adopted in any claim. Ellicott 27 v. 12 note read in part only; no claim rests on it (SCL-08-012 rests on the text and the v. 10 note). §10 shared-opportunity lines (Place: Gath / Tell es-Safi; Place: Ziklag; Topic: the Philistine pentapolis and the seren; Topic: David as Philistine vassal) do not enter the built files: the built JSON carries topics: [] (S01–S07 pattern), so they are moot for the built output. primaryScripture = fullRange = 27:1–28:2 (exactly 2 chapters, 14 verses: ch. 27 has 12 verses, ch. 28 has 25), as proposed in the dossier §1; no narrowing needed. The validator's ≤3-chapter limit applies only to primaryScripture, not to fullRange. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-biblicaltraining-gath",
+    "source-ellicott-1-samuel-27",
+    "source-ellicott-1-samuel-28",
+    "source-wikipedia-ziklag"
+  ]
+}
