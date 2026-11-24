@@ -1,0 +1,424 @@
+{
+  "id": "category-2-samuel-absaloms-revolt-and-davids-flight",
+  "title": "Absalom's Revolt and David's Flight",
+  "category": "category",
+  "orphan": true,
+  "era": "2-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 15,
+    "startVerse": 1,
+    "endChapter": 17,
+    "endVerse": 29
+  },
+  "fullRange": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 15,
+    "startVerse": 1,
+    "endChapter": 17,
+    "endVerse": 29
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2sa-06-001",
+      "claim": "Absalom prepares chariots and horses and fifty men to run before him — a display that belonged to royalty; his brother Adonijah later uses the same display in his own bid for the throne (1 Kgs 1:5).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Absalom,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-002",
+      "claim": "Absalom rises early and stands beside the way of the gate, tells every suitor his matters are good and right but there is no man deputed of the king to hear him, says \"Oh that I were made judge in the land,\" takes each man's hand and kisses him instead of receiving obeisance; \"so Absalom stole the hearts of the men of Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Absalom,\" read in full; Bible Odyssey, \"Absalom,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-003",
+      "claim": "The text reads \"after forty years.\" Absalom spent three years in Geshur (13:38) and two years in Jerusalem unseen (14:28) before his return — five years, not forty — and no forty-year span in the narrative fits. KJV and Mechon Mamre (Hebrew and JPS) agree on \"forty years\"; the difficulty is in the text itself.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Absalom,\" read in full.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-2sa-06-004",
+      "claim": "Absalom asks leave to pay a vow in Hebron, made while he abode at Geshur in Aram: if the LORD brings him back to Jerusalem, he will serve the LORD. The vow is the pretext for the proclamation.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-06-005",
+      "claim": "Absalom sends spies through all the tribes: at the trumpet's sound, say \"Absalom reigneth in Hebron.\" Two hundred men go from Jerusalem in their simplicity, knowing nothing. Absalom sends for Ahithophel the Gilonite, David's counsellor, from Giloh; the conspiracy is strong, the people increasing continually.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-006",
+      "claim": "A messenger tells David the hearts of the men of Israel are after Absalom. David orders flight at once, \"lest he overtake us suddenly, and bring evil upon us, and smite the city with the edge of the sword.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-007",
+      "claim": "David goes out with his household, leaving ten women, concubines, to keep the house. This opens the concubines arc (15:16; 16:21–22; 20:3).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-008",
+      "claim": "All David's servants pass before him: the Cherethites, the Pelethites, and all the Gittites, six hundred men that came after him from Gath.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-009",
+      "claim": "David tests Ittai the Gittite — a foreigner, an exile, come but yesterday — and urges him to return; Ittai swears by the LORD and by the king's life to stay with the king in death or in life, and passes over with all his men and all the little ones with him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-010",
+      "claim": "All the country weeps with a loud voice as the people pass over; the king passes over the brook Kidron, all the people toward the way of the wilderness.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-011",
+      "claim": "Zadok and all the Levites bear the ark of the covenant of God; David sends it back: \"if I shall find favour in the eyes of the LORD, he will bring me again, and shew me both it, and his habitation: but if he thus say, I have no delight in thee; behold, here am I, let him do to me as seemeth good unto him.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-012",
+      "claim": "Zadok and Abiathar return to Jerusalem with their sons Ahimaaz and Jonathan as couriers; David will tarry in the plains of the wilderness until word comes from them.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-013",
+      "claim": "David goes up by the ascent of the Mount of Olives, weeping as he goes, head covered, barefoot; all the people with him cover their heads and go up weeping.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-014",
+      "claim": "David learns Ahithophel is among the conspirators and prays, \"O LORD, I pray thee, turn the counsel of Ahithophel into foolishness.\" Hushai the Archite meets him at the top of the mount with rent coat and earth on his head; David sends him back to Jerusalem to pose as Absalom's servant and defeat Ahithophel's counsel. Hushai enters the city as Absalom comes into Jerusalem.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hushai,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-015",
+      "claim": "Ziba, servant of Mephibosheth, meets David with two saddled asses, two hundred loaves, a hundred bunches of raisins, a hundred summer fruits, and wine; David gives Ziba all that pertained to Mephibosheth. The grant is made on Ziba's word alone.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-016",
+      "claim": "Ziba reports that Mephibosheth abides at Jerusalem, expecting the house of Israel to restore him the kingdom of his father. The report is not verified in this chapter, and Mephibosheth's own account at 19:24–30 contradicts it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-2sa-06-017",
+      "claim": "At Bahurim, Shimei son of Gera, a man of the family of the house of Saul, comes out cursing, casting stones and dust at David: \"thou bloody man… the LORD hath returned upon thee all the blood of the house of Saul, in whose stead thou hast reigned; and the LORD hath delivered the kingdom into the hand of Absalom thy son.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-018",
+      "claim": "Abishai offers to take off Shimei's head; David refuses — \"so let him curse, because the LORD hath said unto him, Curse David\" — and hopes the LORD will requite him good for the cursing this day. Shimei follows along the hillside cursing, throwing stones and dust; the king and his people come weary and refresh themselves.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-019",
+      "claim": "Hushai, David's friend, comes to Absalom and greets him, \"God save the king, God save the king.\" Challenged — \"Is this thy kindness to thy friend?\" — he answers he serves whom the LORD, the people, and all Israel choose, and as he served in the father's presence so will he in the son's. Absalom accepts him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hushai,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-020",
+      "claim": "Ahithophel counsels Absalom to go in to his father's concubines left to keep the house, in the sight of all Israel; a tent is spread on the housetop, and Absalom does so. This fulfils Nathan's sentence of 12:11–12 publicly and exactly.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ahithophel,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-06-021",
+      "claim": "\"The counsel of Ahithophel, which he counselled in those days, was as if a man had enquired at the oracle of God\" — so was all his counsel, both with David and with Absalom.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ahithophel,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-022",
+      "claim": "Ahithophel proposes to choose twelve thousand men and pursue David that night while he is weary and weak-handed, smite the king only, and bring all the people back in peace. The saying pleases Absalom and all the elders of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-023",
+      "claim": "Hushai counters: the counsel is not good at this time — David and his men are mighty, chafed as a bear robbed of her whelps; David is a man of war and will not lodge with the people; a first reverse would be reported as a slaughter. Instead, gather all Israel from Dan to Beersheba as the sand by the sea, let Absalom go in person, fall on David like dew, and drag any city he shelters in with ropes into the river.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hushai,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-024",
+      "claim": "\"The counsel of Hushai the Archite is better than the counsel of Ahithophel. For the LORD had appointed to defeat the good counsel of Ahithophel, to the intent that the LORD might bring evil upon Absalom.\" The chapter's centre: the plan was good and failed because the LORD overruled it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ahithophel,\" read in full; Bible Odyssey, \"Absalom,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-025",
+      "claim": "Hushai tells Zadok and Abiathar both counsels; Jonathan and Ahimaaz wait at En-rogel, hide in a well at Bahurim under a covering of ground corn, and warn David, who passes over Jordan with all his people by morning light — \"there lacked not one.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-026",
+      "claim": "Seeing his counsel not followed, Ahithophel saddles his ass, goes home to his city, puts his household in order, hangs himself, and is buried in his father's sepulchre. The text does not state his reasons.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ahithophel,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-027",
+      "claim": "David comes to Mahanaim; Absalom crosses Jordan with all Israel and pitches in Gilead, making Amasa captain in Joab's place. Shobi son of Nahash of Rabbah, Machir son of Ammiel of Lo-debar, and Barzillai the Gileadite of Rogelim bring beds, basons, vessels, wheat, barley, flour, parched corn, beans, lentils, honey, butter, sheep, and cheese, for the people are hungry, weary, and thirsty in the wilderness.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Absalom,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-028",
+      "claim": "Machir son of Ammiel of Lo-debar, who brings provision to David at Mahanaim, is the man in whose house Mephibosheth had lived (9:4).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-06-029",
+      "claim": "Ahithophel had a son Eliam, named among David's Thirty (23:34), and Bathsheba is called \"the daughter of Eliam\" (11:3). Whether the two Eliams are the same man — making Ahithophel Bathsheba's grandfather — remains open; the text never mentions a family tie and gives no motive for Ahithophel's defection.",
+      "evidence": "BiblicalTraining, \"Ahithophel,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-06-030",
+      "claim": "\"From Dan even to Beersheba\" is the formula for the whole kingdom — in Abner's vow (3:10), in Hushai's counsel (17:11), and in the census (24:2).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2sa-06-001",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 12,
+      "startVerse": 11,
+      "endChapter": 12,
+      "endVerse": 12,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "\"I will take thy wives before thine eyes, and give them unto thy neighbour, and he shall lie with thy wives in the sight of this sun.\" Nathan's sentence against David is carried out in public on the housetop, in the sight of all Israel."
+    },
+    {
+      "id": "conn-2sa-06-002",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 2,
+      "endChapter": 3,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "established",
+      "note": "Absalom is David's third son, born at Hebron to Maacah, daughter of Talmai king of Geshur — a prince with royal blood on both sides of his family and a refuge outside Israel."
+    },
+    {
+      "id": "conn-2sa-06-003",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 13,
+      "startVerse": 37,
+      "endChapter": 13,
+      "endVerse": 38,
+      "type": "background",
+      "confidence": "established",
+      "note": "After killing Amnon, Absalom flees to his grandfather Talmai in Geshur and stays there three years — the first of the years that make the \"forty years\" of the revolt's opening so hard to reckon."
+    },
+    {
+      "id": "conn-2sa-06-004",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 14,
+      "startVerse": 28,
+      "endChapter": 14,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "established",
+      "note": "Absalom dwells two full years in Jerusalem and sees not the king's face — the second of the years behind the revolt, and the hollow reconciliation the conspiracy follows."
+    },
+    {
+      "id": "conn-2sa-06-005",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 4,
+      "startVerse": 3,
+      "endChapter": 4,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"Let us fetch the ark of the covenant of the LORD out of Shiloh unto us, that it may save us out of the hand of our enemies.\" The elders once fetched the ark as a guarantee of victory; David, offered the ark on his flight, sends it back instead."
+    },
+    {
+      "id": "conn-2sa-06-006",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 2,
+      "startVerse": 8,
+      "endChapter": 2,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "established",
+      "note": "Abner takes Ish-bosheth to Mahanaim and makes him king there. The town that once crowned Saul's son now shelters David in his exile."
+    },
+    {
+      "id": "conn-2sa-06-007",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 9,
+      "startVerse": 4,
+      "endChapter": 9,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "established",
+      "note": "Mephibosheth, Jonathan's lame son, is found in the house of Machir son of Ammiel in Lo-debar. The same Machir now brings food and bedding to David at Mahanaim."
+    },
+    {
+      "id": "conn-2sa-06-008",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 19,
+      "startVerse": 24,
+      "endChapter": 19,
+      "endVerse": 30,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Mephibosheth comes down to meet the returning king, unwashed and unkempt since the day David left, and says his servant deceived him and slandered him. His account contradicts Ziba's, and David divides the land between them without settling which is true."
+    },
+    {
+      "id": "conn-2sa-06-009",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 20,
+      "startVerse": 3,
+      "endChapter": 20,
+      "endVerse": 3,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "David comes to his house and shuts up the ten concubines left to keep it, putting them in ward and feeding them but going not in to them — \"they were shut up unto the day of their death, living in widowhood.\" The arc that began at the flight's outset closes here."
+    },
+    {
+      "id": "conn-2sa-06-010",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 7,
+      "endChapter": 3,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ish-bosheth charges Abner with going in to Saul's concubine Rizpah, and Abner answers by vowing to transfer the kingdom to David. To take a king's concubine is already understood as a claim to his throne."
+    },
+    {
+      "id": "conn-2sa-06-011",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 2,
+      "startVerse": 13,
+      "endChapter": 2,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Adonijah asks for Abishag the Shunammite, and Solomon hears a bid for the kingdom in the request and answers it with death. The same logic governs Ahithophel's counsel about David's concubines."
+    },
+    {
+      "id": "conn-2sa-06-012",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "\"Thine house and thy kingdom shall be established for ever before thee: thy throne shall be established for ever.\" Absalom's revolt seems to threaten the promise itself, yet the promise outlasts the rebellion."
+    },
+    {
+      "id": "conn-2sa-06-013",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 3,
+      "startVerse": 1,
+      "endChapter": 3,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"A Psalm of David, when he fled from Absalom his son.\" The psalm's title ties it to this flight, when many rise against the king and say there is no help for him in God."
+    },
+    {
+      "id": "conn-2sa-06-014",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 27,
+      "startVerse": 32,
+      "endChapter": 27,
+      "endVerse": 33,
+      "type": "background",
+      "confidence": "established",
+      "note": "\"Ahithophel was the king's counsellor. Hushai the Arkite was the king's friend.\" The Chronicler's list of David's officials sets the two rivals side by side, counsellor and confidant."
+    },
+    {
+      "id": "conn-2sa-06-015",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 15,
+      "startVerse": 51,
+      "endChapter": 15,
+      "endVerse": 51,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Giloh is listed among the cities of Judah in the hill country. Ahithophel the Gilonite comes from this town, within easy reach of Hebron, where the revolt begins."
+    },
+    {
+      "id": "conn-2sa-06-016",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 18,
+      "startVerse": 9,
+      "endChapter": 18,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Absalom, riding his mule, is caught by his head in the thick boughs of a great oak and left hanging between heaven and earth; Joab thrusts three darts through his heart, and the body is cast into a pit under a heap of stones. The pillar he raised in his lifetime, saying he had no son to keep his name, stands against the three sons born to him."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-samuel-masoretic-text",
+    "source-biblicaltraining-absalom",
+    "source-biblicaltraining-ahithophel",
+    "source-biblicaltraining-hushai",
+    "source-bible-odyssey-absalom"
+  ],
+  "review": {
+    "author": "Gnosis 2 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Samuel category; independent QA pending. S06 sources[] carries five entries (all verified in the live registry): S06-S01 Mechon Mamre -> source-mechon-mamre-2-samuel-masoretic-text; S06-S02 -> source-biblicaltraining-absalom; S06-S03 -> source-biblicaltraining-ahithophel; S06-S04 -> source-biblicaltraining-hushai; S06-S05 -> source-bible-odyssey-absalom. All five appear in §9 Source IDs cells AND in appendix footnotes. S06-S06 (\"Kidron\") is EXCLUDED from the registry by the hygiene rule (needs-checking; full-page fetch rate-limited HTTP 429; no S06 claim rests on it; no §9 Source IDs cell, no appendix footnote cites it) — confirmed no such ID exists in the registry — and cannot enter sources[]. Excluded by the §-location rule (§12 table only): source-biblicaltraining-david, source-biblicaltraining-ark-of-the-covenant, source-biblicaltraining-gath, source-macdonald-east-jordan. S2CL-06-003 is unknown (\"after forty years\" at 15:7 — no forty-year span in the narrative fits; the \"four years\" variant is reported from a verified source, not adopted; no number is substituted at build time). S2CL-06-016 is unknown (Ziba's report — contradicted at 19:24-30; David's \"Thou and Ziba divide the land\" leaves it half-standing; S07 must carry the same caution). S2CL-06-029 is the single debated claim (whether Ahithophel was Bathsheba's grandfather — the two Eliams may or may not be the same man; the text never mentions a family link; the link is not asserted). S2CL-06-004 and S2CL-06-020 are the two probable claims. S2CO-06-008 is direct-account/probable (Mephibosheth's account contradicts Ziba's; David divides the land without settling which is true). S2CO-06-013 carries Psalm 3:1 (the psalm's title ties it to the flight, but the title is a later ascription, not a parallel account; carried as a connection, not as evidence for the events). No multi-range connections — all 16 §11 targets are single ranges within one book, so no encompassing ranges and no splits. primaryScripture is the full range 15:1-17:29 (3 chapters, endChapter − startChapter = 2, within the validator limit — no narrowing). Hushai's deception of Absalom: the text does not comment on it morally; no verdict is asserted. Shimei's charge (16:8) and David's attribution (16:10) are recorded as speeches, not resolved theologically. \"Friend of the king\" as a formal office is a probable scholarly reading, not proved. The concubines arc closes at 20:3 (S07); S06 carries it whole from 15:16 through 16:21-22 but does not pre-empt S07's close. Ancient World is 1475 words — the tightest in the book, 25 under the 1500 cap; no words were added to the prose. Dating-label harmonisation is an editorial decision, not a build fix. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
