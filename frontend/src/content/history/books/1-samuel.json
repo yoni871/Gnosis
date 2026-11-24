@@ -1,0 +1,74 @@
+{
+  "id": "1-samuel",
+  "title": "1 Samuel",
+  "testament": "OT",
+  "introduction": "1 Samuel records Israel's transition from judges to kingship, from Samuel's birth and rise through Saul's anointing and rejection and David's anointing and rise to Saul's death on Mount Gilboa. These eleven studies follow literary divisions; they do not claim eleven independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "entries": [
+    {
+      "categoryId": "category-1-samuel-birth-and-rise-of-samuel",
+      "kind": "category",
+      "narrativeOrder": 77,
+      "bookNote": "1 Samuel 1–3 examines The Birth and Rise of Samuel as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-capture-and-return-of-the-ark",
+      "kind": "category",
+      "narrativeOrder": 78,
+      "bookNote": "1 Samuel 4–6 examines The Capture and Return of the Ark as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-israel-demands-a-king",
+      "kind": "category",
+      "narrativeOrder": 79,
+      "bookNote": "1 Samuel 7–8 examines Israel Demands a King as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-saul-becomes-israels-first-king",
+      "kind": "category",
+      "narrativeOrder": 80,
+      "bookNote": "1 Samuel 9–12 examines Saul Becomes Israel's First King as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-sauls-rejection-as-king",
+      "kind": "category",
+      "narrativeOrder": 81,
+      "bookNote": "1 Samuel 13–15 examines Saul's Rejection as King as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-davids-anointing-and-rise",
+      "kind": "category",
+      "narrativeOrder": 82,
+      "bookNote": "1 Samuel 16–17 examines David's Anointing and Rise as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-sauls-persecution-of-david",
+      "kind": "category",
+      "narrativeOrder": 83,
+      "bookNote": "1 Samuel 18–26 examines Saul's Persecution of David as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-david-among-the-philistines-ziklag-and-the-muster",
+      "kind": "category",
+      "narrativeOrder": 84,
+      "bookNote": "1 Samuel 27–28 examines David Among the Philistines: Ziklag and the Muster as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-saul-consults-the-medium-at-en-dor",
+      "kind": "category",
+      "narrativeOrder": 85,
+      "bookNote": "1 Samuel 28 examines Saul Consults the Medium at En-dor as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-david-dismissed-and-ziklag-recovered",
+      "kind": "category",
+      "narrativeOrder": 86,
+      "bookNote": "1 Samuel 29–30 examines David Dismissed and Ziklag Recovered as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-1-samuel-the-battle-of-mount-gilboa-and-sauls-death",
+      "kind": "category",
+      "narrativeOrder": 87,
+      "bookNote": "1 Samuel 31 examines The Battle of Mount Gilboa and Saul's Death as a biblical literary and historical-context study, without assigning an independently verified date."
+    }
+  ]
+}
