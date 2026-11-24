@@ -1,0 +1,429 @@
+{
+  "id": "category-2-samuel-death-of-saul-and-civil-war-for-the-throne",
+  "title": "The Death of Saul and the Civil War for the Throne",
+  "category": "category",
+  "orphan": true,
+  "era": "2-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 3,
+    "endVerse": 39
+  },
+  "fullRange": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 4,
+    "endVerse": 12
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2sa-01-001",
+      "claim": "David has been two days back in Ziklag from the slaughter of the Amalekites (1 Sam 30) when, on the third day, a man comes from Saul's camp with rent clothes and earth on his head.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-002",
+      "claim": "The messenger reports that the people fled, many are dead, and Saul and Jonathan are dead; David presses him for how he knows.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-003",
+      "claim": "The man says he happened upon Mount Gilboa, found Saul leaning on his spear with chariots closing in, and at Saul's request stood upon him and slew him, bringing the crown and the bracelet to David. He identifies himself as an Amalekite, son of a stranger.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-004",
+      "claim": "The Amalekite's account differs from 1 Samuel 31:4–5, where Saul falls on his own sword after his armour-bearer refuses to run him through. The narrative does not resolve the difference; David acts on the man's own testimony.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Gilboa\" and \"David,\" read in full/part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-005",
+      "claim": "The Amalekite's story is generally understood to have been invented by him in the hope of a reward.",
+      "evidence": "BiblicalTraining, \"David\" and \"Gilboa,\" read in full/part (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-01-006",
+      "claim": "David and his men rend their clothes, mourn, weep, and fast until evening for Saul, Jonathan, the people of the LORD, and the house of Israel, \"because they were fallen by the sword.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-007",
+      "claim": "David has the messenger struck down for stretching forth his hand against the LORD's anointed — \"Thy blood be upon thy head; for thy mouth hath testified against thee, saying: I have slain the LORD's anointed.\" Anointing was the central act in making a king, and the anointed king's person was sacred.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Anointing,\" read in part (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-01-008",
+      "claim": "David laments over Saul and Jonathan, bidding the children of Judah be taught the bow, \"behold, it is written in the book of Jasher.\" The lament's refrain, \"How are the mighty fallen,\" frames it at vv. 19, 25, 27, and it praises Saul and Jonathan as swifter than eagles and stronger than lions, lovely and pleasant in life and undivided in death.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Book of Jashar,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-009",
+      "claim": "The lament forbids the news in Gath and Ashkelon, lest the daughters of the Philistines rejoice, and curses the mountains of Gilboa: \"let there be no dew nor rain upon you.\" The curse is poetic, asking that the place where Israel's king fell share in the mourning.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Gilboa,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-010",
+      "claim": "David closes on Jonathan: \"I am distressed for thee, my brother Jonathan; very pleasant hast thou been unto me; wonderful was thy love to me, passing the love of women.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-011",
+      "claim": "David enquires of the LORD, goes up to Hebron with his two wives and his men, and the men of Judah anoint him king over the house of Judah. David was anointed again by the men of Judah at Hebron, and then by the elders of all Israel (2 Sam 5:3).",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Anointing,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-012",
+      "claim": "David sends messengers blessing the men of Jabesh-gilead for burying Saul — \"Blessed be ye of the LORD, that ye have shown this kindness unto your lord, even unto Saul\" — promises the LORD's kindness and truth to them, and announces that the house of Judah has anointed him king: a quiet invitation to accept his rule.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Jabesh Gilead,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-013",
+      "claim": "Abner son of Ner takes Saul's son Ish-bosheth to Mahanaim and makes him king over Gilead, the Ashurites, Jezreel, Ephraim, Benjamin, and all Israel. Ish-bosheth is forty and reigns two years; David is king in Hebron over Judah seven years and six months. Ish-bosheth is the son called Esh-Baal in Chronicles (1 Chr 8:33; 9:39).",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Saul\" and \"Jonathan,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-014",
+      "claim": "Abner's men and Joab's men meet at the pool of Gibeon and sit on opposite sides. Twelve of Benjamin and twelve of David's men rise and kill each other simultaneously — the place is called Helkath-hazzurim — and a sore battle follows in which Abner is beaten.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-015",
+      "claim": "The text gives the place-name Helkath-hazzurim without translating it. English renderings of the name differ (Field of Swords, Field of Flints, field of sword-edges), and its exact sense is not settled.",
+      "evidence": "Hebrew + JPS 1917 read in full (name untranslated); NET Bible note on 2 Sam 2:16, seen only in search snippets, not read in full (S01-S03, needs-checking).",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-2sa-01-016",
+      "claim": "Asahel son of Zeruiah, light of foot as a wild roe, pursues Abner without turning aside. Twice Abner warns him off, offering him a young man's armour; Asahel refuses, and Abner strikes him with the hinder end of his spear under the fifth rib (KJV; JPS 1917 \"in the groin\"). All who come to the place stand still.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-017",
+      "claim": "At sunset Abner calls across, \"Shall the sword devour for ever? … it will be bitterness in the latter end,\" and Joab blows the trumpet and stops the pursuit. Losses: David's side nineteen men and Asahel; Abner's side three hundred and threescore. Asahel is buried in his father's sepulchre at Bethlehem.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-018",
+      "claim": "\"Now there was long war between the house of Saul and the house of David; and David waxed stronger and stronger, but the house of Saul waxed weaker and weaker.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-019",
+      "claim": "Six sons are born to David in Hebron, each by a different wife: Amnon by Ahinoam of Jezreel; Chileab by Abigail; Absalom by Maacah, daughter of Talmai king of Geshur; Adonijah by Haggith; Shephatiah by Abital; and Ithream by Eglah.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"David,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-020",
+      "claim": "Ish-bosheth charges Abner with going in to Saul's concubine Rizpah daughter of Aiah. Sleeping with Saul's concubine amounted to a claim on the throne. Abner, enraged, swears to transfer the kingdom from Saul's house to David, \"from Dan even to Beer-sheba,\" as the LORD swore; Ish-bosheth cannot answer him for fear.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"David,\" read in part (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-01-021",
+      "claim": "Abner offers David a league to bring all Israel over. David agrees on one condition: Michal Saul's daughter must be brought first. She is taken from her husband Paltiel son of Laish, who follows weeping to Bahurim until Abner sends him back. Abner wins over the elders of Israel and Benjamin, comes to Hebron with twenty men, feasts with David, and leaves in peace to gather all Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-022",
+      "claim": "Joab returns from a raid, sends messengers after Abner without David's knowledge, brings him back from the well of Sirah, and takes him aside in the gate \"to speak with him quietly\" and smites him under the fifth rib, for the blood of Asahel his brother. Joab killed him in revenge for Asahel.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"David,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-023",
+      "claim": "David declares himself and his kingdom guiltless of Abner's blood for ever, curses Joab's house, orders public mourning, follows the bier, weeps at the grave, fasts till sundown, and laments, \"Died Abner as a fool dieth?\" He calls Abner \"a prince and a great man fallen this day in Israel\" and confesses, \"these men the sons of Zeruiah be too hard for me.\" All Israel understands it was not of the king to slay Abner.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-024",
+      "claim": "When Saul's son hears Abner is dead in Hebron, his hands are feeble and all Israel is troubled. His captains are Rechab and Baanah, sons of Rimmon a Beerothite; the Beerothites fled to Gittaim and are sojourners there \"until this day.\" An aside introduces Jonathan's son Mephibosheth, lame of his feet: five years old when the tidings came from Jezreel, dropped by his nurse as she fled.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Jonathan,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-025",
+      "claim": "At the heat of the day Rechab and Baanah enter Ish-bosheth's house as though to fetch wheat, smite him under the fifth rib in his bedchamber, behead him, and carry his head all night through the plain to David at Hebron, claiming the LORD has avenged David of Saul and his seed.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-026",
+      "claim": "David answers with the Amalekite precedent of chapter 1 — the man who brought news of Saul's death expecting a reward was slain in Ziklag — and has Rechab and Baanah slain, their hands and feet cut off and hanged over the pool in Hebron; Ish-bosheth's head is buried in Abner's sepulchre. The two executions (1:15; 4:12) mirror each other: in both, men bring David a rival's death expecting reward, and David executes them on their own testimony.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-01-027",
+      "claim": "Date: unknown. The text gives no absolute date. Saul's reign is commonly dated c. 1050–1010 BC and David's c. 1010–970 BC; these are conventional scholarly datings, not dates the text gives. The two-year reign of Ish-bosheth against David's seven years and six months is unexplained: it may mean Ish-bosheth's reign began some time after Saul's death, once Abner had regained control of the north, or that the two-year figure covers only part of the period.",
+      "evidence": "BiblicalTraining, \"Saul\" and \"David,\" read in part (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-01-028",
+      "claim": "Gilboa is a ridge of hills at the eastern end of the Jezreel Valley, overlooking the descent toward Beth Shan and the Jordan Valley; Mahanaim lies east of the Jordan; the two armies meet at the pool of Gibeon. Gibeon is conventionally identified with el-Jib (probable; the inscriptions source was not re-read in this dossier).",
+      "evidence": "BiblicalTraining, \"Gilboa\" and \"David,\" read in full/part (see §12); Pritchard, Gibeon inscriptions (registry-verified, not re-read).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-01-029",
+      "claim": "Abner swears \"God do so to Abner, and more also\" (3:9), and David swears by the same formula in his fast oath (3:35). The formula is the same self-imprecatory oath as Ruth 1:17; it occurs twelve times in the Old Testament (Ruth once; Samuel and Kings eleven times).",
+      "evidence": "Reuse: `RCL-01-017` (probable, Ruth dossier), `SCL-01-027` (probable, 1 Samuel dossier); Hebrew + JPS 1917 read in full for 3:9 and 3:35 themselves.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-01-030",
+      "claim": "The same killing stroke — \"under the fifth rib\" (KJV; JPS 1917 \"in the groin\") — recurs at Asahel's death (2:23), Abner's murder (3:27), and Ish-bosheth's murder (4:6), and again at Amasa's murder (20:10, S07). It is a thread across the book's murders, not three unrelated wounds.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (chs. 1–4); 20:10 per the read record (ch. 20 read in full by Worker B).",
+      "assessment": "established"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2sa-01-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 31,
+      "startVerse": 1,
+      "endChapter": 31,
+      "endVerse": 13,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "The Philistines fight Israel on Mount Gilboa; Jonathan, Abinadab, and Malki-Shua are killed, Saul falls on his own sword, and the men of Jabesh-gilead recover the bodies by night and bury them. This is the earlier account the lament answers, and the one the Amalekite's story differs from."
+    },
+    {
+      "id": "conn-2sa-01-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 30,
+      "startVerse": 18,
+      "endChapter": 30,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David recovers everyone and everything the Amalekites had taken from Ziklag, and rules that those who guarded the supplies share equally with those who fought. He is two days back from this slaughter when the messenger from Gilboa reaches him."
+    },
+    {
+      "id": "conn-2sa-01-003",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jonathan becomes one in spirit with David, loves him as himself, makes a covenant with him, and gives him his robe, his tunic, his sword, his bow, and his belt — the heir handing over the marks of his own rank."
+    },
+    {
+      "id": "conn-2sa-01-004",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 20,
+      "startVerse": 14,
+      "endChapter": 20,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jonathan asks David to show the kindness of the LORD to him and to his family for ever, even when the LORD has cut off all David's enemies, and makes a covenant with the house of David. The kindness David later shows Mephibosheth keeps this oath."
+    },
+    {
+      "id": "conn-2sa-01-005",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 11,
+      "startVerse": 1,
+      "endChapter": 11,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Nahash the Ammonite besieges Jabesh-gilead, and Saul musters Israel, attacks by night, and scatters the Ammonites so that no two are left together. The town's loyalty to Saul, and David's gratitude for it, rest on this rescue."
+    },
+    {
+      "id": "conn-2sa-01-006",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 21,
+      "startVerse": 8,
+      "endChapter": 21,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jabesh-gilead stayed away from the assembly against Benjamin, and four hundred of its young women were given as wives to the surviving Benjamites. The family ties this created between the town and Benjamin help explain why its men risked their lives for Saul's body."
+    },
+    {
+      "id": "conn-2sa-01-007",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 18,
+      "startVerse": 20,
+      "endChapter": 18,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Saul asks a bride price of one hundred Philistine foreskins for Michal, hoping David will die in the attempt; David brings back two hundred, and Saul has to give him Michal. David invokes this price when he demands her return."
+    },
+    {
+      "id": "conn-2sa-01-008",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 25,
+      "startVerse": 43,
+      "endChapter": 25,
+      "endVerse": 44,
+      "type": "background",
+      "confidence": "probable",
+      "note": "While David is a fugitive, Saul gives Michal to another man, Paltiel son of Laish. It is from Paltiel that she is taken when Abner restores her to David, and Paltiel follows weeping to Bahurim."
+    },
+    {
+      "id": "conn-2sa-01-009",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 8,
+      "startVerse": 33,
+      "endChapter": 8,
+      "endVerse": 34,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The genealogies name Saul's sons Jonathan, Malki-Shua, Abinadab, and Esh-Baal — the brother called Ish-bosheth in 2 Samuel — and Jonathan's son Merib-Baal, called Mephibosheth in 2 Samuel. The two names for each man differ only in the element Baal, replaced by \"shame.\""
+    },
+    {
+      "id": "conn-2sa-01-010",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 10,
+      "startVerse": 1,
+      "endChapter": 10,
+      "endVerse": 14,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler retells the deaths on Gilboa: the Philistines kill Saul's sons, archers wound Saul, and he falls on his sword. The Chronicler adds the theological verdict, that Saul died because he was unfaithful to the LORD and consulted a medium rather than seeking the LORD."
+    },
+    {
+      "id": "conn-2sa-01-011",
+      "book": "Ruth",
+      "bookId": "ruth",
+      "startChapter": 1,
+      "startVerse": 16,
+      "endChapter": 1,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ruth binds herself to Naomi with the oath, \"the LORD do so to me, and more also, if aught but death part thee and me.\" Abner swears by the same formula when he promises to transfer the kingdom, and David swears by it in his fast after Abner's murder."
+    },
+    {
+      "id": "conn-2sa-01-012",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 5,
+      "startVerse": 1,
+      "endChapter": 5,
+      "endVerse": 3,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "All the tribes come to Hebron, recalling that David led Israel in war even under Saul and that the LORD said he would shepherd his people; the elders make a covenant with him, and he is anointed king over all Israel. The divided kingship resolves here."
+    },
+    {
+      "id": "conn-2sa-01-013",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David asks whether any is left of the house of Saul, \"that I may shew him kindness for Jonathan's sake,\" and restores Saul's land to Mephibosheth, seating him at the king's table continually. The lame child introduced in the aside becomes the subject of the king's kindness."
+    },
+    {
+      "id": "conn-2sa-01-014",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 21,
+      "startVerse": 12,
+      "endChapter": 21,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After Rizpah's vigil, David has the bones of Saul and Jonathan brought from Jabesh-gilead and buried in the tomb of Saul's father Kish at Zela in Benjamin, \"and after that God was intreated for the land.\" The Gilboa thread closes here."
+    },
+    {
+      "id": "conn-2sa-01-015",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 20,
+      "startVerse": 10,
+      "endChapter": 20,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Joab takes Amasa by the beard with his right hand to kiss him, and smites him with his sword under the fifth rib. The same stroke that killed Asahel, Abner, and Ish-bosheth returns once more, in Joab's hand again."
+    },
+    {
+      "id": "conn-2sa-01-016",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 16,
+      "startVerse": 9,
+      "endChapter": 16,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "When Abishai offers to take off Shimei's head, David answers, \"What have I to do with you, ye sons of Zeruiah?\" The king's confession that the sons of Zeruiah are too hard for him returns, in the same family, through the whole book."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 2 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Samuel category; independent QA pending. S01 sources (S01-S01, S01-S02) are all verified. S01-S03 (NET Bible note on 2 Sam 2:16) is needs-checking, cited only in the §9 evidence of S2CL-01-015 (assessed unknown, also grounded in the primary text), so it is excluded from sources[] per the hygiene rule. S2CL-01-029 reuses RCL-01-017 (probable, Ruth dossier) and SCL-01-027 (probable, 1 Samuel dossier); the 2 Sam 3:9 and 3:35 occurrences themselves were read live in Hebrew + JPS 1917. The Amalekite tension (S2CL-01-004/005: 2 Sam 1:6-10 vs. 1 Sam 31:4-5) is carried unresolved, per the dossier. primaryScripture narrowed at build to 1:1-3:39: the dossier notes propose 1:1-4:12, but the validator counts chapters covered (4) and rejects more than 3; fullRange stays 1:1-4:12, per the first-three-chapters precedent. S2CL-01-030's claim text carries a bare forward reference '(20:10, S07)' to the S07 dossier, kept verbatim from the accepted research package; claims are stripped at generation. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). KJV/JPS quotation mix left as is (both public domain)."
+  },
+  "sources": [
+    "source-mechon-mamre-2-samuel-masoretic-text",
+    "source-biblicaltraining-book-of-jashar",
+    "source-biblicaltraining-gilboa",
+    "source-biblicaltraining-david",
+    "source-biblicaltraining-anointing",
+    "source-biblicaltraining-jabesh-gilead",
+    "source-biblicaltraining-saul",
+    "source-biblicaltraining-jonathan",
+    "source-bible-odyssey-royal-succession",
+    "source-pritchard-hebrew-inscriptions-gibeon-1959"
+  ]
+}
