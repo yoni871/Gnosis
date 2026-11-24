@@ -1,0 +1,431 @@
+{
+  "id": "category-1-samuel-capture-and-return-of-the-ark",
+  "title": "The Capture and Return of the Ark",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 4,
+    "startVerse": 1,
+    "endChapter": 6,
+    "endVerse": 21
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 4,
+    "startVerse": 1,
+    "endChapter": 6,
+    "endVerse": 21
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-02-001",
+      "claim": "Israel camps at Ebenezer and the Philistines at Aphek. In the first engagement the Philistines slay about four thousand men of Israel in the field.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-002",
+      "claim": "Aphek is Tel Aphek (Tell Ras el-ʿAin) at the headwaters of the Yarkon River, about 11 miles (18 km) east-northeast of ancient Joppa, on the Via Maris. Egyptian lists from the 15th century BC (Thutmose III, Amenhotep II) name it among the towns of Canaan; Herod later built Antipatris on the site; Tel Aviv University excavations in the 1970s–80s found a long settlement sequence including a Late Bronze Age Egyptian official's residence and early Iron Age remains.",
+      "evidence": "BiblicalTraining, \"Aphek,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-02-003",
+      "claim": "Ebenezer (*ʾeben hāʿēzer*, \"the stone of the help\") first names the camp where Israel was defeated in 1 Samuel 4 and later the memorial stone Samuel set up between Mizpah and Shen (7:12). Whether the two refer to one place or two is debated; most modern scholars hold them distinct, since Tel Aphek lies more than 20 miles from Mizpah. Neither site has been located with certainty; ʿIzbet Ṣarṭah, about 2 miles east of Tel Aphek, is the widely discussed candidate for the battle camp.",
+      "evidence": "BiblicalTraining, \"Ebenezer,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-02-004",
+      "claim": "After the first defeat the elders send to Shiloh for the ark of the covenant of the LORD of hosts, \"that sitteth upon the cherubim,\" expecting its presence to save them. Hophni and Phinehas come with it. The camp shouts so loudly the Philistines hear it; they are afraid, recalling the God who smote Egypt, yet resolve to fight.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-005",
+      "claim": "In the second battle thirty thousand Israelite foot soldiers fall, the ark of God is taken, and Hophni and Phinehas are killed — as foretold in 2:34.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-006",
+      "claim": "A Benjamite runs from the battle to Shiloh the same day. Eli, ninety-eight years old and blind, waits by the roadside; on hearing the ark is taken he falls backward from his seat, breaks his neck, and dies. \"He had judged Israel forty years.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-007",
+      "claim": "Phinehas's wife goes into labour at the report and dies, naming her son Ichabod — \"the glory is departed from Israel, for the ark of God is taken,\" and because her father-in-law and her husband are dead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-008",
+      "claim": "The defeat fulfils the oracle against Eli's house (2:34; 3:11–14): both sons die on one day, Eli dies, and the ark is taken — all in a single day, as the sign of 2:34 required.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-009",
+      "claim": "The Philistines carry the ark to Ashdod and set it in the house of Dagon, beside Dagon.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-010",
+      "claim": "Dagon was worshipped across the Semitic world long before the Philistines, at Ebla, Mari, and Ugarit. His name is usually connected with Hebrew *dāgān*, \"grain,\" and he was probably a god of crops and fertility; the older fish-god idea (from *dāg*, \"fish\") is now generally rejected. His temples stood at Gaza (Judg 16:23), Ashdod (1 Sam 5:2), and — in a later notice — the Philistines fastened Saul's head in the temple of Dagon (1 Chr 10:10).",
+      "evidence": "BiblicalTraining, \"Philistines,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-02-011",
+      "claim": "Two mornings running the image of Dagon is found fallen on its face before the ark; on the second morning its head and both palms of its hands lie cut off upon the threshold, and only the stump of Dagon is left. The priests of Dagon therefore do not tread the threshold at Ashdod \"unto this day.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-012",
+      "claim": "No temple of Dagon has been found in the Philistine heartland. The Ashdod excavations of 1962–72 identified no sanctuary of Dagon, and no building in the Philistine cities has been securely identified as his. The Emanuel study is used only for the Ashdod negative — no indisputable evidence for a temple of any kind in Iron I — not as support for a Dagon temple.",
+      "evidence": "Registry: `source-biblicaltraining-temples-of-dagon` (verified, read in full Step 4a 2026-11-21) and `source-emanuel-digging-for-dagon-janer-2016` (verified, read in full Step 4a, pp. 22–56); scope per their registry `verificationDetail`.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-013",
+      "claim": "The LORD's hand falls heavily on Ashdod, then Gath, then Ekron: tumours break out on young and old alike, many die, and the cry of the city goes up to heaven. The affliction follows the ark from city to city. The written text (*ketiv*) has *ʿŏpālîm* (\"tumours\"); the reading tradition (*qere*) substitutes *ṭəḥōrîm*.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hemorrhoids,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-014",
+      "claim": "The exact disease cannot be identified with certainty. The traditional reading takes it as piles (haemorrhoids); many modern interpreters, noting the rodents in the same account, think of the swollen glands of bubonic plague; the most cautious course leaves it as tumours or boils in general.",
+      "evidence": "BiblicalTraining, \"Hemorrhoids,\" read in full.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-1sa-02-015",
+      "claim": "The bubonic-plague reading is argued in the *Journal of the Royal Society of Medicine*: Griffin (2000) calls the outbreak the first documented account of bubonic plague; Freemon (2005) adds that plague-flea fossils at Amarna date to about 1350 BC and that *R. rattus* was introduced into the Nile Valley at that time, so the vectors could have spread north to Philistia; Griffin (2006) adds that the Septuagint places the tumours in the groin. Russell's counter — dysentery complicated by piles, and the rat not in the region at the time — is on record in the same exchange.",
+      "evidence": "Freemon 2005 (J R Soc Med 98(9):436), Griffin 2006 (J R Soc Med 99(8):387), read in full; BiblicalTraining, \"Hemorrhoids,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-02-016",
+      "claim": "The ark is in the country of the Philistines seven months.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-017",
+      "claim": "The Philistines call their priests and diviners, who advise returning the ark with a guilt offering, not empty: five gold tumours and five gold mice, one for each lord. The test is set — a new cart, two milch kine never yoked, calves shut up at home: if the kine go to Beth-shemesh, the LORD did this; if not, it happened by chance.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-018",
+      "claim": "The guilt offering (*ʾāšām*, Lev 5:14–6:7; 7:1–7) deals with wrongs that caused loss; its defining feature is compensation — repayment plus a fifth, then a ram. The Philistines' gold models adapt the idea: even outside Israel, the idea that offending a god required compensation was well understood.",
+      "evidence": "BiblicalTraining, \"Guilt Offering,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-02-019",
+      "claim": "The five lords (*sĕrānîm*) act as a council and decide the ark's fate together. Five gold tumours are listed by city — one each for Ashdod, Gaza, Ashkelon, Gath, and Ekron — and the gold mice match all the Philistine towns under the five rulers, fortified cities and country villages alike.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Philistines,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-020",
+      "claim": "The Philistine advisers cite Egypt and Pharaoh: \"Wherefore then do ye harden your hearts, as the Egyptians and Pharaoh hardened their hearts?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-021",
+      "claim": "A new cart, two milch kine that have never been yoked, their calves shut up at home: the kine go straight to Beth-shemesh, lowing as they go, turning neither right nor left, and the Philistine lords follow to the border.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-022",
+      "claim": "Beth-shemesh (\"house of the sun\") stands in the Shephelah on the south side of the Valley of Sorek, about 15 miles (24 km) west of Jerusalem, a border town. It is a Levitical city (Josh 21:13–16), which explains the Levites at hand to take down the ark (6:15). The site is Tell er-Rumeileh (Tel Beth Shemesh); the ark arrives at wheat harvest, late spring or early summer.",
+      "evidence": "BiblicalTraining, \"Beth Shemesh,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-023",
+      "claim": "The cart stops in the field of Joshua the Beth-shemite; the men of Beth-shemesh, reaping wheat, see the ark and rejoice. The Levites take down the ark and the coffer with the gold jewels; the cart is broken up and the kine offered as a burnt offering.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-024",
+      "claim": "\"He smote of the people seventy men, and fifty thousand men.\" Most Hebrew manuscripts read 50,070 — a figure far larger than a small town could supply and awkward in Hebrew construction; a few Hebrew manuscripts and Josephus give seventy, and the NIV adopts that reading. Many interpreters regard 50,070 as a scribal error; others suggest different readings. The number is textually difficult; flagged, not resolved.",
+      "evidence": "BiblicalTraining, \"Beth Shemesh,\" read in full; BiblicalTraining, \"Ark of the Covenant,\" read in full.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-1sa-02-025",
+      "claim": "The smiting at Beth-shemesh is linked to Num 4:15, 20: the Kohathites must not look at the holy things uncovered, on pain of death.",
+      "evidence": "BiblicalTraining, \"Beth Shemesh,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-02-026",
+      "claim": "The men of Beth-shemesh ask, \"Who is able to stand before the LORD, this holy God?\" and send messengers to Kiriath-jearim: \"The Philistines have brought back the ark of the LORD; come ye down, and fetch it up to you.\" The ark's stay at Kiriath-jearim (7:1–2) belongs to S03.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-027",
+      "claim": "Ark background (established limbs, reused): Bezalel makes the ark, 2.5 × 1.5 × 1.5 cubits, overlaid with gold within and without, with the mercy seat and two cherubim (`clm-bu-033`); the testimony — the decalogue on the two tables — is placed in it (`clm-bu-053`); Moses puts the tables in the ark (Deut 10:1–5; `clm-deu-03-031`); Levi is separated to bear the ark (`clm-deu-03-036`); the book of the law is delivered to the Levites who bear the ark and put in the side of the ark (`clm-deu-09-006`, `clm-deu-09-013`); ark-bearing priests stand in the Jordan (`clm-jos-02-002`); the ark stands at the Judg 20 inquiry, the latest ark notice before 1 Samuel (`clm-jud-12-003`).",
+      "evidence": "Reuse: `clm-bu-033/052/053`, `clm-deu-03-031/036`, `clm-deu-09-006/013`, `clm-jos-02-002`, `clm-jud-12-003` (all established).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-02-028",
+      "claim": "Ark background (unsettled limbs, reused): the ark's making is timed differently in Deut 10:3 and Ex 37:1 (JFB resolves it by Moses instructing Bezalel beforehand — `clm-deu-03-032`, probable); whether the book of the law was deposited beside the ark or within it is not settled — 1 Kgs 8:9 says the ark contained only the tables of stone, while Heb 9:4 attests other things once inside it (`clm-deu-09-014`, debated).",
+      "evidence": "Reuse: `clm-deu-03-032` (probable), `clm-deu-09-014` (debated).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-02-029",
+      "claim": "Philistine background (reused): Aegean origin, settled the southern coastal plain in the early 12th century BC; five cities, each with its own ruler (*seren*); Caphtor is Crete or the wider Aegean; the Casluhim origin (Gen 10:14) is probable (`clm-nb-012`); Judg 10 attributes oppression to both Philistines and Ammonites (`clm-jud-07-002`, established); the Ashkelon DNA finding is transient European-related admixture amid predominantly Levantine ancestry (`clm-jud-09-002`, probable); Gerar as a Philistine kingdom in Gen 26 is an anachronism (`clm-ij-077`, established).",
+      "evidence": "Reuse: `clm-nb-012`, `clm-jud-07-002`, `clm-jud-09-002/003/004/005`, `clm-ij-077`; BiblicalTraining, \"Philistines,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-02-030",
+      "claim": "The Philistines' fear recalls Egypt: \"these are the gods that smote the Egyptians with all manner of plagues in the wilderness.\" The ark's reputation preceded it into Philistia.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Philistines,\" read in full.",
+      "assessment": "established"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-02-001",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 25,
+      "startVerse": 10,
+      "endChapter": 37,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "established",
+      "note": "The ark is made to the pattern shown on the mountain: acacia wood overlaid with gold, a mercy seat, and two cherubim above it. Bezalel's work is the object the Philistines carry off. Targets Exodus 25:10–22 and 37:1–9."
+    },
+    {
+      "id": "conn-1sa-02-002",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 4,
+      "startVerse": 5,
+      "endChapter": 4,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "established",
+      "note": "The Kohathites carry the ark, covered, and must not touch or look at the holy things on pain of death. The warning stands behind the smiting at Beth-shemesh, where the ark is handled by men who should not have looked on it. Targets Numbers 4:5–6, 15, and 20."
+    },
+    {
+      "id": "conn-1sa-02-003",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 3,
+      "startVerse": 14,
+      "endChapter": 3,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "established",
+      "note": "Ark-bearing priests stand in the Jordan while Israel crosses on dry ground. The ark that parts a river in Joshua is the ark that is captured in 1 Samuel 4."
+    },
+    {
+      "id": "conn-1sa-02-004",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 20,
+      "startVerse": 26,
+      "endChapter": 20,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "established",
+      "note": "Phinehas son of Eleazar ministers before the ark at the inquiry before the battle with Benjamin. It is the last notice of the ark before the story of 1 Samuel opens."
+    },
+    {
+      "id": "conn-1sa-02-005",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 28,
+      "startVerse": 27,
+      "endChapter": 28,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Among the curses for disobedience, the LORD threatens to smite Israel \"with the botch of Egypt, and with the emerods, and with the scab, and with the itch, whereof thou canst not be healed.\" The same affliction named in the curse falls on the Philistines while they hold the ark."
+    },
+    {
+      "id": "conn-1sa-02-006",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 9,
+      "startVerse": 8,
+      "endChapter": 9,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The boils of Egypt fall on man and beast alike, and Pharaoh's heart is hardened. The Philistines themselves cite Egypt when they argue against hardening their hearts."
+    },
+    {
+      "id": "conn-1sa-02-007",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 14,
+      "startVerse": 18,
+      "endChapter": 14,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "debated",
+      "note": "The Hebrew text has Saul calling for the ark while the ark is at Kiriath-jearim; the Septuagint reads \"ephod\" here, and many interpreters prefer that reading. The question is flagged and belongs to the chapters that follow, not to this one."
+    },
+    {
+      "id": "conn-1sa-02-008",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 78,
+      "startVerse": 60,
+      "endChapter": 78,
+      "endVerse": 61,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"He forsook the tabernacle of Shiloh, the tent which he placed among men; and delivered his strength into captivity, and his glory into the enemy's hand.\" The psalm names the capture of the ark as God's own act of judgement."
+    },
+    {
+      "id": "conn-1sa-02-009",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 26,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"Go ye now unto my place which was in Shiloh, and see what I did to it.\" Jeremiah holds up Shiloh's fate, and the loss of the ark with it, as a warning to Jerusalem. Targets Jeremiah 7:12, 14, and 26:6."
+    },
+    {
+      "id": "conn-1sa-02-010",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 8,
+      "startVerse": 9,
+      "endChapter": 8,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "established",
+      "note": "When Solomon brings the ark into the temple, \"there was nothing in the ark save the two tables of stone.\" The contents of the ark had changed by Solomon's day, and the question of what else was once in or beside it is left open."
+    },
+    {
+      "id": "conn-1sa-02-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 6,
+      "startVerse": 1,
+      "endChapter": 6,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David brings the ark up to Jerusalem, and the same themes return: holiness, danger, and blessing. The ark narrative of 1 Samuel 4–6 and the ark's coming to Jerusalem belong to one story, whether or not they once circulated apart."
+    },
+    {
+      "id": "conn-1sa-02-012",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 5,
+      "startVerse": 14,
+      "endChapter": 7,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "established",
+      "note": "The law of the guilt offering: restitution plus a fifth, then a ram. The Philistines' five gold tumours and five gold mice are their own version of that offering, sent back with the ark. Targets Leviticus 5:14–6:7 and 7:1–7."
+    },
+    {
+      "id": "conn-1sa-02-013",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 16,
+      "startVerse": 23,
+      "endChapter": 16,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The lords of the Philistines gather in the house of Dagon at Gaza to sacrifice to their god. Dagon's temple at Gaza is the other named house of the god in the Bible, beside Ashdod."
+    },
+    {
+      "id": "conn-1sa-02-014",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 10,
+      "startVerse": 10,
+      "endChapter": 10,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Philistines fasten Saul's head in the temple of Dagon. The god whose image fell before the ark is still receiving the trophies of Israel's defeats a generation later."
+    },
+    {
+      "id": "conn-1sa-02-015",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 21,
+      "startVerse": 13,
+      "endChapter": 21,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "established",
+      "note": "Beth-shemesh is given to the Levites among the cities of Judah. That is why Levites are at hand to take the ark down when the kine bring it into Joshua's field."
+    },
+    {
+      "id": "conn-1sa-02-016",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 7,
+      "startVerse": 1,
+      "endChapter": 7,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "established",
+      "note": "The men of Kiriath-jearim fetch the ark up and bring it into the house of Abinadab, where it stays twenty years. The messengers of 6:21 are the hinge: this category ends with the sending, and the stay belongs to the next."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S02 sources (S02-S01–S02-S11, excluding S02-S09) are all verified; S02-S09 (BiblicalTraining \"Shiloh\") is cited only in §6 internal prose and the appendix does not footnote it, so it is not in sources[]; the needs-checking entries (S02-N01–N03, unread monographs) have no claim resting on them and are excluded per the Ruth hygiene rule. SCL-02-012 rests on two registry sources read in full by the Judges team (Step 4a, 2026-11-21), not re-read by this worker; scope per their registry verificationDetail. SCL-02-027 and SCL-02-028 reuse established/probable/debated claims (clm-bu-033/052/053, clm-deu-03-031/032/036, clm-deu-09-006/013/014, clm-jos-02-002, clm-jud-12-003); the backticked clm- references in their claim text are the dossier's own reuse citations (internal; claims are stripped at generation). Multi-range connections (SCO-02-001, -002, -009, -012) are encoded as encompassing ranges (first verse to last verse); the notes carry the exact target passages. SCO-02-001 (Exodus 25:10–37:9) is the widest span. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-biblicaltraining-ark-of-the-covenant",
+    "source-biblicaltraining-philistines",
+    "source-biblicaltraining-ebenezer",
+    "source-biblicaltraining-aphek",
+    "source-biblicaltraining-beth-shemesh",
+    "source-biblicaltraining-guilt-offering",
+    "source-biblicaltraining-hemorrhoids",
+    "source-freemon-bubonic-plague-book-of-samuel",
+    "source-griffin-plague-rats-bible-again",
+    "source-biblicaltraining-temples-of-dagon",
+    "source-emanuel-digging-for-dagon-janer-2016"
+  ]
+}
