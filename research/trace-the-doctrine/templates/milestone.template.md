@@ -1,8 +1,8 @@
 # Milestone template — `<doctrine>/milestones.json` entry
 
 Copy this template for each council, creed, controversy, formulation, or
-publication. Schema: `schemas/milestone.schema.json`. Standards:
-`RESEARCH-STANDARDS.md` §2 (four-way distinction), §4 (citations), §5
+publication. Schema: `../schemas/milestone.schema.json`. Standards:
+`../RESEARCH-STANDARDS.md` §2 (four-way distinction), §4 (citations), §5
 (dates and attribution), §7.3 (milestone checklist).
 
 ```json

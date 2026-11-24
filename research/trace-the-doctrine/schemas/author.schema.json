@@ -1,1 +1,98 @@
-{"$id":"https://gnosis.example/research/trace-the-doctrine/schemas/author.schema.json","$schema":"https://json-schema.org/draft/2020-12/schema","$title":"Trace the Doctrine — Author Registry Entry","additionalProperties":false,"description":"One author in the shared registry (shared/authors.json). Authors are reusable across doctrines and referenced by id. A stub asserts nothing beyond id, display name, and status (see shared/README.md).","properties":{"bio":{"description":"Short verified biographical note. Null until verified.","type":["string","null"]},"dates":{"description":"The author's life dates, if verified. These are NOT work dates and must never be used as a work date (standards section 5.1). Null until verified.","properties":{"certainty":{"enum":["exact","approximate","range","unknown"],"type":"string"},"earliest":{"description":"Birth year (earliest) or null.","type":["integer","null"]},"latest":{"description":"Death year (latest) or null.","type":["integer","null"]},"note":{"type":["string","null"]}},"required":["certainty"],"type":["object","null"]},"displayName":{"description":"Display name, e.g. Justin Martyr, Augustine.","type":"string"},"id":{"description":"Stable slug, lowercase kebab-case, e.g. justin-martyr, augustine.","pattern":"^[a-z0-9]+(-[a-z0-9]+)*$","type":"string"},"notes":{"description":"Researcher notes. Never a substitute for a verified field.","type":["string","null"]},"status":{"description":"Lifecycle status, see RESEARCH-STANDARDS.md section 9. A stub is status not-started.","enum":["not-started","in-research","verification-pending","verified","editorially-approved","published"],"type":"string"},"verificationRecordIds":{"description":"Ids of verification records covering claims in this author entry.","items":{"type":"string"},"type":"array"}},"required":["id","displayName","status"],"type":"object"}
+{
+  "$id": "https://gnosis.example/research/trace-the-doctrine/schemas/author.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$title": "Trace the Doctrine — Author Registry Entry",
+  "additionalProperties": false,
+  "description": "One author in the shared registry (shared/authors.json). Authors are reusable across doctrines and referenced by id. A stub asserts nothing beyond id, display name, and status (see shared/README.md).",
+  "properties": {
+    "bio": {
+      "description": "Short verified biographical note. Null until verified.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dates": {
+      "description": "The author's life dates, if verified. These are NOT work dates and must never be used as a work date (standards section 5.1). Null until verified.",
+      "properties": {
+        "certainty": {
+          "enum": [
+            "exact",
+            "approximate",
+            "range",
+            "unknown"
+          ],
+          "type": "string"
+        },
+        "earliest": {
+          "description": "Birth year (earliest) or null.",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "latest": {
+          "description": "Death year (latest) or null.",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "certainty"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "displayName": {
+      "description": "Display name, e.g. Justin Martyr, Augustine.",
+      "type": "string"
+    },
+    "id": {
+      "description": "Stable slug, lowercase kebab-case, e.g. justin-martyr, augustine.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "type": "string"
+    },
+    "notes": {
+      "description": "Researcher notes. Never a substitute for a verified field.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "description": "Lifecycle status, see RESEARCH-STANDARDS.md section 9. A stub is status not-started.",
+      "enum": [
+        "not-started",
+        "in-research",
+        "verification-pending",
+        "verified",
+        "editorially-approved",
+        "published"
+      ],
+      "type": "string"
+    },
+    "verificationRecordIds": {
+      "description": "Ids of verification records covering claims in this author entry.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "displayName",
+    "status"
+  ],
+  "type": "object"
+}

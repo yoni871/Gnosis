@@ -1,1 +1,157 @@
-{"$id":"https://gnosis.example/research/trace-the-doctrine/schemas/passage.schema.json","$schema":"https://json-schema.org/draft/2020-12/schema","additionalProperties":false,"description":"One passage in a doctrine's biblical inventory. Evidence classification, relationship to the doctrine, and research status. See RESEARCH-STANDARDS.md sections 1, 2, 5 and 9. A not-started record has evidenceClassification, relationshipToDoctrine and all research fields null or empty.","properties":{"book":{"description":"Canonical book name, e.g. Genesis, John, Matthew, 2 Corinthians.","type":"string"},"canonicalOrder":{"description":"Position of the book in the Protestant canonical order (Genesis 1 … Revelation 66).","maximum":66,"minimum":1,"type":"integer"},"chapter":{"minimum":1,"type":"integer"},"crossReferences":{"description":"Cross-references to other passages. Empty until researched.","items":{"properties":{"note":{"description":"Why the two passages are related.","type":"string"},"passageId":{"description":"Id of another passage in the same doctrine inventory.","type":"string"}},"required":["passageId","note"],"type":"object"},"type":"array"},"doctrine":{"description":"The doctrine this inventory entry belongs to.","enum":["trinity","incarnation","salvation","holy-spirit","church","resurrection"],"type":"string"},"evidenceClassification":{"description":"See RESEARCH-STANDARDS.md section 1. Null until the classification is researched and justified.","enum":["direct","indirect","historically-interpreted",null],"type":["string","null"]},"id":{"description":"Stable slug, e.g. gen-1-26. Must match the frontend passage id where one already exists.","pattern":"^[a-z0-9]+(-[a-z0-9]+)*$","type":"string"},"interpretiveQuestions":{"description":"Open interpretive questions the research must answer. Empty until researched.","items":{"type":"string"},"type":"array"},"notes":{"description":"Researcher notes. Never a substitute for a verified field.","type":["string","null"]},"relationshipToDoctrine":{"description":"How this passage relates to the doctrine. Null until researched. Must distinguish what the text states / what may be inferred / how historical writers read it / how doctrine was later formulated (standards section 2).","properties":{"status":{"enum":["not-started","in-research","verification-pending","verified","editorially-approved","published"],"type":"string"},"text":{"description":"Explanation of the relationship. Null until researched.","type":["string","null"]}},"required":["text","status"],"type":["object","null"]},"status":{"description":"Lifecycle status, see RESEARCH-STANDARDS.md section 9.","enum":["not-started","in-research","verification-pending","verified","editorially-approved","published"],"type":"string"},"verificationRecordIds":{"description":"Ids of verification records covering claims in this passage record.","items":{"type":"string"},"type":"array"},"verseEnd":{"minimum":1,"type":"integer"},"verseStart":{"minimum":1,"type":"integer"}},"required":["id","doctrine","book","chapter","verseStart","verseEnd","canonicalOrder","status"],"title":"Trace the Doctrine — Biblical Passage (per doctrine)","type":"object"}
+{
+  "$id": "https://gnosis.example/research/trace-the-doctrine/schemas/passage.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One passage in a doctrine's biblical inventory. Evidence classification, relationship to the doctrine, and research status. See RESEARCH-STANDARDS.md sections 1, 2, 5 and 9. A not-started record has evidenceClassification, relationshipToDoctrine and all research fields null or empty.",
+  "properties": {
+    "book": {
+      "description": "Canonical book name, e.g. Genesis, John, Matthew, 2 Corinthians.",
+      "type": "string"
+    },
+    "canonicalOrder": {
+      "description": "Position of the book in the Protestant canonical order (Genesis 1 … Revelation 66).",
+      "maximum": 66,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "chapter": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "crossReferences": {
+      "description": "Cross-references to other passages. Empty until researched.",
+      "items": {
+        "properties": {
+          "note": {
+            "description": "Why the two passages are related.",
+            "type": "string"
+          },
+          "passageId": {
+            "description": "Id of another passage in the same doctrine inventory.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "passageId",
+          "note"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "doctrine": {
+      "description": "The doctrine this inventory entry belongs to.",
+      "enum": [
+        "trinity",
+        "incarnation",
+        "salvation",
+        "holy-spirit",
+        "church",
+        "resurrection"
+      ],
+      "type": "string"
+    },
+    "evidenceClassification": {
+      "description": "See RESEARCH-STANDARDS.md section 1. Null until the classification is researched and justified.",
+      "enum": [
+        "direct",
+        "indirect",
+        "historically-interpreted",
+        null
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
+      "description": "Stable slug, e.g. gen-1-26. Must match the frontend passage id where one already exists.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "type": "string"
+    },
+    "interpretiveQuestions": {
+      "description": "Open interpretive questions the research must answer. Empty until researched.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "notes": {
+      "description": "Researcher notes. Never a substitute for a verified field.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "relationshipToDoctrine": {
+      "description": "How this passage relates to the doctrine. Null until researched. Must distinguish what the text states / what may be inferred / how historical writers read it / how doctrine was later formulated (standards section 2).",
+      "properties": {
+        "status": {
+          "enum": [
+            "not-started",
+            "in-research",
+            "verification-pending",
+            "verified",
+            "editorially-approved",
+            "published"
+          ],
+          "type": "string"
+        },
+        "text": {
+          "description": "Explanation of the relationship. Null until researched.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "text",
+        "status"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "status": {
+      "description": "Lifecycle status, see RESEARCH-STANDARDS.md section 9.",
+      "enum": [
+        "not-started",
+        "in-research",
+        "verification-pending",
+        "verified",
+        "editorially-approved",
+        "published"
+      ],
+      "type": "string"
+    },
+    "verificationRecordIds": {
+      "description": "Ids of verification records covering claims in this passage record.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "verseEnd": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "verseStart": {
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "doctrine",
+    "book",
+    "chapter",
+    "verseStart",
+    "verseEnd",
+    "canonicalOrder",
+    "status"
+  ],
+  "title": "Trace the Doctrine — Biblical Passage (per doctrine)",
+  "type": "object"
+}
