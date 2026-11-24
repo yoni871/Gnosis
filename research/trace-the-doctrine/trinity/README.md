@@ -72,17 +72,18 @@ nothing is publishable yet.
   searched in any era. "No attested interpretation found" is a report of what
   was checked, not proof that no historical writer anywhere interpreted the
   passage.
-- `verification-records.json` — **363 verification records**, one per claim
+- `verification-records.json` — **364 verification records**, one per claim
   (2 per passage: a `passage-link` record for the reference + canonical
   position, and a `doctrinal-connection` record for the classification and
   relationship; plus 3 extra records for disputed readings — see below).
-  Results across all 363 records: **272 `verified`, 90 `partially-verified`,
+  Results across all 364 records: **272 `verified`, 91 `partially-verified`,
   1 `not-verified`** (the Johannine Comma — see below). The 123 Phase 2
   records are preserved exactly, in order, at the head of the file (60
-  `verified`, 62 `partially-verified`, 1 `not-verified`); the 240 Phase 3
-  records follow (212 `verified`, 28 `partially-verified`), of which 239 come
-  from the five era researchers and 1 from the coordinator (Westminster
-  Confession passage links, see below). Every record has
+  `verified`, 62 `partially-verified`, 1 `not-verified`); the 241 Phase 3
+  records follow (212 `verified`, 29 `partially-verified`), of which 239 come
+  from the five era researchers, 1 from the coordinator (Westminster
+  Confession passage links, see below), and 1 from T4f (the Servetus dates
+  record). Every record has
   `editorialApproval: null` and checker `dev-1-researcher`, with the note
   that these are researcher source-checks only: independent verification per
   `RESEARCH-STANDARDS.md` §9.2 is still required, and nothing is publishable
