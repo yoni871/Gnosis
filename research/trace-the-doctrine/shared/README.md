@@ -26,7 +26,7 @@ named in the frontend preview. A stub carries only three fields:
 
 A stub asserts **no** dates, **no** works, **no** quotations, and **no**
 passage links. Any of those must be researched, verified, and recorded
-under the standards (`RESEARCH-STANDARDS.md` §5) before they appear here.
+under the standards (`../RESEARCH-STANDARDS.md` §5) before they appear here.
 
 ## How to add an author or work
 
