@@ -8,7 +8,7 @@
 // theologian and the passage is what is unverified. No quotation,
 // title, or date is ever invented to fill the space: pending content
 // renders as an explicit placeholder, never as a fact.
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     DEMONSTRATION_NOTICE,
     EXPLANATION_PENDING_LABEL,
@@ -17,9 +17,25 @@ import {
     getWorkTitleLabel,
 } from "../../data/doctrineStudies";
 
+// Quotations longer than this are collapsed to three lines with a
+// "Read full quotation" toggle, so a long quotation never pushes the
+// timeline off the screen. Short quotations render in full with no
+// toggle at all.
+const QUOTATION_COLLAPSE_CHARS = 280;
+
 export default function DoctrineInterpretationPanel({ interpretation, figure, work, passage }) {
     const [explanationOpen, setExplanationOpen] = useState(false);
     const [sourceDetailsOpen, setSourceDetailsOpen] = useState(false);
+    const [quotationOpen, setQuotationOpen] = useState(false);
+
+    // A new theologian starts with the quotation collapsed, even if
+    // the previous one was expanded. This effect sits before the
+    // empty-state return below: hooks must run on every render, even
+    // for a passage with no entries.
+    const interpretationId = interpretation?.id ?? null;
+    useEffect(() => {
+        setQuotationOpen(false);
+    }, [interpretationId]);
 
     // A passage with no entries yet: an honest empty state, not
     // placeholder theologians. Entries are added only after research
@@ -44,6 +60,7 @@ export default function DoctrineInterpretationPanel({ interpretation, figure, wo
 
     const quotation = interpretation.quotation;
     const explanation = interpretation.explanation;
+    const quotationTooLong = Boolean(quotation) && quotation.length > QUOTATION_COLLAPSE_CHARS;
 
     return (
         <section
@@ -61,12 +78,28 @@ export default function DoctrineInterpretationPanel({ interpretation, figure, wo
                 <span aria-hidden="true"> · </span>
                 <span className="doctrine-interpretation-source-date">{getWorkDateLabel(work)}</span>
             </p>
-            <div className="doctrine-interpretation-quotation" aria-label="Quotation">
+            <div
+                className={`doctrine-interpretation-quotation${quotationTooLong && !quotationOpen ? " doctrine-interpretation-quotation--collapsed" : ""}`}
+                aria-label="Quotation"
+            >
                 {quotation ? (
-                    <blockquote>
-                        <p>{quotation}</p>
-                        {interpretation.citation && <cite>{interpretation.citation}</cite>}
-                    </blockquote>
+                    <>
+                        <blockquote id="doctrine-quotation-body">
+                            <p>{quotation}</p>
+                            {interpretation.citation && <cite>{interpretation.citation}</cite>}
+                        </blockquote>
+                        {quotationTooLong && (
+                            <button
+                                type="button"
+                                className="doctrine-interpretation-toggle"
+                                aria-expanded={quotationOpen}
+                                aria-controls="doctrine-quotation-body"
+                                onClick={() => setQuotationOpen((open) => !open)}
+                            >
+                                {quotationOpen ? "Show less" : "Read full quotation"}
+                            </button>
+                        )}
+                    </>
                 ) : (
                     <p className="doctrine-placeholder" role="status">
                         {QUOTATION_PENDING_LABEL} — no quotation has been verified for this entry yet.

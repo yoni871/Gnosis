@@ -13,7 +13,11 @@
 // updates the interpretation panel WITHOUT changing Scripture. A
 // passage with no entries shows an honest empty state, not placeholder
 // theologians.
-import { useEffect, useRef } from "react";
+//
+// Scrolling a node into view happens only on a user selection (click
+// or keyboard): the strip never scrolls on mount or when the passage
+// changes, so the page stays where the reader put it.
+import { useRef } from "react";
 import { DEMONSTRATION_NOTICE, getWorkDateLabel } from "../../data/doctrineStudies";
 
 export default function DoctrineTimeline({
@@ -28,20 +32,20 @@ export default function DoctrineTimeline({
     // when one is selected, otherwise the first node.
     const focusIndex = currentIndex >= 0 ? currentIndex : 0;
 
-    useEffect(() => {
-        if (currentIndex < 0) return;
-        const node = nodeRefs.current[currentIndex];
+    const scrollNodeIntoView = (index) => {
+        const node = nodeRefs.current[index];
         if (!node) return;
         const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
         // jsdom (tests) has no scrollIntoView; guard the call.
         node.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: reduced ? "auto" : "smooth" });
-    }, [currentIndex]);
+    };
 
     const select = (index) => {
         const entry = entries[index];
         if (!entry) return;
         onSelect?.(entry.interpretation.id);
         nodeRefs.current[index]?.focus();
+        scrollNodeIntoView(index);
     };
 
     const onKeyDown = (event) => {
