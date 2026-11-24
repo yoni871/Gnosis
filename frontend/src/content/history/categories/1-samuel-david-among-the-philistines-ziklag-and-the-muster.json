@@ -187,7 +187,7 @@
       "endVerse": 3,
       "type": "background",
       "confidence": "probable",
-      "note": "Targets 1 Samuel 15:1–3 and Deuteronomy 25:17–19. The command to blot out Amalek, attempted under Saul and left incomplete, stands behind the Amalekite raids in this chapter: the people David raids are the same people the command named."
+      "note": "Targets 1 Samuel 15:1–3. The command to blot out Amalek, attempted under Saul and left incomplete, stands behind the Amalekite raids in this chapter: the people David raids are the same people the command named."
     },
     {
       "id": "conn-1sa-08-007",
@@ -224,6 +224,18 @@
       "type": "historical-setting",
       "confidence": "probable",
       "note": "The battle the muster prepares: Israel is defeated on Mount Gilboa, Saul and his sons fall, and David — dismissed from the host — is absent from it entirely."
+    },
+    {
+      "id": "conn-1sa-08-010",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 25,
+      "startVerse": 17,
+      "endChapter": 25,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Deuteronomy 25:17–19. The command to blot out Amalek, given to Israel before the conquest, stands behind the Amalekite raids in this chapter: the people David raids are the same people the command named."
     }
   ],
   "relatedEvents": [],
