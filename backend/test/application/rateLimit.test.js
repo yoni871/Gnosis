@@ -80,6 +80,17 @@ async function seedUser(email, password) {
     return result.rows[0].id;
 }
 
+// Mint a bearer token for a seeded user with a live session row, the
+// way the profile test below does inline: the auth middleware
+// revalidates the session on every request.
+async function sessionToken(email) {
+    const id = await seedUser(email, 'correct-password');
+    const sid = require('node:crypto').randomUUID();
+    await database.pool.query("INSERT INTO auth_sessions(id,user_id,expires_at) VALUES ($1,$2,now() + interval '1 hour')", [sid, id]);
+    const token = jwt.sign({ userId: id, sid }, JWT_SECRET, { expiresIn: '15m', issuer: 'gnosis', audience: 'gnosis-api' });
+    return { id, token };
+}
+
 // Tests share one database and one loopback address, so the per-IP bucket
 // accumulates across tests. Per-email buckets use a fresh email per test
 // (exact counts), while the per-IP test reads its starting count and
@@ -327,6 +338,67 @@ test('profile reads stay unthrottled', async () => {
         const body = await response.json();
         assert.equal(body.email, 'profile@example.com');
     }
+});
+
+// Session management (T2.5, PR #94): the list and revoke routes are
+// rate limited per user at 30/15 min, matching the passkey list.
+test('sessions list is rate limited per user after 30 reads', async () => {
+    const { id, token } = await sessionToken('sessions-list@example.com');
+    // Seed 29 prior attempts directly (the pattern from 'rows outside
+    // the window do not count'): one live read fills the 30/15 min
+    // budget, and the next is blocked. 30 live reads would burn most
+    // of the application suite's 180-second budget for no extra proof.
+    await database.pool.query(
+        `INSERT INTO rate_limit_attempts(key_hash, policy)
+         SELECT $1, 'session_list_user' FROM generate_series(1, 29)`,
+        [computeKeyHash('session_list_user', [String(id)], RATE_SECRET)]);
+    assert.equal(await attemptCount('session_list_user', [String(id)]), 29);
+    const last = await fetch(`${worker.url}/api/auth/sessions`, {
+        headers: { Authorization: `Bearer ${token}` },
+        signal: AbortSignal.timeout(10000),
+    });
+    assert.equal(last.status, 200, 'the 30th read must succeed');
+    await last.text();
+    const blocked = await fetch(`${worker.url}/api/auth/sessions`, {
+        headers: { Authorization: `Bearer ${token}` },
+        signal: AbortSignal.timeout(10000),
+    });
+    assert.equal(blocked.status, 429);
+    assert.deepEqual(await blocked.json(), RATE_LIMITED_BODY);
+    assert.ok(Number.isInteger(Number(blocked.headers.get('retry-after')))
+        && Number(blocked.headers.get('retry-after')) >= 1);
+    assert.equal(await attemptCount('session_list_user', [String(id)]), 30,
+        'the blocked attempt rolled its reservation back');
+});
+
+test('session revoke is rate limited per user after 30 attempts', async () => {
+    const { id, token } = await sessionToken('sessions-revoke@example.com');
+    const { randomUUID } = require('node:crypto');
+    await database.pool.query(
+        `INSERT INTO rate_limit_attempts(key_hash, policy)
+         SELECT $1, 'session_revoke_user' FROM generate_series(1, 29)`,
+        [computeKeyHash('session_revoke_user', [String(id)], RATE_SECRET)]);
+    assert.equal(await attemptCount('session_revoke_user', [String(id)]), 29);
+    // The 30th attempt targets a well-formed but nonexistent session
+    // id, so it answers 404 — but the limiter counts every request
+    // (the wrapper settles the reservation on return), so the budget
+    // fills. No real session is revoked.
+    const last = await fetch(`${worker.url}/api/auth/sessions/${randomUUID()}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+        signal: AbortSignal.timeout(10000),
+    });
+    assert.equal(last.status, 404, 'the 30th revoke must answer 404');
+    await last.text();
+    const blocked = await fetch(`${worker.url}/api/auth/sessions/${randomUUID()}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+        signal: AbortSignal.timeout(10000),
+    });
+    assert.equal(blocked.status, 429);
+    assert.deepEqual(await blocked.json(), RATE_LIMITED_BODY);
+    assert.equal(await attemptCount('session_revoke_user', [String(id)]), 30,
+        'the blocked attempt rolled its reservation back');
 });
 
 async function refresh(url, cookie) {

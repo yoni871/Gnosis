@@ -189,6 +189,19 @@ const changePasswordRateLimit = createRateLimitMiddleware([
     { policy: "change_password_ip_user", fields: (req, ip) => [ip, String(req.user.userId)] },
 ], "change-password");
 
+// Session management (T2.5, PR #94): the list and revoke routes
+// CodeQL flagged as un-rate-limited. Both are per-user buckets — the
+// account is known, so per-user is the precise bound (see the policy
+// comments in rateLimit.js). Every request counts (the wrapper settles
+// the reservation), matching the passkey list.
+const sessionListRateLimit = createRateLimitMiddleware([
+    { policy: "session_list_user", fields: req => [String(req.user.userId)] },
+], "sessions");
+
+const sessionRevokeRateLimit = createRateLimitMiddleware([
+    { policy: "session_revoke_user", fields: req => [String(req.user.userId)] },
+], "sessions");
+
 // Guarantees a reservation is always settled. Handlers finalize
 // explicitly on every path; this wrapper covers the rest: an unexpected
 // throw is an internal error and releases, while a handler that somehow
@@ -763,7 +776,7 @@ router.delete("/account", authenticateToken, validateDelete, deleteAccountRateLi
 // session is identified by when it was created and when it expires.
 // The current session is marked from the access token's sid, never
 // from stored data. Revoked sessions older than 30 days are excluded.
-router.get("/sessions", authenticateToken, async (req, res) => {
+router.get("/sessions", authenticateToken, sessionListRateLimit, withRateLimitFinalize(async (req, res) => {
     let rows;
     try {
         rows = await sessions.listSessions(req.user.userId);
@@ -780,7 +793,7 @@ router.get("/sessions", authenticateToken, async (req, res) => {
         revokedAt: row.revoked_at,
         current: row.id === req.user.sid,
     })) });
-});
+}));
 
 // Per-session revoke. A session id that is not this user's — or does
 // not exist, or is already revoked — shares one 404, so no response
@@ -788,7 +801,7 @@ router.get("/sessions", authenticateToken, async (req, res) => {
 // refresh cookie, like logout. Refresh tokens for a revoked session
 // fail immediately: rotation rechecks revoked_at under the session
 // lock, and the middleware rejects revoked sessions.
-router.delete("/sessions/:id", authenticateToken, async (req, res) => {
+router.delete("/sessions/:id", authenticateToken, sessionRevokeRateLimit, withRateLimitFinalize(async (req, res) => {
     const sessionId = req.params.id;
     if (!/^[a-f0-9-]{36}$/.test(sessionId)) {
         return res.status(404).json({ error: "Session not found.", code: "SESSION_NOT_FOUND" });
@@ -812,7 +825,7 @@ router.delete("/sessions/:id", authenticateToken, async (req, res) => {
     }
     res.set("Cache-Control", "private, no-store");
     return res.sendStatus(204);
-});
+}));
 
 // Authenticated password change. The new password follows the same
 // validation as registration (8-character minimum; the project floor
