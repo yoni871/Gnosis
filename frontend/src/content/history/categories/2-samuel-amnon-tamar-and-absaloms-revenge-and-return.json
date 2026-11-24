@@ -1,0 +1,441 @@
+{
+  "id": "category-2-samuel-amnon-tamar-and-absaloms-revenge-and-return",
+  "title": "Amnon, Tamar, and Absalom's Revenge and Return",
+  "category": "category",
+  "orphan": true,
+  "era": "2-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 13,
+    "startVerse": 1,
+    "endChapter": 14,
+    "endVerse": 33
+  },
+  "fullRange": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 13,
+    "startVerse": 1,
+    "endChapter": 14,
+    "endVerse": 33
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2sa-05-001",
+      "claim": "Tamar is David's daughter and Absalom's sister; Amnon, David's son, loves her. Tamar and Absalom are full siblings, children of Maacah daughter of Talmai king of Geshur (3:3); Amnon is David's firstborn by Ahinoam of Jezreel (3:2).",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-002",
+      "claim": "Amnon is so vexed over Tamar that he falls sick, for she is a virgin and he thinks it hard to do anything to her. As an unmarried daughter of the king she was closely guarded, and he saw no way to reach her.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record); BiblicalTraining, \"Tamar,\" search excerpts.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-05-003",
+      "claim": "Jonadab son of Shimeah, David's brother, is \"a very subtil man\"; he counsels Amnon to feign sickness and ask the king to send Tamar to dress meat in his sight.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-004",
+      "claim": "David sends Tamar to Amnon's house; she kneads and bakes cakes in his sight, and Amnon sends all men out and has her bring the meat into the chamber before he seizes her.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-005",
+      "claim": "Tamar pleads: \"do not force me; for no such thing ought to be done in Israel: do not thou this folly… speak unto the king; for he will not withhold me from thee.\"",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-006",
+      "claim": "Tamar's proposal that the king would not withhold her sits against the law, which forbade marriage between half-siblings (Lev 18:9, 11; 20:17; Deut 27:22). Whether she hopes for a royal dispensation, speaks to delay him, or appeals to the king's indulgence is debated and is not resolved here.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record); BiblicalTraining, \"Tamar,\" search excerpts.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-05-007",
+      "claim": "Amnon will not hearken; being stronger than Tamar, he forces her and lies with her.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-008",
+      "claim": "Then Amnon hates Tamar exceedingly — the hatred greater than the love — and has his servant put her out and bolt the door; she protests that sending her away is a greater evil than the first.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-009",
+      "claim": "Tamar wears the garment of divers colours, the dress of the king's virgin daughters; the same rare Hebrew expression describes Joseph's robe (Gen 37:3). She puts ashes on her head, rends the garment, lays her hand on her head, and goes on crying — public signs of grief and shame.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record); BiblicalTraining, \"Tamar,\" search excerpts.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-05-010",
+      "claim": "Absalom takes Tamar into his house, where she remains desolate; David hears all and is very wroth, and no action against Amnon is recorded; Absalom speaks to Amnon neither good nor bad, \"for Absalom hated Amnon, because he had forced his sister Tamar.\" The king who judged the rich man in the parable (12:5–6) does not judge his own son.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record); BiblicalTraining, \"Tamar,\" search excerpts.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-05-011",
+      "claim": "The Masoretic text records David's wrath and no reason for his inaction. The Septuagint and a Hebrew manuscript of Samuel from the Dead Sea Scrolls add that David would not punish Amnon because he loved him as his firstborn.",
+      "evidence": "Hebrew + JPS 1917 read in full for the Masoretic text (read record); BiblicalTraining, \"Tamar,\" search excerpts for the addition.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-05-012",
+      "claim": "After two full years, Absalom has sheepshearers at Baal-hazor beside Ephraim and invites all the king's sons; David declines to come but, pressed, lets Amnon and all the sons go; at Absalom's command his servants smite Amnon when his heart is merry with wine, and the king's sons flee on their mules.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-013",
+      "claim": "A false report reaches David that Absalom has slain all the king's sons; the king tears his garments and lies on the earth. Jonadab corrects the report — Amnon only is dead, \"by the appointment of Absalom… from the day that he forced his sister Tamar\" — and the sons arrive weeping.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-014",
+      "claim": "Absalom flees to Talmai son of Ammihud king of Geshur and is there three years. David mourns for his son every day; at last \"the soul of king David longed to go forth unto Absalom: for he was comforted concerning Amnon, seeing he was dead.\"",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-015",
+      "claim": "Geshur was a small Aramean kingdom east of the upper Jordan, in the southern Golan; Israel did not drive its people out, and it kept its own kings. David's marriage to Maacah is commonly understood as a diplomatic alliance, and Geshur lay outside David's reach, so it was a natural refuge for Absalom.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record); BiblicalTraining, \"Geshur,\" search excerpts.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-05-016",
+      "claim": "Nathan's sentence, \"the sword shall never depart from thine house\" (12:10), begins working itself out in these chapters: a son kills a son, and a son is exiled from his father's house.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record, chs. 12–14); proposal §S05.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-05-017",
+      "claim": "Joab perceives the king's heart is toward Absalom and sends to Tekoa for a wise woman: feign a mourner, wear mourning apparel, anoint not thyself, \"and speak on this manner unto him. So Joab put the words in her mouth.\"",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-018",
+      "claim": "The woman's parable: a widow whose two sons strove in the field, one slew the other, and now the family demands the survivor be delivered to the avenger, which would quench her coal and leave her husband neither name nor remainder. The avenger of blood (*go'el hadam*, Deut 19:6) is the kinsman who exacts blood for blood.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record); reuse `clm-deu-05-043` (established); Bloch, *Blood Vengeance in Ancient Near Eastern Context* (registered, verified).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-019",
+      "claim": "David promises charge concerning the woman, then swears \"there shall not one hair of thy son fall to the earth\" when she invokes the avenger of blood.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record); reuse `clm-deu-05-043` (established).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-020",
+      "claim": "The woman turns the parable on the king: \"the king doth not fetch home again his banished. For we must needs die, and are as water spilt on the ground… yet doth [God] devise means, that his banished be not expelled from him.\"",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-021",
+      "claim": "The woman addresses David as \"an angel of God\" (14:17, 20) for his discernment of good and bad. The phrase is court language for the king, also used at 19:27, not a claim about David's nature.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-05-022",
+      "claim": "David asks, \"Is not the hand of Joab with thee in all this?\" and she confesses it. Absalom is fetched from Geshur but must turn to his own house and \"not see my face\"; he dwells two full years in Jerusalem and sees not the king's face.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-023",
+      "claim": "None in Israel is so praised as Absalom for beauty, from sole to crown without blemish; his hair, polled yearly, weighs two hundred shekels after the king's weight.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record); weights and measures (registered, verified).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-024",
+      "claim": "Three sons and a daughter Tamar are born to Absalom; the sons are not named, and the daughter is named Tamar after his sister. At 18:18 Absalom says \"I have no son to keep my name in remembrance.\" The two statements stand in tension; whether the sons died young is inferred, not stated, and the tension is not resolved here.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record); BiblicalTraining, \"Absalom,\" search excerpts.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-2sa-05-025",
+      "claim": "Absalom sends twice for Joab, who will not come; Absalom has his servants set Joab's barley field on fire, forcing Joab to come. Absalom demands an audience — \"let me see the king's face; and if there be any iniquity in me, let him kill me\" — and Joab intercedes; Absalom bows on his face before the king, and the king kisses Absalom.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-05-026",
+      "claim": "The kiss closes chapter 14, and chapter 15 opens at once on Absalom's chariots, horses, and fifty runners. The reconciliation is in form only: nothing in the chapter says the king forgave the murder of Amnon, and nothing says Absalom repented of it.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-05-027",
+      "claim": "The Dinah story shares similarities with the story of Tamar and Amnon: a daughter violated, a father who keeps quiet, full brothers who take revenge, and the offence named as an outrage \"in Israel\" (Gen 34:7; 2 Sam 13:12). Judges 19 is the darker parallel: an assault at Gibeah that becomes the cause of civil war. In each case the revenge exceeds the offence and leaves the house worse off.",
+      "evidence": "Bible Odyssey, \"Dinah\" (registered, verified); USCCB note on Judg 19:22–25 (registered, verified); Judges read in full in Hebrew (S001).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-05-028",
+      "claim": "The arc's internal time markers are two full years from the assault to the revenge (13:23), three years of exile in Geshur (13:38), and two full years in Jerusalem without seeing the king's face (14:28): five years from the assault to the return, seven years from the assault to the kiss. No absolute date is given.",
+      "evidence": "Hebrew + JPS 1917 read in full (read record).",
+      "assessment": "established"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2sa-05-001",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 12,
+      "startVerse": 1,
+      "endChapter": 12,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Nathan tells the parable of the poor man's lamb, David sentences the rich man, and Nathan answers, \"Thou art the man.\" The sentence follows at once: \"the sword shall never depart from thine house.\" These two chapters are that sentence beginning to work itself out in David's own house."
+    },
+    {
+      "id": "conn-2sa-05-002",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 2,
+      "endChapter": 3,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "established",
+      "note": "Six sons are born to David in Hebron, each named with his mother: Amnon of Ahinoam, Chileab of Abigail, Absalom of Maacah daughter of Talmai king of Geshur. The list names the cast of these two chapters and fixes who is full sibling to whom."
+    },
+    {
+      "id": "conn-2sa-05-003",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 12,
+      "startVerse": 5,
+      "endChapter": 12,
+      "endVerse": 6,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "David's anger kindles against the rich man who took the poor man's lamb: \"he shall surely die\" and restore fourfold, \"because he had no pity.\" The same king, hearing of his own son's crime, is very wroth and does nothing."
+    },
+    {
+      "id": "conn-2sa-05-004",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 34,
+      "startVerse": 1,
+      "endChapter": 34,
+      "endVerse": 31,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Shechem takes Dinah, Jacob's only named daughter, and her full brothers Simeon and Levi take revenge by massacre. The offence is named as an outrage in Israel, the father keeps quiet until the sons return, and the revenge leaves the house worse off — the same shape as Tamar and Amnon."
+    },
+    {
+      "id": "conn-2sa-05-005",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 19,
+      "startVerse": 22,
+      "endChapter": 19,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "probable",
+      "note": "A concubine is assaulted through the night at Gibeah, and the outrage becomes the cause of civil war. The darker parallel to Tamar: sexual violence inside the household, and a brotherhood's answer that answers one crime with a larger one."
+    },
+    {
+      "id": "conn-2sa-05-006",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 18,
+      "startVerse": 9,
+      "endChapter": 18,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law forbids uncovering the nakedness of a sister, the daughter of one's father or mother, whether born at home or abroad. Tamar's proposal that the king would not withhold her sits against this law, and how her words are to be read is not settled."
+    },
+    {
+      "id": "conn-2sa-05-007",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 22,
+      "startVerse": 28,
+      "endChapter": 22,
+      "endVerse": 29,
+      "type": "background",
+      "confidence": "debated",
+      "note": "A man who forces a virgin must pay her father and marry her, and may never divorce her. Amnon does the opposite: he casts Tamar out and bolts the door, and she names the casting out as the greater evil. Whether the law was meant to cover a case like this is debated."
+    },
+    {
+      "id": "conn-2sa-05-008",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 19,
+      "startVerse": 6,
+      "endChapter": 19,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "established",
+      "note": "The avenger of blood pursues the manslayer while his heart is hot. The woman of Tekoa's parable turns on this institution: the family demands the surviving son for the avenger, which would quench her last coal."
+    },
+    {
+      "id": "conn-2sa-05-009",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 15,
+      "startVerse": 1,
+      "endChapter": 15,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The chapter that follows the kiss opens on Absalom's chariots, horses, and fifty men running before him, standing beside the way of the gate and stealing the hearts of Israel. The reconciliation of chapter 14 does not hold."
+    },
+    {
+      "id": "conn-2sa-05-010",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 16,
+      "startVerse": 21,
+      "endChapter": 16,
+      "endVerse": 22,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Absalom goes in to his father's concubines on the housetop in the sight of all Israel, fulfilling Nathan's sentence: \"I will take thy wives before thine eyes, and give them unto thy neighbour… before all Israel, and before the sun.\""
+    },
+    {
+      "id": "conn-2sa-05-011",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 37,
+      "startVerse": 3,
+      "endChapter": 37,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Israel makes Joseph a coat of many colours — the same rare expression as Tamar's garment of divers colours. In both stories a father's marked favour is worn by a child, and a brother's violence ends with the garment torn or taken away."
+    },
+    {
+      "id": "conn-2sa-05-012",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 18,
+      "startVerse": 18,
+      "endChapter": 18,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "unknown",
+      "note": "Absalom sets up a pillar in the king's dale, saying, \"I have no son to keep my name in remembrance.\" It stands against the three sons recorded as born to him in chapter 14, and the text gives no resolution."
+    },
+    {
+      "id": "conn-2sa-05-013",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 25,
+      "startVerse": 43,
+      "endChapter": 25,
+      "endVerse": 43,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David took Ahinoam of Jezreel to wife. She is the mother of Amnon, David's firstborn, whose standing as eldest son is the background to everything that follows his crime."
+    },
+    {
+      "id": "conn-2sa-05-014",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"I will set up thy seed after thee… and I will establish the throne of his kingdom for ever.\" The promise of a house for ever is the word against which the sword in the house is read: the house stands, and the sword does its work inside it."
+    },
+    {
+      "id": "conn-2sa-05-015",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 19,
+      "startVerse": 27,
+      "endChapter": 19,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Mephibosheth says to David, \"my lord the king is as an angel of God.\" The same court language the woman of Tekoa used, addressed to the same king by another suppliant seeking his favour."
+    },
+    {
+      "id": "conn-2sa-05-016",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 13,
+      "startVerse": 13,
+      "endChapter": 13,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"The children of Israel expelled not the Geshurites, nor the Maachathites.\" The unconquered kingdom east of the Jordan keeps its own kings — and becomes the refuge of David's exiled son."
+    },
+    {
+      "id": "conn-2sa-05-017",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 38,
+      "startVerse": 12,
+      "endChapter": 38,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Judah goes up to his sheepshearers at Timnah. Sheepshearing was a festive season, and Absalom's feast at Baal-hazor — the king's sons gathered, wine flowing — is the setting the revenge needs."
+    },
+    {
+      "id": "conn-2sa-05-018",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 51,
+      "startVerse": 1,
+      "endChapter": 51,
+      "endVerse": 4,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"Have mercy upon me, O God, according to thy lovingkindness… for I acknowledge my transgressions.\" David's penitence after Nathan's \"Thou art the man\" is the confession chapter 14 never repeats: the king who was once brought to repentance is now brought only to a compromise."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-samuel-masoretic-text",
+    "source-biblicaltraining-tamar",
+    "source-biblicaltraining-absalom",
+    "source-biblicaltraining-tekoa",
+    "source-biblicaltraining-geshur",
+    "source-bloch-blood-vengeance",
+    "source-biblicaltraining-weights-and-measures",
+    "source-bible-odyssey-dinah",
+    "source-usccb-judges-19-note",
+    "source-hebrew-bible-judges-masoretic-text"
+  ],
+  "review": {
+    "author": "Gnosis 2 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Samuel category; independent QA pending. S05 sources[] carries ten entries (all verified in the live registry): S05-S01 Mechon Mamre -> source-mechon-mamre-2-samuel-masoretic-text; S05-S02 -> source-biblicaltraining-tamar; S05-S03 -> source-biblicaltraining-absalom; S05-S04 -> source-biblicaltraining-tekoa; S05-S05 -> source-biblicaltraining-geshur; source-bloch-blood-vengeance (claim 018 §9 Source IDs); source-biblicaltraining-weights-and-measures (claim 023 §9 Source IDs); source-bible-odyssey-dinah, source-usccb-judges-19-note and source-hebrew-bible-judges-masoretic-text (claim 027 §9 Source IDs). S05-S04 (Tekoa) enters via appendix footnotes (13 uses) — the §-location rule counts the Appendix. The dossier's §12 Needs-checking labels for S05-S02..S05-S05 are stale: the registry build (PR #313) re-read all four in full (Tamar 204/204, Absalom 264/264, Tekoa 165/165, Geshur 112/112) and registered them verified. Excluded by the §-location rule (§12 table only): source-bible-odyssey-sibling-rivalries, source-bible-odyssey-royal-succession, source-biblicaltraining-widow, source-biblicaltraining-barley-harvest, source-biblicaltraining-david. S2CL-05-006 is debated (Tamar's plea against the half-sibling marriage law — three readings on record, none adopted). S2CL-05-024 is the single unknown (the 14:27 / 18:18 tension — the sons-died-young inference is not adopted). S2CL-05-011 is probable (the LXX / Dead Sea Scrolls addition to 13:21 — whether it preserves the original text is not decided here). S2CL-05-018 and S2CL-05-019 reuse clm-deu-05-043 (established, the avenger of blood) in evidence, per the established pattern. S2CO-05-007 is debated (whether the Deut 22:28-29 virgin-forcing law was meant to cover a case like Tamar's is not settled by the text alone); S2CO-05-012 is unknown (Absalom's pillar at 18:18 against the three sons recorded at 14:27, no resolution given). No multi-range connections — all 18 §11 targets are single ranges within one book, so no encompassing ranges and no splits. primaryScripture is the full range 13:1–14:33 (2 chapters, endChapter − startChapter = 1, within the validator limit — no narrowing). Baal-hazor's site is not identified; Geshur's capital is not identified — the kingdom is shown as a region only. Dating-label harmonisation is an editorial decision, not a build fix. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). KJV/JPS quotation mix left as is (both public domain)."
+  }
+}
