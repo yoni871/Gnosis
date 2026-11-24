@@ -1,0 +1,481 @@
+{
+  "id": "category-2-samuel-jerusalem-taken-and-the-ark-brought-up",
+  "title": "Jerusalem Taken and the Ark Brought Up",
+  "category": "category",
+  "orphan": true,
+  "era": "2-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 5,
+    "startVerse": 1,
+    "endChapter": 6,
+    "endVerse": 23
+  },
+  "fullRange": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 5,
+    "startVerse": 1,
+    "endChapter": 6,
+    "endVerse": 23
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2sa-02-001",
+      "claim": "All the tribes come to Hebron and anoint David king over all Israel. They claim him as kin — \"we are thy bone and thy flesh\" — rehearse his leadership when Saul was king and the LORD's word, \"Thou shalt feed My people Israel, and thou shalt be prince over Israel,\" and David makes a covenant with the elders in Hebron before the LORD. This is his third anointing, after Samuel's private anointing (1 Sam 16:13) and the anointing over Judah at Hebron (2 Sam 2:4). The shepherd language of 5:2 is the same calling Psalm 78:70–72 describes, God taking David from the sheepfolds to shepherd Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"David,\" read in part (shepherd section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-002",
+      "claim": "David was thirty years old when he began to reign, and he reigned forty years: seven years and six months in Hebron over Judah, and thirty and three years in Jerusalem over all Israel and Judah. The summary is stated here, mid-book, and is the book's central chronological anchor.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-003",
+      "claim": "The reign is conventionally dated c. 1010–970 BC, first over Judah at Hebron and then over all Israel from Jerusalem, and the capture of Jerusalem about 1000 BC. These are scholarly conventions; the text itself gives no absolute date.",
+      "evidence": "BiblicalTraining, \"David,\" read in part; BiblicalTraining, \"Jerusalem,\" read in part (lines 0–145 of 616).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-02-004",
+      "claim": "David takes the stronghold of Zion from the Jebusites, who had held Jerusalem through the conquest and the judges (Josh 15:63; Judg 1:21), and calls it the city of David. Zion is at first the fortress David captured, then the temple hill, and finally the whole city and its people.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jebusites,\" read in full; BiblicalTraining, \"Jerusalem,\" read in part.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-02-005",
+      "claim": "The Jebusites taunt David that \"the blind and the lame\" will keep him out, and David's saying that day turns on the same words, ending in the saying, \"There are the blind and the lame; he cannot come into the house.\" The taunt and the saying are obscure in the Hebrew as in the KJV; no interpretation is established by the text.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jebusites,\" read in full.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-2sa-02-006",
+      "claim": "David's order turns on the Hebrew word *ṣinnôr*, a rare word usually translated \"water shaft.\" The traditional explanation is entry through a channel connected with the Gihon spring; Charles Warren's shaft, found in 1867, was probably not accessible in David's time, and Reich and Shukron's excavations show the spring protected by massive Middle Bronze Age fortifications instead. Albright proposed *ṣinnôr* as a grappling hook for scaling the walls. The exact route of the attack remains uncertain.",
+      "evidence": "BiblicalTraining, \"Jebusites,\" read in full; BiblicalTraining, \"Jerusalem,\" read in part.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-02-007",
+      "claim": "David dwells in the stronghold and builds round about \"from Millo and inward.\" The Hebrew *millô* is probably the terraced fill supporting buildings on the eastern slope. No structure has been identified as the Millo itself.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jerusalem,\" read in part (lines 0–145 of 616).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-02-008",
+      "claim": "The Jebusite city occupied the narrow southeastern ridge of later Jerusalem, now often called the City of David, above the Kidron Valley; it was small, perhaps around a dozen acres, but steep slopes on three sides made it hard to attack, and its water came from the Gihon Spring at the foot of the eastern slope. In the Iron Age the ridge covered only some 10 to 15 acres (4–6 ha).",
+      "evidence": "BiblicalTraining, \"Jebusites,\" read in full; BiblicalTraining, \"Jerusalem,\" read in part (lines 0–145 of 616).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-02-009",
+      "claim": "Hiram king of Tyre sends messengers, cedar-trees, carpenters, and masons, and they build David a house. David perceives that the LORD has established him king over Israel and exalted his kingdom for his people Israel's sake. The gift begins an alliance with the Phoenicians that continues under Solomon.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"David,\" read in part.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-010",
+      "claim": "David takes more concubines and wives out of Jerusalem after he comes from Hebron, and eleven sons born in Jerusalem are named: Shammuah, Shobab, Nathan, and Solomon; Ibhar, Elishua, Nepheg, and Japhia; Elishama, Eliada, and Eliphelet.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-011",
+      "claim": "David takes more concubines and wives out of Jerusalem. The law for the king forbids multiplying wives \"that his heart turn not away\" (Deut 17:17); the narrative records the fact without comment, and no breach is decided here (the breach is decided only for Solomon).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; reuse: `clm-deu-05-016` (established), `clm-deu-05-023` (Solomon only).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-012",
+      "claim": "Hearing David is anointed, the Philistines come up to seek him and spread themselves in the valley of Rephaim. David enquires of the LORD and is told to go up; he smites them at Baal-perazim, saying, \"The LORD hath broken mine enemies before me, like the breach of waters,\" and the place is named for the breaking.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-013",
+      "claim": "The Philistines leave their images, and David and his men take them away; the Chronicler's parallel says they were burned with fire (1 Chr 14:12). The Philistines come up again; David enquires again and is told not to go up but to circle behind them and wait for the sound of marching in the tops of the mulberry trees, the sign that the LORD has gone out before him. David smites them from Geba until thou come to Gezer.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-014",
+      "claim": "David gathers thirty thousand chosen men and goes from Baale of Judah to bring up the ark of God, \"whereupon is called the Name, even the name of the LORD of hosts that sitteth upon the cherubim.\" The ark is set on a new cart and brought out of the house of Abinadab in the hill, driven by Uzzah and Ahio, while David and all Israel play before the LORD on instruments of cypress-wood, harps, psalteries, timbrels, sistra, and cymbals. The ark was made by Bezalel, overlaid with gold within and without, with the mercy seat and two cherubim (Ex 37:1–9).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; reuse: `clm-bu-033` (established).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-015",
+      "claim": "Baale of Judah is the town 1 Samuel calls Kiriath-jearim: the men of Kiriath-jearim fetched the ark up and brought it into the house of Abinadab, where it stayed twenty years. The \"Gibeah\" of 2 Sam 6:3–4 is read here as \"the hill\" — the house on the hill at Kiriath-jearim — not as an identification with Saul's Gibeah, whose Tell el-Ful identification is contested.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; reuse: SCO-02-016 (established, 1 Samuel S02); `clm-jud-11-002` (unknown, Tell el-Ful).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-02-016",
+      "claim": "At Nachon's threshingfloor the oxen stumble; Uzzah puts forth his hand to the ark and takes hold of it, and God smites him there \"for his error,\" and he dies by the ark of God. The place is called Perez-uzzah, \"unto this day.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-017",
+      "claim": "The first procession carries the ark on a new cart driven by Uzzah and Ahio, where the Law assigns the carrying of the ark to the Levites: the LORD separated Levi to bear the ark, stand, minister, and bless. Whether the cart itself was the fault, or the touch, is not settled by the Samuel text; Chronicles gives David's own explanation that the Levites had not carried the ark as prescribed (1 Chr 15:2, 12–15).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; reuse: `clm-deu-03-036` (established).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-02-018",
+      "claim": "David is displeased and afraid — \"How shall the ark of the LORD come unto me?\" — and carries the ark aside into the house of Obed-edom the Gittite, where it remains three months, and the LORD blesses Obed-edom and all his house. Told of the blessing, David brings the ark up into the city of David with joy.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-019",
+      "claim": "Obed-edom is called \"the Gittite.\" Whether this means a man of Gath or a Levite gatekeeper (the Obed-edom of 1 Chr 15:18; 26:4–8) is debated and is not settled by the Samuel text.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-02-020",
+      "claim": "When the bearers of the ark have gone six paces, David sacrifices an ox and a fatling. David dances before the LORD with all his might, girded with a linen ephod — the linen ephod is a typical priestly garment, as in Samuel's childhood ministry (1 Sam 2:18) — and all Israel brings up the ark with shouting and the sound of the horn.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; reuse: S01 SCL-01-022 (probable).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-02-021",
+      "claim": "The ark is set in its place in the midst of the tent David pitched for it; David offers burnt-offerings and peace-offerings, blesses the people in the name of the LORD of hosts, and deals to every man and woman a cake of bread, a cake made in a pan, and a sweet cake. All the people depart, every one to his house.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-022",
+      "claim": "Michal the daughter of Saul watches from the window, sees David leaping and dancing before the LORD, and despises him in her heart. She meets him with scorn — \"How glorious was the king of Israel to day, who uncovered himself… as one of the vain fellows\" — and David answers that it was before the LORD, who chose him above her father and all his house to be ruler over Israel, and that he will be yet more vile and base in his own sight.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-023",
+      "claim": "\"Therefore Michal the daughter of Saul had no child unto the day of her death\" (6:23). But 21:8 speaks of \"the five sons of Michal the daughter of Saul,\" and 1 Sam 18:19 gives Merab, not Michal, to Adriel the Meholathite. The tension is in the text; it is carried by S08 (chapter 21) and is not resolved here.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-02-024",
+      "claim": "The ark's coming to Jerusalem answers 1 Samuel 4–7: taken in battle at Aphek, carried through the Philistine cities under plague for seven months, returned by a new cart to Beth-shemesh, fetched to Kiriath-jearim where it stayed twenty years in the house of Abinadab, and now brought to the new capital. The procession is the return of the glory that departed at Shiloh (Ps 78:60–61).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; reuse: SCL-02-026, SCO-02-016 (established, 1 Samuel S02).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-02-025",
+      "claim": "Beyond the Bible, the Jebusites are not clearly attested by name, and their ethnic background is debated. The Amarna ruler Abdi-Heba's name (\"servant of Hebat,\" a Hurrian goddess) and the name Araunah (possibly Hurrian, \"lord\") suggest Jerusalem's ruling class may have included a Hurrian element, but the evidence is too slight for certainty.",
+      "evidence": "BiblicalTraining, \"Jebusites,\" read in full.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2sa-02-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 7,
+      "startVerse": 1,
+      "endChapter": 7,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "established",
+      "note": "The men of Kiriath-jearim fetch the ark up and bring it into the house of Abinadab, where it stays twenty years. The ark David goes to fetch has been waiting a generation."
+    },
+    {
+      "id": "conn-2sa-02-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 4,
+      "startVerse": 1,
+      "endChapter": 4,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "established",
+      "note": "Israel fetches the ark from Shiloh to guarantee victory, loses the battle, and loses the ark itself; Hophni and Phinehas die, Eli falls from his seat, and the child is named Ichabod, \"the glory is departed.\" The ark's coming to Jerusalem is the reversal of that loss."
+    },
+    {
+      "id": "conn-2sa-02-003",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 25,
+      "startVerse": 10,
+      "endChapter": 25,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "established",
+      "note": "The ark is made of shittim wood overlaid with gold, with the mercy seat and two cherubim above it, and the LORD says, \"there I will meet with thee.\" The ark David fetches is the same object, \"whereupon is called the Name.\""
+    },
+    {
+      "id": "conn-2sa-02-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 10,
+      "startVerse": 8,
+      "endChapter": 10,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "established",
+      "note": "The LORD separates the tribe of Levi to bear the ark of the covenant of the LORD, to stand before him and bless in his name, with no part or inheritance among their brethren. The first procession's cart stands against this prescription."
+    },
+    {
+      "id": "conn-2sa-02-005",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 4,
+      "startVerse": 15,
+      "endChapter": 4,
+      "endVerse": 15,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The sons of Kohath are to bear the holy things but \"shall not touch any holy thing, lest they die.\" The law states the danger that Uzzah's death enacts."
+    },
+    {
+      "id": "conn-2sa-02-006",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 16,
+      "startVerse": 13,
+      "endChapter": 16,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Samuel anoints David in front of his brothers, \"and the Spirit of the LORD came upon David from that day forward.\" The anointing at Hebron over all Israel fulfils the private anointing at Bethlehem."
+    },
+    {
+      "id": "conn-2sa-02-007",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 2,
+      "startVerse": 4,
+      "endChapter": 2,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "established",
+      "note": "The men of Judah come to Hebron and anoint David king over the house of Judah. The anointing of chapter 5, over all Israel, completes what began here."
+    },
+    {
+      "id": "conn-2sa-02-008",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 9,
+      "endChapter": 3,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Abner swears to transfer the kingdom from the house of Saul to David, \"to set up the throne of David over Israel and over Judah, from Dan even to Beer-sheba.\" The elders' coming to Hebron is that oath working itself out."
+    },
+    {
+      "id": "conn-2sa-02-009",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 9,
+      "startVerse": 2,
+      "endChapter": 9,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Abimelech tells the men of Shechem, \"I am your bone and your flesh,\" in a bid for kingship. The elders use the same kinship idiom when they make David king over all Israel."
+    },
+    {
+      "id": "conn-2sa-02-010",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 15,
+      "startVerse": 63,
+      "endChapter": 15,
+      "endVerse": 63,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Judah could not drive out the Jebusites who inhabited Jerusalem. The city David takes is the stronghold two tribes failed to take."
+    },
+    {
+      "id": "conn-2sa-02-011",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 11,
+      "startVerse": 4,
+      "endChapter": 11,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Chronicler's parallel of the taking of Zion: David promises command of the army to whoever leads the attack, and Joab son of Zeruiah goes up first. Samuel names no leader of the assault."
+    },
+    {
+      "id": "conn-2sa-02-012",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 14,
+      "startVerse": 1,
+      "endChapter": 14,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Chronicler's parallel of Hiram's embassy and the sons born in Jerusalem. The two accounts agree on the house and the sons; the lists of names differ in detail."
+    },
+    {
+      "id": "conn-2sa-02-013",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 15,
+      "startVerse": 2,
+      "endChapter": 15,
+      "endVerse": 15,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David rules that none ought to carry the ark but the Levites, \"because ye did it not at the first,\" and the Levites bear it on their shoulders with the staves, as Moses commanded. The Chronicler names the cause Samuel leaves unstated. Targets 1 Chronicles 15:2 and 15:12–15."
+    },
+    {
+      "id": "conn-2sa-02-014",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 8,
+      "startVerse": 1,
+      "endChapter": 8,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Solomon brings the ark up from the city of David into the temple he has built, and the glory of the LORD fills the house. David's tent is the ark's home until the temple is ready."
+    },
+    {
+      "id": "conn-2sa-02-015",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 13,
+      "endChapter": 3,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "established",
+      "note": "David demands Michal's return before he will make a league with Abner, and she is taken from Phaltiel, who follows her weeping as far as Bahurim. The wife restored in chapter 3 is the wife who despises him in chapter 6."
+    },
+    {
+      "id": "conn-2sa-02-016",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 18,
+      "startVerse": 20,
+      "endChapter": 18,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Michal, Saul's younger daughter, loves David, and Saul asks a bride price of one hundred Philistine foreskins, hoping David will die in the attempt; David brings back two hundred. The marriage that begins as Saul's trap ends in contempt."
+    },
+    {
+      "id": "conn-2sa-02-017",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 19,
+      "startVerse": 11,
+      "endChapter": 19,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "When Saul sends men to seize David at home, Michal lets him down through a window and puts a household idol in his bed. The woman who once saved him through the window now judges him from one."
+    },
+    {
+      "id": "conn-2sa-02-018",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 132,
+      "startVerse": 1,
+      "endChapter": 132,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"Arise, O LORD, into thy rest; thou, and the ark of thy strength.\" The psalm remembers David's vow to find a dwelling for the ark, and prays the promise of the house in chapter 7."
+    },
+    {
+      "id": "conn-2sa-02-019",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 24,
+      "startVerse": 7,
+      "endChapter": 24,
+      "endVerse": 10,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"Lift up your heads, O ye gates; and be ye lift up, ye everlasting doors; and the King of glory shall come in.\" The psalm has long been read in worship as the song of the ark's entry into the city."
+    },
+    {
+      "id": "conn-2sa-02-020",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 16,
+      "endChapter": 17,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law for the king forbids him to multiply horses, to multiply wives \"that his heart turn not away,\" and greatly to multiply silver and gold. The narrative records David taking more wives in Jerusalem without comment."
+    },
+    {
+      "id": "conn-2sa-02-021",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 1,
+      "endChapter": 7,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "At rest in his cedar house, David says to Nathan, \"I dwell in an house of cedar, but the ark of God dwelleth within curtains.\" The tent of chapter 6 is the problem chapter 7 addresses, and the promise of a house for ever is its answer."
+    },
+    {
+      "id": "conn-2sa-02-022",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 21,
+      "startVerse": 8,
+      "endChapter": 21,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "debated",
+      "note": "\"The five sons of Michal the daughter of Saul\" are handed over to the Gibeonites, against chapter 6's word that Michal had no child unto the day of her death. The tension is carried by the chapter that owns it and is not resolved here."
+    },
+    {
+      "id": "conn-2sa-02-023",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 1,
+      "startVerse": 21,
+      "endChapter": 1,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Benjamin could not drive them out either, \"so the Jebusites dwell with the children of Benjamin in Jerusalem unto this day.\" The city David takes is the stronghold two tribes failed to take."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-samuel-masoretic-text",
+    "source-biblicaltraining-jebusites",
+    "source-biblicaltraining-jerusalem",
+    "source-bible-odyssey-samuel",
+    "source-biblicaltraining-ark-of-the-covenant",
+    "source-biblicaltraining-david",
+    "source-gibeah-tell-el-ful-archaeological-overview",
+    "source-mechon-mamre-1-samuel-masoretic-text"
+  ],
+  "review": {
+    "author": "Gnosis 2 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Samuel category; independent QA pending. S02 sources (S02-S01, S02-S02, S02-S03) are all verified: S02-S03 (BiblicalTraining \"Jerusalem\") was re-read in full at the registry build and registered verified (source-biblicaltraining-jerusalem), so the dossier §12 Needs-checking label is stale and it is included in sources[]. S2CL-02-020 reuses S01 SCL-01-022 (probable); S2CL-02-024 reuses SCL-02-026 and SCO-02-016 (established, 1 Samuel S02); S2CL-02-011 reuses clm-deu-05-016 and clm-deu-05-023; S2CL-02-014 reuses clm-bu-033; S2CL-02-015 reuses SCO-02-016 and clm-jud-11-002; S2CL-02-017 reuses clm-deu-03-036; the 2 Sam 5–6 occurrences themselves were read live in Hebrew + JPS 1917. The *ṣinnôr* route is debated (S2CL-02-006) and no route is marked; no City of David structure or palace is marked (undecided); the Gibeah of 6:3 is probable as \"the hill\" at Kiriath-jearim and no Gibeah is marked; Michal's childlessness against 21:8 is debated and carried by S08 (S2CL-02-023 / S2CO-02-022), not resolved here; the 5:21 images difference is recorded, not harmonised. S2CO-02-010 (Joshua 15:63; Judges 1:21) is split into two built connections (conn-2sa-02-010 Joshua, conn-2sa-02-023 Judges) because a connection record carries one book — PR-1 S08 precedent; the built connection count is 23, not 22. S2CO-02-013 (1 Chronicles 15:2, 12-15) is one connection with encompassing range 15:2-15 and the exact sub-ranges in the note. primaryScripture is the full range 5:1-6:23 (2 chapters, within the validator limit — no narrowing, unlike S01). The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). KJV/JPS quotation mix left as is (both public domain)."
+  }
+}
