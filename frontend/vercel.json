@@ -494,6 +494,66 @@
       "source": "/biblical-history/ruth",
       "destination": "/biblical-history/ruth-naomi-and-ruth-return-to-bethlehem",
       "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-birth-and-rise-of-samuel",
+      "destination": "/biblical-history/1-samuel-birth-and-rise-of-samuel",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-capture-and-return-of-the-ark",
+      "destination": "/biblical-history/1-samuel-capture-and-return-of-the-ark",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-israel-demands-a-king",
+      "destination": "/biblical-history/1-samuel-israel-demands-a-king",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-saul-becomes-israels-first-king",
+      "destination": "/biblical-history/1-samuel-saul-becomes-israels-first-king",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-sauls-rejection-as-king",
+      "destination": "/biblical-history/1-samuel-sauls-rejection-as-king",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-davids-anointing-and-rise",
+      "destination": "/biblical-history/1-samuel-davids-anointing-and-rise",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-sauls-persecution-of-david",
+      "destination": "/biblical-history/1-samuel-sauls-persecution-of-david",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-david-among-the-philistines-ziklag-and-the-muster",
+      "destination": "/biblical-history/1-samuel-david-among-the-philistines-ziklag-and-the-muster",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-saul-consults-the-medium-at-en-dor",
+      "destination": "/biblical-history/1-samuel-saul-consults-the-medium-at-en-dor",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-david-dismissed-and-ziklag-recovered",
+      "destination": "/biblical-history/1-samuel-david-dismissed-and-ziklag-recovered",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel/1-samuel-the-battle-of-mount-gilboa-and-sauls-death",
+      "destination": "/biblical-history/1-samuel-the-battle-of-mount-gilboa-and-sauls-death",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-samuel",
+      "destination": "/biblical-history/1-samuel-birth-and-rise-of-samuel",
+      "permanent": true
     }
   ],
   "rewrites": [
