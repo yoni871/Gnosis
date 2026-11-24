@@ -1,1 +1,2873 @@
-[]
+[
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "heb-1-3-ref",
+    "claimText": "The passage Hebrews 1:3 exists at that reference and occupies canonical position 58 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Hebrews 1:3: 'He is the radiance of the glory of God and the exact imprint of his nature, and he upholds the universe by the word of his power.' Canon list: Hebrews, order 58.",
+    "id": "ver-heb-1-3-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Hebrews+1:3&version=ESV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "heb-1-3-doctrine",
+    "claimText": "Hebrews 1:3 is classified indirect: it states the Son is the radiance of God's glory and the exact imprint of his nature, and the inference that the Son shares God's essence supports the Trinity by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Hebrews 1:3: 'He is the radiance of the glory of God and the exact imprint of his nature, and he upholds the universe by the word of his power.'",
+    "id": "ver-heb-1-3-doctrine-001",
+    "limitations": "The wording was confirmed by the text check; the classification itself is a researcher judgement and requires independent verification.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Hebrews+1:3&version=ESV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "heb-1-8-ref",
+    "claimText": "The passage Hebrews 1:8 exists at that reference and occupies canonical position 58 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Hebrews 1:8: 'But of the Son he says, \"Your throne, O God, is forever and ever, the scepter of uprightness is the scepter of your kingdom.\"' Canon list: Hebrews, order 58.",
+    "id": "ver-heb-1-8-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Hebrews+1%3A8-14&version=ESV&resource=ivp-nt&tab=study",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "heb-1-8-doctrine",
+    "claimText": "Hebrews 1:8 is classified direct: it explicitly addresses the Son as 'O God', stating the deity of the Son in so many words.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Hebrews 1:8: 'But of the Son he says, \"Your throne, O God, is forever and ever.\"'",
+    "id": "ver-heb-1-8-doctrine-001",
+    "limitations": "The wording was confirmed by the text check; the classification itself is a researcher judgement and requires independent verification. The alternative reading 'Your throne is God' (NET footnote) was noted but not independently evaluated.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Hebrews+1%3A8-14&version=ESV&resource=ivp-nt&tab=study",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "heb-9-14-ref",
+    "claimText": "The passage Hebrews 9:14 exists at that reference and occupies canonical position 58 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Hebrews 9:14: 'how much more will the blood of Christ, who through the eternal Spirit offered himself without blemish to God, purify our conscience from dead works to serve the living God.' Canon list: Hebrews, order 58.",
+    "id": "ver-heb-9-14-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Hebrews%209%3A11-14%2C24-28&version=ESV;KJV;NKJV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "heb-9-14-doctrine",
+    "claimText": "Hebrews 9:14 is classified indirect: it names Christ, the eternal Spirit, and God together in one act of offering, and that triadic pattern supports the Trinity by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Hebrews 9:14: 'the blood of Christ, who through the eternal Spirit offered himself without blemish to God.'",
+    "id": "ver-heb-9-14-doctrine-001",
+    "limitations": "The wording was confirmed by the text check; the classification itself is a researcher judgement and requires independent verification. Whether 'the eternal Spirit' is the Holy Spirit or Christ's own spirit was not settled by the text check.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Hebrews%209%3A11-14%2C24-28&version=ESV;KJV;NKJV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "1pet-1-2-ref",
+    "claimText": "The passage 1 Peter 1:2 exists at that reference and occupies canonical position 60 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 1 Peter 1:2: 'according to the foreknowledge of God the Father, in the sanctification of the Spirit, for obedience to Jesus Christ and for sprinkling with his blood.' Canon list: 1 Peter, order 60.",
+    "id": "ver-1pet-1-2-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1+Peter+1%3A2&version=NIV%3BNASB%3BESV&resource=nkjv-wiersbe-study-bible&tab=study",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "1pet-1-2-doctrine",
+    "claimText": "1 Peter 1:2 is classified indirect: it names God the Father, the Spirit, and Jesus Christ together in one act of election, and that triadic pattern supports the Trinity by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 1 Peter 1:2: 'according to the foreknowledge of God the Father, in the sanctification of the Spirit, for obedience to Jesus Christ.'",
+    "id": "ver-1pet-1-2-doctrine-001",
+    "limitations": "The wording was confirmed by the text check; the classification itself is a researcher judgement and requires independent verification.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1+Peter+1%3A2&version=NIV%3BNASB%3BESV&resource=nkjv-wiersbe-study-bible&tab=study",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "1pet-1-10-ref",
+    "claimText": "The passage 1 Peter 1:10-12 exists at that reference and occupies canonical position 60 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 1 Peter 1:11: 'inquiring what person or time the Spirit of Christ in them was indicating when he predicted the sufferings of Christ and the subsequent glories.' Canon list: 1 Peter, order 60.",
+    "id": "ver-1pet-1-10-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1%20peter%201%3A10-12&version=ESV;NIV;KJV;NKJV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "1pet-1-10-doctrine",
+    "claimText": "1 Peter 1:10-12 is classified indirect: it states that the Spirit of Christ was in the prophets, and the inference that the Spirit is identified with Christ supports the Trinity by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 1 Peter 1:11: 'the Spirit of Christ in them was indicating when he predicted the sufferings of Christ and the subsequent glories.'",
+    "id": "ver-1pet-1-10-doctrine-001",
+    "limitations": "The wording was confirmed by the text check; the classification itself is a researcher judgement and requires independent verification. Whether 'the Spirit of Christ' is the Holy Spirit or Christ's own spirit was not settled by the text check.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1%20peter%201%3A10-12&version=ESV;NIV;KJV;NKJV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "1john-5-7-ref",
+    "claimText": "The passage 1 John 5:7-8 exists at that reference and occupies canonical position 62 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 1 John 5:7-8: 'For there are three that testify: the Spirit and the water and the blood; and these three agree.' Canon list: 1 John, order 62.",
+    "id": "ver-1john-5-7-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents. The KJV text of the same verses differs (see ver-1john-5-7-comma-001).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1+John+5%3A7-9+&version=KJV%3BESV%3BNKJV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "1john-5-7-doctrine",
+    "claimText": "1 John 5:7-8 is classified indirect: its authentic text speaks of three witnesses, the Spirit, the water, and the blood, and it supports the Trinity only by implication, while the Johannine Comma must not be presented as direct evidence.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 1 John 5:7-8: 'For there are three that testify: the Spirit and the water and the blood; and these three agree.' KJV 1 John 5:7: 'For there are three that bear record in heaven, the Father, the Word, and the Holy Ghost: and these three are one.'",
+    "id": "ver-1john-5-7-doctrine-001",
+    "limitations": "The ESV/KJV comparison confirms the editions differ; the classification itself is a researcher judgement and requires independent verification.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1+John+5%3A7-9+&version=KJV%3BESV%3BNKJV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "King James Version (1611)",
+        "locator": "https://www.biblegateway.com/passage/?search=1+John+5%3A7-9+&version=KJV%3BESV%3BNKJV",
+        "source": "Holy Bible, King James Version (KJV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "1john-5-7-comma",
+    "claimText": "The trinitarian wording known as the Johannine Comma in 1 John 5:7 is a later textual addition, not part of the original text of 1 John 5:7-8.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 1 John 5:7-8 omits the Comma wording: 'For there are three that testify: the Spirit and the water and the blood; and these three agree.' KJV 1 John 5:7 includes it: 'For there are three that bear record in heaven, the Father, the Word, and the Holy Ghost: and these three are one.'",
+    "id": "ver-1john-5-7-comma-001",
+    "limitations": "This record checks the claim that the Comma is a later addition, not part of the original text, and finds it not verified by the checks actually performed: the two-edition comparison establishes only that the editions differ. The Comma's absence from the earliest Greek manuscripts and presence in later Latin tradition is the standard scholarly position as reported here, not something verified manuscript by manuscript in this check; no manuscripts were examined first-hand. The NET textual note on 1 John 5:7 (read via BibleGateway) states the evidence is decidedly against the Comma's authenticity, but that is a secondary report, not a first-hand manuscript check.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "not-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1+John+5%3A7-9+&version=KJV%3BESV%3BNKJV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "King James Version (1611)",
+        "locator": "https://www.biblegateway.com/passage/?search=1+John+5%3A7-9+&version=KJV%3BESV%3BNKJV",
+        "source": "Holy Bible, King James Version (KJV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://www.biblegateway.com/passage/?search=1John.5.7&version=NET;KJV;NKJV",
+        "source": "New English Translation (NET), textual note on 1 John 5:7, via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "1john-5-20-ref",
+    "claimText": "The passage 1 John 5:20 exists at that reference and occupies canonical position 62 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 1 John 5:20: 'And we know that the Son of God has come and has given us understanding, so that we may know him who is true; and we are in him who is true, in his Son Jesus Christ. He is the true God and eternal life.' Canon list: 1 John, order 62.",
+    "id": "ver-1john-5-20-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1%20John%205%3A20&version=NET;KJV;NKJV;ESV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "1john-5-20-doctrine",
+    "claimText": "1 John 5:20 is classified indirect: it states 'He is the true God and eternal life', and the inference that this ascribes deity to Jesus Christ supports the Trinity by implication, though the antecedent of 'He' is disputed.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 1 John 5:20: 'we are in him who is true, in his Son Jesus Christ. He is the true God and eternal life.'",
+    "id": "ver-1john-5-20-doctrine-001",
+    "limitations": "The wording was confirmed by the text check; the classification itself is a researcher judgement and requires independent verification. The antecedent of 'He'/'This' (Jesus Christ or God the Father) was not settled by the text check and is recorded as disputed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1%20John%205%3A20&version=NET;KJV;NKJV;ESV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "2pet-1-1-ref",
+    "claimText": "The passage 2 Peter 1:1 exists at that reference and occupies canonical position 61 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 2 Peter 1:1: 'To those who have obtained a faith of equal standing with ours by the righteousness of our God and Savior Jesus Christ.' Canon list: 2 Peter, order 61.",
+    "id": "ver-2pet-1-1-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=2%20Peter%201%3A1-14&version=NIV;NKJV;KJV;ESV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "2pet-1-1-doctrine",
+    "claimText": "2 Peter 1:1 is classified direct: it explicitly calls Jesus Christ 'our God and Savior', stating the deity of the Son in so many words.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV 2 Peter 1:1: 'by the righteousness of our God and Savior Jesus Christ.'",
+    "id": "ver-2pet-1-1-doctrine-001",
+    "limitations": "The wording was confirmed by the text check; the classification itself is a researcher judgement and requires independent verification. The two-person reading ('God and our Savior Jesus Christ') and the variant reading 'Lord' for 'God' were noted but not settled by the text check.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=2%20Peter%201%3A1-14&version=NIV;NKJV;KJV;ESV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "jude-20-ref",
+    "claimText": "The passage Jude 20-21 exists at that reference and occupies canonical position 65 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Jude 20-21: 'But you, beloved, building yourselves up in your most holy faith and praying in the Holy Spirit, keep yourselves in the love of God, waiting for the mercy of our Lord Jesus Christ that leads to eternal life.' Canon list: Jude, order 65.",
+    "id": "ver-jude-20-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Jude+20-21&version=NIV%3BKJV%3BNKJV%3BESV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "jude-20-doctrine",
+    "claimText": "Jude 20-21 is classified indirect: it names the Holy Spirit, God, and Jesus Christ together in one exhortation, and that triadic pattern supports the Trinity by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Jude 20-21: 'praying in the Holy Spirit, keep yourselves in the love of God, waiting for the mercy of our Lord Jesus Christ.'",
+    "id": "ver-jude-20-doctrine-001",
+    "limitations": "The wording was confirmed by the text check; the classification itself is a researcher judgement and requires independent verification.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Jude+20-21&version=NIV%3BKJV%3BNKJV%3BESV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "rev-1-4-ref",
+    "claimText": "The passage Revelation 1:4-5 exists at that reference and occupies canonical position 66 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Revelation 1:4-5: 'Grace to you and peace from him who is and who was and who is to come, and from the seven spirits who are before his throne, and from Jesus Christ the faithful witness, the firstborn of the dead, and the ruler of kings on earth.' Canon list: Revelation, order 66.",
+    "id": "ver-rev-1-4-ref-001",
+    "limitations": "Canonical position was checked against a web canon list, not against a printed Bible's table of contents.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Revelation%201%3A4-5&version=ESV;NIV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://versenotes.org/a-list-of-books-in-the-bible-by-number-of-chapters/",
+        "source": "Versenotes.org, Bible Books by Number of Chapters (complete list of the 66-book Protestant canon)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "rev-1-4-doctrine",
+    "claimText": "Revelation 1:4-5 is classified indirect: it sends grace from him who is and was and is to come, from the seven spirits, and from Jesus Christ, and that triadic greeting supports the Trinity by implication if the seven spirits denote the Holy Spirit.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Revelation 1:4-5: 'Grace to you and peace from him who is and who was and who is to come, and from the seven spirits who are before his throne, and from Jesus Christ.'",
+    "id": "ver-rev-1-4-doctrine-001",
+    "limitations": "The wording was confirmed by the text check; the classification itself is a researcher judgement and requires independent verification. Whether 'the seven spirits' denotes the Holy Spirit or seven angels was not settled by the text check.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Revelation%201%3A4-5&version=ESV;NIV",
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "matt-1-18-ref",
+    "claimText": "The passage Matthew 1:18-23 exists at that reference and occupies canonical position 40 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Matt 1:18: \"she was found to be with child from the Holy Spirit.\"",
+    "id": "ver-matt-1-18-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Matthew%201%3A18-2%3A12&version=ESV;KJV;NKJV",
+        "source": "BibleGateway — Matthew 1:18-23 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "matt-1-18-doctrine",
+    "claimText": "Matthew 1:18-23 is classified indirect because the Spirit's agency in the conception and the name Immanuel point toward the Son's divine identity without stating the Trinity.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Matt 1:23: \"they shall call his name Immanuel (which means, God with us).\"",
+    "id": "ver-matt-1-18-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Matthew%201%3A18-2%3A12&version=ESV;KJV;NKJV",
+        "source": "BibleGateway — Matthew 1:18-23 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "matt-3-16-ref",
+    "claimText": "The passage Matthew 3:16-17 exists at that reference and occupies canonical position 40 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Matt 3:16: \"he saw the Spirit of God descending like a dove and coming to rest on him.\"",
+    "id": "ver-matt-3-16-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Matthew%203%3A13-17&version=CEB;KJV;NKJV;ESV",
+        "source": "BibleGateway — Matthew 3:13-17 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "matt-3-16-doctrine",
+    "claimText": "Matthew 3:16-17 is classified direct, as a candidate for independent verification, because Jesus, the Spirit of God, and the Father's voice appear together in the single act of Jesus' baptism.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Matt 3:17: \"a voice from heaven said, 'This is my beloved Son, with whom I am well pleased.'\"",
+    "id": "ver-matt-3-16-doctrine-001",
+    "limitations": "Classification is a researcher proposal and a candidate only per §1.1; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Matthew%203%3A13-17&version=CEB;KJV;NKJV;ESV",
+        "source": "BibleGateway — Matthew 3:13-17 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "matt-28-19-ref",
+    "claimText": "The passage Matthew 28:19 exists at that reference and occupies canonical position 40 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Matt 28:19: \"baptizing them in the name of the Father and of the Son and of the Holy Spirit.\"",
+    "id": "ver-matt-28-19-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Matthew%2028%3A19&version=ESV;AMP;KJV;NKJV",
+        "source": "BibleGateway — Matthew 28:19 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "matt-28-19-doctrine",
+    "claimText": "Matthew 28:19 is classified direct, as a candidate for independent verification, because baptism in the singular name of the Father, the Son, and the Holy Spirit names all three together in one formula.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Matt 28:19: \"baptizing them in the name of the Father and of the Son and of the Holy Spirit.\"",
+    "id": "ver-matt-28-19-doctrine-001",
+    "limitations": "Classification is a researcher proposal and a candidate only per §1.1; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Matthew%2028%3A19&version=ESV;AMP;KJV;NKJV",
+        "source": "BibleGateway — Matthew 28:19 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "luke-1-35-ref",
+    "claimText": "The passage Luke 1:35 exists at that reference and occupies canonical position 42 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Luke 1:35: \"The Holy Spirit will come upon you, and the power of the Most High will overshadow you.\"",
+    "id": "ver-luke-1-35-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Luke%201%3A35&version=ESV;NIV;KJV;NKJV;NASB",
+        "source": "BibleGateway — Luke 1:35 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "luke-1-35-doctrine",
+    "claimText": "Luke 1:35 is classified indirect because the Holy Spirit, the power of the Most High, and the Son of God are named together without a triadic formula or an explicit identification of the Most High as the Father.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Luke 1:35: \"therefore the child to be born will be called holy - the Son of God.\"",
+    "id": "ver-luke-1-35-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Luke%201%3A35&version=ESV;NIV;KJV;NKJV;NASB",
+        "source": "BibleGateway — Luke 1:35 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-1-1-ref",
+    "claimText": "The passage John 1:1-3 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 1:1: \"In the beginning was the Word, and the Word was with God, and the Word was God.\"",
+    "id": "ver-john-1-1-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%201%3A1-3&version=NKJV;ESV;KJV;NASB",
+        "source": "BibleGateway — John 1:1-3 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-1-1-doctrine",
+    "claimText": "John 1:1-3 is classified direct because the text explicitly states that the Word was God, while not stating the fully formulated doctrine of the Trinity.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 1:1: \"In the beginning was the Word, and the Word was with God, and the Word was God.\"",
+    "id": "ver-john-1-1-doctrine-001",
+    "limitations": "Classification is a researcher proposal and a candidate only per §1.1, for one element (the deity of the Son/Word); the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%201%3A1-3&version=NKJV;ESV;KJV;NASB",
+        "source": "BibleGateway — John 1:1-3 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-8-58-ref",
+    "claimText": "The passage John 8:58 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 8:58: \"before Abraham was, I am.\"",
+    "id": "ver-john-8-58-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://search.biblegateway.com/passage/?search=John+8%3A58-59&version=KJV%3BESV%3BNASB%3BNIV%3BNKJV",
+        "source": "BibleGateway — John 8:58-59 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-8-58-doctrine",
+    "claimText": "John 8:58 is classified indirect because it explicitly states pre-existence while the identification of 'I am' with the divine name is a contested inference.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 8:58: \"before Abraham was, I am.\"",
+    "id": "ver-john-8-58-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. The Exodus 3:14 link is a contested inference and is recorded as such. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://search.biblegateway.com/passage/?search=John+8%3A58-59&version=KJV%3BESV%3BNASB%3BNIV%3BNKJV",
+        "source": "BibleGateway — John 8:58-59 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-10-30-ref",
+    "claimText": "The passage John 10:30 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 10:30: \"I and the Father are one.\"",
+    "id": "ver-john-10-30-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John+10%3A30&version=NIVUK%3BNIV%3BESV&interface=print",
+        "source": "BibleGateway — John 10:30 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-10-30-doctrine",
+    "claimText": "John 10:30 is classified direct because the text explicitly states that Jesus and the Father are one, while the sense of that oneness remains an interpretive question.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 10:30: \"I and the Father are one.\"",
+    "id": "ver-john-10-30-doctrine-001",
+    "limitations": "Classification is a researcher proposal and a candidate only per §1.1, for one element (unity of Father and Son); the wording check confirms the textual basis only. The alternative reading (oneness of purpose/will) is recorded. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John+10%3A30&version=NIVUK%3BNIV%3BESV&interface=print",
+        "source": "BibleGateway — John 10:30 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-14-9-ref",
+    "claimText": "The passage John 14:9-11 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 14:9: \"Whoever has seen me has seen the Father.\"",
+    "id": "ver-john-14-9-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2014%3A7-17&version=ESV;KJV",
+        "source": "BibleGateway — John 14:7-17 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-14-9-doctrine",
+    "claimText": "John 14:9-11 is classified indirect because mutual indwelling is stated while oneness of essence is an inference from it.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 14:10: \"I am in the Father and the Father is in me.\"",
+    "id": "ver-john-14-9-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2014%3A7-17&version=ESV;KJV",
+        "source": "BibleGateway — John 14:7-17 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-14-16-ref",
+    "claimText": "The passage John 14:16-17 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 14:16: \"he will give you another Helper, to be with you forever.\"",
+    "id": "ver-john-14-16-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2014%3A15-17&version=ESV",
+        "source": "BibleGateway — John 14:15-17 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-14-16-doctrine",
+    "claimText": "John 14:16-17 is classified indirect because 'another Helper' implies a Spirit like Jesus while the Spirit's divine personhood is inferred rather than stated.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 14:17: \"even the Spirit of truth, whom the world cannot receive.\"",
+    "id": "ver-john-14-16-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2014%3A15-17&version=ESV",
+        "source": "BibleGateway — John 14:15-17 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-14-26-ref",
+    "claimText": "The passage John 14:26 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 14:26: \"the Helper, the Holy Spirit, whom the Father will send in my name.\"",
+    "id": "ver-john-14-26-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2014%3A26&version=NET;NIV;NKJV;ESV",
+        "source": "BibleGateway — John 14:26 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-14-26-doctrine",
+    "claimText": "John 14:26 is classified indirect because the passage states the Spirit's sending and teaching rather than a triadic formula, unlike Matthew 28:19.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 14:26: \"he will teach you all things and bring to your remembrance all that I have said to you.\"",
+    "id": "ver-john-14-26-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. The direct/indirect distinction from Matthew 28:19 is a researcher judgement for the verifier to test. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2014%3A26&version=NET;NIV;NKJV;ESV",
+        "source": "BibleGateway — John 14:26 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-15-26-ref",
+    "claimText": "The passage John 15:26 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 15:26: \"the Spirit of truth, who proceeds from the Father.\"",
+    "id": "ver-john-15-26-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2015%3A26-27&version=AMP;ESV",
+        "source": "BibleGateway — John 15:26-27 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-15-26-doctrine",
+    "claimText": "John 15:26 is classified indirect because the Spirit's procession from the Father and sending by the Son are stated while the eternal relation is drawn by implication.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 15:26: \"when the Helper comes, whom I will send to you from the Father.\"",
+    "id": "ver-john-15-26-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2015%3A26-27&version=AMP;ESV",
+        "source": "BibleGateway — John 15:26-27 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-16-13-ref",
+    "claimText": "The passage John 16:13-15 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 16:15: \"All that the Father has is mine.\"",
+    "id": "ver-john-16-13-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2016%3A13-15&version=MOUNCE;NIV;KJV;NKJV;ESV",
+        "source": "BibleGateway — John 16:13-15 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-16-13-doctrine",
+    "claimText": "John 16:13-15 is classified indirect because shared possession between Father and Son and the Spirit's declaring work are stated while the eternal relation is an inference.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 16:14: \"He will glorify me, for he will take what is mine and declare it to you.\"",
+    "id": "ver-john-16-13-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2016%3A13-15&version=MOUNCE;NIV;KJV;NKJV;ESV",
+        "source": "BibleGateway — John 16:13-15 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-17-5-ref",
+    "claimText": "The passage John 17:5 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 17:5: \"glorify me in your own presence with the glory that I had with you before the world existed.\"",
+    "id": "ver-john-17-5-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2017%3A5&version=ESV;KJV;NASB",
+        "source": "BibleGateway — John 17:5 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-17-5-doctrine",
+    "claimText": "John 17:5 is classified indirect because pre-existent shared glory with the Father is stated while the eternal relation is an inference from it.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 17:5: \"glorify me in your own presence with the glory that I had with you before the world existed.\"",
+    "id": "ver-john-17-5-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2017%3A5&version=ESV;KJV;NASB",
+        "source": "BibleGateway — John 17:5 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-20-28-ref",
+    "claimText": "The passage John 20:28 exists at that reference and occupies canonical position 43 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 20:28: \"My Lord and my God!\"",
+    "id": "ver-john-20-28-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2020%3A27-29&version=NKJV;RVR1960;NIV;KJV;ESV",
+        "source": "BibleGateway — John 20:27-29 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "john-20-28-doctrine",
+    "claimText": "John 20:28 is classified direct because Thomas explicitly addresses Jesus as 'My Lord and my God,' ascribing deity to the Son.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV John 20:28: \"Thomas answered him, 'My Lord and my God!'\"",
+    "id": "ver-john-20-28-doctrine-001",
+    "limitations": "Classification is a researcher proposal and a candidate only per §1.1, for one element (deity of the Son as confessed); the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=John%2020%3A27-29&version=NKJV;RVR1960;NIV;KJV;ESV",
+        "source": "BibleGateway — John 20:27-29 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "acts-2-32-ref",
+    "claimText": "The passage Acts 2:32-33 exists at that reference and occupies canonical position 44 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Acts 2:33: \"having received from the Father the promise of the Holy Spirit, he has poured out this that you yourselves are seeing and hearing.\"",
+    "id": "ver-acts-2-32-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Acts%202%3A32-42&version=ESV;NIV;NKJV;NASB;KJV",
+        "source": "BibleGateway — Acts 2:32-42 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "acts-2-32-doctrine",
+    "claimText": "Acts 2:32-33 is classified indirect because Father, exalted Son, and Spirit appear in one act of outpouring without a triadic formula.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Acts 2:32: \"This Jesus God raised up, and of that we all are witnesses.\"",
+    "id": "ver-acts-2-32-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Acts%202%3A32-42&version=ESV;NIV;NKJV;NASB;KJV",
+        "source": "BibleGateway — Acts 2:32-42 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "acts-5-3-ref",
+    "claimText": "The passage Acts 5:3-4 exists at that reference and occupies canonical position 44 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Acts 5:3: \"why has Satan filled your heart to lie to the Holy Spirit.\"",
+    "id": "ver-acts-5-3-ref-001",
+    "limitations": "Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Acts%205%3A3-4&version=KJV;NKJV;ESV;NASB;NIV",
+        "source": "BibleGateway — Acts 5:3-4 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://uncanon.app/learn/books-of-the-bible-in-order",
+        "source": "Books of the Bible in Order (Uncanon) — 66-book Protestant canon list: 40 Matthew, 41 Mark, 42 Luke, 43 John, 44 Acts"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "acts-5-3-doctrine",
+    "claimText": "Acts 5:3-4 is classified indirect because lying to the Holy Spirit is explicitly equated with lying to God while the Spirit's deity is an inference from that equation.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Acts 5:4: \"You have not lied to man but to God.\"",
+    "id": "ver-acts-5-3-doctrine-001",
+    "limitations": "Classification is a researcher proposal; the wording check confirms the textual basis only. The Spirit's deity is a labelled inference from the equation of the two acts. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, © 2001 by Crossway",
+        "locator": "https://www.biblegateway.com/passage/?search=Acts%205%3A3-4&version=KJV;NKJV;ESV;NASB;NIV",
+        "source": "BibleGateway — Acts 5:3-4 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "gen-1-1-ref",
+    "claimText": "The passage Genesis 1:1-3 exists at that reference and occupies canonical position 1 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Gen 1:2: 'And the Spirit of God was hovering over the face of the waters.' Canon list: 1. Genesis.",
+    "id": "ver-gen-1-1-ref-001",
+    "limitations": "Researcher source-check only; the checker is not independent of the researcher, so independent verification per RESEARCH-STANDARDS §9.2 is still required. The canon-list source is a general reference page, not a scholarly edition.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Genesis%201%3A1-3&version=KJV;ESV;NKJV;NASB;NIV — Genesis 1:1-3 ESV",
+        "source": "BibleGateway — Genesis 1:1-3 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/ — Old Testament Books in Order: 1. Genesis",
+        "source": "Encouraging Bible Verses — What Are the Books of the Bible in Order? (Protestant canon list)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "gen-1-1-doctrine",
+    "claimText": "Genesis 1:1-3 is classified indirect because the text states only that the Spirit of God was hovering over the face of the waters at creation, and the Spirit's divine personhood is an inference rather than a statement of the text.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Gen 1:2: 'And the Spirit of God was hovering over the face of the waters.' No person of the Trinity is named as a distinct person in Gen 1:1-3.",
+    "id": "ver-gen-1-1-doctrine-001",
+    "limitations": "Researcher source-check only; the classification is a researcher judgement, not an independently verified judgement, and independent verification per RESEARCH-STANDARDS §9.2 is still required. The wind/breath translation alternative was flagged, not resolved.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Genesis%201%3A1-3&version=KJV;ESV;NKJV;NASB;NIV — Genesis 1:1-3 ESV",
+        "source": "BibleGateway — Genesis 1:1-3 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "gen-1-26-ref",
+    "claimText": "The passage Genesis 1:26 exists at that reference and occupies canonical position 1 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Gen 1:26: 'Then God said, “Let us make man in our image, after our likeness.”' Canon list: 1. Genesis.",
+    "id": "ver-gen-1-26-ref-001",
+    "limitations": "Researcher source-check only; the checker is not independent of the researcher, so independent verification per RESEARCH-STANDARDS §9.2 is still required. The canon-list source is a general reference page, not a scholarly edition.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?version=esv&search=Genesis%201:26 — Genesis 1:26 ESV",
+        "source": "BibleGateway — Genesis 1:26 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/ — Old Testament Books in Order: 1. Genesis",
+        "source": "Encouraging Bible Verses — What Are the Books of the Bible in Order? (Protestant canon list)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "gen-1-26-doctrine",
+    "claimText": "Genesis 1:26 is classified historically-interpreted because the plural 'let us make' does not itself name Father, Son, and Holy Spirit; the trinitarian reading is later reception.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Gen 1:26: 'Then God said, “Let us make man in our image, after our likeness.”' No person of the Trinity is named in the verse.",
+    "id": "ver-gen-1-26-doctrine-001",
+    "limitations": "Researcher source-check only; the classification is a researcher judgement, not an independently verified judgement, and independent verification per RESEARCH-STANDARDS §9.2 is still required. The addressee of the plural is not identified in the text. No historical-author reading was checked here; that is Phase 3 work.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?version=esv&search=Genesis%201:26 — Genesis 1:26 ESV",
+        "source": "BibleGateway — Genesis 1:26 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "gen-18-1-ref",
+    "claimText": "The passage Genesis 18:1-15 exists at that reference and occupies canonical position 1 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Gen 18:1-2: 'And the Lord appeared to him by the oaks of Mamre... behold, three men were standing in front of him.' Canon list: 1. Genesis.",
+    "id": "ver-gen-18-1-ref-001",
+    "limitations": "Researcher source-check only; the checker is not independent of the researcher, so independent verification per RESEARCH-STANDARDS §9.2 is still required. The canon-list source is a general reference page, not a scholarly edition.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Genesis+18%3A1-15&version=NET%3BKJV%3BESV%3BNIV — Genesis 18:1-15 ESV",
+        "source": "BibleGateway — Genesis 18:1-15 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/ — Old Testament Books in Order: 1. Genesis",
+        "source": "Encouraging Bible Verses — What Are the Books of the Bible in Order? (Protestant canon list)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "gen-18-1-doctrine",
+    "claimText": "Genesis 18:1-15 is classified historically-interpreted because the text presents three men and the LORD without naming Father, Son, and Holy Spirit, and the trinitarian reading is contested later reception.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Gen 18:1-2: 'And the Lord appeared to him by the oaks of Mamre... behold, three men were standing in front of him.' No person of the Trinity is named in the passage.",
+    "id": "ver-gen-18-1-doctrine-001",
+    "limitations": "Researcher source-check only; the classification is a researcher judgement, not an independently verified judgement, and independent verification per RESEARCH-STANDARDS §9.2 is still required. The relation between the three men and the LORD is unresolved in the text, and the trinitarian reading is contested. No historical-author reading was checked here; that is Phase 3 work.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Genesis+18%3A1-15&version=NET%3BKJV%3BESV%3BNIV — Genesis 18:1-15 ESV",
+        "source": "BibleGateway — Genesis 18:1-15 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "gen-19-24-ref",
+    "claimText": "The passage Genesis 19:24 exists at that reference and occupies canonical position 1 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Gen 19:24: 'Then the Lord rained on Sodom and Gomorrah sulfur and fire from the Lord out of heaven.' Canon list: 1. Genesis.",
+    "id": "ver-gen-19-24-ref-001",
+    "limitations": "Researcher source-check only; the checker is not independent of the researcher, so independent verification per RESEARCH-STANDARDS §9.2 is still required. The canon-list source is a general reference page, not a scholarly edition.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Genesis+19:24&version=ESV — Genesis 19:24 ESV",
+        "source": "BibleGateway — Genesis 19:24 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/ — Old Testament Books in Order: 1. Genesis",
+        "source": "Encouraging Bible Verses — What Are the Books of the Bible in Order? (Protestant canon list)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "gen-19-24-doctrine",
+    "claimText": "Genesis 19:24 is classified historically-interpreted because the twofold 'LORD' does not itself distinguish divine persons, and the trinitarian reading is later reception.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Gen 19:24: 'Then the Lord rained on Sodom and Gomorrah sulfur and fire from the Lord out of heaven.' No person of the Trinity is named in the verse.",
+    "id": "ver-gen-19-24-doctrine-001",
+    "limitations": "Researcher source-check only; the classification is a researcher judgement, not an independently verified judgement, and independent verification per RESEARCH-STANDARDS §9.2 is still required. Whether the doubling is a distinction of persons or stylistic repetition is unresolved. No historical-author reading was checked here; that is Phase 3 work.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Genesis+19:24&version=ESV — Genesis 19:24 ESV",
+        "source": "BibleGateway — Genesis 19:24 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "deut-6-4-ref",
+    "claimText": "The passage Deuteronomy 6:4 exists at that reference and occupies canonical position 5 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Deut 6:4: '“Hear, O Israel: The Lord our God, the Lord is one.”' Canon list: 5. Deuteronomy.",
+    "id": "ver-deut-6-4-ref-001",
+    "limitations": "Researcher source-check only; the checker is not independent of the researcher, so independent verification per RESEARCH-STANDARDS §9.2 is still required. The canon-list source is a general reference page, not a scholarly edition.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Deuteronomy+6:4-7&version=ESV — Deuteronomy 6:4-7 ESV",
+        "source": "BibleGateway — Deuteronomy 6:4 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/ — Old Testament Books in Order: 5. Deuteronomy",
+        "source": "Encouraging Bible Verses — What Are the Books of the Bible in Order? (Protestant canon list)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "deut-6-4-doctrine",
+    "claimText": "Deuteronomy 6:4 is classified indirect because the Shema explicitly states God's oneness, which the doctrine presupposes, without stating threeness.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Deut 6:4: '“Hear, O Israel: The Lord our God, the Lord is one.”' The verse names no second or third person.",
+    "id": "ver-deut-6-4-doctrine-001",
+    "limitations": "Researcher source-check only; the classification is a researcher judgement, not an independently verified judgement, and independent verification per RESEARCH-STANDARDS §9.2 is still required. The ESV footnote's alternative renderings were noted, not adjudicated; the sense of 'one' was not resolved against the Hebrew.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Deuteronomy+6:4-7&version=ESV — Deuteronomy 6:4-7 ESV",
+        "source": "BibleGateway — Deuteronomy 6:4 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "deut-32-6-ref",
+    "claimText": "The passage Deuteronomy 32:6 exists at that reference and occupies canonical position 5 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Deut 32:6: 'Is not he your father, who created you, who made you and established you?' Canon list: 5. Deuteronomy.",
+    "id": "ver-deut-32-6-ref-001",
+    "limitations": "Researcher source-check only; the checker is not independent of the researcher, so independent verification per RESEARCH-STANDARDS §9.2 is still required. The canon-list source is a general reference page, not a scholarly edition.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Deuteronomy%2032%3A6%2CDeuteronomy%2032%3A10%2CDeuteronomy%2032%3A15&version=ESV — Deuteronomy 32:6 ESV",
+        "source": "BibleGateway — Deuteronomy 32:6 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/ — Old Testament Books in Order: 5. Deuteronomy",
+        "source": "Encouraging Bible Verses — What Are the Books of the Bible in Order? (Protestant canon list)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "deut-32-6-doctrine",
+    "claimText": "Deuteronomy 32:6 is classified indirect because God is called Israel's father as creator, and identifying that father with the first person of the Trinity is an inference.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Deut 32:6: 'Is not he your father, who created you, who made you and established you?' The verse names no Son or Spirit.",
+    "id": "ver-deut-32-6-doctrine-001",
+    "limitations": "Researcher source-check only; the classification is a researcher judgement, not an independently verified judgement, and independent verification per RESEARCH-STANDARDS §9.2 is still required. The KJV variant ('thy father that hath bought thee') was noted, not adjudicated.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Deuteronomy%2032%3A6%2CDeuteronomy%2032%3A10%2CDeuteronomy%2032%3A15&version=ESV — Deuteronomy 32:6 ESV",
+        "source": "BibleGateway — Deuteronomy 32:6 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "ps-2-7-ref",
+    "claimText": "The passage Psalm 2:7 exists at that reference and occupies canonical position 19 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Ps 2:7: 'The Lord said to me, “You are my Son; today I have begotten you.”' Canon list: 19. Psalms.",
+    "id": "ver-ps-2-7-ref-001",
+    "limitations": "Researcher source-check only; the checker is not independent of the researcher, so independent verification per RESEARCH-STANDARDS §9.2 is still required. The canon-list source is a general reference page, not a scholarly edition.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Psalm%202%3A7%3B%20Hebrews%201.1-14&version=ESV;NIV — Psalm 2:7 ESV",
+        "source": "BibleGateway — Psalm 2:7 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/ — Old Testament Books in Order: 19. Psalms",
+        "source": "Encouraging Bible Verses — What Are the Books of the Bible in Order? (Protestant canon list)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "ps-2-7-doctrine",
+    "claimText": "Psalm 2:7 is classified historically-interpreted because the LORD's decree addresses the Davidic king as son, and its application to Christ's divine sonship is later reception.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Ps 2:7: 'The Lord said to me, “You are my Son; today I have begotten you.”' The verse does not name Jesus or state the Son's deity.",
+    "id": "ver-ps-2-7-doctrine-001",
+    "limitations": "Researcher source-check only; the classification is a researcher judgement, not an independently verified judgement, and independent verification per RESEARCH-STANDARDS §9.2 is still required. Whether 'today I have begotten you' marks enthronement or eternal begetting is unresolved. No historical-author reading was checked here; that is Phase 3 work.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Psalm%202%3A7%3B%20Hebrews%201.1-14&version=ESV;NIV — Psalm 2:7 ESV",
+        "source": "BibleGateway — Psalm 2:7 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "ps-45-6-ref",
+    "claimText": "The passage Psalm 45:6-7 exists at that reference and occupies canonical position 19 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Ps 45:6: 'Your throne, O God, is forever and ever.' Canon list: 19. Psalms.",
+    "id": "ver-ps-45-6-ref-001",
+    "limitations": "Researcher source-check only; the checker is not independent of the researcher, so independent verification per RESEARCH-STANDARDS §9.2 is still required. The canon-list source is a general reference page, not a scholarly edition.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Psalm+45:6-7&version=ESV — Psalm 45:6-7 ESV",
+        "source": "BibleGateway — Psalm 45:6-7 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/ — Old Testament Books in Order: 19. Psalms",
+        "source": "Encouraging Bible Verses — What Are the Books of the Bible in Order? (Protestant canon list)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "ps-45-6-doctrine",
+    "claimText": "Psalm 45:6-7 is classified historically-interpreted because the king addressed as 'O God' has a disputed referent, and the trinitarian weight comes from later application.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Ps 45:6-7: 'Your throne, O God, is forever and ever... Therefore God, your God, has anointed you.' The referent of the vocative is not settled by the wording alone.",
+    "id": "ver-ps-45-6-doctrine-001",
+    "limitations": "Researcher source-check only; the classification is a researcher judgement, not an independently verified judgement, and independent verification per RESEARCH-STANDARDS §9.2 is still required. The referent of 'O God' is disputed and was not resolved. No historical-author reading was checked here; that is Phase 3 work.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Psalm+45:6-7&version=ESV — Psalm 45:6-7 ESV",
+        "source": "BibleGateway — Psalm 45:6-7 (ESV)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "ps-110-1-ref",
+    "claimText": "The passage Psalm 110:1 exists at that reference and occupies canonical position 19 in the Protestant canon.",
+    "claimType": "passage-link",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Ps 110:1: 'The Lord says to my Lord: “Sit at my right hand, until I make your enemies your footstool.”' Canon list: 19. Psalms.",
+    "id": "ver-ps-110-1-ref-001",
+    "limitations": "Researcher source-check only; the checker is not independent of the researcher, so independent verification per RESEARCH-STANDARDS §9.2 is still required. The canon-list source is a general reference page, not a scholarly edition.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Psalm%20110%3A1&version=NET;ESV — Psalm 110:1 ESV",
+        "source": "BibleGateway — Psalm 110:1 (ESV)"
+      },
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/ — Old Testament Books in Order: 19. Psalms",
+        "source": "Encouraging Bible Verses — What Are the Books of the Bible in Order? (Protestant canon list)"
+      }
+    ]
+  },
+  {
+    "checkDate": "2026-11-20",
+    "checker": "dev-1-researcher",
+    "claimId": "ps-110-1-doctrine",
+    "claimText": "Psalm 110:1 is classified historically-interpreted because the LORD's address to a second lord does not itself state that lord's deity, and the divine reading is later interpretation.",
+    "claimType": "doctrinal-connection",
+    "editorialApproval": null,
+    "evidenceFound": "ESV Ps 110:1: 'The Lord says to my Lord: “Sit at my right hand, until I make your enemies your footstool.”' The verse does not identify the second lord or state his deity.",
+    "id": "ver-ps-110-1-doctrine-001",
+    "limitations": "Researcher source-check only; the classification is a researcher judgement, not an independently verified judgement, and independent verification per RESEARCH-STANDARDS §9.2 is still required. The Hebrew terms behind the two 'Lord's were not checked against the Hebrew text. No historical-author reading was checked here; that is Phase 3 work.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "dateAccessed": "2026-11-20",
+        "edition": "Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025 (© 2001 by Crossway), via BibleGateway",
+        "locator": "https://www.biblegateway.com/passage/?search=Psalm%20110%3A1&version=NET;ESV — Psalm 110:1 ESV",
+        "source": "BibleGateway — Psalm 110:1 (ESV)"
+      }
+    ]
+  },
+  {
+    "id": "ver-isa-6-1-ref-001",
+    "claimId": "isa-6-1-ref",
+    "claimText": "The passage Isaiah 6:1-8 exists at that reference and occupies canonical position 23 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Isaiah%206%3A1-8&version=MSG;KJV;ESV;NKJV",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "Encouraging Bible Verses — 'What Are the Books of the Bible in Order? Complete Canon Lists and Reading Sequence'",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "ESV Isa 6:3: 'Holy, holy, holy is the Lord of hosts'; ESV Isa 6:8: 'Whom shall I send, and who will go for us?'; canon list: 23. Isaiah.",
+    "limitations": "Text checked via BibleGateway search-result rendering of the ESV page, not a printed ESV; canonical position checked against a secondary online canon list, not a printed Bible's table of contents. Independent verification per §9.2 still required.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-isa-6-1-doctrine-001",
+    "claimId": "isa-6-1-doctrine",
+    "claimText": "Isaiah 6:1-8 is classified historically-interpreted because its threefold 'Holy, holy, holy' and plural 'who will go for us?' are suggestive wording later readers applied to the Trinity, while the text itself states no trinitarian claim.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Isaiah%206%3A1-8&version=MSG;KJV;ESV;NKJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "ESV Isa 6:3: 'Holy, holy, holy is the Lord of hosts'; ESV Isa 6:8: 'who will go for us?' — threefold repetition and plural pronoun confirmed; no three persons named.",
+    "limitations": "Classification is a research judgement grounded in the wording checked; independent verification per §9.2 still required. Specific later readings are not yet attributed or quoted — that is Phase 3 work.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-isa-9-6-ref-001",
+    "claimId": "isa-9-6-ref",
+    "claimText": "The passage Isaiah 9:6 exists at that reference and occupies canonical position 23 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Isaiah%209%3A6&version=NLT;NIV;ESV;KJV",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "Encouraging Bible Verses — 'What Are the Books of the Bible in Order? Complete Canon Lists and Reading Sequence'",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "ESV Isa 9:6: 'his name shall be called Wonderful Counselor, Mighty God, Everlasting Father, Prince of Peace.'; canon list: 23. Isaiah.",
+    "limitations": "Text checked via BibleGateway search-result rendering of the ESV page, not a printed ESV; canonical position checked against a secondary online canon list, not a printed Bible's table of contents. Independent verification per §9.2 still required.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-isa-9-6-doctrine-001",
+    "claimId": "isa-9-6-doctrine",
+    "claimText": "Isaiah 9:6 is classified historically-interpreted because the promised child is called 'Mighty God' in a royal birth oracle, yet the verse does not state that the child is the Son as a distinct divine person, and it also calls him 'Everlasting Father.'",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Isaiah%209%3A6&version=NLT;NIV;ESV;KJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "ESV Isa 9:6: 'Mighty God, Everlasting Father' — both titles confirmed in the same verse; no Father, Son, and Spirit named.",
+    "limitations": "Classification is a research judgement grounded in the wording checked; independent verification per §9.2 still required. Specific later readings are not yet attributed or quoted — that is Phase 3 work. The 'Everlasting Father' complication is unresolved and must not be harmonised away.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-isa-48-16-ref-001",
+    "claimId": "isa-48-16-ref",
+    "claimText": "The passage Isaiah 48:16 exists at that reference and occupies canonical position 23 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Isaiah%2048%3A16&version=KJV;NIV;ESV;CSB",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "Encouraging Bible Verses — 'What Are the Books of the Bible in Order? Complete Canon Lists and Reading Sequence'",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "ESV Isa 48:16: 'And now the Lord God has sent me, and his Spirit.'; canon list: 23. Isaiah.",
+    "limitations": "Text checked via BibleGateway search-result rendering of the ESV page, not a printed ESV; canonical position checked against a secondary online canon list, not a printed Bible's table of contents. Independent verification per §9.2 still required.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-isa-48-16-doctrine-001",
+    "claimId": "isa-48-16-doctrine",
+    "claimText": "Isaiah 48:16 is classified indirect because the verse names the Lord, a sent speaker, and his Spirit together, a pattern consistent with and supportive of the Trinity, without identifying the sent speaker with the Son.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Isaiah%2048%3A16&version=KJV;NIV;ESV;CSB",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "ESV Isa 48:16: 'the Lord God has sent me, and his Spirit' — Lord, sent speaker, and Spirit confirmed in one sentence; speaker unnamed.",
+    "limitations": "Classification is a research judgement grounded in the wording checked; independent verification per §9.2 still required. Speaker identity is unresolved and the ESV/NKJV renderings differ on whether the Spirit is co-sender; specific later readings are Phase 3 work.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-isa-61-1-ref-001",
+    "claimId": "isa-61-1-ref",
+    "claimText": "The passage Isaiah 61:1 exists at that reference and occupies canonical position 23 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Isaiah%2061%3A1%2C%202&version=KJV;NIV;NKJV;ESV",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "Encouraging Bible Verses — 'What Are the Books of the Bible in Order? Complete Canon Lists and Reading Sequence'",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "ESV Isa 61:1: 'The Spirit of the Lord God is upon me, because the Lord has anointed me.'; canon list: 23. Isaiah.",
+    "limitations": "Text checked via BibleGateway search-result rendering of the ESV page, not a printed ESV; canonical position checked against a secondary online canon list, not a printed Bible's table of contents. Independent verification per §9.2 still required.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-isa-61-1-doctrine-001",
+    "claimId": "isa-61-1-doctrine",
+    "claimText": "Isaiah 61:1 is classified indirect because the verse states that the Spirit of the Lord GOD is upon the anointed speaker, a pattern consistent with and supportive of the Trinity, without naming the speaker or stating the Spirit's distinct personhood.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Isaiah%2061%3A1%2C%202&version=KJV;NIV;NKJV;ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "ESV Isa 61:1: 'The Spirit of the Lord God is upon me, because the Lord has anointed me' — Lord, Spirit, and speaker confirmed; speaker unnamed.",
+    "limitations": "Classification is a research judgement grounded in the wording checked; independent verification per §9.2 still required. Speaker identity is unresolved and the Septuagint variant is noted but not adjudicated; specific later readings are Phase 3 work.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-dan-7-13-ref-001",
+    "claimId": "dan-7-13-ref",
+    "claimText": "The passage Daniel 7:13-14 exists at that reference and occupies canonical position 27 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Daniel%207%3A13%E2%80%9314&version=ESV;KJV;NKJV;NIV",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "Encouraging Bible Verses — 'What Are the Books of the Bible in Order? Complete Canon Lists and Reading Sequence'",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "ESV Dan 7:13-14: 'there came one like a son of man, and he came to the Ancient of Days'; 'his dominion is an everlasting dominion.'; canon list: 27. Daniel.",
+    "limitations": "Text checked via BibleGateway search-result rendering of the ESV page, not a printed ESV; canonical position checked against a secondary online canon list, not a printed Bible's table of contents. Independent verification per §9.2 still required.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-dan-7-13-doctrine-001",
+    "claimId": "dan-7-13-doctrine",
+    "claimText": "Daniel 7:13-14 is classified historically-interpreted because the Son of Man receives everlasting dominion before the Ancient of Days, yet the vision never names him the Son or states his deity, so the divine reading is later reception.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Daniel%207%3A13%E2%80%9314&version=ESV;KJV;NKJV;NIV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "ESV Dan 7:13-14: 'one like a son of man' presented before the Ancient of Days; 'his dominion is an everlasting dominion' — dominion confirmed; deity not stated.",
+    "limitations": "Classification is a research judgement grounded in the wording checked; independent verification per §9.2 still required. The figure's identity (individual vs. collective) is unresolved; specific later readings are Phase 3 work.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-mic-5-2-ref-001",
+    "claimId": "mic-5-2-ref",
+    "claimText": "The passage Micah 5:2 exists at that reference and occupies canonical position 33 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Micah%205%3A2&version=NET%3BNIV%3BESV",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "Encouraging Bible Verses — 'What Are the Books of the Bible in Order? Complete Canon Lists and Reading Sequence'",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "ESV Mic 5:2: 'whose coming forth is from of old, from ancient days.'; canon list: 33. Micah.",
+    "limitations": "Text checked via BibleGateway search-result rendering of the ESV page, not a printed ESV; canonical position checked against a secondary online canon list, not a printed Bible's table of contents. Independent verification per §9.2 still required.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-mic-5-2-doctrine-001",
+    "claimId": "mic-5-2-doctrine",
+    "claimText": "Micah 5:2 is classified historically-interpreted because the ruler from Bethlehem has origins 'from of old, from ancient days,' yet the verse states antiquity rather than eternity, so reading it as eternal pre-existence is later interpretation.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Micah%205%3A2&version=NET%3BNIV%3BESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "ESV Mic 5:2: 'whose coming forth is from of old, from ancient days' — antiquity confirmed; eternity not stated. KJV renders the same phrase 'from everlasting.'",
+    "limitations": "Classification is a research judgement grounded in the wording checked; independent verification per §9.2 still required. The antiquity/eternity question turns on translation and is unresolved; specific later readings are Phase 3 work.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-zech-12-10-ref-001",
+    "claimId": "zech-12-10-ref",
+    "claimText": "The passage Zechariah 12:10 exists at that reference and occupies canonical position 38 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Zechariah%2012%3A10&version=NRSVUE;NIV;NKJV;ESV",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "Encouraging Bible Verses — 'What Are the Books of the Bible in Order? Complete Canon Lists and Reading Sequence'",
+        "edition": null,
+        "locator": "https://encouragingbibleverses.org/what-are-the-books-of-the-bible-in-order/",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "ESV Zech 12:10: 'when they look on me, on him whom they have pierced, they shall mourn for him.'; canon list: 38. Zechariah.",
+    "limitations": "Text checked via BibleGateway search-result rendering of the ESV page, not a printed ESV; canonical position checked against a secondary online canon list, not a printed Bible's table of contents. Independent verification per §9.2 still required.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-zech-12-10-doctrine-001",
+    "claimId": "zech-12-10-doctrine",
+    "claimText": "Zechariah 12:10 is classified historically-interpreted because YHWH says 'they will look on me, on him whom they have pierced,' yet the oracle never names the pierced one, so applying it to Jesus is later reception.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Text Edition: 2025, via BibleGateway",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Zechariah%2012%3A10&version=NRSVUE;NIV;NKJV;ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "ESV Zech 12:10: 'when they look on me, on him whom they have pierced' — the me/him shift confirmed; the pierced one unnamed.",
+    "limitations": "Classification is a research judgement grounded in the wording checked; independent verification per §9.2 still required. The pronoun shift admits more than one reading; specific later readings are Phase 3 work.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-rom-1-3-ref-001",
+    "claimId": "rom-1-3-ref",
+    "claimText": "The passage Romans 1:3-4 exists at that reference and occupies canonical position 45 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Romans%201%3A3-4&version=ESV;NIV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Rom 1:4 (ESV): “was declared to be the Son of God in power according to the Spirit of holiness by his resurrection from the dead”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-rom-1-3-doctrine-001",
+    "claimId": "rom-1-3-doctrine",
+    "claimText": "Romans 1:3-4 is classified indirect because it places the Son and the Spirit together in the Son's designation without stating the Trinity, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Romans%201%3A3-4&version=ESV;NIV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Rom 1:4 (ESV): “was declared to be the Son of God in power according to the Spirit of holiness by his resurrection from the dead”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-rom-8-9-ref-001",
+    "claimId": "rom-8-9-ref",
+    "claimText": "The passage Romans 8:9-11 exists at that reference and occupies canonical position 45 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Romans%208%3A9-11&version=NKJV;NIV;ESV;NASB",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Rom 8:9 (ESV): “the Spirit of God dwells in you. Anyone who does not have the Spirit of Christ does not belong to him.”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-rom-8-9-doctrine-001",
+    "claimId": "rom-8-9-doctrine",
+    "claimText": "Romans 8:9-11 is classified indirect because it calls the one indwelling Spirit both the Spirit of God and the Spirit of Christ without stating the Spirit's deity, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Romans%208%3A9-11&version=NKJV;NIV;ESV;NASB",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Rom 8:9 (ESV): “the Spirit of God dwells in you. Anyone who does not have the Spirit of Christ does not belong to him.”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-rom-8-14-ref-001",
+    "claimId": "rom-8-14-ref",
+    "claimText": "The passage Romans 8:14-17 exists at that reference and occupies canonical position 45 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Romans%208%3A14-17&version=ESV;NASB",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Rom 8:15 (ESV): “you have received the Spirit of adoption as sons, by whom we cry, ‘Abba! Father!’”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-rom-8-14-doctrine-001",
+    "claimId": "rom-8-14-doctrine",
+    "claimText": "Romans 8:14-17 is classified indirect because it describes adoption through the Spirit into the Father's family with Christ as a pattern, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Romans%208%3A14-17&version=ESV;NASB",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Rom 8:15 (ESV): “you have received the Spirit of adoption as sons, by whom we cry, ‘Abba! Father!’”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-rom-9-5-ref-001",
+    "claimId": "rom-9-5-ref",
+    "claimText": "The passage Romans 9:5 exists at that reference and occupies canonical position 45 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Romans+9%3A5&version=KJV%3BNIV%3BNKJV%3BESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Rom 9:5 (ESV): “from their race, according to the flesh, is the Christ, who is God over all, blessed forever. Amen.”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-rom-9-5-doctrine-001",
+    "claimId": "rom-9-5-doctrine",
+    "claimText": "Romans 9:5 is classified indirect because the reading that applies the words God over all to Christ is disputed on punctuation grounds, so the verse supports the doctrine only on a contested reading and does not state it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Romans+9%3A5&version=KJV%3BNIV%3BNKJV%3BESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Rom 9:5 (ESV): “from their race, according to the flesh, is the Christ, who is God over all, blessed forever. Amen.”",
+    "limitations": "The classification depends on a disputed punctuation choice; the Christ-as-God reading is not settled by the text check alone, and the variant record ver-rom-9-5-variant-001 records the dispute.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-rom-9-5-variant-001",
+    "claimId": "rom-9-5-variant",
+    "claimText": "The reading of Romans 9:5 that applies the words God over all, blessed forever to Christ is disputed, because the earliest manuscripts lack systematic punctuation and an alternative reading takes the clause as a separate doxology to God.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Romans+9%3A5&version=KJV%3BNIV%3BNKJV%3BESV",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "Bruce M. Metzger, A Textual Commentary on the Greek New Testament, on Romans 9:5, via BibliaPlus",
+        "edition": null,
+        "locator": "https://www.bibliaplus.org/en/commentaries/428/a-textual-commentary-on-the-greek-new-testament-by-bruce-m-metzger/romans/9/5",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Metzger, A Textual Commentary on the Greek New Testament, Romans 9:5 (Bibliaplus): the earliest manuscripts are without systematic punctuation, so editors must insert punctuation; the passage has been much discussed as to whether Paul intended to refer God to Christ, with punctuation options (a) referring the words to Christ, (b) taking them as an independent doxology, and (c) a modification of (b).",
+    "limitations": "The dispute is genuine and unresolved by the text check alone; the ESV follows the Christ-as-God punctuation, while the doxology reading remains a live alternative supported by some editors and commentators. No side is declared the winner here.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-1cor-2-10-ref-001",
+    "claimId": "1cor-2-10-ref",
+    "claimText": "The passage 1 Corinthians 2:10-11 exists at that reference and occupies canonical position 46 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1%20Corinthians%202&version=ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "1 Cor 2:10 (ESV): “For the Spirit searches everything, even the depths of God.”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-1cor-2-10-doctrine-001",
+    "claimId": "1cor-2-10-doctrine",
+    "claimText": "1 Corinthians 2:10-11 is classified indirect because it states the Spirit's knowledge of the depths of God without stating the Spirit's deity, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1%20Corinthians%202&version=ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "1 Cor 2:10 (ESV): “For the Spirit searches everything, even the depths of God.”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-1cor-8-6-ref-001",
+    "claimId": "1cor-8-6-ref",
+    "claimText": "The passage 1 Corinthians 8:6 exists at that reference and occupies canonical position 46 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1+Corinthians+8%3A6%2CEphesians+4%3A6&version=ESV%3BNIV%3BKJV%3BNKJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "1 Cor 8:6 (ESV): “yet for us there is one God, the Father, from whom are all things and for whom we exist, and one Lord, Jesus Christ, through whom are all things and through whom we exist.”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-1cor-8-6-doctrine-001",
+    "claimId": "1cor-8-6-doctrine",
+    "claimText": "1 Corinthians 8:6 is classified indirect because it confesses one God the Father and one Lord Jesus Christ together without stating the Trinity, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1+Corinthians+8%3A6%2CEphesians+4%3A6&version=ESV%3BNIV%3BKJV%3BNKJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "1 Cor 8:6 (ESV): “yet for us there is one God, the Father, from whom are all things and for whom we exist, and one Lord, Jesus Christ, through whom are all things and through whom we exist.”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-1cor-12-4-ref-001",
+    "claimId": "1cor-12-4-ref",
+    "claimText": "The passage 1 Corinthians 12:4-6 exists at that reference and occupies canonical position 46 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1%20Corinthians%2012%3A4-7&version=ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "1 Cor 12:4 (ESV): “Now there are varieties of gifts, but the same Spirit”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-1cor-12-4-doctrine-001",
+    "claimId": "1cor-12-4-doctrine",
+    "claimText": "1 Corinthians 12:4-6 is classified indirect because its triadic distribution of gifts names Spirit, Lord, and God in a pattern, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=1%20Corinthians%2012%3A4-7&version=ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "1 Cor 12:4 (ESV): “Now there are varieties of gifts, but the same Spirit”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-2cor-3-17-ref-001",
+    "claimId": "2cor-3-17-ref",
+    "claimText": "The passage 2 Corinthians 3:17-18 exists at that reference and occupies canonical position 47 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=2+Corinthians+3%3A12%E2%80%9318&version=ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "2 Cor 3:17 (ESV): “Now the Lord is the Spirit, and where the Spirit of the Lord is, there is freedom.”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-2cor-3-17-doctrine-001",
+    "claimId": "2cor-3-17-doctrine",
+    "claimText": "2 Corinthians 3:17-18 is classified indirect because its identification language, the Lord is the Spirit, is heavily debated and does not state the Trinity, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=2+Corinthians+3%3A12%E2%80%9318&version=ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "2 Cor 3:17 (ESV): “Now the Lord is the Spirit, and where the Spirit of the Lord is, there is freedom.”",
+    "limitations": "The sense of the Lord is the Spirit is heavily debated; the classification does not depend on resolving that debate, but the alternatives remain open. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-2cor-13-14-ref-001",
+    "claimId": "2cor-13-14-ref",
+    "claimText": "The passage 2 Corinthians 13:14 exists at that reference and occupies canonical position 47 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=2%20Corinthians%2013%3A14&version=NLT%3BKJV%3BESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "2 Cor 13:14 (ESV): “The grace of the Lord Jesus Christ and the love of God and the fellowship of the Holy Spirit be with you all.”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-2cor-13-14-doctrine-001",
+    "claimId": "2cor-13-14-doctrine",
+    "claimText": "2 Corinthians 13:14 is classified direct because it names the Lord Jesus Christ, God, and the Holy Spirit together in a single blessing, so it states a triadic element of the doctrine.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=2%20Corinthians%2013%3A14&version=NLT%3BKJV%3BESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "2 Cor 13:14 (ESV): “The grace of the Lord Jesus Christ and the love of God and the fellowship of the Holy Spirit be with you all.”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-gal-4-4-ref-001",
+    "claimId": "gal-4-4-ref",
+    "claimText": "The passage Galatians 4:4-7 exists at that reference and occupies canonical position 48 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Galatians%204%3A4-7%2CG%C3%A1latas%204%3A4-7&version=ESV;NVI;NIV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Gal 4:6 (ESV): “God has sent the Spirit of his Son into our hearts, crying, ‘Abba! Father!’”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-gal-4-4-doctrine-001",
+    "claimId": "gal-4-4-doctrine",
+    "claimText": "Galatians 4:4-7 is classified indirect because it describes God sending the Son and then the Spirit of the Son in one sending narrative, so it supports the doctrine by pattern rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Galatians%204%3A4-7%2CG%C3%A1latas%204%3A4-7&version=ESV;NVI;NIV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Gal 4:6 (ESV): “God has sent the Spirit of his Son into our hearts, crying, ‘Abba! Father!’”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-eph-1-3-ref-001",
+    "claimId": "eph-1-3-ref",
+    "claimText": "The passage Ephesians 1:3-14 exists at that reference and occupies canonical position 49 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Ephesians%201%3A%203-14&version=ESV;NKJV;KJV;NASB",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Eph 1:13 (ESV): “you were sealed with the promised Holy Spirit”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-eph-1-3-doctrine-001",
+    "claimId": "eph-1-3-doctrine",
+    "claimText": "Ephesians 1:3-14 is classified indirect because its long blessing is structured triadically around the Father, the Son, and the Spirit without stating the Trinity, so it supports the doctrine by pattern rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Ephesians%201%3A%203-14&version=ESV;NKJV;KJV;NASB",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Eph 1:13 (ESV): “you were sealed with the promised Holy Spirit”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-eph-2-18-ref-001",
+    "claimId": "eph-2-18-ref",
+    "claimText": "The passage Ephesians 2:18 exists at that reference and occupies canonical position 49 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Ephesians%202%3A18&version=ESV;NIV;NKJV;NASB;KJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Eph 2:18 (ESV): “For through him we both have access in one Spirit to the Father.”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-eph-2-18-doctrine-001",
+    "claimId": "eph-2-18-doctrine",
+    "claimText": "Ephesians 2:18 is classified indirect because it describes access to the Father through Christ in one Spirit without stating the Trinity, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Ephesians%202%3A18&version=ESV;NIV;NKJV;NASB;KJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Eph 2:18 (ESV): “For through him we both have access in one Spirit to the Father.”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-eph-4-4-ref-001",
+    "claimId": "eph-4-4-ref",
+    "claimText": "The passage Ephesians 4:4-6 exists at that reference and occupies canonical position 49 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Ephesians%204%3A4-6&version=NKJV;ESV;NASB;KJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Eph 4:4 (ESV): “There is one body and one Spirit—just as you were called to the one hope that belongs to your call”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-eph-4-4-doctrine-001",
+    "claimId": "eph-4-4-doctrine",
+    "claimText": "Ephesians 4:4-6 is classified indirect because its triadic unity confession names one Spirit, one Lord, and one God and Father without stating the Trinity, so it supports the doctrine by pattern rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Ephesians%204%3A4-6&version=NKJV;ESV;NASB;KJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Eph 4:4 (ESV): “There is one body and one Spirit—just as you were called to the one hope that belongs to your call”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-phil-2-5-ref-001",
+    "claimId": "phil-2-5-ref",
+    "claimText": "The passage Philippians 2:5-11 exists at that reference and occupies canonical position 50 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Philippians+2:5-11&version=ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Phil 2:6 (ESV): “who, though he was in the form of God, did not count equality with God a thing to be grasped”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-phil-2-5-doctrine-001",
+    "claimId": "phil-2-5-doctrine",
+    "claimText": "Philippians 2:5-11 is classified direct because it explicitly states Christ's pre-existent divine status and equality with God, so it states an element of the doctrine.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Philippians+2:5-11&version=ESV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Phil 2:6 (ESV): “who, though he was in the form of God, did not count equality with God a thing to be grasped”",
+    "limitations": "The sense of the form of God is an open interpretive question recorded in the passage record; the classification does not depend on resolving it. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-col-1-15-ref-001",
+    "claimId": "col-1-15-ref",
+    "claimText": "The passage Colossians 1:15-20 exists at that reference and occupies canonical position 51 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Colossians%201%3A15-20&version=NIV;ESV;NASB;NKJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Col 1:15 (ESV): “He is the image of the invisible God, the firstborn of all creation.”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-col-1-15-doctrine-001",
+    "claimId": "col-1-15-doctrine",
+    "claimText": "Colossians 1:15-20 is classified indirect because it describes the Son as the image of God with the fullness dwelling in him without stating his deity in so many words, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Colossians%201%3A15-20&version=NIV;ESV;NASB;NKJV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Col 1:15 (ESV): “He is the image of the invisible God, the firstborn of all creation.”",
+    "limitations": "The sense of firstborn of all creation is contested; the classification does not depend on resolving that question. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-col-2-9-ref-001",
+    "claimId": "col-2-9-ref",
+    "claimText": "The passage Colossians 2:9 exists at that reference and occupies canonical position 51 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=colossians+2%3A9&version=ESV%3BNIV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Col 2:9 (ESV): “For in him the whole fullness of deity dwells bodily”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-col-2-9-doctrine-001",
+    "claimId": "col-2-9-doctrine",
+    "claimText": "Colossians 2:9 is classified direct because it explicitly states that the whole fullness of deity dwells bodily in Christ, so it states an element of the doctrine.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=colossians+2%3A9&version=ESV%3BNIV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Col 2:9 (ESV): “For in him the whole fullness of deity dwells bodily”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-titus-2-13-ref-001",
+    "claimId": "titus-2-13-ref",
+    "claimText": "The passage Titus 2:13 exists at that reference and occupies canonical position 56 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Titus%202%3A13&version=NIV;ESV;NASB",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Titus 2:13 (ESV): “waiting for our blessed hope, the appearing of the glory of our great God and Savior Jesus Christ”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-titus-2-13-doctrine-001",
+    "claimId": "titus-2-13-doctrine",
+    "claimText": "Titus 2:13 is classified direct because it explicitly ascribes the title God to Jesus Christ as our great God and Savior, so it states an element of the doctrine.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Titus%202%3A13&version=NIV;ESV;NASB",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Titus 2:13 (ESV): “waiting for our blessed hope, the appearing of the glory of our great God and Savior Jesus Christ”",
+    "limitations": "The classification depends on the single-person grammatical reading; the two-person reading has been proposed, and the variant record ver-titus-2-13-variant-001 records the dispute. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-titus-2-13-variant-001",
+    "claimId": "titus-2-13-variant",
+    "claimText": "The single-person reading of Titus 2:13, under which our great God and Savior Jesus Christ names one person, is the best-supported grammatical reading, but a two-person reading naming God the Father and Jesus Christ separately has also been proposed.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Titus%202%3A13&version=NIV;ESV;NASB",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "New English Translation (NET), translators' note on Titus 2:13, via BibleGateway",
+        "edition": "New English Translation (NET)",
+        "locator": "https://www.biblegateway.com/passage/?search=Titus%201-3%2C1%20Peter%201%3A1-2%3A12&version=NET;NKJV",
+        "dateAccessed": "2026-11-20"
+      },
+      {
+        "source": "Granville Sharp's rule, summary at Theopedia",
+        "edition": null,
+        "locator": "https://theopedia.com/granville-sharps-rule",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "NET translators' note on Titus 2:13 (via BibleGateway): the terms God and Savior both refer to the same person, Jesus Christ, under the construction known as Granville Sharp's rule; the two-person reading (God the Father and Jesus Christ separately) is also recorded in the sources checked.",
+    "limitations": "Best-supported is a scholarly grammatical judgement, not a fact settled by the text check alone; the two-person reading has been proposed and is recorded here rather than resolved.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-titus-3-4-ref-001",
+    "claimId": "titus-3-4-ref",
+    "claimText": "The passage Titus 3:4-7 exists at that reference and occupies canonical position 56 in the Protestant canon.",
+    "claimType": "passage-link",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Titus%203%3A4-7&version=NASB;NKJV;ESV;NIV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "verified",
+    "evidenceFound": "Titus 3:4 (ESV): “But when the goodness and loving kindness of God our Savior appeared”",
+    "limitations": "Text checked in the ESV via BibleGateway search results only; the underlying Greek text and the Protestant canonical order were not independently checked against a second source in this pass.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-titus-3-4-doctrine-001",
+    "claimId": "titus-3-4-doctrine",
+    "claimText": "Titus 3:4-7 is classified indirect because it names God our Savior, the Holy Spirit, and Jesus Christ our Savior in one saving act without stating the Trinity, so it supports the doctrine by implication rather than stating it.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), via BibleGateway",
+        "edition": "Holy Bible, English Standard Version (ESV), Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Titus%203%3A4-7&version=NASB;NKJV;ESV;NIV",
+        "dateAccessed": "2026-11-20"
+      }
+    ],
+    "checker": "dev-1-researcher",
+    "checkDate": "2026-11-20",
+    "result": "partially-verified",
+    "evidenceFound": "Titus 3:4 (ESV): “But when the goodness and loving kindness of God our Savior appeared”",
+    "limitations": "Classification is a research judgement justified in the passage record; the underlying Greek text was not independently checked in this pass, and historical readings are left to Phase 3. Coordinator normalization 2026-11-21: classification is a researcher judgement; result set to partially-verified for consistency with the other four sections and RESEARCH-STANDARDS §9.2 — only an independent verifier can confirm it.",
+    "editorialApproval": null,
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  }
+]

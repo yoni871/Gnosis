@@ -1,1 +1,2366 @@
-[{"book":"Genesis","canonicalOrder":1,"chapter":1,"crossReferences":[],"doctrine":"trinity","evidenceClassification":null,"id":"gen-1-26","interpretiveQuestions":[],"notes":"Skeleton only. No classification, explanation, or passage-to-author link asserted. See RESEARCH-STANDARDS.md section 1.4: Gen 1:26 is the worked example of historically-interpreted, NOT direct — that classification itself is not asserted here until researched.","relationshipToDoctrine":null,"status":"not-started","verificationRecordIds":[],"verseEnd":26,"verseStart":26},{"book":"John","canonicalOrder":43,"chapter":1,"crossReferences":[],"doctrine":"trinity","evidenceClassification":null,"id":"john-1-1","interpretiveQuestions":[],"notes":"Skeleton only. No classification, explanation, or passage-to-author link asserted.","relationshipToDoctrine":null,"status":"not-started","verificationRecordIds":[],"verseEnd":3,"verseStart":1},{"book":"Matthew","canonicalOrder":40,"chapter":28,"crossReferences":[],"doctrine":"trinity","evidenceClassification":null,"id":"matt-28-19","interpretiveQuestions":[],"notes":"Skeleton only. No classification, explanation, or passage-to-author link asserted.","relationshipToDoctrine":null,"status":"not-started","verificationRecordIds":[],"verseEnd":19,"verseStart":19},{"book":"2 Corinthians","canonicalOrder":47,"chapter":13,"crossReferences":[],"doctrine":"trinity","evidenceClassification":null,"id":"2cor-13-14","interpretiveQuestions":[],"notes":"Skeleton only. No classification, explanation, or passage-to-author link asserted.","relationshipToDoctrine":null,"status":"not-started","verificationRecordIds":[],"verseEnd":14,"verseStart":14}]
+[
+  {
+    "book": "Genesis",
+    "canonicalOrder": 1,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "The Spirit's activity at creation sits alongside the plural 'let us make' in the same creation account.",
+        "passageId": "gen-1-26"
+      },
+      {
+        "note": "John 1:1-3 presents the Word as agent of the same creation described in Genesis 1.",
+        "passageId": "john-1-1"
+      },
+      {
+        "note": "1 Corinthians 2:10 describes the Spirit searching the depths of God, a later text on the Spirit's relation to God.",
+        "passageId": "1cor-2-10"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "gen-1-1",
+    "interpretiveQuestions": [
+      "Does 'the Spirit of God' here denote a divine person, God's power in action, or the wind/breath of God — and what in the wording decides between these?",
+      "What does 'hovering' convey about the Spirit's activity, and does the text connect that activity to creation or to something else?",
+      "Alternative: the phrase may be rendered as a wind from God rather than the Spirit; how should that alternative be weighed?",
+      "What would have to be true of the text for it to count as direct evidence for the Spirit's deity, and does it meet that bar?"
+    ],
+    "notes": "Translation question flagged: whether 'Spirit of God' could be rendered as wind/breath of God — flagged for verifier, not asserted.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states that in the beginning God created the heavens and the earth, that the earth was without form and void, and that the Spirit of God was hovering over the face of the waters, before God spoke light into being. It names God as creator and the Spirit of God as present and active at creation, but it does not name the Spirit as a distinct divine person, does not name Father or Son, and does not state that God is three persons in one essence. (B) As an inference only, a reader may reason that because the Spirit is presented as God's own Spirit acting in creation, the passage is consistent with — and points toward — the later doctrine that the Holy Spirit is divine and personally active; that step is an inference, not a statement of the text. (C) Any trinitarian reading of the Spirit here belongs to later reception, to be supplied with attribution in Phase 3, and is not recorded as the text's plain meaning. (D) The formulated doctrine of the Trinity, including the personhood and deity of the Spirit, was articulated in later centuries and must not be projected back onto this creation account."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-gen-1-1-ref-001",
+      "ver-gen-1-1-doctrine-001"
+    ],
+    "verseEnd": 3,
+    "verseStart": 1
+  },
+  {
+    "book": "Genesis",
+    "canonicalOrder": 1,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "The plural of Genesis 1:26 occurs in the same creation account in which the Spirit of God is active.",
+        "passageId": "gen-1-1"
+      },
+      {
+        "note": "Both passages present a threefold or plural divine appearance that later writers read in a trinitarian light.",
+        "passageId": "gen-18-1"
+      },
+      {
+        "note": "Matthew 28:19 names Father, Son, and Holy Spirit together, unlike Genesis 1:26, which names no persons.",
+        "passageId": "matt-28-19"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "historically-interpreted",
+    "id": "gen-1-26",
+    "interpretiveQuestions": [
+      "Who is addressed by the plural 'let us' — a heavenly court, a plural of majesty, God addressing himself, or something else?",
+      "Alternative: the plural may be a divine council or a majestic plural rather than a hint of plurality within God; how is that alternative weighed?",
+      "Why does verse 27 switch back to the singular ('in his own image') immediately after the plural of verse 26?",
+      "What would the text need to say for the plural to state the Trinity directly, and does it say that?"
+    ],
+    "notes": "Uncertainty flagged: the addressee of the plural 'let us' is not identified in the text.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states that God said, 'Let us make man in our image, after our likeness,' and then that God created man in his own image, male and female. The plural verbs and pronouns ('us', 'our') are the text's own wording, but the text does not say who the 'us' is, does not name Father, Son, and Holy Spirit, and does not state that God is three persons in one essence. (B) As an inference only, a reader may note that the plural is unexplained within the verse and is consistent with a plurality within God, but that consistency does not amount to a statement of threeness. (C) Later writers read this plural in a trinitarian light; that reading is reception history, to be attributed to named writers with verified quotations in Phase 3, and it must not be presented as the text's plain meaning. (D) The doctrine of the Trinity as one essence in three persons was formulated in later centuries and must not be read back into this verse."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-gen-1-26-ref-001",
+      "ver-gen-1-26-doctrine-001"
+    ],
+    "verseEnd": 26,
+    "verseStart": 26
+  },
+  {
+    "book": "Genesis",
+    "canonicalOrder": 1,
+    "chapter": 18,
+    "crossReferences": [
+      {
+        "note": "Both passages present plurality language or a threefold appearance later read in a trinitarian light.",
+        "passageId": "gen-1-26"
+      },
+      {
+        "note": "The Genesis 18 visitation leads directly into the Sodom narrative, where the LORD is again named twofold.",
+        "passageId": "gen-19-24"
+      },
+      {
+        "note": "Matthew 28:19 names three persons explicitly, unlike Genesis 18, which names no persons.",
+        "passageId": "matt-28-19"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "historically-interpreted",
+    "id": "gen-18-1",
+    "interpretiveQuestions": [
+      "How are the three men and the LORD related in the narrative — is the LORD one of the three, distinct from them, or speaking through them?",
+      "Alternative: the visitors may be read as angels or as a theophany of the LORD alone, with no trinitarian significance; how is that alternative weighed?",
+      "Does Abraham address one figure or all three when he says 'O Lord', and does the singular/plural shifting in the passage resolve the question?",
+      "What evidence within the passage itself, as opposed to later reading, could support a trinitarian interpretation?"
+    ],
+    "notes": "Uncertainty flagged: the trinitarian reading of the three visitors is contested; the text identifies the visitors as men and the LORD, and the reading is later reception, not textual fact.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states that the LORD appeared to Abraham by the oaks of Mamre, that Abraham looked up and saw three men standing in front of him, that he bowed and addressed them as 'O Lord', and that the LORD then promised Sarah a son. The narrative moves between 'the LORD' speaking in the singular and 'three men' acting together, and it never names Father, Son, and Holy Spirit or states that God is three persons. (B) As an inference only, a reader may observe that the threefold appearance alongside the singular LORD is consistent with a plurality within the one God, but the text itself does not draw that conclusion. (C) Later writers read the three visitors in a trinitarian light; that reading is contested reception history, to be attributed in Phase 3, and must not be presented as the text's plain meaning. (D) The formulated doctrine of the Trinity dates from later centuries and must not be projected back onto this narrative. The trinitarian reading is honestly flagged as uncertain and contested."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-gen-18-1-ref-001",
+      "ver-gen-18-1-doctrine-001"
+    ],
+    "verseEnd": 15,
+    "verseStart": 1
+  },
+  {
+    "book": "Genesis",
+    "canonicalOrder": 1,
+    "chapter": 19,
+    "crossReferences": [
+      {
+        "note": "The Sodom judgment follows the Genesis 18 visitation, where the LORD and the three men are likewise intertwined.",
+        "passageId": "gen-18-1"
+      },
+      {
+        "note": "Both verses present two figures bearing the divine name or title, later read as a distinction of persons.",
+        "passageId": "ps-110-1"
+      },
+      {
+        "note": "John 1:1 distinguishes the Word from God while affirming the Word is God, a later text on distinction within God.",
+        "passageId": "john-1-1"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "historically-interpreted",
+    "id": "gen-19-24",
+    "interpretiveQuestions": [
+      "Does the doubling of 'the LORD' distinguish two agents, or is it a stylistic repetition of a single agent?",
+      "Alternative: the verse may be read as emphatic repetition with no distinction of persons; how is that alternative weighed?",
+      "Who is the LORD 'out of heaven' as distinct from the LORD who rains — and does the text say?",
+      "What would the verse need to state for the doubling to count as direct evidence of distinct divine persons?"
+    ],
+    "notes": "Uncertainty flagged: the twofold 'LORD' may be stylistic repetition rather than a distinction of persons.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states that the LORD rained on Sodom and Gomorrah sulfur and fire from the LORD out of heaven. The verse names the LORD twice — once as the agent raining down judgment and once as its source in heaven — but it does not name Father, Son, and Holy Spirit, does not distinguish two divine persons, and does not state that God is three persons in one essence. (B) As an inference only, a reader may reason that the twofold naming is consistent with a distinction of persons within the one God, but that is an inference; the doubling may also be a stylistic repetition, and the text does not resolve the question. (C) Later writers read the twofold LORD in a trinitarian light; that reading is reception history, to be attributed in Phase 3, and must not be presented as the text's plain meaning. (D) The doctrine of the Trinity was formulated in later centuries and must not be read back into this verse."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-gen-19-24-ref-001",
+      "ver-gen-19-24-doctrine-001"
+    ],
+    "verseEnd": 24,
+    "verseStart": 24
+  },
+  {
+    "book": "Deuteronomy",
+    "canonicalOrder": 5,
+    "chapter": 6,
+    "crossReferences": [
+      {
+        "note": "Both Deuteronomy passages ground the doctrine: the Shema states God's oneness and Deuteronomy 32:6 calls God father.",
+        "passageId": "deut-32-6"
+      },
+      {
+        "note": "1 Corinthians 8:6 reworks the Shema's oneness around one God, the Father, and one Lord, Jesus Christ.",
+        "passageId": "1cor-8-6"
+      },
+      {
+        "note": "Ephesians 4:4-6 affirms one Spirit, one Lord, and one God and Father, echoing the Shema's oneness.",
+        "passageId": "eph-4-4"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "deut-6-4",
+    "interpretiveQuestions": [
+      "What does 'one' affirm here — numerical oneness, uniqueness, or exclusive loyalty — and does the verse rule out internal plurality?",
+      "Alternative: the verse is sometimes read as a polemic against polytheism only, not as a statement about God's inner being; how is that alternative weighed?",
+      "How does the ESV footnote's alternative rendering ('the LORD is our God, the LORD alone') affect the verse's meaning?",
+      "Does the Shema's oneness support, constrain, or stand neutral toward the later doctrine of three persons in one God?"
+    ],
+    "notes": "Variant flagged: ESV footnote offers alternative renderings — 'The Lord our God is one Lord'; 'The Lord is our God, the Lord is one'; 'The Lord is our God, the Lord alone'.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states, 'Hear, O Israel: The LORD our God, the LORD is one.' It explicitly affirms the oneness of the LORD, Israel's God, and it says nothing about threeness, about distinct persons, or about Father, Son, and Holy Spirit. (B) As an inference only, this oneness is the foundational premise on which the later doctrine of the Trinity is built: the doctrine claims one God in three persons, so the Shema supplies the 'one God' half of that claim and is consistent with — indeed required by — the doctrine, while the 'three persons' half must come from elsewhere. That supporting role is a matter of reasoning from the text, not a statement of the text. (C) The verse has no trinitarian reading to record as reception history; its relevance is as the doctrine's monotheistic ground. (D) The formulated doctrine, which holds divine oneness together with three persons, was articulated in later centuries and must not be projected back onto this verse."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-deut-6-4-ref-001",
+      "ver-deut-6-4-doctrine-001"
+    ],
+    "verseEnd": 4,
+    "verseStart": 4
+  },
+  {
+    "book": "Deuteronomy",
+    "canonicalOrder": 5,
+    "chapter": 32,
+    "crossReferences": [
+      {
+        "note": "Both Deuteronomy passages ground the doctrine: the Shema states God's oneness and this verse calls God father.",
+        "passageId": "deut-6-4"
+      },
+      {
+        "note": "Romans 8:14 speaks of those led by the Spirit as sons of God, a later text on divine sonship and fatherhood.",
+        "passageId": "rom-8-14"
+      },
+      {
+        "note": "1 Corinthians 8:6 names 'one God, the Father', a later text using father language for the first person.",
+        "passageId": "1cor-8-6"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "deut-32-6",
+    "interpretiveQuestions": [
+      "In what sense is God called 'father' here — creator, redeemer, founder of the nation — and does the verse imply a personal relation within God?",
+      "Alternative: the father language may be purely covenantal and national, with no bearing on the doctrine's 'Father'; how is that alternative weighed?",
+      "How does the KJV rendering 'thy father that hath bought thee' compare with the ESV 'your father, who created you', and does the difference matter?",
+      "What step of reasoning connects this verse's father language to the first person of the Trinity, and is that step an inference or a statement?"
+    ],
+    "notes": "Variant flagged: KJV renders 'thy father that hath bought thee' where ESV has 'your father, who created you'.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states, in the Song of Moses, 'Is not he your father, who created you, who made you and established you?' God is called Israel's father in the sense of creator and founder of the nation, and the verse does not name the Father as a distinct divine person, does not name Son or Spirit, and does not state that God is three persons. (B) As an inference only, a reader may connect this father language with the later doctrine's naming of the first person as 'the Father'; the connection is an inference, because the verse's 'father' describes God's relation to Israel as creator, not a relation within God. (C) There is no trinitarian reading of this verse to record as reception history; its bearing on the doctrine is by implication only. (D) The formulated doctrine, in which 'Father' names one person of the Trinity in eternal relation to the Son, was articulated in later centuries and must not be projected back onto this song."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-deut-32-6-ref-001",
+      "ver-deut-32-6-doctrine-001"
+    ],
+    "verseEnd": 6,
+    "verseStart": 6
+  },
+  {
+    "book": "Psalms",
+    "canonicalOrder": 19,
+    "chapter": 2,
+    "crossReferences": [
+      {
+        "note": "Both are royal psalms in which the LORD addresses a king in terms later applied to Christ.",
+        "passageId": "ps-110-1"
+      },
+      {
+        "note": "Both are royal psalms whose language for the king was later applied to Christ.",
+        "passageId": "ps-45-6"
+      },
+      {
+        "note": "Hebrews 1:3 describes the Son as the radiance of God's glory, a later text on the Son's divine status.",
+        "passageId": "heb-1-3"
+      },
+      {
+        "note": "Romans 1:3 speaks of God's Son descended from David, a later text connecting Davidic sonship to Christ.",
+        "passageId": "rom-1-3"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "historically-interpreted",
+    "id": "ps-2-7",
+    "interpretiveQuestions": [
+      "Who is the 'me' addressed as Son — the Davidic king at his enthronement, Israel, or a figure beyond the king?",
+      "Alternative: 'today I have begotten you' may mark the king's installation rather than an eternal begetting; how is that alternative weighed?",
+      "Does the psalm's own context give any indication that the Son is divine, or does that reading depend entirely on later application?",
+      "How do the later applications of this verse to Christ relate to the psalm's original royal setting?"
+    ],
+    "notes": "Uncertainty flagged: 'today I have begotten you' may mark enthronement/installation rather than eternal begetting.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states, as a royal decree, 'The LORD said to me, \"You are my Son; today I have begotten you.\"' The speaker is the king, addressed by the LORD as his son, in a psalm about the LORD's anointed king; the verse does not name Jesus, does not state that the Son is divine, does not name the Holy Spirit, and does not state that God is three persons. (B) As an inference only, a reader may reason that the father-son language is consistent with the later doctrine's claim of an eternal Son, but the psalm's own frame is the Davidic king's adoption or installation, and that is an inference, not a statement of the text. (C) Later writers applied this verse to Christ's divine sonship; that application is reception history, to be attributed in Phase 3, and must not be presented as the psalm's plain meaning. (D) The doctrine of the eternal Son and the Trinity was formulated in later centuries and must not be read back into this royal psalm."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-ps-2-7-ref-001",
+      "ver-ps-2-7-doctrine-001"
+    ],
+    "verseEnd": 7,
+    "verseStart": 7
+  },
+  {
+    "book": "Psalms",
+    "canonicalOrder": 19,
+    "chapter": 45,
+    "crossReferences": [
+      {
+        "note": "Both are royal psalms whose language for the king was later applied to Christ.",
+        "passageId": "ps-2-7"
+      },
+      {
+        "note": "Both are royal psalms presenting a king in exalted terms later read as divine.",
+        "passageId": "ps-110-1"
+      },
+      {
+        "note": "Hebrews 1:8 applies Psalm 45:6-7 to the Son, the later application that gives this passage its trinitarian weight.",
+        "passageId": "heb-1-8"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "historically-interpreted",
+    "id": "ps-45-6",
+    "interpretiveQuestions": [
+      "Who is addressed as 'O God' in verse 6 — the king himself, God as the source of the throne, or a figure beyond the king?",
+      "Alternative: 'elohim' here may be a royal honorific or an address to God about the king, rather than a divine title for the king; how is that alternative weighed?",
+      "How does verse 7's 'God, your God, has anointed you' affect the reading of verse 6 — does it distinguish the addressee from God?",
+      "What would the psalm need to say for the 'O God' address to state the king's deity directly?"
+    ],
+    "notes": "Dispute flagged: the referent of the 'O God' vocative in verse 6 is debated; verse 7 distinguishes the addressee from 'God, your God'.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states, addressing the king, 'Your throne, O God, is forever and ever,' and continues, 'Therefore God, your God, has anointed you with the oil of gladness beyond your companions.' The psalm addresses a human king with the word 'God' while also distinguishing him from 'God, your God', and it does not name the Son, does not name the Holy Spirit, and does not state that God is three persons. (B) As an inference only, a reader may reason that addressing the king as God is consistent with the later doctrine's claim that the Son is divine, but the psalm's own referent is disputed and that is an inference, not a statement of the text. (C) Later writers applied these verses to Christ, reading the 'O God' address as divine; that application is reception history, to be attributed in Phase 3, and the dispute over the referent must be recorded, not smoothed over. (D) The formulated doctrine of the Son's deity was articulated in later centuries and must not be projected back onto this wedding song."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-ps-45-6-ref-001",
+      "ver-ps-45-6-doctrine-001"
+    ],
+    "verseEnd": 7,
+    "verseStart": 6
+  },
+  {
+    "book": "Psalms",
+    "canonicalOrder": 19,
+    "chapter": 110,
+    "crossReferences": [
+      {
+        "note": "Both are royal psalms in which the LORD addresses a king in terms later applied to Christ.",
+        "passageId": "ps-2-7"
+      },
+      {
+        "note": "Both are royal psalms presenting a king in exalted terms later read as divine.",
+        "passageId": "ps-45-6"
+      },
+      {
+        "note": "Hebrews 1:3 speaks of the Son seated at the right hand of the Majesty on high, a later text on the session at God's right hand.",
+        "passageId": "heb-1-3"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "historically-interpreted",
+    "id": "ps-110-1",
+    "interpretiveQuestions": [
+      "Who is 'my Lord' — the Davidic king, a future messianic figure, or someone else — and does the psalm identify him?",
+      "Alternative: the second lord may be a human king enthroned by the LORD, with no divine status implied; how is that alternative weighed?",
+      "What does sitting 'at my right hand' signify in the psalm's royal context — shared rule, honour, or shared divinity?",
+      "Does the psalm itself state the second lord's deity, or does that reading depend on later interpretation?"
+    ],
+    "notes": "Question flagged for verifier: confirm the Hebrew terms behind the two 'Lord's in the verse and whether the distinction is visible in the English text.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states, 'The LORD says to my Lord: \"Sit at my right hand, until I make your enemies your footstool.\"' One LORD speaks to a second 'Lord' who is enthroned at his right hand; the psalm does not identify the second lord, does not call him divine in so many words, does not name the Holy Spirit, and does not state that God is three persons. (B) As an inference only, a reader may reason that two figures sharing the divine throne is consistent with a distinction of persons within God, but the psalm's own frame is a royal oracle to a Davidic king, and that is an inference, not a statement of the text. (C) Later writers read the second lord as the divine Son; that reading is reception history, to be attributed in Phase 3, and must not be presented as the psalm's plain meaning. (D) The doctrine of the Trinity, including the Son's session at the Father's right hand, was formulated in later centuries and must not be read back into this psalm."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-ps-110-1-ref-001",
+      "ver-ps-110-1-doctrine-001"
+    ],
+    "verseEnd": 1,
+    "verseStart": 1
+  },
+  {
+    "id": "isa-6-1",
+    "doctrine": "trinity",
+    "book": "Isaiah",
+    "chapter": 6,
+    "verseStart": 1,
+    "verseEnd": 8,
+    "canonicalOrder": 23,
+    "evidenceClassification": "historically-interpreted",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: Isaiah sees the Lord enthroned in the temple while seraphim call, 'Holy, holy, holy is the LORD of hosts,' and the Lord then asks, 'Whom shall I send, and who will go for us?' (B) Inference, labelled as inference: the threefold 'Holy' and the plural 'us' are consistent with a plurality within the one God, and are commonly read as pointing toward the Trinity; but the wording alone does not name three persons, and the plural may instead be a plural of majesty or a reference to the heavenly court, so no trinitarian claim follows from the text itself. (C) Later writers read this vision in a trinitarian light, including reading it as a vision of Christ's glory; that is reception history, not the oracle's own statement, and Phase 3 will attribute specific readings. (D) The later formulation of one God in three persons was reached centuries after Isaiah and must not be projected back onto the passage. It is therefore historically-interpreted, not direct.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does the threefold 'Holy, holy, holy' in verse 3 indicate a plurality within God, or is it liturgical emphasis (repetition for intensity)?",
+      "Does the plural 'us' in verse 8 ('who will go for us?') indicate a plurality within God, a plural of majesty, or the heavenly court?",
+      "Alternative: the passage may be read as a vision of the one Lord's holiness and commissioning of Isaiah, with no trinitarian content at all — how is that reading weighed against the later trinitarian reception?",
+      "What exactly did later readers claim about this passage, and where — to be established with attributed quotations in Phase 3?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "gen-1-26",
+        "note": "Genesis 1:26 also uses a plural ('let us make'), and is the standards' worked example of historically-interpreted rather than direct."
+      },
+      {
+        "passageId": "isa-9-6",
+        "note": "Another Isaiah oracle in which a figure receives a divine title, likewise read later in a messianic and trinitarian light."
+      },
+      {
+        "passageId": "matt-28-19",
+        "note": "The New Testament commission names Father, Son, and Holy Spirit together; contrast with Isaiah 6, where no three persons are named."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-isa-6-1-ref-001",
+      "ver-isa-6-1-doctrine-001"
+    ],
+    "notes": "Uncertainty: the plural 'us' in v.8 may be a plural of majesty or a reference to the heavenly court, and the threefold 'Holy' may be liturgical emphasis; neither states a trinitarian claim. Phase 3 to attribute specific later readings; none are asserted here.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "isa-9-6",
+    "doctrine": "trinity",
+    "book": "Isaiah",
+    "chapter": 9,
+    "verseStart": 6,
+    "verseEnd": 6,
+    "canonicalOrder": 23,
+    "evidenceClassification": "historically-interpreted",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: a child is born and a son is given, the government rests on his shoulder, and his name shall be called 'Wonderful Counselor, Mighty God, Everlasting Father, Prince of Peace.' (B) Inference, labelled as inference: the title 'Mighty God' is consistent with the deity of the promised child and supports identifying him with the Son, but the verse never names the Father, Son, and Holy Spirit, and never states that the child is a distinct divine person within one God. (C) Later readers identified the child with Jesus the Son; that messianic identification is reception, not the oracle's own statement, and Phase 3 will attribute specific readings. (D) The later trinitarian formulation must not be read back into a royal birth oracle. The same verse complicates any direct reading, since it also calls the child 'Everlasting Father,' a title that resists mapping the child onto the Son alone. The passage is therefore historically-interpreted.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does the title 'Mighty God' state the child's deity, or is it a throne name in a royal birth oracle that could describe a Davidic king in his own time?",
+      "How is the title 'Everlasting Father' to be understood if the child is identified with the Son — does it resist, or merely complicate, a trinitarian reading?",
+      "Alternative: the oracle may refer to a contemporary royal birth (for example a Hezekiah reading) rather than to a future messianic figure — what evidence decides between these readings?",
+      "What exactly did later readers claim about this verse, and where — to be established with attributed quotations in Phase 3?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "ps-2-7",
+        "note": "Psalm 2:7 also speaks of a royal 'son,' another Old Testament sonship text later read messianically."
+      },
+      {
+        "passageId": "mic-5-2",
+        "note": "Micah 5:2 likewise promises a ruler whose origins are ancient; both oracles are later read of the same promised figure."
+      },
+      {
+        "passageId": "john-1-1",
+        "note": "John 1:1 states the Word's deity explicitly; contrast with Isaiah 9:6, which gives the child a divine title without stating the doctrine."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-isa-9-6-ref-001",
+      "ver-isa-9-6-doctrine-001"
+    ],
+    "notes": "Uncertainty: 'Everlasting Father' in the same verse resists mapping the child onto the Son alone; this is a genuine complication for a direct trinitarian reading, not a detail to smooth over. Alternative reading: the titles describe a Davidic king in his own time. Phase 3 to attribute specific later readings; none are asserted here.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "isa-48-16",
+    "doctrine": "trinity",
+    "book": "Isaiah",
+    "chapter": 48,
+    "verseStart": 16,
+    "verseEnd": 16,
+    "canonicalOrder": 23,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: the speaker declares, 'And now the Lord GOD has sent me, and his Spirit,' naming the Lord, a sent speaker, and his Spirit together in one sentence. (B) Inference, labelled as inference: this grouping is consistent with, and supports, a trinitarian pattern of sender, sent one, and Spirit, and it points toward the doctrine; but the verse does not name the sent speaker, does not identify him with the Son, and does not state that the three are one God, so the trinitarian reading is an inference from the pattern, not an explicit statement. (C) Later readers identified the sent speaker with the Son; that is reception history, and Phase 3 will attribute specific readings. (D) The later doctrine of the Trinity was formulated centuries after Isaiah and must not be projected onto the verse. The passage is therefore indirect: the text itself supplies the threefold pattern, while the doctrinal identification of its figures is inferred.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Who is the speaker ('me') in verse 16 — the prophet, the Servant, Cyrus, or another figure — and does the verse itself say?",
+      "Does the verse present the Spirit as a co-sender with the Lord GOD, or as accompanying the sent speaker, and does that distinction matter for the trinitarian reading?",
+      "Alternative: the verse may be read as the prophet speaking of his own commission with no trinitarian content — what in the wording supports or resists that reading?",
+      "Is the grouping of Lord, speaker, and Spirit enough to count as pointing toward the doctrine, or is it only consistent with it?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "isa-61-1",
+        "note": "Isaiah 61:1 shows the same pattern — the Lord, his Spirit, and an anointed sent speaker — in a neighbouring oracle."
+      },
+      {
+        "passageId": "matt-3-16",
+        "note": "At Jesus' baptism the Spirit descends on the Son while the Father speaks; the New Testament scene echoes the Isaiah 48:16 pattern."
+      },
+      {
+        "passageId": "john-15-26",
+        "note": "John 15:26 speaks of the Spirit sent from the Father; compare the sending language of Isaiah 48:16."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-isa-48-16-ref-001",
+      "ver-isa-48-16-doctrine-001"
+    ],
+    "notes": "Textual/translation flag: the identity of the speaker ('me') is not stated in the verse; some readings identify the speaker with the prophet, the Servant, or Cyrus. ESV renders 'the Lord GOD has sent me, and his Spirit'; other translations render the Spirit as co-sender ('the Lord GOD and his Spirit have sent me'). The trinitarian identification of the speaker is an inference, not stated.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "isa-61-1",
+    "doctrine": "trinity",
+    "book": "Isaiah",
+    "chapter": 61,
+    "verseStart": 1,
+    "verseEnd": 1,
+    "canonicalOrder": 23,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: 'The Spirit of the Lord GOD is upon me, because the LORD has anointed me,' and the speaker is sent to bring good news, bind up the brokenhearted, and proclaim liberty. (B) Inference, labelled as inference: the verse distinguishes the Lord, his Spirit, and the anointed speaker, a pattern consistent with, and supportive of, the doctrine; but it does not name the speaker, does not identify him with the Son, and does not state that the Spirit is a distinct divine person, so the trinitarian connection is an inference from the pattern. (C) Later readers applied the verse to Jesus, who applies it to himself in the Gospels; that application is reception, not the oracle's own statement, and Phase 3 will attribute specific readings. (D) The later trinitarian formulation must not be projected back onto the oracle. The passage is therefore indirect.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Who is the speaker ('me') in verse 1 — the prophet, the Servant, or another figure — and does the verse itself say?",
+      "Does 'the Spirit of the Lord GOD is upon me' state the Spirit's distinct personhood, or only the Spirit's empowering presence on the speaker?",
+      "Alternative: the verse may be read as the prophet's own commission, with the Spirit as God's power rather than a distinct person — what in the wording supports or resists that reading?",
+      "Is the Lord–Spirit–speaker pattern enough to count as pointing toward the doctrine, or is it only consistent with it?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "isa-48-16",
+        "note": "Isaiah 48:16 shows the same pattern — the Lord, his Spirit, and a sent speaker — in a neighbouring oracle."
+      },
+      {
+        "passageId": "matt-3-16",
+        "note": "At Jesus' baptism the Spirit descends and remains on him, echoing the anointing described in Isaiah 61:1."
+      },
+      {
+        "passageId": "john-14-16",
+        "note": "John 14:16 speaks of another Helper, the Spirit, sent by the Father; compare the Spirit-upon-the-anointed pattern here."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-isa-61-1-ref-001",
+      "ver-isa-61-1-doctrine-001"
+    ],
+    "notes": "Uncertainty: the speaker is not identified in the verse itself. Textual flag: ESV footnote records that the Septuagint reads 'recovery of sight to the blind' where the ESV has 'the opening of the prison to those who are bound.' The verse does not name the Holy Spirit as a distinct person.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "dan-7-13",
+    "doctrine": "trinity",
+    "book": "Daniel",
+    "chapter": 7,
+    "verseStart": 13,
+    "verseEnd": 14,
+    "canonicalOrder": 27,
+    "evidenceClassification": "historically-interpreted",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: in a night vision, 'one like a son of man' comes with the clouds of heaven to the Ancient of Days, is presented before him, and is given dominion, glory, and a kingdom, with all peoples serving him in an everlasting dominion. (B) Inference, labelled as inference: the figure's heavenly coming, universal service, and everlasting dominion are consistent with a divine Son distinct from yet equal with the Ancient of Days, and support that reading; but the text calls him only 'one like a son of man,' never names him the Son, and never states his deity, so the divine reading is an inference. (C) Later readers, above all Jesus' own self-application of the title, read the figure as the Son; that is reception history, and Phase 3 will attribute specific readings. (D) The later trinitarian formulation must not be projected onto the vision. The passage is therefore historically-interpreted.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Is the 'one like a son of man' an individual heavenly figure, or a collective figure representing the saints of the Most High?",
+      "Does the universal service given to the figure ('all peoples, nations, and languages should serve him') imply his deity, or only his delegated kingship?",
+      "Alternative: the vision may be read as a court scene in which a human-like figure receives delegated dominion, with no claim about his divine nature — what in the wording supports or resists that reading?",
+      "What exactly did later readers claim about this vision, and where — to be established with attributed quotations in Phase 3?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "ps-110-1",
+        "note": "Psalm 110:1 likewise places a figure enthroned beside the Lord; both passages are later read of the exalted Son."
+      },
+      {
+        "passageId": "john-1-1",
+        "note": "John 1:1 states the Word's deity explicitly; contrast with Daniel 7, which gives the figure everlasting dominion without stating his deity."
+      },
+      {
+        "passageId": "phil-2-5",
+        "note": "Philippians 2:5-11 speaks of the one who was in the form of God and was exalted; compare the exaltation of the Son of Man here."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-dan-7-13-ref-001",
+      "ver-dan-7-13-doctrine-001"
+    ],
+    "notes": "Uncertainty: 'one like a son of man' is a simile; the figure's identity is disputed (an individual heavenly figure vs. a collective figure for the saints). The verse does not name the figure the Son and does not state his deity. Phase 3 to attribute specific later readings; none are asserted here.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "mic-5-2",
+    "doctrine": "trinity",
+    "book": "Micah",
+    "chapter": 5,
+    "verseStart": 2,
+    "verseEnd": 2,
+    "canonicalOrder": 33,
+    "evidenceClassification": "historically-interpreted",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: from Bethlehem Ephrathah shall come forth one who is to be ruler in Israel, 'whose coming forth is from of old, from ancient days.' (B) Inference, labelled as inference: the ruler's origins 'from of old' are consistent with, and are commonly read as pointing toward, eternal pre-existence, which would support identifying him with the Son; but the wording says only antiquity, not eternity, and may refer to ancient Davidic lineage, so pre-existence does not follow from the text itself. (C) Later readers identified the ruler with Jesus and read 'from of old' as eternal pre-existence; that is reception history, and Phase 3 will attribute specific readings. (D) The later doctrine of the Son's eternal generation must not be projected onto the oracle. The passage is therefore historically-interpreted.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does 'from of old, from ancient days' mean eternal pre-existence, or only great antiquity — for example ancient Davidic lineage?",
+      "How much turns on the translation: ESV 'from of old, from ancient days' against KJV 'from of old, from everlasting'?",
+      "Alternative: the verse may promise a ruler whose lineage is ancient (Davidic) without any claim about his pre-existence — what evidence decides between these readings?",
+      "What exactly did later readers claim about this verse, and where — to be established with attributed quotations in Phase 3?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "isa-9-6",
+        "note": "Isaiah 9:6 likewise promises a child who will rule; both oracles are later read of the same promised figure."
+      },
+      {
+        "passageId": "matt-1-18",
+        "note": "Matthew 1:18 begins the account of Jesus' birth; the Bethlehem ruler of Micah 5:2 is later identified with him."
+      },
+      {
+        "passageId": "john-1-1",
+        "note": "John 1:1 states the Word's existence 'in the beginning' explicitly; contrast with Micah 5:2, which speaks only of ancient origins."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-mic-5-2-ref-001",
+      "ver-mic-5-2-doctrine-001"
+    ],
+    "notes": "Verse-numbering flag: this verse is Micah 5:1 in the Hebrew text and in some editions; the ESV numbers it 5:2. Translation flag: ESV 'from of old, from ancient days'; KJV renders 'from of old, from everlasting.' Whether the verse claims eternity or only antiquity turns on this wording and is unresolved here.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "zech-12-10",
+    "doctrine": "trinity",
+    "book": "Zechariah",
+    "chapter": 12,
+    "verseStart": 10,
+    "verseEnd": 10,
+    "canonicalOrder": 38,
+    "evidenceClassification": "historically-interpreted",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: YHWH says he will pour out a spirit of grace and pleas for mercy, 'so that, when they look on me, on him whom they have pierced, they shall mourn for him, as one mourns for an only child.' (B) Inference, labelled as inference: the shift from 'me' (YHWH) to 'him whom they have pierced' is consistent with, and supports, identifying the pierced one with the divine speaker, which points toward the deity of the pierced Son; but the verse never names Jesus or the Son, and never states a trinitarian claim, so the identification is an inference. (C) Later readers applied the verse to the pierced Jesus; that is reception history, and Phase 3 will attribute specific readings. (D) The later trinitarian formulation must not be projected onto the oracle. The passage is therefore historically-interpreted.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Who is the pierced one — is he the same as the speaking YHWH ('me'), or a distinct human figure whom YHWH identifies with himself?",
+      "Does the pronoun shift from 'me' to 'him' indicate a distinction of persons within God, or is it a feature of the oracle's rhetoric?",
+      "Alternative: the verse may be read as mourning for a pierced human leader (or for YHWH's representative) without any claim about the pierced one's deity — what in the wording supports or resists that reading?",
+      "Does 'a spirit of grace' in this verse refer to the Holy Spirit, or to a disposition God gives — and does the verse itself say?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "dan-7-13",
+        "note": "Daniel 7:13-14 likewise presents a heavenly figure who is approached and given universal dominion; both visions are later read of the Son."
+      },
+      {
+        "passageId": "john-20-28",
+        "note": "John 20:28 has Thomas address Jesus as 'My Lord and my God'; contrast with Zechariah 12:10, which never names the pierced one."
+      },
+      {
+        "passageId": "john-1-1",
+        "note": "John 1:1 states the Word's deity explicitly; contrast with Zechariah 12:10, where the pierced one's identity is inferred from the pronoun shift."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-zech-12-10-ref-001",
+      "ver-zech-12-10-doctrine-001"
+    ],
+    "notes": "Uncertainty: the pronoun shift from 'me' (YHWH) to 'him whom they have pierced' is the crux of the passage; alternative readings take the pierced one as a distinct human figure. ESV renders 'a spirit of grace' in lowercase; the verse does not name the Holy Spirit. Phase 3 to attribute specific later readings; none are asserted here.",
+    "status": "verification-pending"
+  },
+  {
+    "book": "Matthew",
+    "canonicalOrder": 40,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "Parallel conception account: the Spirit's coming upon Mary and the child called Son of God.",
+        "passageId": "luke-1-35"
+      },
+      {
+        "note": "The Word's deity; the divine identity Immanuel points toward.",
+        "passageId": "john-1-1"
+      },
+      {
+        "note": "Prophetic naming of a child with divine titles, as in the Immanuel name here.",
+        "passageId": "isa-9-6"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "matt-1-18",
+    "interpretiveQuestions": [
+      "Does 'from the Holy Spirit' state the Spirit's personal agency, or only a divine mode of conception?",
+      "Does 'Immanuel' ('God with us') ascribe deity to the child, or is it a titular description of God's presence?",
+      "How far does the passage support the Son's deity without stating the Trinity?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states that Mary was found with child 'from the Holy Spirit' (v. 18, repeated in v. 20), that the child is Jesus, who will save his people, and that he will be called Immanuel, 'which means, God with us' (v. 23). (B) Inference: the Spirit's agency in the conception together with the name Immanuel points toward the child's divine identity and the Spirit's personal agency, but the passage does not state that the Spirit, the Father, and the Son are three persons in one essence. (C) Later writers read this conception narrative in a trinitarian light; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine of the Trinity came later and must not be read back into Matthew's wording. The passage therefore supports the doctrine by implication: it is consistent with, and points toward, the Son's deity and the Spirit's role, without stating the doctrine."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-matt-1-18-ref-001",
+      "ver-matt-1-18-doctrine-001"
+    ],
+    "verseEnd": 23,
+    "verseStart": 18
+  },
+  {
+    "book": "Matthew",
+    "canonicalOrder": 40,
+    "chapter": 3,
+    "crossReferences": [
+      {
+        "note": "Triadic baptismal formula; the baptism scene's threefold pattern in commission form.",
+        "passageId": "matt-28-19"
+      },
+      {
+        "note": "Father, exalted Son, and Spirit together in the Pentecost outpouring.",
+        "passageId": "acts-2-32"
+      },
+      {
+        "note": "Father, Son, and Holy Spirit named together around the Spirit's sending.",
+        "passageId": "john-14-26"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "direct",
+    "id": "matt-3-16",
+    "interpretiveQuestions": [
+      "Does the joint presence of Son, Spirit, and the Father's voice in one act state a trinitarian pattern, or only three simultaneous actors?",
+      "Is 'direct' justified here, or should the classification be indirect because no doctrinal statement is made? (Verifier to confirm.)",
+      "Does the voice identify the speaker as the Father, or is 'Father' an inference from 'my beloved Son'?"
+    ],
+    "notes": "Candidate direct per RESEARCH-STANDARDS section 1.1; verifier must confirm. Synoptic parallels Mark 1:9-11 and Luke 3:21-22 are parallel accounts of the same baptism, not separate inventory entries; only Matthew's account is inventoried.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states one event: Jesus is baptized, the heavens open, 'the Spirit of God' descends like a dove and rests on him, and 'a voice from heaven' says, 'This is my beloved Son, with whom I am well pleased' (vv. 16-17). All three - the Son being baptized, the Spirit descending, and the Father speaking - are present together in a single act. (B) Inference: that their joint presence in one act points toward their distinct personhood and shared divine action is a step beyond what the words state. (C) Later writers read this scene as a trinitarian manifestation; those readings belong to Phase 3 and are not asserted here. (D) The passage does not use later trinitarian vocabulary and does not state the fully formulated doctrine. Classification as direct is therefore a candidate only, per standards section 1.1: it rests on the three being named together in one act, and the independent verifier must confirm it."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-matt-3-16-ref-001",
+      "ver-matt-3-16-doctrine-001"
+    ],
+    "verseEnd": 17,
+    "verseStart": 16
+  },
+  {
+    "book": "Matthew",
+    "canonicalOrder": 40,
+    "chapter": 28,
+    "crossReferences": [
+      {
+        "note": "Baptism scene: Son, Spirit, and Father's voice together in one act.",
+        "passageId": "matt-3-16"
+      },
+      {
+        "note": "Triadic blessing naming the Lord Jesus Christ, the love of God, and the fellowship of the Holy Spirit.",
+        "passageId": "2cor-13-14"
+      },
+      {
+        "note": "Triadic pattern: foreknowledge of the Father, sanctification of the Spirit, obedience of Jesus Christ.",
+        "passageId": "1pet-1-2"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "direct",
+    "id": "matt-28-19",
+    "interpretiveQuestions": [
+      "Does the singular 'name' shared by the three state unity of essence, or only a shared baptismal formula?",
+      "Is 'direct' justified here, or should the classification be indirect? (Verifier to confirm.)",
+      "Does the formula distinguish three persons, or could it be read as three titles of one person?"
+    ],
+    "notes": "Candidate direct per RESEARCH-STANDARDS section 1.1; verifier must confirm.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states the risen Jesus' command to baptize 'in the name of the Father and of the Son and of the Holy Spirit' (v. 19). The three are named together in a single baptismal formula, under one singular 'name'. (B) Inference: the singular name shared by the three points toward their unity of essence, but the verse does not state 'one essence, three persons' in so many words. (C) Later writers read this formula as the classic trinitarian baptismal text; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine came later and is not stated here; this passage is direct evidence for the triadic element only, not for the fully formulated doctrine. Classification as direct is a candidate per standards section 1.1, resting on the three named together in one formula, and the independent verifier must confirm it."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-matt-28-19-ref-001",
+      "ver-matt-28-19-doctrine-001"
+    ],
+    "verseEnd": 19,
+    "verseStart": 19
+  },
+  {
+    "book": "Luke",
+    "canonicalOrder": 42,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "Parallel conception account: conception from the Holy Spirit and the Immanuel name.",
+        "passageId": "matt-1-18"
+      },
+      {
+        "note": "The Word's deity; the divine sonship announced here.",
+        "passageId": "john-1-1"
+      },
+      {
+        "note": "God sending his Son, born of a woman; the sending pattern behind the annunciation.",
+        "passageId": "gal-4-4"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "luke-1-35",
+    "interpretiveQuestions": [
+      "Is 'the Most High' the Father, or a distinct title whose identification with the Father is an inference?",
+      "Does 'Son of God' here state deity, or sonship in a messianic sense?",
+      "Does the verse state a trinitarian pattern, or only the Spirit's role in the conception?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states the angel's words: 'The Holy Spirit will come upon you, and the power of the Most High will overshadow you; therefore the child to be born will be called holy - the Son of God' (v. 35). Spirit, Most High, and Son of God are named in one announcement. (B) Inference: identifying 'the Most High' with 'the Father' is itself an inference, and reading the three together as the Trinity is a further inference from the pattern, not something the verse states. (C) Later writers read this annunciation in a trinitarian light; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine came later and must not be projected back onto Luke's wording. The passage therefore supports the doctrine by implication: it is consistent with the Spirit's agency and the Son's divine sonship, and points toward a trinitarian pattern, without stating the doctrine."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-luke-1-35-ref-001",
+      "ver-luke-1-35-doctrine-001"
+    ],
+    "verseEnd": 35,
+    "verseStart": 35
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "The Son's pre-existence: 'before Abraham was, I am'.",
+        "passageId": "john-8-58"
+      },
+      {
+        "note": "Pre-existent glory shared with the Father before the world existed.",
+        "passageId": "john-17-5"
+      },
+      {
+        "note": "Thomas's ascription of deity to the Son: 'My Lord and my God!'",
+        "passageId": "john-20-28"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "direct",
+    "id": "john-1-1",
+    "interpretiveQuestions": [
+      "Does 'the Word was God' state the Word's full deity, or a qualitative sense of divinity?",
+      "Is identifying the Word with Jesus Christ (the Son) stated here, or does it depend on verse 14, outside this range?",
+      "Does the passage state anything about the Holy Spirit, or is its trinitarian relevance limited to the Son?"
+    ],
+    "notes": "Candidate direct per RESEARCH-STANDARDS section 1.1, for one element only (the deity of the Son/Word); verifier must confirm. Range ends at v. 3; identification of the Word with Jesus depends on v. 14, outside this range.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states: 'In the beginning was the Word, and the Word was with God, and the Word was God' (v. 1), and 'All things were made through him' (v. 3). The Word is both distinct from God ('with God') and identified as God. (B) Inference: identifying the Word with the Son, Jesus Christ, rests on the wider Gospel (notably v. 14, outside this range) and is an inference for this passage's range, though the prologue's own logic points that way. (C) Later writers read this as the classic statement of the Son's deity; those readings belong to Phase 3 and are not asserted here. (D) The passage does not state the fully formulated doctrine of the Trinity: it names no third person here and uses no later trinitarian vocabulary. It is direct evidence for one element only - the deity of the Son (the Word) - and the verifier must confirm that limited scope."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-1-1-ref-001",
+      "ver-john-1-1-doctrine-001"
+    ],
+    "verseEnd": 3,
+    "verseStart": 1
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 8,
+    "crossReferences": [
+      {
+        "note": "The Word's deity and pre-existence: 'In the beginning was the Word'.",
+        "passageId": "john-1-1"
+      },
+      {
+        "note": "Pre-existent glory with the Father before the world existed.",
+        "passageId": "john-17-5"
+      },
+      {
+        "note": "The Son's oneness with the Father, stated in Jesus' own words.",
+        "passageId": "john-10-30"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "john-8-58",
+    "interpretiveQuestions": [
+      "Does 'I am' invoke the divine name of Exodus 3:14, or is it only a claim to pre-existence?",
+      "Is the hearers' attempt to stone Jesus (v. 59, outside this range) evidence of how they understood the claim?",
+      "Could 'before Abraham was, I am' be read as pre-existence without a deity claim?"
+    ],
+    "notes": "Alternative reading recorded: 'I am' as a pre-existence claim only; the Exodus 3:14 link is contested.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states Jesus' words: 'before Abraham was, I am' (v. 58). It explicitly states his pre-existence before Abraham. (B) Inference: identifying 'I am' with the divine name of Exodus 3:14 is an inference, and it is contested - the phrase could be read as a claim to pre-existence alone rather than a divine-name claim, so the deity inference must not be presented as the text's statement. (C) Later writers read the verse as a divine-name claim; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine of the Trinity came later and is not stated here. The passage supports the doctrine by implication: it is consistent with the Son's pre-existence and points toward his deity, but the step from pre-existence to deity is an inference, and the Exodus link is a contested inference."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-8-58-ref-001",
+      "ver-john-8-58-doctrine-001"
+    ],
+    "verseEnd": 58,
+    "verseStart": 58
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 10,
+    "crossReferences": [
+      {
+        "note": "Mutual indwelling: 'I am in the Father and the Father is in me'.",
+        "passageId": "john-14-9"
+      },
+      {
+        "note": "Pre-existent shared glory of Father and Son.",
+        "passageId": "john-17-5"
+      },
+      {
+        "note": "The Word both with God and God; distinction and unity together.",
+        "passageId": "john-1-1"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "direct",
+    "id": "john-10-30",
+    "interpretiveQuestions": [
+      "Does 'one' mean oneness of essence or oneness of purpose and will?",
+      "Does the neuter form of 'one' (one thing, not one person) matter for the reading?",
+      "How does the surrounding dispute (vv. 31-33, outside this range) bear on what the hearers understood?"
+    ],
+    "notes": "Candidate direct per RESEARCH-STANDARDS section 1.1, for one element only (unity of Father and Son); verifier must confirm. Alternative reading recorded: oneness of purpose/will vs oneness of essence.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states Jesus' words: 'I and the Father are one' (v. 30). It explicitly states a oneness between Jesus ('I') and the Father. (B) Inference: whether that oneness is oneness of essence or oneness of purpose and will is an interpretive question, not settled by the bare wording; reading it as oneness of essence is an inference. (C) Later writers read the verse as a statement of essential unity; those readings belong to Phase 3 and are not asserted here. (D) The passage does not state the fully formulated doctrine; it names no third person and uses no later trinitarian vocabulary. It is direct evidence for one element only - the unity of Father and Son as stated - and the alternative reading (purpose/will) must be recorded alongside it. The verifier must confirm this limited direct scope."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-10-30-ref-001",
+      "ver-john-10-30-doctrine-001"
+    ],
+    "verseEnd": 30,
+    "verseStart": 30
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 14,
+    "crossReferences": [
+      {
+        "note": "'I and the Father are one'; the unity stated here as mutual indwelling.",
+        "passageId": "john-10-30"
+      },
+      {
+        "note": "The Word both with God and God; distinction and unity together.",
+        "passageId": "john-1-1"
+      },
+      {
+        "note": "Pre-existent shared glory of Father and Son.",
+        "passageId": "john-17-5"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "john-14-9",
+    "interpretiveQuestions": [
+      "Does 'seen me has seen the Father' state identity of essence, or revelatory representation?",
+      "Does mutual indwelling ('I am in the Father and the Father is in me') state oneness of essence, or a relational indwelling?",
+      "Could the passage be read as functional unity without essential unity?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states: 'Whoever has seen me has seen the Father' (v. 9), and 'I am in the Father and the Father is in me' (vv. 10-11). It states mutual indwelling and a revelatory identity between seeing Jesus and seeing the Father. (B) Inference: oneness of essence is an inference from mutual indwelling, not what the words state; the text states indwelling and revelation, and the essence claim goes beyond it. (C) Later writers read this mutual indwelling in a trinitarian light; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine came later and must not be read back into the wording. The passage supports the doctrine by implication: it is consistent with the Father-Son unity and points toward it, but the doctrinal weight rests on the inference from indwelling to shared essence."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-14-9-ref-001",
+      "ver-john-14-9-doctrine-001"
+    ],
+    "verseEnd": 11,
+    "verseStart": 9
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 14,
+    "crossReferences": [
+      {
+        "note": "The same Helper identified as the Holy Spirit, sent by the Father in Jesus' name.",
+        "passageId": "john-14-26"
+      },
+      {
+        "note": "The Helper comes, sent by the Son from the Father, the Spirit of truth.",
+        "passageId": "john-15-26"
+      },
+      {
+        "note": "The Spirit of truth guides into all truth and declares what is Christ's.",
+        "passageId": "john-16-13"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "john-14-16",
+    "interpretiveQuestions": [
+      "Does 'another Helper' mean another of the same kind as Jesus, or only another helper in sequence?",
+      "Does the passage state the Spirit's personhood, or could 'Spirit of truth' be read impersonally?",
+      "Does 'to be with you forever' state the Spirit's divine status, or only the permanence of his presence?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states Jesus will ask the Father, who 'will give you another Helper, to be with you forever, even the Spirit of truth' (vv. 16-17). The Father gives, Jesus asks, and the Spirit comes as Helper. (B) Inference: 'another' (of the same kind) implies the Spirit is like Jesus, and the Spirit's divine personhood is inferred from being given in Jesus' place forever - neither is stated in so many words. (C) Later writers read 'another Helper' as evidence for the Spirit's personhood and deity; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine came later and is not stated here. The passage supports the doctrine by implication: it is consistent with a personal Spirit distinct from Father and Son, and points toward the Spirit's divine status, without stating it."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-14-16-ref-001",
+      "ver-john-14-16-doctrine-001"
+    ],
+    "verseEnd": 17,
+    "verseStart": 16
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 14,
+    "crossReferences": [
+      {
+        "note": "The Father gives 'another Helper', the Spirit of truth, at Jesus' request.",
+        "passageId": "john-14-16"
+      },
+      {
+        "note": "The Helper sent by the Son from the Father, the Spirit of truth.",
+        "passageId": "john-15-26"
+      },
+      {
+        "note": "Contrast: a single triadic formula ('in the name of...') vs. the sending statement here.",
+        "passageId": "matt-28-19"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "john-14-26",
+    "interpretiveQuestions": [
+      "Why is this passage indirect while Matthew 28:19 is a candidate for direct - is the distinction (formula vs. statement about sending) sound?",
+      "Does the Father sending the Spirit 'in my name' state the Spirit's relation to the Son, or only his mission?",
+      "Does 'he will teach you all things' state the Spirit's personhood?"
+    ],
+    "notes": "Classification deliberately indirect, not direct; see relationship text for the distinction from Matthew 28:19.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states: 'the Helper, the Holy Spirit, whom the Father will send in my name, he will teach you all things' (v. 26). All three are named: the Father sends, the Son names the mission, the Spirit teaches. (B) Inference: that this sending pattern reveals an eternal trinitarian relation is an inference; the verse states a mission - sending and teaching - not an eternal relation or a formula. (C) Later writers read the sending pattern in a trinitarian light; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine came later. This differs from Matthew 28:19, which gives a single triadic formula ('in the name of...'), whereas here the three appear across a statement about the Spirit's work; that is why this passage is indirect, not direct. It points toward the doctrine by pattern, without stating it."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-14-26-ref-001",
+      "ver-john-14-26-doctrine-001"
+    ],
+    "verseEnd": 26,
+    "verseStart": 26
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 15,
+    "crossReferences": [
+      {
+        "note": "The Father sends the Holy Spirit in Jesus' name to teach.",
+        "passageId": "john-14-26"
+      },
+      {
+        "note": "The Spirit of truth takes what is Christ's and declares it.",
+        "passageId": "john-16-13"
+      },
+      {
+        "note": "The exalted Son receives the promise of the Holy Spirit from the Father and pours him out.",
+        "passageId": "acts-2-32"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "john-15-26",
+    "interpretiveQuestions": [
+      "Does 'proceeds from the Father' state an eternal procession, or only the Spirit's mission in time?",
+      "Does the Son sending the Spirit 'from the Father' state a relation between Son and Spirit, or only a chain of mission?",
+      "Does the passage state the Spirit's personhood, or could the Spirit be read as an impersonal power?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states: 'when the Helper comes, whom I will send to you from the Father, the Spirit of truth, who proceeds from the Father, he will bear witness about me' (v. 26). It states the Spirit's procession from the Father, his sending by the Son, and his witness to the Son. (B) Inference: the doctrinal weight - an eternal relation of procession within the Godhead - is drawn by implication from a statement about the Spirit's mission; the verse states the mission, not the eternal relation. (C) Later writers read 'proceeds from the Father' as the classic procession text; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine, including later debate over procession, came later and is not stated here. The passage supports the doctrine by implication: it is consistent with the Spirit's distinct personhood and relation to Father and Son, and points toward it."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-15-26-ref-001",
+      "ver-john-15-26-doctrine-001"
+    ],
+    "verseEnd": 26,
+    "verseStart": 26
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 16,
+    "crossReferences": [
+      {
+        "note": "The Spirit of truth proceeds from the Father and bears witness about the Son.",
+        "passageId": "john-15-26"
+      },
+      {
+        "note": "The Holy Spirit sent by the Father teaches all things.",
+        "passageId": "john-14-26"
+      },
+      {
+        "note": "Shared glory of Father and Son before the world existed.",
+        "passageId": "john-17-5"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "john-16-13",
+    "interpretiveQuestions": [
+      "Does 'All that the Father has is mine' state shared divine possession, or shared authority in mission?",
+      "Does the Spirit taking what is Christ's state an eternal relation, or only a revelatory role?",
+      "Does 'he will not speak on his own authority' imply subordination, or a pattern of divine self-giving?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states the Spirit of truth 'will guide you into all the truth,' 'will take what is mine and declare it to you,' and 'All that the Father has is mine' (vv. 13-15). It states shared possession between Father and Son and the Spirit's mediating declaration. (B) Inference: that shared possession and the Spirit's taking-and-declaring reveal an eternal trinitarian relation is an inference; the verses state a revelatory economy, not an eternal relation. (C) Later writers read this shared possession in a trinitarian light; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine came later and is not stated here. The passage supports the doctrine by implication: it is consistent with the unity of Father and Son and the Spirit's personal agency, and points toward their shared divine life, without stating the doctrine."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-16-13-ref-001",
+      "ver-john-16-13-doctrine-001"
+    ],
+    "verseEnd": 15,
+    "verseStart": 13
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 17,
+    "crossReferences": [
+      {
+        "note": "The Word in the beginning with God; pre-existence stated in the prologue.",
+        "passageId": "john-1-1"
+      },
+      {
+        "note": "Pre-existence before Abraham: 'before Abraham was, I am'.",
+        "passageId": "john-8-58"
+      },
+      {
+        "note": "The Son's oneness with the Father.",
+        "passageId": "john-10-30"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "john-17-5",
+    "interpretiveQuestions": [
+      "Does 'the glory that I had with you before the world existed' state eternal pre-existence, or glory foreseen before creation?",
+      "Does shared glory state shared deity, or only a shared honour?",
+      "Does the prayer distinguish Father and Son as persons, or could it be read as one person addressing himself?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states Jesus' prayer: 'glorify me in your own presence with the glory that I had with you before the world existed' (v. 5). It explicitly states pre-existent shared glory with the Father. (B) Inference: that pre-existent shared glory entails an eternal relation within the Godhead is an inference; the verse states glory shared before creation, not the nature of that relation. (C) Later writers read this as evidence for the Son's eternal pre-existence with the Father; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine came later and is not stated here. The passage supports the doctrine by implication: it is consistent with the Son's eternal pre-existence alongside the Father and points toward it, but the step from shared glory to trinitarian relation is an inference."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-17-5-ref-001",
+      "ver-john-17-5-doctrine-001"
+    ],
+    "verseEnd": 5,
+    "verseStart": 5
+  },
+  {
+    "book": "John",
+    "canonicalOrder": 43,
+    "chapter": 20,
+    "crossReferences": [
+      {
+        "note": "'The Word was God'; the deity ascribed here to the risen Jesus.",
+        "passageId": "john-1-1"
+      },
+      {
+        "note": "'I and the Father are one'; the unity behind Thomas's confession.",
+        "passageId": "john-10-30"
+      },
+      {
+        "note": "A further ascription of deity to Christ: 'our great God and Savior Jesus Christ'.",
+        "passageId": "titus-2-13"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "direct",
+    "id": "john-20-28",
+    "interpretiveQuestions": [
+      "Is Thomas's 'My Lord and my God!' a confession addressed to Jesus, or an exclamation addressed to God the Father?",
+      "Does Jesus' response (v. 29, outside this range) accept the ascription?",
+      "Does the ascription state the Son's deity, or is it honorific language?"
+    ],
+    "notes": "Candidate direct per RESEARCH-STANDARDS section 1.1, for one element only (deity of the Son as confessed); verifier must confirm.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states Thomas's answer to the risen Jesus: 'My Lord and my God!' (v. 28). It explicitly ascribes the title 'God' to Jesus, addressed to him directly. (B) Inference: that this ascription states the Son's full deity in the later doctrinal sense is a small step, but the words themselves do ascribe deity to the Son; the inference is only in connecting this ascription to the formulated doctrine. (C) Later writers read Thomas's confession as a classic ascription of deity to the Son; those readings belong to Phase 3 and are not asserted here. (D) The passage does not state the fully formulated doctrine; it names no third person and uses no later trinitarian vocabulary. It is direct evidence for one element only - the deity of the Son as confessed - and the verifier must confirm that limited scope."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-john-20-28-ref-001",
+      "ver-john-20-28-doctrine-001"
+    ],
+    "verseEnd": 28,
+    "verseStart": 28
+  },
+  {
+    "book": "Acts",
+    "canonicalOrder": 44,
+    "chapter": 2,
+    "crossReferences": [
+      {
+        "note": "Baptism scene: Son, Spirit, and Father's voice together in one act.",
+        "passageId": "matt-3-16"
+      },
+      {
+        "note": "The Spirit sent by the Son from the Father.",
+        "passageId": "john-15-26"
+      },
+      {
+        "note": "Triadic pattern: Father's foreknowledge, Spirit's sanctification, Jesus Christ's obedience.",
+        "passageId": "1pet-1-2"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "acts-2-32",
+    "interpretiveQuestions": [
+      "Does the joint action of Father, exalted Son, and Spirit in one outpouring state a trinitarian pattern, or only three actors in one event?",
+      "Does 'received from the Father the promise of the Holy Spirit' state the Spirit's distinct personhood, or only a promised gift?",
+      "Is 'right hand of God' a statement of the Son's divine status, or of exalted honour?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states: 'This Jesus God raised up' (v. 32), and 'Being therefore exalted at the right hand of God, and having received from the Father the promise of the Holy Spirit, he has poured out this that you yourselves are seeing and hearing' (v. 33). Father, exalted Son, and Spirit appear in one act of outpouring. (B) Inference: that this joint action reveals the three as distinct divine persons in one Godhead is an inference; the passage states the outpouring and exaltation, not a trinitarian formula. (C) Later writers read this Pentecost outpouring in a trinitarian light; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine came later and is not stated here. The passage supports the doctrine by implication: it is consistent with the three acting together in salvation and points toward their shared divine work, without stating the doctrine."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-acts-2-32-ref-001",
+      "ver-acts-2-32-doctrine-001"
+    ],
+    "verseEnd": 33,
+    "verseStart": 32
+  },
+  {
+    "book": "Acts",
+    "canonicalOrder": 44,
+    "chapter": 5,
+    "crossReferences": [
+      {
+        "note": "'The Lord is the Spirit'; a further identification bearing on the Spirit's deity.",
+        "passageId": "2cor-3-17"
+      },
+      {
+        "note": "The Spirit searches the depths of God; the Spirit's knowledge of God.",
+        "passageId": "1cor-2-10"
+      },
+      {
+        "note": "'Another Helper', the Spirit of truth; the Spirit's personal role.",
+        "passageId": "john-14-16"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "acts-5-3",
+    "interpretiveQuestions": [
+      "Does equating lying to the Holy Spirit with lying to God state the Spirit's deity, or only the gravity of the lie?",
+      "Is the inference from the equation to the Spirit's deity sound, or could the same act have two descriptions without identity of persons?",
+      "Does the passage state the Spirit's personhood, or could 'Holy Spirit' here be a metonym for God?"
+    ],
+    "notes": "The Spirit's deity is a labelled inference from the equation of the two acts, not the text's statement.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) The text states Peter's words: Ananias lied 'to the Holy Spirit' (v. 3), and 'You have not lied to man but to God' (v. 4). It explicitly equates the two acts of lying: lying to the Spirit and lying to God. (B) Inference: the Spirit's deity is an inference from that equation - that the one lied to in both descriptions is the same divine person - and must be labelled as inference, not presented as the text's statement; the text states the equation of the acts, not 'the Holy Spirit is God'. (C) Later writers read this equation as evidence for the Spirit's deity; those readings belong to Phase 3 and are not asserted here. (D) The formulated doctrine came later and is not stated here. The passage supports the doctrine by implication: it is consistent with the Spirit's deity and points toward it, but only through the labelled inference."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-acts-5-3-ref-001",
+      "ver-acts-5-3-doctrine-001"
+    ],
+    "verseEnd": 4,
+    "verseStart": 3
+  },
+  {
+    "id": "rom-1-3",
+    "doctrine": "trinity",
+    "book": "Romans",
+    "chapter": 1,
+    "verseStart": 3,
+    "verseEnd": 4,
+    "canonicalOrder": 45,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: God's Son was descended from David according to the flesh and was declared to be the Son of God in power according to the Spirit of holiness by his resurrection from the dead. The verse names the Son and the Spirit together in the one designation of the Son. (B) Inference, labelled as inference: a reader may infer from this joint naming a close relation between the Son and the Spirit within God's single action, and may read the passage as consistent with the later doctrine. But the text does not state that the Spirit is a distinct divine person, nor that Father, Son and Spirit share one divine being; that synthesis is the researcher's inference, not the text's statement. (C) Later writers read this verse in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity, expressed in technical language of persons and essence, is not stated in this passage and must not be projected back onto it. The passage therefore supports the doctrine by implication and points toward it, without stating it.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does “according to the Spirit of holiness” refer to the Holy Spirit, or to Christ's own holy spirit or inner life?",
+      "Does “declared to be the Son of God in power” imply a change in the Son's status at the resurrection, or a public declaration of a status already held?",
+      "What exactly does the joint naming of Son and Spirit license as an inference about their relation, and what does it not license?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "rom-8-9",
+        "note": "Both passages join the Spirit to the Son in describing God's action toward believers."
+      },
+      {
+        "passageId": "gal-4-4",
+        "note": "Both passages describe God sending his Son, with the Spirit named alongside the Son."
+      },
+      {
+        "passageId": "phil-2-5",
+        "note": "Both passages bear on the Son's divine status, Philippians by direct statement and Romans by implication."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-rom-1-3-ref-001",
+      "ver-rom-1-3-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "rom-8-9",
+    "doctrine": "trinity",
+    "book": "Romans",
+    "chapter": 8,
+    "verseStart": 9,
+    "verseEnd": 11,
+    "canonicalOrder": 45,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: the Spirit of God dwells in believers, anyone without the Spirit of Christ does not belong to Christ, and the Spirit of him who raised Jesus from the dead will give life to believers' mortal bodies. The same indwelling Spirit is called both the Spirit of God and the Spirit of Christ. (B) Inference, labelled as inference: from the Spirit being named as the Spirit of both God and Christ, and from the Spirit's life-giving work, a reader may infer that the Spirit stands in a close, shared relation to Father and Son, and may read the passage as consistent with the Spirit's divine personhood. The text does not state that the Spirit is God, nor that the Spirit is a distinct person of the Trinity; that is an inference, not a statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto the passage. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does calling the one Spirit both the Spirit of God and the Spirit of Christ identify the Spirit with both, or describe the Spirit's relation to each?",
+      "Does the Spirit's indwelling and life-giving work imply the Spirit's deity, or only the Spirit's divine agency?",
+      "How does the passage's contrast between flesh and Spirit bear on reading the Spirit as a person rather than an impersonal power?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "rom-8-14",
+        "note": "The two passages form one continuous argument about life in the Spirit and adoption as God's children."
+      },
+      {
+        "passageId": "gal-4-4",
+        "note": "Both passages name the Spirit of the Son dwelling in believers."
+      },
+      {
+        "passageId": "1cor-2-10",
+        "note": "Both passages describe the Spirit's knowledge of and relation to God."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-rom-8-9-ref-001",
+      "ver-rom-8-9-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "rom-8-14",
+    "doctrine": "trinity",
+    "book": "Romans",
+    "chapter": 8,
+    "verseStart": 14,
+    "verseEnd": 17,
+    "canonicalOrder": 45,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: all who are led by the Spirit of God are sons of God; believers have received the Spirit of adoption, by whom they cry Abba, Father; the Spirit bears witness with their spirit that they are children of God; and as children they are heirs of God and fellow heirs with Christ, provided they suffer with him. (B) Inference, labelled as inference: a reader may infer a trinitarian structure from the pattern — the Spirit leads believers to address God as Father and to share Christ's inheritance — and may read the passage as consistent with the later doctrine. But the text states adoption through the Spirit into the Father's family with Christ; it does not state that Father, Son and Spirit are three persons in one God, so the trinitarian reading is a pattern-based inference, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Is the Spirit's witness with the believer's spirit best understood as the action of a distinct person, or as God's presence at work?",
+      "Does the shared heirship with Christ imply equality of status between believers and Christ, or participation in Christ's inheritance?",
+      "What does the cry Abba, Father, mediated by the Spirit, imply about the relation between the Spirit and the Father?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "rom-8-9",
+        "note": "The two passages form one continuous argument about life in the Spirit and adoption."
+      },
+      {
+        "passageId": "gal-4-4",
+        "note": "Both passages describe adoption through the Spirit of the Son, crying Abba, Father."
+      },
+      {
+        "passageId": "eph-2-18",
+        "note": "Both passages describe access to the Father through Christ in the Spirit."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-rom-8-14-ref-001",
+      "ver-rom-8-14-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "rom-9-5",
+    "doctrine": "trinity",
+    "book": "Romans",
+    "chapter": 9,
+    "verseStart": 5,
+    "verseEnd": 5,
+    "canonicalOrder": 45,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states, on the ESV's punctuation: from the Israelites, according to the flesh, is the Christ, who is God over all, blessed forever. On that reading the verse applies the words God over all to Christ. But this reading is DISPUTED, and the dispute is part of the record: the earliest manuscripts lack systematic punctuation, so an alternative reading places a break after the Christ and takes the following words as a separate doxology to God. (B) Inference, labelled as inference: IF the words are read as applying to Christ, a reader may infer that Paul ascribes deity to Christ; but because the punctuation is disputed, that inference is conditional on a contested reading and must not be presented as certain. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage is therefore classified indirect: it is consistent with the doctrine on one reading, and its bearing on the doctrine depends on a disputed punctuation choice.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Which punctuation of the Greek best reflects Paul's intent: a relative clause applying “God over all” to Christ, or a separate doxology to God?",
+      "How much weight should the earliest manuscripts' lack of systematic punctuation carry against the near-unanimous later reading?",
+      "Does Paul elsewhere apply the title God to Christ, and how does that bear on this verse?",
+      "If the doxology reading is adopted, does the verse still bear on the doctrine of Christ's deity at all?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "phil-2-5",
+        "note": "Both passages are cited for Christ's divine status; Philippians states it directly, Romans 9:5 only on a disputed reading."
+      },
+      {
+        "passageId": "col-2-9",
+        "note": "Both passages are cited for deity dwelling in or ascribed to Christ."
+      },
+      {
+        "passageId": "titus-2-13",
+        "note": "Both passages ascribe the title God to Jesus Christ, and both readings are contested."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-rom-9-5-ref-001",
+      "ver-rom-9-5-doctrine-001",
+      "ver-rom-9-5-variant-001"
+    ],
+    "notes": "Variant flag: the Christ-as-God reading of Romans 9:5 is disputed on punctuation grounds; see verification record ver-rom-9-5-variant-001. Do not present that reading as certain.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "1cor-2-10",
+    "doctrine": "trinity",
+    "book": "1 Corinthians",
+    "chapter": 2,
+    "verseStart": 10,
+    "verseEnd": 11,
+    "canonicalOrder": 46,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: God has revealed hidden things to believers through the Spirit; the Spirit searches everything, even the depths of God; and just as no one knows a person's thoughts except that person's own spirit, so no one comprehends the thoughts of God except the Spirit of God. (B) Inference, labelled as inference: from the Spirit's exhaustive knowledge of the depths of God, a reader may infer that the Spirit shares in God's own knowledge and life, and may read the passage as consistent with the Spirit's deity. But the text states the Spirit's knowledge of God; it does not state that the Spirit is God, nor that the Spirit is a distinct divine person, so the Spirit's deity is an inference from that knowledge, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does the analogy with a person's own spirit imply the Spirit is God's own inner life rather than a distinct person?",
+      "Does knowing the depths of God require the Spirit to be divine, or could a created spirit know God by revelation?",
+      "How does verse 12, on receiving the Spirit who is from God, affect the reading of the Spirit's relation to God?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "rom-8-9",
+        "note": "Both passages describe the Spirit's relation to God and the Spirit's indwelling work."
+      },
+      {
+        "passageId": "john-14-26",
+        "note": "Both passages describe the Spirit revealing and teaching what belongs to God."
+      },
+      {
+        "passageId": "john-16-13",
+        "note": "Both passages describe the Spirit communicating God's truth to believers."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-1cor-2-10-ref-001",
+      "ver-1cor-2-10-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "1cor-8-6",
+    "doctrine": "trinity",
+    "book": "1 Corinthians",
+    "chapter": 8,
+    "verseStart": 6,
+    "verseEnd": 6,
+    "canonicalOrder": 46,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: for believers there is one God, the Father, from whom are all things and for whom we exist, and one Lord, Jesus Christ, through whom are all things and through whom we exist. The verse is a single confession naming the Father and the Lord Jesus together, echoing the Shema, and it assigns both of them a role in the existence of all things. (B) Inference, labelled as inference: a reader may infer from the shared confession and the shared creative and sustaining roles that Christ stands within the identity of the one God rather than outside it, and may read the verse as consistent with the later doctrine. But the text does not state that Christ is God, does not name the Holy Spirit, and does not state a doctrine of three persons in one God; the full trinitarian reading is an inference, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does placing Jesus Christ inside the one-God confession imply Christ shares the divine identity, or only that Christ is the one Lord alongside the one God?",
+      "How does the echo of the Shema shape the reading: does it include Christ in God's oneness, or contrast Christ with God?",
+      "Does the absence of the Holy Spirit from this confession limit what the verse can contribute to a trinitarian reading?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "deut-6-4",
+        "note": "1 Corinthians 8:6 echoes the Shema's confession of one God."
+      },
+      {
+        "passageId": "eph-4-4",
+        "note": "Both passages confess oneness in a threefold pattern naming Spirit, Lord, and God."
+      },
+      {
+        "passageId": "john-1-1",
+        "note": "Both passages bear on the Word's relation to God, John by direct statement and 1 Corinthians by implication."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-1cor-8-6-ref-001",
+      "ver-1cor-8-6-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "1cor-12-4",
+    "doctrine": "trinity",
+    "book": "1 Corinthians",
+    "chapter": 12,
+    "verseStart": 4,
+    "verseEnd": 6,
+    "canonicalOrder": 46,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: there are varieties of gifts, but the same Spirit; varieties of service, but the same Lord; varieties of activities, but the same God who empowers them all in everyone. The passage's statement is about the distribution of gifts, services and activities in the church, attributed in turn to Spirit, Lord and God. (B) Inference, labelled as inference: a reader may infer from the triadic pattern — the same Spirit, the same Lord, the same God — a coordinated divine agency behind the church's gifts, and may read the passage as consistent with the later doctrine. But the text does not state that Spirit, Lord and God are three persons in one God, nor does it identify the Lord with Jesus explicitly here; the triadic pattern supports the doctrine by implication, not by stating it. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does the triadic pattern reflect a deliberate theological statement, or is it a rhetorical distribution of the one divine work?",
+      "Is “the same Lord” here Jesus Christ, and how far does the immediate context support that identification?",
+      "Does the passage distinguish three agents, or describe one God acting in three ways?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "eph-4-4",
+        "note": "Both passages name Spirit, Lord, and God in a threefold unity pattern."
+      },
+      {
+        "passageId": "2cor-13-14",
+        "note": "Both passages name all three together; 2 Corinthians states the triad as a blessing, 1 Corinthians as a distribution of gifts."
+      },
+      {
+        "passageId": "eph-2-18",
+        "note": "Both passages describe one divine agency reaching believers through Christ and the Spirit."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-1cor-12-4-ref-001",
+      "ver-1cor-12-4-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "2cor-3-17",
+    "doctrine": "trinity",
+    "book": "2 Corinthians",
+    "chapter": 3,
+    "verseStart": 17,
+    "verseEnd": 18,
+    "canonicalOrder": 47,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: the Lord is the Spirit, and where the Spirit of the Lord is, there is freedom; believers with unveiled face behold the glory of the Lord and are transformed into the same image from one degree of glory to another, which comes from the Lord who is the Spirit. The identification language is explicit, but its sense is heavily debated. (B) Inference, labelled as inference: a reader might infer from “the Lord is the Spirit” that Christ and the Spirit are identified, or instead that the Spirit is the mode of the Lord's presence; both are inferences, and the record does not harmonise them or choose between them. The text does not state a doctrine of three persons in one God, so whatever its sense, it supports the doctrine only by implication. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage is classified indirect, and the alternatives must be kept open.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does “the Lord is the Spirit” identify Christ with the Holy Spirit, or speak of the Spirit as the Lord's presence and agency?",
+      "Who is “the Lord” in this context: Christ, God, or the Spirit of the Lord of the preceding verses?",
+      "Does the transformation “from the Lord who is the Spirit” imply the Spirit's deity, or only the Spirit's transforming work?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "rom-8-9",
+        "note": "Both passages describe the Spirit as the Spirit of the Lord or of Christ dwelling and working in believers."
+      },
+      {
+        "passageId": "john-14-16",
+        "note": "Both passages bear on the Spirit's relation to the Lord who sends or is present through the Spirit."
+      },
+      {
+        "passageId": "2cor-13-14",
+        "note": "Both passages name the Lord and the Holy Spirit together, in a blessing and in an identification statement."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-2cor-3-17-ref-001",
+      "ver-2cor-3-17-doctrine-001"
+    ],
+    "notes": "Uncertainty flag: the sense of “the Lord is the Spirit” is heavily debated; alternatives are recorded and not harmonised.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "2cor-13-14",
+    "doctrine": "trinity",
+    "book": "2 Corinthians",
+    "chapter": 13,
+    "verseStart": 14,
+    "verseEnd": 14,
+    "canonicalOrder": 47,
+    "evidenceClassification": "direct",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: the grace of the Lord Jesus Christ, the love of God, and the fellowship of the Holy Spirit be with believers. The verse names all three — Lord Jesus Christ, God, and the Holy Spirit — together in a single blessing, each with a distinct gift or relation to believers. That triadic naming in one act meets the standard's test for direct evidence of an element of the doctrine. (B) Inference, labelled as inference: a reader may infer from the coordinated naming that the three are presented as jointly active in blessing believers, and may read the verse as consistent with the later doctrine. But the verse does not state that the three are one God, nor does it use later technical language; the move from the triadic blessing to the formulated doctrine is an inference, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity, with its language of persons and essence, is not stated here and must not be projected back onto the blessing. The verse is direct evidence for the triadic element only.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does the coordinated blessing imply equality among the three named, or only their joint activity toward believers?",
+      "Does “the fellowship of the Holy Spirit” mean fellowship produced by the Spirit, or fellowship with the Spirit?",
+      "Why does the blessing name the Lord Jesus Christ first rather than God the Father?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "matt-28-19",
+        "note": "Both passages name Father, Son, and Holy Spirit together in a single act, a baptismal commission and a blessing."
+      },
+      {
+        "passageId": "1cor-12-4",
+        "note": "Both passages distribute divine activity in a threefold pattern, here as a blessing and there as gifts."
+      },
+      {
+        "passageId": "eph-2-18",
+        "note": "Both passages describe believers' relation to all three together, through Christ, in the Spirit, to the Father."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-2cor-13-14-ref-001",
+      "ver-2cor-13-14-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "gal-4-4",
+    "doctrine": "trinity",
+    "book": "Galatians",
+    "chapter": 4,
+    "verseStart": 4,
+    "verseEnd": 7,
+    "canonicalOrder": 48,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: when the fullness of time had come, God sent forth his Son, born of woman, born under the law, to redeem those under the law so that they might receive adoption as sons; and because believers are sons, God has sent the Spirit of his Son into their hearts, crying Abba, Father; so the believer is no longer a slave but a son, and if a son, then an heir through God. (B) Inference, labelled as inference: a reader may infer a trinitarian pattern from the two sendings — God sends the Son, then sends the Spirit of the Son — and may read the passage as consistent with the later doctrine. But the text states the sendings and the resulting adoption; it does not state that Father, Son and Spirit are three persons in one God, so the trinitarian synthesis is a pattern-based inference, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does “the Spirit of his Son” mean the Spirit who belongs to the Son, the Spirit sent by the Son, or the Spirit who is the Son's own spirit?",
+      "Does the double sending imply a distinction of persons between the Son and the Spirit, or only two stages of one divine mission?",
+      "Is the cry Abba, Father the Spirit's cry, or the believers' cry enabled by the Spirit?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "rom-8-14",
+        "note": "Both passages describe adoption through the Spirit, crying Abba, Father, and heirship with Christ."
+      },
+      {
+        "passageId": "rom-1-3",
+        "note": "Both passages describe God's Son in relation to the Spirit."
+      },
+      {
+        "passageId": "titus-3-4",
+        "note": "Both passages describe salvation as God's act involving the Son and the Holy Spirit."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-gal-4-4-ref-001",
+      "ver-gal-4-4-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "eph-1-3",
+    "doctrine": "trinity",
+    "book": "Ephesians",
+    "chapter": 1,
+    "verseStart": 3,
+    "verseEnd": 14,
+    "canonicalOrder": 49,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: one long blessing of the God and Father of our Lord Jesus Christ, who chose believers in Christ before the foundation of the world, predestined them for adoption through Jesus Christ, redeemed them through Christ's blood, and sealed believers who heard and believed with the promised Holy Spirit, the guarantee of their inheritance. The blessing is structured triadically across Father, Son and Spirit. (B) Inference, labelled as inference: a reader may infer from that triadic structure a coordinated divine agency in salvation, and may read the passage as consistent with the later doctrine. But the passage's statement is the blessing itself and the history of salvation it recounts; it does not state that Father, Son and Spirit are three persons in one God, so the trinitarian reading is a pattern-based inference, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Is the triadic structure of the blessing a deliberate theological pattern, or the natural shape of recounting salvation history?",
+      "Does the sealing by the Holy Spirit imply the Spirit's deity, or only the Spirit's role as God's seal and guarantee?",
+      "Does the Father's choosing “in Christ” imply Christ's pre-existence, or only God's purpose in Christ?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "eph-2-18",
+        "note": "Both passages describe believers' access to the Father through Christ in the Spirit."
+      },
+      {
+        "passageId": "eph-4-4",
+        "note": "Both passages present the one God, one Lord, and one Spirit in a unified confession."
+      },
+      {
+        "passageId": "2cor-13-14",
+        "note": "Both passages name all three together in blessing believers."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-eph-1-3-ref-001",
+      "ver-eph-1-3-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "eph-2-18",
+    "doctrine": "trinity",
+    "book": "Ephesians",
+    "chapter": 2,
+    "verseStart": 18,
+    "verseEnd": 18,
+    "canonicalOrder": 49,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: through Christ, both Jews and Gentiles have access in one Spirit to the Father. The verse names all three in a single movement of access: through Christ, in the Spirit, to the Father. (B) Inference, labelled as inference: a reader may infer from this threefold access a trinitarian shape to the believer's approach to God, and may read the verse as consistent with the later doctrine. But the text states the access itself; it does not state that Father, Son and Spirit are three persons in one God, nor that the Spirit is divine, so the trinitarian reading is an inference from the pattern, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does “access in one Spirit to the Father” describe the Spirit as the medium of access, or as a distinct person through whom access comes?",
+      "Does the verse imply the Spirit's deity, or only the Spirit's role in uniting Jews and Gentiles?",
+      "How does the immediate context of reconciliation through the cross shape the verse's trinitarian pattern?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "eph-4-4",
+        "note": "Both passages confess one Spirit, one Lord, and one God and Father in a unified pattern."
+      },
+      {
+        "passageId": "2cor-13-14",
+        "note": "Both passages name all three together, here as access and there as blessing."
+      },
+      {
+        "passageId": "rom-8-14",
+        "note": "Both passages describe believers coming to the Father as children through the Spirit."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-eph-2-18-ref-001",
+      "ver-eph-2-18-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "eph-4-4",
+    "doctrine": "trinity",
+    "book": "Ephesians",
+    "chapter": 4,
+    "verseStart": 4,
+    "verseEnd": 6,
+    "canonicalOrder": 49,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: there is one body and one Spirit, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in all. The passage is a unity confession: it states oneness — one body, one Spirit, one Lord, one God and Father — as the ground of the church's unity. (B) Inference, labelled as inference: a reader may infer from the threefold naming of Spirit, Lord, and God and Father a trinitarian pattern underlying the church's oneness, and may read the passage as consistent with the later doctrine. But the text states oneness, not three persons in one God; it does not name Jesus explicitly, and it does not state the Spirit's deity, so the threefold naming supports the doctrine by pattern, not by formula. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Is “one Lord” here Jesus Christ, and how far does the surrounding context support that identification?",
+      "Does the sevenfold “one” pattern aim at unity of the church, or at a statement about God's own being?",
+      "Does naming Spirit, Lord, and God in one confession imply three distinct persons, or three descriptions of one God?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "1cor-12-4",
+        "note": "Both passages name Spirit, Lord, and God in a threefold pattern, here for unity and there for gifts."
+      },
+      {
+        "passageId": "1cor-8-6",
+        "note": "Both passages confess one God the Father and one Lord in a single confession."
+      },
+      {
+        "passageId": "matt-28-19",
+        "note": "Both passages name the three together; Matthew as a baptismal formula and Ephesians as a unity confession."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-eph-4-4-ref-001",
+      "ver-eph-4-4-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "phil-2-5",
+    "doctrine": "trinity",
+    "book": "Philippians",
+    "chapter": 2,
+    "verseStart": 5,
+    "verseEnd": 11,
+    "canonicalOrder": 50,
+    "evidenceClassification": "direct",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: Christ Jesus, though he was in the form of God, did not count equality with God a thing to be grasped, but emptied himself, taking the form of a servant, being born in the likeness of men, and humbled himself to death on a cross; therefore God highly exalted him and gave him the name above every name, so that every knee should bow and every tongue confess that Jesus Christ is Lord, to the glory of God the Father. The passage explicitly states Christ's pre-existent divine status and equality with God. (B) Inference, labelled as inference: a reader may infer from that stated equality that Christ shares the divine being, and may read the passage as direct evidence for the Son's deity, an element of the later doctrine. But the passage does not state a doctrine of three persons in one God, so the step from Christ's equality with God to the formulated Trinity remains an inference. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage is direct evidence for the Son's deity only.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does “the form of God” mean Christ's divine nature, or his divine status and glory?",
+      "Does “did not count equality with God a thing to be grasped” mean Christ refused to exploit equality, or refused to seize equality he did not have?",
+      "Does the exaltation in verses 9 to 11 imply Christ receives a status he did not previously hold, or a public vindication of a status already held?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "col-1-15",
+        "note": "Both passages describe the Son's divine status and pre-eminence, Philippians by form and equality, Colossians by image and fullness."
+      },
+      {
+        "passageId": "col-2-9",
+        "note": "Both passages state deity dwelling in or belonging to Christ."
+      },
+      {
+        "passageId": "john-1-1",
+        "note": "Both passages state the Word's or Christ's divine status before the incarnation."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-phil-2-5-ref-001",
+      "ver-phil-2-5-doctrine-001"
+    ],
+    "notes": "Interpretive question: “form of God” is read as divine nature by some and as divine status or glory by others; recorded as an open question, not resolved.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "col-1-15",
+    "doctrine": "trinity",
+    "book": "Colossians",
+    "chapter": 1,
+    "verseStart": 15,
+    "verseEnd": 20,
+    "canonicalOrder": 51,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: Christ is the image of the invisible God, the firstborn of all creation; by him all things were created, in heaven and on earth, visible and invisible; he is before all things, and in him all things hold together; he is the head of the body, the church, the firstborn from the dead, that in everything he might be preeminent; and in him all the fullness of God was pleased to dwell. (B) Inference, labelled as inference: a reader may infer from the imaging of God, the creation of all things through him, and the fullness dwelling in him that Christ shares the divine being, and may read the passage as consistent with the later doctrine. But the passage states the Son's imaging of God and the fullness dwelling in him by description; it does not state in so many words that Christ is God, and “firstborn” is contested, so deity is inferred from the description rather than stated as a formula. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does “firstborn of all creation” mean pre-eminence over creation, or that Christ is himself a created being?",
+      "Does “the image of the invisible God” state Christ's deity, or only that Christ reveals the unseen God?",
+      "What does “all the fullness of God was pleased to dwell” imply: that deity dwells in Christ, or that God's fullness is present in him for reconciliation?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "phil-2-5",
+        "note": "Both passages describe the Son's divine status, Philippians by form and equality, Colossians by image and fullness."
+      },
+      {
+        "passageId": "col-2-9",
+        "note": "Colossians 2:9 states explicitly what 1:15-20 describes: the fullness of deity dwelling in Christ."
+      },
+      {
+        "passageId": "john-1-1",
+        "note": "Both passages bear on the Word's relation to God in creation."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-col-1-15-ref-001",
+      "ver-col-1-15-doctrine-001"
+    ],
+    "notes": "Uncertainty flag: “firstborn of all creation” is contested — pre-eminence over creation versus created status; recorded as an open question, not resolved.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "col-2-9",
+    "doctrine": "trinity",
+    "book": "Colossians",
+    "chapter": 2,
+    "verseStart": 9,
+    "verseEnd": 9,
+    "canonicalOrder": 51,
+    "evidenceClassification": "direct",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: in Christ the whole fullness of deity dwells bodily. The verse explicitly states that deity, in its whole fullness, dwells in Christ in bodily form. That is a direct statement of the Son's deity, an element of the later doctrine, and it meets the standard's test for direct evidence of that element. (B) Inference, labelled as inference: a reader may infer from the fullness of deity dwelling bodily in Christ that Christ shares the divine being, and may read the verse as direct evidence for the Son's deity. But the verse does not state a doctrine of three persons in one God, and it does not name the Father or the Spirit; the step from this statement to the formulated Trinity remains an inference, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The verse is direct evidence for the Son's deity only.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does “the whole fullness of deity” mean the complete divine nature, or the totality of God's attributes and powers present in Christ?",
+      "Does “dwells bodily” locate deity in Christ's incarnate body, or in Christ as the embodied fullness of God?",
+      "How does the warning against philosophy and empty deceit in verse 8 shape the force of verse 9?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "col-1-15",
+        "note": "Colossians 1:15-20 describes the fullness dwelling in Christ; 2:9 states it explicitly."
+      },
+      {
+        "passageId": "phil-2-5",
+        "note": "Both passages state Christ's divine status, Philippians by equality with God and Colossians by the fullness of deity."
+      },
+      {
+        "passageId": "rom-9-5",
+        "note": "Both passages are cited for deity ascribed to Christ; Colossians 2:9 states it, Romans 9:5 only on a disputed reading."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-col-2-9-ref-001",
+      "ver-col-2-9-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "id": "titus-2-13",
+    "doctrine": "trinity",
+    "book": "Titus",
+    "chapter": 2,
+    "verseStart": 13,
+    "verseEnd": 13,
+    "canonicalOrder": 56,
+    "evidenceClassification": "direct",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: believers wait for their blessed hope, the appearing of the glory of our great God and Savior Jesus Christ. On the best-supported grammatical reading, the single article governing “God and Savior” names one person, so the verse explicitly ascribes the title God to Jesus Christ. That ascription is a direct statement of the Son's deity, an element of the later doctrine. (B) Inference, labelled as inference: a reader may infer from that ascription that Christ shares the divine being, and may read the verse as direct evidence for the Son's deity. But the two-person reading has also been proposed, and the verse does not state a doctrine of three persons in one God, so the step from this ascription to the formulated Trinity remains an inference, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The verse is direct evidence for the Son's deity only, on the single-person reading.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Do “God and Savior” under one article name one person, Jesus Christ, or two persons, God the Father and Jesus Christ?",
+      "How does the parallel construction in 2 Peter 1:1 bear on the reading of Titus 2:13?",
+      "Does the phrase “the appearing of the glory” refer to Christ's appearing, or to the appearing of God's glory in Christ?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "rom-9-5",
+        "note": "Both passages ascribe the title God to Jesus Christ, and both readings are contested."
+      },
+      {
+        "passageId": "col-2-9",
+        "note": "Both passages state deity in or of Christ explicitly."
+      },
+      {
+        "passageId": "2pet-1-1",
+        "note": "Both passages use the same grammatical pattern joining God and Savior under one article."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-titus-2-13-ref-001",
+      "ver-titus-2-13-doctrine-001",
+      "ver-titus-2-13-variant-001"
+    ],
+    "notes": "Variant flag: a two-person reading (God the Father and Savior Jesus Christ) has been proposed; the single-person reading is the best-supported grammatical reading; see verification record ver-titus-2-13-variant-001.",
+    "status": "verification-pending"
+  },
+  {
+    "id": "titus-3-4",
+    "doctrine": "trinity",
+    "book": "Titus",
+    "chapter": 3,
+    "verseStart": 4,
+    "verseEnd": 7,
+    "canonicalOrder": 56,
+    "evidenceClassification": "indirect",
+    "relationshipToDoctrine": {
+      "text": "(A) What the text states: when the goodness and loving kindness of God our Savior appeared, he saved believers, not because of works done in righteousness, but according to his own mercy, by the washing of regeneration and renewal of the Holy Spirit, whom he poured out richly through Jesus Christ our Savior, so that, being justified by his grace, believers might become heirs according to the hope of eternal life. (B) Inference, labelled as inference: a reader may infer from the coordinated act — God our Savior saving, the Holy Spirit renewing, and Jesus Christ our Savior as the one through whom the Spirit is poured out — a trinitarian shape to salvation, and may read the passage as consistent with the later doctrine. But the passage's statement is about salvation; it does not state that Father, Son and Spirit are three persons in one God, so the trinitarian reading is an inference from the pattern, not the text's statement. (C) Later writers read this passage in a doctrinal light; Phase 3 will supply the attributed readings, and no specific writer or quotation is asserted here. (D) The later formulated doctrine of the Trinity is not stated here and must not be projected back onto it. The passage supports the doctrine by implication.",
+      "status": "verification-pending"
+    },
+    "interpretiveQuestions": [
+      "Does “God our Savior” in verse 4 refer to the Father, or to God generally, and how does that affect the threefold pattern?",
+      "Does the Spirit's renewal imply the Spirit's deity, or only the Spirit's role in regeneration?",
+      "Is the Spirit poured out by God the Father through Jesus Christ, or by Jesus Christ himself, and what follows from each reading?"
+    ],
+    "crossReferences": [
+      {
+        "passageId": "gal-4-4",
+        "note": "Both passages describe salvation as God's act sending the Son and the Spirit of the Son."
+      },
+      {
+        "passageId": "eph-1-3",
+        "note": "Both passages describe salvation as a triadic blessing involving Father, Son, and Holy Spirit."
+      },
+      {
+        "passageId": "1pet-1-2",
+        "note": "Both passages describe salvation involving the Father, the Spirit, and Jesus Christ."
+      }
+    ],
+    "verificationRecordIds": [
+      "ver-titus-3-4-ref-001",
+      "ver-titus-3-4-doctrine-001"
+    ],
+    "notes": null,
+    "status": "verification-pending"
+  },
+  {
+    "book": "Hebrews",
+    "canonicalOrder": 58,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "John 1:1 also identifies the Word with God; compare the nature-language of Hebrews 1:3 with the Word's relation to God.",
+        "passageId": "john-1-1"
+      },
+      {
+        "note": "Colossians 1:15 calls the Son 'the image of the invisible God', a parallel image/representation claim.",
+        "passageId": "col-1-15"
+      },
+      {
+        "note": "Hebrews 1:8, in the same chapter, addresses the Son as 'O God'; read together with Hebrews 1:3.",
+        "passageId": "heb-1-8"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "heb-1-3",
+    "interpretiveQuestions": [
+      "Does 'the exact imprint of his nature' assert identity of nature with God, or only a perfect likeness or representation?",
+      "Does 'radiance of the glory of God' imply derivation from God, equality with God, or both, and how is that decided from the wording alone?",
+      "Alternative: the language could describe the Son as God's perfect representation without stating a shared essence; what in the verse would rule that reading out?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: the Son 'is the radiance of the glory of God and the exact imprint of his nature' (ESV, Hebrews 1:3, checked via BibleGateway), and he upholds the universe by the word of his power. The verse describes the Son's relation to God in terms of radiance and exact imprint, and it ascribes to the Son the sustaining of all things. (B) Inference, labelled as inference: from 'exact imprint of his nature' a researcher may infer that the Son shares the very nature of God, which is consistent with and supports the later doctrine that the Son is of one essence with the Father; the verse itself does not use that vocabulary and does not state the doctrine. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of one essence in three persons is dated generally as later and is never projected back onto this verse as its explicit teaching."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-heb-1-3-ref-001",
+      "ver-heb-1-3-doctrine-001"
+    ],
+    "verseEnd": 3,
+    "verseStart": 3
+  },
+  {
+    "book": "Hebrews",
+    "canonicalOrder": 58,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "Hebrews 1:8 quotes Psalm 45:6-7; the psalm is the source of the 'Your throne, O God' wording.",
+        "passageId": "ps-45-6"
+      },
+      {
+        "note": "Thomas addresses Jesus as 'My Lord and my God', a parallel explicit ascription of 'God' to Jesus.",
+        "passageId": "john-20-28"
+      },
+      {
+        "note": "Titus 2:13 speaks of 'our great God and Savior Jesus Christ', a parallel ascription of 'God' to Jesus.",
+        "passageId": "titus-2-13"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "direct",
+    "id": "heb-1-8",
+    "interpretiveQuestions": [
+      "Is 'O God' a vocative addressing the Son as God, or should the line be read as 'Your throne is God forever and ever' (an alternative noted in the NET footnote on BibleGateway)?",
+      "How does verse 9, 'therefore God, your God, has anointed you', distinguish the Son addressed as God from God the Father who anoints him?",
+      "Alternative: since the words quote Psalm 45:6-7, originally addressed to a human king, does the quotation itself ascribe deity to the Son, or does the ascription depend on how Hebrews applies the psalm?"
+    ],
+    "notes": "Quotations note: Hebrews 1:8 quotes Psalm 45:6-7; the psalm wording is applied to the Son by Hebrews.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: 'But of the Son he says, \"Your throne, O God, is forever and ever\"' (ESV, Hebrews 1:8, checked via BibleGateway). The Son is explicitly addressed as 'O God', and the verse continues with the scepter of uprightness as the scepter of his kingdom. The passage quotes Psalm 45:6-7 (see cross-reference ps-45-6), where the words were originally addressed to a king. (B) Inference, labelled as inference: because the Son is here addressed as God, a researcher may infer that the Son is divine in the sense the later doctrine affirms; the verse does not state the later trinitarian formulation and does not name the Holy Spirit. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of the Trinity is dated generally as later and is never projected back onto this verse as its explicit teaching; the verse is direct evidence for the element that the Son is called God, not for the formulated doctrine as a whole."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-heb-1-8-ref-001",
+      "ver-heb-1-8-doctrine-001"
+    ],
+    "verseEnd": 8,
+    "verseStart": 8
+  },
+  {
+    "book": "Hebrews",
+    "canonicalOrder": 58,
+    "chapter": 9,
+    "crossReferences": [
+      {
+        "note": "2 Corinthians 13:14 is a triadic grace formula naming the Lord Jesus Christ, the love of God, and the fellowship of the Holy Spirit; compare the triadic pattern.",
+        "passageId": "2cor-13-14"
+      },
+      {
+        "note": "Matthew 28:19 names Father, Son, and Holy Spirit together in one commission; compare the triadic pattern.",
+        "passageId": "matt-28-19"
+      },
+      {
+        "note": "1 Peter 1:2 likewise names God the Father, the Spirit, and Jesus Christ together in one act (election).",
+        "passageId": "1pet-1-2"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "heb-9-14",
+    "interpretiveQuestions": [
+      "Does 'through the eternal Spirit' refer to the Holy Spirit, or to Christ's own eternal spirit by which he offered himself?",
+      "Is the grouping of Christ, the Spirit, and God a deliberate theological pattern, or incidental to the argument about Christ's offering?",
+      "Alternative: if 'the eternal Spirit' is Christ's own spirit rather than the Holy Spirit, the verse names only two persons; what in the wording decides between the readings?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: 'how much more will the blood of Christ, who through the eternal Spirit offered himself without blemish to God, purify our conscience from dead works to serve the living God' (ESV, Hebrews 9:14, checked via BibleGateway). The verse names Christ, the eternal Spirit, and God together in one sentence about Christ's offering. (B) Inference, labelled as inference: the grouping of Christ, the eternal Spirit, and God in a single act of offering is consistent with and supports the later doctrine that the three are distinct persons sharing one divine work; but the passage's statement is about the efficacy of Christ's offering, and the triadic pattern supports the doctrine by implication rather than stating it. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of the Trinity is dated generally as later and is never projected back onto this verse as its explicit teaching."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-heb-9-14-ref-001",
+      "ver-heb-9-14-doctrine-001"
+    ],
+    "verseEnd": 14,
+    "verseStart": 14
+  },
+  {
+    "book": "1 Peter",
+    "canonicalOrder": 60,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "2 Corinthians 13:14 is a triadic grace formula; compare the joint naming of the three persons.",
+        "passageId": "2cor-13-14"
+      },
+      {
+        "note": "Matthew 28:19 names Father, Son, and Holy Spirit together in one commission; compare the triadic pattern.",
+        "passageId": "matt-28-19"
+      },
+      {
+        "note": "Jude 20-21 likewise names the Holy Spirit, God, and Jesus Christ together in one exhortation.",
+        "passageId": "jude-20"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "1pet-1-2",
+    "interpretiveQuestions": [
+      "Does the verse present three distinct agents in election, or is the pattern a greeting formula without doctrinal intent about their relation?",
+      "Alternative: the verse assigns roles (foreknowledge to the Father, sanctification to the Spirit, obedience to Christ) without asserting anything about their relation to one another; does the triadic pattern alone support a trinitarian reading?",
+      "Does 'God the Father' here name the Father specifically as distinct from the Son, and does that distinction bear on the doctrine?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: believers are elect 'according to the foreknowledge of God the Father, in the sanctification of the Spirit, for obedience to Jesus Christ and for sprinkling with his blood' (ESV, 1 Peter 1:2, checked via BibleGateway). All three — God the Father, the Spirit, and Jesus Christ — are named together in one act of election. (B) Inference, labelled as inference: the joint naming of the three in a single act of election is consistent with and supports the later doctrine that Father, Son, and Spirit are distinct persons acting together in salvation; but the passage's statement is about election, and the triadic pattern supports the doctrine by implication rather than stating it, since the verse says nothing about their relation to one another. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of the Trinity is dated generally as later and is never projected back onto this verse as its explicit teaching."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-1pet-1-2-ref-001",
+      "ver-1pet-1-2-doctrine-001"
+    ],
+    "verseEnd": 2,
+    "verseStart": 2
+  },
+  {
+    "book": "1 Peter",
+    "canonicalOrder": 60,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "Romans 8:9 speaks of both 'the Spirit of God' and 'the Spirit of Christ' dwelling in believers; compare the Spirit-Christ identification.",
+        "passageId": "rom-8-9"
+      },
+      {
+        "note": "1 Corinthians 2:10 says the Spirit searches the depths of God; compare the Spirit's role in revealing what concerns Christ.",
+        "passageId": "1cor-2-10"
+      },
+      {
+        "note": "John 14:26 says the Father will send the Holy Spirit in Jesus' name; compare the Spirit's relation to Father and Son.",
+        "passageId": "john-14-26"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "1pet-1-10",
+    "interpretiveQuestions": [
+      "Is 'the Spirit of Christ' the Holy Spirit identified with Christ, or Christ's own spirit present in the prophets?",
+      "Does verse 12's 'the Holy Spirit sent from heaven' identify the same Spirit as 'the Spirit of Christ' in verse 11?",
+      "Alternative: the phrase may describe the Spirit as belonging to Christ or sent by Christ without asserting identity of person; what in the wording decides between the readings?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: the prophets inquired 'what person or time the Spirit of Christ in them was indicating when he predicted the sufferings of Christ and the subsequent glories', and the good news was announced 'by the Holy Spirit sent from heaven' (ESV, 1 Peter 1:11-12, checked via BibleGateway). The passage identifies the Spirit present in the prophets as 'the Spirit of Christ' and also names the Holy Spirit. (B) Inference, labelled as inference: the identification of the Spirit in the prophets with Christ is consistent with and supports the later doctrine that the Spirit is the Spirit of the Son and shares the divine life; but the passage's statement is about prophetic ministry, and the trinitarian weight is an inference, since the verse does not state the Spirit's relation to the Father and the Son. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of the Trinity is dated generally as later and is never projected back onto this passage as its explicit teaching."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-1pet-1-10-ref-001",
+      "ver-1pet-1-10-doctrine-001"
+    ],
+    "verseEnd": 12,
+    "verseStart": 10
+  },
+  {
+    "book": "2 Peter",
+    "canonicalOrder": 61,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "Titus 2:13 speaks of 'our great God and Savior Jesus Christ', the closest parallel construction.",
+        "passageId": "titus-2-13"
+      },
+      {
+        "note": "Thomas addresses Jesus as 'My Lord and my God', a parallel explicit ascription of 'God' to Jesus.",
+        "passageId": "john-20-28"
+      },
+      {
+        "note": "Romans 9:5 speaks of 'Christ, who is God over all'; compare the ascription of 'God' to Christ.",
+        "passageId": "rom-9-5"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "direct",
+    "id": "2pet-1-1",
+    "interpretiveQuestions": [
+      "Does 'our God and Savior Jesus Christ' ascribe 'God' to Jesus, or does it name two persons ('God and our Savior Jesus Christ'), as the KJV wording can be read?",
+      "Alternative (two-person reading): the phrase could refer to God the Father and to Jesus Christ as Savior separately; what in the wording decides between the one-person and two-person readings?",
+      "A small number of witnesses read 'Lord' for 'God' in verse 1 (NET textual note as shown on BibleGateway); does that variant affect the ascription?"
+    ],
+    "notes": "Alternative-reading flag: the KJV wording ('the righteousness of God and our Saviour Jesus Christ') can be read as naming two persons; the two-person reading is recorded as an interpretive question. Variant note: a small number of witnesses read 'Lord' for 'God' (NET textual note as shown on BibleGateway); the ESV text checked reads 'God'.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: believers have obtained faith 'by the righteousness of our God and Savior Jesus Christ' (ESV, 2 Peter 1:1, checked via BibleGateway). On the reading adopted here, 'God and Savior' both describe Jesus Christ, so the verse explicitly ascribes 'God' to Jesus. (B) Inference, labelled as inference: from the explicit ascription of 'God' to Jesus a researcher may infer that the Son is divine in the sense the later doctrine affirms; the verse does not state the later trinitarian formulation and does not name the Holy Spirit. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of the Trinity is dated generally as later and is never projected back onto this verse as its explicit teaching; the verse is direct evidence for the element that Jesus is called God, not for the formulated doctrine as a whole."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-2pet-1-1-ref-001",
+      "ver-2pet-1-1-doctrine-001"
+    ],
+    "verseEnd": 1,
+    "verseStart": 1
+  },
+  {
+    "book": "1 John",
+    "canonicalOrder": 62,
+    "chapter": 5,
+    "crossReferences": [
+      {
+        "note": "Matthew 28:19 names Father, Son, and Holy Spirit together; contrast with 1 John 5:7-8, whose authentic text does not name the three persons.",
+        "passageId": "matt-28-19"
+      },
+      {
+        "note": "2 Corinthians 13:14 is an authentic triadic formula; contrast with the Comma, which is a later addition.",
+        "passageId": "2cor-13-14"
+      },
+      {
+        "note": "John 15:26 says the Spirit of truth testifies about Jesus; compare the Spirit's testifying role in 1 John 5:7-8.",
+        "passageId": "john-15-26"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "1john-5-7",
+    "interpretiveQuestions": [
+      "Which reading is original: the three witnesses (the Spirit, the water, and the blood) or the Johannine Comma naming the Father, the Word, and the Holy Spirit?",
+      "What do 'the water' and 'the blood' refer to, and how do they testify concerning the Son?",
+      "Alternative: the Comma, if treated as original, would make the passage direct evidence; the evidence checked here (ESV omitting it, KJV including it) shows the editions differ, so on what basis is the Comma excluded from direct evidence?"
+    ],
+    "notes": "TEXTUAL-VARIANT FLAG: The Johannine Comma ('the Father, the Word, and the Holy Ghost: and these three are one') is a later textual addition, absent from the ESV text checked and present in the KJV text checked. It must not be presented as direct evidence. The Comma's absence from the earliest Greek manuscripts and presence in later Latin tradition is the standard scholarly position as reported here, not something verified manuscript by manuscript in this check.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: in the edition checked as primary here (ESV, 1 John 5:7-8, via BibleGateway), 'For there are three that testify: the Spirit and the water and the blood; and these three agree.' The authentic text speaks of three witnesses — the Spirit, the water, and the blood — testifying concerning the Son. The famous trinitarian wording ('the Father, the Word, and the Holy Ghost: and these three are one'), the Johannine Comma, appears in the KJV text of the same verses, which was also checked. (B) Inference, labelled as inference: the three witnesses are consistent with the testimony concerning the Son, and the passage supports the doctrine only by implication through that testimony, not by naming the three persons. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of the Trinity is dated generally as later and is never projected back onto this passage; the Comma must not be presented as direct evidence, since it is a later textual addition, not part of the original text."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-1john-5-7-ref-001",
+      "ver-1john-5-7-doctrine-001",
+      "ver-1john-5-7-comma-001"
+    ],
+    "verseEnd": 8,
+    "verseStart": 7
+  },
+  {
+    "book": "1 John",
+    "canonicalOrder": 62,
+    "chapter": 5,
+    "crossReferences": [
+      {
+        "note": "Thomas addresses Jesus as 'My Lord and my God'; compare the ascription of 'God' to Jesus if 'This' in 1 John 5:20 refers to Christ.",
+        "passageId": "john-20-28"
+      },
+      {
+        "note": "John 1:1 identifies the Word as God; compare the ascription of deity to the Son.",
+        "passageId": "john-1-1"
+      },
+      {
+        "note": "Titus 2:13 speaks of 'our great God and Savior Jesus Christ'; compare the ascription of 'God' to Jesus.",
+        "passageId": "titus-2-13"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "1john-5-20",
+    "interpretiveQuestions": [
+      "Does 'This' ('He is the true God') refer to Jesus Christ, the nearest antecedent, or to God the Father ('him who is true')?",
+      "Alternative: if 'This' refers to the Father, the verse does not ascribe 'true God' to the Son at all; what in the wording decides between the two antecedents?",
+      "How does the parallel in John 17:3, where 'the only true God' is the Father, bear on the reading of 1 John 5:20?"
+    ],
+    "notes": "Ambiguity flag: the antecedent of 'This'/'He' ('He is the true God') is disputed — Jesus Christ or God the Father. The ambiguity is recorded and not resolved.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: 'we are in him who is true, in his Son Jesus Christ. He is the true God and eternal life' (ESV, 1 John 5:20, checked via BibleGateway). The verse says the Son of God has come and given understanding so that believers may know him who is true. (B) Inference, labelled as inference: if 'He' (literally 'This') refers to Jesus Christ, the verse ascribes 'the true God' to the Son, which supports the doctrine by implication; but the antecedent of 'This' is disputed — it may refer to Jesus Christ or to God the Father ('him who is true') — and the ambiguity is recorded, not resolved silently. The verse does not state the later trinitarian formulation. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of the Trinity is dated generally as later and is never projected back onto this verse as its explicit teaching."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-1john-5-20-ref-001",
+      "ver-1john-5-20-doctrine-001"
+    ],
+    "verseEnd": 20,
+    "verseStart": 20
+  },
+  {
+    "book": "Jude",
+    "canonicalOrder": 65,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "2 Corinthians 13:14 is a triadic grace formula; compare the joint naming of the three persons.",
+        "passageId": "2cor-13-14"
+      },
+      {
+        "note": "Matthew 28:19 names Father, Son, and Holy Spirit together in one commission; compare the triadic pattern.",
+        "passageId": "matt-28-19"
+      },
+      {
+        "note": "1 Peter 1:2 likewise names God the Father, the Spirit, and Jesus Christ together in one act (election).",
+        "passageId": "1pet-1-2"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "jude-20",
+    "interpretiveQuestions": [
+      "Is the threefold pattern (Holy Spirit, God, Jesus Christ) a deliberate triadic structure, or an exhortation that happens to name all three?",
+      "Does 'the love of God' refer to God the Father specifically, and does that affect how the three are related in the verse?",
+      "Alternative: the verse may simply stack three distinct devotional acts without asserting anything about the persons' relation; what would make the triadic reading more than incidental?"
+    ],
+    "notes": null,
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: 'But you, beloved, building yourselves up in your most holy faith and praying in the Holy Spirit, keep yourselves in the love of God, waiting for the mercy of our Lord Jesus Christ that leads to eternal life' (ESV, Jude 20-21, checked via BibleGateway). All three — the Holy Spirit, God, and the Lord Jesus Christ — are named together in one exhortation. (B) Inference, labelled as inference: the joint naming of the three in a single exhortation is consistent with and supports the later doctrine that Father, Son, and Spirit are distinct persons in the one divine life; but the passage's statement is an exhortation to persevere, and the triadic pattern supports the doctrine by implication rather than stating it, since the verse says nothing about their relation to one another. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of the Trinity is dated generally as later and is never projected back onto these verses as their explicit teaching."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-jude-20-ref-001",
+      "ver-jude-20-doctrine-001"
+    ],
+    "verseEnd": 21,
+    "verseStart": 20
+  },
+  {
+    "book": "Revelation",
+    "canonicalOrder": 66,
+    "chapter": 1,
+    "crossReferences": [
+      {
+        "note": "Matthew 28:19 names Father, Son, and Holy Spirit together; compare the triadic greeting pattern in Revelation 1:4-5.",
+        "passageId": "matt-28-19"
+      },
+      {
+        "note": "2 Corinthians 13:14 is a triadic grace formula; compare the grace-and-peace greeting from three sources.",
+        "passageId": "2cor-13-14"
+      },
+      {
+        "note": "1 Peter 1:2 names God the Father, the Spirit, and Jesus Christ together; compare the triadic pattern.",
+        "passageId": "1pet-1-2"
+      }
+    ],
+    "doctrine": "trinity",
+    "evidenceClassification": "indirect",
+    "id": "rev-1-4",
+    "interpretiveQuestions": [
+      "Does 'the seven spirits who are before his throne' denote the Holy Spirit (sevenfold fullness), or seven angels or spirits as a symbol?",
+      "Alternative: if the seven spirits are seven angels, the greeting is not triadic in a trinitarian sense; what in the wording decides between the readings?",
+      "Does Revelation 4:5, where the seven torches of fire 'are the seven spirits of God', support identifying the seven spirits with the Holy Spirit?"
+    ],
+    "notes": "Ambiguity flag: 'the seven spirits' is interpreted as the Holy Spirit only by inference; the alternative reading (seven angels/spirits as a symbol) is recorded.",
+    "relationshipToDoctrine": {
+      "status": "verification-pending",
+      "text": "(A) What the text states: 'Grace to you and peace from him who is and who was and who is to come, and from the seven spirits who are before his throne, and from Jesus Christ the faithful witness, the firstborn of the dead, and the ruler of kings on earth' (ESV, Revelation 1:4-5, checked via BibleGateway). The greeting names three sources of grace and peace: him who is and was and is to come, the seven spirits, and Jesus Christ. (B) Inference, labelled as inference: if 'the seven spirits' denotes the Holy Spirit in sevenfold fullness, the greeting is a triadic pattern consistent with and supporting the later doctrine; but that identification is itself an inference, and the verse does not state it. (C) How later writers read this passage is a matter for Phase 3; no historical reading is asserted here. (D) The later formulation of the Trinity is dated generally as later and is never projected back onto these verses as their explicit teaching."
+    },
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-rev-1-4-ref-001",
+      "ver-rev-1-4-doctrine-001"
+    ],
+    "verseEnd": 5,
+    "verseStart": 4
+  }
+]
