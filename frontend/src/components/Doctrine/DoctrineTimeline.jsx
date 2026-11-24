@@ -1,4 +1,5 @@
-// The full-width timeline strip beneath the Doctrine workspace grid.
+// The timeline strip at the bottom of the Doctrine workspace's right
+// column, beneath the interpretation panel.
 //
 // No library, no proportional-to-year axis: the strip is evenly spaced,
 // one node per interpretation, in the passage's provisional order —
