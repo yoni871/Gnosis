@@ -2,7 +2,7 @@
   "id": "2-samuel",
   "title": "2 Samuel",
   "testament": "OT",
-  "introduction": "2 Samuel records David's reign from the death of Saul and the civil war for the throne through the taking of Jerusalem and the bringing up of the ark to the Davidic covenant and the consolidation of the kingdom. These three studies follow literary divisions; they do not claim three independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "introduction": "2 Samuel records David's reign from the death of Saul and the civil war for the throne through the taking of Jerusalem and the bringing up of the ark, the Davidic covenant and the consolidation of the kingdom, the Ammonite war and the fall of David, Absalom's revolt and David's return, the famine, the Gibeonites, and the giants, and the song, the last words, and the census and the plague. These nine studies follow literary divisions; they do not claim nine independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
   "entries": [
     {
       "categoryId": "category-2-samuel-death-of-saul-and-civil-war-for-the-throne",
@@ -21,6 +21,42 @@
       "kind": "category",
       "narrativeOrder": 90,
       "bookNote": "2 Samuel 7–9 examines The Davidic Covenant and the Consolidation of the Kingdom as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-2-samuel-ammonite-war-and-the-fall-of-david",
+      "kind": "category",
+      "narrativeOrder": 91,
+      "bookNote": "2 Samuel 10–12 examines The Ammonite War and the Fall of David as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-2-samuel-amnon-tamar-and-absaloms-revenge-and-return",
+      "kind": "category",
+      "narrativeOrder": 92,
+      "bookNote": "2 Samuel 13–14 examines Amnon, Tamar, and Absalom's Revenge and Return as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-2-samuel-absaloms-revolt-and-davids-flight",
+      "kind": "category",
+      "narrativeOrder": 93,
+      "bookNote": "2 Samuel 15–17 examines Absalom's Revolt and David's Flight as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-2-samuel-the-battle-in-the-wood-of-ephraim-absaloms-death-and-davids-return",
+      "kind": "category",
+      "narrativeOrder": 94,
+      "bookNote": "2 Samuel 18–20 examines The Battle in the Wood of Ephraim, Absalom's Death, and David's Return as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-2-samuel-the-famine-the-gibeonites-and-the-giants",
+      "kind": "category",
+      "narrativeOrder": 95,
+      "bookNote": "2 Samuel 21 examines The Famine, the Gibeonites, and the Giants as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-2-samuel-the-song-the-last-words-and-the-census-and-the-plague",
+      "kind": "category",
+      "narrativeOrder": 96,
+      "bookNote": "2 Samuel 22–24 examines The Song, the Last Words, and the Census and the Plague as a biblical literary and historical-context study, without assigning an independently verified date."
     }
   ]
 }
