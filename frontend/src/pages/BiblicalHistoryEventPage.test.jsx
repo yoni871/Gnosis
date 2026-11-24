@@ -90,15 +90,15 @@ describe("BiblicalHistoryEventPage", () => {
     });
 
     it("redirects a book with no published events to the homepage, where it is marked Coming Soon", async () => {
-        renderStudy("/biblical-history/1-samuel");
+        renderStudy("/biblical-history/2-samuel");
         // No Upcoming page any more: the book URL lands on the index
-        // book directory, opened at 1 Samuel, with its Coming Soon chip
+        // book directory, opened at 2 Samuel, with its Coming Soon chip
         // focused — and nothing else claims the book has events.
         expect(screen.getByRole("heading", { level: 1, name: "Discover the History Behind Scripture." })).toBeInTheDocument();
         expect(screen.queryByText(/No historical events published yet/)).toBeNull();
         expect(screen.queryByRole("heading", { level: 1, name: "Page not found" })).toBeNull();
         expect(screen.getByRole("button", { name: /Close Books/ })).toHaveAttribute("aria-expanded", "true");
-        const chip = document.querySelector('[data-history-book="1-samuel"]');
+        const chip = document.querySelector('[data-history-book="2-samuel"]');
         expect(chip).not.toBeNull();
         expect(chip).toHaveTextContent("Coming Soon");
         expect(chip.tagName).not.toBe("A");
