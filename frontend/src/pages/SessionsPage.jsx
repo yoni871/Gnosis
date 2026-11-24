@@ -36,9 +36,14 @@ export default function SessionsPage() {
     useEffect(() => {
         if (!token) return;
         let active = true;
-        setLoadError("");
+        // The error is cleared in the success callback, not
+        // synchronously here: calling setState directly in an effect
+        // body triggers a cascading render (react-hooks/set-state-in-
+        // effect). A stale error stays visible only until the fresh
+        // load resolves, the same as PasskeysPage.
         getSessions(token).then((data) => {
             if (!active) return;
+            setLoadError("");
             setSessions(data.sessions);
         }).catch((error) => {
             if (!active) return;
