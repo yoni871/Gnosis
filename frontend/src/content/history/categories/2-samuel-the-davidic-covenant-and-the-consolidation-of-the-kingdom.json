@@ -1,0 +1,427 @@
+{
+  "id": "category-2-samuel-the-davidic-covenant-and-the-consolidation-of-the-kingdom",
+  "title": "The Davidic Covenant and the Consolidation of the Kingdom",
+  "category": "category",
+  "orphan": true,
+  "era": "2-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 7,
+    "startVerse": 1,
+    "endChapter": 9,
+    "endVerse": 13
+  },
+  "fullRange": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 7,
+    "startVerse": 1,
+    "endChapter": 9,
+    "endVerse": 13
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2sa-03-001",
+      "claim": "David, at rest in his house of cedar while the ark dwells within curtains, proposes a house for the ark to Nathan the prophet; Nathan first answers, \"Go, do all that is in thine heart; for the LORD is with thee.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-002",
+      "claim": "That night the word of the LORD reverses the proposal: God has not dwelt in a house since Egypt but has walked in a tent and in a tabernacle, and never asked any ruler of Israel why he built no cedar house.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-003",
+      "claim": "The oracle rehearses God's acts — taking David from the sheepcote to be prince, being with him wherever he went, cutting off his enemies, making him a great name — and promises Israel a planted, secure place and David rest from his enemies, recalling the era of the judges.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"David,\" read in full (covenant section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-004",
+      "claim": "The turn on the word \"house\": \"the LORD telleth thee that he will make thee an house\"; David's seed after him shall build a house for God's name, and the throne of his kingdom shall be established for ever.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"David,\" read in full (covenant section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-005",
+      "claim": "\"I will be his father, and he shall be my son. If he commit iniquity, I will chasten him with the rod of men, and with the stripes of the children of men. But my mercy shall not depart away from him, as I took it from Saul.\" Discipline and permanence are stated in one sentence; the throne is not made conditional on the son's obedience here.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-006",
+      "claim": "\"Thine house and thy kingdom shall be established for ever before thee: thy throne shall be established for ever.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-007",
+      "claim": "David's prayer answers the oracle: \"Who am I, O Lord GOD?\"; there is none like the LORD; Israel is the one nation God redeemed for himself; David asks that the word concerning his house be established for ever and his house blessed for ever.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"David,\" read in full (covenant section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-008",
+      "claim": "The word \"covenant\" does not occur in 2 Samuel 7, but later Scripture regularly calls this promise a covenant (2 Sam 23:5; Ps 89:3–4, 28–37; Ps 132:11–12; Jer 33:20–21; 2 Chr 13:5; 21:7).",
+      "evidence": "BiblicalTraining, \"David,\" read in full (covenant section); Hebrew + JPS 1917 read in full for 2 Sam 7 itself.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-009",
+      "claim": "Weinfeld's thesis: the Davidic promise is modelled on the ancient Near Eastern royal grant — a gift of dynasty bestowed for loyal service already shown, with the obligation on the suzerain and the curse on whoever violates the vassal's rights; the father-son language is an adoption formula serving as the judicial basis for the gift of the eternal dynasty.",
+      "evidence": "Weinfeld, \"The Covenant of Grant\" (JAOS 90.2, 1970), read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-03-010",
+      "claim": "Whether the Davidic promise is patterned on the royal grant is debated: Weinfeld argues the grant parallel from structure, language, and unconditionality; Knoppers argues the promises and the grants are not analogous on those same three rubrics and that most royal grants are actually conditional. The text itself states the promise without naming its legal form.",
+      "evidence": "Weinfeld (read in full); Knoppers, \"Ancient Near Eastern Royal Grants and the Davidic Covenant: A Parallel?\" (JAOS 116.4, 1996) — summary only, see §12 Needs-checking.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-03-011",
+      "claim": "The promise holds both sides: unconditional in its final outcome (the line and throne endure) yet enjoyed by individual kings only if they obey; Psalm 89 praises the covenant and then laments that God seems to have rejected his anointed. The tension is the tradition's own and is not resolved here.",
+      "evidence": "BiblicalTraining, \"David,\" read in full (covenant section); Bible Odyssey, \"Covenant in the Hebrew Bible,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-03-012",
+      "claim": "The narrative gives David thirty years at accession and forty years in all (seven years and six months in Hebron, thirty-three in Jerusalem). The conventional absolute dating of the reign, c. 1010–970 BC, is a scholarly convention, not an independently established date.",
+      "evidence": "Hebrew + JPS 1917 for 2 Sam 5:4–5 as read in the read record (`2samuel-read-ch01-24.md`, ch. 5 read in full); BiblicalTraining, \"David,\" read in full (introduction).",
+      "assessment": "traditional"
+    },
+    {
+      "id": "clm-2sa-03-013",
+      "claim": "David smites the Philistines, subdues them, and takes Metheg-ammah; Chronicles explains Metheg-ammah as Gath and its villages (1 Chr 18:1). The identification rests on the Chronicles parallel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"David,\" read in full (wars section).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-03-014",
+      "claim": "David smites Moab and measures them with the line — two lines to put to death, one full line to keep alive — and the Moabites become servants bringing presents (tribute). The text gives no reason for the severity.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"David,\" read in full (wars section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-015",
+      "claim": "David smites Hadadezer son of Rehob, king of Zobah, as he goes to establish his dominion at the river Euphrates, taking a thousand and seven hundred horsemen and twenty thousand footmen, houghing the chariot horses but reserving a hundred chariots. The KJV reads \"a thousand chariots, and seven hundred horsemen\" — a translation difference against the Hebrew, which counts horsemen only.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; KJV wording per the KJV verification (695 verses, 0 Class A).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-016",
+      "claim": "When the Syrians of Damascus come to succour Hadadezer, David smites twenty-two thousand of them, puts garrisons in Aram of Damascus, and the Arameans become servants bringing presents. The refrain \"the LORD gave victory to David whithersoever he went\" (JPS; KJV \"the LORD preserved David\") closes the campaign's first half.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-017",
+      "claim": "David takes gold shields and much brass from Betah and Berothai; Toi king of Hamath sends his son Joram with vessels of silver, gold, and brass; David dedicates all of it to the LORD with the silver and gold of all the nations he subdued — Aram, Moab, Ammon, Philistia, Amalek, and the spoil of Hadadezer. Amalek is named among the subdued nations; no completed blotting-out is claimed.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; reuse `clm-deu-06-076` (probable).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-018",
+      "claim": "David wins a name on his return from smiting the Arameans in the Valley of Salt, eighteen thousand men, and puts garrisons throughout Edom, so all Edom becomes his servants; the refrain \"the LORD gave victory to David whithersoever he went\" closes the campaign. The refrain does not recur after this chapter. The Chronicles parallel credits Abishai with eighteen thousand Edomites in the Valley of Salt (1 Chr 18:12) — a difference between the accounts, not resolved here.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"David,\" read in full (wars section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-019",
+      "claim": "\"David reigned over all Israel; and David executed judgment and justice unto all his people.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-020",
+      "claim": "The court list: Joab son of Zeruiah over the host; Jehoshaphat son of Ahilud recorder; Zadok son of Ahitub and Ahimelech son of Abiathar priests; Seraiah scribe; Benaiah son of Jehoiada over the Cherethites and the Pelethites; David's sons chief ministers.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"David,\" read in full (government section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-021",
+      "claim": "The Cherethites and Pelethites, commanded by Benaiah, were the royal guard, probably soldiers of Cretan and Philistine origin.",
+      "evidence": "BiblicalTraining, \"David,\" read in full (government section); BiblicalTraining, \"Kerethites\" (registry: full article read live 2026-11-24).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-03-022",
+      "claim": "Second Samuel says David's sons were priests (*kōhănîm*); the Chronicles parallel calls them chief officials at the king's side. The two wordings differ; no reading is preferred here.",
+      "evidence": "Hebrew + JPS 1917 read in full for 2 Sam 8:18, Mechon Mamre; BiblicalTraining, \"David,\" read in full (government section).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-03-023",
+      "claim": "The second court list (20:23–26) differs from the first: Adoram over tribute, Sheva scribe, and Ira the Jairite are added, and Seraiah is gone. The narrative never explains the change.",
+      "evidence": "Read record `2samuel-read-ch01-24.md` (chs. 8 and 20 read in full); BiblicalTraining, \"David,\" read in full (government section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-024",
+      "claim": "David asks whether any is left of the house of Saul, \"that I may shew him kindness for Jonathan's sake\"; Saul's servant Ziba is called and tells him Jonathan has yet a son, lame on his feet, in the house of Machir son of Ammiel in Lo-debar.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-025",
+      "claim": "David's second asking sharpens the first: he seeks \"the kindness of God\" (*hesed elohim*) for Saul's house — loyal, covenant-keeping kindness, not a private favour.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; Abin, \"Significance of Hesed in the Blessing of Naomi\" (registry: pp. 74–77 read).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-03-026",
+      "claim": "David fetches Mephibosheth from Lo-debar; Mephibosheth falls on his face, and David says, \"Fear not… I will restore thee all the land of Saul thy father; and thou shalt eat bread at my table continually.\" Mephibosheth calls himself \"such a dead dog as I am.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jonathan,\" read in full (descendants section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-027",
+      "claim": "David gives Ziba — with fifteen sons and twenty servants — charge of tilling Saul's land for Mephibosheth, while Mephibosheth eats at the king's table as one of the king's sons; his young son Micha is named; he dwells in Jerusalem, eating continually at the table, \"and was lame on both his feet.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-03-028",
+      "claim": "Mephibosheth was five years old when news of the defeat at Gilboa came; his nurse fled with him in haste, and he fell and was left lame in both feet. Chronicles gives his name as Merib-Baal; \"Mephibosheth\" replaces the element *baal* with *bōšet*, \"shame,\" probably to avoid the name of the Canaanite god.",
+      "evidence": "BiblicalTraining, \"Jonathan,\" read in full (descendants section); Hebrew + JPS 1917 read in full for 2 Sam 9, Mechon Mamre.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-03-029",
+      "claim": "The settlement of chapter 9 is tested later, not closed here: Ziba's report in 16:1–4 is not verified in that chapter, Mephibosheth's account in 19:24–30 contradicts it, and David's \"Thou and Ziba divide the land\" (19:29) leaves the grant half-standing. Neither account is to be presented as established.",
+      "evidence": "Read record `2samuel-read-ch01-24.md` (chs. 9, 16, 19 read in full) and proposal dossier-stage note 11; BiblicalTraining, \"David,\" read in full (Mephibosheth passages).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-03-030",
+      "claim": "The text locates Mephibosheth only as \"in the house of Machir the son of Ammiel, in Lo-debar\"; no further geography is given, and the exact site of Lo-debar is not established by the sources used here.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "unknown"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2sa-03-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 16,
+      "startVerse": 1,
+      "endChapter": 16,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Samuel anoints David at Bethlehem while he is still a shepherd, the youngest of Jesse's sons. The oracle's \"I took thee from the sheepcote\" reaches back to that anointing and to the shepherd's calling."
+    },
+    {
+      "id": "conn-2sa-03-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 18,
+      "startVerse": 3,
+      "endChapter": 20,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jonathan makes a covenant with David, giving him the robe, tunic, sword, bow, and belt that marked his own rank as heir, and asks David to show the kindness of the LORD to his family for ever. David's kindness to Mephibosheth keeps that covenant. Targets 1 Samuel 18:3–4 and 20:14–17."
+    },
+    {
+      "id": "conn-2sa-03-003",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 21,
+      "startVerse": 1,
+      "endChapter": 21,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The famine is answered as blood-guilt for Saul's slaying of the Gibeonites, and seven of Saul's sons are handed over; David spares Mephibosheth because of the oath he swore with Jonathan. The same Saul-house account is settled here in kindness and there in atonement."
+    },
+    {
+      "id": "conn-2sa-03-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 14,
+      "endChapter": 17,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law of the king: he must be God-chosen, must not multiply horses, wives, or silver and gold, and must keep a copy of the law with him and read it all his days, so that his heart is not lifted up above his brethren. David's reign statement — justice and righteousness for all his people — is the law's ideal in narrative form."
+    },
+    {
+      "id": "conn-2sa-03-005",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 5,
+      "startVerse": 1,
+      "endChapter": 5,
+      "endVerse": 5,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "All the tribes come to Hebron, make a covenant with David, and anoint him king over all Israel; he is thirty years old and reigns forty years in all. The promise, the conquests, and the kindness that follow belong to the united reign this anointing begins."
+    },
+    {
+      "id": "conn-2sa-03-006",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 6,
+      "startVerse": 1,
+      "endChapter": 6,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The ark is brought up to Jerusalem and placed in a tent David pitched for it, after Uzzah's death and three months at Obed-edom. David's contrast — his cedar house against the ark dwelling within curtains — presupposes the ark's new home in the city."
+    },
+    {
+      "id": "conn-2sa-03-007",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 17,
+      "startVerse": 1,
+      "endChapter": 17,
+      "endVerse": 15,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The parallel account of Nathan's oracle: the same proposal, the same reversal, the same promise of a house for ever. The two accounts agree in substance and differ in wording."
+    },
+    {
+      "id": "conn-2sa-03-008",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 17,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The parallel account of the conquests and the court list: Metheg-ammah is explained as Gath and its villages, the Valley of Salt victory is credited to Abishai over the Edomites, and David's sons are called chief officials at the king's side."
+    },
+    {
+      "id": "conn-2sa-03-009",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 89,
+      "startVerse": 3,
+      "endChapter": 89,
+      "endVerse": 45,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"I have made a covenant with my chosen, I have sworn unto David my servant, thy seed will I establish for ever.\" The psalm praises the covenant with David and then laments that God seems to have rejected his anointed. Targets Psalm 89:3–4, 89:28–37 and 89:38–45."
+    },
+    {
+      "id": "conn-2sa-03-010",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 132,
+      "startVerse": 11,
+      "endChapter": 132,
+      "endVerse": 12,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"The LORD hath sworn in truth unto David; he will not turn from it: of the fruit of thy body will I set upon thy throne.\" The psalm states the conditional limb: if his children keep the covenant, their children shall sit on the throne for evermore."
+    },
+    {
+      "id": "conn-2sa-03-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 23,
+      "startVerse": 5,
+      "endChapter": 23,
+      "endVerse": 5,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"Although my house be not so with God; yet he hath made with me an everlasting covenant, ordered in all things, and sure.\" In his last words David looks back to the promise of chapter 7 as an everlasting covenant."
+    },
+    {
+      "id": "conn-2sa-03-012",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 2,
+      "startVerse": 4,
+      "endChapter": 9,
+      "endVerse": 7,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The promise is restated to Solomon with its condition: if he walks before the LORD as David walked, the throne shall be established for ever — and if not, Israel shall be cut off and the house cast out. Targets 1 Kings 2:4 and 9:4–7."
+    },
+    {
+      "id": "conn-2sa-03-013",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 8,
+      "startVerse": 15,
+      "endChapter": 8,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Solomon, dedicating the temple, says the LORD has performed the word he spoke: David's son sits on the throne, and the house for the name of the LORD is built. The seed of the oracle builds the house the oracle named."
+    },
+    {
+      "id": "conn-2sa-03-014",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 16,
+      "startVerse": 1,
+      "endChapter": 19,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ziba meets the fleeing David with supplies and claims his master hopes to regain Saul's kingdom; on the return Mephibosheth explains that Ziba deceived him, and David divides Saul's estate between them. The kindness of chapter 9 is tested in the rebellion, and neither account is settled. Targets 2 Samuel 16:1–4 and 19:24–30."
+    },
+    {
+      "id": "conn-2sa-03-015",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 17,
+      "startVerse": 6,
+      "endChapter": 17,
+      "endVerse": 6,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "\"Kings shall come out of thee.\" The promise to Abraham that kings shall come from him is fulfilled in the covenant with David, whose house is promised a throne for ever."
+    },
+    {
+      "id": "conn-2sa-03-016",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 33,
+      "startVerse": 20,
+      "endChapter": 33,
+      "endVerse": 21,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The covenant with David is set beside the covenant of day and night: as surely as day and night cannot be broken, so the covenant that David shall have a son to reign upon his throne cannot be broken."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-samuel-masoretic-text",
+    "source-abin-hesed-blessing-naomi",
+    "source-bible-odyssey-covenant",
+    "source-biblicaltraining-david",
+    "source-biblicaltraining-jonathan",
+    "source-biblicaltraining-kerethites",
+    "source-weinfeld-covenant-grant",
+    "source-wikipedia-edom"
+  ],
+  "review": {
+    "author": "Gnosis 2 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Samuel category; independent QA pending. S03 sources (S03-S01, S03-S02) are NOT both in sources[]: S03-S01 (Mechon Mamre) maps to source-mechon-mamre-2-samuel-masoretic-text (verified); S03-S02 (Knoppers, \"Ancient Near Eastern Royal Grants and the Davidic Covenant: A Parallel?\") is not-independently-verified (abstract/summary only) and is excluded from sources[] — its dependent claim S2CL-03-010 is assessed debated and also rests on the verified Weinfeld article. source-weinfeld-covenant-grant IS in sources[]: the dossier §12 \"Not-independently-verified in the registry snapshot\" label is stale (its snapshot predates PR #313); the live registry has it VERIFIED (upgraded by PR #313, read in full by the S03 worker). source-wikipedia-edom IS in sources[] (appendix footnote, verified in the live registry) — a Wikipedia article as a cited source is unusual; flagged for QA; the §-location rule is mechanical and the registry carries it verified, so it is not excluded on judgment. S2CL-03-017 reuses clm-deu-06-076 (probable, the Amalek finding); the Deut 17 king law (clm-deu-05-014–018) and Deut 18 prophet framework (clm-deu-05-029–038) are reuse-basis only and stay out of sources[]. S2CL-03-012 is assessed traditional (the dating-label harmonisation item — traditional here vs. probable in S01/S02; kept as built, not \"fixed\"). S2CL-03-030 is the single unknown (the exact site of Lo-debar is not established). The Knoppers challenge to the grant parallel (S2CL-03-010) is debated; Weinfeld's thesis is probable, not established. The 8:4, 8:13 and 8:18 differences are recorded, not resolved; the Moab measuring (8:2) is unexplained; Ziba vs. Mephibosheth is carried to S06/S07, not closed here; the sites of Metheg-ammah, Betah, Berothai, the Valley of Salt and Lo-debar are not established and no sites are marked. Four multi-range connections use encompassing ranges with exact \"Targets …\" enumerations in the notes (no splits — all four are within-book): S2CO-03-002 (1 Samuel 18:3–20:17), S2CO-03-009 (Psalm 89:3–45), S2CO-03-012 (1 Kings 2:4–9:7), S2CO-03-014 (2 Samuel 16:1–19:30). primaryScripture is the full range 7:1–9:13 (3 chapters, endChapter − startChapter = 2, within the validator limit — no narrowing). The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). KJV/JPS quotation mix left as is (both public domain)."
+  }
+}
