@@ -1,0 +1,57 @@
+## Overview
+
+Naomi has a plan. After the harvest, she tells her daughter-in-law Ruth that she will seek "rest" for her — a settled home, a husband's care, an end to widowhood and gleaning. The man in mind is Boaz, the kinsman who showed them kindness in the fields. That night he is winnowing barley on the threshing floor, and Naomi sends Ruth to him with careful instructions: wash, anoint herself, dress well, go down to the floor, wait until he has eaten and drunk, then lie down at his feet and let him tell her what to do[^source-keil-delitzsch-ruth].
+
+Ruth does as she is told. At midnight Boaz wakes, startled, to find a woman at his feet. She names herself and asks him to spread his skirt over her, "for thou art a near kinsman"[^source-mechon-mamre-ruth-masoretic-text]. It is a claim to marriage, made in the language of protection. Boaz blesses her. He praises her loyalty — she has not chased after young men, poor or rich — and promises to do all she asks, because the whole town knows she is a woman of strength and worth. But there is one obstacle: another kinsman stands nearer than he does. Boaz swears that if that man will not redeem her, he will[^source-keil-delitzsch-ruth].
+
+Before dawn he sends her home with six measures of barley, so she will not return empty-handed. Naomi hears the report and tells her to wait: the man will not rest until he has finished the matter that very day[^source-mechon-mamre-ruth-masoretic-text].
+
+He does not wait long. That morning Boaz goes up to the city gate, gathers ten elders as witnesses, and puts the matter to the nearer kinsman: Naomi is selling the field of Elimelech, and the kinsman has the first right to redeem it. The man agrees — until Boaz adds that buying the field means also taking Ruth the Moabitess as wife, to raise up the dead man's name on his inheritance. The kinsman steps aside, saying he cannot redeem it without marring his own inheritance, and hands over his sandal as the sign of the transfer[^source-keil-delitzsch-ruth].
+
+Before the elders and all the people, Boaz declares that he has bought all that belonged to Elimelech and his sons, and has taken Ruth as his wife. The people answer, "We are witnesses," and bless them: may Ruth be like Rachel and Leah, who built the house of Israel; may Boaz be honoured in Ephrath and famous in Bethlehem; may his house be like the house of Perez, whom Tamar bore to Judah[^source-keil-delitzsch-ruth].
+
+Then the story moves swiftly to its end. Boaz takes Ruth as his wife, and she bears a son. The women of Bethlehem bless Naomi: the LORD has not left her without a kinsman, and the child will restore her life and care for her old age. Naomi takes the boy to her bosom. The neighbours name him Obed, saying, "a son is born to Naomi" — and he is the father of Jesse, the father of David[^source-mechon-mamre-ruth-masoretic-text].
+
+## Ancient World
+
+### The threshing floor at night
+
+A threshing floor was an open, hard surface where farmers separated grain from stalk and husk. Sheaves were spread out and broken up by beating, by the hooves of oxen, or by heavy sledges studded with stone, and then the grain was tossed into the wind so the chaff blew away[^source-biblicaltraining-threshing-floor]. Floors were made by clearing a roughly circular patch of ground, wetting it, and stamping it hard, often on a rise near the fields where the breeze could reach it. They were commonly twenty-five to forty feet across, and several might stand together near a village[^source-biblicaltraining-threshing-floor].
+
+The work waited on the wind. In the hill country the breeze often rose in the late afternoon and evening, which is why Boaz is winnowing barley at night[^source-biblicaltraining-threshing-floor]. Barley ripened in the spring and wheat a few weeks later, so the threshing season ran through the early summer, the dry months when grain could lie in the open without spoiling[^source-biblicaltraining-threshing-floor].
+
+A floor heaped with new grain held a family's food for the coming year, and it was worth stealing. So the owner or his workers stayed there through the night until the grain was carried away. That is why Boaz eats and drinks on the floor and lies down to sleep at the far end of the grain pile — and why he is so careful, before dawn, that no one should know a woman had come there[^source-biblicaltraining-threshing-floor]. The threshing floor was a working place, mostly full of men at harvest time, and a woman's presence there at night was something to be explained, not advertised.
+
+### The kinsman who redeems
+
+The heart of the story is a duty called redemption. In Israel the land belonged to the LORD, and families held their portions as an inheritance that could not be sold away for good. When poverty forced a family to sell, the nearest kinsman — the *go'el*, the redeemer — was to buy it back, so the land stayed in the family[^source-keil-delitzsch-ruth]. The same word covered other rescues: buying a relative out of slavery, and even avenging a murdered kinsman. And in the prophets, God himself is called Israel's redeemer[^source-bdb-lexicon].
+
+Ruth's case joins two things. The field of Elimelech, Naomi's dead husband, has been sold in their poverty, and Boaz as kinsman can redeem it. But the custom of the time joined the land to the widow: whoever redeemed the field was also expected to marry the widow, so that a son might be born to carry the dead man's name and inherit the land[^source-keil-delitzsch-ruth]. That is the condition Boaz puts to the nearer kinsman at the gate, and it is the condition that makes the man step aside. He is willing to buy land; he is not willing to pay for land that would pass to another man's son, and so diminish his own inheritance[^source-keil-delitzsch-ruth].
+
+This is why the story is not, strictly speaking, a levirate marriage — the law in Deuteronomy that bound a brother to marry his dead brother's widow. That law bound only a brother. What happens in Ruth is redemption by a kinsman, under a custom that attached the widow's marriage to the redemption of the land[^source-keil-delitzsch-ruth].
+
+### The gate, the elders, and the sandal
+
+If the threshing floor is private and night-time, the gate is public and daytime. The open space before the city gate was where a town did its business: elders gathered there, cases were heard, and deals were witnessed by all[^source-keil-delitzsch-ruth]. Boaz goes up to the gate — "up" because the place of justice was treated as a high place, not because the ground rose — seats the nearer kinsman, and calls ten elders to sit as witnesses[^source-keil-delitzsch-ruth].
+
+Everything is done in the open, in order: the offer of the field, the acceptance, the added condition, the refusal, and then the sign that seals it. The narrator pauses to explain a custom "in former time in Israel": to confirm a matter of redeeming or exchanging, a man drew off his shoe and gave it to his neighbour[^source-mechon-mamre-ruth-masoretic-text]. The shoe was the sign because land was taken by treading on it — the foot claimed the ground. Handing over the shoe handed over the right to tread it[^source-keil-delitzsch-ruth]. So the nearer kinsman draws off his sandal and gives it to Boaz, and Boaz declares before the elders and all the people that he has bought the field and taken Ruth as his wife.
+
+This is not the same as the shoe rite in Deuteronomy, where a widow who has been refused pulls off the shoe of the man who refused her and shames him. Here the man acts himself, there is no widow's hand and no disgrace, and the shoe confirms a transfer rather than marking a refusal.
+
+### The Moabite question
+
+One tension runs through the whole story and is not tidied away. Ruth is a Moabitess — the text calls her that again and again, even in the marriage declaration at the gate. Yet the law in Deuteronomy says that no Ammonite or Moabite shall enter the assembly of the LORD, even to the tenth generation, for ever, because they did not meet Israel with bread and water on the way out of Egypt, and because they hired Balaam to curse them[^source-mechon-mamre-ruth-masoretic-text].
+
+Readers have understood this in different ways. Some, following the rabbis, read the law as barring only Moabite men, since greeting travellers and hiring curses were men's acts — so a Moabite woman could marry into Israel[^source-levin-moabite-shall-not-enter]. Others think the law simply was not applied in the story's world, or that the story itself answers it: Ruth's loyalty, the town's witness to her character, the elders' blessing, and the birth of a son all show her welcomed in[^source-wright-contrasting-pictures-intermarriage]. Others read the book as a deliberate challenge to the law, a story told against the strict reading that later appears in Nehemiah, where the same passage is read aloud and the people separate themselves from all of foreign descent[^source-wright-contrasting-pictures-intermarriage]. And some hold the tension as it stands: the law is never quoted in the story, no one raises it, and the book ends not with a ruling but with a child. This account carries that tension rather than settling it. What is certain is that the story does not hide Ruth's origin — it names it at the very moment of her welcome.
+
+### Words that carry the story
+
+Three words do much of the work. The first is *rest*. Naomi seeks *rest* for Ruth, a settled home under a husband's care, and the word echoes her own prayer at the parting, that her daughters-in-law find rest in a husband's house. By the end of the night she says Boaz will not rest until he finishes the matter that day — and the child born to Ruth becomes the one who restores Naomi's life[^source-keil-delitzsch-ruth].
+
+The second is *wing*. Boaz had blessed Ruth for coming to take refuge under the LORD's wings. At the threshing floor she asks Boaz to spread his own wing — the corner of his covering — over her, the gesture by which a man took a woman as his wife[^source-keil-delitzsch-ruth]. Refuge sought becomes marriage claimed, in a single word.
+
+The third is *strength*. Boaz calls Ruth a woman of strength, a *woman of valour*, and says the whole town knows it. The praise rests on what she has done — her loyalty to Naomi, her refusal to chase after young men, poor or rich — not on wealth or birth[^source-keil-delitzsch-ruth]. It is the same word used of Boaz himself, a man of standing in Bethlehem. The story pairs them as equals in worth before it joins them in marriage.
+
+## Why This Context Matters
+
+Knowing the threshing floor and the gate changes how the story reads. The threshing floor explains the risk of the night: a working place full of men, grain worth guarding, and a reputation worth protecting. The gate explains the safety of the morning: a public place where elders witness, a sandal changes hands, and a private promise becomes a binding act that no one can later deny. And the kinsman's duty explains why the story is about more than romance. Boaz is not only marrying Ruth; he is buying back a family's land and raising up a dead man's name, so that Naomi, who left Bethlehem full and came back empty, ends the story with a grandson in her arms and a name that will be famous in Israel. The world of the harvest, the law, and the town gate is what turns a night-time request into a restoration — and what lets a story about law, loyalty, and welcome end in one household, with a child.
