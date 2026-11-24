@@ -1,0 +1,218 @@
+{
+  "id": "category-1-samuel-saul-consults-the-medium-at-en-dor",
+  "title": "Saul Consults the Medium at En-dor",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 28,
+    "startVerse": 3,
+    "endChapter": 28,
+    "endVerse": 25
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 28,
+    "startVerse": 3,
+    "endChapter": 28,
+    "endVerse": 25
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-09-001",
+      "claim": "Samuel is dead — recapitulated from 25:1, all Israel lamented and buried him in Ramah — and Saul had put away the mediums and wizards from the land.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-09-002",
+      "claim": "The Philistines pitch in Shunem and Saul gathers all Israel and pitches in Gilboa; seeing the Philistine host, Saul is afraid, his heart trembling greatly. Shunem lies on the south-western slope of Little Hermon, Gilboa opposite across the Jezreel valley, a few miles apart.",
+      "evidence": "Hebrew + JPS 1917 read in full; Ellicott 28:4 note read in full (geography).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-09-003",
+      "claim": "Saul inquires of the LORD, who answers him not — neither by dreams, nor by Urim, nor by prophets. The Urim's physical form and mechanism are not established; no mechanism is presented here.",
+      "evidence": "Hebrew + JPS 1917 read in full; reuse `clm-ta-026` / `clm-deu-10-011` (unknown), re-verified on live main.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-09-004",
+      "claim": "Saul sends his servants to seek a woman who divines by a ghost; there is one at En-dor. He disguises himself, takes two men, and comes to her by night; she objects that Saul cut off the mediums and asks if this is a snare for her life; Saul swears by the LORD no punishment shall happen to her.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-09-005",
+      "claim": "At \"Bring me up Samuel\" the woman sees Samuel, cries with a loud voice, and recognises Saul: \"Why hast thou deceived me? for thou art Saul.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-09-006",
+      "claim": "The woman describes a godlike being coming up out of the earth, an old man covered with a robe (*me'il*); \"Saul perceived that it was Samuel, and he stooped with his face to the ground, and bowed himself.\" Whether Saul saw the form or only heard the voice is uncertain from the language of v. 14.",
+      "evidence": "Hebrew + JPS 1917 read in full; Ellicott 28:13–14 notes read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-09-007",
+      "claim": "The figure's verdict: the LORD has rent the kingdom out of Saul's hand and given it to David, because Saul did not hearken to the voice of the LORD and did not execute His fierce wrath upon Amalek; moreover the LORD will deliver Israel with Saul into the hand of the Philistines, and \"to-morrow shalt thou and thy sons be with me.\" *Machar* (\"to-morrow\") need not mean the next day.",
+      "evidence": "Hebrew + JPS 1917 read in full; Ellicott 28:19 note read in full (Wordsworth/Augustine glosses).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-09-008",
+      "claim": "Saul falls his full length on the earth, sore afraid, with no strength, having eaten no bread all day or all night; the woman kills a fatted calf, kneads flour, bakes unleavened bread, sets it before Saul and his servants; they eat, rise, and go away that night.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-09-009",
+      "claim": "The nations' abominations are listed and forbidden — divination, observer of times, enchanter, witch, charmer, consulter with familiar spirits, wizard, necromancer — and Israel is told \"Thou shalt be perfect with the LORD thy God.\" This is the legal frame for the En-dor episode.",
+      "evidence": "Reuse: `clm-deu-05-029/030` (established), re-verified on live main `60e2845`.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-09-010",
+      "claim": "The Hebrew *'ob* — the woman is a \"mistress of an *'ob*\" — has never been explained with any certainty: proposed readings include a hollow thing / ventriloquist's voice (the Septuagint's *engastrimythos*, \"belly-talker\"), a ritual pit for summoning the dead (Hoffner), a familiar spirit, a talisman, or a wineskin. Keil's reading is that prophesying by the *'ob* meant calling up a departed spirit from Sheol to obtain disclosures of one's fate.",
+      "evidence": "Ellicott 28:3, 28:8 notes read in full; Witch of Endor survey read in full (Hoffner and the alternative readings).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-09-011",
+      "claim": "Three readings of the apparition are documented with named holders and no resolution is imposed: (1) Samuel himself really appeared, by God's special command — Ellicott, Wordsworth, Keil, Hervey, Gerlach, the early fathers (Justin, Origen, Ambrose, Basil, Gregory Nazianzen, Theodoret), Sirach 46:20, Josephus *Ant.* 6.14.2; (2) a demon or evil spirit impersonating Samuel — Luther, Calvin, Ephrem Syrus, some fathers, King James I; (3) no appearance at all, a piece of jugglery by the woman — Maimonides, Payne Smith, most less-orthodox modern writers from the 17th century.",
+      "evidence": "Ellicott, Excursus L, read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-09-012",
+      "claim": "Modern critical positions, as surveyed second-hand: Blenkinsopp reads necromancy as indigenous Israelite and ancient Near Eastern practice in family tomb rites, the prohibition as later delegitimisation, and the episode as the Mesopotamian motif of the desperate monarch; Adam posits Greek Nekyia influence; Auld reads the woman as portrayed sympathetically, the story not explicitly condemning the medium; Williamson holds nothing in the narrative implies a demon, the apparition being understood as Samuel's ghost, the medium's surprise being at Saul's identity.",
+      "evidence": "Witch of Endor survey read in full (second-hand for each scholar named).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-09-013",
+      "claim": "The early Jewish reading, in Sirach, represents it as a fact that Samuel prophesied to Saul after his death. Sirach is deuterocanonical, not part of the Protestant canon.",
+      "evidence": "Ellicott, Excursus L, read in full; Witch of Endor survey read in full.",
+      "assessment": "traditional"
+    },
+    {
+      "id": "clm-1sa-09-014",
+      "claim": "En-dor lies east of Nain, beyond the Philistine camp from Gilboa; Saul's night journey required passing the hostile lines, probably round the eastern shoulder of the hill, a circuit making the distance about ten miles further than the straight line. Jewish tradition names the two companions Abner and Amasa and the woman as Abner's mother — recorded as tradition, not asserted.",
+      "evidence": "Ellicott 28:7 note read in full (Conder); *Yalkut Shimoni* via the survey.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-09-001",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 18,
+      "startVerse": 10,
+      "endChapter": 18,
+      "endVerse": 14,
+      "type": "thematic",
+      "confidence": "established",
+      "note": "The law lists divination, witchcraft, consulting with familiar spirits, and necromancy among the forbidden practices of the nations, and tells Israel to be perfect with the Lord their God. Saul's visit to En-dor stands under this prohibition, which he himself had enforced."
+    },
+    {
+      "id": "conn-1sa-09-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 25,
+      "startVerse": 1,
+      "endChapter": 25,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "established",
+      "note": "Samuel dies, all Israel laments him, and he is buried in his house at Ramah. The En-dor episode opens by restating this death, because its whole action turns on Samuel's absence."
+    },
+    {
+      "id": "conn-1sa-09-003",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 15,
+      "startVerse": 22,
+      "endChapter": 15,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "established",
+      "note": "Targets 1 Samuel 15:22–23 and 15:28. Samuel tells Saul that rebellion is as the sin of witchcraft, that the Lord has rejected him from being king, and that the kingdom is rent from him and given to a neighbour better than he. The figure at En-dor repeats this judgement and names the neighbour as David."
+    },
+    {
+      "id": "conn-1sa-09-004",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 31,
+      "startVerse": 1,
+      "endChapter": 31,
+      "endVerse": 13,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "On Mount Gilboa the Philistines defeat Israel and slay Saul's sons, and Saul falls on his own sword — the morning the figure at En-dor named, when Saul and his sons would be with Samuel."
+    },
+    {
+      "id": "conn-1sa-09-005",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 10,
+      "startVerse": 13,
+      "endChapter": 10,
+      "endVerse": 14,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The Chronicler states that Saul died for his transgression, for seeking a medium and asking guidance, and for not inquiring of the Lord. The verdict condemns the method of the visit, not the identity of the figure who spoke."
+    },
+    {
+      "id": "conn-1sa-09-006",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 19,
+      "startVerse": 31,
+      "endChapter": 20,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Leviticus 19:31 and 20:27. The law forbids turning to those with familiar spirits and makes the practice a capital offence. The woman's fear at En-dor — that Saul is laying a snare for her life — follows from a law she knows is in force."
+    },
+    {
+      "id": "conn-1sa-09-007",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 26,
+      "startVerse": 10,
+      "endChapter": 26,
+      "endVerse": 10,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "David says of Saul that the Lord shall smite him, or his day shall come to die, or he shall go down into battle and be swept away. The figure at En-dor names the third of these as the manner of Saul's death."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S09 sources (S09-S01–S09-S03) are the 3 sources[] entries; all are verified. ENDOR PRESENTATION — DOCUMENTED-AND-ATTRIBUTED, NO ESCALATION (dossier line 344; §8): no position is asserted anywhere in this dossier on the medium's art, the identity/ontology of the apparition, or the episode's relation to the prohibition. The three classical readings are documented with named holders and no resolution is imposed: (1) Samuel himself really appeared, by God's special command (SCL-09-011, debated); (2) a demon or evil spirit impersonating Samuel (same claim, debated); (3) no appearance at all, a piece of jugglery by the woman (same claim, debated). Modern critical positions are documented second-hand in SCL-09-012 (probable). The early Jewish reading is SCL-09-013 (traditional). The appendix prose presents the readings side by side without resolving them. OPEN EDITORIAL ITEM for the EM/Yonatan (flagged, not decided): whether publication should present the three readings side by side as here, or whether Yonatan wishes to decide between them. If publication forces a choice, that decision is his — this dossier does not pre-empt it. SCO-09-008 (Sirach 46:20) is EXCLUDED from the built connections — validator-forced, not an editorial choice: the validator's checkScriptureRef (frontend/scripts/history-content-lib.js) rejects any book not in bibleChapters.json, and bibleChapters.json holds only the 66-book Protestant canon; Sirach is not in it (verified by running the validator against the Sirach connection, which errors 'book \"Sirach\" is not in bibleChapters.json'). The Sirach content is preserved in full: SCL-09-013 (traditional) carries the early Jewish reading as a claim, and the appendix prose documents Sirach 46:20 and Josephus in the 'What happened at En-dor?' subsection. Re-adding SCO-09-008 as a connection would require adding Sirach to bibleChapters.json — a reader-affecting change needing EM/Yonatan direction, not a category-build decision. The §11 count is therefore 7 built connections (the dossier's §11 lists 8). S09-S03b (Blenkinsopp et al. — source-blenkinsopp-adam-auld-endor-positions, not-independently-verified) stays OUT of sources[] (S06-S06/S08 precedent: the NIV rule overrides the claim-citation route): it is a single composite registry entry covering Joseph Blenkinsopp, Klaus-Peter Adam, A. Graeme Auld, Paul R. Williamson, Joyce Baldwin, Owen Davies and Grenville Kent; the modern scholars are named by name in SCL-09-012's claim text, but that claim's Source IDs column is S09-S03 (the survey) — S09-S03b is associated with SCL-09-012, not cited by it (second-reader §10). SCL-09-012 is capped at probable. S09-S03b is not footnoted in the Appendix prose (verified by script — the Appendix footnotes only S09-S01–S09-S03); it appears in neither sources[] nor the MD. No editorialOverride is needed (in-review). S09-S03c (Samaria Ostraca attestation of En-dor; En-dor excavations 1981–2012) has no registry entry (registry-build exclusion, unverified lead) and is cited by no §9 claim and no appendix footnote; it stays OUT. S09-S04 (1 Samuel KJV verification, Worker B — internal workspace file) has no registry entry (registry-build exclusion) and is cited by no §9 claim and no appendix footnote; it stays OUT. Reuse-basis exclusions (S01/S08 precedent — a source that reaches a claim only through a clm- reuse reference stays OUT of sources[]): SCL-09-003's Source IDs column names source-bdb-lexicon, but BDB reaches the claim only through the clm-deu-10-011 reuse — that published claim's evidence is 'BDB H224, read in full' and source-bdb-lexicon is in its category's sources[] — so BDB stays OUT; BDB is otherwise cited only in the §12 already-registered table row. SCL-09-009's Source IDs column names source-bible-gateway-kjv and source-jfb-commentary, but those are the sources of the reused clm-deu-05-029/030 (Deuteronomy 18 prohibition claims); they stay OUT. The dossier's own §12 row for source-bible-gateway-kjv states 'S09 text claims rest on S09-S01, not on this entry'. source-keil-delitzsch-deuteronomy is cited by no §9 claim and no appendix footnote; it stays OUT. Two multi-range connection targets, encoded per the S01/S02/S06/S07/S08 precedent (encompassing range, exact sub-ranges carried in the note; QA accepted encompassing ranges as shipped; splitting before publication remains the publication-time decision): SCO-09-003 targets 1 Samuel 15:22–23 and 15:28 (the rejection and the Amalek reason), encoded as the encompassing range 1 Sam 15:22–28 with 'Targets 1 Samuel 15:22–23 and 15:28.' in the note (S06 prefix style); SCO-09-006 targets Leviticus 19:31 and 20:27 (the prohibition and the capital offence), encoded as the encompassing range Lev 19:31–20:27 with 'Targets Leviticus 19:31 and 20:27.' in the note (S08 SCO-08-005 precedent). All other 5 built §11 targets are single ranges. Neither multi-range target is cross-book. Reuse references in evidence only (S01/S03/S04 precedent, internal-only, stripped at generation): SCL-09-003's evidence carries clm-ta-026 / clm-deu-10-011 (unknown, re-verified on live main); SCL-09-009's evidence carries clm-deu-05-029/030 (established, re-verified on live main 60e2845). No clm- reference appears in any claim text. The other §2 reuse items (clm-deu-05-031–038, clm-deu-06-073/074/076, conn-deu-06-068, conn-wi-027) are cited by no §9 claim and no appendix footnote; no source is added for any. Doubled '---' fix (QA artifact from S08): the dossier's Why section ends with a trailing '---' rule, and the S08 script appended a second terminator, so the S08 MD ends with a doubled '---'. This build strips a trailing '---' from the why section before appending the terminator, so the built MD ends with exactly one '---\\n' (byte-checked, aligning with S07). Dossier open items, not resolved by this build: 1 Chronicles 10:13–14 (SCO-09-005) and Leviticus 19:31; 20:27 (SCO-09-006) — wording not re-read live in this dossier, cited per Ellicott's references and the survey; both connections capped at probable. Ellicott's Zadok/Gibeon reconstruction for the 28:6 inquiry is recorded in §3 as speculation only; no claim is built on it. The companions' identity (Abner and Amasa) and the woman as Abner's mother are tradition only (SCL-09-014, probable). The Samaria Ostraca / En-dor excavations lead (S09-S03c) is unverified; no claim rests on it. §10 shared-opportunity lines (Topic: necromancy and the 'ob; Topic: inquiry of the LORD; Place: En-dor; Place: Shunem / Gilboa) do not enter the built files: the built JSON carries topics: [] (S01–S08 pattern), so they are moot for the built output. primaryScripture = fullRange = 28:3–25 (exactly 1 chapter, 23 verses: ch. 28 has 25 verses, the category covers vv. 3–25), as proposed in the dossier §1; no narrowing needed. The validator's ≤3-chapter limit applies only to primaryScripture, not to fullRange. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-ellicott-1-samuel-28",
+    "source-wikipedia-witch-of-endor"
+  ]
+}
