@@ -1,0 +1,369 @@
+{
+  "id": "category-2-samuel-the-famine-the-gibeonites-and-the-giants",
+  "title": "The Famine, the Gibeonites, and the Giants",
+  "category": "category",
+  "orphan": true,
+  "era": "2-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 21,
+    "startVerse": 1,
+    "endChapter": 21,
+    "endVerse": 22
+  },
+  "fullRange": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 21,
+    "startVerse": 1,
+    "endChapter": 21,
+    "endVerse": 22
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2sa-08-001",
+      "claim": "There is a famine in David's days three years, year after year; David seeks the face of the LORD, who answers, \"It is for Saul, and for his bloody house, because he put to death the Gibeonites.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-002",
+      "claim": "The Gibeonites are not of Israel but of the remnant of the Amorites; Israel had sworn to them, and Saul sought to slay them in his zeal for Israel and Judah.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Gibeonites,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-003",
+      "claim": "The Gibeonites won a treaty from Joshua by a ruse (worn clothes, mouldy bread, a claim of a far country); Israel's leaders made peace and confirmed it by oath without enquiring of the LORD, and kept the oath once the trick came out, putting the Gibeonites to service as woodcutters and water carriers for the community and the altar.",
+      "evidence": "BiblicalTraining, \"Gibeonites,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-004",
+      "claim": "Gibeon is identified with el-Jib, about 6 miles (10 km) northwest of Jerusalem; Pritchard's 1956–1962 excavations confirmed the identification, finding jar handles inscribed *gbʿn*, a rock-cut water shaft and tunnel, and an extensive winery. The book of Joshua calls the Gibeonites Hivites; 2 Samuel calls them survivors of the Amorites, using \"Amorite\" broadly for the pre-Israelite hill-country population.",
+      "evidence": "BiblicalTraining, \"Gibeonites,\" read in full; Pritchard 1959 (registered, verified).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-005",
+      "claim": "David asks the Gibeonites what atonement will make them bless the inheritance of the LORD. They want no silver or gold from Saul or his house and claim no general right to put any man to death in Israel; they ask for seven men of Saul's sons, to be hanged unto the LORD in Gibeah of Saul, and the king agrees.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Gibeonites,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-006",
+      "claim": "The king spares Mephibosheth son of Jonathan because of the LORD's oath between David and Jonathan.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-007",
+      "claim": "The king delivers the two sons of Rizpah daughter of Aiah, Armoni and Mephibosheth, and the five sons of Michal daughter of Saul, whom she bore to Adriel son of Barzillai the Meholathite. A second man named Mephibosheth — Rizpah's son — is hanged, while Jonathan's son of the same name is spared.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-008",
+      "claim": "The text as it stands names Michal as the mother of the five, but 6:23 says Michal had no child unto the day of her death, and 1 Sam 18:19 gives Merab, not Michal, to Adriel the Meholathite. Most Hebrew manuscripts read \"Michal\" here; the tension is in the text and is not resolved in this dossier.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Gibeonites,\" read in full (most Hebrew manuscripts read \"Michal\").",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-08-009",
+      "claim": "The seven are put to death in the days of harvest, in the first days, at the beginning of barley harvest. The exact form of execution is uncertain because the Hebrew verb is rare; older translations rendered it \"hanged.\"",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Gibeonites,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-08-010",
+      "claim": "Rizpah spreads sackcloth on the rock from the beginning of harvest until water is poured upon them from heaven, suffering neither the birds of the air by day nor the beasts of the field by night to touch them. When David is told what she has done, he acts.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-011",
+      "claim": "The vigil runs from the spring barley harvest until the rains — on the reading that the rain is the first heavy rain of autumn, about six months, from April or May until October or November. The text itself gives no duration in days.",
+      "evidence": "BiblicalTraining, \"Rizpah\" (read in full at consolidation 2026-11-24; see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-08-012",
+      "claim": "David takes the bones of Saul and Jonathan from the men of Jabesh-gilead, who stole them from the broad place of Beth-shan where the Philistines hanged them after Gilboa, gathers the bones of the hanged with them, and buries them all in Zelah, in the sepulchre of Kish, in Benjamin. \"And after that God was intreated for the land.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-013",
+      "claim": "Gibeah of Saul, where the seven are hanged, is usually identified with Tell el-Ful, about six kilometres north of Jerusalem — but the identification is contested, and archaeology does not establish the narratives set there.",
+      "evidence": "Reuse: `clm-jud-11-002` (unknown); registered Gibeah overview (verified).",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-2sa-08-014",
+      "claim": "The Philistines have war again; David goes down, waxes faint, and Ishbi-benob — of the sons of the giant, spear three hundred shekels of brass, girded with a new sword — thinks to slay him. Abishai succours David and kills the Philistine. David's men swear he shall go no more out with them to battle, \"that thou quench not the lamp of Israel\" (KJV: \"light of Israel\").",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-015",
+      "claim": "At Gob, Sibbechai the Hushathite slays Saph, of the sons of the giant.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-016",
+      "claim": "The Hebrew text reads that Elhanan son of Jaare-oregim the Bethlehemite slew \"Goliath the Gittite,\" whose spear-staff was like a weaver's beam; the KJV reads \"the brother of Goliath the Gittite,\" following the Chronicles reading. This is the one plain KJV-vs-MT name difference in the book.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (Hebrew \"Goliath\"); KJV text as served.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-017",
+      "claim": "The parallel account (1 Chr 20:5) identifies Elhanan's victim as Lahmi, the brother of Goliath. Whether the Chronicles reading preserves the original or clarifies Samuel's is debated and is not resolved here.",
+      "evidence": "BiblicalTraining, \"Rapha\" (read in full at consolidation 2026-11-24; see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-08-018",
+      "claim": "At Gath, Jonathan son of Shimeah, David's brother, slays a man of great stature with six fingers on each hand and six toes on each foot, four and twenty in number, who had taunted Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-08-019",
+      "claim": "\"These four were born to the giant in Gath\" — Hebrew *hārāpâ*, \"the Rapha.\" Whether Rapha was an individual ancestor or a collective name connected with the Rephaim, an ancient people known for great size (Deut 2:10–11, 20–21; 3:11), is debated among interpreters.",
+      "evidence": "BiblicalTraining, \"Rapha\" and \"Giants\" (both read in full at consolidation 2026-11-24; see §12).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-08-020",
+      "claim": "Barley harvest — the first grain of the year, ripening in spring — is the chapter's season marker: the seven die at its beginning and the vigil runs from it until the rains.",
+      "evidence": "Registered \"Barley Harvest\" and \"Harvest\" articles (verified, full reads 2026-11-23; harvest months cross-checked against ISBE, which agrees).",
+      "assessment": "established"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2sa-08-001",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 9,
+      "startVerse": 3,
+      "endChapter": 9,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "established",
+      "note": "The Gibeonites win a treaty from Joshua by posing as travellers from a far country, and Israel swears to let them live. When the trick comes out, the oath is kept and the Gibeonites are put to service as woodcutters and water carriers. The famine of 2 Samuel 21 is the reckoning for the breaking of this oath."
+    },
+    {
+      "id": "conn-2sa-08-002",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 10,
+      "startVerse": 1,
+      "endChapter": 10,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Five kings attack Gibeon for making peace with Israel, and Joshua marches all night from Gilgal to defend the city he is now bound to protect. The sun stands still over Gibeon until the victory is complete. The treaty was not only a promise but an obligation Israel fought to honour."
+    },
+    {
+      "id": "conn-2sa-08-003",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 20,
+      "startVerse": 10,
+      "endChapter": 20,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law allows terms of peace with distant cities but commands the destruction of the peoples within the land. The Gibeonites had heard of this command and acted out of fear for their lives, which is why their ruse, and the oath it won, carries the weight it does."
+    },
+    {
+      "id": "conn-2sa-08-004",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 20,
+      "startVerse": 12,
+      "endChapter": 20,
+      "endVerse": 42,
+      "type": "background",
+      "confidence": "established",
+      "note": "David and Jonathan swear an oath of loyalty to one another and to each other's houses, \"the LORD be between me and thee, and between my seed and thy seed for ever.\" It is this oath that spares Mephibosheth son of Jonathan when Saul's other descendants are handed over. Targets 1 Samuel 20:12–17 and 20:42."
+    },
+    {
+      "id": "conn-2sa-08-005",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 18,
+      "startVerse": 19,
+      "endChapter": 18,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Merab, Saul's elder daughter, is given to Adriel the Meholathite — the marriage the text of 2 Samuel 21:8 seems to attribute to Michal. The verse is the other side of the chapter's sharpest textual tension."
+    },
+    {
+      "id": "conn-2sa-08-006",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 6,
+      "startVerse": 23,
+      "endChapter": 6,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "established",
+      "note": "\"Therefore Michal the daughter of Saul had no child unto the day of her death.\" The closing line of the ark's coming to Jerusalem stands against the five sons attributed to her in 2 Samuel 21:8, and the two verses must be read together."
+    },
+    {
+      "id": "conn-2sa-08-007",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 6,
+      "endChapter": 3,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ish-bosheth charges Abner with going in to Rizpah, Saul's concubine, and Abner's rage at the charge drives him to transfer the kingdom to David. Rizpah's honour is the hinge of the civil war's end, years before her vigil moves David to bury Saul's house."
+    },
+    {
+      "id": "conn-2sa-08-008",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David seeks out Mephibosheth, Jonathan's lame son, restores Saul's land to him, and seats him at the king's table continually. The kindness shown there is the same covenant loyalty that spares him from the Gibeonites' demand."
+    },
+    {
+      "id": "conn-2sa-08-009",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 31,
+      "startVerse": 8,
+      "endChapter": 31,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "established",
+      "note": "The Philistines find Saul's body on Gilboa, fasten it to the wall of Beth-shan, and the valiant men of Jabesh-gilead journey all night to take it down and bury it. David's recovery of the bones in 2 Samuel 21:12 closes the story those men began."
+    },
+    {
+      "id": "conn-2sa-08-010",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 17,
+      "startVerse": 4,
+      "endChapter": 17,
+      "endVerse": 51,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Goliath of Gath, the champion with the spear like a weaver's beam, falls to the boy David in the Valley of Elah. The four giants of 2 Samuel 21 are born to the giant in the same city, and their fall is the closing of the Goliath account."
+    },
+    {
+      "id": "conn-2sa-08-011",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 20,
+      "startVerse": 4,
+      "endChapter": 20,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Chronicler tells the same battles in shorter form: Sippai at Gezer, Lahmi the brother of Goliath slain by Elhanan, and the six-fingered man slain by Jonathan. The parallel names the warrior 2 Samuel 21:19 calls Goliath, and the two accounts must be read side by side."
+    },
+    {
+      "id": "conn-2sa-08-012",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 2,
+      "startVerse": 12,
+      "endChapter": 2,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The men of Abner and the men of Joab meet at the pool of Gibeon and sit on opposite sides, and twelve young men of each side kill each other at once. Gibeon, the Gibeonites' city, is already the ground of Israel's civil war before it becomes the ground of its atonement."
+    },
+    {
+      "id": "conn-2sa-08-013",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 23,
+      "startVerse": 18,
+      "endChapter": 23,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Abishai, who lifts his spear against three hundred and is chief among the three, is the same Abishai who succours the fainting David against Ishbi-benob. The rescue in 2 Samuel 21 is the act of the king's most trusted captain, not of a stranger."
+    },
+    {
+      "id": "conn-2sa-08-014",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 24,
+      "startVerse": 1,
+      "endChapter": 24,
+      "endVerse": 25,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"Again the anger of the LORD was kindled against Israel\" opens the book's last chapter, and it closes, as this chapter does, on the LORD entreated for the land. The famine and the plague are the book's two closings on the same note: anger answered, then entreated. Targets 2 Samuel 24:1 and 24:25."
+    },
+    {
+      "id": "conn-2sa-08-015",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 35,
+      "startVerse": 33,
+      "endChapter": 35,
+      "endVerse": 33,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Blood shed in the land pollutes it, and no atonement can be made for the land except by the blood of the one who shed it. The famine's answer — bloodguilt on Saul's house — is this principle working itself out in the story."
+    },
+    {
+      "id": "conn-2sa-08-016",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 21,
+      "startVerse": 22,
+      "endChapter": 21,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "A man hanged on a tree is cursed of God, and his body shall not remain all night upon the tree but shall surely be buried the same day, that the land be not defiled. The seven remain exposed from harvest until the rains, and the burial at Zelah is what finally closes the defilement."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-samuel-masoretic-text",
+    "source-biblicaltraining-gibeonites",
+    "source-biblicaltraining-rizpah",
+    "source-biblicaltraining-giants",
+    "source-biblicaltraining-rapha",
+    "source-pritchard-hebrew-inscriptions-gibeon-1959",
+    "source-gibeah-tell-el-ful-archaeological-overview",
+    "source-biblicaltraining-barley-harvest",
+    "source-biblicaltraining-harvest",
+    "source-isbe-harvest"
+  ],
+  "review": {
+    "author": "Gnosis 2 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Samuel category; independent QA pending. S08 sources[] carries ten entries (all verified in the live registry): S08-S01 Mechon Mamre -> source-mechon-mamre-2-samuel-masoretic-text; S08-S02 -> source-biblicaltraining-gibeonites; S08-S03 -> source-biblicaltraining-rizpah; S08-S04 -> source-biblicaltraining-giants; S08-S05 -> source-biblicaltraining-rapha; source-pritchard-hebrew-inscriptions-gibeon-1959; source-gibeah-tell-el-ful-archaeological-overview; source-biblicaltraining-barley-harvest; source-biblicaltraining-harvest; source-isbe-harvest. Five appear in §9 Source IDs cells AND in appendix footnotes (30 uses: Mechon Mamre 15, BT Gibeonites 12, BT Giants 1, BT Rapha 1, Pritchard Gibeon 1). Five enter via §9 Source IDs only (0 appendix uses — the S05 precedent): BT Rizpah (claim 011), Gibeah Tell el-Ful (claim 013), BT Barley Harvest, BT Harvest and ISBE Harvest (claim 020). Excluded by the §-location rule (§2 reuse prose, §4 prose, or the §7 geography list only — never in a §9 Source IDs cell or the appendix): source-biblicaltraining-gath, source-biblicaltraining-goliath (§4 prose only), source-biblicaltraining-beth-shan, source-biblicaltraining-jabesh-gilead (§7 geography list only), source-biblicaltraining-philistines, source-bar-origins-of-the-philistines, source-feldman-ancient-dna-philistines-science-advances-2019 (§2 reuse prose only). Claim 013 reuses clm-jud-11-002 (unknown, the contested Tell el-Ful identification) in evidence; the Gibeah overview is cited directly in the claim's §9 Source IDs cell, so it enters directly, not by reuse. S08 has no needs-checking entries: S08-S03 (Rizpah), S08-S04 (Giants) and S08-S05 (Rapha) were re-read in full at consolidation (130 / 255 / 21 lines) and sit in §12 Verified; dependent claims keep their assessments because those reflect interpretive uncertainty, not source status. S2CL-08-008 is debated (the five sons of Michal — most Hebrew manuscripts read Michal, but 2 Sam 6:23 and 1 Sam 18:19 pull the other way; the text is not emended). S2CL-08-013 is the single unknown (Gibeah of Saul — Tell el-Ful is the usual identification, contested; no site is marked at build time). S2CL-08-019 is debated (Rapha — one ancestor or a collective name connected with the Rephaim; not decided here). S2CL-08-016 is established (the Hebrew of 21:19 reads Goliath the Gittite; the KJV reads the brother of Goliath, following Chronicles — the book's one plain KJV-vs-MT name difference) and S2CL-08-017 is probable (1 Chr 20:5 names Lahmi; which reading is original is debated and not resolved here). S2CL-08-011 is probable (the vigil's duration — about six months on the autumn-rains reading; the text itself gives no duration in days). S2CL-08-009 is probable (the exact form of execution is uncertain — the Hebrew verb is rare; older translations rendered it hanged). The §8 justice question (seven men dying for Saul's crime) is a debated interpretation, recorded not resolved; no editorialOverride is proposed or needed. Two multi-range connections, both within one book, built as encompassing ranges with exact Targets enumerations in the notes (S03 precedent, no splits): S2CO-08-004 (1 Sam 20:12-17, 42 -> 20:12-42, Targets 1 Samuel 20:12–17 and 20:42) and S2CO-08-014 (2 Sam 24:1, 25 -> 24:1-25, Targets 2 Samuel 24:1 and 24:25). primaryScripture is the full range 21:1-22 (1 chapter, endChapter − startChapter = 0, within the validator limit — no narrowing). Chapter coverage complete: all 22 verses covered (vv. 1-14 claims 001-013 and 020; vv. 15-22 claims 014-019), per the dossier's own coverage check. Dating-label harmonisation is an editorial decision, not a build fix. Dossier-notes item 3 (era enum flag) is stale — era \"2-samuel\" was appended by the S01 PR and is already in the allowlist. Dossier-notes item 7 (registry counts 381) is the stale pre-#313 snapshot — the live registry is 443 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
