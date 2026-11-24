@@ -1,0 +1,413 @@
+{
+  "id": "category-1-kings-solomons-wisdom-and-the-ordering-of-the-kingdom",
+  "title": "Solomon's Wisdom and the Ordering of the Kingdom",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 3,
+    "startVerse": 1,
+    "endChapter": 4,
+    "endVerse": 34
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 3,
+    "startVerse": 1,
+    "endChapter": 4,
+    "endVerse": 34
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-02-001",
+      "claim": "Solomon makes affinity with Pharaoh king of Egypt, takes Pharaoh's daughter, and brings her into the city of David, until he has made an end of building his own house, and the house of the LORD, and the wall of Jerusalem round about. The marriage is an alliance made early in the reign; a separate palace is later built for her (7:8; 9:24).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Solomon,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-002",
+      "claim": "The people sacrifice in high places, because there is no house built unto the name of the LORD until those days. Solomon loves the LORD, walking in the statutes of David his father — \"only he sacrificed and burnt incense in high places.\" The narrator's \"only\" qualifies the devotion just praised, in the same breath.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-003",
+      "claim": "The king goes to Gibeon to sacrifice there, \"for that was the great high place\": a thousand burnt offerings does Solomon offer upon that altar. The tabernacle Moses made and its bronze altar are kept at Gibeon, while David has placed the ark in a tent in Jerusalem (2 Chr 1:3–6). Gibeon is about 6 miles northwest of Jerusalem.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Solomon,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-004",
+      "claim": "In Gibeon the LORD appears to Solomon in a dream by night, and God says, \"Ask what I shall give thee.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-005",
+      "claim": "Solomon answers with David's faithfulness — truth, righteousness, and uprightness of heart — and the son given to sit on his throne; then his own smallness: \"I am but a little child: I know not how to go out or come in,\" set among a great people that cannot be numbered nor counted for multitude.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-006",
+      "claim": "Solomon asks for \"an understanding heart to judge thy people, that I may discern between good and bad: for who is able to judge this thy so great a people?\" The Hebrew phrase is literally *lēb šōmēaʿ*, \"a listening heart.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Solomon,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-007",
+      "claim": "The speech pleases the Lord — the corrected KJV reading — that Solomon asked this thing. The stored text gives the divine name in this verse in the form belonging to the Tetragrammaton; the Hebrew is אֲדֹנָי (Adonai), which the KJV renders \"Lord.\" The KJV verification report confirms the correction from two independent KJV witnesses (BibleHub and Blue Letter Bible, both siding against the stored text) and from the Mechon Mamre Hebrew. The JPS 1917 rendering of Adonai as \"LORD\" here is a JPS convention and does not decide KJV text. This dossier never quotes the stored reading.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; KJV verification report `KJV-1KINGS-1-22-VERIFICATION-20261124.md` (Class A, 3:10).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-008",
+      "claim": "Because Solomon asks for understanding to discern judgment, and not long life, nor riches, nor the life of his enemies, God gives a wise and an understanding heart, \"so that there was none like thee before thee, neither after thee shall any arise like unto thee,\" and with it what he did not ask, both riches and honour, so that no king shall be like him all his days.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-009",
+      "claim": "Long life is promised conditionally: \"if thou wilt walk in my ways, to keep my statutes and my commandments, as thy father David did walk, then I will lengthen thy days.\" The condition is in the same terms as David's charge at 2:4, and the conditional-dynasty thread continues at 6:12–13, 8:25, 9:4–5, and 11:38.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-010",
+      "claim": "Solomon awakes, and behold, it is a dream. He comes to Jerusalem, stands before the ark of the covenant of the LORD, offers burnt offerings and peace offerings, and makes a feast to all his servants.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-011",
+      "claim": "Two women that are harlots come to the king and stand before him. One tells it: they dwell in one house; she is delivered of a child, and three days later the other is delivered also; there is no stranger with them in the house, save they two. The other's child dies in the night, because she overlaid it; she arises at midnight, takes the living son from beside the sleeping mother, lays it in her bosom, and lays her dead child in the other's bosom. In the morning the mother sees it is not her son. Each claims the living child.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-012",
+      "claim": "The king calls for a sword — \"Divide the living child in two, and give half to the one, and half to the other.\" The true mother yields the child to save its life — \"give her the living child, and in no wise slay it\" — while the other says, \"Let it be neither mine nor thine, but divide it.\" The king gives the living child to the one who yielded: \"she is the mother thereof.\" The order is the test that reveals the mother; it is never carried out.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-013",
+      "claim": "All Israel hears of the judgment which the king has judged, and fears the king: \"for they saw that the wisdom of God was in him, to do judgment.\" The wisdom is proved before the whole people, and fear, not admiration alone, is the response.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-014",
+      "claim": "\"So king Solomon was king over all Israel.\" His princes: Azariah son of Zadok the priest; Elihoreph and Ahiah, sons of Shisha, scribes; Jehoshaphat son of Ahilud, the recorder; Benaiah son of Jehoiada over the host; Zadok and Abiathar priests; Azariah son of Nathan over the officers; Zabud son of Nathan principal officer and the king's friend; Ahishar over the household; Adoniram son of Abda over the tribute. Adoniram is over the levy of compulsory labourers, not the collection of money or goods.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 4); JFB on 1 Kings 4, read in full (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-015",
+      "claim": "Twelve officers over all Israel provide victuals for the king and his household, each man his month in a year. They are named by district, from the son of Hur in Mount Ephraim to Geber son of Uri in Gilead, the country of Sihon king of the Amorites and of Og king of Bashan. Two of them have married Solomon's daughters: the son of Abinadab has Taphath, and Ahimaaz has Basmath. Some districts follow old tribal territories; others cut across them, joining former Canaanite cities with Israelite land. JFB explains the system as revenues raised in the produce of the soil, not in money payments.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 4); BiblicalTraining, \"Solomon,\" read in part (see §12); JFB on 1 Kings 4, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-016",
+      "claim": "The twelfth officer, Geber son of Uri, is described as \"the only officer which was in the land,\" and Judah does not clearly appear among the twelve districts. The Solomon article reads this as the sign that Judah was administered separately, so that the northern tribes bore most of the burden of supplying the court — which may help explain the northern grievances after Solomon's death. The text does not say so in terms; the separate-administration reading is an interpretation of this verse and of the list's silence about Judah.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 4); BiblicalTraining, \"Solomon,\" read in part (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-02-017",
+      "claim": "Judah and Israel are many, as the sand which is by the sea in multitude, eating and drinking, and making merry.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 4).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-018",
+      "claim": "Solomon reigns over all kingdoms from the river unto the land of the Philistines and unto the border of Egypt; they bring presents and serve him all his days. He has dominion over all the region on this side the river, from Tiphsah even to Azzah, over all the kings on this side the river, and peace on all sides round about him. Tiphsah is Thapsacus, on the west bank of the Euphrates; Azzah is Gaza. The boundaries echo the land promised to Abraham (Gen 15:18).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 5 vv. 1–4); BiblicalTraining, \"Solomon,\" read in part (see §12); JFB on 1 Kings 4, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-019",
+      "claim": "Solomon's provision for one day is thirty measures of fine flour and threescore measures of meal, ten fat oxen, twenty oxen out of the pastures, and a hundred sheep, beside harts, roebucks, fallowdeer, and fatted fowl. JFB takes the provision to be for the whole court — the royal establishment, his consorts, his principal officers, his bodyguards, his foreign visitors — not the king's table only. JFB estimates the fine flour at two hundred and forty bushels and the meal at four hundred and eighty.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 5 vv. 2–3); JFB on 1 Kings 4, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-020",
+      "claim": "Judah and Israel dwell safely, \"every man under his vine and under his fig tree, from Dan even to Beersheba, all the days of Solomon.\" The vine and fig tree are a common metaphor for peace and security, returning at Micah 4:4 and Zechariah 3:10; \"from Dan even to Beersheba\" is the formula for the whole kingdom, used already in Abner's oath (2 Sam 3:10).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 5 v. 5); JFB on 1 Kings 4, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-021",
+      "claim": "Solomon has forty thousand stalls of horses for his chariots, and twelve thousand horsemen. 2 Chronicles 9:25 gives four thousand stalls for horses and chariots. The Solomon article records the difference and notes that the Kings figure is widely regarded as a copying error. This dossier does not resolve the difference and does not adopt the copying-error explanation: both numbers are stated, and the discrepancy is flagged as unresolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 5 v. 6); BiblicalTraining, \"Solomon,\" read in part (see §12); JFB on 1 Kings 4, read in full (cross-refers 2 Chr 9:25 without resolving).",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-1ki-02-022",
+      "claim": "The officers provide victual for king Solomon and for all that come unto his table, every man in his month: \"they lacked nothing.\" Barley also and straw for the horses and dromedaries they bring unto the place where the officers are, every man according to his charge.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 5 vv. 7–8).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-023",
+      "claim": "God gives Solomon wisdom and understanding exceeding much, and largeness of heart, \"even as the sand that is on the sea shore.\" His wisdom excels the wisdom of all the children of the east country and all the wisdom of Egypt. JFB glosses \"largeness of heart\" as high powers of mind: great capacity for receiving as well as aptitude for communicating knowledge.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 5 vv. 9–10); JFB on 1 Kings 4, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-024",
+      "claim": "Solomon is wiser than all men — than Ethan the Ezrahite, and Heman, and Chalcol, and Darda, the sons of Mahol — and his fame is in all nations round about. The text names the four men as the measure of his wisdom and says nothing more about them. JFB identifies Ethan with Jeduthun of the family of Merari and Heman with the chief of the temple musicians and the king's seer, and notes that Chalcol and Darda are not known; those identifications are probable at most.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 5 v. 11); JFB on 1 Kings 4, read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-02-025",
+      "claim": "Solomon speaks three thousand proverbs, and his songs are a thousand and five. He speaks of trees, from the cedar tree that is in Lebanon even unto the hyssop that springs out of the wall; he speaks also of beasts, and of fowl, and of creeping things, and of fishes.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 5 vv. 12–13).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-026",
+      "claim": "There come of all people to hear the wisdom of Solomon, from all kings of the earth, which have heard of his wisdom.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT ch. 5 v. 14).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-02-027",
+      "claim": "Date: unknown. The text gives no absolute date. Conventional scholarly datings exist — the Solomon article dates the forty-year reign about 970–930 BC, and the Bible Odyssey article places Solomon in the mid-tenth century BCE — but they are the articles' datings, not dates the text gives, and this dossier asserts no date from them.",
+      "evidence": "BiblicalTraining, \"Solomon,\" read in part (see §12); Bible Odyssey, \"Solomon,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-02-028",
+      "claim": "The biblical books of Proverbs, the Song of Songs, Qohelet (Ecclesiastes), and two Psalms (72 and 127) are attributed to Solomon, as are later wisdom traditions such as the Wisdom of Solomon. The attribution is traditional: what the chapter itself establishes is only the count of the proverbs and songs and the range of the speech, not the authorship of any later book.",
+      "evidence": "Bible Odyssey, \"Solomon,\" read in full.",
+      "assessment": "traditional"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-02-001",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "The LORD promises David that his son, who shall proceed out of his bowels, shall build a house for the name of the LORD, and that the throne of his kingdom shall be established for ever. Solomon's building programme, still unfinished in the opening verse of this chapter, is the son's answer to that promise."
+    },
+    {
+      "id": "conn-1ki-02-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "On his deathbed David charges Solomon to keep the charge of the LORD and walk in his ways, so that the LORD may continue his word: if his children take heed to their way, there shall not fail him a man on the throne of Israel. The long life promised at Gibeon is conditional in the same terms."
+    },
+    {
+      "id": "conn-1ki-02-003",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 12,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler tells the same Gibeon story more briefly: Solomon offers a thousand burnt offerings on the bronze altar before the tabernacle, God appears the same night, and Solomon asks for wisdom and knowledge. The place, the offerings, the night appearance, and the gift with its additions agree; the wording of the request differs, and the judgment of the two harlots does not appear."
+    },
+    {
+      "id": "conn-1ki-02-004",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 9,
+      "startVerse": 25,
+      "endChapter": 9,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Chronicles gives Solomon four thousand stalls for horses and chariots, where Kings gives forty thousand stalls of horses for his chariots. The two numbers stand side by side in the record, and the difference is not reconciled."
+    },
+    {
+      "id": "conn-1ki-02-005",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 16,
+      "endChapter": 17,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The king must not multiply horses, nor cause the people to return to Egypt for horses, nor multiply wives that his heart turn not away, nor greatly multiply silver and gold. The horses and the Egyptian marriage of this chapter stand under that law, and the book will later record the breach in its own terms."
+    },
+    {
+      "id": "conn-1ki-02-006",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 7,
+      "startVerse": 3,
+      "endChapter": 7,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Israel is forbidden to make marriages with the nations, neither giving daughters to their sons nor taking their daughters for sons. Solomon's marriage to Pharaoh's daughter opens the reign under that prohibition, which the book never withdraws."
+    },
+    {
+      "id": "conn-1ki-02-007",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 9,
+      "startVerse": 3,
+      "endChapter": 9,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Gibeonites, hearing what Joshua had done to Jericho and Ai, come with craft, make a league, and are made hewers of wood and drawers of water for the congregation and the altar of the LORD. Gibeon is an old Canaanite city bound to Israel by treaty, and its high place is the great high place of this chapter."
+    },
+    {
+      "id": "conn-1ki-02-008",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 8,
+      "startVerse": 11,
+      "endChapter": 8,
+      "endVerse": 18,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Samuel warns Israel what the manner of the king will be: he will take their sons for his chariots and horsemen, their daughters for confectionaries and cooks and bakers, their fields and vineyards and oliveyards, and a tenth of their seed and vineyards. The officers, the levy, and the monthly provision of this chapter are that warning in operation."
+    },
+    {
+      "id": "conn-1ki-02-009",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 15,
+      "startVerse": 18,
+      "endChapter": 15,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The LORD makes a covenant with Abram, saying, Unto thy seed have I given this land, from the river of Egypt unto the great river, the river Euphrates. The dominion claimed in this chapter, from the river to the Philistines and the border of Egypt, echoes the extent of that promise."
+    },
+    {
+      "id": "conn-1ki-02-010",
+      "book": "Proverbs",
+      "bookId": "proverbs",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The proverbs of Solomon the son of David, king of Israel, are given to know wisdom and instruction, to perceive the words of understanding, to receive the instruction of wisdom, justice, and judgment, and equity. The three thousand proverbs counted in this chapter are the tradition behind that book's opening."
+    },
+    {
+      "id": "conn-1ki-02-011",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 8,
+      "startVerse": 1,
+      "endChapter": 8,
+      "endVerse": 11,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Solomon assembles the elders to bring up the ark of the covenant from the city of David, and the cloud fills the house so that the priests cannot stand to minister. The ark before which Solomon stands when he wakes from the dream is brought into the house whose building the dream anticipates."
+    },
+    {
+      "id": "conn-1ki-02-012",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 10,
+      "startVerse": 1,
+      "endChapter": 10,
+      "endVerse": 13,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "The queen of Sheba, hearing of Solomon's fame concerning the name of the LORD, comes to prove him with hard questions, sees his wisdom and his house, and says the half was not told her. She is the first of the kings from all the earth who come to hear the wisdom counted in this chapter."
+    },
+    {
+      "id": "conn-1ki-02-013",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 1,
+      "endChapter": 11,
+      "endVerse": 4,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Solomon loves many strange women besides Pharaoh's daughter, seven hundred wives and three hundred concubines, and his wives turn away his heart after other gods. The marriage alliance that opens this chapter is the beginning of the household whose end that chapter records."
+    },
+    {
+      "id": "conn-1ki-02-014",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 4,
+      "endChapter": 12,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The northern tribes ask Rehoboam to lighten the heavy yoke his father put on them, and the grievous service with which he made them serve. The levy and the monthly provision ordered in this chapter are the yoke they name."
+    },
+    {
+      "id": "conn-1ki-02-015",
+      "book": "Micah",
+      "bookId": "micah",
+      "startChapter": 4,
+      "startVerse": 4,
+      "endChapter": 4,
+      "endVerse": 4,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "In the prophet's vision of peace, every man shall sit under his vine and under his fig tree, and none shall make them afraid. The same image describes the safety of Solomon's days, and the prophet carries it forward as the peace the kingdom was meant to keep."
+    },
+    {
+      "id": "conn-1ki-02-016",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 10,
+      "endChapter": 3,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Abner swears to transfer the kingdom from the house of Saul to David, from Dan even to Beersheba, as the LORD swore. The formula for the whole kingdom, first used for its transfer, is used here for its peace."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-biblicaltraining-solomon",
+    "source-bible-odyssey-solomon",
+    "source-jfb-commentary",
+    "source-pritchard-hebrew-inscriptions-gibeon-1959",
+    "source-richelle-cult-centralization-kings"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S02 sources[] carries six entries (all verified in the live registry): K02-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K02-S02 BT \"Solomon\" -> source-biblicaltraining-solomon; K02-S03 BO \"Solomon\" -> source-bible-odyssey-solomon; source-jfb-commentary; source-pritchard-hebrew-inscriptions-gibeon-1959; source-richelle-cult-centralization-kings. Four appear in §9 Source IDs cells AND in appendix footnotes (Mechon Mamre 28, BT Solomon 11, BO Solomon 2, JFB 6); Pritchard enters via the appendix footnote only (1 use — the S03 Wikipedia-Edom precedent: appendix footnote, registry-verified, included by the mechanical §-location rule; no §9 claim cites it in its Source IDs cell, though §12 names KCL-02-003 for the Gibeon = el-Jib identification); Richelle likewise enters via the appendix footnote only (1 use — the same precedent; §12 states no §9 claim cites it, for the high-places / centralisation framing in §4/§8). K02-S05 (BO \"Kingship in the Ancient Near East\") and K02-S06 (Josephus Ant. 8.2–3) are NOT in sources[]: both were excluded from the registry by the hygiene rule (1 Kings registry build — §12 row + dossier-notes item 9 only, zero §9/§11/appendix citations, zero dependent claims) and appear nowhere in the built files. Excluded by the §-location rule (reuse-basis only, cited through published claims in §2, never in §9 Source IDs or the appendix): the kingship law (clm-deu-05-014/016/023), the ark (clm-bu-033, clm-deu-03-036, clm-deu-09-014), David's genealogy (clm-rut-04-002/006/015), and the anointing (source-biblicaltraining-anointing). KCL-02-007 is established and uses the CORRECTED KJV reading of 3:10 (\"And the speech pleased the Lord, that Solomon had asked this thing\"); the stored text misrenders the divine name (Class A stored-text error, flagged only, no database fix). The stored 3:10 reading is quoted nowhere in the built files (verified by grep at build). KCL-02-021 is the single unknown (4:26 stalls — 40,000 against 2 Chr 9:25's 4,000; both numbers stated, the discrepancy flagged as unresolved; the Solomon article's copying-error note is recorded, not adopted). KCL-02-028 is the single traditional claim (the Solomonic attribution of Proverbs, the Song of Songs, Qohelet, and Psalms 72 and 127 — what the chapter establishes is only the count and the range, not the authorship of any later book). KCL-02-024 is probable (D-S02-2 cap at Step 5: its own text says the JFB identifications are \"probable at most\"); KCL-02-016 and KCL-02-027 are probable (the separate-administration reading of 4:19; the conventional datings 970–930 BC / mid-tenth century BCE). D-S02-3 (JFB attribution inside the three claims) is present as corrected at Step 5 (claims 015, 019, 023). No multi-range connections — all 16 §11 targets are single ranges within one book, so no encompassing ranges and no splits. primaryScripture is the full range 3:1–4:34 (2 chapters, endChapter − startChapter = 1, within the validator limit — no narrowing). Chapter coverage is complete: all 62 verses covered (ch. 3 vv. 1–28 by KCL-02-001–013; ch. 4 vv. 1–34 by KCL-02-014–026), per the dossier's own coverage check, re-verified by script at build. KJV 4:21–34 = MT 5:1–14 numbering is preserved as the dossier states it (KCL-02-018–026, §3, §7, §10). Dossier-notes item 11 (registry counts 407) is the stale pre-#323 snapshot — the live registry is 443 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
