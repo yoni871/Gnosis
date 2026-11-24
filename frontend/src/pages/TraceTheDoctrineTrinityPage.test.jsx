@@ -1,6 +1,8 @@
 // Trinity workspace tests: passage switching, timeline selection
 // (click + keyboard), empty states, demonstration labeling, prev/next
-// ends, translation switching, and the 45/55 layout structure.
+// ends, translation switching, the 45/55 layout structure, the
+// passage jump, focus management, quotation expansion, and timeline
+// scroll behavior (UI PR 2).
 //
 // Scripture text here is synthetic ("Genesis 1 verse 26.") — the
 // tests assert trimming, loading, and state, never real KJV wording.
@@ -12,6 +14,8 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { ThemeProvider } from "../context/ThemeContext";
+import DoctrineInterpretationPanel from "../components/Doctrine/DoctrineInterpretationPanel";
+import { getFigure, getWork, passages } from "../data/doctrineStudies";
 import TraceTheDoctrineTrinityPage from "./TraceTheDoctrineTrinityPage";
 
 const { getBibleChapter, getTranslations } = vi.hoisted(() => ({
@@ -70,7 +74,7 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(screen.getByRole("heading", { level: 1, name: "The Trinity" })).toBeInTheDocument();
         expect(screen.getByText("From Scripture through Christian history")).toBeInTheDocument();
 
-        expect(screen.getByText("1 OF 4")).toBeInTheDocument();
+        expect(screen.getByLabelText("Passage")).toHaveValue("gen-1-26");
         expect(await screen.findByText("Genesis 1 verse 26.")).toBeInTheDocument();
         // Only the cited verse is shown — the rest of the chapter is not.
         expect(screen.queryByText("Genesis 1 verse 25.")).toBeNull();
@@ -115,30 +119,30 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(screen.getByRole("heading", { name: "Augustine" })).toBeInTheDocument();
 
         await user.click(next);
-        expect(screen.getByText("2 OF 4")).toBeInTheDocument();
+        expect(screen.getByLabelText("Passage")).toHaveValue("john-1-1");
         expect(await screen.findByText("John 1 verse 1.")).toBeInTheDocument();
         expect(screen.getByText("John 1 verse 3.")).toBeInTheDocument();
         expect(screen.queryByText("John 1 verse 4.")).toBeNull();
         expect(getBibleChapter).toHaveBeenCalledWith("John", 1, "KJV");
 
         await user.click(screen.getByRole("button", { name: /Next passage/ }));
-        expect(screen.getByText("3 OF 4")).toBeInTheDocument();
+        expect(screen.getByLabelText("Passage")).toHaveValue("matt-28-19");
         expect(await screen.findByText("Matthew 28 verse 19.")).toBeInTheDocument();
         expect(screen.queryByText("Matthew 28 verse 20.")).toBeNull();
 
         await user.click(screen.getByRole("button", { name: /Next passage/ }));
-        expect(screen.getByText("4 OF 4")).toBeInTheDocument();
+        expect(screen.getByLabelText("Passage")).toHaveValue("2cor-13-14");
         expect(await screen.findByText("2 Corinthians 13 verse 14.")).toBeInTheDocument();
         expect(screen.queryByText("2 Corinthians 13 verse 13.")).toBeNull();
         // The end is an honest end: Next is disabled and stays put.
         expect(screen.getByRole("button", { name: /Next passage/ })).toBeDisabled();
         await user.click(screen.getByRole("button", { name: /Next passage/ }));
-        expect(screen.getByText("4 OF 4")).toBeInTheDocument();
+        expect(screen.getByLabelText("Passage")).toHaveValue("2cor-13-14");
 
         await user.click(screen.getByRole("button", { name: /Previous passage/ }));
         await user.click(screen.getByRole("button", { name: /Previous passage/ }));
         await user.click(screen.getByRole("button", { name: /Previous passage/ }));
-        expect(screen.getByText("1 OF 4")).toBeInTheDocument();
+        expect(screen.getByLabelText("Passage")).toHaveValue("gen-1-26");
         expect(await screen.findByText("Genesis 1 verse 26.")).toBeInTheDocument();
         expect(screen.getByRole("button", { name: /Previous passage/ })).toBeDisabled();
         // Back on Genesis 1:26 the first interpretation is selected again.
@@ -180,7 +184,7 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(screen.getByRole("button", { name: /Justin Martyr/ })).not.toHaveAttribute("aria-current");
         // Scripture did not move.
         expect(screen.getByText("Genesis 1 verse 26.")).toBeInTheDocument();
-        expect(screen.getByText("1 OF 4")).toBeInTheDocument();
+        expect(screen.getByLabelText("Passage")).toHaveValue("gen-1-26");
         expect(getBibleChapter).toHaveBeenCalledTimes(1);
     });
 
@@ -245,6 +249,82 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(await screen.findByText("Genesis 1 verse 26.")).toBeInTheDocument();
     });
 
+    it("jumps straight to a passage with the passage select", async () => {
+        const user = userEvent.setup();
+        renderPage();
+        await screen.findByText("Genesis 1 verse 26.");
+
+        const select = screen.getByLabelText("Passage");
+        expect(select).toHaveValue("gen-1-26");
+        expect(within(select).getAllByRole("option")).toHaveLength(4);
+
+        await user.selectOptions(select, "matt-28-19");
+        expect(await screen.findByText("Matthew 28 verse 19.")).toBeInTheDocument();
+        expect(screen.queryByText("Matthew 28 verse 20.")).toBeNull();
+        expect(getBibleChapter).toHaveBeenCalledWith("Matthew", 28, "KJV");
+        expect(screen.getByLabelText("Passage")).toHaveValue("matt-28-19");
+        // Jumping to a passage with no entries shows the empty state.
+        expect(screen.getByText("No historical interpretations have been added for Matthew 28:19 yet.")).toBeInTheDocument();
+    });
+
+    it("steps passages with Left/Right arrows from the navigation, and leaves the select's native keys alone", async () => {
+        const user = userEvent.setup();
+        renderPage();
+        await screen.findByText("Genesis 1 verse 26.");
+
+        const next = screen.getByRole("button", { name: /Next passage/ });
+        next.focus();
+        await user.keyboard("{ArrowRight}");
+        expect(await screen.findByText("John 1 verse 1.")).toBeInTheDocument();
+
+        const previous = screen.getByRole("button", { name: /Previous passage/ });
+        previous.focus();
+        await user.keyboard("{ArrowLeft}");
+        expect(await screen.findByText("Genesis 1 verse 26.")).toBeInTheDocument();
+
+        // Arrow keys inside the select keep their native meaning: the
+        // passage does not change.
+        const select = screen.getByLabelText("Passage");
+        select.focus();
+        await user.keyboard("{ArrowRight}");
+        expect(screen.getByLabelText("Passage")).toHaveValue("gen-1-26");
+        expect(screen.getByText("Genesis 1 verse 26.")).toBeInTheDocument();
+    });
+
+    it("moves focus to the new passage heading after a passage change, and never steals focus on load", async () => {
+        const user = userEvent.setup();
+        renderPage();
+        await screen.findByText("Genesis 1 verse 26.");
+        // Initial mount: focus stays where the browser put it.
+        expect(document.activeElement).toBe(document.body);
+
+        await user.click(screen.getByRole("button", { name: /Next passage/ }));
+        expect(await screen.findByText("John 1 verse 1.")).toBeInTheDocument();
+        expect(document.activeElement).toBe(screen.getByRole("heading", { name: "John 1:1–3" }));
+    });
+
+    it("does not scroll the timeline on mount, and scrolls the selected node into view on keyboard selection", async () => {
+        const user = userEvent.setup();
+        const originalScrollIntoView = window.HTMLElement.prototype.scrollIntoView;
+        window.HTMLElement.prototype.scrollIntoView = vi.fn();
+        try {
+            renderPage();
+            await screen.findByText("Genesis 1 verse 26.");
+            expect(window.HTMLElement.prototype.scrollIntoView).not.toHaveBeenCalled();
+
+            screen.getByRole("button", { name: /Justin Martyr/ }).focus();
+            await user.keyboard("{ArrowRight}");
+            expect(screen.getByRole("heading", { name: "Irenaeus" })).toBeInTheDocument();
+            expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledTimes(1);
+        } finally {
+            if (originalScrollIntoView === undefined) {
+                delete window.HTMLElement.prototype.scrollIntoView;
+            } else {
+                window.HTMLElement.prototype.scrollIntoView = originalScrollIntoView;
+            }
+        }
+    });
+
     it("lays out Scripture and interpretation as one 45/55 surface with the timeline at the bottom of the right column", async () => {
         renderPage();
         await screen.findByText("Genesis 1 verse 26.");
@@ -304,5 +384,72 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(css).toContain("overflow-x: auto");
         expect(css).toContain("scroll-snap-type: x mandatory");
         expect(css).toContain("prefers-reduced-motion");
+    });
+});
+
+describe("DoctrineInterpretationPanel quotation expansion", () => {
+    // Synthetic fixtures for interaction testing only — never
+    // editorially approved research, and never shown as verified
+    // historical evidence.
+    const LONG_QUOTATION = "A synthetic quotation written for testing only. ".repeat(12);
+    const SHORT_QUOTATION = "A short synthetic quotation for testing only.";
+
+    function panelProps(quotation) {
+        return {
+            interpretation: {
+                id: "test-interpretation",
+                figureId: "justin-martyr",
+                workId: "justin-martyr-work",
+                passageId: "gen-1-26",
+                quotation,
+                explanation: null,
+                citation: "Synthetic citation for testing only.",
+                placeholder: true,
+                demonstration: true,
+                order: 0,
+            },
+            figure: getFigure("justin-martyr"),
+            work: getWork("justin-martyr-work"),
+            passage: passages[0],
+        };
+    }
+
+    it("collapses a long quotation behind a toggle and expands it on request", async () => {
+        const user = userEvent.setup();
+        render(<DoctrineInterpretationPanel {...panelProps(LONG_QUOTATION)} />);
+        const toggle = screen.getByRole("button", { name: "Read full quotation" });
+        expect(toggle).toHaveAttribute("aria-expanded", "false");
+        expect(document.querySelector(".doctrine-interpretation-quotation")).toHaveClass(
+            "doctrine-interpretation-quotation--collapsed",
+        );
+        await user.click(toggle);
+        expect(screen.getByRole("button", { name: "Show less" })).toHaveAttribute("aria-expanded", "true");
+        expect(document.querySelector(".doctrine-interpretation-quotation")).not.toHaveClass(
+            "doctrine-interpretation-quotation--collapsed",
+        );
+    });
+
+    it("renders a short quotation in full with no toggle", () => {
+        render(<DoctrineInterpretationPanel {...panelProps(SHORT_QUOTATION)} />);
+        expect(screen.queryByRole("button", { name: /quotation/ })).toBeNull();
+        expect(screen.getByText(SHORT_QUOTATION)).toBeInTheDocument();
+    });
+
+    it("starts collapsed again when the theologian changes", async () => {
+        const user = userEvent.setup();
+        const props = panelProps(LONG_QUOTATION);
+        const { rerender } = render(<DoctrineInterpretationPanel {...props} />);
+        await user.click(screen.getByRole("button", { name: "Read full quotation" }));
+        expect(screen.getByRole("button", { name: "Show less" })).toBeInTheDocument();
+
+        rerender(
+            <DoctrineInterpretationPanel
+                {...props}
+                interpretation={{ ...props.interpretation, id: "test-interpretation-2", figureId: "irenaeus", workId: "irenaeus-work" }}
+                figure={getFigure("irenaeus")}
+                work={getWork("irenaeus-work")}
+            />,
+        );
+        expect(screen.getByRole("button", { name: "Read full quotation" })).toHaveAttribute("aria-expanded", "false");
     });
 });

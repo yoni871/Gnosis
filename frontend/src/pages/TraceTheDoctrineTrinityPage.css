@@ -183,6 +183,13 @@
     font-size: 1.05rem;
     line-height: 1.75;
 }
+/* The passage heading is a focus target after a passage change
+   (tabIndex -1, never a tab stop): the outline marks where focus
+   landed. */
+.doctrine-scripture-panel .doctrine-panel-title:focus {
+    outline: 2px solid var(--doctrine-maroon);
+    outline-offset: 2px;
+}
 .doctrine-scripture-verse-number {
     margin-right: 8px;
     font-family: var(--public-font-ui);
@@ -260,12 +267,26 @@
     outline: 2px solid var(--doctrine-maroon);
     outline-offset: 2px;
 }
-.doctrine-scripture-nav-position {
-    margin: 0;
-    font: 600 .72rem/1.5 var(--public-font-ui);
-    letter-spacing: .18em;
-    color: var(--public-muted);
-    white-space: nowrap;
+/* The passage jump: content-sized like the translation selector,
+   truncated with an ellipsis when the label is long, never
+   stretching the row. */
+.doctrine-scripture-nav-select {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 220px;
+    min-height: 32px;
+    padding: 4px 8px;
+    border: 1px solid var(--public-border);
+    border-radius: 4px;
+    background: var(--bg-surface, transparent);
+    color: var(--public-ink);
+    font: 400 .85rem/1.4 var(--public-font-ui);
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+.doctrine-scripture-nav-select:focus-visible {
+    outline: 2px solid var(--doctrine-maroon);
+    outline-offset: 2px;
 }
 
 /* ---------- Interpretation panel ---------- */
@@ -300,6 +321,17 @@
     line-height: 1.7;
 }
 .doctrine-interpretation-quotation blockquote p { margin: 0; }
+/* A long quotation collapses to three lines until the reader asks
+   for the rest; the toggle sits under the clamped text. */
+.doctrine-interpretation-quotation--collapsed blockquote p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.doctrine-interpretation-quotation--collapsed .doctrine-interpretation-toggle {
+    margin-top: 8px;
+}
 .doctrine-interpretation-quotation cite {
     display: block;
     margin-top: 8px;
@@ -629,6 +661,10 @@
     }
     /* Touch targets go back to 44px on coarse screens. */
     .doctrine-translation-select {
+        min-height: 44px;
+        padding: 8px 12px;
+    }
+    .doctrine-scripture-nav-select {
         min-height: 44px;
         padding: 8px 12px;
     }

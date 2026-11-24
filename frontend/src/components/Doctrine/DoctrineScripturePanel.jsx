@@ -9,7 +9,7 @@
 // active interpretation: changing the translation re-fetches the same
 // passage, and the full passage stays one click away via the reader
 // link in the footer.
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { getBibleChapter } from "../../services/bibleService";
 import { readerLinkFor } from "../../services/historyService";
@@ -41,11 +41,22 @@ export default function DoctrineScripturePanel({
     translation = "KJV",
     translations = [],
     onTranslationChange,
+    focusHeadingSignal = 0,
 }) {
     const [verses, setVerses] = useState(null);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [retryKey, setRetryKey] = useState(0);
+    const headingRef = useRef(null);
+
+    // Focus management: after a user-initiated passage change the
+    // panel remounts (the workspace keys it by passage + translation)
+    // and focus moves to the passage heading, so keyboard and
+    // screen-reader users land on the new passage. The signal is 0
+    // on the initial mount, so the page never steals focus on load.
+    useEffect(() => {
+        if (focusHeadingSignal > 0) headingRef.current?.focus();
+    }, [focusHeadingSignal]);
 
     const readerLink = readerLinkFor(passage);
     const selectedTranslation = translations.find((item) => item.abbreviation === translation);
@@ -88,7 +99,9 @@ export default function DoctrineScripturePanel({
             <header className="doctrine-panel-header">
                 <p className="doctrine-panel-eyebrow">Scripture</p>
                 <div className="doctrine-scripture-title-row">
-                    <h2 className="doctrine-panel-title">{passage.label}</h2>
+                    {/* tabIndex -1: the heading is a focus target after
+                        a passage change, never a tab stop. */}
+                    <h2 className="doctrine-panel-title" tabIndex={-1} ref={headingRef}>{passage.label}</h2>
                     {/* The label stays associated for assistive tech and
                         tests (getByLabelText) but is visually hidden: the
                         selector sits beside the reference, not under it. */}

@@ -13,7 +13,10 @@
 // auto-selects the first available interpretation (or the empty state
 // when none exists); Scripture stays visible while interpretations
 // change. Selecting a timeline node updates the interpretation panel
-// WITHOUT changing Scripture.
+// WITHOUT changing Scripture. A user-initiated passage change also
+// moves focus to the Scripture heading (see passageFocusSignal),
+// so keyboard and screen-reader users land on the new passage
+// instead of staying on the navigation.
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -40,6 +43,12 @@ export default function DoctrineWorkspace() {
     const selectedInterpretationId = searchParams.get("interpretation");
     const [translation, setTranslation] = useState(DOCTRINE_DEFAULT_TRANSLATION);
     const [translations, setTranslations] = useState([]);
+    // Counts user-initiated passage changes. The Scripture panel is
+    // keyed by passage + translation, so it remounts on a change; it
+    // focuses its heading only when this signal is non-zero, which
+    // never happens on the initial mount — the page never steals
+    // focus on load.
+    const [passageFocusSignal, setPassageFocusSignal] = useState(0);
 
     // The translation catalog (GET /api/translations, the same call the
     // reader uses). A failed catalog load is not fatal: the selector
@@ -86,6 +95,12 @@ export default function DoctrineWorkspace() {
         next.set("passage", passages[index].id);
         next.delete("interpretation");
         setSearchParams(next, { replace: true });
+        setPassageFocusSignal((signal) => signal + 1);
+    };
+
+    const selectPassage = (id) => {
+        const index = passages.findIndex((item) => item.id === id);
+        if (index >= 0) goToPassage(index);
     };
 
     const selectInterpretation = (id) => {
@@ -113,12 +128,16 @@ export default function DoctrineWorkspace() {
                         translation={translation}
                         translations={translations}
                         onTranslationChange={setTranslation}
+                        focusHeadingSignal={passageFocusSignal}
                     />
                     <DoctrineScriptureNav
                         passageIndex={passageIndex}
                         passageCount={passages.length}
                         previousLabel={passageIndex > 0 ? passages[passageIndex - 1].label : null}
                         nextLabel={passageIndex < passages.length - 1 ? passages[passageIndex + 1].label : null}
+                        passages={passages}
+                        passageId={passage.id}
+                        onSelectPassage={selectPassage}
                         onPrevious={() => goToPassage(passageIndex - 1)}
                         onNext={() => goToPassage(passageIndex + 1)}
                     />
