@@ -1,0 +1,305 @@
+{
+  "id": "category-1-samuel-saul-becomes-israels-first-king",
+  "title": "Saul Becomes Israel's First King",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 10,
+    "startVerse": 1,
+    "endChapter": 12,
+    "endVerse": 25
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 9,
+    "startVerse": 1,
+    "endChapter": 12,
+    "endVerse": 25
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-04-001",
+      "claim": "Kish, a Benjamite of power, has a son Saul, \"choice and goodly,\" taller than any of the people from his shoulders and upward.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record (Worker A, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-002",
+      "claim": "Kish's asses stray; Saul searches with a servant through Ephraim, Shalishah, Shaalim, and Benjamin, and reaches the land of Zuph. The servant offers a quarter-shekel of silver to the seer. The narrative explains that he who is now called a Prophet was beforetime called a Seer (9:9).",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-003",
+      "claim": "The LORD tells Samuel the day before that a man from Benjamin will come, and that he shall anoint him to be prince over Israel to save the people from the Philistines.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-004",
+      "claim": "Samuel seats Saul at the head of the thirty invited guests at the high place and serves him the reserved portion.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-005",
+      "claim": "At the dawn parting Samuel sends the servant on, tells Saul to stand still to hear the word of God, then takes the vial of oil, pours it on Saul's head, kisses him, and says the LORD has anointed him prince over His inheritance. The anointing follows the parting without a break.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-006",
+      "claim": "Anointing was the central act in making a king in Israel: the pouring of oil on the head set the person apart for God's service, and the Spirit came upon him for the task. The act was known across the ancient Near East (e.g. a 14th-century BC Amarna letter of a vassal king anointed at Pharaoh's command); in Israel it is the LORD's choice conveyed by His prophet.",
+      "evidence": "BiblicalTraining, \"Anointing,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-04-007",
+      "claim": "Samuel gives Saul three signs: two men by Rachel's sepulchre in Zelzah with news the asses are found; three men at the oak of Tabor with three kids, three loaves, and a bottle of wine, who give him two loaves; then the company of prophets at Gibeah, and the Spirit coming mightily upon him. He is also told to go to Gilgal and wait seven days for Samuel.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; reuse `clm-ij-063` (Rachel's grave fixed by 10:2).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-008",
+      "claim": "God gives Saul another heart; the signs come to pass that day; the Spirit comes mightily upon him and he prophesies among the prophets, and the people say, \"Is Saul also among the prophets?\"",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-009",
+      "claim": "At Mizpah the tribes present themselves by lot: Benjamin is taken, the Matrites, and Saul son of Kish. He is found hidden among the baggage, stands taller than all the people, and the people shout, \"Long live the king.\"",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Mizpah\" (Mizpah as the assembly place).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-010",
+      "claim": "Samuel tells the people the manner of the kingdom, writes it in a book, and lays it up before the LORD. It is the only written king's law in the Bible.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; reuse `conn-deu-05-010` (probable).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-04-011",
+      "claim": "Saul goes home to Gibeah with men of valour whose hearts God has touched; worthless fellows despise him and bring him no present, and he holds his peace.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-012",
+      "claim": "Nahash the Ammonite encamps against Jabesh-gilead and offers terms: every man's right eye thrust out, a reproach upon all Israel. The elders ask seven days' respite. A longer form of the story (4QSam-a, Josephus) says Nahash had already gouged out the right eyes of the Gadites and Reubenites; the longer form is noted, not adopted.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Jabesh Gilead\" (4QSam-a/Josephus longer form).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-013",
+      "claim": "The messengers come to Gibeah; the Spirit comes mightily upon Saul; he cuts a yoke of oxen in pieces and sends them through Israel, summoning every man to follow Saul and Samuel. They number 300,000 men of Israel and 30,000 men of Judah at Bezek; Saul divides them into three companies and scatters the Ammonites in the morning watch.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Saul\" (Bezek muster; three companies).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-014",
+      "claim": "The people ask that the dissenters be put to death; Saul refuses, saying no man shall be put to death that day, for the LORD has wrought deliverance. At Gilgal the kingdom is renewed, Saul is made king before the LORD, and they sacrifice peace-offerings and rejoice greatly.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-015",
+      "claim": "Samuel asks the people to witness against him; they answer that he has not defrauded, oppressed, or taken anything from any man's hand.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-016",
+      "claim": "Samuel rehearses the history — Jacob, Moses, Aaron, the forgetting and the selling, the crying out and the deliverances by Jerubbaal, Bedan, Jephthah, and Samuel — and names the Ammonite threat as a cause of the demand for a king. Bedan matches no judge named elsewhere in 1 Samuel 1–15; no identification is supplied.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-017",
+      "claim": "Samuel states the condition: if they fear the LORD and serve Him it shall be well with them and with their king; if not, His hand will be against them. Thunder and rain come in the days of wheat harvest as a sign; the people ask Samuel to pray for them; he promises to pray and to teach them the good and right way.",
+      "evidence": "Hebrew + JPS 1917 read in full in the read record; BiblicalTraining, \"Samuel\" (wheat-harvest sign, dry season).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-04-018",
+      "claim": "Gibeah, Saul's home town, is usually identified with Tell el-Ful, where Albright found a fort; the dating of the fort has been questioned and the identification is not certain.",
+      "evidence": "BiblicalTraining, \"Saul,\" read in part (through the Amalekite campaign); reuse `clm-jud-11-002` (unknown).",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-1sa-04-019",
+      "claim": "Saul's name (*šāʾûl*, \"asked for\") plays on the asking in the narrative — the people asked for a king, and Saul is the one \"asked for.\" The wordplay is the text's own pattern; the name's exact derivation is a linguistic reading, not a historical fact.",
+      "evidence": "BiblicalTraining, \"Saul,\" read in part (name wordplay).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-04-020",
+      "claim": "Jabesh-gilead's exact site is debated: the name survives in Wadi Yabis, and Tell Abu Kharaz is the site most widely favoured, but no inscription confirms the identification.",
+      "evidence": "BiblicalTraining, \"Jabesh Gilead,\" read in full.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-04-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 8,
+      "startVerse": 4,
+      "endChapter": 8,
+      "endVerse": 22,
+      "type": "historical-setting",
+      "confidence": "established",
+      "note": "The elders' demand at Ramah is answered here: the king they asked for is anointed in private, chosen by lot at Mizpah, and made king at Gilgal. The making of the king is the answer to the demand."
+    },
+    {
+      "id": "conn-1sa-04-002",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 15,
+      "endChapter": 17,
+      "endVerse": 15,
+      "type": "background",
+      "confidence": "established",
+      "note": "The law requires a king \"whom the LORD thy God shall choose,\" from among your brethren. Saul is a Benjamite, chosen by lot before the Lord, and presented as the one the Lord has chosen."
+    },
+    {
+      "id": "conn-1sa-04-003",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 18,
+      "endChapter": 17,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law requires the king to write himself a copy of the law and read it all his days. Samuel writes the manner of the kingdom in a book and lays it up before the Lord — the only written king's law in the Bible."
+    },
+    {
+      "id": "conn-1sa-04-004",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 7,
+      "startVerse": 5,
+      "endChapter": 7,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Mizpah is the same assembly town where Samuel called Israel to return and the Lord thundered against the Philistines. The lot that chooses Saul is cast where the nation had gathered before the Lord."
+    },
+    {
+      "id": "conn-1sa-04-005",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 19,
+      "startVerse": 29,
+      "endChapter": 19,
+      "endVerse": 29,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The Levite cut his concubine into twelve pieces and sent them through Israel to summon the tribes. Saul cuts a yoke of oxen in pieces and sends them through Israel with the same summons — but his summons ends in rescue and renewal, not civil war."
+    },
+    {
+      "id": "conn-1sa-04-006",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 21,
+      "startVerse": 8,
+      "endChapter": 21,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jabesh-gilead supplied wives for the Benjamites after the civil war, when the town had been destroyed for not coming to Mizpah. The town Saul rescues is the town whose people once saved Benjamin."
+    },
+    {
+      "id": "conn-1sa-04-007",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 35,
+      "startVerse": 19,
+      "endChapter": 35,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Rachel died and was buried on the way to Ephrath, which is Bethlehem. The first of Saul's three signs is given by Rachel's tomb on the border of Benjamin, on the road from the anointing to the lot."
+    },
+    {
+      "id": "conn-1sa-04-008",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 13,
+      "startVerse": 8,
+      "endChapter": 13,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "established",
+      "note": "The seven days Saul is told to wait at Gilgal are the appointment he breaks in chapter 13, when he offers the burnt-offering himself and is told his kingdom shall not continue. The instruction is given here; the breach belongs to the next category."
+    },
+    {
+      "id": "conn-1sa-04-009",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 31,
+      "startVerse": 11,
+      "endChapter": 31,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "When the men of Jabesh hear what the Philistines have done to Saul, they take his body from the wall of Beth-shan and bury it under the tamarisk at Jabesh. The town he rescued repays him at the end of his life."
+    },
+    {
+      "id": "conn-1sa-04-010",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 27,
+      "startVerse": 21,
+      "endChapter": 27,
+      "endVerse": 21,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The priest shall ask counsel for the leader \"after the judgment of the Urim before the LORD.\" The lot at Mizpah and the enquiry before it belong to the same practice of seeking the Lord's decision before acting."
+    },
+    {
+      "id": "conn-1sa-04-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 5,
+      "startVerse": 3,
+      "endChapter": 5,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The elders of Israel come to Hebron and anoint David king over Israel, after the pattern of the anointing that made Saul king. The making of the second king follows the form of the first."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S04 sources (S04-S01–S04-S06) are all verified and are the 6 sources[] entries. S04-S07 (Bible Odyssey \"Royal Succession\") is an alias of the already-registered source-bible-odyssey-royal-succession (Dev 1 footnote fix, 2026-11-23) and is cited in NO claim's Source IDs column and NO appendix prose footnote (only §4/§8 internal prose, the §10 topic line, and the §12 alias row), so it stays OUT of sources[] per the Ruth hygiene rule and the S02/S03 precedent (reuse-basis / internally-cited-only sources stay out). source-bdb-lexicon likewise stays out (only in the §12 already-registered table; cited by no claim and no prose footnote). §10 polish note applied: the \"Topic: royal anointing\" line lists S04-S07 alongside S04-S02; tightened to S04-S02 alone where the topic's sources are recorded — but the built JSON carries topics: [] (S01–S03 pattern), so the note is moot for the built output; S04-S07 was not dropped from sources[] on this basis (it was never in sources[] — see above). Reuse references in evidence (S01 precedent, stripped at generation): SCL-04-007 reuses clm-ij-063 (Rachel's grave), SCL-04-010 reuses conn-deu-05-010, SCL-04-018 reuses clm-jud-11-002 (Gibeah, unknown); no source is added for any of them. SCL-04-018 is unknown (Gibeah/Tell el-Ful identification not certain). primaryScripture 10:1–12:25 as proposed in the dossier notes (exactly 3 chapters, within fullRange 9:1–12:25; no narrowing needed). No multi-range connection targets in this dossier (all 11 §11 targets are single ranges), so no encompassing-range encoding was needed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-biblicaltraining-anointing",
+    "source-biblicaltraining-samuel",
+    "source-biblicaltraining-saul",
+    "source-biblicaltraining-jabesh-gilead",
+    "source-biblicaltraining-mizpah"
+  ]
+}
