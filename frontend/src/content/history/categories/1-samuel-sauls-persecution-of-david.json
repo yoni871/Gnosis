@@ -1,0 +1,402 @@
+{
+  "id": "category-1-samuel-sauls-persecution-of-david",
+  "title": "Saul's Persecution of David",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 18,
+    "startVerse": 1,
+    "endChapter": 20,
+    "endVerse": 42
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 18,
+    "startVerse": 1,
+    "endChapter": 26,
+    "endVerse": 25
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-07-001",
+      "claim": "Jonathan's soul is knit with David's; Jonathan loves him as his own soul, makes a covenant with him, and gives him his robe, apparel, sword, bow, and girdle — the heir handing over the clothing and weapons that marked his own rank. Saul takes David that day and sets him over the men of war.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); BiblicalTraining, \"Jonathan,\" covenant sections read live.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-002",
+      "claim": "The women greet the returning army singing \"Saul hath slain his thousands, and David his ten thousands\"; Saul takes the song as a threat to his throne — \"all he lacketh is the kingdom!\" — and eyes David from that day forward. The song is the chapter's pivot, from love to settled enmity.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-003",
+      "claim": "An evil spirit comes on Saul as he raves; David plays as day by day; Saul casts his spear to smite David to the wall, twice, and David steps aside. Saul fears David because the LORD is with him and has departed from Saul; David prospers, and all Israel and Judah love him.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-004",
+      "claim": "Saul offers Merab, then Michal, as a trap — \"let the hand of the Philistines be upon him\" — setting the bride-price at a hundred Philistine foreskins; David brings two hundred before the days expire, and Saul gives him Michal. Merab is given to Adriel the Meholathite instead.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-005",
+      "claim": "\"Saul was David's enemy continually.\" The Philistine princes go out repeatedly; David prospers more than all Saul's servants, and his name is much set by.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-006",
+      "claim": "Saul orders Jonathan and his servants to slay David; Jonathan warns David, speaks good of him to Saul, and Saul swears David shall not be put to death — an oath broken within four verses (19:10).",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-007",
+      "claim": "Michal lets David down through the window and lays the teraphim in the bed with a goats'-hair quilt at its head; the messengers are twice told \"He is sick.\" The teraphim are household idols, objects of reverence and means of divination, man-sized here (reuse: `clm-ij-037`, established).",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); reuse `clm-ij-037`.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-008",
+      "claim": "David flees to Samuel at Ramah; he and Samuel dwell in Naioth. Three parties of Saul's messengers, and then Saul himself, are overcome by the spirit of God and prophesy instead of making an arrest; Saul lies naked all that day and all that night. \"Wherefore they say: Is Saul also among the prophets?\"",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-009",
+      "claim": "David and Jonathan agree on the new-moon test: David hides in the field, Jonathan reports Saul's reaction, and the signal is three arrows by the stone Ezel — \"on this side of thee\" means peace, \"beyond thee\" means \"the LORD hath sent thee away.\"",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-010",
+      "claim": "Jonathan asks David to show the LORD's unfailing kindness (*ḥesed*, loyal covenant love) to him and his family for ever, even when the LORD has cut off all David's enemies, and makes a covenant with the house of David — in effect already treating David as the future king. The oath calls on the LORD as witness between them and their descendants for ever.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); BiblicalTraining, \"Jonathan,\" covenant sections read live.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-07-011",
+      "claim": "At the new-moon feast Saul asks why the son of Jesse has not come; Jonathan gives the Bethlehem excuse; Saul's anger kindles — \"as long as the son of Jesse liveth upon the earth, thou shalt not be established, nor thy kingdom\" — and he casts his spear at Jonathan himself.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-012",
+      "claim": "Jonathan gives the arrow signal, the two meet, weep, and part with the reminder of the oath sworn in the LORD's name. The parting is completed in 21:1 (Mechon Mamre numbering): \"And he arose and departed; and Jonathan went into the city\" — in KJV numbering the tail of 20:42.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-013",
+      "claim": "At Nob, David receives the holy bread — the showbread taken from before the LORD, twelve loaves kept continually before the Lord and renewed each Sabbath — once assured his men have kept themselves from women; and he receives the sword of Goliath, wrapped in a cloth behind the ephod. Doeg the Edomite, chief of Saul's herdsmen, is there that day, \"detained before the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); BiblicalTraining, \"Showbread,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-014",
+      "claim": "At Gath, Achish's servants recognise David by the women's song — \"Saul hath slain his thousands, and David his ten thousands\" — the song's second quotation; David feigns madness, and Achish dismisses him.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-015",
+      "claim": "David escapes to the cave of Adullam; his family and about four hundred men in distress, in debt, and discontented gather to him, and he becomes their captain. He lodges his parents with the king of Moab at Mizpeh; the prophet Gad directs him to the forest of Hereth in Judah.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); BiblicalTraining, \"David,\" fugitive-years section.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-016",
+      "claim": "Doeg reports the Nob visit; Saul has eighty-five men wearing a linen ephod slain, then smites Nob itself — man and woman, child and suckling, ox and ass and sheep. One son, Abiathar, escapes to David; David accepts responsibility for the deaths and shelters him. The priesthood, destroyed at Nob, now travels with David.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-017",
+      "claim": "David inquires of the LORD and rescues Keilah from the Philistines; Abiathar brings the ephod down in his hand; David inquires twice more through the ephod — will Saul come down? Will the men of Keilah deliver me up? — and both answers are yes, so David and his men, about six hundred, leave. The physical form and mechanism of the Urim/ephod inquiry are not established (standing unknown: `clm-ta-026`, `clm-deu-10-011`); no mechanism is presented here.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); reuse `clm-ta-026`, `clm-deu-10-011`.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-018",
+      "claim": "Jonathan comes to David in the wood at Horesh and strengthens his hand in God: \"thou shalt be king over Israel, and I shall be next unto thee; and that also Saul my father knoweth.\" They make a covenant before the LORD; Jonathan goes home. This is Jonathan's last spoken scene in the book's first half.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); BiblicalTraining, \"Jonathan,\" covenant sections read live.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-019",
+      "claim": "The Ziphites betray David's hiding place to Saul; in the wilderness of Maon Saul closes in on one side of the mountain while David is on the other, until a Philistine raid calls Saul away. \"Therefore they called that place Sela-hammahlekoth\" — the Rock of Escape (or of Divisions). David goes up to the strongholds of En-gedi.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-020",
+      "claim": "At En-gedi, Saul enters the cave where David and his men hide in its innermost parts; David cuts off the skirt of Saul's robe privily, his heart smites him, and he restrains his men: \"The LORD forbid it me, that I should do this thing unto my lord, the LORD'S anointed.\" The springs offered water, the caves shelter, and the high ground a view of anyone approaching.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); BiblicalTraining, \"En Gedi,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-021",
+      "claim": "David's men say, \"Behold the day in which the LORD hath said unto thee: Behold, I will deliver thine enemy into thy hand.\" No such saying is recorded earlier in the narrative; the words are the men's interpretation, reported, not confirmed.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-022",
+      "claim": "David shows Saul the skirt as proof he meant no harm and appeals to the LORD to judge between them; Saul weeps, acknowledges David is more righteous than he, admits David will surely be king, and asks him to swear not to cut off his seed — David swears. Saul goes home; David goes up to the stronghold. The reconciliation is verbal only.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-023",
+      "claim": "Samuel dies and is buried at Ramah; David goes to the wilderness of Paran, where Nabal of Maon refuses his request at sheep-shearing and Abigail intercedes with gifts, speaking of the \"sure house\" the LORD will give David; about ten days later the LORD smites Nabal and he dies; David marries Abigail and Ahinoam, while Saul gives Michal to Palti son of Laish.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); BiblicalTraining, \"David,\" fugitive-years section (ch. 25 passage seen in search snippet only — see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-024",
+      "claim": "At the hill of Hachilah, David and Abishai enter Saul's camp by night while a deep sleep from the LORD lies on the soldiers; Abishai offers to kill Saul with one thrust, but David takes only the spear and the cruse of water, refusing to put forth his hand against the LORD's anointed. From across the valley he rebukes Abner, Saul confesses \"I have played the fool,\" and the two part — David going his way, Saul returning to his place — the second sparing changing nothing.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-07-025",
+      "claim": "The women's song is quoted three times across the fugitive arc: at court (18:7), at Gath (21:12), and by the Philistine princes when David is dismissed (29:5). The third quotation is outside this category's range and is carried only as a forward thread.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23, chs. 18, 21, 29).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-07-026",
+      "claim": "\"The LORD's anointed\" develops across the two sparing scenes: first used by David in refusing to harm Saul at En-gedi (24:6), then repeatedly at Hachilah (26:9, 11, 16, 23). The anointing conferred the spirit of the LORD on the king (1 Sam 16:13–14); David's restraint is grounded in Saul's anointing, not in Saul's conduct.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B, 2026-11-23); Milgrom, \"Anointing\" (S06-S03), read in full.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-07-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 16,
+      "startVerse": 13,
+      "endChapter": 16,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "established",
+      "note": "The spirit of the Lord comes mightily on David from the day of his anointing, and departs from Saul the next verse — the hinge behind everything Saul does in the chapters that follow."
+    },
+    {
+      "id": "conn-1sa-07-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 17,
+      "startVerse": 45,
+      "endChapter": 17,
+      "endVerse": 47,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "David tells Goliath that the battle belongs to the Lord and that he does not save by sword or spear — the trust he carries into the years of flight."
+    },
+    {
+      "id": "conn-1sa-07-003",
+      "book": "Ruth",
+      "bookId": "ruth",
+      "startChapter": 1,
+      "startVerse": 8,
+      "endChapter": 1,
+      "endVerse": 9,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Naomi asks God to show the same loyal kindness to Ruth and Orpah that they showed to the dead — the same word of covenant loyalty that Jonathan asks of David for his house."
+    },
+    {
+      "id": "conn-1sa-07-004",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Once established as king, David asks whether anyone is left of Saul's house to whom he can show kindness for Jonathan's sake, and restores Saul's land to Mephibosheth — the covenant kept into the next generation."
+    },
+    {
+      "id": "conn-1sa-07-005",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 21,
+      "startVerse": 7,
+      "endChapter": 21,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "When David hands over seven of Saul's descendants to the Gibeonites, he spares Mephibosheth because of the oath he had sworn with Jonathan."
+    },
+    {
+      "id": "conn-1sa-07-006",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 24,
+      "startVerse": 5,
+      "endChapter": 24,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Twelve loaves of fine flour are set out before the Lord Sabbath after Sabbath as a lasting covenant, and the removed loaves belong to Aaron and his sons — the regulation behind the bread David receives at Nob."
+    },
+    {
+      "id": "conn-1sa-07-007",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 28,
+      "startVerse": 30,
+      "endChapter": 28,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"Thou shalt put in the breastplate of judgment the Urim and the Thummim\" — the institution behind the ephod Abiathar brings to David at Keilah."
+    },
+    {
+      "id": "conn-1sa-07-008",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 27,
+      "startVerse": 21,
+      "endChapter": 27,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Eleazar inquires for Joshua \"after the judgment of Urim\" before the Lord — the earlier pattern of seeking God's guidance through the priest that David's inquiries at Keilah follow."
+    },
+    {
+      "id": "conn-1sa-07-009",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 15,
+      "startVerse": 23,
+      "endChapter": 15,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Samuel tells Saul that stubbornness is as iniquity and idolatry, and that teraphim are among the condemned things — the same household gods Michal sets in David's bed."
+    },
+    {
+      "id": "conn-1sa-07-010",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 14,
+      "startVerse": 6,
+      "endChapter": 14,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jonathan's own words at Michmash — \"Nothing can hinder the Lord from saving, whether by many or by few\" — the faith he later brings to David in the wood at Horesh."
+    },
+    {
+      "id": "conn-1sa-07-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The promise of an enduring house for David, already glimpsed when Abigail speaks of the \"sure house\" the Lord will give him. The promise itself belongs to the later narrative."
+    },
+    {
+      "id": "conn-1sa-07-012",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 27,
+      "startVerse": 1,
+      "endChapter": 27,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After the second sparing changes nothing, David says in his heart that he will one day be swept away by Saul, and escapes into the land of the Philistines — the direct consequence of the unresolved parting at Hachilah."
+    },
+    {
+      "id": "conn-1sa-07-013",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 28,
+      "startVerse": 3,
+      "endChapter": 28,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Samuel's death is recapitulated at the opening of the En-dor episode — the narrator treats it as a re-entry point, not as a fact to be stated once."
+    },
+    {
+      "id": "conn-1sa-07-014",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 57,
+      "startVerse": 1,
+      "endChapter": 142,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Psalm 57 and Psalm 142 (titles). The titles connect both psalms with a time when David was hiding from Saul in \"the cave.\" Neither title names the place; interpreters have linked them with either the cave at Adullam or the cave at En Gedi."
+    },
+    {
+      "id": "conn-1sa-07-015",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 31,
+      "startVerse": 2,
+      "endChapter": 31,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jonathan dies with his father and brothers on Mount Gilboa — the end of the covenant friendship in this life, and the reason David's later care for Mephibosheth matters."
+    },
+    {
+      "id": "conn-1sa-07-016",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 15,
+      "startVerse": 55,
+      "endChapter": 15,
+      "endVerse": 55,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ziph is listed among the towns of Judah in the hill country, south of Hebron — the town whose name the wilderness of David's hiding takes."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S07 sources (S07-S01–S07-S06 plus the S06-S03 cross-citation) are the 7 sources[] entries; all are verified. S07-S02 dual listing: source-biblicaltraining-david (verified) is a SINGLE record carrying the ch. 25 scope in its pagesOrSection/verificationDetail (the BiblicalTraining \"David\" article; 1 Sam 16-24 sections read in full live, the ch. 25 Nabal/Abigail passage seen only in a search-result snippet, not opened). SCL-07-023 rests on the live-read Mechon Mamre text (S07-S01) and is assessed established on the text alone; Reader B live-read the ch. 25 passage and it agrees with SCL-07-023. S07-S02 maps to the already-registered entry (added by the S06 build); no new entry, no split. It enters sources[] via §9 claims 015/023 (S05 precedent: claim citations count — it is NOT footnoted in the Appendix prose). S07-S07 (Keilah/Ziph/Maon/Hachilah identifications) is needs-checking, has NO registry entry (registry-build exclusion), is cited by no §9 claim and no appendix footnote. Stays OUT of sources[] and out of the MD. source-bdb-lexicon stays OUT (only in the §12 already-registered table; cited by no claim and no prose footnote — S02/S03/S04/S05/S06 precedent); the other already-registered §2-reuse sources (Nigro Bethlehem, biblicaltraining-ephrathah, gibeah-tell-el-ful, albright-tell-el-ful-1924, ephod-form-debate) stay OUT on the same basis. S04 lesson applied: a source enters sources[] only if cited in the APPENDIX (public-facing draft) or the §9 Source IDs column. Checked by script: the appendix footnotes S06-S03, S07-S01, S07-S03–S07-S06; §9 cites S06-S03, S07-S01–S07-S05. No §-location ambiguity arose. S07-S06 (Wilderness of Judaea) is footnoted in the Appendix prose but NOT cited in §9 — it enters sources[] via the prose footnotes. Multi-range connection: SCO-07-014 targets Psalm 57 and Psalm 142 (titles) — two whole psalms, 85 chapters apart. Encoded as the encompassing range Ps 57:1–142:7 with the exact sub-ranges carried in the note (\"Targets Psalm 57 and Psalm 142 (titles).\") per the S01/S02/S06 precedent — QA accepted encompassing ranges as shipped; splitting before publication remains the publication-time decision. This is the WIDEST encompassing range yet (85 chapters; S01's Jer 7:12–26:6 spans 19 and QA already flagged it as 2.7x the widest published connection) — flagged prominently for QA and for Dev 2's judgment; the publication-time alternative is splitting SCO-07-014 into two connections (one per psalm). All other 15 §11 targets are single ranges. Reuse references in CLAIM TEXT (S02 precedent, internal-only, stripped at generation — the generator strips claims/review from the generated JSON, so these never reach dist; S02 QA confirmed \"no gate leak\" for the same pattern): SCL-07-007's claim text cites clm-ij-037 (teraphim, established) and its evidence also carries clm-ij-037; SCL-07-017's claim text cites clm-ta-026 and clm-deu-10-011 (Urim/ephod mechanism unknown) and its evidence also carries them; no source is added for any reuse. SCL-07-021 (1 Sam 24:4) is worded as the men's interpretation — no such saying is recorded earlier in the narrative; the words are reported, not confirmed. The two sparings (chs. 24 and 26) are kept as separate episodes, not merged; the parallel is the point. 25:1 placement is MOOT (ch. 25 sits inside S07). primaryScripture = 18:1–20:42 (exactly 3 chapters), fullRange = 18:1–26:25 (9 chapters, 255 verses), as proposed in the dossier §1; no narrowing needed. The validator's ≤3-chapter limit applies only to primaryScripture, not to fullRange. Versification: Mechon Mamre 21:1 is the tail of KJV 20:42, so the proposed primaryScripture 18:1–20:42 is identical in both numberings. \"Psalm\" → \"Psalms\" (S01/S02/S03/S05/S06 precedent): SCO-07-014's targets are Psalms 57 and 142; book \"Psalms\", bookId \"psalms\". §10 shared-opportunity lines (\"Topic: Jonathan's covenant and hesed\" built here (S07-S03), \"Topic: the LORD's anointed\" built here and in S06 (S06-S03), \"Topic: the wilderness of Judah as refuge\" built here (S07-S05, S07-S06), \"Topic: the bread of the Presence at Nob\" built here (S07-S04)) do not enter the built files: the built JSON carries topics: [] (S01–S06 pattern), so they are moot for the built output. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-biblicaltraining-david",
+    "source-biblicaltraining-jonathan",
+    "source-biblicaltraining-showbread",
+    "source-biblicaltraining-en-gedi",
+    "source-biblicaltraining-wilderness-of-judaea",
+    "source-milgrom-anointing-encyclopaedia-judaica"
+  ]
+}
