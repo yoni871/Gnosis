@@ -1,0 +1,437 @@
+{
+  "id": "category-2-samuel-ammonite-war-and-the-fall-of-david",
+  "title": "The Ammonite War and the Fall of David",
+  "category": "category",
+  "orphan": true,
+  "era": "2-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 10,
+    "startVerse": 1,
+    "endChapter": 12,
+    "endVerse": 31
+  },
+  "fullRange": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 10,
+    "startVerse": 1,
+    "endChapter": 12,
+    "endVerse": 31
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2sa-04-001",
+      "claim": "Nahash king of Ammon dies and Hanun his son reigns; David sends servants to comfort Hanun, \"as his father shewed kindness unto me\" — a kindness whose occasion the narrative never states.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hanun,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-002",
+      "claim": "The Ammonite princes persuade Hanun the servants are spies come to search the city and overthrow it; Hanun shaves off half their beards, cuts their garments in the middle to the buttocks, and sends them away.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hanun,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-003",
+      "claim": "David, hearing the men are greatly ashamed, has them tarry at Jericho until their beards grow, and then return.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hanun,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-004",
+      "claim": "The Ammonites, seeing they have become odious to David, hire the Arameans of Beth-rehob and Zobah (20,000 footmen), the king of Maacah (1,000 men), and the men of Tob (12,000 men); Chronicles adds a payment of a thousand talents of silver (1 Chr 19:6).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ammonites\" and \"Hanun,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-04-005",
+      "claim": "Joab, caught before and behind, divides his force with his brother Abishai, each to help the other if pressed, and says, \"Be of good courage, and let us play the men for our people, and for the cities of our God: and the LORD do that which seemeth him good.\" The Arameans flee before Joab and the Ammonites before Abishai, and Joab returns to Jerusalem; Rabbah itself is never taken here.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hanun,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-006",
+      "claim": "The Arameans regroup beyond the river under Shobach, captain of Hadadezer; David gathers all Israel, crosses the Jordan to Helam, and wins — 700 chariots, 40,000 horsemen, Shobach slain. The kings who served Hadadezer make peace with Israel and serve them, and the Syrians fear to help the children of Ammon any more.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hanun,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-007",
+      "claim": "The Ammonites were a Semitic people of the Transjordan, traced to Ben-Ammi son of Lot (Gen 19:38), kin to Israel and to the Moabites; their kingdom centred on the upper Jabbok around Rabbah, and they spoke a Northwest Semitic language very close to Hebrew and Moabite.",
+      "evidence": "BiblicalTraining, \"Ammonites,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-04-008",
+      "claim": "Rabbah, the Ammonite capital, stood on the site of modern Amman, about 22 miles (35 km) east of the Jordan River, on a strong spring at the head of the Wadi Amman; the ancient city had a lower town beside the stream and a high citadel hill (Jebel al-Qalʿa). Its parts are called the \"royal city\" and the \"city of waters\" (12:26–27).",
+      "evidence": "BiblicalTraining, \"Rabbah,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-04-009",
+      "claim": "Nahash had begun his reign as an enemy of Israel: he besieged Jabesh-gilead and demanded the right to gouge out the right eye of every man, until Saul rallied Israel and routed him; the victory confirmed Saul as king, renewed at Gilgal.",
+      "evidence": "BiblicalTraining, \"Ammonites\" and \"Hanun,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-010",
+      "claim": "Chapter 10 leaves the Ammonite war unfinished — the Syrians are done with, but Rabbah is never taken; the siege is resumed at 11:1 and finished at 12:26–31. Chapters 10–12 are one war-frame with the sin and its judgment set inside it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-011",
+      "claim": "\"At the return of the year, at the time when kings go out to battle,\" David sends Joab, his servants, and all Israel; they destroy the Ammonites and besiege Rabbah. \"But David tarried at Jerusalem.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Bathsheba\" and \"Rabbah,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-012",
+      "claim": "David sees Bathsheba daughter of Eliam, wife of Uriah the Hittite, bathing from the roof; he sends messengers, takes her, and lies with her; she conceives and sends word, \"I am with child.\" The narrator's note that she was purified from her uncleanness (11:4) explains the bath and makes clear the child could not have been Uriah's.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Bathsheba,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-04-013",
+      "claim": "Bathsheba's father is called Eliam in 2 Samuel 11:3 and Ammiel in 1 Chronicles 3:5; the two names are built from the same parts in reverse order and are generally taken as two forms of one name. \"Eliam son of Ahithophel the Gilonite\" (2 Sam 23:34) may be the same man, which would make Bathsheba a granddaughter of Ahithophel; the connection is possible, but Scripture does not state it.",
+      "evidence": "BiblicalTraining, \"Bathsheba,\" read in full.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-2sa-04-014",
+      "claim": "Uriah the Hittite was listed among David's elite warriors, the Thirty (2 Sam 23:39); his name contains the divine name and means \"the Lord is my light,\" suggesting that, despite his foreign ancestry, he worshipped Israel's God; his home stood close enough to the palace to be seen from its roof.",
+      "evidence": "BiblicalTraining, \"Bathsheba,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-04-015",
+      "claim": "David summons Uriah from the siege and twice tries to send him down to his house — first with a mess of meat, then by making him drunk. Uriah sleeps at the door of the king's house both nights and refuses: the ark, Israel, and Judah abide in tents, and Joab and the servants are encamped in the open field.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Bathsheba,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-016",
+      "claim": "David writes a letter to Joab and sends it by Uriah's own hand: set Uriah in the forefront of the hottest battle and retire from him, that he be smitten and die. Joab assigns him where valiant men are; the men of the city come out, and Uriah dies with some of David's servants.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Bathsheba,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-017",
+      "claim": "Joab sends a messenger with a script for the king's anger — if David asks why they went so near the wall, cite Abimelech son of Jerubbesheth, slain by a millstone at Thebez (Judg 9:53) — and ends with \"Thy servant Uriah the Hittite is dead also.\" \"Jerubbesheth\" is the Baal-avoiding form of Jerubbaal. David answers, \"Let not this thing displease thee, for the sword devoureth one as well as another.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Rabbah,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-04-018",
+      "claim": "Bathsheba mourns her husband; when the mourning is past David fetches her, she becomes his wife and bears a son. \"But the thing that David had done displeased the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Bathsheba,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-019",
+      "claim": "The kingship law forbids the king to multiply wives, \"that his heart turn not away\" (Deut 17:17); Nathan's charge counts the master's wives among what the LORD gave David (12:8). How the gift and the limit relate is not resolved in this dossier.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre. Reuse: `clm-deu-05-016` (established).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-04-020",
+      "claim": "Nathan tells of a rich man with exceeding many flocks and a poor man with one little ewe lamb, raised with his children, eating of his meat, drinking of his cup, lying in his bosom, \"as a daughter\"; the rich man takes it to dress for a traveller. David's anger kindles: the man shall surely die and restore the lamb fourfold, \"because he had no pity.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Nathan,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-021",
+      "claim": "Nathan turns the parable: \"Thou art the man.\" The LORD anointed David king, delivered him from Saul, gave him his master's house and wives and the house of Israel and Judah, and would have given more; David has despised the word of the LORD, killed Uriah with the sword of the Ammonites, and taken his wife.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Nathan,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-022",
+      "claim": "\"The sword shall never depart from thine house.\" The sentence governs chapters 13–20: the violence among David's sons and Absalom's revolt are its working-out.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Nathan\" and \"Bathsheba,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-04-023",
+      "claim": "\"I will take thy wives before thine eyes, and give them unto thy neighbour, and he shall lie with thy wives in the sight of this sun. For thou didst it secretly: but I will do this thing before all Israel, and before the sun.\" The sentence is fulfilled when Absalom lies with his father's concubines in the sight of all Israel (16:21–22).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Nathan\" and \"Bathsheba,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-04-024",
+      "claim": "David says, \"I have sinned against the LORD.\" Nathan answers that the LORD has put away his sin and he shall not die — \"howbeit… the child also that is born unto thee shall surely die.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Nathan,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-025",
+      "claim": "The child is struck and very sick; David fasts, lies all night on the earth, and refuses the elders. On the seventh day the child dies; David perceives it, rises, washes, anoints himself, worships in the house of the LORD, and eats — \"I shall go to him, but he shall not return to me.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Nathan\" and \"Bathsheba,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-026",
+      "claim": "David comforts Bathsheba his wife; she bears a son, and he calls his name Solomon, \"and the LORD loved him.\" Nathan is sent, and calls him Jedidiah, \"because of the LORD\" — \"loved by the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Nathan\" and \"Bathsheba,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-027",
+      "claim": "Joab fights against Rabbah, takes the royal city (\"the city of waters\"), and sends for David to take it himself lest it be called after Joab's name. David gathers all the people, takes the city, takes the king's crown — a talent of gold (about 75 pounds, 34 kg) with precious stones — sets it on his head, and brings out great spoil.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Rabbah\" and \"Hanun,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-04-028",
+      "claim": "Two readings in these verses are textually difficult and unresolved. The crown's Hebrew *malkām* can mean \"their king\" or be read as Milkom, the Ammonite god, so the crown may have belonged to the king or to an image of the god. And 12:31 (\"put them under saws, and under harrows of iron, and under axes of iron, and made them pass through the brick-kiln\") is read by older translations as killing with iron tools and by most modern interpreters as forced labour with saws, picks, and axes and in brickmaking.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ammonites,\" \"Rabbah,\" and \"Hanun,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-04-029",
+      "claim": "Ammon thereby lost its independence and became subject to Israel; David dedicated silver and gold from Ammon to the LORD (2 Sam 8:11–12). When David later fled to Mahanaim, Shobi son of Nahash from Rabbah was among those who brought him food and supplies.",
+      "evidence": "BiblicalTraining, \"Ammonites\" and \"Hanun,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-04-030",
+      "claim": "Shobi was therefore Hanun's brother, and many interpreters conclude that David installed Shobi as a loyal ruler or governor in Rabbah in Hanun's place; the text does not say so directly.",
+      "evidence": "BiblicalTraining, \"Rabbah\" and \"Hanun,\" read in full.",
+      "assessment": "unknown"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2sa-04-001",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 19,
+      "startVerse": 1,
+      "endChapter": 19,
+      "endVerse": 19,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler tells the same war: the embassy, the insult, the hiring of the Arameans, Joab's divided force, and the battle at Helam, adding the payment of a thousand talents of silver. The casualty figures differ between the two accounts."
+    },
+    {
+      "id": "conn-2sa-04-002",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 20,
+      "startVerse": 1,
+      "endChapter": 20,
+      "endVerse": 3,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "\"At the time when kings go out to battle,\" Joab besieges Rabbah while David stays in Jerusalem, and David takes the city and its crown of a talent of gold. The same war-frame, told without the sin and the sentence."
+    },
+    {
+      "id": "conn-2sa-04-003",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 11,
+      "startVerse": 1,
+      "endChapter": 11,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Nahash king of Ammon besieges Jabesh-gilead and demands the right eye of every man, until Saul rallies Israel and routs him. The enemy David's father-in-law's house once faced is the father of the king David now sends to comfort."
+    },
+    {
+      "id": "conn-2sa-04-004",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 11,
+      "startVerse": 4,
+      "endChapter": 11,
+      "endVerse": 33,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jephthah answers the Ammonite king's claim to the land between the Arnon and the Jabbok with history, and when diplomacy fails he defeats the Ammonites. The long pattern of Ammonite pressure on Gilead stands behind David's war."
+    },
+    {
+      "id": "conn-2sa-04-005",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 19,
+      "startVerse": 30,
+      "endChapter": 19,
+      "endVerse": 38,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Lot's younger daughter bears Ben-Ammi, \"the father of the Ammonites.\" The Ammonites are kin to Israel through Lot, which is why the law forbids taking their land even while the two peoples fight."
+    },
+    {
+      "id": "conn-2sa-04-006",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 2,
+      "startVerse": 19,
+      "endChapter": 2,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"And when thou comest nigh over against the children of Ammon, distress them not, nor meddle with them: for I will not give thee of the land of the children of Ammon any possession; because I have given it unto the children of Lot for a possession.\" The same command given for Moab (2:9) is given here for Ammon: the land was given to the descendants of Lot, and Israel kept to it on the approach to Canaan."
+    },
+    {
+      "id": "conn-2sa-04-007",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 23,
+      "startVerse": 3,
+      "endChapter": 23,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"An Ammonite or Moabite shall not enter into the congregation of the LORD; even to their tenth generation.\" The peoples did not meet Israel with food and water on the journey, and Balaam was hired to curse them. The exclusion stands beside the kinship."
+    },
+    {
+      "id": "conn-2sa-04-008",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 9,
+      "startVerse": 50,
+      "endChapter": 9,
+      "endVerse": 54,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Abimelech goes up against Thebez, and a woman casts an upper millstone upon him from the wall, so that he dies. Joab's messenger cites the death to explain why men fell near the wall at Rabbah — and to carry the news of Uriah's death."
+    },
+    {
+      "id": "conn-2sa-04-009",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 16,
+      "endChapter": 17,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The king \"shall not multiply wives to himself, that his heart turn not away; neither shall he greatly multiply to himself silver and gold.\" The law sets the limit against which Nathan's charge — the master's wives given to David — is read."
+    },
+    {
+      "id": "conn-2sa-04-010",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"I will establish the throne of his kingdom for ever.\" Nathan, who delivered the promise of an enduring house to David, is the same prophet who returns with the sentence that the sword shall never depart from it."
+    },
+    {
+      "id": "conn-2sa-04-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 8,
+      "startVerse": 11,
+      "endChapter": 8,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David dedicates to the LORD the silver and gold of all the nations he subdued, including Ammon. The spoil of the war that frames this category was already, in part, dedicated before the war began."
+    },
+    {
+      "id": "conn-2sa-04-012",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 13,
+      "startVerse": 1,
+      "endChapter": 13,
+      "endVerse": 39,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Amnon forces his sister Tamar, David is very wroth but takes no action, and after two full years Absalom has Amnon killed. The sentence of the sword begins to work itself out in David's own house."
+    },
+    {
+      "id": "conn-2sa-04-013",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 16,
+      "startVerse": 21,
+      "endChapter": 16,
+      "endVerse": 22,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Absalom goes in unto his father's concubines in the sight of all Israel, on the housetop. What David did secretly is repaid in public, exactly as Nathan said it would be."
+    },
+    {
+      "id": "conn-2sa-04-014",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 51,
+      "startVerse": 1,
+      "endChapter": 51,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The heading links the psalm of confession with the moment \"when Nathan the prophet came unto David, after he had gone in to Bathsheba.\" The psalm is the prayer behind David's six words, \"I have sinned against the LORD.\""
+    },
+    {
+      "id": "conn-2sa-04-015",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 1,
+      "startVerse": 11,
+      "endChapter": 1,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Nathan warns Bathsheba that her life and Solomon's are in danger, and advises her to remind David of his oath that Solomon would reign. The prophet who announced judgment now works to secure the succession of the child born after it."
+    },
+    {
+      "id": "conn-2sa-04-016",
+      "book": "Matthew",
+      "bookId": "matthew",
+      "startChapter": 1,
+      "startVerse": 6,
+      "endChapter": 1,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"David the king begat Solomon of her that had been the wife of Urias.\" Matthew does not name Bathsheba, but refers to her through Uriah, keeping the memory of David's sin in view at the head of the genealogy of Jesus."
+    },
+    {
+      "id": "conn-2sa-04-017",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 49,
+      "startVerse": 1,
+      "endChapter": 49,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"cry, ye daughters of Rabbah, gird you with sackcloth\" (49:3). Jeremiah announces that Rabbah will become a desolate heap, and that Molech will go into exile with his priests — and ends with a promise that the fortunes of the Ammonites will be restored."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-samuel-masoretic-text",
+    "source-biblicaltraining-ammonites",
+    "source-biblicaltraining-rabbah",
+    "source-biblicaltraining-bathsheba",
+    "source-biblicaltraining-nathan",
+    "source-biblicaltraining-hanun"
+  ],
+  "review": {
+    "author": "Gnosis 2 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Samuel category; independent QA pending. S04 sources[] carries all six S04-S01..S06 entries (all verified in the live registry): S04-S01 Mechon Mamre -> source-mechon-mamre-2-samuel-masoretic-text; S04-S02 -> source-biblicaltraining-ammonites; S04-S03 -> source-biblicaltraining-rabbah; S04-S04 -> source-biblicaltraining-bathsheba; S04-S05 -> source-biblicaltraining-nathan; S04-S06 -> source-biblicaltraining-hanun. S04-N01 (\"Uriah\") and S04-N02 (\"Hittites\") are EXCLUDED from the registry by the hygiene rule (cited only in the §12 row + one Dossier-notes mention; no claim rests on them) and cannot enter sources[]. source-tyson-archaeology-ammon-ammonites-oxford-bibliographies is not-independently-verified and no claim rests on it — stays out. source-biblicaltraining-david is cited in §2 prose only — stays out by the §-location rule. source-jfb-commentary is reuse-basis only (reached through clm-deu-05-016) — stays out. S2CL-04-019 reuses clm-deu-05-016 (established, the kingship law) and is assessed debated — how the gift of the master's wives (12:8) relates to the limit on multiplying wives (Deut 17:17) is not resolved here. S2CL-04-013 is the first unknown (Eliam son of Ahithophel as Bathsheba's father is possible, not stated); S2CL-04-030 is the second unknown (whether David installed Shobi as ruler at Rabbah is an interpreters' conclusion, not stated). S2CL-04-028 is debated (the crown's malkam as \"their king\" or Milkom, and 12:31 as killing with iron tools or forced labour — both textually difficult, flagged not resolved). The Chronicles number differences (8:4, 10:18) are recorded, not resolved: the casualty-figure difference is carried in conn-2sa-04-001's note as a copying question. No multi-range connections — all 17 §11 targets are single ranges within one book, so no encompassing ranges and no splits. primaryScripture is the full range 10:1–12:31 (3 chapters, endChapter − startChapter = 2, within the validator limit — no narrowing). The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). KJV/JPS quotation mix left as is (both public domain)."
+  }
+}
