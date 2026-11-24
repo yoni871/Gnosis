@@ -1,0 +1,32 @@
+{
+  "id": "ruth",
+  "title": "Ruth",
+  "testament": "OT",
+  "introduction": "Ruth records the story of Naomi, Ruth, and Boaz in the period of the judges, from the return to Bethlehem through the threshing floor and the gate to the genealogy of David. These four studies follow literary divisions; they do not claim four independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "entries": [
+    {
+      "categoryId": "category-ruth-naomi-and-ruth-return-to-bethlehem",
+      "kind": "category",
+      "narrativeOrder": 73,
+      "bookNote": "Ruth 1 examines Naomi and Ruth Return to Bethlehem as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-ruth-gleans-in-the-field-of-boaz",
+      "kind": "category",
+      "narrativeOrder": 74,
+      "bookNote": "Ruth 2 examines Ruth Gleans in the Field of Boaz as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-ruth-the-threshing-floor-and-the-gate",
+      "kind": "category",
+      "narrativeOrder": 75,
+      "bookNote": "Ruth 3–4 examines The Threshing Floor and the Gate as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-ruth-the-generations-of-perez",
+      "kind": "category",
+      "narrativeOrder": 76,
+      "bookNote": "Ruth 4 examines The Generations of Perez as a biblical literary and historical-context study, without assigning an independently verified date."
+    }
+  ]
+}
