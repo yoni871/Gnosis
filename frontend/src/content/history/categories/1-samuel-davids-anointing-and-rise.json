@@ -1,0 +1,339 @@
+{
+  "id": "category-1-samuel-davids-anointing-and-rise",
+  "title": "David's Anointing and Rise",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 16,
+    "startVerse": 1,
+    "endChapter": 17,
+    "endVerse": 58
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 16,
+    "startVerse": 1,
+    "endChapter": 17,
+    "endVerse": 58
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-06-001",
+      "claim": "The LORD sends Samuel to Jesse of Bethlehem with a horn of oil to anoint a king from among Jesse's sons; Samuel fears Saul will kill him, and is given a heifer and the words \"I am come to sacrifice\" as his stated purpose.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre ch. 16).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-002",
+      "claim": "Samuel assumes Eliab is the LORD's anointed, but the LORD refuses him: man looks on the outward appearance, \"but the LORD looketh on the heart.\"",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre ch. 16).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-003",
+      "claim": "Seven sons of Jesse pass before Samuel and are refused; David, the youngest, is fetched from the sheep — so 1 Samuel counts Jesse's sons as eight (16:10 + David; 17:12 \"he had eight sons\"). Read live in this dossier, closing the unread-text caveat in `clm-rut-04-012`. The difference from Chronicles (David seventh, 1 Chr 2:15) remains unreconciled.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre chs. 16–17, this session).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-004",
+      "claim": "Samuel anoints David in the midst of his brothers with the horn of oil, and \"the spirit of the LORD came mightily upon David from that day forward.\" Samuel then returns to Ramah.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre ch. 16).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-005",
+      "claim": "The spirit's coming on David (16:13) and its departing from Saul (16:14) are one hinge stated in two adjacent verses: the anointing closes with Samuel leaving for Ramah, and the next verse opens the inverse movement at Saul's court.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre ch. 16).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-006",
+      "claim": "Anointing a king in the ancient Near East solemnised an elevation in legal status; Israel continued the Syrian and Anatolian practice of anointing the king (El-Amarna Letter 51:4–9). In Israel the royal anointing conferred the spirit of the LORD — support, strength, wisdom (1 Sam 16:13–14; 18:12) — while priestly anointing conferred no divine attribute.",
+      "evidence": "Milgrom, \"Anointing,\" Encyclopaedia Judaica (via Jewish Virtual Library), read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-06-007",
+      "claim": "The attribute *māšîaḥ* (\"anointed\") came to designate the king and the high priest and, by extension, divinely appointed functionaries who were not anointed at all; eventually it was applied to the messiah, the word being taken from the Hebrew \"anointed.\"",
+      "evidence": "Milgrom, \"Anointing,\" Encyclopaedia Judaica, read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-06-008",
+      "claim": "The spirit of the LORD departs from Saul and an evil spirit from the LORD terrifies him; David, recommended as a skilful harpist, is brought to court, loved greatly by Saul, made his armour-bearer, and brings relief whenever he plays. The text gives no medical explanation for the relief, and none is offered here.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre ch. 16).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-009",
+      "claim": "The two introductions of David stand unreconciled in the text: in ch. 16 Saul knows David, loves him, and keeps him at court; in ch. 17 David goes to and fro to feed sheep and Saul and Abner ask whose son he is as if unknown. No reconciliation is offered in this dossier.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre chs. 16–17, this session).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-010",
+      "claim": "The Philistines camp at Socoh and the Israelites in the Vale of Elah, a valley between them; Goliath of Gath, six cubits and a span, in bronze helmet, scale coat of 5,000 shekels, greaves, javelin, and a spear shaft like a weaver's beam with an iron head of 600 shekels, challenges Israel to single combat staking servitude on the outcome, morning and evening for forty days.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre ch. 17, vv. 1–47 re-read live this session; vv. 48–58 per the Worker B live read 2026-11-23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-011",
+      "claim": "Goliath's height is six cubits and a span (about 9 feet 9 inches, about 3 m, on the common cubit) in the Hebrew text, but four cubits and a span (about 6 feet 9 inches, about 2 m) in the Septuagint, a Qumran Hebrew manuscript of Samuel, and Josephus; scholars are divided over which reading is original.",
+      "evidence": "BiblicalTraining, \"Goliath,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-06-012",
+      "claim": "Goliath's equipment — bronze helmet, scale armour, greaves, javelin, iron-headed spear, shield carried by an attendant — pictures a professional warrior equipped in the manner of the Aegean and Philistine elite; the mixture of bronze armour and an iron spearhead fits the early Iron Age, when iron was coming into wider use.",
+      "evidence": "BiblicalTraining, \"Goliath,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-06-013",
+      "claim": "Goliath proposes single combat to settle the war, and the exchange of speeches before the fight follows the pattern of ancient single combat, attested in the Egyptian Story of Sinuhe, Homer's Iliad (Paris/Menelaus, Hector/Ajax), and the twelve-against-twelve fight at Gibeon (2 Sam 2:12–16). Similarity does not prove direct borrowing.",
+      "evidence": "BiblicalTraining, \"Goliath,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-06-014",
+      "claim": "David's credentials are pastoral (lion and bear killed while keeping his father's sheep) and his weapons are a shepherd's (staff, sling, five smooth stones from the brook); the sling was a recognized weapon of herdsmen and light troops, and skilled slingers were a recognized part of ancient armies (cf. Judg 20:16).",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre ch. 17); BiblicalTraining, \"Goliath,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-015",
+      "claim": "David slings a stone into Goliath's forehead, kills him with Goliath's own sword, and cuts off his head; the Philistines flee and Israel pursues to Gai and the gates of Ekron, spoiling the camp; David takes the head to Jerusalem and puts the armour in his tent. The Jerusalem notice is forward-looking (Jerusalem not yet in Israelite hands) and is not explained further here.",
+      "evidence": "Hebrew + JPS 1917 read in full live (Worker B live read 2026-11-23; BiblicalTraining \"Goliath\" corroborates the sequence).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-06-016",
+      "claim": "Gath, Goliath's city, is identified with Tell es-Safi on the edge of the Shephelah; a 2005 potsherd from about the 10th or 9th century BC bears two names (*'LWT*, *WLT*) resembling Goliath in form. The inscription does not refer to the biblical Goliath, but shows names of this non-Semitic type were in use at Gath in the general period.",
+      "evidence": "BiblicalTraining, \"Goliath,\" read in full; Tell es-Safi inscription (Maeir et al. 2008, BASOR 351).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-06-017",
+      "claim": "Khirbet Qeiyafa, a fortified town of the early 10th century BC overlooking the Valley of Elah, has been proposed as Shaaraim, mentioned in the Philistine retreat; the identification and the site's political affiliation remain under discussion.",
+      "evidence": "BiblicalTraining, \"Goliath,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-06-018",
+      "claim": "The Septuagint's main manuscript tradition lacks David's arrival with food (17:12–31) and Saul's question to Abner (17:55–58), among other verses; many critical scholars take this as evidence two accounts of David's rise were combined. This dossier records the textual fact and the candidate readings and takes no position on composition.",
+      "evidence": "BiblicalTraining, \"Goliath,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-06-019",
+      "claim": "The Hebrew of 2 Samuel 21:19 credits Elhanan son of Jaare-Oregim with killing Goliath the Gittite, while 1 Chronicles 20:5 says Elhanan killed Lahmi the brother of Goliath; the difference is explained as textual corruption, a second Goliath, or (with little support) Elhanan as another name for David. Not resolved here.",
+      "evidence": "BiblicalTraining, \"Goliath,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-06-020",
+      "claim": "Jesse is \"an Ephrathite of Beth-lehem in Judah\" and \"had eight sons\" — the same designation Ruth 1:2 gives Elimelech's family, tying the two households to the same old Bethlehem families (reuse: `conn-rut-01-007`, background, probable).",
+      "evidence": "Hebrew + JPS 1917 read in full live (Mechon Mamre ch. 17); reuse `conn-rut-01-007`.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-06-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 13,
+      "startVerse": 14,
+      "endChapter": 13,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After Saul's disobedience Samuel tells him the Lord has sought \"a man after his own heart\" to lead his people — the sentence that the anointing at Bethlehem answers."
+    },
+    {
+      "id": "conn-1sa-06-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 15,
+      "startVerse": 23,
+      "endChapter": 15,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 1 Samuel 15:23 and 15:28. Samuel tells Saul the Lord has rejected him from being king and has given the kingdom to a neighbour better than he. The rejection stands behind the commission to Bethlehem."
+    },
+    {
+      "id": "conn-1sa-06-003",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 10,
+      "startVerse": 1,
+      "endChapter": 10,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Samuel anoints Saul with a vial of oil in private, as he will anoint David with a horn of oil in private. The first royal anointing frames the second."
+    },
+    {
+      "id": "conn-1sa-06-004",
+      "book": "Ruth",
+      "bookId": "ruth",
+      "startChapter": 4,
+      "startVerse": 17,
+      "endChapter": 4,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The genealogy that ends \"Obed begat Jesse, and Jesse begat David\" names the household Samuel visits at Bethlehem and places David tenth in the line from Perez."
+    },
+    {
+      "id": "conn-1sa-06-005",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 2,
+      "startVerse": 13,
+      "endChapter": 2,
+      "endVerse": 15,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Chronicles names seven sons of Jesse and lists David as the seventh, against Samuel's eight sons with David the youngest. The two counts differ and are left unresolved here."
+    },
+    {
+      "id": "conn-1sa-06-006",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 5,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The victory brings David into Saul's household for good: Jonathan makes a covenant with him, Saul sets him over the fighting men, and David's public career begins where the duel ends."
+    },
+    {
+      "id": "conn-1sa-06-007",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 21,
+      "startVerse": 9,
+      "endChapter": 21,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Goliath's sword, taken from the fallen champion, is kept at the sanctuary at Nob, wrapped in a cloth behind the ephod, and is given back to David when he flees from Saul."
+    },
+    {
+      "id": "conn-1sa-06-008",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 5,
+      "startVerse": 2,
+      "endChapter": 5,
+      "endVerse": 2,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"Thou shalt feed my people Israel\" — God took David from the sheepfolds to shepherd his people, the calling already visible when the shepherd answers the champion."
+    },
+    {
+      "id": "conn-1sa-06-009",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 78,
+      "startVerse": 70,
+      "endChapter": 78,
+      "endVerse": 72,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"He chose David also his servant, and took him from the sheepfolds\" to feed Jacob his people — the psalm reads David's shepherding as preparation for kingship."
+    },
+    {
+      "id": "conn-1sa-06-010",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 21,
+      "startVerse": 19,
+      "endChapter": 21,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Hebrew text credits Elhanan with killing Goliath the Gittite, against the parallel in Chronicles; the relation of the two passages is a well-known textual question."
+    },
+    {
+      "id": "conn-1sa-06-011",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 13,
+      "startVerse": 19,
+      "endChapter": 13,
+      "endVerse": 22,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "The Philistines kept Israel from working iron, so that on the day of battle only Saul and Jonathan carried sword or spear — the background against which Goliath's iron spearhead and David's sling must be read."
+    },
+    {
+      "id": "conn-1sa-06-012",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 20,
+      "startVerse": 16,
+      "endChapter": 20,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Seven hundred left-handed Benjamites could sling a stone at a hair and not miss — the sling as a recognized weapon of war, not a shepherd's toy."
+    },
+    {
+      "id": "conn-1sa-06-013",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 28,
+      "startVerse": 18,
+      "endChapter": 28,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jacob anoints the stone at Bethel, the memorial-stone anointing already on file in the library; the royal anointing of David belongs to the same verb and a different office."
+    },
+    {
+      "id": "conn-1sa-06-014",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 16,
+      "startVerse": 13,
+      "endChapter": 16,
+      "endVerse": 14,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "The spirit of the Lord comes mightily on David from the day of his anointing, and departs from Saul the next verse — the hinge on which the two halves of the chapter turn."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S06 sources (S06-S01–S06-S05) are the 4 sources[] entries; all are verified. S06-S06 (Maeir et al., Tell es-Safi inscription, BASOR 351) is NOT-independently-verified (Needs-checking; the BASOR article itself was not read — reading, date and publication details come from the Tell es-Safi inscription summary and the \"Goliath\" article, both read live). It IS cited in §9 claim SCL-06-016 (Source IDs: S06-S05, S06-S06; probable, capped) and in §6 internal prose (dossier line 147, the Tell es-Safi paragraph), but it is NOT footnoted in the Appendix prose (the Appendix's \"valley and its cities\" subsection cites only [^S06-S05] for that paragraph). Per the J10/S012 and R03 Wright precedents, a not-independently-verified source may appear as an MD footnote key but must NOT be in sources[] — so S06-S06 stays OUT of sources[]; its registry entry (source-maeir-tell-es-safi-inscription) already exists from the registry-first build and no new entry is created. Since S06 is in-review, no editorialOverride is needed. S06-S07 (Tel Dan stele) stays OUT (not consulted, deliberately unused, no registry entry — registry-build exclusion). source-bdb-lexicon stays OUT (only in the §12 already-registered table; cited by no claim and no prose footnote — S02/S03/S04/S05 precedent); the other already-registered §2-reuse sources (Nigro Bethlehem x2, IAA seal, biblicaltraining-ephrathah, Udd, BAR Philistines, Feldman, Emanuel, biblicaltraining-temples-of-dagon) stay OUT on the same basis. Multi-range connection: SCO-06-002 targets 1 Sam 15:23 and 15:28 (two non-contiguous verses); encoded as the encompassing range 15:23–28 with the exact sub-ranges carried in the note (\"Targets 1 Sam 15:23 and 15:28.\") per the S01/S02 precedent — QA accepted encompassing ranges as shipped; splitting before publication remains the publication-time decision. All other 13 §11 targets are single ranges. Reuse references in CLAIM TEXT (S02 precedent, internal-only, stripped at generation — the generator strips claims/review from the generated JSON, so these never reach dist; S02 QA confirmed \"no gate leak\" for the same pattern): SCL-06-003's claim text cites clm-rut-04-012 (7th-vs-8th-son count; the live read of 16:10–11 and 17:12 closes the unread-text caveat); SCL-06-020's claim text cites conn-rut-01-007 (Jesse the Ephrathite), and its evidence also carries conn-rut-01-007; no source is added for any reuse. SCL-06-011 is debated (Goliath's height: Hebrew six cubits and a span vs. Septuagint/Qumran/Josephus four cubits and a span; neither asserted as original); SCL-06-017/018/019 are debated (Khirbet Qeiyafa = Shaaraim proposed; Septuagint's shorter 17–18; Elhanan question unresolved). SCL-06-016 is probable (capped — rests in part on S06-S06). primaryScripture = fullRange = 16:1–17:58 (exactly 2 chapters), as proposed in the dossier header; no narrowing needed. \"Psalm\" → \"Psalms\" (S01/S02/S03/S05 precedent): SCO-06-009's target Psalm 78:70–72 has book \"Psalms\", bookId \"psalms\". §10 shared-opportunity lines (\"Topic: royal anointing\" built here (S06-S03), \"Topic: Goliath and single combat\", \"Topic: the Valley of Elah as a contested border\", \"Place: Bethlehem\", \"Topic: Ephrathah / Ephrathites\") do not enter the built files: the built JSON carries topics: [] (S01–S05 pattern), so they are moot for the built output. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-milgrom-anointing-encyclopaedia-judaica",
+    "source-biblicaltraining-david",
+    "source-biblicaltraining-goliath"
+  ]
+}
