@@ -7927,5 +7927,38 @@
     "limitations": "Proof texts were added to the printed Confession after the 1646 completion; the milestone records the completion date, not the printing date of the proof-text edition. Chapter 2, section 3 proof texts are covered by ver-p3-e5-westminster-confession-1646-content-001.",
     "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS.md §9.2 still required. Not publishable without independent verification and editorial approval. Coordinator check 2026-11-21: this record was added by the Phase 3 coordinator to evidence three passage links the era draft listed without a dedicated record.",
     "editorialApproval": null
+  },
+  {
+    "checkDate": "2026-11-21",
+    "checker": "dev-1-researcher",
+    "claimId": "michael-servetus",
+    "claimText": "Michael Servetus was born probably in 1511 and died 27 October 1553 in Geneva.",
+    "claimType": "date",
+    "editorialApproval": null,
+    "evidenceFound": "The Genevan Foundation chronology page states 'Michael Servetus (1511-1553)' and records his execution by burning on 27 October 1553. Britannica gives 'Michael Servetus (1511?-1553)' and 'born 1511?, Villanueva or Tudela, Spain — died October 27, 1553, Champel, Switzerland'. The Galileo Project states 'Born: Villanueva de Sixena, Huesca, Spain, 29 Sept. 1511. There is an element of uncertainty about the year. Servetus himself supplied conflicting evidence; he also gave the year 1509. However, most agree that 1511 is probable. Died: Geneva, 27 October 1553.'",
+    "id": "ver-p3-e5-michael-servetus-dates-001",
+    "limitations": "Birth year is not exact: 1509 is also given by Servetus himself, and Britannica marks 1511 with a question mark. 1511 is recorded as probable, not exact, and the author dates certainty is 'approximate', not 'exact'. Death date 27 October 1553 is consistently given.",
+    "notes": "Researcher source-check only; independent verification per RESEARCH-STANDARDS.md §9.2 still required. Not publishable without independent verification and editorial approval. Added in T4f to fix QA blocking issue 2 on PR #261: the Servetus entry previously asserted exact life dates with no verification record.",
+    "result": "partially-verified",
+    "sourcesChecked": [
+      {
+        "source": "The Genevan Foundation, chronology of Calvin's life and works",
+        "edition": null,
+        "locator": "https://thegenevanfoundation.com/tag/institutes-of-the-christian-religion/",
+        "dateAccessed": "2026-11-21"
+      },
+      {
+        "source": "Encyclopaedia Britannica, Michael Servetus",
+        "edition": null,
+        "locator": "https://www.britannica.com/biography/Michael-Servetus",
+        "dateAccessed": "2026-11-21"
+      },
+      {
+        "source": "The Galileo Project, Servetus, Michael",
+        "edition": null,
+        "locator": "https://galileo.library.rice.edu/Catalog/NewFiles/servetus.html",
+        "dateAccessed": "2026-11-21"
+      }
+    ]
   }
 ]

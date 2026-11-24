@@ -105,8 +105,7 @@ nothing is publishable yet.
   Justin Martyr, Irenaeus, Tertullian, Athanasius, Augustine; plus 23 new,
   including 1 corporate author — the Church of Smyrna, author of the
   *Martyrdom of Polycarp*). The Westminster Assembly is *not* registered as
-  an author: see the work-id note below. Author life dates are null
-  throughout (not verified; never used as work dates).
+  an author: see the work-id note below. Author life dates are null for most authors (not verified; never used as work dates). Four authors carry life dates: John Calvin (1509-1564), Philip Melanchthon (1497-1560), and Jonathan Edwards (1703-1758) exact, each backed by a verified dates record, and Michael Servetus (1511-1553) approximate, his birth year uncertain (see ver-p3-e5-michael-servetus-dates-001).
 - `../shared/works.json` — **34 works** (the 2 Bible works from Phase 2,
   preserved unchanged, plus 32 new works actually cited by an interpretation
   or milestone). Every work carries a verified title/edition/translator,

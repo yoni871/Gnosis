@@ -261,13 +261,15 @@
     "dates": {
       "earliest": 1511,
       "latest": 1553,
-      "certainty": "exact",
-      "note": "Dates 1511-1553 verified on the Genevan Foundation chronology page; executed at Geneva 27 October 1553."
+      "certainty": "approximate",
+      "note": "Born probably 1511 (also given as 1509; birth year uncertain — see verification record ver-p3-e5-michael-servetus-dates-001); died 27 October 1553, Geneva, executed. Dates as given on the Genevan Foundation chronology page, which states 'Michael Servetus (1511-1553)'."
     },
     "bio": "Spanish theologian; author of De Trinitatis Erroribus (1531) and Christianismi Restitutio (1553). No verified quotation from his own writings was obtained in this pass; his readings are recorded here only as Calvin reports them, in alternativeReadings.",
     "notes": "Included so that alternativeReadings can attribute dissenting readings to him. He is not the author of any interpretation in this pass.",
     "status": "verification-pending",
-    "verificationRecordIds": []
+    "verificationRecordIds": [
+      "ver-p3-e5-michael-servetus-dates-001"
+    ]
   },
   {
     "id": "novatian",
