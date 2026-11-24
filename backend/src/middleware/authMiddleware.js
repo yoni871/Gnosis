@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const pool = require("../db/db");
+const { withUser } = require("../db/userContext");
 const { isStrongSecret } = require("../utils/secretStrength");
 const { getAdminEmails, isAdminEmail } = require("../utils/adminAuth");
 const { CLIENT_AUTH_RESPONSES, logAuthFailure } = require("../utils/authErrors");
@@ -57,10 +58,13 @@ const authenticateToken = async (req, res, next) => {
         // so no query is needed); a missing user_mfa row means not
         // enrolled.
         if (getAdminEmails().size > 0) {
-            const adminCheck = await pool.query(
+            // RLS: the LEFT JOIN reads user_mfa, so run it under the
+            // JWT user's context — unwrapped, `enrolled` reads NULL
+            // and every admin gets 403 MFA_ENROLLMENT_REQUIRED.
+            const adminCheck = await withUser(pool, user.userId, (client) => client.query(
                 `SELECT u.email, m.enrolled, m.mfa_generation FROM users u
                  LEFT JOIN user_mfa m ON m.user_id = u.id WHERE u.id = $1`,
-                [user.userId]);
+                [user.userId]));
             const adminRow = adminCheck.rows[0];
             if (adminRow && isAdminEmail(adminRow.email) && (adminRow.enrolled !== true || result.rows[0].mfa_verified !== true
                 || !result.rows[0].mfa_generation || result.rows[0].mfa_generation !== adminRow.mfa_generation)) {

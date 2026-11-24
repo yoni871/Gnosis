@@ -1,6 +1,7 @@
 const crypto = require('node:crypto');
 const jwt = require('jsonwebtoken');
 const pool = require('../db/db');
+const { setUserContext } = require('../db/userContext');
 const { audit } = require('../utils/auditLog');
 const { computeKeyHash, getRateLimitSecret, POLICIES } = require('../utils/rateLimit');
 const { isAdminEmail } = require('../utils/adminAuth');
@@ -37,6 +38,11 @@ async function createSessionInTransaction(client, userId, verifiedPasswordHash, 
         'SELECT password_hash, email FROM users WHERE id = $1 FOR UPDATE', [userId]);
     if (typeof verifiedPasswordHash !== 'string'
         || result.rows[0]?.password_hash !== verifiedPasswordHash) return null;
+    // RLS: set the context before the user_mfa read below. This function
+    // is also called from verifyMfaChallenge inside that transaction,
+    // where the context is already set to the same value — setting it
+    // twice on the same client is harmless.
+    await setUserContext(client, userId);
     const mfa = await client.query('SELECT enrolled, mfa_generation FROM user_mfa WHERE user_id = $1', [userId]);
     if (!mfaVerified && (mfa.rows[0]?.enrolled || isAdminEmail(result.rows[0].email))) return null;
     if (mfaVerified && (!mfa.rows[0]?.enrolled || !mfa.rows[0].mfa_generation)) return null;
@@ -60,6 +66,8 @@ async function createPasskeySessionInTransaction(client, userId) {
     const result = await client.query('SELECT email, email_verified_at FROM users WHERE id = $1 FOR UPDATE', [userId]);
     const account = result.rows[0];
     if (!account?.email_verified_at) return null;
+    // RLS: set the context before the user_mfa read below.
+    await setUserContext(client, userId);
     const mfa = await client.query('SELECT enrolled, mfa_generation FROM user_mfa WHERE user_id = $1', [userId]);
     const enrolled = mfa.rows[0]?.enrolled === true;
     if (isAdminEmail(account.email) && !enrolled) return null;
@@ -77,6 +85,9 @@ async function rotateSession(refresh) {
             JOIN auth_refresh_tokens t ON t.session_id = s.id WHERE t.token_hash = $1 FOR UPDATE OF s`, [hash(refresh)]);
         const session = result.rows[0];
         if (!session || session.revoked_at || new Date(session.expires_at) <= new Date()) return null;
+        // RLS: the user is known only after the session lookup above;
+        // set the context before the LEFT JOIN user_mfa read below.
+        await setUserContext(client, session.user_id);
         const account = await client.query(`SELECT u.email, m.enrolled, m.mfa_generation FROM users u
             LEFT JOIN user_mfa m ON m.user_id = u.id WHERE u.id = $1`, [session.user_id]);
         if (!account.rows[0] || (isAdminEmail(account.rows[0].email)

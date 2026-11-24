@@ -33,6 +33,7 @@
 // login.
 
 const { audit } = require("../utils/auditLog");
+const { withUser } = require("../db/userContext");
 const { computeKeyHash, getRateLimitSecret } = require("../utils/rateLimit");
 const { notifyNewDeviceLogin } = require("./accountNotifications");
 
@@ -64,12 +65,14 @@ async function recordLoginDevice(db, userId, ip, userAgent, { notifyNewDevice = 
         // Insert-first, so concurrent first logins from the same new
         // device cannot double-emit: exactly the inserter sees a row
         // and audits; the loser refreshes last_seen_at instead.
-        const inserted = await db.query(
+        // RLS: both known_login_devices queries run under the user's
+        // context, each in its own short transaction.
+        const inserted = await withUser(db, userId, (client) => client.query(
             `INSERT INTO known_login_devices(user_id, device_key)
              VALUES ($1, $2)
              ON CONFLICT (user_id, device_key) DO NOTHING RETURNING id`,
             [userId, deviceKey]
-        );
+        ));
         if (inserted.rows.length === 1) {
             // Best-effort, after the device row committed. audit()
             // never throws, so a failed insert cannot change the 200.
@@ -86,11 +89,11 @@ async function recordLoginDevice(db, userId, ip, userAgent, { notifyNewDevice = 
             }
             return { isNew: true };
         }
-        await db.query(
+        await withUser(db, userId, (client) => client.query(
             `UPDATE known_login_devices SET last_seen_at = now()
              WHERE user_id = $1 AND device_key = $2`,
             [userId, deviceKey]
-        );
+        ));
         return { isNew: false };
     } catch (error) {
         const code = error && typeof error.code === "string" ? error.code : "none";

@@ -21,6 +21,7 @@
 
 const passwordHash = require("../utils/passwordHash");
 const pool = require("../db/db");
+const { withUser, setUserContext } = require("../db/userContext");
 const sessions = require("./sessionService");
 const { isAdminEmail } = require("../utils/adminAuth");
 const { digestPasswordHash } = require("../utils/mfaEnrollToken");
@@ -85,7 +86,9 @@ async function burnTotpStep(client, userId, step) {
 }
 
 async function getMfaStatus(db, userId) {
-    const result = await db.query("SELECT enrolled FROM user_mfa WHERE user_id = $1", [userId]);
+    // RLS: the user_mfa read runs under the user's context.
+    const result = await withUser(db, userId, (client) =>
+        client.query("SELECT enrolled FROM user_mfa WHERE user_id = $1", [userId]));
     return { enrolled: result.rows[0] ? result.rows[0].enrolled === true : false };
 }
 
@@ -123,6 +126,8 @@ async function startEnrollment(db, userId, email, auth) {
     const client = await db.connect();
     try {
         await client.query("BEGIN");
+        // RLS: set the context before any user_mfa read/write below.
+        await setUserContext(client, userId);
         const user = await client.query("SELECT id, password_hash FROM users WHERE id = $1 FOR UPDATE", [userId]);
         if (!user.rows[0]) {
             await client.query("ROLLBACK");
@@ -170,6 +175,9 @@ async function confirmEnrollment(db, userId, code, auth) {
     const client = await db.connect();
     try {
         await client.query("BEGIN");
+        // RLS: set the context before any user_mfa / mfa_recovery_codes
+        // read/write below (including burnTotpStep).
+        await setUserContext(client, userId);
         const locked = await client.query(
             "SELECT id, password_hash FROM users WHERE id = $1 FOR UPDATE", [userId]);
         if (!locked.rows[0]) {
@@ -257,6 +265,10 @@ async function issueMfaChallenge(db, userId, verifiedPasswordHash) {
     const client = await db.connect();
     try {
         await client.query("BEGIN");
+        // RLS: set the context before any user_mfa read/write below.
+        // (mfa_challenges itself is a documented RLS exclusion, so
+        // its reads/writes need no context; this is harmless there.)
+        await setUserContext(client, userId);
         const locked = await client.query(
             "SELECT id, password_hash FROM users WHERE id = $1 FOR UPDATE", [userId]);
         if (!locked.rows[0] || locked.rows[0].password_hash !== verifiedPasswordHash) {
@@ -305,6 +317,13 @@ async function verifyMfaChallenge(db, challengeToken, code) {
             await client.query("ROLLBACK");
             return { ok: false, reason: "challenge" };
         }
+        // RLS: set the context here — AFTER the token-derived owner
+        // lookup above (mfa_challenges is a documented exclusion, and
+        // that lookup is what discovers the user) and BEFORE the first
+        // user_mfa read below. The context covers the user_mfa /
+        // mfa_recovery_codes reads and writes that follow, including
+        // burnTotpStep and createSessionInTransaction.
+        await setUserContext(client, owner.rows[0].user_id);
         const userResult = await client.query(
             "SELECT id, password_hash FROM users WHERE id = $1 FOR UPDATE", [owner.rows[0].user_id]);
         const challengeResult = await client.query(
@@ -450,8 +469,11 @@ async function verifyPasswordAndTotp(db, userId, password, code) {
     if (!passwordMatch) {
         return { ok: false, reason: "password" };
     }
-    const mfa = await db.query(
-        "SELECT secret_encrypted, key_version, enrolled FROM user_mfa WHERE user_id = $1", [userId]);
+    // RLS: only the user_mfa read runs in a context transaction. The
+    // password verification above deliberately stays outside any
+    // transaction, and this read must not pull it inside one.
+    const mfa = await withUser(db, userId, (client) => client.query(
+        "SELECT secret_encrypted, key_version, enrolled FROM user_mfa WHERE user_id = $1", [userId]));
     const row = mfa.rows[0];
     if (!row || !row.enrolled) {
         return { ok: false, reason: "code" };
@@ -488,6 +510,9 @@ async function regenerateRecoveryCodes(db, userId, password, code) {
     const client = await db.connect();
     try {
         await client.query("BEGIN");
+        // RLS: set the context before any user_mfa / mfa_recovery_codes
+        // read/write below (including burnTotpStep).
+        await setUserContext(client, userId);
         const userLocked = await client.query(
             "SELECT password_hash FROM users WHERE id = $1 FOR UPDATE", [userId]);
         if (!userLocked.rows[0] || userLocked.rows[0].password_hash !== checked.passwordHash) {
@@ -563,8 +588,11 @@ async function disableMfa(db, userId, password, code, sessionId) {
     if (!passwordMatch) {
         return { ok: false, reason: "password" };
     }
-    const mfa = await db.query(
-        "SELECT secret_encrypted, key_version, enrolled FROM user_mfa WHERE user_id = $1", [userId]);
+    // RLS: only the user_mfa read runs in a context transaction. The
+    // password verification above deliberately stays outside any
+    // transaction, and this read must not pull it inside one.
+    const mfa = await withUser(db, userId, (client) => client.query(
+        "SELECT secret_encrypted, key_version, enrolled FROM user_mfa WHERE user_id = $1", [userId]));
     const row = mfa.rows[0];
     if (!row || !row.enrolled) {
         return { ok: false, reason: "code" };
@@ -580,10 +608,11 @@ async function disableMfa(db, userId, password, code, sessionId) {
     let usedRecoveryId = null;
     let totpStep = null;
     if (bareRecovery !== null) {
-        const codes = await db.query(
+        // RLS: the mfa_recovery_codes read runs under the user's context.
+        const codes = await withUser(db, userId, (client) => client.query(
             `SELECT id, code_hash, code_salt FROM mfa_recovery_codes
              WHERE user_id = $1 AND used_at IS NULL ORDER BY id`,
-            [userId]);
+            [userId]));
         for (const candidate of codes.rows) {
             if (matchesRecoveryCode(bareRecovery, candidate)) {
                 codeOk = true;
@@ -601,6 +630,11 @@ async function disableMfa(db, userId, password, code, sessionId) {
     const client = await db.connect();
     try {
         await client.query("BEGIN");
+        // RLS: set the context before the user_mfa / mfa_recovery_codes
+        // rechecks and writes below (including burnTotpStep). Without
+        // it, the locked user_mfa read returns no row and every disable
+        // fails as reason "code" once a policy exists.
+        await setUserContext(client, userId);
         const userLocked = await client.query(
             "SELECT email, password_hash FROM users WHERE id = $1 FOR UPDATE", [userId]);
         if (!userLocked.rows[0] || userLocked.rows[0].password_hash !== user.password_hash) {
