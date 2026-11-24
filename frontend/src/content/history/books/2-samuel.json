@@ -2,7 +2,7 @@
   "id": "2-samuel",
   "title": "2 Samuel",
   "testament": "OT",
-  "introduction": "2 Samuel records David's reign from the death of Saul and the civil war for the throne through the taking of Jerusalem and the bringing up of the ark. These two studies follow literary divisions; they do not claim two independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "introduction": "2 Samuel records David's reign from the death of Saul and the civil war for the throne through the taking of Jerusalem and the bringing up of the ark to the Davidic covenant and the consolidation of the kingdom. These three studies follow literary divisions; they do not claim three independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
   "entries": [
     {
       "categoryId": "category-2-samuel-death-of-saul-and-civil-war-for-the-throne",
@@ -15,6 +15,12 @@
       "kind": "category",
       "narrativeOrder": 89,
       "bookNote": "2 Samuel 5–6 examines Jerusalem Taken and the Ark Brought Up as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-2-samuel-the-davidic-covenant-and-the-consolidation-of-the-kingdom",
+      "kind": "category",
+      "narrativeOrder": 90,
+      "bookNote": "2 Samuel 7–9 examines The Davidic Covenant and the Consolidation of the Kingdom as a biblical literary and historical-context study, without assigning an independently verified date."
     }
   ]
 }

@@ -739,13 +739,13 @@ describe("validateHistoryContent — the unified entries array", () => {
         // Independent of the helper: narrativeOrder is exactly 1..N
         // contiguous across all books, except for the one reserved gap —
         // order 38 is held for a possible Numbers D9 follow-up, so the
-        // published orders run 1..37 then 39..89. Any other gap or a
+        // published orders run 1..37 then 39..90. Any other gap or a
         // duplicate fails here even though the derived lists above
         // would follow the file.
         const allOrders = tree.books
             .flatMap((b) => b.entries.map((entry) => entry.narrativeOrder))
             .sort((a, b) => a - b);
-        const expectedOrders = Array.from({ length: 89 }, (_, i) => i + 1).filter((n) => n !== 38);
+        const expectedOrders = Array.from({ length: 90 }, (_, i) => i + 1).filter((n) => n !== 38);
         expect(allOrders).toEqual(expectedOrders);
         for (const entry of book.entries) {
             expect(typeof entry.bookNote).toBe("string");
