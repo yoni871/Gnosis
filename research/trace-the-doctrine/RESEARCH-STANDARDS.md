@@ -124,15 +124,15 @@ two is the most common way this project can mislead a reader.
 
 ## 3. Quotation rules
 
-1. **Verbatim only from a checked source.** A quotation is reproduced
+3.1. **Verbatim only from a checked source.** A quotation is reproduced
    verbatim from a primary source the researcher (or verifier) has
    actually checked — the original-language text, or a named edition /
    translation of it. Never quote from memory, from a secondary summary,
    or from an unchecked web page.
-2. **No paraphrase presented as quotation.** A paraphrase or summary is
+3.2. **No paraphrase presented as quotation.** A paraphrase or summary is
    labelled as such and is never placed in quotation marks or in a
    `quotation.text` field.
-3. **No quotation without provenance.** Every quotation records all of:
+3.3. **No quotation without provenance.** Every quotation records all of:
    - the **work** and its **location** (book / chapter / section /
      paragraph number as the edition numbers it),
    - the **edition / translation** used (editor and/or translator,
@@ -140,7 +140,7 @@ two is the most common way this project can mislead a reader.
    - the **language** of the quoted text,
    - the **reproducibility status**: `public-domain`, `fair-use`,
      `permission-granted`, or `not-reproducible`.
-4. **Not legally reproducible? Cite and summarise, never reproduce.**
+3.4. **Not legally reproducible? Cite and summarise, never reproduce.**
    If a quotation is under copyright and neither fair use nor permission
    covers reproducing it at the length needed, do **not** reproduce it
    beyond what is lawful. Record the full citation, a precise locator so
@@ -148,12 +148,12 @@ two is the most common way this project can mislead a reader.
    Never shorten a quotation silently in a way that changes its sense;
    any omission is marked with an ellipsis and any editorial insertion
    with square brackets.
-5. **Translation is a claim.** A translated quotation states whose
+3.5. **Translation is a claim.** A translated quotation states whose
    translation it is. The researcher does not silently "improve" a
    published translation, and does not present their own translation
    without labelling it as their own and noting the source text it was
    made from.
-6. **Check the quotation, not the citation of the quotation.** Citing a
+3.6. **Check the quotation, not the citation of the quotation.** Citing a
    modern author who quotes an ancient writer is not verification of the
    ancient writer's words. The verification record must say whether the
    primary source itself was checked.
@@ -185,28 +185,28 @@ two is the most common way this project can mislead a reader.
 
 ## 5. Date and attribution rules
 
-1. **Work dates are writing dates.** The date recorded for a work is when
+5.1. **Work dates are writing dates.** The date recorded for a work is when
    it was written (or, where that is unknown, the best-supported range),
    never the author's birth or death dates. Do not use a lifespan as a
    work date.
-2. **Approximate and range dates carry a certainty level.** Every date
+5.2. **Approximate and range dates carry a certainty level.** Every date
    records `certainty`: `exact`, `approximate`, `range`, or `unknown`.
    - `exact`: a single year (or narrower) supported by evidence.
    - `approximate`: a single year marked approximate (e.g. "c. 150").
    - `range`: an earliest and latest year (e.g. 150–160).
    - `unknown`: no date asserted; `earliest` and `latest` are null.
    A date without a certainty level is unverified.
-3. **Disputed authorship and pseudonymous works are flagged, never
+5.3. **Disputed authorship and pseudonymous works are flagged, never
    silently attributed.** If authorship is disputed, uncertain, or the
    work is pseudonymous, the record says so explicitly, names the
    dispute, and does not attribute the work to the named author as fact.
    Never resolve a scholarly dispute by silently picking a side.
-4. **Dates and titles are null / pending until verified.** A title, date,
+5.4. **Dates and titles are null / pending until verified.** A title, date,
    or attribution that has not been verified is recorded as `null` with
    status `not-started` (or the relevant lifecycle status) — never filled
    with a plausible-looking guess, a date copied from an unchecked source,
    or a title remembered approximately.
-5. **Titles are the work's title in the edition cited.** Do not invent a
+5.5. **Titles are the work's title in the edition cited.** Do not invent a
    short title and present it as the work's title. Short display titles,
    where used, are labelled as such.
 

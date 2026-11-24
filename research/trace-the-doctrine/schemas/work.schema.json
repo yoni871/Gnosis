@@ -1,1 +1,183 @@
-{"$id":"https://gnosis.example/research/trace-the-doctrine/schemas/work.schema.json","$schema":"https://json-schema.org/draft/2020-12/schema","$title":"Trace the Doctrine — Bibliography Work","additionalProperties":false,"description":"One work in the shared bibliography (shared/works.json). A work is the citable unit: a book, treatise, letter, sermon, or article. See RESEARCH-STANDARDS.md sections 3, 4 and 5.","properties":{"authorIds":{"description":"Author id(s) from shared/authors.json. Empty until verified. Disputed authorship must be flagged in notes and in disputedAuthorship — never silently attributed.","items":{"type":"string"},"type":"array"},"dateWritten":{"description":"When the work was written — never the author's birth/death dates (standards section 5). Null until researched.","properties":{"certainty":{"enum":["exact","approximate","range","unknown"],"type":"string"},"earliest":{"type":["integer","null"]},"latest":{"type":["integer","null"]},"note":{"type":["string","null"]}},"required":["certainty"],"type":["object","null"]},"disputedAuthorship":{"description":"True when authorship is disputed, uncertain, or the work is pseudonymous. Must be explained in notes.","type":["boolean","null"]},"edition":{"description":"Edition used: editor, series, edition number, year.","type":["string","null"]},"editor":{"description":"Editor of the edition cited, where relevant.","type":["string","null"]},"id":{"description":"Stable slug: author slug + short work slug, e.g. justin-martyr-first-apology. Lowercase kebab-case.","pattern":"^[a-z0-9]+(-[a-z0-9]+)*$","type":"string"},"locator":{"description":"Where a reader can find the work.","properties":{"printCitation":{"description":"Print citation: edition, volume, pages.","type":["string","null"]},"url":{"description":"URL to a public-domain source where available, e.g. CCEL / New Advent.","type":["string","null"]}},"type":["object","null"]},"notes":{"description":"Researcher notes, including any authorship dispute. Never a substitute for a verified field.","type":["string","null"]},"originalLanguage":{"description":"Original language of the work, e.g. Greek, Latin.","type":["string","null"]},"publicDomainStatus":{"description":"Public-domain status of the edition/translation cited. Null/unknown until checked.","enum":["public-domain","in-copyright","unknown",null],"type":["string","null"]},"publicationInfo":{"description":"Publication info for the edition cited: publisher, place, year.","type":["string","null"]},"shortTitle":{"description":"Short display title, if one is used. Labelled as a display convenience, not the work's title.","type":["string","null"]},"status":{"description":"Lifecycle status, see RESEARCH-STANDARDS.md section 9. A stub is status not-started.","enum":["not-started","in-research","verification-pending","verified","editorially-approved","published"],"type":"string"},"title":{"description":"Title of the work in the edition cited. Null until verified; do not invent a short title and present it as the work's title.","type":["string","null"]},"translator":{"description":"Translator of the edition/translation cited, where relevant.","type":["string","null"]},"verificationRecordIds":{"description":"Ids of verification records covering claims in this work entry.","items":{"type":"string"},"type":"array"}},"required":["id","status"],"type":"object"}
+{
+  "$id": "https://gnosis.example/research/trace-the-doctrine/schemas/work.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$title": "Trace the Doctrine — Bibliography Work",
+  "additionalProperties": false,
+  "description": "One work in the shared bibliography (shared/works.json). A work is the citable unit: a book, treatise, letter, sermon, or article. See RESEARCH-STANDARDS.md sections 3, 4 and 5.",
+  "properties": {
+    "authorIds": {
+      "description": "Author id(s) from shared/authors.json. Empty until verified. Disputed authorship must be flagged in notes and in disputedAuthorship — never silently attributed.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "dateWritten": {
+      "description": "When the work was written — never the author's birth/death dates (standards section 5). Null until researched.",
+      "properties": {
+        "certainty": {
+          "enum": [
+            "exact",
+            "approximate",
+            "range",
+            "unknown"
+          ],
+          "type": "string"
+        },
+        "earliest": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "latest": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "certainty"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "disputedAuthorship": {
+      "description": "True when authorship is disputed, uncertain, or the work is pseudonymous. Must be explained in notes.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "edition": {
+      "description": "Edition used: editor, series, edition number, year.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "editor": {
+      "description": "Editor of the edition cited, where relevant.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
+      "description": "Stable slug: author slug + short work slug, e.g. justin-martyr-first-apology. Lowercase kebab-case.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "type": "string"
+    },
+    "locator": {
+      "description": "Where a reader can find the work.",
+      "properties": {
+        "printCitation": {
+          "description": "Print citation: edition, volume, pages.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "description": "URL to a public-domain source where available, e.g. CCEL / New Advent.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "notes": {
+      "description": "Researcher notes, including any authorship dispute. Never a substitute for a verified field.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "originalLanguage": {
+      "description": "Original language of the work, e.g. Greek, Latin.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "publicDomainStatus": {
+      "description": "Public-domain status of the edition/translation cited. Null/unknown until checked.",
+      "enum": [
+        "public-domain",
+        "in-copyright",
+        "unknown",
+        null
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "publicationInfo": {
+      "description": "Publication info for the edition cited: publisher, place, year.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "shortTitle": {
+      "description": "Short display title, if one is used. Labelled as a display convenience, not the work's title.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "description": "Lifecycle status, see RESEARCH-STANDARDS.md section 9. A stub is status not-started.",
+      "enum": [
+        "not-started",
+        "in-research",
+        "verification-pending",
+        "verified",
+        "editorially-approved",
+        "published"
+      ],
+      "type": "string"
+    },
+    "title": {
+      "description": "Title of the work in the edition cited. Null until verified; do not invent a short title and present it as the work's title.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "translator": {
+      "description": "Translator of the edition/translation cited, where relevant.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verificationRecordIds": {
+      "description": "Ids of verification records covering claims in this work entry.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "status"
+  ],
+  "type": "object"
+}

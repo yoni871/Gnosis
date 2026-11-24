@@ -1,8 +1,8 @@
 # Verification-record template — `<doctrine>/verification-records.json` entry
 
 Copy this template for **each claim** — one record per claim, not per
-file. Schema: `schemas/verification-record.schema.json`. Standards:
-`RESEARCH-STANDARDS.md` §7 (verification checklist) and §8 (verification
+file. Schema: `../schemas/verification-record.schema.json`. Standards:
+`../RESEARCH-STANDARDS.md` §7 (verification checklist) and §8 (verification
 records).
 
 ```json

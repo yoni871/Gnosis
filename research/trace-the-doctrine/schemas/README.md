@@ -45,5 +45,13 @@ These enums are identical in every schema — do not diverge them:
   identifiers for the schema documents, not live URLs. Do not "fix" them
   to a real host without a standards decision.
 - Validate data files against these schemas before opening a research PR.
+  The schemas describe a single record, while the data files store arrays
+  of records — so validate **item-wise**: check each array item against
+  its schema (for example, extract items with `jq -c '.[]'` and validate
+  each one). Validating a whole file against a schema will fail by design.
+  The blank `trinity/verification-record.template.json` intentionally does
+  not validate as an instance (null placeholders, labelled as such).
   (No validator is wired into CI by this PR — that is a deliberate
-  Phase 1 scope limit; see the PR description.)
+  Phase 1 scope limit: Phase 1 establishes the schemas and this per-item
+  validation convention, and wiring a validator into CI is deferred to a
+  later phase.)

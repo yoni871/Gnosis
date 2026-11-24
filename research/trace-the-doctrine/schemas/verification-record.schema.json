@@ -1,1 +1,148 @@
-{"$id":"https://gnosis.example/research/trace-the-doctrine/schemas/verification-record.schema.json","$schema":"https://json-schema.org/draft/2020-12/schema","$title":"Trace the Doctrine — Verification Record","additionalProperties":false,"description":"One verification record per claim. See RESEARCH-STANDARDS.md section 8. A claim is publishable ONLY when result is verified AND editorialApproval is recorded. Partially-verified, not-verified, contradicted, and unable-to-verify claims must never be published.","properties":{"checkDate":{"description":"Date the check was performed, YYYY-MM-DD.","format":"date","type":"string"},"checker":{"description":"Who checked the claim. Must be independent of the researcher who wrote the record (standards section 9.2).","type":"string"},"claimId":{"description":"Id of the claim being checked, as used by the record it belongs to (passage, interpretation, milestone, or work entry).","type":"string"},"claimText":{"description":"Exactly what is claimed — the same words that would be published. Verifying a paraphrase does not verify the claim.","type":"string"},"claimType":{"description":"Kind of claim.","enum":["quotation","date","attribution","passage-link","doctrinal-connection","milestone"],"type":"string"},"editorialApproval":{"description":"Editorial approval, recorded separately from verification. Null until approved. Required for publishability.","properties":{"approvedBy":{"description":"Editor who approved (final approver: Yonatan).","type":"string"},"date":{"format":"date","type":"string"},"note":{"description":"Any conditions or override details. An editorial override without explicit approval must not be recorded as approval.","type":["string","null"]}},"required":["approvedBy","date"],"type":["object","null"]},"evidenceFound":{"description":"Verbatim excerpt or precise locator supporting the result, or the literal words 'none found'.","type":"string"},"id":{"description":"Stable slug for this verification record, e.g. ver-gen-1-26-classification-001.","pattern":"^[a-z0-9]+(-[a-z0-9]+)*$","type":"string"},"limitations":{"description":"Remaining limitations and open questions. Honest gaps, not a formality.","type":["string","null"]},"notes":{"description":"Checker notes.","type":["string","null"]},"result":{"description":"Outcome of the check. Only verified is publishable, and only with editorial approval.","enum":["verified","partially-verified","not-verified","contradicted","unable-to-verify"],"type":"string"},"sourcesChecked":{"description":"Every source actually checked. 'Checked' means the checker read the relevant part of that source. At least one source is required.","items":{"properties":{"dateAccessed":{"description":"Date the source was accessed, YYYY-MM-DD.","format":"date","type":"string"},"edition":{"type":["string","null"]},"locator":{"description":"Precise locator: book/chapter/section, page, or URL.","type":["string","null"]},"source":{"description":"Work cited, with edition / translation.","type":"string"}},"required":["source","dateAccessed"],"type":"object"},"minItems":1,"type":"array"}},"required":["id","claimId","claimText","claimType","sourcesChecked","checker","checkDate","result","evidenceFound"],"type":"object"}
+{
+  "$id": "https://gnosis.example/research/trace-the-doctrine/schemas/verification-record.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$title": "Trace the Doctrine — Verification Record",
+  "additionalProperties": false,
+  "description": "One verification record per claim. See RESEARCH-STANDARDS.md section 8. A claim is publishable ONLY when result is verified AND editorialApproval is recorded. Partially-verified, not-verified, contradicted, and unable-to-verify claims must never be published.",
+  "properties": {
+    "checkDate": {
+      "description": "Date the check was performed, YYYY-MM-DD.",
+      "format": "date",
+      "type": "string"
+    },
+    "checker": {
+      "description": "Who checked the claim. Must be independent of the researcher who wrote the record (standards section 9.2).",
+      "type": "string"
+    },
+    "claimId": {
+      "description": "Id of the claim being checked, as used by the record it belongs to (passage, interpretation, milestone, or work entry).",
+      "type": "string"
+    },
+    "claimText": {
+      "description": "Exactly what is claimed — the same words that would be published. Verifying a paraphrase does not verify the claim.",
+      "type": "string"
+    },
+    "claimType": {
+      "description": "Kind of claim.",
+      "enum": [
+        "quotation",
+        "date",
+        "attribution",
+        "passage-link",
+        "doctrinal-connection",
+        "milestone"
+      ],
+      "type": "string"
+    },
+    "editorialApproval": {
+      "description": "Editorial approval, recorded separately from verification. Null until approved. Required for publishability.",
+      "properties": {
+        "approvedBy": {
+          "description": "Editor who approved (final approver: Yonatan).",
+          "type": "string"
+        },
+        "date": {
+          "format": "date",
+          "type": "string"
+        },
+        "note": {
+          "description": "Any conditions or override details. An editorial override without explicit approval must not be recorded as approval.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "approvedBy",
+        "date"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "evidenceFound": {
+      "description": "Verbatim excerpt or precise locator supporting the result, or the literal words 'none found'.",
+      "type": "string"
+    },
+    "id": {
+      "description": "Stable slug for this verification record, e.g. ver-gen-1-26-classification-001.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "type": "string"
+    },
+    "limitations": {
+      "description": "Remaining limitations and open questions. Honest gaps, not a formality.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "description": "Checker notes.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "result": {
+      "description": "Outcome of the check. Only verified is publishable, and only with editorial approval.",
+      "enum": [
+        "verified",
+        "partially-verified",
+        "not-verified",
+        "contradicted",
+        "unable-to-verify"
+      ],
+      "type": "string"
+    },
+    "sourcesChecked": {
+      "description": "Every source actually checked. 'Checked' means the checker read the relevant part of that source. At least one source is required.",
+      "items": {
+        "properties": {
+          "dateAccessed": {
+            "description": "Date the source was accessed, YYYY-MM-DD.",
+            "format": "date",
+            "type": "string"
+          },
+          "edition": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "locator": {
+            "description": "Precise locator: book/chapter/section, page, or URL.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "description": "Work cited, with edition / translation.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "dateAccessed"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "claimId",
+    "claimText",
+    "claimType",
+    "sourcesChecked",
+    "checker",
+    "checkDate",
+    "result",
+    "evidenceFound"
+  ],
+  "type": "object"
+}

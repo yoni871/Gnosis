@@ -1,7 +1,7 @@
-# Work (bibliography) template — `shared/works.json` entry
+# Work (bibliography) template — `../shared/works.json` entry
 
 Copy this template for each citable work. Schema:
-`schemas/work.schema.json`. Standards: `RESEARCH-STANDARDS.md` §3
+`../schemas/work.schema.json`. Standards: `../RESEARCH-STANDARDS.md` §3
 (quotations), §4 (citations), §5 (dates and attribution).
 
 ```json

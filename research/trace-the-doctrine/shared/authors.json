@@ -1,1 +1,27 @@
-[{"displayName":"Justin Martyr","id":"justin-martyr","status":"not-started"},{"displayName":"Irenaeus","id":"irenaeus","status":"not-started"},{"displayName":"Tertullian","id":"tertullian","status":"not-started"},{"displayName":"Athanasius","id":"athanasius","status":"not-started"},{"displayName":"Augustine","id":"augustine","status":"not-started"}]
+[
+  {
+    "displayName": "Justin Martyr",
+    "id": "justin-martyr",
+    "status": "not-started"
+  },
+  {
+    "displayName": "Irenaeus",
+    "id": "irenaeus",
+    "status": "not-started"
+  },
+  {
+    "displayName": "Tertullian",
+    "id": "tertullian",
+    "status": "not-started"
+  },
+  {
+    "displayName": "Athanasius",
+    "id": "athanasius",
+    "status": "not-started"
+  },
+  {
+    "displayName": "Augustine",
+    "id": "augustine",
+    "status": "not-started"
+  }
+]
