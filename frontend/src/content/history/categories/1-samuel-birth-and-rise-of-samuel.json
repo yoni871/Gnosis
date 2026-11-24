@@ -1,0 +1,444 @@
+{
+  "id": "category-1-samuel-birth-and-rise-of-samuel",
+  "title": "The Birth and Rise of Samuel",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 3,
+    "endVerse": 21
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 3,
+    "endVerse": 21
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-01-001",
+      "claim": "Elkanah is \"a certain man of Ramathaim-zophim, of the hill country of Ephraim,\" with ancestry traced through Jeroham, Elihu, and Tohu to Zuph, an Ephraimite.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-002",
+      "claim": "\"Ramathaim\" is a dual form of the word for \"height\" (\"the two heights\"); the full form appears only in 1:1, and everywhere else the town is called Ramah. The name ties the town to Zuph and to \"the district of Zuph\" (1 Sam 9:5).",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Ramathaim Zuphim,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-003",
+      "claim": "The exact location of Ramathaim is uncertain. Rentis (Rantis), er-Ram, and Nebi Samwil have been proposed; none is certain. The link between Ramathaim, the Maccabean Rathamin, and Arimathea is widely accepted, but whether that later town is the same as Samuel's Ramah is still debated.",
+      "evidence": "BiblicalTraining, \"Ramathaim Zuphim,\" read in full.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-1sa-01-004",
+      "claim": "Elkanah is called an \"Ephraimite\" in 1 Samuel, while the Chronicles genealogies list Samuel's ancestors among the Kohathite Levites. Most interpreters reconcile the two by taking \"Ephraimite\" to describe where the family lived, since Levites had no tribal territory of their own.",
+      "evidence": "BiblicalTraining, \"Hannah\" and \"Ramathaim Zuphim,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-005",
+      "claim": "Elkanah has two wives: Hannah, whom he loves, and Peninnah, who has children. Hannah has none, and the text twice says \"the LORD had shut up her womb\" (1:5–6). Peninnah provokes her year after year until she weeps and will not eat (1:6–7).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-006",
+      "claim": "Each year Elkanah takes his family to Shiloh to worship and sacrifice to \"the LORD of hosts\"; Eli's sons Hophni and Phinehas are priests there.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-007",
+      "claim": "Elkanah gives Hannah a larger share of the sacrificial meal; the Hebrew of the phrase is difficult, and the NIV renders it \"a double portion.\"",
+      "evidence": "BiblicalTraining, \"Hannah,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-008",
+      "claim": "Hannah vows that if the LORD gives her a son, she will give him to the LORD all his life, \"and no razor shall come upon his head.\" The vow recalls the Nazirite law (Num 6:1–21); the LXX adds that the child would drink no wine or strong drink, and some ancient Hebrew manuscripts call Samuel a Nazirite outright. Normally a Nazirite vow was for a limited time; Hannah's is lifelong.",
+      "evidence": "BiblicalTraining, \"Hannah,\" read in full; Hebrew + JPS 1917 read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-009",
+      "claim": "Hannah joins a line of women in Scripture whose barrenness God reversed — Sarah, Rebekah, Rachel, the wife of Manoah, and later Elizabeth (Gen 21:1–2; 25:21; 30:22–23; Judg 13:2–3; Luke 1:7, 13). In each case the child born held an important place in God's purposes.",
+      "evidence": "BiblicalTraining, \"Hannah,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-010",
+      "claim": "Eli, watching Hannah's lips move without sound, takes her for drunk and tells her to put away her wine. She answers that she is pouring out her soul to the LORD out of great anguish; Eli sends her away with a blessing and a prayer that the God of Israel grant her request.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hannah,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-011",
+      "claim": "The family returns to Ramah, \"the LORD remembered her,\" and Hannah bears a son and names him Samuel, \"Because I asked the LORD for him.\" The explanation plays on *šāʾal* (\"to ask\") rather than on strict etymology; *šĕmûʾēl* is usually understood as \"name of God\" or \"heard by God,\" and the same verb is the root of the name Saul.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Hannah,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-012",
+      "claim": "When the boy is weaned, Hannah brings him to Shiloh with a bull, an ephah of flour, and a skin of wine, and presents him to Eli, giving the child she asked for back to the LORD for his whole life (the Hebrew again playing on *šāʾal*). Weaning in that culture often came at about three years of age.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Hannah,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-013",
+      "claim": "Hannah's song is a song of reversal: the bows of the mighty are broken, the hungry are fed, the barren bears seven, the LORD kills and makes alive, raises the poor from the dust to sit with princes. It closes, \"He will give strength unto His king, and exalt the horn of His anointed\" (2:10) — *māšîaḥ* used here for the first time of a king.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hannah,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-014",
+      "claim": "Many critical scholars hold that the song was an independent psalm placed on Hannah's lips because of its references to the barren woman and the king. The text itself presents it as Hannah's prayer.",
+      "evidence": "BiblicalTraining, \"Hannah,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-01-015",
+      "claim": "Psalm 113:7–9 uses nearly the same words as 1 Sam 2:8 for God raising the poor from the dust to sit with princes, and ends with the barren woman made a joyful mother. Mary's song, the Magnificat (Luke 1:46–55), echoes Hannah's closely: both rejoice in God as Saviour, both speak of the proud brought down and the humble lifted up, and both describe the hungry filled.",
+      "evidence": "BiblicalTraining, \"Hannah,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-016",
+      "claim": "Eli's sons are \"sons of Belial; they knew not the LORD.\" They seize sacrificial meat by force before the fat is burned and treat the LORD's offering with contempt; \"the sin of the young men was very great before the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-017",
+      "claim": "Samuel ministers before the LORD as a child, girded with a linen ephod; each year his mother brings him a little robe (*mĕʿîl*) she has made. Eli blesses Elkanah and Hannah, and Hannah bears three sons and two daughters after Samuel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Hannah,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-018",
+      "claim": "Eli's sons lie with the women that did service at the door of the tent of meeting. Eli rebukes them, but they do not listen, \"because the LORD would slay them.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-019",
+      "claim": "\"The child Samuel grew on, and was in favour both with the LORD, and also with men\" — set by the narrative against the corruption of Eli's sons.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; Bible Odyssey, \"Samuel,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-020",
+      "claim": "A man of God brings the oracle against Eli's house: the priesthood is cut off from it; the sign is that both sons, Hophni and Phinehas, will die on one day (2:34); the LORD will raise up \"a faithful priest\" (2:35).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-021",
+      "claim": "The \"faithful priest\" of the oracle, in its immediate context, suggests Samuel.",
+      "evidence": "Bible Odyssey, \"Samuel,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-022",
+      "claim": "Samuel is never explicitly called a priest; the linen ephod (2:18) is a typical priestly garment. He is explicitly called a prophet at 3:20, and the roles of priest, prophet, and judge interweave in the present text.",
+      "evidence": "Bible Odyssey, \"Samuel,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-023",
+      "claim": "\"The word of the LORD was precious in those days; there was no frequent vision.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-024",
+      "claim": "In the night the LORD calls Samuel three times; each time the boy runs to Eli, who at last understands and instructs him: \"Speak, LORD; for Thy servant heareth.\" The LORD \"came, and stood, and called as at other times.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-025",
+      "claim": "The LORD's word to Samuel against Eli's house: the iniquity of Eli's house \"shall not be expiated with sacrifice nor offering for ever.\" It echoes and confirms the oracle of 2:27–36.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-026",
+      "claim": "Samuel tells Eli everything in the morning; Eli accepts it: \"It is the LORD; let Him do what seemeth Him good.\" Samuel's report is sealed by the oath formula, \"God do so to thee, and more also\" (3:17).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-027",
+      "claim": "The oath formula of 3:17 is the same self-imprecatory formula as Ruth 1:17; it occurs twelve times in the Old Testament (Ruth once; Samuel and Kings eleven times).",
+      "evidence": "Reuse: `RCL-01-017` (probable, Ruth dossier); Hebrew + JPS 1917 read in full for 3:17 itself.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-028",
+      "claim": "Samuel is established as prophet: \"the LORD was with him, and did let none of his words fall to the ground\"; all Israel from Dan to Beer-sheba knows Samuel is established a prophet of the LORD; the LORD reveals himself at Shiloh by the word of the LORD.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-029",
+      "claim": "Samuel's recognition as prophet is the narrative instance of the Deuteronomic promise: the prophet like Moses, commissioned with God's words in his mouth and tested by whether the thing comes to pass (3:19). Whether the promise refers to a succession of prophets, a single eschatological prophet, or both is debated and is not resolved here.",
+      "evidence": "Reuse: `clm-deu-05-029`–`036` (established), `038` (debated); Hebrew + JPS 1917 read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-01-030",
+      "claim": "Shiloh's sanctuary is called \"house\" and \"temple\" (*hêkāl*) and is described with a doorpost and doors, against the tent of meeting. Interpreters differ on whether a permanent structure was built around or in place of the tent, or whether the terms are used loosely.",
+      "evidence": "BiblicalTraining, \"Shiloh,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-01-031",
+      "claim": "Shiloh (Khirbet Seilun) lies about 20 miles (32 km) north of Jerusalem. It was a fortified town in the Middle Bronze Age; in the Late Bronze Age there was little or no permanent settlement but cultic deposits show a religious character; in the early Iron Age (12th–11th centuries BC) a village with pillared buildings and storage jars stood there. No sanctuary remains have been identified with certainty.",
+      "evidence": "BiblicalTraining, \"Shiloh,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-032",
+      "claim": "The early Iron Age village at Shiloh was destroyed by a fierce fire, usually dated to the mid-11th century BC. Many scholars link this destruction with the Philistine victory in 1 Samuel 4, but archaeology cannot itself name the attackers, and the Bible does not narrate the destruction directly.",
+      "evidence": "BiblicalTraining, \"Shiloh,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-01-033",
+      "claim": "Solomon's removal of Abiathar (1 Kgs 2:27) is read as a fulfilment of the word against Eli's house.",
+      "evidence": "BiblicalTraining, \"Shiloh,\" read in full.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-01-001",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 18,
+      "startVerse": 15,
+      "endChapter": 18,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "established",
+      "note": "\"The LORD thy God will raise up unto thee a Prophet from the midst of thee, of thy brethren, like unto me.\" Samuel's recognition as a prophet, with none of his words falling to the ground, is the promise working out in the story."
+    },
+    {
+      "id": "conn-1sa-01-002",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 6,
+      "startVerse": 1,
+      "endChapter": 6,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law of the Nazirite, separated to God and marked by uncut hair. Hannah's vow over her unborn son recalls this law, though she pledges a lifelong dedication where the law provides for a limited time."
+    },
+    {
+      "id": "conn-1sa-01-003",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 13,
+      "startVerse": 2,
+      "endChapter": 13,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The wife of Manoah is barren, and a messenger announces a son who will be a Nazirite from birth, no razor coming on his head. The same pattern of a barren mother and a dedicated child opens the story of Samuel."
+    },
+    {
+      "id": "conn-1sa-01-004",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 21,
+      "startVerse": 1,
+      "endChapter": 21,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Sarah, long barren, bears Isaac in her old age. Hannah belongs to the same line of women whose barrenness God reverses for his purposes."
+    },
+    {
+      "id": "conn-1sa-01-005",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 25,
+      "startVerse": 21,
+      "endChapter": 30,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Rebekah conceives after Isaac's prayer, and God remembers Rachel and opens her womb. The pattern of prayer answered by a birth runs through the patriarchal stories into Hannah's."
+    },
+    {
+      "id": "conn-1sa-01-006",
+      "book": "Ruth",
+      "bookId": "ruth",
+      "startChapter": 1,
+      "startVerse": 16,
+      "endChapter": 1,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ruth binds herself to Naomi with the oath, \"the LORD do so to me, and more also, if aught but death part thee and me.\" Eli lays the same oath formula on Samuel when he demands the whole of God's word."
+    },
+    {
+      "id": "conn-1sa-01-007",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 113,
+      "startVerse": 7,
+      "endChapter": 113,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"He raiseth up the poor out of the dust, and lifteth the needy out of the dunghill; that he may set him with princes.\" The psalm uses nearly the same words as Hannah's song, and ends with the barren woman made a joyful mother of children."
+    },
+    {
+      "id": "conn-1sa-01-008",
+      "book": "Luke",
+      "bookId": "luke",
+      "startChapter": 1,
+      "startVerse": 46,
+      "endChapter": 1,
+      "endVerse": 55,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Mary's song echoes Hannah's closely: both rejoice in God as Saviour, both speak of the proud brought down and the humble lifted up, and both describe the hungry filled. The Gospel writer draws on Hannah's song for the greater work beginning in Mary's son."
+    },
+    {
+      "id": "conn-1sa-01-009",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 22,
+      "startVerse": 2,
+      "endChapter": 22,
+      "endVerse": 51,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David's song near the end of 2 Samuel also praises God as Rock, speaks of the horn of salvation, and ends with the LORD's kindness to \"his anointed.\" Hannah's song and David's frame the books of Samuel together."
+    },
+    {
+      "id": "conn-1sa-01-010",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 2,
+      "startVerse": 27,
+      "endChapter": 2,
+      "endVerse": 27,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Solomon thrusts Abiathar out of the priesthood, and the narrator notes that this fulfilled the word the LORD had spoken against the house of Eli at Shiloh. The sentence of 1 Samuel 2 reaches into the reign of Solomon."
+    },
+    {
+      "id": "conn-1sa-01-011",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 78,
+      "startVerse": 60,
+      "endChapter": 78,
+      "endVerse": 64,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"He forsook the tabernacle of Shiloh, the tent which he placed among men; and delivered his strength into captivity.\" The psalm looks back on the fall of Shiloh and the capture of the ark as God's own judgement."
+    },
+    {
+      "id": "conn-1sa-01-012",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 26,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"Go ye now unto my place which was in Shiloh, and see what I did to it for the wickedness of my people Israel.\" Jeremiah holds up Shiloh's fate as a warning to Jerusalem, centuries after Samuel."
+    },
+    {
+      "id": "conn-1sa-01-013",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 6,
+      "startVerse": 26,
+      "endChapter": 6,
+      "endVerse": 38,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The genealogies list Elkanah and Samuel among the Levites descended from Kohath. The Chronicles record explains the family's standing at the sanctuary alongside the \"Ephraimite\" of 1 Samuel 1:1."
+    },
+    {
+      "id": "conn-1sa-01-014",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 49,
+      "startVerse": 10,
+      "endChapter": 49,
+      "endVerse": 10,
+      "type": "thematic",
+      "confidence": "debated",
+      "note": "\"The sceptre shall not depart from Judah, nor a lawgiver from between his feet, until Shiloh come.\" Whether \"Shiloh\" here is a personal title, a phrase meaning \"he to whom it belongs,\" or the place name is debated; it is a different question from the sanctuary of 1 Samuel and is not settled here."
+    },
+    {
+      "id": "conn-1sa-01-015",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 4,
+      "startVerse": 5,
+      "endChapter": 4,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Deborah judged \"between Ramah and Bethel in the hill country of Ephraim.\" That Ramah is Ramah of Benjamin, a different town from Samuel's Ramah — the shared name and the shared phrase show why the two towns are easily confused."
+    },
+    {
+      "id": "conn-1sa-01-016",
+      "book": "Luke",
+      "bookId": "luke",
+      "startChapter": 2,
+      "startVerse": 36,
+      "endChapter": 2,
+      "endVerse": 38,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Anna the prophetess, who met the infant Jesus in the temple, bears the Greek form of Hannah's name. The name \"grace\" or \"favour\" recurs in the New Testament attached to another woman who waited and prayed."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-23",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S01 sources (S01-S01-S01-S07) are all verified; the needs-checking table is empty, so no source is excluded from sources[]. SCL-01-027 (oath-formula twelve-occurrence count) rests on the Ruth dossier's R01-S11, read by the Ruth worker; the 1 Sam 3:17 occurrence itself was read live in Hebrew + JPS 1917. SCL-01-029 reuses clm-deu-05-029-036 (established) and 038 (debated). Multi-range connections (SCO-01-005, -009, -012, -013) are encoded as encompassing ranges (first verse to last verse); the notes carry the exact target passages. SCO-01-012 (Jeremiah 7:12-26:6) is the widest span. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-bible-odyssey-samuel",
+    "source-biblicaltraining-hannah",
+    "source-biblicaltraining-shiloh",
+    "source-biblicaltraining-ramathaim-zuphim",
+    "source-bible-odyssey-samson",
+    "source-biblicaltraining-ark-of-the-covenant"
+  ]
+}
