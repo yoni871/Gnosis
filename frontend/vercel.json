@@ -469,6 +469,31 @@
       "source": "/biblical-history/judges",
       "destination": "/biblical-history/judges-israels-incomplete-conquest",
       "permanent": true
+    },
+    {
+      "source": "/biblical-history/ruth/ruth-naomi-and-ruth-return-to-bethlehem",
+      "destination": "/biblical-history/ruth-naomi-and-ruth-return-to-bethlehem",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/ruth/ruth-gleans-in-the-field-of-boaz",
+      "destination": "/biblical-history/ruth-gleans-in-the-field-of-boaz",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/ruth/ruth-the-threshing-floor-and-the-gate",
+      "destination": "/biblical-history/ruth-the-threshing-floor-and-the-gate",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/ruth/ruth-the-generations-of-perez",
+      "destination": "/biblical-history/ruth-the-generations-of-perez",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/ruth",
+      "destination": "/biblical-history/ruth-naomi-and-ruth-return-to-bethlehem",
+      "permanent": true
     }
   ],
   "rewrites": [
