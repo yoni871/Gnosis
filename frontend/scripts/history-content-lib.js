@@ -855,12 +855,19 @@ const CLAIM_ID = /clm-[a-z]+-\d+[a-z]?/;
 //   (source-anderson-giles-samaritan-pentateuch) appears in published
 //   Genesis prose (the Seth event: the genealogy "survives in three
 //   textual traditions", the Samaritan Pentateuch among them).
+// - "Commentary on Genesis" (source-ramban-on-genesis) appears in
+//   published source fields: Clarke's pagesOrSection ("Commentary on
+//   Genesis 4 vv. 1–13"), Rashi's title ("Rashi, Commentary on
+//   Genesis 6"), and Ryle's pagesOrSection ("Commentary on Genesis
+//   2–3"). The phrase is a whole-phrase match inside those longer
+//   published strings; the Ramban id itself appears nowhere in dist/.
 // Add an id here only when the collision with published prose is
 // verified by direct inspection of the published content — never for a
 // title that merely looks generic.
 const TITLE_COLLISION_ALLOWLIST = new Set([
     "source-biblicaltraining-mount-nebo",
     "source-anderson-giles-samaritan-pentateuch",
+    "source-ramban-on-genesis",
 ]);
 
 // A non-published title is a leak signal only as a whole phrase on word

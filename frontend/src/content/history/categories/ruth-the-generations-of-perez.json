@@ -106,7 +106,7 @@
     {
       "id": "clm-rut-04-013",
       "claim": "Ten names mark a complete, epoch-opening list: David in tenth position begins the Davidic monarchy as Noah (tenth from Adam) began the post-Flood world and Abraham (twentieth) began Israel.",
-      "evidence": "Ron (ten-generation epochs; David tenth; Boaz seventh echoing Enoch seventh in Gen 5); K&D (\"the number ten as the seal of completeness\"). Intentionality is asserted, not demonstrated, by these sources; Sasson pp. 183–184 (seventh/tenth prominence) known only via Ron.",
+      "evidence": "Ron (ten-generation epochs; David tenth; Boaz seventh echoing Enoch seventh in Gen 5); K&D (\"the number ten as the seal of completeness\"). Intentionality is asserted, not demonstrated, by these sources.",
       "assessment": "debated"
     },
     {
@@ -120,6 +120,12 @@
       "claim": "The list gives no date and cannot be used as a clock: ten generations do not yield a datable chronology for the Perez-to-David span.",
       "evidence": "Text gives no date; K&D/JFB/Ron arithmetic shows the span exceeds ten lifetimes under any traditional year-count, but the commentaries disagree on the year-counts themselves (§7.1). Date of the category is unknown.",
       "assessment": "probable"
+    },
+    {
+      "id": "clm-rut-04-016",
+      "claim": "The traditional rabbinic resolution of the chronology problem is advanced fatherhood: Salma, Boaz, Obed, and Jesse each fathered the next in line in old age (Ibn Ezra: ~91, or ~84 on the alternative; Ramban: ~93, as a hidden miracle).",
+      "evidence": "Ibn Ezra on Ruth 4:17 (366 years, 1 Kgs 6:1); Ramban on Gen 46:15 (370 years, four generations at ~93 years each). Ron reports this answer fairly and rejects it as strange (§8.3).",
+      "assessment": "debated"
     }
   ],
   "connections": [
@@ -336,10 +342,12 @@
     "source-cambridge-bible-ruth",
     "source-constable-ruth",
     "source-ellicott-ruth",
+    "source-ibn-ezra-on-ruth",
     "source-jfb-commentary",
     "source-keil-delitzsch-ruth",
     "source-mechon-mamre-ruth-masoretic-text",
     "source-pulpit-commentary-ruth",
+    "source-ramban-on-genesis",
     "source-ron-genealogical-list-ruth"
   ],
   "review": {
