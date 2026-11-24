@@ -1,0 +1,274 @@
+{
+  "id": "category-1-samuel-israel-demands-a-king",
+  "title": "Israel Demands a King",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 7,
+    "startVerse": 1,
+    "endChapter": 8,
+    "endVerse": 22
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 7,
+    "startVerse": 1,
+    "endChapter": 8,
+    "endVerse": 22
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-03-001",
+      "claim": "The men of Kiriath-jearim fetch the ark into Abinadab's house on the hill; Eleazar his son is sanctified to keep it. The ark abides there twenty years, and all Israel yearns after the LORD.",
+      "evidence": "Hebrew + JPS 1917 read in full (ch. 7 re-opened live by this worker; chs. 7–8 read in full in the read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-002",
+      "claim": "Samuel calls all Israel to return with all their heart, put away the foreign gods and the Ashtaroth, and serve the LORD only; the people put away the Baalim and the Ashtaroth and serve the LORD only.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-003",
+      "claim": "\"The Ashtoreths,\" paired with \"the Baals,\" are the Canaanite goddess Astarte (western form of Ishtar) in her local forms; the pairing names the whole range of Canaanite worship that competed with the LORD.",
+      "evidence": "BiblicalTraining, \"Ashtoreth,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-03-004",
+      "claim": "Samuel gathers all Israel to Mizpah, where they draw water, pour it out before the LORD, fast, confess \"We have sinned against the LORD,\" and Samuel judges Israel there. The text gives no explanation of the poured-out water.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-005",
+      "claim": "As Samuel offers a sucking lamb, the LORD thunders with a great thunder and discomfits the Philistines; Israel pursues them to Beth-car.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-006",
+      "claim": "Samuel sets up a stone between Mizpah and Shen and calls it Eben-ezer, \"Hitherto hath the LORD helped us.\" The name answers the defeat at Eben-ezer (4:1), turning the place of disaster into a memorial of deliverance.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Samuel\" (Ebenezer recalls 4:1).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-007",
+      "claim": "The Philistines are subdued and come no more into Israel's border all Samuel's days; the cities from Ekron to Gath are restored, and there is peace with the Amorites. The summary is usually understood to mean the Philistines were held in check, not that they disappeared — garrisons appear again in Saul's reign (10:5; 13:3–5).",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Samuel\" (held-in-check reading).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-03-008",
+      "claim": "Samuel judges Israel all the days of his life, going year by year in circuit to Bethel, Gilgal, and Mizpah, returning to Ramah where his house is; there he judges Israel and builds an altar.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-009",
+      "claim": "The twenty-year interval is the text's own time marker and the narrative seam between the ark's travels and Samuel's renewed judgeship; it yields no absolute date.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-010",
+      "claim": "When Samuel is old he makes his sons Joel and Abijah judges in Beer-sheba; they turn after lucre, take bribes, and pervert justice.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-011",
+      "claim": "All the elders gather at Ramah and ask for a king to judge them \"like all the nations.\" The thing displeases Samuel, and he prays.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-012",
+      "claim": "The LORD tells Samuel to hearken to the people: they have rejected the LORD, not Samuel, from being king over them, as they have done since Egypt — but he must warn them solemnly and declare the manner of the king.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-013",
+      "claim": "\"The manner of the king\" is a list of takings: sons for chariots and war, daughters for service, the best fields, vineyards, and oliveyards, a tenth of seed and flocks, servants and cattle — ending \"ye shall be his servants\" and the warning that the LORD will not answer their cry in that day.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-014",
+      "claim": "The people refuse to listen and insist on a king like the nations, to judge them, go out before them, and fight their battles; the LORD says, \"Hearken unto their voice, and make them a king,\" and Samuel dismisses every man to his city.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-015",
+      "claim": "Mizpah in Benjamin is most often identified with Tell en-Nasbeh, about 8 miles (13 km) north of Jerusalem, excavated 1926–1935 (Badè) with occupation from the early Iron Age into the 6th century BC; Nebi Samwil is the rival candidate. The identification is the majority view, not proved.",
+      "evidence": "BiblicalTraining, \"Mizpah,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-03-016",
+      "claim": "The elders' demand is the narrative fulfilment of Deut 17:14: the law anticipated the request \"like as all the nations\" and made provision for it; it did not command the appointment of a king.",
+      "evidence": "Reuse: `clm-deu-05-014` (established), `conn-deu-05-009` (established), verified verbatim in the published JSON on live main.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-03-017",
+      "claim": "In the ancient Near East kingship was normally dynastic and hereditary in principle; kingship in ancient Israel was not originally hereditary, and Saul was appointed by private anointing, public lot, and military success in turn.",
+      "evidence": "Bible Odyssey, \"Royal Succession,\" read in full.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-03-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 4,
+      "startVerse": 1,
+      "endChapter": 4,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Israel's defeat at Eben-ezer, where the ark was taken and thirty thousand fell. The stone Samuel raises in chapter 7 bears the same name and turns the place of disaster into a memorial of deliverance."
+    },
+    {
+      "id": "conn-1sa-03-002",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 14,
+      "endChapter": 17,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "established",
+      "note": "The law anticipates the people's words, \"I will set a king over me, like as all the nations,\" and sets limits on the king: no multiplying of horses, wives, or wealth, and a written copy of the law to be read daily. The demand in chapter 8 is the request the law foresaw."
+    },
+    {
+      "id": "conn-1sa-03-003",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 21,
+      "startVerse": 25,
+      "endChapter": 21,
+      "endVerse": 25,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"In those days there was no king in Israel: every man did that which was right in his own eyes.\" The refrain that closes Judges frames the world the elders want to leave behind when they ask for a king."
+    },
+    {
+      "id": "conn-1sa-03-004",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 2,
+      "startVerse": 11,
+      "endChapter": 2,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Israel forsook the Lord and served Baal and the Ashtoreths, the same pairing Samuel tells the people to put away at Mizpah. The return in chapter 7 answers the cycle Judges describes."
+    },
+    {
+      "id": "conn-1sa-03-005",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 20,
+      "startVerse": 1,
+      "endChapter": 20,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "All Israel gathers \"before the Lord in Mizpah\" after the crime at Gibeah, the same assembly place Samuel uses. Mizpah was already the tribes' meeting place before Samuel called them there."
+    },
+    {
+      "id": "conn-1sa-03-006",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 10,
+      "startVerse": 17,
+      "endChapter": 10,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The demand made at Ramah is answered at Mizpah, where Samuel has the tribes present themselves and the lot falls on Saul. The two assemblies frame the making of the king."
+    },
+    {
+      "id": "conn-1sa-03-007",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 12,
+      "startVerse": 12,
+      "endChapter": 12,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "In his farewell Samuel reminds the people that the threat from Nahash, king of the Ammonites, was one reason they demanded a king. The demand had a military cause as well as a religious one."
+    },
+    {
+      "id": "conn-1sa-03-008",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 78,
+      "startVerse": 60,
+      "endChapter": 78,
+      "endVerse": 60,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"God forsook the tabernacle at Shiloh.\" The psalm looks back on the loss of the sanctuary whose fall stands behind Samuel's ministry, when the ark rested at Kiriath-jearim and Shiloh ceased to be the centre of worship."
+    },
+    {
+      "id": "conn-1sa-03-009",
+      "book": "Hosea",
+      "bookId": "hosea",
+      "startChapter": 13,
+      "startVerse": 11,
+      "endChapter": 13,
+      "endVerse": 11,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "\"I gave thee a king in mine anger, and took him away in my wrath.\" The prophet reads the giving of a king as an act of divine anger, the same judgement Samuel announces when he says the people have rejected the Lord as king."
+    },
+    {
+      "id": "conn-1sa-03-010",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 12,
+      "startVerse": 10,
+      "endChapter": 12,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "In his farewell Samuel recalls the people's confession that they had served \"the Baals and the Ashtoreths,\" the same gods they put away at Mizpah. The farewell looks back on the return this category narrates."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S03 sources (S03-S01–S03-S05) are all verified; S03-S05 is an alias of the already-registered source-bible-odyssey-royal-succession (Dev 1 footnote fix, 2026-11-23), so no new registry entry was needed. The already-registered sources listed in the dossier §12 (source-bdb-lexicon, source-jfb-commentary, source-moore-judges-icc-introduction-section-3) are cited by no claim's Source IDs column and no prose footnote, so they stay out of sources[] per the Ruth hygiene rule and the S02 precedent (reuse-basis sources stay out). SCL-03-016 is a reuse claim (clm-deu-05-014, conn-deu-05-009 — established, verified verbatim in the published JSON); its evidence carries the reuse reference, and no source is added for it. SCL-03-017 rests on source-bible-odyssey-royal-succession, read in full. No multi-range connection targets in this dossier (all 10 §11 targets are single ranges), so no encompassing-range encoding was needed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-biblicaltraining-samuel",
+    "source-biblicaltraining-mizpah",
+    "source-biblicaltraining-ashtoreth",
+    "source-bible-odyssey-royal-succession"
+  ]
+}
