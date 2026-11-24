@@ -1,0 +1,428 @@
+{
+  "id": "category-2-samuel-the-song-the-last-words-and-the-census-and-the-plague",
+  "title": "The Song, the Last Words, and the Census and the Plague",
+  "category": "category",
+  "orphan": true,
+  "era": "2-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 24,
+    "startVerse": 1,
+    "endChapter": 24,
+    "endVerse": 25
+  },
+  "fullRange": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 22,
+    "startVerse": 1,
+    "endChapter": 24,
+    "endVerse": 25
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2sa-09-001",
+      "claim": "David speaks the song \"in the day that the LORD had delivered him out of the hand of all his enemies, and out of the hand of Saul\" — a retrospective setting over the whole reign, not a date and not a war epilogue.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-002",
+      "claim": "The song opens on the LORD as rock, fortress, deliverer, shield, horn of salvation, high tower, refuge, and saviour — \"The LORD is my rock, and my fortress, and my deliverer.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-003",
+      "claim": "The theophany: the waves of death compass the singer; he calls, and the LORD hears from His temple; the earth shakes, smoke and fire go out from Him, He bows the heavens, rides upon a cherub, thunders, sends arrows and lightning; \"He sent from above, he took me; he drew me out of many waters… He brought me forth also into a large place: he delivered me, because he delighted in me.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-004",
+      "claim": "The vindication: \"The LORD rewarded me according to my righteousness: according to the cleanness of my hands hath he recompensed me. For I have kept the ways of the LORD, and have not wickedly departed from my God.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-005",
+      "claim": "The song's claim of innocence sits against chapters 11–12 (Bathsheba and Uriah). The tension is a property of the song's own voice; the text does not resolve it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-09-006",
+      "claim": "With the merciful the LORD shows Himself merciful, with the upright upright, with the pure pure, with the froward unsavoury; the afflicted He saves, the haughty He brings down. \"Thou art my lamp, O LORD… by thee I have run through a troop: by my God have I leaped over a wall.\" God's way is perfect, His word tried; He makes feet like hinds' feet, teaches hands to war, gives the shield of salvation; the enemies are pursued, consumed, beaten as dust and stamped as mire; \"thou hast kept me to be head of the heathen.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-007",
+      "claim": "The close: \"He is the tower of salvation for his king: and sheweth mercy to his anointed, unto David, and to his seed for evermore\" — echoing the promise of chapter 7 (\"thy throne shall be established for ever,\" 7:16), in the dynastic language of royal succession.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; Bible Odyssey, \"Royal Succession,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-008",
+      "claim": "The song is the near-parallel of Psalm 18 — the same opening, the same theophany, the same vindication, the same close. JFB states it directly: \"The song contained in this chapter is the same as the eighteenth Psalm.\" No claim in this dossier is built on the differences between the two texts.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 22, read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-09-009",
+      "claim": "The chapter is a single poem, the longest chapter in the book (51 verses), and the only chapter with no narrative at all.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; verse count confirmed by script in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-010",
+      "claim": "The last words: \"David the son of Jesse said, and the man who was raised up on high, the anointed of the God of Jacob, and the sweet psalmist of Israel, said, The Spirit of the LORD spake by me, and his word was in my tongue.\" The oracle: the ruler over men must be just, ruling in the fear of God, \"as the light of the morning, when the sun riseth, even a morning without clouds; as the tender grass springing out of the earth by clear shining after rain.\" The sons of Belial are as thorns thrust away, untouchable by hand, burned with fire in the same place.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 23, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-011",
+      "claim": "\"Although my house be not so with God; yet he hath made with me an everlasting covenant, ordered in all things, and sure: for this is all my salvation, and all my desire, although he make it not to grow.\" The candid admission stands against the everlasting covenant in the same verse.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 23, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-012",
+      "claim": "The \"everlasting covenant, ordered in all things, and sure\" is presented as an unconditional, dynastic promise to the house — the grant side of the covenant tradition, distinct from conditional treaty forms.",
+      "evidence": "Bible Odyssey, \"Covenant in the Hebrew Bible\" and \"Tablets and Treaties in the Ancient Near East,\" read in full (conditional vs. eternal covenant distinction).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-09-013",
+      "claim": "The first of the mighty men is the Tachmonite (Adino the Eznite), chief among the captains, who lifted his spear against eight hundred at one time. KJV \"The Tachmonite that sat in the seat\" against JPS \"Josheb-basshebeth a Tahchemonite\" is the same figure in different rendering; the \"eight hundred\" agrees in both.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (read-record cross-check).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-014",
+      "claim": "The first three: Adino (eight hundred at one time); Eleazar son of Dodo the Ahohite, who smote the Philistines until his hand was weary and clave to the sword, \"and the LORD wrought a great victory\"; Shammah son of Agee the Hararite, who stood in a lentil field when the people fled, defended it, and slew the Philistines, \"and the LORD wrought a great victory.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 23, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-015",
+      "claim": "Three of the thirty chief went down to David at the cave of Adullam in harvest time, when the Philistines were pitched in Rephaim with a garrison in Bethlehem; David longed for water from the well by the gate of Bethlehem; the three broke through the Philistine host, drew the water, and brought it — and David would not drink it but poured it out to the LORD: \"is not this the blood of the men that went in jeopardy of their lives?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 23, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-016",
+      "claim": "Abishai brother of Joab, chief among three, lifted his spear against three hundred and had the name among three, but attained not to the first three. Benaiah son of Jehoiada of Kabzeel slew two lionlike men of Moab, went down and slew a lion in a pit in time of snow, and slew an Egyptian with the Egyptian's own spear; he had the name among three mighty men, was more honourable than the thirty but attained not to the first three; David set him over his guard.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 23, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-017",
+      "claim": "The thirty run name by name — Asahel brother of Joab, Elhanan son of Dodo of Bethlehem, Shammah the Harodite, Elika, Helez, Ira, Abiezer, Mebunnai, Zalmon, Maharai, Heleb, Ittai of Gibeah, Benaiah the Pirathonite, Hiddai, Abi-albon, Azmaveth, Eliahba, Jonathan son of Jashen, Shammah the Hararite, Ahiam, Eliphelet, Eliam son of Ahithophel the Gilonite, Hezrai, Paarai, Igal, Bani, Zelek the Ammonite, Naharai the Beerothite armourbearer to Joab, Ira the Ithrite, Gareb the Ithrite — closing \"Uriah the Hittite: thirty and seven in all.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-018",
+      "claim": "Names in the roster reach back across the book — Asahel (ch. 2), Elhanan (21:19), Eliam son of Ahithophel (23:34), Uriah last (ch. 11). The roster is a retrospective roll, not a muster for a new campaign.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; cross-references verified in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-019",
+      "claim": "\"Again the anger of the LORD was kindled against Israel, and he moved David against them to say, Go, number Israel and Judah.\" \"Again\" looks back to the anger of chapter 21 (the famine); the subject is left as \"he\"; KJV and Mechon Mamre agree.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 24, read in full (\"Again\" carries back to the three years' famine, 21:1).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-020",
+      "claim": "The parallel account in 1 Chronicles 21 differs in the places flagged: it names a different mover (21:1) where Samuel leaves the subject as \"he,\" and it reads three years of famine (21:12) where Samuel reads seven (24:13). The two accounts are noted here, not reconciled.",
+      "evidence": "Hebrew + JPS 1917 read in full for the Samuel side, Mechon Mamre; the Chronicles side rests on the read record's flag, not on a fresh live read in this dossier (see Dossier notes).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-09-021",
+      "claim": "David orders Joab, captain of the host, to go through all the tribes from Dan to Beersheba and number the people, \"that I may know the number of the people.\" Joab protests — may the LORD add a hundredfold, \"but why doth my lord the king delight in this thing?\" — but the king's word prevails against Joab and the captains.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 24, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-022",
+      "claim": "The counters cross the Jordan, pitch at Aroer, and work through Gilead, Dan-jaan, Zidon, Tyre, the cities of the Hivites and the Canaanites, and the south of Judah to Beersheba, coming to Jerusalem at the end of nine months and twenty days. Joab gives the sum: in Israel eight hundred thousand valiant men that drew the sword, and in Judah five hundred thousand men — recorded as the text states them, with no reconciliation attempted.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-023",
+      "claim": "David's heart smites him after numbering; he confesses, \"I have sinned greatly… I have done very foolishly.\" In the morning the word of the LORD comes to Gad, David's seer: three things are offered — seven years of famine, three months fleeing before enemies, or three days' pestilence. David answers, \"I am in a great strait: let us fall now into the hand of the LORD; for his mercies are great: and let me not fall into the hand of man.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 24, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-024",
+      "claim": "The LORD sends pestilence from the morning to the time appointed; seventy thousand men die from Dan to Beersheba. When the angel stretches out his hand upon Jerusalem to destroy it, the LORD repents of the evil — \"It is enough: stay now thine hand\" — and the angel is by the threshingplace of Araunah the Jebusite. David, seeing the angel that smote the people, says, \"Lo, I have sinned, and I have done wickedly: but these sheep, what have they done? let thine hand, I pray thee, be against me, and against my father's house.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 24, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-025",
+      "claim": "The identity of the pestilence is debated: the text names it pestilence and gives no symptoms. Freemon (2005) proposed bubonic plague as the disease behind the plague passages in the Book of Samuel; Griffin (2006) answered that proposal. No medical identification is asserted here.",
+      "evidence": "Freemon (2005), full letter read live via PMC (registry verification); Griffin (2006), full letter read live via PMC (registry verification).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2sa-09-026",
+      "claim": "Gad comes that day: go up and rear an altar to the LORD in the threshingfloor of Araunah the Jebusite. Araunah, a Jebusite, offers the floor, the oxen for burnt sacrifice, and the threshing instruments for wood — \"All these things did Araunah, as a king, give unto the king.\" David refuses: \"Nay; but I will surely buy it of thee at a price: neither will I offer burnt offerings unto the LORD my God of that which doth cost me nothing.\" He buys the threshingfloor and the oxen for fifty shekels of silver, builds an altar, offers burnt and peace offerings, \"and the LORD was intreated for the land, and the plague was stayed from Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 2 Samuel 24, read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-027",
+      "claim": "A threshingfloor was an open, level, beaten surface, usually on high ground outside a settlement, where grain was threshed and winnowed; the Iron Age study at Tel Megiddo gives archaeological criteria for identifying such floors in the record. No excavated floor has been identified as Araunah's.",
+      "evidence": "BiblicalTraining, \"Threshing Floor,\" read in full; Shahack-Gross, Gafri, and Finkelstein (2009), read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-09-028",
+      "claim": "The two offerings named at the altar — burnt offerings and peace offerings — are distinct rites in the sacrificial system.",
+      "evidence": "Gane, \"Sacrifice and the Old Testament\" (2022), §§2–4, especially 4.1–4.3, inspected in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-09-029",
+      "claim": "The chapter is a complete, self-contained episode — command, count, confession, choice, plague, altar — and it is the book's close. It ends on the plague stayed and the LORD entreated, not on David's death or succession, which belong to 1 Kings.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-09-030",
+      "claim": "The narrative gives no reason why numbering the people was sinful: no motive for the census is stated, Joab's protest is overruled without an answer, and only after the count does David's heart smite him. Why the census was an offence is not explained by the text.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "unknown"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2sa-09-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 10,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Hannah's song and David's song frame the books of Samuel together. Both praise God as Rock, both speak of the horn — Hannah of the horn of his anointed, David of the horn of his salvation — and both end with the LORD's kindness to \"his anointed\" — a barren woman's prayer at the opening, a king's thanksgiving at the close."
+    },
+    {
+      "id": "conn-2sa-09-002",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 50,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The song of 2 Samuel 22 is the near-parallel of this psalm: the same opening on the rock and fortress, the same theophany, the same vindication, the same close on the LORD's mercy to his anointed, to David and his seed for evermore."
+    },
+    {
+      "id": "conn-2sa-09-003",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "established",
+      "note": "\"I will establish the throne of his kingdom for ever… thy throne shall be established for ever.\" The song's close — mercy to David and to his seed for evermore — echoes the promise made to David's house."
+    },
+    {
+      "id": "conn-2sa-09-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 32,
+      "startVerse": 1,
+      "endChapter": 32,
+      "endVerse": 43,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Moses closes Deuteronomy with a song taught to Israel before his death, as David closes Samuel with one. Both are a leader's testimony set as poetry at the end of his story; Moses' song indicts a faithless people, David's gives thanks for deliverance."
+    },
+    {
+      "id": "conn-2sa-09-005",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 18,
+      "startVerse": 15,
+      "endChapter": 18,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"The LORD thy God will raise up unto thee a Prophet from the midst of thee, of thy brethren, like unto me.\" David's \"The Spirit of the LORD spake by me\" and Gad's commission as David's seer are the prophet's work in the closing chapters, with God's words in the prophet's mouth."
+    },
+    {
+      "id": "conn-2sa-09-006",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 11,
+      "startVerse": 1,
+      "endChapter": 11,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David takes Bathsheba and has Uriah the Hittite killed. The song's claim of righteousness and clean hands sits against this chapter, and the two are held together without the text resolving them."
+    },
+    {
+      "id": "conn-2sa-09-007",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 12,
+      "startVerse": 10,
+      "endChapter": 12,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"The sword shall never depart from thine house… I will raise up evil against thee out of thine own house.\" Nathan's sentence stands behind the last words' admission that David's house is \"not so with God.\""
+    },
+    {
+      "id": "conn-2sa-09-008",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 21,
+      "startVerse": 1,
+      "endChapter": 21,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The famine is answered as blood-guilt, and after the burial \"God was intreated for the land.\" The census chapter opens the same way — the LORD's anger kindled against Israel — and closes the same way, with the LORD entreated for the land and the plague stayed."
+    },
+    {
+      "id": "conn-2sa-09-009",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 30,
+      "startVerse": 11,
+      "endChapter": 30,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "When the children of Israel are numbered, every man shall give a ransom for his soul, \"that there be no plague among them, when thou numberest them.\" The provision is the background of a census; the Samuel narrative does not say David omitted it."
+    },
+    {
+      "id": "conn-2sa-09-010",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 21,
+      "startVerse": 1,
+      "endChapter": 21,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "debated",
+      "note": "The parallel account of the census and the plague names a different mover and gives three years of famine where Samuel gives seven. The two accounts are noted here; they are not reconciled."
+    },
+    {
+      "id": "conn-2sa-09-011",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 3,
+      "startVerse": 1,
+      "endChapter": 3,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Chronicler places the house of the LORD on the threshingfloor of Ornan the Jebusite on Mount Moriah — the same ground David bought for fifty shekels of silver. Samuel itself does not make the identification."
+    },
+    {
+      "id": "conn-2sa-09-012",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 2,
+      "startVerse": 18,
+      "endChapter": 2,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Asahel son of Zeruiah, light of foot as a wild roe, pursues Abner and is struck down under the fifth rib. The roster remembers him first among the thirty, and his death in the civil war stands at the head of the roll."
+    },
+    {
+      "id": "conn-2sa-09-013",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 11,
+      "startVerse": 3,
+      "endChapter": 11,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"Bathsheba, the daughter of Eliam, the wife of Uriah the Hittite.\" Eliam son of Ahithophel stands in the roster; Bathsheba and Uriah — the daughter of Eliam and her husband — are the two names the book's central sin turns on."
+    },
+    {
+      "id": "conn-2sa-09-014",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 21,
+      "startVerse": 19,
+      "endChapter": 21,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Elhanan son of Jaare-oregim slays the brother of Goliath at Gob. The same Elhanan son of Dodo of Bethlehem stands in the roster of the mighty men."
+    },
+    {
+      "id": "conn-2sa-09-015",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 1,
+      "startVerse": 17,
+      "endChapter": 1,
+      "endVerse": 27,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The book opens in song, with David's lament over Saul and Jonathan: \"How are the mighty fallen!\" It closes in song, with David's thanksgiving for deliverance. Lament and thanksgiving frame the reign."
+    },
+    {
+      "id": "conn-2sa-09-016",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 5,
+      "startVerse": 6,
+      "endChapter": 5,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David takes the stronghold of Zion from the Jebusites and makes it the city of David. A Jebusite, Araunah, still holds a threshingfloor in Jerusalem when the book closes, and it is on his ground that the altar is built."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-samuel-masoretic-text",
+    "source-jfb-commentary",
+    "source-bible-odyssey-covenant",
+    "source-bible-odyssey-royal-succession",
+    "source-freemon-bubonic-plague-book-of-samuel",
+    "source-griffin-plague-rats-bible-again",
+    "source-biblicaltraining-threshing-floor",
+    "source-shahack-gross-gafri-finkelstein-threshing-floors-megiddo",
+    "source-gane-sacrifice-old-testament"
+  ],
+  "review": {
+    "author": "Gnosis 2 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Samuel category; independent QA pending. S09 sources[] carries nine entries (all verified in the live registry): S09-S01 Mechon Mamre -> source-mechon-mamre-2-samuel-masoretic-text; S09-S02, S09-S03 and S09-S04 (JFB on 2 Samuel 22, 23 and 24, each read in full live 2026-11-24) -> source-jfb-commentary, whose recorded scope was appended by the registry build (PR #313) to include 2 Samuel 22-24; source-bible-odyssey-covenant; source-bible-odyssey-royal-succession; source-freemon-bubonic-plague-book-of-samuel; source-griffin-plague-rats-bible-again; source-biblicaltraining-threshing-floor; source-shahack-gross-gafri-finkelstein-threshing-floors-megiddo; source-gane-sacrifice-old-testament. Eight appear in §9 Source IDs cells AND in appendix footnotes (43 uses: Mechon Mamre 31, JFB 6, BO Covenant 1, Freemon 1, Griffin 1, BT Threshing Floor 1, Shahack-Gross 1, Gane 1); source-bible-odyssey-royal-succession enters via §9 Source IDs only (claim 007, 0 appendix uses — the S05 precedent). Excluded by the §-location rule (§2 prose / checked-not-cited only — never in a §9 Source IDs cell or the appendix): source-milgrom-anointing-encyclopaedia-judaica, source-biblicaltraining-david, source-biblicaltraining-weights-and-measures, source-weinfeld-covenant-grant, source-adair-numbers-census. No reuse-basis exclusion applies: the §2 reuse references (clm-deu-05-029-038, clm-rut-04-002/006/012/015, clm-jud-02-001, conn-deu-05-035, SCL-01-013) are claim-level reuse, and no source is reached only through a clm- reuse reference. S2CL-09-005 is debated (the song's claim of innocence against chapters 11-12 — the tension is a property of the song's own voice; the text does not resolve it). S2CL-09-020 is debated (the Chronicles parallel — a different mover, three years of famine against seven; noted, not reconciled; the Chronicles side rests on the read record's flag, not a fresh live read in this dossier). S2CL-09-025 is debated (the pestilence's identity — the text names it pestilence and gives no symptoms; Freemon's bubonic-plague proposal answered by Griffin; no medical identification asserted). S2CL-09-030 is the single unknown (why the census was sinful — no motive or explanation in the text). S2CL-09-008 is probable (the Psalm 18 parallel; no claim is built on the differences between the two texts). S2CL-09-012 is probable (the everlasting covenant as the grant side, via the Bible Odyssey covenant articles). S2CL-09-027 is probable (the threshingfloor description and the Megiddo criteria; no excavated floor has been identified as Araunah's). S2CL-09-028 is probable (burnt and peace offerings as distinct rites, via Gane). S2CL-09-013 is established (the Tachmonite, eight hundred at one time, as the text reads it — KJV and Mechon Mamre agree; JFB/Davidson propose 300, holding the text corrupt, cf. 1 Chr 11:11; the emendation is NOT adopted and the proposal is an open item for the EM). primaryScripture is 24:1-25 (the incident — the census and the plague, one chapter); fullRange is 22:1-24:25; chapters 22-23 are supporting context (the song of deliverance and the last words with the roster of the mighty men), not a second incident, per the approved proposal. No multi-range connections — all 16 §11 targets are single ranges within one book, so no encompassing ranges and no splits. Chapter coverage complete: all 115 verses (ch. 22 claims 001-009, ch. 23 claims 010-018, ch. 24 claims 019-030), per the dossier's own coverage check. JFB's proposed reconciliations (seven years of famine in addition to the three already past; census totals reconciled by a 300,000-man standing army) are noted in §5/§8 and not adopted; the Samuel text is recorded as it stands. The Bethlehem well identification with Bir-Daoud is disputed (Robinson doubts); no well is marked at build time. The Mount Moriah / temple-site identification of Araunah's floor comes from the Chronicler (2 Chr 3:1) via JFB, not from 2 Samuel and not from archaeology; it is not presented as an excavated location. No S09 claim or connection touches 2 Sam 6:22 or 16:28, so no Class A guard note applies here (the 6:22 / 16:28 stored texts were corrected in Phase 3). Dating-label harmonisation is an editorial decision, not a build fix. Dossier-notes item 7 (registry counts 381) is the stale pre-#313 snapshot — the live registry is 443 entries. Dossier-notes item 8 (era enum flag) is stale — era \"2-samuel\" was appended by the S01 PR and is already in the allowlist. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
