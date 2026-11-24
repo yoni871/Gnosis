@@ -868,6 +868,7 @@ const TITLE_COLLISION_ALLOWLIST = new Set([
     "source-biblicaltraining-mount-nebo",
     "source-anderson-giles-samaritan-pentateuch",
     "source-ramban-on-genesis",
+    "source-biblicaltraining-beth-shemesh",
 ]);
 
 // A non-published title is a leak signal only as a whole phrase on word
