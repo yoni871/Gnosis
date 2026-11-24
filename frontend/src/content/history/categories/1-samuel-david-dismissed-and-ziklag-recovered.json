@@ -1,0 +1,331 @@
+{
+  "id": "category-1-samuel-david-dismissed-and-ziklag-recovered",
+  "title": "David Dismissed and Ziklag Recovered",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 29,
+    "startVerse": 1,
+    "endChapter": 30,
+    "endVerse": 31
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 29,
+    "startVerse": 1,
+    "endChapter": 30,
+    "endVerse": 31
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-10-001",
+      "claim": "The Philistines gathered all their hosts to Aphek, and the Israelites pitched by the fountain in Jezreel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-002",
+      "claim": "Aphek is the Sharon Aphek at the Yarkon headwaters, ~11 miles ENE of ancient Joppa (Tell Ras el-ʿAin / Tel Aphek), on the Via Maris; the more common view is that it is the same Aphek as in 1 Sam 4, with the army marching north to Jezreel.",
+      "evidence": "BiblicalTraining, \"Aphek,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-10-003",
+      "claim": "The Philistine leaders are called *sarney* (\"lords\", the *seranim*) in v. 2 and *sarey* (\"princes\") in v. 3 — two different Hebrew words, blurred in English versions.",
+      "evidence": "Hebrew read in full, Mechon Mamre; BiblicalTraining, \"Philistines,\" read in part (government section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-004",
+      "claim": "The five Philistine cities were ruled by lords (*seranim*) who could act as a council, and the majority could overrule one of their number; 1 Sam 29:2–7 is the cited example.",
+      "evidence": "BiblicalTraining, \"Philistines,\" read in part (government section).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-10-005",
+      "claim": "The princes refuse David a place in the battle, quoting the song \"Saul hath slain his thousands, and David his ten thousands\" — the song's third quotation in the book (after 18:7 and 21:12), all three verified in the Masoretic text in this session.",
+      "evidence": "Hebrew + JPS 1917 read in full (29:5) and verified at 18:7 and 21:12, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-006",
+      "claim": "Achish swears by the LORD that David has been upright and calls him \"as an angel of God\"; the text records the oath and the praise without comment on Achish's sincerity.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-007",
+      "claim": "Achish is called \"king\" of Gath while the other Philistine leaders are usually called \"rulers\"; his name is probably non-Semitic, possibly \"Achaean.\"",
+      "evidence": "BiblicalTraining, \"Achish,\" read in full; \"Philistines,\" read in part.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-10-008",
+      "claim": "David is dismissed and departs in the morning; the Philistines go up to Jezreel. The two armies part in opposite directions.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-009",
+      "claim": "On the third day David finds Ziklag burned by the Amalekites, the women and children taken captive, none slain.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-010",
+      "claim": "The people speak of stoning David, and \"David strengthened himself in the LORD his God\" — the only point in the fugitive arc where David's own men turn against him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-011",
+      "claim": "David inquires of the LORD through Abiathar and the ephod and receives the answer \"Pursue; for thou shalt surely overtake them, and shalt without fail recover all.\" The text does not name the mechanism by which the answer came.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-012",
+      "claim": "At the brook Besor two hundred men stay behind, too faint to cross; four hundred go on. The Besor is a wadi, dry most of the year; most modern scholars identify it with Nahal Besor / Wadi Ghazzeh, reaching the Mediterranean just south of Gaza; the exact stopping place cannot be fixed.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Besor,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-10-013",
+      "claim": "David's men find an Egyptian servant, three days without food or water, abandoned by his Amalekite master because he fell sick; revived with bread, water, fig cake, and raisins, he names the raiders' route and offers to lead David to them for an oath of protection, which David swears.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 1 Sam 30 (slave treatment).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-014",
+      "claim": "The raiders struck \"the South of the Cherethites, and that which belongeth to Judah, and the South of Caleb\" — the same districts David claimed to be raiding when he lied to Achish (27:10). The Kerethites are most plausibly a Philistine clan or subgroup, the name usually linked to Crete.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Kerethites,\" read in full; \"Ziklag,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-10-015",
+      "claim": "David smites the Amalekites from twilight until the evening of the next day; four hundred young men escape on camels; David recovers all — \"there was nothing lacking to them, neither small nor great.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-016",
+      "claim": "David refuses the demand to deny the two hundred a share and rules that the share of him who stays with the baggage equals the share of him who goes down to battle; he makes it \"a statute and an ordinance for Israel unto this day.\" The \"unto this day\" aside marks the narrator's later time; no date is built on it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 1 Sam 30.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-017",
+      "claim": "The spoil rule has an earlier parallel in the division of spoil in Numbers 31:25–27 and in David's own practice of leaving two hundred with the supplies (1 Sam 25:13).",
+      "evidence": "JFB on 1 Sam 30; BiblicalTraining, \"Besor,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-10-018",
+      "claim": "David sends of the spoil to the elders of Judah, to Beth-el, Ramoth of the South, Jattir, Aroer, Siphmoth, Eshtemoa, Racal, the cities of the Jerahmeelites and the Kenites, Hormah, Bor-ashan, Athach, and Hebron — \"all the places where David himself and his men were wont to haunt.\" The roster is a genre break (narrative → place list) and stays with chapter 30.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-10-019",
+      "claim": "The gifts are read as winning the support of the southern clans who would soon make David king, and as acknowledgment to the towns that had ministered to him in his wanderings.",
+      "evidence": "BiblicalTraining, \"Ziklag,\" read in full; JFB on 1 Sam 30.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-10-020",
+      "claim": "The Amalekites raid Ziklag and David defeats them; Amalekites are still present after Saul, so a completed blotting-out of Amalek is not attested.",
+      "evidence": "Reuse: `clm-deu-06-076` (probable); `conn-deu-06-069` (historical-setting, probable).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-10-021",
+      "claim": "The site of Ziklag is unsettled: candidates are Khirbet Zuheiliqah, ʿAsluj, Tell el-Khuweilfeh / Tel Halif, Tel Seraʿ / Tell esh-Shariʿa, and Khirbet al-Raʿi; no inscription naming Ziklag has been found at any site.",
+      "evidence": "BiblicalTraining, \"Ziklag,\" read in full.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-1sa-10-022",
+      "claim": "David lived at Ziklag a year and four months. Chapter 27 lies outside this dossier's boundary and was not re-read here; the duration is recorded as the articles give it.",
+      "evidence": "BiblicalTraining, \"Ziklag\" and \"Achish,\" read in full.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-10-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 27,
+      "startVerse": 1,
+      "endChapter": 27,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David flees to Achish, is given Ziklag, and raids the Geshurites, Girzites, and Amalekites while telling Achish he raids Judah. The base and the deception that shape chapter 29 are set here."
+    },
+    {
+      "id": "conn-1sa-10-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 27,
+      "startVerse": 10,
+      "endChapter": 27,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David tells Achish he has raided Judah and Caleb — the same districts the Amalekites really raid in 30:14. The lie and the raid name the same ground."
+    },
+    {
+      "id": "conn-1sa-10-003",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 18,
+      "startVerse": 7,
+      "endChapter": 21,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "established",
+      "note": "Targets 1 Samuel 18:7 and 21:12. The women's song is first sung after Goliath and then quoted by Achish's servants when David flees to Gath. At Aphek it is quoted a third time, now by the Philistine princes as the reason David cannot fight."
+    },
+    {
+      "id": "conn-1sa-10-004",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 28,
+      "startVerse": 1,
+      "endChapter": 28,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Achish makes David his bodyguard for life and takes him to the battle. The dismissal in chapter 29 is what spares David from fighting his own people."
+    },
+    {
+      "id": "conn-1sa-10-005",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 15,
+      "startVerse": 1,
+      "endChapter": 15,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "established",
+      "note": "Samuel commands Saul to smite Amalek. The Amalekites David defeats at Ziklag are the same people Saul was commanded to destroy and did not."
+    },
+    {
+      "id": "conn-1sa-10-006",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 25,
+      "startVerse": 17,
+      "endChapter": 25,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "established",
+      "note": "The command to blot out the memory of Amalek. David's victory at Ziklag is one more attempt at that command, and Amalekites appear again afterwards, so no completed blotting-out is attested."
+    },
+    {
+      "id": "conn-1sa-10-007",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 25,
+      "startVerse": 13,
+      "endChapter": 25,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David leaves two hundred men with the supplies while four hundred go on — the same division of labour as at the Besor, and the precedent for the spoil statute."
+    },
+    {
+      "id": "conn-1sa-10-008",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 31,
+      "startVerse": 25,
+      "endChapter": 31,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The spoil of the Midianite campaign is divided equally between those who went to battle and the congregation. David's statute at the Besor follows the same rule."
+    },
+    {
+      "id": "conn-1sa-10-009",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 4,
+      "startVerse": 1,
+      "endChapter": 4,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Philistines muster at Aphek before the loss of the ark, and Israel is routed. The same mustering ground, a generation later, is where David is dismissed."
+    },
+    {
+      "id": "conn-1sa-10-010",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David returns to Ziklag from the slaughter of the Amalekites and abides there two days; on the third day the man from Saul's camp arrives. The Amalekite's rival account of Saul's death is told here."
+    },
+    {
+      "id": "conn-1sa-10-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David inquires, goes up to Hebron, and the men of Judah anoint him king over the house of Judah. The gifts of 30:26–31 have won the southern clans who now make him king."
+    },
+    {
+      "id": "conn-1sa-10-012",
+      "book": "Nehemiah",
+      "bookId": "nehemiah",
+      "startChapter": 11,
+      "startVerse": 25,
+      "endChapter": 11,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ziklag is listed among the towns of Judah resettled after the exile, showing the town's name surviving into the post-exilic period."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S10 sources (S10-S01–S10-S08) are the 8 sources[] entries; all are verified. NO not-independently-verified source is named in §9 evidence/claim text for S10: the dossier's §12 Needs-checking section is EMPTY ('None. Every source cited in §9 is either read directly in this session or an already-registered verified claim'), so no S06-S06/S08/S09-style NIV decision was needed; all 8 sources[] candidates were checked by script against the registry and are verified. Deuterocanonical check (S09 Sirach carry-over): the whole dossier was scanned for apocryphal/deuterocanonical targets — CLEAN. No connection target lies outside the 66-book Protestant canon, so no S09-style validator-forced exclusion was needed; Nehemiah (SCO-10-012) is in bibleChapters.json. S10-S09 (BibleHub KJV, chs. 29–30, read in full) has no registry entry (registry-build exclusion) and is cited by no §9 claim and no appendix footnote (only §3 textual observations and dossier notes); it stays OUT of sources[]. Reuse-basis exclusions (S01/S08/S09 precedent — a source that reaches a claim only through a clm- reuse reference stays OUT of sources[]): the four Philistine registry sources named in §2 internal prose only (BAR origins of the Philistines, Feldman aDNA, Emanuel/Dagon, BiblicalTraining temples-of-Dagon) stay OUT (S04 §-location rule — cited only in §2, never in the Appendix or §9). The other §2 reuse items (clm-deu-06-073/074, conn-deu-06-068, clm-jud-09-002/003/004/005, clm-nb-012, clm-ta-026, clm-deu-10-011) are cited by no §9 claim and no appendix footnote; no source is added for any. One multi-range connection target, encoded per the S01/S02/S06/S07/S08/S09 precedent (encompassing range, exact sub-ranges carried in the note; QA accepted encompassing ranges as shipped; splitting before publication remains the publication-time decision): SCO-10-003 targets 1 Samuel 18:7 and 21:12 (the song's first two quotations), encoded as the encompassing range 1 Sam 18:7–21:12 with 'Targets 1 Samuel 18:7 and 21:12.' in the note (S06 prefix style). All other 11 §11 targets are single ranges. The multi-range target is not cross-book. Reuse references in evidence only (S01/S03/S04 precedent, internal-only, stripped at generation): SCL-10-020's evidence carries clm-deu-06-076 (probable) and conn-deu-06-069 (historical-setting, probable) — the Amalekites-still-present reuse. No clm- or conn- reference appears in any claim text. Doubled '---' fix (QA artifact from S08, applied in S09): the dossier's Why section ends with a trailing '---' rule, and the S08 script appended a second terminator, so the S08 MD ends with a doubled '---'. This build strips a trailing '---' from the why section before appending the terminator, so the built MD ends with exactly one '---\\n' (byte-checked, aligning with S07/S09). The gift roster of 30:26–31 is a genuine genre break (narrative → place list, same class as Ruth 4:18–22); it stays with chapter 30 under the approved 11-category structure — the roster-split question is moot. Parallel time with S11 (Gilboa) is recorded, not harmonised; David is absent from chapter 31 entirely. The Philistines article (S10-S07) was read in part: the sections used were read in full; the middle narrative sections were not opened. Claims used come from the sections read. KJV: ch. 29 zero differences; ch. 30 one Class B difference (30:8 'enquired' vs KJV 'inquired'), per the KJV verification report and the live BibleHub read (S10-S09). Second-reader correction C-S10-3 already applied in the dossier: SCL-10-010 was reworded to the §3 factual form keeping established. Dossier open items, not resolved by this build: Ziklag's site is unsettled (SCL-10-021, unknown — five candidates, no inscription at any site); the Besor's exact stopping place cannot be fixed (SCL-10-012); whether Achish's oath by the LORD (29:6) was sincere belief or diplomatic language — not stated in the text, no claim made (SCL-10-006); how the ephod inquiry's answer was delivered — unknown, the text does not name the mechanism (SCL-10-011), following the library (clm-ta-026, clm-deu-10-011); the Kerethites as a Philistine clan/subgroup — probable, not settled (SCL-10-014); David's stay at Ziklag, 'a year and four months' (27:7) — recorded as the articles give it; ch. 27 was not re-read in this dossier (SCL-10-022). §10 shared-opportunity lines (Place: Aphek; Place: Ziklag; Place: the Besor; Topic: the seranim and the Philistine council; Topic: the song of the women; Topic: the spoil statute; Topic: the Kerethites) do not enter the built files: the built JSON carries topics: [] (S01–S09 pattern), so they are moot for the built output. primaryScripture = fullRange = 29:1–30:31 (exactly 2 chapters, 42 verses: ch. 29 has 11 verses, ch. 30 has 31), as proposed in the dossier §1; no narrowing needed. The validator's ≤3-chapter limit applies only to primaryScripture, not to fullRange. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-biblicaltraining-aphek",
+    "source-biblicaltraining-ziklag",
+    "source-biblicaltraining-achish",
+    "source-biblicaltraining-besor",
+    "source-biblicaltraining-kerethites",
+    "source-biblicaltraining-philistines",
+    "source-jfb-commentary"
+  ]
+}
