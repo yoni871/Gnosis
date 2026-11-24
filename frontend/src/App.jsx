@@ -28,7 +28,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const BiblicalHistoryIndexPage = lazy(() => import('./pages/BiblicalHistoryIndexPage'));
 const BiblicalHistoryBookRedirect = lazy(() => import('./pages/BiblicalHistoryBookRedirect'));
 const BiblicalHistoryEventPage = lazy(() => import('./pages/BiblicalHistoryEventPage'));
-// Trace the Doctrine homepage (homepage only — no study workspace yet).
+// Trace the Doctrine homepage. The Trinity study workspace exists as a preview — see the route below.
 const TraceTheDoctrinePage = lazy(() => import('./pages/TraceTheDoctrinePage'));
 // Trace the Doctrine study workspace: the Trinity preview study. The
 // workspace page is noindex and never listed in the sitemap.
