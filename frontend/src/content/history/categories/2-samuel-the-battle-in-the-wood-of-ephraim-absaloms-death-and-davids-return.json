@@ -1,0 +1,461 @@
+{
+  "id": "category-2-samuel-the-battle-in-the-wood-of-ephraim-absaloms-death-and-davids-return",
+  "title": "The Battle in the Wood of Ephraim, Absalom's Death, and David's Return",
+  "category": "category",
+  "orphan": true,
+  "era": "2-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 18,
+    "startVerse": 1,
+    "endChapter": 20,
+    "endVerse": 26
+  },
+  "fullRange": {
+    "book": "2 Samuel",
+    "bookId": "2-samuel",
+    "startChapter": 18,
+    "startVerse": 1,
+    "endChapter": 20,
+    "endVerse": 26
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2sa-07-001",
+      "claim": "David numbers his people at Mahanaim and sets captains of thousands and hundreds, sending a third under Joab, a third under Abishai, and a third under Ittai the Gittite. He would go out himself, but the people refuse — \"thou art worth ten thousand of us\" — and he stands by the gate. His charge to all three captains, heard by all the people: \"Deal gently for my sake with the young man, even with Absalom.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; KJV read in full via Preview API (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-002",
+      "claim": "The battle is in the wood of Ephraim; Israel is slain before David's servants, twenty thousand men that day; \"the wood devoured more people that day than the sword devoured.\"",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Wood of Ephraim,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-003",
+      "claim": "The wood of Ephraim is a wooded district east of the Jordan, in Gilead, probably not far from Mahanaim; its exact boundaries cannot be identified today. The name occurs only in 2 Sam 18:6.",
+      "evidence": "BiblicalTraining, \"Wood of Ephraim,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-004",
+      "claim": "Absalom, riding a mule, is caught by his head in the thick boughs of a great oak (JPS: terebinth), taken up between heaven and earth as the mule goes away. Joab thrusts three darts through his heart while he is yet alive in the oak, against the king's charge, and ten armour-bearers compass him and slay him.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Absalom\" and \"Joab,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-005",
+      "claim": "The text speaks of Absalom's head caught in the tree, not his hair. The popular idea that he was caught by his long hair is old, found already in Jewish tradition (Mishnah Sotah 1:8).",
+      "evidence": "BiblicalTraining, \"Absalom,\" read in full; Hebrew + JPS 1917 read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-006",
+      "claim": "A man reports Absalom hanging in the oak to Joab and refuses the offered ten shekels and a girdle, citing the king's charge heard by all: though he should receive a thousand pieces of silver, he would not put forth his hand against the king's son.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-007",
+      "claim": "Joab blows the trumpet and holds back the pursuit; Absalom is cast into a great pit in the wood under a great heap of stones, and all Israel flees to their tents.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Absalom,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-008",
+      "claim": "Absalom in his lifetime reared a pillar in the king's dale, \"I have no son to keep my name in remembrance,\" called \"unto this day, Absalom's place.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-009",
+      "claim": "\"I have no son to keep my name\" sits against 14:27, where three sons are born to Absalom. Most interpreters conclude his sons died young; others suggest the monument was erected before they were born. The tension is in the text and is not resolved here.",
+      "evidence": "BiblicalTraining, \"Absalom,\" read in full; Hebrew + JPS 1917 read in full.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-2sa-07-010",
+      "claim": "Two runners carry the news to Mahanaim: Joab sends Cushi first and holds Ahimaaz back, but Ahimaaz insists, runs by the way of the plain, and overruns Cushi. David's first question to each is, \"Is the young man Absalom safe?\" Ahimaaz evades it; Cushi answers plainly that the king's enemies should be as that young man is.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Mahanaim,\" read in full (the gate and the plain route).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-011",
+      "claim": "The lament — \"O my son Absalom, my son, my son Absalom! would God I had died for thee\" — is KJV 18:33 and Mechon Mamre 19:1; the verse text is identical in both, and only the chapter boundary falls one verse later in the Hebrew. The lament belongs with the battle before it and Joab's rebuke after it.",
+      "evidence": "Hebrew + JPS 1917 read in full (MM ch. 18 has 32 verses, ch. 19 has 44; KJV ch. 18 has 33, ch. 19 has 43); BiblicalTraining, \"Absalom,\" read in full (notes the Hebrew numbering).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-012",
+      "claim": "Victory is turned into mourning: the people steal into the city as ashamed men fleeing battle. Joab rebukes the king — \"thou lovest thine enemies, and hatest thy friends\" — and swears that if the king does not go forth and speak comfortably to his servants, not one will tarry with him that night. The king arises and sits in the gate.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Joab\" and \"Absalom,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-013",
+      "claim": "The tribes debate bringing the king back; David sends to Zadok and Abiathar to speak to the elders of Judah, promises Amasa the captaincy of the host \"continually in the room of Joab,\" and Judah's heart is bowed as one man. The king returns to Jordan; Judah comes to Gilgal to conduct him over.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-014",
+      "claim": "Shimei son of Gera comes down with a thousand Benjamites and Ziba, confesses, and claims to be the first of all the house of Joseph to meet the king. Abishai demands his death; David answers, \"What have I to do with you, ye sons of Zeruiah… shall there any man be put to death this day in Israel?\" and swears, \"Thou shalt not die.\" The pardon settles the return, not Shimei's fate; it is a compromise, not a final verdict.",
+      "evidence": "Hebrew + JPS 1917 read in full; contrast with the executions in 2 Sam 1 and 4 (read record).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-015",
+      "claim": "Mephibosheth comes down unwashed and unkempt since the king's departure and says his servant deceived him and slandered him; \"my lord the king is as an angel of God.\" David answers, \"Thou and Ziba divide the land,\" leaving the 16:1–4 grant half-standing. Neither Ziba's account nor Mephibosheth's is presented as established.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-2sa-07-016",
+      "claim": "\"My lord the king is as an angel of God\" is the same court phrase the woman of Tekoa used of David's discernment (14:17, 20); it is court language, not a claim about David.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-017",
+      "claim": "Barzillai the Gileadite, eighty years old, who provided the king's sustenance at Mahanaim, comes down from Rogelim to conduct the king over Jordan. He declines the king's invitation to Jerusalem — he cannot discern good and evil, taste food, or hear singing men and women at eighty — and sends his servant Chimham instead; the king kisses Barzillai and blesses him.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Mahanaim,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-018",
+      "claim": "The men of Israel charge Judah with stealing the king away; Judah answers the king is near of kin; Israel answers, \"we have ten parts in the king\"; \"the words of the men of Judah were fiercer than the words of the men of Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-019",
+      "claim": "Sheba son of Bichri, a Benjamite, a man of Belial, blows a trumpet: \"We have no part in David, neither have we inheritance in the son of Jesse: every man to his tents, O Israel.\" All Israel goes up from David after Sheba; Judah cleaves to the king from Jordan to Jerusalem. The cry answers the quarrel's \"ten parts\".",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Joab\" and \"Absalom,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-020",
+      "claim": "David shuts up the ten concubines left to keep the house, feeding them but going not in to them; \"they were shut up unto the day of their death, living in widowhood.\" This closes the arc opened at 15:16 and fulfilled at 16:21–22.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Absalom,\" read in full (the concubines kept in confinement for the rest of their lives).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-021",
+      "claim": "Amasa, ordered to assemble Judah within three days, tarries longer; at the great stone in Gibeon Joab greets him with a kiss and smites him in the fifth rib, shedding out his bowels, and he dies. The body wallows in blood in the highway until it is removed to a field and covered with a cloth.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Joab,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-022",
+      "claim": "Amasa's murder is the fourth \"fifth rib\" killing in the book (after Asahel at 2:23, Abner at 3:27, Ish-bosheth at 4:6) and the second murder by Joab at a greeting (after Abner at 3:27, \"to speak with him quietly\"). It removes the man David had just promised Joab's place (19:13).",
+      "evidence": "Hebrew + JPS 1917 read in full (all four passages, read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-023",
+      "claim": "Sheba flees to Abel of Beth-maachah; Joab besieges it, casting up a bank and battering the wall. A wise woman cries from the city — \"They shall surely ask counsel at Abel… why wilt thou swallow up the inheritance of the LORD?\" — Joab seeks only Sheba, the woman persuades the people, Sheba's head is thrown over the wall, the trumpet sounds, and Joab returns to Jerusalem.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Joab,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-024",
+      "claim": "Abel of Beth-maachah is identified with Tell Abil el-Qameh in the far north, on the modern Israel–Lebanon border. The identification is the one most scholars accept; the excavation record was not read in full for this dossier (S07-S07, needs-checking), so this claim is capped at probable.",
+      "evidence": "BiblicalTraining, \"Joab,\" read in full (Abel Beth Maakah in the far north); Hebrew University, Tel Abel Beth Maacah (needs-checking — search summary seen, page not read in full).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-025",
+      "claim": "The wise woman appeals to Abel's old reputation: \"They were wont to speak in old time, saying, They shall surely ask counsel at Abel: and so they ended the matter. I am one of them that are peaceable and faithful in Israel.\" Whether the saying records a real institution or a local boast is not settled by the text.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Joab,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-026",
+      "claim": "The court list closes the Absalom–Sheba sequence as 8:16–18 closed the consolidation: Joab over the host again with no comment from the king; Adoram over the tribute, Sheva scribe, and Ira the Jairite added; Seraiah gone; \"David's sons were chief rulers\" replaced by Ira.",
+      "evidence": "Hebrew + JPS 1917 read in full (both lists, read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2sa-07-027",
+      "claim": "Mahanaim is a town in Gilead, east of the Jordan and close to the Jabbok, whose Hebrew name means \"two camps\"; Jacob named it when angels met him there. Twice it served as a royal refuge: Ish-bosheth's capital and David's headquarters in the revolt. Its exact site is still debated; Tell edh-Dhahab el-Gharbi is the most widely favoured proposal, and no inscription has settled the question.",
+      "evidence": "BiblicalTraining, \"Mahanaim,\" read in full; reuse `clm-ij-041` (probable).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-028",
+      "claim": "The battle in the wood of Ephraim and its aftermath work out Nathan's sentence — \"the sword shall never depart from thine house\" and \"I will take thy wives… in the sight of this sun\": the sword strikes in David's own house, and the concubines' fate (20:3) closes the public fulfilment begun at 16:21–22.",
+      "evidence": "BiblicalTraining, \"Absalom\" and \"Wood of Ephraim,\" read in full (both present the revolt as the working-out of Nathan's judgment).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-029",
+      "claim": "Absalom is David's third son, born at Hebron to Maacah daughter of Talmai king of Geshur; with Kileab disappearing from the record, he was probably David's oldest surviving son and the putative heir, though no law of succession had been fixed and the narrative never says David promised him the throne.",
+      "evidence": "Bible Odyssey, \"Absalom,\" read in full; BiblicalTraining, \"Absalom,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-030",
+      "claim": "Gibeon, where Amasa is murdered at the great stone, is the same town as the pool of Gibeon, where the civil war's first battle was fought (2:12–17). Gibeon is a real Iron Age town with Hebrew inscriptions and stamps (Pritchard 1959); the inscriptions do not establish the great stone or the murder.",
+      "evidence": "Hebrew + JPS 1917 read in full; already-registered `source-pritchard-hebrew-inscriptions-gibeon-1959` (verified).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-031",
+      "claim": "The return crossing and the quarrel both happen at Gilgal, where Judah conducts the king over the Jordan. Gilgal is a common place name in the biblical landscape, and which Gilgal is meant cannot be fixed from this text alone.",
+      "evidence": "Hebrew + JPS 1917 read in full; already-registered `source-naaman-biblical-gilgal-tel-aviv-2024` (verified — Gilgal as a common place name or a cult site near Jericho).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2sa-07-032",
+      "claim": "Absalom's family continued into the royal line of Judah: 1 Kings 15:2 names Maakah, \"daughter of Abishalom,\" as the mother of King Abijah, and 2 Chronicles 11:20–21 says Rehoboam married Maakah daughter of Absalom. The usual explanation, found already in Josephus, is that Absalom's daughter Tamar married Uriel and Maakah was their daughter, Absalom's granddaughter; Hebrew often uses \"daughter\" for a female descendant.",
+      "evidence": "BiblicalTraining, \"Absalom,\" read in full.",
+      "assessment": "debated"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2sa-07-001",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 12,
+      "startVerse": 10,
+      "endChapter": 12,
+      "endVerse": 12,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "\"The sword shall never depart from thine house; I will raise up evil against thee out of thine own house, and I will take thy wives before thine eyes.\" Nathan's sentence is the word under which the battle, the death, and the concubines' fate unfold."
+    },
+    {
+      "id": "conn-2sa-07-002",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 16,
+      "startVerse": 21,
+      "endChapter": 16,
+      "endVerse": 22,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Ahithophel counsels Absalom to go in to his father's concubines in the sight of all Israel, and a tent is spread on the housetop. The public act fulfils Nathan's word, and its close comes when the concubines are shut up in widowhood."
+    },
+    {
+      "id": "conn-2sa-07-003",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 17,
+      "startVerse": 14,
+      "endChapter": 17,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"The LORD had appointed to defeat the good counsel of Ahithophel, to the intent that the LORD might bring evil upon Absalom.\" The delay Hushai wins is what lets David regroup at Mahanaim and fight the battle."
+    },
+    {
+      "id": "conn-2sa-07-004",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 2,
+      "endChapter": 3,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "established",
+      "note": "Six sons are born to David in Hebron, and the third is Absalom, son of Maacah daughter of Talmai king of Geshur. The list names the prince who will one day raise the revolt."
+    },
+    {
+      "id": "conn-2sa-07-005",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 14,
+      "startVerse": 27,
+      "endChapter": 14,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "debated",
+      "note": "Three sons and a daughter, Tamar, are born to Absalom. The record stands against his later claim to have no son to keep his name, and the two passages are not reconciled here."
+    },
+    {
+      "id": "conn-2sa-07-006",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 8,
+      "startVerse": 16,
+      "endChapter": 8,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "established",
+      "note": "Joab over the host, Jehoshaphat recorder, Zadok and Ahimelech priests, Seraiah scribe, Benaiah over the Cherethites and Pelethites. The first court list is the measure against which the second is read."
+    },
+    {
+      "id": "conn-2sa-07-007",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 2,
+      "startVerse": 23,
+      "endChapter": 2,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "established",
+      "note": "Abner strikes Asahel with the hinder end of his spear under the fifth rib. The first of the four killings by that stroke, and the death Joab later avenges on Abner."
+    },
+    {
+      "id": "conn-2sa-07-008",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 27,
+      "endChapter": 3,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "established",
+      "note": "Joab takes Abner aside in the gate \"to speak with him quietly\" and smites him under the fifth rib. The first murder by Joab at a greeting, and the pattern Amasa's death repeats."
+    },
+    {
+      "id": "conn-2sa-07-009",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 4,
+      "startVerse": 6,
+      "endChapter": 4,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "established",
+      "note": "Rechab and Baanah smite Ish-bosheth under the fifth rib in his bedchamber. The third killing by that stroke, in the house of Saul whose fall made David king."
+    },
+    {
+      "id": "conn-2sa-07-010",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 16,
+      "endChapter": 12,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"What portion have we in David? neither have we inheritance in the son of Jesse: to your tents, O Israel.\" The northern tribes use Sheba's words again when the kingdom divides under Rehoboam."
+    },
+    {
+      "id": "conn-2sa-07-011",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 2,
+      "startVerse": 7,
+      "endChapter": 2,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David on his deathbed charges Solomon to show kindness to the sons of Barzillai the Gileadite, because they came to him when he fled from Absalom. The old man's provisions at Mahanaim are remembered to the end of David's life."
+    },
+    {
+      "id": "conn-2sa-07-012",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 3,
+      "startVerse": 1,
+      "endChapter": 3,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The psalm's title sets it \"when he fled from Absalom his son.\" David speaks of the many who rise against him and say God will not deliver him, and of the LORD who sustains him."
+    },
+    {
+      "id": "conn-2sa-07-013",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 7,
+      "startVerse": 26,
+      "endChapter": 7,
+      "endVerse": 26,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Achan is stoned and a great heap of stones is raised over him. Israel had buried the condemned in this way before, and Absalom's pit and heap of stones follow the same form."
+    },
+    {
+      "id": "conn-2sa-07-014",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 8,
+      "startVerse": 29,
+      "endChapter": 8,
+      "endVerse": 29,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The king of Ai is hanged and cast at the entering of the gate, and a great heap of stones is raised over him. The same burial form marks a defeated enemy, not a king."
+    },
+    {
+      "id": "conn-2sa-07-015",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 32,
+      "startVerse": 2,
+      "endChapter": 32,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jacob sees the angels of God and says, \"This is God's host,\" and calls the place Mahanaim. The refuge where David musters his army already bears the name of two camps."
+    },
+    {
+      "id": "conn-2sa-07-016",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 12,
+      "startVerse": 1,
+      "endChapter": 12,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "debated",
+      "note": "The men of Ephraim cross into Gilead to fight Jephthah and suffer a heavy defeat. Some have proposed that the forest east of the Jordan took its name from a clash of this kind; the proposal is unconfirmed."
+    },
+    {
+      "id": "conn-2sa-07-017",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 39,
+      "endChapter": 3,
+      "endVerse": 39,
+      "type": "background",
+      "confidence": "probable",
+      "note": "\"I am this day weak, though anointed king; and these men the sons of Zeruiah be too hard for me.\" David's admission after Abner's murder is the standing tension behind his dealings with Joab at the lament and at Gibeon."
+    },
+    {
+      "id": "conn-2sa-07-018",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 20,
+      "startVerse": 13,
+      "endChapter": 20,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jonathan swears, \"The LORD do so and much more to Jonathan,\" using the same self-imprecatory oath formula David lays on Amasa when he promises him Joab's place. The formula is the language of binding commitment in the books of Samuel."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-samuel-masoretic-text",
+    "source-bible-odyssey-absalom",
+    "source-biblicaltraining-absalom",
+    "source-biblicaltraining-joab",
+    "source-biblicaltraining-wood-of-ephraim",
+    "source-biblicaltraining-mahanaim"
+  ],
+  "review": {
+    "author": "Gnosis 2 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Samuel category; independent QA pending. S07 sources[] carries six entries (all verified in the live registry): S07-S01 Mechon Mamre -> source-mechon-mamre-2-samuel-masoretic-text; S07-S02 -> source-bible-odyssey-absalom; S07-S03 -> source-biblicaltraining-absalom; S07-S04 -> source-biblicaltraining-joab; S07-S05 -> source-biblicaltraining-wood-of-ephraim; S07-S06 -> source-biblicaltraining-mahanaim. All six appear in §9 Source IDs cells AND in appendix footnotes (37 uses: Mechon Mamre 11, BO Absalom 1, BT Absalom 4, BT Joab 10, BT Wood of Ephraim 6, BT Mahanaim 5). S07-S07 (\"Tel Abel Beth Maacah\") is NOT in sources[]: it is not-independently-verified in the registry (page fetch failed on an upstream 429, 2026-11-24; search summary only). It is cited in claim 024's §9 Source IDs, but claim 024 is capped at probable and also rests on the verified S07-S04; S07-S07 does not appear in the appendix at all (only §6 prose, §9 row 024, §12 row, dossier-notes item 1), so it does not appear in the MD either. Excluded by the §-location rule (§12 table only): source-biblicaltraining-david (the §12 row itself says it is used only as the registry's David record, not as evidence for any S07 claim), source-hebrew-bible-judges-masoretic-text (cited via S07-S05, not directly). Excluded by the §-location rule (cited in a §9 Evidence cell only, never in a §9 Source IDs cell or the appendix — the S01 NET-note precedent): source-pritchard-hebrew-inscriptions-gibeon-1959 (claim 030 evidence only), source-naaman-biblical-gilgal-tel-aviv-2024 (claim 031 evidence only). S2CL-07-015 is unknown (Ziba vs Mephibosheth — neither account is presented as established; David's \"Thou and Ziba divide the land\" at 19:29 leaves the 16:1-4 grant half-standing). This carries the S06 caution (S2CL-06-016 unknown, QA observation on PR #322) exactly as the dossier does; S07 does not resolve it. S2CL-07-009 is unknown (the 14:27 / 18:18 tension — three sons born, then \"I have no son\"; the sons-died-young inference is not adopted). S2CL-07-032 is the single debated claim (the Maakah genealogy — the Josephus explanation that Maakah was Absalom's granddaughter is recorded, not asserted). S2CL-07-024 is probable (Abel of Beth-maachah identified with Tell Abil el-Qameh — the most widely accepted identification, but the excavation record was not read in full; see S07-S07 above). S2CL-07-027 is probable (Mahanaim's exact site debated — Tell edh-Dhahab el-Gharbi most widely favoured, no inscription settles it; no site is marked at build time; reuses clm-ij-041, probable, in evidence). S2CO-07-005 is debated (14:27 against 18:18 — the two passages are not reconciled here). S2CO-07-016 is debated (the Jephthah proposal for the wood of Ephraim's name — unconfirmed). S2CO-07-012 carries Psalm 3:1-8 (the psalm's title sets it \"when he fled from Absalom his son\" — the title is a later ascription, not a parallel account; carried as a connection, not as evidence for the events). No multi-range connections — all 18 §11 targets are single ranges within one book, so no encompassing ranges and no splits. primaryScripture is the full range 18:1-20:26 (3 chapters, endChapter − startChapter = 2, within the validator limit — no narrowing). KJV numbering throughout: the lament is KJV 18:33 = Mechon Mamre 19:1, kept with the battle before it and Joab's rebuke after it (claim 011). The concubines arc closes at 20:3 (claim 020) — S06 carried it whole from 15:16 through 16:21-22 and S07 closes it here. Dating-label harmonisation is an editorial decision, not a build fix. Dossier-notes item 9 (era enum flag) is stale — era \"2-samuel\" was appended by the S01 PR and is already in the allowlist. Dossier-notes item 8 (registry counts 381) is the stale pre-#313 snapshot — the live registry is 443 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
