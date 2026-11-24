@@ -1,7 +1,7 @@
 const crypto = require('node:crypto');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../db/db');
+const passwordHash = require('../utils/passwordHash');
 const { setUserContext } = require('../db/userContext');
 const { audit } = require('../utils/auditLog');
 const { computeKeyHash, getRateLimitSecret, POLICIES } = require('../utils/rateLimit');
@@ -200,16 +200,21 @@ async function revokeSession(userId, sessionId) {
 // locking the user row, so a concurrent reset (or another change) that
 // lands first makes this one fail instead of resurrecting a stale hash.
 // Returns 'ok' or 'invalid' (wrong current password, or the stored hash
-// changed between verification and locking); database/bcrypt failures
-// throw and become controlled 500s in the route.
+// changed between verification and locking); database/password-hash
+// failures throw and become controlled 500s in the route.
+//
+// Argon2id (PR #96): the current password verifies against either an
+// Argon2id hash or a legacy bcrypt hash (passwordHash.verifyPassword),
+// so a migrated account's correct password verifies; the new password
+// is always hashed with Argon2id (passwordHash.hashPassword). The change
+// itself migrates a bcrypt account to Argon2id — no separate migration
+// step is needed, since the stored hash is replaced in the transaction.
 async function changePassword(userId, currentPassword, newPassword, currentSessionId) {
     const row = await pool.query('SELECT password_hash FROM users WHERE id = $1', [userId]);
     const stored = row.rows[0]?.password_hash;
     if (typeof stored !== 'string') return 'invalid';
-    if (!await bcrypt.compare(currentPassword, stored)) return 'invalid';
-    // Cost matches register/reset at this base; the rebase onto PR #81
-    // (secret-strength/passwords) raises new hashes to cost 12.
-    const hashed = await bcrypt.hash(newPassword, 10);
+    if (!await passwordHash.verifyPassword(currentPassword, stored)) return 'invalid';
+    const hashed = await passwordHash.hashPassword(newPassword);
     return transaction(async client => {
         const locked = await client.query(
             'SELECT password_hash FROM users WHERE id = $1 FOR UPDATE', [userId]);

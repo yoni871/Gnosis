@@ -815,14 +815,27 @@ router.delete("/sessions/:id", authenticateToken, async (req, res) => {
 });
 
 // Authenticated password change. The new password follows the same
-// validation as registration at this base (8-character minimum; the
-// rebase onto PR #81 raises it to 12 and adds HIBP breached-password
-// screening). A wrong current password is the same generic 401 as
-// login. On success the password changes and every OTHER session is
-// revoked, so a stolen session on another device dies with the old
-// password while this session keeps working.
+// validation as registration (8-character minimum; the project floor
+// stays 8 per the project lead's decision) and the same breached-
+// password screening, so a password rejected at registration cannot be
+// set through this endpoint either. A wrong current password is the
+// same generic 401 as login. On success the password changes and every
+// OTHER session is revoked, so a stolen session on another device dies
+// with the old password while this session keeps working.
 router.post("/change-password", authenticateToken, validateChangePassword, changePasswordRateLimit, withRateLimitFinalize(async (req, res) => {
     const { currentPassword, newPassword } = req.validated;
+    // Breached-password screening (roadmap T1.7): same ordering as
+    // registration and reset — after the rate limiter has reserved,
+    // before any hashing, so a breached password never reaches password
+    // hashing. A rejection returns without an explicit finalize, so the
+    // wrapper counts it (fail closed), the same as registration.
+    if (await isBreachedPassword(newPassword)) {
+        logAuthFailure("POST /api/auth/change-password", "breached-password", null);
+        return res.status(400).json({
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: VALIDATION_CODE,
+        });
+    }
     let outcome;
     try {
         outcome = await sessions.changePassword(req.user.userId, currentPassword, newPassword, req.user.sid);

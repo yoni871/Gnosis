@@ -1,6 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const bcrypt = require("bcrypt");
+const passwordHash = require("../../src/utils/passwordHash");
 const jwt = require("jsonwebtoken");
 
 // Explicit isolation also protects direct node --test invocations.
@@ -277,8 +278,12 @@ test("change password success updates the hash and revokes every other session, 
     });
     assert.equal(result.response.status, 200);
     assert.deepEqual(result.json, { changed: true });
-    assert.equal(await bcrypt.compare("a-new-password", updatedHash), true);
-    assert.equal(await bcrypt.compare("correct-password", updatedHash), false);
+    // Argon2id (PR #96): the new password is stored as Argon2id, not
+    // bcrypt. The stored mock user starts with a legacy bcrypt hash, so
+    // this also proves a migrated account's password change works.
+    assert.ok(passwordHash.isArgon2idHash(updatedHash), "new hash is Argon2id");
+    assert.equal(await passwordHash.verifyPassword("a-new-password", updatedHash), true);
+    assert.equal(await passwordHash.verifyPassword("correct-password", updatedHash), false);
     assert.ok(clientCalls.some(([sql]) => sql.includes("COMMIT")), "hash update and revocation commit together");
 });
 
