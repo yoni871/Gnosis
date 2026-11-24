@@ -1,10 +1,11 @@
 /* The Trinity study workspace. The workspace is one continuous
-   parchment surface — 40% Scripture, 60% Historical Interpretation,
+   parchment surface — 45% Scripture, 55% Historical Interpretation,
    a single thin vertical divider between the columns — with the
-   timeline strip full-width beneath both columns. There are no
-   floating cards, rounded panels, shadows, or large gaps anywhere:
-   the columns are regions of one page, not cards on it. All selectors
-   stay under .doctrine-study / .doctrine-workspace. */
+   timeline strip at the bottom of the right column, beneath the
+   interpretation panel. There are no floating cards, rounded panels,
+   shadows, or large gaps anywhere: the columns are regions of one
+   page, not cards on it. All selectors stay under .doctrine-study /
+   .doctrine-workspace. */
 
 .doctrine-study {
     --doctrine-gold: var(--color-accent, #b08d57);
@@ -84,10 +85,10 @@
     color: var(--doctrine-maroon);
 }
 
-/* ---------- 40 / 60 grid ---------- */
+/* ---------- 45 / 55 grid ---------- */
 .doctrine-workspace-grid {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 45% 55%;
 }
 .doctrine-workspace-scripture {
     min-width: 0;
@@ -359,10 +360,17 @@
     color: var(--public-muted);
 }
 
-/* ---------- Timeline (full-width, beneath both columns) ---------- */
+/* ---------- Timeline (bottom of the right column) ---------- */
 .doctrine-timeline {
     padding: 12px clamp(20px, 3vw, 36px) 10px;
     border-top: 1px solid var(--doctrine-rule);
+}
+/* Inside the right column the timeline shares the column's padding,
+   so it carries no horizontal padding of its own — its content lines
+   up with the interpretation panel above it. */
+.doctrine-workspace-interpretation .doctrine-timeline {
+    padding-left: 0;
+    padding-right: 0;
 }
 .doctrine-timeline-header {
     display: flex;
@@ -498,12 +506,13 @@
 
 /* ---------- Desktop: one screen, no page scroll ---------- */
 /* At desktop widths the whole study is a viewport-height flex column:
-   header, compact heading, notice, reading grid, and timeline share
-   100dvh. The grid takes whatever height remains; long passages and
-   long interpretations scroll inside their own panels while the page,
-   header, and timeline stay put. The page background is the same
-   ivory as the workspace, so heading, panels, and timeline read as
-   one seamless surface divided only by thin rules. */
+   header, compact heading, notice, and reading grid share 100dvh.
+   The grid takes whatever height remains; long passages and long
+   interpretations scroll inside their own panels while the page and
+   header stay put, and the timeline stays at the bottom of the right
+   column. The page background is the same ivory as the workspace, so
+   heading, panels, and timeline read as one seamless surface divided
+   only by thin rules. */
 @media (min-width: 769px) {
     .public-page.doctrine-study {
         display: flex;
@@ -597,6 +606,25 @@
     }
     .doctrine-workspace-interpretation {
         border-left: 0;
+        border-top: 1px solid var(--doctrine-rule);
+    }
+    /* Mobile order: the passage navigation sits beneath the doctrine
+       title and above the passage, so the reader can step between
+       passages without scrolling past the text. The nav stays after
+       the panel in the DOM; only its visual order changes. */
+    .doctrine-workspace-scripture {
+        display: flex;
+        flex-direction: column;
+    }
+    .doctrine-workspace-scripture .doctrine-scripture-nav {
+        order: -1;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+    }
+    .doctrine-workspace-scripture .doctrine-scripture-panel {
+        margin-top: 12px;
+        padding-top: 12px;
         border-top: 1px solid var(--doctrine-rule);
     }
     /* Touch targets go back to 44px on coarse screens. */

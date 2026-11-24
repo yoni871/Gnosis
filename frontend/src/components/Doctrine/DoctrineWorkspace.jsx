@@ -1,10 +1,11 @@
 // The Trace the Doctrine study workspace: Scripture beside its
-// historical interpretation, with a full-width timeline beneath.
+// historical interpretation, with the Church Fathers timeline at the
+// bottom of the right column.
 //
-// Layout is a continuous parchment surface — 40% Scripture, 60%
+// Layout is a continuous parchment surface — 45% Scripture, 55%
 // Historical Interpretation, one thin vertical divider between the
-// columns, no floating cards — with the timeline strip beneath both
-// columns, never inside the right column.
+// columns, no floating cards — with the timeline strip at the bottom
+// of the right column, beneath the interpretation panel.
 //
 // State lives here: the selected passage index, the selected
 // interpretation, and the translation (KJV by default). Changing the
@@ -129,14 +130,14 @@ export default function DoctrineWorkspace() {
                         work={selectedWork}
                         passage={passage}
                     />
+                    <DoctrineTimeline
+                        entries={timelineEntries}
+                        selectedId={selectedInterpretation?.id ?? null}
+                        passage={passage}
+                        onSelect={selectInterpretation}
+                    />
                 </div>
             </div>
-            <DoctrineTimeline
-                entries={timelineEntries}
-                selectedId={selectedInterpretation?.id ?? null}
-                passage={passage}
-                onSelect={selectInterpretation}
-            />
         </div>
     );
 }

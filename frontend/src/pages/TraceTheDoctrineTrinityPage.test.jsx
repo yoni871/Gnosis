@@ -1,6 +1,6 @@
 // Trinity workspace tests: passage switching, timeline selection
 // (click + keyboard), empty states, demonstration labeling, prev/next
-// ends, translation switching, and the 40/60 layout structure.
+// ends, translation switching, and the 45/55 layout structure.
 //
 // Scripture text here is synthetic ("Genesis 1 verse 26.") — the
 // tests assert trimming, loading, and state, never real KJV wording.
@@ -245,7 +245,7 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(await screen.findByText("Genesis 1 verse 26.")).toBeInTheDocument();
     });
 
-    it("lays out Scripture and interpretation as one 40/60 surface with the timeline full-width beneath", async () => {
+    it("lays out Scripture and interpretation as one 45/55 surface with the timeline at the bottom of the right column", async () => {
         renderPage();
         await screen.findByText("Genesis 1 verse 26.");
 
@@ -256,12 +256,19 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(grid.children[0]).toHaveClass("doctrine-workspace-scripture");
         expect(grid.children[1]).toHaveClass("doctrine-workspace-interpretation");
 
-        // The timeline is a sibling after the grid — never inside the
-        // right column — so it spans both columns.
+        // The timeline lives at the bottom of the right column, after
+        // the interpretation panel — never full-width beneath the grid.
+        const interpretationColumn = document.querySelector(".doctrine-workspace-interpretation");
         const timeline = document.querySelector(".doctrine-timeline");
-        expect(timeline.parentElement).toBe(workspace);
-        expect(timeline.previousElementSibling).toBe(grid);
-        expect(timeline.closest(".doctrine-workspace-interpretation")).toBeNull();
+        expect(timeline.parentElement).toBe(interpretationColumn);
+        expect(timeline.previousElementSibling).toHaveClass("doctrine-interpretation-panel");
+        expect(timeline.closest(".doctrine-workspace-grid")).not.toBeNull();
+
+        // Scripture navigation stays with the left column, after the
+        // passage in the DOM (it moves above the passage visually on
+        // mobile via CSS order — see the stylesheet test).
+        const nav = document.querySelector(".doctrine-scripture-nav");
+        expect(nav.closest(".doctrine-workspace-scripture")).not.toBeNull();
 
         // Each timeline node keeps its marker, name, and date in one button.
         for (const button of within(timeline).getAllByRole("button")) {
@@ -271,7 +278,7 @@ describe("TraceTheDoctrineTrinityPage", () => {
         }
     });
 
-    it("declares the 40/60 split, the thin divider, and no card styling in the workspace stylesheet", () => {
+    it("declares the 45/55 split, the thin divider, and no card styling in the workspace stylesheet", () => {
         const css = readFileSync(join(import.meta.dirname, "TraceTheDoctrineTrinityPage.css"), "utf8");
         const ruleBlock = (selector) => {
             const start = css.indexOf(selector);
@@ -280,7 +287,7 @@ describe("TraceTheDoctrineTrinityPage", () => {
             const close = css.indexOf("}", open);
             return css.slice(open + 1, close);
         };
-        expect(ruleBlock(".doctrine-workspace-grid")).toContain("grid-template-columns: 40% 60%");
+        expect(ruleBlock(".doctrine-workspace-grid")).toContain("grid-template-columns: 45% 55%");
         expect(ruleBlock(".doctrine-workspace-interpretation")).toContain("border-left: 1px solid");
         // The columns are regions of one parchment surface, not cards.
         for (const selector of [".doctrine-workspace-scripture", ".doctrine-workspace-interpretation"]) {
@@ -288,7 +295,12 @@ describe("TraceTheDoctrineTrinityPage", () => {
             expect(block).not.toContain("box-shadow");
             expect(block).not.toContain("border-radius");
         }
-        // Mobile: the timeline strip scrolls horizontally with snap.
+        // The timeline sits inside the right column, sharing its padding.
+        expect(ruleBlock(".doctrine-workspace-interpretation .doctrine-timeline")).toContain("padding-left: 0");
+        // Mobile: the passage navigation moves above the passage, and
+        // the timeline strip scrolls horizontally with snap.
+        const mobile = css.slice(css.indexOf("@media (max-width: 768px)"));
+        expect(mobile).toContain("order: -1");
         expect(css).toContain("overflow-x: auto");
         expect(css).toContain("scroll-snap-type: x mandatory");
         expect(css).toContain("prefers-reduced-motion");
