@@ -6,6 +6,16 @@ No verified, editorially-approved, or published Trinity research exists yet.**
 **Phase 3 status: church-history research drafted, awaiting independent verification.
 No verified, editorially-approved, or published Trinity research exists yet.**
 
+**Phase 4 status: Dev 1 second-pass verification drafted (this PR), awaiting independent
+QA verification per RESEARCH-STANDARDS.md §9.2 and editorial approval. 373 new
+verification records (`ver-p4-*`) re-check every Phase 2/3 claim: 60/60 passages,
+103/103 interpretations, 11/11 milestones, 103/103 quotations. Results: 345 `verified`,
+28 `partially-verified`, 0 `not-verified`, 0 `contradicted`, 0 `unable-to-verify`.
+Full breakdown and the complete partially-verified list are in
+`verification-phase-4-summary.md`. This is Dev 1 second-pass verification, NOT the
+§9.2 independent QA verification. No verified, editorially-approved, or published
+Trinity research exists yet.**
+
 Phase 3 (this PR) adds historical interpretations of the 60 Phase 2 passages,
 researched against the T1 standards (`../RESEARCH-STANDARDS.md`) by five era
 researchers (Apostolic Fathers + 2nd century; 3rd century + Nicene 4th century;
@@ -72,22 +82,25 @@ nothing is publishable yet.
   searched in any era. "No attested interpretation found" is a report of what
   was checked, not proof that no historical writer anywhere interpreted the
   passage.
-- `verification-records.json` — **364 verification records**, one per claim
-  (2 per passage: a `passage-link` record for the reference + canonical
-  position, and a `doctrinal-connection` record for the classification and
-  relationship; plus 3 extra records for disputed readings — see below).
-  Results across all 364 records: **272 `verified`, 91 `partially-verified`,
-  1 `not-verified`** (the Johannine Comma — see below). The 123 Phase 2
-  records are preserved exactly, in order, at the head of the file (60
-  `verified`, 62 `partially-verified`, 1 `not-verified`); the 241 Phase 3
-  records follow (212 `verified`, 29 `partially-verified`), of which 239 come
-  from the five era researchers, 1 from the coordinator (Westminster
-  Confession passage links, see below), and 1 from T4f (the Servetus dates
-  record). Every record has
-  `editorialApproval: null` and checker `dev-1-researcher`, with the note
-  that these are researcher source-checks only: independent verification per
+- `verification-records.json` — **737 verification records**, one per claim.
+  The 364 Phase 2/3 records are preserved exactly, in order, at the head of the
+  file (272 `verified`, 91 `partially-verified`, 1 `not-verified` — the Johannine
+  Comma, see below); the **373 Phase 4 records** follow (345 `verified`,
+  28 `partially-verified`, 0 `not-verified`, 0 `contradicted`,
+  0 `unable-to-verify`), one second-pass re-check per claim: 2 per passage
+  (`passage-link` + `doctrinal-connection`), 2 per interpretation
+  (`doctrinal-connection` + `quotation`), 1 per milestone, 1 per work date
+  checked (30), and 5 attribution records (disputed authorship + fair-use
+  basis). Every Phase 4 record has checker `dev-1-verifier`, checkDate
+  2026-11-21, and `editorialApproval: null`, with the note that these are Dev 1
+  second-pass verification only: independent verification per
   `RESEARCH-STANDARDS.md` §9.2 is still required, and nothing is publishable
   without it plus editorial approval.
+- `verification-phase-4-summary.md` — the Phase 4 summary: method, coverage,
+  results by category, the complete list of the 28 partially-verified items with
+  reasons, the special-attention items (Johannine Comma, fair-use quotation,
+  disputed authorship, uncertain dates), the 8 research-file errors found by
+  verification (flagged, not fixed), and what remains for Phase 5.
 - `milestones.json` — **11 milestones** (replacing the empty array):
   the Arian controversy (318–381), the Council of Nicaea (325), the Nicene
   Creed (325), the Council of Constantinople (381), the Constantinopolitan
@@ -106,7 +119,11 @@ nothing is publishable yet.
   Justin Martyr, Irenaeus, Tertullian, Athanasius, Augustine; plus 23 new,
   including 1 corporate author — the Church of Smyrna, author of the
   *Martyrdom of Polycarp*). The Westminster Assembly is *not* registered as
-  an author: see the work-id note below. Author life dates are null for most authors (not verified; never used as work dates). Four authors carry life dates: John Calvin (1509-1564), Philip Melanchthon (1497-1560), and Jonathan Edwards (1703-1758) exact, each backed by a verified dates record, and Michael Servetus (1511-1553) approximate, his birth year uncertain (see ver-p3-e5-michael-servetus-dates-001).
+  an author: see the work-id note below. Author life dates are null for most authors (not verified; never used as work dates).
+  Four authors carry life dates: John Calvin (1509-1564), Philip Melanchthon
+  (1497-1560), and Jonathan Edwards (1703-1758) exact, each backed by a verified
+  dates record, and Michael Servetus (1511-1553) approximate, his birth year
+  uncertain (see ver-p3-e5-michael-servetus-dates-001).
 - `../shared/works.json` — **34 works** (the 2 Bible works from Phase 2,
   preserved unchanged, plus 32 new works actually cited by an interpretation
   or milestone). Every work carries a verified title/edition/translator,
@@ -340,6 +357,46 @@ What Phase 3 establishes, with citations:
   the subject" — and reads "these three are one" as consent in testimony,
   not essence.
 
+## Phase 4: second-pass verification (Dev 1, this PR)
+
+Phase 4 re-checks every Phase 2/3 claim a second time, against the cited primary
+source where checkable — it does not rely on the researchers' word or on memory.
+Coverage is complete: 60/60 passages, 103/103 interpretations, 11/11 milestones,
+103/103 quotations re-checked verbatim. Results: **345 `verified`,
+28 `partially-verified`, 0 `not-verified`, 0 `contradicted`,
+0 `unable-to-verify`**. The 28 partially-verified items (5 `direct` classifications
+resting on contested readings; 3 Discourse IV interpretations missing the disputed-
+authorship flag; the Leo I John 15:26 (C) claim; the Calvin John 14:16 final
+sentence; the Anselm John 1:1 link; the Augustine Gal 4:4 / Gal 4:6 link; 3 work
+dates; 3 milestones; the Racovian structured attribution; the fair-use Augustine
+translator; 7 quotation locators/wordings) are listed in full, with reasons, in
+`verification-phase-4-summary.md`.
+
+- **Johannine Comma:** Phase 4 record `ver-p4-1john-5-7-comma-001` is `verified`,
+  upgrading Phase 2's `not-verified`, on new checked evidence (Wallace, bible.org:
+  eight late manuscripts only, no Greek witness before AD 1215, Erasmus 3rd edition
+  1522). The manuscripts were not examined first-hand; that limitation is recorded.
+  The Comma must still never be presented as direct evidence or as original.
+- **Fair-use quotation** (Augustine, *Contra Maximinum* II.22.3): wording verified
+  verbatim, but the translator "W. Smith" could not be confirmed (NPNF I/7 is
+  H. Browne); the edition/translator must be confirmed before publication.
+- **Research-file errors found, flagged not fixed:** Hilary I §13 sentence
+  unsupported; Augustine *De Trinitate* II.3.5 quotation spliced; *De Trinitate*
+  XV.26 locators §46 → §45 (two records); Leo I Letter 15 (C) claim unsupported;
+  Calvin John 14:16 final sentence unsupported; Racovian structured `authorIds`
+  still attribute a post-1604 work to Socinus. See the summary for details.
+
+## What this PR does NOT do (Phase 4)
+
+- No changes to any Phase 2/3 research file (`passages.json`,
+  `interpretations.json`, `milestones.json`, `authors.json`, `works.json`, notes);
+  no passage reclassification; no standards, schemas, or templates changed.
+- No published content changed; no registry, book manifest, or test file touched.
+- No database; no editorial override (none requested, none recorded).
+- No claim is editorially approved (every Phase 4 record has
+  `editorialApproval: null`). This is Dev 1 second-pass verification, NOT the
+  independent QA verification required by §9.2.
+
 ## Phase 3: what remains for Phase 4 (independent verification)
 
 - Run the §7.2 checklist against each interpretation and the §7.3 checklist
@@ -393,10 +450,11 @@ this directory.
 
 ## Next step
 
-Independent verification (QA, per §9.2): run the §7.1 checklist against
-each passage, the §7.2 checklist against each interpretation, and the §7.3
-checklist against each milestone; check every claim in
-`verification-records.json`, and move records to `verified` only where every
+Independent verification (QA, per §9.2) of all 737 records (Phases 2–4): run the
+§7.1 checklist against each passage, the §7.2 checklist against each
+interpretation, and the §7.3 checklist against each milestone; check every claim
+in `verification-records.json`, and move records to `verified` only where every
 claim passes — or back to `in-research` with findings. Editorial approval
-(Yonatan) is a separate step after verification. Phase 4 (verification)
-covers Phases 2 and 3 together.
+(Yonatan) is a separate step after verification. Phase 5 (editorial preparation)
+resolves the 28 partially-verified items listed in
+`verification-phase-4-summary.md`.
