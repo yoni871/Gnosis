@@ -1,0 +1,354 @@
+{
+  "id": "category-1-samuel-the-battle-of-mount-gilboa-and-sauls-death",
+  "title": "The Battle of Mount Gilboa and Saul's Death",
+  "category": "category",
+  "orphan": true,
+  "era": "1-samuel",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 31,
+    "startVerse": 1,
+    "endChapter": 31,
+    "endVerse": 13
+  },
+  "fullRange": {
+    "book": "1 Samuel",
+    "bookId": "1-samuel",
+    "startChapter": 31,
+    "startVerse": 1,
+    "endChapter": 31,
+    "endVerse": 13
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Samuel narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1sa-11-001",
+      "claim": "The Philistines fought against Israel; the men of Israel fled and fell down slain on Mount Gilboa.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-002",
+      "claim": "Mount Gilboa is a ridge at the eastern end of the Jezreel Valley (Jebel Fuquʿa / Har Gilboa), summits somewhat over 1,600 ft (~500 m); the town of Jezreel stands on a spur at its north-west end; Shunem, Endor, and Moreh lie to the north, Beth Shan to the east guarding the Jordan crossings.",
+      "evidence": "BiblicalTraining, \"Gilboa,\" read in full; \"Valley of Jezreel,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-003",
+      "claim": "The Jezreel valley is the only natural east–west passage through the central hill country, linking the coastal road with the Jordan, Gilead, and Damascus; it is fertile, open, chariot country.",
+      "evidence": "BiblicalTraining, \"Valley of Jezreel,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-004",
+      "claim": "The Philistines slew Jonathan, Abinadab, and Malchishua, Saul's sons. Abinadab is Ishui in 1 Sam 14:49.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 1 Sam 31 (name variant).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-005",
+      "claim": "The archers hit Saul and he was sore wounded of the archers (JPS: \"in great anguish by reason of the archers\"). The Philistine army combined infantry, archers, and chariots, and the archers decided the king's fate before close combat.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Philistines,\" read in part (government section); JFB on 1 Sam 31.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-11-006",
+      "claim": "Saul, fearing abuse at the hands of \"these uncircumcised,\" asked his armour-bearer to thrust him through; the armour-bearer refused, \"for he was sore afraid\"; Saul fell on his own sword, and the armour-bearer fell likewise on his sword and died with him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-007",
+      "claim": "The tradition that the armour-bearer was Doeg is reported by JFB as \"according to Jewish writers\"; the text names no one, and the identification is unproven.",
+      "evidence": "JFB on 1 Sam 31.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-1sa-11-008",
+      "claim": "\"So Saul died, and his three sons, and his armour-bearer, and all his men, that same day together\" — the book's own summary sentence for the day.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-009",
+      "claim": "The men of Israel on the other side of the valley and on the other side of the Jordan forsook the cities and fled, and the Philistines came and dwelt in them. The defeat emptied the country, not only the battlefield.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; JFB on 1 Sam 31 (the valley of Jezreel).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-010",
+      "claim": "On the morrow the Philistines cut off Saul's head, stripped his armour, sent tidings \"to publish it in the house of their idols, and among the people,\" put his armour in the house of the Ashtoreths, and fastened his body to the wall of Beth Shan.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-011",
+      "claim": "The Chronicler adds that Saul's head was put in the temple of Dagon; the Bible does not state where that temple was.",
+      "evidence": "BiblicalTraining, \"Gilboa,\" \"Beth Shan,\" and \"Philistines,\" read in full / in part.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-11-012",
+      "claim": "Rowe's identification of two early Iron Age temples at Beth Shan as the Ashtoreths temple and the Dagon temple is accepted by some and disputed by others; the deities of the buildings cannot be identified with certainty.",
+      "evidence": "BiblicalTraining, \"Beth Shan,\" read in full.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1sa-11-013",
+      "claim": "The valiant men of Jabesh-gilead marched all night, took the bodies of Saul and his sons from the wall of Beth Shan, brought them to Jabesh, burned them there, buried the bones under the tamarisk-tree, and fasted seven days.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-014",
+      "claim": "Burning the bodies was not normal Israelite practice; the interpretations on record are prevention of further desecration, dealing with mutilated and exposed bodies, or the burning of spices as at later royal funerals — but the plain reading is that the bodies themselves were burned, and the text states no motive.",
+      "evidence": "BiblicalTraining, \"Jabesh Gilead,\" read in full; JFB on 1 Sam 31.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-11-015",
+      "claim": "Saul rescued Jabesh-gilead from Nahash the Ammonite at the start of his reign; the recovery of the bodies is presented as the repayment of that debt.",
+      "evidence": "BiblicalTraining, \"Jabesh Gilead,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-11-016",
+      "claim": "The site of Jabesh-gilead is not settled; the name survives in Wadi Yabis, and Tell Abu Kharaz with Tell el-Meqbereh is the most widely favoured candidate; no inscription names the town.",
+      "evidence": "BiblicalTraining, \"Jabesh Gilead,\" read in full.",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-1sa-11-017",
+      "claim": "Beth Shan (Tell el-Ḥuṣn) was an Egyptian garrison town in the Late Bronze Age, allotted to Manasseh, its Canaanites not driven out; the narrative implies it was in Philistine hands or allied with them, but little distinctively Philistine material has been excavated there.",
+      "evidence": "BiblicalTraining, \"Beth Shan,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-11-018",
+      "claim": "Samuel's verdict at Endor — \"to-morrow shalt thou and thy sons be with me\" (28:19) — and David's prediction — \"he shall go down into battle, and be swept away\" (26:10) — are fulfilled in chapter 31; the chapter quotes neither. Both verses were verified in the Masoretic text in this session.",
+      "evidence": "Hebrew + JPS 1917 read in full (28:19; 26:10) and ch. 31, Mechon Mamre.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-11-019",
+      "claim": "The Amalekite's account of Saul's death differs from 1 Sam 31:3–5 and is generally understood as invented for reward; David has the man executed for claiming to slay the LORD's anointed (2 Sam 1:14–16).",
+      "evidence": "2 Sam 1:1–27 read in full, Mechon Mamre; BiblicalTraining, \"Gilboa,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-11-020",
+      "claim": "David's lament over Saul and Jonathan, the \"lament of the bow,\" curses the mountains of Gilboa — \"let there be no dew nor rain upon you\" (1:21) — as poetry, not geography; its refrain is \"How are the mighty fallen!\"",
+      "evidence": "2 Sam 1:1–27 read in full, Mechon Mamre; BiblicalTraining, \"Gilboa,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1sa-11-021",
+      "claim": "David later moved the bones of Saul and Jonathan from Jabesh — from the public square at Beth Shan — and buried them in Kish's tomb at Zela. 2 Samuel 21 was not re-read in this dossier; the fact is recorded as the Beth Shan and Jabesh articles give it.",
+      "evidence": "BiblicalTraining, \"Beth Shan\" and \"Jabesh Gilead,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1sa-11-022",
+      "claim": "The Chronicler explains Saul's death as the consequence of unfaithfulness and of seeking counsel of a medium. The explanation is the Chronicler's, not 1 Samuel's; 1 Chr 10 was not re-read in full in this dossier.",
+      "evidence": "BiblicalTraining, \"Gilboa,\" read in full.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1sa-11-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 28,
+      "startVerse": 4,
+      "endChapter": 28,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Philistines gather at Shunem and Saul camps on Gilboa; Saul is afraid, and the LORD answers him neither by dreams, nor by Urim, nor by prophets. The positions and the silence are set here."
+    },
+    {
+      "id": "conn-1sa-11-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 28,
+      "startVerse": 19,
+      "endChapter": 28,
+      "endVerse": 19,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Samuel's verdict at Endor: \"to-morrow shalt thou and thy sons be with me.\" The battle of Gilboa fulfils it, though the chapter never quotes it."
+    },
+    {
+      "id": "conn-1sa-11-003",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 29,
+      "startVerse": 1,
+      "endChapter": 29,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David is dismissed at Aphek while the battle is prepared. The dismissal is what puts David back at Ziklag while Saul fights at Gilboa; David is absent from chapter 31 entirely."
+    },
+    {
+      "id": "conn-1sa-11-004",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 30,
+      "startVerse": 1,
+      "endChapter": 30,
+      "endVerse": 31,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David recovers Ziklag while Saul fights at Gilboa. The two chapters run in parallel time, and the book tells them one after the other, not together."
+    },
+    {
+      "id": "conn-1sa-11-005",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 26,
+      "startVerse": 10,
+      "endChapter": 26,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David's prediction: Saul will go down into battle and be swept away. The chapter fulfils it without quoting it."
+    },
+    {
+      "id": "conn-1sa-11-006",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 11,
+      "startVerse": 1,
+      "endChapter": 11,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "established",
+      "note": "Saul rescues Jabesh-gilead from Nahash the Ammonite, mustering Israel at Bezek and attacking in the last watch of the night. The men of Jabesh repay that debt when they recover his body."
+    },
+    {
+      "id": "conn-1sa-11-007",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 14,
+      "startVerse": 49,
+      "endChapter": 14,
+      "endVerse": 49,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Saul's sons are listed: Jonathan, Ishvi, and Malchishua. The Abinadab of 31:2 is the Ishvi of this verse, under a different name."
+    },
+    {
+      "id": "conn-1sa-11-008",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 10,
+      "startVerse": 1,
+      "endChapter": 10,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Chronicler's parallel account of the battle and the death, adding the head in the temple of Dagon and the explanation that Saul died for his unfaithfulness."
+    },
+    {
+      "id": "conn-1sa-11-009",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "established",
+      "note": "David hears the news in Ziklag, mourns, executes the Amalekite who claims to have slain Saul, and laments Saul and Jonathan in the lament of the bow."
+    },
+    {
+      "id": "conn-1sa-11-010",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David blesses the men of Jabesh-gilead for burying Saul and promises them kindness, noting that Judah has anointed him king. The blessing closes the Jabesh story."
+    },
+    {
+      "id": "conn-1sa-11-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 21,
+      "startVerse": 12,
+      "endChapter": 21,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David takes the bones of Saul and Jonathan from Jabesh and buries them in the tomb of Kish at Zela, with the executed descendants of Saul. The burial of chapter 31 is not the last resting place."
+    },
+    {
+      "id": "conn-1sa-11-012",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 4,
+      "startVerse": 1,
+      "endChapter": 5,
+      "endVerse": 31,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Judges 4 and 5. Deborah and Barak defeat Sisera in the same Jezreel country, by the waters of Megiddo. The valley that saw Israel's victory under the judges now sees its king fall."
+    },
+    {
+      "id": "conn-1sa-11-013",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 7,
+      "startVerse": 1,
+      "endChapter": 7,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Gideon camps by the spring of Harod at the foot of Gilboa, with the Midianites to the north. The same ridge and the same spring frame both battles."
+    },
+    {
+      "id": "conn-1sa-11-014",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 4,
+      "startVerse": 1,
+      "endChapter": 4,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Philistines defeat Israel at Ebenezer, capture the ark, and kill Eli's sons. The defeat at Gilboa is the second great Philistine victory of the book, and the first king dies as the first high priest's sons died."
+    }
+  ],
+  "relatedEvents": [],
+  "review": {
+    "author": "Gnosis 1 Samuel research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Samuel category; independent QA pending. S11 sources (S11-S01–S11-S07) are the 7 sources[] entries; all are verified. NO not-independently-verified source is named in §9 evidence/claim text for S11: the dossier's §12 Needs-checking section is EMPTY ('None. Every source cited in §9 is either read directly in this session or an already-registered verified claim'), so no S06-S06/S08/S09-style NIV decision was needed; all 7 sources[] candidates were checked by script against the registry and are verified. This is the second clean category in the series (S10 was the first). Deuterocanonical check (S09 Sirach carry-over): the whole dossier was scanned for apocryphal/deuterocanonical targets — CLEAN. No connection target lies outside the 66-book Protestant canon, so no S09-style validator-forced exclusion was needed. S11-S08 (BibleHub KJV, ch. 31, read in full) has no registry entry (registry-build exclusion) and is cited by no §9 claim and no appendix footnote (only §3 textual observations and dossier notes — the KJV Class B diff at 31:2); it stays OUT of sources[]. 1 Chronicles 10 and 2 Samuel 21 were not re-read in full in this dossier; claims depending on them (SCL-11-011, SCL-11-021, SCL-11-022) are capped at probable and say so — verified in the built JSON (all three are probable). Second-reader correction C-S11-2 already applied in the dossier: SCL-11-018 was downgraded to probable (verified in the built JSON). Reuse-basis exclusions (S01/S08/S09/S10 precedent — a source that reaches a claim only through a clm- reuse reference stays OUT of sources[]): the four Philistine registry sources named in §2 internal prose only (BAR origins of the Philistines, Feldman aDNA, Emanuel/Dagon, BiblicalTraining temples-of-Dagon) stay OUT (S04 §-location rule — cited only in §2, never in the Appendix or §9). The other §2 reuse items (conn-jud-12-002, clm-jud-09-002/003/004/005, clm-nb-012) are cited by no §9 claim and no appendix footnote; no source is added for any. No clm- or conn- reference appears in any §9 claim text or evidence. One multi-chapter connection target, encoded per the S01/S02/S06/S07/S08/S09/S10 precedent (encompassing range, exact sub-ranges carried in the note; QA accepted encompassing ranges as shipped; splitting before publication remains the publication-time decision): SCO-11-012 targets Judges 4–5 — two whole chapters, a contiguous range, encoded as Judg 4:1–5:31 with 'Targets Judges 4 and 5.' in the note (S06 prefix style). All other 13 §11 targets are single ranges or single verses. The multi-chapter target is not cross-book. Doubled '---' fix (QA artifact from S08, applied in S09/S10): the dossier's Why section ends with a trailing '---' rule, and the S08 script appended a second terminator, so the S08 MD ends with a doubled '---'. This build strips a trailing '---' from the why section before appending the terminator, so the built MD ends with exactly one '---\\n' (byte-checked, aligning with S07/S09/S10). Parallel time with S10 (Ziklag) is recorded, not harmonised; David is absent from chapter 31 entirely. The Philistines article (S11-S06) was read in part: the sections used were read in full; the middle narrative sections were not opened. Claims used come from the sections read. KJV: ch. 31 one Class B difference (31:2 'Melchishua' vs KJV 'Malchishua'; stored text internally consistent with 14:49), per the KJV verification report and the live BibleHub read (S11-S08). Dossier open items, not resolved by this build: the site of Jabesh-gilead is unsettled (SCL-11-016, unknown — Tell Abu Kharaz / Tell el-Meqbereh most widely favoured, no inscription); which building at Beth Shan, if either, held Saul's armour or head — disputed (SCL-11-012, debated; Rowe's identification accepted by some, rejected by others); why the bodies were burned — the text gives no reason; three interpretations on record, none adopted (SCL-11-014); whether the armour-bearer was Doeg — a tradition reported by JFB, not text; unproven (SCL-11-007, unknown); the Amalekite's account (2 Sam 1:6–10) vs 1 Sam 31:3–5 — recorded as a discrepancy, not resolved (SCL-11-019). §10 shared-opportunity lines (Place: Mount Gilboa; Place: Beth Shan; Place: Jabesh-gilead; Place: the valley of Jezreel; Topic: the display of defeated kings; Topic: the Chronicler's retellings) do not enter the built files: the built JSON carries topics: [] (S01–S10 pattern), so they are moot for the built output. primaryScripture = fullRange = 31:1–13 (exactly 1 chapter, 13 verses), as proposed in the dossier §1; no narrowing needed. The validator's ≤3-chapter limit applies only to primaryScripture, not to fullRange. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). KJV/JPS quotation mix left as is (both public domain). Ancient World subsection headings normalised from #### to ### (R04 MD pattern)."
+  },
+  "sources": [
+    "source-mechon-mamre-1-samuel-masoretic-text",
+    "source-biblicaltraining-gilboa",
+    "source-biblicaltraining-beth-shan",
+    "source-biblicaltraining-valley-of-jezreel",
+    "source-biblicaltraining-jabesh-gilead",
+    "source-biblicaltraining-philistines",
+    "source-jfb-commentary"
+  ]
+}
