@@ -35,6 +35,7 @@ research/trace-the-doctrine/
     ├── README.md
     ├── passages.json
     ├── milestones.json
+    ├── verification-record.template.json
     └── verification-records.json
 ```
 

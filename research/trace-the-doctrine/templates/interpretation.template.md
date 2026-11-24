@@ -1,8 +1,8 @@
 # Interpretation template — `<doctrine>/interpretations.json` entry
 
 Copy this template for each historical writer's interpretation of a
-passage. Schema: `schemas/interpretation.schema.json`. Standards:
-`RESEARCH-STANDARDS.md` §2 (four-way distinction), §3 (quotations), §4
+passage. Schema: `../schemas/interpretation.schema.json`. Standards:
+`../RESEARCH-STANDARDS.md` §2 (four-way distinction), §3 (quotations), §4
 (citations), §5 (dates and attribution), §6 (disagreement).
 
 ```json
@@ -33,8 +33,8 @@ passage. Schema: `schemas/interpretation.schema.json`. Standards:
 
 Checklist before marking anything above `not-started`:
 
-- `authorId` and `workId` exist in `shared/authors.json` /
-  `shared/works.json`, or are explicitly marked pending in `notes`.
+- `authorId` and `workId` exist in `../shared/authors.json` /
+  `../shared/works.json`, or are explicitly marked pending in `notes`.
 - The quotation is verbatim from a checked primary source or a named,
   checked edition / translation (§3.1). No paraphrase in quotation marks.
 - `quotation` records work + location + edition / translation + language
