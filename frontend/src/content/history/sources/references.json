@@ -248,9 +248,9 @@
     "author": "Adam Clarke",
     "title": "The Holy Bible… with a Commentary and Critical Notes",
     "year": "1810–1826",
-    "pagesOrSection": "Commentary on Genesis 4 vv. 1–13 (BibleHub); Deuteronomy 6, 29–32 (BibleHub)",
+    "pagesOrSection": "Commentary on Genesis 4 vv. 1–13 (BibleHub); Deuteronomy 6, 29–32 (BibleHub); Ruth 4 (BibleHub, full chapter)",
     "verification": "verified",
-    "verificationDetail": "Full text read 2026-11-14 (BibleHub Clarke, Genesis 4): Gen 4:7 sin-offering reading ('a sin-offering lieth at thy door'); 4:7b antecedent is Abel (primogeniture); Heb 11:4 faith reading; Cain's fault was bringing no sin-offering. Gen 4 vv. 1–13 only. Genesis 6:1, 3, 4, 5, 8 also consulted in full 2026-11-16 (Real Bible Believers) for the Humanity's Corruption event: the sons of God as 'the descendants of Seth' (6:2 — no separate note; reported via the adjacent notes); the 120 years as the respite (6:3); the Nephilim as 'the fallen apostates' (6:4); 6:5 as a totalising statement; 6:8 importing 6:9's 'just man… perfect… walked with God' (the import is recorded, not endorsed). No separate Clarke notes for vv. 2, 6, 7 exist in the consulted transcription; positions on those verses are reported only via the adjacent notes, with the attribution stated exactly. Exodus scope read 2026-11-18 (BibleHub): Ex 3 (OP); Ex 7 (PL); Ex 14 + Preface (PA); Ex 16 (WI); Ex 20 (CO); Ex 32:35 only (TA — partial, stated; Ex 25–31 and 32:1–34 NOT read); Ex 35, 38–40 (BU — Ex 36–37 by cross-reference only). Deuteronomy read 2026-11-20 (BibleHub): Deut 6 read in full (Cat 2, 237 lines); Deut 29–30 read in full (Cat 8); Deut 31–32 read in full (Cat 9). Clarke on Deut 17 was not read (Cat 5 — a browser.open attempt failed with an upstream 429 and was not retried); Clarke on Deut 7–11 was not read (Cat 3); Clarke on Deut 18–20 was not read (Cat 5).",
+    "verificationDetail": "Full text read 2026-11-14 (BibleHub Clarke, Genesis 4): Gen 4:7 sin-offering reading ('a sin-offering lieth at thy door'); 4:7b antecedent is Abel (primogeniture); Heb 11:4 faith reading; Cain's fault was bringing no sin-offering. Gen 4 vv. 1–13 only. Genesis 6:1, 3, 4, 5, 8 also consulted in full 2026-11-16 (Real Bible Believers) for the Humanity's Corruption event: the sons of God as 'the descendants of Seth' (6:2 — no separate note; reported via the adjacent notes); the 120 years as the respite (6:3); the Nephilim as 'the fallen apostates' (6:4); 6:5 as a totalising statement; 6:8 importing 6:9's 'just man… perfect… walked with God' (the import is recorded, not endorsed). No separate Clarke notes for vv. 2, 6, 7 exist in the consulted transcription; positions on those verses are reported only via the adjacent notes, with the attribution stated exactly. Exodus scope read 2026-11-18 (BibleHub): Ex 3 (OP); Ex 7 (PL); Ex 14 + Preface (PA); Ex 16 (WI); Ex 20 (CO); Ex 32:35 only (TA — partial, stated; Ex 25–31 and 32:1–34 NOT read); Ex 35, 38–40 (BU — Ex 36–37 by cross-reference only). Deuteronomy read 2026-11-20 (BibleHub): Deut 6 read in full (Cat 2, 237 lines); Deut 29–30 read in full (Cat 8); Deut 31–32 read in full (Cat 9). Clarke on Deut 17 was not read (Cat 5 — a browser.open attempt failed with an upstream 429 and was not retried); Clarke on Deut 7–11 was not read (Cat 3); Clarke on Deut 18–20 was not read (Cat 5). Ruth 4 read in full 2026-11-23 (BibleHub, 209 lines, vv. 1–22 + Masoretic notes). 4:7: shoe only taken off, 'probably because the circumstances of the man were such as to render it improper for him to redeem the ground and take Ruth to his wife; and because of this reasonable excuse, the contemptuous part of the ceremony is omitted' (cf. Deut 25:9). 4:13: the Deut 23 prohibition 'the Jews think, did not extend to women'. 4:2: ten elders 'Probably it required this number to constitute a court'. 4:1: peloni almoni, 'Mr. Such-a-one of such a place'.",
     "licenseNote": "Public domain; original summary and citation only."
   },
   "source-jfb-commentary": {
@@ -3223,8 +3223,8 @@
     "year": 2018,
     "pagesOrSection": "pp. 1–7",
     "url": "https://doi.org/10.15184/aqy.2018.219",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Needs-checking — search-indexed summary only; full paper not opened. Used only to corroborate R01-S01 on the necropolis."
+    "verification": "verified",
+    "verificationDetail": "Verified — full text read live 2026-11-23 via Cambridge Core open-access HTML (DOI 10.15184/aqy.2018.219) and the Cambridge PDF (7 pp., pp. 1–7). Necropolis passage confirms at least 100 shaft tombs, EB IV–MB I–III to Iron Age IB–II, and 'the main necropolis serving the pre-Classical town of Bethlehem from the Middle Bronze Age to the Iron Age'."
   },
   "source-abin-hesed-blessing-naomi": {
     "id": "source-abin-hesed-blessing-naomi",
@@ -3277,8 +3277,8 @@
     "publisher": "Doubleday",
     "year": 1975,
     "pagesOrSection": "Ruth 1:16–17 commentary",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Needs-checking — known only second-hand via R01-S11; commentary itself not opened. All Campbell-dependent claims capped at probable."
+    "verification": "verified",
+    "verificationDetail": "Verified (read in part) — Ruth 1:16–17 notes and comment (pp. 74–75) read directly 2026-11-23 via the archive.org full-text copy / PDF of the 1975 Doubleday edition; the whole volume was not re-read cover-to-cover."
   },
   "source-peterson-hidden-meaning-ruth": {
     "id": "source-peterson-hidden-meaning-ruth",
@@ -3337,14 +3337,14 @@
   },
   "source-wright-contrasting-pictures-intermarriage": {
     "id": "source-wright-contrasting-pictures-intermarriage",
-    "author": "Jacob L. Wright",
+    "author": "Jacob L. Wright and Tamara Cohn Eskenazi",
     "title": "\"Contrasting Pictures of Intermarriage in Ruth and Nehemiah\"",
     "publisher": "TheTorah.com",
     "year": 2015,
-    "pagesOrSection": "Full essay; nn. 6–7, 11 (Mishnah Yebamot 8:3; Neh 13:1–3; Ruth 4:11–13)",
+    "pagesOrSection": "Full essay; 'Moabite Males, not Females' (Mishnah Yebamot 8:3); Neh 13:1–3; 'Ruth's Transformation into an Israelite' (Ruth 4:10–13)",
     "url": "https://thetorah.com/article/contrasting-pictures-of-intermarriage-in-ruth-and-nehemiah",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Page open returned footnotes only; body text known only via search-indexed excerpts. Second-hand for the Talmud and for Eskenazi/Frymer-Kensky's JPS Ruth commentary."
+    "verification": "verified",
+    "verificationDetail": "Full essay read 2026-11-23 (TheTorah.com page hydration payload, complete body text 2,137 words + 16 footnotes; text-fetch rendering served footnotes only). Body quotes Mishnah Yebamot 8:3 verbatim ('Ammonites and Moabites are forbidden … But their women are permitted immediately'); quotes Neh 13:1–3 and Deut 23:3–6 in full; fn. 7 gives the b. Yebamot 77a Amasa story; fn. 11 (Glover 2009) gives the Ruth 4:11–12 welcome and the Moabite label dropping at 4:13. Thesis is nuanced: Ruth and Ezra-Nehemiah do not offer mutually exclusive views; the difference is Ruth's transformation/integration vs. the Nehemiah women's non-integration. Second-hand for the Talmud itself and for Eskenazi/Frymer-Kensky, JPS Ruth (2012) (fn. 9, not read directly)."
   },
   "source-braulik-book-ruth-intra-biblical-critique": {
     "id": "source-braulik-book-ruth-intra-biblical-critique",
@@ -3352,10 +3352,10 @@
     "title": "\"The Book of Ruth as Intra-Biblical Critique on the Deuteronomic Law\"",
     "publisher": "Acta Theologica 1999:1",
     "year": 1999,
-    "pagesOrSection": "Abstract; pp. 1–3 (Goulder's \"homily on Dt 23–25\"; Neh 13:1–3)",
+    "pagesOrSection": "Full article (abstract; §§1–3)",
     "url": "https://bibliographie.uni-tuebingen.de/xmlui/bitstream/handle/10900/128566/Braulik_172.pdf?sequence=1",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Abstract and excerpts via search index only; full PDF not read directly."
+    "verification": "verified",
+    "verificationDetail": "Full article read 2026-11-23 via text-fetch of the Tübingen PDF (670 lines: abstract, §§1–3, bibliography). Abstract: Ruth as 'homily on Dt 23–25' (Goulder); Moabite prejudice 'disproved … by a counter-story aimed at promoting sympathy (against Neh 13:1–3)'. §2.1: exclusion 'concerns the Moabites, and specifically their men'; rabbinical exegesis avoided the contradiction; Neh 13:1–3 as intra-biblical interpretation. §2.2.1 (Rt 3): Dt 23:1, 'uncovering/spreading the coat', 3:9 as marriage + kinsman-redeeming, Ezek 16:8. §2.2.2 (Rt 4): Dt 25:5–10 expansion; shoe 4:7–8 explicitly distinguished from Dt 25:9. §3: Ruth as socio- and sexual-critical 'relecture'; chesed as driving force. Does NOT contain Ketubot 7a, Naamah, or a ten-elders-publicising claim — dossier §8.4(a) fn. S08 on those clauses is unsupported (see §4, defect D2). Braulik calls Rt 4 a 'Levirate marriage' and dates Ruth post-exilic; neither is adopted by the dossier."
   },
   "source-cbe-virtuous-woman": {
     "id": "source-cbe-virtuous-woman",
@@ -3364,8 +3364,8 @@
     "publisher": "CBE International",
     "pagesOrSection": "Full article (three occurrences of eshet chayil)",
     "url": "https://www.cbeinternational.org/resource/who-virtuous-woman/",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Search-index excerpt only; full article not opened. Used only for the three-occurrence count, capped at probable."
+    "verification": "verified",
+    "verificationDetail": "Read in full live 2026-11-24 via text fetch (175 lines, complete article through CBE footer). States verbatim: 'This Hebrew expression occurs only three times in the Old Testament' — Ruth 3:11, Prov 12:4, Prov 31:10–31, enumerated as first, second, and third-and-last occurrences."
   },
   "source-net-bible-notes-ruth": {
     "id": "source-net-bible-notes-ruth",
@@ -3374,8 +3374,8 @@
     "publisher": "Biblical Studies Press",
     "pagesOrSection": "Notes on Ruth 2:17; 3:2 (Borowski, Agriculture in Iron Age Israel, pp. 63, 65–66)",
     "url": "https://alkitab.sabda.org/passage.php?passage=Rut%202:%2011-%2012;%203:%201-%206&tab=alt",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Search-index excerpts only; used solely to report Borowski's page references second-hand."
+    "verification": "verified",
+    "verificationDetail": "Read in full live 2026-11-24 via SABDA mirror (Ruth 2:17: 21 lines; Ruth 3:1–6: 119 lines). Ruth 2:17 tn 1 cites Borowski p. 63 (stick threshing); Ruth 3:2 sn cites Borowski pp. 65–66 (winnowing) and 62–63 (floor outside town, prevailing west wind). The notes contain no April/May harvest calendar."
   },
   "source-cambridge-bible-ruth": {
     "id": "source-cambridge-bible-ruth",
@@ -3437,5 +3437,36 @@
     "url": "https://www.biblia.work/bible-commentary/exegetical-and-hermeneutical-commentary-of-ruth-418/",
     "verification": "verified",
     "verificationDetail": "Section read in full on the biblia.work page."
+  },
+  "source-johnson-purpose-biblical-genealogies": {
+    "id": "source-johnson-purpose-biblical-genealogies",
+    "author": "Marshall D. Johnson",
+    "title": "The Purpose of the Biblical Genealogies: With Special Reference to the Setting of the Genealogies of Jesus",
+    "publisher": "Cambridge University Press (1969); Wipf and Stock repr. 2002",
+    "year": 1969,
+    "pagesOrSection": "Whole work; ch. 3 summary (pp. 77–84), ch. 4 (pp. 85–138)",
+    "url": "https://archive.org/details/the-purose-of-the-biblical-geneologies",
+    "verification": "verified",
+    "verificationDetail": "Full OCR text read 2026-11-24 (archive.org unrestricted upload the-purose-of-the-biblical-geneologies, _djvu.txt, 738,002 bytes / 25,866 lines, 1969 CUP edition, Preface through author index). Key finding for R04: ch. 3 summary point (3) — 'The Toledoth of Perez appended to the book of Ruth (4:18-22) may similarly be intended to establish continuity during the time of the judges, that is, from the conquest to the beginning of the Davidic monarchy.' Ch. 4 reports the rabbinic ten-generations-from-Perez-to-David symbolism. OCR noise present (e.g. 'Citron' for 'Chron.'); no R04 claim currently cites Johnson."
+  },
+  "source-ibn-ezra-on-ruth": {
+    "id": "source-ibn-ezra-on-ruth",
+    "author": "Abraham Ibn Ezra",
+    "title": "Commentary on Ruth",
+    "year": "12th c.",
+    "pagesOrSection": "Ruth 4:17",
+    "url": "https://www.sefaria.org/Ibn_Ezra_on_Ruth.4.17",
+    "verification": "verified",
+    "verificationDetail": "Full comment on Ruth 4:17 read 2026-11-24 via Sefaria API (English + Hebrew, 2 segments). Ibn Ezra computes 366 years from entry into the land to David's birth (1 Kgs 6:1: 480 − 40 wandering − 70 David − 4 Solomon), covered by Salma, Boaz, Obed, and Jesse at ~91 years per father (or ~84 if Nahshon was under twenty at the Exodus); 'This seems plausible, as Boaz was already elderly…' Caution: Sefaria's English renders Heb. שס״ו שנה (366 years) as 'only six years'; the Hebrew and Ron's report give 366."
+  },
+  "source-ramban-on-genesis": {
+    "id": "source-ramban-on-genesis",
+    "author": "Moses Nahmanides (Ramban)",
+    "title": "Commentary on Genesis",
+    "year": "13th c.",
+    "pagesOrSection": "Gen 46:15",
+    "url": "https://www.sefaria.org/Ramban_on_Genesis.46.15",
+    "verification": "verified",
+    "verificationDetail": "Full comment on Gen 46:15 read 2026-11-24 via Sefaria API (Chavel English translation, ~2,100 words). Ramban: 'from the time Israel came into the Land until the birth of our lord David, about three hundred and seventy years elapsed… divided among four generations: Salmon, Boaz, Obed, and Jesse, each one being allotted ninety-three years. Thus when they begot children they were all approximately as old as Abraham was when he begot Isaac.' He frames this as a covert/hidden miracle. Note: 370 years, not Ibn Ezra's 366 — Ramban does not subtract Solomon's four years."
   }
 }
