@@ -1,0 +1,20 @@
+{
+  "id": "2-samuel",
+  "title": "2 Samuel",
+  "testament": "OT",
+  "introduction": "2 Samuel records David's reign from the death of Saul and the civil war for the throne through the taking of Jerusalem and the bringing up of the ark. These two studies follow literary divisions; they do not claim two independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "entries": [
+    {
+      "categoryId": "category-2-samuel-death-of-saul-and-civil-war-for-the-throne",
+      "kind": "category",
+      "narrativeOrder": 88,
+      "bookNote": "2 Samuel 1–4 examines The Death of Saul and the Civil War for the Throne as a biblical literary and historical-context study, without assigning an independently verified date."
+    },
+    {
+      "categoryId": "category-2-samuel-jerusalem-taken-and-the-ark-brought-up",
+      "kind": "category",
+      "narrativeOrder": 89,
+      "bookNote": "2 Samuel 5–6 examines Jerusalem Taken and the Ark Brought Up as a biblical literary and historical-context study, without assigning an independently verified date."
+    }
+  ]
+}
