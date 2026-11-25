@@ -1,0 +1,326 @@
+{
+  "id": "category-1-kings-elijah-at-horeb-and-the-call-of-elisha",
+  "title": "Elijah at Horeb and the Call of Elisha",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 19,
+    "startVerse": 1,
+    "endChapter": 19,
+    "endVerse": 21
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 19,
+    "startVerse": 1,
+    "endChapter": 19,
+    "endVerse": 21
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-08-001",
+      "claim": "Ahab tells Jezebel all that Elijah had done, \"and withal how he had slain all the prophets with the sword\" — the Carmel contest (ch. 18) reported to the queen.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-002",
+      "claim": "Jezebel sends a messenger to Elijah with an oath: \"So let the gods do to me, and more also, if I make not thy life as the life of one of them by to morrow about this time.\" The threat is dated to the next day.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jezebel,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-003",
+      "claim": "Jezebel's oath is the self-imprecatory formula (\"...do so to me, and more also\") also found in Ruth 1:17 and eleven more times in Samuel and Kings; here it is spoken with the plural \"gods\" by a Phoenician queen.",
+      "evidence": "Hebrew + JPS 1917 read in full for 19:2 itself; reuse: `RCL-01-017` (probable, Ruth dossier), `SCL-01-027` (probable, 1 Samuel dossier).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-08-004",
+      "claim": "Elijah rises and goes for his life to Beersheba, \"which belongeth to Judah,\" leaves his servant there, goes a day's journey into the wilderness, sits under a juniper tree (Hebrew *rotem*; JPS 1917 \"broom-tree\"), and asks to die: \"It is enough; now, O LORD, take away my life; for I am not better than my fathers.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in part (Flight to Horeb section in full).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-005",
+      "claim": "Beersheba was the chief town of the northern Negev and the traditional southern limit of Israel's land, about 45 miles southwest of Jerusalem; biblical Beersheba is generally identified with Tell es-Saba' (Tel Beersheba), where excavations uncovered a planned and fortified Iron Age town.",
+      "evidence": "Hebrew + JPS 1917 read in full (Beersheba \"which belongeth to Judah\"); BiblicalTraining, \"Beersheba,\" seen only in search snippets, not read in full (K08-S07, needs-checking).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-08-006",
+      "claim": "An angel touches Elijah twice — \"Arise and eat\" — and he finds a cake baken on the coals (JPS 1917: \"a cake baked on the hot stones\") and a cruse of water at his head; the second time the angel says, \"because the journey is too great for thee.\" He eats and drinks and goes \"in the strength of that meat forty days and forty nights unto Horeb the mount of God.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in part (Flight to Horeb section in full).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-007",
+      "claim": "Horeb is another name for Sinai, the mountain where the LORD gave the covenant to Moses; Moses had also spent forty days and nights on the mountain (Ex 24:18; 34:28). The traditional site is Jebel Musa (2,285 m), traditional since the 4th century AD, but its exact location is still debated and no archaeological remains from Israel's encampment have been found in the peninsula.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Horeb,\" read in full; BiblicalTraining, \"Elijah,\" read in part (Flight to Horeb section in full); Mount Sinai article (registry-verified, not re-read in this dossier).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-08-008",
+      "claim": "Elijah comes to a cave at Horeb and lodges there; the word of the LORD comes to him: \"What doest thou here, Elijah?\" He answers: \"I have been very jealous for the LORD God of hosts: for the children of Israel have forsaken thy covenant, thrown down thine altars, and slain thy prophets with the sword; and I, even I only, am left; and they seek my life, to take it away.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-009",
+      "claim": "Elijah is told to stand on the mount: a great and strong wind rends the mountains and breaks the rocks — \"but the LORD was not in the wind\"; after the wind an earthquake — \"but the LORD was not in the earthquake\"; after the earthquake a fire — \"but the LORD was not in the fire\"; \"and after the fire a still small voice\" (Hebrew *qôl demāmâ daqqâ*, a voice of thin silence, hard to translate; renderings differ). The sequence is presented as stated; it is not resolved here into a doctrine of theophany.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in part (encounter section in full).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-010",
+      "claim": "When Elijah hears the voice, he wraps his face in his mantle, goes out, and stands in the entrance of the cave; the question comes again — \"What doest thou here, Elijah?\" — and he answers as before, word for word.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in part (encounter section in full).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-011",
+      "claim": "The LORD sends Elijah back by the way he came, to the wilderness of Damascus: when he comes, he is to anoint Hazael to be king over Syria (JPS 1917: Aram), Jehu son of Nimshi to be king over Israel, and Elisha son of Shaphat of Abelmeholah to be prophet in his room. Him that escapes the sword of Hazael shall Jehu slay, and him that escapes from the sword of Jehu shall Elisha slay.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-012",
+      "claim": "The commission is given here, not done here: Elijah himself carries out only the call of Elisha. Elisha later tells Hazael he will become king of Aram (2 Kgs 8:7–15), and Elisha sends a member of the company of the prophets to anoint Jehu (2 Kgs 9:1–10). The anointings of Hazael and Jehu must not be claimed as accomplished in this chapter.",
+      "evidence": "BiblicalTraining, \"Elijah,\" read in part (commission section in full); BiblicalTraining, \"Elisha,\" read in part (call section in full).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-013",
+      "claim": "\"Yet I have left me seven thousand in Israel, all the knees which have not bowed unto Baal, and every mouth which hath not kissed him\" — the LORD's answer to \"I, even I only, am left\" (19:10, 14). The contrast is flagged, not reconciled.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-014",
+      "claim": "Baal, to whom the seven thousand have not bowed, is the storm god of the Ugaritic texts, \"rider of the clouds,\" who sends rain, dew, thunder, and lightning and gives the land its fertility; bowing the knee and kissing the mouth are the postures of allegiance withheld.",
+      "evidence": "BiblicalTraining, \"Elijah,\" read in part (historical-setting section in full); Baal/Ashtarte vocabulary source (registry-verified, not re-read in this dossier).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-08-015",
+      "claim": "Elijah departs and finds Elisha son of Shaphat plowing with twelve yoke of oxen before him, himself with the twelfth; Elijah passes by and casts his mantle upon him. Elisha leaves the oxen, runs after Elijah, asks to kiss his father and mother, and is answered, \"Go back again: for what have I done to thee?\" He returns, takes a yoke of oxen, slaughters them, boils their flesh with the instruments of the oxen, gives to the people, and they eat; then he arises, goes after Elijah, and ministers to him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-08-016",
+      "claim": "The casting of the mantle claims Elisha as Elijah's successor: the cloak is the prophet's distinctive garment and the gesture signals the office. No anointing of Elisha with oil is recorded; the cloak serves as the outward sign of the prophetic office (see 2 Kgs 2:13–14). Abel Meholah, Elisha's home, is a town in or near the Jordan Valley, south of Beth Shan; its exact site is unknown, with proposals on both sides of the Jordan. Twelve yoke of oxen point to a household of some means.",
+      "evidence": "BiblicalTraining, \"Elijah,\" read in part (call section in full); BiblicalTraining, \"Elisha,\" read in part (call section in full); BiblicalTraining, \"Abel Meholah,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-08-017",
+      "claim": "Date: unknown. The text gives no absolute date. Ahab's reign is conventionally dated c. 874–853 BC in the articles cited, and the battle of Qarqar at which Ahab fielded his chariots is dated 853 BC in the Assyrian record; these are conventional datings, not dates the text gives.",
+      "evidence": "BiblicalTraining, \"Elijah\" and \"Jezebel,\" read in part / in full for the reign dating (see §12).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-08-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 17,
+      "startVerse": 1,
+      "endChapter": 17,
+      "endVerse": 1,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Elijah first appears before Ahab and announces that there shall be no dew nor rain \"but according to my word.\" The drought whose end Jezebel hears about in chapter 19 begins with this oath."
+    },
+    {
+      "id": "conn-1ki-08-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 46,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "In the third year Elijah returns, challenges the prophets of Baal on Mount Carmel, fire falls and consumes the offering, the prophets are slain at the brook Kishon, and the great rain comes. This is the victory Ahab reports to Jezebel, and the report is what brings the threat of chapter 19."
+    },
+    {
+      "id": "conn-1ki-08-003",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 18,
+      "startVerse": 4,
+      "endChapter": 18,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Obadiah, the steward of Ahab's palace, hid a hundred prophets of the LORD in two caves, fifty in each, and fed them with bread and water while Jezebel was cutting off the prophets. The account is told twice, once by the narrator and once by Obadiah himself, and it already shows that the prophet who says he alone is left is not alone."
+    },
+    {
+      "id": "conn-1ki-08-004",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 24,
+      "startVerse": 18,
+      "endChapter": 34,
+      "endVerse": 28,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Moses was on the mountain forty days and forty nights. Elijah travels the same span of days to the same mountain, and the same span is given again when Moses receives the tables a second time. Targets Exodus 24:18 and 34:28."
+    },
+    {
+      "id": "conn-1ki-08-005",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 33,
+      "startVerse": 21,
+      "endChapter": 33,
+      "endVerse": 23,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The LORD places Moses in a cleft of the rock and covers him with his hand while his glory passes by. Elijah spends the night in a cave at the same mountain and is told to stand on the mount as the LORD passes by."
+    },
+    {
+      "id": "conn-1ki-08-006",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 19,
+      "startVerse": 16,
+      "endChapter": 19,
+      "endVerse": 18,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "At Sinai the LORD comes down in fire, smoke, and trembling, and the whole mountain quakes. At Horeb the wind, the earthquake, and the fire each pass by first, and the LORD is said not to be in any of them."
+    },
+    {
+      "id": "conn-1ki-08-007",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 5,
+      "startVerse": 2,
+      "endChapter": 5,
+      "endVerse": 2,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Moses reminds the people that the LORD made a covenant with them at Horeb. Elijah returns to the mountain of that covenant to complain that Israel has forsaken it, thrown down its altars, and slain its prophets."
+    },
+    {
+      "id": "conn-1ki-08-008",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 21,
+      "startVerse": 1,
+      "endChapter": 21,
+      "endVerse": 29,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jezebel writes letters in Ahab's name, has Naboth stoned on false witness, and tells Ahab to take the vineyard; Elijah meets Ahab there and announces the sentence on his house and on Jezebel. The queen who threatens Elijah's life in chapter 19 is the same queen who takes a man's life and land in chapter 21."
+    },
+    {
+      "id": "conn-1ki-08-009",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 8,
+      "startVerse": 7,
+      "endChapter": 8,
+      "endVerse": 15,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Elisha goes to Damascus, where Ben-hadad king of Aram lies sick, and tells Hazael that he will become king over Aram. The first of the three commissions given at Horeb is carried out years later, through Elisha rather than by Elijah himself."
+    },
+    {
+      "id": "conn-1ki-08-010",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 10,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Elisha sends a young man of the company of the prophets to Ramoth-gilead with a flask of oil to anoint Jehu son of Nimshi king over Israel and to declare the LORD's word against the house of Ahab. The second commission given at Horeb is carried out years later, through Elisha."
+    },
+    {
+      "id": "conn-1ki-08-011",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 15,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Elijah and Elisha travel from Gilgal to Bethel to Jericho and across the Jordan; Elijah is taken up in a whirlwind, Elisha takes up the fallen mantle, parts the river with it, and the prophets at Jericho acknowledge that the spirit of Elijah rests on him. The succession begun when the mantle was cast on Elisha in the field is completed here."
+    },
+    {
+      "id": "conn-1ki-08-012",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 31,
+      "endChapter": 16,
+      "endVerse": 33,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ahab marries Jezebel daughter of Ethbaal king of the Sidonians, builds a temple and an altar for Baal in Samaria, and makes an Asherah pole. The royal Baal court that Elijah confronts at Carmel and flees from in chapter 19 is established in these verses."
+    },
+    {
+      "id": "conn-1ki-08-013",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 9,
+      "startVerse": 30,
+      "endChapter": 9,
+      "endVerse": 37,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Jezebel paints her eyes, arranges her hair, and looks down from a window at Jezreel; Jehu has her thrown down, and dogs devour her, leaving only her skull, her feet, and her hands. The threat she swore against Elijah's life ends with her own death, not his."
+    },
+    {
+      "id": "conn-1ki-08-014",
+      "book": "Malachi",
+      "bookId": "malachi",
+      "startChapter": 4,
+      "startVerse": 5,
+      "endChapter": 4,
+      "endVerse": 6,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The last book of the Old Testament promises to send Elijah the prophet before the coming of the great and dreadful day of the LORD, to turn the heart of the fathers to the children and the heart of the children to their fathers. The prophet of Horeb is remembered as the one who will come again."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-biblicaltraining-elijah",
+    "source-biblicaltraining-jezebel",
+    "source-biblicaltraining-elisha",
+    "source-biblicaltraining-abel-meholah",
+    "source-biblicaltraining-horeb",
+    "source-biblicaltraining-mount-sinai",
+    "source-baal-astarte-vocabulary",
+    "source-biblicaltraining-anointing"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S08 sources[] carries nine entries (all verified in the live registry): K08-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K08-S02 BT \"Elijah\" -> source-biblicaltraining-elijah; K08-S03 BT \"Jezebel\" -> source-biblicaltraining-jezebel; K08-S04 BT \"Elisha\" -> source-biblicaltraining-elisha; K08-S05 BT \"Abel Meholah\" -> source-biblicaltraining-abel-meholah; K08-S06 BT \"Horeb\" -> source-biblicaltraining-horeb; source-biblicaltraining-mount-sinai; source-baal-astarte-vocabulary; source-biblicaltraining-anointing. Eight appear in §9 Source IDs cells (Mechon Mamre 13 claims, BT Elijah 9, BT Jezebel 2, BT Elisha 2, BT Abel Meholah 1, BT Horeb 1, BT Mount Sinai 1 — KCL-08-007, Baal/Astarte vocabulary 1 — KCL-08-014). One enters via the appendix footnote only (the S03 Wikipedia-Edom precedent: appendix footnote, registry-verified, included by the mechanical §-location rule): BT \"Anointing\" (1 use). Appendix-only entries are ordered by first appearance in the appendix. S08 contributes exactly 3 newly-cited sources: BT \"Elisha\", BT \"Abel Meholah\", and BT \"Horeb\" (counted before the build by parsing the category AND event JSONs on base — the S07 lesson; the dev-opt-in count 370 → 373 confirms 3). Excluded by the needs-checking rule (registry entry exists, not-independently-verified — the S05 Levin / S07 Kurkh precedent): K08-S07 BT \"Beersheba\" (source-biblicaltraining-beersheba). Seen only in search-result snippets; never read in any form. It sits in the §9 Source IDs cell AND the Evidence cell of KCL-08-005, and that claim is capped probable and also rests on verified K08-S01 (Mechon Mamre, the primary text — registry mapping table line 177). It has 0 appendix footnote uses, so it appears nowhere in the MD at all. Dossier notes item 4 records the same handling (\"Complete the read or narrow `sources[]` at build\"); the build narrows sources[]. No other source is excluded by the §-location rule in this dossier. Two works are named in §4/§5/§6 prose without a footnote key of their own and are not cited in §9 or the appendix, so neither is in sources[]: the Kurkh Monolith (named in §4 line 106, §5 line 146, and §6 line 156 — the §6 bullet footnotes its statement to BT \"Jezebel\" K08-S03, not to the monolith) and the Baal Cycle of Ugarit (a §5 heading and line 146, background only). Both are name-mentions, not citations; the §-location rule turns on footnote keys and Source IDs cells. Excluded by the §-location rule (reuse-basis only, cited through published claims in §2, never in §9 Source IDs or the appendix): the Deut 18 prophet framework (clm-deu-05-029) and the ark (clm-deu-09-014). The six probable claims are KCL-08-003 (Jezebel's oath, the self-imprecatory formula), KCL-08-005 (Beersheba, the chief town of the northern Negev — capped probable, also rests on verified K08-S01), KCL-08-007 (Horeb is another name for Sinai; Moses forty days — Ex 24:18; 34:28), KCL-08-014 (Baal as the Ugaritic storm god, \"rider of the clouds\"), KCL-08-016 (the casting of the mantle claims Elisha as successor), KCL-08-017 (date: unknown; Ahab conventionally c. 874–853 BC). The two established connections are KCO-08-001 (1 Kgs 17:1, the drought word) and KCO-08-002 (1 Kgs 18:1–46, the Carmel contest). One multi-range connection: KCO-08-004 is the encompassing range Exodus 24:18–34:28 with the exact sub-ranges appended as \"Targets Exodus 24:18 and 34:28.\" (S03/S04/S06 precedent). Unlike S07's KCO-07-004, whose note already named the sub-ranges in prose and needed no append, this note describes the spans without verse references, so the Targets sentence is required to make the sub-ranges recoverable. No split. primaryScripture = fullRange = 19:1–21 (no narrowing — a single chapter, within the validator limit; the whole arc is one Horeb journey and call, and no shorter passage represents it). Chapter 19 has zero KJV diffs (21/21 identical after normalisation) — no Class A stored-text error in this range; the five flagged errors (2:26, 3:10, 8:53, 13:22, 22:6) are all outside it; no database fix proposed. Step 5 corrections D-S08-1 and D-S08-2 are the only D-S08 labels in the corrections report. D-S08-1: the licensed 2 Kgs 3:11 phrase in dossier 08 §5 L130 and the appendix Ancient World was fixed to the KJV reading before the build; the licensed phrase occurs 0× in the built files and the KJV reading is used where 2 Kgs 3:11 is quoted. D-S08-2: KCO-08-004's target is re-cited as \"Exodus 24:18; 34:28\" in the dossier as read. Chapter coverage is complete: all 21 verses covered (ch. 19: 21), per the dossier's own coverage check, re-verified by script at build. Ancient World is 1360 words as recorded by the dossier, 140 under the 1500-word cap; built as written, no words trimmed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
