@@ -13,7 +13,6 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import { ThemeProvider } from "../context/ThemeContext";
 import DoctrineWorkspace from "./DoctrineWorkspace";
 import { buildStudyFromResearch, resolveStudy } from "../../data/doctrineStudy";
 
@@ -34,9 +33,7 @@ function chapterVerses(book, chapter, count) {
 function renderWorkspace(study) {
     return render(
         <MemoryRouter initialEntries={["/trace-the-doctrine/trinity"]}>
-            <ThemeProvider>
-                <DoctrineWorkspace study={study} />
-            </ThemeProvider>
+            <DoctrineWorkspace study={study} />
         </MemoryRouter>,
     );
 }
