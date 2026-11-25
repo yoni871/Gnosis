@@ -68,3 +68,10 @@ Operator verification is **read-only**: (1) inspect Vercel variable *names and e
 4. **Unverified #8:** the 2026-11-09 six-branch audit recorded zero failures except N01, but is stale. Repeat catalog evidence across all six branches and review grants added since then.
 
 Muse should reconcile this report with the Phase 1 checklist and N01 cutover plan. No hosted control is marked PASS from repository evidence alone.
+
+### Operator evidence still required
+
+- **Neon operator:** six project/branch identifiers; current role attributes and memberships; table, column, schema, sequence, database and default ACL outputs; App FORCE RLS flags and ownership; current backup/snapshot IDs and an isolated restore result; old-credential rejection after any approved rotation. Share metadata and redacted verdicts only.
+- **Vercel operator:** active deployment SHA for each environment; variable *names and scopes* for the three runtime URLs, legacy `DATABASE_URL` and `GNOSIS_SPLIT_REQUIRED`; protected mapping of each referenced endpoint to its Neon project/branch; confirmation that no Preview secret reference resolves to Production. Never export values into the evidence report.
+- **Credential/file owners:** role-by-role consumer list for migrations, imports, maintenance, backup and runtime jobs; local connection-file paths and secure-removal status; private confirmation that no consumer still uses retired credentials.
+- **Muse:** N01 cutover outcome and fresh exact-branch role attestation, plus independent reconciliation of any overlap. The approval for actions 7A, 8A and 9A remains separate from Muse's cutover approval.
