@@ -1,0 +1,407 @@
+{
+  "id": "category-2-kings-moab-war-miracles-and-naaman",
+  "title": "Moab War, Miracles, and Naaman",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 3,
+    "startVerse": 1,
+    "endChapter": 5,
+    "endVerse": 27
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 3,
+    "startVerse": 1,
+    "endChapter": 5,
+    "endVerse": 27
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-02-001",
+      "claim": "Jehoram son of Ahab begins to reign over Israel in Samaria in the eighteenth year of Jehoshaphat king of Judah, and reigned twelve years. He wrought evil in the sight of the LORD, \"but not like his father, and like his mother: for he put away the image of Baal that his father had made.\" Nevertheless he cleaved unto the sins of Jeroboam the son of Nebat, which made Israel to sin; he departed not therefrom.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-002",
+      "claim": "Mesha king of Moab was a sheepmaster, and rendered unto the king of Israel \"an hundred thousand lambs, and an hundred thousand rams, with the wool.\" When Ahab was dead, the king of Moab rebelled against the king of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (JPS: \"the wool of a hundred thousand lambs, and of a hundred thousand rams\" — the numbers agree; the distribution of the wool differs between the English renderings); stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-003",
+      "claim": "The Mesha Stele, the inscription of Mesha found at Dhiban in 1868, describes his rebellion against Israel from Moab's side and gives credit to the god Chemosh. The correspondence is exact on this point: the stele records Omri's oppression of Moab (\"Omri, king of Israel, oppressed Moav for many years\") and Mesha's liberation, matching the rebellion of 3:5 after Ahab's death. The tribute figure of 3:4 is from 2 Kings, not from the stele inscription itself.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; registry verification detail for source-mesha-stele-2-kings-3-4 (verified; read in full 2026-11-21, including the stele translation); BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 195–199: the Moabite Stone describes the rebellion from Moab's side and gives credit to Chemosh.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-02-004",
+      "claim": "King Jehoram went out of Samaria and numbered all Israel, and sent to Jehoshaphat king of Judah, saying the king of Moab had rebelled: \"wilt thou go with me against Moab to battle?\" Jehoshaphat answered, \"I will go up: I am as thou art, my people as thy people, and my horses as thy horses.\" They went by the way through the wilderness of Edom, with the king of Edom, and fetched a compass of seven days' journey, and there was no water for the host and for the cattle.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 188–190: the long route around the southern end of the Dead Sea through the desert of Edom.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-005",
+      "claim": "The king of Israel said the LORD had called the three kings together to deliver them into the hand of Moab. Jehoshaphat said, \"Is there not here a prophet of the LORD, that we may enquire of the LORD by him?\" A servant of the king of Israel answered, \"Here is Elisha the son of Shaphat, which poured water on the hands of Elijah.\" Jehoshaphat said, \"The word of the LORD is with him,\" and the three kings went down to him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full (3:11 \"enquire\" is a Class B spelling variant; BLB sides with the stored text).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-006",
+      "claim": "Elisha said to the king of Israel, \"What have I to do with thee? get thee to the prophets of thy father, and to the prophets of thy mother.\" The king answered that the LORD had called the three kings together. Elisha said, \"As the LORD of hosts liveth, before whom I stand, surely, were it not that I regard the presence of Jehoshaphat the king of Judah, I would not look toward thee, nor see thee.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 190–192: only his regard for Jehoshaphat moved him to answer at all.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-007",
+      "claim": "Elisha said, \"But now bring me a minstrel,\" and when the minstrel played, the hand of the LORD came upon him. \"Thus saith the LORD, Make this valley full of ditches. For thus saith the LORD, Ye shall not see wind, neither shall ye see rain; yet that valley shall be filled with water, that ye may drink, both ye, and your cattle, and your beasts.\" And \"this is but a light thing in the sight of the LORD: he will deliver the Moabites also into your hand.\" In the morning, when the meat offering was offered, water came by the way of Edom, and the country was filled with water.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (JPS 3:16: \"Make this valley full of trenches\"); stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 191–195: the ditches, neither wind nor rain, the water, and the promise of Moab's delivery.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-008",
+      "claim": "When all the Moabites heard the kings were come up to fight, they gathered all that were able to put on armour, and upward, and stood in the border. They rose early, the sun shone upon the water, and the Moabites saw the water on the other side as red as blood, and said, \"This is blood: the kings are surely slain, and they have smitten one another: now therefore, Moab, to the spoil.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 195–197: the water looked red like blood in the morning sun, and the Moabites rushed in to plunder.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-009",
+      "claim": "When the Moabites came to the camp of Israel, the Israelites rose up and smote them, so that they fled; Israel went forward smiting the Moabites even in their country, beat down the cities, cast every man his stone on every good piece of land and filled it, stopped all the wells of water, and felled all the good trees. Only in Kirharaseth left they the stones thereof; howbeit the slingers went about it, and smote it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-010",
+      "claim": "When the king of Moab saw the battle was too sore for him, he took seven hundred men that drew swords to break through to the king of Edom, but they could not. Then he took his eldest son that should have reigned in his stead, and offered him for a burnt offering upon the wall. \"And there was great indignation against Israel: and they departed from him, and returned to their own land.\" Whose indignation, and why it drives Israel home after victory, the text does not say; the verse is presented exactly, not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (JPS: \"there came great wrath upon Israel\"); stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 197–199: the son offered on the wall, \"the fury against Israel was great,\" and the allies withdrew.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-011",
+      "claim": "A wife of the sons of the prophets cried to Elisha: her husband, who feared the LORD, is dead, and the creditor is come to take her two sons to be bondmen. She has nothing in the house save a pot of oil. Elisha sends her to borrow empty vessels of all her neighbours — \"borrow not a few\" — shut the door upon her and her sons, and pour out into all those vessels. The oil fills every vessel and stays when there is no vessel more. She sells the oil, pays her debt, and lives with her children of the rest.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 109–116: the creditor, the debt service the Law permitted, the borrowed jars, the oil that stopped only when no vessel was left, the sale and the living on the rest.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-012",
+      "claim": "Elisha passes to Shunem, where a great woman constrains him to eat bread, and as oft as he passes by he turns in thither. She says to her husband, \"Behold now, I perceive that this is an holy man of God, which passeth by us continually,\" and they make a little chamber on the wall with a bed, a table, a stool, and a candlestick, that he may turn in thither when he comes.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 120–122: Shunem in the Jezreel Valley, the \"great woman,\" the small room on the roof with bed, table, chair, and lamp.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-013",
+      "claim": "Elisha offers through Gehazi to speak for the woman to the king or the captain of the host; she answers, \"I dwell among mine own people.\" Gehazi says she has no child and her husband is old. Elisha calls her and says, \"About this season, according to the time of life, thou shalt embrace a son.\" She says, \"Nay, my lord, thou man of God, do not lie unto thine handmaid.\" The woman conceives and bears a son at that season, according to the time of life.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 122–124: the offer, the refusal, Gehazi's observation, the promise, and its fulfilment.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-014",
+      "claim": "When the child is grown, he goes out to his father to the reapers, cries, \"My head, my head,\" is carried to his mother, sits on her knees till noon, and dies. She lays him on the bed of the man of God, shuts the door upon him, and goes out.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 126–127: the cry in the field, the death on his mother's lap at noon, the laying on the prophet's bed.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-015",
+      "claim": "She asks her husband for a young man and an ass to run to the man of God; he asks why she goes, \"it is neither new moon, nor sabbath,\" and she says, \"It shall be well.\" She saddles an ass and rides to Mount Carmel. Elisha sees her afar off and sends Gehazi to meet her: \"Is it well with thee? is it well with thy husband? is it well with the child?\" She answers, \"It is well.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 127–128: the ride to Mount Carmel, about 15 to 20 miles away.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-016",
+      "claim": "When she comes to the man of God to the hill, she catches him by the feet; Gehazi comes near to thrust her away, but Elisha says, \"Let her alone; for her soul is vexed within her: and the LORD hath hid it from me, and hath not told me.\" She says, \"Did I desire a son of my lord? did I not say, Do not deceive me?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-017",
+      "claim": "Elisha says to Gehazi, \"Gird up thy loins, and take my staff in thine hand, and go thy way,\" and \"lay my staff upon the face of the child.\" The mother says, \"As the LORD liveth, and as thy soul liveth, I will not leave thee,\" and Elisha follows her. Gehazi lays the staff upon the face of the child, \"but there was neither voice, nor hearing,\" and returns saying, \"The child is not awaked.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 128–129: Gehazi sent ahead, the staff laid on the boy's face, \"but nothing happened.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-018",
+      "claim": "When Elisha comes into the house, the child is dead and laid upon his bed. He shuts the door, prays unto the LORD, goes up and lies upon the child, mouth upon mouth, eyes upon eyes, hands upon hands, and stretches himself upon the child; the flesh waxes warm. He walks in the house to and fro, stretches himself upon him again, and \"the child sneezed seven times, and the child opened his eyes.\" Elisha calls the Shunammite and says, \"Take up thy son.\" She falls at his feet, bows to the ground, takes up her son, and goes out.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 129–131: the prayer, the stretching mouth to mouth and eyes to eyes, the warmth, the second stretching, the seven sneezes, and \"Take up thy son.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-019",
+      "claim": "Elisha comes again to Gilgal, where there is a dearth and the sons of the prophets sit before him; he orders the great pot set on and pottage seethed. One goes out to gather herbs, finds a wild vine, gathers wild gourds his lap full, and shreds them into the pot, \"for they knew them not.\" As they eat they cry, \"O thou man of God, there is death in the pot,\" and cannot eat. Elisha says, \"Then bring meal,\" casts it into the pot, and says, \"Pour out for the people, that they may eat. And there was no harm in the pot.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 142–144: the famine at Gilgal, the wild gourds, \"there is death in the pot,\" the flour, and the food made harmless.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-020",
+      "claim": "A man from Baalshalisha brings the man of God bread of the firstfruits, twenty loaves of barley, and full ears of corn in the husk. Elisha says, \"Give unto the people, that they may eat.\" His servitor says, \"What, should I set this before an hundred men?\" Elisha says again, \"Give the people, that they may eat: for thus saith the LORD, They shall eat, and shall leave thereof.\" They eat and leave thereof, \"according to the word of the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 146–149: the twenty loaves of barley from the first ripe grain, the firstfruits normally given to the priests (Num 18:12–13), the servant's objection, and the food left over.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-021",
+      "claim": "Naaman, captain of the host of the king of Syria, is a great man with his master and honourable, because by him the LORD had given deliverance unto Syria; he is also a mighty man in valour, but he is a leper. The Syrians have gone out by companies and brought away captive out of the land of Israel a little maid, who waits on Naaman's wife. She says to her mistress, \"Would God my lord were with the prophet that is in Samaria! for he would recover him of his leprosy.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naaman,\" read in full in this dossier, lines 18–25 (Naaman's standing and the LORD's victory given through him; *ṣāraʿat* covering a range of skin conditions) and lines 29–32 (the captive girl; \"The girl is never named, yet her words set the whole story in motion\").",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-022",
+      "claim": "One goes in and tells his lord what the maid of the land of Israel said. The king of Syria says, \"Go to, go, and I will send a letter unto the king of Israel,\" and Naaman departs with ten talents of silver, six thousand pieces of gold, and ten changes of raiment. The letter says the king of Syria has sent Naaman \"that thou mayest recover him of his leprosy.\" When the king of Israel reads it, he rends his clothes and says, \"Am I God, to kill and to make alive, that this man doth send unto me to recover a man of his leprosy? wherefore consider, I pray you, and see how he seeketh a quarrel against me.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naaman,\" read in full in this dossier, lines 36–43: the letter to the king rather than the prophet, the gift (ten talents of silver, roughly 750 pounds; six thousand shekels of gold, about 150 pounds; ten sets of clothing), and the king's reading of the request as a pretext for war.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-023",
+      "claim": "When Elisha the man of God hears the king of Israel has rent his clothes, he sends to the king, \"Wherefore hast thou rent thy clothes? let him come now to me, and he shall know that there is a prophet in Israel.\" Naaman comes with his horses and chariot and stands at the door of Elisha's house. Elisha sends a messenger: \"Go and wash in Jordan seven times, and thy flesh shall come again to thee, and thou shalt be clean.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naaman,\" read in full in this dossier, lines 47–50: Elisha's purpose, that Naaman should know \"there is a prophet in Israel,\" and the messenger's short instruction.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-024",
+      "claim": "Naaman is wroth and goes away, saying he thought the prophet would come out, stand, call on the name of the LORD his God, and strike his hand over the place and recover the leper: \"Are not Abana and Pharpar, rivers of Damascus, better than all the waters of Israel?\" His servants come near and say, \"My father, if the prophet had bid thee do some great thing, wouldest thou not have done it? how much rather then, when he saith to thee, Wash, and be clean?\" He goes down and dips himself seven times in Jordan, according to the saying of the man of God, and \"his flesh came again like unto the flesh of a little child, and he was clean.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (JPS 5:12 reads \"Amanah\" for KJV \"Abana\"); stored KJV read in full; BiblicalTraining, \"Naaman,\" read in full in this dossier, lines 52–62: the expected ceremony, the rivers (Abana usually identified with the Barada, Pharpar with the Awaj), the servants' persuasion, the seven dippings, and the flesh restored like a little child's — the Hebrew linking the \"little child\" to the \"little maid\" of 5:2.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-025",
+      "claim": "Naaman returns to the man of God with all his company and says, \"Behold, now I know that there is no God in all the earth, but in Israel: now therefore, I pray thee, take a blessing of thy servant.\" Elisha says, \"As the LORD liveth, before whom I stand, I will receive none.\" Naaman urges him to take it, but he refuses.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naaman,\" read in full in this dossier, lines 66–68: the confession, the pressed gift, and the refusal — \"The healing was not to be bought.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-026",
+      "claim": "Naaman asks for two mules' burden of earth, for he will henceforth offer neither burnt offering nor sacrifice unto other gods, but unto the LORD. He asks pardon in advance: when his master goes into the house of Rimmon to worship there, leaning on Naaman's hand, and Naaman bows himself in the house of Rimmon, \"the LORD pardon thy servant in this thing.\" Elisha says to him, \"Go in peace,\" and Naaman departs a little way. Elisha neither grants nor refuses the bow; \"Go in peace\" is the whole answer, and the text gives no further comment.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naaman,\" read in full in this dossier, lines 70–77 (the earth for an altar on Israelite soil; Rimmon the storm god of Damascus, usually identified with Hadad; \"Go in peace\") and lines 128–131 (the three readings of the reply: gracious permission, ordinary farewell, pastoral response — the text gives no further comment).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-02-027",
+      "claim": "Gehazi, the servant of Elisha the man of God, says his master has spared Naaman this Syrian in not receiving what he brought, and swears he will run after him and take somewhat of him. He follows Naaman, who lights down from his chariot and asks, \"Is all well?\" Gehazi says, \"All is well,\" and lies that his master has sent him for two young men of the sons of the prophets from Mount Ephraim, asking a talent of silver and two changes of garments. Naaman says, \"Be content, take two talents,\" binds two talents of silver in two bags with two changes of garments, and lays them on two of his servants. When Gehazi comes to the tower, he takes them, bestows them in the house, and lets the men go.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (JPS 5:24 reads \"the hill\" for KJV \"the tower\"); stored KJV read in full; BiblicalTraining, \"Naaman,\" read in full in this dossier, lines 81–84: the invented story of the two young men, the two talents pressed on him, and the gifts hidden in his house.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-028",
+      "claim": "Gehazi goes in and stands before his master. Elisha says, \"Whence comest thou, Gehazi?\" He says, \"Thy servant went no whither.\" Elisha says, \"Went not mine heart with thee, when the man turned again from his chariot to meet thee? Is it a time to receive money, and to receive garments, and oliveyards, and vineyards, and sheep, and oxen, and menservants, and maidservants?\" \"The leprosy therefore of Naaman shall cleave unto thee, and unto thy seed for ever. And he went out from his presence a leper as white as snow.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naaman,\" read in full in this dossier, lines 86–89: the confrontation, the sentence on Gehazi and his descendants, the skin \"as white as snow,\" and the reversal — the foreigner goes home clean while the Israelite servant is struck.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-02-029",
+      "claim": "Chapter 4 as a whole is a miracle catalogue — the widow's oil, the Shunammite's son dead and revived, death in the pot, twenty loaves feeding a hundred — the fruit of chapter 2's commissioning, not four separate incidents. A cluster of stories in 2 Kings 4–6 shows Elisha caring for individuals and for the prophetic communities, and the narratives credit him with more recorded miracles than any other Old Testament prophet except Moses.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in full in this dossier, lines 4–8 (more recorded miracles than any other Old Testament prophet except Moses; many met the private needs of poor or grieving people) and lines 104–107 (the cluster of stories in 2 Kings 4–6 among the prophets and the poor).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-02-001",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 1,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Moab rebels against Israel after the death of Ahab. The rebellion announced here is the war of chapter 3: the same king, Mesha, stops the same tribute and is met by the same three kings."
+    },
+    {
+      "id": "conn-2ki-02-002",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 2,
+      "startVerse": 9,
+      "endChapter": 2,
+      "endVerse": 14,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Elisha asks for a double portion of Elijah's spirit — the firstborn's share, a claim to succession — and takes up the fallen mantle, parts the Jordan, and crosses back. The parted river at the start of the ministry is the river in which Naaman is later washed clean."
+    },
+    {
+      "id": "conn-2ki-02-003",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 19,
+      "startVerse": 15,
+      "endChapter": 19,
+      "endVerse": 17,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "At Horeb the LORD gives Elijah three tasks: anoint Hazael king over Syria, anoint Jehu king over Israel, and anoint Elisha as prophet in his place. Only Elisha's call is carried out by Elijah himself; the other two are finished years later through Elisha, whose authority in chapters 3–5 rests on that commission."
+    },
+    {
+      "id": "conn-2ki-02-004",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 22,
+      "startVerse": 4,
+      "endChapter": 22,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "At Ramoth-gilead Jehoshaphat answers Ahab, \"I am as thou art, my people as thy people, my horses as thy horses.\" He gives Jehoram the same answer in 3:7, with 'and' before 'my horses', and marches on the same terms."
+    },
+    {
+      "id": "conn-2ki-02-005",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 20,
+      "startVerse": 19,
+      "endChapter": 20,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law of war spares the fruit trees of a besieged city: they are not to be cut down, for the tree of the field is man's life. Elisha's oracle in 3:19 commands the opposite — fell every good tree — and the text carries both without resolving them."
+    },
+    {
+      "id": "conn-2ki-02-006",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 17,
+      "startVerse": 8,
+      "endChapter": 17,
+      "endVerse": 16,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "At Zarephath Elijah provides for a widow whose meal and oil do not run out. Elisha's widow in 4:1–7 is kept the same way, behind a shut door, with oil that flows until the vessels run out. The successor repeats the master's provision in the same shape."
+    },
+    {
+      "id": "conn-2ki-02-007",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 17,
+      "startVerse": 17,
+      "endChapter": 17,
+      "endVerse": 24,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Elijah stretches himself on the widow's son at Zarephath and the child's soul returns. Elisha stretches himself on the Shunammite's son, walks to and fro, stretches again, and the child sneezes seven times and opens his eyes. The raising is repeated, and its details are varied."
+    },
+    {
+      "id": "conn-2ki-02-008",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 22,
+      "startVerse": 22,
+      "endChapter": 22,
+      "endVerse": 24,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law forbids afflicting any widow or fatherless child, and warns that the LORD will hear their cry. The widow of 4:1 cries to Elisha under that law's protection, and the creditor's claim on her sons is answered with oil, not with bondage."
+    },
+    {
+      "id": "conn-2ki-02-009",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 25,
+      "startVerse": 39,
+      "endChapter": 25,
+      "endVerse": 41,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law permits a poor brother who sells himself to serve as a hired servant, not as a bondservant, and to go out in the year of jubilee with his children. The creditor of 4:1 comes to take the widow's two sons to be bondmen, and the debt is paid before the taking happens."
+    },
+    {
+      "id": "conn-2ki-02-010",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 18,
+      "startVerse": 12,
+      "endChapter": 18,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The firstfruits of the land — the first ripe grain — are given to the priests. The man from Baalshalisha brings twenty loaves of barley bread baked from the first ripe grain to the man of God in 4:42, and Elisha sets them before the people instead."
+    },
+    {
+      "id": "conn-2ki-02-011",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 14,
+      "startVerse": 7,
+      "endChapter": 14,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "In the rite for cleansing a person healed of skin disease, the priest sprinkles the one to be cleansed seven times with blood and water. Naaman is told to wash in the Jordan seven times, and the number seven carries the same sign of completeness."
+    },
+    {
+      "id": "conn-2ki-02-012",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 8,
+      "startVerse": 1,
+      "endChapter": 8,
+      "endVerse": 6,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Elisha warns the Shunammite of a seven-year famine; she sojourns in Philistine territory, returns, and appeals to the king for her house and land while Gehazi is telling the king how Elisha restored her son to life. The king restores all that was hers, with the fruits of the field since she left."
+    },
+    {
+      "id": "conn-2ki-02-013",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 7,
+      "startVerse": 3,
+      "endChapter": 7,
+      "endVerse": 3,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Four leprous men sit at the gate of Samaria in the siege and ask, \"Why sit we here until we die?\" A Syrian commander is healed of the same disease in chapter 5 while Israel's own lepers wait outside the gate — the contrast is in the text."
+    },
+    {
+      "id": "conn-2ki-02-014",
+      "book": "Luke",
+      "bookId": "luke",
+      "startChapter": 4,
+      "startVerse": 27,
+      "endChapter": 4,
+      "endVerse": 27,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "At Nazareth Jesus points to Naaman alongside the widow of Zarephath, observing that in Elisha's time many in Israel had leprosy, yet only Naaman the Syrian was cleansed. The healing is read as God's mercy reaching beyond Israel, to a foreigner."
+    },
+    {
+      "id": "conn-2ki-02-015",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 2,
+      "startVerse": 14,
+      "endChapter": 2,
+      "endVerse": 14,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Elisha takes up Elijah's fallen mantle, smites the waters of the Jordan, and asks, \"Where is the LORD God of Elijah?\" The waters part, and he crosses back. The Jordan that opens for the succession is the river of Naaman's washing in chapter 5."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-biblicaltraining-naaman",
+    "source-biblicaltraining-elisha",
+    "source-mesha-stele-2-kings-3-4",
+    "source-mesha-stele",
+    "source-moab-encyclopaedia-judaica"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-25",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. S02 sources[] carries six entries (all verified in the live registry): 2K02-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; 2K02-S02 Naaman -> source-biblicaltraining-naaman (new in PR #355, cited by no category until now); source-biblicaltraining-elisha; source-mesha-stele-2-kings-3-4; source-mesha-stele; source-moab-encyclopaedia-judaica. Appendix footnote uses (57 total): Mechon Mamre 23, BT Naaman 16, BT Elisha 15, Mesha Stele 2 Kgs 3-4 2, Moab 1. The Mesha Stele entry appears in no appendix footnote but enters by the §9 Source IDs cell of 2KCL-02-003; Moab appears in no §9 Source IDs cell but enters by one appendix footnote (Ancient World, Moab geography). No needs-checking sources in this dossier. 2KCL-02-003 is probable (Mesha Stele correspondence; the tribute figure is from 2 Kings, not the stele; the stele entries were not re-read in full in this dossier). 2KCL-02-026 is probable (Rimmon: the three readings the Naaman article records are carried; none is chosen). 2KCL-02-029 is probable (chapter 4 as a whole, a miracle catalogue — the fruit of chapter 2's commissioning). No Class A stored-text errors in chs. 3-5 (the four book-level errors are 7:6, 8:16, 19:23, and 23:19); the stored readings are quoted nowhere in the built files (verified by grep at build). Licensed-translation renderings found at verification and second read were replaced with the stored KJV wording at Step 5; no licensed-translation text remains in this file. No multi-range connections — all 15 §11 targets are single ranges within one book, so no encompassing ranges and no splits. primaryScripture is the full range 3:1-5:27 (3 chapters, endChapter − startChapter = 2, within the validator limit — no narrowing). Chapter coverage is complete: all 98 verses covered (ch. 3 vv. 1-27 by 2KCL-02-001-010; ch. 4 vv. 1-44 by 2KCL-02-011-020 and 2KCL-02-029; ch. 5 vv. 1-27 by 2KCL-02-021-028), per the dossier's own coverage check. Ancient World is 1487 words, 13 under the 1,500 cap — preserved exactly at build; no prose was added or reworded. The Elisha article was read lines 0-300 of 373 in this dossier; the registry already records that read (PR #355 scope append). The Moab geography entry was not re-read in full in this dossier; it is cited only for geography as recorded in the registry verification detail, and no dependent claim rests on it alone. Open items from the dossier notes: the great indignation of 3:27; the commanded devastation against Deut 20:19-20; Elisha's knowledge limit (4:27) and the staff failing (4:31); Rimmon and 'Go in peace'; the leprosy transferred to Gehazi; the kings of chapter 5 unnamed and undated; the exact sense of 'the tower' in 5:24. Dossier-notes item 10 (registry counts 443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
