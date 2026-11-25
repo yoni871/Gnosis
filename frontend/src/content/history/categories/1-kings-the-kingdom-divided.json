@@ -1,0 +1,456 @@
+{
+  "id": "category-1-kings-the-kingdom-divided",
+  "title": "The Kingdom Divided",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 12,
+    "startVerse": 1,
+    "endChapter": 14,
+    "endVerse": 31
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 12,
+    "startVerse": 1,
+    "endChapter": 14,
+    "endVerse": 31
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-05-001",
+      "claim": "Rehoboam goes to Shechem, where all Israel has come to make him king; Jeroboam, back from Egypt where he fled from Solomon, is sent for, and he and the whole congregation of Israel come and speak to Rehoboam.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam\" and \"Rehoboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-002",
+      "claim": "The congregation asks for the heavy yoke to be lightened — \"Thy father made our yoke grievous: now therefore make thou the grievous service of thy father, and his heavy yoke which he put upon us, lighter, and we will serve thee\" — and Rehoboam takes three days to answer.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-003",
+      "claim": "Rehoboam consults the old men who stood before Solomon, who advise him to be a servant to the people and speak good words, and they will be his servants for ever; he forsakes their counsel for the young men grown up with him, who tell him to answer, \"My little finger shall be thicker than my father's loins… my father hath chastised you with whips, but I will chastise you with scorpions.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Rehoboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-004",
+      "claim": "On the third day the king answers roughly after the young men's counsel and hearkens not to the people, \"for the cause was from the LORD, that he might perform his saying, which the LORD spake by Ahijah the Shilonite unto Jeroboam the son of Nebat.\" The narrator attributes the division to the LORD's purpose through Ahijah's word; the tension with Rehoboam's own choice is not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam\" and \"Rehoboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-005",
+      "claim": "The people answer, \"What portion have we in David? neither have we inheritance in the son of Jesse: to your tents, O Israel: now see to thine own house, David,\" and Israel departs to their tents; only the children of Israel dwelling in the cities of Judah keep Rehoboam as king.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-006",
+      "claim": "Rehoboam sends Adoram, who is over the tribute — the levy-master, the Adoniram of 1 Kgs 4:6 and 5:14 — and all Israel stones him; Rehoboam flees to Jerusalem in his chariot; \"So Israel rebelled against the house of David unto this day\"; all Israel makes Jeroboam king over all Israel, and \"there was none that followed the house of David, but the tribe of Judah only.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam\" and \"Rehoboam,\" read in full (Adoram = Adoniram).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-007",
+      "claim": "Rehoboam assembles 180,000 chosen warriors of Judah and Benjamin to fight the house of Israel and bring the kingdom back, but the word of God comes to Shemaiah the man of God — \"Ye shall not go up, nor fight against your brethren the children of Israel: return every man to his house; for this thing is from me\" — and they hearken and return.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-008",
+      "claim": "Jeroboam builds Shechem in Mount Ephraim and dwells there, and goes out from there and builds Penuel. Shechem is identified with Tell Balata in the valley between Mount Ebal and Mount Gerizim; Penuel lies east of the Jordan near the Jabbok; Tirzah, the later royal residence, is generally identified with Tell el-Far'ah (North).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam,\" read in full (Penuel, Tirzah); Shechem and Tell Balata overviews (registry-verified, not re-read).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-05-009",
+      "claim": "Jeroboam reasons in his heart: if the people go up to do sacrifice in the house of the LORD at Jerusalem, their hearts will turn again to Rehoboam, and they will kill him and go again to Rehoboam. The fear of Jerusalem pilgrimage is the stated motive for the religious settlement that follows.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-010",
+      "claim": "Jeroboam makes two calves of gold and says, \"behold thy gods, O Israel, which brought thee up out of the land of Egypt,\" setting one in Bethel and the other in Dan; \"and this thing became a sin: for the people went to worship before the one, even unto Dan.\" The words are the Exodus words of Ex 32:4, 8, transferred to the calves.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam,\" read in full; Bible Odyssey, \"The Worship of the Golden Calf,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-011",
+      "claim": "Jeroboam makes a house of high places and priests \"of the lowest of the people, which were not of the sons of Levi,\" ordains a feast in the eighth month, on the fifteenth day, \"like unto the feast that is in Judah,\" and offers on the altar at Bethel \"in the month which he had devised of his own heart.\" The feast falls one month after the Feast of Tabernacles (fifteenth day of the seventh month, Lev 23:33–34).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-012",
+      "claim": "A man of God comes from Judah by the word of the LORD to Bethel as Jeroboam stands by the altar to burn incense, and cries against the altar: \"Behold, a child shall be born unto the house of David, Josiah by name; and upon thee shall he offer the priests of the high places that burn incense upon thee, and men's bones shall be burnt upon thee.\" The sign is that the altar shall be rent and the ashes poured out.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-013",
+      "claim": "When Jeroboam puts forth his hand, saying, \"Lay hold on him,\" it dries up so that he cannot pull it in again; the altar is rent and the ashes poured out according to the sign; at the king's plea the man of God entreats the LORD, and the hand is restored and becomes as it was before.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-014",
+      "claim": "The king offers refreshment and reward; the man of God refuses — \"If thou wilt give me half thine house, I will not go in with thee, neither will I eat bread nor drink water in this place\" — for so he was charged by the word of the LORD: eat no bread, drink no water, return not by the same way. He goes another way.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-015",
+      "claim": "An old prophet in Bethel hears from his sons what the man of God did, finds him under an oak, and invites him home; the man of God repeats his charge; the old prophet says, \"I am a prophet also as thou art; and an angel spake unto me by the word of the LORD, saying, Bring him back… that he may eat bread and drink water. But he lied unto him.\" The man of God goes back, eats, and drinks. The tension — the man of God judged for obeying a lie — is not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-016",
+      "claim": "As they sit at the table, the word of the LORD comes to the prophet who brought him back: because he disobeyed the mouth of the LORD and ate bread and drank water in the place of which he was told to eat no bread and drink no water, \"thy carcase shall not come unto the sepulchre of thy fathers.\" The correct KJV reading is \"the LORD did say to thee\" (the stored rendering of the divine name is a Class A error); the Hebrew carries no explicit divine name in this verse — the KJV supplies it from the LORD's word of 13:20–21.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (Hebrew: \"in the place of which He spoke to thee\"; JPS: \"of which He said to thee\"); KJV verification report (BibleHub + Blue Letter Bible against the stored text).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-017",
+      "claim": "On the way a lion meets the man of God and slays him; his carcase is cast in the way, the ass standing by it and the lion also standing by the carcase; the lion has not eaten the carcase nor torn the ass. Men passing by see it and tell it in the city where the old prophet dwells.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-018",
+      "claim": "The old prophet fetches the body, lays it in his own grave, and they mourn, \"Alas, my brother!\"; he tells his sons to lay his bones beside the man of God's bones, \"For the saying which he cried by the word of the LORD against the altar in Bethel, and against all the houses of the high places which are in the cities of Samaria, shall surely come to pass.\" Samaria is named here before the city is founded (16:24); the anachronism is flagged, not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-019",
+      "claim": "\"After this thing Jeroboam returned not from his evil way, but made again of the lowest of the people priests of the high places: whosoever would, he consecrated him, and he became one of the priests of the high places.\" \"And this thing became sin unto the house of Jeroboam, even to cut it off, and to destroy it from off the face of the earth.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-020",
+      "claim": "\"At that time Abijah the son of Jeroboam fell sick.\" Jeroboam sends his wife in disguise to Shiloh, to Ahijah the prophet who told him he would be king, with ten loaves, cracknels, and a cruse of honey; Ahijah is blind with age, but the LORD tells him she is coming feigning to be another, and he calls her in — \"Come in, thou wife of Jeroboam; why feignest thou thyself to be another? for I am sent to thee with heavy tidings.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-021",
+      "claim": "Ahijah's oracle rehearses the exaltation — \"I exalted thee from among the people, and made thee prince over my people Israel, and rent the kingdom away from the house of David, and gave it thee\" — measures Jeroboam against David, who \"kept my commandments, and who followed me with all his heart,\" and charges him with doing evil above all before him, making \"other gods, and molten images, to provoke me to anger.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-022",
+      "claim": "The LORD will bring evil on the house of Jeroboam and cut off from Jeroboam \"him that pisseth against the wall,\" taking away the remnant of the house as a man takes away dung; \"Him that dieth of Jeroboam in the city shall the dogs eat; and him that dieth in the field shall the fowls of the air eat: for the LORD hath spoken it.\" The dogs-and-fowls sentence returns at 16:4 and 21:23–24.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-023",
+      "claim": "The child shall die when his mother's feet enter the city; all Israel shall mourn for him and bury him, \"for he only of Jeroboam shall come to the grave, because in him there is found some good thing toward the LORD God of Israel in the house of Jeroboam.\" The nature of the good thing is not stated and is not explained here.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jeroboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-024",
+      "claim": "Moreover the LORD shall raise up a king over Israel who shall cut off the house of Jeroboam; the LORD shall smite Israel \"as a reed is shaken in the water,\" root them up out of the good land given to their fathers, and scatter them beyond the river, \"because of the sins of Jeroboam, who did sin, and who made Israel to sin.\" The exile is pronounced here, in Jeroboam's own generation.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-025",
+      "claim": "Jeroboam's wife returns to Tirzah; the child dies as she comes to the threshold of the door; all Israel mourns and buries him, \"according to the word of the LORD, which he spake by the hand of his servant Ahijah the prophet.\" Jeroboam reigns twenty-two years and sleeps with his fathers; Nadab his son reigns in his stead. The rest of his acts are written in the book of the chronicles of the kings of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-026",
+      "claim": "Rehoboam son of Solomon reigns in Judah: forty-one years old when he begins to reign, seventeen years in Jerusalem, \"the city which the LORD did choose out of all the tribes of Israel, to put his name there\"; his mother's name is Naamah an Ammonitess.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Rehoboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-027",
+      "claim": "Judah does evil in the sight of the LORD and provokes him to jealousy above all their fathers: they build high places, images, and groves on every high hill and under every green tree, and there are sodomites in the land, doing \"according to all the abominations of the nations which the LORD cast out before the children of Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Rehoboam,\" read in full; BiblicalTraining, \"Ashtoreth\" (registry-verified, not re-read).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-028",
+      "claim": "In the fifth year of king Rehoboam, Shishak king of Egypt comes up against Jerusalem and takes the treasures of the house of the LORD and of the king's house — all the shields of gold Solomon made; Rehoboam makes brasen shields in their stead and commits them to the chief of the guard, who bears them when the king goes into the house of the LORD and brings them back into the guard chamber.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Rehoboam,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-029",
+      "claim": "The rest of Rehoboam's acts are written in the book of the chronicles of the kings of Judah; \"there was war between Rehoboam and Jeroboam all their days\"; Rehoboam sleeps with his fathers, is buried in the city of David, and Abijam his son reigns in his stead; his mother's name is again given as Naamah an Ammonitess.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-05-030",
+      "claim": "Shishak is Sheshonq I, founder of Egypt's Twenty-second Dynasty, a ruler of Libyan descent; his own record of the campaign survives on the Bubastite Portal of the temple of Amun at Karnak, where name rings list well over a hundred places claimed as subdued, including Gibeon, Aijalon, Beth Horon, Megiddo, Taanach, Beth Shan, Rehob, Mahanaim, and Penuel, and a fragment of a victory stela bearing his name was found at Megiddo. Jerusalem does not appear in the surviving list; whether the list proves that Sheshonq attacked Jerusalem itself is debated.",
+      "evidence": "BiblicalTraining, \"Jeroboam\" and \"Rehoboam,\" read in full; Levin, \"Did Pharaoh Sheshonq Attack Jerusalem?\" (seen only in search-result snippets, not read in full — K05-S04, needs-checking).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-05-031",
+      "claim": "Date: unknown. The text gives no absolute date for the division. Conventional scholarly reconstructions place it about 930 BC: Thiele's widely used system dates Jeroboam's reign 931/930–910/909 BC and Rehoboam's about 931/930–913 BC, Albright's system a few years later, and the Sheshonq campaign around 926–925 BC. These are reconstructions, not dates the text gives.",
+      "evidence": "BiblicalTraining, \"Jeroboam\" and \"Rehoboam,\" read in full (chronology sections).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-05-032",
+      "claim": "The places of the division carry these identifications: Shechem is Tell Balata in the valley between Mount Ebal and Mount Gerizim; Bethel is usually placed at Beitin, north of Jerusalem; Dan is Tel Dan, where a large sacred precinct with a raised platform stands and many scholars connect its earliest phases with Jeroboam's shrine; Shiloh is the old sanctuary town of Ahijah; Tirzah is generally identified with Tell el-Far'ah (North). The Dan identification is treated as certain in the site literature; the others are probable, and the connection of the Tel Dan precinct's earliest phases with Jeroboam is a scholarly connection, not a proved identification.",
+      "evidence": "BiblicalTraining, \"Jeroboam,\" read in full (Bethel, Dan, Tirzah); Shechem, Bethel, and Dan site overviews (registry-verified, not re-read); BiblicalTraining, \"Shiloh\" (registry-verified, not re-read).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-05-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 29,
+      "endChapter": 11,
+      "endVerse": 39,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "Ahijah the Shilonite meets Jeroboam alone in the field, tears his new garment into twelve pieces, and gives him ten: the kingdom will be torn from Solomon for his idolatry, one tribe staying with David's house for David's sake and for Jerusalem's sake, and Jeroboam's throne is offered on condition that he walk as David did. The division at Shechem performs this word."
+    },
+    {
+      "id": "conn-1ki-05-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 11,
+      "endChapter": 11,
+      "endVerse": 13,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The LORD tells Solomon, \"I will surely rend the kingdom from thee, and will give it to thy servant,\" sparing him in his own days for David's sake and keeping one tribe for his son. The sentence of chapter 11 is executed in chapter 12."
+    },
+    {
+      "id": "conn-1ki-05-003",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The LORD promises David an enduring house and a throne established for ever. The one tribe kept for David's house at the division, and the lamp in Jerusalem, rest on this promise."
+    },
+    {
+      "id": "conn-1ki-05-004",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 20,
+      "startVerse": 1,
+      "endChapter": 20,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Sheba son of Bichri blows the trumpet and cries, \"We have no part in David, neither have we inheritance in the son of Jesse,\" and every man of Israel goes up from David after him. The cry at Shechem answers it a generation later."
+    },
+    {
+      "id": "conn-1ki-05-005",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 32,
+      "startVerse": 1,
+      "endChapter": 32,
+      "endVerse": 8,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "While Moses is on the mountain, the people ask Aaron, \"Up, make us gods, which shall go before us,\" and he makes a molten calf, and they say, \"These be thy gods, O Israel, which brought thee up out of the land of Egypt.\" Jeroboam speaks the same words over his calves at Bethel and Dan."
+    },
+    {
+      "id": "conn-1ki-05-006",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 20,
+      "startVerse": 4,
+      "endChapter": 20,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The second commandment forbids making a graven image or any likeness and bowing down to it. The biblical writers judge Jeroboam's calves as a breach of this commandment, whatever the calves were meant to be."
+    },
+    {
+      "id": "conn-1ki-05-007",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 14,
+      "endChapter": 17,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law of the king is given for the people's future request for a king: the king must not multiply horses, wives, or silver and gold, and must write a copy of the law and read it all the days of his life. Solomon had already breached the limits, and Jeroboam's kingship is measured against the same law."
+    },
+    {
+      "id": "conn-1ki-05-008",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 12,
+      "startVerse": 5,
+      "endChapter": 12,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Worship is to be gathered to the one place the LORD shall choose out of all the tribes, to put his name there. Jeroboam's shrines at Bethel and Dan, his non-Levitical priesthood, and his feast in the eighth month stand as a rival system against that one place."
+    },
+    {
+      "id": "conn-1ki-05-009",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 24,
+      "startVerse": 1,
+      "endChapter": 24,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Joshua gathers all the tribes to Shechem, and the people renew the covenant there, setting up a great stone under the oak by the sanctuary of the LORD. The assembly that meets Rehoboam at Shechem gathers on ground where Israel's allegiance had been sworn before."
+    },
+    {
+      "id": "conn-1ki-05-010",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 18,
+      "startVerse": 27,
+      "endChapter": 18,
+      "endVerse": 31,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Danites take Micah's graven image and his Levite priest, set up the image at Dan, and the house of God is there all the time the house of God is in Shiloh. Dan already has a shrine and a priesthood when Jeroboam sets his calf there."
+    },
+    {
+      "id": "conn-1ki-05-011",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 28,
+      "startVerse": 10,
+      "endChapter": 28,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jacob dreams at Bethel of a ladder reaching to heaven, anoints the stone he slept on, and names the place Bethel, the house of God, vowing that the LORD shall be his God. Bethel already carries the patriarchs' worship when Jeroboam sets his calf there."
+    },
+    {
+      "id": "conn-1ki-05-012",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 23,
+      "startVerse": 15,
+      "endChapter": 23,
+      "endVerse": 18,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Josiah breaks down the altar at Bethel, burns the high place, and burns men's bones from the tombs upon the altar, as the man of God had cried by the word of the LORD — but he leaves untouched the sepulchre of the man of God who came from Judah, and the bones of the prophet who dwelt in Bethel lie beside his."
+    },
+    {
+      "id": "conn-1ki-05-013",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 15,
+      "startVerse": 25,
+      "endChapter": 15,
+      "endVerse": 30,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Baasha of Issachar conspires against Nadab son of Jeroboam at Gibbethon, slays him, and on taking the throne smites all the house of Jeroboam, leaving none that breathed, according to the saying of the LORD by Ahijah the Shilonite. The oracle of chapter 14 is fulfilled in the next generation."
+    },
+    {
+      "id": "conn-1ki-05-014",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 1,
+      "endChapter": 16,
+      "endVerse": 4,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "The word of the LORD comes to Jehu son of Hanani against Baasha, as it came against Jeroboam: his house shall be made like the house of Jeroboam, and him that dieth of Baasha in the city shall the dogs eat, and him that dieth in the field shall the fowls of the air eat. The sentence is repeated, house by house."
+    },
+    {
+      "id": "conn-1ki-05-015",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 10,
+      "startVerse": 1,
+      "endChapter": 10,
+      "endVerse": 19,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler retells the assembly at Shechem: the yoke, the two counsels, the rough answer, the break, the stoning of Adoram, and Shemaiah's prohibition of the war. The two accounts agree on the substance of the division."
+    },
+    {
+      "id": "conn-1ki-05-016",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 12,
+      "startVerse": 1,
+      "endChapter": 12,
+      "endVerse": 12,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler retells Shishak's invasion with the numbers of his host, the capture of the fortified cities of Judah, Shemaiah's message that the LORD was abandoning them to Shishak, and the humbling that spared Jerusalem from total destruction. Kings tells the same invasion with notable restraint."
+    },
+    {
+      "id": "conn-1ki-05-017",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 17,
+      "startVerse": 21,
+      "endChapter": 17,
+      "endVerse": 23,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "When Samaria falls to Assyria, the writer traces the disaster back to the division: Jeroboam drove Israel from following the LORD and made them sin a great sin, and Israel was carried away out of their own land to Assyria. The sin named at Bethel and Dan is the book's explanation of the end."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-biblicaltraining-jeroboam",
+    "source-biblicaltraining-rehoboam",
+    "source-wikipedia-shechem",
+    "source-shechem-tell-balata-archaeological-overview",
+    "source-bible-odyssey-golden-calf",
+    "source-biblicaltraining-ashtoreth",
+    "source-wikipedia-bethel",
+    "source-debir-bethel",
+    "source-bas-city-of-dan",
+    "source-biblicaltraining-shiloh",
+    "source-bible-odyssey-royal-succession",
+    "source-baal-astarte-vocabulary"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S05 sources[] carries thirteen entries (all verified in the live registry): K05-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K05-S02 BT \"Jeroboam\" -> source-biblicaltraining-jeroboam; K05-S03 BT \"Rehoboam\" -> source-biblicaltraining-rehoboam; source-wikipedia-shechem; source-shechem-tell-balata-archaeological-overview; source-bible-odyssey-golden-calf; source-biblicaltraining-ashtoreth; source-wikipedia-bethel; source-debir-bethel; source-bas-city-of-dan; source-biblicaltraining-shiloh; source-bible-odyssey-royal-succession; source-baal-astarte-vocabulary. Eleven appear in §9 Source IDs cells (Mechon Mamre 29 claims, BT Jeroboam 15, BT Rehoboam 9, Wikipedia Shechem 2, Shechem Tell Balata 2, BO Golden Calf 1, BT Ashtoreth 1, Wikipedia Bethel 1, Debir Bethel 1, BAS City of Dan 1, BT Shiloh 1). Two enter via the appendix footnote only (1 use each — the S03 Wikipedia-Edom precedent: appendix footnote, registry-verified, included by the mechanical §-location rule): BO \"Royal Succession\" (\"Kingship in the region was normally dynastic\"), Baal/Astarte vocabulary (the Asherah poles of the worship Solomon's wives brought in). S05 contributes exactly 2 newly-cited sources: BT \"Jeroboam\" and BT \"Rehoboam\" (counted before the build by parsing the category/event JSONs on base). Excluded by the §-location rule (§4/§5/§7/§8 prose, §10 topic line, or §12 table only, never in a §9 Source IDs cell or the appendix): BO \"Covenant\" (§8 + §12 only), Weinfeld (§4/§8 + §12 only), Richelle (§4/§5 + §12 only), Herzog (§4 + §12 only), Kisilevitz/Lipschits Tel Moza (§4 + §12 only), BT \"Jerusalem\" (§7 + §12 only), BT \"Ammonites\" (§4 + §12 only), BT \"Exodus\" (§7 + §12 only), Hoffmeier (§7 + §12 only), BT \"Anointing\" (§4 + §12 only), BT \"David\" (§2 + §12 only, cited through published claims). Excluded (needs-checking, registry entry source-levin-sheshonq-jerusalem-bar, not-independently-verified): K05-S04 Levin (\"Did Pharaoh Sheshonq Attack Jerusalem?\"); its only footnote use is §4 internal prose (line 130) and it appears in the §9 Source IDs cell of KCL-05-030 only — the claim is capped probable and also rests on verified K05-S02/K05-S03. It is in neither sources[] nor the MD footnotes. Excluded by the §-location rule (reuse-basis only, cited through published claims in §2, never in §9 Source IDs or the appendix): the kingship law (clm-deu-05-014/016/023), the Deut 18 prophet framework (clm-deu-05-029–036, 038), the ark, David's genealogy and the lamp, the anointing rite. The four probable claims are KCL-05-008 (Shechem = Tell Balata; Penuel), KCL-05-030 (Shishak = Sheshonq I; capped probable, also rests on verified K05-S02/K05-S03), KCL-05-031 (date: unknown; conventional reconstructions about 930 BC), KCL-05-032 (place identifications: Shechem/Bethel/Dan). The one established connection is KCO-05-001 (1 Kgs 11:29–39, Ahijah's torn garment). No multi-range connections: all 17 §11 targets are single ranges within one book, so no encompassing ranges and no splits. primaryScripture = fullRange = 12:1–14:31 (no narrowing — the range spans exactly three chapters, span = 2, within the validator limit; the whole arc is one division and no shorter passage represents it). 1 Kgs 13:22 is a Class A stored-text error in this range: the stored rendering of the divine name in the supplied-subject clause is wrong; the correct KJV reading is \"the LORD did say to thee\" (BibleHub and Blue Letter Bible). The Hebrew carries no explicit divine name in this verse — the KJV supplies it from the LORD's word of 13:20–21. The stored reading is quoted nowhere in the built files, including these notes; KCL-05-016 uses the corrected reading and records the caveat. No database fix proposed. Step 5 corrections D-S05-1 (loose quotations: 14:8 \"yet\" restored, 11:38 second ellipsis, 12:32 verbatim KJV wording, 13:33 and 14:13 restored with ellipsis; Ancient World 1471 → 1476) and D-S05-2 (Deut 18:18 \"and will put my words in his mouth\") are applied in the dossier as read — verified by assertion at build (the corrections report records both). Chapter coverage is complete: all 98 verses covered (ch. 12: 33, ch. 13: 34, ch. 14: 31), per the dossier's own coverage check, re-verified by script at build. Ancient World is 1476 words as recorded by the dossier, 24 under the 1500-word cap; built as written, no words trimmed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
