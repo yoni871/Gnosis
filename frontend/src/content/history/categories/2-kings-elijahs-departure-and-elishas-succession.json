@@ -1,0 +1,393 @@
+{
+  "id": "category-2-kings-elijahs-departure-and-elishas-succession",
+  "title": "Elijah's Departure and Elisha's Succession",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 2,
+    "endVerse": 25
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 2,
+    "endVerse": 25
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-01-001",
+      "claim": "Moab rebels against Israel after the death of Ahab. Ahaziah falls down through a lattice in his upper chamber in Samaria and is sick, and sends messengers to enquire of Baalzebub the god of Ekron whether he shall recover of this disease.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-002",
+      "claim": "The angel of the LORD sends Elijah the Tishbite to meet the king's messengers: \"Is it not because there is not a God in Israel, that ye go to enquire of Baalzebub the god of Ekron?\" Therefore the king shall not come down from his bed, but shall surely die. And Elijah departs.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-003",
+      "claim": "The messengers turn back to the king, who asks why they are returned; they report the man who met them and his word, that the king shall not come down from the bed on which he is gone up, but shall surely die.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-004",
+      "claim": "Asked what manner of man met them, the messengers answer, \"He was an hairy man, and girt with a girdle of leather about his loins.\" The king says, \"It is Elijah the Tishbite.\" The Hebrew could also mean a man wearing a hair garment, and a hair garment was associated with prophets.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full (lines 232–235): the messengers' description and the hair-garment reading.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-005",
+      "claim": "The king sends a captain of fifty with his fifty, who finds Elijah on the top of a hill and says, \"Thou man of God, the king hath said, Come down.\" Elijah answers, \"If I be a man of God, then let fire come down from heaven, and consume thee and thy fifty\" — and fire comes down and consumes him and his fifty.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full (lines 237–239): the captain, the answer, and the fire.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-006",
+      "claim": "The king sends again another captain of fifty with his fifty, who says, \"O man of God, thus hath the king said, Come down quickly.\" Elijah answers as before, and the fire of God comes down from heaven and consumes him and his fifty.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-007",
+      "claim": "The third captain of fifty falls on his knees before Elijah and begs that his life, and the life of his fifty men, be precious in Elijah's sight, naming the fire that burnt up the two captains of the former fifties with their fifties.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full (lines 239–241): the third captain kneels and begs for his life.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-008",
+      "claim": "The angel of the LORD tells Elijah to go down with the captain and not be afraid. Elijah goes down to the king and delivers the sentence to his face: because he sent messengers to enquire of Baalzebub, \"is it not because there is no God in Israel to enquire of his word?\" — he shall surely die.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full (lines 240–242): the angel's word and the sentence delivered in person.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-009",
+      "claim": "\"So he died according to the word of the LORD which Elijah had spoken.\" Jehoram son of Ahab reigns in his stead in the second year of Jehoram the son of Jehoshaphat king of Judah, because Ahaziah had no son — two kings of the same name, one in Israel and one in Judah, kept distinct. The rest of the acts of Ahaziah are referred to the book of the chronicles of the kings of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-010",
+      "claim": "Baalzebub is the god of the Philistine city of Ekron, whom Ahaziah consults about his recovery. The name Baal-Zebub means \"lord of flies\" and is widely thought to be a mocking alteration of Baal-Zebul, \"Baal the prince,\" a title known from the Ugaritic texts.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full (lines 227–230): the name, its meaning, and the Ugaritic title.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-01-011",
+      "claim": "Moab's rebellion \"after the death of Ahab\" (1:1) is the rebellion that becomes the war of chapter 3: Mesha king of Moab, who had rendered tribute to Israel, rebels when Ahab dies. The rebellion of chapter 1 is carried as context into S02, where the war is fought.",
+      "evidence": "Hebrew + JPS 1917 read in full for 1:1, Mechon Mamre; 2 Kgs 3:4–5 as read in full in the proposal-phase read record (`2kings-read-ch01-25.md`).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-01-012",
+      "claim": "When the LORD would take up Elijah into heaven by a whirlwind, Elijah goes with Elisha from Gilgal. At Bethel Elijah says, \"Tarry here, I pray thee; for the LORD hath sent me to Bethel.\" Elisha answers, \"As the LORD liveth, and as thy soul liveth, I will not leave thee.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full (lines 246–249): the journey from Gilgal to Bethel and Elisha's oath.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-013",
+      "claim": "The sons of the prophets at Bethel come forth to Elisha and say, \"Knowest thou that the LORD will take away thy master from thy head to day?\" He answers, \"Yea, I know it; hold ye your peace.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elisha,\" read in full (lines 46–48): the companies of prophets at Bethel and Elisha's answer.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-014",
+      "claim": "Elijah tells Elisha to tarry at Bethel, for the LORD has sent him to Jericho; Elisha refuses with the same oath, and they come to Jericho. The sons of the prophets at Jericho come to Elisha with the same word, and he answers as before, \"Yea, I know it; hold ye your peace.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elisha,\" read in full (lines 46–48): the Jericho company and Elisha's answer.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-015",
+      "claim": "Elijah tells Elisha to tarry, for the LORD has sent him to Jordan; Elisha refuses a third time with the same oath, and the two go on. Fifty men of the sons of the prophets stand to view afar off. Elijah takes his mantle, wraps it together, smites the waters, and they are divided hither and thither, so that the two go over on dry ground.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elisha,\" read in full (lines 44–48): the three refusals and the divided Jordan.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-016",
+      "claim": "Across the Jordan Elijah asks what he shall do for Elisha before he is taken away. Elisha asks, \"let a double portion of thy spirit be upon me.\" Elijah answers, \"Thou hast asked a hard thing: nevertheless, if thou see me when I am taken from thee, it shall be so unto thee; but if not, it shall not be so.\" The phrase comes from the law of inheritance, which gave the firstborn son a double share of his father's estate (Deut 21:17): Elisha asks to be recognised as Elijah's principal heir and successor, not to be twice as great as Elijah. The quantity is not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elisha,\" read in full (lines 50–53): the double portion as the firstborn's share and the heir's claim; BiblicalTraining, \"Elijah,\" read in full (lines 258–261): the same reading and Elijah's condition.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-01-017",
+      "claim": "As they still go on and talk, a chariot of fire and horses of fire part them both asunder, and Elijah goes up by a whirlwind into heaven. The text says the whirlwind carried Elijah up; the chariot parts the two men.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full (lines 261–263): the chariot of fire, the whirlwind, and the note that the whirlwind carried him up.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-018",
+      "claim": "Elisha sees it and cries, \"My father, my father, the chariot of Israel, and the horsemen thereof,\" and sees him no more; he takes hold of his own clothes and rends them in two pieces. The cry honours the prophet as the nation's true defence, worth more than its armies, and the same words are used by Joash over the dying Elisha (13:14), with an added \"O\" — the two deaths frame the ministry.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full (lines 265–266): the cry, its sense, and the repetition at Elisha's deathbed; 2 Kgs 13:14 as read in full in the proposal-phase read record (`2kings-read-ch01-25.md`).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-019",
+      "claim": "Elisha takes up the mantle of Elijah that fell from him, goes back, and stands by the bank of Jordan. He takes the mantle, smites the waters, and says, \"Where is the LORD God of Elijah?\" — and when he also has smitten the waters, they part hither and thither, and Elisha goes over. No anointing of Elisha with oil is recorded; the cloak served as the outward sign of the prophetic office.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elisha,\" read in full (lines 57–58): the mantle, the question, and the divided river; BiblicalTraining, \"Anointing,\" read in full (lines 115–122): no ceremony with oil, the cloak instead.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-020",
+      "claim": "When the sons of the prophets at Jericho see him, they say, \"The spirit of Elijah doth rest on Elisha.\" They come to meet him and bow themselves to the ground before him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elisha,\" read in full (lines 58–59): the prophets at Jericho acknowledge that Elijah's spirit rests on Elisha.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-021",
+      "claim": "The sons of the prophets say fifty strong men should seek Elijah, lest the Spirit of the LORD have taken him up and cast him upon some mountain or into some valley. Elisha says, \"Ye shall not send\"; urged till he is ashamed, he says, \"Send.\" They seek three days and find him not, and he answers, \"Did I not say unto you, Go not?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elisha,\" read in full (lines 59–61): the search, the three days, and Elisha's answer.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-022",
+      "claim": "The men of Jericho tell Elisha the situation of the city is pleasant, but the water is naught and the ground barren. He asks for a new cruse with salt, casts the salt into the spring, and says, \"Thus saith the LORD, I have healed these waters; there shall not be from thence any more death or barren land.\" \"So the waters were healed unto this day, according to the saying of Elisha which he spake.\" Jericho had been rebuilt in Ahab's day in defiance of Joshua's curse, at the cost of the builder's sons.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elisha,\" read in full (lines 87–93): the rebuilt Jericho, the bad water, the salt, and the healing.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-023",
+      "claim": "Going up from Jericho to Bethel, little children come forth out of the city and mock Elisha — \"Go up, thou bald head; go up, thou bald head.\" He turns back, looks on them, and curses them in the name of the LORD; two she bears come out of the wood and tare forty and two children of them. The text states it without comment; this dossier does not soften it and imports no interpretation.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elisha,\" read in full (lines 97–102): the youths at Bethel, the mocking, and the forty-two — and the note that the episode has troubled many readers, with its interpretation discussed in a section of the article not read here.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-024",
+      "claim": "Elisha goes from Bethel to Mount Carmel, and from there returns to Samaria.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-01-025",
+      "claim": "Elijah's departure completes the Horeb commission in part: at Horeb the Lord gave Elijah three tasks — to anoint Hazael king of Aram, Jehu king of Israel, and Elisha as prophet in his place — and Elijah himself carried out only the third, the call of Elisha. The other two were finished years later through Elisha: Elisha told Hazael he would become king of Aram (8:7–15) and sent a member of the company of the prophets to anoint Jehu (9:1–10).",
+      "evidence": "Hebrew + JPS 1917 read in full for 2 Kgs 2:1, 11, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full (lines 181–187): the three tasks and their completion through Elisha; BiblicalTraining, \"Elisha,\" read in full (lines 24–27): the same chain.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-01-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 21,
+      "startVerse": 19,
+      "endChapter": 21,
+      "endVerse": 24,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Elijah announces the LORD's sentence on Ahab's house: dogs will lick up Ahab's blood where they licked Naboth's, and dogs will eat Jezebel by the wall of Jezreel. Ahaziah's death according to the word Elijah spoke is the first death of that house after Ahab's own."
+    },
+    {
+      "id": "conn-2ki-01-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 19,
+      "startVerse": 15,
+      "endChapter": 19,
+      "endVerse": 17,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "At Horeb the LORD gives Elijah three tasks: to anoint Hazael king of Aram, Jehu king of Israel, and Elisha as prophet in his place. Elijah himself carries out only the third; the other two are finished years later through Elisha, in the chapters that follow this one."
+    },
+    {
+      "id": "conn-2ki-01-003",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 19,
+      "startVerse": 19,
+      "endChapter": 19,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Elijah finds Elisha plowing with twelve yoke of oxen and throws his cloak over him. Elisha slaughters his oxen, burns his plowing gear, and follows Elijah as his attendant. The cloak thrown here is the mantle that falls in chapter 2."
+    },
+    {
+      "id": "conn-2ki-01-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 21,
+      "startVerse": 17,
+      "endChapter": 21,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law gives the firstborn son a double share of his father's estate. Elisha's request for a double portion of Elijah's spirit is read as a claim to the principal heir's place — succession, not twice the power — and the text never turns the request into a quantity."
+    },
+    {
+      "id": "conn-2ki-01-005",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 13,
+      "startVerse": 14,
+      "endChapter": 13,
+      "endVerse": 14,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Joash king of Israel weeps over the dying Elisha with Elisha's own cry over Elijah, adding only an \"O\" at its head. The two deaths frame the ministry that begins in this chapter."
+    },
+    {
+      "id": "conn-2ki-01-006",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 14,
+      "startVerse": 21,
+      "endChapter": 14,
+      "endVerse": 22,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Moses stretches out his hand over the sea, and the waters divide so that Israel goes over on dry ground. Elijah's mantle parting the Jordan recalls that crossing, and Elisha's second parting repeats it."
+    },
+    {
+      "id": "conn-2ki-01-007",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 3,
+      "startVerse": 14,
+      "endChapter": 3,
+      "endVerse": 17,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The priests bearing the ark step into the Jordan, and the waters stand in a heap while Israel crosses on dry ground. Elisha begins his work by crossing the same divided river near Jericho, as Joshua did after Moses."
+    },
+    {
+      "id": "conn-2ki-01-008",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 34,
+      "startVerse": 1,
+      "endChapter": 34,
+      "endVerse": 12,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Moses dies east of the Jordan, in the region opposite Jericho, and Joshua takes up his work there. Elijah goes to that same region before he is taken up, and Elisha comes back across the river to begin."
+    },
+    {
+      "id": "conn-2ki-01-009",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 5,
+      "startVerse": 24,
+      "endChapter": 5,
+      "endVerse": 24,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Enoch walks with God and is not, for God takes him. Only Enoch shares Elijah's end in the Old Testament: taken up without dying, with no grave named."
+    },
+    {
+      "id": "conn-2ki-01-010",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 6,
+      "startVerse": 26,
+      "endChapter": 6,
+      "endVerse": 26,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Joshua pronounces a curse on anyone who rebuilds Jericho, at the cost of his firstborn and his youngest son. The curse stands behind the Jericho whose waters Elisha heals."
+    },
+    {
+      "id": "conn-2ki-01-011",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 34,
+      "endChapter": 16,
+      "endVerse": 34,
+      "type": "background",
+      "confidence": "probable",
+      "note": "In Ahab's days Hiel of Bethel rebuilds Jericho at the cost of his eldest and youngest sons, according to the word of the LORD by Joshua. The rebuilt city is the one whose bad water and barren ground Elisha is asked to heal."
+    },
+    {
+      "id": "conn-2ki-01-012",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 3,
+      "startVerse": 4,
+      "endChapter": 3,
+      "endVerse": 5,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Mesha king of Moab, a sheepmaster who had rendered a hundred thousand lambs and a hundred thousand rams with the wool, rebels when Ahab dies. The rebellion named in the opening verse of this chapter is the war fought in the next category."
+    },
+    {
+      "id": "conn-2ki-01-013",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 28,
+      "endChapter": 12,
+      "endVerse": 29,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Jeroboam sets up golden calves at Bethel and at Dan, and the people go to worship before them. Bethel, where the sons of the prophets speak to Elisha and where the mockers come out, has housed a royal calf sanctuary since Jeroboam."
+    },
+    {
+      "id": "conn-2ki-01-014",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 2,
+      "startVerse": 13,
+      "endChapter": 2,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Every offering is to be seasoned with salt, the salt of the covenant of God. Elisha casts salt from a new cruse into the spring at Jericho; the prophet's words make clear that the LORD, not the salt, heals the water."
+    },
+    {
+      "id": "conn-2ki-01-015",
+      "book": "Zechariah",
+      "bookId": "zechariah",
+      "startChapter": 13,
+      "startVerse": 4,
+      "endChapter": 13,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The prophets will be ashamed of their visions, and none will wear a hairy garment to deceive. A hair garment was associated with prophets, which is one reading of the messengers' description of Elijah as a hairy man girt with leather."
+    },
+    {
+      "id": "conn-2ki-01-016",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 6,
+      "startVerse": 17,
+      "endChapter": 6,
+      "endVerse": 17,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "At Dothan Elisha prays that his servant's eyes be opened, and the mountain is full of horses and chariots of fire round about Elisha. The sight echoes the chariot and horses of fire that parted Elijah from Elisha — now a standing army round the successor."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-biblicaltraining-elijah",
+    "source-biblicaltraining-elisha",
+    "source-biblicaltraining-anointing"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-25",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. First 2 Kings category: the \"2-kings\" era-enum append rides with this PR (PR #299/#315/#327 precedent), one line in historyContent.js. S01 sources[] carries four entries (all verified in the live registry): 2K01-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; source-biblicaltraining-elijah; source-biblicaltraining-elisha; source-biblicaltraining-anointing. All four appear in §9 Source IDs cells AND in appendix footnotes (70 uses: Mechon Mamre 38, BT Elijah 13, BT Elisha 18, BT Anointing 1). No needs-checking sources in this dossier: the unread remainders of the Elijah article (lines 288-425), the Elisha article (lines 154-373), and the Anointing article (lines 152-206) are not cited anywhere. 2KCL-01-010 is probable (Baal-Zebub as a mocking alteration of Baal-Zebul, \"Baal the prince,\" a title known from the Ugaritic texts). 2KCL-01-011 is probable (Moab's rebellion of 1:1 is the rebellion that becomes the war of chapter 3; cites 2 Kgs 3:4-5 from the proposal-phase read record, not re-read live in this dossier). 2KCL-01-016 is probable (the double portion as the firstborn's share under Deut 21:17 — a claim to the principal heir's place, not twice the power; the quantity is not resolved). 2KCL-01-025 is probable (the Horeb commission completed in part through Elisha: Elijah himself carried out only the call of Elisha). 2KCL-01-018 rests on the proposal-phase read record for 2 Kgs 13:14 (the cry repeated at Elisha's deathbed). No Class A stored-text errors in chs. 1-2 (the four book-level errors are 7:6, 8:16, 19:23, and 23:19); the stored readings are quoted nowhere in the built files (verified by grep at build). 2KCO-01-008 targets the whole of Deuteronomy 34, encoded 34:1-12 per the dossier's own §11 header count (12 verses) — no shipped category connection omits verses, so the whole-chapter target is expanded rather than left open-ended. No multi-range connections — all 16 §11 targets are single ranges within one book, so no encompassing ranges and no splits. primaryScripture is the full range 1:1-2:25 (2 chapters, endChapter − startChapter = 1, within the validator limit — no narrowing). Chapter coverage is complete: all 43 verses covered (ch. 1 vv. 1-18 by 2KCL-01-001-011; ch. 2 vv. 1-25 by 2KCL-01-012-025), per the dossier's own coverage check. Open items from the dossier notes: the two Jehorams of 1:17 kept distinct (no synchronism reconciled); the double portion quantity unresolved; the cry repetition at 13:14; the bears at Bethel stated without comment; the departure's chronology against the letter to Jehoram of Judah (2 Chr 21:12-15) unresolved; which Gilgal 2:1 names debated. Dossier-notes item 9 (registry counts 443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
