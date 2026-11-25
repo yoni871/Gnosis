@@ -153,6 +153,8 @@ test("unmatched /api/* POST returns the same controlled JSON 404", async () => {
 test("private endpoints carry no-store even on unauthenticated errors", async () => {
     for (const path of [
         "/api/auth/profile",
+        "/api/auth/mfa/status",
+        "/api/auth/passkeys",
         "/api/notes",
         "/api/bookmarks",
         "/api/highlights",
