@@ -1,0 +1,427 @@
+{
+  "id": "category-1-kings-elijah-the-drought-and-carmel",
+  "title": "Elijah: The Drought and Carmel",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 17,
+    "startVerse": 1,
+    "endChapter": 18,
+    "endVerse": 46
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 17,
+    "startVerse": 1,
+    "endChapter": 18,
+    "endVerse": 46
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-07-001",
+      "claim": "Elijah the Tishbite, of the inhabitants of Gilead, says to Ahab: \"As the LORD God of Israel liveth, before whom I stand, there shall not be dew nor rain these years, but according to my word.\" The drought is bound to Elijah's word; the text does not explain the relation, and the dossier does not resolve it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-002",
+      "claim": "The word of the LORD sends Elijah east to hide by the brook Cherith, that is before Jordan; he drinks of the brook, and the ravens bring him bread and flesh in the morning and bread and flesh in the evening. After a while the brook dries up, \"because there had been no rain in the land.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-003",
+      "claim": "The word sends Elijah to Zarephath, \"which belongeth to Zidon,\" where a widow is commanded to sustain him. The prophet is sustained in Jezebel's own homeland, by a Sidonian widow; the irony is flagged, not pressed.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-004",
+      "claim": "At the gate of Zarephath the widow is gathering sticks; she has only a handful of meal in a barrel and a little oil in a cruse, and is gathering two sticks to dress it for herself and her son, \"that we may eat it, and die.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-005",
+      "claim": "Elijah says, \"make me thereof a little cake first\": \"The barrel of meal shall not waste, neither shall the cruse of oil fail, until the day that the LORD sendeth rain upon the earth.\" She does so, and she, and he, and her house eat many days, and the meal wastes not.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-006",
+      "claim": "After these things the son of the woman, the mistress of the house, falls sick, and his sickness is so sore that there is no breath left in him. She accuses Elijah: \"art thou come unto me to call my sin to remembrance, and to slay my son?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-007",
+      "claim": "Elijah carries the child to the loft, stretches himself upon him three times, and cries, \"O LORD my God, I pray thee, let this child's soul come into him again.\" The LORD hears; the child revives, and Elijah brings him down and delivers him to his mother: \"See, thy son liveth.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-008",
+      "claim": "The woman says to Elijah: \"Now by this I know that thou art a man of God, and that the word of the LORD in thy mouth is truth.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-009",
+      "claim": "In the third year the word of the LORD comes to Elijah: show himself to Ahab, \"and I will send rain upon the earth.\" Elijah goes to show himself to Ahab, and there is a sore famine in Samaria.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-010",
+      "claim": "Ahab calls Obadiah, governor of his house. Obadiah fears the LORD greatly: when Jezebel cut off the prophets of the LORD, Obadiah took an hundred prophets, and hid them by fifty in a cave, and fed them with bread and water.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-011",
+      "claim": "Ahab says to Obadiah: go into the land, to all fountains of water and all brooks, to find grass to save the horses and mules alive, that they lose not all the beasts. They divide the land between them: Ahab goes one way by himself, and Obadiah another way by himself.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-012",
+      "claim": "Elijah meets Obadiah, who falls on his face — \"Art thou that my lord Elijah?\" Obadiah fears for his life: Ahab has searched every nation for Elijah and taken oaths; if the Spirit of the LORD carries Elijah away, Ahab will slay him — \"but I thy servant fear the LORD from my youth.\" Obadiah recounts the hiding of the hundred prophets a second time (18:13): the repetition is in the text and is not harmonised away.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. 18:13 carries the Class D accepted variant (standard KJV \"the LORD'S prophets\").",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-013",
+      "claim": "Elijah swears by the LORD of hosts, before whom he stands, that he will surely show himself to Ahab today. Obadiah goes to meet Ahab and tells him; Ahab goes to meet Elijah.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-014",
+      "claim": "Ahab says, \"Art thou he that troubleth Israel?\" Elijah answers, \"I have not troubled Israel; but thou, and thy father's house, in that ye have forsaken the commandments of the LORD, and thou hast followed Baalim.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-015",
+      "claim": "Elijah orders all Israel gathered to Mount Carmel, with the prophets of Baal four hundred and fifty, and the prophets of the groves four hundred, which eat at Jezebel's table. Ahab sends to all the children of Israel and gathers the prophets to Mount Carmel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (JPS 1917: \"the prophets of the Asherah\"); stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-016",
+      "claim": "Elijah says, \"How long halt ye between two opinions? if the LORD be God, follow him: but if Baal, then follow him.\" The people answer not a word. Elijah says, \"I, even I only, remain a prophet of the LORD; but Baal's prophets are four hundred and fifty men.\" The test: two bullocks, no fire under either; \"the God that answereth by fire, let him be God.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-017",
+      "claim": "The prophets of Baal call on Baal from morning until noon — \"there was no voice, nor any that answered\" — and leap on the altar. At noon Elijah mocks them: \"Cry aloud: for he is a god; either he is talking, or he is pursuing, or he is in a journey, or peradventure he sleepeth.\" They cry aloud and cut themselves with knives and lancets till the blood gushes out, and prophesy until the evening sacrifice — \"neither voice, nor any to answer, nor any that regarded.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Baal,\" read in full for the S07-relevant portion (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-018",
+      "claim": "Elijah repairs the altar of the LORD that was broken down, with twelve stones \"according to the number of the tribes of the sons of Jacob, unto whom the word of the LORD came, saying, Israel shall be thy name.\" He builds an altar in the name of the LORD and makes a trench about it, as great as would contain two measures of seed.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-019",
+      "claim": "Elijah puts the wood in order, cuts the bullock in pieces, lays him on the wood, and has four barrels of water poured on the burnt sacrifice and the wood — a second time, and a third time — until the water runs round about the altar and fills the trench.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-020",
+      "claim": "At the time of the offering of the evening sacrifice Elijah prays: \"LORD God of Abraham, Isaac, and of Israel, let it be known this day that thou art God in Israel, and that I am thy servant, and that I have done all these things at thy word… that this people may know that thou art the LORD God, and that thou hast turned their heart back again.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-021",
+      "claim": "The fire of the LORD falls and consumes the burnt sacrifice, the wood, the stones, and the dust, and licks up the water in the trench. All the people fall on their faces and say, \"The LORD, he is the God; the LORD, he is the God.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-022",
+      "claim": "Elijah says, \"Take the prophets of Baal; let not one of them escape.\" They take them, and Elijah brings them down to the brook Kishon and slays them there. The Law of Moses prescribed death for a prophet who urged Israel to worship other gods (Deut 13:1–5), and the narrative presents Elijah as carrying out that covenant sentence — the article's reading; the text itself does not cite Deuteronomy 13.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Elijah,\" read in full for the S07-relevant portion (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-07-023",
+      "claim": "Elijah tells Ahab to eat and drink, \"for there is a sound of abundance of rain.\" On Carmel's top he puts his face between his knees and sends his servant seven times to look toward the sea; at the seventh, \"a little cloud out of the sea, like a man's hand.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-024",
+      "claim": "The heaven grows black with clouds and wind, and there is a great rain; Ahab rides to Jezreel. \"The hand of the LORD was on Elijah; and he girded up his loins, and ran before Ahab to the entrance of Jezreel.\" The drought announced in 17:1 is broken here: the two chapters are one arc.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-07-025",
+      "claim": "Date: unknown. First Kings says the word to end the drought came \"in the third year\" (18:1); Jesus and James both speak of three and a half years without rain (Luke 4:25; Jas 5:17). The figures are usually harmonised by taking the \"third year\" to count from a point after the drought began, such as Elijah's move to Zarephath, while the New Testament gives the full length. The harmonisation is the usual proposal, not an established resolution.",
+      "evidence": "BiblicalTraining, \"Elijah,\" read in full for the S07-relevant portion (see §12).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ki-07-026",
+      "claim": "Historical setting: Ahab son of Omri marries Jezebel, daughter of Ethbaal king of the Sidonians, builds a temple and altar for Baal in Samaria, and sets up an Asherah pole. Baal is a storm god, \"the rider of the clouds,\" who sends rain, dew, thunder, and lightning and so gives the land its fertility; his battle with Mot, the god of death, is linked to the cycle of drought and rain. Elijah's drought therefore strikes at the heart of Baal's claimed powers. Which Baal Jezebel promoted (Melqart, Baal Shamem, or Hadad) is debated among scholars.",
+      "evidence": "BiblicalTraining, \"Elijah\" and \"Baal,\" read in full for the S07-relevant portions (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-07-027",
+      "claim": "Ahab's power: the Kurkh Monolith of the Assyrian king Shalmaneser III names \"Ahab the Israelite\" among the allied kings who faced Assyria at the battle of Qarqar in 853 BC and credits him with 2,000 chariots and 10,000 soldiers. The monolith itself was not read in this dossier (K07-S06, needs-checking); the report rests on the Elijah article.",
+      "evidence": "BiblicalTraining, \"Elijah,\" read in full for the S07-relevant portion (see §12); Kurkh Monolith, not read directly.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-07-028",
+      "claim": "Zarephath is the Sarepta of the New Testament (Luke 4:26) and the modern Sarafand in Lebanon, where an American team led by James B. Pritchard excavated in the 1970s. The excavation report itself was not read in this dossier (K07-S07, needs-checking); the identification rests on the Elijah article's report.",
+      "evidence": "BiblicalTraining, \"Elijah,\" read in full for the S07-relevant portion (see §12); Pritchard excavations, not read directly.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-07-029",
+      "claim": "The drought is presented as the covenant curse coming into effect: the Law warned that if Israel turned to other gods, the LORD would shut up the heavens so that no rain would fall (Deut 11:16–17; see Lev 26:19; Deut 28:23–24). Elijah's drought is announced by a prophet of the covenant Lord, and its ending is likewise the LORD's sending of rain.",
+      "evidence": "BiblicalTraining, \"Elijah,\" read in full for the S07-relevant portion (see §12); Hebrew + JPS 1917 for Deut 11:16–17 per the article's citation (not read live in full).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-07-030",
+      "claim": "The widow at Zarephath stands among the most exposed people in her community: a widow gathering sticks for a last meal of a handful of meal and a little oil. The narrative's provision — meal that does not waste, oil that does not fail — answers her destitution in household terms.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Widow\" (registry-verified, not re-read in this dossier).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-07-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 29,
+      "endChapter": 16,
+      "endVerse": 33,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Ahab son of Omri reigns over Israel in Samaria twenty-two years, marries Jezebel daughter of Ethbaal king of the Sidonians, serves Baal, rears an altar for Baal in the house of Baal he built in Samaria, and makes a grove. This is the regime Elijah confronts, and the reason the drought falls on Ahab's reign."
+    },
+    {
+      "id": "conn-1ki-07-002",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 11,
+      "startVerse": 16,
+      "endChapter": 11,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Law warns that if Israel's heart is deceived and they turn aside to serve other gods, the LORD's anger will be kindled and he will shut up the heaven, that there be no rain. Elijah's drought announces that warning coming into effect."
+    },
+    {
+      "id": "conn-1ki-07-003",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 13,
+      "startVerse": 1,
+      "endChapter": 13,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Law prescribes death for a prophet who speaks to turn Israel away from the LORD to go after other gods. Elijah's slaying of the prophets of Baal at the Kishon is presented as carrying out that sentence."
+    },
+    {
+      "id": "conn-1ki-07-004",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 4,
+      "startVerse": 14,
+      "endChapter": 5,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Deborah and Barak rout Sisera's army at the Kishon: the prose account (4:14–16) has the LORD discomfiting Sisera's chariots, and the song (5:19–21) has the river Kishon sweeping the fleeing soldiers away, \"in Taanach by the waters of Megiddo\" The river where Baal's prophets are slain is the same river where Israel's earlier victory was won."
+    },
+    {
+      "id": "conn-1ki-07-005",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 28,
+      "endChapter": 12,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jeroboam makes two calves of gold and says, \"behold thy gods, O Israel, which brought thee up out of the land of Egypt.\" The northern kingdom's worship was already compromised before Ahab built Baal a temple; whether the calves were meant as pedestals for the invisible LORD or as images of another god is debated."
+    },
+    {
+      "id": "conn-1ki-07-006",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 19,
+      "startVerse": 1,
+      "endChapter": 19,
+      "endVerse": 18,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "When Ahab tells Jezebel what happened on Carmel, she threatens Elijah's life; he flees to Horeb, complains that he alone is left, and is told of seven thousand in Israel who have not bowed to Baal. The aftermath answers the contest's unfinished business."
+    },
+    {
+      "id": "conn-1ki-07-007",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 21,
+      "startVerse": 1,
+      "endChapter": 21,
+      "endVerse": 29,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Ahab takes Naboth's vineyard after Jezebel has Naboth stoned, and Elijah meets him there with the sentence: in the place where dogs licked the blood of Naboth shall dogs lick his blood. The prophet who confronted the king over Baal confronts him again over justice, and the house judged on Carmel is judged again."
+    },
+    {
+      "id": "conn-1ki-07-008",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 1,
+      "startVerse": 2,
+      "endChapter": 1,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ahab's son Ahaziah, injured in a fall, sends messengers to ask Baal-Zebub, the god of Ekron, whether he will recover. Elijah intercepts them: because the king consulted a foreign god, he will not rise from his bed. The Baal conflict outlives Ahab."
+    },
+    {
+      "id": "conn-1ki-07-009",
+      "book": "Luke",
+      "bookId": "luke",
+      "startChapter": 4,
+      "startVerse": 25,
+      "endChapter": 4,
+      "endVerse": 26,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jesus recalls that in the days of Elijah the heaven was shut up three years and six months, when great famine was throughout all the land, and that Elijah was sent to none of them but to a widow at Sarepta, a city of Sidon. The New Testament remembers both the drought's length and the widow."
+    },
+    {
+      "id": "conn-1ki-07-010",
+      "book": "James",
+      "bookId": "james",
+      "startChapter": 5,
+      "startVerse": 17,
+      "endChapter": 5,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "James recalls that Elijah prayed earnestly that it might not rain, and it rained not on the earth by the space of three years and six months; and he prayed again, and the heaven gave rain. The drought's ending is remembered as an answer to prayer."
+    },
+    {
+      "id": "conn-1ki-07-011",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 9,
+      "startVerse": 24,
+      "endChapter": 9,
+      "endVerse": 24,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Fire comes out from before the LORD and consumes the burnt offering on the altar at the tabernacle's dedication, and all the people shout and fall on their faces. Fire from the LORD had marked his acceptance of sacrifice at turning points before Carmel."
+    },
+    {
+      "id": "conn-1ki-07-012",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 7,
+      "startVerse": 3,
+      "endChapter": 7,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Samuel tells all the house of Israel to put away the strange gods and Ashtoreth from among them and prepare their hearts unto the LORD and serve him only, and the children of Israel put away Baalim and Ashtaroth. An earlier putting-away of the Baals stands behind Elijah's demand to choose."
+    },
+    {
+      "id": "conn-1ki-07-013",
+      "book": "Hosea",
+      "bookId": "hosea",
+      "startChapter": 2,
+      "startVerse": 8,
+      "endChapter": 2,
+      "endVerse": 8,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The LORD says of Israel that she did not know that he gave her corn, and wine, and oil, and multiplied her silver and gold, which they prepared for Baal. Hosea names the confusion Elijah's contest exposes: crediting Baal with gifts that came from the LORD."
+    },
+    {
+      "id": "conn-1ki-07-014",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 6,
+      "startVerse": 26,
+      "endChapter": 6,
+      "endVerse": 26,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Joshua adjures the people that the man who rebuilds Jericho shall lay its foundation in his firstborn and set up its gates in his youngest son. In Ahab's days Hiel the Bethelite rebuilds Jericho at the cost of Abiram and Segub, according to the word of the LORD by Joshua — a sign that the word of the LORD remained in force in a time when it was widely ignored."
+    },
+    {
+      "id": "conn-1ki-07-015",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 9,
+      "startVerse": 30,
+      "endChapter": 9,
+      "endVerse": 37,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jezebel is thrown from a window in Jezreel and eaten by dogs, and Jehu recognises it as the word of the LORD spoken through Elijah. Jezreel, where the rain run ends, is where her end comes."
+    },
+    {
+      "id": "conn-1ki-07-016",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 83,
+      "startVerse": 9,
+      "endChapter": 83,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The psalm asks God to deal with a coalition of Israel's enemies as he dealt with Midian, and \"as to Sisera, as to Jabin, at the brook of Kison\" The Kishon victory is remembered long after as the pattern of God's deliverance."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-biblicaltraining-elijah",
+    "source-biblicaltraining-baal",
+    "source-biblicaltraining-widow",
+    "source-biblicaltraining-kishon",
+    "source-biblicaltraining-carmel",
+    "source-baal-cycle-ktu",
+    "source-biblicaltraining-ashtoreth"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S07 sources[] carries eight entries (all verified in the live registry): K07-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K07-S02 BT \"Elijah\" -> source-biblicaltraining-elijah; K07-S03 BT \"Baal\" -> source-biblicaltraining-baal; source-biblicaltraining-widow; K07-S05 BT \"Kishon\" -> source-biblicaltraining-kishon; K07-S04 BT \"Carmel\" -> source-biblicaltraining-carmel; source-baal-cycle-ktu; source-biblicaltraining-ashtoreth. Four appear in §9 Source IDs cells (Mechon Mamre 25 claims, BT Elijah 6, BT Baal 2, BT Widow 1 — KCL-07-030). Four enter via the appendix footnote only (the S03 Wikipedia-Edom precedent: appendix footnote, registry-verified, included by the mechanical §-location rule): BT \"Kishon\" (4 uses), BT \"Carmel\" (6 uses), Baal Cycle KTU (1 use — \"The Baal Cycle (KTU 1.4 VI 44–46)\"), BT \"Ashtoreth\" (1 use). Appendix-only entries are ordered by first appearance in the appendix (Kishon, Carmel, Baal Cycle, Ashtoreth). S07 contributes exactly 4 newly-cited sources: BT \"Elijah\", BT \"Baal\", BT \"Kishon\", and BT \"Carmel\" (counted before the build by parsing the category JSONs on base — that parse said 5, but Baal Cycle KTU was already cited by the published event \"humanitys-corruption\" (events/humanitys-corruption.json sources[]), so it adds nothing; the dev-opt-in count 366 → 370 confirms 4). Excluded by the §-location rule (§2/§4/§5/§6/§7/§8 prose, §10 topic line, or §12 table only, never in a §9 Source IDs cell or the appendix): source-baal-astarte-vocabulary (§2 prose + §12 table only), source-bdb-lexicon (§2 prose + §12 table + dossier notes only), source-bible-odyssey-royal-succession (§2/§4 prose + §12 table + dossier notes only — unlike S06, it is NOT in this dossier's appendix, so it is excluded here), source-biblicaltraining-plain-of-esdraelon (§2/§6/§7 prose + §12 table + dossier notes only), source-biblicaltraining-valley-of-jezreel (§2 prose + §12 table + dossier notes only). Excluded by the needs-checking rule (registry entry exists, not-independently-verified — the S05 Levin precedent): K07-S06 Kurkh Monolith (source-kurkh-monolith) and K07-S07 Pritchard Sarafand (source-pritchard-sarafand-excavations). Neither was read directly in this dossier; both are reported second-hand in K07-S02 (\"Elijah\"). Both sit in a §9 Source IDs cell (K07-S06 in KCL-07-027, K07-S07 in KCL-07-028), and both dependent claims are capped probable and also rest on verified K07-S02 (registry mapping table lines 175-176). Neither appears in the appendix (0 footnote uses each), so neither appears in the MD at all. Excluded by the §-location rule (reuse-basis only, cited through published claims in §2, never in §9 Source IDs or the appendix): the kingship law (clm-deu-05-014/015/023), the Deut 18 prophet framework (clm-deu-05-029), the ark (clm-deu-09-014), and the other §2 reuse references (clm-bu-033, clm-deu-03-036, clm-jud-04-001). The six probable claims are KCL-07-022 (the slaying of Baal's prophets at the Kishon), KCL-07-026 (Ahab's marriage to Jezebel and the Baal temple — historical setting), KCL-07-027 (Ahab's power: Kurkh Monolith names \"Ahab the Israelite\" at Qarqar — capped probable, also rests on verified K07-S02), KCL-07-028 (Zarephath = Sarepta = Sarafand — capped probable, also rests on verified K07-S02), KCL-07-029 (the drought as the covenant curse, Deut 11:16-17), KCL-07-030 (the widow at Zarephath among the most exposed people). The one debated claim is KCL-07-025 (the drought's length: \"in the third year\" (18:1) against \"three years and six months\" (Luke 4:25; Jas 5:17) — the harmonisation is the usual proposal, not an established resolution; neither reading is asserted). S07 has NO established connection — all sixteen connections are probable. One multi-range connection: KCO-07-004 is the encompassing range Judges 4:14–5:21 with the exact sub-ranges named in its note as written (\"the prose account (4:14–16) ... and the song (5:19–21)\"); no split, and no \"Targets\" sentence appended — the sub-ranges are recoverable from the note as written (S03/S04/S06 precedent in substance; the word-for-word rule governs). KCO-07-016 (Psalm 83:9) builds as book \"Psalms\" / bookId \"psalms\" (1 Samuel S01 precedent). primaryScripture = fullRange = 17:1–18:46 (no narrowing — the range spans exactly two chapters, span = 1, within the validator limit; the whole arc is one drought-and-Carmel story and no shorter passage represents it). Chapters 17 and 18 carry zero KJV diffs except 18:13, a Class D accepted variant (stored \"the LORD's prophets\" vs standard KJV \"the LORD'S prophets\" — possessive casing only); it is NOT an error and nothing was \"fixed\". The five flagged Class A errors (2:26, 3:10, 8:53, 13:22, 22:6) are all outside this range; no database fix proposed. Step 5 correction D-S07-1 (the only D-S07 label in the corrections report): the licensed-translation 1 Kgs 17:12 phrase in dossier 07 §5 L120 was fixed to the KJV reading before the build; the licensed phrase occurs 0× in the built files and the KJV reading is used where 17:12 is quoted. Chapter coverage is complete: all 70 verses covered (ch. 17: 24, ch. 18: 46), per the dossier's own coverage check, re-verified by script at build. Ancient World is 1205 words as recorded by the dossier, 295 under the 1500-word cap; built as written, no words trimmed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
