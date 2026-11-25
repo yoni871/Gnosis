@@ -1,0 +1,440 @@
+{
+  "id": "category-1-kings-the-succession-of-kings-in-judah-and-israel",
+  "title": "The Succession of Kings in Judah and Israel",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 15,
+    "startVerse": 1,
+    "endChapter": 16,
+    "endVerse": 34
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 15,
+    "startVerse": 1,
+    "endChapter": 16,
+    "endVerse": 34
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-06-001",
+      "claim": "In the eighteenth year of Jeroboam son of Nebat, Abijam reigns over Judah three years in Jerusalem; his mother's name is Maachah, daughter of Abishalom.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-002",
+      "claim": "Abijam walks in all the sins of his father, which he had done before him; his heart is not perfect with the LORD his God, as the heart of David his father.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-003",
+      "claim": "\"Nevertheless for David's sake did the LORD his God give him a lamp in Jerusalem, to set up his son after him, and to establish Jerusalem: because David did that which was right in the eyes of the LORD, and turned not aside from any thing that he commanded him all the days of his life, save only in the matter of Uriah the Hittite.\" The lamp is granted for David's sake, not for Abijam's merit, and the text states its own single exception to David's record without explaining it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-004",
+      "claim": "There is war between Rehoboam and Jeroboam all the days of his life, and war between Abijam and Jeroboam; the rest of Abijam's acts are written in the book of the chronicles of the kings of Judah.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-005",
+      "claim": "Abijam sleeps with his fathers, is buried in the city of David, and Asa his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-006",
+      "claim": "In the twentieth year of Jeroboam, Asa reigns over Judah forty-one years in Jerusalem; his mother's name is Maachah, daughter of Abishalom; he does that which is right in the eyes of the LORD, as did David his father.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-007",
+      "claim": "Asa takes away the sodomites out of the land, removes all the idols his fathers had made, and removes his mother Maachah from being queen because she had made an idol in a grove, destroying it and burning it by the brook Kidron. The JPS 1917 renders the object \"an abominable image for an Asherah,\" where the KJV renders it \"an idol in a grove\"; the Asherah is distinct from Ashtoreth in the Hebrew text.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Ashtoreth,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-008",
+      "claim": "\"But the high places were not removed: nevertheless Asa's heart was perfect with the LORD all his days.\" The reform's limit and its praise stand in the same verse, unreconciled.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; JFB on 1 Kgs 15:14 read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-009",
+      "claim": "Asa brings into the house of the LORD the things his father had dedicated and the things he himself had dedicated — silver, gold, and vessels.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-010",
+      "claim": "There is war between Asa and Baasha king of Israel all their days; Baasha goes up against Judah and builds Ramah, \"that he might not suffer any to go out or come in to Asa king of Judah.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-011",
+      "claim": "Asa takes all the silver and gold left in the treasures of the house of the LORD and of the king's house and sends them to Benhadad, son of Tabrimon, son of Hezion, king of Syria, that dwelt at Damascus, asking him to break his league with Baasha; Benhadad hearkens and smites Ijon, Dan, Abel-beth-maachah, and all Cinneroth, with all the land of Naphtali. The text records the transaction and its military result and offers no judgment on the act.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Mizpah,\" read in full (Asa bribed Ben-Hadad to attack Israel from the north).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-012",
+      "claim": "When Baasha hears of Benhadad's attack he leaves off building Ramah and dwells in Tirzah; Asa proclaims a levy throughout all Judah — \"none was exempted\" — and takes away the stones and timber of Ramah, building with them Geba of Benjamin and Mizpah.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Mizpah,\" read in full (Asa's fortress; Geba and Mizpah built from Ramah's material).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-013",
+      "claim": "The rest of Asa's acts, his might, all that he did, and the cities he built are written in the book of the chronicles of the kings of Judah; in old age he is diseased in his feet; he sleeps with his fathers, is buried with them in the city of David, and Jehoshaphat his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-014",
+      "claim": "Nadab son of Jeroboam reigns over Israel two years from the second year of Asa, walking in his father's way and sin; Baasha son of Ahijah, of the house of Issachar, conspires against him and smites him at Gibbethon, which belonged to the Philistines, while Nadab and all Israel lay siege to it; Baasha slays him in the third year of Asa and reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-015",
+      "claim": "As soon as Baasha reigns he smites all the house of Jeroboam, leaving not any that breathed, \"according unto the saying of the LORD, which he spake by his servant Ahijah the Shilonite,\" because of the sins of Jeroboam; the rest of Nadab's acts are written in the book of the chronicles of the kings of Israel, and war between Asa and Baasha runs all their days.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-016",
+      "claim": "Baasha reigns over all Israel in Tirzah twenty-four years from the third year of Asa, doing evil and walking in the way of Jeroboam; the word of the LORD comes to Jehu son of Hanani against Baasha — \"I exalted thee out of the dust, and made thee prince over my people Israel\" — and dooms his house to be like the house of Jeroboam: \"Him that dieth of Baasha in the city shall the dogs eat; and him that dieth of his in the fields shall the fowls of the air eat.\" The Baasha arc crosses the chapter boundary whole; it is not split.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-017",
+      "claim": "The rest of Baasha's acts, what he did, and his might are written in the book of the chronicles of the kings of Israel; Baasha sleeps with his fathers, is buried in Tirzah, and Elah his son reigns in his stead; and by the hand of Jehu the word of the LORD comes against Baasha and his house \"even for all the evil that he did… in being like the house of Jeroboam; and because he killed him.\" The sense of \"because he killed him\" is not explained by the text.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-018",
+      "claim": "Elah son of Baasha reigns two years in Tirzah from the twenty-sixth year of Asa; his servant Zimri, captain of half his chariots, conspires against him while Elah drinks himself drunk in the house of Arza, steward of his house in Tirzah, and smites and kills him in the twenty-seventh year of Asa.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-019",
+      "claim": "As soon as Zimri sits on his throne he slays all the house of Baasha — \"he left him not one that pisseth against a wall, neither of his kinsfolks, nor of his friends\" (JPS 1917: \"not a single man-child\") — \"according to the word of the LORD, which he spake against Baasha by Jehu the prophet,\" for the sins of Baasha and Elah, \"in provoking the LORD God of Israel to anger with their vanities\"; the rest of Elah's acts are written in the book of the chronicles of the kings of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-020",
+      "claim": "Zimri reigns seven days in Tirzah while the people are encamped against Gibbethon, which belonged to the Philistines; hearing of the conspiracy, all Israel makes Omri, captain of the host, king over Israel that day in the camp; Omri besieges Tirzah, and Zimri, seeing the city taken, burns the king's house over him with fire and dies, \"for his sins which he sinned in doing evil in the sight of the LORD, in walking in the way of Jeroboam\"; the rest of Zimri's acts, \"and his treason that he wrought,\" are written in the book of the chronicles of the kings of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-021",
+      "claim": "Israel divides: half follows Tibni son of Ginath, to make him king, and half follows Omri; the people that follow Omri prevail, Tibni dies, and Omri reigns; Omri reigns twelve years from the thirty-first year of Asa, six years in Tirzah.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-022",
+      "claim": "Omri's twelve years are computed from the beginning of his reign in the twenty-seventh year of Asa: he held a contested reign for four years with Tibni, then entered on a sole and peaceful reign of eight years. The reckoning reconciles 16:15 with 16:23; the text itself does not explain the overlap.",
+      "evidence": "JFB on 1 Kgs 16:21–23 read in full (four years' anarchy or civil war; twelve years computed from the twenty-seventh year of Asa).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-06-023",
+      "claim": "Omri buys the hill Samaria of Shemer for two talents of silver, builds on the hill, and calls the city Samaria after Shemer, owner of the hill. The northern capital is founded by purchase and keeps the seller's name; what two talents of silver meant in value is not stated.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Samaria,\" read in part (location and setting; founding under Omri).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-024",
+      "claim": "\"Omri wrought evil in the eyes of the LORD, and did worse than all that were before him,\" walking in the way of Jeroboam and provoking the LORD God of Israel to anger with their vanities; the rest of his acts and his might are written in the book of the chronicles of the kings of Israel; he sleeps with his fathers, is buried in Samaria, and Ahab his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-025",
+      "claim": "Outside the Bible, Omri is remembered as a strong king: the Mesha Stele says Omri oppressed Moab for many years, and Assyrian records continued for generations to call Israel \"the house of Omri\" — Shalmaneser III's Black Obelisk even describes Jehu, who overthrew the dynasty, as a \"son of Omri.\" Kings, by contrast, gives Omri six verses and the worst verdict yet.",
+      "evidence": "Mesha Stele translation read in full (Torat Har Etzion); BiblicalTraining, \"Samaria,\" read in part (Assyrian records; Black Obelisk); BiblicalTraining, \"Ahab,\" read in part (outside evidence; Mesha Stele).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-06-026",
+      "claim": "In the thirty-eighth year of Asa, Ahab son of Omri reigns over Israel in Samaria twenty-two years; he \"did evil in the sight of the LORD above all that were before him\"; \"as if it had been a light thing for him to walk in the sins of Jeroboam the son of Nebat, that he took to wife Jezebel the daughter of Ethbaal king of the Zidonians, and went and served Baal, and worshipped him.\" Ethbaal is identified, through Josephus citing the Phoenician historian Menander, as Ithobaal of Tyre, a priest of Astarte who seized the throne by killing his predecessor — a second-hand identification, carried as probable.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Ahab,\" read in part (marriage to Jezebel; Ethbaal/Ithobaal via Josephus citing Menander); BiblicalTraining, \"Jezebel,\" read in part (Ethbaal as Ithobaal of Tyre).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-06-027",
+      "claim": "Ahab rears up an altar for Baal in the house of Baal which he builds in Samaria, and makes a grove (JPS 1917: \"made the Asherah\"); \"Ahab did more to provoke the LORD God of Israel to anger than all the kings of Israel that were before him.\" Baal is the Canaanite storm god, believed to bring the rains on which farming depended; the Asherah is distinct from Ashtoreth, the Phoenician goddess of the Sidonians.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Ahab,\" read in part (religious policy; Baal as storm god); BiblicalTraining, \"Ashtoreth,\" read in full (Asherah distinct from Ashtoreth).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-028",
+      "claim": "In Ahab's days Hiel the Bethelite builds Jericho, laying its foundation in Abiram his firstborn and setting up its gates in his youngest son Segub, \"according to the word of the LORD, which he spake by Joshua the son of Nun.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-06-029",
+      "claim": "Date: unknown. The text gives no absolute date. The synchronisms and reign lengths are the frame, not dates. Conventional scholarly datings — Samaria founded \"about 880 BC,\" Ahab c. 874–853 BC, anchored by Ahab at Qarqar in 853 BC — are reconstructions used by the articles cited, not dates the text gives.",
+      "evidence": "BiblicalTraining, \"Samaria,\" read in part (founding about 880 BC); BiblicalTraining, \"Ahab,\" read in part (chronology; Qarqar 853 BC anchor; reconstructions differ).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-06-030",
+      "claim": "The places of the two chapters are named, not located, by the text: Ramah stands near Gibeah, only six Roman miles from Jerusalem, on an eminence overhanging the ravine between Israel and Judah; Gibbethon lies within the tribe of Dan, given to the Levites, on the Philistine borders; Mizpah is most often identified today with Tell en-Nasbeh, excavated 1926–1935, whose massive wall and gate many scholars link with Asa's work — against the older tradition placing it at Nebi Samwil. The Mizpah identification is debated. Samaria's hill stands in the hill country of Ephraim, about 7 miles northwest of Shechem, with steep sides and a broad, fairly level top.",
+      "evidence": "JFB on 1 Kgs 15:16–17, 15:22, 15:27 read in full (Ramah; Geba and Mizpeh; Gibbethon); BiblicalTraining, \"Mizpah,\" read in full (Tell en-Nasbeh; Badè excavations; Nebi Samwil tradition); BiblicalTraining, \"Samaria,\" read in part (location and setting); JFB on 1 Kgs 16:24 read in full (the hill's shape).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-06-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 36,
+      "endChapter": 11,
+      "endVerse": 36,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The one tribe is kept for Jerusalem's sake, \"that David my servant may have a light alway before me in Jerusalem.\" The lamp given at 15:4 is the same promise kept for an unworthy king."
+    },
+    {
+      "id": "conn-1ki-06-002",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The LORD promises David a house that will endure: \"I will stablish the throne of his kingdom for ever.\" The lamp in Jerusalem rests on this promise, not on Abijam's conduct."
+    },
+    {
+      "id": "conn-1ki-06-003",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 11,
+      "startVerse": 1,
+      "endChapter": 12,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "established",
+      "note": "The targets are 2 Samuel 11:1–27, where David takes Bathsheba and has Uriah the Hittite killed, and 12:1–14, where Nathan rebukes him and the child dies. The exception at 15:5, \"save only in the matter of Uriah the Hittite,\" points to this story."
+    },
+    {
+      "id": "conn-1ki-06-004",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 14,
+      "startVerse": 7,
+      "endChapter": 14,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "Ahijah tells Jeroboam's wife that the LORD will cut off his house and that dogs and fowls will eat its dead. Baasha's extermination of Jeroboam's house at 15:29 carries this word out."
+    },
+    {
+      "id": "conn-1ki-06-005",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 28,
+      "endChapter": 12,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jeroboam makes two calves of gold and sets them in Bethel and Dan, saying, \"behold thy gods, O Israel, which brought thee up out of the land of Egypt.\" Every northern king in these chapters is measured by this way: Nadab, Baasha, Elah, Zimri, and Omri all walk in it."
+    },
+    {
+      "id": "conn-1ki-06-006",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 13,
+      "startVerse": 32,
+      "endChapter": 13,
+      "endVerse": 32,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The old prophet confirms that the word cried against the altar in Bethel will come to pass, \"and against all the houses of the high places which are in the cities of Samaria.\" Samaria is named here before Omri founds the city at 16:24."
+    },
+    {
+      "id": "conn-1ki-06-007",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 7,
+      "startVerse": 3,
+      "endChapter": 7,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Israel is forbidden to marry into the peoples of the land, \"for they will turn away thy son from following me, that they may serve other gods.\" The marriage of Ahab to Jezebel, daughter of the king of the Sidonians, is the warning coming true."
+    },
+    {
+      "id": "conn-1ki-06-008",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 6,
+      "startVerse": 26,
+      "endChapter": 6,
+      "endVerse": 26,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "Joshua curses the man who rebuilds Jericho: he will lay its foundation in his firstborn and set up its gates in his youngest son. Hiel the Bethelite fulfils it at 16:34, losing Abiram and Segub."
+    },
+    {
+      "id": "conn-1ki-06-009",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 14,
+      "startVerse": 11,
+      "endChapter": 14,
+      "endVerse": 11,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"Him that dieth of Jeroboam in the city shall the dogs eat; and him that dieth in the field shall the fowls of the air eat.\" The same sentence falls on Baasha's house at 16:4, city and field alike."
+    },
+    {
+      "id": "conn-1ki-06-010",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 21,
+      "startVerse": 23,
+      "endChapter": 21,
+      "endVerse": 24,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Elijah announces that dogs will eat Jezebel by the wall of Jezreel, and that the dogs will eat whoever of Ahab's house dies in the city, and the fowls whoever dies in the field. The sentence of 14:11 and 16:4 reaches Ahab's house in turn."
+    },
+    {
+      "id": "conn-1ki-06-011",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 9,
+      "startVerse": 30,
+      "endChapter": 9,
+      "endVerse": 37,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jehu has Jezebel thrown from a palace window at Jezreel, and dogs devour her, leaving only her skull, her feet, and her palms. The marriage arranged at 16:31 ends here, a generation later."
+    },
+    {
+      "id": "conn-1ki-06-012",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 20,
+      "startVerse": 1,
+      "endChapter": 20,
+      "endVerse": 21,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Benhadad of Damascus besieges Samaria with thirty-two allied kings and demands Ahab's silver, gold, wives, and children. The Aramean king Asa hired at 15:18–20 returns as the besieger of the capital Omri built. Whether the two bearers of the name are the same ruler is debated."
+    },
+    {
+      "id": "conn-1ki-06-013",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 17,
+      "startVerse": 1,
+      "endChapter": 17,
+      "endVerse": 1,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Elijah the Tishbite tells Ahab there will be no dew nor rain \"but according to my word.\" The drought is announced against the reign whose Baal temple and Asherah were set up at 16:31–33."
+    },
+    {
+      "id": "conn-1ki-06-014",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 16,
+      "startVerse": 1,
+      "endChapter": 16,
+      "endVerse": 6,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler retells Asa, Baasha, and Benhadad: Ramah built, the treasure sent to Damascus, the northern cities struck, and Geba and Mizpah built from Ramah's stones. The Chronicler adds the rebuke of Hanani the seer, which Kings does not give."
+    },
+    {
+      "id": "conn-1ki-06-015",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 22,
+      "startVerse": 39,
+      "endChapter": 22,
+      "endVerse": 39,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The rest of Ahab's acts include \"the ivory house which he made, and all the cities that he built.\" The palace adorned with ivory stands in the Samaria Omri bought and built."
+    },
+    {
+      "id": "conn-1ki-06-016",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 16,
+      "endChapter": 17,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The king must not multiply horses, nor cause the people to return to Egypt for horses, nor multiply wives \"that his heart turn not away,\" nor greatly multiply silver and gold. The law stands behind the judgments on the kings of these chapters, as it stood behind the judgment on Solomon."
+    },
+    {
+      "id": "conn-1ki-06-017",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 3,
+      "startVerse": 13,
+      "endChapter": 3,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The king of Moab takes the city of palm trees, Jericho, with Ammon and Amalek. Jericho was inhabited after Joshua's time, so the curse fulfilled at 16:34 is read as striking at the restoration of its walls."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-biblicaltraining-samaria",
+    "source-biblicaltraining-ahab",
+    "source-biblicaltraining-jezebel",
+    "source-biblicaltraining-ashtoreth",
+    "source-jfb-commentary",
+    "source-biblicaltraining-mizpah",
+    "source-mesha-stele-2-kings-3-4",
+    "source-bible-odyssey-royal-succession"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S06 sources[] carries nine entries (all verified in the live registry): K06-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K06-S02 BT \"Samaria\" -> source-biblicaltraining-samaria; K06-S03 BT \"Ahab\" -> source-biblicaltraining-ahab; K06-S04 BT \"Jezebel\" -> source-biblicaltraining-jezebel; source-biblicaltraining-ashtoreth; source-jfb-commentary; source-biblicaltraining-mizpah; source-mesha-stele-2-kings-3-4; source-bible-odyssey-royal-succession. Eight appear in §9 Source IDs cells (Mechon Mamre 26 claims, BT Samaria 4, BT Ahab 4, BT Jezebel 1, BT Ashtoreth 2, JFB 3, BT Mizpah 3, Mesha Stele 1). One enters via the appendix footnote only (4 uses — the S03 Wikipedia-Edom precedent: appendix footnote, registry-verified, included by the mechanical §-location rule): BO \"Royal Succession\" (\"Kingship in the region was normally dynastic\"). S06 contributes exactly 3 newly-cited sources: BT \"Samaria\", BT \"Ahab\", and BT \"Jezebel\" (counted before the build by parsing the category/event JSONs on base). Excluded by the §-location rule (§4/§5/§6/§7/§8 prose, §10 topic line, or §12 table only, never in a §9 Source IDs cell or the appendix): source-baal-astarte-vocabulary (§4 prose only — the Baal/Asherah/Ashtoreth vocabulary sentence; it does NOT appear in the appendix), source-richelle-cult-centralization-kings (§4 prose only — the high-places framing; not re-read; no §9 claim rests on it). Excluded by the Ruth hygiene rule (needs-checking, §12 row only, unread, no dependent claim): K06-S05 BT \"Baal\" — attempted by curl and blocked by a Cloudflare challenge page; not read in any form; no claim in this dossier rests on it. It FOLDS into the already-verified source-biblicaltraining-baal (K07-S03 read lines 0–148 in full); it is in neither sources[] nor the MD footnotes. Baal material in this dossier rests on K06-S03, K06-S04, and source-baal-astarte-vocabulary (the last of which is itself §4-only and excluded). Excluded by the §-location rule (reuse-basis only, cited through published claims in §2, never in §9 Source IDs or the appendix): the kingship law (clm-deu-05-014/016/023), the Deut 18 prophet framework (clm-deu-05-029–036, 038), Levinson's kingship thesis (clm-deu-05-022). The five probable claims are KCL-06-022 (Omri's twelve-year reckoning, JFB's four-year contested reign + eight-year sole reign), KCL-06-025 (Omri remembered externally: Mesha Stele, Black Obelisk, \"house of Omri\"), KCL-06-026 (Ethbaal identified as Ithobaal of Tyre via Josephus citing Menander — second-hand identification), KCL-06-029 (date: unknown; conventional datings about 880 BC and Ahab c. 874–853 BC, anchored by Qarqar 853 BC), KCL-06-030 (place identifications: Ramah, Gibbethon, Mizpah debated, Samaria's hill). The three established connections are KCO-06-003 (2 Sam 11:1–12:14, the Uriah story behind the 15:5 exception), KCO-06-004 (1 Kgs 14:7–16, Ahijah's oracle against Jeroboam's house), and KCO-06-008 (Josh 6:26, the curse on rebuilding Jericho). One multi-range connection: KCO-06-003 is the encompassing range 2 Samuel 11:1–12:14 with the exact sub-ranges in its note (\"The targets are 2 Samuel 11:1–27 ... and 12:1–14\"); no split (S03/S04 precedent). primaryScripture = fullRange = 15:1–16:34 (no narrowing — the range spans exactly two chapters, span = 1, within the validator limit; the whole arc is one succession and no shorter passage represents it). Chapters 15 and 16 are zero-diff chapters in the KJV verification — no Class A stored-text error in this range (the five flagged errors, 2:26, 3:10, 8:53, 13:22, 22:6, are all outside it); no database fix proposed. Step 5 corrections D-S06-3 (move the geography limb: KCL-06-023 keeps established; the hill sentence and its basis, BT \"Samaria\" read-in-part + JFB on 1 Kgs 16:24, moved into KCL-06-030, probable; JFB leaves -023's Source IDs and Evidence) and D-S06-5 (reword the K06-S03 row: the Qarqar 853 BC anchor IS in the read portion, Chronology section lines 0–154) are applied in the dossier as read — verified by assertion at build (the corrections report records both; no other D-S06 labels exist there). Chapter coverage is complete: all 68 verses covered (ch. 15: 34, ch. 16: 34), per the dossier's own coverage check, re-verified by script at build. Ancient World is 1354 words as recorded by the dossier, 146 under the 1500-word cap; built as written, no words trimmed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
