@@ -604,6 +604,66 @@
       "source": "/biblical-history/2-samuel",
       "destination": "/biblical-history/2-samuel-death-of-saul-and-civil-war-for-the-throne",
       "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-solomons-succession-and-the-securing-of-the-throne",
+      "destination": "/biblical-history/1-kings-solomons-succession-and-the-securing-of-the-throne",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-solomons-wisdom-and-the-ordering-of-the-kingdom",
+      "destination": "/biblical-history/1-kings-solomons-wisdom-and-the-ordering-of-the-kingdom",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-the-temple-built-and-dedicated",
+      "destination": "/biblical-history/1-kings-the-temple-built-and-dedicated",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-solomons-glory-and-fall",
+      "destination": "/biblical-history/1-kings-solomons-glory-and-fall",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-the-kingdom-divided",
+      "destination": "/biblical-history/1-kings-the-kingdom-divided",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-the-succession-of-kings-in-judah-and-israel",
+      "destination": "/biblical-history/1-kings-the-succession-of-kings-in-judah-and-israel",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-elijah-the-drought-and-carmel",
+      "destination": "/biblical-history/1-kings-elijah-the-drought-and-carmel",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-elijah-at-horeb-and-the-call-of-elisha",
+      "destination": "/biblical-history/1-kings-elijah-at-horeb-and-the-call-of-elisha",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-the-syrian-wars",
+      "destination": "/biblical-history/1-kings-the-syrian-wars",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-naboths-vineyard",
+      "destination": "/biblical-history/1-kings-naboths-vineyard",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings/1-kings-ramoth-gilead-and-the-death-of-ahab",
+      "destination": "/biblical-history/1-kings-ramoth-gilead-and-the-death-of-ahab",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/1-kings",
+      "destination": "/biblical-history/1-kings-solomons-succession-and-the-securing-of-the-throne",
+      "permanent": true
     }
   ],
   "rewrites": [
