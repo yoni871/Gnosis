@@ -1,0 +1,412 @@
+{
+  "id": "category-1-kings-ramoth-gilead-and-the-death-of-ahab",
+  "title": "Ramoth Gilead and the Death of Ahab",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 22,
+    "startVerse": 1,
+    "endChapter": 22,
+    "endVerse": 53
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 22,
+    "startVerse": 1,
+    "endChapter": 22,
+    "endVerse": 53
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-11-001",
+      "claim": "Three years pass without war between Syria and Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-002",
+      "claim": "In the third year Jehoshaphat king of Judah comes down to Ahab, who claims Ramoth in Gilead as Israel's and asks Jehoshaphat to go to battle; Jehoshaphat pledges, \"I am as thou art, my people as thy people, my horses as thy horses.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-003",
+      "claim": "Jehoshaphat asks that they first enquire at the word of the LORD to day.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-004",
+      "claim": "Ahab gathers about four hundred prophets, who answer with one mouth, \"Go up; for the Lord shall deliver it into the hand of the king\" — the corrected KJV reading (Hebrew אֲדֹנָי, Adonai). The stored text's \"the LORD\" is a Class A error and is not quoted. This is the false prophets' word, not the LORD's.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (אֲדֹנָי); KJV verification report (BibleHub + Blue Letter Bible both side with the corrected reading); stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-005",
+      "claim": "Jehoshaphat asks whether there is not a prophet of the LORD besides; Ahab names Micaiah son of Imlah, \"but I hate him; for he doth not prophesy good concerning me, but evil.\" Jehoshaphat answers, \"Let not the king say so.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-006",
+      "claim": "The king of Israel and Jehoshaphat sit each on his throne, in their robes, in a void place in the entrance of the gate of Samaria, and all the prophets prophesy before them.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-007",
+      "claim": "Zedekiah son of Chenaanah makes horns of iron and says, \"Thus saith the LORD, With these shalt thou push the Syrians, until thou have consumed them.\" All the prophets prophesy so, saying, \"Go up to Ramothgilead, and prosper.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Micaiah,\" read in full (the horns recall Deut 33:17).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-008",
+      "claim": "The messenger urges Micaiah to speak as the rest, \"let thy word, I pray thee, be like the word of one of them\"; Micaiah swears, \"As the LORD liveth, what the LORD saith unto me, that will I speak.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-009",
+      "claim": "Micaiah first answers in the prophets' own words — \"Go, and prosper: for the LORD shall deliver it into the hand of the king\" — and Ahab, taking it as mockery, adjures him to tell nothing but the truth in the name of the LORD.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Micaiah,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-010",
+      "claim": "Micaiah says, \"I saw all Israel scattered upon the hills, as sheep that have not a shepherd: and the LORD said, These have no master: let them return every man to his house in peace.\" The shepherd is the image for the king, so the vision means the army will lose its king and break up; the phrase echoes Num 27:17.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Micaiah,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-011",
+      "claim": "Ahab says to Jehoshaphat, \"Did I not tell thee that he would prophesy no good concerning me, but evil?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-012",
+      "claim": "Micaiah reports the vision: the LORD sitting on his throne with all the host of heaven standing by him; the LORD asks who shall persuade Ahab to go up and fall at Ramoth-gilead; a spirit volunteers to be a lying spirit in the mouth of all his prophets; the LORD sends him; and Micaiah concludes, \"the LORD hath put a lying spirit in the mouth of all these thy prophets, and the LORD hath spoken evil concerning thee.\" The text is presented exactly; the theology is unresolved (see §8).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Micaiah,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-013",
+      "claim": "Zedekiah smites Micaiah on the cheek, asking which way the Spirit of the LORD went from him to speak to Micaiah; Micaiah answers that Zedekiah shall see in that day, when he goes into an inner chamber to hide himself.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-014",
+      "claim": "Ahab orders Micaiah carried back to Amon the governor of the city and to Joash the king's son, put in prison on bread of affliction and water of affliction until the king comes in peace; Micaiah answers, \"If thou return at all in peace, the LORD hath not spoken by me,\" and says, \"Hearken, O people, every one of you.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Micaiah,\" read in full (the Deut 18:21–22 test).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-015",
+      "claim": "Both kings go up to Ramoth-gilead; Ahab disguises himself and enters the battle, while Jehoshaphat puts on his robes. The text records the arrangement without explaining it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Micaiah,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-016",
+      "claim": "The king of Syria commands his thirty and two captains over his chariots to fight neither small nor great, save only the king of Israel; they mistake Jehoshaphat for him, turn aside to fight him, and turn back when they perceive it is not the king of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-017",
+      "claim": "\"A certain man drew a bow at a venture, and smote the king of Israel between the joints of the harness.\" The archer is unnamed and the shot is random — the text's own word for the death.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-018",
+      "claim": "The battle increases that day; the king is stayed up in his chariot against the Syrians and dies at even, his blood running into the midst of the chariot; at the going down of the sun a proclamation goes throughout the host, \"Every man to his city, and every man to his own country.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-019",
+      "claim": "The king is brought to Samaria and buried there; one washes the chariot in the pool of Samaria, \"and the dogs licked up his blood; and they washed his armour; according unto the word of the LORD which he spake\" — the fulfilment of Elijah's sentence at 21:19. The place tension (Jezreel named at 21:19, Samaria here) is carried, not resolved (see §8).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Ahab\" and \"Micaiah,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-020",
+      "claim": "The rest of Ahab's acts, the ivory house he made, and the cities he built are in the book of the chronicles of the kings of Israel; Ahab sleeps with his fathers, and Ahaziah his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Ahab,\" read in full (the ivory house; Samaria ivories).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-021",
+      "claim": "Jehoshaphat son of Asa begins to reign over Judah in the fourth year of Ahab; he is thirty-five years old and reigns twenty-five years in Jerusalem; his mother is Azubah daughter of Shilhi; he walks in all the ways of Asa his father, doing right in the eyes of the LORD — \"nevertheless the high places were not taken away\" (KJV 22:43 = MT 22:43–44); and Jehoshaphat makes peace with the king of Israel (KJV 22:44 = MT 22:45).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT 54 verses; KJV 22:43 = MT 22:43–44); stored KJV read in full; BiblicalTraining, \"Jehoshaphat,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-022",
+      "claim": "The rest of Jehoshaphat's acts, his might, and how he warred are in the chronicles of the kings of Judah; he takes the remnant of the sodomites out of the land; there is then no king in Edom, a deputy is king.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehoshaphat,\" read in full (Edom under Judah's control; access to Ezion-geber).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-023",
+      "claim": "Jehoshaphat makes ships of Tharshish to go to Ophir for gold, but they go not, for the ships are broken at Ezion-geber; Ahaziah son of Ahab then asks that his servants go with Jehoshaphat's in the ships, and Jehoshaphat refuses. \"Ships of Tarshish\" is probably a term for large seagoing vessels.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehoshaphat,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-024",
+      "claim": "Jehoshaphat sleeps with his fathers, is buried in the city of David, and Jehoram his son reigns; Ahaziah son of Ahab begins to reign over Israel in Samaria in the seventeenth year of Jehoshaphat and reigns two years, doing evil, walking in the way of his father and mother and of Jeroboam son of Nebat, serving Baal \"according to all that his father had done\" (KJV 22:50–53 = MT 22:51–54).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-11-025",
+      "claim": "Date: unknown. The text gives no absolute date. On the most widely used reconstruction Ahab reigned c. 874–853 BC and Jehoshaphat c. 873–848 BC; the Assyrian anchor is Qarqar in 853 BC, after which Ahab died not long after. These are conventional datings, not dates the text gives.",
+      "evidence": "BiblicalTraining, \"Ahab,\" read in full (c. 874–853 BC; Qarqar 853 BC; Jehu's tribute 841 BC); BiblicalTraining, \"Jehoshaphat,\" read in full (c. 873–848 BC).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-11-026",
+      "claim": "Ramoth-gilead was a fortified city in the highlands of Gilead, east of the Jordan, in Gadite territory: a city of refuge for the Gadites, a Levitical town given to the Merarites, and under Solomon the seat of the district governor Ben-geber, whose district reached into Bashan. In the ninth century BC it became a contested frontier stronghold between Israel and Aram. Its exact site is uncertain, but most scholars now place it at Tell er-Rumeith in northern Jordan.",
+      "evidence": "BiblicalTraining, \"Ramoth-gilead,\" read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-11-027",
+      "claim": "At Qarqar in 853 BC, Shalmaneser III's Kurkh Monolith credits \"Ahab the Israelite\" with 2,000 chariots and 10,000 foot soldiers — the largest chariot force in the coalition against Assyria, and one of the earliest references to an Israelite king by name outside the Bible. Some scholars suspect the chariot figure has been inflated or miscopied; the identification of Ahab is accepted by most scholars.",
+      "evidence": "BiblicalTraining, \"Ahab,\" read in full; BiblicalTraining, \"Micaiah,\" read in full (Qarqar 853 BC; the alliance broken up before Ramoth-gilead).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-11-028",
+      "claim": "The four hundred prophets' promise of victory fails: the king does not return in peace, the army scatters, and Ahab dies at Ramoth-gilead as Micaiah said. By the Law's test — if what a prophet proclaims in the LORD's name does not take place, that is the thing which the LORD hath not spoken (Deut 18:22) — their word is exposed as false and Micaiah's is proven by its fulfilment.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Micaiah,\" read in full (the Deut 18:21–22 test); BiblicalTraining, \"False Prophets,\" seen only in search snippets (K11-S06, needs-checking). Reuse: `clm-deu-05-034`–`035` (established).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-11-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 20,
+      "startVerse": 1,
+      "endChapter": 20,
+      "endVerse": 43,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Benhadad besieges Samaria, is beaten twice — at Samaria and at Aphek — and is spared and sent away with a covenant, for which a prophet condemns Ahab. The three years without war that open this chapter follow that covenant."
+    },
+    {
+      "id": "conn-1ki-11-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 21,
+      "startVerse": 1,
+      "endChapter": 21,
+      "endVerse": 29,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "Elijah meets Ahab in Naboth's vineyard and sentences him: in the place where dogs licked the blood of Naboth, dogs shall lick his blood. At the pool of Samaria the narrator says it happened according to the word of the LORD."
+    },
+    {
+      "id": "conn-1ki-11-003",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 34,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler tells the same Ramoth-gilead story: the visit, the four hundred prophets, the iron horns, Micaiah, the vision, the blow, the prison, the disguise, the Syrian order, the random arrow, and the death. Chronicles adds that the LORD helped Jehoshaphat when the captains turned on him."
+    },
+    {
+      "id": "conn-1ki-11-004",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 29,
+      "endChapter": 16,
+      "endVerse": 34,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Ahab son of Omri begins his twenty-two-year reign in Samaria, marries Jezebel daughter of Ethbaal king of the Sidonians, serves Baal, builds an altar for Baal in Samaria, and makes a grove. The reign that ends at Ramoth-gilead begins here."
+    },
+    {
+      "id": "conn-1ki-11-005",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 18,
+      "startVerse": 15,
+      "endChapter": 18,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The LORD promises to raise up a prophet like Moses and put his words in his mouth; a prophet who presumes to speak a word the LORD has not commanded shall die, and if his word does not come to pass, the LORD has not spoken it. Micaiah stakes his standing on exactly this test."
+    },
+    {
+      "id": "conn-1ki-11-006",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 16,
+      "endChapter": 17,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The king must not multiply horses, nor cause the people to return to Egypt for horses, nor multiply wives, nor greatly multiply silver and gold. Ahab's great chariot force, attested at Qarqar, sits against this limit; the text does not draw the conclusion, and neither does this dossier."
+    },
+    {
+      "id": "conn-1ki-11-007",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 4,
+      "startVerse": 41,
+      "endChapter": 4,
+      "endVerse": 43,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Moses sets apart three towns east of the Jordan as cities of refuge for the manslayer — Bezer for the Reubenites, Ramoth in Gilead for the Gadites, and Golan in Bashan for the Manassites. The fortress Ahab dies trying to retake was first set apart as a refuge."
+    },
+    {
+      "id": "conn-1ki-11-008",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 20,
+      "startVerse": 7,
+      "endChapter": 20,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After the crossing, Joshua confirms the same three eastern cities alongside Kedesh, Shechem, and Hebron west of the Jordan. Ramoth in Gilead keeps its standing as a city of refuge into the settlement."
+    },
+    {
+      "id": "conn-1ki-11-009",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 4,
+      "startVerse": 13,
+      "endChapter": 4,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Under Solomon, Ramoth-gilead is the seat of the district governor Ben-geber, whose district takes in the settlements of Jair in Gilead and the region of Argob in Bashan, with its sixty walled cities. The frontier fortress was once a royal district centre."
+    },
+    {
+      "id": "conn-1ki-11-010",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 14,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Elisha sends one of the company of the prophets to Ramoth-gilead with a flask of oil; the young man takes Jehu into an inner room, anoints him king over Israel with a commission to destroy the house of Ahab, and flees. The city where Ahab died becomes the city where his house is condemned."
+    },
+    {
+      "id": "conn-1ki-11-011",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 8,
+      "startVerse": 28,
+      "endChapter": 8,
+      "endVerse": 29,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Ahab's son Joram fights the Arameans, now ruled by Hazael, at Ramoth-gilead again, is wounded, and withdraws to Jezreel to recover. The struggle for the city outlives Ahab by a generation."
+    },
+    {
+      "id": "conn-1ki-11-012",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 15,
+      "startVerse": 14,
+      "endChapter": 15,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Of Asa it is said that the high places were not removed, though his heart was perfect with the LORD all his days. The same reservation is carried for his son Jehoshaphat: he does right, nevertheless the high places are not taken away."
+    },
+    {
+      "id": "conn-1ki-11-013",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 3,
+      "startVerse": 1,
+      "endChapter": 3,
+      "endVerse": 27,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "After Ahab's death Mesha king of Moab rebels, and Joram asks Jehoshaphat to join him against Moab; Jehoshaphat answers in the same words he used to Ahab. Once again it is Jehoshaphat who asks whether a prophet of the LORD is present, and Elisha is found."
+    },
+    {
+      "id": "conn-1ki-11-014",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 9,
+      "startVerse": 26,
+      "endChapter": 9,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Solomon makes ships at Ezion-geber on the Red Sea, and Hiram's seamen sail with his servants to Ophir and bring back gold. Jehoshaphat tries to revive this trade from the same port, and his ships are broken there."
+    },
+    {
+      "id": "conn-1ki-11-015",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 27,
+      "startVerse": 17,
+      "endChapter": 27,
+      "endVerse": 17,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Moses prays for a leader to follow him, so that the congregation of the LORD is not as sheep which have no shepherd. Micaiah's vision of Israel scattered on the hills as sheep without a shepherd echoes the same prayer, now as a sentence."
+    },
+    {
+      "id": "conn-1ki-11-016",
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "startChapter": 6,
+      "startVerse": 1,
+      "endChapter": 6,
+      "endVerse": 8,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Isaiah sees the LORD sitting on a throne, high and lifted up, with seraphim above it, and hears the question, \"Whom shall I send?\" Micaiah's vision belongs with this scene and with Job 1–2: the LORD enthroned among the host of heaven, holding council before he acts."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-biblicaltraining-ahab",
+    "source-biblicaltraining-micaiah",
+    "source-biblicaltraining-ramoth-gilead",
+    "source-biblicaltraining-jehoshaphat"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S11 sources[] carries five entries (all verified in the live registry): K11-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K11-S02 BT \"Ahab\" -> source-biblicaltraining-ahab; K11-S03 BT \"Micaiah\" -> source-biblicaltraining-micaiah; K11-S04 BT \"Ramoth-gilead\" -> source-biblicaltraining-ramoth-gilead; K11-S05 BT \"Jehoshaphat\" -> source-biblicaltraining-jehoshaphat. All five appear in §9 Source IDs cells (Mechon Mamre 1 Kings 25 claims — KCL-11-001–024 and -028, BT Ahab 4 — KCL-11-019, -020, -025, -027, BT Micaiah 9 — KCL-11-007, -009, -010, -012, -014, -015, -019, -027, -028, BT Ramoth-gilead 1 — KCL-11-026, BT Jehoshaphat 4 — KCL-11-021, -022, -023, -025). Appendix uses: Mechon Mamre 21, BT Ahab 10, BT Micaiah 9, BT Ramoth-gilead 8, BT Jehoshaphat 7. S11 contributes exactly 3 newly-cited sources: BT \"Micaiah\", BT \"Ramoth-gilead\", and BT \"Jehoshaphat\" (counted before the build by parsing the category AND event JSONs on base — the S07 lesson; the dev-opt-in count confirms 3). BT \"Ahab\" was already cited on base (S06, S07, S09) and is not newly cited. Excluded by the needs-checking rule (registry entry exists, not-independently-verified — the S05 Levin / S07 Kurkh / S08 Beersheba / S09 Sons-of-the-Prophets / S10 Na'aman precedent): K11-S06 BT \"False Prophets\" (source-biblicaltraining-false-prophets). Seen only in search-result snippets; the text-fetch service returned a rate limit (429) on the read attempt, and the attempt was not repeated. It sits in the §9 Source IDs cell of KCL-11-028, and that claim is probable and also rests on verified K11-S01 / K11-S03 and reuse clm-deu-05-034–035 (established — registry mapping table line 180). It has 0 appendix footnote uses, so it appears nowhere in the MD at all. Excluded by the §-location rule (prose only, never in §9 Source IDs or the appendix; not re-read in this dossier): BO \"Royal Succession\" (source-bible-odyssey-royal-succession — dynastic-succession frame, §2/§4), the Mesha Stele (source-mesha-stele — Omri's oppression of Moab, §2/§5), BT \"Anointing\" (source-biblicaltraining-anointing — background for Jehu's anointing at Ramoth-gilead, §2), and the BDB lexicon (source-bdb-lexicon — cited only through the published Deut 18 framework claims clm-deu-05-036 in §2). Excluded by the §-location rule (reuse-basis only, cited through published claims, never in §9 Source IDs or the appendix): the Deut 18 prophet framework (clm-deu-05-029–036, 038) and the avenger of blood (clm-deu-05-043). The four probable claims are KCL-11-025 (date unknown; Ahab conventionally c. 874–853 BC, Jehoshaphat c. 873–848 BC; Qarqar 853 BC anchor), KCL-11-026 (Ramoth-gilead = Tell er-Rumeith, most scholars; exact site uncertain), KCL-11-027 (Kurkh Monolith credits \"Ahab the Israelite\" with 2,000 chariots — figure debated, identification accepted), and KCL-11-028 (the four hundred prophets' promise fails; the Deut 18:22 test). The one established connection is KCO-11-002 (1 Kings 21:1–29, Elijah's sentence fulfilled at the pool of Samaria). 22:6 is the last of the five flagged Class A stored-text errors (2:26, 3:10, 8:53, 13:22, 22:6): the stored text renders the divine name in the Tetragrammaton form where the Hebrew reads Adonai. Claim 004 uses the corrected reading. The stored sentence is quoted nowhere in the built files (asserted by script). No database fix is proposed. No D-S11 labels exist in the second-reader corrections report — no second-reader corrections for this dossier; none invented. §11 header verified accurate against every §11 target (the S09 QA observation carried forward): every target's book appears in the header with the right chapter verse count, and every range falls inside its chapter, including the MT/KJV note for ch. 22 itself (54 MT verses; KJV 53). Unlike S09 (imprecise for KCO-09-010), S11's header is precise. No multi-range connections: every §11 target is a single range. primaryScripture = fullRange = 22:1–53 (no narrowing — a single chapter, within the validator limit). Numbering: KJV 22:43 = MT 22:43–44; from KJV 22:44 MT runs one ahead (MT 22:54 = KJV 22:53). Chapter coverage is complete: all 53 KJV verses covered, per the dossier's own coverage check, re-verified by script at build. Ancient World is 1443 words as recorded by the dossier, 57 under the 1500-word cap; built as written, no words trimmed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
