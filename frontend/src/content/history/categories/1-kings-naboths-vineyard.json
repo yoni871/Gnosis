@@ -1,0 +1,349 @@
+{
+  "id": "category-1-kings-naboths-vineyard",
+  "title": "Naboth's Vineyard",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 21,
+    "startVerse": 1,
+    "endChapter": 21,
+    "endVerse": 29
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 21,
+    "startVerse": 1,
+    "endChapter": 21,
+    "endVerse": 29
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-10-001",
+      "claim": "Naboth the Jezreelite has a vineyard in Jezreel, hard by the palace of Ahab king of Samaria. Ahab offers to buy it for a garden of herbs, because it is near his house, or to give a better vineyard for it, or its worth in money.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full (ch. 21, 0 diffs).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-002",
+      "claim": "Naboth refuses: \"The LORD forbid it me, that I should give the inheritance of my fathers unto thee.\" The refusal rests on the law, not on stubbornness: the land is the LORD's and is not to be sold in perpetuity (Lev 25:23), and no inheritance is to remove from tribe to tribe (Num 36:7).",
+      "evidence": "Hebrew (*naḥălat ʾăbōtay*) + JPS 1917 read in full, Mechon Mamre; Lev 25:23 and Num 36:7 read in full in Hebrew + JPS 1917; BiblicalTraining, \"Naboth,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-003",
+      "claim": "Ahab comes into his house heavy and displeased because of Naboth's word, lies on his bed, turns away his face, and will eat no bread.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-004",
+      "claim": "Jezebel asks why Ahab will not eat, hears the cause, and answers, \"Dost thou now govern the kingdom of Israel? arise, and eat bread, and let thine heart be merry: I will give thee the vineyard of Naboth the Jezreelite.\" Jezebel is a Phoenician princess, daughter of Ethbaal king of the Sidonians.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Jezebel,\" read in full (lines 0–150 of 195; cited material within those lines).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-005",
+      "claim": "Jezebel writes letters in Ahab's name, seals them with his seal, and sends them to the elders and nobles of Naboth's city, dwelling with Naboth.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-006",
+      "claim": "The letters order a fast, Naboth set on high among the people, and two men, sons of Belial (*bĕnê-bĕlîyaʿal*), set before him to witness, \"Thou didst blaspheme God and the king,\" then to carry him out and stone him. Every step imitates lawful procedure: the two witnesses the law required in capital cases (Deut 17:6) and the penalty prescribed for blasphemy (Lev 24:16).",
+      "evidence": "Hebrew + JPS 1917 read in full (JPS 1917 renders the charge \"curse\"); BiblicalTraining, \"Naboth,\" read in full (\"Every step imitated lawful procedure\").",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-10-007",
+      "claim": "The men of Naboth's city, the elders and nobles, do as Jezebel sent unto them, as written in the letters: they proclaim a fast, set Naboth on high, two men of Belial witness against him in the presence of the people, and he is carried forth out of the city and stoned with stones, that he died.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-008",
+      "claim": "The elders send to Jezebel, \"Naboth is stoned, and is dead\"; Jezebel tells Ahab, \"Arise, take possession of the vineyard of Naboth the Jezreelite, which he refused to give thee for money: for Naboth is not alive, but dead\"; Ahab rises up to go down to the vineyard to take possession of it. The narrative does not explain how the property passed to the king; some scholars have suggested the estate of a man executed for a crime against the king fell to the crown.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Naboth,\" read in full (mechanism unexplained; crown-confiscation suggestion).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-10-009",
+      "claim": "The word of the LORD comes to Elijah the Tishbite, sending him to meet Ahab in the vineyard of Naboth: \"Hast thou killed, and also taken possession? … In the place where dogs licked the blood of Naboth shall dogs lick thy blood, even thine.\" The sentence names crime and penalty in one verse.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-010",
+      "claim": "Ahab greets Elijah, \"Hast thou found me, O mine enemy?\" Elijah answers, \"I have found thee: because thou hast sold thyself to work evil in the sight of the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-011",
+      "claim": "The LORD will bring evil on Ahab's house, take away his posterity, and cut off from Ahab \"him that pisseth against the wall, and him that is shut up and left in Israel,\" making his house like the house of Jeroboam son of Nebat and like the house of Baasha son of Ahijah, for provoking the LORD and making Israel to sin.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-012",
+      "claim": "Of Jezebel the LORD speaks: \"The dogs shall eat Jezebel by the wall of Jezreel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-013",
+      "claim": "Him that dies of Ahab in the city the dogs shall eat, and him that dies in the field the fowls of the air shall eat — the same dogs-and-fowls formula that fell on the house of Jeroboam (14:11) and on the house of Baasha (16:4).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 21); 14:11 and 16:4 per the read record (chs. 14 and 16 read in full by Dev 1).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-014",
+      "claim": "The narrator gives his own assessment: \"there was none like unto Ahab, which did sell himself to work wickedness in the sight of the LORD, whom Jezebel his wife stirred up. And he did very abominably in following idols, according to all things as did the Amorites, whom the LORD cast out before the children of Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-015",
+      "claim": "When Ahab hears those words he rends his clothes, puts sackcloth on his flesh, fasts, lies in sackcloth, and goes softly. The LORD answers that because Ahab humbles himself, \"I will not bring the evil in his days: but in his son's days will I bring the evil upon his house.\" The judgment is deferred, not cancelled.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naboth,\" read in full (sentence delayed; carried out in stages).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-016",
+      "claim": "The sentence on Ahab is fulfilled at 22:38: Ahab's chariot is washed in the pool of Samaria, \"and the dogs licked up his blood; and they washed his armour; according unto the word of the LORD which he spake.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 21); 22:38 per the read record (ch. 22 read in full by Dev 1); BiblicalTraining, \"Naboth,\" read in full (fulfilment section).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-10-017",
+      "claim": "Whether \"in the place where dogs licked the blood of Naboth\" means the same place or the same manner is not settled: some take it as \"in the same manner as,\" others point to the delay of 21:29, on which reading the site-bound part of the sentence fell on Ahab's son, whose corpse was left on Naboth's own ground (2 Kgs 9:25–26). Both readings take the prophetic word and its fulfilment seriously.",
+      "evidence": "BiblicalTraining, \"Naboth,\" read in full (\"Questions in the narrative\" section, both readings stated).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ki-10-018",
+      "claim": "Jezreel stands on a ridge at the southeastern edge of the broad Jezreel Valley, a strategic site overlooking the routes east toward the Jordan; the kings of Ahab's dynasty kept a residence there as well as at Samaria. Excavations at Tel Jezreel in the 1990s uncovered a large fortified royal enclosure of the ninth century BC, with a casemate wall, towers, and a moat, generally linked with the Omride kings; rock-cut winepresses show vines were grown there. No find can be tied to Naboth's vineyard itself.",
+      "evidence": "BiblicalTraining, \"Naboth,\" read in full (geography + archaeology sections); registry-verified Valley of Jezreel article, not re-read in this dossier.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-10-019",
+      "claim": "The law provided that a family selling its land could have it redeemed by a kinsman, and that what was sold returned to the family in the Year of Jubilee (Lev 25:24–28). Whether the Jubilee was observed repeatedly nationwide is not established: Kaplan distinguishes the plausibility of the legislation in an agrarian society from evidence for its actual observance, finding no affirmative proof of repeated nationwide observance.",
+      "evidence": "Lev 25:23–28 read in full in Hebrew + JPS 1917; Kaplan, \"The Credibility of Liberty\" (registry-verified, not re-read in this dossier); Bergsma, \"The Jubilee\" (registry-verified, not re-read).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-10-020",
+      "claim": "Date: unknown. The text gives no absolute date. Ahab is conventionally dated c. 874–853 BC, and Jehu's revolt, in which the deferred judgment falls, about 841 BC; these are conventional scholarly datings, not dates the text gives.",
+      "evidence": "BiblicalTraining, \"Jezebel,\" read in full (Ahab c. 874–853 BC; Qarqar 853 BC); BiblicalTraining, \"Naboth,\" read in full (Jehu c. 841 BC).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-10-021",
+      "claim": "A scholarly reading holds that the story reflects the conditions of the last Israelite kings (735–720 BC) and the Assyrian province of Megiddo rather than the reign of Ahab: Naboth as a vintner and strategic asset in a wine-producing centre, the king's passivity clashing with Ahab as the Assyrian annals portray him, and the Septuagint/Masoretic differences fitting a late denigration of the northern monarchy. The reading is debated, not established.",
+      "evidence": "Bible Odyssey, \"Naboth's Vineyard,\" read in full; Na'aman, \"Naboth's Vineyard and the Foundation of Jezreel,\" JSOT 33 (2008), not read in this dossier (K10-S06, needs-checking).",
+      "assessment": "debated"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-10-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 29,
+      "endChapter": 16,
+      "endVerse": 33,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Ahab son of Omri reigns over Israel in Samaria twenty-two years, marries Jezebel daughter of Ethbaal king of the Sidonians, serves Baal, rears an altar for Baal in the house of Baal he built in Samaria, and makes a grove. The marriage and the Baal cult are the background of the vineyard story."
+    },
+    {
+      "id": "conn-1ki-10-002",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 25,
+      "startVerse": 23,
+      "endChapter": 25,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "established",
+      "note": "The land shall not be sold in perpetuity, for the land is the LORD's; a family that sells its possession may have it redeemed by a kinsman, and what is sold returns to the family in the Year of Jubilee. This is the law behind Naboth's refusal."
+    },
+    {
+      "id": "conn-1ki-10-003",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 36,
+      "startVerse": 7,
+      "endChapter": 36,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "No inheritance of the children of Israel shall remove from tribe to tribe, for every man shall cleave to the inheritance of the tribe of his fathers. The tribal guard on family land stands behind Naboth's answer."
+    },
+    {
+      "id": "conn-1ki-10-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 14,
+      "endChapter": 17,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law of the king sets limits on the king — he must not multiply horses, wives, or silver and gold, and must keep a copy of the law with him and read it all his days, that his heart be not lifted up above his brethren. A king in Israel was not above the law."
+    },
+    {
+      "id": "conn-1ki-10-005",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 24,
+      "startVerse": 13,
+      "endChapter": 24,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The blasphemer is to be brought forth outside the camp, and all the congregation shall stone him. The penalty Jezebel's witnesses invoke is the law's own penalty, turned against an innocent man."
+    },
+    {
+      "id": "conn-1ki-10-006",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 8,
+      "startVerse": 11,
+      "endChapter": 8,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Samuel warns the people of the manner of the king: he will take their sons and daughters, their fields and vineyards, and give them to his servants. The warning is fulfilled in the seizure of Naboth's vineyard."
+    },
+    {
+      "id": "conn-1ki-10-007",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 14,
+      "startVerse": 10,
+      "endChapter": 14,
+      "endVerse": 11,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The LORD will cut off from Jeroboam him that pisseth against the wall, and him that dieth in the city shall the dogs eat, and him that dieth in the field shall the fowls of the air eat. The same curse formula falls on Ahab's house in 21:24."
+    },
+    {
+      "id": "conn-1ki-10-008",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 3,
+      "endChapter": 16,
+      "endVerse": 4,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The LORD will take away the posterity of Baasha and make his house like the house of Jeroboam; him that dieth of Baasha in the city shall the dogs eat, and him that dieth in the field shall the fowls eat. The second of the three houses judged with this formula."
+    },
+    {
+      "id": "conn-1ki-10-009",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 22,
+      "startVerse": 37,
+      "endChapter": 22,
+      "endVerse": 38,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "Ahab dies at Ramoth-gilead, is brought to Samaria and buried there, and when his chariot is washed in the pool of Samaria the dogs lick up his blood, according to the word of the LORD which he spoke. The sentence of 21:19 is fulfilled."
+    },
+    {
+      "id": "conn-1ki-10-010",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 9,
+      "startVerse": 24,
+      "endChapter": 9,
+      "endVerse": 26,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Jehu shoots Joram through the heart at the plot that had belonged to Naboth, and orders Bidkar to throw the body onto Naboth's field, in fulfilment of the LORD's word concerning the blood of Naboth and the blood of his sons. The site-bound part of the sentence falls on the son."
+    },
+    {
+      "id": "conn-1ki-10-011",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 9,
+      "startVerse": 30,
+      "endChapter": 9,
+      "endVerse": 37,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Jezebel is thrown from a window of the palace at Jezreel, her blood spatters the wall and the horses, she is trampled, and when men go to bury her nothing is left but her skull, her feet, and her hands — as Elijah had spoken, the dogs devour her by the wall of Jezreel."
+    },
+    {
+      "id": "conn-1ki-10-012",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 18,
+      "startVerse": 17,
+      "endChapter": 18,
+      "endVerse": 19,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Ahab meets Elijah and calls him the troubler of Israel; Elijah answers that Ahab and his father's house have troubled Israel by forsaking the commandments of the LORD and following Baalim, and gathers the 450 prophets of Baal who eat at Jezebel's table to Carmel. The enmity Ahab names in 21:20 is already open."
+    },
+    {
+      "id": "conn-1ki-10-013",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 19,
+      "startVerse": 1,
+      "endChapter": 19,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jezebel sends a messenger to Elijah with an oath that by the same time the next day his life will be like the lives of the prophets he killed. The queen who threatens the prophet's life in chapter 19 is the queen who arranges the murder in chapter 21."
+    },
+    {
+      "id": "conn-1ki-10-014",
+      "book": "Micah",
+      "bookId": "micah",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 2,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Woe to them that devise iniquity upon their beds and execute it in the morning light, because it is in the power of their hand: they covet fields and take them by violence, and houses, and take them away. The prophet's condemnation names the sin of the vineyard story."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-biblicaltraining-naboth",
+    "source-biblicaltraining-jezebel",
+    "source-bible-odyssey-naboths-vineyard",
+    "source-mechon-mamre-leviticus-numbers-masoretic-text",
+    "source-biblicaltraining-valley-of-jezreel",
+    "source-kaplan-jubilee",
+    "source-bergsma-jubilee"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S10 sources[] carries eight entries (all verified in the live registry): K10-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K10-S02 BT \"Naboth\" -> source-biblicaltraining-naboth; K10-S03 BT \"Jezebel\" -> source-biblicaltraining-jezebel; K10-S04 BO \"Naboth's Vineyard\" -> source-bible-odyssey-naboths-vineyard; K10-S05 Mechon Mamre Lev 25 + Num 36 -> source-mechon-mamre-leviticus-numbers-masoretic-text; source-biblicaltraining-valley-of-jezreel; source-kaplan-jubilee; source-bergsma-jubilee. All eight appear in §9 Source IDs cells (Mechon Mamre 1 Kings 16 claims, BT Naboth 8, BT Jezebel 2, BO Naboth's Vineyard 1 — KCL-10-021, Mechon Mamre Lev+Num 2, Valley of Jezreel 1 — KCL-10-018, Kaplan 1 — KCL-10-019, Bergsma 1 — KCL-10-019). Appendix uses: Mechon Mamre 18, BT Naboth 23, BT Jezebel 11, Mechon Mamre Lev+Num 4, Valley of Jezreel 0, Kaplan 0, Bergsma 0, BO Naboth's Vineyard 0 — the last four are §9-only (the S04 BO \"Solomon\" pattern). S10 contributes exactly 3 newly-cited sources: BT \"Naboth\", BO \"Naboth's Vineyard\", and Mechon Mamre Lev 25 + Num 36 (counted before the build by parsing the category AND event JSONs on base — the S07 lesson; the dev-opt-in count confirms 3). The Valley of Jezreel, Kaplan, and Bergsma entries were already cited on base and are not newly cited. Excluded by the needs-checking rule (registry entry exists, not-independently-verified — the S05 Levin / S07 Kurkh / S08 Beersheba / S09 Sons-of-the-Prophets precedent): K10-S06 Na'aman, \"Naboth's Vineyard and the Foundation of Jezreel,\" JSOT 33 (2008) (source-naaman-naboths-vineyard-jezreel-jsot). Not read in this dossier (paywalled journal article, cited in K10-S04's bibliography). It sits in the §9 Source IDs cell of KCL-10-021, and that claim is debated and also rests on verified K10-S04 (BO \"Naboth's Vineyard\", read in full — registry mapping table line 179). It has 0 appendix footnote uses, so it appears nowhere in the MD at all. Excluded by the §-location rule (prose only, never in §9 Source IDs or the appendix): BO \"Royal Succession\" (source-bible-odyssey-royal-succession — §2 prose for the hereditary-succession principle; no claim depends on it). Excluded by the §-location rule (reuse-basis only, cited through published claims in §2, never in §9 Source IDs or the appendix): the kingship law (clm-deu-05-014), the Deut 18 prophet framework (clm-deu-05-029–036, 038), and the avenger of blood (clm-deu-05-043 — not used here at all). K10-S03 BT \"Jezebel\" was read in part only — lines 0–150 of 195. Lines 151–195 (Jezebel in Revelation) were not read and are not cited. No claim is upgraded above what its evidence supports; the dossier's assessments already reflect this. The five probable claims are KCL-10-006 (the sham trial imitates lawful procedure), KCL-10-008 (the transfer mechanism unexplained; crown-confiscation suggestion), KCL-10-018 (Tel Jezreel and the winepresses; no find tied to Naboth's vineyard), KCL-10-019 (the Jubilee plausibility-vs-observance caution), and KCL-10-020 (date unknown; Ahab conventionally c. 874–853 BC, Jehu's revolt about 841 BC). The two debated claims are KCL-10-017 (\"in the place where\" — same place or same manner; both readings stated, neither settled) and KCL-10-021 (the late-dating reading — the story reflects the last Israelite kings rather than Ahab's reign; recorded as debated, not established). The two established connections are KCO-10-002 (Leviticus 25:23–28, the law behind Naboth's refusal) and KCO-10-009 (1 Kings 22:37–38, the sentence fulfilled at the pool of Samaria). D-S10-5 REJECTED entirely and D-S10-1 NOT SUSTAINED as stated — the only two D-S10 labels in the second-reader corrections report. The reader prescribed a different verb in the 21:10 quotation in KCL-10-006, claiming it is the KJV reading. It is not: the stored text and BibleHub KJV 21:10 both read \"blaspheme\" (stored 21:13 likewise), and the chapter has zero KJV diffs — the substitution would have corrupted a verbatim quotation. D-S10-1 concerns dossier §3 L82's Hebrew literal gloss, explicitly framed as a gloss, not a KJV quotation; the prescribed KJV wording does not exist. No change to either. The built claim 006 quotes \"blaspheme\" as the dossier assesses it. §11 header verified accurate against every §11 target (the S09 QA observation carried forward): every target's book appears in the header with the right chapter verse count, and every range falls inside its chapter. Unlike S09 (imprecise for KCO-09-010), S10's header is precise. No multi-range connections: every §11 target is a single range. primaryScripture = fullRange = 21:1–29 (no narrowing — a single chapter, within the validator limit; the whole arc is one moral incident, and no shorter passage represents it). Chapter 21 has no Class A stored-text error in this range; 29 verses, 0 KJV diffs; no database fix proposed. Chapter coverage is complete: all 29 verses covered (ch. 21: 29), per the dossier's own coverage check, re-verified by script at build. Ancient World is 1392 words as recorded by the dossier, 108 under the 1500-word cap; built as written, no words trimmed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
