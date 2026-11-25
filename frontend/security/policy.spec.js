@@ -106,7 +106,7 @@ test('an oversized body is rejected with 413 before any auth processing', async 
     const response = await request.post(fixture.origin + '/api/auth/login', {
         headers: { 'Content-Type': 'application/json' }, data: 'x'.repeat(102401),
     });
-    expect(response.status()).toBe(413); expect(response.headers()['cache-control']).toBe('no-store');
+    expect(response.status()).toBe(413); expect(response.headers()['cache-control']).toBe('private, no-store');
     // The 413 body carries the machine-readable code too (PR #85 /
     // backend/src/utils/authErrors.js errorBody).
     expect(await response.json()).toEqual({ error: 'Request body too large.', code: 'BODY_TOO_LARGE' });
