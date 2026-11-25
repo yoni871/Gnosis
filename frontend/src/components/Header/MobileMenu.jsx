@@ -193,6 +193,25 @@ export default function MobileMenu({ showSearch, variant, translation }) {
                                     Settings
                                 </Link>
 
+                                <Link
+                                    to="/sessions"
+                                    onClick={() => {
+                                        setIsMobileProfileOpen(false);
+                                        setIsMenuOpen(false);
+                                    }}
+                                    className="
+                                        flex w-full
+                                        rounded-md
+                                        px-2 py-2
+                                        text-left
+                                        text-sm
+                                        text-[var(--text-primary)]
+                                        hover:bg-[var(--hover-bg)]
+                                    "
+                                >
+                                    Sessions &amp; password
+                                </Link>
+
                                 <Link 
                                     to="/login"
                                     onClick={handleLogout}

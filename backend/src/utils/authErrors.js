@@ -35,6 +35,10 @@ const ENDPOINT_MESSAGES = {
     // TOTP MFA: the MFA endpoints share the same generic wording.
     mfa: "Something went wrong.",
     passkey: "Something went wrong.",
+    // Session management (T2.5): list/revoke and authenticated password
+    // change share the same generic wording.
+    sessions: "Something went wrong.",
+    "change-password": "Something went wrong.",
 };
 
 function errorBody(message, code) {

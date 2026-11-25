@@ -7,7 +7,7 @@ const sessions = require("../services/sessionService");
 const mfaService = require("../services/mfaService");
 const authenticateToken = require("../middleware/authMiddleware");
 const { resolveAuthError, internalErrorBody, logAuthFailure } = require("../utils/authErrors");
-const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, validateDeleteAccountInput, VALIDATION_CODE } = require("../utils/authValidation");
+const { validateRegisterInput, validateLoginInput, validateEmailAddress, validateForgotPasswordInput, validateResetPasswordInput, validateDeleteAccountInput, validateChangePasswordInput, VALIDATION_CODE } = require("../utils/authValidation");
 const { createRateLimitMiddleware } = require("../utils/rateLimit");
 const {
     VERIFICATION_TTL_MS,
@@ -106,6 +106,18 @@ function validateReset(req, res, next) {
     return next();
 }
 
+// Session management (T2.5): authenticated password change validates
+// before the limiter, like every other auth endpoint, so invalid input
+// never counts.
+function validateChangePassword(req, res, next) {
+    const validation = validateChangePasswordInput(req.body);
+    if (validation.error) {
+        return res.status(400).json({ error: validation.error, code: VALIDATION_CODE });
+    }
+    req.validated = validation.value;
+    return next();
+}
+
 // Issue #4: rate limiting runs after validation and before the handler.
 // Login is limited per (IP + submitted email) and per IP across accounts;
 // registration is limited per IP. The submitted email (not a looked-up
@@ -169,6 +181,26 @@ const deleteAccountRateLimit = createRateLimitMiddleware([
     { policy: "delete_account_ip_user", fields: (req, ip) => [ip, String(req.user.userId)] },
     { policy: "delete_account_ip", fields: (req, ip) => [ip] },
 ], "delete-account");
+
+// Session management (T2.5): password change is limited per (IP +
+// account) after authentication, so req.user is already set. Wrong
+// current passwords count; successes and internal failures release.
+const changePasswordRateLimit = createRateLimitMiddleware([
+    { policy: "change_password_ip_user", fields: (req, ip) => [ip, String(req.user.userId)] },
+], "change-password");
+
+// Session management (T2.5, PR #94): the list and revoke routes
+// CodeQL flagged as un-rate-limited. Both are per-user buckets — the
+// account is known, so per-user is the precise bound (see the policy
+// comments in rateLimit.js). Every request counts (the wrapper settles
+// the reservation), matching the passkey list.
+const sessionListRateLimit = createRateLimitMiddleware([
+    { policy: "session_list_user", fields: req => [String(req.user.userId)] },
+], "sessions");
+
+const sessionRevokeRateLimit = createRateLimitMiddleware([
+    { policy: "session_revoke_user", fields: req => [String(req.user.userId)] },
+], "sessions");
 
 // Guarantees a reservation is always settled. Handlers finalize
 // explicitly on every path; this wrapper covers the rest: an unexpected
@@ -737,6 +769,104 @@ router.delete("/account", authenticateToken, validateDelete, deleteAccountRateLi
     // so audit() would throw on it.
     await audit(pool, "account_deletion.completed", userId);
     return res.json({ deleted: true });
+}));
+
+// Session/device management (T2.5). The list carries no device
+// metadata: the session rows record neither user agent nor IP, so a
+// session is identified by when it was created and when it expires.
+// The current session is marked from the access token's sid, never
+// from stored data. Revoked sessions older than 30 days are excluded.
+router.get("/sessions", authenticateToken, sessionListRateLimit, withRateLimitFinalize(async (req, res) => {
+    let rows;
+    try {
+        rows = await sessions.listSessions(req.user.userId);
+    } catch (error) {
+        logAuthFailure("GET /api/auth/sessions", "database", error);
+        const { status, body } = resolveAuthError(error, "sessions");
+        return res.status(status).json(body);
+    }
+    res.set("Cache-Control", "private, no-store");
+    return res.json({ sessions: rows.map((row) => ({
+        id: row.id,
+        createdAt: row.created_at,
+        expiresAt: row.expires_at,
+        revokedAt: row.revoked_at,
+        current: row.id === req.user.sid,
+    })) });
+}));
+
+// Per-session revoke. A session id that is not this user's — or does
+// not exist, or is already revoked — shares one 404, so no response
+// leaks which case hit. Revoking the current session clears the
+// refresh cookie, like logout. Refresh tokens for a revoked session
+// fail immediately: rotation rechecks revoked_at under the session
+// lock, and the middleware rejects revoked sessions.
+router.delete("/sessions/:id", authenticateToken, sessionRevokeRateLimit, withRateLimitFinalize(async (req, res) => {
+    const sessionId = req.params.id;
+    if (!/^[a-f0-9-]{36}$/.test(sessionId)) {
+        return res.status(404).json({ error: "Session not found.", code: "SESSION_NOT_FOUND" });
+    }
+    let revoked;
+    try {
+        revoked = await sessions.revokeSession(req.user.userId, sessionId);
+    } catch (error) {
+        logAuthFailure("DELETE /api/auth/sessions", "database", error);
+        const { status, body } = resolveAuthError(error, "sessions");
+        return res.status(status).json(body);
+    }
+    if (!revoked) {
+        return res.status(404).json({ error: "Session not found.", code: "SESSION_NOT_FOUND" });
+    }
+    // AUDIT (PR #78 rebase): emit audit('session.revoked', { userId,
+    // sessionId, current }) through Main Muse's audit() helper once
+    // security/audit-logging lands. No audit table is created here.
+    if (sessionId === req.user.sid) {
+        sessions.clearCookie(res);
+    }
+    res.set("Cache-Control", "private, no-store");
+    return res.sendStatus(204);
+}));
+
+// Authenticated password change. The new password follows the same
+// validation as registration (8-character minimum; the project floor
+// stays 8 per the project lead's decision) and the same breached-
+// password screening, so a password rejected at registration cannot be
+// set through this endpoint either. A wrong current password is the
+// same generic 401 as login. On success the password changes and every
+// OTHER session is revoked, so a stolen session on another device dies
+// with the old password while this session keeps working.
+router.post("/change-password", authenticateToken, validateChangePassword, changePasswordRateLimit, withRateLimitFinalize(async (req, res) => {
+    const { currentPassword, newPassword } = req.validated;
+    // Breached-password screening (roadmap T1.7): same ordering as
+    // registration and reset — after the rate limiter has reserved,
+    // before any hashing, so a breached password never reaches password
+    // hashing. A rejection returns without an explicit finalize, so the
+    // wrapper counts it (fail closed), the same as registration.
+    if (await isBreachedPassword(newPassword)) {
+        logAuthFailure("POST /api/auth/change-password", "breached-password", null);
+        return res.status(400).json({
+            error: "This password has appeared in a data breach. Choose a different password.",
+            code: VALIDATION_CODE,
+        });
+    }
+    let outcome;
+    try {
+        outcome = await sessions.changePassword(req.user.userId, currentPassword, newPassword, req.user.sid);
+    } catch (error) {
+        logAuthFailure("POST /api/auth/change-password", "password", error);
+        await req.rateLimit.finalize("release");
+        return res.status(500).json(internalErrorBody("change-password"));
+    }
+    if (outcome === "invalid") {
+        await req.rateLimit.finalize("count");
+        return res.status(401).json({ error: "Invalid email or password.", code: "INVALID_CREDENTIALS" });
+    }
+    // AUDIT (PR #78 rebase): emit audit('password.changed', { userId })
+    // through Main Muse's audit() helper once security/audit-logging
+    // lands. No audit table is created here.
+    await req.rateLimit.finalize("release");
+    res.set("Cache-Control", "private, no-store");
+    return res.status(200).json({ changed: true });
 }));
 
 //to verify an email address with a link token

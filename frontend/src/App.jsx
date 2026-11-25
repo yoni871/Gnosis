@@ -33,6 +33,7 @@ const TraceTheDoctrinePage = lazy(() => import('./pages/TraceTheDoctrinePage'));
 // Trace the Doctrine study workspace: the Trinity preview study. The
 // workspace page is noindex and never listed in the sitemap.
 const TraceTheDoctrineTrinityPage = lazy(() => import('./pages/TraceTheDoctrineTrinityPage'));
+const SessionsPage = lazy(() => import('./pages/SessionsPage'));
 
 function RouteLoading() {
     return (
@@ -148,6 +149,11 @@ function App() {
             <Route
               path='/trace-the-doctrine/trinity'
               element={<TraceTheDoctrineTrinityPage />}
+            />
+
+            <Route
+              path='/sessions'
+              element={<SessionsPage />}
             />
 
             {/* Catch-all: without this, an unmatched URL renders a blank

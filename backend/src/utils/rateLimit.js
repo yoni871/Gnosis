@@ -124,6 +124,23 @@ const POLICIES = {
     passkey_register_verify_user: { windowMs: 15 * 60 * 1000, limit: 5 },
     passkey_list_user: { windowMs: 15 * 60 * 1000, limit: 30 },
     passkey_rename_user: { windowMs: 15 * 60 * 1000, limit: 10 },
+    // Session management (T2.5): authenticated password change counts
+    // wrong-current-password failures per (IP + account), mirroring the
+    // login per-IP+email bucket. An authenticated caller already holds
+    // a 15-minute token, so without this the endpoint would be an
+    // unthrottled password-guessing oracle for a stolen token.
+    // Validation failures never reach the limiter, and a success
+    // releases its reservation.
+    change_password_ip_user: { windowMs: 15 * 60 * 1000, limit: 5 },
+    // Session management (T2.5, PR #94): the list and revoke routes
+    // CodeQL flagged as un-rate-limited. Both are per-user buckets —
+    // the account is known, so per-user is the precise key, and a
+    // per-IP bucket would not bound distributed attempts (see the MFA
+    // verify note above). List is read-only at 30/15 min, matching the
+    // passkey list; revoke is 30/15 min so a legitimate device sweep
+    // fits in one window while session-id probing is bounded.
+    session_list_user: { windowMs: 15 * 60 * 1000, limit: 30 },
+    session_revoke_user: { windowMs: 15 * 60 * 1000, limit: 30 },
 };
 
 // The longest window above. The sweep deletes rows older than this, since
