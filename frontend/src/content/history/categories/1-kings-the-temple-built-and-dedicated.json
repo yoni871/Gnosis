@@ -1,0 +1,550 @@
+{
+  "id": "category-1-kings-the-temple-built-and-dedicated",
+  "title": "The Temple Built and Dedicated",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 6,
+    "startVerse": 1,
+    "endChapter": 8,
+    "endVerse": 11
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 5,
+    "startVerse": 1,
+    "endChapter": 8,
+    "endVerse": 66
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-03-001",
+      "claim": "Hiram king of Tyre sends servants to Solomon on hearing he has been anointed king in his father's room, \"for Hiram was ever a lover of David.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-002",
+      "claim": "Solomon replies that David could not build a house for the LORD's name for the wars about him, but now the LORD has given rest on every side, so Solomon purposes to build, as the LORD spoke to David: the son set on his throne shall build a house for the LORD's name.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-003",
+      "claim": "Solomon asks Hiram to hew cedar trees out of Lebanon, his servants working with Hiram's, for hire as Hiram appoints — \"there is not among us any that can skill to hew timber like unto the Sidonians.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-004",
+      "claim": "Hiram rejoices, blesses the LORD for giving David a wise son, and agrees to do all Solomon's desire concerning cedar and fir: his servants will bring the timber down from Lebanon to the sea and convey it by floats to Solomon's appointed place, and Solomon will give food for Hiram's household.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-005",
+      "claim": "Hiram gives Solomon cedar and fir according to all his desire, and Solomon gives Hiram twenty thousand measures of wheat and twenty measures of pure oil, year by year; the LORD gives Solomon wisdom as promised, there is peace between Hiram and Solomon, and the two make a league together.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-006",
+      "claim": "Solomon raises a levy of 30,000 men out of all Israel — 10,000 a month in Lebanon by courses, a month in Lebanon and two months at home, Adoniram over the levy — plus 70,000 burden-bearers, 80,000 hewers in the mountains, and 3,300 officers over the work.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-007",
+      "claim": "The king commands great costly stones, hewn stones, for the foundation of the house, and Solomon's builders, Hiram's builders, and the stonesquarers hew timber and stones to build the house.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-008",
+      "claim": "The building begins in the 480th year after the children of Israel came out of Egypt, in the fourth year of Solomon's reign over Israel, in the month Zif, the second month. The text states the figure; no absolute date is asserted from it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-009",
+      "claim": "The house Solomon builds for the LORD is 60 cubits long, 20 broad, and 30 high, with a porch before the temple 20 cubits long and 10 cubits broad.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-010",
+      "claim": "The house has windows of narrow lights and three storeys of side chambers (five, six, and seven cubits broad) resting on narrowed ledges in the wall, so the beams are not fastened in the walls; winding stairs rise from the middle chamber to the third, and the house is covered with beams and boards of cedar.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-011",
+      "claim": "The house, when it is in building, is built of stone made ready before it is brought thither, so that neither hammer nor axe nor any tool of iron is heard in the house while it is in building.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-012",
+      "claim": "The word of the LORD comes to Solomon mid-construction: concerning this house, if he walks in the statutes, executes the judgments, and keeps all the commandments, the LORD will perform his word to David, dwell among the children of Israel, and not forsake his people Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-013",
+      "claim": "The walls within are built with boards of cedar, the floor covered with planks of fir, the cedar carved with knops and open flowers: \"all was cedar; there was no stone seen.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-014",
+      "claim": "The oracle, the most holy place, is built twenty cubits on the sides of the house and is twenty cubits in length, breadth, and height, overlaid with pure gold; the house, the temple before it, is forty cubits long.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-015",
+      "claim": "Solomon overlays the house within with pure gold, makes a partition by chains of gold before the oracle, and overlays the whole house and the whole altar by the oracle with gold.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-016",
+      "claim": "Within the oracle Solomon makes two cherubim of olive tree, each ten cubits high, with a wingspan of ten cubits; they stand so that the wing of the one touches one wall, the wing of the other touches the other wall, and their wings touch one another in the midst of the house; he overlays the cherubim with gold.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-017",
+      "claim": "All the walls of the house round about are carved with cherubim, palm trees, and open flowers, within and without, the floor overlaid with gold; the doors of the oracle are of olive tree and the doors of the temple of fir, each folding, carved and covered with gold fitted upon the carved work.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-018",
+      "claim": "Solomon builds the inner court with three rows of hewn stone and a row of cedar beams.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-019",
+      "claim": "The foundation of the house is laid in the fourth year, in the month Zif, and the house is finished in the eleventh year, in the month Bul, the eighth month, throughout all its parts and according to all its fashion: seven years in building it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-020",
+      "claim": "Solomon is building his own house thirteen years, and finishes all his house — nearly twice as long as the seven years of the LORD's house. The text states the proportion without comment.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-021",
+      "claim": "Solomon builds the house of the forest of Lebanon (100 × 50 × 30 cubits on four rows of cedar pillars), the porch of pillars, the porch of judgment where he sits to judge, covered with cedar, and a house for Pharaoh's daughter like the porch — all of costly hewn stones, sawed with saws, from foundation to coping.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-022",
+      "claim": "King Solomon sends and fetches Hiram out of Tyre: a widow's son of the tribe of Naphtali, his father a man of Tyre, a worker in brass, \"filled with wisdom, and understanding, and cunning to work all works in brass.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-023",
+      "claim": "Hiram casts two pillars of brass, eighteen cubits high apiece, twelve cubits round, with chapiters of molten brass five cubits high, nets of checker work, wreaths of chain work, and pomegranates, and lily work in the porch; he sets them up in the porch of the temple, the right pillar Jachin and the left Boaz.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-024",
+      "claim": "The pillars' names are usually understood to mean \"he establishes\" (Jachin) and \"in him is strength\" (Boaz). The text gives the names, not the meanings.",
+      "evidence": "BiblicalTraining, \"Solomon's Temple,\" read in part (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-03-025",
+      "claim": "Hiram makes a molten sea, ten cubits from brim to brim, five cubits high, thirty cubits round, standing on twelve oxen, three facing each of the four winds, a hand breadth thick with a lily-shaped brim, containing two thousand baths.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-026",
+      "claim": "Hiram makes ten bases of brass, four cubits square and three high, on four brasen wheels apiece, graved with lions, oxen, and cherubim, each carrying a laver of forty baths; five bases stand on the right side of the house and five on the left, and the sea is set on the right side eastward over against the south.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-027",
+      "claim": "Hiram makes an end of all the work for the house of the LORD — pillars, networks, four hundred pomegranates, bases, lavers, the sea and its twelve oxen, pots, shovels, and basons of bright brass — cast in the plain of Jordan in the clay ground between Succoth and Zarthan, and left unweighed, \"neither was the weight of the brass found out.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-028",
+      "claim": "Solomon makes all the gold vessels of the house — the altar of gold, the table of gold whereupon the shewbread is, ten candlesticks of pure gold, bowls, snuffers, basons, spoons, censers, and hinges of gold — and brings in the silver, gold, and vessels David his father dedicated, putting them among the treasures of the house.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-029",
+      "claim": "Solomon assembles the elders of Israel and the heads of the tribes at the feast in the month Ethanim, the seventh month, to bring up the ark of the covenant out of the city of David, which is Zion; the priests and Levites bring up the ark, the tabernacle, and the holy vessels, sacrificing sheep and oxen that cannot be told nor numbered.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-030",
+      "claim": "The priests bring the ark into the oracle of the house, the most holy place, under the wings of the cherubim, which spread over the place of the ark and cover the ark and its staves; the staves are drawn out, their ends seen in the holy place before the oracle, \"and there they are unto this day.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-031",
+      "claim": "There is nothing in the ark save the two tables of stone, which Moses put there at Horeb, when the LORD made a covenant with the children of Israel when they came out of Egypt.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-032",
+      "claim": "Hebrews 9:4 places the golden pot of manna and Aaron's rod in the ark, against 1 Kings 8:9, which says the ark holds only the two tables of stone. The two accounts are not reconciled here; the published claim on file leaves the beside-vs-within question debated.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; published claim `clm-deu-09-014` (debated).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ki-03-033",
+      "claim": "When the priests come out of the holy place, the cloud fills the house of the LORD, so that the priests cannot stand to minister because of the cloud, \"for the glory of the LORD had filled the house of the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-034",
+      "claim": "Solomon speaks: the LORD said he would dwell in the thick darkness; Solomon has built a settled place for him to abide in for ever; he blesses the congregation, rehearsing that no city was chosen for the house but David was chosen, David desired to build, the LORD said his son would build, \"the LORD hath performed his word,\" and Solomon has set a place for the ark wherein is the covenant.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-035",
+      "claim": "Standing before the altar with hands spread toward heaven, Solomon prays: there is no God like the LORD, keeper of covenant and mercy; keep the word to David — \"there shall not fail thee a man in my sight to sit on the throne of Israel; so that thy children take heed to their way.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-036",
+      "claim": "Solomon asks, \"will God indeed dwell on the earth? behold, the heaven and heaven of heavens cannot contain thee; how much less this house that I have builded?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-037",
+      "claim": "Solomon asks that the LORD's eyes be open toward this house night and day, toward the place of which he said \"My name shall be there,\" and that he hearken in heaven his dwelling place and forgive when his servant and people pray toward this place.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-038",
+      "claim": "The prayer petitions for the oath at the altar, defeat in battle and return, drought shut heaven and rain, famine, pestilence, blasting, mildew, locust, and \"what prayer and supplication soever be made by any man… which shall know every man the plague of his own heart\" — hear, forgive, and give to every man according to his ways.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-039",
+      "claim": "The prayer makes room for a stranger, not of Israel, who comes out of a far country for the LORD's name's sake and prays toward this house: hear in heaven, \"that all people of the earth may know thy name, to fear thee, as do thy people Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-040",
+      "claim": "The prayer petitions for battle abroad and for sin, anger, and captivity: if the people bethink themselves in the land of captivity, repent, and pray toward their land, the city, and the house, the LORD will maintain their cause, forgive, and give them compassion — \"for they be thy people, and thine inheritance, which thou broughtest forth out of Egypt, from the midst of the furnace of iron\"; the prayer closes (corrected KJV reading) \"when thou broughtest our fathers out of Egypt, O Lord GOD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (Hebrew אֲדֹנָי יְהוִה; JPS \"O Lord GOD\"); stored KJV read in full — the stored reading at 8:53 is a Class A error and is not quoted.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-041",
+      "claim": "When Solomon ends praying, he rises from kneeling with hands spread to heaven and blesses the congregation: \"there hath not failed one word of all his good promise\"; \"let your heart therefore be perfect with the LORD our God, to walk in his statutes, and to keep his commandments, as at this day.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-042",
+      "claim": "Solomon and all Israel offer sacrifice — 22,000 oxen and 120,000 sheep of peace offerings; the king hallows the middle of the court because the brasen altar is too little; the feast runs fourteen days, \"from the entering in of Hamath unto the river of Egypt,\" and on the eighth day the people are sent away joyful for all the goodness the LORD has done for David and for Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-03-043",
+      "claim": "The 480-year figure is read two ways in scholarship: straightforwardly, placing the Exodus in the mid-15th century BC, or as a schematic total of twelve generations of forty years, favouring a 13th-century Exodus; both views are held, and neither is asserted here.",
+      "evidence": "BiblicalTraining, \"Solomon's Temple,\" read in part (see §12).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ki-03-044",
+      "claim": "The temple's three-part plan — porch, main hall, inner sanctuary on one axis — has close parallels among Iron Age temples in Syria and the northern Levant, such as at Tell Tayinat, 'Ain Dara, and Aleppo, and appears patterned on an architectural style found among the Phoenicians of the Lebanese and Syrian coast.",
+      "evidence": "Bible Odyssey, \"First Temple,\" read in full; BiblicalTraining, \"Solomon's Temple,\" read in part (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-03-045",
+      "claim": "No trace of the First Temple has been unearthed in Jerusalem and no remains of it have been identified, because the building would have stood on the Temple Mount, where excavations are not allowed since the site is holy to both Muslims and Jews; the exact spot of Solomon's building on the hill is still debated.",
+      "evidence": "Bible Odyssey, \"First Temple,\" read in full; BiblicalTraining, \"Solomon's Temple,\" read in part (see §12).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-03-001",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 11,
+      "endChapter": 7,
+      "endVerse": 13,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "The LORD promises to build David a house, a lasting dynasty, and says David's son shall build a house for the LORD's name. Solomon quotes this word as the warrant for the building at 5:5 and rehearses it at 8:15–20."
+    },
+    {
+      "id": "conn-1ki-03-002",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 24,
+      "startVerse": 18,
+      "endChapter": 24,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After the census plague, the angel stops at the threshing floor of Araunah the Jebusite; David buys the site, builds an altar, and offers sacrifices there, and the plague ceases. The temple site is settled in David's reign on this ground."
+    },
+    {
+      "id": "conn-1ki-03-003",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 25,
+      "startVerse": 8,
+      "endChapter": 25,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The LORD tells Moses to make a sanctuary that he may dwell among them, \"according to all that I shew thee, after the pattern of the tabernacle.\" The temple, like the tabernacle, is presented as God's design rather than merely a royal project."
+    },
+    {
+      "id": "conn-1ki-03-004",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 37,
+      "startVerse": 1,
+      "endChapter": 37,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Bezalel makes the ark, overlaid with gold within and without, with the mercy seat and two cherubim. The ark Solomon sets in the oracle is the ark made here."
+    },
+    {
+      "id": "conn-1ki-03-005",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 18,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler's parallel of the treaty with Hiram: the timber, the floats to Joppa, the payments including barley and wine, and 3,600 foremen where Kings gives 3,300. The two accounts tell the same story with different numbers."
+    },
+    {
+      "id": "conn-1ki-03-006",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 3,
+      "startVerse": 1,
+      "endChapter": 3,
+      "endVerse": 17,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler's parallel of the building: the site named as Mount Moriah, the threshing floor of Araunah, and the porch given a height of 120 cubits where Kings gives no height."
+    },
+    {
+      "id": "conn-1ki-03-007",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 4,
+      "startVerse": 1,
+      "endChapter": 4,
+      "endVerse": 22,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler's parallel of the furnishings: the bronze altar, the Sea given as 3,000 baths where Kings gives 2,000, the ten lavers, and the gold vessels."
+    },
+    {
+      "id": "conn-1ki-03-008",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 5,
+      "startVerse": 1,
+      "endChapter": 5,
+      "endVerse": 14,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler's parallel of the ark brought up and the cloud filling the house, with the priests unable to stand to minister."
+    },
+    {
+      "id": "conn-1ki-03-009",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 6,
+      "startVerse": 1,
+      "endChapter": 6,
+      "endVerse": 42,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler's parallel of the dedicatory prayer: the same petitions, including the stranger and the exile, in fuller form."
+    },
+    {
+      "id": "conn-1ki-03-010",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 7,
+      "startVerse": 1,
+      "endChapter": 7,
+      "endVerse": 10,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler's parallel of the dedication's close: fire falls, the glory fills the house, the sacrifices, and the feast of seven days followed by a solemn assembly on the eighth day."
+    },
+    {
+      "id": "conn-1ki-03-011",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 9,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "When Solomon has finished both houses, the LORD appears a second time: the house is hallowed, the dynasty promised conditionally, and the curse stated in full — if they turn to other gods, the house will be cast out of the LORD's sight. The warning answers the dedication."
+    },
+    {
+      "id": "conn-1ki-03-012",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 4,
+      "endChapter": 12,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "At Shechem the tribes ask Rehoboam to lighten the yoke his father laid on them: \"Thy father made our yoke grievous.\" The levy raised to build the temple returns as the grievance that divides the kingdom."
+    },
+    {
+      "id": "conn-1ki-03-013",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 12,
+      "startVerse": 5,
+      "endChapter": 12,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The LORD will choose a place to put his name there, and there Israel shall bring its offerings and rejoice. The temple is the place where the LORD puts his name, and the prayer appeals to it at 8:29."
+    },
+    {
+      "id": "conn-1ki-03-014",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 23,
+      "startVerse": 33,
+      "endChapter": 23,
+      "endVerse": 36,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "The feast of tabernacles is kept on the fifteenth day of the seventh month for seven days. The assembly at the feast in the seventh month, Ethanim, at 8:2 is the feast of the dedication season."
+    },
+    {
+      "id": "conn-1ki-03-015",
+      "book": "Hebrews",
+      "bookId": "hebrews",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 5,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The later letter describes the tabernacle's holy places and the ark of the covenant, \"wherein was the golden pot that had manna, and Aaron's rod that budded, and the tables of the covenant.\" It stands against 8:9, which says the ark held only the two tables; the tension is not resolved here."
+    },
+    {
+      "id": "conn-1ki-03-016",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 132,
+      "startVerse": 1,
+      "endChapter": 132,
+      "endVerse": 18,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"Arise, O LORD, into thy rest; thou, and the ark of thy strength.\" The psalm remembers David's oath to find a place for the LORD and the ark's coming to rest, the same movement the dedication narrates."
+    },
+    {
+      "id": "conn-1ki-03-017",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 3,
+      "startVerse": 1,
+      "endChapter": 3,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Solomon makes affinity with Pharaoh and takes his daughter into the city of David until the houses are built. The house for Pharaoh's daughter built in the palace complex at 7:8 belongs to this alliance."
+    },
+    {
+      "id": "conn-1ki-03-018",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 5,
+      "startVerse": 11,
+      "endChapter": 5,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hiram king of Tyre sends messengers to David with cedar trees, carpenters, and masons, and they build David a house. The friendship behind the temple treaty begins with David's palace."
+    },
+    {
+      "id": "conn-1ki-03-019",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 4,
+      "startVerse": 15,
+      "endChapter": 4,
+      "endVerse": 19,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Israel saw no similitude on the day the LORD spoke at Horeb, and is warned not to make a graven image of any figure. The inner room in Jerusalem holds no image of its God, only the ark beneath the cherubim."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-bible-odyssey-first-temple",
+    "source-biblicaltraining-solomons-temple",
+    "source-biblicaltraining-ark-of-the-covenant",
+    "source-bible-odyssey-solomon"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S03 sources[] carries five entries (all verified in the live registry): K03-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K03-S02 BO \"First Temple\" -> source-bible-odyssey-first-temple; K03-S03 BT \"Solomon's Temple\" -> source-biblicaltraining-solomons-temple; source-biblicaltraining-ark-of-the-covenant; K03-S04 BO \"Solomon\" -> source-bible-odyssey-solomon. Four appear in §9 Source IDs cells AND in appendix footnotes (Mechon Mamre 35, BO First Temple 6, BT Solomon's Temple 18, BT Ark of the Covenant via claim 032); BO \"Solomon\" enters via the appendix footnote only (1 use — the S03 Wikipedia-Edom precedent: appendix footnote, registry-verified, included by the mechanical §-location rule; no §9 claim cites it in its Source IDs cell, though §4 quotes the Solomon article's harsher reading of the levy). Excluded by the §-location rule (§4/§5/§6 prose only, never in a §9 Source IDs cell or the appendix): source-biblicaltraining-jerusalem (§4 prose only) and source-kisilevitz-lipschits-tel-moza-bar-2020 (§5/§6 prose only). Excluded by the §-location rule (reuse-basis only, cited through published claims in §2, never in §9 Source IDs or the appendix): the ark's making (clm-bu-033, clm-bu-053, clm-deu-03-031, clm-deu-03-036), the kingship law (clm-deu-05-014/016), the Deut 18 prophet framework (clm-deu-05-029–036, 038), the avenger of blood (clm-deu-05-043), David's genealogy (clm-rut-04-002/006/012/015), and Bethlehem (clm-rut-01-004). The ark source enters directly, not by reuse: it is in claim 032's §9 Source IDs cell. KCL-03-040 is established and cites 8:53 with the CORRECTED KJV reading (\"O Lord GOD\"); 8:53 is a Class A stored-text error in the divine-name rendering (flagged only, no database fix). The stored reading is quoted nowhere in the built files (verified by grep at build), including in these notes. KCL-03-032 is debated (8:9 vs Heb 9:4, ark contents; cites published clm-deu-09-014, debated, and the ark source). KCL-03-043 is debated (the 480-year figure: straightforward mid-15th-century reading vs schematic twelve-generations reading; neither asserted). KCL-03-024 is probable (Jachin/Boaz name meanings — the text gives the names, not the meanings). KCL-03-044 and KCL-03-045 are probable (Iron Age temple parallels at Tell Tayinat, 'Ain Dara, Aleppo; no remains of the First Temple identified). K03-S03 (BT \"Solomon's Temple\") was read in part only (lines 0–162 of 343; the remainder was rate-limited and is not cited). No multi-range connections — all 19 §11 targets are single ranges within one book, so no encompassing ranges and no splits. primaryScripture is 6:1–8:11 (narrowed from the full range 5:1–8:66; the full range spans four chapters, and primaryScripture is limited to three chapters — endChapter − startChapter = 2, within the validator limit); chapters 5 and 7–8 beyond v. 11 are carried in fullRange. Chapter coverage is complete: all 173 verses covered (ch. 5: 18, ch. 6: 38, ch. 7: 51, ch. 8: 66), per the dossier's own coverage check, re-verified by script at build. KJV 5:1–18 = MT 5:15–32 numbering is preserved as the dossier states it. Dossier-notes item 9 (registry counts 407) is the stale pre-#323 snapshot — the live registry is 443 entries. S03 has zero needs-checking entries (the only dossier with none). The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
