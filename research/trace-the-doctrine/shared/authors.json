@@ -1,27 +1,347 @@
 [
   {
-    "displayName": "Justin Martyr",
-    "id": "justin-martyr",
-    "status": "not-started"
+    "bio": null,
+    "dates": null,
+    "displayName": "Anselm of Canterbury",
+    "id": "anselm-of-canterbury",
+    "notes": "Benedictine monk of Bec, later Archbishop of Canterbury; author of the Monologion. Life dates are not asserted here (RESEARCH-STANDARDS.md §5).",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e4-anselm-of-canterbury-monologion-date-001"
+    ]
   },
   {
-    "displayName": "Irenaeus",
-    "id": "irenaeus",
-    "status": "not-started"
+    "id": "arius",
+    "displayName": "Arius",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Author of the Thalia, known only through fragments quoted by opponents, principally Athanasius (Discourse I, ch. 2, §§5-6). Life dates not verified; dates left null per RESEARCH-STANDARDS.md §5. Coordinator correction 2026-11-21: verificationRecordIds corrected — the era draft referenced ver-p3-e2-arius-john-1-1-attribution-001, which does not exist; replaced with ver-p3-e2-arius-john-1-1-001-attribution-001.",
+    "verificationRecordIds": [
+      "ver-p3-e2-arius-john-1-1-001-attribution-001"
+    ]
   },
   {
-    "displayName": "Tertullian",
-    "id": "tertullian",
-    "status": "not-started"
-  },
-  {
-    "displayName": "Athanasius",
     "id": "athanasius",
-    "status": "not-started"
+    "displayName": "Athanasius",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Filled-in T1 stub. Author of Four Discourses Against the Arians, checked at https://www.newadvent.org/fathers/28161.htm on 2026-11-20. Life dates not verified; dates left null per RESEARCH-STANDARDS.md §5. Coordinator correction 2026-11-21: verificationRecordIds corrected — the era draft referenced ver-p3-e2-athanasius-john-1-1-attribution-001, which does not exist; replaced with ver-p3-e2-athanasius-john-1-1-001-attribution-001.",
+    "verificationRecordIds": [
+      "ver-p3-e2-athanasius-john-1-1-001-attribution-001"
+    ]
   },
   {
-    "displayName": "Augustine",
+    "id": "athenagoras",
+    "displayName": "Athenagoras",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Athenian philosopher and Christian apologist; author of A Plea for the Christians as cited in this era.",
+    "verificationRecordIds": [
+      "ver-p3-e1-athenagoras-john-10-30-001-quotation-001"
+    ]
+  },
+  {
     "id": "augustine",
-    "status": "not-started"
+    "displayName": "Augustine",
+    "status": "verification-pending",
+    "bio": "Bishop of Hippo; author of De Trinitate (On the Holy Trinity) in fifteen books and of the Answer to Maximinus the Arian.",
+    "dates": null,
+    "notes": "Life dates not verified in this pass; recorded as null per RESEARCH-STANDARDS.md section 5.4. Do not use a lifespan as a work date.",
+    "verificationRecordIds": []
+  },
+  {
+    "id": "basil-of-caesarea",
+    "displayName": "Basil of Caesarea",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Author of On the Holy Spirit, checked at https://www.newadvent.org/fathers/3203.htm on 2026-11-20. Life dates not verified; dates left null per RESEARCH-STANDARDS.md §5. Coordinator correction 2026-11-21: verificationRecordIds corrected — the era draft referenced ver-p3-e2-basil-acts-5-3-attribution-001, which does not exist; replaced with ver-p3-e2-basil-acts-5-3-001-attribution-001.",
+    "verificationRecordIds": [
+      "ver-p3-e2-basil-acts-5-3-001-attribution-001"
+    ]
+  },
+  {
+    "id": "church-of-smyrna",
+    "displayName": "Church of Smyrna",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Corporate author: the Christian community at Smyrna, author of the Martyrdom of Polycarp letter. Not an individual; the letter reports Polycarp's prayer rather than Polycarp writing it.",
+    "verificationRecordIds": [
+      "ver-p3-e1-church-of-smyrna-2cor-13-14-001-quotation-001"
+    ]
+  },
+  {
+    "id": "clement-of-rome",
+    "displayName": "Clement of Rome",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Traditional ascription of the First Epistle of Clement to the Corinthians. The letter itself names no author; it is written in the name of the church of Rome.",
+    "verificationRecordIds": [
+      "ver-p3-e1-clement-of-rome-eph-4-4-001-quotation-001"
+    ]
+  },
+  {
+    "id": "cyprian",
+    "displayName": "Cyprian",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Cyprian of Carthage. Author of On the Unity of the Church, checked at https://www.newadvent.org/fathers/050701.htm on 2026-11-20. Life dates not verified; dates left null per RESEARCH-STANDARDS.md §5. Coordinator correction 2026-11-21: verificationRecordIds corrected — the era draft referenced ver-p3-e2-cyprian-1john-5-7-attribution-001, which does not exist; replaced with ver-p3-e2-cyprian-1john-5-7-001-attribution-001.",
+    "verificationRecordIds": [
+      "ver-p3-e2-cyprian-1john-5-7-001-attribution-001"
+    ]
+  },
+  {
+    "id": "cyril-alexandria",
+    "displayName": "Cyril of Alexandria",
+    "status": "verification-pending",
+    "bio": "Author of the Commentary on the Gospel according to John in twelve books, of which Books VII and VIII survive only in fragments; the surviving text is preserved in Patrologia Graeca 73-74.",
+    "dates": null,
+    "notes": "Life dates not verified in this pass; recorded as null per RESEARCH-STANDARDS.md section 5.4.",
+    "verificationRecordIds": []
+  },
+  {
+    "id": "faustus-socrinus",
+    "displayName": "Faustus Socinus (Fausto Sozzini)",
+    "dates": {
+      "earliest": null,
+      "latest": null,
+      "certainty": "unknown",
+      "note": "Dates not verified from a checked page in this pass; left null. The Racovian Catechism's Historical Introduction states Socinus died in 1604, the year before the Catechism was first published; that year is recorded in the work record, not asserted as a verified lifespan here."
+    },
+    "bio": "Italian antitrinitarian theologian associated with the Polish Brethren. His views, rather than his sole authorship, are associated with the Racovian Catechism; see the work record and the attribution verification record.",
+    "notes": "Attribution of the Racovian Catechism to Socinus is PARTIAL: the Catechism is a collective work of the Polish Brethren, completed after Socinus's death by Valentinus Smalcius, Hieronim Moskorzowski and Johannes Volkel. Interpretations attributed here to faustus-socrinus represent the Socinian tradition of the Catechism, not Socinus as sole author.",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-racovian-catechism-attribution-001"
+    ]
+  },
+  {
+    "id": "gregory-of-nazianzus",
+    "displayName": "Gregory of Nazianzus",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Author of the Fifth Theological Oration (Oration 31), checked at https://BibleHub.com/library/cyril/lectures_of_s_cyril_of_jerusalem/the_fifth_theological_oration.htm on 2026-11-20. Life dates not verified; dates left null per RESEARCH-STANDARDS.md §5. Coordinator correction 2026-11-21: verificationRecordIds corrected — the era draft referenced ver-p3-e2-gregory-nazianzus-john-14-16-attribution-001, which does not exist; replaced with ver-p3-e2-gregory-nazianzus-john-14-16-001-attribution-001.",
+    "verificationRecordIds": [
+      "ver-p3-e2-gregory-nazianzus-john-14-16-001-attribution-001"
+    ]
+  },
+  {
+    "id": "hilary-of-poitiers",
+    "displayName": "Hilary of Poitiers",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Author of On the Trinity, checked at https://www.newadvent.org/fathers/330201.htm on 2026-11-20. Life dates not verified; dates left null per RESEARCH-STANDARDS.md §5. Coordinator correction 2026-11-21: verificationRecordIds corrected — the era draft referenced ver-p3-e2-hilary-john-1-1-attribution-001, which does not exist; replaced with ver-p3-e2-hilary-john-1-1-001-attribution-001.",
+    "verificationRecordIds": [
+      "ver-p3-e2-hilary-john-1-1-001-attribution-001"
+    ]
+  },
+  {
+    "id": "ignatius-of-antioch",
+    "displayName": "Ignatius of Antioch",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Bishop of Antioch; author of the seven letters written en route to martyrdom at Rome, including the Epistle to the Ephesians.",
+    "verificationRecordIds": [
+      "ver-p3-e1-ignatius-of-antioch-phil-2-5-001-quotation-001",
+      "ver-p3-e1-ignatius-of-antioch-eph-2-18-001-quotation-001"
+    ]
+  },
+  {
+    "id": "irenaeus",
+    "displayName": "Irenaeus",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Fill-in of the T1 stub. Bishop of Lyons; author of Against Heresies as cited in this era.",
+    "verificationRecordIds": [
+      "ver-p3-e1-irenaeus-ps-110-1-001-quotation-001",
+      "ver-p3-e1-irenaeus-gen-19-24-001-quotation-001",
+      "ver-p3-e1-irenaeus-ps-45-6-001-quotation-001",
+      "ver-p3-e1-irenaeus-1cor-8-6-001-quotation-001",
+      "ver-p3-e1-irenaeus-john-1-1-001-quotation-001",
+      "ver-p3-e1-irenaeus-matt-28-19-001-quotation-001",
+      "ver-p3-e1-irenaeus-gen-1-26-001-quotation-001"
+    ]
+  },
+  {
+    "id": "john-calvin",
+    "displayName": "John Calvin",
+    "dates": {
+      "earliest": 1509,
+      "latest": 1564,
+      "certainty": "exact",
+      "note": "Born 10 July 1509, Noyon; died 27 May 1564, Geneva. Verified on the Genevan Foundation chronology page."
+    },
+    "bio": "French Reformer; pastor in Geneva; author of the Institutes of the Christian Religion (first edition 1536, final edition 1559) and of commentaries on most of the New Testament.",
+    "notes": "",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-john-calvin-dates-001"
+    ]
+  },
+  {
+    "id": "john-of-damascus",
+    "displayName": "John of Damascus",
+    "status": "verification-pending",
+    "bio": "Author of An Exact Exposition of the Orthodox Faith, the third part of The Fountain of Knowledge (Pege gnoseos).",
+    "dates": null,
+    "notes": "Author of An Exact Exposition of the Orthodox Faith (Exposition I.8 checked in Era 3). Also recorded as the attributed holder of the alternative reading on John 15:26 as reported by Aquinas, Summa Theologiae I, q. 36, a. 2, obj. 3. Life dates not verified in this pass; recorded as null per RESEARCH-STANDARDS.md section 5.4.",
+    "verificationRecordIds": [
+      "ver-p3-e4-thomas-aquinas-john-15-26-attribution-001"
+    ]
+  },
+  {
+    "id": "jonathan-edwards",
+    "displayName": "Jonathan Edwards",
+    "dates": {
+      "earliest": 1703,
+      "latest": 1758,
+      "certainty": "exact",
+      "note": "Born 5 October 1703; died 22 March 1758. Verified on the CCEL author page for the Discourse on the Trinity."
+    },
+    "bio": "American Congregational minister and theologian; author of the unpublished Discourse on the Trinity, begun early 1730 and first published 1903.",
+    "notes": "",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-jonathan-edwards-dates-001"
+    ]
+  },
+  {
+    "id": "justin-martyr",
+    "displayName": "Justin Martyr",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Fill-in of the T1 stub. Apologist at Rome; author of the First Apology and of the Dialogue with Trypho as cited in this era.",
+    "verificationRecordIds": [
+      "ver-p3-e1-justin-martyr-gen-1-26-001-quotation-001",
+      "ver-p3-e1-justin-martyr-gen-18-1-001-quotation-001",
+      "ver-p3-e1-justin-martyr-gen-19-24-001-quotation-001",
+      "ver-p3-e1-justin-martyr-matt-28-19-001-quotation-001",
+      "ver-p3-e1-justin-martyr-2cor-13-14-001-quotation-001"
+    ]
+  },
+  {
+    "id": "leo-i",
+    "displayName": "Leo I",
+    "status": "verification-pending",
+    "bio": "Bishop of Rome; author of Letter 15 to Turribius, bishop of Asturia, upon the errors of the Priscillianists, dated 21 July 447.",
+    "dates": null,
+    "notes": "Life dates not verified in this pass; recorded as null per RESEARCH-STANDARDS.md section 5.4.",
+    "verificationRecordIds": []
+  },
+  {
+    "id": "martin-luther",
+    "displayName": "Martin Luther",
+    "dates": {
+      "earliest": null,
+      "latest": null,
+      "certainty": "unknown",
+      "note": "Birth and death dates not verified from a checked page in this pass; left null rather than asserted."
+    },
+    "bio": "German Reformer; author of the Commentary on Galatians (lectures delivered 1531; Latin commentary published 1535).",
+    "notes": "",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-martin-luther-commentary-galatians-date-001"
+    ]
+  },
+  {
+    "id": "michael-servetus",
+    "displayName": "Michael Servetus",
+    "dates": {
+      "earliest": 1511,
+      "latest": 1553,
+      "certainty": "approximate",
+      "note": "Born probably 1511 (also given as 1509; birth year uncertain — see verification record ver-p3-e5-michael-servetus-dates-001); died 27 October 1553, Geneva, executed. Dates as given on the Genevan Foundation chronology page, which states 'Michael Servetus (1511-1553)'."
+    },
+    "bio": "Spanish theologian; author of De Trinitatis Erroribus (1531) and Christianismi Restitutio (1553). No verified quotation from his own writings was obtained in this pass; his readings are recorded here only as Calvin reports them, in alternativeReadings.",
+    "notes": "Included so that alternativeReadings can attribute dissenting readings to him. He is not the author of any interpretation in this pass.",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-michael-servetus-dates-001"
+    ]
+  },
+  {
+    "id": "novatian",
+    "displayName": "Novatian",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Author of Treatise Concerning the Trinity, checked at https://ccel.org/ccel/novatian/treatise/anf05.vi.iii.xiv.html on 2026-11-20. Life dates not verified; dates left null per RESEARCH-STANDARDS.md §5. Coordinator correction 2026-11-21: verificationRecordIds corrected — the era draft referenced ver-p3-e2-novatian-john-1-1-attribution-001, which does not exist; replaced with ver-p3-e2-novatian-john-1-1-001-attribution-001.",
+    "verificationRecordIds": [
+      "ver-p3-e2-novatian-john-1-1-001-attribution-001"
+    ]
+  },
+  {
+    "id": "origen",
+    "displayName": "Origen",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Author of De Principiis, checked at https://en.wikisource.org/wiki/Ante-Nicene_Fathers/Volume_IV/Origen/Origen_De_Principiis/I/Chapter_2 on 2026-11-20. Life dates not verified; dates left null per RESEARCH-STANDARDS.md §5. Coordinator correction 2026-11-21: verificationRecordIds corrected — the era draft referenced ver-p3-e2-origen-col-1-15-attribution-001, which does not exist; replaced with ver-p3-e2-origen-col-1-15-001-attribution-001.",
+    "verificationRecordIds": [
+      "ver-p3-e2-origen-col-1-15-001-attribution-001"
+    ]
+  },
+  {
+    "id": "philip-melanchthon",
+    "displayName": "Philip Melanchthon",
+    "dates": {
+      "earliest": 1497,
+      "latest": 1560,
+      "certainty": "exact",
+      "note": "Dates as given on the checked edition's title page: 'Philip Melancthon (1497-1560)' (Project Wittenberg, Triglot Concordia). Spelling standardized to Melanchthon."
+    },
+    "bio": "German Reformer; principal author of the Augsburg Confession (1530).",
+    "notes": "",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e5-philip-melanchthon-dates-001"
+    ]
+  },
+  {
+    "id": "tertullian",
+    "displayName": "Tertullian",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Filled-in T1 stub. Author of Against Praxeas, checked at https://ccel.org/ccel/tertullian/against_praxeas/anf03.v.ix.ii.html on 2026-11-20. Life dates not verified; dates left null per RESEARCH-STANDARDS.md §5. Coordinator correction 2026-11-21: verificationRecordIds corrected — the era draft referenced ver-p3-e2-tertullian-against-praxeas-attribution-001, which does not exist; replaced with ver-p3-e2-tertullian-gen-1-26-001-attribution-001, the attribution record for this author's tertullian-gen-1-26-001 reading.",
+    "verificationRecordIds": [
+      "ver-p3-e2-tertullian-gen-1-26-001-attribution-001"
+    ]
+  },
+  {
+    "id": "theophilus-of-antioch",
+    "displayName": "Theophilus of Antioch",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Bishop of Antioch; author of To Autolycus as cited in this era.",
+    "verificationRecordIds": [
+      "ver-p3-e1-theophilus-of-antioch-gen-1-1-001-quotation-001",
+      "ver-p3-e1-theophilus-of-antioch-gen-1-26-001-quotation-001",
+      "ver-p3-e1-theophilus-of-antioch-john-1-1-001-quotation-001"
+    ]
+  },
+  {
+    "bio": null,
+    "dates": null,
+    "displayName": "Thomas Aquinas",
+    "id": "thomas-aquinas",
+    "notes": "Scholastic theologian; author of the Summa Theologiae. Life dates are not asserted here (RESEARCH-STANDARDS.md §5: work dates, not lifespans, are recorded on the work entry).",
+    "status": "verification-pending",
+    "verificationRecordIds": [
+      "ver-p3-e4-thomas-aquinas-summa-date-001"
+    ]
   }
 ]
