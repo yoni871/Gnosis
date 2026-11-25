@@ -4320,10 +4320,10 @@
     "title": "Solomon's Temple",
     "publisher": "BiblicalTraining.org",
     "year": "n.d. (accessed 2026-11-24)",
-    "pagesOrSection": "Lines 0-162 of 343 read in full",
+    "pagesOrSection": "Lines 0-162 and 200-343 of 343 read in full",
     "url": "https://www.biblicaltraining.org/library/solomons-temple",
     "verification": "verified",
-    "verificationDetail": "Verified (2026-11-24): lines 0-162 of 343 read in full live (background, site, materials, Hiram agreement, workforce, date, building, porch, main hall, Most Holy Place, side rooms, courts, pillars, bronze altar, Sea). Lines 163-343 were not read (rate-limited) and are not cited. Unsigned library article."
+    "verificationDetail": "Verified (2026-11-24): lines 0-162 of 343 read in full live (background, site, materials, Hiram agreement, workforce, date, building, porch, main hall, Most Holy Place, side rooms, courts, pillars, bronze altar, Sea). Lines 200-343 read live by the 2 Kings S09 worker 2026-11-25 (the place where God chose to put his Name; Manasseh's altars and Josiah's purge, lines 228-232; the Name theology, lines 278-282). Lines 163-199 were not read and are not cited. Unsigned library article."
   },
   "source-biblicaltraining-queen-of-sheba": {
     "id": "source-biblicaltraining-queen-of-sheba",
@@ -4430,10 +4430,10 @@
     "title": "Baal",
     "publisher": "BiblicalTraining.org",
     "year": "n.d. (accessed 2026-11-24)",
-    "pagesOrSection": "Lines 0-155 of 277 read in full",
+    "pagesOrSection": "Full article (277 lines) read in full",
     "url": "https://www.biblicaltraining.org/library/baal",
     "verification": "verified",
-    "verificationDetail": "Verified (2026-11-24): lines 0-148 read in full live by the S07 worker (the word and its meanings; Baal in Canaanite religion; the worship of Baal; Ahab, Jezebel, and Elijah); lines 149-155 also read. Lines 156-277 (Jehu onward) were not read and are not cited. The S06 provisional ID K06-S05 is the same article unread (Cloudflare-blocked) and folds into this entry; no S06 claim rests on it. The article's Scripture quotations follow a modern rendering and are never quoted in the dossiers. Unsigned library article."
+    "verificationDetail": "Verified (2026-11-24): lines 0-148 read in full live by the S07 worker (the word and its meanings; Baal in Canaanite religion; the worship of Baal; Ahab, Jezebel, and Elijah); lines 149-155 also read. Full article (277 lines) read live by the 2 Kings S05 worker 2026-11-25 (Baal as storm god; the LORD's persistent rival; the temples in Samaria and Jerusalem; the overthrow of Athaliah, the breaking of Baal's house, and the slaying of Mattan, lines 161-167). The S06 provisional ID K06-S05 is the same article unread (Cloudflare-blocked) and folds into this entry; no S06 claim rests on it. The article's Scripture quotations follow a modern rendering and are never quoted in the dossiers. Unsigned library article."
   },
   "source-biblicaltraining-carmel": {
     "id": "source-biblicaltraining-carmel",
@@ -4463,10 +4463,10 @@
     "title": "Elisha",
     "publisher": "BiblicalTraining.org",
     "year": "n.d. (accessed 2026-11-24)",
-    "pagesOrSection": "Lines 0-153 of 373 read in full",
+    "pagesOrSection": "Lines 0-300 of 373 read in full",
     "url": "https://www.biblicaltraining.org/library/elisha",
     "verification": "verified",
-    "verificationDetail": "Verified (2026-11-24): the call sections read in full live (name and background; call and years with Elijah; Elijah's departure and the double portion; dates and the shape of the record, in part). Lines 154-373 (the 2 Kings ministry) were not read and are not cited. Unsigned library article."
+    "verificationDetail": "Verified (2026-11-24): the call sections read in full live (name and background; call and years with Elijah; Elijah's departure and the double portion; dates and the shape of the record, in part). Lines 154-300 read live by the 2 Kings S02 worker 2026-11-25 (first acts as successor; ministry among the prophets and the poor; Naaman and Gehazi; Elisha and the affairs of nations, including the campaign against Moab, Dothan, the siege, Hazael, Jehu, last days and death). Lines 301-373 (the interpretation questions) were not read and are not cited. Unsigned library article."
   },
   "source-biblicaltraining-abel-meholah": {
     "id": "source-biblicaltraining-abel-meholah",
@@ -4641,8 +4641,8 @@
     "year": "n.d. (accessed 2026-11-24)",
     "pagesOrSection": "Full article",
     "url": "http://biblicaltraining.org/library/sons-of-the-prophets",
-    "verification": "not-independently-verified",
-    "verificationDetail": "Needs-checking - seen only in search-result snippets (the community description; the title's occurrences, incl. 1 Kgs 20:35 as the first use; Bethel, Jericho, Gilgal); the page itself was not read in full. Dependent claim KCL-09-020 is assessed probable and also rests on the primary text (K09-S01), which gives the phrase at 20:35."
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-25): full article read live (157 lines) - the name; prophetic bands in Samuel's time; the companies in the days of Elijah and Elisha; locations (Bethel, Jericho, Gilgal); character and role. The first use of the title is at 1 Kgs 20:35. The earlier record ('seen only in search-result snippets') is superseded. Dependent claims: KCL-09-020 (probable; also rests on the primary text, K09-S01) and 2KCL-03-001 (probable; also rests on the primary text, 2K03-S01)."
   },
   "source-naaman-naboths-vineyard-jezreel-jsot": {
     "id": "source-naaman-naboths-vineyard-jezreel-jsot",
@@ -4665,5 +4665,137 @@
     "url": "https://www.biblicaltraining.org/library/false-prophets",
     "verification": "not-independently-verified",
     "verificationDetail": "Needs-checking - seen only in search-result snippets (the two Deuteronomy tests; the fulfilment test as a negative check; the loyalty test of Deut 13); the page itself was not read in full - the text-fetch service returned a rate limit (429) on the attempt. Dependent claim KCL-11-028 is assessed probable and also rests on the primary text (K11-S01), the Micaiah article (K11-S03), and the established Deut 18 framework (clm-deu-05-034-035)."
+  },
+  "source-mechon-mamre-2-kings-masoretic-text": {
+    "id": "source-mechon-mamre-2-kings-masoretic-text",
+    "author": "Mechon Mamre (Masoretic text; JPS 1917 English)",
+    "title": "Hebrew Bible: 2 Kings (Masoretic text with JPS 1917 English)",
+    "publisher": "Mechon Mamre (mechon-mamre.org)",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "2 Kings 1-25 read in full. S01: chs. 1-2 (18/25 vv); S02: chs. 3-5 (27/44/27 vv); S03: chs. 6-8 (33/20/29 vv); S04: chs. 9-10 (37/36 vv); S05: chs. 11-12 (20/22 MT vv; KJV 11:21 = MT 12:1); S06: chs. 13-16 (25/29/38/20 vv); S07: ch. 17 (41 vv); S08: chs. 18-20 (37/37/21 vv); S09: ch. 21 (26 vv); S10: chs. 22-23 (20/37 vv); S11: chs. 24-25 (20/30 vv)",
+    "url": "https://www.mechon-mamre.org/p/pt/pt09.htm",
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-25): 2 Kings 1-25 read in full live across the eleven dossiers, Hebrew with JPS 1917 English alongside (Mechon Mamre pt09.htm; chapter pages pt09b01.htm-pt09b25.htm). S01: chs. 1-2 read in full (18/25 vv); S02: chs. 3-5 read in full (27/44/27 vv); S03: chs. 6-8 read in full (33/20/29 vv); S04: chs. 9-10 read in full (37/36 vv); S05: chs. 11-12 read in full (20/22 MT vv; KJV 11:21 = MT 12:1); S06: chs. 13-16 read in full (25/29/38/20 vv); S07: ch. 17 read in full (41 vv); S08: chs. 18-20 read in full (37/37/21 vv; ch. 20 from the saved Mechon Mamre page fetched 2026-11-25, the live re-fetch having been rate-limited); S09: ch. 21 read in full (26 vv); S10: chs. 22-23 read in full (20/37 vv); S11: chs. 24-25 read in full (20/30 vv). JPS 7:6 confirms the corrected reading \"For the Lord had made\"; JPS 8:16 confirms \"Jehoshaphat\" (one word); JPS 19:23 confirms the corrected reading \"reproached the Lord\"; JPS 23:19 confirms the Hebrew caveat (\"to provoke [the LORD]\" - no divine name in the MT). Biblical narrative, not independent verification of the events narrated."
+  },
+  "source-biblicaltraining-naaman": {
+    "id": "source-biblicaltraining-naaman",
+    "author": "BiblicalTraining Library (unsigned library article)",
+    "title": "Naaman",
+    "publisher": "BiblicalTraining.org",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Full article (174 lines)",
+    "url": "https://www.biblicaltraining.org/library/naaman",
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-25): full article read live (position and illness; the Israelite girl; the appeal to the king; healing in the Jordan; confession and the request for earth; Gehazi's deception; historical setting; Naaman in the New Testament; interpretation and significance). Unsigned library article."
+  },
+  "source-biblicaltraining-hazael": {
+    "id": "source-biblicaltraining-hazael",
+    "author": "BiblicalTraining Library (unsigned library article)",
+    "title": "Hazael",
+    "publisher": "BiblicalTraining.org",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Lines 0-177 of 186 read live",
+    "url": "https://www.biblicaltraining.org/library/hazael",
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-25): lines 0-177 of 186 read live (name; the commission to Elijah; Elisha in Damascus; wars with Israel and Judah; Hazael and Assyria; archaeological evidence; chronology; death and successors; significance). The remainder (lines 178-186) is related articles and further reading, not cited. Unsigned library article."
+  },
+  "source-biblicaltraining-damascus": {
+    "id": "source-biblicaltraining-damascus",
+    "author": "BiblicalTraining Library (unsigned library article)",
+    "title": "Damascus",
+    "publisher": "BiblicalTraining.org",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Lines 0-150 of 308 read live",
+    "url": "https://www.biblicaltraining.org/library/damascus",
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-25): lines 0-150 of 308 read live (name; setting and natural features; early history; Damascus and the united monarchy; the Aramean kingdom at its height, incl. Elijah, Elisha, and Naaman; Dothan; the siege of Samaria; Hazael; decline and fall through Jeroboam II). The remainder (lines 151-308) is later history, not cited. Unsigned library article."
+  },
+  "source-biblicaltraining-jehu": {
+    "id": "source-biblicaltraining-jehu",
+    "author": "BiblicalTraining Library (unsigned library article)",
+    "title": "Jehu",
+    "publisher": "BiblicalTraining.org",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Lines 0-153 of 255 read in full",
+    "url": "https://www.biblicaltraining.org/library/jehu",
+    "verification": "verified",
+    "verificationDetail": "Verified in part (2026-11-25): lines 0-153 read live (name; family; prophetic commission; anointing; deaths of Joram and Ahaziah, including the Chronicles variant; death of Jezebel; end of Ahab's house; purge of Baal; Jehu's reign; chronology; Black Obelisk, lines 150-153). Lines 154-255 (remainder of the Assyrian-records section and any following sections) were not read - the text-fetch service returned 429 (rate-limited) on the remainder fetch - and are not cited. Unsigned library article."
+  },
+  "source-biblicaltraining-jonah": {
+    "id": "source-biblicaltraining-jonah",
+    "author": "BiblicalTraining Library (unsigned library article)",
+    "title": "Jonah",
+    "publisher": "BiblicalTraining.org",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Lines 0-170 of 180 read in full",
+    "url": "https://www.biblicaltraining.org/library/jonah",
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-25): lines 0-170 of 180 read live (name and family; prophet in the reign of Jeroboam II; the mission to Nineveh; Jonah's anger and God's question; historical setting and interpretation; Jonah in the New Testament; Jonah in later tradition; significance). Lines 171-180 are the further-study list and are not cited. The article's Scripture quotations follow a modern rendering and are never quoted in this dossier; all dossier quotations are KJV/JPS 1917. Unsigned library article."
+  },
+  "source-biblicaltraining-assyria": {
+    "id": "source-biblicaltraining-assyria",
+    "author": "BiblicalTraining Library (unsigned library article)",
+    "title": "Assyria",
+    "publisher": "BiblicalTraining.org",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Lines 0-283 of 435 read in full",
+    "url": "https://www.biblicaltraining.org/library/assyria",
+    "verification": "verified",
+    "verificationDetail": "Verified in part (2026-11-25): lines 0-283 of 435 read live (name and land; Assyria in the early chapters of the Bible; history before the empire; the Neo-Assyrian empire and Israel, in part - revival and Shalmaneser III; a half-century of weakness; Tiglath-pileser III; Shalmaneser V, Sargon II, and the fall of Samaria; Sennacherib and Hezekiah, in part; kings of Assyria in the biblical period; government, army, and deportation). Lines 284-435 (the remainder of the Sennacherib and later sections, religion, writing, and further study) were not read and are not cited. The article's Scripture quotations follow a modern rendering and are never quoted in this dossier; all dossier quotations are KJV/JPS 1917. Unsigned library article."
+  },
+  "source-biblicaltraining-hezekiah": {
+    "id": "source-biblicaltraining-hezekiah",
+    "author": "BiblicalTraining Library (unsigned library article)",
+    "title": "Hezekiah",
+    "publisher": "BiblicalTraining.org",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Full article (365 lines)",
+    "url": "https://www.biblicaltraining.org/library/hezekiah",
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-25): full article read live (lines 0-158, 158-300, 300-365). Unsigned library article."
+  },
+  "source-biblicaltraining-sennacherib": {
+    "id": "source-biblicaltraining-sennacherib",
+    "author": "BiblicalTraining Library (unsigned library article)",
+    "title": "Sennacherib",
+    "publisher": "BiblicalTraining.org",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Full article (271 lines)",
+    "url": "https://www.biblicaltraining.org/library/sennacherib",
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-25): full article read live (lines 0-160, 160-271). Unsigned library article."
+  },
+  "source-biblicaltraining-lachish": {
+    "id": "source-biblicaltraining-lachish",
+    "author": "BiblicalTraining Library (unsigned library article)",
+    "title": "Lachish",
+    "publisher": "BiblicalTraining.org",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Full article (216 lines)",
+    "url": "https://www.biblicaltraining.org/library/lachish",
+    "verification": "verified",
+    "verificationDetail": "Verified (2026-11-25): full article read live (lines 0-154, 154-216). Unsigned library article."
+  },
+  "source-babylonian-chronicle": {
+    "id": "source-babylonian-chronicle",
+    "author": "Anonymous (Babylonian chronicle)",
+    "title": "Babylonian Chronicle (ABC 5; tablet BM 21946)",
+    "publisher": "British Museum (published by Donald J. Wiseman, 1956)",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Seventh-year entry (Chislev; 2 Adar)",
+    "url": "https://en.wikipedia.org/wiki/Nebuchadnezzar_Chronicle",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Needs-checking - seen only in search-result snippets (Wikipedia, \"Nebuchadnezzar Chronicle\"; Biblical Archaeology Society, \"Nebuchadnezzar's Campaigns Against Judah\"; Bible Gateway, Encyclopedia of the Bible, \"Nebuchadnezzar\"); the tablet's text was not read in full. Also called the Nebuchadnezzar Chronicle (\"Jerusalem Chronicle\"). Dependent claim 2KCL-11-031 is assessed probable and also rests on the primary text (2K11-S01)."
+  },
+  "source-babylonian-ration-tablets": {
+    "id": "source-babylonian-ration-tablets",
+    "author": "Anonymous (Babylonian administrative tablets)",
+    "title": "Babylonian administrative tablets (ration tablets)",
+    "publisher": "Babylon (excavated tablets)",
+    "year": "n.d. (accessed 2026-11-25)",
+    "pagesOrSection": "Oil rations for Jehoiachin and his sons",
+    "url": "https://biblical-archaeology.org/en/locations/nebuchadnezzars-campaign/",
+    "verification": "not-independently-verified",
+    "verificationDetail": "Needs-checking - seen only in a search-result snippet (Biblical Archaeology Society, \"Nebuchadnezzar's Campaigns Against Judah\": \"Administrative tablets found in Babylon list oil rations for 'Jehoiachin, king of Judah' and his sons\"); the tablets were not read in full. Dependent claim 2KCL-11-032 is assessed probable and also rests on the primary text (2K11-S01)."
   }
 }
