@@ -1,0 +1,457 @@
+{
+  "id": "category-2-kings-syrian-wars-and-siege-of-samaria",
+  "title": "Syrian Wars and Siege of Samaria",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 6,
+    "startVerse": 1,
+    "endChapter": 8,
+    "endVerse": 29
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 6,
+    "startVerse": 1,
+    "endChapter": 8,
+    "endVerse": 29
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-03-001",
+      "claim": "The sons of the prophets tell Elisha the place where they dwell with him is too strait; they go to Jordan to cut beams, a borrowed axe head falls into the water, and Elisha casts in a stick so that \"the iron did swim,\" and the man takes it up.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Sons of the Prophets,\" read in full in this dossier (lines 74–76): the episode suggests a growing community that lived together, built its own quarters, and had little money.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-03-002",
+      "claim": "The king of Syria wars against Israel and camps \"in such and such a place\"; the man of God warns the king of Israel, who saves himself there, \"not once nor twice.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-003",
+      "claim": "The Syrian king, suspecting a traitor among his servants, is told that Elisha, the prophet in Israel, \"telleth the king of Israel the words that thou speakest in thy bedchamber.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-004",
+      "claim": "Elisha is reported at Dothan; the Syrian king sends horses, chariots, and a great host, who come by night and compass the city. The servant of the man of God rises early, sees the host, and cries, \"Alas, my master! how shall we do?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-005",
+      "claim": "Elisha answers, \"Fear not: for they that be with us are more than they that be with them.\" He prays for the servant's eyes to be opened, and the servant sees the mountain full of horses and chariots of fire round about Elisha — the same sight as the parting of Elijah (2:11).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-006",
+      "claim": "Elisha prays that the Syrians be smitten with blindness, and they are smitten \"according to the word of Elisha.\" He leads them to Samaria, saying, \"This is not the way, neither is this the city: follow me, and I will bring you to the man whom ye seek,\" and when their eyes are opened they see they are in the midst of Samaria.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-007",
+      "claim": "The king of Israel asks twice, \"My father, shall I smite them? shall I smite them?\" Elisha answers, \"Thou shalt not smite them... set bread and water before them, that they may eat and drink, and go to their master.\" The army is feasted and sent away, and \"the bands of Syria came no more into the land of Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-008",
+      "claim": "Benhadad king of Syria gathers all his host and besieges Samaria. There is a great famine in Samaria: an ass's head is sold for fourscore pieces of silver, and the fourth part of a cab of dove's dung for five pieces of silver.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Ben-Hadad,\" read in part in this dossier (lines 113–115): the famine became so severe that a donkey's head sold for eighty shekels of silver.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-009",
+      "claim": "Samaria is the capital of the northern kingdom, the new capital built by Ahab's father Omri, the city Benhadad besieges.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Ben-Hadad,\" read in part in this dossier (lines 59–60): Samaria, the new capital built by Ahab's father Omri. The Samaria article was read lines 0–155 of 220 in the 1 Kings phase and not re-read in full in this dossier (re-read attempt rate-limited, 429, 2026-11-25).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-03-010",
+      "claim": "As the king passes by upon the wall, a woman cries, \"Help, my lord, O king.\" She tells him she and another woman agreed to eat their sons — \"Give thy son, that we may eat him to day, and we will eat my son to morrow\" — \"So we boiled my son, and did eat him: ... and she hath hid her son.\" The text states this without comment.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-011",
+      "claim": "When the king hears the woman's words he rends his clothes, and the people see he has sackcloth within upon his flesh. He swears in the self-imprecatory formula — \"God do so and more also to me, if the head of Elisha the son of Shaphat shall stand on him this day\" — the same oath formula as Ruth 1:17, occurring twelve times in the Old Testament (Ruth once; Samuel and Kings eleven times).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; reuse: `RCL-01-017` (probable, Ruth dossier), `SCL-01-027` (probable, 1 Samuel dossier), `S2CL-01-029` (probable, 2 Samuel S01 dossier), `KCL-01-021` (probable, 1 Kings S01 dossier).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-012",
+      "claim": "Elisha sits in his house with the elders, and the king sends a man to take his head; Elisha calls the king \"this son of a murderer\" and orders the door held against the messenger, whose master's feet are heard behind him. While he yet talks, the messenger comes down and says, \"Behold, this evil is of the LORD; what should I wait for the LORD any longer?\" The verse does not make clear whether the speaker is the messenger or the king behind him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. JPS supplies \"[the king]\" in brackets, showing the Hebrew leaves the speaker unstated.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-013",
+      "claim": "Elisha says, \"Hear ye the word of the LORD; Thus saith the LORD, To morrow about this time shall a measure of fine flour be sold for a shekel, and two measures of barley for a shekel, in the gate of Samaria.\" A lord on whose hand the king leans scoffs — \"Behold, if the LORD would make windows in heaven, might this thing be?\" — \"Behold, thou shalt see it with thine eyes, but shalt not eat thereof.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-014",
+      "claim": "Four leprous men sit at the entering in of the gate and say, \"Why sit we here until we die?\" They resolve to fall to the host of the Syrians — \"if they save us alive, we shall live; and if they kill us, we shall but die\" — and in the twilight find the camp empty: there is no man there.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-015",
+      "claim": "The Lord had made the host of the Syrians hear a noise of chariots, and a noise of horses, even the noise of a great host — the corrected KJV reading of 7:6 (the stored text misrenders the divine name; see §3) — and they say Israel has hired the kings of the Hittites and of the Egyptians against them. They arise and flee in the twilight, leaving their tents, horses, and asses, even the camp as it was.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (Hebrew וַאדֹנָי; JPS: \"For the Lord had made\"); stored KJV read in full; KJV verification report (BibleHub + Blue Letter Bible agree on the corrected reading).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-016",
+      "claim": "The lepers go into one tent, eat and drink, carry off silver, gold, and raiment, and hide it; then they say, \"We do not well: this day is a day of good tidings, and we hold our peace,\" and go to tell the king's household.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-017",
+      "claim": "The lepers call to the porter of the city, and the word is told to the king's house within. The king rises in the night and tells his servants the Syrians have hidden in the field to catch the city empty when its people come out.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-018",
+      "claim": "A servant proposes sending five of the horses that remain to see; two chariot horses go after the Syrians to Jordan, where all the way is full of garments and vessels cast away in haste. The people go out and spoil the tents of the Syrians, and a measure of fine flour is sold for a shekel, and two measures of barley for a shekel, \"according to the word of the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-019",
+      "claim": "The king appoints the lord on whose hand he leans to have charge of the gate, and the people tread upon him in the gate, and he dies, \"as the man of God had said.\" The oracle, the scoff, and the trampling are each told twice (7:1/18, 7:2/19, 7:17/20), and the chapter closes, \"And so it fell out unto him.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-020",
+      "claim": "Elisha speaks to the woman whose son he restored to life, saying the LORD has called for a famine, and it shall come upon the land seven years. She arises with her household and sojourns in the land of the Philistines seven years.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Elisha,\" read in part in this dossier (lines 135–138): the woman lived in Philistine territory until the famine ended.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-021",
+      "claim": "At the seven years' end the woman returns and cries to the king for her house and land — just as the king is talking with Gehazi, who is telling him how Elisha restored a dead body to life. Gehazi identifies her — \"this is the woman, and this is her son, whom Elisha restored to life\" — and the king restores all that was hers, \"and all the fruits of the field since the day that she left the land, even until now.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Elisha,\" read in part in this dossier (lines 70–75): after Gehazi is struck with leprosy in chapter 5, he is found talking freely with the king in 8:4–5 — one of the signs the stories are grouped by theme rather than in strict order.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-022",
+      "claim": "Elisha comes to Damascus; Benhadad king of Syria is sick, and sends Hazael with a present of every good thing of Damascus, forty camels' burden, to ask the man of God, \"Shall I recover of this disease?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Hazael,\" read in part in this dossier (lines 27–30): a lavish gift, forty camel-loads of the finest goods of the city.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-023",
+      "claim": "Elisha answers Hazael, \"Go, say unto him, Thou mayest certainly recover: howbeit the LORD hath shewed me that he shall surely die.\" The word Hazael is to carry and the word Elisha knows are held together in one verse, and the text does not resolve them into a lie or a riddle. The Hebrew behind the verse preserves two readings: the written text (ketiv) reads \"not,\" the reading tradition (qere) reads \"to him,\" and most translations follow the reading tradition.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Hazael,\" read in part in this dossier (lines 32–36): the traditional Hebrew text preserves two readings here (ketiv *lōʾ*, qere *lô*); most translations follow the second reading.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2ki-03-024",
+      "claim": "Elisha settles his countenance stedfastly upon Hazael until he is ashamed, \"and the man of God wept.\" Asked why, he answers, \"Because I know the evil that thou wilt do unto the children of Israel: their strong holds wilt thou set on fire, and their young men wilt thou slay with the sword, and wilt dash their children, and rip up their women with child.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Hazael,\" read in part in this dossier (lines 38–42): the prophet wept, foreseeing the atrocities, which were the recognised atrocities of ancient warfare.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-025",
+      "claim": "Hazael asks, \"But what, is thy servant a dog, that he should do this great thing?\" Elisha answers, \"The LORD hath shewed me that thou shalt be king over Syria.\" Hazael tells Benhadad he will surely recover; on the morrow he takes a thick cloth, dips it in water, spreads it on his face, so that he dies, and Hazael reigns in his stead. The Hebrew of verse 15 says only \"he took,\" without naming the subject; the great majority of commentators understand Hazael as the killer.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Hazael,\" read in part in this dossier (lines 44–47): the Hebrew says only \"he took,\" and a few interpreters have suggested another hand; the great majority understand Hazael as the killer.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-03-026",
+      "claim": "Hazael's kingship is the execution of the commission given at Horeb: the LORD told Elijah to anoint Hazael king over Aram, and here the kingship is announced by Elisha, not by Elijah's hand. Of the three Horeb tasks, only the call of Elisha was carried out by Elijah himself; the other two were finished years later through Elisha.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Elisha,\" read in part in this dossier (lines 24–27): the three tasks, of which only Elisha's call was carried out by Elijah himself. BiblicalTraining, \"Hazael,\" read in part in this dossier (lines 16–23): the commission and its later execution through Elisha.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-03-027",
+      "claim": "In the fifth year of Joram son of Ahab king of Israel, Jehoshaphat being then king of Judah, Jehoram son of Jehoshaphat king of Judah begins to reign — the corrected KJV reading of 8:16 (the stored text splits the name with a spurious space; see §3). He is thirty and two years old when he begins to reign, and reigns eight years in Jerusalem. The synchronism — Jehoshaphat still king while Jehoram begins — is in the MT itself.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (Hebrew יְהוֹשָׁפָט, one word; JPS: \"Jehoram the son of Jehoshaphat king of Judah began to reign\"); stored KJV read in full; KJV verification report (BibleHub + Blue Letter Bible agree on the corrected reading).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-028",
+      "claim": "Jehoram walks in the way of the kings of Israel, as did the house of Ahab, for the daughter of Ahab is his wife, and does evil in the sight of the LORD. \"Yet the LORD would not destroy Judah for David his servant's sake, as he promised him to give him alway a light, and to his children.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-029",
+      "claim": "In Jehoram's days Edom revolts from under the hand of Judah and makes a king over themselves. Joram goes over to Zair with all his chariots, rises by night, and smites the Edomites compassing him about, but the people flee into their tents; Edom revolts from under the hand of Judah \"unto this day,\" and Libnah revolts at the same time.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-030",
+      "claim": "The rest of the acts of Joram are written in the book of the chronicles of the kings of Judah. Joram sleeps with his fathers, is buried with his fathers in the city of David, and Ahaziah his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-031",
+      "claim": "In the twelfth year of Joram son of Ahab, Ahaziah son of Jehoram king of Judah begins to reign — two and twenty years old, one year in Jerusalem; his mother is Athaliah, daughter of Omri king of Israel. He walks in the way of the house of Ahab and does evil in the sight of the LORD, \"for he was the son in law of the house of Ahab.\" His age differs from 2 Chronicles 22:2, which gives forty and two years — a Kings/Chronicles number difference, not a stored-text error.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-032",
+      "claim": "Ahaziah goes with Joram son of Ahab to war against Hazael king of Syria in Ramothgilead, and the Syrians wound Joram. King Joram goes back to be healed in Jezreel of the wounds the Syrians gave him at Ramah, and Ahaziah son of Jehoram king of Judah goes down to see Joram son of Ahab in Jezreel, because he is sick — both kings at Jezreel, where chapter 9 strikes.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Hazael,\" read in part in this dossier (lines 57–61): Joram wounded at Ramoth Gilead, withdrawn to Jezreel, Ahaziah visiting, and Jehu killing both kings there.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-03-033",
+      "claim": "Aram, whose capital is Damascus, is Israel's most persistent northern rival during the divided monarchy: the king of Syria wars against Israel from Damascus, and Elisha must travel to Damascus to meet him. \"Syria\" is an indeterminate regional term for the area surrounding Damascus, the Aram of the Old Testament, which varied in size according to the strength of its rulers.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. Bible Odyssey, \"Syria,\" read in full in this dossier (lines 4–5): the area surrounding Damascus, the Aram of the OT. BiblicalTraining, \"Damascus,\" read in part in this dossier (lines 2–5): the capital of the Aramean kingdom, Israel's most persistent northern rival during the divided monarchy.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-03-034",
+      "claim": "\"Ben-Hadad\" (\"son of Hadad\") is the name borne by several kings of Aram who ruled from Damascus in the 9th and early 8th centuries BC; Scripture names at least three. The Benhadad of Elisha's day fought Ahab, besieged Samaria, and was murdered by his officer Hazael.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Ben-Hadad,\" read in part in this dossier (lines 2–5): the name borne by several kings; the second fought Ahab, besieged Samaria in Elisha's day, and was murdered by Hazael.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-03-035",
+      "claim": "Ramoth Gilead is the fortress east of the Jordan where Israel and Aram contend: Ahab, joined by Jehoshaphat, set out to recover it and died there (1 Kgs 22), and Joram is wounded fighting Hazael there.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full. BiblicalTraining, \"Ben-Hadad,\" read in part in this dossier (lines 98–104): Ahab and Jehoshaphat set out to recover Ramoth Gilead, and Ahab died in the battle. BiblicalTraining, \"Hazael,\" read in part in this dossier (lines 57–59): the fortress east of the Jordan where Ahab had died fighting the Arameans years before.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-03-001",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 2,
+      "startVerse": 11,
+      "endChapter": 2,
+      "endVerse": 11,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "A chariot of fire and horses of fire part Elijah and Elisha, and Elijah goes up by a whirlwind. At Dothan the same sight — horses and chariots of fire — stands as an army round Elisha. The echo links the prophet's succession to his deliverance."
+    },
+    {
+      "id": "conn-2ki-03-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 19,
+      "startVerse": 15,
+      "endChapter": 19,
+      "endVerse": 17,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "At Horeb the LORD tells Elijah to anoint Hazael king over Aram, Jehu king over Israel, and Elisha as prophet in his place. The Hazael word is carried out a generation later, when Elisha tells Hazael in Damascus that he shall be king over Syria."
+    },
+    {
+      "id": "conn-2ki-03-003",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 4,
+      "startVerse": 8,
+      "endChapter": 4,
+      "endVerse": 37,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The great woman of Shunem, who built Elisha a chamber on her wall, bears a son at the prophet's word; the boy dies and is restored to life. Targets 4:8–17 (the promise of a son) and 4:18–37 (the death and the revival). The restoration is the reason the king restores her house and land in chapter 8."
+    },
+    {
+      "id": "conn-2ki-03-004",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 5,
+      "startVerse": 1,
+      "endChapter": 5,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Naaman, captain of the host of Syria, is healed of leprosy in Jordan and confesses there is no God in all the earth but in Israel; Gehazi, who takes his silver, goes out a leper as white as snow. Targets 5:1–14 (the healing) and 5:20–27 (Gehazi's leprosy). The Syrian healed and the servant struck frame the war with Syria that follows."
+    },
+    {
+      "id": "conn-2ki-03-005",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 20,
+      "startVerse": 35,
+      "endChapter": 20,
+      "endVerse": 43,
+      "type": "background",
+      "confidence": "probable",
+      "note": "One of the sons of the prophets has himself wounded, disguises himself, and draws from Ahab a judgment that condemns the king for sparing Benhadad. Targets 20:35 (the first use of the title \"son of the prophets\"). The prophetic community that confronts kings here is the same community that builds its dwelling at Jordan in chapter 6."
+    },
+    {
+      "id": "conn-2ki-03-006",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 3,
+      "startVerse": 11,
+      "endChapter": 3,
+      "endVerse": 14,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "When the three kings find no water in the wilderness of Edom, Jehoshaphat asks for a prophet, and a servant names Elisha, \"which poured water on the hands of Elijah.\" Elisha honours Jehoshaphat alone. The scene shows Elisha already standing as the kings' prophet in war before the Syrian wars of chapters 6–8."
+    },
+    {
+      "id": "conn-2ki-03-007",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 22,
+      "startVerse": 2,
+      "endChapter": 22,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Chronicler gives Ahaziah's age as forty and two years when he begins to reign, against the two and twenty years of 2 Kings 8:26. The two numbers stand side by side in the two histories and are not reconciled here."
+    },
+    {
+      "id": "conn-2ki-03-008",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 36,
+      "endChapter": 11,
+      "endVerse": 36,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The LORD promises to give David's son \"a light\" in Jerusalem, that David may have a lamp before him always. The promise is the ground of the word in chapter 8 that the LORD would not destroy Judah for David his servant's sake."
+    },
+    {
+      "id": "conn-2ki-03-009",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 15,
+      "startVerse": 4,
+      "endChapter": 15,
+      "endVerse": 4,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "For David's sake the LORD gives Abijam a lamp in Jerusalem, to set up his son after him and to establish Jerusalem. The same lamp is the reason Judah survives under Jehoram, who married into Ahab's house."
+    },
+    {
+      "id": "conn-2ki-03-010",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 13,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Elisha sends one of the sons of the prophets to Ramoth Gilead with a box of oil to anoint Jehu king over Israel, with the charge to smite the house of Ahab. Targets 9:1–10 (the anointing and the charge). The anointing is struck at Jezreel, where chapter 8 leaves both kings together."
+    },
+    {
+      "id": "conn-2ki-03-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 8,
+      "startVerse": 5,
+      "endChapter": 8,
+      "endVerse": 6,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "When David defeats Hadadezer king of Zobah, the Arameans of Damascus come to his aid and are defeated, and David puts garrisons in Damascus. The subjection does not last: by Solomon's reign Rezon has seized the city, and Damascus becomes the power Israel cannot subdue."
+    },
+    {
+      "id": "conn-2ki-03-012",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 13,
+      "startVerse": 45,
+      "endChapter": 13,
+      "endVerse": 46,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The leper must dwell alone, outside the camp, with his clothes rent and his head bare, crying \"Unclean, unclean.\" The law is the reason four leprous men sit at the entering in of the gate, outside the besieged city, and find the empty camp first."
+    },
+    {
+      "id": "conn-2ki-03-013",
+      "book": "Amos",
+      "bookId": "amos",
+      "startChapter": 1,
+      "startVerse": 3,
+      "endChapter": 1,
+      "endVerse": 5,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "For three transgressions of Damascus, and for four, the LORD will not turn away its punishment: fire on the house of Hazael that shall devour the palaces of Benhadad. The oracle holds Damascus accountable for the cruelty of its wars, the same cruelty Elisha weeps over at Damascus."
+    },
+    {
+      "id": "conn-2ki-03-014",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 12,
+      "startVerse": 17,
+      "endChapter": 12,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hazael fights against Gath and takes it, and sets his face to go up to Jerusalem; Jehoash buys him off with the hallowed things and all the gold in the treasures of the house of the LORD and the king's house. The payment is the forward thread of the kingship announced at Damascus in chapter 8."
+    },
+    {
+      "id": "conn-2ki-03-015",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 22,
+      "startVerse": 1,
+      "endChapter": 22,
+      "endVerse": 40,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "After three years without war between Aram and Israel, Ahab and Jehoshaphat go up to recover Ramoth Gilead, and Ahab is slain there by a bow drawn at a venture. Targets 22:29–37 (the battle and Ahab's death). The fortress Joram fights over in chapter 8 is the ground where his father died."
+    },
+    {
+      "id": "conn-2ki-03-016",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 28,
+      "startVerse": 53,
+      "endChapter": 28,
+      "endVerse": 57,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The covenant curse names the eating of sons and daughters in the siege and in the straitness wherewith the enemy shall distress the land. The curse names the same horror the famine of Samaria records; the parallel is noted here without claiming the siege fulfils the curse."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-biblicaltraining-hazael",
+    "source-biblicaltraining-damascus",
+    "source-bible-odyssey-syria",
+    "source-biblicaltraining-elisha",
+    "source-biblicaltraining-sons-of-the-prophets",
+    "source-biblicaltraining-ben-hadad",
+    "source-biblicaltraining-samaria"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-25",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. S03 sources[] carries eight entries (all verified in the live registry): 2K03-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; 2K03-S02 Hazael -> source-biblicaltraining-hazael (new in PR #355, cited by no category until now); 2K03-S03 Damascus -> source-biblicaltraining-damascus (new in PR #355, cited by no category until now); source-bible-odyssey-syria; source-biblicaltraining-elisha; source-biblicaltraining-sons-of-the-prophets (upgraded to verified by PR #355 after a full live read in this dossier; cited by no category until now); source-biblicaltraining-ben-hadad; source-biblicaltraining-samaria. Appendix footnote uses (53 total): Mechon Mamre 39, BT Hazael 6, BT Damascus 2, BT Elisha 1, Sons of the Prophets 1, BT Ben-Hadad 3, BT Samaria 1. The Syria entry appears in no appendix footnote but enters by the §9 Source IDs cell of 2KCL-03-033; every other sources[] entry appears in both a §9 Source IDs cell and an appendix footnote. No needs-checking sources in this dossier. 2KCL-03-001 is probable (the sons of the prophets community and the borrowed axe head; the Sons of the Prophets article was read in full live in this dossier, 157 lines). 2KCL-03-009 is probable (Samaria as the capital built by Omri; the Samaria article was read lines 0-155 of 220 in the 1 Kings phase and the re-read attempt in this dossier was rate-limited, 429). 2KCL-03-023 is debated (the double message of 8:10; the written text reads 'not' and the reading tradition reads 'to him'; the dossier does not resolve the verse into a lie or a riddle). 2KCL-03-025 is probable (the killer in 8:15; the Hebrew says only 'he took'; the great majority of commentators understand Hazael as the killer). 2KCL-03-026 is probable (Hazael's kingship as the execution of the Horeb commission). 2KCL-03-033 is probable (Aram and Damascus as Israel's most persistent northern rival; 'Syria' is an indeterminate regional term). 2KCL-03-034 is probable ('Ben-Hadad' as the name borne by several kings of Aram). 2KCL-03-035 is probable (Ramoth Gilead as the fortress where Ahab died and Joram was wounded). Two Class A stored-text errors fall in this range (7:6 and 8:16); the stored readings are quoted nowhere in the built files (verified by grep at build); claims 015 and 027 carry the corrected readings. The other two book-level errors (19:23, 23:19) are not in this range. No licensed-translation text appears anywhere in this file (dossier §13); Scripture quotations are brief KJV/JPS 1917 (public domain) only. Five §11 targets are encompassing ranges whose dossier notes already name the exact sub-ranges in prose (2KCO-03-003, 004, 005, 010, 015), so they are built verbatim with no appended sentence; no cross-book multi-range connection occurs, so no splits. primaryScripture is the full range 6:1-8:29 (3 chapters, endChapter − startChapter = 2, within the validator limit — no narrowing). Chapter coverage is complete: all 82 verses covered (ch. 6 vv. 1-33 by 2KCL-03-001-012; ch. 7 vv. 1-20 by 2KCL-03-013-019; ch. 8 vv. 1-29 by 2KCL-03-020-032), per the dossier's own coverage check. The Elisha article was read lines 0-153 of 373 in this dossier; lines 154-373 were not read (the continuation fetch was rate-limited, 429) and are not cited. The Hazael article was read lines 0-177 of 186; the Damascus article lines 0-150 of 308; the Ben-Hadad article lines 0-152 of 222; the Syria article was read in full (18 lines). Remainders are not cited. The twelve-occurrence count of the oath formula (2KCL-03-011) rests on the Ruth dossier's source R01-S11, read by the Ruth worker and not re-read here; the 2 Kgs 6:31 occurrence itself was read live in Hebrew and JPS 1917. Open items from the dossier notes: the feast against the siege (6:22-23 vs 6:24); the speaker of 6:33; the double message of 8:10; the killer of Benhadad in 8:15; the Jehoshaphat synchronism of 8:16; Ahaziah's age (8:26 vs 2 Chronicles 22:2); Gehazi at court in 8:4-5 after the leprosy of 5:27. Dossier-notes item 10 (registry counts 443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
