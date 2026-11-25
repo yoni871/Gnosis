@@ -93,7 +93,10 @@ The tool never promotes or rewires an application database.
    retention/privacy terms, and maintenance or branch strategy. Check the
    actual Neon restore window and PITR capability for **each** project in the
    console; do not rely on the older six-hour claim in the incident runbook.
-   Confirm `pg_dump` is the same major version or newer than every source.
+   Use a `pg_dump` client compatible with every source and a `pg_restore`
+   client matching the isolated target's PostgreSQL major version. A newer
+   dump client can emit settings an older restore server rejects; the CI
+   rehearsal pins client 14 to its PostgreSQL 14 disposable target.
 2. Install locked backend dependencies and PostgreSQL client tools on the
    private runner. Set `GNOSIS_BACKUP_APP_URL`, `GNOSIS_BACKUP_BIBLE_URL`, and
    `GNOSIS_BACKUP_COMMENTARY_URL` to distinct **direct** PostgreSQL URLs.

@@ -130,24 +130,26 @@ function openBuffer(value, key) {
 }
 
 async function decryptFile(source, destination, key) {
-    const stat = await fsp.lstat(source);
-    if (!stat.isFile() || stat.isSymbolicLink() || stat.size < HEADER_BYTES + TAG_BYTES) throw new Error('Invalid backup artifact.');
-    const handle = await fsp.open(source, 'r');
+    // Open once with O_NOFOLLOW and use that descriptor for stat, header,
+    // tag, and ciphertext. A replaced pathname cannot redirect a later
+    // read after the type check (CodeQL TOCTOU finding).
+    const handle = await fsp.open(source, fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW);
     const header = Buffer.alloc(HEADER_BYTES), tag = Buffer.alloc(TAG_BYTES);
     try {
+        const stat = await handle.stat();
+        if (!stat.isFile() || stat.size < HEADER_BYTES + TAG_BYTES) throw new Error('Invalid backup artifact.');
         await handle.read(header, 0, HEADER_BYTES, 0);
         await handle.read(tag, 0, TAG_BYTES, stat.size - TAG_BYTES);
-    } finally { await handle.close(); }
-    if (!header.subarray(0, MAGIC.length).equals(MAGIC)) throw new Error('Invalid backup envelope.');
-    const decipher = crypto.createDecipheriv('aes-256-gcm', key, header.subarray(MAGIC.length));
-    decipher.setAuthTag(tag);
-    try {
-        await pipeline(fs.createReadStream(source, { start: HEADER_BYTES, end: stat.size - TAG_BYTES - 1 }),
+        if (!header.subarray(0, MAGIC.length).equals(MAGIC)) throw new Error('Invalid backup envelope.');
+        const decipher = crypto.createDecipheriv('aes-256-gcm', key, header.subarray(MAGIC.length));
+        decipher.setAuthTag(tag);
+        await pipeline(handle.createReadStream({ start: HEADER_BYTES, end: stat.size - TAG_BYTES - 1,
+            autoClose: false }),
             decipher, fs.createWriteStream(destination, { flags: 'wx', mode: 0o600 }));
     } catch {
         await fsp.rm(destination, { force: true });
         throw new Error('Backup authentication failed.');
-    }
+    } finally { await handle.close(); }
 }
 
 async function sha256(file) {
