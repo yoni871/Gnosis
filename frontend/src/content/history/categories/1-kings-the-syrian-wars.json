@@ -1,0 +1,377 @@
+{
+  "id": "category-1-kings-the-syrian-wars",
+  "title": "The Syrian Wars",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 20,
+    "startVerse": 1,
+    "endChapter": 20,
+    "endVerse": 43
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 20,
+    "startVerse": 1,
+    "endChapter": 20,
+    "endVerse": 43
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-09-001",
+      "claim": "Benhadad king of Syria (Hebrew: king of Aram) gathers all his host, with thirty-two kings, horses, and chariots, goes up, besieges Samaria, and wars against it. Samaria was the new capital built by Ahab's father Omri.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ben-Hadad,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-002",
+      "claim": "Benhadad demands Ahab's silver, gold, wives, and children — \"even the goodliest\" — and Ahab submits: \"My lord, O king, according to thy saying, I am thine, and all that I have.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-003",
+      "claim": "Benhadad raises the demand: his servants will come tomorrow about this time, search Ahab's house and his servants' houses, and take whatever is pleasant in their eyes.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-004",
+      "claim": "Ahab calls all the elders of the land, who refuse the second demand — \"Hearken not unto him, nor consent\" — and Ahab answers that all sent for at the first he will do, \"but this thing I may not do.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-005",
+      "claim": "Benhadad swears by the gods that the dust of Samaria will not suffice for handfuls for all his people, and Ahab answers with the proverb, \"Let not him that girdeth on his harness boast himself as he that putteth it off.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-006",
+      "claim": "Benhadad hears the message as he is drinking, he and the kings in the pavilions, and orders his servants to set themselves in array against the city.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-007",
+      "claim": "A prophet — never named — comes to Ahab: \"Thus saith the LORD, Hast thou seen all this great multitude? behold, I will deliver it into thine hand this day; and thou shalt know that I am the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-008",
+      "claim": "The victory will come by the young men of the princes of the provinces, and Ahab himself shall order the battle — \"By whom?\" / \"Thou.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-009",
+      "claim": "Ahab numbers the young men of the princes of the provinces, 232, and after them all the people, all the children of Israel, 7,000.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-010",
+      "claim": "The young men go out at noon while Benhadad is drinking himself drunk in the pavilions with the thirty-two kings; Benhadad orders the party taken alive, whether come out for peace or for war.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-011",
+      "claim": "The young men and the army that follows them slay every one his man; the Syrians flee, Israel pursues, Benhadad escapes on a horse with the horsemen, and the king of Israel smites the horses and chariots with a great slaughter.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-012",
+      "claim": "The prophet comes again and warns Ahab to strengthen himself and mark what he does, \"for at the return of the year the king of Syria will come up against thee.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-013",
+      "claim": "Benhadad's servants counsel that Israel's gods are gods of the hills, so the next battle must be fought in the plain; the kings are to be replaced with captains, and a new army numbered horse for horse and chariot for chariot, like the army lost. Benhadad hearkens and does so.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ben-Hadad,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-014",
+      "claim": "At the return of the year Benhadad numbers the Syrians and goes up to Aphek to fight against Israel; Israel pitches before them \"like two little flocks of kids,\" while the Syrians fill the country. Aphek here is the town east of the Sea of Galilee, generally placed near modern Fiq (Afiq) on the heights east of the lake.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Aphek,\" read in full live 2026-11-24.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-015",
+      "claim": "A man of God — never named — speaks to the king of Israel: \"Because the Syrians have said, The LORD is God of the hills, but he is not God of the valleys, therefore will I deliver all this great multitude into thine hand, and ye shall know that I am the LORD.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-016",
+      "claim": "The armies pitch one over against the other seven days; on the seventh day the battle is joined, and Israel slays 100,000 footmen of the Syrians in one day.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-017",
+      "claim": "The rest flee to Aphek, into the city, and a wall falls upon 27,000 of the men that are left; Benhadad flees and comes into the city, into an inner chamber. The text states the falling wall without explanation; no cause is asserted.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-018",
+      "claim": "Benhadad's servants, in sackcloth on their loins and ropes on their heads, plead for his life on the report that the kings of Israel are merciful kings; Ahab answers, \"Is he yet alive? he is my brother.\" \"Brother\" here is the language of treaty partners.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ben-Hadad,\" read in part (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-09-019",
+      "claim": "The men catch at Ahab's word — \"Thy brother Benhadad\" — and bring him; Ahab causes him to come up into the chariot. Benhadad offers to restore the cities his father took from Ahab's father, and to let Ahab make streets (market quarters) for himself in Damascus, as his father made in Samaria; Ahab sends him away with this covenant.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Ben-Hadad,\" read in part (see §12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-020",
+      "claim": "The man who brings the final sentence is \"a certain man of the sons of the prophets\" — a member of a prophetic community gathered around a recognised man of God. This is the first use of the title \"sons of the prophets\" in the Bible.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; BiblicalTraining, \"Sons of the Prophets,\" seen only in search snippets, not read in full (K09-S05, needs-checking).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ki-09-021",
+      "claim": "The son of the prophets is commanded in the word of the LORD to ask a neighbour to smite him; the first man refuses and is slain by a lion as soon as he departs, and a second man smites and wounds him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-022",
+      "claim": "Disguised with ashes upon his face, the prophet waits for the king by the way and tells a parable: a prisoner entrusted to him is gone — \"as thy servant was busy here and there, he was gone\" — and the price was his life for the prisoner's life, or a talent of silver. Ahab judges, \"So shall thy judgment be; thyself hast decided it.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-023",
+      "claim": "The prophet uncovers his face and speaks: \"Because thou hast let go out of thy hand a man whom I appointed to utter destruction, therefore thy life shall go for his life, and thy people for his people.\" Ahab goes to his house \"heavy and displeased\" and comes to Samaria. Benhadad was devoted to destruction (herem); the covenant is judged as disobedience, not mercy.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; Lilley, \"Understanding the Herem\" (registry-verified, not re-read in this dossier).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-09-024",
+      "claim": "Outside the Bible, the Kurkh Monolith of Shalmaneser III names \"Ahab the Israelite\" among the coalition that faced Assyria at Qarqar, crediting him with 2,000 chariots and 10,000 soldiers, the largest chariot force in the list; the coalition was led by Hadadezer of Damascus. The identification of Ahab with the king of Israel is accepted by most scholars; the 2,000-chariot figure is debated (a scribal error for 200 has been suggested); whether Hadadezer is the biblical Benhadad is an open question.",
+      "evidence": "Biblical Archaeology, \"Battle of Qarqar,\" read in full live 2026-11-24; Bible Odyssey, \"Syria,\" read in full live 2026-11-24.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-09-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 15,
+      "startVerse": 18,
+      "endChapter": 15,
+      "endVerse": 20,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Asa of Judah gathers the silver and gold left in the temple and the palace and sends them to Benhadad of Damascus, asking him to break his treaty with Baasha of Israel and make one with Judah instead. Damascus is already bound by treaty to Israel, and both Hebrew kingdoms are courting Aramean support."
+    },
+    {
+      "id": "conn-1ki-09-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 24,
+      "endChapter": 16,
+      "endVerse": 24,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Omri buys the hill Samaria from Shemer for two talents of silver, builds on the hill, and names the city Samaria after him. The capital Benhadad besieges is the new city of Ahab's father, not an old tribal town."
+    },
+    {
+      "id": "conn-1ki-09-003",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 29,
+      "endChapter": 16,
+      "endVerse": 33,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Ahab son of Omri reigns over Israel in Samaria twenty-two years, takes Jezebel daughter of Ethbaal king of the Zidonians, serves Baal, and builds a house of Baal in Samaria. The king Benhadad besieges is the king whose reign the book judges the worst yet."
+    },
+    {
+      "id": "conn-1ki-09-004",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 19,
+      "startVerse": 15,
+      "endChapter": 19,
+      "endVerse": 17,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "At Horeb the LORD tells Elijah to anoint Hazael to be king over Syria, Jehu to be king over Israel, and Elisha prophet in his room. The commission against Benhadad's house is given before the wars of this chapter are fought, and it is fulfilled later, when Hazael murders Benhadad and takes the throne."
+    },
+    {
+      "id": "conn-1ki-09-005",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 8,
+      "startVerse": 5,
+      "endChapter": 8,
+      "endVerse": 6,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "When the Syrians of Damascus come to help Hadadezer king of Zobah, David slays twenty-two thousand of them and puts garrisons in Syria of Damascus. Damascus was once under Israel's hand; by Ahab's day the relation has reversed, and it is Damascus that besieges Samaria."
+    },
+    {
+      "id": "conn-1ki-09-006",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 23,
+      "endChapter": 11,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "probable",
+      "note": "God stirs up Rezon son of Eliadah, who had fled from Hadadezer of Zobah, gathered a band, and reigned in Damascus as an adversary to Israel all the days of Solomon. The Aramean kingdom at Damascus begins as Solomon's adversary and remains Israel's standing enemy."
+    },
+    {
+      "id": "conn-1ki-09-007",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 7,
+      "startVerse": 2,
+      "endChapter": 7,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "When the LORD delivers the nations of the land into Israel's hand, Israel shall smite them and utterly destroy them — the ban, devoted to destruction — and make no covenant with them. The sentence on Ahab in this chapter turns on that command: he made a covenant with a man under the ban instead of destroying him."
+    },
+    {
+      "id": "conn-1ki-09-008",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 6,
+      "startVerse": 17,
+      "endChapter": 6,
+      "endVerse": 21,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The city of Jericho is devoted to destruction, and all in it are destroyed with the edge of the sword, as the LORD commanded Joshua. The standing example of the ban carried out stands behind the sentence that Ahab let go a man appointed to the same destruction."
+    },
+    {
+      "id": "conn-1ki-09-009",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 22,
+      "startVerse": 1,
+      "endChapter": 22,
+      "endVerse": 4,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Three years pass without war between Syria and Israel. In the third year Jehoshaphat comes down to Ahab, who asks whether they know that Ramoth in Gilead is theirs and proposes to take it from the king of Syria. The treaty of this chapter holds for three years, and then the war resumes over the cities Benhadad promised to restore."
+    },
+    {
+      "id": "conn-1ki-09-010",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 6,
+      "startVerse": 24,
+      "endChapter": 7,
+      "endVerse": 20,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Benhadad king of Syria gathers all his host and besieges Samaria again, in Elisha's day, and the famine inside the city becomes so severe that a donkey's head sells for eighty shekels of silver. The siege of this chapter is not the last: the same king returns to the same walls a generation later."
+    },
+    {
+      "id": "conn-1ki-09-011",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 13,
+      "startVerse": 17,
+      "endChapter": 13,
+      "endVerse": 25,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "The dying Elisha tells Jehoash to shoot an arrow through the east window, the LORD's arrow of victory over Aram, and declares he will destroy the Arameans at Aphek. Because the king strikes the ground only three times, he defeats Aram only three times and recovers the towns Hazael had taken. Aphek is again the named place of victory over Aram."
+    },
+    {
+      "id": "conn-1ki-09-012",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 22,
+      "startVerse": 34,
+      "endChapter": 22,
+      "endVerse": 38,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "A man draws a bow at a venture and strikes Ahab between the joints of the harness; the king dies at evening, his blood runs into the chariot, and the dogs lick his blood at the pool of Samaria, according to the word of the LORD. The life-for-a-life sentence of this chapter falls on Ahab at Ramoth-gilead."
+    },
+    {
+      "id": "conn-1ki-09-013",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 8,
+      "startVerse": 7,
+      "endChapter": 8,
+      "endVerse": 15,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Benhadad falls ill while Elisha is visiting Damascus and sends Hazael to ask whether he will recover. Elisha tells Hazael the king will die, weeps for the cruelty Hazael will inflict on Israel, and Hazael smothers Benhadad and takes the throne. The commission given at Horeb is fulfilled, and the house of Benhadad ends by murder."
+    },
+    {
+      "id": "conn-1ki-09-014",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 4,
+      "startVerse": 1,
+      "endChapter": 4,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Philistines encamp at Aphek while Israel camps at Ebenezer; Israel loses thirty thousand foot soldiers, the ark of the covenant is captured, and Eli's sons are killed. This is the other Aphek, in the Plain of Sharon, not the Aphek east of the Sea of Galilee where Ahab defeats Benhadad; the shared name must not merge the two towns."
+    },
+    {
+      "id": "conn-1ki-09-015",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 3,
+      "startVerse": 4,
+      "endChapter": 3,
+      "endVerse": 5,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Mesha king of Moab, who had paid tribute to the king of Israel, rebels after Ahab's death. The tribute Moab paid under the house of Omri ends when Ahab dies, and the strength of the Omri dynasty that the wars of this chapter display does not outlast its king."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-biblicaltraining-ben-hadad",
+    "source-bible-odyssey-syria",
+    "source-bar-battle-of-qarqar",
+    "source-biblicaltraining-aphek",
+    "source-lilley-herem-tyndale"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S09 sources[] carries six entries (all verified in the live registry): K09-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K09-S02 BT \"Ben-Hadad\" -> source-biblicaltraining-ben-hadad; K09-S03 BO \"Syria\" -> source-bible-odyssey-syria; K09-S04 BAR \"Battle of Qarqar\" -> source-bar-battle-of-qarqar; source-biblicaltraining-aphek; source-lilley-herem-tyndale. All six appear in §9 Source IDs cells (Mechon Mamre 23 claims, BT Ben-Hadad 4, BO Syria 1 — KCL-09-024, BAR Qarqar 1 — KCL-09-024, BT Aphek 1 — KCL-09-014, Lilley herem 1 — KCL-09-023). Appendix uses: Mechon Mamre 18, BT Ben-Hadad 13, BO Syria 3, BAR Qarqar 2, BT Aphek 1, Lilley herem 0 — Lilley is §9-only (the S04 BO \"Solomon\" pattern). S09 contributes exactly 3 newly-cited sources: BT \"Ben-Hadad\", BO \"Syria\", and BAR \"Battle of Qarqar\" (counted before the build by parsing the category AND event JSONs on base — the S07 lesson; the dev-opt-in count confirms 3). Excluded by the needs-checking rule (registry entry exists, not-independently-verified — the S05 Levin / S07 Kurkh / S08 Beersheba precedent): K09-S05 BT \"Sons of the Prophets\" (source-biblicaltraining-sons-of-the-prophets). Seen only in search-result snippets; never read in any form. It sits in the §9 Source IDs cell of KCL-09-020, and that claim is capped probable and also rests on verified K09-S01 (Mechon Mamre, the primary text — registry mapping table line 178). It has 0 appendix footnote uses, so it appears nowhere in the MD at all. Excluded by the §-location rule (prose only, never in §9 Source IDs or the appendix): the BO covenant articles (source-bible-odyssey-covenant — §5 prose for the four-part treaty form; no claim depends on it) and the Kurkh Monolith (named in §4/§5 prose and in the claim text of KCL-09-024, but its Source IDs are K09-S04 + K09-S03 — the claim rests on the two read-in-full sources, not on the monolith directly; the S07 precedent excluded the monolith itself as needs-checking, source-kurkh-monolith). A name-mention in claim text is not a citation. Excluded by the §-location rule (reuse-basis only, cited through published claims in §2, never in §9 Source IDs or the appendix): the kingship law (clm-deu-05-014/016/023), the herem claims (clm-deu-06-073/074), the Deut 18 prophet framework (clm-deu-05-029–036, 038), and the oath-formula reuse (RCL-01-017, SCL-01-027). K09-S02 BT \"Ben-Hadad\" was read in part only — lines 0–152 of 222. Lines 153–222 (Ben-Hadad son of Hazael, the decline of Damascus) were not read and are not cited. No claim is upgraded above what its evidence supports; the dossier's assessments already reflect this (KCL-09-018 is probable). The three probable claims are KCL-09-018 (\"brother\" as treaty-partner language), KCL-09-020 (sons of the prophets — capped probable, also rests on verified K09-S01), KCL-09-024 (Kurkh Monolith / Qarqar — Ahab identification accepted, 2,000-chariot figure debated, Hadadezer = Benhadad open). S09 has NO established connection — all fifteen connections are probable. KCL-09-023 is assessed established on the primary text; the herem interpretation is carried at probable where it depends on Lilley (not re-read in this dossier). No multi-range connections: every §11 target is a single range. primaryScripture = fullRange = 20:1–43 (no narrowing — a single chapter, within the validator limit; the whole arc is one self-contained war arc, and no shorter passage represents it). Chapter 20 has no Class A stored-text error in this range; the ch. 20 diffs are Class C 20:1 (stored semicolon vs BibleHub colon after \"chariots\" — punctuation) and Class B 20:12 and 20:34 (stored \"Ben-hadad\" vs BibleHub \"Benhadad\" — hyphenation variant), all accepted variants; no database fix proposed. There are no D-S09 labels in the second-reader corrections report — no second-reader corrections exist for this dossier. Chapter coverage is complete: all 43 verses covered (ch. 20: 43), per the dossier's own coverage check, re-verified by script at build. KCL-09-024 is external attestation whose Passage cites 20:1 and 20:34, both covered by other claims. Ancient World is 919 words as recorded by the dossier, 119 above the 800-word floor; built as written, no words trimmed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
