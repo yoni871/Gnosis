@@ -3,8 +3,8 @@ const assert = require("node:assert/strict");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "synthetic-test-jwt-secret-synthetic-test-jwt-secret";
-process.env.RATE_LIMIT_KEY_SECRET = "synthetic-test-rate-limit-secret-synthetic-test";
+process.env.JWT_SECRET = require('../helpers/syntheticSecrets').JWT_SECRET;
+process.env.RATE_LIMIT_KEY_SECRET = require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET;
 // No MFA_ENCRYPTION_KEY here on purpose: the fail-closed tests below
 // assert enrollment and verification refuse without it.
 delete process.env.MFA_ENCRYPTION_KEY;

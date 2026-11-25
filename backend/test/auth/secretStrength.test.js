@@ -1,40 +1,34 @@
-const test = require("node:test");
-const assert = require("node:assert/strict");
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { randomBytes } = require('node:crypto');
+const { isStrongSecret, hasDistinctStrongSecrets } = require('../../src/utils/secretStrength');
 
-const { isStrongSecret } = require("../../src/utils/secretStrength");
-
-// Audit N06, roadmap T1.5: a value counts as at least 32 random bytes if
-// it is 64 hex characters, or at least 43 base64url characters, or
-// otherwise at least 32 characters long. Anything shorter fails boot.
-
-test("accepts 64 hex characters (32 bytes)", () => {
-    assert.equal(isStrongSecret("a".repeat(64)), true);
-    assert.equal(isStrongSecret("0123456789abcdef".repeat(4)), true);
-    assert.equal(isStrongSecret("ABCDEF0123456789".repeat(4)), true);
+test('accepts canonical encodings of independently generated 32-byte values', () => {
+    const jwt = randomBytes(32);
+    const rate = randomBytes(32);
+    assert.equal(isStrongSecret(jwt.toString('hex')), true);
+    assert.equal(isStrongSecret(rate.toString('base64url')), true);
+    assert.equal(hasDistinctStrongSecrets(jwt.toString('hex'), rate.toString('base64url')), true);
 });
 
-test("accepts at least 43 base64url characters (32 bytes)", () => {
-    assert.equal(isStrongSecret("A".repeat(43)), true);
-    assert.equal(isStrongSecret("Ab3-_x".repeat(8)), true); // 48 chars, base64url alphabet
-    assert.equal(isStrongSecret("a".repeat(64)), true); // hex is also base64url
+test('rejects absent, short, plain-text, and malformed encodings', () => {
+    for (const value of [undefined, null, '', 123, 'short-secret', 'x'.repeat(32),
+        'correct horse battery staple, 2026!', 'a'.repeat(63), 'A'.repeat(42),
+        'A'.repeat(43) + '=', 'not-an-encoded-placeholder-secret-1234567890']) {
+        assert.equal(isStrongSecret(value), false, String(value));
+    }
 });
 
-test("accepts any other value of at least 32 characters", () => {
-    assert.equal(isStrongSecret("x".repeat(32)), true);
-    assert.equal(isStrongSecret("test-secret-for-server-config-tests"), true); // 35 chars
-    assert.equal(isStrongSecret("correct horse battery staple, 2026!"), true);
+test('rejects repeated and encoded printable placeholders', () => {
+    for (const value of ['a'.repeat(64), 'A'.repeat(43),
+        Buffer.from('placeholder-secret-value-1234567890').toString('base64url'),
+        Buffer.from('abcd'.repeat(8)).toString('hex')]) {
+        assert.equal(isStrongSecret(value), false, value);
+    }
 });
 
-test("rejects values shorter than 32 characters", () => {
-    assert.equal(isStrongSecret("x".repeat(31)), false);
-    assert.equal(isStrongSecret("Ab3-_x".repeat(5)), false); // 30 base64url chars
-    assert.equal(isStrongSecret("short-secret"), false);
-});
-
-test("rejects empty and non-string values", () => {
-    assert.equal(isStrongSecret(""), false);
-    assert.equal(isStrongSecret(undefined), false);
-    assert.equal(isStrongSecret(null), false);
-    assert.equal(isStrongSecret(12345678901234567890123456789012), false);
-    assert.equal(isStrongSecret({}), false);
+test('rejects identical JWT and rate-limit secrets', () => {
+    const bytes = randomBytes(32);
+    assert.equal(hasDistinctStrongSecrets(bytes.toString('hex'), bytes.toString('hex')), false);
+    assert.equal(hasDistinctStrongSecrets(bytes.toString('hex'), bytes.toString('base64url')), false);
 });

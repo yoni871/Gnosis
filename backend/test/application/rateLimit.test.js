@@ -9,7 +9,7 @@ const { attemptReservation, computeKeyHash, lockKeyPair, releaseReservations, RA
 
 const context = contextFromEnvironment(); // Fail before any connection if run directly.
 const RATE_SECRET = 'synthetic-application-test-rate-limit';
-const JWT_SECRET = 'synthetic-application-test-jwt-synthetic-test-secret';
+const JWT_SECRET = require('../helpers/syntheticSecrets').JWT_SECRET;
 // Workers run with trust proxy disabled, so every request keys on the
 // loopback socket address.
 const IP = '127.0.0.1';

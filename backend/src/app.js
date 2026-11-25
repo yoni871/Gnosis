@@ -8,6 +8,10 @@ const cors = require("cors");
 // the server listens. Test processes that import the app run with
 // synthetic email configuration from the test launchers.
 require("./config/emailConfig").requireEmailConfig();
+if (!require("./utils/secretStrength").hasDistinctStrongSecrets(
+    process.env.JWT_SECRET, process.env.RATE_LIMIT_KEY_SECRET)) {
+    throw new Error("Server configuration error: required server configuration is missing.");
+}
 
 const bibleRoutes = require("./routes/bibleRoutes");
 const authRoutes = require("./routes/authRoutes");
