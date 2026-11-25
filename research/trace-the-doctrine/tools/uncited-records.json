@@ -1,0 +1,9 @@
+{
+  "$comment": "Records that no entity cites, by design. A verification record is normally cited from the entity it covers (passage, interpretation, milestone, author, or work) via verificationRecordIds. A record that is cited nowhere must match one of these rules, or validate.py fails. Add a rule here -- with the reason -- when a new class of legitimately uncited records is introduced; never add a rule to hide a missing citation.",
+  "rules": [
+    {
+      "prefix": "ver-p4-",
+      "reason": "Phase 4 second-pass verification records. Entities list their Phase 2/3 records by design; the Phase 4 records re-check the same claims and are recorded in trinity/verification-phase-4-summary.md instead of being added to every entity's verificationRecordIds."
+    }
+  ]
+}
