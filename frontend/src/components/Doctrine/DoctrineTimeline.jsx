@@ -19,14 +19,22 @@
 // changes, so the page stays where the reader put it.
 import { useRef } from "react";
 import { DEMONSTRATION_NOTICE, getWorkDateLabel } from "../../data/doctrineStudies";
+import { RESEARCH_NOTICE } from "../../data/doctrineStudy";
 
 export default function DoctrineTimeline({
     entries = [],
     selectedId,
     passage,
     onSelect,
+    dataSource = "demonstration",
 }) {
     const nodeRefs = useRef([]);
+    // The origin of the data on screen, same as the interpretation
+    // panel: demonstration data is labeled as such; research data
+    // passed the §10 publication gate and is labeled verified research.
+    const isResearch = dataSource === "research";
+    const sourceBadge = isResearch ? "Verified research" : "Demonstration data";
+    const sourceNotice = isResearch ? RESEARCH_NOTICE : DEMONSTRATION_NOTICE;
     const currentIndex = entries.findIndex((entry) => entry.interpretation.id === selectedId);
     // Roving tabindex needs exactly one tab stop: the selected entry
     // when one is selected, otherwise the first node.
@@ -78,7 +86,7 @@ export default function DoctrineTimeline({
                         Use the Left and Right arrow keys to move between interpreters.
                     </p>
                 )}
-                <p className="doctrine-demonstration-badge">Demonstration data</p>
+                <p className="doctrine-demonstration-badge">{sourceBadge}</p>
             </header>
             {entries.length === 0 ? (
                 <p className="doctrine-timeline-empty" role="status">
@@ -116,7 +124,7 @@ export default function DoctrineTimeline({
                             );
                         })}
                     </ul>
-                    <p className="doctrine-demonstration-note doctrine-timeline-notice">{DEMONSTRATION_NOTICE}</p>
+                    <p className="doctrine-demonstration-note doctrine-timeline-notice">{sourceNotice}</p>
                 </>
             )}
         </nav>

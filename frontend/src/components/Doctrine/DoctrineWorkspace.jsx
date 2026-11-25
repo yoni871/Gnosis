@@ -17,15 +17,17 @@
 // moves focus to the Scripture heading (see passageFocusSignal),
 // so keyboard and screen-reader users land on the new passage
 // instead of staying on the navigation.
+//
+// The workspace renders from a study (`../../data/doctrineStudy.js`):
+// by default the labeled demonstration study, or a research study
+// built from adapter output when one is passed. A research study
+// contains only records that passed the standards §10 publication
+// gate, so nothing draft can render as published research — and when
+// no research study is passed, the workspace renders exactly as it
+// always has.
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-    DEMONSTRATION_NOTICE,
-    getFigure,
-    getInterpretationsForPassage,
-    getWork,
-    passages,
-} from "../../data/doctrineStudies";
+import { demonstrationStudy } from "../../data/doctrineStudy";
 import { getTranslations } from "../../services/bibleService";
 import DoctrineInterpretationPanel from "./DoctrineInterpretationPanel";
 import DoctrineScriptureNav from "./DoctrineScriptureNav";
@@ -36,7 +38,12 @@ import DoctrineTimeline from "./DoctrineTimeline";
 // Scripture companion.
 const DOCTRINE_DEFAULT_TRANSLATION = "KJV";
 
-export default function DoctrineWorkspace() {
+export default function DoctrineWorkspace({ study }) {
+    // The study this render uses: the one passed in, or the
+    // demonstration study. The page passes nothing today, so the
+    // workspace renders the labeled demonstration data.
+    const activeStudy = study ?? demonstrationStudy;
+    const { passages, getFigure, getInterpretationsForPassage, getWork } = activeStudy;
     const [searchParams, setSearchParams] = useSearchParams();
     const requestedPassageIndex = passages.findIndex((item) => item.id === searchParams.get("passage"));
     const passageIndex = requestedPassageIndex >= 0 ? requestedPassageIndex : 0;
@@ -113,9 +120,13 @@ export default function DoctrineWorkspace() {
     return (
         <div className="doctrine-workspace">
             <p className="doctrine-workspace-notice" role="note">
-                <span className="doctrine-pill doctrine-workspace-notice-pill">Prototype</span>
-                <span className="doctrine-workspace-notice-label">Demonstration data</span>
-                <span>{DEMONSTRATION_NOTICE}</span>
+                {activeStudy.source === "demonstration" && (
+                    <span className="doctrine-pill doctrine-workspace-notice-pill">Prototype</span>
+                )}
+                <span className="doctrine-workspace-notice-label">
+                    {activeStudy.source === "demonstration" ? "Demonstration data" : "Verified research"}
+                </span>
+                <span>{activeStudy.notice}</span>
             </p>
             <div className="doctrine-workspace-grid">
                 <div className="doctrine-workspace-scripture">
@@ -148,12 +159,14 @@ export default function DoctrineWorkspace() {
                         figure={selectedFigure}
                         work={selectedWork}
                         passage={passage}
+                        dataSource={activeStudy.source}
                     />
                     <DoctrineTimeline
                         entries={timelineEntries}
                         selectedId={selectedInterpretation?.id ?? null}
                         passage={passage}
                         onSelect={selectInterpretation}
+                        dataSource={activeStudy.source}
                     />
                 </div>
             </div>
