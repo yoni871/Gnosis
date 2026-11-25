@@ -17,6 +17,13 @@ function docker(args) {
     return result.stdout.trim();
 }
 
+function postgresClientMajor(binary) {
+    const result = spawnSync(binary, ['--version'], { encoding: 'utf8', timeout: 10000 });
+    const match = /^pg_(?:dump|restore) \(PostgreSQL\) (\d+)\./.exec(result.stdout || '');
+    if (result.status !== 0 || !match) throw new Error(`${binary} client is unavailable.`);
+    return match[1];
+}
+
 async function main() {
     delete process.env.GNOSIS_BACKUP_ALLOW_REMOTE;
     assert.throws(() => backup.connection('postgresql://u:p@db.example.invalid/app?sslmode=verify-full', 'app'), /explicit opt-in/);
@@ -26,8 +33,12 @@ async function main() {
     await fs.chmod(root, 0o700);
     let container;
     try {
+        const major = postgresClientMajor('pg_dump');
+        if (major !== postgresClientMajor('pg_restore') || !['14', '18'].includes(major)) {
+            throw new Error('The rehearsal requires matching PostgreSQL 14 or 18 client tools.');
+        }
         container = docker(['run', '--detach', '--rm', '--publish', '127.0.0.1::5432',
-            '--env', 'POSTGRES_HOST_AUTH_METHOD=trust', 'postgres:14']);
+            '--env', 'POSTGRES_HOST_AUTH_METHOD=trust', `postgres:${major}`]);
         const port = Number(docker(['port', container, '5432/tcp']).split(':').at(-1));
         assert.ok(Number.isInteger(port) && port > 0);
         const url = name => `postgresql://postgres:synthetic@127.0.0.1:${port}/${name}`;

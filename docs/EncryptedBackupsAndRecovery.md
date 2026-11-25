@@ -95,8 +95,9 @@ The tool never promotes or rewires an application database.
    console; do not rely on the older six-hour claim in the incident runbook.
    Use a `pg_dump` client compatible with every source and a `pg_restore`
    client matching the isolated target's PostgreSQL major version. A newer
-   dump client can emit settings an older restore server rejects; the CI
-   rehearsal pins client 14 to its PostgreSQL 14 disposable target.
+   dump client can emit settings an older restore server rejects; the
+   disposable rehearsal selects PostgreSQL 14 or 18 to match installed
+   client tools, and fails if the two clients disagree.
 2. Install locked backend dependencies and PostgreSQL client tools on the
    private runner. Set `GNOSIS_BACKUP_APP_URL`, `GNOSIS_BACKUP_BIBLE_URL`, and
    `GNOSIS_BACKUP_COMMENTARY_URL` to distinct **direct** PostgreSQL URLs.
@@ -144,7 +145,7 @@ write freeze, timestamp selection, and cross-project validation.
 
 ## Local evidence and remaining gate
 
-Run `cd backend && npm run test:backup`. The disposable PostgreSQL 14 rehearsal
+Run `cd backend && npm run test:backup`. The disposable PostgreSQL 14/18 rehearsal
 creates synthetic App, Bible, and Commentary sources and three empty targets;
 it verifies encryption/authentication, FORCE RLS rejection for a restricted
 source, miswired-source rejection, complete restore, cross-project reference
