@@ -18,6 +18,10 @@ function docker(args) {
 }
 
 async function main() {
+    delete process.env.GNOSIS_BACKUP_ALLOW_REMOTE;
+    assert.throws(() => backup.connection('postgresql://u:p@db.example.invalid/app?sslmode=verify-full', 'app'), /explicit opt-in/);
+    assert.throws(() => backup.connection('postgresql://u:p@db.example.invalid/app?sslmode=verify-full', 'app', true), /loopback/);
+    assert.throws(() => backup.connection('postgresql://u:p@127.0.0.1/app?sslmode=disable', 'app'), /unsupported/);
     const root = await fs.mkdtemp(path.join(os.tmpdir(), 'gnosis-backup-test-'));
     await fs.chmod(root, 0o700);
     let container;
@@ -102,6 +106,7 @@ async function main() {
 
         const bundle = await backup.backup(root, key);
         assert.equal((await fs.stat(bundle)).mode & 0o777, 0o700);
+        assert.equal((await fs.stat(path.join(bundle, 'app.dump.gnb'))).mode & 0o777, 0o600);
         const result = await backup.openedBundle(bundle, key, async manifest => manifest);
         assert.equal(result.projects.app.counts.notes, '1');
         assert.deepEqual(result.projects.app.forced, ['notes']);
@@ -128,6 +133,8 @@ async function main() {
         bytes[40] ^= 1;
         await fs.writeFile(file, bytes);
         await assert.rejects(backup.openedBundle(bundle, key, async () => {}), /hash mismatch/);
+        const partial = await fs.mkdtemp(path.join(root, 'incomplete-'));
+        await assert.rejects(backup.openedBundle(partial, key, async () => {}));
         console.log('PASS: three encrypted backups, authenticated verification, isolated restore, RLS fail-closed, cross-project integrity, and corruption rejection.');
     } finally {
         if (container) docker(['rm', '-f', container]);
