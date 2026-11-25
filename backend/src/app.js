@@ -40,7 +40,11 @@ app.use(securityHeaders);
 // a client spoof its IP; use a hop count (1 on Vercel) or CIDRs instead.
 app.set("trust proxy", resolveTrustProxy(process.env.TRUST_PROXY));
 
-app.use(cors({ origin: new URL(process.env.FRONTEND_URL).origin, credentials: true }));
+const frontendOrigin = new URL(process.env.FRONTEND_URL).origin;
+app.use(cors({
+    origin: (requestOrigin, callback) => callback(null, !requestOrigin || requestOrigin === frontendOrigin),
+    credentials: true,
+}));
 // The 100 KiB JSON limit is a deliberate, documented choice, not a silent
 // default: note content is capped far below it at the controller (100,000
 // characters), and an over-limit body gets a controlled 413 (N04) instead

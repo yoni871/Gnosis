@@ -82,6 +82,28 @@ test("health endpoint carries the full security header set and no X-Powered-By",
     assertSecurityHeaders(result);
 });
 
+test("credentialed CORS allows only the configured frontend origin", async () => {
+    const allowed = await request("/api/auth/profile", {
+        headers: { Origin: "https://frontend.example.invalid" },
+    });
+    assert.equal(allowed.response.headers.get("access-control-allow-origin"),
+        "https://frontend.example.invalid");
+    assert.equal(allowed.response.headers.get("access-control-allow-credentials"), "true");
+
+    for (const origin of ["https://evil.example.invalid", "null", "https://frontend.example.invalid.evil.invalid"]) {
+        const rejected = await request("/api/auth/profile", { headers: { Origin: origin } });
+        assert.equal(rejected.response.headers.get("access-control-allow-origin"), null, origin);
+        assert.equal(rejected.response.status, 401);
+    }
+
+    const preflight = await fetch(`${baseUrl}/api/auth/refresh`, {
+        method: "OPTIONS",
+        headers: { Origin: "https://evil.example.invalid", "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": "x-gnosis-session" },
+    });
+    assert.equal(preflight.headers.get("access-control-allow-origin"), null);
+});
+
 test("CSP is enforced with a hash for the one inline script, not unsafe-inline", () => {
     assert.match(CONTENT_SECURITY_POLICY, /script-src 'self' 'sha256-[A-Za-z0-9+/=]+'/);
     // script-src must never carry 'unsafe-inline': the single inline
