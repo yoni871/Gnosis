@@ -35,17 +35,26 @@ const HOP_BY_HOP = new Set([
 export function backendBaseUrl() {
     // Preferred: an explicit server-side backend origin.
     const explicit = process.env.GNOSIS_API_BASE_URL;
-    if (explicit) {
-        return explicit.replace(/\/+$/, "");
-    }
+    if (explicit) return safeBackendBaseUrl(explicit);
     // Fallback: the same VITE_API_URL the browser build uses. It carries a
     // trailing /api (frontend services append paths like /auth/login), so
     // strip that segment to recover the backend origin.
     const vite = process.env.VITE_API_URL;
-    if (vite) {
-        return vite.replace(/\/api\/?$/, "").replace(/\/+$/, "");
-    }
+    if (vite) return safeBackendBaseUrl(vite.replace(/\/api\/?$/, ""));
     return null;
+}
+
+function safeBackendBaseUrl(raw) {
+    try {
+        const url = new URL(raw);
+        const localHttp = url.protocol === "http:" && process.env.NODE_ENV !== "production"
+            && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname);
+        if (url.protocol !== "https:" && !localHttp) return null;
+        if (url.username || url.password || url.search || url.hash) return null;
+        return url.href.replace(/\/+$/, "");
+    } catch {
+        return null;
+    }
 }
 
 // The sub-path after /api/auth/ (path only, no query string), or null when
@@ -77,6 +86,7 @@ function sendJson(res, status, body) {
     res.writeHead(status, {
         "Content-Type": "application/json",
         "Content-Length": payload.length,
+        "Cache-Control": "private, no-store",
     });
     res.end(payload);
 }
@@ -136,7 +146,9 @@ export async function handleAuthProxy(req, res, subPath) {
         return;
     }
 
-    const responseHeaders = {};
+    // Every auth proxy response is private, including upstream errors and
+    // responses from an unexpectedly misconfigured backend.
+    const responseHeaders = { "Cache-Control": "private, no-store" };
     for (const [name, value] of upstream.headers.entries()) {
         const lower = name.toLowerCase();
         if (HOP_BY_HOP.has(lower)) {
@@ -146,6 +158,9 @@ export async function handleAuthProxy(req, res, subPath) {
         // multiple cookies into one comma-joined value, which corrupts the
         // Expires attribute. getSetCookie() keeps each cookie intact.
         if (lower === "set-cookie") {
+            continue;
+        }
+        if (lower === "cache-control") {
             continue;
         }
         responseHeaders[name] = value;
