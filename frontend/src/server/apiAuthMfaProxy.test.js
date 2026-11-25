@@ -181,6 +181,7 @@ test('an unreachable backend returns JSON 502, not a plain-text page', async () 
         body: '{}',
     }), res);
     expect(res.statusCode).toBe(502);
+    expect(res.headers['Cache-Control']).toBe('private, no-store');
     expect(res.headers['Content-Type']).toBe('application/json');
     expect(JSON.parse(res.body.toString())).toEqual({
         error: 'Authentication service unavailable.',
@@ -199,6 +200,7 @@ test('no backend origin configured returns JSON 502 without calling fetch', asyn
     }), res);
     expect(fetchMock).not.toHaveBeenCalled();
     expect(res.statusCode).toBe(502);
+    expect(res.headers['Cache-Control']).toBe('private, no-store');
     expect(res.headers['Content-Type']).toBe('application/json');
     expect(JSON.parse(res.body.toString())).toEqual({
         error: 'Authentication service unavailable.',

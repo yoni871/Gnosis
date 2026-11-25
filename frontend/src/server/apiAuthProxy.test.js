@@ -76,6 +76,7 @@ test('refresh forwards the cookie and session header and passes the Set-Cookie t
     expect(init.body.toString()).toBe('{}');
 
     expect(res.statusCode).toBe(200);
+    expect(res.headers['Cache-Control']).toBe('private, no-store');
     expect(JSON.parse(res.body.toString())).toEqual({ token: 'renewed' });
     expect(res.headers['Set-Cookie']).toEqual([
         'gnosisRefresh=abc; Path=/api/auth; HttpOnly; Secure; SameSite=Strict',
@@ -108,7 +109,9 @@ test('login forwards the JSON body and content type', async () => {
 });
 
 test('a GET profile request forwards the bearer token with no body', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(upstreamResponse({ id: 12 }));
+    const fetchMock = vi.fn().mockResolvedValue(upstreamResponse({ id: 12 }, {
+        headers: { 'Cache-Control': 'public, max-age=3600' },
+    }));
     vi.stubGlobal('fetch', fetchMock);
 
     const res = mockRes();
@@ -123,6 +126,7 @@ test('a GET profile request forwards the bearer token with no body', async () =>
     expect(fetchMock.mock.calls[0][1].headers.authorization).toBe('Bearer access-token');
     expect(fetchMock.mock.calls[0][1].body).toBeUndefined();
     expect(res.statusCode).toBe(200);
+    expect(res.headers['Cache-Control']).toBe('private, no-store');
 });
 
 test('hop-by-hop headers and Host are not forwarded upstream', async () => {
@@ -173,6 +177,7 @@ test('a path escaping /api/auth is not proxied', async () => {
     await handler(mockReq({ url: '/api/auth/../admin' }), res);
     expect(fetchMock).not.toHaveBeenCalled();
     expect(res.statusCode).toBe(502);
+    expect(res.headers['Cache-Control']).toBe('private, no-store');
 });
 
 test('no backend origin configured returns 502 without calling fetch', async () => {
@@ -184,7 +189,22 @@ test('no backend origin configured returns 502 without calling fetch', async () 
     await handler(mockReq({ url: '/api/auth/refresh', body: '{}' }), res);
     expect(fetchMock).not.toHaveBeenCalled();
     expect(res.statusCode).toBe(502);
+    expect(res.headers['Cache-Control']).toBe('private, no-store');
     expect(JSON.parse(res.body.toString())).toEqual({ error: 'Authentication service unavailable.' });
+});
+
+test('production refuses an HTTP backend before forwarding auth credentials', async () => {
+    vi.stubEnv('NODE_ENV', 'production');
+    vi.stubEnv('GNOSIS_API_BASE_URL', 'http://backend.example.invalid');
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+    const res = mockRes();
+    await handler(mockReq({ url: '/api/auth/refresh', headers: {
+        cookie: 'gnosisRefresh=synthetic', 'x-gnosis-session': '1',
+    } }), res);
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(res.statusCode).toBe(502);
+    expect(res.headers['Cache-Control']).toBe('private, no-store');
 });
 
 test('an unreachable backend returns 502', async () => {
