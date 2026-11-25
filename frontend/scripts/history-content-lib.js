@@ -870,6 +870,12 @@ const TITLE_COLLISION_ALLOWLIST = new Set([
     "source-ramban-on-genesis",
     "source-biblicaltraining-beth-shemesh",
     "source-biblicaltraining-book-of-jashar",
+    // 1 Kings S03: "First Temple" is ordinary published prose — the published
+    // Deuteronomy category deuteronomy-laws-israelite-society.md uses the
+    // phrase "First Temple-period" — not a citation of the Bible Odyssey
+    // article. The id check still applies. (Flagged C1 deviation: one
+    // allowlist line in the shared gate lib, added by the S03 category PR.)
+    "source-bible-odyssey-first-temple",
 ]);
 
 // A non-published title is a leak signal only as a whole phrase on word
