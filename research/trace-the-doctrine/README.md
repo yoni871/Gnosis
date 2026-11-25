@@ -31,6 +31,13 @@ research/trace-the-doctrine/
 │   ├── README.md
 │   ├── authors.json
 │   └── works.json
+├── tools/                     # structural validation (see Validation below)
+│   ├── README.md
+│   ├── validate.py
+│   ├── canon.json
+│   ├── uncited-records.json
+│   └── tests/
+│       └── test_validate.py
 └── trinity/                   # Trinity doctrine research (first doctrine)
     ├── README.md
     ├── passages.json
@@ -43,6 +50,30 @@ Future doctrines (Incarnation, Salvation, Holy Spirit, Church,
 Resurrection) each get their own directory beside `trinity/`, following the
 same layout and the same schemas. Nothing doctrine-specific lives in
 `shared/` except the registries.
+
+## Validation
+
+Structural checks for everything in this directory live in `tools/`.
+They check structure only -- that references resolve, dates are
+consistent, quotations carry a usable source location, and publication
+state matches verification state. They do not judge whether a quotation
+is accurate, a date is right, or a claim is true; that is the work of
+Phase 4 verification and independent QA (`RESEARCH-STANDARDS.md` §8-9).
+
+Run from the repo root before opening a PR that touches this directory:
+
+```sh
+python3 research/trace-the-doctrine/tools/validate.py
+```
+
+Exit 0 with an OK summary when clean; exit 1 with an error list on any
+failure. Standard library only, no network access. See `tools/README.md`
+for the full list of checks, the canon table, the uncited-record rules,
+and the fixture tests (`tools/tests/test_validate.py`).
+
+If the validator fails, fix the data, not the validator. If a check
+itself misreads the standards, flag it to the EM instead of weakening
+the check in the same change that needs it to pass.
 
 ## Status: Trinity
 
