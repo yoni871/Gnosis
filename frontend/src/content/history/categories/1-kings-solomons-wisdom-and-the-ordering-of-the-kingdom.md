@@ -32,5 +32,3 @@ The chapter closes with the picture every reader of Kings remembers: Judah and I
 This chapter is about what a king should want, and what wanting the right thing costs. Solomon asks for ears before he asks for anything else — a heart that listens, so he can judge a people he cannot count — and the story gives him everything else besides, except the one thing it makes conditional: long life, if he walks as David walked. Knowing the world behind the story keeps the reader from turning Solomon into a simple hero. His reign opens with a foreign marriage and worship at the high places, and the same administration that feeds his court month by month is the yoke his son's kingdom will break under. The wisdom is real — the sword that is never used, the mother revealed by her own mercy, the kingdom at peace from Dan to Beersheba — and so is the price. The gift and the warning arrive in the same dream, and the rest of Kings is the story of which one Solomon keeps.
 
 ---
-
----
