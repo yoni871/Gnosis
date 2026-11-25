@@ -5,8 +5,10 @@
 -- SQL Editor, one branch at a time. Nothing here writes, grants, revokes,
 -- or creates anything. Compare the output against the expected grant set
 -- for the branch's runtime role(s):
---   * App (Gnosis project): gnosis_app (production) / gnosis_preview_app
---     (preview, until the §13 swap) — see NeonInfrastructureSetup.md §11.
+--   * App (Gnosis project): gnosis_app (production) /
+--     gnosis_preview_app_next (Preview runtime, per Muse's latest report).
+--     Also audit old gnosis_preview_app: it remains enabled until separately
+--     approved retirement. The older §13 swap notes are historical.
 --   * Bible: gnosis_bible_app / gnosis_bible_preview_app — SELECT only.
 --   * Commentary: gnosis_commentary_app / gnosis_commentary_preview_app —
 --     SELECT only.
