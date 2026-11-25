@@ -1,0 +1,454 @@
+{
+  "id": "category-1-kings-solomons-glory-and-fall",
+  "title": "Solomon's Glory and Fall",
+  "category": "category",
+  "orphan": true,
+  "era": "1-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 9,
+    "startVerse": 1,
+    "endChapter": 11,
+    "endVerse": 43
+  },
+  "fullRange": {
+    "book": "1 Kings",
+    "bookId": "1-kings",
+    "startChapter": 9,
+    "startVerse": 1,
+    "endChapter": 11,
+    "endVerse": 43
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ki-04-001",
+      "claim": "When Solomon has finished both houses — the house of the LORD and the king's house — and all his desire, the LORD appears to him a second time, as he had appeared unto him at Gibeon.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-002",
+      "claim": "The LORD says he has heard Solomon's prayer and supplication, and has hallowed the house Solomon built, \"to put my name there for ever; and mine eyes and mine heart shall be there perpetually.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-003",
+      "claim": "The dynasty is promised conditionally: if Solomon walks before the LORD as David walked, in integrity of heart and uprightness, keeping the statutes and judgments, the throne of his kingdom will be established upon Israel for ever, as promised to David — \"There shall not fail thee a man upon the throne of Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full; Bible Odyssey, \"Covenant in the Hebrew Bible\" (registry-verified), on the conditional form.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-004",
+      "claim": "The curse is stated in full as prophecy: if they turn to other gods, Israel will be cut off from the land, the house cast out of the LORD's sight, Israel a proverb and a byword among all people, and passers-by will ask why the LORD did this to the land and the house — \"Because they forsook the LORD their God, who brought forth their fathers out of the land of Egypt.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-005",
+      "claim": "At the end of twenty years Solomon gives Hiram king of Tyre twenty cities in Galilee for the cedar, fir, and gold; Hiram inspects them and is displeased — \"What cities are these which thou hast given me, my brother?\" — and calls them the land of Cabul; Hiram sends 120 talents of gold.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (the Hiram transaction, the towns, the 120 talents).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-006",
+      "claim": "What Cabul means, and why Hiram was displeased with the twenty cities, is unexplained by the text. Interpreters differ: some read the towns as security for a loan or payment for Hiram's gold, others as separate transactions, and many historians read the episode as showing the strain Solomon's projects placed on the royal treasury.",
+      "evidence": "BiblicalTraining, \"Solomon,\" read in full (the three readings listed, none adopted by the text).",
+      "assessment": "unknown"
+    },
+    {
+      "id": "clm-1ki-04-007",
+      "claim": "The reason of the levy: to build the house of the LORD, his own house, Millo, the wall of Jerusalem, Hazor, Megiddo, and Gezer.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (Hazor, Megiddo, and Gezer guard the main routes).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-008",
+      "claim": "Pharaoh king of Egypt had gone up, taken Gezer, burnt it with fire, slain the Canaanites that dwelt in the city, and given it for a present unto his daughter, Solomon's wife.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-009",
+      "claim": "Solomon builds Gezer, Beth-horon the nether, Baalath, and Tadmor in the wilderness, with all the store cities, the cities for his chariots, and the cities for his horsemen, and what he desired to build in Jerusalem, in Lebanon, and in all the land of his dominion. The Hebrew of v. 18 can be read as Tamar, a site in the southern wilderness; Chronicles reads Tadmor.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (the Tadmor/Tamar variant).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-010",
+      "claim": "The remnant Amorites, Hittites, Perizzites, Hivites, and Jebusites are put to a tribute of bondservice unto this day; of the children of Israel Solomon makes no bondmen — they are men of war, servants, princes, captains, and rulers of chariots and horsemen. There are 550 chief officers over the work.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (the two kinds of labour distinguished).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-011",
+      "claim": "Pharaoh's daughter comes up out of the city of David unto her house which Solomon built for her; then he builds Millo. Three times in a year Solomon offers burnt offerings and peace offerings upon the altar he built unto the LORD, and burns incense upon the altar before the LORD; \"So he finished the house.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-012",
+      "claim": "Solomon makes a navy of ships in Ezion-geber, beside Eloth on the Red Sea in Edom; Hiram sends his servants, shipmen with knowledge of the sea, with Solomon's servants; they come to Ophir and fetch 420 talents of gold. The location of Ophir is disputed — southern Arabia, the coast of East Africa, and India have all been proposed.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (the fleet, the 420 talents, Ophir disputed).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-013",
+      "claim": "The queen of Sheba, hearing of Solomon's fame concerning the name of the LORD, comes to prove him with hard questions, with camels of spices, gold, and precious stones; Solomon tells her all her questions — there is nothing hid from the king. The Hebrew word for the hard questions, *ḥîdôt*, also means \"riddles,\" and the exchange of riddles was a recognised test of a ruler's learning.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Queen of Sheba,\" read in full (the riddles, the caravan).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-014",
+      "claim": "When the queen has seen all Solomon's wisdom, the house he built, the meat of his table, the sitting of his servants, the attendance of his ministers and their apparel, his cupbearers, and his ascent by which he went up unto the house of the LORD, \"there was no more spirit in her.\" The Hebrew word can mean an ascent (a stairway) or a burnt offering.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Queen of Sheba,\" read in full (the ascent/burnt-offering ambiguity).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-015",
+      "claim": "The queen says the report was true, \"the half was not told me,\" calls Solomon's men and servants happy to hear his wisdom continually, and blesses the LORD who set Solomon on the throne of Israel \"to do judgment and justice,\" because the LORD loved Israel for ever.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Queen of Sheba,\" read in full (the speech as the centre of the story).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-016",
+      "claim": "The queen gives 120 talents of gold — about 4 metric tons — with spices in abundance never matched afterward and precious stones; Solomon gives her all her desire beside his royal bounty, and she returns to her own country with her servants. The navy of Hiram brings almug trees and precious stones from Ophir; the king makes pillars for the house of the LORD and the king's house, and harps and psalteries for singers, and no such almug trees were seen unto this day.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Queen of Sheba,\" read in full (120 talents, about 4 tons); BiblicalTraining, \"Solomon,\" read in full (the almugwood).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-017",
+      "claim": "The weight of gold that comes to Solomon in one year is 666 talents — roughly 22 metric tons at about 34 kilograms to the talent — beside what he has of the merchantmen, the traffic of the spice merchants, the kings of Arabia, and the governors of the country. The figure is reported, not interpreted.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Talent,\" read in full (666 talents; talent about 34 kg).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-018",
+      "claim": "Solomon makes two hundred targets of beaten gold, 600 shekels to one target, and three hundred shields of beaten gold, three pounds to one shield, and puts them in the house of the forest of Lebanon.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-019",
+      "claim": "The king makes a great throne of ivory overlaid with the best gold — six steps, the top round behind, stays on either side, two lions beside the stays, twelve lions on the six steps — \"there was not the like made in any kingdom.\" All his drinking vessels are of gold, and all the vessels of the house of the forest of Lebanon are of pure gold; silver \"was nothing accounted of in the days of Solomon.\"",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (the throne, the gold vessels).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-020",
+      "claim": "The king has at sea a navy of Tarshish with the navy of Hiram; once in three years the navy of Tarshish comes, bringing gold, silver, ivory, apes, and peacocks. \"Ships of Tarshish\" is a term for large seagoing merchant vessels.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (\"ships of Tarshish\").",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-021",
+      "claim": "Solomon exceeds all the kings of the earth for riches and for wisdom, and all the earth seeks to Solomon to hear his wisdom, which God put in his heart, bringing every man his present — vessels of silver and gold, garments, armour, spices, horses, and mules — a rate year by year.",
+      "evidence": "Hebrew + JPS 1917 read in full; Bible Odyssey, \"Solomon,\" read in full (the visit embedded in the wealth descriptions).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-022",
+      "claim": "Solomon gathers 1,400 chariots and 12,000 horsemen, bestowed in the chariot cities and with the king at Jerusalem; silver in Jerusalem is as stones, and cedars as sycomore trees. Horses are brought out of Egypt, and linen yarn — the JPS reads Keveh, the king's merchants buying from the men of Keveh at a price — a chariot for 600 shekels of silver and a horse for 150, and so for all the kings of the Hittites and Syria. This breaches the king law's limit on horses from Egypt (Deut 17:16).",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (horses from Egypt and Kue/Cilicia); reuse: `clm-deu-05-023` (established — Solomon breached the three limits).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-023",
+      "claim": "Solomon loves many strange women — Moabites, Ammonites, Edomites, Zidonians, Hittites — besides Pharaoh's daughter, of the nations the LORD forbade, \"for surely they will turn away your heart after their gods.\" He has 700 wives, princesses, and 300 concubines, \"and his wives turned away his heart\"; in his old age his heart is not perfect with the LORD his God, as was the heart of David his father. Many of the marriages probably sealed treaties with neighbouring states, as was common among ancient kings.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (the treaty marriages).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-024",
+      "claim": "Solomon goes after Ashtoreth the goddess of the Zidonians and Milcom the abomination of the Ammonites, does evil in the sight of the LORD, and does not go fully after the LORD as David did. He builds a high place for Chemosh, the abomination of Moab, and for Molech, the abomination of the children of Ammon, on the hill before Jerusalem, and does likewise for all his strange wives, who burn incense and sacrifice to their gods. Ashtoreth is the Hebrew form of Astarte, a leading goddess of the Canaanites and Phoenicians; her shrine stood until Josiah's reform about three centuries later.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full; BiblicalTraining, \"Ashtoreth\" (registry-verified, re-read live in full 2026-11-24).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-025",
+      "claim": "The LORD is angry with Solomon, because his heart is turned from the LORD God of Israel, which had appeared unto him twice, and had commanded him concerning this thing, that he should not go after other gods — but he kept not the commandment. The sentence: \"I will surely rend the kingdom from thee, and will give it to thy servant. Notwithstanding in thy days I will not do it for David thy father's sake: but I will rend it out of the hand of thy son. Howbeit I will not rend away all the kingdom; but will give one tribe to thy son for David my servant's sake, and for Jerusalem's sake which I have chosen.\"",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (the sentence, the one tribe).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-026",
+      "claim": "The LORD stirs up an adversary unto Solomon, Hadad the Edomite, of the king's seed in Edom. When David was in Edom and Joab went up to bury the slain after smiting every male in Edom — for six months Joab remained there with all Israel, until he had cut off every male in Edom — Hadad fled as a little child to Egypt, was given a house, victuals, and land by Pharaoh, married the sister of Tahpenes the queen, and returned to his own country on hearing David and Joab were dead.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (Hadad's flight and return).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-027",
+      "claim": "God stirs up another adversary, Rezon son of Eliadah, who fled from his lord Hadadezer king of Zobah, gathered men, became captain over a band when David slew them of Zobah, went to Damascus, dwelt therein, and reigned in Damascus. He is an adversary to Israel all the days of Solomon, beside the mischief Hadad did; he abhors Israel and reigns over Syria.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (Rezon in Damascus).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-028",
+      "claim": "Jeroboam son of Nebat, an Ephrathite of Zereda, Solomon's servant, whose mother's name is Zeruah, a widow woman, lifts up his hand against the king. The cause: Solomon built Millo and repaired the breaches of the city of David. Jeroboam is a mighty man of valour; Solomon, seeing the young man industrious, makes him ruler over all the charge of the house of Joseph.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (Jeroboam over the labour force).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-029",
+      "claim": "At that time, when Jeroboam goes out of Jerusalem, the prophet Ahijah the Shilonite finds him in the way, alone in the field, clad in a new garment; Ahijah rents it in twelve pieces and gives Jeroboam ten: \"Thus saith the LORD, the God of Israel, Behold, I will rend the kingdom out of the hand of Solomon, and will give ten tribes to thee\" — because they have forsaken the LORD and worshipped Ashtoreth, Chemosh, and Milcom, and have not walked in his ways as David did.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (the torn garment, the ten tribes).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-030",
+      "claim": "The LORD will not take the whole kingdom out of Solomon's hand, but will make him prince all the days of his life for David's sake; he will take the kingdom out of his son's hand and give Jeroboam ten tribes, and give his son one tribe, \"that David my servant may have a light alway before me in Jerusalem.\" Jeroboam will reign over all his soul desires and be king over Israel; \"if thou wilt hearken… and wilt walk in my ways… as David my servant did; that I will be with thee, and build thee a sure house, as I built for David.\" \"And I will for this afflict the seed of David, but not for ever.\"",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (the sure house offered).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-031",
+      "claim": "Solomon seeks to kill Jeroboam; Jeroboam flees into Egypt unto Shishak king of Egypt — the pharaoh known from Egyptian records as Sheshonq I, founder of the Twenty-Second Dynasty — and is in Egypt until the death of Solomon. The rest of Solomon's acts and wisdom are in the book of the acts of Solomon. He reigns forty years in Jerusalem over all Israel, sleeps with his fathers, is buried in the city of David his father, and Rehoboam his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full; BiblicalTraining, \"Solomon,\" read in full (Shishak as Sheshonq I; forty years; Rehoboam).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ki-04-032",
+      "claim": "Date: unknown. The text gives no absolute date. Solomon is conventionally dated to a forty-year reign about 970–930 BC, with his death most commonly reckoned about 931 or 930 BC; these are conventional scholarly datings, not dates the text gives.",
+      "evidence": "BiblicalTraining, \"Solomon,\" read in full (about 970–930 BC; death about 931 or 930 BC).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ki-04-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 3,
+      "startVerse": 4,
+      "endChapter": 3,
+      "endVerse": 15,
+      "type": "direct-account",
+      "confidence": "established",
+      "note": "At Gibeon the LORD appears to Solomon in a dream by night, invites him to ask what he will give him, and Solomon asks for an understanding heart to judge the people. The second appearance in chapter 9 answers that first appearance, after the building is finished."
+    },
+    {
+      "id": "conn-1ki-04-002",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The LORD promises David that he will raise up his seed after him, establish his kingdom, and build him a house, and that his throne shall be established for ever. The conditional promise of chapter 9 rests on this word to David, and the sure house offered to Jeroboam echoes it."
+    },
+    {
+      "id": "conn-1ki-04-003",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 14,
+      "endChapter": 17,
+      "endVerse": 20,
+      "type": "historical-setting",
+      "confidence": "established",
+      "note": "The law of the king says the king must not multiply horses or cause the people to return to Egypt for horses, must not multiply wives that his heart turn not away, and must not greatly multiply silver and gold. Solomon's chariots, horses from Egypt, wives, and gold in chapters 10–11 stand against these limits."
+    },
+    {
+      "id": "conn-1ki-04-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 7,
+      "startVerse": 3,
+      "endChapter": 7,
+      "endVerse": 4,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Israel shall not make marriages with the nations of the land, \"for they will turn away thy son from following me, that they may serve other gods.\" Solomon's marriages to the Moabites, Ammonites, Edomites, Zidonians, and Hittites are the warning of this passage coming true."
+    },
+    {
+      "id": "conn-1ki-04-005",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 5,
+      "startVerse": 1,
+      "endChapter": 5,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hiram king of Tyre sends servants to Solomon, and the two kings make a league together: Hiram furnishes cedar and fir from Lebanon, and Solomon gives food for Hiram's household year by year. The alliance behind the twenty cities of chapter 9 is made here."
+    },
+    {
+      "id": "conn-1ki-04-006",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 8,
+      "startVerse": 22,
+      "endChapter": 8,
+      "endVerse": 53,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "At the dedication Solomon prays that the LORD will keep the word spoken to David, and foresees the case of sin, anger, and captivity — \"if they shall bethink themselves in the land whither they were carried captives, and repent.\" The curse stated in chapter 9 is the same captivity, pronounced before it happens."
+    },
+    {
+      "id": "conn-1ki-04-007",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 12,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler retells the queen of Sheba's visit: the hard questions, the overwhelm at the wisdom and the court, the blessing of the LORD who set Solomon on the throne, the 120 talents of gold, and the return to her own land. The two accounts differ in wording, not in substance."
+    },
+    {
+      "id": "conn-1ki-04-008",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 8,
+      "startVerse": 17,
+      "endChapter": 8,
+      "endVerse": 18,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Solomon goes to Ezion-geber and Eloth, and Hiram sends ships and servants with knowledge of the sea; they go to Ophir and bring 450 talents of gold. The Chronicler's figure differs from the 420 talents of Kings, and the voyage is the same."
+    },
+    {
+      "id": "conn-1ki-04-009",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 1,
+      "endChapter": 12,
+      "endVerse": 20,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "At Shechem the tribes ask Rehoboam to lighten the heavy yoke his father laid on them; he answers roughly, ten tribes reject the house of David, and Jeroboam is made king over Israel. The sentence pronounced in chapter 11 is executed here."
+    },
+    {
+      "id": "conn-1ki-04-010",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 14,
+      "startVerse": 25,
+      "endChapter": 14,
+      "endVerse": 26,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "In the fifth year of Rehoboam, Shishak king of Egypt comes up against Jerusalem and takes the treasures of the house of the LORD and of the king's house, including the shields of gold Solomon made. The glory displayed in chapter 10 leaves Jerusalem within a generation."
+    },
+    {
+      "id": "conn-1ki-04-011",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 15,
+      "startVerse": 4,
+      "endChapter": 15,
+      "endVerse": 4,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"For David's sake did the LORD his God give him a lamp in Jerusalem, to set up his son after him, and to establish Jerusalem.\" The lamp promised in chapter 11 is kept for Abijam, David's great-grandson, on the same ground."
+    },
+    {
+      "id": "conn-1ki-04-012",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 28,
+      "startVerse": 37,
+      "endChapter": 28,
+      "endVerse": 37,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Among the curses for disobedience, Israel \"shalt become an astonishment, a proverb, and a byword, among all nations whither the LORD shall lead thee.\" The curse of chapter 9 uses the same words — a proverb and a byword — for the same disobedience."
+    },
+    {
+      "id": "conn-1ki-04-013",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 8,
+      "startVerse": 11,
+      "endChapter": 8,
+      "endVerse": 18,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Samuel warns the people what manner of king they are asking for: he will take their sons for his chariots and horsemen, their daughters for his kitchens, their fields and vineyards and oliveyards, and a tenth of their seed and flocks. The levy and the building works of chapter 9 are the warning fulfilled."
+    },
+    {
+      "id": "conn-1ki-04-014",
+      "book": "Psalms",
+      "bookId": "psalms",
+      "startChapter": 72,
+      "startVerse": 10,
+      "endChapter": 72,
+      "endVerse": 15,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"The kings of Tarshish and of the isles shall bring presents: the kings of Sheba and Seba shall offer gifts,\" and \"gold of Sheba\" shall be given to the king. The psalm pictures the tribute the queen of Sheba brings in chapter 10. Targets Psalm 72:10 and 72:15."
+    },
+    {
+      "id": "conn-1ki-04-015",
+      "book": "Matthew",
+      "bookId": "matthew",
+      "startChapter": 12,
+      "startVerse": 42,
+      "endChapter": 12,
+      "endVerse": 42,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "\"The queen of the south shall rise up in the judgment with this generation, and shall condemn it: for she came from the uttermost parts of the earth to hear the wisdom of Solomon; and, behold, a greater than Solomon is here.\" Jesus cites the visit as the measure of a Gentile's eagerness to hear wisdom."
+    },
+    {
+      "id": "conn-1ki-04-016",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 8,
+      "startVerse": 13,
+      "endChapter": 8,
+      "endVerse": 14,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "David smites the Syrians in the valley of salt and puts garrisons in Edom, and all Edom becomes David's servants. The war in which Joab spends six months cutting off every male in Edom is the backstory of Hadad's flight and return."
+    },
+    {
+      "id": "conn-1ki-04-017",
+      "book": "Nehemiah",
+      "bookId": "nehemiah",
+      "startChapter": 13,
+      "startVerse": 26,
+      "endChapter": 13,
+      "endVerse": 26,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Rebuking Jews who have married foreign women, Nehemiah recalls that no king among the nations was like Solomon, who was loved by his God, \"nevertheless even him did outlandish women cause to sin\" The fall of chapter 11 is remembered as the warning for a later generation."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-kings-masoretic-text",
+    "source-biblicaltraining-solomon",
+    "source-biblicaltraining-queen-of-sheba",
+    "source-bible-odyssey-solomon",
+    "source-biblicaltraining-talent",
+    "source-bible-odyssey-covenant",
+    "source-biblicaltraining-ashtoreth",
+    "source-bible-odyssey-queen-of-sheba",
+    "source-weinfeld-covenant-grant",
+    "source-mesha-stele",
+    "source-biblicaltraining-ammonites"
+  ],
+  "review": {
+    "author": "Gnosis 1 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-24",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Kings category; independent QA pending. S04 sources[] carries eleven entries (all verified in the live registry): K04-S01 Mechon Mamre -> source-mechon-mamre-1-kings-masoretic-text; K04-S02 BT \"Solomon\" -> source-biblicaltraining-solomon; K04-S03 BT \"Queen of Sheba\" -> source-biblicaltraining-queen-of-sheba; K04-S04 BO \"Solomon\" -> source-bible-odyssey-solomon; K04-S06 BT \"Talent\" -> source-biblicaltraining-talent; source-bible-odyssey-covenant; source-biblicaltraining-ashtoreth; K04-S05 BO \"Queen of Sheba\" -> source-bible-odyssey-queen-of-sheba; source-weinfeld-covenant-grant; source-mesha-stele; source-biblicaltraining-ammonites. Seven appear in §9 Source IDs cells (Mechon Mamre 30 claims, BT Solomon 21, BT Queen of Sheba 4, BO Solomon 1, BT Talent 1, BO Covenant 1, BT Ashtoreth 1). Four enter via the appendix footnote only (1 use each — the S03 Wikipedia-Edom precedent: appendix footnote, registry-verified, included by the mechanical §-location rule): BO \"Queen of Sheba\" (\"Where Sheba lay is still debated\"), Weinfeld (the grant reading), Mesha Stele (Ashtar-Chemosh), BT \"Ammonites\" (Milcom as the god of the Ammonites). K04-S04 (BO \"Solomon\") is §9-only (claim 021) and does not appear in the appendix. Excluded by the §-location rule (§4/§5 prose, §10 topic line, or §12 table only, never in a §9 Source IDs cell or the appendix): source-biblicaltraining-jerusalem (§4 prose + §10 topic line only), source-moab-encyclopaedia-judaica (§4 prose only), source-bible-odyssey-royal-succession (§2/§4 background only). Excluded by the Ruth hygiene rule (needs-checking, no registry entry, §5 prose only, no §9 claim rests on either): K04-S07 Josephus Ant. 8.6.5–6 (the queen named Nikaule) and K04-S08 Kebra Nagast (the queen as Makeda). Excluded by the §-location rule (reuse-basis only, cited through a published claim in §2, never in §9 Source IDs or the appendix): the kingship law (clm-deu-05-023, cited in the evidence of claim 022). KCL-04-006 is unknown (Cabul — what it means and why Hiram was displeased is unexplained by the text; three readings listed, none adopted). KCL-04-032 is probable (date: unknown; conventional scholarly datings about 970–930 BC, death about 931 or 930 BC — conventional datings, not dates the text gives). The two established connections are KCO-04-001 (1 Kgs 3:4–15, the Gibeon appearance) and KCO-04-003 (Deut 17:14–20, the law of the king). One multi-range connection: KCO-04-014 is the encompassing range Psalm 72:10–15 with the exact sub-ranges \"Targets Psalm 72:10 and 72:15.\" in its note (S03 precedent); no split. primaryScripture = fullRange = 9:1–11:43 (no narrowing — the range spans exactly three chapters, span = 2, within the validator limit; the whole arc is one arc and no shorter passage represents it). Chapters 9, 10, and 11 are zero-diff chapters in the KJV verification — no Class A stored-text error in this range (the five flagged errors, 2:26, 3:10, 8:53, 13:22, 22:6, are all outside it); no database fix proposed. D-S04-4b was REJECTED: the second reader claimed the §3 heading misquotes JPS 1917 1 Kgs 11:5; JPS 1917 11:5 reads exactly as the heading has it (Mechon Mamre pt09a11.htm, verified live) — the reader confused 11:5 (Milcom) with 11:7 (Molech). The heading is verbatim JPS and is built as written. Chapter coverage is complete: all 100 verses covered (ch. 9: 28, ch. 10: 29, ch. 11: 43), per the dossier's own coverage check, re-verified by script at build. Ancient World is exactly at the 1500-word cap as recorded by the dossier (the verification report records 1495; the validator's own countWords is the arbiter — see the build report). Built as written, no words trimmed. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
