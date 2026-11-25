@@ -1,0 +1,74 @@
+{
+  "entries": [
+    {
+      "bookNote": "1 Kings 1–2 examines Solomon's Succession and the Securing of the Throne as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-solomons-succession-and-the-securing-of-the-throne",
+      "kind": "category",
+      "narrativeOrder": 97
+    },
+    {
+      "bookNote": "1 Kings 3–4 examines Solomon's Wisdom and the Ordering of the Kingdom as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-solomons-wisdom-and-the-ordering-of-the-kingdom",
+      "kind": "category",
+      "narrativeOrder": 98
+    },
+    {
+      "bookNote": "1 Kings 5–8 examines The Temple Built and Dedicated as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-the-temple-built-and-dedicated",
+      "kind": "category",
+      "narrativeOrder": 99
+    },
+    {
+      "bookNote": "1 Kings 9–11 examines Solomon's Glory and Fall as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-solomons-glory-and-fall",
+      "kind": "category",
+      "narrativeOrder": 100
+    },
+    {
+      "bookNote": "1 Kings 12–14 examines The Kingdom Divided as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-the-kingdom-divided",
+      "kind": "category",
+      "narrativeOrder": 101
+    },
+    {
+      "bookNote": "1 Kings 15–16 examines The Succession of Kings in Judah and Israel as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-the-succession-of-kings-in-judah-and-israel",
+      "kind": "category",
+      "narrativeOrder": 102
+    },
+    {
+      "bookNote": "1 Kings 17–18 examines Elijah: The Drought and Carmel as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-elijah-the-drought-and-carmel",
+      "kind": "category",
+      "narrativeOrder": 103
+    },
+    {
+      "bookNote": "1 Kings 19 examines Elijah at Horeb and the Call of Elisha as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-elijah-at-horeb-and-the-call-of-elisha",
+      "kind": "category",
+      "narrativeOrder": 104
+    },
+    {
+      "bookNote": "1 Kings 20 examines The Syrian Wars as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-the-syrian-wars",
+      "kind": "category",
+      "narrativeOrder": 105
+    },
+    {
+      "bookNote": "1 Kings 21 examines Naboth's Vineyard as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-naboths-vineyard",
+      "kind": "category",
+      "narrativeOrder": 106
+    },
+    {
+      "bookNote": "1 Kings 22 examines Ramoth Gilead and the Death of Ahab as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-1-kings-ramoth-gilead-and-the-death-of-ahab",
+      "kind": "category",
+      "narrativeOrder": 107
+    }
+  ],
+  "id": "1-kings",
+  "introduction": "1 Kings records Solomon's succession and the securing of the throne, his wisdom and the ordering of the kingdom, the building and dedication of the temple, his glory and fall, the division of the kingdom, the succession of kings in Judah and Israel, Elijah and the drought and Carmel, Elijah at Horeb and the call of Elisha, the Syrian wars, Naboth's vineyard, and Ramoth-gilead and the death of Ahab. These eleven studies follow literary divisions; they do not claim eleven independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "testament": "OT",
+  "title": "1 Kings"
+}
