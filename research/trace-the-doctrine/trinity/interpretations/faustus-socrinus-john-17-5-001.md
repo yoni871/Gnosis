@@ -1,13 +1,13 @@
 # Interpretation note — `faustus-socrinus-john-17-5-001`
 
-Passage: `john-17-5` · Author: `faustus-socrinus` · Work: `racovian-catechism`
+Passage: `john-17-5` · Author: `polish-brethren` · Work: `racovian-catechism`
 Status: `verification-pending`.
 
 ```json
 {
   "id": "faustus-socrinus-john-17-5-001",
   "passageId": "john-17-5",
-  "authorId": "faustus-socrinus",
+  "authorId": "polish-brethren",
   "workId": "racovian-catechism",
   "quotation": {
     "text": "But the meaning of the passage is, that Christ beseeches God to give him in actual possession, with himself, the glory which he had with him, in his purposes and decrees, before the world was.",
@@ -35,7 +35,9 @@ Status: `verification-pending`.
   "verificationRecordIds": [
     "ver-p3-e5-faustus-socrinus-john-17-5-001-quotation-001",
     "ver-p3-e5-racovian-catechism-date-001",
-    "ver-p3-e5-racovian-catechism-attribution-001"
+    "ver-p3-e5-racovian-catechism-attribution-001",
+    "ver-p5-racovian-catechism-attribution-001",
+    "ver-p5-racovian-john-17-5-quote-001"
   ]
 }
 ```
@@ -51,6 +53,6 @@ Status: `verification-pending`.
 
 ## Verification
 
-Verification records: `ver-p3-e5-faustus-socrinus-john-17-5-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p3-e5-racovian-catechism-attribution-001`.
+Verification records: `ver-p3-e5-faustus-socrinus-john-17-5-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p3-e5-racovian-catechism-attribution-001`, `ver-p5-racovian-catechism-attribution-001`, `ver-p5-racovian-john-17-5-quote-001`.
 
 Researcher source-check only; independent verification per RESEARCH-STANDARDS.md §9.2 still required. Not publishable without independent verification and editorial approval.

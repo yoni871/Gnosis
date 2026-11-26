@@ -13,7 +13,7 @@
 
 - Edition: Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)
 - Translation: Arthur West Haddan
-- Location: Book XV, chapter 26, section 46
+- Location: Book XV, chapter 26, section 45
 - Reproducibility: public-domain
 
 ## Explanation
@@ -34,12 +34,13 @@ No alternative reading is attested in this pass for this interpretation.
 
 ## Citation
 
-Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887), Book 15, ch. 26, section 46. https://www.newadvent.org/fathers/130115.htm
+Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887), Book 15, ch. 26, section 45. https://www.newadvent.org/fathers/130115.htm
 
 ## Verification records
 
 - `ver-p3-e3-augustine-gal-4-4-001-quotation-001`
 - `ver-p3-e3-augustine-gal-4-4-001-passage-link-001`
+- `ver-p5-augustine-gal-4-4-quote-001`
 
 ## Notes
 

@@ -18,7 +18,7 @@ Status: `verification-pending`.
     "reproducibilityStatus": "public-domain",
     "summary": "Calvin reads 'another Comforter' as marking a distinction of persons: the Spirit differs from the Son in his peculiar office, so that the Spirit is another than the Son."
   },
-  "explanation": "Calvin holds that 'another Comforter' (John 14:16) implies a distinction of persons: there must be some peculiarity in which the Spirit differs from the Son, so as to be another than the Son. The difference lies in their offices: Christ's office is to atone, redeem, and procure righteousness and life; the Spirit's office is to make believers partakers of Christ himself and of all his blessings. In the same section Calvin notes that the Spirit proceeds from the Father (John 15:26) and is sent by both the Father and the Son.",
+  "explanation": "Calvin holds that 'another Comforter' (John 14:16) implies a distinction of persons: there must be some peculiarity in which the Spirit differs from the Son, so as to be another than the Son. The difference lies in their offices: Christ's office is to atone, redeem, and procure righteousness and life; the Spirit's office is to make believers partakers of Christ himself and of all his blessings. In the same section Calvin notes that the Spirit is the gift of the Father obtained by Christ's prayers, and that Christ promises 'I will send Him to you' (John 16:7); as Mediator he obtains the Spirit's grace from the Father, and as God he bestows that grace from himself, so the Spirit is sent by both. John 15:26 is not mentioned in the section.",
   "relationshipToDoctrine": "(C) Calvin reads John 14:16 as implying a distinction of persons between the Spirit and the Son. (A) The text calls the Spirit 'another Comforter'. (B) The inference from 'another' to a distinct person is Calvin's, drawn from the difference of offices. (D) 'Person' and 'peculiar office' are Calvin's doctrinal vocabulary, not the Evangelist's words.",
   "historicalContext": "Commentary on John, published 1 January 1553, Geneva. The comment belongs to Calvin's farewell-discourse exposition, where he treats the Spirit's distinct mission after Christ's departure.",
   "alternativeReadings": [],
@@ -27,7 +27,8 @@ Status: `verification-pending`.
   "status": "verification-pending",
   "verificationRecordIds": [
     "ver-p3-e5-john-calvin-john-14-16-001-quotation-001",
-    "ver-p3-e5-john-calvin-commentary-john-date-001"
+    "ver-p3-e5-john-calvin-commentary-john-date-001",
+    "ver-p5-calvin-john-14-16-explanation-001"
   ]
 }
 ```
@@ -43,6 +44,6 @@ Status: `verification-pending`.
 
 ## Verification
 
-Verification records: `ver-p3-e5-john-calvin-john-14-16-001-quotation-001`, `ver-p3-e5-john-calvin-commentary-john-date-001`.
+Verification records: `ver-p3-e5-john-calvin-john-14-16-001-quotation-001`, `ver-p3-e5-john-calvin-commentary-john-date-001`, `ver-p5-calvin-john-14-16-explanation-001`.
 
 Researcher source-check only; independent verification per RESEARCH-STANDARDS.md §9.2 still required. Not publishable without independent verification and editorial approval.

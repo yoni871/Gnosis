@@ -17095,5 +17095,539 @@
     "limitations": "None. Wording, translator (John King) and location (Commentary on the Catholic Epistles, 1 John 5:7, Vol. 45) all confirmed.",
     "editorialApproval": null,
     "notes": "Dev 1 second-pass verification (Phase 4); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-hilary-john-1-1-explanation-001",
+    "claimId": "hilary-john-1-1-001",
+    "claimText": "Hilary recounts his own conversion through reading John 1:1-14: his soul learned from the Gospel that the Word was with God and was God, that the Word became flesh, and that his glory was seen as of the Only-begotten from the Father, full of grace and truth. From this he learned that the Creator is 'God of God': faith is not dispersed among many deities, nor is a difference of nature attributed to this God of God. In §10 he quotes the whole of John 1:1-14.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Hilary of Poitiers, On the Trinity (NPNF2 vol. 9, E. W. Watson)",
+        "edition": "Nicene and Post-Nicene Fathers, Second Series, vol. 9 (New York: The Christian Literature Company, 1899)",
+        "locator": "New Advent https://www.newadvent.org/fathers/330201.htm, Book I, sections 10-13",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "On the Trinity, Book I, section 10 quotes John 1:1-14 in full ('In the beginning was the Word, and the Word was with God, and the Word was God. The same was in the beginning with God...'); sections 10-11 call the Word 'God of God'. Section 13 is entirely about Colossians 2:8-15 ('Beware lest any man spoil you through philosophy and vain deceit'); the phrases 'the uncreated Word was in the beginning', 'no limit of time' and 'commencement' do not occur in it. The corrected explanation no longer attributes any claim to §13.",
+    "limitations": "None. The false §13 sentence flagged in ver-p4-team-b-hilary-john-1-1-001-001 has been removed; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-leo-i-john-15-26-doctrinal-001",
+    "claimId": "leo-i-john-15-26-001",
+    "claimText": "(C) Leo's Letter 15 records the Western understanding of three distinct persons of one essence in the Trinity, against the Priscillianist claim that Father, Son, and Holy Spirit are one and the same person under three names. The phrase 'He who proceeded from both' occurs only in Leo's summary of the error, not in his own doctrine.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Leo I, Letter 15 (NPNF2 vol. 12, Charles Lett Feltoe)",
+        "edition": "Nicene and Post-Nicene Fathers, Series II, Vol. 12, ed. Philip Schaff and Henry Wace, trans. Charles Lett Feltoe (1895)",
+        "locator": "New Advent https://www.newadvent.org/fathers/3604015.htm, chapter II",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "Chapter II: 'they affirm that the person of the Father, the Son, and the Holy Ghost is one and the same, as if the same God were named now Father, now Son, and now Holy Ghost: and as if He who begot were not one, He who was begotten, another, and He who proceeded from both, yet another' — inside the summary of the Priscillianist error. Leo's own doctrine follows: 'contrary to the Catholic faith, which acknowledges the Trinity of the Godhead to be of one essence... the Father, the Son, and the Holy Ghost indivisible without confusion, eternal without time, equal without difference.' No procession claim occurs in Leo's own statement, and John 15:26 is not cited in chapter II.",
+    "limitations": "None. The (C) sentence flagged in ver-p4-leo-i-john-15-26-doctrinal-001 has been revised; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-calvin-john-14-16-explanation-001",
+    "claimId": "john-calvin-john-14-16-001",
+    "claimText": "Calvin holds that 'another Comforter' (John 14:16) implies a distinction of persons: there must be some peculiarity in which the Spirit differs from the Son, so as to be another than the Son. The difference lies in their offices: Christ's office is to atone, redeem, and procure righteousness and life; the Spirit's office is to make believers partakers of Christ himself and of all his blessings. In the same section Calvin notes that the Spirit is the gift of the Father obtained by Christ's prayers, and that Christ promises 'I will send Him to you' (John 16:7); as Mediator he obtains the Spirit's grace from the Father, and as God he bestows that grace from himself, so the Spirit is sent by both. John 15:26 is not mentioned in the section.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "John Calvin, Commentary on the Gospel According to John, ch. 14, on John 14:16 (John King)",
+        "edition": "Calvin's Commentaries, Vol. 35: John, Part II; tr. John King, 1847-50",
+        "locator": "https://archive.sacred-texts.com/chr/calvin/cc35/cc35003.htm, John 14:16 section",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "The John 14:16 section: 'Here he calls the Spirit the gift of the Father, but a gift which he will obtain by his prayers; in another passage he promises that he will give the Spirit. If I depart, says he, I will send Him to you, (Joh 16:7.)' and 'in so far as Christ is our Mediator and Intercessor, he obtains from the Father the grace of the Spirit, but in so far as he is God, he bestows that grace from himself.' The section does not mention John 15:26. The quotation ('He calls the Spirit another Comforter, on account of the difference between the blessings which we obtain from both...') is verbatim in the same section.",
+    "limitations": "None. The final sentence flagged in ver-p4-calvin-john-14-16-doctrinal-001 has been corrected; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-augustine-john-16-13-quote-001",
+    "claimId": "augustine-john-16-13-001",
+    "claimText": "For He shall not speak of Himself, but whatsoever He shall hear that shall He speak; and He will show you things to come. He shall glorify me; for He shall receive of mine, and shall show it unto you. […] But because He has rendered the reason why He said, He shall receive of mine (for He says, All things that the Father has are mine; therefore said I, that He shall take of mine); it remains that the Holy Spirit be understood to have of that which is the Father's, as the Son also has.",
+    "claimType": "quotation",
+    "sourcesChecked": [
+      {
+        "source": "Augustine, De Trinitate (NPNF1 vol. 3, Arthur West Haddan)",
+        "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)",
+        "locator": "New Advent https://www.newadvent.org/fathers/130102.htm, Book II, chapter 3, section 5",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "Section 5, first sentence: 'For He shall not speak of Himself, but whatsoever He shall hear that shall He speak; and He will show you things to come. He shall glorify me; for He shall receive of mine, and shall show it unto you.' Later in the same section: 'But because He has rendered the reason why He said, He shall receive of mine (for He says, All things that the Father has are mine; therefore said I, that He shall take of mine); it remains that the Holy Spirit be understood to have of that which is the Father's, as the Son also has.' The two excerpts are verbatim; the omission between them (about 70 words) is marked […].",
+    "limitations": "None. The spliced single quotation flagged in ver-p4-augustine-john-16-13-quote-001 has been re-quoted as two separate excerpts; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-augustine-john-14-26-quote-001",
+    "claimId": "augustine-john-14-26-001",
+    "claimText": "it is proved by many other testimonies of the Divine Word, that the Spirit, who is specially called in the Trinity the Holy Spirit, is of the Father and of the Son: of whom likewise the Son Himself says, Whom I will send unto you from the Father; and in another place, Whom the Father will send in my name.",
+    "claimType": "quotation",
+    "sourcesChecked": [
+      {
+        "source": "Augustine, De Trinitate (NPNF1 vol. 3, Arthur West Haddan)",
+        "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)",
+        "locator": "New Advent https://www.newadvent.org/fathers/130115.htm, Book XV, chapter 26, section 45",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "Section 45: 'And it is proved by many other testimonies of the Divine Word, that the Spirit, who is specially called in the Trinity the Holy Spirit, is of the Father and of the Son: of whom likewise the Son Himself says, Whom I will send unto you from the Father; and in another place, Whom the Father will send in my name.' Section 46 begins 'But the reason why, after His resurrection, He both gave the Holy Spirit...' — the quoted passage is in section 45, not 46. Wording verbatim.",
+    "limitations": "None. The locator flagged in ver-p4-augustine-john-14-26-quote-001 has been corrected from §46 to §45; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-augustine-gal-4-4-quote-001",
+    "claimId": "augustine-gal-4-4-001",
+    "claimText": "For it is He of whom the apostle says, But because you are sons, God has sent forth the Spirit of His Son into your hearts: and it is He of whom the same Son says, For it is not ye who speak, but the Spirit of your Father who speaks in you.",
+    "claimType": "quotation",
+    "sourcesChecked": [
+      {
+        "source": "Augustine, De Trinitate (NPNF1 vol. 3, Arthur West Haddan)",
+        "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)",
+        "locator": "New Advent https://www.newadvent.org/fathers/130115.htm, Book XV, chapter 26, section 45",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "Section 45: 'For it is He of whom the apostle says, But because you are sons, God has sent forth the Spirit of His Son into your hearts: and it is He of whom the same Son says, For it is not ye who speak, but the Spirit of your Father who speaks in you.' Section 46 begins 'But the reason why, after His resurrection...' — the quoted passage is in section 45, not 46. Wording verbatim. (The argument is built on Galatians 4:6, not the inventory passage Galatians 4:4; the interpretation flags this in its notes.)",
+    "limitations": "None. The locator flagged in ver-p4-augustine-gal-4-4-quote-001 has been corrected from §46 to §45; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-athanasius-phil-2-5-quote-001",
+    "claimId": "athanasius-phil-2-5-001",
+    "claimText": "For all these texts have the same force and meaning, a religious one, declarative of the divinity of the Word, even those of them which speak humanly concerning Him, as having become the Son of man.",
+    "claimType": "quotation",
+    "sourcesChecked": [
+      {
+        "source": "Athanasius, Four Discourses Against the Arians (NPNF2 vol. 4, Newman and Robertson)",
+        "edition": "Nicene and Post-Nicene Fathers, Second Series, vol. 4 (1892)",
+        "locator": "New Advent https://www.newadvent.org/fathers/28162.htm, Discourse II, section 1 (New Advent numbering)",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "New Advent Discourse II, §1: the passage 'For all these texts have the same force and meaning, a religious one, declarative of the divinity of the Word, even those of them which speak humanly concerning Him, as having become the Son of man' appears with the Philippians 2:7 discussion ('He emptied Himself, and took upon Him the form of a servant'). The corrected locator gives the print-edition chapter form (Discourse II, Chapter XIV, section 1, NPNF2 vol. 4, p. 348) alongside the New Advent section number, so a reader of either edition can find it.",
+    "limitations": "The print-edition chapter (XIV) and page (348) were not re-checked first-hand in this pass. They are as stated in the Phase 4 verification (ver-p4-athanasius-phil-2-5-001). The locator flagged there has been corrected; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-athanasius-john-1-1-attribution-001",
+    "claimId": "athanasius-john-1-1-001",
+    "claimText": "Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
+    "claimType": "attribution",
+    "sourcesChecked": [
+      {
+        "source": "Verification record ver-p4-team-b-attr-athanasius-against-the-arians-001 (Phase 4 attribution record for Against the Arians)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/trinity/verification-records.json",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "The interpretation's notes now carry the disputed-authorship flag (see claimText). The underlying dispute is established in the verified Phase 4 attribution record ver-p4-team-b-attr-athanasius-against-the-arians-001 (New Catholic Encyclopedia: the fourth Discourse 'is now considered as definitely spurious'; Quasten: added later by an unknown author).",
+    "limitations": "None. The missing flag flagged in ver-p4-team-b-athanasius-john-1-1-001-001 has been added; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-athanasius-john-10-30-attribution-001",
+    "claimId": "athanasius-john-10-30-001",
+    "claimText": "Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
+    "claimType": "attribution",
+    "sourcesChecked": [
+      {
+        "source": "Verification record ver-p4-team-b-attr-athanasius-against-the-arians-001 (Phase 4 attribution record for Against the Arians)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/trinity/verification-records.json",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "The interpretation's notes now carry the disputed-authorship flag (see claimText). The underlying dispute is established in the verified Phase 4 attribution record ver-p4-team-b-attr-athanasius-against-the-arians-001 (New Catholic Encyclopedia: the fourth Discourse 'is now considered as definitely spurious'; Quasten: added later by an unknown author).",
+    "limitations": "None. The missing flag flagged in ver-p4-team-b-athanasius-john-10-30-001-001 has been added; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-athanasius-rom-9-5-attribution-001",
+    "claimId": "athanasius-rom-9-5-001",
+    "claimText": "Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
+    "claimType": "attribution",
+    "sourcesChecked": [
+      {
+        "source": "Verification record ver-p4-team-b-attr-athanasius-against-the-arians-001 (Phase 4 attribution record for Against the Arians)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/trinity/verification-records.json",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "The interpretation's notes now carry the disputed-authorship flag (see claimText). The underlying dispute is established in the verified Phase 4 attribution record ver-p4-team-b-attr-athanasius-against-the-arians-001 (New Catholic Encyclopedia: the fourth Discourse 'is now considered as definitely spurious'; Quasten: added later by an unknown author).",
+    "limitations": "None. The missing flag flagged in ver-p4-team-b-athanasius-rom-9-5-001-001 has been added; that record is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-racovian-catechism-attribution-001",
+    "claimId": "racovian-catechism",
+    "claimText": "The Racovian Catechism is a collective work of the Polish Brethren, recorded under the collective author polish-brethren; Faustus Socinus is not its sole author (he died in 1604, the year before its first publication in Polish at Rakow in 1605).",
+    "claimType": "attribution",
+    "sourcesChecked": [
+      {
+        "source": "The Racovian Catechism, trans. Thomas Rees (1818), Historical Introduction",
+        "edition": "The Racovian Catechism: With Notes and Illustrations, Translated from the Latin, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818)",
+        "locator": "Work record racovian-catechism, notes (Rees's Historical Introduction: the undertaking was transferred to Smalcius and Moskorzowski after Socinus's death in 1604)",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Verification record ver-p4-racovian-catechism-attribution-001 (Phase 4 attribution record)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/trinity/verification-records.json",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "works.json lists authorIds [polish-brethren] for racovian-catechism (disputedAuthorship: true, with the collective-authorship note); all four interpretations (faustus-socrinus-matt-28-19-001, faustus-socrinus-john-1-1-001, faustus-socrinus-john-17-5-001, faustus-socrinus-1cor-8-6-001) carry authorId polish-brethren; shared/authors.json carries the collective author entry polish-brethren; the milestone racovian-catechism-1605 already carries empty authorIds with a collective-authorship note. No structured field now names Socinus as the author of a work drafted after his death.",
+    "limitations": "None. The structured attribution flagged in ver-p4-racovian-catechism-attribution-001 has been corrected; that record is preserved as the check of the pre-correction data. Interpretation ids keep their faustus-socrinus-… slugs as stable identifiers; only the authorId fields changed.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-augustine-1john-5-7-attribution-001",
+    "claimId": "augustine-1john-5-7-001",
+    "claimText": "The quotation in interpretation augustine-1john-5-7-001 is from Augustine, Contra Maximinum, Book II, ch. 22, section 3 (Latin text in Migne, Patrologia Latina 42.794-795), in the H. Browne English translation as reproduced in Nicene and Post-Nicene Fathers, Series I, Vol. 7, Homilies on the First Epistle of John, Part 11 (1888); the quotation is reproduced on a public-domain basis.",
+    "claimType": "attribution",
+    "sourcesChecked": [
+      {
+        "source": "Augustine, Homilies on the First Epistle of John, Part 11 (NPNF Series I, Vol. 7, trans. H. Browne)",
+        "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 7 (1888)",
+        "locator": "https://en.wikisource.org/wiki/Nicene_and_Post-Nicene_Fathers:_Series_I/Volume_VII/First_Epistle_of_John/Part_11, Contra Maximinum, lib. ii, c. 22, section 3; title page https://en.wikisource.org/wiki/Nicene_and_Post-Nicene_Fathers:_Series_I/Volume_VII/First_Epistle_of_John/Title_Page",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "Part 11 is headed 'Contra Maximinum, lib. ii. c. 22 §. 3.' and reproduces the passage verbatim: 'I would not have thee mistake that place in the epistle of John the apostle where he saith, “There are three witnesses: the Spirit, and the water, and the blood: and the three are one.” Lest haply thou say that the Spirit and the water and the blood are diverse substances, and yet it is said, “the three are one:” for this cause I have admonished thee, that thou mistake not the matter. For these are mystical expressions, in which the point always to be considered is, not what the actual things are, but what they denote as signs.' The Latin heading gives only the earthly witnesses ('Tres sunt testes; spiritus, et aqua, et sanguis; et tres unum sunt') — no heavenly-witnesses clause. The First Epistle of John title page credits the translation to 'rev. H. Browne, m.a.', and the volume is marked public domain (published before 1931; NPNF Series I, Vol. 7, 1888).",
+    "limitations": "The Migne locator (PL 42.794-795) was not re-checked first-hand in this pass; it is as stated in the Phase 4 record and Yonatan's 2026-11-25 decision. The old partial records ver-p4-augustine-1john-5-7-attribution-001 and ver-p4-augustine-1john-5-7-quote-001 are preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval. Editorial decision by Yonatan 2026-11-25 (Option A: reclassify to public-domain)."
+  },
+  {
+    "id": "ver-p5-racovian-john-1-1-quote-001",
+    "claimId": "faustus-socrinus-john-1-1-001",
+    "claimText": "But Jesus is called the Word or Speech of God because he is the immediate interpreter, and at the same time the executor, of the divine will: for this properly belongs to the Word of God.",
+    "claimType": "quotation",
+    "sourcesChecked": [
+      {
+        "source": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818)",
+        "edition": "Trans. Thomas Rees (London, 1818), from the revised Latin edition of 1680",
+        "locator": "https://archive.org/download/racoviancatechi00reesgoog/racoviancatechi00reesgoog_djvu.txt, Section IV, Chapter 1, 'Of the Person of Christ', p. 140 (running head at OCR offset 425050; sentence at OCR offset 425281)",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "The OCR text layer of the 1818 scan reads, under the running head '140 OF THE PERSON OF CHRIST' (OCR offset 425050): 'But Jesus is called the Word or Speech of God because he is the immediate interpreter, and at the same time the executor, of the divine will: for this properly belongs to the Word of God.' The OCR renders it with a line-break hyphen ('in-terpreter') and minor noise ('or*', \"'God\"), which is why the Phase 4 exact-phrase search for 'immediate interpreter' returned no match. The running heads 134, 138, 140, 142, 144 in sequence confirm the pagination.",
+    "limitations": "Verified against the OCR text layer of the 1818 scan (archive.org djvu.txt), not a page image; the sentence reads verbatim once line-break hyphenation and OCR noise are accounted for. The old partial record ver-p4-racovian-john-1-1-quote-001 is preserved as the check of the pre-confirmation state.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-racovian-john-17-5-quote-001",
+    "claimId": "faustus-socrinus-john-17-5-001",
+    "claimText": "But the meaning of the passage is, that Christ beseeches God to give him in actual possession, with himself, the glory which he had with him, in his purposes and decrees, before the world was.",
+    "claimType": "quotation",
+    "sourcesChecked": [
+      {
+        "source": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818)",
+        "edition": "Trans. Thomas Rees (London, 1818), from the revised Latin edition of 1680",
+        "locator": "https://archive.org/download/racoviancatechi00reesgoog/racoviancatechi00reesgoog_djvu.txt, Section IV, Chapter 1, 'Of the Person of Christ', p. 144 (running head at OCR offset 431979; sentence at OCR offset 433169)",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "The OCR text layer of the 1818 scan reads, under the running head '144 OF THE PERSON OF CHRIST' (OCR offset 431979): 'But the meaning of the passage is, that Christ beseeches God to give him in actual possession, with himself, the glory which he had with him, in his purposes and decrees, before the world was.' The OCR renders it with line-break hyphens ('be-seeches', 'pur-poses'), which is why the Phase 4 exact-phrase search for 'purposes and decrees' returned no match. The opening clause 'But the meaning of the passage is, that' — which the Phase 4 secondary source could not confirm — is confirmed here. The running heads 134, 138, 140, 142, 144 in sequence confirm the pagination.",
+    "limitations": "Verified against the OCR text layer of the 1818 scan (archive.org djvu.txt), not a page image; the sentence reads verbatim once line-break hyphenation is accounted for. The old partial record ver-p4-racovian-john-17-5-quote-001 is preserved as the check of the pre-confirmation state.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction of the research-file error flagged in Phase 4; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-augustine-john-14-26-quote-002",
+    "claimId": "augustine-john-14-26-001",
+    "claimText": "And it is proved by many other testimonies of the Divine Word, that the Spirit, who is specially called in the Trinity the Holy Spirit, is of the Father and of the Son: of whom likewise the Son Himself says, Whom I will send unto you from the Father; and in another place, Whom the Father will send in my name.",
+    "claimType": "quotation",
+    "sourcesChecked": [
+      {
+        "source": "Augustine, De Trinitate (NPNF1 vol. 3, Arthur West Haddan)",
+        "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)",
+        "locator": "New Advent https://www.newadvent.org/fathers/130115.htm, Book XV, chapter 26, section 45 (lines 925-927)",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "Section 45: 'And it is proved by many other testimonies of the Divine Word, that the Spirit, who is specially called in the Trinity the Holy Spirit, is of the Father and of the Son: of whom likewise the Son Himself says, Whom I will send unto you from the Father; and in another place, Whom the Father will send in my name.' Section 46 begins 'But the reason why, after His resurrection, He both gave the Holy Spirit...' — the quoted passage is in section 45, not 46. Wording verbatim, including the leading 'And' that the Phase 5 record ver-p5-augustine-john-14-26-quote-001 dropped unmarked.",
+    "limitations": "The earlier Phase 5 record ver-p5-augustine-john-14-26-quote-001 claimed 'Wording verbatim' of the stored text, which dropped the leading 'And'; it is preserved as the check of the pre-correction text. Corrected here at QA's pre-verification finding (2026-11-25).",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction (QA pre-verification finding, 2026-11-25) of a Phase 5 record; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-augustine-john-16-13-quote-002",
+    "claimId": "augustine-john-16-13-001",
+    "claimText": "The quotation in interpretation augustine-john-16-13-001 presents two verbatim excerpts from De Trinitate II.3.5 with an omission of 105 words between them, marked […].",
+    "claimType": "quotation",
+    "sourcesChecked": [
+      {
+        "source": "Augustine, De Trinitate (NPNF1 vol. 3, Arthur West Haddan)",
+        "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)",
+        "locator": "New Advent https://www.newadvent.org/fathers/130102.htm, Book II, chapter 3, section 5",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "The omitted passage between the two excerpts, as printed in section 5, reads in full: 'And except He had immediately gone on to say after this, All things that the Father has are mine; therefore said I, that He shall take of mine, and shall show it unto you; it might, perhaps, have been believed that the Holy Spirit was so born of Christ, as Christ is of the Father. Since He had said of Himself, My doctrine is not mine, but His that sent me; but of the Holy Spirit, For He shall not speak of Himself, but whatsoever he shall hear, that shall He speak; and, For He shall receive of mine, and shall show it unto you.' Counted word by word: 105 words. The omitted restatement uses the variant form 'whatsoever he shall hear, that shall He speak' (lowercase 'he', comma after 'hear'), against the first excerpt's 'whatsoever He shall hear that shall He speak' — which is why the old single-quotation splice was misleading. The omitted passage states the hypothetical misreading (the Spirit 'born of Christ') Augustine guards against, then restates the same John 16:13-14 wording; it supports, not contradicts, the excerpts.",
+    "limitations": "The earlier Phase 5 record ver-p5-augustine-john-16-13-quote-001 estimated the omission as 'about 70 words'; QA measured 105 words at pre-verification (2026-11-25) and the count was re-derived here from the printed section. That record is preserved as the check of the pre-correction text. The quotation itself is unchanged.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction (QA pre-verification finding, 2026-11-25) of a Phase 5 record; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-athanasius-john-1-1-attribution-002",
+    "claimId": "athanasius-john-1-1-001",
+    "claimText": "Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
+    "claimType": "attribution",
+    "sourcesChecked": [
+      {
+        "source": "New Catholic Encyclopedia, 'Athanasius, St.' (De Clercq)",
+        "edition": null,
+        "locator": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/athanasius-st - Dogmatic Writings: 'A fourth Discourse, added in the Benedictine and Migne editions, is now considered as definitely spurious'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Catholic Culture, Fathers of the Church: Athanasius, Discourses against the Arians (Quasten)",
+        "edition": null,
+        "locator": "https://www.catholicculture.org/culture/library/fathers/view.cfm?recnum=3085 - Description paragraph (closed '(Quasten)'): 'whereas the first three form a homogeneous work, the forth differs in address, content, and style. In fact, it is not written against the Arians at all but against the Marcellians'; Provenance section (untagged host summary): 'The first three discourses form a single continuous work by Athanasius; the fourth was added later by an unknown author'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Walbrodt, Athanasius' contra arianos iv: a reconsideration (Durham MA thesis, 1993)",
+        "edition": null,
+        "locator": "https://etheses.durham.ac.uk/id/eprint/5522/1/5522_2961-vol1.PDF - Abstract: 'the argument that CAR IV is genuinely Athanasian but separate from the other three Orations to be the most convincing theory yet expounded'",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "New Catholic Encyclopedia, 'Athanasius, St.', Dogmatic Writings: 'A fourth Discourse, added in the Benedictine and Migne editions, is now considered as definitely spurious.' Catholic Culture (Quasten), Description paragraph closed '(Quasten)': 'whereas the first three form a homogeneous work, the forth differs in address, content, and style. In fact, it is not written against the Arians at all but against the Marcellians.' The same page's untagged Provenance section (the host's own summary, not a passage tagged as Quasten) reads: 'The first three discourses form a single continuous work by Athanasius; the fourth was added later by an unknown author.' Those two phrases are therefore carried as attributed via the secondary host, not upgraded to fully confirmed Quasten wording — Quasten vol. 3 itself is inaccessible. The interpretation's notes carry the disputed-authorship flag (see claimText).",
+    "limitations": "Scholarship is divided: the New Catholic Encyclopedia and Quasten treat Discourse IV as spurious/added by an unknown author, while Walbrodt (1993) argues it is genuinely Athanasian (abstract: 'the argument that CAR IV is genuinely Athanasian but separate from the other three Orations to be the most convincing theory yet expounded'). The dispute itself is verified; no side is endorsed here. The earlier Phase 5 record ver-p5-athanasius-john-1-1-attribution-001 cited only the Phase 4 record and carried 'limitations: None'; it is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction (QA pre-verification finding, 2026-11-25) of a Phase 5 record; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-athanasius-john-10-30-attribution-002",
+    "claimId": "athanasius-john-10-30-001",
+    "claimText": "Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
+    "claimType": "attribution",
+    "sourcesChecked": [
+      {
+        "source": "New Catholic Encyclopedia, 'Athanasius, St.' (De Clercq)",
+        "edition": null,
+        "locator": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/athanasius-st - Dogmatic Writings: 'A fourth Discourse, added in the Benedictine and Migne editions, is now considered as definitely spurious'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Catholic Culture, Fathers of the Church: Athanasius, Discourses against the Arians (Quasten)",
+        "edition": null,
+        "locator": "https://www.catholicculture.org/culture/library/fathers/view.cfm?recnum=3085 - Description paragraph (closed '(Quasten)'): 'whereas the first three form a homogeneous work, the forth differs in address, content, and style. In fact, it is not written against the Arians at all but against the Marcellians'; Provenance section (untagged host summary): 'The first three discourses form a single continuous work by Athanasius; the fourth was added later by an unknown author'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Walbrodt, Athanasius' contra arianos iv: a reconsideration (Durham MA thesis, 1993)",
+        "edition": null,
+        "locator": "https://etheses.durham.ac.uk/id/eprint/5522/1/5522_2961-vol1.PDF - Abstract: 'the argument that CAR IV is genuinely Athanasian but separate from the other three Orations to be the most convincing theory yet expounded'",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "New Catholic Encyclopedia, 'Athanasius, St.', Dogmatic Writings: 'A fourth Discourse, added in the Benedictine and Migne editions, is now considered as definitely spurious.' Catholic Culture (Quasten), Description paragraph closed '(Quasten)': 'whereas the first three form a homogeneous work, the forth differs in address, content, and style. In fact, it is not written against the Arians at all but against the Marcellians.' The same page's untagged Provenance section (the host's own summary, not a passage tagged as Quasten) reads: 'The first three discourses form a single continuous work by Athanasius; the fourth was added later by an unknown author.' Those two phrases are therefore carried as attributed via the secondary host, not upgraded to fully confirmed Quasten wording — Quasten vol. 3 itself is inaccessible. The interpretation's notes carry the disputed-authorship flag (see claimText).",
+    "limitations": "Scholarship is divided: the New Catholic Encyclopedia and Quasten treat Discourse IV as spurious/added by an unknown author, while Walbrodt (1993) argues it is genuinely Athanasian (abstract: 'the argument that CAR IV is genuinely Athanasian but separate from the other three Orations to be the most convincing theory yet expounded'). The dispute itself is verified; no side is endorsed here. The earlier Phase 5 record ver-p5-athanasius-john-10-30-attribution-001 cited only the Phase 4 record and carried 'limitations: None'; it is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction (QA pre-verification finding, 2026-11-25) of a Phase 5 record; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-athanasius-rom-9-5-attribution-002",
+    "claimId": "athanasius-rom-9-5-001",
+    "claimText": "Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
+    "claimType": "attribution",
+    "sourcesChecked": [
+      {
+        "source": "New Catholic Encyclopedia, 'Athanasius, St.' (De Clercq)",
+        "edition": null,
+        "locator": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/athanasius-st - Dogmatic Writings: 'A fourth Discourse, added in the Benedictine and Migne editions, is now considered as definitely spurious'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Catholic Culture, Fathers of the Church: Athanasius, Discourses against the Arians (Quasten)",
+        "edition": null,
+        "locator": "https://www.catholicculture.org/culture/library/fathers/view.cfm?recnum=3085 - Description paragraph (closed '(Quasten)'): 'whereas the first three form a homogeneous work, the forth differs in address, content, and style. In fact, it is not written against the Arians at all but against the Marcellians'; Provenance section (untagged host summary): 'The first three discourses form a single continuous work by Athanasius; the fourth was added later by an unknown author'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Walbrodt, Athanasius' contra arianos iv: a reconsideration (Durham MA thesis, 1993)",
+        "edition": null,
+        "locator": "https://etheses.durham.ac.uk/id/eprint/5522/1/5522_2961-vol1.PDF - Abstract: 'the argument that CAR IV is genuinely Athanasian but separate from the other three Orations to be the most convincing theory yet expounded'",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "New Catholic Encyclopedia, 'Athanasius, St.', Dogmatic Writings: 'A fourth Discourse, added in the Benedictine and Migne editions, is now considered as definitely spurious.' Catholic Culture (Quasten), Description paragraph closed '(Quasten)': 'whereas the first three form a homogeneous work, the forth differs in address, content, and style. In fact, it is not written against the Arians at all but against the Marcellians.' The same page's untagged Provenance section (the host's own summary, not a passage tagged as Quasten) reads: 'The first three discourses form a single continuous work by Athanasius; the fourth was added later by an unknown author.' Those two phrases are therefore carried as attributed via the secondary host, not upgraded to fully confirmed Quasten wording — Quasten vol. 3 itself is inaccessible. The interpretation's notes carry the disputed-authorship flag (see claimText).",
+    "limitations": "Scholarship is divided: the New Catholic Encyclopedia and Quasten treat Discourse IV as spurious/added by an unknown author, while Walbrodt (1993) argues it is genuinely Athanasian (abstract: 'the argument that CAR IV is genuinely Athanasian but separate from the other three Orations to be the most convincing theory yet expounded'). The dispute itself is verified; no side is endorsed here. The earlier Phase 5 record ver-p5-athanasius-rom-9-5-attribution-001 cited only the Phase 4 record and carried 'limitations: None'; it is preserved as the check of the pre-correction text.",
+    "editorialApproval": null,
+    "notes": "Phase 5 correction (QA pre-verification finding, 2026-11-25) of a Phase 5 record; independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-arius-thalia-date-001",
+    "claimId": "arius-thalia",
+    "claimText": "Thalia was written 318-321 (certainty: range). Composed before the Council of Nicaea (325); commonly placed c. 318-321. Survives only in fragments quoted by opponents, principally Athanasius. See verification record ver-p3-e2-arius-thalia-date-001.",
+    "claimType": "date",
+    "sourcesChecked": [
+      {
+        "source": "Schaff, History of the Christian Church, Vol. III, §119 (The Arian Controversy down to the Council of Nicaea, 318-325)",
+        "edition": "History of the Christian Church, Vol. III (CCEL)",
+        "locator": "https://ccel.org/ccel/schaff/hcc3/hcc3.iii.xii.iii.html - 'The contest between these two views broke out about the year 318 or 320. Arius and his followers... were deposed and excommunicated by a council of a hundred Egyptian and Libyan bishops at Alexandria in 321. In spite of this he continued... and when driven from Alexandria, agitated his doctrine in Palestine and Nicomedia, and diffused it in an entertaining work, half poetry, half prose: The Banquet (Thalia), of which a few fragments are preserved in Athanasius.'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Finnegan, 'Trinity History Part 2: Arius' (excerpted on Kermit Zarley's Patheos blog)",
+        "edition": null,
+        "locator": "https://www.patheos.com/blogs/kermitzarleyblog/2014/10/egypts-bishop-alexander-and-his-pastor-arius/ - 'Arius' only theological work that partially survives is called the Thalia, which means \"Festivity.\" He wrote it sometime between a.d. 318 and 321, during the tumultuous years leading up to the council of Nicea in a.d. 325.'",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "Schaff: the Arian controversy broke out about 318 or 320; Arius was deposed and excommunicated by the Alexandrian council in 321; driven from Alexandria, he diffused his doctrine in the Thalia — so the work was in circulation by about 321. Finnegan states the dating directly: written 'sometime between a.d. 318 and 321'. The hard upper bound is the Council of Nicaea (325), which condemned Arius and ordered his books burnt (Schaff, same section).",
+    "limitations": "No exact composition date is established; the 318-321 range is the commonly-placed dating, bounded by the controversy's outbreak (318/320) and the Thalia's diffusion following the 321 deposition. The direct 318-321 statement comes from a popular source (Finnegan via Zarley's blog); Schaff's scholarly narrative supports the same window. The earlier Phase 4 record ver-p4-team-b-date-arius-thalia-001 checked no dating source at all; it is preserved as history.",
+    "editorialApproval": null,
+    "notes": "Phase 5 dating study (Stage 2); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-athanasius-against-the-arians-date-001",
+    "claimId": "athanasius-against-the-arians",
+    "claimText": "Four Discourses Against the Arians was written 356-360 (certainty: range). Discourses I-III commonly dated to Athanasius's third exile, c. 356-360; the dating of Discourse IV is less certain and it is sometimes placed later. See verification record ver-p3-e2-athanasius-against-the-arians-date-001.",
+    "claimType": "date",
+    "sourcesChecked": [
+      {
+        "source": "Nicene and Post-Nicene Fathers, Ser. II, vol. 4, Introduction to Four Discourses Against the Arians",
+        "edition": "NPNF2 vol. 4 (Buffalo: Christian Literature Publishing Co., 1892)",
+        "locator": "https://sacred-texts.com/book/nicene-and-post-nicene-fathers-ser-ii-vol-iv/introduction-16 - heading 'Written Between 356 And 360'; 'The best judges, however, are agreed in assigning them to the fruitful period of the third exile... Although, therefore, demonstrative proof is lacking, there is tolerable certainty as to the date of our Discourses.'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "New Catholic Encyclopedia, 'Athanasius, St.' (De Clercq)",
+        "edition": null,
+        "locator": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/athanasius-st - Dogmatic Writings: 'The discourses were written, in all probability, during his third exile (c. 358).'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Catholic Culture, Fathers of the Church: Athanasius, Discourses against the Arians (Quasten)",
+        "edition": null,
+        "locator": "https://www.catholicculture.org/culture/library/fathers/view.cfm?recnum=3085 - Provenance: 'Although the date of composition has been much discussed, Athanasius's Discourses against the Arians were most likely written during his third exile, around the same time as the History of the Arians.'",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "NPNF2 Introduction, read first-hand: heading 'Written Between 356 And 360'; 'the best judges... are agreed in assigning them to the fruitful period of the third exile' and 'there is tolerable certainty as to the date of our Discourses'. New Catholic Encyclopedia: 'The discourses were written, in all probability, during his third exile (c. 358).' Catholic Culture (Quasten): 'most likely written during his third exile, around the same time as the History of the Arians.' The third exile ran 356-362, so c. 358 falls inside the 356-360 range.",
+    "limitations": "The 356-360 range is supported for Discourses I-III only and must not be read as covering Discourse IV: the NPNF2 Introduction itself says 'the relation of the fourth Discourse to the others is by no means clear', and Vinzent places Discourse IV as early as c. 340. The research file's note already flags this. The earlier Phase 4 record ver-p4-team-b-date-athanasius-against-the-arians-001 read the NPNF2 Introduction only via web search results; it is preserved as history.",
+    "editorialApproval": null,
+    "notes": "Phase 5 dating study (Stage 2); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p5-damascus-exposition-date-001",
+    "claimId": "john-of-damascus-exposition-of-the-orthodox-faith",
+    "claimText": "John of Damascus's An Exact Exposition of the Orthodox Faith (the third part of the Fountain of Knowledge) was written in the range 730-743.",
+    "claimType": "date",
+    "sourcesChecked": [
+      {
+        "source": "Encyclopaedia Britannica, 'St. John of Damascus'",
+        "edition": "Encyclopaedia Britannica",
+        "locator": "http://www.britannica.com/EBchecked/topic/305049/Saint-John-of-Damascus - 'Revised circa 743, it is composed of three parts... the theological and most widely known segment, the Exposition [Ekthesis] of the Orthodox Faith.'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "1911 Encyclopaedia Britannica, 'John of Damascus'",
+        "edition": "1911 Encyclopaedia Britannica",
+        "locator": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/John_of_Damascus - 'About the year 730 he wrote several treatises in defence of image-worship.'",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Harakas, 'John of Damascus' (New Catholic Encyclopedia, via encyclopedia.com)",
+        "edition": null,
+        "locator": "https://www.encyclopedia.com/environment/encyclopedias-almanacs-transcripts-and-maps/john-damascus - 'The work, divided into three parts, appears to have been revised several times, which explains why at least two dates for its composition are recorded, 728 and 743. Each of the parts is found in three versions, of differing length, indicating that they were written independently and at different times, revised, and subsequently gathered together into the unified work.' Also: 'Between 726 and 731 he wrote three different studies titled Concerning the Icons.'",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "Britannica: the Fountain of Knowledge was 'Revised circa 743' and its third part is the Exposition of the Orthodox Faith; the Exposition itself is commonly dated c. 743. The 1911 Britannica dates John's iconoclastic treatises to about 730; Harakas dates the three Concerning the Icons studies to 726-731. Harakas explains the two recorded composition dates (728, 743): the Fount was revised several times and its parts were written independently at different times, then gathered into the unified work.",
+    "limitations": "No exact composition date for the Exposition is established. The range 730-743 is an approximation, not an established composition date: the 730 bound is borrowed from the iconoclastic treatises (726-731), not a composition date for the Exposition itself, and the Fount's earliest recorded composition date is 728 (for the work as a whole, whose parts were written independently at different times). The range is the best-supported approximation — it contains the commonly-given date c. 743 — and is verified as such. The earlier Phase 4 record ver-p4-damascus-exposition-date-001 is preserved as history.",
+    "editorialApproval": null,
+    "notes": "Phase 5 dating study (Stage 2); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
   }
 ]

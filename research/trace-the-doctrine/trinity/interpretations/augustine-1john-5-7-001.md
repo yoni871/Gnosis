@@ -11,10 +11,10 @@
 
 > I would not have thee mistake that place in the epistle of John the apostle where he saith, 'There are three witnesses: the Spirit, and the water, and the blood: and the three are one.' Lest haply thou say that the Spirit and the water and the blood are diverse substances, and yet it is said, 'the three are one:' for this cause I have admonished thee, that thou mistake not the matter. For these are mystical expressions, in which the point always to be considered is, not what the actual things are, but what they denote as signs.
 
-- Edition: English translation as reproduced in 'Augustin on 1John' (clerus.org); Latin text Migne, Patrologia Latina 42.794
-- Translation: W. Smith (as cited in a secondary listing; not named on the source page)
+- Edition: Nicene and Post-Nicene Fathers, Series I, Vol. 7 (1888); Latin text Migne, Patrologia Latina 42.794-795
+- Translation: H. Browne
 - Location: Book II, chapter 22, section 3
-- Reproducibility: fair-use
+- Reproducibility: public-domain
 
 ## Explanation
 
@@ -34,15 +34,16 @@ No alternative reading is attested in this pass for this interpretation.
 
 ## Citation
 
-Augustine, Answer to Maximinus the Arian (Contra Maximinum), Book II, ch. 22, section 3. English translation as reproduced in 'Augustin on 1John' (clerus.org); Latin text in Migne, Patrologia Latina 42.794. https://www.clerus.org/bibliaclerusonline/en%20/cma.htm
+Augustine, Answer to Maximinus the Arian (Contra Maximinum), Book II, ch. 22, section 3. In Nicene and Post-Nicene Fathers, Series I, Vol. 7, Homilies on the First Epistle of John, Part 11, trans. H. Browne (Buffalo, NY: Christian Literature Publishing Co., 1888). Latin text in Migne, Patrologia Latina 42.794-795. https://en.wikisource.org/wiki/Nicene_and_Post-Nicene_Fathers:_Series_I/Volume_VII/First_Epistle_of_John/Part_11
 
 ## Verification records
 
 - `ver-p3-e3-augustine-1john-5-7-001-quotation-001`
 - `ver-p3-e3-augustine-1john-5-7-001-passage-link-001`
+- `ver-p5-augustine-1john-5-7-attribution-001`
 
 ## Notes
 
-TEXTUAL DISPUTE: Augustine's text of 1 John 5:7-8 contains only the earthly witnesses (Spirit, water, blood). The heavenly-witnesses clause (Comma Johanneum) does not appear in his text; the source page's editor footnote 56 states the clause 'appears to be wholly unknown to St. Augustin'. The Comma must not be asserted as original on the basis of this passage. EDITION UNCERTAINTY: the translator/edition of the English text is not named on the source page; a secondary listing attributes it to W. Smith, vol. 11 (1883). ReproducibilityStatus is therefore fair-use, not public-domain, and the quotation verification is partially-verified pending confirmation of the edition.
+TEXTUAL DISPUTE: Augustine's text of 1 John 5:7-8 contains only the earthly witnesses (Spirit, water, blood). The heavenly-witnesses clause (Comma Johanneum) does not appear in his text; the source page's editor footnote 56 states the clause 'appears to be wholly unknown to St. Augustin'. The Comma must not be asserted as original on the basis of this passage. EDITION CONFIRMED (Phase 5): the English text is the H. Browne translation as reproduced in NPNF Series I, Vol. 7, Homilies on the First Epistle of John, Part 11 (1888), verified verbatim 2026-11-25; the 'W. Smith' attribution (secondary listing, vol. 11, 1883) was wrong. ReproducibilityStatus is therefore public-domain, not fair-use; see ver-p5-augustine-1john-5-7-attribution-001.
 
 Researcher source-check only; independent verification per RESEARCH-STANDARDS.md section 9.2 still required.

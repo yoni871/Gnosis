@@ -16,6 +16,21 @@ Full breakdown and the complete partially-verified list are in
 §9.2 independent QA verification. No verified, editorially-approved, or published
 Trinity research exists yet.**
 
+**Phase 5 status: editorial preparation in progress (Stage 1 corrections done
+2026-11-25). 18 of the 28 partially-verified Phase 4 items are resolved: the
+8 flagged research-file errors are corrected in the research files (Hilary I §13
+sentence removed; Leo I Letter 15 (C) revised; Calvin John 14:16 final sentence
+corrected; Augustine *De Trinitate* II.3.5 re-quoted as two separate excerpts;
+*De Trinitate* XV.26 locators §46 → §45 in both records; Phil 2:5 locator to
+Discourse II, Chapter XIV, §1; Racovian structured attribution corrected to the
+collective author Polish Brethren) and the Discourse IV disputed-authorship flag
+is added to the 3 interpretations; the fair-use Augustine quotation is reclassified to public-domain on Yonatan's decision (2026-11-25), the English text being the H. Browne translation as reproduced in NPNF Series I, Vol. 7 (1888), verified verbatim; the two Racovian printed-page checks (pp. 140, 144) are confirmed verbatim against the OCR text layer of the 1818 scan. 22 new verification records (`ver-p5-*`, all
+`verified`, checker `dev-1-verifier`, checkDate 2026-11-25) verify the corrections;
+the 28 Phase 4 `partially-verified` records are preserved as history. Record totals
+are now 759 (639 `verified`, 119 `partially-verified`, 1 `not-verified`). 10 items
+remain: 5 `direct` classifications and 3 milestone debates (permanent flags,
+confirmed as-is); the Anselm and Gal 4:4 link framings. Nothing is editorially approved and nothing is publishable yet.**
+
 Phase 3 (this PR) adds historical interpretations of the 60 Phase 2 passages,
 researched against the T1 standards (`../RESEARCH-STANDARDS.md`) by five era
 researchers (Apostolic Fathers + 2nd century; 3rd century + Nicene 4th century;
@@ -82,7 +97,7 @@ nothing is publishable yet.
   searched in any era. "No attested interpretation found" is a report of what
   was checked, not proof that no historical writer anywhere interpreted the
   passage.
-- `verification-records.json` — **737 verification records**, one per claim.
+- `verification-records.json` — **759 verification records**, one per claim.
   The 364 Phase 2/3 records are preserved exactly, in order, at the head of the
   file (272 `verified`, 91 `partially-verified`, 1 `not-verified` — the Johannine
   Comma, see below); the **373 Phase 4 records** follow (345 `verified`,
@@ -91,7 +106,9 @@ nothing is publishable yet.
   (`passage-link` + `doctrinal-connection`), 2 per interpretation
   (`doctrinal-connection` + `quotation`), 1 per milestone, 1 per work date
   checked (30), and 5 attribution records (disputed authorship + fair-use
-  basis). Every Phase 4 record has checker `dev-1-verifier`, checkDate
+  basis); the **22 Phase 5 records** follow (all `verified`, one per corrected
+  claim, checker `dev-1-verifier`, checkDate 2026-11-25,
+  `editorialApproval: null`). Every Phase 4 record has checker `dev-1-verifier`, checkDate
   2026-11-21, and `editorialApproval: null`, with the note that these are Dev 1
   second-pass verification only: independent verification per
   `RESEARCH-STANDARDS.md` §9.2 is still required, and nothing is publishable
@@ -115,10 +132,11 @@ nothing is publishable yet.
   checked source. Passage links are listed only where verified: e.g. Nicaea
   lists only `john-1-1`; Toledo lists no passages, because no specific passage
   was verified as cited in its acts.
-- `../shared/authors.json` — **28 authors** (the 5 T1 stubs filled in:
-  Justin Martyr, Irenaeus, Tertullian, Athanasius, Augustine; plus 23 new,
-  including 1 corporate author — the Church of Smyrna, author of the
-  *Martyrdom of Polycarp*). The Westminster Assembly is *not* registered as
+- `../shared/authors.json` — **29 authors** (the 5 T1 stubs filled in:
+  Justin Martyr, Irenaeus, Tertullian, Athanasius, Augustine; plus 24 new,
+  including 2 corporate authors — the Church of Smyrna, author of the
+  *Martyrdom of Polycarp*, and the Polish Brethren, authors of the Racovian
+  Catechism (added in Phase 5)). The Westminster Assembly is *not* registered as
   an author: see the work-id note below. Author life dates are null for most authors (not verified; never used as work dates).
   Four authors carry life dates: John Calvin (1509-1564), Philip Melanchthon
   (1497-1560), and Jonathan Edwards (1703-1758) exact, each backed by a verified
@@ -264,17 +282,18 @@ relative to an included passage. A later phase may revisit any of them.
 
 ## Phase 3: quotation policy applied
 
-- **102 quotations are public-domain** (verbatim from checked public-domain
+- **103 quotations are public-domain** (verbatim from checked public-domain
   translations: Ante-Nicene / Nicene and Post-Nicene Fathers via CCEL, New
   Advent, Wikisource, sacred-texts.com, and the public-domain Calvin,
   Luther, and Racovian translations), each with work + location + edition /
   translation + language + reproducibility status, and a verification record
   naming the exact URL + edition + date accessed.
-- **1 quotation is fair-use**: Augustine, *Contra Maximinum* II.22.3
-  (1 John 5:7 — the earthly witnesses only). The English translation's
-  translator/edition is not named on the source page, so its record is
-  `partially-verified` and the verifier must confirm the edition before any
-  publication.
+- **0 quotations are fair-use**: the Augustine, *Contra Maximinum* II.22.3
+  quotation (1 John 5:7 — the earthly witnesses only) was reclassified to
+  public-domain in Phase 5 (Yonatan's decision, 2026-11-25): the English text is
+  the H. Browne translation as reproduced in NPNF Series I, Vol. 7 (1888),
+  verified verbatim against the Wikisource text; see
+  `ver-p5-augustine-1john-5-7-attribution-001`.
 - **0 quotations are `not-reproducible` / null.** No quotation was reproduced
   from memory, from a secondary summary, or from an unchecked page; no
   paraphrase is presented as quotation.
@@ -331,10 +350,12 @@ ids do not follow the author-slug + work-slug convention in
   `westminster-assembly` author entry was created in this phase (the Assembly
   is a corporate body; a later phase may register it as a corporate author, as
   was done for the Church of Smyrna).
-- `racovian-catechism` — no author-slug prefix; `authorIds` is
-  `faustus-socrinus` with `disputedAuthorship: true` (Socinus died in 1604
-  before drafting; the work was completed by Smalcius, Moskorzowski, and
-  Völkel — see its attribution record, `partially-verified`).
+- `racovian-catechism` — no author-slug prefix; `authorIds` is now
+  `polish-brethren` (Phase 5: the collective author of the Polish Brethren;
+  Socinus died in 1604 before drafting; the work was completed by Smalcius,
+  Moskorzowski, and Völkel — see its attribution records
+  `ver-p3-e5-racovian-catechism-attribution-001` (`partially-verified`) and
+  `ver-p5-racovian-catechism-attribution-001` (`verified`)).
 
 ## Phase 3: the Johannine Comma (1 John 5:7) — what the history shows
 
@@ -450,11 +471,13 @@ this directory.
 
 ## Next step
 
-Independent verification (QA, per §9.2) of all 737 records (Phases 2–4): run the
+Independent verification (QA, per §9.2) of all 759 records (Phases 2–5): run the
 §7.1 checklist against each passage, the §7.2 checklist against each
 interpretation, and the §7.3 checklist against each milestone; check every claim
 in `verification-records.json`, and move records to `verified` only where every
 claim passes — or back to `in-research` with findings. Editorial approval
 (Yonatan) is a separate step after verification. Phase 5 (editorial preparation)
-resolves the 28 partially-verified items listed in
-`verification-phase-4-summary.md`.
+Stage 1 resolved 18 of the 28 partially-verified items listed in
+`verification-phase-4-summary.md` (see the Phase 5 resolutions section there);
+10 remain (5 `direct` classifications and 3 milestone debates as permanent
+flags; the Anselm and Gal 4:4 link framings).

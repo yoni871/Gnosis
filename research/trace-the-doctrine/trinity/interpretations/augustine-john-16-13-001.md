@@ -9,7 +9,7 @@
 
 ## Quotation
 
-> For He shall not speak of Himself, but whatsoever He shall hear, that shall He speak; and, For He shall receive of mine, and shall show it unto you. But because He has rendered the reason why He said, He shall receive of mine (for He says, All things that the Father has are mine; therefore said I, that He shall take of mine); it remains that the Holy Spirit be understood to have of that which is the Father's, as the Son also has.
+> For He shall not speak of Himself, but whatsoever He shall hear that shall He speak; and He will show you things to come. He shall glorify me; for He shall receive of mine, and shall show it unto you. […] But because He has rendered the reason why He said, He shall receive of mine (for He says, All things that the Father has are mine; therefore said I, that He shall take of mine); it remains that the Holy Spirit be understood to have of that which is the Father's, as the Son also has.
 
 - Edition: Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)
 - Translation: Arthur West Haddan
@@ -40,9 +40,11 @@ Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers
 
 - `ver-p3-e3-augustine-john-16-13-001-quotation-001`
 - `ver-p3-e3-augustine-john-16-13-001-passage-link-001`
+- `ver-p5-augustine-john-16-13-quote-001`
+- `ver-p5-augustine-john-16-13-quote-002`
 
 ## Notes
 
-None.
+Quotation is two separate excerpts from Book II, ch. 3, §5, with the omission marked […]; an earlier draft joined them as if continuous (corrected in Phase 5).
 
 Researcher source-check only; independent verification per RESEARCH-STANDARDS.md section 9.2 still required.

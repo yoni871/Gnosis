@@ -40,8 +40,10 @@ Athanasius, Four Discourses Against the Arians. Translated by John Henry Newman 
 - `ver-p3-e2-athanasius-rom-9-5-001-quotation-001`
 - `ver-p3-e2-athanasius-rom-9-5-001-attribution-001`
 - `ver-p3-e2-athanasius-against-the-arians-date-001`
+- `ver-p5-athanasius-rom-9-5-attribution-001`
+- `ver-p5-athanasius-rom-9-5-attribution-002`
 
 ## Notes
 
-The modern dispute over the punctuation and referent of Romans 9:5 is noted in the relationshipToDoctrine field; no modern scholarly source was checked for this note, and it is flagged for the verifier rather than asserted as a verified claim.
+The modern dispute over the punctuation and referent of Romans 9:5 is noted in the relationshipToDoctrine field; no modern scholarly source was checked for this note, and it is flagged for the verifier rather than asserted as a verified claim. Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.
 
