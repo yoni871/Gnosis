@@ -1,0 +1,74 @@
+{
+  "entries": [
+    {
+      "bookNote": "2 Kings 1–2 examines Elijah's Departure and Elisha's Succession as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-elijahs-departure-and-elishas-succession",
+      "kind": "category",
+      "narrativeOrder": 108
+    },
+    {
+      "bookNote": "2 Kings 3–5 examines Moab War, Miracles, and Naaman as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-moab-war-miracles-and-naaman",
+      "kind": "category",
+      "narrativeOrder": 109
+    },
+    {
+      "bookNote": "2 Kings 6–8 examines Syrian Wars and Siege of Samaria as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-syrian-wars-and-siege-of-samaria",
+      "kind": "category",
+      "narrativeOrder": 110
+    },
+    {
+      "bookNote": "2 Kings 9–10 examines Jehu's Revolution as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-jehus-revolution",
+      "kind": "category",
+      "narrativeOrder": 111
+    },
+    {
+      "bookNote": "2 Kings 11–12 examines Athaliah and Joash as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-athaliah-and-joash",
+      "kind": "category",
+      "narrativeOrder": 112
+    },
+    {
+      "bookNote": "2 Kings 13–16 examines The Two Kingdoms' Parallel Declines as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-the-two-kingdoms-parallel-declines",
+      "kind": "category",
+      "narrativeOrder": 113
+    },
+    {
+      "bookNote": "2 Kings 17 examines The Fall of Israel as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-the-fall-of-israel",
+      "kind": "category",
+      "narrativeOrder": 114
+    },
+    {
+      "bookNote": "2 Kings 18–20 examines Hezekiah and the Sennacherib Invasion as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-hezekiah-and-the-sennacherib-invasion",
+      "kind": "category",
+      "narrativeOrder": 115
+    },
+    {
+      "bookNote": "2 Kings 21 examines Manasseh and the Sentence on Judah as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-manasseh-and-the-sentence-on-judah",
+      "kind": "category",
+      "narrativeOrder": 116
+    },
+    {
+      "bookNote": "2 Kings 22–23 examines Josiah's Reform and the Found Book as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-josiahs-reform-and-the-found-book",
+      "kind": "category",
+      "narrativeOrder": 117
+    },
+    {
+      "bookNote": "2 Kings 24–25 examines The Fall of Jerusalem as a biblical literary and historical-context study, without assigning an independently verified date.",
+      "categoryId": "category-2-kings-the-fall-of-jerusalem",
+      "kind": "category",
+      "narrativeOrder": 118
+    }
+  ],
+  "id": "2-kings",
+  "introduction": "2 Kings records Elijah's departure and Elisha's succession; the Moab war, miracles, and Naaman; the Syrian wars and the siege of Samaria; Jehu's revolution; Athaliah and Joash; the parallel declines of the two kingdoms; the fall of Israel; Hezekiah and the Sennacherib invasion; Manasseh and the sentence on Judah; Josiah's reform and the found book; and the fall of Jerusalem. These eleven studies follow literary divisions; they do not claim eleven independently dated historical events. Archaeology, historical reconstruction, and later interpretation are distinguished from biblical testimony.",
+  "testament": "OT",
+  "title": "2 Kings"
+}
