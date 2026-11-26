@@ -181,7 +181,9 @@ describe("TraceTheDoctrineTrinityPage with a generated research study", () => {
             screen.getByText("Synthetic published quotation about the Trinity, uniquely worded for the page test."),
         ).toBeInTheDocument();
         expect(screen.getByText("Synthetic First Apology")).toBeInTheDocument();
-        expect(screen.getByText("c. AD 155")).toBeInTheDocument();
+        // The work date renders twice on the page — interpretation
+        // panel and timeline — so assert on both, as for the notice.
+        expect(screen.getAllByText("c. AD 155")).toHaveLength(2);
         // No pending placeholders: the title and date are verified.
         expect(screen.queryByText("Title pending verification")).toBeNull();
         expect(screen.queryByText("Date pending verification")).toBeNull();
