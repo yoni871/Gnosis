@@ -18,11 +18,11 @@
 
 ## Explanation
 
-Leo is writing to Turribius, bishop of Asturia, to refute the Priscillianists. In chapter II he first sets out their error about the Trinity: they teach that the Father, the Son, and the Holy Spirit are one and the same person, the same God named now Father, now Son, now Holy Spirit, an undivided unity under three names but not consisting of three persons. Leo then answers that this is contrary to the Catholic faith, which acknowledges the Trinity of the Godhead to be of one essence, the Father, the Son, and the Holy Spirit indivisible without confusion, eternal without time, equal without difference. The quotation is Leo's summary of the error, not his own doctrine; his own doctrine follows it. The phrase 'He who proceeded from both' is part of the true distinction of persons that the Priscillianists deny: the Spirit proceeds from the Father and from the Son.
+Leo is writing to Turribius, bishop of Asturia, to refute the Priscillianists. In chapter II he first sets out their error about the Trinity: they teach that the Father, the Son, and the Holy Spirit are one and the same person, the same God named now Father, now Son, now Holy Spirit, an undivided unity under three names but not consisting of three persons. Leo then answers that this is contrary to the Catholic faith, which acknowledges the Trinity of the Godhead to be of one essence, the Father, the Son, and the Holy Spirit indivisible without confusion, eternal without time, equal without difference. The quotation is Leo's summary of the error, not his own doctrine; his own doctrine follows it. The phrase 'He who proceeded from both' occurs only inside Leo's summary of the Priscillianist error he is refuting; his own positive statement says only that Father, Son, and Holy Spirit are distinct persons of one essence, indivisible, eternal, and equal, and makes no claim about the Spirit's procession. John 15:26 is not cited in chapter II.
 
 ## Relationship to the doctrine
 
-(C) Leo's Letter 15 records the Western understanding that the Holy Spirit proceeds from both the Father and the Son, as part of the true distinction of persons that the Priscillianist error denies. (A) John 15:26 states that the Spirit of truth proceeds from the Father; it does not state that He proceeds from the Son. (B) The step from the Spirit's procession to procession 'from both' is the Western reading of Leo and Augustine, not the text's claim. (D) The double-procession formulation is a later development; the East rejected it, and the difference is recorded, not harmonised.
+(C) Leo's Letter 15 records the Western understanding of three distinct persons of one essence in the Trinity, against the Priscillianist claim that Father, Son, and Holy Spirit are one and the same person under three names. The phrase 'He who proceeded from both' occurs only in Leo's summary of the error, not in his own doctrine. (A) John 15:26 states that the Spirit of truth proceeds from the Father; it does not state that He proceeds from the Son. (B) The step from the Spirit's procession to procession 'from both' is the Western reading of Leo and Augustine, not the text's claim. (D) The double-procession formulation is a later development; the East rejected it, and the difference is recorded, not harmonised.
 
 ## Historical context
 
@@ -42,6 +42,7 @@ Leo the Great, Letter 15, ch. II, in Nicene and Post-Nicene Fathers, Series II, 
 
 - `ver-p3-e3-leo-i-john-15-26-001-quotation-001`
 - `ver-p3-e3-leo-i-john-15-26-001-passage-link-001`
+- `ver-p5-leo-i-john-15-26-doctrinal-001`
 
 ## Notes
 

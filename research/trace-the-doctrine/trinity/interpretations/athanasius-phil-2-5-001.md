@@ -8,7 +8,7 @@
 ## Quotation
 > For all these texts have the same force and meaning, a religious one, declarative of the divinity of the Word, even those of them which speak humanly concerning Him, as having become the Son of man.
 
-- Location: Four Discourses Against the Arians, Discourse II, §1
+- Location: Four Discourses Against the Arians, Discourse II, Chapter XIV, section 1 (NPNF2 vol. 4, p. 348; New Advent §1)
 - Translation: John Henry Newman and Archibald Robertson
 - Edition: Nicene and Post-Nicene Fathers, Second Series, vol. 4 (1892)
 - Language: English
@@ -25,7 +25,7 @@ Athanasius lists the texts the Arians misuse to call the Son a creature, includi
 
 ## Historical context
 
-Four Discourses Against the Arians, Discourse II, §1, c. 356-360 (range). The Arians argued from Proverbs 8:22 and Hebrews 3:2 that the Son is a work and a creature; Athanasius answers by re-reading the whole group of texts.
+Four Discourses Against the Arians, Discourse II, Chapter XIV, §1, c. 356-360 (range). The Arians argued from Proverbs 8:22 and Hebrews 3:2 that the Son is a work and a creature; Athanasius answers by re-reading the whole group of texts.
 
 ## Alternative readings
 
@@ -40,6 +40,7 @@ Athanasius, Four Discourses Against the Arians. Translated by John Henry Newman 
 - `ver-p3-e2-athanasius-phil-2-5-001-quotation-001`
 - `ver-p3-e2-athanasius-phil-2-5-001-attribution-001`
 - `ver-p3-e2-athanasius-against-the-arians-date-001`
+- `ver-p5-athanasius-phil-2-5-quote-001`
 
 ## Notes
 

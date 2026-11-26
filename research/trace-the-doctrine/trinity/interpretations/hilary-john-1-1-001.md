@@ -17,7 +17,7 @@
 
 ## Explanation
 
-Hilary recounts his own conversion through reading John 1:1-14: his soul learned from the Gospel that the Word was with God and was God, that the Word became flesh, and that his glory was seen as of the Only-begotten from the Father, full of grace and truth. From this he learned that the Creator is 'God of God': faith is not dispersed among many deities, nor is a difference of nature attributed to this God of God. In §10 he quotes the whole of John 1:1-14, and in §13 he argues that the Word's 'was' has no limit of time and no commencement: 'the uncreated Word was in the beginning.'
+Hilary recounts his own conversion through reading John 1:1-14: his soul learned from the Gospel that the Word was with God and was God, that the Word became flesh, and that his glory was seen as of the Only-begotten from the Father, full of grace and truth. From this he learned that the Creator is 'God of God': faith is not dispersed among many deities, nor is a difference of nature attributed to this God of God. In §10 he quotes the whole of John 1:1-14.
 
 ## Relationship to doctrine
 
@@ -40,6 +40,7 @@ Hilary of Poitiers, On the Trinity, Book I. Translated by E. W. Watson. In Nicen
 - `ver-p3-e2-hilary-john-1-1-001-quotation-001`
 - `ver-p3-e2-hilary-john-1-1-001-attribution-001`
 - `ver-p3-e2-hilary-on-the-trinity-date-001`
+- `ver-p5-hilary-john-1-1-explanation-001`
 
 ## Notes
 

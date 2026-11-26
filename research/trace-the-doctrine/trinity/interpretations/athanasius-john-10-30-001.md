@@ -40,8 +40,10 @@ Athanasius, Four Discourses Against the Arians. Translated by John Henry Newman 
 - `ver-p3-e2-athanasius-john-10-30-001-quotation-001`
 - `ver-p3-e2-athanasius-john-10-30-001-attribution-001`
 - `ver-p3-e2-athanasius-against-the-arians-date-001`
+- `ver-p5-athanasius-john-10-30-attribution-001`
+- `ver-p5-athanasius-john-10-30-attribution-002`
 
 ## Notes
 
-No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task. The Sabellian reading (Father and Son the same person) is the position Athanasius is refuting in this section; see the explanation.
+No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task. The Sabellian reading (Father and Son the same person) is the position Athanasius is refuting in this section; see the explanation. Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.
 

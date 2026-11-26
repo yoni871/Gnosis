@@ -97,7 +97,8 @@
     "publicDomainStatus": "public-domain",
     "status": "verification-pending",
     "verificationRecordIds": [
-      "ver-p3-e2-arius-thalia-date-001"
+      "ver-p3-e2-arius-thalia-date-001",
+      "ver-p5-arius-thalia-date-001"
     ],
     "notes": "The Thalia does not survive as an independent work. Every quotation attributed to it here is mediated through Athanasius, a hostile witness who quotes it to refute it; the attribution record for arius-john-1-1-001 is therefore partially-verified, not verified."
   },
@@ -127,7 +128,8 @@
     "publicDomainStatus": "public-domain",
     "status": "verification-pending",
     "verificationRecordIds": [
-      "ver-p3-e2-athanasius-against-the-arians-date-001"
+      "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "ver-p5-athanasius-against-the-arians-date-001"
     ],
     "notes": "disputedAuthorship is null (not false): the authorship of Discourse IV in particular has been questioned in some scholarship, and the dating of Discourse IV is less certain than that of Discourses I-III; neither point is resolved here. Discourse I: https://www.newadvent.org/fathers/28161.htm; Discourse II: https://www.newadvent.org/fathers/28162.htm; Discourse IV: https://www.newadvent.org/fathers/28164.htm."
   },
@@ -608,7 +610,7 @@
       "earliest": 730,
       "latest": 743,
       "certainty": "range",
-      "note": "No exact composition date verified. The Fountain of Knowledge, of which the Exposition is the third part, was revised c. 743 (Encyclopaedia Britannica); John's iconoclastic treatises date c. 730 (Encyclopaedia Britannica, 1911). Range 730-743 is bounded by those two checked dates and is an approximation, not an established composition date."
+      "note": "No exact composition date verified. The Fountain of Knowledge, of which the Exposition is the third part, was revised c. 743 (Encyclopaedia Britannica); John's iconoclastic treatises date c. 730 (Encyclopaedia Britannica, 1911). Range 730-743 is bounded by those two checked dates and is an approximation, not an established composition date. The Fount's parts were written independently and at different times; two dates for its composition are recorded, 728 and 743 (encyclopedia.com)."
     },
     "originalLanguage": "Greek",
     "publicDomainStatus": "public-domain",
@@ -620,7 +622,8 @@
     "disputedAuthorship": false,
     "notes": "Exact composition date not established; see dateWritten note.",
     "verificationRecordIds": [
-      "ver-p3-e3-john-of-damascus-exposition-of-the-orthodox-faith-date-001"
+      "ver-p3-e3-john-of-damascus-exposition-of-the-orthodox-faith-date-001",
+      "ver-p5-damascus-exposition-date-001"
     ]
   },
   {
@@ -873,7 +876,7 @@
     "title": "The Racovian Catechism",
     "shortTitle": "Racovian Catechism",
     "authorIds": [
-      "faustus-socrinus"
+      "polish-brethren"
     ],
     "edition": "The Racovian Catechism: With Notes and Illustrations, Translated from the Latin, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818); translated from the revised Latin edition of 1680",
     "translator": "Thomas Rees",
@@ -892,11 +895,12 @@
       "printCitation": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818)."
     },
     "disputedAuthorship": true,
-    "notes": "Collective work of the Polish Brethren. Rees's Historical Introduction states that the undertaking was transferred to Valentinus Smalcius and Hieronim Moskorzowski (with Johannes Volkel also associated) after Faustus Socinus's death in 1604, and that some text may have been prepared by Socinus. Socinus is therefore recorded as the associated author, not the sole author; see the attribution verification record ver-p3-e5-racovian-catechism-attribution-001.",
+    "notes": "Collective work of the Polish Brethren. Rees's Historical Introduction states that the undertaking was transferred to Valentinus Smalcius and Hieronim Moskorzowski (with Johannes Volkel also associated) after Faustus Socinus's death in 1604, and that some text may have been prepared by Socinus. The work is therefore recorded under the collective author Polish Brethren (polish-brethren), not under Socinus; see the attribution verification records ver-p3-e5-racovian-catechism-attribution-001 and ver-p5-racovian-catechism-attribution-001.",
     "status": "verification-pending",
     "verificationRecordIds": [
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001"
+      "ver-p3-e5-racovian-catechism-attribution-001",
+      "ver-p5-racovian-catechism-attribution-001"
     ]
   },
   {

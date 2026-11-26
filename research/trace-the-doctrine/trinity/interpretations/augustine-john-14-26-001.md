@@ -9,11 +9,11 @@
 
 ## Quotation
 
-> it is proved by many other testimonies of the Divine Word, that the Spirit, who is specially called in the Trinity the Holy Spirit, is of the Father and of the Son: of whom likewise the Son Himself says, Whom I will send unto you from the Father; and in another place, Whom the Father will send in my name.
+> And it is proved by many other testimonies of the Divine Word, that the Spirit, who is specially called in the Trinity the Holy Spirit, is of the Father and of the Son: of whom likewise the Son Himself says, Whom I will send unto you from the Father; and in another place, Whom the Father will send in my name.
 
 - Edition: Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)
 - Translation: Arthur West Haddan
-- Location: Book XV, chapter 26, section 46
+- Location: Book XV, chapter 26, section 45
 - Reproducibility: public-domain
 
 ## Explanation
@@ -36,12 +36,14 @@ De Trinitate was written 399-422 (range; see works.json). Books I-IV defend the 
 
 ## Citation
 
-Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887), Book 15, ch. 26, section 46. https://www.newadvent.org/fathers/130115.htm
+Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887), Book 15, ch. 26, section 45. https://www.newadvent.org/fathers/130115.htm
 
 ## Verification records
 
 - `ver-p3-e3-augustine-john-14-26-001-quotation-001`
 - `ver-p3-e3-augustine-john-14-26-001-passage-link-001`
+- `ver-p5-augustine-john-14-26-quote-001`
+- `ver-p5-augustine-john-14-26-quote-002`
 
 ## Notes
 

@@ -299,9 +299,150 @@ files (Phase 5 or a research follow-up) before publication:
 
 ## What remains for Phase 5 (editorial preparation)
 
-- Resolve the 28 partially-verified items above (research-file corrections 1–8, printed-page
-  checks for the two Racovian quotations, edition/translator confirmation for the fair-use
-  Augustine quotation, dating studies for the Thalia / Discourse IV / Damascus ranges).
-- Independent QA verification per §9.2 of all 737 records (Phases 2–4).
+- Resolve the 28 partially-verified items above — Stage 1 done 2026-11-25 (18 resolved by
+  correction + new verified record; see Phase 5 resolutions below). 10 remain: 5 `direct`
+  classifications and 3 milestone debates (permanent flags); the Anselm and Gal 4:4 link
+  framings.
+- Independent QA verification per §9.2 of all 759 records (Phases 2–5).
 - Editorial approval by Yonatan (separate step; not verification).
 - Only then may verified + approved claims be wired into published content.
+
+## Phase 5 resolutions — Stage 1 (corrections, 2026-11-25)
+
+Stage 1 corrects the 8 flagged research-file errors and adds the Discourse IV
+disputed-authorship flag to the 3 interpretations. Each correction was re-checked
+against the named edition (New Advent NPNF texts, sacred-texts Calvin) and verified
+by a new `ver-p5-*` record (checker `dev-1-verifier`, checkDate 2026-11-25,
+`editorialApproval: null`). The 28 Phase 4 `partially-verified` records are preserved
+as the check of the pre-correction text; the new records are wired into the corrected
+entities' `verificationRecordIds`. Record totals after Stage 1: **759 (639 `verified`,
+119 `partially-verified`, 1 `not-verified`)**.
+
+Resolved (18 items, by Phase 4 summary item number):
+
+- Item 8 (Hilary I §13): the false sentence is removed from the explanation of
+  `hilary-john-1-1-001` (and its note). §13 is about Colossians 2:8-15, not the Word's
+  "was". New record `ver-p5-hilary-john-1-1-explanation-001` (`verified`).
+- Items 6, 7, 9 (Discourse IV flag): the disputed-authorship flag is added to the
+  notes of `athanasius-john-1-1-001`, `athanasius-john-10-30-001`, and
+  `athanasius-rom-9-5-001` (and their notes), citing the New Catholic Encyclopedia
+  ("definitely spurious") and Quasten (added later by an unknown author). New records
+  `ver-p5-athanasius-john-1-1-attribution-001`,
+  `ver-p5-athanasius-john-10-30-attribution-001`, and
+  `ver-p5-athanasius-rom-9-5-attribution-001` (all `verified`).
+- Item 12 (Leo I Letter 15 (C)): the (C) sentence in `leo-i-john-15-26-001` is revised
+  to three distinct persons of one essence, and the explanation's final sentence is
+  corrected: "He who proceeded from both" occurs only inside Leo's summary of the
+  Priscillianist error; Leo's own doctrine makes no procession claim, and John 15:26
+  is not cited in chapter II. New record `ver-p5-leo-i-john-15-26-doctrinal-001`
+  (`verified`).
+- Item 14 (Calvin John 14:16): the final sentence of the explanation of
+  `john-calvin-john-14-16-001` is corrected — the Spirit is the gift of the Father
+  obtained by Christ's prayers, and Christ promises "I will send Him to you"
+  (John 16:7); John 15:26 is not mentioned in the section. New record
+  `ver-p5-calvin-john-14-16-explanation-001` (`verified`).
+- Item 22 (Phil 2:5 locator): the locator of `athanasius-phil-2-5-001` is corrected to
+  Discourse II, Chapter XIV, section 1 (NPNF2 vol. 4, p. 348; New Advent §1), so a
+  reader of either edition can find it. New record
+  `ver-p5-athanasius-phil-2-5-quote-001` (`verified`; the print page was not re-checked
+  first-hand in this pass — see the record's limitations).
+- Item 23 (John 14:26 locator) and item 27 (Gal 4:4 locator): the locators of
+  `augustine-john-14-26-001` and `augustine-gal-4-4-001` are corrected from
+  §46 to §45 (both quotations are in §45; §46 begins "But the reason why, after His
+  resurrection..."). New records `ver-p5-augustine-john-14-26-quote-001` and
+  `ver-p5-augustine-gal-4-4-quote-001` (both `verified`).
+- Item 24 (II.3.5 splice): the quotation of `augustine-john-16-13-001` is re-quoted as
+  two separate verbatim excerpts from Book II, ch. 3, §5, with the omission marked
+  […]. New record `ver-p5-augustine-john-16-13-quote-001` (`verified`).
+- Item 20 (Racovian structured attribution): `shared/works.json` now lists
+  `authorIds: [polish-brethren]` for `racovian-catechism`; a collective author entry
+  `polish-brethren` is added to `shared/authors.json`; all four interpretations carry
+  `authorId: polish-brethren`. Interpretation ids keep their `faustus-socrinus-…`
+  slugs as stable identifiers. New record `ver-p5-racovian-catechism-attribution-001`
+  (`verified`).
+
+- Items 21 and 28 (fair-use Augustine translator): reclassified to public-domain on
+  Yonatan's decision (2026-11-25, Option A). The English text is the H. Browne
+  translation as reproduced in NPNF Series I, Vol. 7, Homilies on the First Epistle of
+  John, Part 11 (1888) — re-verified verbatim against the Wikisource NPNF I/7 text
+  2026-11-25, including the title-page credit "translated by rev. H. Browne"; the
+  "W. Smith" attribution was wrong. The quotation text itself is unchanged (earthly
+  witnesses only, no Comma clause). The interpretation's translation, edition,
+  reproducibilityStatus, citation, and EDITION UNCERTAINTY note are updated; one new
+  record `ver-p5-augustine-1john-5-7-attribution-001` (`verified`) covers both items.
+
+- Items 10, 11, and 16 (dating studies): all three ranges confirmed by first-hand
+  literature checks, each with a new `verified` record.
+  - Thalia 318–321: Schaff (CCEL §119) — the controversy broke out about 318 or 320,
+    Arius was deposed by the Alexandrian council in 321, and driven from Alexandria he
+    diffused his doctrine in the Thalia; Finnegan states the dating directly ("sometime
+    between a.d. 318 and 321"). Hard bound: Nicaea 325. No exact composition date is
+    established; the direct statement comes from a popular source, Schaff's scholarly
+    narrative supports the same window. Record
+    `ver-p5-arius-thalia-date-001`.
+  - *Against the Arians* 356–360 (Discourses I–III): NPNF2 Introduction, read first-hand
+    ("Written Between 356 And 360"; "there is tolerable certainty as to the date of our
+    Discourses"); NCE ("in all probability, during his third exile (c. 358)"); Catholic
+    Culture ("most likely written during his third exile"). The range covers Discourses
+    I–III only and must not be read as covering Discourse IV (NPNF2 Introduction: "the
+    relation of the fourth Discourse to the others is by no means clear"; Vinzent c. 340).
+    Record `ver-p5-athanasius-against-the-arians-date-001`.
+  - *Exposition* 730–743: Britannica ("Revised circa 743", third part the Exposition);
+    Harakas (two recorded composition dates for the Fount, 728 and 743; the parts were
+    written independently at different times, then gathered; the iconoclastic treatises
+    726–731). The range is the best-supported approximation, verified as such — no exact
+    composition date is established, and the 730 bound is borrowed from the iconoclastic
+    treatises. Record `ver-p5-damascus-exposition-date-001`.
+
+- Items 25 and 26 (Racovian printed-page checks, pp. 140 and 144): both confirmed
+  verbatim against the OCR text layer of the 1818 Rees edition (archive.org item
+  `racoviancatechi00reesgoog`, djvu.txt). The Phase 4 search failed because it searched
+  exact phrases broken by line-break hyphenation ("in-terpreter", "pur-poses"); the
+  running heads 134, 138, 140, 142, 144 in sequence confirm the pagination, and the
+  sentences read verbatim once hyphenation and minor OCR noise are accounted for. The
+  John 17:5 opening clause ("But the meaning of the passage is, that"), which the Phase
+  4 secondary source could not confirm, is confirmed here. New records
+  `ver-p5-racovian-john-1-1-quote-001` and `ver-p5-racovian-john-17-5-quote-001`
+  (both `verified`).
+
+Still open (10 items):
+
+- Items 1–5 (the five `direct` classifications): permanent flags, confirmed as-is.
+  None may be presented as direct evidence for the fully formulated doctrine.
+- Items 17–19 (Constantinople 381 ×2, Toledo 589 milestones): permanent flags — the
+  debates are the honest state of scholarship, and the research files already flag
+  them correctly.
+- Items 13 (Anselm) and 15 (Gal 4:4 link): the framings are confirmed correct as-is
+  (the Anselm link is indirect and says so; the Gal 4:4 argument is built on Gal 4:6
+  and says so); the records stay `partially-verified` as flags.
+
+## QA pre-verification corrections (2026-11-25)
+
+QA pre-verified the staging tree (findings at `~/workspace/qa-phase5/findings.md`):
+13 of the 15 resolved items confirmed first-hand against their named editions, tallies
+re-derived, validator exit 0. Two record-accuracy gaps were found and fixed here; neither
+is a data fabrication, and no corrected research content changed except the one word below.
+
+- John 14:26 quotation: the stored text dropped the leading "And" unmarked while its
+  record claimed "Wording verbatim". Re-checked first-hand against New Advent XV.26 §45
+  (the sentence begins "And it is proved by many other testimonies..."; §46 begins "But
+  the reason why, after His resurrection..."). The "And" is restored to the quotation in
+  `augustine-john-14-26-001` (JSON + note). New record
+  `ver-p5-augustine-john-14-26-quote-002` (`verified`).
+- II.3.5 omission size: the record said "about 70 words"; the omitted passage as printed
+  in §5 counts 105 words (counted first-hand; the omitted restatement uses the variant
+  "whatsoever he shall hear, that shall He speak"). The quotation itself is unchanged.
+  New record `ver-p5-augustine-john-16-13-quote-002` (`verified`).
+- Discourse IV attribution records: the three `-001` records cited only the Phase 4
+  record and carried "limitations: None". Re-checked first-hand: the NCE sentence is
+  verbatim (encyclopedia.com, "Athanasius, St.", Dogmatic Writings); the Catholic Culture
+  page (recnum 3085) Description paragraph, closed "(Quasten)", carries "differs in
+  address, content, and style"; the page's untagged Provenance section carries "single
+  continuous work" and "added later by an unknown author" (the host's own summary, not
+  Quasten-tagged — those two phrases stay as attributed via the secondary host, not
+  upgraded); Walbrodt (1993) argues CAR IV is genuinely Athanasian (abstract, read
+  first-hand). The three `-002` records cite NCE, Catholic Culture, and Walbrodt directly
+  and carry the divided-scholarship limitation instead of "None". The flag text is
+  untouched. New records `ver-p5-athanasius-john-1-1-attribution-002`,
+  `ver-p5-athanasius-john-10-30-attribution-002`,
+  `ver-p5-athanasius-rom-9-5-attribution-002` (all `verified`).

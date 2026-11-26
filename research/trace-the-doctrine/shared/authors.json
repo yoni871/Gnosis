@@ -115,7 +115,7 @@
       "note": "Dates not verified from a checked page in this pass; left null. The Racovian Catechism's Historical Introduction states Socinus died in 1604, the year before the Catechism was first published; that year is recorded in the work record, not asserted as a verified lifespan here."
     },
     "bio": "Italian antitrinitarian theologian associated with the Polish Brethren. His views, rather than his sole authorship, are associated with the Racovian Catechism; see the work record and the attribution verification record.",
-    "notes": "Attribution of the Racovian Catechism to Socinus is PARTIAL: the Catechism is a collective work of the Polish Brethren, completed after Socinus's death by Valentinus Smalcius, Hieronim Moskorzowski and Johannes Volkel. Interpretations attributed here to faustus-socrinus represent the Socinian tradition of the Catechism, not Socinus as sole author.",
+    "notes": "Attribution of the Racovian Catechism to Socinus is PARTIAL: the Catechism is a collective work of the Polish Brethren, completed after Socinus's death by Valentinus Smalcius, Hieronim Moskorzowski and Johannes Volkel. The Catechism interpretations are now attributed to the collective author polish-brethren (see ver-p5-racovian-catechism-attribution-001); they represent the Socinian tradition of the Catechism, not Socinus as sole author.",
     "status": "verification-pending",
     "verificationRecordIds": [
       "ver-p3-e5-racovian-catechism-attribution-001"
@@ -342,6 +342,17 @@
     "status": "verification-pending",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-summa-date-001"
+    ]
+  },
+  {
+    "id": "polish-brethren",
+    "displayName": "Polish Brethren (collective)",
+    "status": "verification-pending",
+    "bio": null,
+    "dates": null,
+    "notes": "Collective author: the Polish Brethren, authors of the Racovian Catechism. The Catechism was first published in Polish at Rakow in 1605, after Faustus Socinus's death in 1604; the undertaking was transferred to Valentinus Smalcius and Hieronim Moskorzowski (with Johannes Volkel also associated). Socinus's personal contribution to the text is likely but not individually established. See the attribution verification record ver-p5-racovian-catechism-attribution-001.",
+    "verificationRecordIds": [
+      "ver-p5-racovian-catechism-attribution-001"
     ]
   }
 ]

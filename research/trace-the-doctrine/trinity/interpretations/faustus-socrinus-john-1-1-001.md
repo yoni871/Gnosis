@@ -1,13 +1,13 @@
 # Interpretation note — `faustus-socrinus-john-1-1-001`
 
-Passage: `john-1-1` · Author: `faustus-socrinus` · Work: `racovian-catechism`
+Passage: `john-1-1` · Author: `polish-brethren` · Work: `racovian-catechism`
 Status: `verification-pending`.
 
 ```json
 {
   "id": "faustus-socrinus-john-1-1-001",
   "passageId": "john-1-1",
-  "authorId": "faustus-socrinus",
+  "authorId": "polish-brethren",
   "workId": "racovian-catechism",
   "quotation": {
     "text": "But Jesus is called the Word or Speech of God because he is the immediate interpreter, and at the same time the executor, of the divine will: for this properly belongs to the Word of God.",
@@ -35,7 +35,9 @@ Status: `verification-pending`.
   "verificationRecordIds": [
     "ver-p3-e5-faustus-socrinus-john-1-1-001-quotation-001",
     "ver-p3-e5-racovian-catechism-date-001",
-    "ver-p3-e5-racovian-catechism-attribution-001"
+    "ver-p3-e5-racovian-catechism-attribution-001",
+    "ver-p5-racovian-catechism-attribution-001",
+    "ver-p5-racovian-john-1-1-quote-001"
   ]
 }
 ```
@@ -51,6 +53,6 @@ Status: `verification-pending`.
 
 ## Verification
 
-Verification records: `ver-p3-e5-faustus-socrinus-john-1-1-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p3-e5-racovian-catechism-attribution-001`.
+Verification records: `ver-p3-e5-faustus-socrinus-john-1-1-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p3-e5-racovian-catechism-attribution-001`, `ver-p5-racovian-catechism-attribution-001`, `ver-p5-racovian-john-1-1-quote-001`.
 
 Researcher source-check only; independent verification per RESEARCH-STANDARDS.md §9.2 still required. Not publishable without independent verification and editorial approval.

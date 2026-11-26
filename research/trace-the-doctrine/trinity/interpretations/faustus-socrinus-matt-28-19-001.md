@@ -1,13 +1,13 @@
 # Interpretation note — `faustus-socrinus-matt-28-19-001`
 
-Passage: `matt-28-19` · Author: `faustus-socrinus` · Work: `racovian-catechism`
+Passage: `matt-28-19` · Author: `polish-brethren` · Work: `racovian-catechism`
 Status: `verification-pending`.
 
 ```json
 {
   "id": "faustus-socrinus-matt-28-19-001",
   "passageId": "matt-28-19",
-  "authorId": "faustus-socrinus",
+  "authorId": "polish-brethren",
   "workId": "racovian-catechism",
   "quotation": {
     "text": "I answer generally in respect to them, that they only prove the existence of the Father, Son, and Holy Spirit, and that they are associated in divine things; which I not only admit, but also constantly declare, insomuch that I pronounce that person to be no Christian who either does not know or does not believe this. It is evident, nevertheless, that these testimonies do not prove the matter in dispute; namely, that the Father, Son, and Holy Spirit, are three persons in the one essence of God.",
@@ -35,7 +35,8 @@ Status: `verification-pending`.
   "verificationRecordIds": [
     "ver-p3-e5-faustus-socrinus-matt-28-19-001-quotation-001",
     "ver-p3-e5-racovian-catechism-date-001",
-    "ver-p3-e5-racovian-catechism-attribution-001"
+    "ver-p3-e5-racovian-catechism-attribution-001",
+    "ver-p5-racovian-catechism-attribution-001"
   ]
 }
 ```
@@ -51,6 +52,6 @@ Status: `verification-pending`.
 
 ## Verification
 
-Verification records: `ver-p3-e5-faustus-socrinus-matt-28-19-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p3-e5-racovian-catechism-attribution-001`.
+Verification records: `ver-p3-e5-faustus-socrinus-matt-28-19-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p3-e5-racovian-catechism-attribution-001`, `ver-p5-racovian-catechism-attribution-001`.
 
 Researcher source-check only; independent verification per RESEARCH-STANDARDS.md §9.2 still required. Not publishable without independent verification and editorial approval.

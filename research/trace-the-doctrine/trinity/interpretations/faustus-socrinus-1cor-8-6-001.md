@@ -1,13 +1,13 @@
 # Interpretation note — `faustus-socrinus-1cor-8-6-001`
 
-Passage: `1cor-8-6` · Author: `faustus-socrinus` · Work: `racovian-catechism`
+Passage: `1cor-8-6` · Author: `polish-brethren` · Work: `racovian-catechism`
 Status: `verification-pending`.
 
 ```json
 {
   "id": "faustus-socrinus-1cor-8-6-001",
   "passageId": "1cor-8-6",
-  "authorId": "faustus-socrinus",
+  "authorId": "polish-brethren",
   "workId": "racovian-catechism",
   "quotation": {
     "text": "Who is this one divine Person? The Father of our Lord Jesus Christ.",
@@ -35,7 +35,8 @@ Status: `verification-pending`.
   "verificationRecordIds": [
     "ver-p3-e5-faustus-socrinus-1cor-8-6-001-quotation-001",
     "ver-p3-e5-racovian-catechism-date-001",
-    "ver-p3-e5-racovian-catechism-attribution-001"
+    "ver-p3-e5-racovian-catechism-attribution-001",
+    "ver-p5-racovian-catechism-attribution-001"
   ]
 }
 ```
@@ -51,6 +52,6 @@ Status: `verification-pending`.
 
 ## Verification
 
-Verification records: `ver-p3-e5-faustus-socrinus-1cor-8-6-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p3-e5-racovian-catechism-attribution-001`.
+Verification records: `ver-p3-e5-faustus-socrinus-1cor-8-6-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p3-e5-racovian-catechism-attribution-001`, `ver-p5-racovian-catechism-attribution-001`.
 
 Researcher source-check only; independent verification per RESEARCH-STANDARDS.md §9.2 still required. Not publishable without independent verification and editorial approval.

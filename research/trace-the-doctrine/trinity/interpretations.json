@@ -843,7 +843,7 @@
   {
     "id": "faustus-socrinus-matt-28-19-001",
     "passageId": "matt-28-19",
-    "authorId": "faustus-socrinus",
+    "authorId": "polish-brethren",
     "workId": "racovian-catechism",
     "quotation": {
       "text": "I answer generally in respect to them, that they only prove the existence of the Father, Son, and Holy Spirit, and that they are associated in divine things; which I not only admit, but also constantly declare, insomuch that I pronounce that person to be no Christian who either does not know or does not believe this. It is evident, nevertheless, that these testimonies do not prove the matter in dispute; namely, that the Father, Son, and Holy Spirit, are three persons in the one essence of God.",
@@ -871,7 +871,8 @@
     "verificationRecordIds": [
       "ver-p3-e5-faustus-socrinus-matt-28-19-001-quotation-001",
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001"
+      "ver-p3-e5-racovian-catechism-attribution-001",
+      "ver-p5-racovian-catechism-attribution-001"
     ]
   },
   {
@@ -1224,9 +1225,11 @@
     "verificationRecordIds": [
       "ver-p3-e2-athanasius-john-1-1-001-quotation-001",
       "ver-p3-e2-athanasius-john-1-1-001-attribution-001",
-      "ver-p3-e2-athanasius-against-the-arians-date-001"
+      "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "ver-p5-athanasius-john-1-1-attribution-001",
+      "ver-p5-athanasius-john-1-1-attribution-002"
     ],
-    "notes": null,
+    "notes": "Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
     "status": "verification-pending"
   },
   {
@@ -1251,9 +1254,11 @@
     "verificationRecordIds": [
       "ver-p3-e2-athanasius-john-10-30-001-quotation-001",
       "ver-p3-e2-athanasius-john-10-30-001-attribution-001",
-      "ver-p3-e2-athanasius-against-the-arians-date-001"
+      "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "ver-p5-athanasius-john-10-30-attribution-001",
+      "ver-p5-athanasius-john-10-30-attribution-002"
     ],
-    "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task. The Sabellian reading (Father and Son the same person) is the position Athanasius is refuting in this section; see the explanation.",
+    "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task. The Sabellian reading (Father and Son the same person) is the position Athanasius is refuting in this section; see the explanation. Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
     "status": "verification-pending"
   },
   {
@@ -1270,7 +1275,7 @@
       "reproducibilityStatus": "public-domain",
       "summary": null
     },
-    "explanation": "Hilary recounts his own conversion through reading John 1:1-14: his soul learned from the Gospel that the Word was with God and was God, that the Word became flesh, and that his glory was seen as of the Only-begotten from the Father, full of grace and truth. From this he learned that the Creator is 'God of God': faith is not dispersed among many deities, nor is a difference of nature attributed to this God of God. In §10 he quotes the whole of John 1:1-14, and in §13 he argues that the Word's 'was' has no limit of time and no commencement: 'the uncreated Word was in the beginning.'",
+    "explanation": "Hilary recounts his own conversion through reading John 1:1-14: his soul learned from the Gospel that the Word was with God and was God, that the Word became flesh, and that his glory was seen as of the Only-begotten from the Father, full of grace and truth. From this he learned that the Creator is 'God of God': faith is not dispersed among many deities, nor is a difference of nature attributed to this God of God. In §10 he quotes the whole of John 1:1-14.",
     "relationshipToDoctrine": "(C) Hilary reads John 1:1 as teaching that the Word is God of God, of the same nature as the Father, eternal and uncreated. (D) Hilary writes in exile c. 356-359, after Nicaea, defending the Nicene faith against the Arians, who held the Son to be created; his 'God of God' echoes the Nicene Creed's language without being a quotation of it.",
     "historicalContext": "On the Trinity, Book I, §§10-13, c. 356-359 (range), written during Hilary's exile after the Council of Milan (355). Book I is autobiographical, recounting his path from philosophy to faith.",
     "alternativeReadings": [
@@ -1285,7 +1290,8 @@
     "verificationRecordIds": [
       "ver-p3-e2-hilary-john-1-1-001-quotation-001",
       "ver-p3-e2-hilary-john-1-1-001-attribution-001",
-      "ver-p3-e2-hilary-on-the-trinity-date-001"
+      "ver-p3-e2-hilary-on-the-trinity-date-001",
+      "ver-p5-hilary-john-1-1-explanation-001"
     ],
     "notes": null,
     "status": "verification-pending"
@@ -1463,11 +1469,11 @@
     "authorId": "augustine",
     "workId": "augustine-de-trinitate",
     "quotation": {
-      "text": "it is proved by many other testimonies of the Divine Word, that the Spirit, who is specially called in the Trinity the Holy Spirit, is of the Father and of the Son: of whom likewise the Son Himself says, Whom I will send unto you from the Father; and in another place, Whom the Father will send in my name.",
+      "text": "And it is proved by many other testimonies of the Divine Word, that the Spirit, who is specially called in the Trinity the Holy Spirit, is of the Father and of the Son: of whom likewise the Son Himself says, Whom I will send unto you from the Father; and in another place, Whom the Father will send in my name.",
       "language": "English",
       "translation": "Arthur West Haddan",
       "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)",
-      "location": "Book XV, chapter 26, section 46",
+      "location": "Book XV, chapter 26, section 45",
       "reproducibilityStatus": "public-domain",
       "summary": "Augustine argues that the Spirit is of the Father and of the Son, citing John 15:26 ('Whom I will send unto you from the Father') and John 14:26 ('Whom the Father will send in my name')."
     },
@@ -1482,10 +1488,12 @@
         "citation": "John of Damascus, An Exact Exposition of the Orthodox Faith, Book I, ch. 8 (NPNF Series II, Vol. 9)."
       }
     ],
-    "citation": "Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887), Book 15, ch. 26, section 46. https://www.newadvent.org/fathers/130115.htm",
+    "citation": "Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887), Book 15, ch. 26, section 45. https://www.newadvent.org/fathers/130115.htm",
     "verificationRecordIds": [
       "ver-p3-e3-augustine-john-14-26-001-quotation-001",
-      "ver-p3-e3-augustine-john-14-26-001-passage-link-001"
+      "ver-p3-e3-augustine-john-14-26-001-passage-link-001",
+      "ver-p5-augustine-john-14-26-quote-001",
+      "ver-p5-augustine-john-14-26-quote-002"
     ],
     "notes": null,
     "status": "verification-pending"
@@ -1529,7 +1537,7 @@
     "authorId": "augustine",
     "workId": "augustine-de-trinitate",
     "quotation": {
-      "text": "For He shall not speak of Himself, but whatsoever He shall hear, that shall He speak; and, For He shall receive of mine, and shall show it unto you. But because He has rendered the reason why He said, He shall receive of mine (for He says, All things that the Father has are mine; therefore said I, that He shall take of mine); it remains that the Holy Spirit be understood to have of that which is the Father's, as the Son also has.",
+      "text": "For He shall not speak of Himself, but whatsoever He shall hear that shall He speak; and He will show you things to come. He shall glorify me; for He shall receive of mine, and shall show it unto you. […] But because He has rendered the reason why He said, He shall receive of mine (for He says, All things that the Father has are mine; therefore said I, that He shall take of mine); it remains that the Holy Spirit be understood to have of that which is the Father's, as the Son also has.",
       "language": "English",
       "translation": "Arthur West Haddan",
       "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)",
@@ -1544,9 +1552,11 @@
     "citation": "Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887), Book 2, ch. 3, section 5. https://www.newadvent.org/fathers/130102.htm",
     "verificationRecordIds": [
       "ver-p3-e3-augustine-john-16-13-001-quotation-001",
-      "ver-p3-e3-augustine-john-16-13-001-passage-link-001"
+      "ver-p3-e3-augustine-john-16-13-001-passage-link-001",
+      "ver-p5-augustine-john-16-13-quote-001",
+      "ver-p5-augustine-john-16-13-quote-002"
     ],
-    "notes": null,
+    "notes": "Quotation is two separate excerpts from Book II, ch. 3, §5, with the omission marked […]; an earlier draft joined them as if continuous (corrected in Phase 5).",
     "status": "verification-pending"
   },
   {
@@ -1589,8 +1599,8 @@
       "reproducibilityStatus": "public-domain",
       "summary": "Leo I summarises the Priscillianist error he is refuting: that Father, Son, and Holy Spirit are one and the same person under three names, as if He who begot, He who was begotten, and He who proceeded from both were not distinct persons."
     },
-    "explanation": "Leo is writing to Turribius, bishop of Asturia, to refute the Priscillianists. In chapter II he first sets out their error about the Trinity: they teach that the Father, the Son, and the Holy Spirit are one and the same person, the same God named now Father, now Son, now Holy Spirit, an undivided unity under three names but not consisting of three persons. Leo then answers that this is contrary to the Catholic faith, which acknowledges the Trinity of the Godhead to be of one essence, the Father, the Son, and the Holy Spirit indivisible without confusion, eternal without time, equal without difference. The quotation is Leo's summary of the error, not his own doctrine; his own doctrine follows it. The phrase 'He who proceeded from both' is part of the true distinction of persons that the Priscillianists deny: the Spirit proceeds from the Father and from the Son.",
-    "relationshipToDoctrine": "(C) Leo's Letter 15 records the Western understanding that the Holy Spirit proceeds from both the Father and the Son, as part of the true distinction of persons that the Priscillianist error denies. (A) John 15:26 states that the Spirit of truth proceeds from the Father; it does not state that He proceeds from the Son. (B) The step from the Spirit's procession to procession 'from both' is the Western reading of Leo and Augustine, not the text's claim. (D) The double-procession formulation is a later development; the East rejected it, and the difference is recorded, not harmonised.",
+    "explanation": "Leo is writing to Turribius, bishop of Asturia, to refute the Priscillianists. In chapter II he first sets out their error about the Trinity: they teach that the Father, the Son, and the Holy Spirit are one and the same person, the same God named now Father, now Son, now Holy Spirit, an undivided unity under three names but not consisting of three persons. Leo then answers that this is contrary to the Catholic faith, which acknowledges the Trinity of the Godhead to be of one essence, the Father, the Son, and the Holy Spirit indivisible without confusion, eternal without time, equal without difference. The quotation is Leo's summary of the error, not his own doctrine; his own doctrine follows it. The phrase 'He who proceeded from both' occurs only inside Leo's summary of the Priscillianist error he is refuting; his own positive statement says only that Father, Son, and Holy Spirit are distinct persons of one essence, indivisible, eternal, and equal, and makes no claim about the Spirit's procession. John 15:26 is not cited in chapter II.",
+    "relationshipToDoctrine": "(C) Leo's Letter 15 records the Western understanding of three distinct persons of one essence in the Trinity, against the Priscillianist claim that Father, Son, and Holy Spirit are one and the same person under three names. The phrase 'He who proceeded from both' occurs only in Leo's summary of the error, not in his own doctrine. (A) John 15:26 states that the Spirit of truth proceeds from the Father; it does not state that He proceeds from the Son. (B) The step from the Spirit's procession to procession 'from both' is the Western reading of Leo and Augustine, not the text's claim. (D) The double-procession formulation is a later development; the East rejected it, and the difference is recorded, not harmonised.",
     "historicalContext": "Letter 15 was written 21 July 447 (exact, dated in the letter itself) to Turribius, bishop of Asturia, refuting Priscillianist errors in Spain, including the Priscillianist (Sabellian) denial of three distinct persons in the Trinity.",
     "alternativeReadings": [
       {
@@ -1603,7 +1613,8 @@
     "citation": "Leo the Great, Letter 15, ch. II, in Nicene and Post-Nicene Fathers, Series II, Vol. 12, trans. Charles Lett Feltoe (Buffalo, NY: Christian Literature Publishing Co., 1895). https://www.newadvent.org/fathers/3604015.htm",
     "verificationRecordIds": [
       "ver-p3-e3-leo-i-john-15-26-001-quotation-001",
-      "ver-p3-e3-leo-i-john-15-26-001-passage-link-001"
+      "ver-p3-e3-leo-i-john-15-26-001-passage-link-001",
+      "ver-p5-leo-i-john-15-26-doctrinal-001"
     ],
     "notes": "CAUTION: the quotation is Leo's summary of the Priscillianist error he is refuting, not his own statement of doctrine. His positive statement follows it: 'Which without doubt is contrary to the Catholic faith, which acknowledges the Trinity of the Godhead to be of one essence in such a way that it believes the Father, the Son, and the Holy Ghost indivisible without confusion, eternal without time, equal without difference: because it is not the same person but the same essence which fills the Unity in Trinity.'",
     "status": "verification-pending"
@@ -1858,7 +1869,7 @@
       "reproducibilityStatus": "public-domain",
       "summary": "Calvin reads 'another Comforter' as marking a distinction of persons: the Spirit differs from the Son in his peculiar office, so that the Spirit is another than the Son."
     },
-    "explanation": "Calvin holds that 'another Comforter' (John 14:16) implies a distinction of persons: there must be some peculiarity in which the Spirit differs from the Son, so as to be another than the Son. The difference lies in their offices: Christ's office is to atone, redeem, and procure righteousness and life; the Spirit's office is to make believers partakers of Christ himself and of all his blessings. In the same section Calvin notes that the Spirit proceeds from the Father (John 15:26) and is sent by both the Father and the Son.",
+    "explanation": "Calvin holds that 'another Comforter' (John 14:16) implies a distinction of persons: there must be some peculiarity in which the Spirit differs from the Son, so as to be another than the Son. The difference lies in their offices: Christ's office is to atone, redeem, and procure righteousness and life; the Spirit's office is to make believers partakers of Christ himself and of all his blessings. In the same section Calvin notes that the Spirit is the gift of the Father obtained by Christ's prayers, and that Christ promises 'I will send Him to you' (John 16:7); as Mediator he obtains the Spirit's grace from the Father, and as God he bestows that grace from himself, so the Spirit is sent by both. John 15:26 is not mentioned in the section.",
     "relationshipToDoctrine": "(C) Calvin reads John 14:16 as implying a distinction of persons between the Spirit and the Son. (A) The text calls the Spirit 'another Comforter'. (B) The inference from 'another' to a distinct person is Calvin's, drawn from the difference of offices. (D) 'Person' and 'peculiar office' are Calvin's doctrinal vocabulary, not the Evangelist's words.",
     "historicalContext": "Commentary on John, published 1 January 1553, Geneva. The comment belongs to Calvin's farewell-discourse exposition, where he treats the Spirit's distinct mission after Christ's departure.",
     "alternativeReadings": [],
@@ -1867,7 +1878,8 @@
     "status": "verification-pending",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-john-14-16-001-quotation-001",
-      "ver-p3-e5-john-calvin-commentary-john-date-001"
+      "ver-p3-e5-john-calvin-commentary-john-date-001",
+      "ver-p5-calvin-john-14-16-explanation-001"
     ]
   },
   {
@@ -1906,7 +1918,7 @@
   {
     "id": "faustus-socrinus-john-1-1-001",
     "passageId": "john-1-1",
-    "authorId": "faustus-socrinus",
+    "authorId": "polish-brethren",
     "workId": "racovian-catechism",
     "quotation": {
       "text": "But Jesus is called the Word or Speech of God because he is the immediate interpreter, and at the same time the executor, of the divine will: for this properly belongs to the Word of God.",
@@ -1934,13 +1946,15 @@
     "verificationRecordIds": [
       "ver-p3-e5-faustus-socrinus-john-1-1-001-quotation-001",
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001"
+      "ver-p3-e5-racovian-catechism-attribution-001",
+      "ver-p5-racovian-catechism-attribution-001",
+      "ver-p5-racovian-john-1-1-quote-001"
     ]
   },
   {
     "id": "faustus-socrinus-john-17-5-001",
     "passageId": "john-17-5",
-    "authorId": "faustus-socrinus",
+    "authorId": "polish-brethren",
     "workId": "racovian-catechism",
     "quotation": {
       "text": "But the meaning of the passage is, that Christ beseeches God to give him in actual possession, with himself, the glory which he had with him, in his purposes and decrees, before the world was.",
@@ -1968,7 +1982,9 @@
     "verificationRecordIds": [
       "ver-p3-e5-faustus-socrinus-john-17-5-001-quotation-001",
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001"
+      "ver-p3-e5-racovian-catechism-attribution-001",
+      "ver-p5-racovian-catechism-attribution-001",
+      "ver-p5-racovian-john-17-5-quote-001"
     ]
   },
   {
@@ -2073,9 +2089,11 @@
     "verificationRecordIds": [
       "ver-p3-e2-athanasius-rom-9-5-001-quotation-001",
       "ver-p3-e2-athanasius-rom-9-5-001-attribution-001",
-      "ver-p3-e2-athanasius-against-the-arians-date-001"
+      "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "ver-p5-athanasius-rom-9-5-attribution-001",
+      "ver-p5-athanasius-rom-9-5-attribution-002"
     ],
-    "notes": "The modern dispute over the punctuation and referent of Romans 9:5 is noted in the relationshipToDoctrine field; no modern scholarly source was checked for this note, and it is flagged for the verifier rather than asserted as a verified claim.",
+    "notes": "The modern dispute over the punctuation and referent of Romans 9:5 is noted in the relationshipToDoctrine field; no modern scholarly source was checked for this note, and it is flagged for the verifier rather than asserted as a verified claim. Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
     "status": "verification-pending"
   },
   {
@@ -2193,7 +2211,7 @@
   {
     "id": "faustus-socrinus-1cor-8-6-001",
     "passageId": "1cor-8-6",
-    "authorId": "faustus-socrinus",
+    "authorId": "polish-brethren",
     "workId": "racovian-catechism",
     "quotation": {
       "text": "Who is this one divine Person? The Father of our Lord Jesus Christ.",
@@ -2221,7 +2239,8 @@
     "verificationRecordIds": [
       "ver-p3-e5-faustus-socrinus-1cor-8-6-001-quotation-001",
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001"
+      "ver-p3-e5-racovian-catechism-attribution-001",
+      "ver-p5-racovian-catechism-attribution-001"
     ]
   },
   {
@@ -2365,7 +2384,7 @@
       "language": "English",
       "translation": "Arthur West Haddan",
       "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff (1887)",
-      "location": "Book XV, chapter 26, section 46",
+      "location": "Book XV, chapter 26, section 45",
       "reproducibilityStatus": "public-domain",
       "summary": "Augustine cites Galatians 4:6 (the Spirit of the Son sent into our hearts) as evidence that the Spirit is the Spirit of the Father and of the Son, not of the Son alone or of the Father alone."
     },
@@ -2373,10 +2392,11 @@
     "relationshipToDoctrine": "(C) Augustine reads Galatians 4:6 as showing that the Spirit is the Spirit of the Son as well as of the Father. (A) The text states that God sent the Spirit of His Son into our hearts, crying 'Abba! Father'. It does not state a doctrine of the Spirit's procession. (B) The step from the Spirit being called the Spirit of the Son to the Spirit's eternal procession from the Son is Augustine's inference. (D) The double-procession formulation is Augustine's own theological development, later disputed by the East (see john-of-damascus-john-15-26-001).",
     "historicalContext": "De Trinitate was written 399-422 (range; see works.json). Books I-IV defend the unity and equality of the Trinity from Scripture against those who argued, from texts about the sending and subordination of the Son and the Spirit, that the Son is less than the Father. This passage comes from Book XV, chapter 26, where Augustine treats the procession of the Holy Spirit from the Father and from the Son.",
     "alternativeReadings": [],
-    "citation": "Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887), Book 15, ch. 26, section 46. https://www.newadvent.org/fathers/130115.htm",
+    "citation": "Augustine, On the Holy Trinity (De Trinitate), in Nicene and Post-Nicene Fathers, Series I, Vol. 3, ed. Philip Schaff, trans. Arthur West Haddan (Buffalo, NY: Christian Literature Publishing Co., 1887), Book 15, ch. 26, section 45. https://www.newadvent.org/fathers/130115.htm",
     "verificationRecordIds": [
       "ver-p3-e3-augustine-gal-4-4-001-quotation-001",
-      "ver-p3-e3-augustine-gal-4-4-001-passage-link-001"
+      "ver-p3-e3-augustine-gal-4-4-001-passage-link-001",
+      "ver-p5-augustine-gal-4-4-quote-001"
     ],
     "notes": "The quotation opens mid-sentence; the leading 'For it is He of whom the apostle says' is reproduced as printed. The inventory passage gal-4-4 is the sending of the Son (Gal. 4:4); Augustine's argument in this section is built on the immediately following verse, Gal. 4:6, and is recorded here as his reading of the sending passage's context.",
     "status": "verification-pending"
@@ -2548,19 +2568,20 @@
       "language": "English",
       "translation": "John Henry Newman and Archibald Robertson",
       "edition": "Nicene and Post-Nicene Fathers, Second Series, vol. 4 (1892)",
-      "location": "Four Discourses Against the Arians, Discourse II, §1",
+      "location": "Four Discourses Against the Arians, Discourse II, Chapter XIV, section 1 (NPNF2 vol. 4, p. 348; New Advent §1)",
       "reproducibilityStatus": "public-domain",
       "summary": null
     },
     "explanation": "Athanasius lists the texts the Arians misuse to call the Son a creature, including 'He emptied Himself, and took upon Him the form of a servant' (Philippians 2:7), alongside John 1:1, John 1:14, Acts 2:36, Proverbs 8:22, and Hebrews 1:4. He insists all these texts 'have the same force and meaning, a religious one, declarative of the divinity of the Word, even those of them which speak humanly concerning Him, as having become the Son of man': the lowly language belongs to the Word become man, not to the Word as a creature.",
     "relationshipToDoctrine": "(C) Athanasius reads Philippians 2:7 (within the Philippians 2:5-11 hymn) as speaking of the divine Word who became man, so that the self-emptying declares rather than denies his divinity. (D) The reading defends the Nicene settlement: the one who emptied himself is the eternal Word, not a creature exalted for foreseen virtue (the Arian reading).",
-    "historicalContext": "Four Discourses Against the Arians, Discourse II, §1, c. 356-360 (range). The Arians argued from Proverbs 8:22 and Hebrews 3:2 that the Son is a work and a creature; Athanasius answers by re-reading the whole group of texts.",
+    "historicalContext": "Four Discourses Against the Arians, Discourse II, Chapter XIV, §1, c. 356-360 (range). The Arians argued from Proverbs 8:22 and Hebrews 3:2 that the Son is a work and a creature; Athanasius answers by re-reading the whole group of texts.",
     "alternativeReadings": [],
     "citation": "Athanasius, Four Discourses Against the Arians. Translated by John Henry Newman and Archibald Robertson. In Nicene and Post-Nicene Fathers, Second Series, vol. 4, ed. Philip Schaff and Henry Wace (Buffalo: Christian Literature Publishing Co., 1892). New Advent: https://www.newadvent.org/fathers/28161.htm (Discourse I); https://www.newadvent.org/fathers/28162.htm (Discourse II); https://www.newadvent.org/fathers/28164.htm (Discourse IV).",
     "verificationRecordIds": [
       "ver-p3-e2-athanasius-phil-2-5-001-quotation-001",
       "ver-p3-e2-athanasius-phil-2-5-001-attribution-001",
-      "ver-p3-e2-athanasius-against-the-arians-date-001"
+      "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "ver-p5-athanasius-phil-2-5-quote-001"
     ],
     "notes": "The Arian reading of Philippians 2:7 (the Son as a creature exalted for foreseen virtue) is described generally in arius-john-1-1-001 and in the Arian controversy milestone; no Arian reading of Philippians 2 specifically was verified in the sources checked.",
     "status": "verification-pending"
@@ -2759,22 +2780,23 @@
     "quotation": {
       "text": "I would not have thee mistake that place in the epistle of John the apostle where he saith, 'There are three witnesses: the Spirit, and the water, and the blood: and the three are one.' Lest haply thou say that the Spirit and the water and the blood are diverse substances, and yet it is said, 'the three are one:' for this cause I have admonished thee, that thou mistake not the matter. For these are mystical expressions, in which the point always to be considered is, not what the actual things are, but what they denote as signs.",
       "language": "English",
-      "translation": "W. Smith (as cited in a secondary listing; not named on the source page)",
-      "edition": "English translation as reproduced in 'Augustin on 1John' (clerus.org); Latin text Migne, Patrologia Latina 42.794",
+      "translation": "H. Browne",
+      "edition": "Nicene and Post-Nicene Fathers, Series I, Vol. 7 (1888); Latin text Migne, Patrologia Latina 42.794-795",
       "location": "Book II, chapter 22, section 3",
-      "reproducibilityStatus": "fair-use",
+      "reproducibilityStatus": "public-domain",
       "summary": "Augustine quotes 1 John 5:7-8 in the form naming the earthly witnesses (Spirit, water, blood) and warns Maximinus not to mistake them for diverse substances, since they are mystical expressions to be understood by what they signify."
     },
     "explanation": "Maximinus had cited 1 John 5:7-8 to argue that the Father and the Son are not one substance, since the Spirit, the water, and the blood are said to be one although they are diverse things. Augustine replies that the verse names three witnesses, the Spirit, the water, and the blood, and that these are mystical expressions: the point is not what the actual things are, but what they denote as signs. He then reads them as signifying the Trinity - the Spirit signifying the Father, the blood the Son, and the water the Holy Spirit - so that 'There are Three Witnesses, and the Three are One' can be said of them too.",
     "relationshipToDoctrine": "(C) Augustine reads the three witnesses of 1 John 5:7-8 allegorically as signifying the Father, the Son, and the Holy Spirit. (A) The verse names the Spirit, the water, and the blood and says the three are one; it does not name the persons of the Trinity. (B) The allegorical identification of the three witnesses with the three persons is Augustine's reading, not the text's claim. (D) The doctrine of the Trinity is not stated by the verse. TEXTUAL DISPUTE: Augustine's text of 1 John 5:7-8 contains only the earthly witnesses (Spirit, water, blood). The heavenly-witnesses clause (the 'Comma Johanneum' - the Father, the Word, and the Holy Ghost) does not appear in his text; the same source page's footnote 56 states that the clause 'appears to be wholly unknown to St. Augustin'. The Comma is therefore NOT asserted here as original.",
     "historicalContext": "Contra Maximinum was written 427-428 (range), shortly after Augustine's public debate at Hippo with Maximinus, a Homoian Arian bishop. In Book II, chapter 22, Augustine answers Maximinus's use of 1 John 5:7-8 against the unity of substance of Father and Son.",
     "alternativeReadings": [],
-    "citation": "Augustine, Answer to Maximinus the Arian (Contra Maximinum), Book II, ch. 22, section 3. English translation as reproduced in 'Augustin on 1John' (clerus.org); Latin text in Migne, Patrologia Latina 42.794. https://www.clerus.org/bibliaclerusonline/en%20/cma.htm",
+    "citation": "Augustine, Answer to Maximinus the Arian (Contra Maximinum), Book II, ch. 22, section 3. In Nicene and Post-Nicene Fathers, Series I, Vol. 7, Homilies on the First Epistle of John, Part 11, trans. H. Browne (Buffalo, NY: Christian Literature Publishing Co., 1888). Latin text in Migne, Patrologia Latina 42.794-795. https://en.wikisource.org/wiki/Nicene_and_Post-Nicene_Fathers:_Series_I/Volume_VII/First_Epistle_of_John/Part_11",
     "verificationRecordIds": [
       "ver-p3-e3-augustine-1john-5-7-001-quotation-001",
-      "ver-p3-e3-augustine-1john-5-7-001-passage-link-001"
+      "ver-p3-e3-augustine-1john-5-7-001-passage-link-001",
+      "ver-p5-augustine-1john-5-7-attribution-001"
     ],
-    "notes": "TEXTUAL DISPUTE: Augustine's text of 1 John 5:7-8 contains only the earthly witnesses (Spirit, water, blood). The heavenly-witnesses clause (Comma Johanneum) does not appear in his text; the source page's editor footnote 56 states the clause 'appears to be wholly unknown to St. Augustin'. The Comma must not be asserted as original on the basis of this passage. EDITION UNCERTAINTY: the translator/edition of the English text is not named on the source page; a secondary listing attributes it to W. Smith, vol. 11 (1883). ReproducibilityStatus is therefore fair-use, not public-domain, and the quotation verification is partially-verified pending confirmation of the edition.",
+    "notes": "TEXTUAL DISPUTE: Augustine's text of 1 John 5:7-8 contains only the earthly witnesses (Spirit, water, blood). The heavenly-witnesses clause (Comma Johanneum) does not appear in his text; the source page's editor footnote 56 states the clause 'appears to be wholly unknown to St. Augustin'. The Comma must not be asserted as original on the basis of this passage. EDITION CONFIRMED (Phase 5): the English text is the H. Browne translation as reproduced in NPNF Series I, Vol. 7, Homilies on the First Epistle of John, Part 11 (1888), verified verbatim 2026-11-25; the 'W. Smith' attribution (secondary listing, vol. 11, 1883) was wrong. ReproducibilityStatus is therefore public-domain, not fair-use; see ver-p5-augustine-1john-5-7-attribution-001.",
     "status": "verification-pending"
   },
   {
