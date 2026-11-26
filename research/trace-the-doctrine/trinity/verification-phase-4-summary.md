@@ -304,8 +304,24 @@ files (Phase 5 or a research follow-up) before publication:
   classifications and 3 milestone debates (permanent flags); the Anselm and Gal 4:4 link
   framings.
 - Independent QA verification per §9.2 of all 759 records (Phases 2–5).
-- Editorial approval by Yonatan (separate step; not verification).
+- Editorial approval by Yonatan — recorded 2026-11-25 on the 639 `verified` records (see Editorial approval below); the 119 `partially-verified` and 1 `not-verified` records remain unapproved.
 - Only then may verified + approved claims be wired into published content.
+- Advance the publishable entities' lifecycle status to `editorially-approved` — the §10 gate requires entity status as well as approved records; until then nothing is publishable.
+
+
+## Editorial approval (2026-11-25)
+
+Yonatan approved the Phase 5 research on 2026-11-25 ("I approve", direct turn).
+`editorialApproval` is recorded on the 639 `verified` records (`approvedBy: Yonatan`,
+`date: 2026-11-25`): 294 cited by passages, interpretations, milestones, authors, or
+works, and 345 uncited Phase 4 second-pass records (`ver-p4-*`, verified). The 119
+`partially-verified` and 1 `not-verified` records keep `editorialApproval: null`.
+
+No verification status was changed: every entity still has lifecycle status
+`verification-pending`. The adapter's §10 gate requires entity status
+`editorially-approved` or `published` as well as verified + approved cited records,
+so the gate still reports 0 publishable passages / interpretations / works until the
+entity statuses are advanced (a separate step).
 
 ## Phase 5 resolutions — Stage 1 (corrections, 2026-11-25)
 
