@@ -1,0 +1,325 @@
+{
+  "id": "category-2-kings-the-fall-of-israel",
+  "title": "The Fall of Israel",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 17,
+    "startVerse": 1,
+    "endChapter": 17,
+    "endVerse": 41
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 17,
+    "startVerse": 1,
+    "endChapter": 17,
+    "endVerse": 41
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-07-001",
+      "claim": "In the twelfth year of Ahaz king of Judah, Hoshea son of Elah begins to reign in Samaria over Israel, nine years.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-002",
+      "claim": "Hoshea does evil in the sight of the LORD, \"but not as the kings of Israel that were before him.\" No reason for the qualification is given in the text.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-003",
+      "claim": "Shalmaneser king of Assyria comes up against Hoshea; Hoshea becomes his servant and gives him presents.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-004",
+      "claim": "The king of Assyria finds conspiracy in Hoshea: he has sent messengers to So king of Egypt and brought no present to the king of Assyria, as he had done year by year. The king of Assyria shuts him up and binds him in prison.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-005",
+      "claim": "The king of Assyria comes up throughout all the land, goes up to Samaria, and besieges it three years.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-006",
+      "claim": "In the ninth year of Hoshea the king of Assyria takes Samaria and carries Israel away into Assyria, placing them in Halah and in Habor by the river of Gozan, and in the cities of the Medes. No number of captives is given.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-007",
+      "claim": "The children of Israel sinned against the LORD their God, who brought them up out of Egypt from under Pharaoh, and feared other gods; they walked in the statutes of the heathen whom the LORD cast out, and of the kings of Israel, which they had made.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-008",
+      "claim": "The children of Israel built high places in all their cities, \"from the tower of the watchmen to the fenced city,\" set up images and groves on every high hill and under every green tree, burnt incense in all the high places, and served idols, \"whereof the LORD had said unto them, Ye shall not do this thing.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-009",
+      "claim": "The LORD testified against Israel and against Judah \"by all the prophets, and by all the seers,\" saying, \"Turn ye from your evil ways, and keep my commandments and my statutes, according to all the law which I commanded your fathers, and which I sent to you by my servants the prophets.\" The prophets and seers are unnamed.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-010",
+      "claim": "They would not hear, but hardened their necks like their fathers who did not believe; they rejected his statutes, his covenant, and his testimonies, \"followed vanity, and became vain,\" and went after the heathen round about them.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-011",
+      "claim": "They left all the commandments, made molten images, \"even two calves,\" made a grove, worshipped all the host of heaven, and served Baal; they caused their sons and daughters to pass through the fire, used divination and enchantments, and \"sold themselves to do evil in the sight of the LORD, to provoke him to anger.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-012",
+      "claim": "\"Therefore the LORD was very angry with Israel, and removed them out of his sight: there was none left but the tribe of Judah only.\" \"Also Judah kept not the commandments of the LORD their God, but walked in the statutes of Israel which they made.\" The LORD rejected all the seed of Israel, afflicted them, and delivered them into the hand of spoilers, \"until he had cast them out of his sight.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-013",
+      "claim": "\"For he rent Israel from the house of David; and they made Jeroboam the son of Nebat king: and Jeroboam drave Israel from following the LORD, and made them sin a great sin.\" The children of Israel walked in all the sins of Jeroboam and departed not from them, \"Until the LORD removed Israel out of his sight, as he had said by all his servants the prophets. So was Israel carried away out of their own land to Assyria unto this day.\" No single oracle is named.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-014",
+      "claim": "The king of Assyria brings men from Babylon, Cuthah, Ava, Hamath, and Sepharvaim and places them in the cities of Samaria instead of the children of Israel; they possess Samaria and dwell in its cities.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Samaria,\" read in full (lines 109–110): the Assyrians brought people from Babylon, Kuthah, Avva, Hamath, and Sepharvaim to live in the towns of Samaria.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-015",
+      "claim": "At the beginning of their dwelling there they fear not the LORD, so the LORD sends lions among them, which slay some of them. They tell the king of Assyria that the nations he placed in Samaria \"know not the manner of the God of the land,\" and the lions slay them for it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-016",
+      "claim": "The king of Assyria commands that one of the priests carried away from Samaria be carried back to dwell there and teach them \"the manner of the God of the land.\" The priest comes and dwells in Bethel, and teaches them how they should fear the LORD.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-017",
+      "claim": "Every nation makes gods of its own and puts them in the houses of the high places the Samaritans had made. The men of Babylon make Succothbenoth, the men of Cuth make Nergal, the men of Hamath make Ashima, the Avites make Nibhaz and Tartak, and the Sepharvites burn their children in fire to Adrammelech and Anammelech, the gods of Sepharvaim. (JPS reads \"Avvites\" for stored \"Avites\" — a spelling variant, not adjudicated.)",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-018",
+      "claim": "\"So they feared the LORD, and made unto themselves of the lowest of them priests of the high places, which sacrificed for them in the houses of the high places. They feared the LORD, and served their own gods, after the manner of the nations whom they carried away from thence.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-019",
+      "claim": "\"Unto this day they do after the former manners: they fear not the LORD, neither do they after their statutes, or after their ordinances, or after the law and commandment which the LORD commanded the children of Jacob, whom he named Israel.\" The covenant is rehearsed — \"Ye shall not fear other gods... But the LORD, who brought you up out of the land of Egypt with great power and a stretched out arm, him shall ye fear, and him shall ye worship, and to him shall ye do sacrifice\" — and the statutes, ordinances, law, and commandment are to be observed \"for evermore.\" \"Howbeit they did not hearken, but they did after their former manner. So these nations feared the LORD, and served their graven images, both their children, and their children's children: as did their fathers, so do they unto this day.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-07-020",
+      "claim": "The chapter names Shalmaneser for the coming-up, the vassalage, and the imprisonment (17:3–4), but the siege and the taking themselves (17:5–6) are the work of \"the king of Assyria\" without a name; the Bible does not name the king who actually took the city.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Samaria,\" read in full (lines 103–105): the Bible does not name the king who actually took the city; Shalmaneser V began the siege, but his successor Sargon II claimed the conquest in his inscriptions.",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-07-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 28,
+      "endChapter": 12,
+      "endVerse": 33,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Jeroboam makes two calves of gold, sets one in Bethel and one in Dan, and says to the people, \"It is too much for you to go up to Jerusalem.\" The sin named in chapter 17 as the root of the fall begins here, and every king of Israel after him is measured against it."
+    },
+    {
+      "id": "conn-2ki-07-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 24,
+      "endChapter": 16,
+      "endVerse": 24,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Omri buys the hill from Shemer for two talents of silver and builds Samaria there, naming the city after its former owner. The capital that falls in chapter 17 was founded by purchase, on a hill with no prior tribal claims."
+    },
+    {
+      "id": "conn-2ki-07-003",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 15,
+      "startVerse": 19,
+      "endChapter": 15,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Pul king of Assyria comes against the land, and Menahem gives him a thousand talents of silver, exacted from the mighty men of wealth, so that his hand might be with him to confirm the kingdom. Assyrian tribute enters Israel's story a generation before the fall."
+    },
+    {
+      "id": "conn-2ki-07-004",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 15,
+      "startVerse": 29,
+      "endChapter": 15,
+      "endVerse": 29,
+      "type": "background",
+      "confidence": "probable",
+      "note": "In the days of Pekah, Tiglath-pileser king of Assyria takes Ijon, Abel-beth-maachah, Janoah, Kedesh, Hazor, Gilead, and Galilee, all the land of Naphtali, and carries them captive to Assyria. The first deportation names places and gives no headcount, as the fall itself does."
+    },
+    {
+      "id": "conn-2ki-07-005",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 18,
+      "startVerse": 9,
+      "endChapter": 18,
+      "endVerse": 12,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "In the fourth year of Hezekiah, the seventh of Hoshea, Shalmaneser besieges Samaria, and at the end of three years they take it, in the sixth year of Hezekiah, the ninth of Hoshea. The fall is told again inside Judah's story, with its own one-verse explanation, and it is the same fall, not a second one."
+    },
+    {
+      "id": "conn-2ki-07-006",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 20,
+      "startVerse": 4,
+      "endChapter": 20,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The commandment forbids making any graven image or bowing down to it or serving it. The chapter says Israel broke this command in the calves, the groves, the host of heaven, and the idols it served."
+    },
+    {
+      "id": "conn-2ki-07-007",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 14,
+      "startVerse": 15,
+      "endChapter": 14,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Ahijah says the LORD shall smite Israel, root it up out of the good land he gave to their fathers, and scatter it beyond the river, because of the groves with which they provoked him. The scattering the chapter records is the scattering this word announced."
+    },
+    {
+      "id": "conn-2ki-07-008",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 13,
+      "startVerse": 23,
+      "endChapter": 13,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The LORD is gracious to Israel because of his covenant with Abraham, Isaac, and Jacob, and would not destroy them, \"neither cast he them from his presence as yet.\" The reprieve whose \"as yet\" expires in chapter 17 is the last word of mercy before the fall."
+    },
+    {
+      "id": "conn-2ki-07-009",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 21,
+      "startVerse": 13,
+      "endChapter": 21,
+      "endVerse": 13,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The sentence on Judah is measured in the north's units: \"And I will stretch over Jerusalem the line of Samaria, and the plummet of the house of Ahab.\" Samaria's fall becomes the measure of Jerusalem's sentence."
+    },
+    {
+      "id": "conn-2ki-07-010",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 23,
+      "startVerse": 19,
+      "endChapter": 23,
+      "endVerse": 19,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Josiah takes away all the houses of the high places in the cities of Samaria, which the kings of Israel had made to provoke the LORD, and does to them according to all the acts he had done in Bethel. The high places the chapter counts among Israel's sins outlive the kingdom and are undone by Judah's reforming king."
+    },
+    {
+      "id": "conn-2ki-07-011",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 25,
+      "startVerse": 21,
+      "endChapter": 25,
+      "endVerse": 21,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "After the burning of Jerusalem, the king of Babylon slays the priests and officers at Riblah, \"So Judah was carried away out of their land.\" The sentence the chapter executes on Israel is executed on Judah in the book's last chapters, as the chapter itself warned when it indicted Judah inside Israel's obituary."
+    },
+    {
+      "id": "conn-2ki-07-012",
+      "book": "Hosea",
+      "bookId": "hosea",
+      "startChapter": 8,
+      "startVerse": 5,
+      "endChapter": 8,
+      "endVerse": 6,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The prophet says of the calf of Samaria that it has cast Israel off, and that the calf of Samaria shall be broken in pieces. The calf worship the chapter names as the root of the fall is the same worship the prophets condemned while the kingdom still stood."
+    },
+    {
+      "id": "conn-2ki-07-013",
+      "book": "Ezra",
+      "bookId": "ezra",
+      "startChapter": 4,
+      "startVerse": 2,
+      "endChapter": 4,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The settlers in the land say they seek the same God and have sacrificed to him since the days of Esarhaddon king of Assyria, who brought them up there. The resettlement the chapter records has a long tail, reaching into the return from Babylon."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-biblicaltraining-samaria"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-25",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. Category title 'The Fall of Israel' follows the approved 11-category structure (2KINGS-CATEGORIES-PROPOSAL.md line 25 table and line 89 heading) and the dossier header; the dispatch's 'Fall of Israel' drops the leading 'The' and appears nowhere in the verification corpus except the verification report's shorthand section 1 row — a dispatch-figure correction. Coverage is 41/41: all 41 verses of chapter 17 covered by section 9 claims (vv. 1-2 by 001-002; vv. 3-4 by 003-004; v. 5 by 005; v. 6 by 006; vv. 7-8 by 007; vv. 9-12 by 008; v. 13 by 009; vv. 14-15 by 010; vv. 16-17 by 011; vv. 18-20 by 012; vv. 21-23 by 013; v. 24 by 014; vv. 25-26 by 015; vv. 27-28 by 016; vv. 29-31 by 017; vv. 32-33 by 018; vv. 34-41 by 019; vv. 5-6 also by 020), per the dossier's own coverage check. S07 sources[] carries two entries (all verified in the live registry): 2K07-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; source-biblicaltraining-samaria. Appendix footnote uses (43 total): Mechon Mamre 28, BT Samaria 15. Section 9 Source IDs cells: Mechon Mamre 20 (all claims), BT Samaria 2 (claims 014 and 020). The Bible Odyssey 'Syria' article is NOT in sources[]: it is cited only in section 2 and section 4 internal prose, never in a section 9 Source IDs cell or the appendix — the section-location rule (the S05 Anointing section-2-only leg). The Kurkh Monolith (source-kurkh-monolith) is NOT cited for chapter 17 at all: it concerns Shalmaneser III at Qarqar in 853 BC, a different king from the Shalmaneser of chapter 17; the two Shalmanesers must not be confused. It appears only in section 2 and the dossier notes, never in a section 9 Source IDs cell or the appendix, and no claim rests on it — the registry marks it not-independently-verified. The BiblicalTraining 'Hoshea' article (2K07-S02) and the BiblicalTraining 'Bethel' article (2K07-S03) are NOT in sources[] and have NO registry entries: both were attempted and rate-limited (429, 3 attempts each, 2026-11-25) and not read; each appears only in the section 12 table and dossier notes, never in a section 9 Source IDs cell or the appendix, and no claim rests on either. Plain hygiene-rule exclusions — the S05 Athaliah pattern, not the S04 JSOT pattern. Both should be read by a later worker if Hoshea or Bethel material is needed. The Samaria article was read lines 0-155 of 220 in this dossier; lines 156-220 (Herod's Sebaste; the region; the New Testament) were not read and are not cited. The one probable claim: 020 (the king who actually took Samaria is unnamed in the chapter; the Samaria article, lines 103-105, notes the Bible does not name the taker). primaryScripture equals fullRange, 17:1-41 (span 0, within the validator's 3-chapter rule) per the dossier header; the whole chapter — the fall, the book's own explanation, and the resettlement — is one incident with its own verdict attached. Prose 429/1407/165 by the validator's own countWords — exactly the dossier's recorded counts, all in band (Ancient World 1407 is the post-Step-5 figure after the D-M6 second occurrence in the appendix, +4 words; the verification report's 1403 is the pre-Step-5 figure; the dossier-notes Why 164 is likewise the pre-Step-5 figure, 165 after the trailing separator is counted — consolidation report C-1). No Class A stored-text error falls in this range (ch. 17 is a zero-diff chapter in the KJV verification report); 17:31 'Avites' (stored) vs JPS 'Avvites' is a spelling variant, not adjudicated here. The stored readings are quoted nowhere in the built files (verified by grep at build). No licensed-translation text appears anywhere in this file (dossier section 13); Scripture quotations are brief public-domain quotations only. All 13 section 11 targets are single ranges within one book, so there are no encompassing ranges, no splits, and no whole-chapter targets. All 13 connections are probable. The new books in the connection targets are Exodus (2KCO-07-006, 20:4-5) and Ezra (2KCO-07-013, 4:2); Hosea (2KCO-07-012, 8:5-6) appeared in S04. Open items from the dossier notes: Hoshea's qualified evil (17:2) — graded less evil than the kings before him, no reason given; So king of Egypt (17:4) — what was promised, and whether anything came of the appeal, is unstated; which Assyrian king actually took Samaria (claim 020, probable); the number of captives (17:6) — places, not a number, are given (Sargon II's claim of more than 27,000 deportees is the inscription's claim as reported by the Samaria article, not the chapter's number); the unnamed fulfilment (17:23) — no oracle is named; the content of the priest's teaching at Bethel (17:28) beyond 'how they should fear the LORD'; Judah indicted inside Israel's obituary (17:19); 'the manner of the God of the land' (17:26-27); the double refrain (17:33, 41) ending 'unto this day'. Dossier-notes registry snapshot (443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Appendix headings were normalised at Step 5 per verification-report C-2 (single-# Appendix heading, ### section headings); the build normalises ### to ## and #### to ### as in S01-S06. Scripture quotations are brief public-domain quotations only; no licensed-translation text appears."
+  }
+}
