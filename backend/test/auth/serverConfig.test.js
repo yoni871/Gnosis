@@ -117,7 +117,7 @@ test("refuses to start without JWT_SECRET in production mode", async () => {
 test("refuses to start without RATE_LIMIT_KEY_SECRET", async () => {
     const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
-        JWT_SECRET: "test-secret-for-server-config-tests",
+        JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET,
         RATE_LIMIT_KEY_SECRET: undefined,
         TEST_SECRET_MARKER: MARKER,
     });
@@ -134,7 +134,7 @@ test("refuses to start with a short JWT_SECRET", async () => {
     const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
         JWT_SECRET: "too-short",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET,
         TEST_SECRET_MARKER: MARKER,
     });
     const code = await waitForExit(child, 15000);
@@ -147,7 +147,7 @@ test("refuses to start with a short JWT_SECRET", async () => {
 test("refuses to start with a short RATE_LIMIT_KEY_SECRET", async () => {
     const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
-        JWT_SECRET: "test-secret-for-server-config-tests",
+        JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET,
         RATE_LIMIT_KEY_SECRET: "too-short",
         TEST_SECRET_MARKER: MARKER,
     });
@@ -161,8 +161,8 @@ test("refuses to start with a short RATE_LIMIT_KEY_SECRET", async () => {
 test("starts with 64-hex secrets", async () => {
     const server = spawnServer(0, {
         NODE_ENV: "production",
-        JWT_SECRET: "0123456789abcdef".repeat(4),
-        RATE_LIMIT_KEY_SECRET: "fedcba9876543210".repeat(4),
+        JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET,
+        RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET,
     });
     try {
         const output = await waitForOutput(server.child.stdout, "TEST_PORT=", 15000);
@@ -172,11 +172,49 @@ test("starts with 64-hex secrets", async () => {
     }
 });
 
+test("refuses identical JWT and rate-limit secrets at boot", async () => {
+    const same = require('../helpers/syntheticSecrets').JWT_SECRET;
+    const { child, stderr } = spawnServer(0, {
+        NODE_ENV: "production", JWT_SECRET: same, RATE_LIMIT_KEY_SECRET: same,
+    });
+    assert.notEqual(await waitForExit(child, 15000), 0);
+    assert.ok(stderr().includes("Server configuration error"));
+    assert.ok(!stderr().includes(same));
+});
+
+test("serverless app import refuses a placeholder secret before serving", () => {
+    const { spawnSync } = require('node:child_process');
+    const result = spawnSync(process.execPath, ['-e', "require('./src/app')"], {
+        cwd: backendDir, encoding: 'utf8', env: childEnv({
+            NODE_ENV: 'production', JWT_SECRET: 'placeholder-secret-value-1234567890',
+            RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET,
+        }),
+    });
+    assert.notEqual(result.status, 0);
+    assert.ok(result.stderr.includes('Server configuration error'));
+    assert.ok(!result.stderr.includes('placeholder-secret-value-1234567890'));
+});
+
+test("serverless app import refuses missing or reused secrets", () => {
+    const { spawnSync } = require('node:child_process');
+    const jwt = require('../helpers/syntheticSecrets').JWT_SECRET;
+    for (const rate of [undefined, jwt]) {
+        const result = spawnSync(process.execPath, ['-e', "require('./src/app')"], {
+            cwd: backendDir, encoding: 'utf8', env: childEnv({
+                NODE_ENV: 'production', JWT_SECRET: jwt, RATE_LIMIT_KEY_SECRET: rate,
+            }),
+        });
+        assert.notEqual(result.status, 0);
+        assert.ok(result.stderr.includes('Server configuration error'));
+        assert.ok(!result.stderr.includes(jwt));
+    }
+});
+
 test("refuses to start with an invalid TRUST_PROXY value", async () => {
     const { child } = spawnServer(0, {
         NODE_ENV: "production",
-        JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET,
+        RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET,
         TRUST_PROXY: "not-a-proxy-value",
     });
     const code = await waitForExit(child, 15000);
@@ -189,8 +227,8 @@ test("refuses to start with an invalid TRUST_PROXY value", async () => {
 test("refuses to start without RESEND_API_KEY", async () => {
     const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
-        JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET,
+        RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET,
         RESEND_API_KEY: undefined,
     });
     const code = await waitForExit(child, 15000);
@@ -202,8 +240,8 @@ test("refuses to start without RESEND_API_KEY", async () => {
 test("refuses to start with an invalid EMAIL_FROM", async () => {
     const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
-        JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET,
+        RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET,
         EMAIL_FROM: "not-an-email",
     });
     const code = await waitForExit(child, 15000);
@@ -215,8 +253,8 @@ test("refuses to start with an invalid EMAIL_FROM", async () => {
 test("refuses to start with a non-HTTPS FRONTEND_URL", async () => {
     const { child, stderr } = spawnServer(0, {
         NODE_ENV: "production",
-        JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET,
+        RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET,
         FRONTEND_URL: "http://frontend.example.invalid",
     });
     const code = await waitForExit(child, 15000);
@@ -228,8 +266,8 @@ test("refuses to start with a non-HTTPS FRONTEND_URL", async () => {
 async function malformedJsonInMode(mode, port) {
     const server = spawnServer(port, {
         NODE_ENV: mode,
-        JWT_SECRET: "test-secret-for-server-config-tests",
-        RATE_LIMIT_KEY_SECRET: "test-secret-for-server-config-tests",
+        JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET,
+        RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET,
     });
     try {
         const output = await waitForOutput(server.child.stdout, "TEST_PORT=", 15000);

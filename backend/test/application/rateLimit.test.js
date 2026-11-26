@@ -8,8 +8,8 @@ const { startBackend } = require('../helpers/backend-instance');
 const { attemptReservation, computeKeyHash, lockKeyPair, releaseReservations, RATE_LIMITED_BODY } = require('../../src/utils/rateLimit');
 
 const context = contextFromEnvironment(); // Fail before any connection if run directly.
-const RATE_SECRET = 'synthetic-application-test-rate-limit';
-const JWT_SECRET = 'synthetic-application-test-jwt-synthetic-test-secret';
+const RATE_SECRET = require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET;
+const JWT_SECRET = require('../helpers/syntheticSecrets').JWT_SECRET;
 // Workers run with trust proxy disabled, so every request keys on the
 // loopback socket address.
 const IP = '127.0.0.1';

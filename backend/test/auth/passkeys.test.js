@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken");
 
 // Explicit isolation also protects direct node --test invocations.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "synthetic-test-jwt-secret-at-least-thirty-two-characters";
-process.env.RATE_LIMIT_KEY_SECRET = "synthetic-test-rate-limit-secret";
+process.env.JWT_SECRET = require('../helpers/syntheticSecrets').JWT_SECRET;
+process.env.RATE_LIMIT_KEY_SECRET = require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET;
 process.env.RESEND_API_KEY = "re_synthetic";
 process.env.EMAIL_FROM = "Gnosis Test <test@example.invalid>";
 process.env.FRONTEND_URL = "https://frontend.example.invalid";

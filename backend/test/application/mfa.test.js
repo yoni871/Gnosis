@@ -13,7 +13,7 @@ const { digestPasswordHash } = require('../../src/utils/mfaEnrollToken');
 const mfaService = require('../../src/services/mfaService');
 
 // The rate-limit secret the disposable worker uses (backend-instance).
-const RATE_LIMIT_SECRET = 'synthetic-application-test-rate-limit';
+const RATE_LIMIT_SECRET = require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET;
 
 // Synthetic encryption key for the disposable worker only. The test
 // file sets it before startBackend, and backend-instance forwards it

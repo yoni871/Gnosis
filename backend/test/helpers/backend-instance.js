@@ -6,8 +6,8 @@ const { validateContext } = require('./application-database');
 // NODE_OPTIONS, execArgv, dotenv paths, or database defaults to an application worker.
 function workerEnvironment() {
     const env = { GNOSIS_TEST_ISOLATION: '1', NODE_ENV: 'test',
-        JWT_SECRET: 'synthetic-application-test-jwt-synthetic-test-secret',
-        RATE_LIMIT_KEY_SECRET: 'synthetic-application-test-rate-limit', TZ: 'UTC',
+        JWT_SECRET: require('./syntheticSecrets').JWT_SECRET,
+        RATE_LIMIT_KEY_SECRET: require('./syntheticSecrets').RATE_LIMIT_KEY_SECRET, TZ: 'UTC',
         // Issue #9: workers import app.js, which validates email
         // configuration at import time. These synthetic, non-routable
         // values satisfy validation without ever sending real email;
