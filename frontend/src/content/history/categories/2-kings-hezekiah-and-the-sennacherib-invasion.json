@@ -1,0 +1,487 @@
+{
+  "id": "category-2-kings-hezekiah-and-the-sennacherib-invasion",
+  "title": "Hezekiah and the Sennacherib Invasion",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 18,
+    "startVerse": 1,
+    "endChapter": 20,
+    "endVerse": 21
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 18,
+    "startVerse": 1,
+    "endChapter": 20,
+    "endVerse": 21
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-08-001",
+      "claim": "In the third year of Hoshea son of Elah king of Israel, Hezekiah the son of Ahaz king of Judah begins to reign. He is twenty-five years old, reigns twenty-nine years in Jerusalem, and his mother's name is Abi, the daughter of Zachariah.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-002",
+      "claim": "Hezekiah does that which is right in the sight of the LORD, \"according to all that David his father did.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-003",
+      "claim": "Hezekiah removes the high places, breaks the images, cuts down the groves, and breaks in pieces the brasen serpent that Moses had made — \"for unto those days the children of Israel did burn incense to it: and he called it Nehushtan.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-004",
+      "claim": "Hezekiah is the only king in the book who removes the high places: Joash (12:3), Amaziah (14:4), Azariah (15:4), and Jotham (15:35) all leave them standing. The name Nehushtan plays on the Hebrew words for \"bronze\" and \"snake\"; a relic linked to Moses had become an object of worship, and Hezekiah destroyed it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Hezekiah,\" read in full (lines 104–106).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-08-005",
+      "claim": "Hezekiah trusts in the LORD God of Israel, \"so that after him was none like him among all the kings of Judah, nor any that were before him.\" He cleaves to the LORD, departs not from following him, and keeps the commandments which the LORD commanded Moses.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-006",
+      "claim": "The superlative of 18:5 (\"after him was none like him among all the kings of Judah, nor any that were before him\") stands against the superlative of 23:25 (\"like unto him was there no king before him... neither after him arose there any like him\") for Josiah. Both superlatives stand in the text; the pair is flagged and not ranked. The Hezekiah article reads the difference as one of emphasis — Hezekiah's trust against Josiah's wholehearted obedience to the Law — which is the article's interpretation, not a resolution.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Hezekiah,\" read in full (lines 73–75).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2ki-08-007",
+      "claim": "The LORD is with Hezekiah, and he prospers whithersoever he goes forth; he rebels against the king of Assyria and serves him not. He smites the Philistines, even unto Gaza and the borders thereof, \"from the tower of the watchmen to the fenced city\" — the same phrase as 17:9, where it measures Israel's high places; here it measures Hezekiah's victories.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-008",
+      "claim": "In the fourth year of Hezekiah, the seventh of Hoshea, Shalmaneser king of Assyria comes up against Samaria and besieges it; at the end of three years they take it, in the sixth year of Hezekiah, the ninth of Hoshea. Israel is carried to Halah, Habor by the river of Gozan, and the cities of the Medes, \"Because they obeyed not the voice of the LORD their God, but transgressed his covenant.\" This is the retelling of Samaria's fall inside Hezekiah's reign, synchronised to his years — not a second fall (see S07, 17:1–41).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-009",
+      "claim": "In the fourteenth year of king Hezekiah, Sennacherib king of Assyria comes up against all the fenced cities of Judah and takes them.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Sennacherib,\" read in full (lines 173–177): the annals count forty-six walled cities and claim 200,150 captives.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-010",
+      "claim": "Hezekiah sends to the king of Assyria at Lachish, saying, \"I have offended; return from me: that which thou puttest on me will I bear.\" Assyria appoints three hundred talents of silver and thirty talents of gold. Hezekiah gives all the silver found in the house of the LORD and in the treasures of the king's house, and cuts off the gold from the doors of the temple of the LORD and from the pillars which he had overlaid, and gives it to the king of Assyria.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Hezekiah,\" read in full (lines 186–190); BiblicalTraining, \"Solomon's Temple,\" read in part (lines 105–106, 116–117): the temple doors were carved and covered with gold.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-011",
+      "claim": "The Lachish tribute is distinctive to Kings: Isaiah 36 (22 verses) and 2 Chronicles 32 (33 verses) tell the invasion without any tribute payment. Confirmed at dossier stage against the stored KJV text of both chapters, read in full 2026-11-25; the Sennacherib article likewise records that Isaiah 36–37 repeats the invasion \"without the report of Hezekiah's tribute.\" Why the tribute is absent from the other accounts is not settled here.",
+      "evidence": "Stored KJV text of Isaiah 36 and 2 Chronicles 32 read in full 2026-11-25; BiblicalTraining, \"Sennacherib,\" read in full (lines 100–102).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-012",
+      "claim": "The king of Assyria sends Tartan and Rabsaris and Rabshakeh from Lachish to king Hezekiah with a great host against Jerusalem. They stand by the conduit of the upper pool, in the highway of the fuller's field. Eliakim the son of Hilkiah, which is over the household, Shebna the scribe, and Joah the son of Asaph the recorder come out to them.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" read in part (lines 229–231): the field commander stood \"by the conduit of the upper pool.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-013",
+      "claim": "Rabshakeh speaks to Hezekiah's officers: \"Thus saith the great king, the king of Assyria, What confidence is this wherein thou trustest?\" Egypt is \"the staff of this bruised reed, even upon Egypt, on which if a man lean, it will go into his hand, and pierce it: so is Pharaoh king of Egypt unto all that trust on him.\" If they trust in the LORD, is not that he whose high places and altars Hezekiah has taken away? He offers two thousand horses if Judah can set riders on them, and claims, \"The LORD said to me, Go up against this land, and destroy it.\" The claim is Rabshakeh's; the text neither confirms nor denies it here.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-014",
+      "claim": "Eliakim, Shebna, and Joah ask Rabshakeh to speak in the Syrian language, \"for we understand it,\" and not in the Jews' language in the ears of the people on the wall. Rabshakeh refuses — his master sent him to the men on the wall — and stands and cries with a loud voice in the Jews' language, \"Hear the word of the great king, the king of Assyria.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Hezekiah,\" read in full (lines 192–198): Aramaic was the diplomatic language of the day, and the field commander deliberately spoke Hebrew to the soldiers on the wall.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-015",
+      "claim": "Rabshakeh speaks to the wall: \"Let not Hezekiah deceive you... Make an agreement with me by a present, and come out to me, and then eat ye every man of his own vine, and every one of his fig tree... Until I come and take you away to a land like your own land, a land of corn and wine, a land of bread and vineyards, a land of oil olive and of honey, that ye may live, and not die.\" He asks, \"Hath any of the gods of the nations delivered at all his land out of the hand of the king of Assyria? Where are the gods of Hamath, and of Arpad? where are the gods of Sepharvaim, Hena, and Ivah? have they delivered Samaria out of mine hand?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-016",
+      "claim": "The people hold their peace and answer him not a word, for the king's commandment is, \"Answer him not.\" Eliakim, Shebna, and Joah come to Hezekiah with their clothes rent and tell him the words of Rabshakeh.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-017",
+      "claim": "When Hezekiah hears it, he rents his clothes, covers himself with sackcloth, and goes into the house of the LORD. He sends Eliakim, Shebna, and the elders of the priests, covered with sackcloth, to Isaiah the prophet: \"This day is a day of trouble, and of rebuke, and blasphemy; for the children are come to the birth, and there is not strength to bring forth... lift up thy prayer for the remnant that are left.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-018",
+      "claim": "Isaiah answers: \"Be not afraid of the words which thou hast heard, with which the servants of the king of Assyria have blasphemed me. Behold, I will send a blast upon him, and he shall hear a rumour, and shall return to his own land; and I will cause him to fall by the sword in his own land.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-019",
+      "claim": "Rabshakeh returns and finds the king of Assyria warring against Libnah, having departed from Lachish. Hearing of Tirhakah king of Ethiopia coming out to fight, Sennacherib sends messengers again: \"Let not thy God in whom thou trustest deceive thee... Have the gods of the nations delivered them which my fathers have destroyed; as Gozan, and Haran, and Rezeph, and the children of Eden which were in Thelasar? Where is the king of Hamath, and the king of Arpad, and the king of the city of Sepharvaim, of Hena, and Ivah?\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-020",
+      "claim": "Hezekiah receives the letter, reads it, goes up into the house of the LORD, and spreads it before the LORD. He prays: \"O LORD God of Israel, which dwellest between the cherubims, thou art the God, even thou alone, of all the kingdoms of the earth; thou hast made heaven and earth... Now therefore, O LORD our God, I beseech thee, save thou us out of his hand, that all the kingdoms of the earth may know that thou art the LORD God, even thou only.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; Bible Odyssey, \"First Temple,\" read in full (lines 10–16): the temple is described as the sanctuary where God is said to dwell.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-021",
+      "claim": "Isaiah sends to Hezekiah: \"That which thou hast prayed to me against Sennacherib king of Assyria I have heard. This is the word that the LORD hath spoken concerning him; The virgin the daughter of Zion hath despised thee, and laughed thee to scorn; the daughter of Jerusalem hath shaken her head at thee. Whom hast thou reproached and blasphemed?... even against the Holy One of Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-022",
+      "claim": "The oracle rehearses Sennacherib's boasts: \"By thy messengers thou hast reproached the Lord\" — the corrected KJV reading of 19:23 (the stored text misrenders the divine name; Hebrew *Adonai*; see §3) — \"and hast said, With the multitude of my chariots I am come up to the height of the mountains, to the sides of Lebanon, and will cut down the tall cedar trees thereof, and the choice fir trees thereof... I have digged and drunk strange waters, and with the sole of my feet have I dried up all the rivers of besieged places.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (JPS 19:23: \"By the messengers thou hast taunted the Lord\"); stored KJV read in full; KJV verification report (BibleHub + Blue Letter Bible + Hebrew confirm the corrected reading).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-023",
+      "claim": "The oracle answers: \"Hast thou not heard long ago how I have done it, and of ancient times that I have formed it? now have I brought it to pass, that thou shouldest be to lay waste fenced cities into ruinous heaps. Therefore their inhabitants were of small power, they were dismayed and confounded; they were as the grass of the field, and as the green herb, as the grass on the house tops, and as corn blasted before it be grown up... Because thy rage against me and thy tumult is come up into mine ears, therefore I will put my hook in thy nose, and my bridle in thy lips, and I will turn thee back by the way by which thou camest.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-024",
+      "claim": "\"And this shall be a sign unto thee, Ye shall eat this year such things as grow of themselves, and in the second year that which springeth of the same; and in the third year sow ye, and reap, and plant vineyards, and eat the fruits thereof.\" The sign is agricultural and slow, not a wonder on the day.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-025",
+      "claim": "\"And the remnant that is escaped of the house of Judah shall yet again take root downward, and bear fruit upward. For out of Jerusalem shall go forth a remnant, and they that escape out of mount Zion: the zeal of the LORD of hosts shall do this.\" The remnant thread runs on to chapters 24–25.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-026",
+      "claim": "\"Therefore thus saith the LORD concerning the king of Assyria, He shall not come into this city, nor shoot an arrow there, nor come before it with shield, nor cast a bank against it. By the way that he came, by the same shall he return, and shall not come into this city, saith the LORD. For I will defend this city, to save it, for mine own sake, and for my servant David's sake.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-027",
+      "claim": "That night the angel of the LORD smites in the camp of the Assyrians a hundred fourscore and five thousand; in the morning they are all dead corpses. Sennacherib departs, returns, and dwells at Nineveh; worshipping in the house of Nisroch his god, his sons Adrammelech and Sharezer smite him with the sword and escape into the land of Armenia, and Esarhaddon his son reigns in his stead. No battle is described; the number is stated and not rationalised.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Sennacherib,\" read in full (lines 191–201): the Babylonian Chronicle reports Sennacherib killed by \"his son\" in a rebellion, and Esarhaddon's inscriptions describe his brothers rising against him.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-028",
+      "claim": "In those days Hezekiah is sick unto death. Isaiah comes and says, \"Thus saith the LORD, Set thine house in order; for thou shalt die, and not live.\" Hezekiah turns his face to the wall and prays, \"I beseech thee, O LORD, remember now how I have walked before thee in truth and with a perfect heart, and have done that which is good in thy sight.\" And Hezekiah weeps sore.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-029",
+      "claim": "Before Isaiah is gone out into the middle court, the word of the LORD comes to him: \"I have heard thy prayer, I have seen thy tears: behold, I will heal thee: on the third day thou shalt go up unto the house of the LORD. And I will add unto thy days fifteen years; and I will deliver thee and this city out of the hand of the king of Assyria; and I will defend this city for mine own sake, and for my servant David's sake.\" Isaiah orders a lump of figs laid on the boil, and he recovers.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-030",
+      "claim": "Hezekiah asks for a sign that the LORD will heal him and that he shall go up to the house of the LORD the third day. Isaiah offers the shadow forward ten degrees or back ten; Hezekiah chooses the backward sign — \"It is a light thing for the shadow to go down ten degrees: nay, but let the shadow return backward ten degrees\" — and Isaiah cries unto the LORD, who brings the shadow ten degrees backward, \"by which it had gone down in the dial of Ahaz.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-031",
+      "claim": "Berodachbaladan, the son of Baladan, king of Babylon, sends letters and a present unto Hezekiah, having heard that he had been sick. Hezekiah shows them all the house of his precious things — the silver, the gold, the spices, the precious ointment, the armour, and all that is found in his treasures: \"there was nothing in his house, nor in all his dominion, that Hezekiah shewed them not.\" Isaiah asks what they said, whence they came, and what they have seen; Hezekiah answers, \"All the things that are in mine house have they seen.\" No motive for the showing is stated.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Hezekiah,\" read in full (lines 263–267): Merodach-Baladan ruled Babylon in defiance of Assyria and was organising resistance to it; the embassy was probably also an attempt to win Judah as an ally.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-032",
+      "claim": "Isaiah says, \"Hear the word of the LORD. Behold, the days come, that all that is in thine house, and that which thy fathers have laid up in store unto this day, shall be carried into Babylon: nothing shall be left, saith the LORD. And of thy sons that shall issue from thee, which thou shalt beget, shall they take away; and they shall be eunuchs in the palace of the king of Babylon.\" Hezekiah answers, \"Good is the word of the LORD which thou hast spoken. And he said, Is it not good, if peace and truth be in my days?\" The sentence is in the text; it is flagged, not judged.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-033",
+      "claim": "The rest of the acts of Hezekiah, and all his might, \"and how he made a pool, and a conduit, and brought water into the city,\" are in the book of the chronicles of the kings of Judah. Hezekiah sleeps with his fathers, and Manasseh his son reigns in his stead. The water tunnel under the City of David, running from the Gihon Spring to the Pool of Siloam, is generally identified with this work; the Siloam Inscription names no king, and most scholars attribute the tunnel to Hezekiah, though a few have argued for an earlier date.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Hezekiah,\" read in full (lines 157–167); BiblicalTraining, \"Jerusalem,\" read in part (lines 224–227).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-08-034",
+      "claim": "Decommissioned cult installations from this period have been found at three Judean sites: a gate shrine at Lachish whose altars had their horns broken off, a large horned altar at Beersheba found reused as building stone, and a shrine at Arad that went out of use in the late 8th century BC. Whether these finds are Hezekiah's reform, a projection of Josiah's reform, or a *de facto* centralisation after the Assyrian campaign is debated, and the finds cannot be tied to Hezekiah with certainty.",
+      "evidence": "BiblicalTraining, \"Hezekiah,\" read in full (lines 118–121); BiblicalTraining, \"Lachish,\" read in full (lines 108–111); Kleiman, \"Hezekiah's Reform: The Archeological Evidence,\" read in part in this dossier (footnotes and summary read live 2026-11-25; main text did not render) — corroboration only, no claim rests on it alone.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-08-035",
+      "claim": "Sennacherib's annals and the biblical account agree on the revolt, the Egyptian intervention, the capture of Judah's fortified towns, the base at Lachish, the confinement of Hezekiah in Jerusalem (\"like a bird in a cage\"), and a heavy tribute; the gold, 30 talents, is the same in both. The silver differs (300 talents in Kings, 800 in the annals); the annals place the tribute after the siege, Kings before the demand for surrender; and the annals say nothing of a disaster and do not claim that Jerusalem fell.",
+      "evidence": "BiblicalTraining, \"Sennacherib,\" read in full (lines 86–96, 140–149); BiblicalTraining, \"Hezekiah,\" read in full (lines 186–190, 222–224). The annals themselves were not read in Akkadian; this claim rests on the articles' reporting of them.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-08-036",
+      "claim": "The accession of Hezekiah is dated two ways by the text's own evidence: the synchronisms with Hoshea and the fall of Samaria point to an accession around 729–727 BC, while the fourteenth year of the invasion, fixed by Assyrian records in 701 BC, points to an accession around 715 BC. Proposed resolutions — a co-regency with Ahaz, different ways of counting regnal years, a miscopied numeral — are debated, and the later dating (sole reign 716/715–687/686 BC) is the more widely held. The question is not resolved here.",
+      "evidence": "BiblicalTraining, \"Hezekiah,\" read in full (lines 36–55); BiblicalTraining, \"Sennacherib,\" read in full (lines 161–163).",
+      "assessment": "debated"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-08-001",
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "startChapter": 36,
+      "startVerse": 1,
+      "endChapter": 37,
+      "endVerse": 38,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The invasion, the demand, the prayer, and the deliverance are told a second time, almost word for word, in the book of Isaiah. Targets: the whole invasion arc of 2 Kings 18:13–19:37, including Rabshakeh's speeches, Hezekiah's prayer, Isaiah's oracle, and the angel's stroke. The one difference that matters is the tribute: Isaiah tells the invasion without the report of the payment at Lachish."
+    },
+    {
+      "id": "conn-2ki-08-002",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 32,
+      "startVerse": 1,
+      "endChapter": 32,
+      "endVerse": 33,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler tells the same invasion more briefly, dwelling on Hezekiah's preparations — stopping the waters, building the second wall, making weapons — and on his trust in God. Targets: the preparations of 2 Chronicles 32:2–8, the demand and the prayer of 32:9–20, the deliverance of 32:21–23, the sickness of 32:24, and the Babylonian envoys of 32:31. The tribute is absent here too, and the Chronicler adds his own assessment of Hezekiah's pride and humbling, which Kings does not give."
+    },
+    {
+      "id": "conn-2ki-08-003",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 17,
+      "startVerse": 1,
+      "endChapter": 17,
+      "endVerse": 41,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The fall of Samaria is told in full here: the three-year siege, the deportation to Halah, Habor, and the cities of the Medes, and the seventeen-verse explanation of why Israel fell. Targets: the siege and fall of 17:1–6 and the explanation of 17:7–23, which chapter 18 retells inside Hezekiah's reign, synchronised to his years, with its own one-verse explanation."
+    },
+    {
+      "id": "conn-2ki-08-004",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 21,
+      "startVerse": 3,
+      "endChapter": 21,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Manasseh, Hezekiah's son, builds up again the high places his father destroyed, rears altars for Baal, and makes a grove as did Ahab. Targets: the rebuilding of the high places, the direct reversal of the reform of 18:4, stated in a single verse at the head of the next reign."
+    },
+    {
+      "id": "conn-2ki-08-005",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 23,
+      "startVerse": 25,
+      "endChapter": 23,
+      "endVerse": 25,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Josiah is praised as a king like whom there was none before him and none like him after, in words that match the praise given to Hezekiah in 18:5. Targets: the verdict on Josiah, set beside the verdict on Hezekiah; both superlatives stand, and the pair is carried without ranking the two kings."
+    },
+    {
+      "id": "conn-2ki-08-006",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 24,
+      "startVerse": 13,
+      "endChapter": 24,
+      "endVerse": 13,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Nebuchadnezzar carries out the treasures of the house of the LORD and cuts in pieces the vessels of gold Solomon made in the temple, \"as the LORD had said.\" Targets: the cutting up of the gold vessels, which fulfils the word spoken to Hezekiah in 20:17 — all that is in his house shall be carried into Babylon."
+    },
+    {
+      "id": "conn-2ki-08-007",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 25,
+      "startVerse": 13,
+      "endChapter": 25,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The pillars of brass, the bases, and the brasen sea are broken in pieces and their brass carried to Babylon. Targets: the breaking up of the temple's bronze, the last emptying of the house that Hezekiah had stripped for tribute and shown to Babylon's envoys."
+    },
+    {
+      "id": "conn-2ki-08-008",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 16,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Nathan brings David the word that his house and kingdom shall be established for ever before him and his throne established for ever. Targets: the promise of an enduring house, which the oracle invokes when it defends the city \"for mine own sake, and for my servant David's sake.\""
+    },
+    {
+      "id": "conn-2ki-08-009",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 36,
+      "endChapter": 11,
+      "endVerse": 36,
+      "type": "background",
+      "confidence": "probable",
+      "note": "For David's sake and for Jerusalem's sake the LORD leaves one tribe to Solomon's son, \"that David my servant may have a light alway before me in Jerusalem.\" Targets: the lamp for David's sake, the same ground on which Judah is spared in 8:19 and Jerusalem defended in 19:34."
+    },
+    {
+      "id": "conn-2ki-08-010",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 21,
+      "startVerse": 4,
+      "endChapter": 21,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "When the people are bitten by fiery serpents, Moses makes a serpent of brass and sets it on a pole, and everyone bitten who looks on it lives. Targets: the making of the brasen serpent, the relic Hezekiah breaks in pieces in 18:4 after the people had burned incense to it."
+    },
+    {
+      "id": "conn-2ki-08-011",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 16,
+      "endChapter": 17,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law of the king forbids him to multiply horses or cause the people to return to Egypt for horses. Targets: the single verse on horses and Egypt, which stands behind Rabshakeh's taunt about the bruised reed and the offer of two thousand horses."
+    },
+    {
+      "id": "conn-2ki-08-012",
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "startChapter": 10,
+      "startVerse": 5,
+      "endChapter": 10,
+      "endVerse": 19,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Assyria is called the rod of the LORD's anger and the staff of his indignation, a tool that will itself be punished for its arrogance. Targets: the oracle against Assyria, which gives the prophetic frame for 19:25 — Assyria as the instrument of a purpose formed of ancient times, turned back when its work is done."
+    },
+    {
+      "id": "conn-2ki-08-013",
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "startChapter": 22,
+      "startVerse": 9,
+      "endChapter": 22,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Isaiah describes the city's preparations: houses torn down to strengthen the wall and a reservoir built between the two walls, and rebukes the city because it did not look to the One who made it. Targets: the wall and the reservoir, the same preparations the histories describe for the siege."
+    },
+    {
+      "id": "conn-2ki-08-014",
+      "book": "Micah",
+      "bookId": "micah",
+      "startChapter": 1,
+      "startVerse": 10,
+      "endChapter": 1,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Micah laments over the towns of the Shephelah, the low hill country west of Judah's heartland, in a series of wordplays on their names. Targets: the lament over the Shephelah towns, commonly read against the background of Sennacherib's invasion, when those towns fell one by one."
+    },
+    {
+      "id": "conn-2ki-08-015",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 26,
+      "startVerse": 17,
+      "endChapter": 26,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "When Jeremiah is threatened with death for prophesying against the temple, elders of the land recall that Micah foretold the ruin of Jerusalem in Hezekiah's days, and that Hezekiah feared the LORD and sought his favour, and the LORD relented. Targets: the elders' recollection, which shows how Hezekiah's reign was remembered a century later."
+    },
+    {
+      "id": "conn-2ki-08-016",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 16,
+      "startVerse": 10,
+      "endChapter": 16,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ahaz sees an altar in Damascus, sends its pattern to Urijah the priest, and has it built in the temple, rearranging the temple furnishings in deference to the king of Assyria. Targets: the Damascus altar and the demotion of the brasen altar, the work of Hezekiah's father that the reform of 18:4 undoes — down to the dial of Ahaz on which the sign is read in 20:11."
+    },
+    {
+      "id": "conn-2ki-08-017",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 12,
+      "startVerse": 3,
+      "endChapter": 12,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jehoash does right all his days wherein Jehoiada the priest instructs him, \"but the high places were not taken away: the people still sacrificed and burnt incense in the high places.\" Targets: the single verse that states the limit of Joash's reform, the contrast to Hezekiah's removal in 18:4."
+    },
+    {
+      "id": "conn-2ki-08-018",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 15,
+      "startVerse": 35,
+      "endChapter": 15,
+      "endVerse": 35,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jotham builds the higher gate of the house of the LORD, \"Howbeit the high places were not removed: the people sacrificed and burned incense still in the high places.\" Targets: the single verse that states the limit of Jotham's reign, the last of the four reforming kings — Joash, Amaziah, Azariah, Jotham — who leave the high places standing before Hezekiah removes them."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-biblicaltraining-hezekiah",
+    "source-biblicaltraining-sennacherib",
+    "source-biblicaltraining-lachish",
+    "source-kleiman-hezekiah-reform-archaeology",
+    "source-biblicaltraining-jerusalem",
+    "source-bible-odyssey-first-temple",
+    "source-biblicaltraining-solomons-temple"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-25",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. Category title 'Hezekiah and the Sennacherib Invasion' follows the approved 11-category structure (2KINGS-CATEGORIES-PROPOSAL.md line 26 table) and the dossier header; the dispatch's 'Hezekiah and Sennacherib' drops 'and the Sennacherib Invasion' and appears nowhere in the verification corpus except the verification report's shorthand section 1 row — a dispatch-figure correction. Coverage is 95/95: all 95 verses of chapters 18–20 covered by section 9 claims (ch. 18 vv. 1–37 by 001–016, 034–036; ch. 19 vv. 1–37 by 017–027, 035; ch. 20 vv. 1–21 by 028–033), per the dossier's own coverage check. S08 sources[] carries eight entries (all verified in the live registry): 2K08-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; 2K08-S02 BT Hezekiah -> source-biblicaltraining-hezekiah; 2K08-S03 BT Sennacherib -> source-biblicaltraining-sennacherib; 2K08-S04 BT Lachish -> source-biblicaltraining-lachish; source-kleiman-hezekiah-reform-archaeology; source-biblicaltraining-jerusalem; source-bible-odyssey-first-temple; source-biblicaltraining-solomons-temple. Appendix footnote uses (58 total): Mechon Mamre 20, BT Hezekiah 9, BT Sennacherib 10, BT Lachish 6, BT Jerusalem 7, BO First Temple 2, BT Solomon's Temple 4. Section 9 Source IDs cells: Mechon Mamre 32, BT Hezekiah 9, BT Sennacherib 5, BT Lachish 1, BT Jerusalem 2, BO First Temple 1, BT Solomon's Temple 1, Kleiman 1. The Kleiman article enters sources[] by the section-9-only leg (claim 034's Source IDs cell; zero appendix footnotes) — the S03 Syria pattern. No needs-checking source is cited anywhere in this dossier (the section 12 needs-checking table is empty); every source was read in full or in the stated part, and no claim rests on an unread source. The Kleiman article's main text did not render in this dossier (footnotes and summary read live 2026-11-25); it is used for corroboration only, and its dependent claim 034 is capped at probable. Dossier section 2 names 033 as the Kleiman-dependent claim; section 9 and section 12 agree the dependent claim is 034 — a dossier-internal slip, recorded here, not a build change. The two debated claims: 006 (the Hezekiah/Josiah superlative pair, 18:5 vs 23:25 — both superlatives stand, not ranked) and 036 (the accession chronology puzzle, 729/727 BC against 715 BC — not resolved). The three probable claims: 004 (Hezekiah the only king who removes the high places), 034 (the reform finds at Lachish, Beersheba, and Arad), 035 (the annals comparison; the annals themselves were not read in Akkadian). Class A stored-text error 19:23 falls in this range: claim 022 carries the corrected reading ('reproached the Lord'); the stored reading is quoted nowhere in the built files (verified by grep at build). 19:26 is a Class B accepted variant ('house tops', quoted as stored); 19:3 is a Class C accepted variant (stored semicolon after 'blasphemy', quoted as stored). primaryScripture equals fullRange, 18:1–20:21 (span 2, within the validator's 3-chapter rule) per the dossier header; the whole arc — the reform, the invasion, the prayer and the oracle, and the reign's close — is one reign's crisis and close. Prose 502/1449/169 by the validator's own countWords — exactly the dossier's recorded counts, all in band (Why 169 is the post-Step-5 figure after the trailing separator is counted; the verification report's 168 is the pre-Step-5 figure — consolidation report C-1). No licensed-translation text appears anywhere in this file (dossier section 13); Scripture quotations are brief public-domain quotations only. Four licensed-translation renderings found at verification (in section 4 and section 9) were replaced with the KJV wording at Step 5. All 18 section 11 targets are single ranges within one book, so there are no encompassing ranges, no splits, and no whole-chapter targets. All 18 connections are probable. The new books in the connection targets are Micah (2KCO-08-014, 1:10–16) and Jeremiah (2KCO-08-015, 26:17–19); Isaiah, 2 Chronicles, 2 Samuel, 1 Kings, Numbers, and Deuteronomy appeared in earlier categories. On 2KCO-08-004 (2 Kings 21:3): the dispatch directed a 'Targets …' sentence on the premise that the dossier note lacks verse references; the note as it stands already carries a Targets sentence naming the reform of 18:4, and the target is a single verse — so the connection is built verbatim with no appended sentence (the S07 rule). No other connection note was changed. Open items from the dossier notes: the superlative pair (claim 006, debated); the chronology puzzle (claim 036, debated); the tribute silver, 300 talents (Kings) against 800 (the annals); one campaign or two (Tirhakah, 19:9); the reform's historicity (claim 034, probable); the 185,000 (19:35) — no mechanism offered; Hezekiah's motive for showing Babylon everything (20:13) — unstated; his answer in 20:19 carried, not judged. Dossier-notes registry snapshot (443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Appendix headings were normalised at Step 5 per verification-report C-2 (single-# Appendix heading, ### section headings); the build normalises ### to ## and #### to ### as in S01–S07. Scripture quotations are brief public-domain quotations only; no licensed-translation text appears."
+  }
+}
