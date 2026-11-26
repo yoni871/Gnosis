@@ -1,0 +1,273 @@
+{
+  "id": "category-2-kings-manasseh-and-the-sentence-on-judah",
+  "title": "Manasseh and the Sentence on Judah",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 21,
+    "startVerse": 1,
+    "endChapter": 21,
+    "endVerse": 26
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 21,
+    "startVerse": 1,
+    "endChapter": 21,
+    "endVerse": 26
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-09-001",
+      "claim": "Manasseh is twelve years old when he begins to reign, and reigns fifty and five years in Jerusalem — the longest reign in the book. His mother's name is Hephzibah.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-002",
+      "claim": "He does that which is evil in the sight of the LORD, after the abominations of the heathen, whom the LORD cast out before the children of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-003",
+      "claim": "He builds up again the high places which Hezekiah his father had destroyed, rears up altars for Baal, makes a grove \"as did Ahab king of Israel,\" and worships all the host of heaven and serves them.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" read in part (lines 241–246): he \"rebuilt the high places, set up altars to the starry hosts in the temple courts.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-004",
+      "claim": "He builds altars in the house of the LORD — \"of which the LORD said, In Jerusalem will I put my name\" — and altars for all the host of heaven in the two courts of the house of the LORD.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Solomon's Temple,\" read in part (lines 228–229): \"Manasseh built altars to the starry hosts in both temple courts\"; Bible Odyssey, \"First Temple,\" read in full (lines 43–44): Manasseh's incorporation of foreign objects into the temple is condemned.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-005",
+      "claim": "He makes his son pass through the fire, observes times, uses enchantments, and deals with familiar spirits and wizards: \"he wrought much wickedness in the sight of the LORD, to provoke him to anger.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" read in part (lines 241–242): he \"practiced sorcery and child sacrifice.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-006",
+      "claim": "He sets a graven image of the grove that he had made in the house, of which the LORD said to David and to Solomon his son, \"In this house, and in Jerusalem, which I have chosen out of all tribes of Israel, will I put my name for ever: neither will I make the feet of Israel move any more out of the land which I gave their fathers; only if they will observe to do according to all that I have commanded them, and according to all the law that my servant Moses commanded them.\" The KJV spells \"for ever\" in two words; JPS agrees (\"will I put My name for ever\").",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (JPS 21:7 confirms \"for ever\"); stored KJV read in full; BiblicalTraining, \"Solomon's Temple,\" read in part (lines 228–229): he \"set up a carved Asherah pole in the temple itself.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-007",
+      "claim": "They hearken not: Manasseh seduces them to do more evil than did the nations whom the LORD destroyed before the children of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-008",
+      "claim": "The LORD speaks by his servants the prophets — unnamed; the dossier does not name them — saying: \"Because Manasseh king of Judah hath done these abominations, and hath done wickedly above all that the Amorites did, which were before him, and hath made Judah also to sin with his idols.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-009",
+      "claim": "\"Therefore thus saith the LORD God of Israel, Behold, I am bringing such evil upon Jerusalem and Judah, that whosoever heareth of it, both his ears shall tingle. And I will stretch over Jerusalem the line of Samaria, and the plummet of the house of Ahab: and I will wipe Jerusalem as a man wipeth a dish, wiping it, and turning it upside down.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-010",
+      "claim": "\"And I will forsake the remnant of mine inheritance, and deliver them into the hand of their enemies; and they shall become a prey and a spoil to all their enemies; because they have done that which was evil in my sight, and have provoked me to anger, since the day their fathers came forth out of Egypt, even unto this day.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-011",
+      "claim": "\"Moreover Manasseh shed innocent blood very much, till he had filled Jerusalem from one end to another; beside his sin wherewith he made Judah to sin, in doing that which was evil in the sight of the LORD.\" No victim is named and no number is given.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" read in part (lines 241–242): he \"shed so much innocent blood that he filled Jerusalem from end to end.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-012",
+      "claim": "The rest of the acts of Manasseh, and all that he did, and his sin that he sinned, are written in the book of the chronicles of the kings of Judah. Manasseh sleeps with his fathers and is buried in the garden of his own house, in the garden of Uzza — not in the city of David with his fathers — and Amon his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" read in part (lines 245–246): \"He and his son Amon were buried in the garden of Uzza rather than in the old royal tombs.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-013",
+      "claim": "Amon is twenty and two years old when he begins to reign, and reigns two years in Jerusalem; his mother is Meshullemeth, the daughter of Haruz of Jotbah. He does evil as his father Manasseh did, walks in all the way his father walked in, serves the idols his father served and worships them, and forsakes the LORD God of his fathers, walking not in the way of the LORD.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-014",
+      "claim": "The servants of Amon conspire against him and slay the king in his own house. The people of the land slay all them that conspired against king Amon and make Josiah his son king in his stead. The rest of the acts of Amon are written in the book of the chronicles of the kings of Judah. He is buried in his sepulchre in the garden of Uzza, and Josiah his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-09-015",
+      "claim": "The writer of Kings regards Manasseh's reign as the point that made Jerusalem's destruction certain: the sentence spoken in chapter 21 is the sentence chapter 24 says was executed — \"for the sins of Manasseh, according to all that he did; and also for the innocent blood that he shed... which the LORD would not pardon.\" This is the Jerusalem article's reading of the two passages together, not a statement either passage makes on its own.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 21); stored KJV read in full for 21:10–15 and for 24:3–4 (verified against the raw stored text); BiblicalTraining, \"Jerusalem,\" read in part (lines 242–243): \"The writer of Kings regards his reign as the point that made the city's destruction certain (2 Kgs 21:10–15; 24:3–4).\"",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-09-001",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 17,
+      "startVerse": 5,
+      "endChapter": 17,
+      "endVerse": 6,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "The king of Assyria besieges Samaria three years, takes it in the ninth year of Hoshea, and carries Israel away into Assyria. Samaria's fall is the event whose line is stretched over Jerusalem in the sentence."
+    },
+    {
+      "id": "conn-2ki-09-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 21,
+      "startVerse": 21,
+      "endChapter": 21,
+      "endVerse": 24,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The LORD says he will bring evil on the house of Ahab and cut it off, and the dogs shall eat Jezebel in the portion of Jezreel. The plummet of Ahab's house measures Jerusalem by the sentence already passed on the north's worst house."
+    },
+    {
+      "id": "conn-2ki-09-003",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 36,
+      "endChapter": 11,
+      "endVerse": 36,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The LORD keeps a light for David in Jerusalem, \"the city which I have chosen me to put my name there.\" The promise behind the house is the ground the sentence's quotation of the Name in chapter 21 stands on."
+    },
+    {
+      "id": "conn-2ki-09-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 18,
+      "startVerse": 10,
+      "endChapter": 18,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law forbids making a son or daughter pass through the fire, divination, observing times, enchantments, and consulting familiar spirits or wizards, calling these things abominations. The chapter's catalogue in verse 6 runs down the same list the law forbids."
+    },
+    {
+      "id": "conn-2ki-09-005",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 18,
+      "startVerse": 4,
+      "endChapter": 18,
+      "endVerse": 4,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Hezekiah removes the high places, breaks the images, cuts down the groves, and breaks in pieces the brasen serpent Moses made. The reform his son undoes in a single verse is the only removal of the high places in the book."
+    },
+    {
+      "id": "conn-2ki-09-006",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 23,
+      "startVerse": 26,
+      "endChapter": 23,
+      "endVerse": 27,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "\"Notwithstanding the LORD turned not from the fierceness of his great wrath, wherewith his anger was kindled against Judah, because of all the provocations that Manasseh had provoked him withal.\" The sentence stands after Josiah's reform, unturned, and the LORD says he will remove Judah as he removed Israel."
+    },
+    {
+      "id": "conn-2ki-09-007",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 24,
+      "startVerse": 3,
+      "endChapter": 24,
+      "endVerse": 4,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "\"Surely at the commandment of the LORD came this upon Judah, to remove them out of his sight, for the sins of Manasseh, according to all that he did; and also for the innocent blood that he shed... which the LORD would not pardon.\" The sentence of chapter 21 is named here as executed."
+    },
+    {
+      "id": "conn-2ki-09-008",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 12,
+      "startVerse": 20,
+      "endChapter": 12,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The servants of Joash conspire against him and slay him in the house of Millo, and Amaziah his son reigns. A king slain by his own servants is the pattern Amon's murder repeats a century later, with the people of the land answering where no one answered for Joash."
+    },
+    {
+      "id": "conn-2ki-09-009",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 14,
+      "startVerse": 16,
+      "endChapter": 14,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The LORD shall give Israel up \"because of the sins of Jeroboam, who did sin, and who made Israel to sin.\" The phrase \"made Israel to sin\" is the northern original of \"made Judah to sin,\" the charge laid on Manasseh in chapter 21."
+    },
+    {
+      "id": "conn-2ki-09-010",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 23,
+      "startVerse": 30,
+      "endChapter": 23,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After Josiah is slain at Megiddo, \"the people of the land took Jehoahaz the son of Josiah, and anointed him, and made him king in his father's stead.\" The people act as kingmakers here as they did when they made Josiah king after Amon's murder."
+    },
+    {
+      "id": "conn-2ki-09-011",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 33,
+      "startVerse": 11,
+      "endChapter": 33,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The captains of Assyria take Manasseh in chains to Babylon, he humbles himself and prays, and he is restored to Jerusalem. Chronicles adds a captivity and a repentance that Kings does not record; the two tellings are parallel accounts of one reign, and this dossier does not harmonise them."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-biblicaltraining-jerusalem",
+    "source-biblicaltraining-solomons-temple",
+    "source-bible-odyssey-first-temple"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-26",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. Category title 'Manasseh and the Sentence on Judah' follows the approved 11-category structure (2KINGS-CATEGORIES-PROPOSAL.md line 27 table) and the dossier header; the dispatch's title matches — no title correction (unlike S06/S07/S08). Coverage is 26/26: all 26 verses of chapter 21 covered by section 9 claims (vv. 1–2 by 001–002; v. 3 by 003; vv. 4–5 by 004; v. 6 by 005; vv. 7–8 by 006; v. 9 by 007; vv. 10–11 by 008; vv. 12–13 by 009; vv. 14–15 by 010; v. 16 by 011; vv. 17–18 by 012; vv. 19–22 by 013; vv. 23–26 by 014), per the dossier's own coverage check. Claim 015 covers 21:10–15 (already covered by 008–010) plus 24:3–4 (an out-of-range cross-reference), so it adds no new in-range verse — the dossier-notes coverage enumeration's 'through 014' is a slip in the enumeration text, not a gap; no verse is left without a covering claim. S09 sources[] carries four entries (all verified in the live registry): 2K09-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; source-biblicaltraining-jerusalem; source-biblicaltraining-solomons-temple; source-bible-odyssey-first-temple. Appendix footnote uses (30 total): Mechon Mamre 20, BT Jerusalem 4, BT Solomon's Temple 4, BO First Temple 2. Section 9 Source IDs cells: Mechon Mamre 15, BT Jerusalem 5, BT Solomon's Temple 2, BO First Temple 1. No source in sources[] is newly-cited: Mechon Mamre is already cited by S01–S08, and Jerusalem, Solomon's Temple, and First Temple are already cited by S05 and S08 and by published 1 Kings categories — verified against base by script parsing category + event + book JSONs. BT Baal (source-biblicaltraining-baal, verified in the registry) is EXCLUDED by the section-location rule: it appears only in the section 12 already-registered table; it is in no section 9 Source IDs cell and no appendix footnote, and no claim or prose in this dossier rests on it. It was not re-read in this dossier (text-fetch rate-limited, 429, 2026-11-25); a later worker may read it for the Baal material of 21:3. Section 12 needs-checking is empty: no provisional new source is proposed in this dossier and no claim rests on a needs-checking source — the dispatch's 'section 12 needs-checking applies' is imprecise; there is no needs-checking exclusion in S09. The one probable claim: 015 (the Jerusalem article's reading of 21:10–15 together with 24:3–4 — the sentence spoken in chapter 21 is the sentence chapter 24 says was executed — which is the article's reading, not a statement either passage makes on its own; the relation between the innocent blood of 21:16 and the pardon refused in 24:4 is not settled). Chapter 21 is a zero-diff chapter in the KJV check (all 26 verses identical between the stored text and BibleHub after light normalisation); no Class A stored-text error falls in this range — the four book-level errors are 7:6, 8:16, 19:23, and 23:19, none in range — and the stored readings are quoted nowhere in the built files (verified by grep at build). The KJV spells 'for ever' in two words (21:7, carried in claim 006); the one-word spelling appears nowhere in the built files. primaryScripture equals fullRange, 21:1–26 (span 0, within the validator's 3-chapter rule) per the dossier header; the whole arc — the longest reign in the book, the sentence it draws, and the reign's close in Amon's murder — is one incident. Prose 332/1244/171 by the validator's own countWords — exactly the dossier's recorded counts, all in band. No licensed-translation text appears anywhere in this file (dossier section 13); Scripture quotations are brief public-domain quotations only. All 11 section 11 targets are single ranges within one book, so there are no encompassing ranges, no splits, and no whole-chapter targets. All 11 connections are probable. No new connection books in S09: the four books in the connection targets — 2 Kings, 1 Kings, Deuteronomy, 2 Chronicles — all appear in earlier categories on base (2 Kings 80 prior uses, 1 Kings 108, Deuteronomy 184, 2 Chronicles 26), verified by grepping the 'book' field across ALL category JSONs on base, including other books' published categories. Open items from the dossier notes: the unnamed prophets of 21:10 (the text does not name them); whose innocent blood Manasseh shed (21:16) — no victim is named, and the 21:16/24:4 relation is not settled (claim 015, probable); the garden of Uzza (21:18, 26) — location and reason for the burial break unstated, no site asserted; whether the sentence's reason reaching back to Egypt (21:15) makes Manasseh the occasion or the culmination — not settled; the sentence against the reform (21:10–15 vs 23:26) — the tension is carried, not resolved, which is why Manasseh is kept alone; Kings' Manasseh vs Chronicles' Manasseh (2 Chr 33:10–20) — the two accounts are not harmonised, and no claim in section 9 rests on Chronicles. Read ranges in this dossier: the Jerusalem article was read lines 0–145 and 230–359 of 616; the Solomon's Temple article lines 0–162 and 200–343 of 343 (lines 163–199 still unread and uncited); the First Temple article read in full (65 lines). Dossier-notes registry snapshot (443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Appendix headings were normalised at Step 5 per verification-report C-2 (single-# Appendix heading, ### section headings); the build normalises ### to ## and #### to ### as in S01–S08. Scripture quotations are brief public-domain quotations only; no licensed-translation text appears."
+  }
+}
