@@ -1,0 +1,510 @@
+{
+  "id": "category-2-kings-the-two-kingdoms-parallel-declines",
+  "title": "The Two Kingdoms' Parallel Declines",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 13,
+    "startVerse": 14,
+    "endChapter": 15,
+    "endVerse": 12
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 13,
+    "startVerse": 1,
+    "endChapter": 16,
+    "endVerse": 20
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-06-001",
+      "claim": "In the three and twentieth year of Joash son of Ahaziah king of Judah, Jehoahaz son of Jehu begins to reign over Israel in Samaria, seventeen years. He does evil in the sight of the LORD and follows the sins of Jeroboam son of Nebat, departing not therefrom.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-002",
+      "claim": "The anger of the LORD delivers Israel into the hand of Hazael king of Syria and of Benhadad his son \"all their days.\" Jehoahaz besought the LORD, and the LORD hearkened unto him, for he saw the oppression of Israel, because the king of Syria oppressed them.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-003",
+      "claim": "\"(And the LORD gave Israel a saviour, so that they went out from under the hand of the Syrians: and the children of Israel dwelt in their tents, as beforetime. Nevertheless they departed not from the sins of the house of Jeroboam... and there remained the grove also in Samaria.)\" The saviour is unnamed, and the notice sits in parentheses; the deliverance changes nothing in the worship, and the Asherah remains in Samaria (JPS 1917: \"there remained the Asherah also in Samaria\"). The dossier does not name the saviour.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-004",
+      "claim": "Of the people Hazael leaves Jehoahaz only fifty horsemen, ten chariots, and ten thousand footmen, \"for the king of Syria had destroyed them, and had made them like the dust by threshing.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-005",
+      "claim": "The rest of the acts of Jehoahaz, all that he did, and his might are written in the book of the chronicles of the kings of Israel. Jehoahaz sleeps with his fathers, is buried in Samaria, and Joash his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-006",
+      "claim": "In the thirty and seventh year of Joash king of Judah, Jehoash son of Jehoahaz begins to reign over Israel in Samaria, sixteen years; he does evil, departing not from the sins of Jeroboam. The rest of his acts, and his might wherewith he fought against Amaziah king of Judah, are in the chronicles. Joash sleeps; Jeroboam sits on his throne; Joash is buried in Samaria with the kings of Israel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-007",
+      "claim": "Elisha is sick of the sickness whereof he dies. Joash king of Israel comes down, weeps over his face, and says, \"O my father, my father, the chariot of Israel, and the horsemen thereof\" — the cry Elisha himself gave over Elijah (2:12), with an added \"O.\" The two deaths frame the ministry.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Elisha,\" read in part (lines 42–63): the departure and the double portion; Elisha cried \"My father, my father, the chariot of Israel, and the horsemen thereof\" over Elijah.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-008",
+      "claim": "Elisha orders bow and arrows, puts his hands on the king's hands, and opens the window eastward: \"Shoot... The arrow of the LORD's deliverance, and the arrow of deliverance from Syria: for thou shalt smite the Syrians in Aphek, till thou have consumed them.\" 13:17 is a Class D variant (stored \"LORD's,\" BibleHub \"LORD'S\"), an accepted variant, not an error; the JPS 1917 renders the phrase \"The LORD'S arrow of victory.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-009",
+      "claim": "Elisha orders the king to smite upon the ground; the king smites thrice and stays. The man of God is wroth: \"Thou shouldest have smitten five or six times; then hadst thou smitten Syria till thou hadst consumed it: whereas now thou shalt smite Syria but thrice.\" The arithmetic of the arrows is the oracle; the text does not explain why the king stayed his hand.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-010",
+      "claim": "Elisha dies and is buried. Moabite bands invade the land at the coming in of the year. Men burying a man spy a band and cast him into Elisha's sepulchre; when he touches the bones of Elisha, he revives and stands on his feet. The last miracle of the ministry comes after the prophet's death; the man is not named, and the text does not explain the revival.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-011",
+      "claim": "Hazael king of Syria oppressed Israel all the days of Jehoahaz. But the LORD was gracious unto them, and had compassion on them, and had respect unto them, \"because of his covenant with Abraham, Isaac, and Jacob, and would not destroy them, neither cast he them from his presence as yet.\" Hazael dies; Benhadad his son reigns. Jehoash takes again from Benhadad the cities Hazael had taken from Jehoahaz by war. Three times Joash beats him and recovers the cities of Israel. The JPS 1917 renders \"as yet\" as \"until now.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-012",
+      "claim": "In the second year of Joash son of Jehoahaz king of Israel, Amaziah son of Joash king of Judah reigns — twenty-five years old, twenty-nine years in Jerusalem; his mother is Jehoaddan of Jerusalem. He does right in the sight of the LORD, \"yet not like David his father: he did according to all things as Joash his father did.\" The high places are not taken away.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-013",
+      "claim": "As soon as the kingdom is confirmed in his hand, Amaziah slays the servants who slew his father — but not their children, \"according unto that which is written in the book of the law of Moses, wherein the LORD commanded, saying, The fathers shall not be put to death for the children, nor the children be put to death for the fathers; but every man shall be put to death for his own sin.\" This is the chapter's one explicit legal citation (Deut 24:16).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-014",
+      "claim": "Amaziah slays ten thousand of Edom in the valley of salt, takes Selah by war, and calls it Joktheel \"unto this day.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-015",
+      "claim": "Amaziah sends to Jehoash king of Israel: \"Come, let us look one another in the face.\" Jehoash answers with the thistle and the cedar: the thistle in Lebanon asks the cedar for its daughter, and a wild beast treads down the thistle. \"Thou hast indeed smitten Edom, and thine heart hath lifted thee up: glory of this, and tarry at home: for why shouldest thou meddle to thy hurt, that thou shouldest fall, even thou, and Judah with thee?\" The parable is the chapter's judgment on Amaziah's pride, delivered before the battle.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-016",
+      "claim": "Amaziah will not hear. At Beth-shemesh Judah is put to the worse before Israel and flees every man to his tent. Jehoash takes Amaziah, comes to Jerusalem, breaks down the wall from the gate of Ephraim to the corner gate, four hundred cubits, takes all the gold and silver and all the vessels found in the house of the LORD and in the treasures of the king's house, and hostages, and returns to Samaria. Jerusalem's wall is breached and the temple's gold carried away by Israel, not by a foreign king.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-017",
+      "claim": "The rest of the acts of Jehoash, his might, and how he fought with Amaziah king of Judah are written in the book of the chronicles of the kings of Israel. Jehoash sleeps with his fathers, is buried in Samaria with the kings of Israel, and Jeroboam his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-018",
+      "claim": "Amaziah son of Joash king of Judah lives after the death of Jehoash son of Jehoahaz king of Israel fifteen years. The rest of his acts are in the chronicles of the kings of Judah. A conspiracy is made against him in Jerusalem; he flees to Lachish, is pursued and slain there, and is brought on horses to be buried at Jerusalem with his fathers in the city of David. All the people of Judah take Azariah, sixteen years old, and make him king instead of his father Amaziah. He builds Elath and restores it to Judah.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-019",
+      "claim": "In the fifteenth year of Amaziah son of Joash king of Judah, Jeroboam son of Joash begins to reign in Samaria, forty-one years. He does evil in the sight of the LORD, departing not from all the sins of Jeroboam son of Nebat.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-020",
+      "claim": "Jeroboam \"restored the coast of Israel from the entering of Hamath unto the sea of the plain, according to the word of the LORD God of Israel, which he spake by the hand of his servant Jonah, the son of Amittai, the prophet, which was of Gathhepher.\" The words of Jonah's prophecy are not recorded, and the text does not say when he spoke. The book of Jonah's narrative is not imported into this verse.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jonah,\" read in full (lines 18–39): the only reference to Jonah outside his own book; his words are not recorded; the borders ran from Lebo Hamath to the Dead Sea.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-021",
+      "claim": "\"For the LORD saw the affliction of Israel, that it was very bitter: for there was not any shut up, nor any left, nor any helper for Israel. And the LORD said not that he would blot out the name of Israel from under heaven: but he saved them by the hand of Jeroboam the son of Joash.\" The LORD saves Israel by the hand of a king who did evil; the reason given is the LORD's own stated restraint, not the king's merit. The tension is flagged, not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jonah,\" read in full (lines 31–34): the deliverance was an act of mercy rather than a reward.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-022",
+      "claim": "The rest of the acts of Jeroboam, all that he did, his might, how he warred, and how he recovered Damascus and Hamath, \"which belonged to Judah,\" for Israel, are written in the book of the chronicles of the kings of Israel. Jeroboam sleeps with his fathers, even with the kings of Israel, and Zachariah his son reigns in his stead. The claim that Damascus and Hamath belonged to Judah is stated without explanation.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-023",
+      "claim": "In the twenty-seventh year of Jeroboam king of Israel, Azariah son of Amaziah begins to reign — sixteen years old, two and fifty years in Jerusalem; his mother is Jecholiah of Jerusalem. He does right, according to his father Amaziah — \"Save that the high places were not removed: the people sacrificed and burnt incense still on the high places.\" The LORD smites the king, so that he is a leper unto the day of his death, dwelling in a several house (JPS 1917: \"a house set apart\"); Jotham his son is over the house, judging the people. Azariah sleeps with his fathers, is buried with them in the city of David, and Jotham reigns. No cause for the leprosy is given in this book.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-024",
+      "claim": "In the thirty-eighth year of Azariah, Zachariah son of Jeroboam reigns over Israel in Samaria six months; he does evil as his fathers had done. Shallum son of Jabesh conspires against him, smites him \"before the people,\" slays him, and reigns. \"This was the word of the LORD which he spake unto Jehu, saying, Thy sons shall sit on the throne of Israel unto the fourth generation. And so it came to pass.\" The fourth-generation promise of 10:30 is fulfilled exactly, and Jehu's house ends in the same verse.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-025",
+      "claim": "Shallum son of Jabesh begins to reign in the nine and thirtieth year of Uzziah king of Judah — the same king called Azariah in vv. 1–7; the variation is in the MT itself (MT 15:13 reads Uzziah), not a stored-text error — and reigns a full month in Samaria. Menahem son of Gadi goes up from Tirzah, smites Shallum, slays him, and reigns. Then Menahem smites Tiphsah and all therein, from Tirzah, because they opened not to him; \"and all the women therein that were with child he ripped up.\" The act is stated without judgment.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-026",
+      "claim": "In the nine and thirtieth year of Azariah, Menahem son of Gadi reigns ten years in Samaria; he does evil, departing not from Jeroboam's sins. Pul king of Assyria comes against the land; Menahem gives him a thousand talents of silver, \"that his hand might be with him to confirm the kingdom in his hand.\" He exacts the money from all the mighty men of wealth, fifty shekels each; the king of Assyria turns back and stays not in the land. Menahem sleeps; Pekahiah his son reigns. Assyria enters the book as a payee before it enters as a conqueror.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Assyria,\" read in part (lines 136–138): in 738 BC Tiglath-pileser received tribute from Rezin and Menahem; 2 Kings 15:19–20 records the thousand talents and the fifty-shekel levy.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-027",
+      "claim": "In the fiftieth year of Azariah, Pekahiah son of Menahem reigns two years in Samaria; he does evil. Pekah son of Remaliah, a captain of his, conspires against him and smites him in Samaria, in the palace of the king's house, with Argob and Arieh and fifty Gileadites, and reigns.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-028",
+      "claim": "In the two and fiftieth year of Azariah, Pekah son of Remaliah reigns twenty years in Samaria; he does evil. In his days Tiglathpileser king of Assyria takes Ijon, Abelbethmaachah, Janoah, Kedesh, Hazor, Gilead, and Galilee, all the land of Naphtali, \"and carried them captive to Assyria\" — places named, no headcount given. Hoshea son of Elah conspires against Pekah, smites him, slays him, and reigns, \"in the twentieth year of Jotham the son of Uzziah\" — though Jotham reigns sixteen years (v. 33); the tension is flagged, not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Assyria,\" read in part (lines 146–151): Tiglath-pileser's campaigns of 734–732 BC stripped Israel of Galilee, Naphtali, and Gilead and deported their inhabitants.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-029",
+      "claim": "In the second year of Pekah, Jotham son of Uzziah begins to reign — five and twenty years old, sixteen years in Jerusalem; his mother is Jerusha daughter of Zadok. He does right, according to his father Uzziah — \"Howbeit the high places were not removed: the people sacrificed and burned incense still in the high places. He built the higher gate of the house of the LORD.\" \"In those days the LORD began to send against Judah Rezin the king of Syria, and Pekah the son of Remaliah.\" Jotham sleeps with his fathers, is buried with them in the city of David, and Ahaz his son reigns.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-030",
+      "claim": "In the seventeenth year of Pekah, Ahaz son of Jotham begins to reign — twenty years old, sixteen years in Jerusalem — and does not that which is right in the sight of the LORD his God, like David his father. He walks in the way of the kings of Israel, \"yea, and made his son to pass through the fire, according to the abominations of the heathen,\" and sacrifices and burns incense in the high places, on the hills, and under every green tree. The son is not named.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-031",
+      "claim": "Rezin king of Syria and Pekah son of Remaliah king of Israel come up to Jerusalem to war and besiege Ahaz, \"but could not overcome him.\" Rezin recovers Elath to Syria and drives the Jews from it; the Syrians dwell there \"unto this day.\" The JPS 1917 reads \"the Edomites came to Elath\" where the stored KJV reads \"the Syrians came to Elath.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-032",
+      "claim": "Ahaz sends messengers to Tiglathpileser king of Assyria, saying, \"I am thy servant and thy son: come up, and save me out of the hand of the king of Syria, and out of the hand of the king of Israel.\" He takes the silver and gold in the house of the LORD and in the treasures of the king's house and sends it as a present. Assyria goes up against Damascus, takes it, carries its people captive to Kir, and slays Rezin.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Assyria,\" read in part (lines 140–144): Ahaz sent temple and palace silver and gold to Tiglath-pileser, declaring himself his servant and vassal.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-033",
+      "claim": "Ahaz goes to Damascus to meet Tiglathpileser, sees an altar there, and sends Urijah the priest its fashion and pattern \"according to all the workmanship thereof.\" Urijah builds it before Ahaz returns. The king offers on it — burnt offering, meat offering, drink offering, peace offerings. The altar is copied from a foreign pattern and built by the priest before the king returns.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-034",
+      "claim": "Ahaz brings the brasen altar, which was before the LORD, from the forefront of the house and puts it on the north side of the new altar. He commands Urijah: on the great altar burn the morning and evening offerings and all the people's sacrifices; \"and the brasen altar shall be for me to enquire by\" (a Class B variant against BibleHub's \"inquire\"; the JPS 1917 renders it \"to look to\"). Urijah does according to all the king commanded. The old altar is not removed but demoted to the king's private oracle.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-035",
+      "claim": "Ahaz cuts off the borders of the bases, removes the lavers, takes down the sea from off the brasen oxen and puts it on a pavement of stones. The covert for the sabbath and the king's entry without he turns from the house of the LORD \"for the king of Assyria.\" The rest of his acts are in the chronicles of the kings of Judah. Ahaz sleeps with his fathers, is buried with them in the city of David, and Hezekiah his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-06-036",
+      "claim": "Date: unknown. The text gives no absolute date. The synchronisms and reign lengths are the frame, not dates. Conventional scholarly datings — Jeroboam II c. 793–753 BC, Elisha's ministry roughly 850 to 795 BC, Tiglath-pileser III 745–727 BC with Menahem's tribute in 738 BC — are reconstructions used by the articles cited, not dates the text gives.",
+      "evidence": "BiblicalTraining, \"Jonah,\" read in full (lines 20–24: Jeroboam II commonly dated c. 793–753 BC, including a coregency); BiblicalTraining, \"Elisha,\" read in part (lines 64–68: ministry roughly 850 to 795 BC); BiblicalTraining, \"Assyria,\" read in part (lines 127–138, 253–254: Tiglath-pileser III 745–727 BC; tribute in 738 BC).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-06-037",
+      "claim": "The places of the four chapters are named, not located, by the text: Aphek, Beth-shemesh, Selah, Lachish, Elath, Hamath, Damascus, Tirzah, Tiphsah, Ijon, Abelbethmaachah, Janoah, Kedesh, Hazor, Gilead, Galilee, Naphtali, and Kir are named without any modern identification. Samaria alone is described by the article cited: its hill stands in the hill country of Ephraim, about seven miles northwest of Shechem, with steep sides and a broad, fairly level top.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Samaria,\" read in part in the 1 Kings phase (lines 0–155 of 220): location and setting.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-06-038",
+      "claim": "Outside the Bible, Assyria is remembered as the power that took Israel's tribute and then its land. Shalmaneser III's Kurkh Monolith lists \"Ahab the Israelite\" at Qarqar in 853 BC with 2,000 chariots and 10,000 foot soldiers, and the Black Obelisk shows Jehu — or his envoy — bowing before Shalmaneser, whom the inscriptions call \"son of Omri.\" The Bible does not mention the battle of Qarqar. The Kurkh Monolith is not independently verified in the registry, and this claim is capped at probable.",
+      "evidence": "BiblicalTraining, \"Assyria,\" read in part (lines 97–106: Qarqar 853 BC; the Kurkh Monolith; Jehu's tribute in 841 BC; the Black Obelisk); Kurkh Monolith (not independently verified — the Qarqar/Hadadezer question; the Ahab figure is second-hand through the article).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-06-001",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 2,
+      "startVerse": 12,
+      "endChapter": 2,
+      "endVerse": 12,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Elisha cries over the departing Elijah, \"My father, my father, the chariot of Israel, and the horsemen thereof.\" Joash weeps the same words over the dying Elisha, with an added \"O.\" The two deaths frame the ministry, and the same cry opens it and closes it."
+    },
+    {
+      "id": "conn-2ki-06-002",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 10,
+      "startVerse": 30,
+      "endChapter": 10,
+      "endVerse": 30,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "The LORD promises Jehu that his sons shall sit on the throne of Israel unto the fourth generation, because he executed judgment on the house of Ahab. Zachariah's death at 15:12 closes the fourth generation, and the text says, \"And so it came to pass.\""
+    },
+    {
+      "id": "conn-2ki-06-003",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 19,
+      "startVerse": 15,
+      "endChapter": 19,
+      "endVerse": 17,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "At Horeb the LORD gives Elijah three tasks: to anoint Hazael king over Syria, Jehu king over Israel, and Elisha as prophet in his place. Hazael's and Jehu's kingships are carried out through Elisha, not by Elijah's hand, and Elisha's death closes the ministry that finished the commission."
+    },
+    {
+      "id": "conn-2ki-06-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 24,
+      "startVerse": 16,
+      "endChapter": 24,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "established",
+      "note": "The law commands that fathers shall not be put to death for the children, nor children for the fathers, but every man for his own sin. Amaziah cites the book of the law of Moses in these words when he spares the children of his father's murderers."
+    },
+    {
+      "id": "conn-2ki-06-005",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 21,
+      "startVerse": 17,
+      "endChapter": 21,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law gives the firstborn son a double share of his father's estate. Elisha's request for a double portion of Elijah's spirit is a claim to be recognised as his principal heir and successor, not a request to be twice as great."
+    },
+    {
+      "id": "conn-2ki-06-006",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The LORD promises David a house that will endure: his offspring will succeed him and build a house for the LORD's name, and his throne will be established for ever. Judah keeps a king in Jerusalem through Azariah, Jotham, and Ahaz while Israel's houses are cut off one by one."
+    },
+    {
+      "id": "conn-2ki-06-007",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 28,
+      "endChapter": 12,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jeroboam makes two calves of gold and sets them in Bethel and Dan, saying, \"behold thy gods, O Israel, which brought thee up out of the land of Egypt.\" Every northern king in these chapters is measured by this way: Jehoahaz, Joash, Jeroboam II, Zachariah, Menahem, Pekahiah, and Pekah all walk in it."
+    },
+    {
+      "id": "conn-2ki-06-008",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 36,
+      "endChapter": 11,
+      "endVerse": 36,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "The one tribe is kept for Jerusalem's sake, \"that David my servant may have a light alway before me in Jerusalem.\" The lamp given for David's sake is the reason Judah survives kings who do not deserve to survive, while the north cannot keep a house alive for a generation."
+    },
+    {
+      "id": "conn-2ki-06-009",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 17,
+      "startVerse": 1,
+      "endChapter": 17,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hoshea withholds his yearly present, the king of Assyria shuts him up, besieges Samaria three years, takes it in the ninth year of Hoshea, and carries Israel away into Assyria. The fall that the word \"as yet\" at 13:23 already dates is the event this chapter narrates."
+    },
+    {
+      "id": "conn-2ki-06-010",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 18,
+      "startVerse": 4,
+      "endChapter": 18,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hezekiah removes the high places, breaks the images, cuts down the groves, and breaks in pieces the brasen serpent Moses made. The reform reaches the relic itself — and it undoes the altar work of Ahaz in chapter 16, two reigns later."
+    },
+    {
+      "id": "conn-2ki-06-011",
+      "book": "Isaiah",
+      "bookId": "isaiah",
+      "startChapter": 7,
+      "startVerse": 1,
+      "endChapter": 7,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Rezin of Syria and Pekah of Israel come up against Jerusalem, and Ahaz's heart is moved; Isaiah tells him not to fear the two tails of these smoking firebrands and offers a sign, which Ahaz refuses. The same Syro-Ephraimite crisis is told here from the prophet's side; the dossier does not use it to correct the Kings account."
+    },
+    {
+      "id": "conn-2ki-06-012",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 26,
+      "startVerse": 16,
+      "endChapter": 26,
+      "endVerse": 21,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler tells how Uzziah entered the temple to burn incense, was withstood by the priests, and was struck with leprosy on his forehead, living apart until his death. Kings gives the leprosy without a cause; the Chronicler's cause is carried as a parallel only and is not imported into the Kings text."
+    },
+    {
+      "id": "conn-2ki-06-013",
+      "book": "Jonah",
+      "bookId": "jonah",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The book of Jonah opens with the same name and father as 14:25: Jonah son of Amittai, commanded to go to Nineveh. The book's narrative — the flight, the fish, the city that repents — is not imported into the verse in Kings, where Jonah is named only as the bearer of the word that restored Israel's coast."
+    },
+    {
+      "id": "conn-2ki-06-014",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 15,
+      "startVerse": 18,
+      "endChapter": 15,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Asa takes the silver and gold left in the treasures of the house of the LORD and of the king's house and sends them to Benhadad of Damascus, asking him to break his league with Baasha. The temple treasure buys off a foreign king here, as it does under Jehoash and under Ahaz."
+    },
+    {
+      "id": "conn-2ki-06-015",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 12,
+      "startVerse": 17,
+      "endChapter": 12,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hazael fights against Gath and sets his face toward Jerusalem, and Jehoash takes all the hallowed things and the gold in the treasures of the house of the LORD and the king's house and sends them to Hazael, who goes away from Jerusalem. The same thread runs one generation before Amaziah."
+    },
+    {
+      "id": "conn-2ki-06-016",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 20,
+      "startVerse": 11,
+      "endChapter": 20,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Isaiah cries to the LORD, and the shadow returns ten degrees backward, \"by which it had gone down in the dial of Ahaz.\" The sign of Hezekiah's healing is read on the dial of the same king whose altar Hezekiah's reform undid."
+    },
+    {
+      "id": "conn-2ki-06-017",
+      "book": "Amos",
+      "bookId": "amos",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The words of Amos, \"who was among the herdmen of Tekoa, which he saw concerning Israel in the days of Uzziah king of Judah, and in the days of Jeroboam the son of Joash king of Israel.\" Amos prophesied in the reign in which Jeroboam restored the coast."
+    },
+    {
+      "id": "conn-2ki-06-018",
+      "book": "Hosea",
+      "bookId": "hosea",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The word of the LORD that came unto Hosea \"in the days of Uzziah, Jotham, Ahaz, and Hezekiah, kings of Judah, and in the days of Jeroboam the son of Joash, king of Israel.\" Hosea's ministry begins in the reign of Jeroboam II and runs through the reigns of this category's Judah kings."
+    },
+    {
+      "id": "conn-2ki-06-019",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 8,
+      "startVerse": 5,
+      "endChapter": 8,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "When the Syrians of Damascus came to help Hadadezer, David slew two and twenty thousand men of the Syrians and put garrisons in Syria of Damascus. The background of the claim at 14:28 that Damascus and Hamath \"belonged to Judah\" is David's conquest, carried here as background, not as the verse's own account."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-biblicaltraining-jonah",
+    "source-biblicaltraining-assyria",
+    "source-biblicaltraining-elisha",
+    "source-bible-odyssey-syria",
+    "source-biblicaltraining-ben-hadad",
+    "source-biblicaltraining-samaria"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-25",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. Category title 'The Two Kingdoms' Parallel Declines' follows the approved 11-category structure (2KINGS-CATEGORIES-PROPOSAL.md) and the dossier header; the dispatch's 'Parallel Declines of the Two Kingdoms' appears nowhere in the verification corpus and is a dispatch-figure correction. Coverage is 112 verses, not 113: the dossier header says '(112 verses)', the §11 header verse counts are (25, 29, 38, 20) = 112, and the dossier-notes coverage check reads 'Total 112/112 verses' — the dispatch's 113 is a dispatch-figure correction. S06 sources[] carries seven entries (all verified in the live registry): 2K06-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; 2K06-S02 Jonah -> source-biblicaltraining-jonah; 2K06-S03 Assyria -> source-biblicaltraining-assyria; source-biblicaltraining-elisha; source-bible-odyssey-syria; source-biblicaltraining-ben-hadad; source-biblicaltraining-samaria. Appendix footnote uses (50 total): Mechon Mamre 35, BT Jonah 3, BT Assyria 8, BT Elisha 2, BO Syria 1, BT Ben-Hadad 1, BT Samaria 0. §9 Source IDs cells: Mechon Mamre 36, BT Jonah 3, BT Assyria 5, BT Elisha 2, BT Samaria 1, Kurkh Monolith 1. BT Ben-Hadad and BO Syria enter sources[] by the footnote-only leg (one appendix footnote each, zero §9 Source IDs cells) — the S02 Moab precedent. BT Samaria enters by the §9-only leg (claim 037's Source IDs cell; zero appendix footnote keys). The Kurkh Monolith (source-kurkh-monolith) is NOT in sources[] even though it sits in claim 038's §9 Source IDs cell and has a registry entry: the registry marks it not-independently-verified (the Qarqar/Hadadezer question; reported second-hand through the verified Assyria article). Claim 038 is capped probable and also rests on the verified 2K06-S03, so no claim rests on it alone — the S04 JSOT precedent (1 Kings S05 Levin / S07 Kurkh / S08 Beersheba / S09 Sons of the Prophets / S10 Na'aman / S11 False Prophets). The BiblicalTraining 'Ahab' article is NOT in sources[]: cited only in §4-§5 internal prose, never in a §9 Source IDs cell or the appendix. The Bible Odyssey 'Royal Succession' article is NOT in sources[]: cited only in §2/§4 internal prose, never in a §9 Source IDs cell or the appendix; no §9 claim cites it, so no claim is capped on its account. The Mesha Stele (source-mesha-stele-2-kings-3-4) is NOT in sources[]: cited only in §4-§6 internal prose, never in a §9 Source IDs cell or the appendix. The Elisha article remainder (lines 154-373) was not read (continuation fetch rate-limited, 429, 2026-11-25) and is not cited: claims 007 and 036 cite only the read part (lines 42-63 and 64-68); no claim rests on the unread remainder (the §12 needs-checking row's scope is stated explicitly — verification-report C-3). primaryScripture is NARROWED to 13:14-15:12 (span 2, within the validator's ≤3-chapter rule) per the dossier header and §7; fullRange stays 13:1-16:20 (4 chapters). The window covers Elisha's death and the arrow oracle through the fulfilment of the fourth-generation word (15:12); the Assyrian entry (15:19-29) and Ahaz (ch. 16) sit in the range but outside the primary window. Prose 422/1490/227 by the validator's own countWords — exactly the dossier's recorded counts, all in band. Ancient World is preserved exactly at 1490, 10 under the 1500 cap (post-Step-5 figure after the D-S06-1 13:5 clause restoration; the verification report's 1479 is the pre-Step-5 figure). No Class A stored-text error falls in this range (chs. 13-16); 13:17 is a Class D accepted variant (stored possessive form vs the BibleHub form), and 16:15 is a Class B variant (stored 'enquire' vs 'inquire'). The stored readings are quoted nowhere in the built files (verified by grep at build). No licensed-translation text appears anywhere in this file (dossier §13); Scripture quotations are brief KJV/JPS 1917 (public domain) only. All 19 §11 targets are single ranges within one book, so there are no encompassing ranges, no splits, and no whole-chapter targets. Two connections carry confidence established (2KCO-06-002, 2 Kings 10:30, prophetic-reference; 2KCO-06-004, Deuteronomy 24:16, background); the other 17 are probable. The only new books in the connection targets are Isaiah, Jonah, Amos, and Hosea (2KCO-06-011, 013, 017, 018). Chapter coverage is complete: all 112 verses covered (ch. 13 vv. 1-25 by 2KCL-06-001-011; ch. 14 vv. 1-29 by 2KCL-06-012-022; ch. 15 vv. 1-38 by 2KCL-06-023-029; ch. 16 vv. 1-20 by 2KCL-06-030-035), per the dossier's own coverage check. The three probable claims: 036 (date unknown — conventional datings are reconstructions, not dates the text gives), 037 (places named, not located), 038 (Qarqar/Kurkh Monolith — not independently verified, capped probable). Article remainders not read and not cited: Elisha lines 154-373; Assyria lines 284-435; Jonah further-study list lines 171-180; the Ben-Hadad son-of-Hazael section (lines 153-222); the Samaria article lines 156-220. Open items from the dossier notes: the unnamed saviour of 13:5 (do not name them); thrice, not five or six times (do not rationalise); the bones of 13:21 (do not explain); 'as yet' of 13:23 (the fall of ch. 17 is already dated by this word); the law cited at 14:6 (Deut 24:16); the thistle and the cedar; the wall breached and the temple gold carried to Samaria by Israel; Jonah son of Amittai (do not import the book's narrative); salvation through an evil king (flag the tension, do not resolve it); Damascus and Hamath 'which belonged to Judah' (stated without explanation); Azariah/Uzziah (the variation is in the MT itself, MT 15:13 reads Uzziah — not a stored-text error); the leprosy without a stated cause (Chronicles gives one — dossier-stage parallel only, do not import it); Tiphsah (stated without judgment); 'in the twentieth year of Jotham' (15:30) against Jotham's sixteen-year reign (flag, do not resolve); the son through the fire (do not soften it); the copied altar and the demoted brasen altar ('the brasen altar shall be for me to enquire by'). Dossier-notes registry snapshot (443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Appendix headings were normalised at Step 5 per verification-report C-2 (single-# Appendix heading, ### section headings); the build normalises ### to ## and #### to ### as in S01-S05. The recurring 'And the rest of the acts of...' formula is recorded as a claim in each chapter (2KCL-06-005, 017, 022, 029, 035), not a separate standalone claim for each occurrence, since it is formulaic and carries no distinct content. Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
