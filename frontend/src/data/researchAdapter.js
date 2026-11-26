@@ -46,7 +46,10 @@
 // supplies the bundle. It does not change the workspace's data source:
 // the workspace still renders the labeled demonstration data until
 // verified, editorially approved research is wired in by a later step.
-import { DATE_PENDING_LABEL } from "./doctrineStudies";
+// Explicit ".js" extension: the Node build scripts import this
+// module directly, and Node ESM does not resolve extensionless
+// imports. Vite and vitest resolve the explicit extension the same way.
+import { DATE_PENDING_LABEL } from "./doctrineStudies.js";
 
 // Lifecycle statuses, RESEARCH-STANDARDS.md §9.1.
 export const LIFECYCLE_STATUSES = [

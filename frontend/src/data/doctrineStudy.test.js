@@ -10,11 +10,14 @@
 // demonstration data it renders today.
 import { describe, expect, it } from "vitest";
 import { DEMONSTRATION_NOTICE, getWorkDateLabel, passages as demoPassages } from "./doctrineStudies";
+import { adaptResearchData } from "./researchAdapter";
 import {
     RESEARCH_NOTICE,
     buildStudyFromResearch,
     demonstrationStudy,
+    getGeneratedTrinityStudy,
     resolveStudy,
+    studyFromPublished,
 } from "./doctrineStudy";
 
 function verificationRecord(overrides = {}) {
@@ -231,5 +234,58 @@ describe("doctrineStudy resolveStudy", () => {
     it("falls back to the demonstration study for an empty bundle", () => {
         const { study } = resolveStudy({});
         expect(study).toBe(demonstrationStudy);
+    });
+});
+
+describe("doctrineStudy studyFromPublished", () => {
+    it("builds a research study from adapted published data", () => {
+        const adapted = adaptResearchData(publishableBundle());
+        const study = studyFromPublished(adapted.published);
+        expect(study).not.toBeNull();
+        expect(study.source).toBe("research");
+        expect(study.notice).toBe(RESEARCH_NOTICE);
+        expect(study.passages).toHaveLength(1);
+        expect(study.passages[0].id).toBe("gen-1-26");
+        expect(study.getPassage("gen-1-26")?.label).toBe("Genesis 1:26");
+        expect(study.getFigure("justin-martyr")?.name).toBe("Justin Martyr");
+        expect(study.getWork("justin-martyr-first-apology")?.title).toBe("First Apology");
+        expect(study.getInterpretationsForPassage("gen-1-26")).toHaveLength(1);
+    });
+
+    it("returns null when the published set is empty", () => {
+        expect(
+            studyFromPublished({
+                passages: [],
+                figures: [],
+                works: [],
+                interpretations: [],
+                passageInterpretations: {},
+            }),
+        ).toBeNull();
+        expect(studyFromPublished(null)).toBeNull();
+        expect(studyFromPublished(undefined)).toBeNull();
+    });
+
+    it("matches buildStudyFromResearch on the same bundle", () => {
+        const bundle = publishableBundle();
+        const adapted = adaptResearchData(bundle);
+        const fromPublished = studyFromPublished(adapted.published);
+        const fromBundle = buildStudyFromResearch(bundle).study;
+        expect(fromPublished.passages).toEqual(fromBundle.passages);
+        expect(fromPublished.figures).toEqual(fromBundle.figures);
+        expect(fromPublished.works).toEqual(fromBundle.works);
+        expect(fromPublished.interpretations).toEqual(fromBundle.interpretations);
+        expect(fromPublished.source).toBe(fromBundle.source);
+    });
+});
+
+describe("doctrineStudy getGeneratedTrinityStudy", () => {
+    it("returns null while the generated study holds nothing publishable", () => {
+        // The test script generates the study from the real tree before
+        // vitest runs, and the real tree has zero publishable passages
+        // — so the generated file is empty and there is no study. If
+        // the file does not exist at all (a bare vitest run), the glob
+        // matches nothing and this returns null the same way.
+        expect(getGeneratedTrinityStudy()).toBeNull();
     });
 });

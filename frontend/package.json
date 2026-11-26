@@ -6,13 +6,13 @@
   "scripts": {
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.js",
-    "predev": "node scripts/build-history-content-dev.js",
-    "prebuild": "node scripts/build-history-content.js && node scripts/generate-sitemap.js",
+    "predev": "node scripts/build-history-content-dev.js && node scripts/build-doctrine-content.js",
+    "prebuild": "node scripts/build-history-content.js && node scripts/build-doctrine-content.js && node scripts/generate-sitemap.js",
     "build": "vite build",
-    "postbuild": "node scripts/check-history-gate.js",
+    "postbuild": "node scripts/check-history-gate.js && node scripts/check-doctrine-gate.js",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "env -u HISTORY_INCLUDE_UNPUBLISHED node scripts/build-history-content.js && vitest run",
+    "test": "env -u HISTORY_INCLUDE_UNPUBLISHED node scripts/build-history-content.js && node scripts/build-doctrine-content.js && vitest run",
     "test:watch": "vitest",
     "build:check": "node scripts/check-build.js",
     "test:security-browser": "node scripts/check-build.js && playwright test"

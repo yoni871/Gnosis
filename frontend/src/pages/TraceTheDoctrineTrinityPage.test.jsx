@@ -103,6 +103,18 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(document.querySelector(".doctrine-workspace")).not.toHaveTextContent(/AD \d|c\. \d{3,4}/);
     });
 
+    it("renders the demonstration study while the generated study holds nothing publishable", async () => {
+        // The data-feed contract: the build script generates an empty
+        // study from the current research tree (zero publishable
+        // passages), and the page falls back to the demonstration
+        // study — no research notice, no verified labels.
+        renderPage();
+        await screen.findByText("Genesis 1 verse 26.");
+        expect(screen.getAllByText(/Demonstration data — the theologian entries are placeholders pending research/).length).toBeGreaterThanOrEqual(3);
+        expect(screen.queryByText(/Verified research — quotations, titles, and dates checked/)).toBeNull();
+        expect(screen.getByRole("heading", { name: "Justin Martyr" })).toBeInTheDocument();
+    });
+
     it("steps through the four passages with prev/next, never wrapping, and resets the timeline selection", async () => {
         const user = userEvent.setup();
         renderPage();
