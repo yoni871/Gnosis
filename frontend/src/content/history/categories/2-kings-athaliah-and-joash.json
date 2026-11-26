@@ -1,0 +1,364 @@
+{
+  "id": "category-2-kings-athaliah-and-joash",
+  "title": "Athaliah and Joash",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 11,
+    "startVerse": 1,
+    "endChapter": 12,
+    "endVerse": 21
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 11,
+    "startVerse": 1,
+    "endChapter": 12,
+    "endVerse": 21
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-05-001",
+      "claim": "When Athaliah the mother of Ahaziah sees that her son is dead, she arises and destroys all the seed royal.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-002",
+      "claim": "Jehosheba, daughter of king Joram and sister of Ahaziah, takes Joash the son of Ahaziah and steals him from among the king's sons which were slain; they hide him, even him and his nurse, in the bedchamber from Athaliah, so that he is not slain.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-003",
+      "claim": "He is with her hid in the house of the LORD six years, and Athaliah reigns over the land.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-004",
+      "claim": "In the seventh year Jehoiada the priest fetches the rulers over hundreds, the captains, and the guard into the house of the LORD, makes a covenant with them, takes an oath of them in the house of the LORD, and shows them the king's son.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-005",
+      "claim": "Jehoiada orders the watches: a third part entering in on the sabbath keeps the watch of the king's house, a third part is at the gate of Sur, a third part at the gate behind the guard, and two parts going forth on the sabbath keep the watch of the house of the LORD about the king; every man is to compass the king round about with his weapons in his hand, and he that cometh within the ranges is to be slain.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-006",
+      "claim": "The captains over the hundreds do according to all things that Jehoiada the priest commanded, taking every man his men that were to come in on the sabbath with them that should go out on the sabbath, and coming to Jehoiada the priest.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-007",
+      "claim": "To the captains over hundreds the priest gives king David's spears and shields, that were in the temple of the LORD.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-008",
+      "claim": "The guard stands, every man with his weapons in his hand, round about the king, from the right corner of the temple to the left corner of the temple, along by the altar and the temple.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-009",
+      "claim": "The king's son is brought forth, the crown put upon him, and the testimony given; they make him king and anoint him, clap their hands, and say, \"God save the king.\" What the testimony is, the verse does not say, and this claim does not define it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-010",
+      "claim": "Athaliah hears the noise of the guard and of the people, comes into the temple of the LORD, and sees the king standing by a pillar, as the manner was, with the princes and the trumpeters by him, all the people of the land rejoicing and blowing with trumpets; she rends her clothes and cries, \"Treason, Treason.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Solomon's Temple,\" lines 144–149 read live 2026-11-25: the two pillars had a ceremonial role, and the young king Joash stood by the pillar at his coronation (2 Kgs 11:14).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-011",
+      "claim": "Jehoiada the priest commands the captains to have her forth without the ranges, and him that follows her to kill with the sword — \"Let her not be slain in the house of the LORD.\" They lay hands on her; she goes by the way by the which the horses came into the king's house, and there she is slain.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-012",
+      "claim": "Jehoiada makes a covenant between the LORD and the king and the people, that they should be the LORD's people, and between the king also and the people — two covenants in one verse. (11:17 is a Class D variant, stored \"LORD's\" / BibleHub \"LORD'S\"; accepted variant, not an error.)",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; KJV verification report (Class D, 11:17).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-013",
+      "claim": "All the people of the land go into the house of Baal, break it down, break its altars and images in pieces thoroughly, and slay Mattan the priest of Baal before the altars; the priest appoints officers over the house of the LORD.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Baal,\" read in full (277 lines) live 2026-11-25: \"When the priest Jehoiada overthrew her, the people tore down Baal's temple in Jerusalem, smashed its altars and idols, and killed Mattan the priest of Baal in front of the altars.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-014",
+      "claim": "Jehoiada takes the rulers over hundreds, the captains, the guard, and all the people of the land; they bring down the king from the house of the LORD by the way of the gate of the guard to the king's house, and he sits on the throne of the kings. All the people of the land rejoice, and the city is in quiet; they slew Athaliah with the sword beside the king's house.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-015",
+      "claim": "\"Seven years old was Jehoash when he began to reign.\" (KJV 11:21 = MT 12:1; see the numbering note in §3.)",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (MT 12:1, with a paragraph break after it); stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-016",
+      "claim": "In the seventh year of Jehu Jehoash begins to reign; forty years he reigns in Jerusalem, and his mother's name is Zibiah of Beersheba. He does that which is right in the sight of the LORD all his days wherein Jehoiada the priest instructed him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" lines 194–200 read live 2026-11-25: \"After Athaliah's six-year rule, the priest Jehoiada crowned the boy Joash in the temple and had her executed.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-017",
+      "claim": "But the high places are not taken away: the people still sacrifice and burn incense in the high places. This is the reign's stated limit, carried as context through the book.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-018",
+      "claim": "Jehoash tells the priests to take all the money of the dedicated things brought into the house of the LORD and repair the breaches of the house wheresoever any breach shall be found; but in the three and twentieth year of king Jehoash the priests have not repaired the breaches. The king rebukes them, and the priests consent to receive no more money of the people, neither to repair the breaches of the house. The text gives no reason for the failure.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-019",
+      "claim": "Jehoiada the priest takes a chest, bores a hole in the lid of it, and sets it beside the altar, on the right side as one cometh into the house of the LORD; the priests that keep the door put in all the money brought into the house. When much money is in the chest, the king's scribe and the high priest put it up in bags and tell it, and give it to the overseers, who lay it out to the carpenters and builders, to masons and hewers of stone, and to buy timber and hewn stone to repair the breaches of the house.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; Bible Odyssey, \"First Temple,\" read in full (65 lines) live 2026-11-25: the extensive renovations to the temple during the reign of Joash are viewed in a positive light by the biblical writers.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-020",
+      "claim": "No bowls of silver, snuffers, basons, trumpets, or vessels of gold or silver are made for the house of the LORD of the money brought in; it all goes to the workmen, and the house is repaired. \"Moreover they reckoned not with the men, into whose hand they delivered the money to be bestowed on workmen: for they dealt faithfully.\" The trespass money and sin money are not brought into the house of the LORD; they are the priests'.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-021",
+      "claim": "Hazael king of Syria goes up, fights against Gath, takes it, and sets his face to go up to Jerusalem. Jehoash king of Judah takes all the hallowed things that Jehoshaphat, and Jehoram, and Ahaziah, his fathers, kings of Judah, had dedicated, and his own hallowed things, and all the gold found in the treasures of the house of the LORD and in the king's house, and sends it to Hazael king of Syria; and he goes away from Jerusalem.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" lines 194–200 read live 2026-11-25: Joash \"later paid off Hazael of Aram with its treasures.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-05-022",
+      "claim": "The rest of the acts of Joash, and all that he did, are they not written in the book of the chronicles of the kings of Judah? His servants arise, make a conspiracy, and slay Joash in the house of Millo, which goeth down to Silla. Jozachar the son of Shimeath and Jehozabad the son of Shomer, his servants, smite him, and he dies; he is buried with his fathers in the city of David, and Amaziah his son reigns in his stead. (KJV vv. 19–21 = MT vv. 20–22.)",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" lines 140–141 read live 2026-11-25: the Hebrew word is *millô*, the Millo, probably the terraced fill supporting buildings on the eastern slope. No site is asserted for Millo or Silla beyond the text.",
+      "assessment": "established"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-05-001",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 8,
+      "startVerse": 25,
+      "endChapter": 8,
+      "endVerse": 29,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ahaziah son of Jehoram begins to reign over Judah at two and twenty years old, for one year in Jerusalem; his mother is Athaliah, the daughter of Omri. He walks in the way of the house of Ahab, goes with Joram to war against Hazael at Ramoth-gilead, and goes down to Jezreel to see the wounded Joram — the journey from which he does not return."
+    },
+    {
+      "id": "conn-2ki-05-002",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 9,
+      "startVerse": 27,
+      "endChapter": 9,
+      "endVerse": 29,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ahaziah flees by the garden house, is smitten at the going up to Gur by Ibleam, flees to Megiddo and dies there; his servants carry him to Jerusalem and bury him with his fathers in the city of David. His death leaves the throne in Jerusalem empty, and his mother destroys the seed royal."
+    },
+    {
+      "id": "conn-2ki-05-003",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 10,
+      "startVerse": 18,
+      "endChapter": 10,
+      "endVerse": 28,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Jehu gathers all the prophets, servants, and priests of Baal in Samaria, has them slain, burns the images, breaks down the house of Baal, and makes it a draught house. The northern purge is the pair to the southern one: the army under a newly anointed king destroys Baal in Samaria, and the people of the land under a priest break down Baal's house in Jerusalem."
+    },
+    {
+      "id": "conn-2ki-05-004",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 7,
+      "startVerse": 12,
+      "endChapter": 7,
+      "endVerse": 17,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Nathan brings David the word that the LORD will build David a house: his offspring will succeed him and build a house for the LORD's name, and his throne will be established for ever. The promise is the ground on which the seed royal has a future when Athaliah destroys it, and the hidden child is the promise kept in a bedchamber."
+    },
+    {
+      "id": "conn-2ki-05-005",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 8,
+      "startVerse": 19,
+      "endChapter": 8,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Yet the LORD would not destroy Judah for David his servant's sake, as he promised him to give him alway a light, and to his children. The verse is the narrator's own reason why Judah survives a king who married into Ahab's house, and the hidden child is that light kept burning through Athaliah's six years."
+    },
+    {
+      "id": "conn-2ki-05-006",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 8,
+      "startVerse": 7,
+      "endChapter": 8,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "David takes the shields of gold that were on the servants of Hadadezer king of Zobah and brings them to Jerusalem. The passage is the proposed background for the spears and shields of David kept in the temple that arm Jehoiada's guard; the text of chapter 11 does not say these are the same objects, and the chain is not asserted beyond it."
+    },
+    {
+      "id": "conn-2ki-05-007",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 25,
+      "startVerse": 16,
+      "endChapter": 25,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Moses is told to put into the ark the testimony which the LORD shall give him. The same word is used for what the king receives with the crown at his coronation, but the verse in Kings does not say what the object is, and this connection does not identify it."
+    },
+    {
+      "id": "conn-2ki-05-008",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 15,
+      "startVerse": 18,
+      "endChapter": 15,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Asa takes all the silver and the gold left in the treasures of the house of the LORD and the king's house and sends it to Ben-hadad king of Syria, to break his league with Baasha. It is the first payment in the thread of temple treasure sent out of the house to buy off a foreign king, of which Joash's payment to Hazael is the second."
+    },
+    {
+      "id": "conn-2ki-05-009",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 16,
+      "startVerse": 8,
+      "endChapter": 16,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ahaz takes the silver and gold found in the house of the LORD and in the treasures of the king's house and sends it as a present to Tiglath-pileser king of Assyria. It is the third payment in the same thread, after Asa's and Joash's."
+    },
+    {
+      "id": "conn-2ki-05-010",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 18,
+      "startVerse": 15,
+      "endChapter": 18,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hezekiah gives Sennacherib all the silver found in the house of the LORD and in the treasures of the king's house, and cuts off the gold from the doors of the temple and from the pillars he himself had overlaid. It is the fourth payment in the same thread, after Asa's, Joash's, and Ahaz's."
+    },
+    {
+      "id": "conn-2ki-05-011",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 22,
+      "startVerse": 7,
+      "endChapter": 22,
+      "endVerse": 7,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "At Josiah's repair of the temple there is no reckoning made with the workmen of the money delivered into their hand, because they dealt faithfully — the same words as at Joash's repair. The two honest repairs are joined by the single phrase, a century apart."
+    },
+    {
+      "id": "conn-2ki-05-012",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 18,
+      "startVerse": 4,
+      "endChapter": 18,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hezekiah removes the high places, breaks the images, cuts down the groves, and breaks in pieces the brasen serpent Moses made. He is the only king in the book who removes them, which throws into relief the limit stated of Joash and of Amaziah, Azariah, and Jotham after him: the high places are not taken away."
+    },
+    {
+      "id": "conn-2ki-05-013",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 13,
+      "startVerse": 10,
+      "endChapter": 13,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "In the thirty and seventh year of Joash king of Judah, Jehoash the son of Jehoahaz begins to reign over Israel in Samaria. The namesake king of Israel reigns at the same time as the Joash of Judah, and the two must be kept distinct wherever either is named."
+    },
+    {
+      "id": "conn-2ki-05-014",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 24,
+      "startVerse": 7,
+      "endChapter": 24,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Chronicler records that the sons of Athaliah had broken into the house of God and bestowed all the dedicated things of the house of the LORD upon Baalim. The charge is the Chronicler's account only; the book of Kings never states it, and the two accounts are not harmonised here."
+    },
+    {
+      "id": "conn-2ki-05-015",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 24,
+      "startVerse": 20,
+      "endChapter": 24,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "probable",
+      "note": "After the death of Jehoiada, Zechariah his son stands up and tells the people they have forsaken the LORD, and by the king's commandment they stone him with stones in the court of the house of the LORD. The Chronicler's sequel shows what follows the priest's instruction, and it is the close of the reign as Chronicles tells it."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-bible-odyssey-first-temple",
+    "source-biblicaltraining-solomons-temple",
+    "source-biblicaltraining-jerusalem",
+    "source-biblicaltraining-baal"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-25",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. Category title 'Athaliah and Joash' follows the approved 11-category structure; the dossier header carries the same title. S05 sources[] carries five entries (all verified in the live registry): 2K05-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; source-bible-odyssey-first-temple; source-biblicaltraining-solomons-temple; source-biblicaltraining-jerusalem; source-biblicaltraining-baal. Appendix footnote uses (39 total): Mechon Mamre 23, BO First Temple 4, BT Solomon's Temple 2, BT Jerusalem 2, BT Baal 8. All five sources[] entries appear in both a §9 Source IDs cell and an appendix footnote. The BiblicalTraining 'Anointing' article is NOT in sources[]: it appears only in §2 internal prose, no claim in this dossier rests on it (the §2-only leg). The BiblicalTraining 'Athaliah' article (2K05-S02) is NOT in sources[] and has no registry entry: it is not independently verified (the text fetch was rate-limited, 429, on 2026-11-25) and no claim rests on it; it was excluded from the registry by the hygiene rule as uncited. All 22 claims are established — the only all-established category in the 2 Kings lane so far. Numbering: KJV numbering throughout; KJV 11:21 = MT 12:1, and from MT 12:2 onward MT numbering runs one ahead of KJV (MT 12:22 = KJV 12:21); totals agree (42 = 42). No Class A stored-text error falls in this range (chs. 11-12); 11:17 is a Class D accepted variant (stored possessive form vs the BibleHub form), not an error. The stored readings are quoted nowhere in the built files (verified by grep at build). No licensed-translation text appears anywhere in this file (dossier §13); Scripture quotations are brief KJV/JPS 1917 (public domain) only. One non-KJV phrasing in §4 was replaced with the KJV wording at Step 5. All 15 §11 targets are single ranges within one book, so there are no encompassing ranges, no splits, and no whole-chapter targets. The only new book in the connection targets is 2 Chronicles (2KCO-05-014, 24:7; 2KCO-05-015, 24:20-22). primaryScripture is the full range 11:1-12:21 (2 chapters, endChapter − startChapter = 1, within the validator limit — no narrowing). Chapter coverage is complete: all 42 verses covered (ch. 11 vv. 1-21 by 2KCL-05-001-015; ch. 12 vv. 1-21 by 2KCL-05-016-022), per the dossier's own coverage check. Article remainders not read and not cited: Solomon's Temple lines 163-343 of 343; Jerusalem lines 276-616 of 616. Open items from the dossier notes: what 'the testimony' is (11:12) — the verse does not say, and the dossier does not define it; how king David's spears and shields came to be in the temple (11:10) — the chain is not asserted beyond the text, with 2 Sam 8:7 carried as proposed background only (2KCO-05-006); whether the two covenants of 11:17 are one act or two distinct covenants; why the priests fail to repair the breaches for twenty-three years (12:6); why Joash's own servants conspire against him (12:20); the Joash/Jehoash confusion risk — the same king under two spellings in these chapters, and a namesake reigning in Israel at the same time (13:10); the Chronicler's additions (2 Chr 24:7, 24:20-22) carried as the Chronicler's account only, not harmonised. Dossier-notes item 10 (registry counts 443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
