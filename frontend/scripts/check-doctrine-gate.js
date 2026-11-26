@@ -30,8 +30,13 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const researchDir = path.join(root, "..", "research", "trace-the-doctrine");
 const generatedDir = path.join(root, "src", "generated", "doctrine");
 const distDir = path.join(root, "dist");
+// The demonstration study's source: the gate's dist/ scan treats a
+// leak string the demo contains as explained, not a leak (see the
+// lib) — the demo's passage ids are the same strings as the real
+// passages' ids, and the demo ships in the bundle by design.
+const demoFile = path.join(root, "src", "data", "doctrineStudies.js");
 
-const { failures, warnings } = checkDoctrineGate({ researchDir, generatedDir, distDir });
+const { failures, warnings } = checkDoctrineGate({ researchDir, generatedDir, distDir, demoFile });
 
 if (!existsSync(distDir)) {
     console.log("Doctrine gate: dist/ not present — skipping the bundle scan (generated-file check only).");

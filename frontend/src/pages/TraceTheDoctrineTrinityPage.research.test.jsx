@@ -167,7 +167,12 @@ describe("TraceTheDoctrineTrinityPage with a generated research study", () => {
         renderPage();
         await screen.findByText("Genesis 1 verse 26.");
         // Research notice, not the demonstration notice.
-        expect(screen.getByText(/Verified research — quotations, titles, and dates checked/)).toBeInTheDocument();
+        // The research notice renders three times on the page —
+        // workspace, interpretation panel, and timeline — so assert
+        // on all of them, as the workspace test does.
+        expect(
+            screen.getAllByText(/Verified research — quotations, titles, and dates checked/).length,
+        ).toBeGreaterThanOrEqual(3);
         expect(screen.queryByText(/Demonstration data/)).toBeNull();
         expect(screen.queryByText("Prototype")).toBeNull();
         // The research theologian, quotation, title, and date render.

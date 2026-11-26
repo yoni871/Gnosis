@@ -21,6 +21,10 @@ const scriptsDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(scriptsDir, "..");
 const researchDir = path.join(root, "..", "research", "trace-the-doctrine");
 const outputDir = path.join(root, "src", "generated", "doctrine");
+// The demonstration study's source — see check-doctrine-gate.js:
+// the gate's dist/ scan treats a leak string the demo contains as
+// explained, not a leak.
+const demoFile = path.join(root, "src", "data", "doctrineStudies.js");
 
 export function doctrineGatePlugin() {
     let outDir = path.join(root, "dist");
@@ -48,6 +52,7 @@ export function doctrineGatePlugin() {
                 researchDir,
                 generatedDir: outputDir,
                 distDir: outDir,
+                demoFile,
             });
             if (failures.length > 0) {
                 throw new Error(`Doctrine gate FAILED:\n${failures.map((f) => `  - ${f}`).join("\n")}`);

@@ -42,12 +42,14 @@ import {
     writeFileSync,
 } from "node:fs";
 import path from "node:path";
+// The adapter lives under frontend/src/data/; this lib lives in
+// frontend/scripts/, so the import goes through ../src/.
 import {
     adaptResearchData,
     formatWorkDate,
     isPublishable,
     validateRecord,
-} from "../data/researchAdapter.js";
+} from "../src/data/researchAdapter.js";
 
 function readJson(file) {
     return JSON.parse(readFileSync(file, "utf8"));
@@ -215,7 +217,7 @@ export function findNonPublishedDoctrineRecords({ researchDir, doctrine = "trini
 // — a title too generic to match safely, or a string that also
 // appears in published content (its presence is explained by the
 // published record) — and never clear a failure.
-export function checkDoctrineGate({ researchDir, generatedDir, distDir, doctrine = "trinity" }) {
+export function checkDoctrineGate({ researchDir, generatedDir, distDir, doctrine = "trinity", demoFile = null }) {
     const failures = [];
     const warnings = [];
     const generatedPath = path.join(generatedDir, `${doctrine}.json`);
@@ -252,17 +254,40 @@ export function checkDoctrineGate({ researchDir, generatedDir, distDir, doctrine
     const nonPublished = findNonPublishedDoctrineRecords({ researchDir, doctrine });
     const publishedText = JSON.stringify(fresh.published);
 
-    // A leak string is checked by substring. Ids are never skipped:
-    // an id appears only as structured data, so any occurrence is a
-    // leak. A title, quotation, explanation, or date label that also
-    // appears in the published output is explained by the published
-    // record and is skipped with a warning. A title too generic to
-    // check by substring is skipped the same way — a bare short word
-    // matches published prose that merely mentions it.
-    const checkText = (label, text) => {
+    // The demonstration study's text, when a demo file is given: the
+    // workspace renders labeled sample data while nothing is
+    // publishable, and that sample data ships in the bundle by design.
+    // Its passage ids are the same strings as the real passages' ids
+    // (the demo stands in for those passages), so an id's presence in
+    // dist/ is explained — not a leak — when the demo study contains
+    // it. The demo carries no research titles, dates, quotations, or
+    // explanations (all null), so this explains ids only in practice.
+    // A missing demo file leaves the text empty and the gate strict.
+    let demoText = "";
+    if (demoFile && existsSync(demoFile)) {
+        demoText = readFileSync(demoFile, "utf8");
+    }
+
+    // A leak string is checked by substring against `text`. A string
+    // whose presence is explained by `explainedText` — the published
+    // output, and for dist/ also the demonstration study — is skipped
+    // with a warning instead of failing. Ids are skipped only when
+    // `allowIdSkip` is set: the generated file holds only published
+    // records, so any non-published id there is a real leak and is
+    // never skipped; in dist/ an id the demo study contains is
+    // explained by the demo. A title too generic to check by
+    // substring is skipped the same way — a bare short word matches
+    // published prose that merely mentions it.
+    const checkText = (label, text, explainedText, allowIdSkip) => {
         for (const record of nonPublished) {
             for (const entry of record.strings) {
                 if (entry.type === "id") {
+                    if (allowIdSkip && explainedText.includes(entry.text)) {
+                        warnings.push(
+                            `non-published ${record.kind} id "${entry.text}" also appears in published content or the demonstration study — the occurrence in ${label} is explained by that source.`,
+                        );
+                        continue;
+                    }
                     if (text.includes(entry.text)) {
                         failures.push(`${label} contains non-published ${record.kind} id "${entry.text}".`);
                     }
@@ -274,9 +299,9 @@ export function checkDoctrineGate({ researchDir, generatedDir, distDir, doctrine
                     );
                     continue;
                 }
-                if (publishedText.includes(entry.text)) {
+                if (explainedText.includes(entry.text)) {
                     warnings.push(
-                        `non-published ${record.kind} ${entry.type} "${truncate(entry.text)}" (id "${record.id}") also appears in published content — the id check still applies.`,
+                        `non-published ${record.kind} ${entry.type} "${truncate(entry.text)}" (id "${record.id}") also appears in published content or the demonstration study — the id check still applies.`,
                     );
                     continue;
                 }
@@ -290,7 +315,7 @@ export function checkDoctrineGate({ researchDir, generatedDir, distDir, doctrine
     };
 
     if (generatedText.length > 0) {
-        checkText(`generated ${doctrine}.json`, generatedText);
+        checkText(`generated ${doctrine}.json`, generatedText, publishedText, false);
     }
     if (distDir && existsSync(distDir)) {
         for (const file of listFilesRecursive(distDir)) {
@@ -300,7 +325,7 @@ export function checkDoctrineGate({ researchDir, generatedDir, distDir, doctrine
             } catch {
                 continue;
             }
-            checkText(`dist/${path.relative(distDir, file)}`, text);
+            checkText(`dist/${path.relative(distDir, file)}`, text, `${publishedText}\n${demoText}`, true);
         }
     }
     return { failures, warnings };

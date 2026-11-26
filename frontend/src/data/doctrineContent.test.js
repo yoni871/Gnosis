@@ -211,6 +211,7 @@ function writeTree(tree) {
     writeFileSync(path.join(researchDir, "shared", "authors.json"), JSON.stringify(tree.authors, null, 2));
     writeFileSync(path.join(researchDir, "shared", "works.json"), JSON.stringify(tree.works, null, 2));
     return {
+        root,
         researchDir,
         outputDir: path.join(root, "generated", "doctrine"),
         distDir: path.join(root, "dist"),
@@ -373,6 +374,42 @@ describe("doctrine content gate", () => {
         expect(failures).toEqual([]);
         expect(warnings.length).toBeGreaterThan(0);
         expect(warnings.join("\n")).toContain("also appears in published content");
+    });
+
+    it("treats a demonstration-study id in dist/ as explained, not a leak", () => {
+        // The demo study's passage ids are the same strings as the
+        // real passages' ids, and the demo ships in the bundle by
+        // design — so a non-published passage id that the demo
+        // contains must not fail the dist/ scan. Without the demo
+        // file the same dist/ content fails, proving the skip is
+        // what saves it.
+        const { root, researchDir, outputDir, distDir } = writeTree(mixedTree());
+        generateDoctrineContent({ researchDir, outputDir });
+        const demoFile = path.join(root, "demo-study.js");
+        writeFileSync(demoFile, 'export const passages = [{ id: "synth-john-1-1" }];\n');
+        mkdirSync(distDir, { recursive: true });
+        writeFileSync(path.join(distDir, "app.js"), "bundle… synth-john-1-1 …end");
+        const explained = checkDoctrineGate({ researchDir, generatedDir: outputDir, distDir, demoFile });
+        expect(explained.failures).toEqual([]);
+        expect(explained.warnings.join("\n")).toContain("demonstration study");
+        const strict = checkDoctrineGate({ researchDir, generatedDir: outputDir, distDir });
+        expect(strict.failures.length).toBeGreaterThan(0);
+        expect(strict.failures.join("\n")).toContain("synth-john-1-1");
+    });
+
+    it("keeps the generated-file check strict even with a demo file", () => {
+        // The demo carve-out applies to dist/ only: a non-published
+        // id in the generated file itself is always a real leak.
+        const { root, researchDir, outputDir } = writeTree(mixedTree());
+        generateDoctrineContent({ researchDir, outputDir });
+        const demoFile = path.join(root, "demo-study.js");
+        writeFileSync(demoFile, 'export const passages = [{ id: "synth-john-1-1" }];\n');
+        const study = generatedStudy(outputDir);
+        study.published.passages.push({ id: "synth-john-1-1" });
+        writeFileSync(path.join(outputDir, "trinity.json"), JSON.stringify(study, null, 2));
+        const { failures } = checkDoctrineGate({ researchDir, generatedDir: outputDir, demoFile });
+        expect(failures.length).toBeGreaterThan(0);
+        expect(failures.join("\n")).toContain("synth-john-1-1");
     });
 });
 
