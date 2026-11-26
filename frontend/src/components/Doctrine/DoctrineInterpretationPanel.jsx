@@ -16,6 +16,7 @@ import {
     getWorkDateLabel,
     getWorkTitleLabel,
 } from "../../data/doctrineStudies";
+import { RESEARCH_NOTICE } from "../../data/doctrineStudy";
 
 // Quotations longer than this are collapsed to three lines with a
 // "Read full quotation" toggle, so a long quotation never pushes the
@@ -23,10 +24,17 @@ import {
 // toggle at all.
 const QUOTATION_COLLAPSE_CHARS = 280;
 
-export default function DoctrineInterpretationPanel({ interpretation, figure, work, passage }) {
+export default function DoctrineInterpretationPanel({ interpretation, figure, work, passage, dataSource = "demonstration" }) {
     const [explanationOpen, setExplanationOpen] = useState(false);
     const [sourceDetailsOpen, setSourceDetailsOpen] = useState(false);
     const [quotationOpen, setQuotationOpen] = useState(false);
+    // The origin of the data on screen. Demonstration data is labeled
+    // as such everywhere; research data passed the §10 publication gate
+    // and is labeled verified research. The default keeps every
+    // existing rendering — and every existing test — unchanged.
+    const isResearch = dataSource === "research";
+    const sourceBadge = isResearch ? "Verified research" : "Demonstration data";
+    const sourceNotice = isResearch ? RESEARCH_NOTICE : DEMONSTRATION_NOTICE;
 
     // A new theologian starts with the quotation collapsed, even if
     // the previous one was expanded. This effect sits before the
@@ -45,14 +53,16 @@ export default function DoctrineInterpretationPanel({ interpretation, figure, wo
             <section className="doctrine-interpretation-panel" aria-label="Historical interpretation">
                 <header className="doctrine-panel-header">
                     <p className="doctrine-panel-eyebrow">Historical Interpretation</p>
-                    <p className="doctrine-demonstration-badge">Demonstration data</p>
+                    <p className="doctrine-demonstration-badge">{sourceBadge}</p>
                 </header>
                 <p className="doctrine-interpretation-empty" role="status">
                     No historical interpretations have been added for {passage?.label ?? "this passage"} yet.
                 </p>
                 <p className="doctrine-interpretation-empty-note">
-                    Entries are added only after research verifies the link between a
-                    theologian and this passage. {DEMONSTRATION_NOTICE}
+                    {isResearch
+                        ? "Entries are added only after research is verified and editorially approved. "
+                        : "Entries are added only after research verifies the link between a theologian and this passage. "}
+                    {sourceNotice}
                 </p>
             </section>
         );
@@ -69,9 +79,9 @@ export default function DoctrineInterpretationPanel({ interpretation, figure, wo
         >
             <header className="doctrine-panel-header">
                 <p className="doctrine-panel-eyebrow">Historical Interpretation</p>
-                <p className="doctrine-demonstration-badge">Demonstration data</p>
+                <p className="doctrine-demonstration-badge">{sourceBadge}</p>
             </header>
-            <p className="doctrine-demonstration-note">{DEMONSTRATION_NOTICE}</p>
+            <p className="doctrine-demonstration-note">{sourceNotice}</p>
             <h2 className="doctrine-interpretation-name">{figure.name}</h2>
             <p className="doctrine-interpretation-source">
                 <span className="doctrine-interpretation-source-title">{getWorkTitleLabel(work)}</span>
@@ -147,15 +157,21 @@ export default function DoctrineInterpretationPanel({ interpretation, figure, wo
                             </div>
                             <div>
                                 <dt>Source title</dt>
-                                <dd>{getWorkTitleLabel(work)} — pending verification</dd>
+                                <dd>{getWorkTitleLabel(work)}{isResearch ? "" : " — pending verification"}</dd>
                             </div>
                             <div>
                                 <dt>Written</dt>
-                                <dd>{getWorkDateLabel(work)} — pending verification</dd>
+                                <dd>{getWorkDateLabel(work)}{isResearch ? "" : " — pending verification"}</dd>
                             </div>
                             <div>
                                 <dt>Status</dt>
-                                <dd>Demonstration data — pending verification</dd>
+                                <dd>
+                                    {isResearch
+                                        ? interpretation.researchStatus
+                                            ? `Verified research — ${interpretation.researchStatus}`
+                                            : "Verified research"
+                                        : "Demonstration data — pending verification"}
+                                </dd>
                             </div>
                         </dl>
                     </div>
