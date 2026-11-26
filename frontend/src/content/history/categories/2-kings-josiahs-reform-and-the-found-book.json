@@ -1,0 +1,478 @@
+{
+  "id": "category-2-kings-josiahs-reform-and-the-found-book",
+  "title": "Josiah's Reform and the Found Book",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 22,
+    "startVerse": 1,
+    "endChapter": 23,
+    "endVerse": 37
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 22,
+    "startVerse": 1,
+    "endChapter": 23,
+    "endVerse": 37
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-10-001",
+      "claim": "Josiah is eight years old when he begins to reign, and reigns thirty-one years in Jerusalem; his mother is Jedidah daughter of Adaiah of Boscath. He does right, walks in all the way of David his father, \"and turned not aside to the right hand or to the left.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-002",
+      "claim": "In the eighteenth year of Josiah, the king sends Shaphan the scribe to Hilkiah the high priest: sum the silver brought into the house of the LORD, deliver it to the overseers to repair the breaches — carpenters, builders, masons, timber and hewn stone. \"Howbeit there was no reckoning made with them of the money that was delivered into their hand, because they dealt faithfully.\" The same words describe the repair under Joash (2 Kgs 12:15).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full (22:3–7 and 12:15).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-003",
+      "claim": "Hilkiah the high priest says to Shaphan the scribe, \"I have found the book of the law in the house of the LORD.\" Hilkiah gives the book to Shaphan, and Shaphan reads it. Shaphan reports that the money has been gathered and delivered to the workmen, and tells the king, \"Hilkiah the priest hath delivered me a book.\" Shaphan reads it before the king.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-004",
+      "claim": "When the king has heard the words of the book of the law, he rends his clothes.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-005",
+      "claim": "The king commands Hilkiah, Ahikam son of Shaphan, Achbor son of Michaiah, Shaphan, and Asahiah: \"Go ye, enquire of the LORD for me, and for the people, and for all Judah, concerning the words of this book that is found: for great is the wrath of the LORD that is kindled against us, because our fathers have not hearkened unto the words of this book, to do according unto all that which is written concerning us.\" The stored \"enquire\" is a Class B variant, accepted, not an error.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; KJV verification report (22:13 Class B).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-006",
+      "claim": "The delegation goes to Huldah the prophetess, wife of Shallum son of Tikvah son of Harhas, keeper of the wardrobe, dwelling in Jerusalem in the college (JPS: \"in the second quarter\"), and they commune with her. No reason is given for choosing her.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-007",
+      "claim": "Huldah answers: \"Thus saith the LORD God of Israel, Tell the man that sent you to me, Thus saith the LORD, Behold, I will bring evil upon this place, and upon the inhabitants thereof, even all the words of the book which the king of Judah hath read: because they have forsaken me, and have burned incense unto other gods, that they might provoke me to anger with all the works of their hands; therefore my wrath shall be kindled against this place, and shall not be quenched.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-008",
+      "claim": "\"But to the king of Judah which sent you to enquire of the LORD, thus shall ye say to him, Thus saith the LORD God of Israel, As touching the words which thou hast heard; because thine heart was tender, and thou hast humbled thyself before the LORD, when thou heardest what I spake against this place, and against the inhabitants thereof, that they should become a desolation and a curse, and hast rent thy clothes, and wept before me; I also have heard thee, saith the LORD.\" The stored \"enquire\" is a Class B variant, accepted, not an error.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; KJV verification report (22:18 Class B).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-009",
+      "claim": "\"Behold therefore, I will gather thee unto thy fathers, and thou shalt be gathered into thy grave in peace; and thine eyes shall not see all the evil which I will bring upon this place.\" The delegation brings the king word again. The promise stands in tension with 23:29, where Josiah is slain at Megiddo; the tension is flagged in §3 and §8, not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-010",
+      "claim": "The king gathers all the elders of Judah and Jerusalem, goes up into the house of the LORD with all the men of Judah and all the inhabitants of Jerusalem, the priests, the prophets, and all the people, small and great, and reads in their ears all the words of the book of the covenant found in the house. Standing by a pillar, he makes a covenant before the LORD to walk after the LORD and keep his commandments, testimonies, and statutes with all heart and soul, to perform the words of the covenant written in the book. All the people stand to the covenant.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; Bible Odyssey, \"Covenant in the Hebrew Bible,\" read in full (lines 0–47): covenant as the formal agreement between the LORD and the people, conditional and unconditional as two perspectives on the same covenant; Lucas, \"Covenant, Treaty, and Prophecy,\" read in part (lines 0–414 of 595; lines 391–395 cite 2 Ki 23:1–3 as a covenant ceremony of the kind commanded in Deut 31:9–13).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-011",
+      "claim": "The king commands Hilkiah, the priests of the second order, and the keepers of the door to bring out of the temple all the vessels made for Baal, for the grove, and for all the host of heaven; he burns them outside Jerusalem in the fields of Kidron, and carries the ashes of them unto Bethel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" read in part (lines 0–145 of 616): the Kidron valley runs down the eastern side of the city, between Jerusalem and the Mount of Olives.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-012",
+      "claim": "He puts down the idolatrous priests the kings of Judah ordained to burn incense in the high places, and those who burned incense to Baal, the sun, the moon, the planets, and all the host of heaven. The grove is brought out of the house to the Kidron, burned, stamped to powder, and cast on the graves of the children of the people. The houses of the sodomites by the house of the LORD, where the women wove hangings for the grove, are broken down.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-013",
+      "claim": "He brings all the priests out of the cities of Judah, defiles the high places where the priests had burned incense, from Geba to Beersheba, and breaks down the high places of the gates at the entering in of the gate of Joshua the governor of the city. The priests of the high places come not up to the altar of the LORD in Jerusalem, \"but they did eat of the unleavened bread among their brethren.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-014",
+      "claim": "He defiles Topheth, in the valley of the children of Hinnom, that no man might make his son or his daughter to pass through the fire to Molech. He takes away the horses the kings of Judah gave to the sun, at the entering in of the house of the LORD, and burns the chariots of the sun with fire. The altars on the top of the upper chamber of Ahaz, and the altars Manasseh made in the two courts of the house of the LORD, the king beats down and casts their dust into the brook Kidron.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" read in part (lines 75–80 of 616): the Valley of Hinnom curves around the western and southern sides of the city and joins the Kidron south of it, and its name became the source of the word Gehenna.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-015",
+      "claim": "The high places before Jerusalem, on the right hand of the mount of corruption, which Solomon the king of Israel had builded for Ashtoreth the abomination of the Zidonians, and for Chemosh the abomination of the Moabites, and for Milcom the abomination of the children of Ammon, the king defiles. He breaks in pieces the images, cuts down the groves, and fills their places with the bones of men.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-016",
+      "claim": "The altar at Bethel, and the high place Jeroboam son of Nebat, who made Israel to sin, had made, both that altar and the high place he breaks down, burns the high place, stamps it small to powder, and burns the grove. Josiah turns, sees the sepulchres in the mount, takes the bones out of the sepulchres, burns them upon the altar, and pollutes it, \"according to the word of the LORD which the man of God proclaimed, who proclaimed these words\" (1 Kgs 13:2).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; reuse: `KCL-05-012` (established, 1 Kings S05 dossier) — the man of God names Josiah at the altar (1 Kgs 13:2).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-017",
+      "claim": "Josiah asks what title he sees, and the men of the city tell him it is the sepulchre of the man of God who came from Judah and proclaimed these things against the altar of Bethel. \"Let him alone; let no man move his bones.\" So his bones are left alone, with the bones of the prophet that came out of Samaria.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; reuse: `KCL-05-018` (established, 1 Kings S05 dossier) — the old prophet lays his bones beside the man of God's bones, \"For the saying which he cried by the word of the LORD against the altar in Bethel... shall surely come to pass\" (1 Kgs 13:29–32).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-018",
+      "claim": "All the houses of the high places in the cities of Samaria, which the kings of Israel had made to provoke the LORD to anger, Josiah takes away, and does to them according to all the acts that he had done in Bethel. He slays all the priests of the high places that are there upon the altars, burns men's bones upon them, and returns to Jerusalem. The corrected KJV reading is \"to provoke the LORD to anger\" (the stored text misrenders the divine name; see §3) — and the Hebrew carries no explicit divine name in this clause, the KJV supplying the object, as at 1 Kgs 13:22.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (Hebrew: no divine name; JPS: \"to provoke [the LORD]\"); stored KJV read in full; KJV verification report (23:19 Class A, BibleHub + Blue Letter Bible against the stored text).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-019",
+      "claim": "The king commands all the people, \"Keep the passover unto the LORD your God, as it is written in the book of this covenant.\" \"Surely there was not holden such a passover from the days of the judges that judged Israel, nor in all the days of the kings of Israel, nor of the kings of Judah; but in the eighteenth year of king Josiah, wherein this passover was holden to the LORD in Jerusalem.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; Bible Odyssey, \"Passover,\" read in full (lines 0–77): consecutive celebrations of the Passover and the Feast of Unleavened Bread appear in the accounts of Hezekiah (2 Chr 30) and Josiah (2 Kgs 23:21–23; 2 Chr 35).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-020",
+      "claim": "The workers with familiar spirits, the wizards, the images, the idols, and all the abominations spied in the land of Judah and in Jerusalem, Josiah puts away, that he might perform the words of the law written in the book that Hilkiah the priest found in the house of the LORD.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-021",
+      "claim": "\"And like unto him was there no king before him, that turned to the LORD with all his heart, and with all his soul, and with all his might, according to all the law of Moses; neither after him arose there any like him.\" The verdict is the narrator's own; its pair, Hezekiah's \"none like him\" (2 Kgs 18:5), is flagged in §8 and not ranked.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full (23:25 and 18:5).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-022",
+      "claim": "The greatest reform and the unturned wrath stand in neighbouring verses: the king like whom there was none before him (23:25) against \"Notwithstanding the LORD turned not from the fierceness of his great wrath, wherewith his anger was kindled against Judah, because of all the provocations that Manasseh had provoked him withal\" (23:26). The text holds both without resolving them.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; Bible Odyssey, \"Covenant in the Hebrew Bible,\" read in full (lines 0–47): the unconditional covenant allows for divine judgment, and the conditional covenant may be broken by failure to comply, both being perspectives on the same covenant.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2ki-10-023",
+      "claim": "\"Notwithstanding the LORD turned not from the fierceness of his great wrath, wherewith his anger was kindled against Judah, because of all the provocations that Manasseh had provoked him withal. And the LORD said, I will remove Judah also out of my sight, as I have removed Israel, and will cast off this city Jerusalem which I have chosen, and the house of which I said, My name shall be there.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-024",
+      "claim": "The rest of the acts of Josiah are written in the book of the chronicles of the kings of Judah. In his days Pharaohnechoh king of Egypt goes up against the king of Assyria to the river Euphrates; Josiah goes against him, and he slays him at Megiddo, when he had seen him. His servants carry him in a chariot dead from Megiddo to Jerusalem and bury him in his own sepulchre. The people of the land take Jehoahaz son of Josiah, anoint him, and make him king in his father's stead. No oracle, reason, or judgment is given for why Josiah goes against Pharaohnechoh.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" read in part (lines 248–253 of 616): Josiah was killed by Pharaoh Necho at Megiddo in 609 BC (the article's dating; this dossier records no absolute date).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-025",
+      "claim": "Jehoahaz is twenty-three years old when he begins to reign, and reigns three months in Jerusalem; his mother is Hamutal daughter of Jeremiah of Libnah. He does evil in the sight of the LORD, according to all that his fathers had done.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-026",
+      "claim": "Pharaohnechoh puts him in bands at Riblah in the land of Hamath, that he might not reign in Jerusalem, and puts the land to a tribute of a hundred talents of silver and a talent of gold. He makes Eliakim son of Josiah king in the room of Josiah his father, turns his name to Jehoiakim, takes Jehoahaz away to Egypt, and he dies there.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-10-027",
+      "claim": "Jehoiakim gives the silver and the gold to Pharaoh, but taxes the land to give the money according to the commandment of Pharaoh: he exacts the silver and the gold of the people of the land, of every one according to his taxation, to give it unto Pharaohnechoh. Jehoiakim is twenty-five years old when he begins to reign, and reigns eleven years in Jerusalem; his mother is Zebudah daughter of Pedaiah of Rumah. He does evil in the sight of the LORD, according to all that his fathers had done.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-10-001",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 5,
+      "startVerse": 32,
+      "endChapter": 5,
+      "endVerse": 32,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The charge not to turn aside to the right hand or to the left is the language the verdict on the boy king uses: Josiah walks in all the way of David his father and turns not aside to the right or to the left."
+    },
+    {
+      "id": "conn-2ki-10-002",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 11,
+      "endChapter": 17,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The same charge appears in the law of the priests and judges: the sentence they show is not to be declined to the right hand or to the left. The verdict on Josiah is given in the law's own words."
+    },
+    {
+      "id": "conn-2ki-10-003",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 17,
+      "startVerse": 14,
+      "endChapter": 17,
+      "endVerse": 20,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "The law of the king provides for a future king chosen by the LORD, who must not multiply horses, wives, or silver and gold, and must keep a copy of the law and read it all his days. Josiah is the king measured by the law itself, and the book that is found and read aloud is the law the king is commanded to keep."
+    },
+    {
+      "id": "conn-2ki-10-004",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 18,
+      "startVerse": 15,
+      "endChapter": 18,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The LORD promises to raise up a prophet like Moses and put his words in his mouth, and gives the test by which a true word is known. Huldah speaks in the prophet's form, \"Thus saith the LORD God of Israel,\" and her word is carried back to the king and acted on."
+    },
+    {
+      "id": "conn-2ki-10-005",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 28,
+      "startVerse": 15,
+      "endChapter": 28,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The curses are pronounced on those who will not hearken to the voice of the LORD to observe his commandments: cursed in the city and in the field, cursed in coming in and going out. The king fears \"all that which is written concerning us\" because the book carries curses such as these."
+    },
+    {
+      "id": "conn-2ki-10-006",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 31,
+      "startVerse": 9,
+      "endChapter": 31,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Moses writes the law, gives it to the priests and elders, and commands that it be read before all Israel every seven years at the Feast of Booths, so that all hear it and learn to fear the LORD. The public reading of the found book and the covenant that follows belong to the same practice of reading the law aloud to the whole people."
+    },
+    {
+      "id": "conn-2ki-10-007",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 24,
+      "startVerse": 25,
+      "endChapter": 24,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "At Shechem Joshua makes a covenant with the people, writes the words in the book of the law of God, and sets up a great stone under an oak by the sanctuary as a witness against them. Josiah's covenant, made by a pillar with the whole people standing to it, follows the same pattern of a public renewal sealed by a witness."
+    },
+    {
+      "id": "conn-2ki-10-008",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 12,
+      "startVerse": 1,
+      "endChapter": 12,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Exod 12:3–11 (the lamb taken, slaughtered, roasted with unleavened bread and bitter herbs) and 12:12–13 (the passing over of the marked houses). The Passover Josiah keeps is the feast instituted here, and the article on the Passover names this passage as the most prominent narrative introducing both the Passover and the unleavened-bread feasts."
+    },
+    {
+      "id": "conn-2ki-10-009",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 23,
+      "startVerse": 5,
+      "endChapter": 23,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Passover offering is ordained on the fourteenth day of the first month, followed by seven days in which unleavened bread is eaten. The two feasts are separate but contiguous, and the king's Passover is kept as written in the book of the covenant."
+    },
+    {
+      "id": "conn-2ki-10-010",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 16,
+      "startVerse": 1,
+      "endChapter": 16,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Passover sacrifice is kept with unleavened bread for seven days, at the place the LORD chooses to place his name. The law's Passover is the ordinance the king performs when he keeps the feast as written in the book."
+    },
+    {
+      "id": "conn-2ki-10-011",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 11,
+      "startVerse": 5,
+      "endChapter": 11,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Solomon goes after Ashtoreth the goddess of the Zidonians, Chemosh the god of Moab, and Milcom the abomination of the Ammonites, and builds high places for them. The high places on the mount of corruption that Josiah defiles are Solomon's own, standing since his reign."
+    },
+    {
+      "id": "conn-2ki-10-012",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 28,
+      "endChapter": 12,
+      "endVerse": 33,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jeroboam makes two calves of gold, sets one in Bethel and the other in Dan, makes a house of high places and priests of the lowest of the people, and ordains a feast in the eighth month. The altar and high place at Bethel that Josiah breaks down are Jeroboam's making, and the ashes of the burned vessels are carried back to the place where the northern apostasy began."
+    },
+    {
+      "id": "conn-2ki-10-013",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 13,
+      "startVerse": 1,
+      "endChapter": 13,
+      "endVerse": 3,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "A man of God comes from Judah by the word of the LORD to Bethel as Jeroboam stands by the altar to burn incense, and cries against the altar: a child shall be born unto the house of David, Josiah by name, and upon the altar shall he offer the priests of the high places and burn men's bones. Josiah's acts at Bethel are presented as the fulfilment of this word."
+    },
+    {
+      "id": "conn-2ki-10-014",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 13,
+      "startVerse": 29,
+      "endChapter": 13,
+      "endVerse": 32,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The old prophet of Bethel fetches the man of God's body, lays it in his own grave, and tells his sons to lay his bones beside the man of God's bones, because the saying against the altar in Bethel shall surely come to pass. When Josiah asks whose sepulchre he sees, the men of the city name the man of God, and his bones are left alone with the prophet's."
+    },
+    {
+      "id": "conn-2ki-10-015",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 11,
+      "startVerse": 17,
+      "endChapter": 11,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jehoiada makes a covenant between the LORD and the king and the people, that they should be the LORD's people, and between the king also and the people. The earlier temple covenant, made when the boy Joash was crowned after six years hidden in the house of the LORD, is the nearer precedent for Josiah's renewal."
+    },
+    {
+      "id": "conn-2ki-10-016",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 12,
+      "startVerse": 9,
+      "endChapter": 12,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jehoiada sets a chest beside the altar for the money brought into the house, and the king's scribe and the high priest deliver it to the overseers of the work. They reckon not with the workmen, for they dealt faithfully. The repair under Josiah is carried out with the same honesty, in the same words."
+    },
+    {
+      "id": "conn-2ki-10-017",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 17,
+      "startVerse": 7,
+      "endChapter": 17,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 17:7–18 (the sins of Israel and the removal out of the LORD's sight) and 17:19–23 (Judah indicted inside Israel's obituary, and the removal \"as he had said by all his servants the prophets\"). The sentence Josiah's reform cannot turn — \"And the LORD said, I will remove Judah also out of my sight, as I have removed Israel\" (23:27) — is the sentence this passage already pronounced on the north."
+    },
+    {
+      "id": "conn-2ki-10-018",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 18,
+      "startVerse": 4,
+      "endChapter": 18,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Hezekiah removes the high places, breaks the images, cuts down the groves, and breaks in pieces the brasen serpent Moses made, and it is said of him that after him was none like him among all the kings of Judah, nor any that were before him. The two kings who remove the high places both receive the superlative, and neither is ranked above the other."
+    },
+    {
+      "id": "conn-2ki-10-019",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 21,
+      "startVerse": 10,
+      "endChapter": 21,
+      "endVerse": 15,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The LORD speaks by his servants the prophets: because Manasseh has done these abominations, the LORD will stretch over Jerusalem the line of Samaria and the plummet of the house of Ahab, wipe Jerusalem as a man wipes a dish, and forsake the remnant of his inheritance. The unturned wrath of Josiah's chapter answers this sentence, pronounced a chapter earlier."
+    },
+    {
+      "id": "conn-2ki-10-020",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 24,
+      "startVerse": 3,
+      "endChapter": 24,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Surely at the commandment of the LORD came this upon Judah, to remove them out of his sight, for the sins of Manasseh, and also for the innocent blood that he shed, which the LORD would not pardon. The fall that Josiah's reform could not turn is attributed here to the same sins, decades after they were committed."
+    },
+    {
+      "id": "conn-2ki-10-021",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 35,
+      "startVerse": 1,
+      "endChapter": 35,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets the whole Passover account of 2 Chr 35:1–19, the Chronicler's parallel to 2 Kgs 23:21–23. The Chronicler tells Josiah's Passover at greater length; it is a parallel account, not an independent witness, and the two are not harmonised."
+    },
+    {
+      "id": "conn-2ki-10-022",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 22,
+      "startVerse": 11,
+      "endChapter": 22,
+      "endVerse": 12,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The word concerning Shallum, the son of Josiah king of Judah, who went out of this place: he shall not return there, but shall die in the place where he was led captive. Shallum is read as Jehoahaz, taken by Pharaohnechoh to Egypt, where he dies."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-bible-odyssey-covenant",
+    "source-lucas-covenant-treaty-prophecy",
+    "source-biblicaltraining-jerusalem",
+    "source-bible-odyssey-passover"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-26",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. Category title 'Josiah's Reform and the Found Book' follows the approved 11-category structure (2KINGS-CATEGORIES-PROPOSAL.md line 28 table) and the dossier header; the dispatch's title matches — no title correction (unlike S06/S07/S08; like S09). Coverage is 57/57: all 57 verses of chapters 22–23 covered by section 9 claims (ch. 22 vv. 1–20 by 001–009; ch. 23 vv. 1–37 by 010–027), per the dossier's own coverage check. S10 sources[] carries five entries (all verified in the live registry): 2K10-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; source-bible-odyssey-covenant; source-lucas-covenant-treaty-prophecy; source-biblicaltraining-jerusalem; source-bible-odyssey-passover. Appendix footnote uses (51 total): Mechon Mamre 46, BO Covenant 1, Lucas 1, BT Jerusalem 1, BO Passover 2. Section 9 Source IDs cells: Mechon Mamre 27, BO Covenant 2, Lucas 1, BT Jerusalem 3, BO Passover 1. No source in sources[] is newly-cited: Mechon Mamre is already cited by S01–S09, Jerusalem by S05/S08/S09 and published 1 Kings categories, and Covenant, Lucas, and Passover are already cited by earlier categories — verified against base by script parsing category + event + book JSONs. BO First Temple (source-bible-odyssey-first-temple, verified in the registry) is EXCLUDED: it is the section 12 needs-checking entry — fetch attempted 2026-11-25, text-fetch rate-limited (429), page not read; no claim in this dossier rests on it and dependent claims are none — and it appears only in the section 12 table and the dossier notes, in no section 9 Source IDs cell and no appendix footnote. Excluded by the needs-checking rule (S04 JSOT precedent) and the section-location rule; the dossier states 'Do not cite it until read in full.' Weinfeld (source-weinfeld-covenant-grant, verified) and Hutton-Crouch (source-hutton-crouch-deuteronomy-translation-assyrian-treaties, verified) are EXCLUDED by the section-location rule: each appears only in section 2/4/5 internal prose and the section 12 already-registered table — in no section 9 Source IDs cell and no appendix footnote, and no claim rests on either. The S05 Anointing pattern. Weinfeld is cited only for the covenant-of-grant distinction already quoted in the 1 Kings S05 dossier; Hutton-Crouch only for the summary's conclusion in sections 4 and 5. The one debated claim: 022 (the greatest reform of 23:25 against the unturned wrath of 23:26 — the text holds both without resolving them), built exactly as the dossier states it. Class A 23:19 is in range: the stored text misrenders the divine name; the correct KJV reading is 'to provoke the LORD to anger,' confirmed by BibleHub and Blue Letter Bible in the KJV verification report. The Hebrew carries no explicit divine name in this clause, and JPS 1917 likewise supplies the object in brackets; the KJV supplies it, as at 1 Kings 13:22. Claim 018 carries the corrected reading only, with the Hebrew caveat recorded. The stored reading is quoted nowhere in the built files (verified by grep at build). The other three book-level stored readings (7:6, 8:16, 19:23) are also quoted nowhere. Class B variants, accepted, not errors: 22:13 and 22:18 'enquire' (spelling variant; the dossier quotes the stored spelling). primaryScripture equals fullRange, 22:1–23:37 (span 1, within the validator's 3-chapter rule) per the dossier header; the whole arc — the repair, the book found, the enquiry, the covenant, the purge, the Passover, and the unturned wrath — is one reform in two movements, and no shorter passage represents it. Prose 499/1386/199 by the validator's own countWords — exactly the dossier's recorded counts, all in band. No licensed-translation text appears anywhere in this file (dossier section 13); Scripture quotations are brief public-domain quotations only. Three connections carry multi-range targets and are built verbatim with NO appended 'Targets' sentence, per the 1 Kings S07 rule: 008 (Exodus 12:1–13), 017 (2 Kings 17:7–23), and 021 (2 Chronicles 35:1–19) — each dossier note already names the exact sub-ranges in prose (008: 'Targets Exod 12:3–11 ... and 12:12–13'; 017: 'Targets 17:7–18 ... and 17:19–23'; 021: 'Targets the whole Passover account of 2 Chr 35:1–19'). All 22 connections are probable; no whole-chapter targets, no splits. No new connection books in S10: the eight books in the connection targets — Deuteronomy (185), Joshua (72), Exodus (204), Leviticus (66), 1 Kings (111), 2 Kings (86), 2 Chronicles (27), Jeremiah (24) prior uses — all appear in earlier categories on base, verified by grepping the 'book' field across ALL category JSONs on base, including other books' published categories (categories-only scope). Open items from the dossier notes: the found book (22:8) — no title beyond 'the book of the law,' not identified with Deuteronomy or any other book (Lucas's suggestion recorded as a suggestion only); Huldah, not Jeremiah (22:14) — no reason given; 'gathered into thy grave in peace' (22:20) against slain at Megiddo (23:29) — tension carried, not resolved; the greatest reform (23:25) against the unturned wrath (23:26) — the book's central tension (claim 022, debated); Hezekiah's 'none like him' (18:5) against Josiah's 'like unto him was there no king' (23:25) — both superlatives stand, not ranked; Josiah's death at Megiddo (23:29) — no oracle, reason, or judgment given. Read ranges in this dossier: the Jerusalem article was read lines 0–145 of 616 and lines 248–253 (the Josiah paragraph); the Lucas article lines 0–414 of 595; the Hutton-Crouch article in summary only (lines 0–10 of 32), full text paywalled and not read; the Weinfeld article not re-read in this dossier; the First Temple article not read (429). Dossier-notes registry snapshot (443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Appendix headings were normalised at Step 5 per verification-report C-2 (single-# Appendix heading, ### section headings); the build normalises ### to ## and #### to ### as in S01–S09. Scripture quotations are brief public-domain quotations only; no licensed-translation text appears."
+  }
+}
