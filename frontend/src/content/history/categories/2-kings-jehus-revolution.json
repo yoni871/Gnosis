@@ -1,0 +1,441 @@
+{
+  "id": "category-2-kings-jehus-revolution",
+  "title": "Jehu's Revolution",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 9,
+    "startVerse": 1,
+    "endChapter": 10,
+    "endVerse": 36
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 9,
+    "startVerse": 1,
+    "endChapter": 10,
+    "endVerse": 36
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-04-001",
+      "claim": "Elisha the prophet calls one of the children of the prophets, gives him a box of oil, and sends him to Ramothgilead: find Jehu son of Jehoshaphat son of Nimshi, take him to an inner chamber, pour the oil on his head, and say, \"Thus saith the LORD, I have anointed thee king over Israel\" — then open the door, flee, and tarry not.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Ramoth-gilead,\" read in full (lines 66–68): Elisha sent one of the company of the prophets there with a flask of oil; BiblicalTraining, \"Anointing,\" read in part (lines 99–103): Jehu, anointed in secret by a young prophet sent by Elisha.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-002",
+      "claim": "The young prophet goes to Ramothgilead, takes Jehu into the house, and pours the oil on his head with the full charge: \"thou shalt smite the house of Ahab thy master, that I may avenge the blood of my servants the prophets, and the blood of all the servants of the LORD, at the hand of Jezebel.\" The whole house shall perish, cut off like the houses of Jeroboam and Baasha, and \"the dogs shall eat Jezebel in the portion of Jezreel, and there shall be none to bury her.\" Then he opens the door and flees.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 43–46): the young prophet went further than the bare anointing and charged Jehu to destroy the house of Ahab.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-003",
+      "claim": "Jehu comes out to his fellow captains, who ask about \"this mad fellow\"; he tells them the word, and they hasten, take every man his garment, put it under him on the top of the stairs, and blow with trumpets, saying, \"Jehu is king.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 48–51): the officers spread their cloaks under him on the bare steps, sounded the trumpet, and shouted that Jehu was king; BiblicalTraining, \"Ramoth-gilead,\" read in full (lines 68–69).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-004",
+      "claim": "Jehu conspires against Joram. Joram had kept Ramothgilead, he and all Israel, because of Hazael king of Syria, but king Joram was returned to be healed in Jezreel of the wounds the Syrians had given him, and Ahaziah king of Judah was come down to see Joram. Jehu orders that none go forth nor escape out of the city to tell it in Jezreel, and rides in a chariot to Jezreel.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Ramoth-gilead,\" read in full (lines 62–64): Joram was wounded and withdrew to Jezreel to recover, and Ahaziah went to visit him there; BiblicalTraining, \"Jehu,\" read in part (lines 39–41).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-005",
+      "claim": "The watchman on the tower in Jezreel spies the company of Jehu; two horsemen are sent out with \"Is it peace?\" and each is turned behind him — \"What hast thou to do with peace? turn thee behind me\" — and neither comes again. The watchman reports, \"the driving is like the driving of Jehu the son of Nimshi; for he driveth furiously.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 55–57).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-006",
+      "claim": "Joram king of Israel and Ahaziah king of Judah go out, each in his chariot, and meet Jehu in the portion of Naboth the Jezreelite. \"Is it peace, Jehu?\" — \"What peace, so long as the whoredoms of thy mother Jezebel and her witchcrafts are so many?\" Joram turns and flees — \"There is treachery, O Ahaziah\" — and Jehu draws a bow with his full strength and smites him between the arms, and the arrow goes out at his heart, and he sinks down in his chariot.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naboth,\" read in full (lines 86–88): Joram rode out to meet Jehu at the plot that had belonged to Naboth, and Jehu shot him through the heart; BiblicalTraining, \"Jehu,\" read in part (lines 59–63).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-007",
+      "claim": "Jehu orders Bidkar his captain to cast Joram into the portion of the field of Naboth the Jezreelite, quoting the LORD's burden laid on Ahab when they rode together behind him: \"Surely I have seen yesterday the blood of Naboth, and the blood of his sons, saith the LORD; and I will requite thee in this plat, saith the LORD.\" 1 Kings 21 names no sons of Naboth; the sons appear here, in Jehu's quotation of the LORD's burden. Flagged, not harmonised.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naboth,\" read in full (lines 75–78): \"This recollection is the source for the death of Naboth's sons. Its 'yesterday' suggests that Ahab went to claim the vineyard the day after the execution\"; BiblicalTraining, \"Jehu,\" read in part (lines 19–22): \"From Jehu's own words we also learn that Naboth's sons had died with him, a detail not recorded in 1 Kings 21\"; BiblicalTraining, \"Jezebel,\" read in part (lines 86–87).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-008",
+      "claim": "Ahaziah king of Judah flees by the way of the garden house; Jehu follows after him, and they smite him in his chariot at the going up to Gur, which is by Ibleam. He flees to Megiddo and dies there, and his servants carry him in a chariot to Jerusalem and bury him in his sepulchre with his fathers in the city of David. He had begun to reign in the eleventh year of Joram the son of Ahab.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 65–66).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-009",
+      "claim": "Chronicles gives a briefer, differing account of Ahaziah's death: he is found hiding in Samaria, brought to Jehu, and put to death, and he is buried because he was a grandson of the godly Jehoshaphat. The two records can be read together in more than one way — Samaria may refer broadly to the territory of the northern kingdom, and Megiddo may be where Jehu's men finally caught up with him — but both accounts agree that Ahaziah died at Jehu's order.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre (Kings text); stored KJV read in full (Kings text); BiblicalTraining, \"Jehu,\" read in part (lines 66–70).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-2ki-04-010",
+      "claim": "Jehu comes to Jezreel; Jezebel hears, paints her face, tires her head, and looks out at a window. As Jehu enters the gate she says, \"Had Zimri peace, who slew his master?\" Zimri slew Elah and reigned seven days (1 Ki 16:15–20); the parallel is in her mouth, not the narrator's.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jezebel,\" read in part (lines 110–113): the taunt recalled Zimri, who had assassinated King Elah and lasted only seven days; BiblicalTraining, \"Jehu,\" read in part (lines 74–76).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-011",
+      "claim": "Jehu lifts up his face to the window — \"Who is on my side? who?\" — and two or three eunuchs look out. \"Throw her down.\" Her blood is sprinkled on the wall and on the horses, and he treads her under foot. He goes in, eats and drinks, and orders her buried — \"for she is a king's daughter.\" They find no more of her than the skull, and the feet, and the palms of her hands.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jezebel,\" read in part (lines 118–122); BiblicalTraining, \"Jehu,\" read in part (lines 78–81).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-012",
+      "claim": "Jehu names it the word of the LORD, spoken by his servant Elijah the Tishbite (1 Ki 21:23): \"In the portion of Jezreel shall dogs eat the flesh of Jezebel: And the carcase of Jezebel shall be as dung upon the face of the field in the portion of Jezreel; so that they shall not say, This is Jezebel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Naboth,\" read in full (lines 89–90); BiblicalTraining, \"Jezebel,\" read in part (lines 120–122).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-013",
+      "claim": "Ahab had seventy sons in Samaria. Jehu writes letters to the rulers of Jezreel, the elders, and them that brought up Ahab's children: choose the best and meetest of your master's sons, set him on his father's throne, and fight for your master's house.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 85–87).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-014",
+      "claim": "The rulers are exceedingly afraid — \"Behold, two kings stood not before him: how then shall we stand?\" — and submit: \"We are thy servants, and will do all that thou shalt bid us; we will not make any king: do thou that which is good in thine eyes.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-015",
+      "claim": "Jehu writes a second letter demanding the heads of the men's masters' sons, to come to Jezreel by tomorrow. The seventy king's sons are slain, their heads put in baskets and sent to Jezreel, and laid in two heaps at the entering in of the gate until the morning.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 87–88).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-016",
+      "claim": "In the morning Jehu goes out and stands before all the people: \"Ye be righteous: behold, I conspired against my master, and slew him: but who slew all these?\" — the evasion is in the text; the heads came by his own second letter, and he disowns them as he displays them. Then the fulfilment notice: \"Know now that there shall fall unto the earth nothing of the word of the LORD, which the LORD spake concerning the house of Ahab: for the LORD hath done that which he spake by his servant Elijah.\" And Jehu slays all that remained of the house of Ahab in Jezreel — great men, kinsfolks, priests — until he left him none remaining.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 90–93).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-017",
+      "claim": "On the way to Samaria, at the shearing house, Jehu meets two and forty brethren of Ahaziah going down to salute the children of the king and the children of the queen. He takes them alive and slays them at the pit of the shearing house, neither leaving any of them. (Chronicles notes that Ahaziah's own brothers had died earlier in a raid, 2 Chr 21:16–17; 22:1, so these were more distant kinsmen; the text calls them brethren.)",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 95–98).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-018",
+      "claim": "Jehu lights on Jehonadab the son of Rechab coming to meet him: \"Is thine heart right, as my heart is with thy heart?\" Jehonadab gives him his hand, and Jehu takes him up into the chariot — \"Come with me, and see my zeal for the LORD.\" In Samaria he slays all that remained unto Ahab, \"according to the saying of the LORD, which he spake to Elijah.\" Jehonadab is the founder of the Rechabites, who live by tents and abstinence from wine (Jer 35:6–10).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 104–106); BiblicalTraining, \"Valley of Jezreel,\" read in full (lines 81–82).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-019",
+      "claim": "Jehu gathers all the people: \"Ahab served Baal a little; but Jehu shall serve him much.\" He calls all the prophets of Baal, all his servants, and all his priests to a solemn assembly — whosoever shall be wanting shall not live — \"but Jehu did it in subtilty, to the intent that he might destroy the worshippers of Baal.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Baal,\" read in part (lines 150–155): Jehu pretended to be a devotee of Baal and summoned all Baal's prophets, priests, and worshipers to a great sacrifice; BiblicalTraining, \"Jehu,\" read in part (lines 108–110).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-020",
+      "claim": "All the worshippers of Baal come through all Israel, so that there is not a man left that comes not, and the house of Baal is full from one end to another. Vestments are brought forth for all the worshippers. Jehu and Jehonadab go in and search that there be none of the servants of the LORD among them, but the worshippers of Baal only. Fourscore men wait without: if any escape, the life of the one who lets him go answers for it.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 111–113); BiblicalTraining, \"Baal,\" read in part (lines 95–96, 98): Baal's worshipers wore special robes for his rites and offered burnt offerings.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-021",
+      "claim": "As soon as the burnt offering ends, Jehu orders the guard and the captains to go in and slay them, letting none come forth; they smite them with the edge of the sword and cast them out. The images are brought out of the house of Baal and burned, the image and the house of Baal are broken down and made \"a draught house unto this day.\" \"Thus Jehu destroyed Baal out of Israel.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 113–114): they brought out the sacred stone of Baal and destroyed it, tore down the temple, and turned the site into a latrine.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-022",
+      "claim": "\"Howbeit from the sins of Jeroboam the son of Nebat, who made Israel to sin, Jehu departed not from after them, to wit, the golden calves that were in Bethel, and that were in Dan.\" Baal is destroyed; the calves are not. The revolution stops at Jeroboam's sin.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 116–118): nor did Jehu touch the golden calves that Jeroboam I had set up at Bethel and Dan; BiblicalTraining, \"Baal,\" read in part (lines 55–57): the calves may have been meant as pedestals for the invisible LORD rather than as images of another god, but the question is debated.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-023",
+      "claim": "The LORD says to Jehu that because he has done well in executing what is right in his eyes against the house of Ahab, his children of the fourth generation shall sit on the throne of Israel. \"But Jehu took no heed to walk in the law of the LORD God of Israel with all his heart: for he departed not from the sins of Jeroboam, which made Israel to sin.\" Commendation and condemnation stand in neighbouring verses; carry both.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 122–125); BiblicalTraining, \"Jezebel,\" read in part (lines 126–128): Jehu's dynasty lasted four generations.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-024",
+      "claim": "\"In those days the LORD began to cut Israel short: and Hazael smote them in all the coasts of Israel\" — from Jordan eastward, all the land of Gilead, the Gadites, and the Reubenites, and the Manassites, from Aroer, which is by the river Arnon, even Gilead and Bashan.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 127–129); BiblicalTraining, \"Ramoth-gilead,\" read in full (lines 79–80).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-025",
+      "claim": "The rest of the acts of Jehu, and all that he did, and all his might, are written in the book of the chronicles of the kings of Israel. Jehu sleeps with his fathers, is buried in Samaria, and Jehoahaz his son reigns in his stead. The time that Jehu reigned over Israel in Samaria was twenty and eight years.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 130–131, 133–136): the dynasty held the throne for nearly ninety years, longer than any other in the northern kingdom.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-026",
+      "claim": "The anointing executes the commission given at Horeb: the LORD told Elijah to anoint Hazael king over Aram, Jehu son of Nimshi king over Israel, and Elisha as prophet in his place. Elijah anointed Elisha himself, but the other two commissions passed to Elisha: he told Hazael he would become king over Aram (2 Kgs 8:7–15), and here his deputy anoints Jehu. The anointings are carried out by Elisha and his deputy, not by Elijah's hand.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jehu,\" read in part (lines 26–30); BiblicalTraining, \"Ramoth-gilead,\" read in full (lines 66–68).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-04-027",
+      "claim": "Outside the Bible, the Black Obelisk of Shalmaneser III — found by Austen Henry Layard at Nimrud (ancient Kalhu) in 1846, now in the British Museum — shows a bearded figure bowing to the ground before the Assyrian king, and its caption records the tribute of Jehu, \"son of Omri.\" The figure is often described as Jehu himself, which would make it the only surviving contemporary picture of an Israelite king, but the identification is not certain. Shalmaneser received Jehu's tribute in his eighteenth year, 841 BC.",
+      "evidence": "BiblicalTraining, \"Jehu,\" read in part (lines 140–153); BiblicalTraining, \"Ahab,\" read in part (lines 38–41): Ahab fought Shalmaneser III at Qarqar in 853 BC, and Jehu paid tribute to the same Assyrian king in 841 BC.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-04-028",
+      "claim": "A late-dating scholarly reading holds that the Naboth story as told reflects the late monarchy rather than Ahab's ninth century: the king's inability to force an honest sale fits the last Israelite kings ruling a rump kingdom between 735 and 720 BCE, with Jezreel integrated into the Assyrian province of Megiddo and Naboth's property beyond the kings' jurisdiction — so Naboth is at least as rich as the king, and his refusal is an affront. The change of setting to Ahab's reign, and the portrayal of Naboth as a helpless victim, occurred close to the time of the Greek translation of Kings, in the third century BCE at the earliest.",
+      "evidence": "Bible Odyssey, \"Naboth's Vineyard,\" read in full (59 lines, lines 26–44); underlying study: Nadav Na'aman, \"Naboth's Vineyard and the Foundation of Jezreel,\" JSOT 33 (2008): 197–218 — NOT opened in this dossier (paywalled), needs-checking; the claim also rests on the Bible Odyssey article, not on Na'aman alone.",
+      "assessment": "debated"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-04-001",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 19,
+      "startVerse": 15,
+      "endChapter": 19,
+      "endVerse": 17,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "At Horeb the LORD tells Elijah to anoint Hazael king over Aram, Jehu son of Nimshi king over Israel, and Elisha as prophet in his place. Elijah anoints Elisha himself; the other two anointings are carried out later by Elisha and his deputy, not by Elijah's hand."
+    },
+    {
+      "id": "conn-2ki-04-002",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 21,
+      "startVerse": 17,
+      "endChapter": 21,
+      "endVerse": 24,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Elijah meets Ahab in Naboth's vineyard and announces the sentence: every male of Ahab's house cut off, the house made like Jeroboam's and Baasha's, dogs devouring Jezebel by the wall of Jezreel. The revolution is the execution of that sentence, delayed from Ahab's days to his sons'."
+    },
+    {
+      "id": "conn-2ki-04-003",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 21,
+      "startVerse": 1,
+      "endChapter": 21,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Naboth refuses to sell his ancestral inheritance, Jezebel contrives a trial with two false witnesses, and Naboth is stoned outside the town. The blood avenged in the portion of Naboth is the blood shed here."
+    },
+    {
+      "id": "conn-2ki-04-004",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 16,
+      "startVerse": 15,
+      "endChapter": 16,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Zimri, a chariot commander, slays Elah and reigns seven days at Tirzah before dying in the burning palace. Jezebel's last words throw his name at Jehu, branding the new king a traitor whose rule will be as short."
+    },
+    {
+      "id": "conn-2ki-04-005",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 8,
+      "startVerse": 7,
+      "endChapter": 8,
+      "endVerse": 15,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Elisha at Damascus tells Hazael he shall be king over Syria, and weeps at the harm Hazael will do to Israel. Hazael is the other half of the commission given at Horeb, announced before Jehu's anointing."
+    },
+    {
+      "id": "conn-2ki-04-006",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 8,
+      "startVerse": 28,
+      "endChapter": 8,
+      "endVerse": 29,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Joram and Ahaziah go up against Hazael at Ramothgilead; Joram is wounded and returns to Jezreel to be healed, and Ahaziah comes down to visit him. The revolution strikes with both kings in one place."
+    },
+    {
+      "id": "conn-2ki-04-007",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 3,
+      "startVerse": 2,
+      "endChapter": 3,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Joram son of Ahab puts away the image of Baal his father made, yet he cleaves to the sins of Jeroboam. The narrator's grading of Joram is the measure Jehu's own reign will be judged by."
+    },
+    {
+      "id": "conn-2ki-04-008",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 12,
+      "startVerse": 28,
+      "endChapter": 12,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jeroboam sets up the golden calves at Bethel and Dan, saying, \"Behold thy gods, O Israel, which brought thee up out of the land of Egypt.\" The calves Jehu leaves standing are the sin of the kingdom's founding, older than Baal's temple in Samaria."
+    },
+    {
+      "id": "conn-2ki-04-009",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 22,
+      "startVerse": 7,
+      "endChapter": 22,
+      "endVerse": 9,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Chronicles tells Ahaziah's death differently: he is found hiding in Samaria, brought to Jehu, and put to death, then buried because he was a grandson of Jehoshaphat. Both records agree that Ahaziah died at Jehu's order."
+    },
+    {
+      "id": "conn-2ki-04-010",
+      "book": "Hosea",
+      "bookId": "hosea",
+      "startChapter": 1,
+      "startVerse": 4,
+      "endChapter": 1,
+      "endVerse": 5,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "A century later Hosea names his first son Jezreel, because the LORD will punish the house of Jehu for the bloodshed at Jezreel and break the bow of Israel in the valley of Jezreel. The revolution's blood is remembered as guilt, not only as obedience."
+    },
+    {
+      "id": "conn-2ki-04-011",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 35,
+      "startVerse": 1,
+      "endChapter": 35,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Rechabites return: Jehonadab's descendants still keep his command — no wine, no houses, no sowing, living in tents — and the LORD holds them up against a disobedient Judah. The man who rode in Jehu's chariot founded a house that outlasted kings."
+    },
+    {
+      "id": "conn-2ki-04-012",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 11,
+      "startVerse": 1,
+      "endChapter": 11,
+      "endVerse": 3,
+      "type": "background",
+      "confidence": "probable",
+      "note": "With Ahaziah dead at Jehu's hand, his mother Athaliah — Ahab's daughter — destroys all the seed royal in Jerusalem and seizes the throne; only the infant Joash is hidden and saved. The purge in the north nearly ends the house of David in the south."
+    },
+    {
+      "id": "conn-2ki-04-013",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 15,
+      "startVerse": 8,
+      "endChapter": 15,
+      "endVerse": 12,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Zachariah son of Jeroboam II reigns six months and is slain by Shallum; the writer notes that this was the word of the LORD to Jehu, that his sons of the fourth generation should sit on the throne. The promise made in the revolution is kept to the verse."
+    },
+    {
+      "id": "conn-2ki-04-014",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 13,
+      "startVerse": 3,
+      "endChapter": 13,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Under Jehoahaz, Jehu's son, Aramean pressure grows heavier still, and Israel is left with fifty horsemen, ten chariots, and ten thousand footmen. The land Hazael began to cut short in Jehu's days is cut shorter under his son."
+    },
+    {
+      "id": "conn-2ki-04-015",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 22,
+      "startVerse": 34,
+      "endChapter": 22,
+      "endVerse": 38,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ahab is struck by an arrow shot at a venture at Ramothgilead, propped up in his chariot till evening, and dogs lick his blood at the pool of Samaria, as the word of the LORD had said. The father dies by the arrow; the son dies by the arrow on Naboth's ground."
+    },
+    {
+      "id": "conn-2ki-04-016",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 7,
+      "startVerse": 3,
+      "endChapter": 7,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The law forbids marriage with the peoples of Canaan, because foreign wives will turn Israel's heart to other gods. Ahab's marriage to Jezebel, daughter of Ethbaal king of the Sidonians, is the marriage the law warned against, and Baal's temple in Samaria is its fruit."
+    },
+    {
+      "id": "conn-2ki-04-017",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 1,
+      "startVerse": 2,
+      "endChapter": 1,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Ahaziah sends to Baalzebub the god of Ekron, and Elijah intercepts the messengers: the king shall not come down from his bed but shall surely die. The Baal Jehu destroys had already been consulted by Ahab's house as an oracle."
+    },
+    {
+      "id": "conn-2ki-04-018",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 18,
+      "startVerse": 19,
+      "endChapter": 18,
+      "endVerse": 40,
+      "type": "background",
+      "confidence": "probable",
+      "note": "On Carmel Elijah confronts the 450 prophets of Baal who eat at Jezebel's table; fire falls, the people confess that the LORD is God, and the prophets are slain at the Kishon. The contest Jehu finishes by the sword began on the mountain by fire."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-biblicaltraining-jehu",
+    "source-biblicaltraining-ahab",
+    "source-biblicaltraining-jezebel",
+    "source-biblicaltraining-anointing",
+    "source-biblicaltraining-baal",
+    "source-biblicaltraining-naboth",
+    "source-biblicaltraining-valley-of-jezreel",
+    "source-biblicaltraining-ramoth-gilead",
+    "source-bible-odyssey-naboths-vineyard"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-25",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. Category title 'Jehu's Revolution' follows the approved 11-category structure; the dossier header carries the longer working title 'Jehu's Revolution and the Purge of Ahab's House and Baal'. S04 sources[] carries ten entries (all verified in the live registry): 2K04-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; 2K04-S02 Jehu -> source-biblicaltraining-jehu (new in PR #355, cited by no category until now); source-biblicaltraining-ahab; source-biblicaltraining-jezebel; source-biblicaltraining-anointing; source-biblicaltraining-baal; source-biblicaltraining-naboth; source-biblicaltraining-valley-of-jezreel; source-biblicaltraining-ramoth-gilead; source-bible-odyssey-naboths-vineyard. Appendix footnote uses (83 total): Mechon Mamre 29, BT Jehu 17, BT Ahab 5, BT Jezebel 2, BT Anointing 3, BT Baal 7, BT Naboth 10, BT Valley of Jezreel 8, BT Ramoth-gilead 2. The Bible Odyssey Naboth's Vineyard entry appears in no appendix footnote but enters by the §9 Source IDs cell of 2KCL-04-028 (the §9-only leg, as with Mesha Stele in S02 and Syria in S03). The Na'aman JSOT study (source-naaman-naboths-vineyard-jezreel-jsot) is NOT in sources[]: it is not independently verified (paywalled, never opened in this dossier) even though it appears in the §9 Source IDs cell of 2KCL-04-028; dependent claim 028 is assessed debated and also rests on the verified Bible Odyssey article read in full, so no claim rests on it alone. No other needs-checking sources in this dossier. 2KCL-04-027 is probable (the Black Obelisk figure is often described as Jehu himself, but the identification is not certain; Shalmaneser's tribute in 841 BC is established). 2KCL-04-009 is debated (two records of Ahaziah's death — Kings 9:27-28 and Chronicles 22:7-9 — not harmonised; both agree Ahaziah died at Jehu's order). 2KCL-04-028 is debated (the late-dating reading of the Naboth story; a claim about the story's composition, not about the revolution's date). No Class A stored-text error falls in this range (chapters 9-10 have zero KJV diffs against BibleHub); the stored readings are quoted nowhere in the built files (verified by grep at build). The other two book-level errors (19:23, 23:19) and the two earlier ones (7:6, 8:16) are not in this range. No licensed-translation text appears anywhere in this file (dossier §13); Scripture quotations are brief KJV/JPS 1917 (public domain) only. All 18 §11 targets are single ranges within one book, so there are no encompassing ranges, no splits, and no whole-chapter targets. primaryScripture is the full range 9:1-10:36 (2 chapters, endChapter − startChapter = 1, within the validator limit — no narrowing). Chapter coverage is complete: all 73 verses covered (ch. 9 vv. 1-37 by 2KCL-04-001-012 and 026; ch. 10 vv. 1-36 by 2KCL-04-013-025 and 027), per the dossier's own coverage check. Article remainders not read (text-fetch rate-limited, 429, on 2026-11-25): Jehu lines 154-255, Baal lines 156-277, Ahab lines 155-316, Jezebel lines 151-195; the Anointing remainder (lines 152-206) was not attempted because it is not cited. None of the unread lines are cited; the cited line ranges are stated per source in §12. Open items from the dossier notes: Naboth's sons (2KCL-04-007, flagged not harmonised); Bidkar as witness (9:25, Jehu's own account); Jezebel's last words and motive (9:31, unstated); Jehu's evasion at the gate (10:9, flagged as the text gives it); the calves remain (10:29, image or pedestal debated); the fourth-generation promise beside 'took no heed' (10:30-31, carried together); Jehonadab and the Rechabites (Jeremiah 35 belongs to the Jeremiah dossiers); the Tel Dan inscription (debated, not resolved); the Black Obelisk figure (probable, not certain). Dossier-notes item 14 (registry counts 443) is the stale pre-#355 snapshot — the live registry is 455 entries. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Ancient World subsection headings normalised from #### to ### (R04 MD pattern). Scripture quotations are brief KJV/JPS 1917 (public domain) only; no licensed-translation text appears."
+  }
+}
