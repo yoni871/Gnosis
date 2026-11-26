@@ -10,6 +10,7 @@ import { useEffect, useRef } from "react";
 import LandingHeader from "../components/LandingHeader";
 import Seo from "../components/Seo";
 import DoctrineWorkspace from "../components/Doctrine/DoctrineWorkspace";
+import { getGeneratedTrinityStudy } from "../data/doctrineStudy";
 import { doctrineStudyDescription, doctrineStudyTitle, pageUrl } from "../utils/seo";
 import "./TraceTheDoctrinePage.css";
 import "./TraceTheDoctrineTrinityPage.css";
@@ -44,6 +45,10 @@ function useReveal(rootRef) {
 export default function TraceTheDoctrineTrinityPage() {
     const pageRef = useRef(null);
     useReveal(pageRef);
+    // The generated study, when the research tree has publishable
+    // passages; null while nothing is publishable, and the workspace
+    // then renders the demonstration study, exactly as today.
+    const generatedStudy = getGeneratedTrinityStudy();
 
     return (
         <div className="public-page doctrine-study" ref={pageRef}>
@@ -61,7 +66,7 @@ export default function TraceTheDoctrineTrinityPage() {
                     <p className="doctrine-study-sub">From Scripture through Christian history</p>
                 </header>
                 <div className="doctrine-study-workspace-wrap" data-doctrine-reveal>
-                    <DoctrineWorkspace />
+                    <DoctrineWorkspace study={generatedStudy ?? undefined} />
                 </div>
             </main>
         </div>

@@ -18,6 +18,12 @@ execFileSync(process.execPath, ['scripts/build-history-content.js'], {
     cwd: fileURLToPath(new URL('../', import.meta.url)),
     stdio: 'inherit',
 });
+// Likewise the published-only Doctrine study: the page imports only
+// the generated file, so it must exist before the build runs.
+execFileSync(process.execPath, ['scripts/build-doctrine-content.js'], {
+    cwd: fileURLToPath(new URL('../', import.meta.url)),
+    stdio: 'inherit',
+});
 await build({
     root: fileURLToPath(new URL('../', import.meta.url)),
     envDir: false,
@@ -27,6 +33,12 @@ await build({
 // After the build, prove the publication gate held: no non-published
 // History id may appear in dist/ or the generated manifest.
 execFileSync(process.execPath, ['scripts/check-history-gate.js'], {
+    cwd: fileURLToPath(new URL('../', import.meta.url)),
+    stdio: 'inherit',
+});
+// And no non-published Doctrine title, date, quotation, explanation,
+// or id may appear in the generated study or dist/.
+execFileSync(process.execPath, ['scripts/check-doctrine-gate.js'], {
     cwd: fileURLToPath(new URL('../', import.meta.url)),
     stdio: 'inherit',
 });

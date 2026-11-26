@@ -18,14 +18,17 @@
 //   corrected tree — there is no research study at all, and the caller
 //   falls back to the demonstration study.
 //
-// The page does not feed a research bundle yet: the runtime data feed
-// (how approved research reaches the page) is a Phase 6 step that
-// waits for the Phase 5 PR to merge and for editorial approval. This
-// module is the wiring that step will use — `resolveStudy(bundle)`
-// returns the research study when one exists and the demonstration
-// study otherwise — and it deliberately does NOT import any research
-// JSON itself, so no draft research can leak into the frontend bundle
-// through this module.
+// The page does not import any research JSON itself: the runtime
+// data feed is the build script (frontend/scripts/
+// build-doctrine-content.js), which runs the adapter over the
+// research tree and emits the published-only study into the
+// gitignored frontend/src/generated/doctrine/ directory. The page
+// reads that generated file through `getGeneratedTrinityStudy`
+// (below) and passes the study to the workspace; while nothing is
+// publishable it returns null and the workspace renders the
+// demonstration study. This module never imports a research file, so
+// no draft research can leak into the frontend bundle through it —
+// only the generated, gate-checked study can reach the page.
 import {
     DEMONSTRATION_NOTICE,
     getFigure as getDemoFigure,
@@ -83,6 +86,32 @@ function buildLookups({ passages, figures, works, interpretations, passageInterp
     };
 }
 
+// Build a research study from already-adapted published data — the
+// adapter's `published` object, exactly as the build script emits it
+// into frontend/src/generated/doctrine/. Returns null when the
+// published set holds zero passages: the caller falls back to the
+// demonstration study, never to a half-empty research view.
+//
+// This trusts the build-time gate: the generated file is written only
+// by the build script, which runs the adapter's §10 gate, and the
+// post-build gate check re-verifies the file against the current
+// tree. Never call it with raw research records.
+export function studyFromPublished(published) {
+    if (!published || !Array.isArray(published.passages) || published.passages.length === 0) {
+        return null;
+    }
+    return {
+        source: "research",
+        notice: RESEARCH_NOTICE,
+        passages: published.passages,
+        figures: published.figures,
+        works: published.works,
+        interpretations: published.interpretations,
+        passageInterpretations: published.passageInterpretations,
+        ...buildLookups(published),
+    };
+}
+
 // Build a research study from a research bundle, through the adapter.
 //
 // Returns `{ study, publishedPassageCount, issues, excluded }`. `study`
@@ -93,25 +122,37 @@ function buildLookups({ passages, figures, works, interpretations, passageInterp
 export function buildStudyFromResearch(bundle) {
     const adapted = adaptResearchData(bundle);
     const publishedPassageCount = adapted.published.passages.length;
-    if (publishedPassageCount === 0) {
-        return { study: null, publishedPassageCount, issues: adapted.issues, excluded: adapted.excluded };
-    }
-    const published = adapted.published;
     return {
-        study: {
-            source: "research",
-            notice: RESEARCH_NOTICE,
-            passages: published.passages,
-            figures: published.figures,
-            works: published.works,
-            interpretations: published.interpretations,
-            passageInterpretations: published.passageInterpretations,
-            ...buildLookups(published),
-        },
+        study: studyFromPublished(adapted.published),
         publishedPassageCount,
         issues: adapted.issues,
         excluded: adapted.excluded,
     };
+}
+
+// The generated study, read from the build-time output
+// (frontend/src/generated/doctrine/trinity.json). The glob matches
+// nothing when the directory is absent or empty — a fresh checkout,
+// or a tree with nothing publishable yet — and this returns null, so
+// the caller falls back to the demonstration study. This is the only
+// reader of the generated directory; components never import a
+// generated file directly.
+function eagerValues(modules) {
+    return Object.entries(modules).map(([key, mod]) => ({
+        key,
+        value: mod && mod.default !== undefined ? mod.default : mod,
+    }));
+}
+
+export function getGeneratedTrinityStudy() {
+    for (const { value } of eagerValues(
+        import.meta.glob("../generated/doctrine/*.json", { eager: true }),
+    )) {
+        if (value && value.doctrine === "trinity" && value.published) {
+            return studyFromPublished(value.published);
+        }
+    }
+    return null;
 }
 
 // Resolve the study the workspace should render for a research bundle:
