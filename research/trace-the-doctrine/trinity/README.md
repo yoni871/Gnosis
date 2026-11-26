@@ -29,7 +29,7 @@ is added to the 3 interpretations; the fair-use Augustine quotation is reclassif
 the 28 Phase 4 `partially-verified` records are preserved as history. Record totals
 are now 759 (639 `verified`, 119 `partially-verified`, 1 `not-verified`). 10 items
 remain: 5 `direct` classifications and 3 milestone debates (permanent flags,
-confirmed as-is); the Anselm and Gal 4:4 link framings. Nothing is editorially approved and nothing is publishable yet.**
+confirmed as-is); the Anselm and Gal 4:4 link framings. Editorial approval recorded 2026-11-25: Yonatan approved the Phase 5 research, and `editorialApproval` is set on the 639 `verified` records (the 119 `partially-verified` and 1 `not-verified` records remain unapproved). Nothing is publishable yet: every passage, interpretation, milestone, author, and work still has lifecycle status `verification-pending`, and the §10 gate also requires entity status `editorially-approved` or `published` — advancing those statuses is a separate step.**
 
 Phase 3 (this PR) adds historical interpretations of the 60 Phase 2 passages,
 researched against the T1 standards (`../RESEARCH-STANDARDS.md`) by five era
@@ -476,7 +476,7 @@ Independent verification (QA, per §9.2) of all 759 records (Phases 2–5): run 
 interpretation, and the §7.3 checklist against each milestone; check every claim
 in `verification-records.json`, and move records to `verified` only where every
 claim passes — or back to `in-research` with findings. Editorial approval
-(Yonatan) is a separate step after verification. Phase 5 (editorial preparation)
+(Yonatan) is recorded 2026-11-25 on the 639 `verified` records. The remaining step before publication is advancing the publishable entities' lifecycle status to `editorially-approved` (a separate step, not part of this recording). Phase 5 (editorial preparation)
 Stage 1 resolved 18 of the 28 partially-verified items listed in
 `verification-phase-4-summary.md` (see the Phase 5 resolutions section there);
 10 remain (5 `direct` classifications and 3 milestone debates as permanent
