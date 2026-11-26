@@ -1,0 +1,436 @@
+{
+  "id": "category-2-kings-the-fall-of-jerusalem",
+  "title": "The Fall of Jerusalem",
+  "category": "category",
+  "orphan": true,
+  "era": "2-kings",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 24,
+    "startVerse": 1,
+    "endChapter": 25,
+    "endVerse": 30
+  },
+  "fullRange": {
+    "book": "2 Kings",
+    "bookId": "2-kings",
+    "startChapter": 24,
+    "startVerse": 1,
+    "endChapter": 25,
+    "endVerse": 30
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 2 Kings narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-2ki-11-001",
+      "claim": "In his days Nebuchadnezzar king of Babylon comes up, and Jehoiakim becomes his servant three years; then he turns and rebels against him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-002",
+      "claim": "The LORD sends against Jehoiakim bands of the Chaldees, and bands of the Syrians, and bands of the Moabites, and bands of the children of Ammon, and sends them against Judah \"to destroy it, according to the word of the LORD, which he spake by his servants the prophets.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-003",
+      "claim": "\"Surely at the commandment of the LORD came this upon Judah, to remove them out of his sight, for the sins of Manasseh, according to all that he did;\" \"And also for the innocent blood that he shed: for he filled Jerusalem with innocent blood; which the LORD would not pardon.\" The fall is attributed to sins decades dead; the distance between the sin and the sentence is flagged, not resolved (see §8).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-004",
+      "claim": "The rest of the acts of Jehoiakim, and all that he did, are written in the book of the chronicles of the kings of Judah. Jehoiakim sleeps with his fathers, and Jehoiachin his son reigns in his stead.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-005",
+      "claim": "The king of Egypt comes not again any more out of his land, for the king of Babylon has taken from the river of Egypt unto the river Euphrates all that pertained to the king of Egypt.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-006",
+      "claim": "Jehoiachin is eighteen years old when he begins to reign, and reigns in Jerusalem three months. His mother is Nehushta, the daughter of Elnathan of Jerusalem. He does evil in the sight of the LORD, according to all that his father had done. 2 Chronicles 36:9 gives eight years, and \"three months and ten days\" — a Kings/Chronicles number difference, flagged, not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; 2 Chr 36:9 eight years verified against the stored 2 Chronicles text in the read record.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-007",
+      "claim": "At that time the servants of Nebuchadnezzar king of Babylon come up against Jerusalem, and the city is besieged. Nebuchadnezzar himself comes against the city while his servants besiege it. Jehoiachin goes out to the king of Babylon — he, and his mother, and his servants, and his princes, and his officers — and the king of Babylon takes him in the eighth year of his reign.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-008",
+      "claim": "He carries out thence all the treasures of the house of the LORD and the treasures of the king's house, and cuts in pieces all the vessels of gold which Solomon king of Israel had made in the temple of the LORD, \"as the LORD had said\" — fulfilling the word of 20:17.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-009",
+      "claim": "He carries away all Jerusalem, and all the princes, and all the mighty men of valour, even ten thousand captives, and all the craftsmen and smiths; \"none remained, save the poorest sort of the people of the land.\" The count is recorded exactly.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-010",
+      "claim": "He carries away Jehoiachin to Babylon, and the king's mother, and the king's wives, and his officers, and the mighty of the land, those carried he into captivity from Jerusalem to Babylon.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-011",
+      "claim": "\"And all the men of might, even seven thousand, and craftsmen and smiths a thousand, all that were strong and apt for war, even them the king of Babylon brought captive to Babylon.\" Both counts (24:14 and 24:16) are recorded exactly; they are not harmonised into one total, since the text does not say whether they overlap or supplement each other.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-012",
+      "claim": "The king of Babylon makes Mattaniah, Jehoiachin's father's brother, king in his stead, and changes his name to Zedekiah. The last king of Judah reigns under a name given by the conqueror.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-013",
+      "claim": "Zedekiah is twenty-one years old when he begins to reign, and reigns eleven years in Jerusalem. His mother is Hamutal, the daughter of Jeremiah of Libnah. He does evil in the sight of the LORD, according to all that Jehoiakim had done.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-014",
+      "claim": "\"For through the anger of the LORD it came to pass in Jerusalem and Judah, until he had cast them out from his presence, that Zedekiah rebelled against the king of Babylon.\" The rebellion itself is set inside the LORD's anger; the wording is not softened.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-015",
+      "claim": "In the ninth year of Zedekiah's reign, in the tenth month, in the tenth day of the month, Nebuchadnezzar king of Babylon comes, he and all his host, against Jerusalem, pitches against it, and builds forts against it round about. The city is besieged unto the eleventh year of king Zedekiah.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-016",
+      "claim": "On the ninth day of the fourth month the famine prevails in the city, and \"there was no bread for the people of the land.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-017",
+      "claim": "The city is broken up, and all the men of war flee by night by the way of the gate between two walls, which is by the king's garden, and the king goes toward the plain. The army of the Chaldees pursues after the king, overtakes him in the plains of Jericho, and scatters his army. They take the king, bring him up to the king of Babylon to Riblah, and give judgment upon him.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-018",
+      "claim": "They slay the sons of Zedekiah before his eyes, put out the eyes of Zedekiah, bind him with fetters of brass, and carry him to Babylon. The sentence is stated without comment.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-019",
+      "claim": "In the fifth month, on the seventh day of the month, which is the nineteenth year of king Nebuchadnezzar king of Babylon, Nebuzaradan, captain of the guard, a servant of the king of Babylon, comes to Jerusalem.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-020",
+      "claim": "He burns the house of the LORD, and the king's house, and all the houses of Jerusalem, and every great man's house. All the army of the Chaldees that are with the captain of the guard break down the walls of Jerusalem round about. The house built in 1 Kings 6–8 is burned here.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-021",
+      "claim": "The rest of the people left in the city, the fugitives that fell away to the king of Babylon, and the remnant of the multitude are carried away by Nebuzaradan. But the captain of the guard leaves \"the poor of the land to be vinedressers and husbandmen.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-022",
+      "claim": "The pillars of brass in the house of the LORD, the bases, and the brasen sea, the Chaldees break in pieces and carry the brass of them to Babylon. The pots, shovels, snuffers, and spoons, and all the vessels of brass wherewith they ministered, are taken away; the firepans and the bowls, gold in gold and silver in silver, the captain of the guard takes away.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-023",
+      "claim": "\"The two pillars, one sea, and the bases which Solomon had made for the house of the LORD; the brass of all these vessels was without weight.\" The same unweighed brass as 1 Kings 7:47, where Solomon leaves all the vessels unweighed — the vessels are unweighed going out as they were unweighed coming in.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-024",
+      "claim": "The height of the one pillar is eighteen cubits, and the chapiter upon it is brass, three cubits high, with wreathen work and pomegranates upon the chapiter round about, all of brass; the second pillar is likewise. The chapiter is three cubits here against 1 Kings 7:16's five cubits (Jeremiah 52:22 agrees with 1 Kings at five) — a number difference, flagged, not resolved.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; 1 Kgs 7:16 five cubits verified against the stored 1 Kings text in the read record; Jer 52:22 agrees with 1 Kings at five (read record).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-025",
+      "claim": "The captain of the guard takes Seraiah the chief priest, Zephaniah the second priest, the three keepers of the door, an officer over the men of war, five men of the king's presence, the principal scribe of the host, and threescore men of the people of the land found in the city, brings them to the king of Babylon to Riblah, and the king of Babylon smites them and slays them at Riblah in the land of Hamath. \"So Judah was carried away out of their land.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-026",
+      "claim": "Over the people left in the land of Judah, Nebuchadnezzar makes Gedaliah the son of Ahikam, the son of Shaphan, ruler. The captains of the armies come to Gedaliah to Mizpah — Ishmael the son of Nethaniah, Johanan the son of Careah, Seraiah the son of Tanhumeth, and Jaazaniah the son of a Maachathite, with their men. Gedaliah swears to them: \"Fear not to be the servants of the Chaldees: dwell in the land, and serve the king of Babylon; and it shall be well with you.\"",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-027",
+      "claim": "In the seventh month Ishmael the son of Nethaniah, the son of Elishama, of the seed royal, comes with ten men and smites Gedaliah dead, with the Jews and the Chaldees that are with him at Mizpah. All the people, both small and great, and the captains of the armies, arise and come to Egypt, \"for they were afraid of the Chaldees.\" After the deportation, the remnant departs of its own fear.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-028",
+      "claim": "In the seven and thirtieth year of the captivity of Jehoiachin king of Judah, in the twelfth month, on the seven and twentieth day of the month, Evilmerodach king of Babylon, in the year that he begins to reign, lifts up the head of Jehoiachin out of prison, speaks kindly to him, sets his throne above the throne of the kings with him in Babylon, changes his prison garments, and he eats bread continually before him all the days of his life. \"And his allowance was a continual allowance given him of the king, a daily rate for every day, all the days of his life.\" No return is promised, no restoration announced, no prophet speaks — the ending's openness is the fact, flagged, not closed.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-2ki-11-029",
+      "claim": "Date: unknown. The text gives no absolute date. The narrative gives dates to the day (25:1, 3, 8, 27) and reign lengths in years (24:1, 8, 12, 18; 25:8, 27); these are the text's own time markers, recorded as narrative, not asserted as calendar dates.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-11-030",
+      "claim": "The house burned and stripped in chapter 25 is the First Temple, the house Solomon built in Jerusalem; its vessels — the two pillars, the bases, the brasen sea, the gold and silver vessels of the ministry — are broken in pieces and carried to Babylon.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; Bible Odyssey, \"First Temple,\" needs-checking in this dossier (see §12); BiblicalTraining, \"Solomon's Temple,\" verified (registry), not re-read in this dossier.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-11-031",
+      "claim": "Outside the Bible, the Babylonian Chronicle (ABC 5 / BM 21946) records the first capture: in Nebuchadnezzar's seventh year, in the month of Chislev, the king of Babylon laid siege to \"the city of Judah\"; on the second day of Adar he conquered the city, took the king prisoner, installed a king of his own choice, received rich tribute, and sent it to Babylon. The sequence matches Kings — siege, surrender, replacement, tribute — and dates the first capture to March 597 BCE. The chronicle breaks off before the final destruction, so the second siege has no extra-biblical record.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; Babylonian Chronicle BM 21946, seen only in search-result snippets (Wikipedia, \"Nebuchadnezzar Chronicle\"; Biblical Archaeology Society, \"Nebuchadnezzar's Campaigns Against Judah\"), not read in full (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-11-032",
+      "claim": "Babylonian administrative tablets found in Babylon list oil rations for \"Jehoiachin, king of Judah\" and his sons — an outside echo, in kind, of the daily allowance given him in Babylon (25:27–30).",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; ration tablets, seen only in a search-result snippet (Biblical Archaeology Society, \"Nebuchadnezzar's Campaigns Against Judah\"), not read in full (see §12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-11-033",
+      "claim": "Nebuchadnezzar II, king of Babylon, reigned 604–562 BCE.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; ORACC, Nebuchadnezzar II 011 (RIBO Q005482), verified (registry), not re-read in this dossier.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-2ki-11-034",
+      "claim": "Jerusalem, the walled capital of Judah: Nebuchadnezzar builds forts against it round about, the city is besieged until the eleventh year of Zedekiah, and after the burning the army of the Chaldees breaks down the walls of Jerusalem round about.",
+      "evidence": "Hebrew + JPS 1917 read in full, Mechon Mamre; stored KJV read in full; BiblicalTraining, \"Jerusalem,\" needs-checking in this dossier (see §12).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-2ki-11-001",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 21,
+      "startVerse": 10,
+      "endChapter": 21,
+      "endVerse": 15,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "By his servants the prophets the LORD speaks the sentence on Judah: because Manasseh has done abominations and made Judah sin, the LORD will stretch over Jerusalem the line of Samaria and wipe it as a man wipes a dish, and forsake the remnant of his inheritance. In chapter 24 the fall is attributed to those same sins of Manasseh and the innocent blood he shed."
+    },
+    {
+      "id": "conn-2ki-11-002",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 20,
+      "startVerse": 17,
+      "endChapter": 20,
+      "endVerse": 18,
+      "type": "prophetic-reference",
+      "confidence": "established",
+      "note": "Isaiah tells Hezekiah that all that is in his house, and all his fathers have laid up, shall be carried into Babylon and nothing shall be left, and his sons shall be eunuchs in the palace of the king of Babylon. When the gold vessels Solomon made are cut in pieces, the narrator says it happened as the LORD had said."
+    },
+    {
+      "id": "conn-2ki-11-003",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 23,
+      "startVerse": 26,
+      "endChapter": 23,
+      "endVerse": 27,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "Notwithstanding Josiah's reform, the LORD turns not from the fierceness of his great wrath, and says he will remove Judah also out of his sight, as he has removed Israel. The removal announced here is the removal carried out in chapter 24, where the fall comes \"to remove them out of his sight\"."
+    },
+    {
+      "id": "conn-2ki-11-004",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 17,
+      "startVerse": 19,
+      "endChapter": 17,
+      "endVerse": 19,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Inside the account of Israel's fall, the book adds that Judah also kept not the commandments of the LORD their God, but walked in the statutes of Israel. The fall of Israel is told with Judah already under the same sentence."
+    },
+    {
+      "id": "conn-2ki-11-005",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 17,
+      "startVerse": 23,
+      "endChapter": 17,
+      "endVerse": 23,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Israel is carried away out of their own land to Assyria, \"as he had said by all his servants the prophets.\" The removal formula is the same one chapter 24 uses for Judah, and the closing line of chapter 25 echoes it: \"So Judah was carried away out of their land.\""
+    },
+    {
+      "id": "conn-2ki-11-006",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 7,
+      "startVerse": 47,
+      "endChapter": 7,
+      "endVerse": 47,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Solomon leaves all the vessels unweighed, because they are exceeding many, and the weight of the brass is not found out. When the Chaldees carry the brass away, the narrator says the brass of all these vessels was without weight — unweighed going out as it was unweighed coming in."
+    },
+    {
+      "id": "conn-2ki-11-007",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 7,
+      "startVerse": 15,
+      "endChapter": 7,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The two pillars of brass are eighteen cubits high, and the chapiter upon each is five cubits. The pillar measured in chapter 25 is eighteen cubits high, but its chapiter is given as three cubits; the two measurements stand side by side without reconciliation."
+    },
+    {
+      "id": "conn-2ki-11-008",
+      "book": "1 Kings",
+      "bookId": "1-kings",
+      "startChapter": 6,
+      "startVerse": 37,
+      "endChapter": 6,
+      "endVerse": 38,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The house is finished in all its parts in the eleventh year of Solomon, after seven years in building. The house that took seven years to build is burned in a single verse."
+    },
+    {
+      "id": "conn-2ki-11-009",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 36,
+      "startVerse": 9,
+      "endChapter": 36,
+      "endVerse": 10,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Chronicler tells the same surrender: Jehoiachin reigns three months, is carried to Babylon with the goodly vessels of the house of the LORD, and Zedekiah his brother is made king. Chronicles gives his age as eight years against Kings' eighteen, and his reign as three months and ten days; the difference is carried, not resolved."
+    },
+    {
+      "id": "conn-2ki-11-010",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 52,
+      "startVerse": 4,
+      "endChapter": 52,
+      "endVerse": 11,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Jeremiah tells the same siege: the forts, the famine, the breach, the flight by night, the capture in the plains of Jericho, the judgment at Riblah, the sons slain before their father's eyes, and the eyes put out. The two accounts match in substance throughout."
+    },
+    {
+      "id": "conn-2ki-11-011",
+      "book": "Jeremiah",
+      "bookId": "jeremiah",
+      "startChapter": 52,
+      "startVerse": 12,
+      "endChapter": 52,
+      "endVerse": 23,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Jeremiah tells the same burning: the house of the LORD, the king's house, and every great man's house burned, the walls broken down, and the pillars, the bases, and the sea broken in pieces and carried to Babylon. Jeremiah gives the chapiter as five cubits, agreeing with 1 Kings against the three cubits here."
+    },
+    {
+      "id": "conn-2ki-11-012",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 19,
+      "startVerse": 30,
+      "endChapter": 19,
+      "endVerse": 31,
+      "type": "prophetic-reference",
+      "confidence": "probable",
+      "note": "The remnant that is escaped of the house of Judah shall yet again take root downward and bear fruit upward, and out of Jerusalem shall go forth a remnant. The remnant of chapter 25 — carried away, left poor, and at last fled to Egypt — is the same remnant, shrinking at every telling."
+    },
+    {
+      "id": "conn-2ki-11-013",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 18,
+      "startVerse": 14,
+      "endChapter": 18,
+      "endVerse": 16,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Hezekiah sends three hundred talents of silver and thirty of gold to the king of Assyria at Lachish, cutting the gold from the doors of the temple and from the pillars he had overlaid. The temple gold leaves the house to buy off a foreign king for the third time before it leaves as spoil to Babylon."
+    },
+    {
+      "id": "conn-2ki-11-014",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 12,
+      "startVerse": 18,
+      "endChapter": 12,
+      "endVerse": 18,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Jehoash takes all the hallowed things that his fathers had dedicated, and all the gold in the treasures of the house of the LORD and the king's house, and sends it to Hazael king of Syria. The first time the gold leaves the house to buy off a foreign king; the thread runs through Ahaz and Hezekiah to the spoil of chapter 24."
+    },
+    {
+      "id": "conn-2ki-11-015",
+      "book": "Daniel",
+      "bookId": "daniel",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 2,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "In the third year of the reign of Jehoiakim king of Judah, Nebuchadnezzar king of Babylon comes unto Jerusalem and besieges it, and the Lord gives Jehoiakim into his hand, with part of the vessels of the house of God, carried into the land of Shinar. Kings gives no year for the first coming; the two books date the same submission differently, and the difference is carried, not resolved."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-2-kings-masoretic-text",
+    "source-bible-odyssey-first-temple",
+    "source-biblicaltraining-solomons-temple",
+    "source-oracc-nebuchadnezzar-011",
+    "source-biblicaltraining-jerusalem"
+  ],
+  "review": {
+    "author": "Gnosis 2 Kings research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-26",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 2 Kings category; independent QA pending. Category title 'The Fall of Jerusalem' follows the approved 11-category structure (2KINGS-CATEGORIES-PROPOSAL.md line 29 table) and the dossier header; the dispatch's title matches — no title correction (unlike S06/S07/S08; like S09/S10). Coverage is 50/50: all 50 verses of chapters 24–25 covered by section 9 claims (ch. 24 vv. 1–20 by 001–014; ch. 25 vv. 1–30 by 015–028), per the dossier's own coverage check; claims 029–034 are date/context/corroboration claims spanning the category. S11 sources[] carries five entries (all verified in the live registry), in first-appearance order in the section 9 Source IDs cells: 2K11-S01 Mechon Mamre -> source-mechon-mamre-2-kings-masoretic-text; source-bible-odyssey-first-temple; source-biblicaltraining-solomons-temple; source-oracc-nebuchadnezzar-011; source-biblicaltraining-jerusalem. Appendix footnote uses (48 total): Mechon Mamre 38, BO First Temple 1, BT Solomon's Temple 2, ORACC 1, BT Jerusalem 2. Section 9 Source IDs cells: Mechon Mamre 34, BO First Temple 1, BT Solomon's Temple 1, ORACC 1, BT Jerusalem 1. No source in sources[] is newly-cited: all five are already cited by earlier categories — verified against base by script parsing category + event + book JSONs. JUDGMENT CALL — First Temple and Jerusalem are INCLUDED in sources[] although they are needs-checking in this dossier: both are registry-verified (read in full in the registry build); both sit in section 9 Source IDs cells (030, 034) AND appendix footnotes, satisfying the section-location rule; dependent claims 030 and 034 are capped probable and also rest on the primary text. The dossier's needs-checking flag for them is the 429'd re-read attempt in this dossier only, not a registry-status change. BT Solomon's Temple and ORACC are in the identical position (registry-verified, not re-read in this dossier, section 9 cells + appendix footnotes, dependents capped probable) and are included; excluding First Temple/Jerusalem while including them would be inconsistent. The S10 First Temple exclusion does not apply here: in S10 it had no section 9 cell and no appendix footnote (section-location exclusion); here it has both. The Babylonian Chronicle (2K11-S02 -> source-babylonian-chronicle) and the Jehoiachin ration tablets (2K11-S03 -> source-babylonian-ration-tablets) are EXCLUDED from sources[]: both are needs-checking in the registry (not-independently-verified), seen only in search-result snippets, never read in full; dependent claims 031 and 032 are capped probable and also rest on the primary text. Excluded by the S04 JSOT precedent — a not-independently-verified source must never appear in sources[] — even though both sit in section 9 Source IDs cells (031, 032) and appendix footnotes. Their footnote keys ARE mapped to their registry IDs in the MD (the EM's verify-category.py footnotes-resolve check requires every MD footnote key to be a registry key), and they appear in the MD as footnote keys only: Chronicle 3 uses, ration tablets 1 use. No Class A stored-text error is in range: chapters 24–25 are zero-diff chapters in the KJV check (24: 0 diffs; 25: 0 diffs); none of the four book-level stored readings (7:6, 8:16, 19:23, 23:19) is quoted in the dossier or in the built files (verified by grep at build). No database fix is proposed here. The conventional BCE dates (597 for the first capture, 586 for the fall) are NOT asserted anywhere in this category: the Babylonian Chronicle dates only the first capture and no source for the 586 date was read (dossier note 8). The date is unknown; the text's own time markers are the three years of Jehoiakim's service (24:1), Jehoiachin's three months (24:8), the eighth year of Nebuchadnezzar's reign (24:12), Zedekiah's eleven years (24:18), and the dates given to the day in chapter 25. primaryScripture equals fullRange, 24:1–25:30 (span 1, within the validator's 3-chapter rule) per the dossier header; the whole arc — Jehoiakim's rebellion, Jehoiachin's surrender and the counted captives, Zedekiah's rebellion, the siege, the burning, and the daily allowance in Babylon — is one fall, and no shorter passage represents it. MT and KJV agree exactly in chapters 24–25 (20 and 30 verses); no numbering seam. Prose 530/1214/212 by the validator's own countWords — exactly the dossier's recorded counts, all in band. No licensed-translation text appears anywhere in this file (dossier section 13); Scripture quotations are brief public-domain quotations only. All 15 connections are single continuous ranges within one book — no multi-range targets, no whole-chapter targets, no splits, no appended 'Targets' sentence. Two are established-confidence (001, 002); thirteen are probable. Types: 4 prophetic-reference, 3 historical-setting, 4 background, 4 direct-account. No new connection books in S11: the five books in the connection targets — 2 Kings (92), 1 Kings (115), 2 Chronicles (28), Jeremiah (25), Daniel (4) prior uses — all appear in earlier categories on base, verified by grepping the 'book' field across ALL category JSONs on base, including other books' published categories (categories-only scope). Open items from the dossier notes: the distance between the sin and the sentence (24:3–4); the two captive counts (24:14 and 24:16) — recorded exactly, not harmonised; Jehoiachin eighteen years vs 2 Chronicles 36:9 eight years; the chapiter three cubits vs 1 Kings 7:16 five cubits (Jeremiah 52:22 agrees with 1 Kings at five); the rebellion set inside the LORD's anger (24:20) — wording not softened; the ending's openness (25:27–30) — flagged, not closed; the remnant's flight to Egypt (25:22–26) — stated without judgment on the fear. The 1 Kings 7:47 parallel for 25:16 is stated as an echo in sense (Solomon leaves the vessels unweighed), not as an identical English phrase. Read status in this dossier: the First Temple and Jerusalem re-reads were attempted and rate-limited (429); neither was re-read. Solomon's Temple and ORACC were not re-read in this dossier. The Chronicle and the ration tablets were seen only in search-result snippets. Dossier-notes registry snapshot (443) is the stale pre-#355 snapshot — the live registry is 455 entries. The section 11 header carries all 14 chapter-count statements with their book names (no bare-chapter abbreviation, unlike S10); the S10 carry-forward parser was reused as-is after checking. The Word count annotation comments were stripped at build (the validator counts each as 5 tokens). Appendix headings were normalised at Step 5 per verification-report C-2 (single-# Appendix heading, ### section headings); the build normalises ### to ## and #### to ### as in S01–S10. Scripture quotations are brief public-domain quotations only; no licensed-translation text appears."
+  }
+}
