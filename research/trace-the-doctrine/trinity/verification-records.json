@@ -20185,5 +20185,450 @@
       "note": "Editorial approval by Yonatan, 2026-11-25, of the Phase 5 research (PR #364)."
     },
     "notes": "Phase 5 dating study (Stage 2); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval."
+  },
+  {
+    "id": "ver-p6-heb-1-8-doctrine-001",
+    "claimId": "heb-1-8-doctrine",
+    "claimText": "Hebrews 1:8 is classified direct: it explicitly addresses the Son as 'O God', stating the deity of the Son in so many words.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Hebrews 1:8",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Hebrews+1%3A8&version=ESV",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.1 (direct)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.1",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "ESV Hebrews 1:8: \"But of the Son he says, 'Your throne, O God, is forever and ever, the scepter of uprightness is the scepter of your kingdom.'\"",
+    "limitations": "Direct for the element only (the deity of the Son as addressed): the verse explicitly addresses the Son as 'O God', but it does not state the fully formulated doctrine and does not name the Holy Spirit. The vocative reading ('O God') against the alternative 'Your throne is God forever and ever' (NET footnote) is noted in the passage note; the words quote Psalm 45:6-7, applied to the Son by Hebrews. The earlier Phase 2 record ver-heb-1-8-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-matt-28-19-doctrine-001",
+    "claimId": "matt-28-19-doctrine",
+    "claimText": "Matthew 28:19 is classified direct, as a candidate for independent verification, because baptism in the singular name of the Father, the Son, and the Holy Spirit names all three together in one formula.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Matthew 28:19",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Matthew+28%3A19&version=ESV",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.1 (direct)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.1",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "ESV Matthew 28:19: \"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.\" The three are named together under the singular 'name'.",
+    "limitations": "Direct for the element only (Father, Son, and Holy Spirit named together in one commission/formula): the verse states the triadic element, not the fully formulated doctrine in later technical vocabulary. The earlier Phase 2 record ver-matt-28-19-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-john-1-1-doctrine-001",
+    "claimId": "john-1-1-doctrine",
+    "claimText": "John 1:1-3 is classified direct because the text explicitly states that the Word was God, while not stating the fully formulated doctrine of the Trinity.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Berean Standard Bible (BSB), John 1:1-3",
+        "edition": "Berean Standard Bible",
+        "locator": "https://bible.helloao.org/api/BSB/John/1.json",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.1 (direct)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.1",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "BSB John 1:1: \"In the beginning was the Word, and the Word was with God, and the Word was God.\" (ESV identical.) John 1:2-3: the Word was with God in the beginning and all things were made through him.",
+    "limitations": "Direct for the element only (the deity of the Word/Son): the text explicitly states that the Word was God, while not stating the fully formulated doctrine of the Trinity. The earlier Phase 2 record ver-john-1-1-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-john-20-28-doctrine-001",
+    "claimId": "john-20-28-doctrine",
+    "claimText": "John 20:28 is classified direct because Thomas explicitly addresses Jesus as 'My Lord and my God,' ascribing deity to the Son.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), John 20:28",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=John+20%3A28&version=ESV",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.1 (direct)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.1",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "ESV John 20:28: \"Thomas answered him, 'My Lord and my God!'\" Thomas explicitly addresses Jesus as God.",
+    "limitations": "Direct for the element only (the deity of the Son as confessed): Thomas's confession explicitly ascribes deity to Jesus, but the verse does not state the fully formulated doctrine. The earlier Phase 2 record ver-john-20-28-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-2cor-13-14-doctrine-001",
+    "claimId": "2cor-13-14-doctrine",
+    "claimText": "2 Corinthians 13:14 is classified direct because it names the Lord Jesus Christ, God, and the Holy Spirit together in a single blessing, so it states a triadic element of the doctrine.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), 2 Corinthians 13:14",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=2+Corinthians+13%3A14&version=ESV",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.1 (direct)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.1",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "ESV 2 Corinthians 13:14: \"The grace of the Lord Jesus Christ and the love of God and the fellowship of the Holy Spirit be with you all.\" The Lord Jesus Christ, God, and the Holy Spirit are named together in a single blessing.",
+    "limitations": "Direct for the triadic element only: the verse names all three together in one blessing, stating a triadic element of the doctrine; it does not state the fully formulated doctrine. The earlier Phase 2 record ver-2cor-13-14-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-col-2-9-doctrine-001",
+    "claimId": "col-2-9-doctrine",
+    "claimText": "Colossians 2:9 is classified direct because it explicitly states that the whole fullness of deity dwells bodily in Christ, so it states an element of the doctrine.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Colossians 2:9",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Colossians+2%3A9&version=ESV",
+        "dateAccessed": "2026-11-25"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.1 (direct)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.1",
+        "dateAccessed": "2026-11-25"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-25",
+    "result": "verified",
+    "evidenceFound": "ESV Colossians 2:9: \"For in him the whole fullness of deity dwells bodily.\" The verse explicitly states that the whole fullness of deity dwells in Christ.",
+    "limitations": "Direct for the element only (the fullness of deity dwelling bodily in Christ): the verse explicitly states the element, not the fully formulated doctrine. The earlier Phase 2 record ver-col-2-9-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-gen-1-26-doctrine-001",
+    "claimId": "gen-1-26-doctrine",
+    "claimText": "Genesis 1:26 is classified historically-interpreted because the plural 'let us make' does not itself name Father, Son, and Holy Spirit; the trinitarian reading is later reception.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Genesis 1:26",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Genesis+1%3A26&version=ESV",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.3 (historically-interpreted) and §1.4 (Gen 1:26 worked example)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.3, §1.4",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine interpretations (Phase 3), trinity/interpretations.json",
+        "edition": null,
+        "locator": "interpretation ids: justin-martyr-gen-1-26-001, irenaeus-gen-1-26-001, theophilus-of-antioch-gen-1-26-001, tertullian-gen-1-26-001, augustine-gen-1-26-001, cyril-alexandria-gen-1-26-001",
+        "dateAccessed": "2026-11-27"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-27",
+    "result": "verified",
+    "evidenceFound": "ESV Genesis 1:26: \"Then God said, 'Let us make man in our image, after our likeness.'\" The plural 'let us' / 'our' does not name Father, Son, and Holy Spirit and does not state that God is three persons in one essence. Historical readings (all quotations verified + approved in Phase 3): Justin Martyr (Dialogue, Father speaking to the Son/Word), Irenaeus (Against Heresies, Son and Spirit present), Theophilus (To Autolycus, Word and Wisdom), Tertullian (Against Praxeas, Father speaking to Son and Spirit, plurality of Persons), Augustine (De Trinitate, man made in the image of the Trinity), Cyril of Alexandria (Commentary on John, the plural proclaiming the Holy Trinity).",
+    "limitations": "Historically-interpreted is reception history, not the text's plain meaning (RESEARCH-STANDARDS §1.3, §1.4 worked example): the text uses a plural and names no persons, so classifying it direct would misrepresent the text. The trinitarian reading is attributed to the named writers above, not asserted as what the verse states. The earlier Phase 2 record ver-gen-1-26-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a, batch H1); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-gen-18-1-doctrine-001",
+    "claimId": "gen-18-1-doctrine",
+    "claimText": "Genesis 18:1-15 is classified historically-interpreted because the text presents three men and the LORD without naming Father, Son, and Holy Spirit, and the trinitarian reading is contested later reception.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Genesis 18:1-2",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Genesis+18%3A1-2&version=ESV",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.3 (historically-interpreted)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.3",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine interpretations (Phase 3), trinity/interpretations.json",
+        "edition": null,
+        "locator": "interpretation ids: justin-martyr-gen-18-1-001, augustine-gen-18-1-001",
+        "dateAccessed": "2026-11-27"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-27",
+    "result": "verified",
+    "evidenceFound": "ESV Genesis 18:1-2: \"And the LORD appeared to him by the oaks of Mamre... behold, three men were standing in front of him.\" The text presents three men and the LORD without naming Father, Son, and Holy Spirit. Historical readings (quotations verified + approved in Phase 3): Justin Martyr (Dialogue, a theophany of the Son, distinct from the Father), Augustine (De Trinitate, the three visitors visibly intimating the equality of the Trinity and one substance in three persons).",
+    "limitations": "Historically-interpreted is reception history, not the text's plain meaning (§1.3): the text calls the visitors men and does not name the Trinity; the trinitarian reading is contested later reception, attributed to Justin and Augustine above. The earlier Phase 2 record ver-gen-18-1-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a, batch H1); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-gen-19-24-doctrine-001",
+    "claimId": "gen-19-24-doctrine",
+    "claimText": "Genesis 19:24 is classified historically-interpreted because the twofold 'LORD' does not itself distinguish divine persons, and the trinitarian reading is later reception.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Genesis 19:24",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Genesis+19%3A24&version=ESV",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.3 (historically-interpreted)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.3",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine interpretations (Phase 3), trinity/interpretations.json",
+        "edition": null,
+        "locator": "interpretation ids: justin-martyr-gen-19-24-001, irenaeus-gen-19-24-001",
+        "dateAccessed": "2026-11-27"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-27",
+    "result": "verified",
+    "evidenceFound": "ESV Genesis 19:24: \"Then the LORD rained on Sodom and Gomorrah sulfur and fire from the LORD out of heaven.\" The twofold 'LORD' does not itself distinguish divine persons. Historical readings (quotations verified + approved in Phase 3): Justin Martyr (Dialogue, the Son receiving a commission from the Father to judge Sodom), Irenaeus (Against Heresies, the Son judging Sodom by power received from the Father).",
+    "limitations": "Historically-interpreted is reception history, not the text's plain meaning (§1.3): the verse states a twofold LORD, not two divine persons; the trinitarian reading is later reception, attributed to Justin and Irenaeus above. The earlier Phase 2 record ver-gen-19-24-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a, batch H1); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-ps-2-7-doctrine-001",
+    "claimId": "ps-2-7-doctrine",
+    "claimText": "Psalm 2:7 is classified historically-interpreted because the LORD's decree addresses the Davidic king as son, and its application to Christ's divine sonship is later reception.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Psalm 2:7",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Psalm+2%3A7&version=ESV",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.3 (historically-interpreted)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.3",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine interpretations (Phase 3), trinity/interpretations.json",
+        "edition": null,
+        "locator": "interpretation ids: augustine-ps-2-7-001, thomas-aquinas-ps-2-7-001",
+        "dateAccessed": "2026-11-27"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-27",
+    "result": "verified",
+    "evidenceFound": "ESV Psalm 2:7: \"I will tell of the decree: The LORD said to me, 'You are my Son; today I have begotten you.'\" The LORD's decree addresses the Davidic king as son. Historical readings (quotations verified + approved in Phase 3): Augustine (De Trinitate, the Father called Lord), Thomas Aquinas (Summa Theologiae, the scriptural warrant for calling the Word's procession 'generation' and the Word 'Son').",
+    "limitations": "Historically-interpreted is reception history, not the text's plain meaning (§1.3): the psalm is a royal decree addressed to the Davidic king, and its application to Christ's divine sonship is later reception, attributed to Augustine and Aquinas above. The earlier Phase 2 record ver-ps-2-7-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a, batch H1); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-ps-45-6-doctrine-001",
+    "claimId": "ps-45-6-doctrine",
+    "claimText": "Psalm 45:6-7 is classified historically-interpreted because the king addressed as 'O God' has a disputed referent, and the trinitarian weight comes from later application.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Psalm 45:6-7",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Psalm+45%3A6-7&version=ESV",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.3 (historically-interpreted)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.3",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine interpretations (Phase 3), trinity/interpretations.json",
+        "edition": null,
+        "locator": "interpretation ids: irenaeus-ps-45-6-001, john-calvin-ps-45-6-001",
+        "dateAccessed": "2026-11-27"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-27",
+    "result": "verified",
+    "evidenceFound": "ESV Psalm 45:6-7: \"Your throne, O God, is forever and ever... Therefore God, your God, has anointed you.\" The king is addressed as 'O God' and the referent is disputed. Historical readings (quotations verified + approved in Phase 3): Irenaeus (Against Heresies, the Spirit naming both Son and Father God), John Calvin (Institutes, a divine address to Christ, proving his deity). Hebrews 1:8-9 cites this psalm for the Son.",
+    "limitations": "Historically-interpreted is reception history, not the text's plain meaning (§1.3): the psalm is a royal psalm whose king-addressed-as-God has a disputed referent; the trinitarian weight comes from later application, attributed to Irenaeus and Calvin above. The earlier Phase 2 record ver-ps-45-6-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a, batch H1); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-ps-110-1-doctrine-001",
+    "claimId": "ps-110-1-doctrine",
+    "claimText": "Psalm 110:1 is classified historically-interpreted because the LORD's address to a second lord does not itself state that lord's deity, and the divine reading is later interpretation.",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Psalm 110:1",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Psalm+110%3A1&version=ESV",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.3 (historically-interpreted)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.3",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine interpretations (Phase 3), trinity/interpretations.json",
+        "edition": null,
+        "locator": "interpretation ids: irenaeus-ps-110-1-001, augustine-ps-110-1-001",
+        "dateAccessed": "2026-11-27"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-27",
+    "result": "verified",
+    "evidenceFound": "ESV Psalm 110:1: \"The LORD says to my Lord: 'Sit at my right hand, until I make your enemies your footstool.'\" The LORD addresses a second lord; the verse does not itself state that lord's deity. Historical readings (quotations verified + approved in Phase 3): Irenaeus (Against Heresies, the Father addressing the Son), Augustine (De Trinitate, the Father called Lord).",
+    "limitations": "Historically-interpreted is reception history, not the text's plain meaning (§1.3): the psalm is a royal oracle in which God speaks to a lord at his right hand; the divine reading is later interpretation, attributed to Irenaeus and Augustine above. The earlier Phase 2 record ver-ps-110-1-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a, batch H1); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
+  },
+  {
+    "id": "ver-p6-isa-9-6-doctrine-001",
+    "claimId": "isa-9-6-doctrine",
+    "claimText": "Isaiah 9:6 is classified historically-interpreted because the promised child is called 'Mighty God' in a royal birth oracle, yet the verse does not state that the child is the Son as a distinct divine person, and it also calls him 'Everlasting Father.'",
+    "claimType": "doctrinal-connection",
+    "sourcesChecked": [
+      {
+        "source": "Holy Bible, English Standard Version (ESV), Isaiah 9:6",
+        "edition": "ESV Text Edition: 2025",
+        "locator": "https://www.biblegateway.com/passage/?search=Isaiah+9%3A6&version=ESV",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine RESEARCH-STANDARDS.md §1.3 (historically-interpreted)",
+        "edition": null,
+        "locator": "research/trace-the-doctrine/RESEARCH-STANDARDS.md §1.3",
+        "dateAccessed": "2026-11-27"
+      },
+      {
+        "source": "Trace the Doctrine interpretations (Phase 3), trinity/interpretations.json",
+        "edition": null,
+        "locator": "interpretation ids: john-calvin-isa-9-6-001",
+        "dateAccessed": "2026-11-27"
+      }
+    ],
+    "checker": "dev-1-verifier",
+    "checkDate": "2026-11-27",
+    "result": "verified",
+    "evidenceFound": "ESV Isaiah 9:6: \"For to us a child is born, to us a son is given... and his name shall be called Wonderful Counselor, Mighty God, Everlasting Father, Prince of Peace.\" The promised child is called 'Mighty God' in a royal birth oracle. Historical reading (quotation verified + approved in Phase 3): John Calvin (Institutes, the child called 'the Mighty God', proving Christ's deity).",
+    "limitations": "Historically-interpreted is reception history, not the text's plain meaning (§1.3): the verse does not state that the child is the Son as a distinct divine person, and it also calls him 'Everlasting Father'; the christological reading is later application, attributed to Calvin above. The earlier Phase 2 record ver-isa-9-6-doctrine-001 is preserved as history; this record supersedes it for the classification claim.",
+    "editorialApproval": {
+      "approvedBy": "Yonatan",
+      "date": "2026-11-27",
+      "note": "Editorial approval by Yonatan, 2026-11-27, of the 13 Step 2a ver-p6-* records (batch 1 + H1)."
+    },
+    "notes": "Phase 6 doctrinal-connection verification (Step 2a, batch H1); independent QA verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without editorial approval and entity status advancement."
   }
 ]

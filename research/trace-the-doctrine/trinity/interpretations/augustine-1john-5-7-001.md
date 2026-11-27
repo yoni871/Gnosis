@@ -38,7 +38,6 @@ Augustine, Answer to Maximinus the Arian (Contra Maximinum), Book II, ch. 22, se
 
 ## Verification records
 
-- `ver-p3-e3-augustine-1john-5-7-001-quotation-001`
 - `ver-p3-e3-augustine-1john-5-7-001-passage-link-001`
 - `ver-p5-augustine-1john-5-7-attribution-001`
 

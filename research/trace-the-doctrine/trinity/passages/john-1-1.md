@@ -38,10 +38,10 @@ Candidate direct per RESEARCH-STANDARDS section 1.1, for one element only (the d
   - Claim: The passage John 1:1-3 exists at that reference and occupies canonical position 43 in the Protestant canon.
   - Evidence found: ESV John 1:1: "In the beginning was the Word, and the Word was with God, and the Word was God."
   - Limitations: Chapter/verse numbering follows the ESV as displayed on BibleGateway; no original-language check performed.
-- `ver-john-1-1-doctrine-001` — claim `john-1-1-doctrine` (doctrinal-connection): result **partially-verified**; checker dev-1-researcher, 2026-11-20.
+- `ver-p6-john-1-1-doctrine-001` — claim `john-1-1-doctrine` (doctrinal-connection): result **verified**; checker dev-1-verifier, 2026-11-25.
   - Claim: John 1:1-3 is classified direct because the text explicitly states that the Word was God, while not stating the fully formulated doctrine of the Trinity.
-  - Evidence found: ESV John 1:1: "In the beginning was the Word, and the Word was with God, and the Word was God."
-  - Limitations: Classification is a researcher proposal and a candidate only per §1.1, for one element (the deity of the Son/Word); the wording check confirms the textual basis only. Independent verification per §9.2 and editorial approval still required. No historical-author readings consulted (Phase 3).
+  - Evidence found: BSB John 1:1: "In the beginning was the Word, and the Word was with God, and the Word was God." (ESV identical.) John 1:2-3: the Word was with God in the beginning and all things were made through him.
+  - Limitations: Direct for the element only (the deity of the Word/Son): the text explicitly states that the Word was God, while not stating the fully formulated doctrine of the Trinity. The earlier Phase 2 record ver-john-1-1-doctrine-001 is preserved as history; this record supersedes it for the classification claim.
 
 ## Status
 

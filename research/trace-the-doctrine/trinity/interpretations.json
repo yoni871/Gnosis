@@ -23,7 +23,7 @@
       "ver-p3-e1-justin-martyr-gen-1-26-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "justin-martyr-gen-18-1-001",
@@ -49,7 +49,7 @@
       "ver-p3-e1-justin-martyr-gen-18-1-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "justin-martyr-gen-19-24-001",
@@ -75,7 +75,7 @@
       "ver-p3-e1-justin-martyr-gen-19-24-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "irenaeus-gen-1-26-001",
@@ -101,7 +101,7 @@
       "ver-p3-e1-irenaeus-gen-1-26-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "irenaeus-gen-19-24-001",
@@ -127,7 +127,7 @@
       "ver-p3-e1-irenaeus-gen-19-24-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "theophilus-of-antioch-gen-1-1-001",
@@ -153,7 +153,7 @@
       "ver-p3-e1-theophilus-of-antioch-gen-1-1-001-passage-link-001"
     ],
     "notes": "Secondary literature commonly describes this as the earliest surviving Christian use of the word 'Trinity' (Greek Trias); that claim was not independently verified in this pass.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "theophilus-of-antioch-gen-1-26-001",
@@ -179,7 +179,7 @@
       "ver-p3-e1-theophilus-of-antioch-gen-1-26-001-passage-link-001"
     ],
     "notes": "Theophilus's pair is Word and Wisdom; he does not name the Holy Spirit in this passage.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "tertullian-gen-1-26-001",
@@ -203,10 +203,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-tertullian-gen-1-26-001-quotation-001",
       "ver-p3-e2-tertullian-gen-1-26-001-attribution-001",
-      "ver-p3-e2-tertullian-against-praxeas-date-001"
+      "ver-p4-team-b-date-tertullian-against-praxeas-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task. Tertullian also records the reading he rejects, that God spoke to the angels; that rejected reading is described in the explanation above.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-gen-1-26-001",
@@ -232,7 +232,7 @@
       "ver-p3-e3-augustine-gen-1-26-001-passage-link-001"
     ],
     "notes": "Augustine's psychological analogies (memory, understanding, will; De Trinitate Books IX-X, XIV-XV) are his own reading (C), not the biblical text's meaning. Alternative readings of the plural (plural of majesty, heavenly court) are not addressed by Augustine here; they are recorded in the passage record, not suppressed.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-gen-18-1-001",
@@ -258,7 +258,7 @@
       "ver-p3-e3-augustine-gen-18-1-001-passage-link-001"
     ],
     "notes": "Augustine himself notes the uncertainty: in II.10.19 he says it 'does not appear plainly whether it was any person of the Trinity that appeared to Abraham, or God Himself the Trinity.' His conclusion in II.11.20 is framed as a question ('why should we not here understand...'), not as a certainty.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "cyril-alexandria-gen-1-26-001",
@@ -284,7 +284,7 @@
       "ver-p3-e3-cyril-alexandria-gen-1-26-001-passage-link-001"
     ],
     "notes": "Cyril does not address alternative readings of the plural (plural of majesty, heavenly court); they are recorded in the passage record, not suppressed.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "john-calvin-gen-1-1-001",
@@ -306,7 +306,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, section 14. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "The quotation is a clause of a longer sentence in Beveridge's translation, quoted from its start ('it is by no means an obscure testimony...'); the wording 'expanded over' is Beveridge's rendering of the Hebrew as printed on the checked page. No attested dissenting reading of Genesis 1:1 was located in the era sources read in this pass, so alternativeReadings is empty.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-gen-1-1-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -331,7 +331,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads Deuteronomy 32:6 as speaking of God's fatherhood toward the rational creature, by likeness of image, and explicitly distinguishes this from the personal sense in which the Father is Father of the Son. (A) The text calls God Israel's father as creator and founder of the nation; it does not name the Father as a distinct divine person. (D) The distinction between personal and essential uses of 'Father' is Aquinas's scholastic formulation and must not be read back into the Song of Moses.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-deut-32-6-quotation-001",
       "ver-p3-e4-thomas-aquinas-deut-32-6-attribution-001"
@@ -357,7 +357,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads Deuteronomy 6:4 as the scriptural authority for predicating 'God' of the three persons in the singular: one God, not three Gods. (A) The text states that the LORD is one; it says nothing about three persons or about the later doctrine. (D) The scholastic question of singular versus plural predication of essential names is a thirteenth-century formulation; the Shema supplies the 'one God' premise, and the 'three persons' half of the doctrine comes from elsewhere.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-deut-6-4-quotation-001",
       "ver-p3-e4-thomas-aquinas-deut-6-4-attribution-001"
@@ -388,7 +388,7 @@
       "ver-p3-e1-irenaeus-ps-110-1-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "irenaeus-ps-45-6-001",
@@ -414,7 +414,7 @@
       "ver-p3-e1-irenaeus-ps-45-6-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-ps-110-1-001",
@@ -440,7 +440,7 @@
       "ver-p3-e3-augustine-ps-110-1-001-passage-link-001"
     ],
     "notes": "The same sentence also cites Psalm 2:7 and 2 Corinthians 3:17; see augustine-ps-2-7-001 and augustine-2cor-3-17-001.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-ps-2-7-001",
@@ -466,7 +466,7 @@
       "ver-p3-e3-augustine-ps-2-7-001-passage-link-001"
     ],
     "notes": "The same sentence also cites Psalm 110:1 and 2 Corinthians 3:17; see augustine-ps-110-1-001 and augustine-2cor-3-17-001. The quotation is a single long sentence; it is reproduced in full including its trailing semicolon as printed.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "alternativeReadings": [],
@@ -487,7 +487,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads Psalm 2:7 as the scriptural warrant for calling the Word's procession 'generation' and the Word 'Son'. (A) The psalm states, as a royal decree, 'You are my Son; today I have begotten you'; it does not state that the Son is divine or eternal. (B) The step from the psalm's enthronement language to an eternal generation is an inference, which Aquinas supports by his scholastic account of the Word as proceeding by way of similitude in the same nature. (D) 'Eternal generation' is a later doctrinal formulation and must not be presented as the psalm's own statement.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-ps-2-7-quotation-001",
       "ver-p3-e4-thomas-aquinas-ps-2-7-attribution-001"
@@ -514,7 +514,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, section 9. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "No attested dissenting reading of Psalm 45:6 was located in the era sources read in this pass, so alternativeReadings is empty; this is absence of evidence in this pass, not a claim that no dissenting reading exists.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-ps-45-6-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -539,7 +539,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads Isaiah 48:16 as the Son being sent by the Holy Ghost, and uses it to distinguish sending as principle of the person from sending as principle of the mission's effect. (A) The text states that the Lord GOD has sent the speaker and His Spirit; it does not name the speaker as the Son and does not state a doctrine of mission. (B) Identifying the speaker with the Son is an inference, which Aquinas makes without discussion in this article. (D) The mission/procession distinction is Aquinas's scholastic formulation and must not be presented as the wording of Isaiah 48:16.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-isa-48-16-quotation-001",
       "ver-p3-e4-thomas-aquinas-isa-48-16-attribution-001"
@@ -566,7 +566,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, section 14. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "No attested dissenting reading of Isaiah 48:16 was located in the era sources read in this pass, so alternativeReadings is empty; this is absence of evidence in this pass, not a claim that no dissenting reading exists.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-isa-48-16-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -592,7 +592,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, section 9. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "No attested dissenting reading of Isaiah 9:6 was located in the era sources read in this pass, so alternativeReadings is empty; this is absence of evidence in this pass, not a claim that no dissenting reading exists.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-isa-9-6-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -622,7 +622,7 @@
       "ver-p3-e1-justin-martyr-matt-28-19-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "irenaeus-matt-28-19-001",
@@ -648,7 +648,7 @@
       "ver-p3-e1-irenaeus-matt-28-19-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "tertullian-matt-28-19-001",
@@ -672,10 +672,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-tertullian-matt-28-19-001-quotation-001",
       "ver-p3-e2-tertullian-matt-28-19-001-attribution-001",
-      "ver-p3-e2-tertullian-against-praxeas-date-001"
+      "ver-p4-team-b-date-tertullian-against-praxeas-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task. The modalist reading Tertullian opposes (Father, Son, and Holy Spirit as one selfsame Person) is described in the historical context.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-matt-28-19-001",
@@ -701,7 +701,7 @@
       "ver-p3-e3-augustine-matt-28-19-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-matt-3-16-001",
@@ -727,7 +727,7 @@
       "ver-p3-e3-augustine-matt-3-16-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "john-of-damascus-matt-28-19-001",
@@ -753,7 +753,7 @@
       "ver-p3-e3-john-of-damascus-matt-28-19-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "alternativeReadings": [],
@@ -774,7 +774,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads the baptismal formula of Matthew 28:19 as naming three persons under one name, and takes the singular 'name' as the sign of one essence. (A) The text commands baptism 'in the name of the Father and of the Son and of the Holy Spirit'; it does not state that the three are one essence or use the language of 'essential name'. (B) The step from the singular 'name' to unity of essence is an inference, which Aquinas presents as a grammatical argument about the form. (D) The essence/person distinction in this form is Aquinas's scholastic formulation and must not be presented as the wording of Matthew 28:19.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-matt-28-19-quotation-001",
       "ver-p3-e4-thomas-aquinas-matt-28-19-attribution-001"
@@ -800,7 +800,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads Matthew 3:16 as the visible mission of the Holy Ghost: the Spirit descends on the Son at His baptism as the sign of sanctification. (A) The text states that the Spirit of God descended like a dove and rested on Jesus, with the Father's voice speaking; it does not use the scholastic vocabulary of 'visible mission' or 'procession'. (D) The visible/invisible mission framework is Aquinas's scholastic formulation, linking the eternal processions to temporal sending, and must not be presented as the wording of Matthew 3:16.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-matt-3-16-quotation-001",
       "ver-p3-e4-thomas-aquinas-matt-3-16-attribution-001"
@@ -834,7 +834,7 @@
     ],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, section 16. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-matt-28-19-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -866,12 +866,11 @@
       }
     ],
     "citation": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818), Section III, Chapter 1, pp. 56-57. Edition: Trans. Thomas Rees (London, 1818), from the revised Latin edition of 1680. URL: https://archive.org/stream/racoviancatechi00reesgoog/racoviancatechi00reesgoog_djvu.txt. Accessed 2026-11-20.",
-    "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. See the attribution verification record ver-p3-e5-racovian-catechism-attribution-001. The quotation was transcribed from the Google Books OCR scan of the 1818 edition; obvious single-character OCR misreadings were normalized (see the quotation verification record).",
-    "status": "verification-pending",
+    "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. See the attribution verification record ver-p5-racovian-catechism-attribution-001. The quotation was transcribed from the Google Books OCR scan of the 1818 edition; obvious single-character OCR misreadings were normalized (see the quotation verification record).",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-faustus-socrinus-matt-28-19-001-quotation-001",
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001",
       "ver-p5-racovian-catechism-attribution-001"
     ]
   },
@@ -895,7 +894,7 @@
     "alternativeReadings": [],
     "citation": "Jonathan Edwards, 'An Unpublished Essay on the Trinity', ed. George P. Fisher (1903); CCEL electronic edition, p. 5. Edition: George P. Fisher (ed.), 'An Unpublished Essay on the Trinity' (1903), CCEL electronic edition. URL: https://www.CCEL.ORG/ccel/e/edwards/trinity/cache/trinity.pdf. Accessed 2026-11-20.",
     "notes": "No attested dissenting reading of Matthew 3:16 was located in the era sources read in this pass, so alternativeReadings is empty; this is absence of evidence in this pass, not a claim that no dissenting reading exists.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-jonathan-edwards-matt-3-16-001-quotation-001",
       "ver-p3-e5-jonathan-edwards-discourse-trinity-date-001"
@@ -925,7 +924,7 @@
       "ver-p3-e1-irenaeus-john-1-1-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "athenagoras-john-10-30-001",
@@ -951,7 +950,7 @@
       "ver-p3-e1-athenagoras-john-10-30-001-passage-link-001"
     ],
     "notes": "The quotation omits a parenthetical Greek phrase (nous kai logos) after 'understanding and reason', marked with an ellipsis.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "theophilus-of-antioch-john-1-1-001",
@@ -977,7 +976,7 @@
       "ver-p3-e1-theophilus-of-antioch-john-1-1-001-passage-link-001"
     ],
     "notes": "Theophilus's phrasing 'at first God was alone, and the Word in Him' is recorded as written; see relationshipToDoctrine.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "tertullian-john-1-1-001",
@@ -1008,10 +1007,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-tertullian-john-1-1-001-quotation-001",
       "ver-p3-e2-tertullian-john-1-1-001-attribution-001",
-      "ver-p3-e2-tertullian-against-praxeas-date-001"
+      "ver-p4-team-b-date-tertullian-against-praxeas-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "origen-john-1-1-001",
@@ -1042,10 +1041,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-origen-john-1-1-001-quotation-001",
       "ver-p3-e2-origen-john-1-1-001-attribution-001",
-      "ver-p3-e2-origen-de-principiis-date-001"
+      "ver-p4-team-b-date-origen-de-principiis-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "novatian-john-1-1-001",
@@ -1076,10 +1075,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-novatian-john-1-1-001-quotation-001",
       "ver-p3-e2-novatian-john-1-1-001-attribution-001",
-      "ver-p3-e2-novatian-on-the-trinity-date-001"
+      "ver-p4-team-b-date-novatian-on-the-trinity-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "novatian-john-10-30-001",
@@ -1103,10 +1102,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-novatian-john-10-30-001-quotation-001",
       "ver-p3-e2-novatian-john-10-30-001-attribution-001",
-      "ver-p3-e2-novatian-on-the-trinity-date-001"
+      "ver-p4-team-b-date-novatian-on-the-trinity-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task. The Sabellian reading Novatian opposes (Father and Son as one Person) is the target of the whole treatise; see the historical context.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "novatian-john-17-5-001",
@@ -1130,10 +1129,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-novatian-john-17-5-001-quotation-001",
       "ver-p3-e2-novatian-john-17-5-001-attribution-001",
-      "ver-p3-e2-novatian-on-the-trinity-date-001"
+      "ver-p4-team-b-date-novatian-on-the-trinity-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "novatian-john-20-28-001",
@@ -1149,7 +1148,7 @@
       "reproducibilityStatus": "public-domain",
       "summary": null
     },
-    "explanation": "Novatian treats Thomas's address to the risen Christ, 'My Lord and my God', as the instructed apostle's confession of Christ's divinity, standing alongside 'I and the Father are one' and Romans 9:5 in his cumulative proof that Christ is God. The ellipsis marks the continuation of the sentence into the Romans 9:5 citation, quoted in novatian-rom-9-5-001.",
+    "explanation": "Novatian treats Thomas's address to the risen Christ, 'My Lord and my God', as the instructed apostle's confession of Christ's divinity, standing alongside 'I and the Father are one' and Romans 9:5 in his cumulative proof that Christ is God. The ellipsis marks the continuation of the sentence into the Romans 9:5 citation, quoted in Novatian's Romans 9:5 interpretation.",
     "relationshipToDoctrine": "(C) Novatian reads John 20:28 as Thomas confessing Christ as Lord and God. (A) The verse records Thomas's address to Jesus; that it states Christ's deity is Novatian's reading of it, shared by later Nicene writers. (D) The reading predates Nicaea and is not itself the Nicene formulation.",
     "historicalContext": "Treatise Concerning the Trinity, c. 250 (approximate), ch. 13, in the cumulative scriptural proof that Christ is God.",
     "alternativeReadings": [],
@@ -1157,10 +1156,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-novatian-john-20-28-001-quotation-001",
       "ver-p3-e2-novatian-john-20-28-001-attribution-001",
-      "ver-p3-e2-novatian-on-the-trinity-date-001"
+      "ver-p4-team-b-date-novatian-on-the-trinity-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "arius-john-1-1-001",
@@ -1191,7 +1190,7 @@
     "verificationRecordIds": [
       "ver-p3-e2-arius-john-1-1-001-quotation-001",
       "ver-p3-e2-arius-john-1-1-001-attribution-001",
-      "ver-p3-e2-arius-thalia-date-001"
+      "ver-p5-arius-thalia-date-001"
     ],
     "notes": "Dissenting reading, fairly stated per §6. The quotation is mediated through Athanasius; see the attribution verification record (partially-verified).",
     "status": "verification-pending"
@@ -1225,12 +1224,12 @@
     "verificationRecordIds": [
       "ver-p3-e2-athanasius-john-1-1-001-quotation-001",
       "ver-p3-e2-athanasius-john-1-1-001-attribution-001",
-      "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "ver-p5-athanasius-against-the-arians-date-001",
       "ver-p5-athanasius-john-1-1-attribution-001",
       "ver-p5-athanasius-john-1-1-attribution-002"
     ],
     "notes": "Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "athanasius-john-10-30-001",
@@ -1254,12 +1253,12 @@
     "verificationRecordIds": [
       "ver-p3-e2-athanasius-john-10-30-001-quotation-001",
       "ver-p3-e2-athanasius-john-10-30-001-attribution-001",
-      "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "ver-p5-athanasius-against-the-arians-date-001",
       "ver-p5-athanasius-john-10-30-attribution-001",
       "ver-p5-athanasius-john-10-30-attribution-002"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task. The Sabellian reading (Father and Son the same person) is the position Athanasius is refuting in this section; see the explanation. Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "hilary-john-1-1-001",
@@ -1290,11 +1289,11 @@
     "verificationRecordIds": [
       "ver-p3-e2-hilary-john-1-1-001-quotation-001",
       "ver-p3-e2-hilary-john-1-1-001-attribution-001",
-      "ver-p3-e2-hilary-on-the-trinity-date-001",
+      "ver-p4-team-b-date-hilary-on-the-trinity-001",
       "ver-p5-hilary-john-1-1-explanation-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "basil-john-1-1-001",
@@ -1325,10 +1324,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-basil-john-1-1-001-quotation-001",
       "ver-p3-e2-basil-john-1-1-001-attribution-001",
-      "ver-p3-e2-basil-on-the-holy-spirit-date-001"
+      "ver-p4-team-b-date-basil-on-the-holy-spirit-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "basil-john-15-26-001",
@@ -1352,10 +1351,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-basil-john-15-26-001-quotation-001",
       "ver-p3-e2-basil-john-15-26-001-attribution-001",
-      "ver-p3-e2-basil-on-the-holy-spirit-date-001"
+      "ver-p4-team-b-date-basil-on-the-holy-spirit-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "gregory-nazianzus-john-14-16-001",
@@ -1379,10 +1378,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-gregory-nazianzus-john-14-16-001-quotation-001",
       "ver-p3-e2-gregory-nazianzus-john-14-16-001-attribution-001",
-      "ver-p3-e2-gregory-nazianzus-fifth-theological-oration-date-001"
+      "ver-p4-team-b-date-gregory-nazianzus-fifth-theological-oration-001"
     ],
     "notes": "The Pneumatomachian reading (the Spirit as a creature, not God) is the position Gregory is refuting in this oration; no Pneumatomachian reading of John 14:16 specifically was verified in the sources checked. No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "gregory-nazianzus-john-15-26-001",
@@ -1406,10 +1405,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-gregory-nazianzus-john-15-26-001-quotation-001",
       "ver-p3-e2-gregory-nazianzus-john-15-26-001-attribution-001",
-      "ver-p3-e2-gregory-nazianzus-fifth-theological-oration-date-001"
+      "ver-p4-team-b-date-gregory-nazianzus-fifth-theological-oration-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-john-1-1-001",
@@ -1435,7 +1434,7 @@
       "ver-p3-e3-augustine-john-1-1-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-john-10-30-001",
@@ -1461,7 +1460,7 @@
       "ver-p3-e3-augustine-john-10-30-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-john-14-26-001",
@@ -1496,7 +1495,7 @@
       "ver-p5-augustine-john-14-26-quote-002"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-john-15-26-001",
@@ -1529,7 +1528,7 @@
       "ver-p3-e3-augustine-john-15-26-001-passage-link-001"
     ],
     "notes": "Augustine returns to John 15:26 in De Trinitate IV.20.29 and XV.26.46, where he argues the Spirit proceeds from the Father and from the Son; those passages are recorded under augustine-john-14-26-001 and augustine-matt-28-19-001 only by cross-reference here, not as separate quotations.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-john-16-13-001",
@@ -1557,7 +1556,7 @@
       "ver-p5-augustine-john-16-13-quote-002"
     ],
     "notes": "Quotation is two separate excerpts from Book II, ch. 3, §5, with the omission marked […]; an earlier draft joined them as if continuous (corrected in Phase 5).",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "cyril-alexandria-john-10-30-001",
@@ -1583,7 +1582,7 @@
       "ver-p3-e3-cyril-alexandria-john-10-30-001-passage-link-001"
     ],
     "notes": "No book number is asserted for this passage: the commentary survives in parts on elpenor.org, and Books VII and VIII are lost. The quotation is located by the Gospel passage (John 10:29-30) and the elpenor part/page.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "leo-i-john-15-26-001",
@@ -1617,7 +1616,7 @@
       "ver-p5-leo-i-john-15-26-doctrinal-001"
     ],
     "notes": "CAUTION: the quotation is Leo's summary of the Priscillianist error he is refuting, not his own statement of doctrine. His positive statement follows it: 'Which without doubt is contrary to the Catholic faith, which acknowledges the Trinity of the Godhead to be of one essence in such a way that it believes the Father, the Son, and the Holy Ghost indivisible without confusion, eternal without time, equal without difference: because it is not the same person but the same essence which fills the Unity in Trinity.'",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "john-of-damascus-john-15-26-001",
@@ -1650,7 +1649,7 @@
       "ver-p3-e3-john-of-damascus-john-15-26-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "alternativeReadings": [],
@@ -1698,7 +1697,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads John 1:1 ('In the beginning was the Word') as naming the Son: the Word is the divine person's proper name, proceeding from the Father by an intelligible emanation. (A) The text of John 1:1 itself states that the Word was with God and was God; it does not use the later scholastic vocabulary of 'personal term' or 'procession by way of intellect'. (D) The formulation of Word as a personal term distinct by relation of origin is Aquinas's thirteenth-century scholastic formulation and must not be projected back onto John's wording.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-john-1-1-quotation-001",
       "ver-p3-e4-thomas-aquinas-john-1-1-attribution-001"
@@ -1724,7 +1723,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads John 10:30 as stating, as regards its meaning, that Father and Son are of one essence. (A) The text states 'I and the Father are one'; it does not use the words 'one essence' or the Nicene term homoousion. (B) The step from 'are one' to 'of one essence' is an inference, which Aquinas himself labels as a matter of meaning rather than of wording. (D) The formula 'of one essence' is the later Nicene/scholastic formulation and must not be presented as the wording of John 10:30.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-john-10-30-quotation-001",
       "ver-p3-e4-thomas-aquinas-john-10-30-attribution-001"
@@ -1750,7 +1749,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads John 14:16 as showing that the Holy Ghost is distinct from the Son ('another Paraclete'), which grounds his claim of a second procession in God, the procession of love. (A) The text promises another Helper/Paraclete; it does not state that the Spirit proceeds by way of the will or that there are two processions. (D) The two-processions framework (Word by intellect, Love by will) is Aquinas's scholastic formulation and must not be presented as the wording of John 14:16.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-john-14-16-quotation-001",
       "ver-p3-e4-thomas-aquinas-john-14-16-attribution-001"
@@ -1783,7 +1782,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas treats John 15:26 as the text stating that the Spirit proceeds from the Father, and argues (in the respondeo of the same article) that the Spirit must also be from the Son if Son and Spirit are to be personally distinct. (A) The text states that the Spirit of truth proceeds from the Father; it does not state that the Spirit proceeds from the Son. (B) The step from 'proceeds from the Father' to 'proceeds from the Father and the Son' is Aquinas's inference from the principle that persons are distinguished only by opposite relations. (D) The filioque formulation is a later Western formulation; the East-West disagreement over it is recorded in alternativeReadings and must not be harmonised away.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-john-15-26-quotation-001",
       "ver-p3-e4-thomas-aquinas-john-15-26-attribution-001"
@@ -1823,7 +1822,7 @@
     ],
     "citation": "John Calvin, Commentary on the Gospel According to John, in Calvin's Commentaries, vol. 34, tr. John King (Edinburgh: Calvin Translation Society, 1847-50), ch. 1, on John 1:1. Edition: Calvin's Commentaries, Vol. 34: John, Part I; tr. John King, 1847-50. URL: https://archive.sacred-texts.com/chr/calvin/cc34/cc34006.htm. Accessed 2026-11-20.",
     "notes": "",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-john-1-1-001-quotation-001",
       "ver-p3-e5-john-calvin-commentary-john-date-001"
@@ -1849,7 +1848,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Commentary on the Gospel According to John, in Calvin's Commentaries, vol. 34, tr. John King (Edinburgh: Calvin Translation Society, 1847-50), ch. 10, on John 10:30. Edition: Calvin's Commentaries, Vol. 34: John, Part I; tr. John King, 1847-50. URL: https://sacred-texts.com/book/calvin-s-commentaries-part-34-john-part-i/chapter-10. Accessed 2026-11-20.",
     "notes": "The Greek word in the checked text is rendered '(homoousios)' here in transliteration; the source page shows the Greek term in parentheses. Calvin's 'ancients' are the patristic writers who used this verse as a proof of the homoousios; that use is described in the explanation above. No alternativeReading is recorded because the writers Calvin refers to are not individually identified in the checked text and no verified quotation from any one of them on this verse was obtained in this pass; attributing the use to a named author would be unverified.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-john-10-30-001-quotation-001",
       "ver-p3-e5-john-calvin-commentary-john-date-001"
@@ -1875,7 +1874,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Commentary on the Gospel According to John, in Calvin's Commentaries, vol. 35, tr. John King (Edinburgh: Calvin Translation Society, 1847-50), ch. 14, on John 14:16. Edition: Calvin's Commentaries, Vol. 35: John, Part II; tr. John King, 1847-50. URL: https://archive.sacred-texts.com/chr/calvin/cc35/cc35003.htm. Accessed 2026-11-20.",
     "notes": "No attested dissenting reading of John 14:16 was located in the era sources read in this pass, so alternativeReadings is empty; this is absence of evidence in this pass, not a claim that no dissenting reading exists.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-john-14-16-001-quotation-001",
       "ver-p3-e5-john-calvin-commentary-john-date-001",
@@ -1909,7 +1908,7 @@
     ],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, section 8. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-john-17-5-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -1941,12 +1940,11 @@
       }
     ],
     "citation": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818), Section IV, Chapter 1, p. 140. Edition: Trans. Thomas Rees (London, 1818), from the revised Latin edition of 1680. URL: https://archive.org/stream/racoviancatechi00reesgoog/racoviancatechi00reesgoog_djvu.txt. Accessed 2026-11-20.",
-    "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. Socinus died in 1604, the year before the Catechism was first published; see the attribution verification record ver-p3-e5-racovian-catechism-attribution-001.",
-    "status": "verification-pending",
+    "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. Socinus died in 1604, the year before the Catechism was first published; see the attribution verification record ver-p5-racovian-catechism-attribution-001.",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-faustus-socrinus-john-1-1-001-quotation-001",
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001",
       "ver-p5-racovian-catechism-attribution-001",
       "ver-p5-racovian-john-1-1-quote-001"
     ]
@@ -1977,12 +1975,11 @@
       }
     ],
     "citation": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818), Section IV, Chapter 1, p. 144. Edition: Trans. Thomas Rees (London, 1818), from the revised Latin edition of 1680. URL: https://archive.org/stream/racoviancatechi00reesgoog/racoviancatechi00reesgoog_djvu.txt. Accessed 2026-11-20.",
-    "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. See the attribution verification record ver-p3-e5-racovian-catechism-attribution-001.",
-    "status": "verification-pending",
+    "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. See the attribution verification record ver-p5-racovian-catechism-attribution-001.",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-faustus-socrinus-john-17-5-001-quotation-001",
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001",
       "ver-p5-racovian-catechism-attribution-001",
       "ver-p5-racovian-john-17-5-quote-001"
     ]
@@ -2009,10 +2006,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-basil-acts-5-3-001-quotation-001",
       "ver-p3-e2-basil-acts-5-3-001-attribution-001",
-      "ver-p3-e2-basil-on-the-holy-spirit-date-001"
+      "ver-p4-team-b-date-basil-on-the-holy-spirit-001"
     ],
     "notes": "The Pneumatomachian reading (the Spirit as a creature, not God) is the position Basil is refuting in this chapter; no Pneumatomachian reading of Acts 5:3 specifically was verified in the sources checked. No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "john-calvin-acts-5-3-001",
@@ -2034,7 +2031,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, section 15. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "No attested dissenting reading of Acts 5:3 was located in the era sources read in this pass, so alternativeReadings is empty; this is absence of evidence in this pass, not a claim that no dissenting reading exists.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-acts-5-3-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -2062,10 +2059,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-novatian-rom-9-5-001-quotation-001",
       "ver-p3-e2-novatian-rom-9-5-001-attribution-001",
-      "ver-p3-e2-novatian-on-the-trinity-date-001"
+      "ver-p4-team-b-date-novatian-on-the-trinity-001"
     ],
     "notes": "The modern dispute over the punctuation and referent of Romans 9:5 is noted in the relationshipToDoctrine field; no modern scholarly source was checked for this note, and it is flagged for the verifier rather than asserted as a verified claim.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "athanasius-rom-9-5-001",
@@ -2089,12 +2086,12 @@
     "verificationRecordIds": [
       "ver-p3-e2-athanasius-rom-9-5-001-quotation-001",
       "ver-p3-e2-athanasius-rom-9-5-001-attribution-001",
-      "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "ver-p5-athanasius-against-the-arians-date-001",
       "ver-p5-athanasius-rom-9-5-attribution-001",
       "ver-p5-athanasius-rom-9-5-attribution-002"
     ],
     "notes": "The modern dispute over the punctuation and referent of Romans 9:5 is noted in the relationshipToDoctrine field; no modern scholarly source was checked for this note, and it is flagged for the verifier rather than asserted as a verified claim. Authorship: Discourse IV is of disputed authorship. The New Catholic Encyclopedia states a fourth Discourse 'is now considered as definitely spurious', and Quasten holds the first three discourses form a single continuous work by Athanasius while the fourth 'was added later by an unknown author' and 'differs in address, content, and style'. This interpretation is of the text as printed under Athanasius's name in NPNF2 vol. 4, not an assertion that Athanasius wrote Discourse IV.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "john-of-damascus-rom-8-9-001",
@@ -2127,7 +2124,7 @@
       "ver-p3-e3-john-of-damascus-rom-8-9-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "john-calvin-rom-9-5-001",
@@ -2149,7 +2146,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, section 11. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "The punctuation of Romans 9:5 is disputed in modern scholarship (ascription to Christ versus a doxology to the Father); Calvin reads it as an ascription to Christ. No attested dissenting reading from the era was located in the sources read in this pass, so alternativeReadings is empty.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-rom-9-5-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -2179,7 +2176,7 @@
       "ver-p3-e1-irenaeus-1cor-8-6-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "basil-1cor-12-4-001",
@@ -2203,10 +2200,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-basil-1cor-12-4-001-quotation-001",
       "ver-p3-e2-basil-1cor-12-4-001-attribution-001",
-      "ver-p3-e2-basil-on-the-holy-spirit-date-001"
+      "ver-p4-team-b-date-basil-on-the-holy-spirit-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "faustus-socrinus-1cor-8-6-001",
@@ -2234,12 +2231,11 @@
       }
     ],
     "citation": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818), Section III, Chapter 1, p. 54. Edition: Trans. Thomas Rees (London, 1818), from the revised Latin edition of 1680. URL: https://archive.org/stream/racoviancatechi00reesgoog/racoviancatechi00reesgoog_djvu.txt. Accessed 2026-11-20.",
-    "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. See the attribution verification record ver-p3-e5-racovian-catechism-attribution-001.",
-    "status": "verification-pending",
+    "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. See the attribution verification record ver-p5-racovian-catechism-attribution-001.",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-faustus-socrinus-1cor-8-6-001-quotation-001",
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001",
       "ver-p5-racovian-catechism-attribution-001"
     ]
   },
@@ -2267,7 +2263,7 @@
       "ver-p3-e1-justin-martyr-2cor-13-14-001-passage-link-001"
     ],
     "notes": "Justin's sentence also names the host of good angels alongside Father, Son, and Spirit; reproduced verbatim and not smoothed over.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "church-of-smyrna-2cor-13-14-001",
@@ -2293,7 +2289,7 @@
       "ver-p3-e1-church-of-smyrna-2cor-13-14-001-passage-link-001"
     ],
     "notes": "The prayer quoted is Polycarp's prayer as reported by the letter's authors, the church of Smyrna; Polycarp is the subject, not the author, of the work.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "basil-2cor-13-14-001",
@@ -2317,10 +2313,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-basil-2cor-13-14-001-quotation-001",
       "ver-p3-e2-basil-2cor-13-14-001-attribution-001",
-      "ver-p3-e2-basil-on-the-holy-spirit-date-001"
+      "ver-p4-team-b-date-basil-on-the-holy-spirit-001"
     ],
     "notes": "Numbering flag: the NPNF2 edition cites this verse as 2 Corinthians 13:13; modern editions number it 13:14. No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-2cor-3-17-001",
@@ -2346,7 +2342,7 @@
       "ver-p3-e3-augustine-2cor-3-17-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "jonathan-edwards-2cor-13-14-001",
@@ -2368,7 +2364,7 @@
     "alternativeReadings": [],
     "citation": "Jonathan Edwards, 'An Unpublished Essay on the Trinity', ed. George P. Fisher (1903); CCEL electronic edition, p. 7. Edition: George P. Fisher (ed.), 'An Unpublished Essay on the Trinity' (1903), CCEL electronic edition. URL: https://www.CCEL.ORG/ccel/e/edwards/trinity/cache/trinity.pdf. Accessed 2026-11-20.",
     "notes": "The quotation ends with an ellipsis: in the source the sentence continues '...and therefore I suppose it is that in that forementioned place, (I John 1:3). We are said to...'. No attested dissenting reading of 2 Corinthians 13:14 was located in the era sources read in this pass, so alternativeReadings is empty.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-jonathan-edwards-2cor-13-14-001-quotation-001",
       "ver-p3-e5-jonathan-edwards-discourse-trinity-date-001"
@@ -2399,7 +2395,7 @@
       "ver-p5-augustine-gal-4-4-quote-001"
     ],
     "notes": "The quotation opens mid-sentence; the leading 'For it is He of whom the apostle says' is reproduced as printed. The inventory passage gal-4-4 is the sending of the Son (Gal. 4:4); Augustine's argument in this section is built on the immediately following verse, Gal. 4:6, and is recorded here as his reading of the sending passage's context.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "alternativeReadings": [],
@@ -2420,7 +2416,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads Galatians 4:4 as showing that the Son's mission is temporal: God sent His Son when the fullness of time came. (A) The text states that God sent His Son, born of a woman, in the fullness of time; it does not distinguish mission from procession or use the scholastic vocabulary of eternal versus temporal terms. (D) The distinction between eternal procession and temporal mission is Aquinas's scholastic formulation and must not be presented as the wording of Galatians 4:4.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-gal-4-4-quotation-001",
       "ver-p3-e4-thomas-aquinas-gal-4-4-attribution-001"
@@ -2447,7 +2443,7 @@
     "alternativeReadings": [],
     "citation": "Martin Luther, A Commentary on St. Paul's Epistle to the Galatians, trans. Theodore Graebner (Grand Rapids: Zondervan, 1949), ch. 4, pp. 150-172. Edition: Translated by Theodore Graebner (Grand Rapids: Zondervan, 1949). URL: https://www.projectwittenberg.org/pub/resources/text/wittenberg/luther/gal/gal4-01.txt. Accessed 2026-11-20.",
     "notes": "No attested dissenting reading of Galatians 4:4 was located in the era sources read in this pass, so alternativeReadings is empty; this is absence of evidence in this pass, not a claim that no dissenting reading exists.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-martin-luther-gal-4-4-001-quotation-001",
       "ver-p3-e5-martin-luther-commentary-galatians-date-001"
@@ -2477,7 +2473,7 @@
       "ver-p3-e1-clement-of-rome-eph-4-4-001-passage-link-001"
     ],
     "notes": "The letter itself names no author; ascription to Clement of Rome is traditional. See the work entry (disputedAuthorship: true).",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "ignatius-of-antioch-eph-2-18-001",
@@ -2503,7 +2499,7 @@
       "ver-p3-e1-ignatius-of-antioch-eph-2-18-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "cyprian-eph-4-4-001",
@@ -2527,10 +2523,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-cyprian-eph-4-4-001-quotation-001",
       "ver-p3-e2-cyprian-eph-4-4-001-attribution-001",
-      "ver-p3-e2-cyprian-on-the-unity-of-the-church-date-001"
+      "ver-p4-team-b-date-cyprian-on-the-unity-of-the-church-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "ignatius-of-antioch-phil-2-5-001",
@@ -2556,7 +2552,7 @@
       "ver-p3-e1-ignatius-of-antioch-phil-2-5-001-passage-link-001"
     ],
     "notes": null,
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "athanasius-phil-2-5-001",
@@ -2580,11 +2576,11 @@
     "verificationRecordIds": [
       "ver-p3-e2-athanasius-phil-2-5-001-quotation-001",
       "ver-p3-e2-athanasius-phil-2-5-001-attribution-001",
-      "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "ver-p5-athanasius-against-the-arians-date-001",
       "ver-p5-athanasius-phil-2-5-quote-001"
     ],
     "notes": "The Arian reading of Philippians 2:7 (the Son as a creature exalted for foreseen virtue) is described generally in arius-john-1-1-001 and in the Arian controversy milestone; no Arian reading of Philippians 2 specifically was verified in the sources checked.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "john-calvin-phil-2-5-001",
@@ -2606,7 +2602,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, sections 11 and 24. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "No attested dissenting reading of Philippians 2:5-6 was located in the era sources read in this pass, so alternativeReadings is empty; this is absence of evidence in this pass, not a claim that no dissenting reading exists.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-phil-2-5-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -2634,10 +2630,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-origen-col-1-15-001-quotation-001",
       "ver-p3-e2-origen-col-1-15-001-attribution-001",
-      "ver-p3-e2-origen-de-principiis-date-001"
+      "ver-p4-team-b-date-origen-de-principiis-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task. The Arian use of 'first-born of every creature' to argue the Son is a creature is recorded generally in arius-john-1-1-001 and in the Arian controversy milestone; no Arian reading of Colossians 1:15 specifically was verified in the sources checked.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "hilary-col-2-9-001",
@@ -2661,10 +2657,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-hilary-col-2-9-001-quotation-001",
       "ver-p3-e2-hilary-col-2-9-001-attribution-001",
-      "ver-p3-e2-hilary-on-the-trinity-date-001"
+      "ver-p4-team-b-date-hilary-on-the-trinity-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "origen-heb-1-3-001",
@@ -2688,10 +2684,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-origen-heb-1-3-001-quotation-001",
       "ver-p3-e2-origen-heb-1-3-001-attribution-001",
-      "ver-p3-e2-origen-de-principiis-date-001"
+      "ver-p4-team-b-date-origen-de-principiis-001"
     ],
     "notes": "No dissenting reading of this passage from a named writer in this era was verified in the sources checked for this task.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "john-calvin-heb-1-3-001",
@@ -2713,7 +2709,7 @@
     "alternativeReadings": [],
     "citation": "John Calvin, Institutes of the Christian Religion, trans. Henry Beveridge, 2 vols. (Edinburgh: Calvin Translation Society, 1845), Book 1, Chapter 13, section 2. Edition: 1559 edition; Henry Beveridge translation, 1845. URL: https://www.calvinstitutes.org/book-1/1-13. Accessed 2026-11-20.",
     "notes": "No attested dissenting reading of Hebrews 1:3 was located in the era sources read in this pass, so alternativeReadings is empty; this is absence of evidence in this pass, not a claim that no dissenting reading exists.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-heb-1-3-001-quotation-001",
       "ver-p3-e5-john-calvin-institutes-date-001"
@@ -2741,10 +2737,10 @@
     "verificationRecordIds": [
       "ver-p3-e2-cyprian-1john-5-7-001-quotation-001",
       "ver-p3-e2-cyprian-1john-5-7-001-attribution-001",
-      "ver-p3-e2-cyprian-on-the-unity-of-the-church-date-001"
+      "ver-p4-team-b-date-cyprian-on-the-unity-of-the-church-001"
     ],
     "notes": "FLAG (textual history): Cyprian's 'And these three are one' is the earliest Latin witness sometimes cited in the Comma debate, but it is not a verbatim quotation of the Johannine Comma as it appears in the Textus Receptus/KJV (which names 'the Father, the Word, and the Holy Ghost' and speaks of bearing record in heaven). The Comma's originality is not verified (Phase 2: 1 not-verified record). No dissenting reading of 1 John 5:7 from a named writer in this era was verified in the sources checked.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-1john-5-20-001",
@@ -2770,7 +2766,7 @@
       "ver-p3-e3-augustine-1john-5-20-001-passage-link-001"
     ],
     "notes": "Augustine returns to the same verse in Contra Maximinum II.14.2-3, citing it again as proof that the Son is true God; that passage was checked but is recorded here as same-author corroboration only, not as a separate interpretation.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "augustine-1john-5-7-001",
@@ -2792,12 +2788,11 @@
     "alternativeReadings": [],
     "citation": "Augustine, Answer to Maximinus the Arian (Contra Maximinum), Book II, ch. 22, section 3. In Nicene and Post-Nicene Fathers, Series I, Vol. 7, Homilies on the First Epistle of John, Part 11, trans. H. Browne (Buffalo, NY: Christian Literature Publishing Co., 1888). Latin text in Migne, Patrologia Latina 42.794-795. https://en.wikisource.org/wiki/Nicene_and_Post-Nicene_Fathers:_Series_I/Volume_VII/First_Epistle_of_John/Part_11",
     "verificationRecordIds": [
-      "ver-p3-e3-augustine-1john-5-7-001-quotation-001",
       "ver-p3-e3-augustine-1john-5-7-001-passage-link-001",
       "ver-p5-augustine-1john-5-7-attribution-001"
     ],
     "notes": "TEXTUAL DISPUTE: Augustine's text of 1 John 5:7-8 contains only the earthly witnesses (Spirit, water, blood). The heavenly-witnesses clause (Comma Johanneum) does not appear in his text; the source page's editor footnote 56 states the clause 'appears to be wholly unknown to St. Augustin'. The Comma must not be asserted as original on the basis of this passage. EDITION CONFIRMED (Phase 5): the English text is the H. Browne translation as reproduced in NPNF Series I, Vol. 7, Homilies on the First Epistle of John, Part 11 (1888), verified verbatim 2026-11-25; the 'W. Smith' attribution (secondary listing, vol. 11, 1883) was wrong. ReproducibilityStatus is therefore public-domain, not fair-use; see ver-p5-augustine-1john-5-7-attribution-001.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "alternativeReadings": [],
@@ -2818,7 +2813,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads 1 John 5:20 as stating that the Son is 'true God', and uses it to reject the Arian reading of the Son's procession as creaturely. (A) The text states that Jesus Christ 'is the true God and eternal life'; it does not use the language of procession or of the Son's relation to the Father. (D) The scholastic account of procession as an inward intelligible emanation is Aquinas's formulation and must not be presented as the wording of 1 John 5:20.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-1john-5-20-quotation-001",
       "ver-p3-e4-thomas-aquinas-1john-5-20-attribution-001"
@@ -2844,7 +2839,7 @@
       "translation": "Fathers of the English Dominican Province"
     },
     "relationshipToDoctrine": "(C) Aquinas reads 1 John 5:7 as naming the Holy Ghost as one of three persons who bear witness in heaven, and takes it as scriptural warrant that 'Holy Ghost' is the proper name of one divine person. (A) The verse as Aquinas cites it names Father, Word, and Holy Ghost as three witnesses; the Comma's originality is disputed (see notes) and must not be asserted. (D) The scholastic account of 'Holy Ghost' as the proper name of the person proceeding by way of love is Aquinas's formulation and must not be presented as the wording of the verse.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e4-thomas-aquinas-1john-5-7-quotation-001",
       "ver-p3-e4-thomas-aquinas-1john-5-7-attribution-001"
@@ -2878,7 +2873,7 @@
     ],
     "citation": "John Calvin, Commentaries on the Catholic Epistles, in Calvin's Commentaries, vol. 45, tr. John King (Edinburgh: Calvin Translation Society, 1847-50), 1 John 5. Edition: Calvin's Commentaries, Vol. 45: Catholic Epistles; tr. John King, 1847-50. URL: https://truthaccordingtoscripture.com/commentaries/cal/1-john-5.php. Accessed 2026-11-20.",
     "notes": "The editor's footnote (94) in the Calvin Translation Society edition states that the passage is spurious (not found in Greek manuscripts before the sixteenth century) and that the text reads better without the interpolated words. That footnote is an editorial note, not Calvin's words, and is not quoted as Calvin; it is recorded here so that an independent verifier sees the dispute from both sides.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-1john-5-7-001-quotation-001",
       "ver-p3-e5-john-calvin-commentary-catholic-epistles-date-001"

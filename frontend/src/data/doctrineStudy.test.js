@@ -280,12 +280,19 @@ describe("doctrineStudy studyFromPublished", () => {
 });
 
 describe("doctrineStudy getGeneratedTrinityStudy", () => {
-    it("returns null while the generated study holds nothing publishable", () => {
+    it("returns the generated research study", () => {
         // The test script generates the study from the real tree before
-        // vitest runs, and the real tree has zero publishable passages
-        // — so the generated file is empty and there is no study. If
-        // the file does not exist at all (a bare vitest run), the glob
-        // matches nothing and this returns null the same way.
-        expect(getGeneratedTrinityStudy()).toBeNull();
+        // vitest runs, and the real tree now holds thirteen publishable
+        // passages — so the generated file holds the real research
+        // study. If the file does not exist at all (a bare vitest run),
+        // the glob matches nothing and this returns null instead.
+        const study = getGeneratedTrinityStudy();
+        expect(study).not.toBeNull();
+        expect(study.source).toBe("research");
+        expect(study.notice).toBe(RESEARCH_NOTICE);
+        expect(study.passages).toHaveLength(13);
+        expect(study.passages[0].id).toBe("gen-1-26");
+        expect(study.passages[0].label).toBe("Genesis 1:26");
+        expect(study.interpretations).toHaveLength(43);
     });
 });

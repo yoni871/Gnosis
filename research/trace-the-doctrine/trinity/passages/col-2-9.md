@@ -30,7 +30,7 @@ None recorded.
 ## Verification records
 
 - ver-col-2-9-ref-001
-- ver-col-2-9-doctrine-001
+- ver-p6-col-2-9-doctrine-001
 
 **Status:** verification-pending. Researcher source-check only; independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.
 

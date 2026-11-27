@@ -1,5 +1,5 @@
 // Trinity workspace tests: passage switching, timeline selection
-// (click + keyboard), empty states, demonstration labeling, prev/next
+// (click + keyboard), empty states, verified-research labeling, prev/next
 // ends, translation switching, the 45/55 layout structure, the
 // passage jump, focus management, quotation expansion, and timeline
 // scroll behavior (UI PR 2).
@@ -52,11 +52,26 @@ function renderPage() {
 beforeEach(() => {
     vi.clearAllMocks();
     getTranslations.mockResolvedValue(TRANSLATIONS);
-    getBibleChapter.mockImplementation(async (book) => {
-        if (book === "Genesis") return chapterVerses("Genesis", 1, 27);
-        if (book === "John") return chapterVerses("John", 1, 5);
+    getBibleChapter.mockImplementation(async (book, chapter) => {
+        if (book === "Genesis") {
+            if (chapter === 1) return chapterVerses("Genesis", 1, 27);
+            if (chapter === 18) return chapterVerses("Genesis", 18, 15);
+            if (chapter === 19) return chapterVerses("Genesis", 19, 24);
+        }
+        if (book === "John") {
+            if (chapter === 1) return chapterVerses("John", 1, 5);
+            if (chapter === 20) return chapterVerses("John", 20, 28);
+        }
         if (book === "Matthew") return chapterVerses("Matthew", 28, 20);
         if (book === "2 Corinthians") return chapterVerses("2 Corinthians", 13, 14);
+        if (book === "Psalms") {
+            if (chapter === 2) return chapterVerses("Psalms", 2, 7);
+            if (chapter === 45) return chapterVerses("Psalms", 45, 7);
+            if (chapter === 110) return chapterVerses("Psalms", 110, 1);
+        }
+        if (book === "Isaiah") return chapterVerses("Isaiah", 9, 6);
+        if (book === "Colossians") return chapterVerses("Colossians", 2, 9);
+        if (book === "Hebrews") return chapterVerses("Hebrews", 1, 8);
         return [];
     });
 });
@@ -87,35 +102,52 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(screen.getByText("King James Version")).toBeInTheDocument();
     });
 
-    it("labels the demonstration data at workspace, panel, and timeline level, with pending placeholders", async () => {
+    it("labels the verified research at workspace, panel, and timeline level, with real quotation, title, and date", async () => {
         renderPage();
         await screen.findByText("Genesis 1 verse 26.");
         // Workspace-level notice plus the panel and timeline notices.
-        expect(screen.getAllByText(/Demonstration data — the theologian entries are placeholders pending research/).length).toBeGreaterThanOrEqual(3);
-        expect(screen.getAllByText("Demonstration data").length).toBeGreaterThanOrEqual(3);
-        expect(screen.getByText("Prototype")).toBeInTheDocument();
+        expect(
+            screen.getAllByText(/Verified research — quotations, titles, and dates checked/).length,
+        ).toBe(3);
+        expect(screen.getAllByText("Verified research").length).toBe(3);
+        expect(screen.queryByText(/Demonstration data/)).toBeNull();
+        expect(screen.queryByText("Prototype")).toBeNull();
         // The first interpretation is auto-selected.
         expect(screen.getByRole("heading", { name: "Justin Martyr" })).toBeInTheDocument();
-        expect(screen.getByText(/Quotation pending verification/)).toBeInTheDocument();
-        expect(screen.getByText("Title pending verification")).toBeInTheDocument();
-        expect(screen.getAllByText("Date pending verification").length).toBeGreaterThanOrEqual(2);
-        // No invented content: no quotation, title, or year is asserted.
-        expect(document.querySelector(".doctrine-workspace")).not.toHaveTextContent(/AD \d|c\. \d{3,4}/);
+        expect(
+            screen.getByText(/I shall quote again the words narrated by Moses himself/),
+        ).toBeInTheDocument();
+        expect(
+            screen.getByText("Dialogue of Justin, Philosopher and Martyr, with Trypho, a Jew"),
+        ).toBeInTheDocument();
+        // The work date renders twice on the page — interpretation
+        // panel and timeline — so assert on both, as for the notice.
+        expect(screen.getAllByText("AD 155–160")).toHaveLength(2);
+        // No pending placeholders: the quotation, title, and date are verified.
+        expect(screen.queryByText("Title pending verification")).toBeNull();
+        expect(screen.queryByText("Date pending verification")).toBeNull();
+        expect(screen.queryByText(/Quotation pending verification/)).toBeNull();
+        expect(screen.queryByText(/Explanation pending verification/)).toBeNull();
+        // Real dates are present: the study is verified research, not placeholders.
+        expect(document.querySelector(".doctrine-workspace")).toHaveTextContent("AD 155–160");
     });
 
-    it("renders the demonstration study while the generated study holds nothing publishable", async () => {
-        // The data-feed contract: the build script generates an empty
-        // study from the current research tree (zero publishable
-        // passages), and the page falls back to the demonstration
-        // study — no research notice, no verified labels.
+    it("renders the generated research study, with verified-research labels and no demonstration labels", async () => {
+        // The data-feed contract: the build script generates the real
+        // 13-passage study from the current research tree (all
+        // publishable passages), and the page renders it — verified
+        // research notice, verified labels, no demonstration data.
         renderPage();
         await screen.findByText("Genesis 1 verse 26.");
-        expect(screen.getAllByText(/Demonstration data — the theologian entries are placeholders pending research/).length).toBeGreaterThanOrEqual(3);
-        expect(screen.queryByText(/Verified research — quotations, titles, and dates checked/)).toBeNull();
+        expect(
+            screen.getAllByText(/Verified research — quotations, titles, and dates checked/).length,
+        ).toBeGreaterThanOrEqual(3);
+        expect(screen.queryByText(/Demonstration data/)).toBeNull();
+        expect(screen.queryByText("Prototype")).toBeNull();
         expect(screen.getByRole("heading", { name: "Justin Martyr" })).toBeInTheDocument();
     });
 
-    it("steps through the four passages with prev/next, never wrapping, and resets the timeline selection", async () => {
+    it("steps through the thirteen passages with prev/next, never wrapping, and resets the timeline selection", async () => {
         const user = userEvent.setup();
         renderPage();
         await screen.findByText("Genesis 1 verse 26.");
@@ -130,30 +162,41 @@ describe("TraceTheDoctrineTrinityPage", () => {
         await user.click(screen.getByRole("button", { name: /Augustine/ }));
         expect(screen.getByRole("heading", { name: "Augustine" })).toBeInTheDocument();
 
-        await user.click(next);
-        expect(screen.getByLabelText("Passage")).toHaveValue("john-1-1");
-        expect(await screen.findByText("John 1 verse 1.")).toBeInTheDocument();
-        expect(screen.getByText("John 1 verse 3.")).toBeInTheDocument();
-        expect(screen.queryByText("John 1 verse 4.")).toBeNull();
+        // Every step in canonical order: [passage id, first cited verse,
+        // last cited verse, a verse outside the cited range (null when
+        // the mock returns exactly the cited range)].
+        const steps = [
+            ["gen-18-1", "Genesis 18 verse 1.", "Genesis 18 verse 15.", null],
+            ["gen-19-24", "Genesis 19 verse 24.", "Genesis 19 verse 24.", "Genesis 19 verse 23."],
+            ["ps-2-7", "Psalms 2 verse 7.", "Psalms 2 verse 7.", "Psalms 2 verse 6."],
+            ["ps-45-6", "Psalms 45 verse 6.", "Psalms 45 verse 7.", "Psalms 45 verse 5."],
+            ["ps-110-1", "Psalms 110 verse 1.", "Psalms 110 verse 1.", null],
+            ["isa-9-6", "Isaiah 9 verse 6.", "Isaiah 9 verse 6.", "Isaiah 9 verse 5."],
+            ["matt-28-19", "Matthew 28 verse 19.", "Matthew 28 verse 19.", "Matthew 28 verse 20."],
+            ["john-1-1", "John 1 verse 1.", "John 1 verse 3.", "John 1 verse 4."],
+            ["john-20-28", "John 20 verse 28.", "John 20 verse 28.", "John 20 verse 27."],
+            ["2cor-13-14", "2 Corinthians 13 verse 14.", "2 Corinthians 13 verse 14.", "2 Corinthians 13 verse 13."],
+            ["col-2-9", "Colossians 2 verse 9.", "Colossians 2 verse 9.", "Colossians 2 verse 8."],
+            ["heb-1-8", "Hebrews 1 verse 8.", "Hebrews 1 verse 8.", "Hebrews 1 verse 7."],
+        ];
+        for (const [id, firstVerse, lastVerse, absentVerse] of steps) {
+            await user.click(screen.getByRole("button", { name: /Next passage/ }));
+            expect(screen.getByLabelText("Passage")).toHaveValue(id);
+            expect(await screen.findByText(firstVerse)).toBeInTheDocument();
+            expect(screen.getByText(lastVerse)).toBeInTheDocument();
+            if (absentVerse) expect(screen.queryByText(absentVerse)).toBeNull();
+        }
+        expect(getBibleChapter).toHaveBeenCalledWith("Genesis", 18, "KJV");
         expect(getBibleChapter).toHaveBeenCalledWith("John", 1, "KJV");
-
-        await user.click(screen.getByRole("button", { name: /Next passage/ }));
-        expect(screen.getByLabelText("Passage")).toHaveValue("matt-28-19");
-        expect(await screen.findByText("Matthew 28 verse 19.")).toBeInTheDocument();
-        expect(screen.queryByText("Matthew 28 verse 20.")).toBeNull();
-
-        await user.click(screen.getByRole("button", { name: /Next passage/ }));
-        expect(screen.getByLabelText("Passage")).toHaveValue("2cor-13-14");
-        expect(await screen.findByText("2 Corinthians 13 verse 14.")).toBeInTheDocument();
-        expect(screen.queryByText("2 Corinthians 13 verse 13.")).toBeNull();
+        expect(getBibleChapter).toHaveBeenCalledWith("Matthew", 28, "KJV");
         // The end is an honest end: Next is disabled and stays put.
         expect(screen.getByRole("button", { name: /Next passage/ })).toBeDisabled();
         await user.click(screen.getByRole("button", { name: /Next passage/ }));
-        expect(screen.getByLabelText("Passage")).toHaveValue("2cor-13-14");
+        expect(screen.getByLabelText("Passage")).toHaveValue("heb-1-8");
 
-        await user.click(screen.getByRole("button", { name: /Previous passage/ }));
-        await user.click(screen.getByRole("button", { name: /Previous passage/ }));
-        await user.click(screen.getByRole("button", { name: /Previous passage/ }));
+        for (let step = 0; step < 12; step += 1) {
+            await user.click(screen.getByRole("button", { name: /Previous passage/ }));
+        }
         expect(screen.getByLabelText("Passage")).toHaveValue("gen-1-26");
         expect(await screen.findByText("Genesis 1 verse 26.")).toBeInTheDocument();
         expect(screen.getByRole("button", { name: /Previous passage/ })).toBeDisabled();
@@ -165,10 +208,11 @@ describe("TraceTheDoctrineTrinityPage", () => {
         const user = userEvent.setup();
         renderPage();
         await screen.findByText("Genesis 1 verse 26.");
-        await user.click(screen.getByRole("button", { name: /Next passage/ }));
-        await screen.findByText("John 1 verse 1.");
+        // Hebrews 1:8 is the one passage with no interpretations yet.
+        await user.selectOptions(screen.getByLabelText("Passage"), "heb-1-8");
+        await screen.findByText("Hebrews 1 verse 8.");
 
-        expect(screen.getByText("No historical interpretations have been added for John 1:1–3 yet.")).toBeInTheDocument();
+        expect(screen.getByText("No historical interpretations have been added for Hebrews 1:8 yet.")).toBeInTheDocument();
         expect(screen.getByText(/The timeline will list interpreters here once research verifies them/)).toBeInTheDocument();
         // No theologian is implied for this passage: no timeline buttons.
         const timeline = document.querySelector(".doctrine-timeline");
@@ -183,7 +227,7 @@ describe("TraceTheDoctrineTrinityPage", () => {
 
         const timeline = document.querySelector(".doctrine-timeline");
         const buttons = within(timeline).getAllByRole("button");
-        expect(buttons).toHaveLength(5);
+        expect(buttons).toHaveLength(6);
         expect(buttons[0]).toHaveAttribute("aria-current", "true");
         expect(buttons[1]).not.toHaveAttribute("aria-current");
         // Exactly one tab stop (roving tabindex).
@@ -210,17 +254,17 @@ describe("TraceTheDoctrineTrinityPage", () => {
         await user.keyboard("{ArrowRight}");
         expect(screen.getByRole("heading", { name: "Irenaeus" })).toBeInTheDocument();
         await user.keyboard("{ArrowRight}");
-        expect(screen.getByRole("heading", { name: "Tertullian" })).toBeInTheDocument();
+        expect(screen.getByRole("heading", { name: "Theophilus of Antioch" })).toBeInTheDocument();
         await user.keyboard("{ArrowLeft}");
         expect(screen.getByRole("heading", { name: "Irenaeus" })).toBeInTheDocument();
         await user.keyboard("{End}");
-        expect(screen.getByRole("heading", { name: "Augustine" })).toBeInTheDocument();
+        expect(screen.getByRole("heading", { name: "Cyril of Alexandria" })).toBeInTheDocument();
         await user.keyboard("{Home}");
         expect(screen.getByRole("heading", { name: "Justin Martyr" })).toBeInTheDocument();
         expect(screen.getByText(/Use the Left and Right arrow keys/)).toBeInTheDocument();
     });
 
-    it("expands the explanation and source details as pending-verification placeholders", async () => {
+    it("expands the explanation and source details as verified research", async () => {
         const user = userEvent.setup();
         renderPage();
         await screen.findByText("Genesis 1 verse 26.");
@@ -228,14 +272,17 @@ describe("TraceTheDoctrineTrinityPage", () => {
         const explanation = screen.getByRole("button", { name: "Show explanation" });
         expect(explanation).toHaveAttribute("aria-expanded", "false");
         await user.click(explanation);
-        expect(screen.getByText(/Explanation pending verification/)).toBeInTheDocument();
+        expect(
+            screen.getByText(/In Dialogue 62 Justin answers Trypho's teachers/),
+        ).toBeInTheDocument();
 
         await user.click(screen.getByRole("button", { name: "Source details" }));
         const details = document.getElementById("doctrine-source-details-body");
         expect(details).toHaveTextContent("Justin Martyr");
-        expect(details).toHaveTextContent("Title pending verification — pending verification");
-        expect(details).toHaveTextContent("Date pending verification — pending verification");
-        expect(details).toHaveTextContent("Demonstration data — pending verification");
+        expect(details).toHaveTextContent("Dialogue of Justin, Philosopher and Martyr, with Trypho, a Jew");
+        expect(details).toHaveTextContent("AD 155–160");
+        expect(details).toHaveTextContent("Verified research — editorially-approved");
+        expect(details).not.toHaveTextContent("pending verification");
     });
 
     it("re-fetches the passage when the translation changes and shows the new translation's name", async () => {
@@ -268,15 +315,21 @@ describe("TraceTheDoctrineTrinityPage", () => {
 
         const select = screen.getByLabelText("Passage");
         expect(select).toHaveValue("gen-1-26");
-        expect(within(select).getAllByRole("option")).toHaveLength(4);
+        expect(within(select).getAllByRole("option")).toHaveLength(13);
 
         await user.selectOptions(select, "matt-28-19");
         expect(await screen.findByText("Matthew 28 verse 19.")).toBeInTheDocument();
         expect(screen.queryByText("Matthew 28 verse 20.")).toBeNull();
         expect(getBibleChapter).toHaveBeenCalledWith("Matthew", 28, "KJV");
         expect(screen.getByLabelText("Passage")).toHaveValue("matt-28-19");
-        // Jumping to a passage with no entries shows the empty state.
-        expect(screen.getByText("No historical interpretations have been added for Matthew 28:19 yet.")).toBeInTheDocument();
+        // Matthew 28:19 has eight interpretations — the first is
+        // selected, not an empty state.
+        expect(screen.getByRole("heading", { name: "Justin Martyr" })).toBeInTheDocument();
+        expect(
+            screen.queryByText("No historical interpretations have been added for Matthew 28:19 yet."),
+        ).toBeNull();
+        const timeline = document.querySelector(".doctrine-timeline");
+        expect(within(timeline).getAllByRole("button")).toHaveLength(8);
     });
 
     it("steps passages with Left/Right arrows from the navigation, and leaves the select's native keys alone", async () => {
@@ -287,7 +340,7 @@ describe("TraceTheDoctrineTrinityPage", () => {
         const next = screen.getByRole("button", { name: /Next passage/ });
         next.focus();
         await user.keyboard("{ArrowRight}");
-        expect(await screen.findByText("John 1 verse 1.")).toBeInTheDocument();
+        expect(await screen.findByText("Genesis 18 verse 1.")).toBeInTheDocument();
 
         const previous = screen.getByRole("button", { name: /Previous passage/ });
         previous.focus();
@@ -311,8 +364,8 @@ describe("TraceTheDoctrineTrinityPage", () => {
         expect(document.activeElement).toBe(document.body);
 
         await user.click(screen.getByRole("button", { name: /Next passage/ }));
-        expect(await screen.findByText("John 1 verse 1.")).toBeInTheDocument();
-        expect(document.activeElement).toBe(screen.getByRole("heading", { name: "John 1:1–3" }));
+        expect(await screen.findByText("Genesis 18 verse 1.")).toBeInTheDocument();
+        expect(document.activeElement).toBe(screen.getByRole("heading", { name: "Genesis 18:1–15" }));
     });
 
     it("does not scroll the timeline on mount, and scrolls the selected node into view on keyboard selection", async () => {

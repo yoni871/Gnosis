@@ -39,7 +39,7 @@ Arius, Thalia, fragments as quoted in Athanasius, Four Discourses Against the Ar
 
 - `ver-p3-e2-arius-john-1-1-001-quotation-001`
 - `ver-p3-e2-arius-john-1-1-001-attribution-001`
-- `ver-p3-e2-arius-thalia-date-001`
+- `ver-p5-arius-thalia-date-001`
 
 ## Notes
 

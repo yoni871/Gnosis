@@ -39,7 +39,7 @@ Cyprian of Carthage, On the Unity of the Church, §§4, 6. Translated by Ernest 
 
 - `ver-p3-e2-cyprian-1john-5-7-001-quotation-001`
 - `ver-p3-e2-cyprian-1john-5-7-001-attribution-001`
-- `ver-p3-e2-cyprian-on-the-unity-of-the-church-date-001`
+- `ver-p4-team-b-date-cyprian-on-the-unity-of-the-church-001`
 
 ## Notes
 

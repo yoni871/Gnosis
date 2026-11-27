@@ -48,7 +48,7 @@
       "ver-p3-e2-council-of-nicaea-325-creed-001"
     ],
     "notes": "Athanasius, present at Nicaea as a deacon, is listed as an author involved; he did not author the creed. Arius is listed as the writer whose teaching was condemned. The Nicene Creed is also recorded as a separate creed milestone (nicene-creed-325).",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "nicene-creed-325",
@@ -70,7 +70,7 @@
       "ver-p3-e2-nicene-creed-325-milestone-001"
     ],
     "notes": "Recorded as a separate creed milestone because its text was verified distinctly from the council's other acts. No single author is named for the creed.",
-    "status": "verification-pending"
+    "status": "editorially-approved"
   },
   {
     "id": "council-of-constantinople-381",
@@ -154,7 +154,7 @@
     "passageIds": [
       "1john-5-7"
     ],
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "summary": "The Fourth Lateran Council (1215), in its first constitution Firmiter credimus, gave the classic medieval Latin profession of the Trinity: 'one true God, eternal and immense, omnipotent, unchangeable, incomprehensible, and ineffable, Father, Son, and Holy Ghost; three Persons indeed but one essence, substance, or nature absolutely simple; the Father proceeding from no one, but the Son from the Father only, and the Holy Ghost equally from both, always without beginning and end.' (D) This is a thirteenth-century conciliar formulation — including the Latin 'equally from both' (filioque) — not a statement of any biblical text. Canon 2, against Joachim of Fiore, defended Peter Lombard's account of the one essence against the charge of quaternity.",
     "title": "Fourth Lateran Council (1215) — Firmiter credimus",
     "type": "council",
@@ -174,7 +174,7 @@
     "id": "council-of-florence-1439",
     "notes": "The decree states that 'texts were produced from divine scriptures' in the debate, but the checked text names no specific biblical passage by reference, so no passage is listed in passageIds; do not pad. The union was rejected in the East and did not hold; Mark of Ephesus refused to sign. The decree's definition is recorded here as the Latin West's position, with the Eastern disagreement noted in the summary.",
     "passageIds": [],
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "summary": "The Council of Florence (1439), in the decree of union Laetentur Caeli, defined that 'the holy Spirit is eternally from the Father and the Son, and has his essence and his subsistent being from the Father together with the Son, and proceeds from both eternally as from one principle and a single spiration', and that the addition of 'and from the Son' (Filioque) to the creed was licitly and reasonably added. It also explained the Greek phrase 'through the Son' as meaning the Son is, like the Father, cause/principle of the Spirit's subsistence. (D) This is a fifteenth-century conciliar formulation of the filioque, not a statement of any biblical text; the Eastern churches rejected the union, and the disagreement is recorded, not harmonised.",
     "title": "Council of Florence (1439) — Laetentur Caeli on the Filioque",
     "type": "council",
@@ -201,7 +201,7 @@
     "summary": "Article I confesses one divine essence in three coeternal persons - Father, Son, and Holy Spirit - following the decree of the Council of Nicaea, and condemns the Manichaeans, Valentinians, Arians, Eunomians, Mohammedans, and the Samosatenes old and new. (D) This is a sixteenth-century confessional formulation; it restates the Nicene doctrine and must not be presented as the wording of the biblical texts themselves. Only Matthew 28:19 is listed, because it is the passage cited in the Article itself.",
     "citation": "Philip Melanchthon, The Augsburg Confession, in Triglot Concordia, trans. F. Bente and W. H. T. Dau (St. Louis: Concordia Publishing House, 1921), Article I. Edition: Triglot Concordia, trans. F. Bente and W. H. T. Dau (St. Louis: Concordia, 1921), pp. 37-95. URL: https://christian.net/pub/resources/text/wittenberg/concord/web/augs-001.html. Accessed 2026-11-20.",
     "notes": "",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-augsburg-confession-1530-content-001",
       "ver-p3-e5-augsburg-confession-1530-date-001"
@@ -226,7 +226,7 @@
     "summary": "The Catechism of the Polish Brethren, the first published statement of the Socinian position, argues that the joint naming of Father, Son, and Holy Spirit (Matt. 28:19; 1 Cor. 12:4-6; 1 John 5:7) proves only their existence and their association in divine things, not three persons in one essence, and that the one God is the Father alone (1 Cor. 8:6). (D) A seventeenth-century dissenting publication; its position is recorded as the Catechism states it, without endorsement or refutation here. The three passages listed are the three testimonies the Catechism itself names together in Section III, Chapter 1.",
     "citation": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818). Edition: Trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818), from the revised Latin edition of 1680. URL: https://archive.org/stream/racoviancatechi00reesgoog/racoviancatechi00reesgoog_djvu.txt. Accessed 2026-11-20.",
     "notes": "Dissenting milestone. Authorship is collective (Smalcius, Moskorzowski, Volkel; Socinus died 1604, before drafting), so authorIds is empty here; the associated author is recorded on the work record.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-racovian-catechism-1605-content-001",
       "ver-p3-e5-racovian-catechism-1605-date-001"
@@ -256,7 +256,7 @@
     "summary": "Chapter 2 confesses one only living and true God, and that 'in the unity of the Godhead there be three Persons of one substance, power, and eternity: God the Father, God the Son, and God the Holy Ghost' (II.3), with the Son eternally begotten of the Father and the Holy Ghost eternally proceeding from the Father and the Son. (D) A seventeenth-century confessional formulation; the listed passages are the proof texts printed with Chapter 2, not the formulation itself.",
     "citation": "The Westminster Confession of Faith (1646), ch. 2. Edition: Text as in The Westminster Confession of Faith (CCEL, Creeds of Christendom); first printed December 1646. URL: http://www.ccel.org/creeds/westminster.htm. Accessed 2026-11-20.",
     "notes": "Corporate authorship: the Westminster Assembly; authorIds is empty. The passage list is exactly the Chapter 2 proof texts that fall within the 60-passage inventory: II.1 (Deut. 6:4; 1 Cor. 8:4, 6), II.2 (Rom. 9:5), II.3 (Matt. 3:16-17; 28:19; 2 Cor. 13:14; 1 John 5:7; John 15:26). John 1:14, 18 and Gal. 4:6 are also cited in II.3 but are not in the inventory, so they are not listed.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-westminster-confession-1646-content-001",
       "ver-p3-e5-westminster-confession-1646-date-001",

@@ -17,7 +17,7 @@
 
 ## Explanation
 
-Novatian treats Thomas's address to the risen Christ, 'My Lord and my God', as the instructed apostle's confession of Christ's divinity, standing alongside 'I and the Father are one' and Romans 9:5 in his cumulative proof that Christ is God. The ellipsis marks the continuation of the sentence into the Romans 9:5 citation, quoted in novatian-rom-9-5-001.
+Novatian treats Thomas's address to the risen Christ, 'My Lord and my God', as the instructed apostle's confession of Christ's divinity, standing alongside 'I and the Father are one' and Romans 9:5 in his cumulative proof that Christ is God. The ellipsis marks the continuation of the sentence into the Romans 9:5 citation, quoted in Novatian's Romans 9:5 interpretation.
 
 ## Relationship to doctrine
 
@@ -39,7 +39,7 @@ Novatian, Treatise Concerning the Trinity, ch. 13. Translated by Robert Ernest W
 
 - `ver-p3-e2-novatian-john-20-28-001-quotation-001`
 - `ver-p3-e2-novatian-john-20-28-001-attribution-001`
-- `ver-p3-e2-novatian-on-the-trinity-date-001`
+- `ver-p4-team-b-date-novatian-on-the-trinity-001`
 
 ## Notes
 

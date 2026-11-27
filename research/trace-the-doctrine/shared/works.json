@@ -64,7 +64,7 @@
     "publicDomainStatus": "public-domain",
     "publicationInfo": "Trans. Sidney Norton Deane (Chicago: Open Court Publishing Co., 1903).",
     "shortTitle": "Monologion",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "Monologion",
     "translator": "Sidney Norton Deane",
     "verificationRecordIds": [
@@ -91,13 +91,12 @@
       "earliest": 318,
       "latest": 321,
       "certainty": "range",
-      "note": "Composed before the Council of Nicaea (325); commonly placed c. 318-321. Survives only in fragments quoted by opponents, principally Athanasius. See verification record ver-p3-e2-arius-thalia-date-001."
+      "note": "Composed before the Council of Nicaea (325); commonly placed c. 318-321. Survives only in fragments quoted by opponents, principally Athanasius. See verification record ver-p5-arius-thalia-date-001."
     },
     "disputedAuthorship": false,
     "publicDomainStatus": "public-domain",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
-      "ver-p3-e2-arius-thalia-date-001",
       "ver-p5-arius-thalia-date-001"
     ],
     "notes": "The Thalia does not survive as an independent work. Every quotation attributed to it here is mediated through Athanasius, a hostile witness who quotes it to refute it; the attribution record for arius-john-1-1-001 is therefore partially-verified, not verified."
@@ -122,20 +121,19 @@
       "earliest": 356,
       "latest": 360,
       "certainty": "range",
-      "note": "Discourses I-III commonly dated to Athanasius's third exile, c. 356-360; the dating of Discourse IV is less certain and it is sometimes placed later. See verification record ver-p3-e2-athanasius-against-the-arians-date-001."
+      "note": "Discourses I-III commonly dated to Athanasius's third exile, c. 356-360; the dating of Discourse IV is less certain and it is sometimes placed later. See verification record ver-p5-athanasius-against-the-arians-date-001."
     },
     "disputedAuthorship": null,
     "publicDomainStatus": "public-domain",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
-      "ver-p3-e2-athanasius-against-the-arians-date-001",
       "ver-p5-athanasius-against-the-arians-date-001"
     ],
     "notes": "disputedAuthorship is null (not false): the authorship of Discourse IV in particular has been questioned in some scholarship, and the dating of Discourse IV is less certain than that of Discourses I-III; neither point is resolved here. Discourse I: https://www.newadvent.org/fathers/28161.htm; Discourse II: https://www.newadvent.org/fathers/28162.htm; Discourse IV: https://www.newadvent.org/fathers/28164.htm."
   },
   {
     "id": "athenagoras-plea-for-the-christians",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "A Plea for the Christians",
     "shortTitle": "Plea for the Christians",
     "authorIds": [
@@ -160,13 +158,13 @@
     "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
     "notes": "Chapter 10 checked on the Logos Virtual Library (Pratten translation, ANF vol. 2) in this pass; other chapters not checked.",
     "verificationRecordIds": [
-      "ver-p3-e1-athenagoras-plea-for-the-christians-date-001",
+      "ver-p4-team-b-date-athenagoras-plea-for-the-christians-001",
       "ver-p3-e1-athenagoras-john-10-30-001-quotation-001"
     ]
   },
   {
     "id": "augustine-contra-maximinum",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "Answer to Maximinus the Arian (Contra Maximinum)",
     "shortTitle": "Contra Maximinum",
     "authorIds": [
@@ -196,7 +194,7 @@
   },
   {
     "id": "augustine-de-trinitate",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "On the Holy Trinity (De Trinitate)",
     "shortTitle": "De Trinitate",
     "authorIds": [
@@ -244,19 +242,19 @@
       "earliest": 375,
       "latest": null,
       "certainty": "approximate",
-      "note": "Written 375, addressed to Amphilochius of Iconium. See verification record ver-p3-e2-basil-on-the-holy-spirit-date-001."
+      "note": "Written 375, addressed to Amphilochius of Iconium. See verification record ver-p4-team-b-date-basil-on-the-holy-spirit-001."
     },
     "disputedAuthorship": false,
     "publicDomainStatus": "public-domain",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
-      "ver-p3-e2-basil-on-the-holy-spirit-date-001"
+      "ver-p4-team-b-date-basil-on-the-holy-spirit-001"
     ],
     "notes": "Basil argues the Spirit is inseparable from Father and Son in every operation, but he does not call the Spirit homoousios in this treatise; that restraint is reported, not smoothed over."
   },
   {
     "id": "church-of-smyrna-martyrdom-of-polycarp",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "The Martyrdom of Polycarp",
     "shortTitle": "Martyrdom of Polycarp",
     "authorIds": [
@@ -281,13 +279,13 @@
     "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
     "notes": "Corporate authorship: the letter is written by the church of Smyrna, not by Polycarp; Polycarp's prayer in ch. 14 is reported speech. Chapter 14 checked on New Advent in this pass.",
     "verificationRecordIds": [
-      "ver-p3-e1-church-of-smyrna-martyrdom-of-polycarp-date-001",
+      "ver-p4-team-b-date-church-of-smyrna-martyrdom-of-polycarp-001",
       "ver-p3-e1-church-of-smyrna-2cor-13-14-001-quotation-001"
     ]
   },
   {
     "id": "clement-of-rome-first-epistle-to-the-corinthians",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "The First Epistle of Clement to the Corinthians",
     "shortTitle": "1 Clement",
     "authorIds": [
@@ -312,7 +310,7 @@
     "publicationInfo": "Grand Rapids, MI: Baker Book House, 1956 (reprint of Lightfoot's edition)",
     "notes": "The letter itself names no author; it is written in the name of the church of Rome and is traditionally ascribed to Clement of Rome. Authorship is therefore flagged as disputed/uncertain rather than asserted as fact. Chapter 46 checked in the Lightfoot text on CCEL in this pass.",
     "verificationRecordIds": [
-      "ver-p3-e1-clement-of-rome-first-epistle-to-the-corinthians-date-001",
+      "ver-p4-team-b-date-clement-of-rome-first-epistle-to-the-corinthians-001",
       "ver-p3-e1-clement-of-rome-eph-4-4-001-quotation-001"
     ]
   },
@@ -336,19 +334,19 @@
       "earliest": 251,
       "latest": null,
       "certainty": "approximate",
-      "note": "Written on the occasion of the schism of Novatian, 251. See verification record ver-p3-e2-cyprian-on-the-unity-of-the-church-date-001."
+      "note": "Written on the occasion of the schism of Novatian, 251. See verification record ver-p4-team-b-date-cyprian-on-the-unity-of-the-church-001."
     },
     "disputedAuthorship": false,
     "publicDomainStatus": "public-domain",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
-      "ver-p3-e2-cyprian-on-the-unity-of-the-church-date-001"
+      "ver-p4-team-b-date-cyprian-on-the-unity-of-the-church-001"
     ],
     "notes": "§6 quotes 'And these three are one' with the citation '1 John 5:7'. The Comma wording is NOT asserted here as original to 1 John; see cyprian-1john-5-7-001 and its verification records."
   },
   {
     "id": "cyril-alexandria-commentary-on-john",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "Commentary on the Gospel according to John",
     "shortTitle": "Commentary on John",
     "authorIds": [
@@ -396,13 +394,13 @@
       "earliest": 380,
       "latest": null,
       "certainty": "approximate",
-      "note": "Delivered at Constantinople, commonly dated 380. See verification record ver-p3-e2-gregory-nazianzus-fifth-theological-oration-date-001."
+      "note": "Delivered at Constantinople, commonly dated 380. See verification record ver-p4-team-b-date-gregory-nazianzus-fifth-theological-oration-001."
     },
     "disputedAuthorship": false,
     "publicDomainStatus": "public-domain",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
-      "ver-p3-e2-gregory-nazianzus-fifth-theological-oration-date-001"
+      "ver-p4-team-b-date-gregory-nazianzus-fifth-theological-oration-001"
     ],
     "notes": "Text checked at the BibleHub page above, which reproduces the NPNF2 vol. 7 Browne-Swallow text (the same text served by CCEL as npnf207)."
   },
@@ -426,19 +424,19 @@
       "earliest": 356,
       "latest": 359,
       "certainty": "range",
-      "note": "Written during Hilary's exile following the Council of Milan (355); commonly dated c. 356-359. See verification record ver-p3-e2-hilary-on-the-trinity-date-001."
+      "note": "Written during Hilary's exile following the Council of Milan (355); commonly dated c. 356-359. See verification record ver-p4-team-b-date-hilary-on-the-trinity-001."
     },
     "disputedAuthorship": false,
     "publicDomainStatus": "public-domain",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
-      "ver-p3-e2-hilary-on-the-trinity-date-001"
+      "ver-p4-team-b-date-hilary-on-the-trinity-001"
     ],
     "notes": null
   },
   {
     "id": "ignatius-of-antioch-epistle-to-the-ephesians",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "The Epistle of Ignatius to the Ephesians",
     "shortTitle": "Epistle to the Ephesians",
     "authorIds": [
@@ -463,14 +461,14 @@
     "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
     "notes": "Shorter Greek recension as printed in ANF vol. 1, which is the text generally accepted as genuine; the longer recension is interpolated and was not used. Chapters 7 and 9 checked on New Advent in this pass.",
     "verificationRecordIds": [
-      "ver-p3-e1-ignatius-of-antioch-epistle-to-the-ephesians-date-001",
+      "ver-p4-team-b-date-ignatius-of-antioch-epistle-to-the-ephesians-001",
       "ver-p3-e1-ignatius-of-antioch-phil-2-5-001-quotation-001",
       "ver-p3-e1-ignatius-of-antioch-eph-2-18-001-quotation-001"
     ]
   },
   {
     "id": "irenaeus-against-heresies",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "Against Heresies (The Detection and Refutation of False Knowledge)",
     "shortTitle": "Against Heresies",
     "authorIds": [
@@ -495,7 +493,7 @@
     "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
     "notes": "Book III chs. 6, 11, 17 and Book IV ch. 20 checked in this pass: New Advent https://www.newadvent.org/fathers/0103306.htm, https://www.newadvent.org/fathers/0103311.htm, https://www.newadvent.org/fathers/0103420.htm, and CCEL https://ccel.org/ccel/irenaeus/against_heresies_iii/anf01.ix.iv.xviii.html. Other chapters not checked.",
     "verificationRecordIds": [
-      "ver-p3-e1-irenaeus-against-heresies-date-001",
+      "ver-p4-team-b-date-irenaeus-against-heresies-001",
       "ver-p3-e1-irenaeus-ps-110-1-001-quotation-001",
       "ver-p3-e1-irenaeus-gen-19-24-001-quotation-001",
       "ver-p3-e1-irenaeus-ps-45-6-001-quotation-001",
@@ -530,7 +528,7 @@
     },
     "disputedAuthorship": false,
     "notes": "The checked copy was the truthaccordingtoscripture.com reproduction of the Calvin Translation Society edition (John King translation); its page does not restate the edition imprint, so the edition attribution rests on the text's match with the CTS edition. Editor's footnotes marked 'Ed.' in that edition are editorial, not Calvin's words.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-commentary-catholic-epistles-date-001"
     ]
@@ -560,7 +558,7 @@
     },
     "disputedAuthorship": false,
     "notes": "The locator URL is Vol. 34, chapter 1; chapter 10 and Vol. 35 chapter 14 were checked at https://sacred-texts.com/book/calvin-s-commentaries-part-34-john-part-i/chapter-10 and https://archive.sacred-texts.com/chr/calvin/cc35/cc35003.htm.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-commentary-john-date-001"
     ]
@@ -590,14 +588,14 @@
     },
     "disputedAuthorship": false,
     "notes": "",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-john-calvin-institutes-date-001"
     ]
   },
   {
     "id": "john-of-damascus-exposition-of-the-orthodox-faith",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "An Exact Exposition of the Orthodox Faith",
     "shortTitle": "Exposition of the Orthodox Faith",
     "authorIds": [
@@ -622,7 +620,6 @@
     "disputedAuthorship": false,
     "notes": "Exact composition date not established; see dateWritten note.",
     "verificationRecordIds": [
-      "ver-p3-e3-john-of-damascus-exposition-of-the-orthodox-faith-date-001",
       "ver-p5-damascus-exposition-date-001"
     ]
   },
@@ -651,14 +648,14 @@
     },
     "disputedAuthorship": false,
     "notes": "Edwards's text is public domain; the CCEL PDF file carries a CCEL copyright notice covering its electronic edition, permitting noncommercial copying. The essay was unpublished in Edwards's lifetime; it is a private theological exercise, not a published doctrinal statement, and is recorded as such.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-jonathan-edwards-discourse-trinity-date-001"
     ]
   },
   {
     "id": "justin-martyr-dialogue-with-trypho",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "Dialogue of Justin, Philosopher and Martyr, with Trypho, a Jew",
     "shortTitle": "Dialogue with Trypho",
     "authorIds": [
@@ -683,7 +680,7 @@
     "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
     "notes": "Chapters 55-68 checked on New Advent in this pass; other chapters not checked.",
     "verificationRecordIds": [
-      "ver-p3-e1-justin-martyr-dialogue-with-trypho-date-001",
+      "ver-p4-team-b-date-justin-martyr-dialogue-with-trypho-001",
       "ver-p3-e1-justin-martyr-gen-1-26-001-quotation-001",
       "ver-p3-e1-justin-martyr-gen-18-1-001-quotation-001",
       "ver-p3-e1-justin-martyr-gen-19-24-001-quotation-001"
@@ -691,7 +688,7 @@
   },
   {
     "id": "justin-martyr-first-apology",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "The First Apology of Justin, the Martyr",
     "shortTitle": "First Apology",
     "authorIds": [
@@ -716,14 +713,14 @@
     "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
     "notes": "Chapters 6 and 61 checked on New Advent in this pass; other chapters not checked.",
     "verificationRecordIds": [
-      "ver-p3-e1-justin-martyr-first-apology-date-001",
+      "ver-p4-team-b-date-justin-martyr-first-apology-001",
       "ver-p3-e1-justin-martyr-matt-28-19-001-quotation-001",
       "ver-p3-e1-justin-martyr-2cor-13-14-001-quotation-001"
     ]
   },
   {
     "id": "leo-i-letter-15",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "Letter 15: To Turribius, Bishop of Asturia, Upon the Errors of the Priscillianists",
     "shortTitle": "Letter 15",
     "authorIds": [
@@ -776,7 +773,7 @@
     },
     "disputedAuthorship": false,
     "notes": "CCEL records that Zondervan stated the copyright was not renewed and the book is in the public domain; the Graebner translation is a condensation of Luther's 1535 commentary.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-martin-luther-commentary-galatians-date-001"
     ]
@@ -801,13 +798,13 @@
       "earliest": 250,
       "latest": null,
       "certainty": "approximate",
-      "note": "Commonly dated c. 250; some sources give 257. See verification record ver-p3-e2-novatian-on-the-trinity-date-001."
+      "note": "Commonly dated c. 250; some sources give 257. See verification record ver-p4-team-b-date-novatian-on-the-trinity-001."
     },
     "disputedAuthorship": false,
     "publicDomainStatus": "public-domain",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
-      "ver-p3-e2-novatian-on-the-trinity-date-001"
+      "ver-p4-team-b-date-novatian-on-the-trinity-001"
     ],
     "notes": "The oldest extant Christian treatise devoted specifically to the Trinity. Novatian's Son is divine yet derived from the Father; his subordinationist language (the Son owes his origin to the Father) is reported, not smoothed over."
   },
@@ -831,13 +828,13 @@
       "earliest": 220,
       "latest": 230,
       "certainty": "range",
-      "note": "Commonly dated c. 220-230. The work survives principally in Rufinus's Latin translation; the Crombie English translation used here is from that tradition. See verification record ver-p3-e2-origen-de-principiis-date-001."
+      "note": "Commonly dated c. 220-230. The work survives principally in Rufinus's Latin translation; the Crombie English translation used here is from that tradition. See verification record ver-p4-team-b-date-origen-de-principiis-001."
     },
     "disputedAuthorship": false,
     "publicDomainStatus": "public-domain",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
-      "ver-p3-e2-origen-de-principiis-date-001"
+      "ver-p4-team-b-date-origen-de-principiis-001"
     ],
     "notes": "Origen's language about the Son's derivation from the Father is subordinationist in places and is reported as such; he also insists the Son's generation is without beginning. Checked via the Wikisource reproduction of ANF vol. 4 (same Crombie translation as CCEL's Origen volume)."
   },
@@ -866,7 +863,7 @@
     },
     "disputedAuthorship": false,
     "notes": "",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-philip-melanchthon-augsburg-confession-date-001"
     ]
@@ -895,11 +892,10 @@
       "printCitation": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818)."
     },
     "disputedAuthorship": true,
-    "notes": "Collective work of the Polish Brethren. Rees's Historical Introduction states that the undertaking was transferred to Valentinus Smalcius and Hieronim Moskorzowski (with Johannes Volkel also associated) after Faustus Socinus's death in 1604, and that some text may have been prepared by Socinus. The work is therefore recorded under the collective author Polish Brethren (polish-brethren), not under Socinus; see the attribution verification records ver-p3-e5-racovian-catechism-attribution-001 and ver-p5-racovian-catechism-attribution-001.",
-    "status": "verification-pending",
+    "notes": "Collective work of the Polish Brethren. Rees's Historical Introduction states that the undertaking was transferred to Valentinus Smalcius and Hieronim Moskorzowski (with Johannes Volkel also associated) after Faustus Socinus's death in 1604, and that some text may have been prepared by Socinus. The work is therefore recorded under the collective author Polish Brethren (polish-brethren), not under Socinus; see the attribution verification record ver-p5-racovian-catechism-attribution-001.",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-racovian-catechism-date-001",
-      "ver-p3-e5-racovian-catechism-attribution-001",
       "ver-p5-racovian-catechism-attribution-001"
     ]
   },
@@ -923,19 +919,19 @@
       "earliest": 207,
       "latest": 213,
       "certainty": "range",
-      "note": "Commonly dated to Tertullian's Montanist period, after c. 207; some scholars date it as late as c. 213. See verification record ver-p3-e2-tertullian-against-praxeas-date-001."
+      "note": "Commonly dated to Tertullian's Montanist period, after c. 207; some scholars date it as late as c. 213. See verification record ver-p4-team-b-date-tertullian-against-praxeas-001."
     },
     "disputedAuthorship": false,
     "publicDomainStatus": "public-domain",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
-      "ver-p3-e2-tertullian-against-praxeas-date-001"
+      "ver-p4-team-b-date-tertullian-against-praxeas-001"
     ],
     "notes": "Tertullian coined the Latin terms trinitas and persona in this treatise, but did not teach the later Nicene formulation (homoousios); see the interpretations' relationshipToDoctrine fields. CCEL ch. 2 URL is the locator; ch. 12 checked at https://ccel.org/ccel/tertullian/against_praxeas/anf03.v.ix.xii.html."
   },
   {
     "id": "theophilus-of-antioch-to-autolycus",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "To Autolycus",
     "shortTitle": "To Autolycus",
     "authorIds": [
@@ -960,7 +956,7 @@
     "publicationInfo": "Buffalo, NY: Christian Literature Publishing Co., 1885",
     "notes": "Book II checked on New Advent in this pass (chs. 15, 18, 22); Books I and III not checked.",
     "verificationRecordIds": [
-      "ver-p3-e1-theophilus-of-antioch-to-autolycus-date-001",
+      "ver-p4-team-b-date-theophilus-of-antioch-to-autolycus-001",
       "ver-p3-e1-theophilus-of-antioch-gen-1-1-001-quotation-001",
       "ver-p3-e1-theophilus-of-antioch-gen-1-26-001-quotation-001",
       "ver-p3-e1-theophilus-of-antioch-john-1-1-001-quotation-001"
@@ -989,7 +985,7 @@
     "publicDomainStatus": "public-domain",
     "publicationInfo": "Trans. Fathers of the English Dominican Province (London: Burns Oates & Washbourne, 1920; repr. New York: Benziger Bros., 1947-48).",
     "shortTitle": "Summa Theologiae",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "title": "Summa Theologiae",
     "translator": "Fathers of the English Dominican Province",
     "verificationRecordIds": [
@@ -1019,7 +1015,7 @@
     },
     "disputedAuthorship": false,
     "notes": "Corporate authorship: the Westminster Assembly. No single author is recorded, so authorIds is empty.",
-    "status": "verification-pending",
+    "status": "editorially-approved",
     "verificationRecordIds": [
       "ver-p3-e5-westminster-assembly-westminster-confession-date-001"
     ]
