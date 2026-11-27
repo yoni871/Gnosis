@@ -1,0 +1,609 @@
+{
+  "id": "category-1-chronicles-genealogies-from-adam-to-judah",
+  "title": "Genealogies from Adam to Judah",
+  "category": "category",
+  "orphan": true,
+  "era": "1-chronicles",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Chronicles",
+    "bookId": "1-chronicles",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 3,
+    "endVerse": 24
+  },
+  "fullRange": {
+    "book": "1 Chronicles",
+    "bookId": "1-chronicles",
+    "startChapter": 1,
+    "startVerse": 1,
+    "endChapter": 4,
+    "endVerse": 43
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Chronicles narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ch-01-001",
+      "claim": "Adam, Sheth, Enosh, Kenan, Mahalaleel, Jered, Henoch, Methuselah, Lamech, Noah, Shem, Ham, and Japheth: ten names carry the line from Adam to Noah, with no ages, years, or flood narrative attached.",
+      "evidence": "Stored KJV text, 1 Chr 1:1–4, read in full; Mechon Mamre, 1 Chronicles 1 (Hebrew with JPS 1917 English), read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-002",
+      "claim": "The sons of Japheth are Gomer, Magog, Madai, Javan, Tubal, Meshech, and Tiras; the sons of Gomer are Ashchenaz, Riphath, and Togarmah; the sons of Javan are Elishah, Tarshish, Kittim, and Dodanim.",
+      "evidence": "Stored KJV text, 1 Chr 1:5–7, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-003",
+      "claim": "The sons of Ham are Cush, Mizraim, Put, and Canaan; the sons of Cush include Seba, Havilah, Sabta, Raamah, and Sabtecha, and the sons of Raamah are Sheba and Dedan; Mizraim begets Ludim, Anamim, Lehabim, Naphtuhim, Pathrusim, Casluhim, \"(of whom came the Philistines,)\" and Caphthorim.",
+      "evidence": "Stored KJV text, 1 Chr 1:8–12, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27; BiblicalTraining, \"Nations,\" read in part (lines 0–147 of 353): the Philistines came from the Casluhites, and Caphtor is usually identified with Crete or the wider Aegean region.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-004",
+      "claim": "\"Cush begat Nimrod: he began to be mighty upon the earth.\" Nimrod is the first man in chapter 1 of whom the text records a deed, and the deed is stated without explanation of what his might consisted in.",
+      "evidence": "Stored KJV text, 1 Chr 1:10, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-005",
+      "claim": "Canaan begets Zidon his firstborn and Heth, and the clans named after them: the Jebusite, Amorite, Girgashite, Hivite, Arkite, Sinite, Arvadite, Zemarite, and Hamathite.",
+      "evidence": "Stored KJV text, 1 Chr 1:13–16, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27; BiblicalTraining, \"Nations,\" read in part: Canaan's descendants include Sidon his firstborn and the peoples of the Phoenician and Syrian coast.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-006",
+      "claim": "The sons of Shem are Elam, Asshur, Arphaxad, Lud, Aram, Uz, Hul, Gether, and Meshech; Arphaxad begets Shelah and Shelah begets Eber; unto Eber are born Peleg — \"because in his days the earth was divided\" — and Joktan, whose thirteen sons are Almodad, Sheleph, Hazarmaveth, Jerah, Hadoram, Uzal, Diklah, Ebal, Abimael, Sheba, Ophir, Havilah, and Jobab: \"All these were the sons of Joktan.\"",
+      "evidence": "Stored KJV text, 1 Chr 1:17–23, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27; BiblicalTraining, \"Nations,\" read in part: Joktan's thirteen sons are Arabian peoples, among them Hazarmaveth, Sheba, Ophir, and Havilah.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-007",
+      "claim": "The line restarts as bare names: Shem, Arphaxad, Shelah, Eber, Peleg, Reu, Serug, Nahor, Terah, and \"Abram; the same is Abraham.\"",
+      "evidence": "Stored KJV text, 1 Chr 1:24–27, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-008",
+      "claim": "The sons of Abraham are Isaac and Ishmael; Ishmael's twelve sons in order are Nebaioth the firstborn, Kedar, Adbeel, Mibsam, Mishma, Dumah, Massa, Hadad, Tema, Jetur, Naphish, and Kedemah: \"These are the sons of Ishmael.\"",
+      "evidence": "Stored KJV text, 1 Chr 1:28–31, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-009",
+      "claim": "The sons of Keturah, Abraham's concubine, are Zimran, Jokshan, Medan, Midian, Ishbak, and Shuah; the sons of Jokshan are Sheba and Dedan; the sons of Midian are Ephah, Epher, Henoch, Abida, and Eldaah: \"All these are the sons of Keturah.\"",
+      "evidence": "Stored KJV text, 1 Chr 1:32–33, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-010",
+      "claim": "\"Abraham begat Isaac. The sons of Isaac; Esau and Israel.\" The line narrows from Abraham's sons to Isaac, and from Isaac's sons the text names Esau first and Israel second.",
+      "evidence": "Stored KJV text, 1 Chr 1:34, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-011",
+      "claim": "The sons of Esau are Eliphaz, Reuel, Jeush, Jaalam, and Korah; the sons of Eliphaz are Teman, Omar, Zephi, Gatam, Kenaz, Timna, and Amalek; the sons of Reuel are Nahath, Zerah, Shammah, and Mizzah.",
+      "evidence": "Stored KJV text, 1 Chr 1:35–37, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-012",
+      "claim": "The sons of Seir are Lotan, Shobal, Zibeon, Anah, Dishon, Ezar, and Dishan; their sons are named in turn, including Timna the sister of Lotan, and the sons of Dishon, Amram, Eshban, Ithran, and Cheran, and the sons of Ezer, Bilhan, Zavan, and Jakan, and the sons of Dishan, Uz and Aran. The stored text spells the same Hebrew name \"Ezar\" at 1:38 and \"Ezer\" at 1:42.",
+      "evidence": "Stored KJV text, 1 Chr 1:38–42, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27; KJV verification report: the stored \"Ezar\" at 1:38 is a genuine KJV-edition reading (Bible Gateway's KJV reads \"Ezar\" there), and the KJV spells the name two ways in adjacent verses.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-013",
+      "claim": "Eight kings reign in the land of Edom in succession — Bela son of Beor of Dinhabah, Jobab son of Zerah of Bozrah, Husham of the land of the Temanites, Hadad son of Bedad who smote Midian in the field of Moab of Avith, Samlah of Masrekah, Shaul of Rehoboth by the river, Baalhanan son of Achbor, and Hadad of Pai, whose wife was Mehetabel — \"before any king reigned over the children of Israel.\"",
+      "evidence": "Stored KJV text, 1 Chr 1:43–50, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27; BiblicalTraining, \"Books of Chronicles,\" read in part (lines 0–157 of 488): the kings of Edom are taken from Genesis 36:31–43.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-014",
+      "claim": "\"Hadad died also. And the dukes of Edom were; duke Timnah, duke Aliah, duke Jetheth, Duke Aholibamah, duke Elah, duke Pinon, Duke Kenaz, duke Teman, duke Mibzar, Duke Magdiel, duke Iram. These are the dukes of Edom.\" Eleven dukes succeed the eight kings.",
+      "evidence": "Stored KJV text, 1 Chr 1:51–54, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-015",
+      "claim": "\"These are the sons of Israel; Reuben, Simeon, Levi, and Judah, Issachar, and Zebulun, Dan, Joseph, and Benjamin, Naphtali, Gad, and Asher.\" Twelve sons in two verses, with Judah fourth in the list and first in the chapters that follow.",
+      "evidence": "Stored KJV text, 1 Chr 2:1–2, read in full; Mechon Mamre, 1 Chronicles 2 (Hebrew with JPS 1917 English), read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-016",
+      "claim": "The sons of Judah are Er, Onan, and Shelah: \"The sons of Judah; Er, and Onan, and Shelah: which three were born unto him of the daughter of Shua the Canaanitess. And Er, the firstborn of Judah, was evil in the sight of the LORD; and he slew him. And Tamar his daughter in law bore him Pharez and Zerah. All the sons of Judah were five.\" The line passes through Pharez, not the firstborn.",
+      "evidence": "Stored KJV text, 1 Chr 2:3–4, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27; BiblicalTraining, \"Tamar,\" read in part (lines 0–156 of 204): Judah's three sons by the daughter of Shua, Er's death, and Tamar bearing the twins Perez and Zerah by Judah himself.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-017",
+      "claim": "The sons of Pharez are Hezron and Hamul; the sons of Zerah are Zimri, Ethan, Heman, Calcol, and Dara: \"five of them in all.\"",
+      "evidence": "Stored KJV text, 1 Chr 2:5–6, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-018",
+      "claim": "\"And the sons of Carmi; Achar, the troubler of Israel, who transgressed in the thing accursed.\" And the sons of Ethan are Azariah. Achar is named in the Judah lists for a deed, and the deed is a transgression.",
+      "evidence": "Stored KJV text, 1 Chr 2:7–8, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-019",
+      "claim": "The sons of Hezron are Jerahmeel, Ram, and Chelubai; Ram begets Amminadab, Amminadab begets Nahshon, \"prince of the children of Judah,\" Nahshon begets Salma, Salma begets Boaz, Boaz begets Obed, and Obed begets Jesse.",
+      "evidence": "Stored KJV text, 1 Chr 2:9–12, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27; BiblicalTraining, \"Tamar,\" read in part: the royal line descends from Perez through Hezron, Ram, Amminadab, Nahshon, Salmon, Boaz, Obed, and Jesse to David.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-020",
+      "claim": "Jesse begets seven sons in order — Eliab the firstborn, Abinadab the second, Shimma the third, Nethaneel the fourth, Raddai the fifth, Ozem the sixth, \"David the seventh.\" Samuel counts eight sons of Jesse and makes David the youngest (1 Sam 16:10–11); Chronicles names seven and lists David as the seventh. The difference is carried, not reconciled.",
+      "evidence": "Stored KJV text, 1 Chr 2:13–15, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27; BiblicalTraining, \"David,\" read in part (lines 0–137 of 620): Samuel says Jesse had eight sons and David was the youngest, while First Chronicles names seven sons and lists David as the seventh.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-021",
+      "claim": "Jesse's daughters are Zeruiah and Abigail, the sisters of his sons; the sons of Zeruiah are Abishai, Joab, and Asahel, three; Abigail bears Amasa, \"and the father of Amasa was Jether the Ishmeelite.\"",
+      "evidence": "Stored KJV text, 1 Chr 2:16–17, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27; BiblicalTraining, \"David,\" read in part: Zeruiah's sons Abishai, Joab, and Asahel became David's leading soldiers, and Abigail's son Amasa later commanded Absalom's army.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-022",
+      "claim": "Caleb son of Hezron begets children of Azubah his wife and of Jerioth — Jesher, Shobab, and Ardon; when Azubah dies Caleb takes Ephrath, who bears Hur; Hur begets Uri, and Uri begets Bezaleel.",
+      "evidence": "Stored KJV text, 1 Chr 2:18–20, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-023",
+      "claim": "Hezron goes in to the daughter of Machir the father of Gilead, whom he marries when he is threescore years old, and she bears Segub; Segub begets Jair, \"who had three and twenty cities in the land of Gilead\"; Geshur and Aram take the towns of Jair with Kenath, threescore cities; and after Hezron dies in Calebephratah, Abiah his wife bears Ashur, \"the father of Tekoa.\"",
+      "evidence": "Stored KJV text, 1 Chr 2:21–24, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-024",
+      "claim": "The sons of Jerahmeel the firstborn of Hezron are Ram the firstborn, Bunah, Oren, Ozem, and Ahijah; Jerahmeel's other wife Atarah is the mother of Onam; the lines run through Ram's sons Maaz, Jamin, and Eker, Onam's sons Shammai and Jada, Shammai's sons Nadab and Abishur, Nadab's sons Seled (who dies without children) and Appaim, Appaim's son Ishi, Ishi's son Sheshan, Sheshan's son Ahlai, Jada's sons Jether (who dies without children) and Jonathan, and Jonathan's sons Peleth and Zaza: \"These were the sons of Jerahmeel.\"",
+      "evidence": "Stored KJV text, 1 Chr 2:25–33, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-025",
+      "claim": "\"Now Sheshan had no sons, but daughters. And Sheshan had a servant, an Egyptian, whose name was Jarha. And Sheshan gave his daughter to Jarha his servant to wife; and she bare him Attai.\" The line continues through Attai, Nathan, Zabad, Ephlal, Obed, Jehu, Azariah, Helez, Eleasah, Sisamai, Shallum, Jekamiah, and Elishama — thirteen generations from an Egyptian servant inside the line of Judah.",
+      "evidence": "Stored KJV text, 1 Chr 2:34–41, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27; BiblicalTraining, \"Books of Chronicles,\" read in part: Chronicles names marriages to outsiders in its genealogies and passes over them without remark (1 Chr 2:34–35).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-026",
+      "claim": "The sons of Caleb the brother of Jerahmeel are Mesha his firstborn, \"which was the father of Ziph,\" and the sons of Mareshah the father of Hebron; the sons of Hebron are Korah, Tappuah, Rekem, and Shema; Shema begets Raham, \"the father of Jorkoam,\" and Rekem begets Shammai; the son of Shammai is Maon, \"and Maon was the father of Bethzur.\"",
+      "evidence": "Stored KJV text, 1 Chr 2:42–45, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-027",
+      "claim": "Ephah, Caleb's concubine, bears Haran, Moza, and Gazez, and Haran begets Gazez; the sons of Jahdai are Regem, Jotham, Gesham, Pelet, Ephah, and Shaaph; Maachah, Caleb's concubine, bears Sheber and Tirhanah, and Shaaph the father of Madmannah, Sheva the father of Machbenah, and the father of Gibea; \"and the daughter of Caleb was Achsa.\"",
+      "evidence": "Stored KJV text, 1 Chr 2:46–49, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-028",
+      "claim": "\"These were the sons of Caleb the son of Hur, the firstborn of Ephratah; Shobal the father of Kirjathjearim, Salma the father of Bethlehem, Hareph the father of Bethgader.\" Shobal's sons are Haroeh and half of the Manahethites; the families of Kirjathjearim are the Ithrites, Puhites, Shumathites, and Mishraites, of whom come the Zareathites and Eshtaulites; the sons of Salma are Bethlehem, the Netophathites, Ataroth, the house of Joab, and half of the Manahethites, the Zorites; and the families of the scribes at Jabez are the Tirathites, Shimeathites, and Suchathites: \"These are the Kenites that came of Hemath, the father of the house of Rechab.\"",
+      "evidence": "Stored KJV text, 1 Chr 2:50–55, read in full; Mechon Mamre, 1 Chronicles 2, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-029",
+      "claim": "David's six sons born in Hebron are Amnon the firstborn of Ahinoam the Jezreelitess, Daniel the second of Abigail the Carmelitess, Absalom the third son of Maachah daughter of Talmai king of Geshur, Adonijah the fourth son of Haggith, Shephatiah the fifth of Abital, and Ithream the sixth by Eglah his wife; \"These six were born unto him in Hebron; and there he reigned seven years and six months: and in Jerusalem he reigned thirty and three years.\" 2 Samuel 3:3 calls David's second son in Hebron Chileab, where Chronicles calls him Daniel.",
+      "evidence": "Stored KJV text, 1 Chr 3:1–4, read in full; Mechon Mamre, 1 Chronicles 3 (Hebrew with JPS 1917 English), read in full live 2026-11-27; Bible Gateway KJV pages as rendered in search results 2026-11-27 (Daniel called Chileab in 2 Sam 3:3, per the NABRE footnote and the Kretzmann commentary on 1 Chronicles 3).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-030",
+      "claim": "David's sons born in Jerusalem are Shimea, Shobab, Nathan, and Solomon, \"four, of Bathshua the daughter of Ammiel,\" and Ibhar, Elishama, Eliphelet, Nogah, Nepheg, Japhia, Elishama, Eliada, and Eliphelet, \"nine\"; \"These were all the sons of David, beside the sons of the concubines, and Tamar their sister.\" 2 Samuel 5:14 calls him Shammuah, and 2 Samuel 11:3 calls David's wife Bathsheba the daughter of Eliam, where Chronicles calls her Bathshua the daughter of Ammiel.",
+      "evidence": "Stored KJV text, 1 Chr 3:5–9, read in full; Mechon Mamre, 1 Chronicles 3, read in full live 2026-11-27; Bible Gateway KJV pages as rendered in search results 2026-11-27 (Shimea as Shammuah in 2 Sam 5:14; Bathshua as Bathsheba and Ammiel as Eliam in 2 Sam 11:3).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-031",
+      "claim": "The royal line runs Solomon, Rehoboam, Abia, Asa, Jehoshaphat, Joram, Ahaziah, Joash, Amaziah, Azariah, Jotham, Ahaz, Hezekiah, Manasseh, Amon, Josiah — sixteen kings from Solomon to Josiah, each named as the son of the last.",
+      "evidence": "Stored KJV text, 1 Chr 3:10–14, read in full; Mechon Mamre, 1 Chronicles 3, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-032",
+      "claim": "\"And the sons of Josiah were, the firstborn Johanan, the second Jehoiakim, the third Zedekiah, the fourth Shallum. And the sons of Jehoiakim: Jeconiah his son, Zedekiah his son.\" Chronicles names Zedekiah as the son of Jehoiakim; Kings makes him the son of Josiah, the king of Babylon having \"made Mattaniah his father's brother king in his stead, and changed his name to Zedekiah\" — the full verse reads \"And the king of Babylon made Mattaniah his father's brother king in his stead, and changed his name to Zedekiah\" (2 Kgs 24:17). The two books differ, and the difference is not harmonised here.",
+      "evidence": "Stored KJV text, 1 Chr 3:15–16, read in full; Mechon Mamre, 1 Chronicles 3, read in full live 2026-11-27; Bible Gateway, KJV, 2 Kings 24:17, as rendered in search results 2026-11-27.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ch-01-033",
+      "claim": "\"And the sons of Jeconiah; Assir, Salathiel his son, Malchiram also, and Pedaiah, and Shenazar, Jecamiah, Hoshama, and Nedabiah.\" Whether \"Assir\" is a son's name or the epithet \"the captive\" for Jeconiah is unresolved (see §8).",
+      "evidence": "Stored KJV text, 1 Chr 3:17–18, read in full; Mechon Mamre, 1 Chronicles 3, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-034",
+      "claim": "\"And the sons of Pedaiah were, Zerubbabel, and Shimei: and the sons of Zerubbabel; Meshullam, and Hananiah, and Shelomith their sister: And Hashubah, and Ohel, and Berechiah, and Hasadiah, Jushabhesed, five.\" Chronicles makes Zerubbabel the son of Pedaiah; Ezra 3:2, Haggai 1:1, and Matthew 1:12 make him the son of Shealtiel, Pedaiah's brother. The books differ, and the difference is not harmonised here.",
+      "evidence": "Stored KJV text, 1 Chr 3:19–20, read in full; Mechon Mamre, 1 Chronicles 3, read in full live 2026-11-27; Bible Gateway, KJV, Haggai 1:1 (\"unto Zerubbabel the son of Shealtiel, governor of Judah\"), as rendered in search results 2026-11-27; BibleHub parallel-verse rendering of Matthew 1:12 (KJV) as rendered in search results 2026-11-27.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ch-01-035",
+      "claim": "The line continues through Hananiah's sons Pelatiah and Jesaiah; then the stored text reads \"the sons of Rephaiah, the sons of Arnan, the sons of Obadiah, the sons of Shechaniah\"; then the sons of Shechaniah, Shemaiah, and the sons of Shemaiah, Hattush, Igeal, Bariah, Neariah, and Shaphat, six, the sons of Neariah, Elioenai, Hezekiah, and Azrikam, three, and the sons of Elioenai, Hodaiah, Eliashib, Pelaiah, Akkub, Johanan, Dalaiah, and Anani, seven. The royal line runs past the exile into generations no king ever ruled; how many generations 3:21 counts is uncertain, since the Hebrew is difficult and the versions differ.",
+      "evidence": "Stored KJV text, 1 Chr 3:21–24, read in full; Mechon Mamre, 1 Chronicles 3, read in full live 2026-11-27; BiblicalTraining, \"Books of Chronicles,\" read in part: the Hebrew text of 1 Chr 3:21 is difficult, the Greek and other ancient versions read it differently, and the list extends from two to as many as eleven generations beyond Zerubbabel.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-036",
+      "claim": "\"The sons of Judah; Pharez, Hezron, and Carmi, and Hur, and Shobal.\" Reaiah son of Shobal begets Jahath, and Jahath begets Ahumai and Lahad: \"These are the families of the Zorathites.\" The father of Etam's children are Jezreel, Ishma, and Idbash, and their sister is Hazelelponi; Penuel is the father of Gedor and Ezer the father of Hushah: \"These are the sons of Hur, the firstborn of Ephratah, the father of Bethlehem.\"",
+      "evidence": "Stored KJV text, 1 Chr 4:1–4, read in full; Mechon Mamre, 1 Chronicles 4 (Hebrew with JPS 1917 English), read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-037",
+      "claim": "Ashur the father of Tekoa has two wives, Helah and Naarah; Naarah bears Ahuzam, Hepher, Temeni, and Haahashtari; the sons of Helah are Zereth, Jezoar, and Ethnan; Coz begets Anub and Zobebah, and the families of Aharhel the son of Harum.",
+      "evidence": "Stored KJV text, 1 Chr 4:5–8, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-038",
+      "claim": "\"Jabez was more honourable than his brethren: and his mother called his name Jabez, saying, Because I bare him with sorrow. And Jabez called on the God of Israel, saying, Oh that thou wouldest bless me indeed, and enlarge my coast, and that thine hand might be with me, and that thou wouldest keep me from evil, that it may not grieve me! And God granted him that which he requested.\" The one prayer in the genealogies, and the one place where the text says what God did in answer.",
+      "evidence": "Stored KJV text, 1 Chr 4:9–10, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27; BiblicalTraining, \"Books of Chronicles,\" read in part: the prayer of Jabez is among the short narrative notes scattered through the lists.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-039",
+      "claim": "Chelub the brother of Shuah begets Mehir, \"which was the father of Eshton\"; Eshton begets Bethrapha, Paseah, and Tehinnah the father of Irnahash: \"These are the men of Rechah.\"",
+      "evidence": "Stored KJV text, 1 Chr 4:11–12, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-040",
+      "claim": "The sons of Kenaz are Othniel and Seraiah, and the sons of Othniel are Hathath; Meonothai begets Ophrah; Seraiah begets Joab, \"the father of the valley of Charashim; for they were craftsmen.\"",
+      "evidence": "Stored KJV text, 1 Chr 4:13–14, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-041",
+      "claim": "The sons of Caleb the son of Jephunneh are Iru, Elah, and Naam, and the sons of Elah are Kenaz; the sons of Jehaleleel are Ziph, Ziphah, Tiria, and Asareel; the sons of Ezra are Jether, Mered, Epher, and Jalon, and she bears Miriam, Shammai, and Ishbah the father of Eshtemoa; Mered's wife Jehudijah bears Jered the father of Gedor, Heber the father of Socho, and Jekuthiel the father of Zanoah, \"And these are the sons of Bithiah the daughter of Pharaoh, which Mered took\"; the sons of Hodiah's wife, the sister of Naham, are the father of Keilah the Garmite and Eshtemoa the Maachathite; the sons of Shimon are Amnon, Rinnah, Benhanan, and Tilon; and the sons of Ishi are Zoheth and Benzoheth. This Caleb (son of Jephunneh) is not the Caleb son of Hezron of chapter 2, and this Miriam is not identified with Moses' sister.",
+      "evidence": "Stored KJV text, 1 Chr 4:15–20, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-042",
+      "claim": "The sons of Shelah the son of Judah are Er the father of Lecah, Laadah the father of Mareshah, and the families of the house of them that wrought fine linen, of the house of Ashbea; Jokim, the men of Chozeba, Joash, and Saraph, \"who had the dominion in Moab, and Jashubilehem. And these are ancient things.\" \"These were the potters, and those that dwelt among plants and hedges: there they dwelt with the king for his work.\"",
+      "evidence": "Stored KJV text, 1 Chr 4:21–23, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27; BiblicalTraining, \"Books of Chronicles,\" read in part: the lists include notes about guilds of craftsmen, linen workers, and potters (1 Chr 4:21–23).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-043",
+      "claim": "The sons of Simeon are Nemuel, Jamin, Jarib, Zerah, and Shaul; Shallum his son, Mibsam his son, Mishma his son; the sons of Mishma are Hamuel his son, Zacchur his son, Shimei his son; \"And Shimei had sixteen sons and six daughters; but his brethren had not many children, neither did all their family multiply, like to the children of Judah.\"",
+      "evidence": "Stored KJV text, 1 Chr 4:24–27, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-044",
+      "claim": "Simeon's cities are Beersheba, Moladah, Hazarshual, Bilhah, Ezem, Tolad, Bethuel, Hormah, Ziklag, Bethmarcaboth, Hazarsusim, Bethbirei, and Shaaraim: \"These were their cities unto the reign of David.\" Their villages are Etam, Ain, Rimmon, Tochen, and Ashan, \"five cities\" with all their villages round about the same cities, \"unto Baal. These were their habitations, and their genealogy.\"",
+      "evidence": "Stored KJV text, 1 Chr 4:28–33, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-045",
+      "claim": "Meshobab, Jamlech, Joshah the son of Amaziah, Joel, Jehu the son of Josibiah, the son of Seraiah, the son of Asiel, Elioenai, Jaakobah, Jeshohaiah, Asaiah, Adiel, Jesimiel, Benaiah, and Ziza the son of Shiphi, the son of Allon, the son of Jedaiah, the son of Shimri, the son of Shemaiah: \"These mentioned by their names were princes in their families: and the house of their fathers increased greatly.\"",
+      "evidence": "Stored KJV text, 1 Chr 4:34–38, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-046",
+      "claim": "The Simeonite princes go \"And they went to the entrance of Gedor, even unto the east side of the valley, to seek pasture for their flocks. And they found fat pasture and good, and the land was wide, and quiet, and peaceable; for they of Ham had dwelt there of old. And these written by name came in the days of Hezekiah king of Judah, and smote their tents, and the habitations that were found there, and destroyed them utterly unto this day, and dwelt in their rooms: because there was pasture there for their flocks.\" The Hebrew behind \"the habitations\" is the name of a people, the Meunim (see §5).",
+      "evidence": "Stored KJV text, 1 Chr 4:39–41, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27; BiblicalTraining, \"Hezekiah,\" read in part (lines 0–158 of 365): Hezekiah reigned twenty-nine years, and Sennacherib's invasion of 701 BC is fixed by the Assyrian records.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-047",
+      "claim": "\"And some of them, even of the sons of Simeon, five hundred men, went to mount Seir, having for their captains Pelatiah, and Neariah, and Rephaiah, and Uzziel, the sons of Ishi. And they smote the rest of the Amalekites that were escaped, and dwelt there unto this day.\"",
+      "evidence": "Stored KJV text, 1 Chr 4:42–43, read in full; Mechon Mamre, 1 Chronicles 4, read in full live 2026-11-27.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-01-048",
+      "claim": "The book's first kings are Edom's, reigning \"before any king reigned over the children of Israel\": kingship in the region precedes kingship in Israel, and Israel's own kingship was not originally hereditary — hereditary kingship began only after David's death, when Solomon, though not his first-born son, succeeded him.",
+      "evidence": "Stored KJV text, 1 Chr 1:43, read in full; Mechon Mamre, 1 Chronicles 1, read in full live 2026-11-27; Bible Odyssey, \"Royal Succession\" (verified, registry) — not re-read in full in this dossier; cited only for the succession principles already quoted in the 1 Kings S01 dossier (KCL-01-030, probable).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ch-01-001",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 10,
+      "startVerse": 1,
+      "endChapter": 10,
+      "endVerse": 32,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Genesis 10:1–32. The Table of Nations lists the descendants of Noah through his three sons, and Chronicles repeats it with small differences in spelling. The Table of Nations counts seventy peoples, and it sets every people inside one family before Israel itself appears."
+    },
+    {
+      "id": "conn-1ch-01-002",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 11,
+      "startVerse": 10,
+      "endChapter": 11,
+      "endVerse": 26,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Genesis 11:10–26. The line of Shem runs from Arphaxad through Eber, Peleg, Reu, Serug, Nahor, and Terah to Abram, the same narrowing Chronicles gives in bare names before Abram becomes Abraham."
+    },
+    {
+      "id": "conn-1ch-01-003",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 25,
+      "startVerse": 12,
+      "endChapter": 25,
+      "endVerse": 18,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Genesis 25:12–18. Ishmael's twelve sons are named in the same order in both books, and both close the list the same way: these are the sons of Ishmael, named and then set aside as the line passes to Isaac."
+    },
+    {
+      "id": "conn-1ch-01-004",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 36,
+      "startVerse": 31,
+      "endChapter": 36,
+      "endVerse": 43,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Genesis 36:31–43. The eight kings of Edom and the eleven dukes come from this chapter, with the same cities and the same order. Chronicles adds only the frame: these kings reigned before any king reigned over the children of Israel."
+    },
+    {
+      "id": "conn-1ch-01-005",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 38,
+      "startVerse": 1,
+      "endChapter": 38,
+      "endVerse": 30,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Targets Genesis 38:1–30. The chapter tells the story Chronicles compresses into two verses: Judah's sons by the Canaanite daughter of Shua, Er's death, Tamar's stratagem, and the birth of the twins Pharez and Zerah, Pharez breaking out first though Zerah's hand had appeared first."
+    },
+    {
+      "id": "conn-1ch-01-006",
+      "book": "Ruth",
+      "bookId": "ruth",
+      "startChapter": 4,
+      "startVerse": 18,
+      "endChapter": 4,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Ruth 4:18–22. The short genealogy at the end of Ruth gives the same line Chronicles gives at length: Pharez, Hezron, Ram, Amminadab, Nahshon, Salmon, Boaz, Obed, Jesse, David. The two lists agree name for name, with one spelling variant (Salmon/Salma)."
+    },
+    {
+      "id": "conn-1ch-01-007",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 7,
+      "startVerse": 1,
+      "endChapter": 7,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Joshua 7:1. The man who took of the accursed thing and brought trouble on Israel is called Achan there and Achar in Chronicles. The deed is the same and the name differs by a single letter, and the identification, though customary, is not certain."
+    },
+    {
+      "id": "conn-1ch-01-008",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 16,
+      "startVerse": 10,
+      "endChapter": 16,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 1 Samuel 16:10–11. Jesse has eight sons pass before Samuel, and David, the youngest, is out with the sheep and has not even been called. Chronicles names seven sons and lists David as the seventh. The two counts differ and the difference is not reconciled."
+    },
+    {
+      "id": "conn-1ch-01-009",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 2,
+      "endChapter": 3,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 2 Samuel 3:2–5. The six sons born to David in Hebron are named in the same order with the same mothers, except that the second son is called Daniel in Chronicles and Chileab in Samuel. The same man under two names is the standard reading."
+    },
+    {
+      "id": "conn-1ch-01-010",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 5,
+      "startVerse": 13,
+      "endChapter": 5,
+      "endVerse": 16,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 2 Samuel 5:13–16. The sons born to David in Jerusalem are named in the same order, with Shimea called Shammuah there and Elishama answering to Elishua. Chronicles adds what Samuel does not state: that the first four were the sons of Bathshua, the daughter of Ammiel."
+    },
+    {
+      "id": "conn-1ch-01-011",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 24,
+      "startVerse": 17,
+      "endChapter": 24,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 2 Kings 24:17. The king of Babylon makes Mattaniah, the uncle of Jehoiachin, king in his place and changes his name to Zedekiah. Chronicles names Zedekiah as the son of Jehoiakim instead. The two books differ about his parentage and the difference is not resolved."
+    },
+    {
+      "id": "conn-1ch-01-012",
+      "book": "Ezra",
+      "bookId": "ezra",
+      "startChapter": 3,
+      "startVerse": 2,
+      "endChapter": 3,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Ezra 3:2. When the returned exiles lay the foundation of the temple, Zerubbabel is named as the son of Shealtiel. Chronicles names him as the son of Pedaiah, Shealtiel's brother. The two books differ and the difference is not resolved."
+    },
+    {
+      "id": "conn-1ch-01-013",
+      "book": "Haggai",
+      "bookId": "haggai",
+      "startChapter": 1,
+      "startVerse": 1,
+      "endChapter": 1,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Haggai 1:1. The word of the LORD comes by Haggai to Zerubbabel the son of Shealtiel, governor of Judah, in the second year of Darius. Chronicles calls the same governor the son of Pedaiah. The difference is carried, not harmonised."
+    },
+    {
+      "id": "conn-1ch-01-014",
+      "book": "Matthew",
+      "bookId": "matthew",
+      "startChapter": 1,
+      "startVerse": 3,
+      "endChapter": 1,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Matthew 1:3–6. The genealogy of Jesus runs from Judah through Perez and Zerah, whose mother was Tamar, then Hezron, Ram, Amminadab, Nahshon, Salmon, Boaz, Obed, Jesse, and David the king — the same line Chronicles traces, now carried forward to the Messiah."
+    },
+    {
+      "id": "conn-1ch-01-015",
+      "book": "Matthew",
+      "bookId": "matthew",
+      "startChapter": 1,
+      "startVerse": 11,
+      "endChapter": 1,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Matthew 1:11–12. Josiah is the father of Jeconiah at the time of the exile, and after the exile Jeconiah is the father of Shealtiel, and Shealtiel the father of Zerubbabel. Chronicles traces the same descent but makes Zerubbabel the son of Pedaiah, not of Shealtiel."
+    },
+    {
+      "id": "conn-1ch-01-016",
+      "book": "Luke",
+      "bookId": "luke",
+      "startChapter": 3,
+      "startVerse": 27,
+      "endChapter": 3,
+      "endVerse": 31,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Luke 3:27–31. Luke's genealogy traces the line through Nathan the son of David, not through Solomon, and it names Zerubbabel the son of Salathiel among David's descendants. The two Gospels take different branches from David's house, and both pass through Zerubbabel."
+    },
+    {
+      "id": "conn-1ch-01-017",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 48,
+      "startVerse": 13,
+      "endChapter": 48,
+      "endVerse": 20,
+      "type": "thematic",
+      "confidence": "probable",
+      "note": "Targets Genesis 48:13–20. Jacob crosses his hands and puts his right hand, the hand of blessing, on Ephraim the younger, and his left on Manasseh the firstborn, and says the younger brother shall be greater. The crossed hands are the pattern the genealogies repeat in list form."
+    },
+    {
+      "id": "conn-1ch-01-018",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 3,
+      "startVerse": 9,
+      "endChapter": 3,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Judges 3:9–11. When Israel cries to the LORD, he raises up Othniel the son of Kenaz, Caleb's younger brother, to deliver them, and the land has rest forty years. The judge of the genealogy is the deliverer of the story."
+    },
+    {
+      "id": "conn-1ch-01-019",
+      "book": "Exodus",
+      "bookId": "exodus",
+      "startChapter": 31,
+      "startVerse": 1,
+      "endChapter": 31,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Exodus 31:1–5. Bezaleel the son of Uri, the son of Hur, is the craftsman God fills with wisdom to make the tabernacle and its vessels. The name in the genealogy is the maker of the sanctuary."
+    },
+    {
+      "id": "conn-1ch-01-020",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 21,
+      "startVerse": 15,
+      "endChapter": 21,
+      "endVerse": 17,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Targets Deuteronomy 21:15–17. The law gives the firstborn a double portion of all the father has, and forbids a man to make the son of the loved wife the firstborn instead of the son of the hated wife. The rule is the one the genealogies keep working against, as the line passes to the younger son at every step."
+    },
+    {
+      "id": "conn-1ch-01-021",
+      "book": "2 Kings",
+      "bookId": "2-kings",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 8,
+      "type": "historical-setting",
+      "confidence": "probable",
+      "note": "Targets 2 Kings 18:1–8. Hezekiah son of Ahaz begins to reign at twenty-five, does what is right, removes the high places, and rebels against the king of Assyria. His is the reign in whose days the Simeonite princes struck at Gedor, and his dates are themselves debated among chronologists."
+    },
+    {
+      "id": "conn-1ch-01-022",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 26,
+      "startVerse": 20,
+      "endChapter": 26,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Numbers 26:20–21. In the second census the sons of Judah are counted by clan: the Shelanites of Shelah, the Pharzites of Pharez, the Zarhites of Zerah, and of Pharez the Hezronites and the Hamulites. The clans of the genealogy are the clans of the muster."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-chronicles-masoretic-text",
+    "source-biblicaltraining-books-of-chronicles",
+    "source-biblicaltraining-nations",
+    "source-biblicaltraining-david",
+    "source-biblicaltraining-tamar",
+    "source-biblicaltraining-hezekiah",
+    "source-biblegateway-biblehub-kjv-spot-checks",
+    "source-callender-genealogies-bible",
+    "source-bible-odyssey-sibling-rivalries",
+    "source-bible-odyssey-royal-succession"
+  ],
+  "review": {
+    "author": "Gnosis 1 Chronicles research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-27",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Chronicles category; independent QA pending. First 1 Chronicles category: the \"1-chronicles\" era-enum append rides with this PR (2 Kings S01 precedent), one line in frontend/src/utils/historyContent.js. S01 sources[] carries ten entries (all verified in the live registry): 1CNN-S01-01 Mechon Mamre -> source-mechon-mamre-1-chronicles-masoretic-text; 1CNN-S01-02 BT \"Books of Chronicles\" -> source-biblicaltraining-books-of-chronicles; 1CNN-S01-03 BT \"Nations\" -> source-biblicaltraining-nations; 1CNN-S01-04 BT \"David\" -> source-biblicaltraining-david; 1CNN-S01-05 BT \"Tamar\" -> source-biblicaltraining-tamar; 1CNN-S01-06 BT \"Hezekiah\" -> source-biblicaltraining-hezekiah; 1CNN-S01-07 KJV spot-checks -> source-biblegateway-biblehub-kjv-spot-checks; source-callender-genealogies-bible; source-bible-odyssey-sibling-rivalries; source-bible-odyssey-royal-succession. Four are newly cited by this category (Mechon Mamre 1 Chronicles, Books of Chronicles, Nations, KJV spot-checks); the other six were already cited by published categories. Excluded from sources[] by the section-location rule: 1CNN-S01-08 (BT \"Solomon\", needs-checking, no §9 row and no appendix footnote) and source-biblicaltraining-tekoa (cited only in §10 as a shared-research pointer) and source-etcsl-sumerian-king-list (cited only in §5 prose). primaryScripture is narrowed to 1:1-3:24 per the approved proposal (span 2); fullRange is 1:1-4:43. Claim 1CCL-01-048 is capped at probable: it rests in part on source-bible-odyssey-royal-succession, which was not re-read in full in this dossier. Claims 1CCL-01-032 and 1CCL-01-034 are debated (Zedekiah's and Zerubbabel's parentage differ between Chronicles and Kings/Ezra/Haggai/Matthew; not harmonised). No licensed-translation text anywhere in this category. No editorialOverride."
+  }
+}
