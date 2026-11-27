@@ -30,12 +30,11 @@ Status: `verification-pending`.
     }
   ],
   "citation": "The Racovian Catechism, trans. Thomas Rees (London: Longman, Hurst, Rees, Orme, and Brown, 1818), Section III, Chapter 1, pp. 56-57. Edition: Trans. Thomas Rees (London, 1818), from the revised Latin edition of 1680. URL: https://archive.org/stream/racoviancatechi00reesgoog/racoviancatechi00reesgoog_djvu.txt. Accessed 2026-11-20.",
-  "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. See the attribution verification record ver-p3-e5-racovian-catechism-attribution-001. The quotation was transcribed from the Google Books OCR scan of the 1818 edition; obvious single-character OCR misreadings were normalized (see the quotation verification record).",
+  "notes": "Attribution: this reading is the Catechism's, associated with the Socinian tradition. See the attribution verification record ver-p5-racovian-catechism-attribution-001. The quotation was transcribed from the Google Books OCR scan of the 1818 edition; obvious single-character OCR misreadings were normalized (see the quotation verification record).",
   "status": "verification-pending",
   "verificationRecordIds": [
     "ver-p3-e5-faustus-socrinus-matt-28-19-001-quotation-001",
     "ver-p3-e5-racovian-catechism-date-001",
-    "ver-p3-e5-racovian-catechism-attribution-001",
     "ver-p5-racovian-catechism-attribution-001"
   ]
 }
@@ -52,6 +51,6 @@ Status: `verification-pending`.
 
 ## Verification
 
-Verification records: `ver-p3-e5-faustus-socrinus-matt-28-19-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p3-e5-racovian-catechism-attribution-001`, `ver-p5-racovian-catechism-attribution-001`.
+Verification records: `ver-p3-e5-faustus-socrinus-matt-28-19-001-quotation-001`, `ver-p3-e5-racovian-catechism-date-001`, `ver-p5-racovian-catechism-attribution-001`.
 
 Researcher source-check only; independent verification per RESEARCH-STANDARDS.md §9.2 still required. Not publishable without independent verification and editorial approval.

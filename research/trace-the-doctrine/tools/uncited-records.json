@@ -1,9 +1,141 @@
 {
-  "$comment": "Records that no entity cites, by design. A verification record is normally cited from the entity it covers (passage, interpretation, milestone, author, or work) via verificationRecordIds. A record that is cited nowhere must match one of these rules, or validate.py fails. Add a rule here -- with the reason -- when a new class of legitimately uncited records is introduced; never add a rule to hide a missing citation.",
+  "$comment": "Records that no entity cites, by design. A verification record is normally cited from the entity it covers (passage, interpretation, milestone, author, or work) via verificationRecordIds. A record that is cited nowhere must match one of these rules, or validate.py fails. Add a rule here -- with the reason -- when a new class of legitimately uncited records is introduced; never add a rule to hide a missing citation. A rule prefix may be a full record id, matching exactly that record, for superseded records.",
   "rules": [
     {
       "prefix": "ver-p4-",
       "reason": "Phase 4 second-pass verification records. Entities list their Phase 2/3 records by design; the Phase 4 records re-check the same claims and are recorded in trinity/verification-phase-4-summary.md instead of being added to every entity's verificationRecordIds."
+    },
+    {
+      "prefix": "ver-heb-1-8-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-heb-1-8-doctrine-001 (Step 2a); the entity now cites ver-p6-heb-1-8-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-matt-28-19-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-matt-28-19-doctrine-001 (Step 2a); the entity now cites ver-p6-matt-28-19-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-john-1-1-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-john-1-1-doctrine-001 (Step 2a); the entity now cites ver-p6-john-1-1-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-john-20-28-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-john-20-28-doctrine-001 (Step 2a); the entity now cites ver-p6-john-20-28-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-2cor-13-14-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-2cor-13-14-doctrine-001 (Step 2a); the entity now cites ver-p6-2cor-13-14-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-col-2-9-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-col-2-9-doctrine-001 (Step 2a); the entity now cites ver-p6-col-2-9-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-gen-1-26-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-gen-1-26-doctrine-001 (Step 2a, batch H1); the entity now cites ver-p6-gen-1-26-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-gen-18-1-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-gen-18-1-doctrine-001 (Step 2a, batch H1); the entity now cites ver-p6-gen-18-1-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-gen-19-24-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-gen-19-24-doctrine-001 (Step 2a, batch H1); the entity now cites ver-p6-gen-19-24-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-ps-2-7-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-ps-2-7-doctrine-001 (Step 2a, batch H1); the entity now cites ver-p6-ps-2-7-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-ps-45-6-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-ps-45-6-doctrine-001 (Step 2a, batch H1); the entity now cites ver-p6-ps-45-6-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-ps-110-1-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-ps-110-1-doctrine-001 (Step 2a, batch H1); the entity now cites ver-p6-ps-110-1-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-isa-9-6-doctrine-001",
+      "reason": "Superseded Phase 2 doctrinal-connection record (partially-verified). The claim was independently re-verified in ver-p6-isa-9-6-doctrine-001 (Step 2a, batch H1); the entity now cites ver-p6-isa-9-6-doctrine-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e1-athenagoras-plea-for-the-christians-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-athenagoras-plea-for-the-christians-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-athenagoras-plea-for-the-christians-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e1-church-of-smyrna-martyrdom-of-polycarp-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-church-of-smyrna-martyrdom-of-polycarp-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-church-of-smyrna-martyrdom-of-polycarp-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e1-clement-of-rome-first-epistle-to-the-corinthians-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-clement-of-rome-first-epistle-to-the-corinthians-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-clement-of-rome-first-epistle-to-the-corinthians-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e1-ignatius-of-antioch-epistle-to-the-ephesians-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-ignatius-of-antioch-epistle-to-the-ephesians-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-ignatius-of-antioch-epistle-to-the-ephesians-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e1-irenaeus-against-heresies-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-irenaeus-against-heresies-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-irenaeus-against-heresies-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e1-justin-martyr-dialogue-with-trypho-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-justin-martyr-dialogue-with-trypho-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-justin-martyr-dialogue-with-trypho-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e1-justin-martyr-first-apology-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-justin-martyr-first-apology-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-justin-martyr-first-apology-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e1-theophilus-of-antioch-to-autolycus-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-theophilus-of-antioch-to-autolycus-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-theophilus-of-antioch-to-autolycus-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e2-tertullian-against-praxeas-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-tertullian-against-praxeas-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-tertullian-against-praxeas-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e2-novatian-on-the-trinity-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-novatian-on-the-trinity-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-novatian-on-the-trinity-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e2-origen-de-principiis-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-origen-de-principiis-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-origen-de-principiis-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e2-gregory-nazianzus-fifth-theological-oration-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-gregory-nazianzus-fifth-theological-oration-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-gregory-nazianzus-fifth-theological-oration-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e2-basil-on-the-holy-spirit-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-basil-on-the-holy-spirit-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-basil-on-the-holy-spirit-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e2-hilary-on-the-trinity-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-hilary-on-the-trinity-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-hilary-on-the-trinity-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e2-cyprian-on-the-unity-of-the-church-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p4-team-b-date-cyprian-on-the-unity-of-the-church-001 (Phase 4 Team B dating); the entity now cites ver-p4-team-b-date-cyprian-on-the-unity-of-the-church-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e2-athanasius-against-the-arians-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p5-athanasius-against-the-arians-date-001 (Phase 5 dating study); the entity now cites ver-p5-athanasius-against-the-arians-date-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e2-arius-thalia-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p5-arius-thalia-date-001 (Phase 5 dating study); the entity now cites ver-p5-arius-thalia-date-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e3-john-of-damascus-exposition-of-the-orthodox-faith-date-001",
+      "reason": "Superseded Phase 3 date record (partially-verified). The claim was independently re-verified in ver-p5-damascus-exposition-date-001 (Phase 5 dating study); the entity now cites ver-p5-damascus-exposition-date-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e5-racovian-catechism-attribution-001",
+      "reason": "Superseded Phase 3 attribution record (partially-verified). The attribution was corrected and independently re-verified in ver-p5-racovian-catechism-attribution-001 (Phase 5 structured attribution: collective author polish-brethren); the entity now cites ver-p5-racovian-catechism-attribution-001. The old record is preserved as history and is cited nowhere by design."
+    },
+    {
+      "prefix": "ver-p3-e3-augustine-1john-5-7-001-quotation-001",
+      "reason": "Superseded Phase 3 quotation record (partially-verified). The edition/translator of the English translation was unconfirmed in that pass; the quotation was re-verified verbatim and its source confirmed in ver-p5-augustine-1john-5-7-attribution-001 (Phase 5, public-domain per Yonatan's 2026-11-25 decision); the entity now cites ver-p5-augustine-1john-5-7-attribution-001. The old record is preserved as history and is cited nowhere by design."
     }
   ]
 }

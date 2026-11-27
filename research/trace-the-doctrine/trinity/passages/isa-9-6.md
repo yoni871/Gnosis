@@ -5,7 +5,7 @@
 - **Canonical position:** 23 in the Protestant canon
 - **Classification:** `historically-interpreted`
 - **Status:** verification-pending
-- **Verification records:** `ver-isa-9-6-ref-001`, `ver-isa-9-6-doctrine-001`
+- **Verification records:** `ver-isa-9-6-ref-001`, `ver-p6-isa-9-6-doctrine-001`
 
 ## Classification and justification
 
@@ -37,7 +37,7 @@ Uncertainty: 'Everlasting Father' in the same verse resists mapping the child on
 ## Verification
 
 - `ver-isa-9-6-ref-001` (passage-link): result `verified` — researcher source-check only.
-- `ver-isa-9-6-doctrine-001` (doctrinal-connection): result `partially-verified` — researcher source-check only.
+- `ver-p6-isa-9-6-doctrine-001` (doctrinal-connection): result `verified` — verifier check 2026-11-27.
 
 Independent verification per RESEARCH-STANDARDS §9.2 still required. Not publishable without independent verification and editorial approval.
 

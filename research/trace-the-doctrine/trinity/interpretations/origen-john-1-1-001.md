@@ -39,7 +39,7 @@ Origen, De Principiis, Book I, ch. 2. Translated by Frederick Crombie. In Ante-N
 
 - `ver-p3-e2-origen-john-1-1-001-quotation-001`
 - `ver-p3-e2-origen-john-1-1-001-attribution-001`
-- `ver-p3-e2-origen-de-principiis-date-001`
+- `ver-p4-team-b-date-origen-de-principiis-001`
 
 ## Notes
 

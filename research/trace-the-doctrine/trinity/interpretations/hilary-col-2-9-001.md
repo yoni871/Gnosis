@@ -39,7 +39,7 @@ Hilary of Poitiers, On the Trinity, Book I. Translated by E. W. Watson. In Nicen
 
 - `ver-p3-e2-hilary-col-2-9-001-quotation-001`
 - `ver-p3-e2-hilary-col-2-9-001-attribution-001`
-- `ver-p3-e2-hilary-on-the-trinity-date-001`
+- `ver-p4-team-b-date-hilary-on-the-trinity-001`
 
 ## Notes
 

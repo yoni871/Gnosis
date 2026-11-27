@@ -10,6 +10,6 @@
   - Alternative: since the words quote Psalm 45:6-7, originally addressed to a human king, does the quotation itself ascribe deity to the Son, or does the ascription depend on how Hebrews applies the psalm?
 - **Cross-references:** ps-45-6, john-20-28, titus-2-13
 - **Textual-variant / uncertainty flags:** Quotation flag: Hebrews 1:8 quotes Psalm 45:6-7; the psalm wording is applied to the Son by Hebrews.
-- **Verification record ids:** ver-heb-1-8-ref-001, ver-heb-1-8-doctrine-001
+- **Verification record ids:** ver-heb-1-8-ref-001, ver-p6-heb-1-8-doctrine-001
 - **Status:** verification-pending
 - **Edition checked:** Holy Bible, English Standard Version (ESV), ESV Text Edition: 2025, via BibleGateway.

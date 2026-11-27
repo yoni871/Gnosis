@@ -39,7 +39,7 @@ Basil of Caesarea, On the Holy Spirit. Translated by Blomfield Jackson. In Nicen
 
 - `ver-p3-e2-basil-acts-5-3-001-quotation-001`
 - `ver-p3-e2-basil-acts-5-3-001-attribution-001`
-- `ver-p3-e2-basil-on-the-holy-spirit-date-001`
+- `ver-p4-team-b-date-basil-on-the-holy-spirit-001`
 
 ## Notes
 

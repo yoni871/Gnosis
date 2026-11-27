@@ -39,7 +39,7 @@ Tertullian, Against Praxeas. Translated by Peter Holmes. In Ante-Nicene Fathers,
 
 - `ver-p3-e2-tertullian-john-1-1-001-quotation-001`
 - `ver-p3-e2-tertullian-john-1-1-001-attribution-001`
-- `ver-p3-e2-tertullian-against-praxeas-date-001`
+- `ver-p4-team-b-date-tertullian-against-praxeas-001`
 
 ## Notes
 

@@ -39,7 +39,7 @@ Novatian, Treatise Concerning the Trinity, ch. 13. Translated by Robert Ernest W
 
 - `ver-p3-e2-novatian-john-1-1-001-quotation-001`
 - `ver-p3-e2-novatian-john-1-1-001-attribution-001`
-- `ver-p3-e2-novatian-on-the-trinity-date-001`
+- `ver-p4-team-b-date-novatian-on-the-trinity-001`
 
 ## Notes
 

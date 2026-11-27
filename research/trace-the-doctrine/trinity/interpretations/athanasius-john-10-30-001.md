@@ -39,7 +39,7 @@ Athanasius, Four Discourses Against the Arians. Translated by John Henry Newman 
 
 - `ver-p3-e2-athanasius-john-10-30-001-quotation-001`
 - `ver-p3-e2-athanasius-john-10-30-001-attribution-001`
-- `ver-p3-e2-athanasius-against-the-arians-date-001`
+- `ver-p5-athanasius-against-the-arians-date-001`
 - `ver-p5-athanasius-john-10-30-attribution-001`
 - `ver-p5-athanasius-john-10-30-attribution-002`
 

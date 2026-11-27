@@ -39,7 +39,7 @@ Gregory of Nazianzus, The Fifth Theological Oration. On the Holy Spirit. (Oratio
 
 - `ver-p3-e2-gregory-nazianzus-john-15-26-001-quotation-001`
 - `ver-p3-e2-gregory-nazianzus-john-15-26-001-attribution-001`
-- `ver-p3-e2-gregory-nazianzus-fifth-theological-oration-date-001`
+- `ver-p4-team-b-date-gregory-nazianzus-fifth-theological-oration-001`
 
 ## Notes
 
