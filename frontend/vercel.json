@@ -664,6 +664,66 @@
       "source": "/biblical-history/1-kings",
       "destination": "/biblical-history/1-kings-solomons-succession-and-the-securing-of-the-throne",
       "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-elijahs-departure-and-elishas-succession",
+      "destination": "/biblical-history/2-kings-elijahs-departure-and-elishas-succession",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-moab-war-miracles-and-naaman",
+      "destination": "/biblical-history/2-kings-moab-war-miracles-and-naaman",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-syrian-wars-and-siege-of-samaria",
+      "destination": "/biblical-history/2-kings-syrian-wars-and-siege-of-samaria",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-jehus-revolution",
+      "destination": "/biblical-history/2-kings-jehus-revolution",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-athaliah-and-joash",
+      "destination": "/biblical-history/2-kings-athaliah-and-joash",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-the-two-kingdoms-parallel-declines",
+      "destination": "/biblical-history/2-kings-the-two-kingdoms-parallel-declines",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-the-fall-of-israel",
+      "destination": "/biblical-history/2-kings-the-fall-of-israel",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-hezekiah-and-the-sennacherib-invasion",
+      "destination": "/biblical-history/2-kings-hezekiah-and-the-sennacherib-invasion",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-manasseh-and-the-sentence-on-judah",
+      "destination": "/biblical-history/2-kings-manasseh-and-the-sentence-on-judah",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-josiahs-reform-and-the-found-book",
+      "destination": "/biblical-history/2-kings-josiahs-reform-and-the-found-book",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings/2-kings-the-fall-of-jerusalem",
+      "destination": "/biblical-history/2-kings-the-fall-of-jerusalem",
+      "permanent": true
+    },
+    {
+      "source": "/biblical-history/2-kings",
+      "destination": "/biblical-history/2-kings-elijahs-departure-and-elishas-succession",
+      "permanent": true
     }
   ],
   "rewrites": [

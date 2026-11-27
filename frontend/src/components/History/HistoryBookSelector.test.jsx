@@ -17,9 +17,9 @@ test("renders nothing while closed", () => {
 test("shows one canonical testament at a time, book names only, with a scroll hint", async () => {
     const user = userEvent.setup();
     mount();
-    expect(screen.getAllByRole("link")).toHaveLength(11);
+    expect(screen.getAllByRole("link")).toHaveLength(12);
     expect(screen.getByRole("link", { name: "Genesis" })).toHaveAttribute("href", "/biblical-history/creation");
-    expect(screen.getAllByText("Coming Soon")).toHaveLength(28);
+    expect(screen.getAllByText("Coming Soon")).toHaveLength(27);
     const exodusChip = document.querySelector('[data-history-book="exodus"]');
     expect(exodusChip).not.toBeNull();
     expect(exodusChip).toHaveAttribute("href", "/biblical-history/oppression-and-moses-early-life");
@@ -32,6 +32,7 @@ test("shows one canonical testament at a time, book names only, with a scroll hi
     expect(document.querySelector('[data-history-book="1-samuel"]')).toHaveAttribute("href", "/biblical-history/1-samuel-birth-and-rise-of-samuel");
     expect(document.querySelector('[data-history-book="2-samuel"]')).toHaveAttribute("href", "/biblical-history/2-samuel-death-of-saul-and-civil-war-for-the-throne");
     expect(document.querySelector('[data-history-book="1-kings"]')).toHaveAttribute("href", "/biblical-history/1-kings-solomons-succession-and-the-securing-of-the-throne");
+    expect(document.querySelector('[data-history-book="2-kings"]')).toHaveAttribute("href", "/biblical-history/2-kings-elijahs-departure-and-elishas-succession");
     expect(screen.queryByText("Upcoming")).toBeNull();
     expect(screen.queryByText(/4 categories · 10 events/)).toBeNull();
     expect(screen.getByText(/Scroll for more books/)).toBeInTheDocument();
