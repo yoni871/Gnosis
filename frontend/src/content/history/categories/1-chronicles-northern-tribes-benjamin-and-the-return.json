@@ -1,0 +1,526 @@
+{
+  "id": "category-1-chronicles-northern-tribes-benjamin-and-the-return",
+  "title": "Northern Tribes, Benjamin, and the Return",
+  "category": "category",
+  "orphan": true,
+  "era": "1-chronicles",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Chronicles",
+    "bookId": "1-chronicles",
+    "startChapter": 7,
+    "startVerse": 1,
+    "endChapter": 9,
+    "endVerse": 44
+  },
+  "fullRange": {
+    "book": "1 Chronicles",
+    "bookId": "1-chronicles",
+    "startChapter": 7,
+    "startVerse": 1,
+    "endChapter": 9,
+    "endVerse": 44
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Chronicles narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ch-03-001",
+      "claim": "Issachar's sons are four: Tola, Puah, Jashub, and Shimrom.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198): Puah is Puvah in Genesis and Numbers, and Jashub is Iob in Genesis; the stored spellings are quoted as stored.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-002",
+      "claim": "Tola's line runs through Uzzi to Izrahiah and his four sons, heads of their father's house, valiant men of might, \"whose number was in the days of David two and twenty thousand and six hundred.\" With them were bands of soldiers for war, six and thirty thousand men, \"for they had many wives and sons.\" All the families of Issachar reckoned together are fourscore and seven thousand.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198): the 22,600 are the divisions of Issachar claiming Tola as ancestor, and \"in the days of David\" is linked to the numbering of ch. 21.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-003",
+      "claim": "Benjamin in chapter 7 has three sons: Bela, Becher, and Jediael. Bela's five sons are reckoned at twenty and two thousand and thirty and four; Becher's nine sons at twenty thousand and two hundred; Jediael's line at seventeen thousand and two hundred soldiers — 59,434 fighting men in all. The verse closes with Shuppim and Huppim, the children of Ir, and Hushim, the sons of Aher.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198): the total armed strength of Benjamin from 7:7, 7:9, and 7:11 is 59,434.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-004",
+      "claim": "Benjamin's sons number three in 7:6 (Bela, Becher, Jediael) but five in 8:1–2 (Bela, Ashbel, Aharah, Nohah, Rapha), and Bela's sons are stated differently in 7:7 and in 8:3–5. The two lists preserve different traditions and are not reconciled.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7\" and \"1 Chronicles 8,\" read in full: \"There are variations of reading and probably also variations of tradition in the different lists.\"",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-005",
+      "claim": "The verse reads \"Shuppim also, and Huppim, the children of Ir, and Hushim, the sons of Aher.\" The name Dan does not appear in the chapter, and the verse is widely read as the place where Dan's notice stood, with \"Aher\" (\"another\") replacing Dan.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198): in Genesis 46:23 and Numbers 26:42 the sons of Dan are Hushim, and in Chronicles the word Dan is replaced by Aher, either because the Chronicler or some copyist found Dan illegible; Aher literally means \"another.\"",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ch-03-006",
+      "claim": "Naphtali's sons are four: Jahziel, Guni, Jezer, and Shallum, \"the sons of Bilhah.\" The whole tribe receives a single verse.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198): the names differ slightly from Genesis 46:24.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-007",
+      "claim": "Manasseh's line: Ashriel; Machir, born to the Aramitess concubine, the father of Gilead; Machir's marriage alliance and Maachah; Zelophehad's daughters (see 1CCL-03-008); Peresh and Sheresh, Ulam and Rakem, Bedan; Hammoleketh's sons Ishod, Abiezer, and Mahalah; Shemidah's sons Ahian, Shechem, Likhi, and Aniam.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198): 7:14–15 is \"a difficult section\" whose \"text is much disturbed\"; the Maachah notice is ethnographical, meaning the people of Maachah were related by blood to Machir.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-008",
+      "claim": "\"And the name of the second was Zelophehad: and Zelophehad had daughters.\" No sons of Zelophehad are named.",
+      "evidence": "Stored KJV text read in full. The inheritance law the daughters later claim is a connection (1CCO-03-003–004), not imported into this claim.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-009",
+      "claim": "Ephraim's line runs Shuthelah, Bered, Tahath, Eladah, Tahath, Zabad, Shuthelah, then Ezer and Elead, \"whom the men of Gath that were born in that land slew, because they came down to take away their cattle.\" \"And Ephraim their father mourned many days, and his brethren came to comfort him.\" A son is born and named Beriah, \"because it went evil with his house.\" His daughter Sherah \"built Bethhoron the nether, and the upper, and Uzzensherah.\" The line continues through Rephah, Resheph, Telah, Tahan, Laadan, Ammihud, Elishama, Non, and \"Jehoshuah his son.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198): \"they came down\" suits a descent from the hills of Ephraim after the settlement, so the mourning is the tribe personified in its ancestor; Beriah is a play on the Hebrew for \"it went evil\"; the line ends at Joshua (Non is Nun, Jehoshuah is Joshua).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-010",
+      "claim": "Ephraim's possessions and habitations are Bethel and its towns, eastward Naaran, westward Gezer, Shechem \"unto Gaza\"; and by the borders of the children of Manasseh, Bethshean, Taanach, Megiddo, and Dor. \"In these dwelt the children of Joseph the son of Israel.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198): Bethel is perhaps the modern Beitin; Naaran is Naarath in Joshua 16:7; Beth-shean is the Greek Scythopolis, the modern Beisan.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-011",
+      "claim": "The stored text reads \"unto Gaza\" in the Ephraimite town list. Gaza the Philistine city in the far south-west can hardly be intended here; some Hebrew manuscripts read Ayyah, a reading in part supported by the Greek version. Which place the verse names cannot be established from the verse alone.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198).",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ch-03-012",
+      "claim": "Asher's sons are Imnah, Isuah, Ishuai, and Beriah, and Serah their sister. Beriah's sons are Heber and Malchiel; Heber begets Japhlet, Shomer, Hotham, and Shua their sister; the lines of Japhlet, Shamer, Helem, Zophah, Jether, and Ulla follow. \"All these were the children of Asher, heads of their father's house, choice and mighty men of valour, chief of the princes. And the number throughout the genealogy of them that were apt to the war and to battle was twenty and six thousand men.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 7,\" read in full (lines 0–198): the names in 7:30–31 come from Genesis 46:17 and Numbers 26:44–46; the 26,000 stands against 40,000 in 1 Chronicles 12:36 and 53,400 in Numbers 26:47, and the totals are not reconciled.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-013",
+      "claim": "Benjamin begat Bela his firstborn, Ashbel the second, Aharah the third, Nohah the fourth, and Rapha the fifth. Bela's sons are Addar, Gera, Abihud, Abishua, Naaman, Ahoah, Gera, Shephuphan, and Huram.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 8,\" read in full (lines 0–151): Addar is perhaps to be read Ard, as in Genesis 46:21 and Numbers 26:40.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-014",
+      "claim": "\"And these are the sons of Ehud: these are the heads of the fathers of the inhabitants of Geba, and they removed them to Manahath.\" Naaman, Ahiah, and Gera removed them, and Gera begat Uzza and Ahihud. The passage's sense is obscure as it stands.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 8,\" read in full (lines 0–151): Ehud the deliverer was descended from Gera; \"probably some words have fallen out; we cannot say who carried whom captive,\" and verse 7 \"yields no satisfactory sense.\" The claim records the stored text; the obscurity is carried, not resolved.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-015",
+      "claim": "Shaharaim begat children in the country of Moab, \"after he had sent them away,\" by Hushim, Baara, and Hodesh his wives. By Hushim he begat Abitub and Elpaal. Elpaal's sons are Eber, Misham, and Shamed, \"who built Ono, and Lod, with the towns thereof.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 8,\" read in full (lines 0–151): Ono and Lod appear in Ezra 2:33, Nehemiah 7:37, and Nehemiah 11:35, and were evidently well known in post-exilic times; Lod is the Lydda of the New Testament.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-016",
+      "claim": "Beriah and Shema, heads of the fathers of the inhabitants of Aijalon, \"drove away the inhabitants of Gath.\" The heads of the fathers follow family by family (vv. 14–27), closing: \"These were heads of the fathers, by their generations, chief men. These dwelt in Jerusalem.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 8,\" read in full (lines 0–151): \"These dwelt in Jerusalem\" means that in the writer's day the heads of families enumerated in 8:15–27 dwelt in Jerusalem; Aijalon is the town of Joshua 10:12 and 1 Samuel 14:31.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-017",
+      "claim": "The notice that Beriah and Shema drove away the inhabitants of Gath is probably an allusion to a fight whose memory was kept alive in local song, of the same kind as the Gath raid on Ephraim's sons in 7:21–22.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 8,\" read in full (lines 0–151): \"Probably an allusion to some fight the memory of which was kept alive in local song. Cp. 1 Chronicles 7:21–22.\"",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ch-03-018",
+      "claim": "\"And at Gibeon dwelt the father of Gibeon; whose wife's name was Maachah.\" His firstborn is Abdon, then Zur, Kish, Baal, Nadab, Gedor, Ahio, and Zacher; Mikloth begat Shimeah, and \"these also dwelt with their brethren in Jerusalem, over against them.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 8,\" read in full (lines 0–151): the father of Gibeon is Jeiel in the Revised Version's 9:35 (stored KJV: Jehiel); the Greek version adds \"and Ner\" after Baal, and Zacher is Zechariah in 9:37.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-019",
+      "claim": "\"And Ner begat Kish, and Kish begat Saul, and Saul begat Jonathan, and Malchishua, and Abinadab, and Eshbaal.\" The son of Jonathan was Meribbaal, and Meribbaal begat Micah.",
+      "evidence": "Stored KJV text read in full. The Samuel differences in these verses are the subject of 1CCL-03-020 and 1CCL-03-021; this claim records the Chronicles line as stored.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-020",
+      "claim": "Eshbaal is the son called Ishbosheth in 2 Samuel 2:8. Samuel names three sons of Saul (Jonathan, Ishvi, Malki-Shua — the stored KJV reads Ishui and Melchishua) where Chronicles lists four. And 1 Samuel 14:50–51 makes Kish and Ner both sons of Abiel, so that Ner was Saul's uncle, while Chronicles makes Ner the father of Kish. The differences are observable in the texts; the explanations offered for them do not settle the question.",
+      "evidence": "Stored KJV text of 1 Chronicles 8:33 read in full; stored KJV text of 1 Samuel 14:49–51 and 2 Samuel 2:8 verified live from the Gnosis Preview Bible API in this dossier. BiblicalTraining, \"Saul,\" read in full (lines 0–296 of 425): Esh-Baal is the son called Ish-Bosheth in 2 Samuel 2:8, and Ishvi is probably another name for him; interpreters have explained the Ner/Kish difference in several ways — genealogies often skip generations, the family may have used the same names more than once, or a name may have dropped out in copying — and \"the evidence does not settle the question.\" Cambridge Bible, \"1 Chronicles 8,\" read in full (lines 0–151): in the Samuel text the offensive name Eshbaal, \"Man of Baal,\" has been changed to Ishbosheth, \"Man of the Shameful-thing,\" but it has been left standing in Chronicles.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-021",
+      "claim": "Meribbaal, the son of Jonathan, is the Mephibosheth of 2 Samuel 9:6 and 9:12 — the lame son of Jonathan who eats at David's table and whose young son is Micha (the stored KJV of 2 Samuel 9:12 spells the name Micha, where Chronicles reads Micah).",
+      "evidence": "Stored KJV text of 1 Chronicles 8:34 read in full; stored KJV text of 2 Samuel 9:6 and 9:12 verified live from the Gnosis Preview Bible API in this dossier. Cambridge Bible, \"1 Chronicles 8,\" read in full (lines 0–151): \"The person meant seems to be Mephibosheth (2 Samuel 9:6; 2 Samuel 9:12).\" BiblicalTraining, \"Saul,\" read in full (lines 0–296 of 425): David spared Mephibosheth son of Jonathan because of his own oath to Jonathan.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ch-03-022",
+      "claim": "Micah's sons are Pithon, Melech, Tarea, and Ahaz. Ahaz begat Jehoadah, who begat Alemeth, Azmaveth, and Zimri; Zimri begat Moza, Moza begat Binea, and Rapha, Eleasah, and Azel follow. Azel had six sons: Azrikam, Bocheru, Ishmael, Sheariah, Obadiah, and Hanan. Eshek's sons are Ulam, Jehush, and Eliphelet; Ulam's sons are \"mighty men of valour, archers, and had many sons, and sons' sons, an hundred and fifty. All these are of the sons of Benjamin.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 8,\" read in full (lines 0–151): Tarea is Tahrea in 9:41, Jehoadah is Jarah in 9:42, Rapha is Rephaiah in 9:43.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-023",
+      "claim": "The Saul line is repeated at 9:35–44 with eight differences in names from 8:29–38: 9:35 names the father of Gibeon Jehiel, where 8:29 leaves him unnamed; 9:36 adds \"and Ner\" after Baal, where 8:30 has no Ner; 9:37 reads Zechariah, where 8:31 reads Zacher, and names Mikloth among the sons, where 8:31 does not; 9:38 reads Shimeam, where 8:32 reads Shimeah; 9:41 reads Tahrea, where 8:35 reads Tarea; 9:42 reads Jarah, where 8:36 reads Jehoadah; 9:43 reads Rephaiah, where 8:37 reads Rapha. The Eshek and Ulam verses (8:39–40) are not repeated in chapter 9.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 8\" and \"1 Chronicles 9,\" read in full: 9:35–38 is 8:29–32, and 9:39–44 is 8:33–38, with the differences as listed.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-024",
+      "claim": "\"So all Israel were reckoned by genealogies; and, behold, they were written in the book of the kings of Israel and Judah, who were carried away to Babylon for their transgression.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): \"they were written in the book\" is apparently the book referred to in 1 Chronicles 5:17, and the statement that Judah was led captive calls attention to the fact that the list which follows refers to post-exilic times.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-025",
+      "claim": "\"Now the first inhabitants that dwelt in their possessions in their cities were, the Israelites, the priests, Levites, and the Nethinims.\" In Jerusalem dwelt Judah, Benjamin, Ephraim, and Manasseh.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): \"first\" is read by Nehemiah 11:3 as \"the chiefs of the province,\" so the list is a list of chief men; the four classes are lay Israel, priests, Levites, and Nethinim.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-026",
+      "claim": "The Nethinim are listed as a distinct fourth class among the first inhabitants. Their origin is not stated in Chronicles, and the proposal that they descend from the Gibeonites of Joshua 9 is a suggestion the Bible does not state.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): the Nethinim are \"a class of Temple servants reckoned as inferior to the Levites. Perhaps they were of foreign extraction and included the Gibeonites (cp. Joshua 9:23).\" BiblicalTraining, \"Gibeonites,\" read in full (lines 0–143): \"Jewish tradition and a number of later interpreters have linked the Gibeonites with the temple servants of Ezra and Nehemiah... The Bible does not state this connection, and it remains a suggestion.\"",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ch-03-027",
+      "claim": "Of Judah in Jerusalem: Uthai the son of Ammihud, of the children of Pharez; of the Shilonites, Asaiah the firstborn and his sons; of the sons of Zerah, Jeuel and their brethren, six hundred and ninety.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): Uthai is Athaiah in Nehemiah 11:4; Asaiah is Maaseiah in Nehemiah 11:5; the sons of Zerah are missing from Nehemiah, and its 468 sons of Perez stand against the 690 here.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-028",
+      "claim": "Of Benjamin in Jerusalem: Sallu the son of Meshullam; Ibneiah the son of Jeroham; Elah the son of Uzzi; Meshullam the son of Shephathiah; \"and their brethren, according to their generations, nine hundred and fifty and six. All these men were chief of the fathers in the house of their fathers.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): Sallu's genealogy is differently stated in Nehemiah 11:7; Ibneiah, Elah, and Meshullam are not mentioned in Nehemiah 11; the 956 nearly agrees with the 928 of Nehemiah 11:8.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-029",
+      "claim": "Of the priests: Jedaiah, Jehoiarib, and Jachin; Azariah, \"the ruler of the house of God\"; Adaiah and Maasiai; \"and their brethren, heads of the house of their fathers, a thousand and seven hundred and threescore; very able men for the work of the service of the house of God.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): Jehoiarib and Jedaiah are the first and second priestly courses of 1 Chronicles 24:7, Jachin the twenty-first (24:17), Malchijah the fifth (24:9), Immer the sixteenth (24:14); Azariah is Seraiah in Nehemiah 11:11.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-030",
+      "claim": "Of the Levites: Shemaiah the son of Hasshub, of the sons of Merari; Bakbakkar, Heresh, and Galal, and Mattaniah the son of Micah, of Asaph; Obadiah the son of Shemaiah, of Jeduthun; Berechiah the son of Asa, \"that dwelt in the villages of the Netophathites.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): the clause at 9:15 \"appears to be corrupt,\" and neither the Greek nor the Latin version gives real help for emending it; Obadiah is Abda in Nehemiah 11:17; the villages of the Netophathites were close to Jerusalem, and the exact site is uncertain.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-031",
+      "claim": "The porters are Shallum, Akkub, Talmon, and Ahiman, and Shallum is the chief; they wait in the king's gate eastward, as porters in the companies of the children of Levi. Shallum the son of Kore, of the Korahites, with his brethren, are \"over the work of the service, keepers of the gates of the tabernacle: and their fathers, being over the host of the LORD, were keepers of the entry.\" \"And Phinehas the son of Eleazar was the ruler over them in time past, and the LORD was with him.\" Zechariah the son of Meshelemiah is porter of the door of the tabernacle of the congregation.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): \"porters\" is \"doorkeepers\"; Shallum is Meshelemiah (1 Chronicles 26:1, 26:14); the king's gate eastward is the king's entrance into the Temple; Phinehas is linked to Numbers 25:6–8, where he avenged the profanation of the camp.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-032",
+      "claim": "\"All these which were chosen to be porters in the gates were two hundred and twelve. These were reckoned by their genealogy in their villages, whom David and Samuel the seer did ordain in their set office.\" They and their children have the oversight of the gates of the house of the LORD by wards, in four quarters; their brethren in the villages come every seven days; the four chief porters are over the chambers and treasuries of the house of God; \"they lodged round about the house of God, because the charge was upon them, and the opening thereof every morning pertained to them.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): the discrepancy in numbers between Chronicles and Nehemiah may be explained by supposing some difference in the manner of reckoning or in the period referred to; the Chronicler attributes to David the organisation of the priests, the Levites, the singers, and the doorkeepers, and Samuel the seer is associated with David in this passage; the doorkeepers were not, as a body, Levites, though their leaders were.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-033",
+      "claim": "Certain of them have the charge of the ministering vessels, bringing them in and out by tale; some oversee the vessels, the fine flour, the wine, the oil, the frankincense, and the spices; \"some of the sons of the priests made the ointment of the spices.\" Mattithiah, a Levite, firstborn of Shallum the Korahite, has the set office over the things made in the pans; the Kohathites are over the shewbread, \"to prepare it every sabbath.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): the duties of 9:28–29 are Levitical duties (cp. 1 Chronicles 23:29); the ointment is peculiarly holy, and only the priests may make it (cp. Exodus 30:23–25); the shewbread is literally the bread of the row, set in order before the LORD every sabbath (Leviticus 24:6, 24:8).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-034",
+      "claim": "\"And these are the singers, chief of the fathers of the Levites, who remaining in the chambers were free: for they were employed in that work day and night.\" \"These chief fathers of the Levites were chief throughout their generations; these dwelt at Jerusalem.\"",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): verse 33 may be intended as a colophon to 9:15–16, for the names there given are those of singers; \"free\" is free from other service.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-03-035",
+      "claim": "The Gibeon and Saul lines are repeated as the bridge to chapter 10: Jehiel the father of Gibeon, his wife Maachah, and their sons; Mikloth and Shimeam; Ner, Kish, Saul, Jonathan, Malchishua, Abinadab, and Eshbaal; Meribbaal and Micah; Micah's sons; Ahaz, Jarah, Alemeth, Azmaveth, Zimri, Moza, Binea, Rephaiah, Eleasah, and Azel; Azel's six sons.",
+      "evidence": "Stored KJV text read in full. Cambridge Bible, \"1 Chronicles 9,\" read in full (lines 0–260): 9:35–38 is 8:29–32 and 9:39–44 is 8:33–38, and \"the passage is probably repeated here in order to serve as an introduction to the story of the death of Saul.\" The eight differences are the subject of 1CCL-03-023.",
+      "assessment": "established"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ch-03-001",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 46,
+      "startVerse": 13,
+      "endChapter": 46,
+      "endVerse": 24,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Genesis 46:13, 46:17, 46:21, and 46:23–24. The sons of Jacob as they are listed at the descent into Egypt: Issachar's four sons, Asher's sons, Benjamin's ten sons, Dan's son Hushim, and Naphtali's four sons. The names and numbers differ from both Chronicles lists, and the three lists preserve different traditions of the same families."
+    },
+    {
+      "id": "conn-1ch-03-002",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 26,
+      "startVerse": 23,
+      "endChapter": 26,
+      "endVerse": 47,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets Numbers 26:23–24, 26:31, 26:35–36, 26:38–41, 26:42, and 26:44–47. The second census lists the same tribes by their clans: Issachar, Asriel of Manasseh, Shuthelah of Ephraim, the clans of Benjamin, Hushim of Dan, and the clans of Asher with their totals. The census totals differ from the David's-day musters in chapter 7, and the two counts are carried side by side, not reconciled."
+    },
+    {
+      "id": "conn-1ch-03-003",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 27,
+      "startVerse": 1,
+      "endChapter": 27,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The daughters of Zelophehad — Mahlah, Noah, Hoglah, Milcah, and Tirzah — stand before Moses and Eleazar and ask for their father's inheritance, since he died with no sons. Moses brings their cause before the LORD, and the law is given: if a man dies with no son, his inheritance passes to his daughter. The bare notice in chapter 7 names Zelophehad and notes only that he had daughters, without their names or the story; the law is the story behind it."
+    },
+    {
+      "id": "conn-1ch-03-004",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 17,
+      "startVerse": 3,
+      "endChapter": 17,
+      "endVerse": 6,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Zelophehad's daughters come before Eleazar and Joshua and receive their inheritance among their father's brethren, in Manasseh. The daughters of Manasseh have an inheritance among his sons, and the rest of Manasseh's sons have the land of Gilead. The law of Numbers 27 is carried out in the land itself."
+    },
+    {
+      "id": "conn-1ch-03-005",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 9,
+      "startVerse": 21,
+      "endChapter": 9,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The princes let the Gibeonites live but make them hewers of wood and drawers of water for all the congregation, and Joshua makes them hewers of wood and drawers of water for the congregation and for the altar of the LORD. The service imposed on the Gibeonites is the earlier pattern behind the temple servants named in chapter 9, though the Bible never says the two groups are one."
+    },
+    {
+      "id": "conn-1ch-03-006",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 16,
+      "startVerse": 3,
+      "endChapter": 16,
+      "endVerse": 5,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The border of Ephraim runs down westward to the coast of Bethhoron the nether, and the border of the children's inheritance on the east side runs to Bethhoron the upper. The two towns Sherah is said to have built are the towns that mark Ephraim's border."
+    },
+    {
+      "id": "conn-1ch-03-007",
+      "book": "Joshua",
+      "bookId": "joshua",
+      "startChapter": 18,
+      "startVerse": 25,
+      "endChapter": 18,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Gibeon, Ramah, and Beeroth are named among the cities of Benjamin, and the passage closes with the inheritance of the children of Benjamin according to their families. The town where Saul's ancestors dwell in chapter 8 is a Benjamite town by allotment."
+    },
+    {
+      "id": "conn-1ch-03-008",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 2,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Kish is a man of Benjamin, a mighty man of power, and his son is Saul, a choice young man, higher than any of the people from his shoulders upward. The line that chapter 8 traces — Ner, Kish, Saul — begins here with Kish of Benjamin."
+    },
+    {
+      "id": "conn-1ch-03-009",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 14,
+      "startVerse": 49,
+      "endChapter": 14,
+      "endVerse": 51,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The sons of Saul are named as Jonathan, Ishui, and Melchishua, and Kish is the father of Saul while Ner, the father of Abner, is the son of Abiel and Saul's uncle. Samuel's account names three sons where Chronicles lists four, and makes Ner Saul's uncle where Chronicles makes him Kish's father. The two accounts are carried side by side."
+    },
+    {
+      "id": "conn-1ch-03-010",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 31,
+      "startVerse": 1,
+      "endChapter": 31,
+      "endVerse": 6,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Philistines fight Israel on Mount Gilboa, slay Jonathan, Abinadab, and Melchishua, Saul's sons, and Saul falls on his own sword. Three of the four sons named in the Chronicles line die in this battle; Eshbaal is not among the slain, and his kingship follows in 2 Samuel 2."
+    },
+    {
+      "id": "conn-1ch-03-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 2,
+      "startVerse": 8,
+      "endChapter": 2,
+      "endVerse": 10,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Abner son of Ner takes Ishbosheth the son of Saul, brings him over to Mahanaim, and makes him king over Gilead, Ephraim, Benjamin, and all Israel. Ishbosheth, forty years old, reigns two years while the house of Judah follows David. He is the same man the Chronicler calls Eshbaal."
+    },
+    {
+      "id": "conn-1ch-03-012",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 4,
+      "startVerse": 4,
+      "endChapter": 4,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Jonathan, Saul's son, has a son who is lame on his feet, hurt in the flight after the tidings of Saul and Jonathan out of Jezreel, and his name is Mephibosheth. He is the same man the Chronicler calls Meribbaal, the son of Jonathan who begets Micah."
+    },
+    {
+      "id": "conn-1ch-03-013",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 9,
+      "startVerse": 6,
+      "endChapter": 9,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Mephibosheth, the son of Jonathan, comes to David, falls on his face, and eats at the king's table continually. His young son is named Micha, where Chronicles reads Micah. The line that chapter 8 carries through Micah continues here in Jerusalem, at David's table."
+    },
+    {
+      "id": "conn-1ch-03-014",
+      "book": "Ezra",
+      "bookId": "ezra",
+      "startChapter": 2,
+      "startVerse": 43,
+      "endChapter": 2,
+      "endVerse": 58,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The Nethinim are listed family by family among those who return with Zerubbabel, and the children of Solomon's servants follow them. The same order named in chapter 9 is counted here among the returnees, with its families and its totals."
+    },
+    {
+      "id": "conn-1ch-03-015",
+      "book": "Ezra",
+      "bookId": "ezra",
+      "startChapter": 8,
+      "startVerse": 20,
+      "endChapter": 8,
+      "endVerse": 20,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Of the Nethinim, whom David and the princes appointed for the service of the Levites, two hundred and twenty are brought to Ezra, all of them expressed by name. The order is traced to David's appointment, as the porters of chapter 9 are traced to David and Samuel."
+    },
+    {
+      "id": "conn-1ch-03-016",
+      "book": "Nehemiah",
+      "bookId": "nehemiah",
+      "startChapter": 7,
+      "startVerse": 46,
+      "endChapter": 7,
+      "endVerse": 60,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Nehemiah's register lists the Nethinim family by family, and the children of Solomon's servants after them, three hundred and ninety-two in all. The register is the near copy of the Ezra list, preserved a second time."
+    },
+    {
+      "id": "conn-1ch-03-017",
+      "book": "Nehemiah",
+      "bookId": "nehemiah",
+      "startChapter": 11,
+      "startVerse": 3,
+      "endChapter": 11,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The chiefs of the province who dwell in Jerusalem are listed by the same shape as chapter 9: Judah, Benjamin, priests, Levites, and porters. The names and numbers differ in detail — the Ephraim and Manasseh clause of chapter 9 is not found here, and the totals are counted on a different plan — and the two lists are best read as extracts made independently from the same document."
+    },
+    {
+      "id": "conn-1ch-03-018",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 6,
+      "startVerse": 31,
+      "endChapter": 6,
+      "endVerse": 47,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 1 Chronicles 6:31–32 and 6:33–47. David appoints the singers, Heman, Asaph, and Ethan, to minister before the tabernacle after the ark has rest, and their lines are given in full. The singers of chapter 9, chief of the fathers of the Levites, stand in the lines appointed here."
+    },
+    {
+      "id": "conn-1ch-03-019",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 26,
+      "startVerse": 1,
+      "endChapter": 26,
+      "endVerse": 19,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 1 Chronicles 26:1–11 and 26:12–19. The divisions of the porters are set out under David: the Korahites under Meshelemiah, the sons of Obed-edom, and Hosah, with the lots cast for the gates on the four sides. The 212 porters of chapter 9 are the same office, organised here in full."
+    },
+    {
+      "id": "conn-1ch-03-020",
+      "book": "Numbers",
+      "bookId": "numbers",
+      "startChapter": 16,
+      "startVerse": 1,
+      "endChapter": 16,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Korah the son of Izhar, with Dathan and Abiram and two hundred and fifty princes of the assembly, rises up before Moses and Aaron. The Korahites who keep the gates in chapter 9 descend from the man who rose against Moses, and the text does not explain how the rebel's line came to keep the entry."
+    },
+    {
+      "id": "conn-1ch-03-021",
+      "book": "2 Chronicles",
+      "bookId": "2-chronicles",
+      "startChapter": 36,
+      "startVerse": 17,
+      "endChapter": 36,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "probable",
+      "note": "The king of the Chaldees is brought upon Judah, and those who escape the sword are carried away to Babylon, where they are servants until the reign of the kingdom of Persia, until the land has enjoyed her sabbaths. The carrying away named in the first verse of chapter 9 is told here in full."
+    },
+    {
+      "id": "conn-1ch-03-022",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 10,
+      "startVerse": 1,
+      "endChapter": 10,
+      "endVerse": 14,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "The Philistines fight Israel on Gilboa, Saul and his three sons fall, and the Chronicler gives his own verdict: Saul died for his transgression, and for asking counsel of one that had a familiar spirit, and the kingdom was turned to David. The repeated Saul line of chapter 9 is the bridge to this death, and the death is the next category's subject."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-chronicles-masoretic-text",
+    "source-cambridge-bible-1-chronicles-7-9",
+    "source-callender-genealogies-bible",
+    "source-biblicaltraining-saul",
+    "source-biblicaltraining-gibeonites"
+  ],
+  "review": {
+    "author": "Gnosis 1 Chronicles research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-27",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Chronicles category; independent QA pending. Third 1 Chronicles category; no shared-file change (the \"1-chronicles\" era-enum append rode with S01). S03 sources[] carries five entries (all verified in the live registry): 1CNN-S03-01 stored KJV 1 Chr 7-9 -> source-mechon-mamre-1-chronicles-masoretic-text; 1CNN-S03-02 Cambridge Bible 1 Chr 7-9 -> source-cambridge-bible-1-chronicles-7-9; source-callender-genealogies-bible; source-biblicaltraining-saul; source-biblicaltraining-gibeonites. One is newly cited by this category (Cambridge Bible 1 Chr 7-9); the other four were already cited by published categories (Gibeonites was already cited by the published 2 Samuel category on the famine, the Gibeonites, and the giants). Excluded from sources[] by the section-location rule: 1CNN-S03-03 (Mechon Mamre chs. 7-9 Hebrew, needs-checking, 429, no §9 row and no appendix footnote) and 1CNN-S03-04 (BT \"Nethinim\", needs-checking, 429, no §9 row and no appendix footnote); the Knoppers work (source-knoppers-ancient-near-eastern-royal-grants) is not an S03 source and appears nowhere in this dossier's §9 or appendix. primaryScripture is the full range 7:1-9:44 (span 2, no narrowing); fullRange is 7:1-9:44. Claims 1CCL-03-005 (Aher/Dan), 1CCL-03-011 (Gaza crux) and 1CCL-03-026 (Nethinim origin) are debated; 1CCL-03-017 and 1CCL-03-021 are probable. The two copies of Saul's line differ in eight names (8:29-38 vs 9:35-44); the Eshek/Ulam verses 8:39-40 are not repeated in chapter 9. No licensed-translation text anywhere in this category. No editorialOverride."
+  }
+}
