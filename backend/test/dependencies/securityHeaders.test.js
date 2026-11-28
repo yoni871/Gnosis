@@ -11,8 +11,8 @@ const crypto = require("node:crypto");
 // throws, so only header/auth behaviour is asserted here. Authenticated
 // happy paths are covered by the database-backed application suite.
 process.env.GNOSIS_TEST_ISOLATION = "1";
-process.env.JWT_SECRET = "test-secret-for-security-headers-000000000000";
-process.env.RATE_LIMIT_KEY_SECRET = "test-secret-for-security-headers-111111111111";
+process.env.JWT_SECRET = require('../helpers/syntheticSecrets').JWT_SECRET;
+process.env.RATE_LIMIT_KEY_SECRET = require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET;
 process.env.RESEND_API_KEY = "test-key-for-security-headers-222222222222";
 process.env.EMAIL_FROM = "Gnosis Test <test@example.invalid>";
 process.env.FRONTEND_URL = "https://frontend.example.invalid";

@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const { DEVICE_KEY_POLICY, computeDeviceKey, recordLoginDevice } = require('../../src/services/loginDevices');
 const { computeKeyHash } = require('../../src/utils/rateLimit');
 
-const SECRET = 'synthetic-login-devices-test-secret';
+const SECRET = require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET;
 
 test.before(() => { process.env.RATE_LIMIT_KEY_SECRET = SECRET; });
 test.after(() => { delete process.env.RATE_LIMIT_KEY_SECRET; });

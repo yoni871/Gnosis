@@ -8,7 +8,7 @@ const {
     verifyMfaEnrollToken,
 } = require("../../src/utils/mfaEnrollToken");
 
-process.env.JWT_SECRET = "synthetic-test-jwt-secret-synthetic-test-jwt-secret";
+process.env.JWT_SECRET = require('../helpers/syntheticSecrets').JWT_SECRET;
 const PASSWORD_HASH = "synthetic-password-hash";
 
 test("an enrollment token verifies and carries the mfa-enroll purpose", () => {

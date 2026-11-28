@@ -5,8 +5,8 @@ const path = require("node:path");
 const { testEnvironment } = require("../../scripts/test");
 
 const backendDir = path.join(__dirname, "..", "..");
-const STRONG_JWT = "test-secret-for-server-config-tests";
-const STRONG_RATE = "test-secret-for-server-config-tests";
+const STRONG_JWT = require('../helpers/syntheticSecrets').JWT_SECRET;
+const STRONG_RATE = require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET;
 
 function runCheck(extra) {
     const env = testEnvironment();
@@ -56,9 +56,25 @@ test("check-config fails on a short RATE_LIMIT_KEY_SECRET without echoing it", (
 
 test("check-config accepts 64-hex secrets", () => {
     const result = runCheck({
-        JWT_SECRET: "0123456789abcdef".repeat(4),
-        RATE_LIMIT_KEY_SECRET: "fedcba9876543210".repeat(4),
+        JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET,
+        RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET,
     });
     assert.equal(result.status, 0, result.stdout + result.stderr);
     assert.match(result.stdout, /Startup configuration fields are valid\./);
+});
+
+test("check-config rejects identical encoded secrets without printing values", () => {
+    const result = runCheck({ JWT_SECRET: STRONG_JWT, RATE_LIMIT_KEY_SECRET: STRONG_JWT });
+    assert.notEqual(result.status, 0);
+    assert.match(result.stdout, /JWT_SECRET/);
+    assert.match(result.stdout, /RATE_LIMIT_KEY_SECRET/);
+    assert.ok(!result.stdout.includes(STRONG_JWT));
+});
+
+test("check-config rejects the same key bytes in different encodings", () => {
+    const rate = Buffer.from(STRONG_JWT, 'hex').toString('base64url');
+    const result = runCheck({ JWT_SECRET: STRONG_JWT, RATE_LIMIT_KEY_SECRET: rate });
+    assert.notEqual(result.status, 0);
+    assert.ok(!result.stdout.includes(STRONG_JWT));
+    assert.ok(!result.stdout.includes(rate));
 });

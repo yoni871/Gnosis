@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 Object.assign(process.env, require('../../scripts/test').testEnvironment(), {
-    JWT_SECRET: 'synthetic-jwt-refresh-regression', RATE_LIMIT_KEY_SECRET: 'synthetic-rate-refresh-regression' });
+    JWT_SECRET: require('../helpers/syntheticSecrets').JWT_SECRET, RATE_LIMIT_KEY_SECRET: require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET });
 const pool = require('../../src/db/db');
 const sessions = require('../../src/services/sessionService');
 const app = require('../../src/app');

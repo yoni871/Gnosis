@@ -410,8 +410,8 @@ test('DELETE /account clears the context on commit', async () => {
     // reuses the exact client the deletion committed on. Env mirrors
     // the values test/helpers/backend-instance.js gives workers.
     process.env.GNOSIS_TEST_ISOLATION = '1';
-    process.env.JWT_SECRET = 'synthetic-rls-test-jwt-secret-synthetic-test-jwt-secret';
-    process.env.RATE_LIMIT_KEY_SECRET = 'synthetic-rls-test-rate-limit-secret';
+    process.env.JWT_SECRET = require('../helpers/syntheticSecrets').JWT_SECRET;
+    process.env.RATE_LIMIT_KEY_SECRET = require('../helpers/syntheticSecrets').RATE_LIMIT_KEY_SECRET;
     process.env.RESEND_API_KEY = 'synthetic-test-resend-key';
     process.env.EMAIL_FROM = 'Gnosis Test <test@example.invalid>';
     process.env.FRONTEND_URL = 'https://frontend.example.invalid';

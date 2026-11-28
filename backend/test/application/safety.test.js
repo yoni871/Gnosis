@@ -17,7 +17,8 @@ test('missing/unsafe contexts and extra pg options fail closed', () => {
         { ...context, password: '' }, { ...context, connectionString: 'synthetic-poison' }]) {
         assert.throws(() => validateContext(value), /Invalid disposable/);
     }
-    assert.equal(workerEnvironment().JWT_SECRET, 'synthetic-application-test-jwt-synthetic-test-secret');
+    assert.equal(workerEnvironment().JWT_SECRET,
+        require('../helpers/syntheticSecrets').JWT_SECRET);
     assert.deepEqual(Object.keys(workerEnvironment()).filter(key => /^(DB_|PG|MIGRATION_|DATABASE_URL|NODE_OPTIONS)/.test(key)), []);
 });
 

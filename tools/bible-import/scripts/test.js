@@ -1,8 +1,9 @@
 'use strict';
 const { spawnSync } = require('node:child_process');
 const path = require('node:path');
+const { JWT_SECRET, RATE_LIMIT_KEY_SECRET } = require('../../../backend/test/helpers/syntheticSecrets');
 function testEnvironment() {
-    const env = { GNOSIS_TEST_ISOLATION: '1', TZ: 'UTC', JWT_SECRET: 'synthetic-offline-test-secret',
+    const env = { GNOSIS_TEST_ISOLATION: '1', TZ: 'UTC', JWT_SECRET, RATE_LIMIT_KEY_SECRET,
         RESEND_API_KEY: 're_synthetic_offline_test', EMAIL_FROM: 'test@example.invalid',
         FRONTEND_URL: 'https://example.invalid' };
     for (const key of ['PATH', 'SystemRoot', 'WINDIR', 'TMPDIR', 'TMP', 'TEMP']) {
