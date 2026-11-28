@@ -1,0 +1,599 @@
+{
+  "id": "category-1-chronicles-sauls-death-and-davids-anointing",
+  "title": "Saul's Death and David's Anointing",
+  "category": "category",
+  "orphan": true,
+  "era": "1-chronicles",
+  "status": "in-review",
+  "primaryScripture": {
+    "book": "1 Chronicles",
+    "bookId": "1-chronicles",
+    "startChapter": 10,
+    "startVerse": 1,
+    "endChapter": 12,
+    "endVerse": 40
+  },
+  "fullRange": {
+    "book": "1 Chronicles",
+    "bookId": "1-chronicles",
+    "startChapter": 10,
+    "startVerse": 1,
+    "endChapter": 12,
+    "endVerse": 40
+  },
+  "date": {
+    "type": "unknown",
+    "label": "Undated 1 Chronicles narrative",
+    "yearStart": null,
+    "yearEnd": null,
+    "note": "Biblical narrative chronology is not independently established as an absolute BCE date."
+  },
+  "locations": [],
+  "topics": [],
+  "claims": [
+    {
+      "id": "clm-1ch-04-001",
+      "claim": "The Philistines fight against Israel; the men of Israel flee and fall down slain in mount Gilboa. The Philistines follow hard after Saul and his sons, and slay Jonathan, Abinadab, and Malchishua, the sons of Saul.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 10).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-002",
+      "claim": "The battle goes sore against Saul, and the archers hit him, and he is wounded of the archers. Saul asks his armourbearer to thrust him through, \"lest these uncircumcised come and abuse me\"; the armourbearer will not, for he is sore afraid. Saul takes a sword and falls upon it; the armourbearer, seeing Saul dead, falls likewise on the sword and dies.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 10); BiblicalTraining, \"Saul,\" read in full (lines 292–297): the archers critically wounded Saul, the armourbearer refused, and Saul fell on his own sword.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-003",
+      "claim": "The Chronicler states, \"So Saul died, and his three sons, and all his house died together\" — while the genealogies in the same book trace Jonathan's son Meribbaal through later generations (8:34; 9:40). What \"all his house\" covers is unresolved: the household present at the battle, the house as a reigning house, or a rhetorical sweep.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 10); BiblicalTraining, \"Jonathan,\" read in part (lines 127–139): Merib-Baal in Chronicles, and the line traced through further generations.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ch-04-004",
+      "claim": "When all the men of Israel in the valley see that they fled and that Saul and his sons are dead, they forsake their cities and flee, and the Philistines come and dwell in them.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 10); BiblicalTraining, \"Gilboa,\" read in full (lines 47–50): Israelites on the far side of the valley and across the Jordan abandoned their towns, which the Philistines then occupied.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-005",
+      "claim": "On the morrow the Philistines come to strip the slain and find Saul and his sons fallen in mount Gilboa. They strip him, take his head and his armour, and send into the land of the Philistines round about, \"to carry tidings unto their idols, and to the people.\" They put his armour in the house of their gods and fasten his head in the temple of Dagon. Neither account says where the temple of Dagon stood.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 10); BiblicalTraining, \"Temples of Dagon,\" read in full (lines 66–75): neither account says where the temple stood; the head may have been taken to a temple in one of the Philistine cities.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-006",
+      "claim": "When all Jabesh-gilead hear all that the Philistines have done to Saul, all the valiant men arise, take away the body of Saul and the bodies of his sons, bring them to Jabesh, and bury their bones under the oak in Jabesh, and fast seven days. Samuel's account differs: the bodies are burned and the bones buried under a tamarisk (1 Sam 31:12–13).",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 10); BiblicalTraining, \"Jabesh Gilead,\" read in full (lines 68–76): the night march, the burning in Samuel's account, the great tree of the parallel account, and the seven-day fast.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-007",
+      "claim": "The Chronicler's verdict: \"So Saul died for his transgression which he committed against the LORD, even against the word of the LORD, which he kept not, and also for asking counsel of one that had a familiar spirit, to enquire of it; and enquired not of the LORD: therefore he slew him, and turned the kingdom unto David the son of Jesse.\" The verdict has no parallel in Samuel; it is the Chronicler's own frame for the turn of the kingdom.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 10); BiblicalTraining, \"Saul,\" read in full (lines 337–339): the Chronicler tells of Saul only through his final battle and gives a short verdict naming unfaithfulness, the word not kept, and consulting a medium.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-008",
+      "claim": "All Israel gather to David unto Hebron, saying, \"Behold, we are thy bone and thy flesh\" recalling that even when Saul was king David led out and brought in Israel, and that the LORD said, \"Thou shalt feed my people Israel, and thou shalt be ruler over my people Israel.\" The elders come, David makes a covenant with them in Hebron before the LORD, and they anoint David king over Israel, \"according to the word of the LORD by Samuel.\" The seven-and-a-half-year reign over Judah alone (2 Sam 2:8–11) is passed over in silence.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11); BiblicalTraining, \"David,\" read in part (lines 168–197, 466–468): the elders came to Hebron, made a covenant, and anointed David king over all Israel; First Chronicles passes over his years at Hebron as a rival to Ish-Bosheth.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-009",
+      "claim": "David and all Israel go to Jerusalem, which is Jebus, where the Jebusites are, the inhabitants of the land. The inhabitants say, \"Thou shalt not come hither.\" Nevertheless David takes the castle of Zion, which is the city of David. David says, \"Whosoever smiteth the Jebusites first shall be chief and captain. So Joab the son of Zeruiah went first up, and was chief.\" Samuel's taunt of the blind and the lame and the water-shaft (2 Sam 5:6–8) are absent from Chronicles; the prize of the chief command is Chronicles only.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11); BiblicalTraining, \"Jebusites,\" read in full (lines 74–79): David promised command to whoever led the attack, and Joab went up first and won the post; BiblicalTraining, \"Joab,\" read in part (lines 70–75).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-010",
+      "claim": "David dwells in the castle, therefore they call it the city of David. He builds the city round about, even from Millo round about, and Joab repairs the rest of the city. \"So David waxed greater and greater: for the LORD of hosts was with him.\"",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11); BiblicalTraining, \"Joab,\" read in part (lines 70–75): Joab rebuilt the rest of the city while David built from the supporting terraces inward.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-011",
+      "claim": "\"These also are the chief of the mighty men whom David had, who strengthened themselves with him in his kingdom, and with all Israel, to make him king, according to the word of the LORD concerning Israel.\" The list that follows is framed as the men who made David king.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-012",
+      "claim": "Jashobeam, an Hachmonite, chief of the captains, lifts his spear against three hundred slain at one time. Eleazar son of Dodo, the Ahohite, one of the three mighties, stands with David at Pas-dammim, where the Philistines gather to battle and there is a parcel of ground full of barley; the people flee, but they set themselves in the midst of that parcel, deliver it, slay the Philistines, \"and the LORD saved them by a great deliverance.\" Samuel's list credits the first deed at eight hundred slain and sets the stand in a field of lentils (2 Sam 23:8, 11) — flagged, not harmonised.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-013",
+      "claim": "Three of the thirty captains go down to the rock to David, into the cave of Adullam; the host of the Philistines encamps in the valley of Rephaim, and the Philistines' garrison is at Bethlehem. David longs and says, \"Oh that one would give me drink of the water of the well of Bethlehem, that is at the gate!\" The three break through the host, draw the water, and bring it to David — but David will not drink of it; he pours it out to the LORD, saying, \"shall I drink the blood of these men that have put their lives in jeopardy? for with the jeopardy of their lives they brought it.\"",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11); BiblicalTraining, \"David,\" read in part (lines 113–115): David took refuge in the cave of Adullam, where about four hundred men joined him.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-014",
+      "claim": "Abishai the brother of Joab, chief of the three, lifts his spear against three hundred and slays them; he is more honourable than the two, but attains not to the first three. Benaiah son of Jehoiada, son of a valiant man of Kabzeel, slays two lionlike men of Moab, goes down and slays a lion in a pit in a snowy day, and slays an Egyptian, a man of great stature, five cubits high, whose spear is like a weaver's beam, with a staff, plucking the spear out of the Egyptian's hand and slaying him with his own spear. He has the name among the three mighties, is honourable among the thirty, attains not to the first three, and David sets him over his guard. The Hebrew behind \"two lionlike men of Moab\" is difficult; the JPS 1917 rendering reads \"the two altar-hearths of Moab\" (JPS 1917).",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-015",
+      "claim": "The roll of the valiant men of the armies runs from Asahel the brother of Joab and Elhanan the son of Dodo of Bethlehem through the thirty and beyond, ending with Eliel, and Obed, and Jasiel the Mesobaite. It includes Uriah the Hittite (11:41) and other non-Israelites — Zelek the Ammonite, Ithmah the Moabite — named without comment. The names and order differ from 2 Samuel 23:24–39; the lists are parallel witnesses, not two halves of one list.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-016",
+      "claim": "These are they that come to David to Ziklag, \"while he yet kept himself close because of Saul the son of Kish\", mighty men, helpers of the war. They are armed with bows and \"could use both the right hand and the left in hurling stones and shooting arrows out of a bow, even of Saul's brethren of Benjamin.\" The chief is Ahiezer, then Joash, the sons of Shemaah the Gibeathite, with Jeziel, Pelet, Berachah, Jehu, Ismaiah, Jeremiah, Jahaziel, Johanan, Josabad, Eluzai, Jerimoth, Bealiah, Shemariah, Shephatiah, Elkanah, Jesiah, Azareel, Joezer, Jashobeam, Joelah, and Zebadiah.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 12); BiblicalTraining, \"Ziklag,\" read in full (lines 40–42): First Chronicles lists warriors who joined David at Ziklag, among them relatives of Saul from Benjamin, skilled archers and slingers who could use either hand.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-017",
+      "claim": "Of the Gadites there separate themselves unto David into the hold to the wilderness, men of might fit for battle, that can handle shield and buckler, \"whose faces were like the faces of lions, and were as swift as the roes upon the mountains\". Eleven captains are named in order, Ezer the first through Machbanai the eleventh; \"one of the least was over an hundred, and the greatest over a thousand.\" They go over Jordan in the first month, \"when it had overflown all his banks\", and put to flight all them of the valleys, east and west.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-018",
+      "claim": "Children of Benjamin and Judah come to the hold unto David. David goes out to meet them: \"If ye be come peaceably unto me to help me, mine heart shall be knit unto you: but if ye be come to betray me to mine enemies, seeing there is no wrong in mine hands, the God of our fathers look thereon, and rebuke it.\" Then the spirit comes upon Amasai, chief of the captains: \"Thine are we, David, and on thy side, thou son of Jesse: peace, peace be unto thee, and peace be to thine helpers; for thy God helpeth thee.\" David receives them and makes them captains of the band.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-019",
+      "claim": "Some of Manasseh fall to David when he comes with the Philistines against Saul to battle, but they help them not, for the lords of the Philistines upon advisement send him away, saying, \"He will fall to his master Saul to the jeopardy of our heads.\" As he goes to Ziklag, seven captains of the thousands of Manasseh fall to him; they help David against the band of the rovers. \"For at that time day by day there came to David to help him, until it was a great host, like the host of God.\"",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 12); BiblicalTraining, \"Philistines,\" read in part (lines 197–200): the other Philistine commanders refused to trust David in battle, and he was sent back to Ziklag.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-020",
+      "claim": "The muster at Hebron, \"to turn the kingdom of Saul to him, according to the word of the LORD\": Judah 6,800; Simeon 7,100; Levi 4,600; the Aaronites 3,700 with Jehoiada, and Zadok with twenty and two captains; Benjamin 3,000; Ephraim 20,800; half-Manasseh 18,000 expressed by name; Issachar two hundred heads; Zebulun 50,000; Naphtali 1,000 captains with 37,000; Dan 28,600; Asher 40,000; Reuben, Gad, and half-Manasseh 120,000. The figures as given sum to 340,800, counting Naphtali's 1,000 captains with their 37,000 and not counting Issachar's brethren, who are given no number, or Zadok's twenty and two captains, who are listed separately.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 12). Arithmetic on the figures as given, verified by script.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-021",
+      "claim": "\"All these men of war, that could keep rank, came with a perfect heart to Hebron, to make David king over all Israel: and all the rest also of Israel were of one heart to make David king.\" They are there with David three days, eating and drinking, for their brethren have prepared for them; and those near them, even unto Issachar and Zebulun and Naphtali, bring bread on asses, and on camels, and on mules, and on oxen, and meat, meal, cakes of figs, and bunches of raisins, and wine, and oil, and oxen, and sheep abundantly: \"for there was joy in Israel.\"",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-022",
+      "claim": "The Chronicler's verdict names \"the word of the LORD, which he kept not\" without giving a scene for it; the Samuel narrative attaches the loss of the kingdom to the Gilgal offering (1 Sam 13) and the Amalekite campaign (1 Sam 15). The identification of the verdict's first cause with those two episodes rests on Samuel, and the Chronicler does not state it.",
+      "evidence": "Stored KJV read in full (1 Chr 10:13–14); BiblicalTraining, \"Saul,\" read in full (lines 4–5, 126–142, 356–359): Samuel announced the dynasty would not last after Gilgal and after the Amalekite campaign, and the narrative's theme is whether the king would submit to the LORD's word.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ch-04-023",
+      "claim": "\"According to the word of the LORD by Samuel\" — the word is Samuel's anointing of David at Bethlehem, where the Spirit of the LORD came upon David from that day forward. The Chronicler cites the word without narrating the anointing.",
+      "evidence": "Stored KJV read in full (1 Chr 11:3); BiblicalTraining, \"David,\" read in part (lines 30–40): Samuel anointed David in front of his brothers, and from that day the Spirit of the LORD came powerfully upon David.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ch-04-024",
+      "claim": "The two accounts of Gilboa agree on the battle, the three sons, the archers, the armourbearer's refusal, Saul falling on his sword, the flight, the stripping, the head and the armour, the Jabesh recovery, and the seven-day fast — and differ in six places: \"all his house\" (10:6) against Samuel's armourbearer and all his men (1 Sam 31:6); the armour in the house of their gods against the temple of the Ashtoreths; the head in the temple of Dagon (Chronicles only); the bodies on the wall of Beth Shan (Samuel only); the burning of the bodies (Samuel only); and the verdict of 10:13–14 (Chronicles only) against the lament and the Amalekite of 2 Samuel 1 (Samuel only). The differences are the finding; neither account is harmonised.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 10); BiblicalTraining, \"Gilboa,\" read in full (lines 47–57, 59–63); BiblicalTraining, \"Temples of Dagon,\" read in full (lines 66–75); BiblicalTraining, \"Jabesh Gilead,\" read in full (lines 63–76).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-025",
+      "claim": "Issachar's heads are \"men that had understanding of the times, to know what Israel ought to do\" — political discernment, the ability to read the moment and act on it, rather than divination or prophecy. The text gives the phrase without explanation; the reading is probable, not certain.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 12).",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ch-04-026",
+      "claim": "Uriah the Hittite stands in the roll of the valiant men, named without comment and without a story attached. In the Samuel account his name will become infamous (2 Sam 11); in Chronicles he appears only as one of the thirty, and the Bathsheba story is never told in this book.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11); BiblicalTraining, \"Joab,\" read in part (lines 109–125): Joab carried out David's order that sent Uriah the Hittite to his death.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-027",
+      "claim": "Asking counsel of \"one that had a familiar spirit\" is named by the Chronicler as a transgression against the LORD; the law forbade turning to familiar spirits (Lev 19:31) and forbade consulting the dead (Deut 18:10–12). The act the verdict names is the visit to the medium at Endor (1 Sam 28:7–25).",
+      "evidence": "Stored KJV read in full (1 Chr 10:13); BiblicalTraining, \"Saul,\" read in full (lines 276–290): Saul inquired of the LORD and received no answer, then went by night to a woman at Endor; Chronicles names consulting a medium as one of the reasons for his death.",
+      "assessment": "probable"
+    },
+    {
+      "id": "clm-1ch-04-028",
+      "claim": "How Joab entered Jerusalem is not stated in either account. Samuel's account mentions a *ṣinnôr*, often rendered water shaft, as the route; older writers pictured Joab climbing Warren's Shaft, discovered in 1867, but later excavations have shown the water system had a more complicated history, many archaeologists now doubt the vertical shaft was accessible in David's time, and the meaning of *ṣinnôr* is itself uncertain.",
+      "evidence": "Stored KJV read in full (1 Chr 11:4–6); BiblicalTraining, \"Joab,\" read in part (lines 77–81); BiblicalTraining, \"Jebusites,\" read in full (lines 84–91): the shaft was probably not accessible in the Canaanite period, and some scholars propose *ṣinnôr* means a grappling hook.",
+      "assessment": "debated"
+    },
+    {
+      "id": "clm-1ch-04-029",
+      "claim": "The Benjamites who came to David at Ziklag \"could use both the right hand and the left in hurling stones and shooting arrows out of a bow\" — the tribe's ambidexterity with bow and sling. The descendants of Jonathan listed in Chronicles included notable archers (1 Chr 8:40).",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 12); BiblicalTraining, \"Jonathan,\" read in part (lines 123–125): the Benjamites as a tribe were known for skill with the bow and the sling, and Jonathan's descendants included notable archers.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-030",
+      "claim": "Benjamin, the kindred of Saul, sends only 3,000 men, \"for hitherto the greatest part of them had kept the ward of the house of Saul\" — the defection is measured in the muster itself, against Zebulun's 50,000, \"not of double heart\" (12:33).",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 12).",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-031",
+      "claim": "The mighty-men lists overlap but differ in names, numbers, and details: Jashobeam's 300 slain against 800 in Samuel, the parcel of ground full of barley against a field of lentils, and the name variants through the roll. The differences are problems in the transmission of the text, following the handling of the parallel Elhanan case (2 Sam 21:19 against 1 Chr 20:5); no name or number is corrected to match the other list.",
+      "evidence": "Stored KJV read in full; Hebrew + JPS 1917 read in full, Mechon Mamre (ch. 11); BiblicalTraining, \"Philistines,\" read in part (lines 218–222): Samuel names Elhanan's victim as Goliath and Chronicles as Lahmi the brother of Goliath, and interpreters usually explain the difference as a problem in the transmission of the text.",
+      "assessment": "established"
+    },
+    {
+      "id": "clm-1ch-04-032",
+      "claim": "No absolute date is given in the text for any event in these chapters. The conventional scholarly dating places Saul's reign in the late 11th century BC, commonly c. 1050–1010 BC, and David's reign at about forty years, c. 1010–970 BC — conventional datings, not dates the text gives. The category date remains `unknown`.",
+      "evidence": "Stored KJV read in full; BiblicalTraining, \"Saul,\" read in full (lines 2–3); BiblicalTraining, \"David,\" read in part (lines 2–6).",
+      "assessment": "probable"
+    }
+  ],
+  "connections": [
+    {
+      "id": "conn-1ch-04-001",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 31,
+      "startVerse": 1,
+      "endChapter": 31,
+      "endVerse": 13,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Targets 31:1–6, 7, 8–10, 11–13. Samuel tells the same battle on Gilboa: the flight, the three sons slain, the archers, Saul falling on his sword, the stripping, the head and armour sent through Philistia, and the men of Jabesh recovering the bodies and fasting seven days. The two accounts agree on the battle and differ on the details — the head in Dagon's temple, the body on Beth Shan's wall, the burning of the bodies — and the differences are part of the story."
+    },
+    {
+      "id": "conn-1ch-04-002",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 28,
+      "startVerse": 4,
+      "endChapter": 28,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 28:4–6, 7–25. Saul camps on Gilboa, receives no answer from the LORD by dreams, by the Urim, or by prophets, and goes by night in disguise to a medium at Endor to bring up Samuel, who tells him the kingdom is torn from him and given to David. The visit is the act the Chronicler names when he says Saul asked counsel of one that had a familiar spirit."
+    },
+    {
+      "id": "conn-1ch-04-003",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 13,
+      "startVerse": 8,
+      "endChapter": 13,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 13:8–12, 13–14. Saul waits seven days at Gilgal, the troops slip away, and he offers the burnt offering himself; Samuel answers that he has done foolishly, that he has not kept the commandment of the LORD, and that his kingdom shall not continue. The word Saul kept not, named in the Chronicler's verdict, is first broken here."
+    },
+    {
+      "id": "conn-1ch-04-004",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 15,
+      "startVerse": 10,
+      "endChapter": 15,
+      "endVerse": 28,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 15:10–23, 24–28. Saul spares Agag and the best of the spoil against the LORD's command, justifies himself with the wish to sacrifice, and Samuel announces that the LORD has rejected him from being king and has rent the kingdom from him. The second breaking of the word the Chronicler names in his verdict."
+    },
+    {
+      "id": "conn-1ch-04-005",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 1,
+      "startVerse": 17,
+      "endChapter": 1,
+      "endVerse": 27,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 1:17–18, 19–27. David mourns Saul and Jonathan in a lament he orders taught to the people of Judah, preserved in the Book of Jashar, honouring both men as warriors and turning to the mountains of Gilboa themselves in grief. Chronicles gives no lament; its answer to the death is the verdict and the anointing that follow."
+    },
+    {
+      "id": "conn-1ch-04-006",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 5,
+      "startVerse": 1,
+      "endChapter": 5,
+      "endVerse": 10,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Targets 5:1–3, 6–10. The parallel account of the anointing at Hebron and the capture of Jerusalem: all the tribes come, recall that David led Israel even under Saul, make a covenant, and anoint him king; then David takes the stronghold of Zion. Samuel adds the Jebusites' taunt and the water-shaft; Chronicles adds the prize of the chief command and Joab's winning of it."
+    },
+    {
+      "id": "conn-1ch-04-007",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 23,
+      "startVerse": 8,
+      "endChapter": 23,
+      "endVerse": 39,
+      "type": "direct-account",
+      "confidence": "probable",
+      "note": "Targets 23:8–12, 13–17, 18–23, 24–39. The parallel list of David's mighty men: the chief of the captains and his spear, the stand in the field, the three and the water of Bethlehem, Abishai and Benaiah, and the roll of the thirty. The two lists tell the same honours with different numbers and names, and neither is corrected to match the other."
+    },
+    {
+      "id": "conn-1ch-04-008",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 2,
+      "startVerse": 1,
+      "endChapter": 2,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 2:1–4, 8–11. David asks the LORD where to go, moves to Hebron, and the men of Judah anoint him king over their tribe; meanwhile Abner makes Saul's son Ish-Bosheth king over the northern tribes at Mahanaim, and David reigns in Hebron seven and a half years. Chronicles passes over this divided interval and moves straight from Gilboa to the anointing of all Israel."
+    },
+    {
+      "id": "conn-1ch-04-009",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 16,
+      "startVerse": 1,
+      "endChapter": 16,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 16:1–5, 6–13. The LORD sends Samuel to Bethlehem with a horn of oil; Jesse's sons pass before him one by one, none is chosen, and David, out with the sheep, is brought in and anointed in front of his brothers, and the Spirit of the LORD comes upon him from that day forward. This is the word by Samuel that the Chronicler cites at the Hebron anointing."
+    },
+    {
+      "id": "conn-1ch-04-010",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 11,
+      "startVerse": 1,
+      "endChapter": 11,
+      "endVerse": 15,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 11:1–11, 12–15. Nahash king of the Ammonites besieges Jabesh Gilead and demands the right eye of every man; Saul musters Israel, attacks in the last watch of the night, and scatters the Ammonites, and the people confirm him as king at Gilgal. The rescue is the debt the valiant men of Jabesh repay on the night after Gilboa."
+    },
+    {
+      "id": "conn-1ch-04-011",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 21,
+      "startVerse": 12,
+      "endChapter": 21,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 21:12–14. Years later David has the bones of Saul and Jonathan brought from Jabesh Gilead and buries them, with the bones of the seven executed men, in the tomb of Saul's father Kish at Zela in Benjamin. The burial under the oak at Jabesh was not the last resting place of the king's bones."
+    },
+    {
+      "id": "conn-1ch-04-012",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 4,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 18:1–4. After David kills Goliath, Jonathan's soul is knit with David's soul, and Jonathan makes a covenant with him and gives him his robe, his tunic, his sword, his bow, and his belt. The heir to the throne hands over the marks of his own rank to the man who will take it."
+    },
+    {
+      "id": "conn-1ch-04-013",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 29,
+      "startVerse": 1,
+      "endChapter": 29,
+      "endVerse": 11,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 29:1–5, 6–11. When the Philistines gather at Aphek for the campaign against Saul, Achish brings David along, but the other Philistine lords refuse to trust him in battle and he is sent back to Ziklag. The council's refusal is why David lives to hear of Saul's death at Ziklag rather than fighting in the battle that kills him."
+    },
+    {
+      "id": "conn-1ch-04-014",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 27,
+      "startVerse": 1,
+      "endChapter": 27,
+      "endVerse": 7,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 27:1–4, 5–7. After repeated pursuit by Saul, David decides he will be safer outside Israel and goes to Achish king of Gath with six hundred men and their households; Achish gives him Ziklag, where he lives among the Philistines for a year and four months. The town is the base from which the men of chapter 12 come to him."
+    },
+    {
+      "id": "conn-1ch-04-015",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 30,
+      "startVerse": 1,
+      "endChapter": 30,
+      "endVerse": 31,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 30:1–6, 7–20, 21–31. David returns to Ziklag to find the Amalekites have burned the town and taken everyone captive; he pursues, recovers all that was taken, and rules that those who guard the supplies share alike with those who fight. The raid and the recovery are the life of David's band at Ziklag before the news of Gilboa reaches it."
+    },
+    {
+      "id": "conn-1ch-04-016",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 16,
+      "startVerse": 23,
+      "endChapter": 16,
+      "endVerse": 30,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 16:23–27, 28–30. The rulers of the Philistines gather to offer a great sacrifice to Dagon and celebrate the capture of Samson, and Samson, brought out to entertain them, braces himself against the two central pillars and pulls the temple down on the rulers and the crowd. The temple of Dagon at Gaza is the first of the three named in Scripture."
+    },
+    {
+      "id": "conn-1ch-04-017",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 5,
+      "startVerse": 1,
+      "endChapter": 5,
+      "endVerse": 12,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 5:1–5, 6–12. The Philistines carry the captured ark to Ashdod and set it beside the image of Dagon in his temple; the image is found face down before the ark, then broken, its head and hands lying on the threshold. The god whose temple receives Saul's head had already been humbled before the ark."
+    },
+    {
+      "id": "conn-1ch-04-018",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 4,
+      "startVerse": 1,
+      "endChapter": 4,
+      "endVerse": 22,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 4:1–11, 12–22. Israel meets the Philistines at Ebenezer, brings the ark from Shiloh hoping it will secure victory, is routed, loses the ark, and Eli's sons Hophni and Phinehas are killed. The defeat opens the Philistine dominance that Saul inherits and dies under."
+    },
+    {
+      "id": "conn-1ch-04-019",
+      "book": "Leviticus",
+      "bookId": "leviticus",
+      "startChapter": 19,
+      "startVerse": 31,
+      "endChapter": 19,
+      "endVerse": 31,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 19:31. The law forbids turning to familiar spirits and wizards and seeking after them to be defiled by them. The prohibition stands behind the Chronicler's verdict that Saul died for asking counsel of one that had a familiar spirit."
+    },
+    {
+      "id": "conn-1ch-04-020",
+      "book": "Deuteronomy",
+      "bookId": "deuteronomy",
+      "startChapter": 18,
+      "startVerse": 9,
+      "endChapter": 18,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 18:9–14. The law forbids the practices of the nations — divination, observing times, enchantment, witchcraft, charming, consulting with familiar spirits, wizardry, and necromancy — and calls them abominations. Saul's visit to Endor breaks this law, and the Chronicler names the breach among the causes of his death."
+    },
+    {
+      "id": "conn-1ch-04-021",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 8,
+      "startVerse": 33,
+      "endChapter": 8,
+      "endVerse": 40,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 8:33–34, 35–40. The genealogy of Benjamin lists Saul's sons — Jonathan, Malki-Shua, Abinadab, and Esh-Baal — and traces Jonathan's son Meribbaal and his line through further generations of archers. The house the battle chapter says died together lives on in the genealogies of the same book."
+    },
+    {
+      "id": "conn-1ch-04-022",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 9,
+      "startVerse": 1,
+      "endChapter": 9,
+      "endVerse": 13,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 9:1–8, 9–13. Once established as king, David asks whether anyone is left of the house of Saul to whom he can show kindness for Jonathan's sake, and restores Saul's land to Mephibosheth, Jonathan's lame son, giving him a regular place at the royal table. The kindness keeps the covenant Jonathan made with David."
+    },
+    {
+      "id": "conn-1ch-04-023",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 14,
+      "startVerse": 8,
+      "endChapter": 14,
+      "endVerse": 17,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 14:8–12, 13–17. When the Philistines hear David is anointed king over all Israel, they come up into the valley of Rephaim; David defeats them at Baal-perazim, where they abandon their idols, and again at the mulberry trees. The valley where the Philistine host encamped in chapter 11 becomes the ground of David's first victories as king over all Israel."
+    },
+    {
+      "id": "conn-1ch-04-024",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 20,
+      "startVerse": 4,
+      "endChapter": 20,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 20:4–8. In the wars at Gath, Sibbecai slays Sippai, Elhanan slays Lahmi the brother of Goliath, and Jonathan slays the six-fingered man of Gath. The Chronicles reading — Lahmi the brother of Goliath — resolves the crux of the Samuel parallel, which credits Elhanan with slaying Goliath himself."
+    },
+    {
+      "id": "conn-1ch-04-025",
+      "book": "Genesis",
+      "bookId": "genesis",
+      "startChapter": 10,
+      "startVerse": 13,
+      "endChapter": 10,
+      "endVerse": 14,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 10:13–14. The Table of Nations lists the Kasluhites, from whom the Philistines came, next to the Caphtorites among the descendants of Mizraim. Scripture traces the Philistines to Caphtor, and the same origin stands behind the Chronicler's own genealogy in 1 Chronicles 1:11–12."
+    },
+    {
+      "id": "conn-1ch-04-026",
+      "book": "2 Samuel",
+      "bookId": "2-samuel",
+      "startChapter": 3,
+      "startVerse": 1,
+      "endChapter": 3,
+      "endVerse": 21,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 3:1, 6–12, 13–21. The war between the house of Saul and the house of David drags on, with David's house growing stronger; Abner breaks with Ish-Bosheth over Rizpah, offers to bring all Israel over to David, and comes to Hebron to arrange the transfer of the kingdom. The passage is the bridge Chronicles passes over between Gilboa and the anointing of all Israel."
+    },
+    {
+      "id": "conn-1ch-04-027",
+      "book": "1 Chronicles",
+      "bookId": "1-chronicles",
+      "startChapter": 18,
+      "startVerse": 1,
+      "endChapter": 18,
+      "endVerse": 1,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 18:1. After this, David smites the Philistines and subdues them, taking Gath and her towns out of the hand of the Philistines. The power that killed Saul on Gilboa is broken by the king anointed at Hebron."
+    },
+    {
+      "id": "conn-1ch-04-028",
+      "book": "Judges",
+      "bookId": "judges",
+      "startChapter": 7,
+      "startVerse": 1,
+      "endChapter": 7,
+      "endVerse": 8,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 7:1–8. Gideon camps at the spring of Harod at the foot of Gilboa, while the Midianites lie in the valley near the hill of Moreh, and the LORD reduces his army to three hundred men. The ridge where Saul dies had already seen a battle won by few against many."
+    },
+    {
+      "id": "conn-1ch-04-029",
+      "book": "1 Samuel",
+      "bookId": "1-samuel",
+      "startChapter": 10,
+      "startVerse": 1,
+      "endChapter": 10,
+      "endVerse": 25,
+      "type": "background",
+      "confidence": "probable",
+      "note": "Targets 10:1–9, 17–25. Samuel pours a flask of oil on Saul's head and anoints him ruler over the LORD's inheritance, and God changes Saul's heart; then at Mizpah the lot falls on Benjamin and on Saul, and the people shout for the king. The private anointing and the public choice are the beginning of the kingship that ends on Gilboa."
+    }
+  ],
+  "relatedEvents": [],
+  "sources": [
+    "source-mechon-mamre-1-chronicles-masoretic-text",
+    "source-biblicaltraining-saul",
+    "source-biblicaltraining-david",
+    "source-biblicaltraining-gilboa",
+    "source-biblicaltraining-jabesh-gilead",
+    "source-biblicaltraining-temples-of-dagon",
+    "source-biblicaltraining-philistines",
+    "source-biblicaltraining-jebusites",
+    "source-biblicaltraining-ziklag",
+    "source-biblicaltraining-joab",
+    "source-biblicaltraining-anointing",
+    "source-biblicaltraining-jonathan"
+  ],
+  "review": {
+    "author": "Gnosis 1 Chronicles research handoff (AI-assisted)",
+    "reviewer": "Author-side preflight only; independent Muse QA pending",
+    "lastReviewed": "2026-11-28",
+    "checklistVersion": "standards-1.1-section-14",
+    "notes": "Proposed unpublished 1 Chronicles category; independent QA pending. Fourth 1 Chronicles category; no shared-file change (the \"1-chronicles\" era-enum append rode with S01). S04 sources[] carries twelve entries (all verified in the live registry): 1CNN-S04-01 Mechon Mamre Hebrew + JPS 1917, chs. 10-12 read in full -> source-mechon-mamre-1-chronicles-masoretic-text; source-biblicaltraining-saul; source-biblicaltraining-david; source-biblicaltraining-gilboa; source-biblicaltraining-jabesh-gilead; source-biblicaltraining-temples-of-dagon; source-biblicaltraining-philistines; source-biblicaltraining-jebusites; source-biblicaltraining-ziklag; source-biblicaltraining-joab; source-biblicaltraining-anointing; source-biblicaltraining-jonathan. None is newly cited by this category — all twelve were already cited by published categories (Gilboa, Jabesh Gilead, Dagon, Philistines, Ziklag, Joab, Anointing, Jonathan, David and Saul by published 1 Samuel, 2 Samuel, 1 Kings and Judges categories; Mechon Mamre 1 Chronicles by S01-S03). Excluded from sources[] by the section-location rule: source-bible-odyssey-royal-succession (verified in the registry, but cited only as background context in §2, zero §9 rows and zero appendix footnotes; no claim rests on it). The Saul article was read in full (425 lines) in this dossier, satisfying the S03 carry-forward that the Saul read extend past lines 0-296. primaryScripture is the full range 10:1-12:40 (span 2, no narrowing); fullRange is 10:1-12:40. Claims 1CCL-04-003 (\"all his house died together\") and 1CCL-04-028 (how Joab entered Jerusalem) are debated; 1CCL-04-022, 1CCL-04-023, 1CCL-04-025, 1CCL-04-027 and 1CCL-04-032 are probable. The JPS/KJV verse-numbering seam (JPS 12:30 is KJV 12:29; JPS ch. 12 has 41 verses against the KJV's 40) is recorded in the dossier notes only and appears in no claim, evidence, or prose. No licensed-translation text anywhere in this category. No editorialOverride."
+  }
+}
